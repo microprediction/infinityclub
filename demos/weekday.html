@@ -69,7 +69,7 @@
     var parts = v.split("-"), y = +parts[0], m = +parts[1], d = +parts[2], r = compute(y, m, d);
     var check = new Date(y, m - 1, d).getDay();
     var li = [
-      "<b>Century anchor.</b> The " + c2s(r.c) + " start on <b>" + names[r.anc] + "</b>.",
+      "<b>Century anchor.</b> The doomsday anchor for the " + c2s(r.c) + " is <b>" + names[r.anc] + "</b>.",
       "<b>Year offset.</b> " + r.yy + " + ⌊" + r.yy + " ÷ 4⌋ = " + r.yy + " + " + r.q + " = " + (r.yy + r.q) + ". Divide by 7, remainder " + ((r.yy + r.q) % 7) + ".",
       "<b>This year's doomsday.</b> " + names[r.anc] + " + " + ((r.yy + r.q) % 7) + " = <b>" + names[r.dd] + "</b>. So 4/4, 6/6, 8/8, 10/10, 12/12 of " + y + " are all " + names[r.dd] + "s.",
       "<b>Nearest doomsday in " + months[m - 1] + ".</b> " + months[m - 1] + " " + r.ref + (leap(y) && m <= 2 ? " (leap year)" : "") + " is a " + names[r.dd] + ".",

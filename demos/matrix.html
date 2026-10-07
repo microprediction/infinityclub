@@ -48,7 +48,7 @@
 <div class="explain">
 <h2>What's going on</h2>
 <p>The matrix with rows (a b) and (c d) sends the point (x, y) to (ax + by, cx + dy). The easiest way to see what it does: the first column (a, c) is where the point (1, 0) lands, and the second column (b, d) is where (0, 1) lands. Everything else follows, because the grid stays a grid of parallelograms. Straight lines stay straight and the origin never moves.</p>
-<p>The number ad − bc is the determinant. It is the area of the output unit square, so it tells you how much the machine scales areas. A negative determinant means the picture has been flipped over, like a reflection. A zero determinant squashes the whole plane onto a line, and then there is no way back: that machine has no inverse.</p>
+<p>The number ad − bc is the determinant. Its absolute value is the area of the output unit square, so it tells you how much the machine scales areas. A negative determinant means the picture has been flipped over, like a reflection. A zero determinant squashes the whole plane onto a line, or onto a single point if all four entries are zero, and then there is no way back: that machine has no inverse.</p>
 <p>Try Fibonacci, then imagine applying it again and again to the point (1, 0). The coordinates you get are consecutive Fibonacci numbers.</p>
 <p>Sheet: <a href="../sheets/b9-matrices.html">Matrices: grids that do things</a>.</p>
 </div>
@@ -61,7 +61,7 @@
   function M() { return ids.map(function (i) { return parseFloat(document.getElementById(i).value) || 0; }); }
   function draw() {
     var m = M(), a = m[0], b = m[1], c = m[2], d = m[3], det = a * d - b * c;
-    document.getElementById("det").textContent = "determinant ad − bc = " + det.toFixed(2) + "  (area scale factor" + (det < 0 ? ", flipped" : det === 0 ? ", squashed flat" : "") + ")";
+    document.getElementById("det").textContent = "determinant ad − bc = " + det.toFixed(2) + "  (area scale factor = " + Math.abs(det).toFixed(2) + (det < 0 ? ", flipped" : det === 0 ? ", collapsed to a line or point" : "") + ")";
     var dpr = window.devicePixelRatio || 1, W = Math.min(canvas.clientWidth || 700, 700), H = W;
     canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, H);
