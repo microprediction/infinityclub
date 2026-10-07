@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Algorithms and big-O · Infinity Club</title>
+<meta name="description" content="Binary search, sorting, exponential blowup, and the million-dollar question of P versus NP.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 10</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 10 · Around the corner · 26</div>
+  <h1>Algorithms and big-O</h1>
+  <p class="teaser">Binary search, sorting, exponential blowup, and the million-dollar question of P versus NP.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>An <b>algorithm</b> is a recipe precise enough that a machine can follow it. Two recipes can produce the same answer and differ wildly in how long they take, and the difference is not about fast computers. It is about how the work grows as the problem grows.</p>
+<p>Take searching. To find a name in a list of \(n\) names in no particular order, you may have to look at all \(n\). If the list is sorted, look at the middle name: too far? Throw away the second half. Each look halves the list, so after \(k\) looks only \(n/2^k\) names remain, and you are done when that drops below 1: about \(\log_2 n\) looks. Precisely, \(\lceil \log_2(n+1) \rceil\) looks always suffice. A million names takes 20 looks. That is <b>binary search</b>, and it is why a dictionary has the words in order.</p>
+<p>Take sorting. The obvious method, <b>bubble sort</b>, compares neighbours and swaps them if they are out of order, sweeping until nothing moves. In the worst case it makes about \(n(n-1)/2\) comparisons. <b>Merge sort</b> instead splits the list in half, sorts each half (by the same method, recursively), then merges the two sorted halves in a single pass of \(n\) comparisons. If \(T(n)\) is its cost, then \(T(n) = 2\,T(n/2) + n\). Unroll it: the top level costs \(n\), the next level has two halves costing \(n/2\) each, total \(n\), the next has four quarters, total \(n\), and there are \(\log_2 n\) levels before the pieces have one element. So \(T(n) \approx n \log_2 n\).</p>
+<p>For \(n = 1000\): bubble sort about 500,000 comparisons, merge sort about 10,000. For a billion items, the ratio becomes thirty million. No hardware closes that gap.</p>
+<p class="callout"><b>Big-O.</b> We say a cost is \(O(f(n))\) if, for large \(n\), it is at most a constant times \(f(n)\). So \(3n^2 + 5n + 100\) is \(O(n^2)\): the lower terms and the 3 stop mattering. Big-O deliberately ignores constants and concentrates on the <em>shape</em> of growth.</p>
+<p>The shapes, from tame to terrifying: \(O(1)\), \(O(\log n)\), \(O(n)\), \(O(n \log n)\), \(O(n^2)\), \(O(2^n)\), \(O(n!)\). Anything up to a polynomial is called <b>efficient</b>. Beyond that, the universe runs out of time. There are \(2^{30}\), more than a billion, subsets of 30 items; a salesman visiting 10 cities has \(9!/2 = 181{,}440\) distinct round trips, and with 20 cities about \(6 \times 10^{16}\).</p>
+</section>
+
+<section class="example">
+<h2>Watch one: binary search by hand</h2>
+<p>Find 73 in the sorted list 2, 5, 11, 17, 23, 31, 41, 47, 59, 61, 67, 73, 83, 89, 97 (15 numbers). Look at the middle, the 8th: 47. Too small, so discard positions 1–8. Seven remain: 59, 61, 67, 73, 83, 89, 97. Middle is 73. Found, in two looks. The worst case for 15 items is \(\lceil \log_2 16 \rceil = 4\) looks: 15 → 7 → 3 → 1 → done.</p>
+<p>Now the recurrence for merge sort on 8 items. Level 0: one merge of 8, cost 8. Level 1: two merges of 4, cost 8. Level 2: four merges of 2, cost 8. Three levels (\(\log_2 8 = 3\)), total 24 comparisons at most, against bubble sort's \(8 \times 7 / 2 = 28\). The gap is small at 8 and enormous at 8 million, because one cost grows like \(n \log n\) and the other like \(n^2\).</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>How many looks does binary search need, in the worst case, for a sorted list of 100 names? 1000? One million? The eight billion people on Earth? Use \(\lceil \log_2(n+1) \rceil\).<div class="space short"></div></li>
+<li>Bubble sort makes about \(n(n-1)/2\) comparisons and merge sort about \(n \log_2 n\). Compute both for \(n = 1000\), and say how many times faster merge sort is. Then do \(n = 10^6\) and \(n = 10^9\), rounding freely.<div class="space"></div></li>
+<li>Classify each in big-O: (a) \(7n + 12\); (b) \(n^2/2 + 100n\); (c) \(5 \log_2 n + 3\); (d) \(2^n + n^{10}\); (e) looking up a word in a printed dictionary; (f) checking every pair of students in a class of \(n\) for a shared birthday.<div class="space"></div></li>
+<li>A computer does \(10^9\) simple steps per second. How long does each take: an \(n^2\) algorithm with \(n = 10^6\); an \(n \log_2 n\) algorithm with \(n = 10^6\); a \(2^n\) algorithm with \(n = 60\); an \(n!\) algorithm with \(n = 20\)? Give each in sensible units (seconds, minutes, years).<div class="space tall"></div></li>
+<li>The Tower of Hanoi with \(n\) discs needs \(2^n - 1\) moves (see <a href="../../demos/hanoi.html">infinityclub.net/demos/hanoi.html</a>). Write the recurrence \(M(n) = 2M(n-1) + 1\) in words, explain why it holds, and check that \(2^n - 1\) satisfies it. Why does no cleverer strategy exist?<div class="space"></div></li>
+<li><b>Guess the number</b> from 1 to \(n\) with answers "higher" or "lower" (<a href="../../demos/guess.html">infinityclub.net/demos/guess.html</a>). Suppose instead the answers are only "yes" or "no" to "is it \(k\)?". How many guesses in the worst case? Which is \(O(\log n)\) and which is \(O(n)\)? Now suppose each guess costs you a dollar and you win 1000 dollars when right, with \(n = 1000\). Which game would you play?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: P versus NP, honestly</h2>
+<p>Some problems are easy to <em>check</em> but seem hard to <em>solve</em>. Given a jigsaw already assembled, you can verify it in a glance; assembling it is another matter. Given a route through 20 cities shorter than 5000 km, you can add it up in seconds; finding one might mean trying \(6 \times 10^{16}\) routes. Problems whose solutions can be checked in polynomial time are called <b>NP</b>. Problems that can be solved in polynomial time are called <b>P</b>. Every P problem is in NP. The question, open since 1971 and carrying a one-million-dollar prize, is whether the reverse holds: <b>is P = NP?</b> Almost everyone believes not, nobody has proved it, and if the answer were yes, most of modern cryptography would collapse overnight.</p>
+<p>Here is a related fact you can prove. Any sorting method that works by comparing pairs must, in the worst case, make at least \(\log_2(n!)\) comparisons. Why? There are \(n!\) possible orderings of the input, each comparison has two outcomes, and after \(k\) comparisons the method has distinguished at most \(2^k\) orderings. Compute the bound for \(n = 5\) and \(n = 10\). Then use the rough estimate \(\log_2(n!) \approx n\log_2 n - 1.44\,n\) to explain why no comparison sort can beat \(O(n \log n)\), which makes merge sort essentially unbeatable.</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>100 names: 7 looks (\(2^7 = 128 \ge 101\)). 1000: 10. One million: 20 (\(2^{20} = 1{,}048{,}576\)). Eight billion: 33 (\(2^{33} \approx 8.6 \times 10^9\)).</li>
+<li>\(n = 1000\): bubble \(499{,}500\), merge about \(1000 \times 9.97 \approx 9{,}970\), roughly 50 times faster. \(n = 10^6\): bubble \(\approx 5 \times 10^{11}\), merge \(\approx 2 \times 10^7\), about 25,000 times. \(n = 10^9\): bubble \(\approx 5 \times 10^{17}\), merge \(\approx 3 \times 10^{10}\), about 17 million times.</li>
+<li>(a) \(O(n)\). (b) \(O(n^2)\). (c) \(O(\log n)\). (d) \(O(2^n)\): the exponential swallows any power. (e) \(O(\log n)\): it is binary search. (f) \(O(n^2)\): there are \(n(n-1)/2\) pairs.</li>
+<li>\(n^2\): \(10^{12}\) steps, 1000 s, about 17 minutes. \(n \log_2 n\): \(2 \times 10^7\) steps, 0.02 s. \(2^{60} \approx 1.15 \times 10^{18}\) steps, about 36.5 years. \(20! \approx 2.43 \times 10^{18}\) steps, about 77 years. Same computer; the shape of growth decides everything.</li>
+<li>To move \(n\) discs: move the top \(n-1\) out of the way (\(M(n-1)\) moves), move the big disc (1 move), move the \(n-1\) back on top (\(M(n-1)\) again). Check: \(2(2^{n-1} - 1) + 1 = 2^n - 1\). No shortcut exists because the largest disc can only move when the other \(n-1\) are stacked on a single other peg, which already forces the first \(M(n-1)\) moves, and they must be unstacked onto it afterwards.</li>
+<li>"Is it \(k\)?" needs up to \(n - 1\) guesses (the last one is forced): \(O(n)\). Higher/lower needs \(\lceil \log_2(n+1) \rceil\): \(O(\log n)\). With \(n = 1000\): higher/lower costs at most 10 dollars for a 1000-dollar prize; yes/no costs 500 dollars on average and up to 999. Play higher/lower.</li>
+</ol>
+<p><b>Stretch.</b> \(\log_2(5!) = \log_2 120 \approx 6.91\), so at least 7 comparisons to sort 5 items in the worst case. \(\log_2(10!) = \log_2 3{,}628{,}800 \approx 21.8\), so at least 22 for 10 items. The estimate \(n\log_2 n - 1.44n\) is \(n\log_2 n\) minus something linear, and a linear term cannot change the \(n \log n\) shape; so every comparison sort is \(\Omega(n \log n)\), the matching lower bound to merge sort's upper bound. For P versus NP, the honest summary: nobody knows. What is known is that thousands of practical problems (scheduling, packing, protein folding, Sudoku on an \(n^2 \times n^2\) grid) are "NP-complete": a fast algorithm for any one of them would give a fast algorithm for all of them, and for every other NP problem too.</p>
+</section>
+
+<div class="sheet-nav"><a href="b25-entropy.html">← Previous</a><a href="b27-non-euclidean.html">Next: Geometry on a sphere and beyond →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

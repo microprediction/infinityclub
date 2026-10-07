@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Area by Slices · Infinity Club</title>
+<meta name="description" content="Approximate the area under a curve with left, right and midpoint rectangles, slide the number of slices up to 200, and watch the sums close in on the exact integral.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.controls input[type=range] { width: 200px; }
+.controls .val { font-family: var(--mono); min-width: 2.5em; display: inline-block; }
+table.sums { font-family: var(--mono); font-size: .92rem; }
+table.sums th, table.sums td { padding: .25em .8em; border-bottom: 1px solid var(--rule); text-align: right; }
+table.sums th { background: #eeece6; }
+table.sums tr.cur td { font-weight: 800; color: var(--accent); }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Area by slices</h1>
+<p class="explain">Cut the region under a curve into n strips, stand a rectangle on each, add up the rectangles. Too tall in places, too short in others. Now make n bigger. The errors shrink and the sum heads for a definite number: the exact area, which calculus writes as an integral.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <label>f(x)
+      <select id="fn">
+        <option value="sq">x² on [0, 1]</option>
+        <option value="sin">sin x on [0, π]</option>
+        <option value="inv">1/x on [1, e]</option>
+      </select>
+    </label>
+    <label>rectangles
+      <select id="method">
+        <option value="left">left endpoints</option>
+        <option value="right">right endpoints</option>
+        <option value="mid" selected>midpoints</option>
+      </select>
+    </label>
+    <label>n <input type="range" id="n" min="1" max="200" step="1" value="8"> <span class="val" id="nv">8</span></label>
+  </div>
+  <canvas id="plot" width="900" height="480"></canvas>
+  <div class="readout" id="info"></div>
+  <table class="sums" id="tbl"></table>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>Each rectangle has width Δx = (b − a)/n and a height taken from the curve: at the strip's left edge, its right edge, or its middle. For an increasing curve like x², left rectangles all sit under the curve and right rectangles all poke over it, so the true area is trapped between the two sums. As n grows the trap tightens, because the difference between the left and right sums is just the first and last rectangles swapping, which is f(b)Δx − f(a)Δx, and Δx → 0.</p>
+<p>For x² on [0, 1] the right sum can be worked out exactly: Δx = 1/n and the heights are (k/n)², so the sum is (1² + 2² + … + n²)/n³ = n(n + 1)(2n + 1)/(6n³). Expand the top and divide: 1/3 + 1/(2n) + 1/(6n²). As n → ∞ this is 1/3, and the 1/(2n) term is exactly the error you see shrinking in the table. Archimedes did essentially this calculation for the parabola two thousand years before calculus had a name.</p>
+<p>Midpoint rectangles are much better than either endpoint, because each one overshoots on one side of the midpoint and undershoots on the other, and the two errors nearly cancel. Watch the error column: halve Δx and the midpoint error drops by about four, not two.</p>
+<p>Sheet: <a href="../grade-10/sheets/b11-area-under-curves.html">Area under a curve, Archimedes' way</a>. See also <a href="pi-darts.html">Pi by darts</a>, another way to measure an area by counting.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  var FNS = {
+    sq:  { f: function (x) { return x * x; }, a: 0, b: 1, exact: 1 / 3, name: "x²", exactName: "1/3", ymax: 1.1 },
+    sin: { f: Math.sin, a: 0, b: Math.PI, exact: 2, name: "sin x", exactName: "2", ymax: 1.1 },
+    inv: { f: function (x) { return 1 / x; }, a: 1, b: Math.E, exact: 1, name: "1/x", exactName: "1 (that is what ln e means)", ymax: 1.1 }
+  };
+  function riemann(f, a, b, n, method) {
+    var dx = (b - a) / n, s = 0;
+    for (var k = 0; k < n; k++) {
+      var x = method === "left" ? a + k * dx : method === "right" ? a + (k + 1) * dx : a + (k + 0.5) * dx;
+      s += f(x) * dx;
+    }
+    return s;
+  }
+  /*ENDPURE*/
+
+  var canvas = document.getElementById("plot"), ctx = canvas.getContext("2d"), info = document.getElementById("info"), tbl = document.getElementById("tbl");
+  var fnSel = document.getElementById("fn"), mSel = document.getElementById("method"), nSl = document.getElementById("n");
+  [fnSel, mSel, nSl].forEach(function (el) { el.addEventListener("input", draw); el.addEventListener("change", draw); });
+
+  function draw() {
+    var F = FNS[fnSel.value], method = mSel.value, n = parseInt(nSl.value, 10);
+    document.getElementById("nv").textContent = n;
+    var dpr = window.devicePixelRatio || 1, W = canvas.clientWidth || 900, H = Math.round(W * 0.53);
+    canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, H);
+    var L = 48, R = W - 20, T = 24, B = H - 34, XMIN = F.a - (F.b - F.a) * 0.05, XMAX = F.b + (F.b - F.a) * 0.05, YMAX = F.ymax;
+    function X(x) { return L + (R - L) * (x - XMIN) / (XMAX - XMIN); }
+    function Y(y) { return B - (B - T) * y / YMAX; }
+    ctx.strokeStyle = "#cfcdc3"; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(L, Y(0)); ctx.lineTo(R, Y(0)); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(X(F.a), T); ctx.lineTo(X(F.a), B + 4); ctx.stroke();
+    ctx.fillStyle = "#5d6079"; ctx.font = "11px Nunito, sans-serif"; ctx.textAlign = "center";
+    ctx.fillText(fnSel.value === "sin" ? "0" : String(F.a), X(F.a), B + 16);
+    ctx.fillText(fnSel.value === "sin" ? "π" : fnSel.value === "inv" ? "e" : "1", X(F.b), B + 16);
+    ctx.textAlign = "right"; ctx.fillText("1", L - 5, Y(1) + 4); ctx.fillText("0", L - 5, Y(0) + 4);
+    // rectangles
+    var dx = (F.b - F.a) / n;
+    for (var k = 0; k < n; k++) {
+      var x0 = F.a + k * dx, xs = method === "left" ? x0 : method === "right" ? x0 + dx : x0 + dx / 2, hgt = F.f(xs);
+      ctx.fillStyle = "rgba(63,68,201,0.22)"; ctx.fillRect(X(x0), Y(hgt), X(x0 + dx) - X(x0), Y(0) - Y(hgt));
+      if (n <= 60) { ctx.strokeStyle = "rgba(63,68,201,0.8)"; ctx.lineWidth = 1; ctx.strokeRect(X(x0), Y(hgt), X(x0 + dx) - X(x0), Y(0) - Y(hgt)); }
+      if (method === "mid" && n <= 40) { ctx.fillStyle = "#3f44c9"; ctx.beginPath(); ctx.arc(X(xs), Y(hgt), 2.5, 0, Math.PI * 2); ctx.fill(); }
+    }
+    // curve
+    ctx.strokeStyle = "#1d1f3a"; ctx.lineWidth = 2.5; ctx.beginPath();
+    for (var i = 0; i <= 400; i++) { var x = F.a + (F.b - F.a) * i / 400, y = F.f(x); if (i === 0) ctx.moveTo(X(x), Y(y)); else ctx.lineTo(X(x), Y(y)); }
+    ctx.stroke();
+    var S = riemann(F.f, F.a, F.b, n, method), Lsum = riemann(F.f, F.a, F.b, n, "left"), Rsum = riemann(F.f, F.a, F.b, n, "right"), Msum = riemann(F.f, F.a, F.b, n, "mid");
+    var mname = method === "left" ? "left" : method === "right" ? "right" : "midpoint";
+    info.textContent = "f(x) = " + F.name + ",  n = " + n + ",  Δx = " + dx.toFixed(5)
+      + "\n" + mname + " sum = " + S.toFixed(6) + "    exact area = " + F.exactName + " = " + F.exact.toFixed(6) + "    error = " + (S - F.exact).toExponential(3)
+      + "\nleft " + Lsum.toFixed(6) + "   mid " + Msum.toFixed(6) + "   right " + Rsum.toFixed(6);
+    var ns = [1, 2, 4, 8, 16, 32, 64, 128, 200];
+    if (ns.indexOf(n) < 0) { ns.push(n); ns.sort(function (p, q) { return p - q; }); }
+    var rows = ns.map(function (nn) {
+      var l = riemann(F.f, F.a, F.b, nn, "left"), m = riemann(F.f, F.a, F.b, nn, "mid"), r = riemann(F.f, F.a, F.b, nn, "right");
+      var cur = method === "left" ? l : method === "right" ? r : m;
+      return "<tr" + (nn === n ? ' class="cur"' : "") + "><td>" + nn + "</td><td>" + l.toFixed(6) + "</td><td>" + m.toFixed(6) + "</td><td>" + r.toFixed(6) + "</td><td>" + (cur - F.exact).toExponential(2) + "</td></tr>";
+    });
+    tbl.innerHTML = "<tr><th>n</th><th>left</th><th>midpoint</th><th>right</th><th>" + mname + " error</th></tr>" + rows.join("") + "<tr><th>n → ∞</th><th colspan='3'>" + F.exact.toFixed(6) + "</th><th>0</th></tr>";
+  }
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(draw, 120); });
+  draw();
+})();
+</script>
+</body>
+</html>

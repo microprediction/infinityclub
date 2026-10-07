@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kepler's laws and measuring the universe · Infinity Club</title>
+<meta name="description" content="Kepler's third law checked on real planets, parallax, standard candles, and a cosmic distance ladder built out of logarithms.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 10</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 10 · Connections · 2</div>
+  <h1>Kepler's laws and measuring the universe</h1>
+  <p class="teaser">T² ∝ a³, parallax, standard candles, and a cosmic distance ladder built out of logarithms.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Nobody has ever laid a tape measure to a star. Every distance in astronomy is an inference, and the inferences stack: each rung of the ladder is calibrated by the one below. Tonight you climb it.</p>
+<p><b>Rung 1: the Solar System, with Kepler.</b> In 1619, after years of staring at Tycho Brahe's tables, Johannes Kepler found that for every planet the square of the orbital period is proportional to the cube of the orbit's size. Measure \(T\) in years and the semi-major axis \(a\) in astronomical units (1 AU is the Earth–Sun distance), and the constant is 1:</p>
+<p class="callout">\(T^2 = a^3\). Mars: \(a = 1.524\) AU, \(T = 1.881\) yr. \(1.524^3 = 3.540\), \(1.881^2 = 3.538\). It works to three figures.</p>
+<p>Kepler had no idea why. Newton showed sixty years later that it is gravity's inverse-square law in disguise (that is the stretch tonight). The law turns time into distance: measure how long something takes to go round the Sun, and you know how far away it is, in AU. Radar bouncing off Venus then pins down the AU itself: 149.6 million km, about 499 light-seconds.</p>
+<p><b>Rung 2: nearby stars, with parallax.</b> Hold a finger at arm's length and blink one eye then the other: it jumps against the background. The Earth does the same, six months apart, from opposite sides of its orbit. A nearby star shifts against distant ones by a tiny angle. Half the total shift is the <b>parallax</b> \(p\), and a star with \(p = 1\) arcsecond (1/3600 of a degree) is by definition 1 <b>parsec</b> away, 3.26 light-years. Smaller angle, farther star: \(d = 1/p\) parsecs. Proxima Centauri, the nearest star, has \(p = 0.768''\), so \(d = 1.30\) pc \(= 4.25\) light-years.</p>
+<p><b>Rung 3: everything else, with standard candles.</b> Light spreads over a sphere, so a source of luminosity \(L\) seen from distance \(d\) has brightness \(b = L/(4\pi d^2)\). If you know \(L\) (because the object is a type whose true brightness you have calibrated on nearby examples using parallax), the measured \(b\) gives \(d\). Cepheid variable stars and type Ia supernovae are the famous candles, and the inverse square is the only formula involved.</p>
+<p>The grade 6 sheet <a href="../../grade-6/sheets/c2-astronomy.html">The size of everything</a> shrank the Solar System to a basketball. Tonight the tool is the logarithm: on a log scale the Moon and Andromeda fit on one line of this page.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: Jupiter, and a dwarf planet nobody had timed</h2>
+<p>Jupiter: \(a = 5.203\) AU, \(T = 11.86\) yr. \(5.203^3 = 140.85\) and \(11.86^2 = 140.66\). Agreement to one part in 700, and the difference is mostly rounding.</p>
+<p>Ceres orbits at \(a = 2.77\) AU. Predict its year: \(T = a^{3/2} = 2.77^{1.5} = 4.61\) yr. The observed period is 4.60 yr. Kepler's law is how astronomers assign orbits to newly discovered asteroids after watching them for only a fraction of an orbit: measure the distance, and the period follows.</p>
+<p>Now a distance from a brightness. Two stars are known to be identical twins (same spectrum, same luminosity). Star A is 10 pc away by parallax. Star B appears 25 times fainter. Brightness falls as \(1/d^2\), so B is \(\sqrt{25} = 5\) times farther: 50 pc. No parallax needed, which is the point: at 50 pc the parallax is only \(0.02''\), hard to measure from the ground, but a brightness ratio is easy.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Check Kepler's third law for Venus (\(a = 0.723\) AU, \(T = 0.615\) yr) and Saturn (\(a = 9.54\) AU, \(T = 29.46\) yr). Give \(a^3\) and \(T^2\) to four significant figures in each case.<div class="space"></div></li>
+<li>An asteroid is found to orbit the Sun every 8 years. How far from the Sun is it, on average? Halley's comet has a period of 75.3 years and comes within 0.586 AU of the Sun. Find its semi-major axis, and then its farthest distance from the Sun (the two extremes add to \(2a\)). Which planet's orbit does that take it beyond?<div class="space"></div></li>
+<li>Kepler's law works for any central body if you keep to one system. Jupiter's moon Io orbits at 421,700 km with a period of 1.769 days. Europa orbits at 671,000 km. Predict Europa's period. (Hint: \(T_2/T_1 = (a_2/a_1)^{3/2}\), so the units cancel.)<div class="space"></div></li>
+<li>A star has parallax \(0.1''\). How far away is it in parsecs and in light-years? Barnard's Star has \(p = 0.547''\): its distance? The Gaia spacecraft measures parallaxes down to about \(0.00002''\) for bright stars. What distance does that reach, and how does it compare with the 26,000 light-years to the centre of the Milky Way?<div class="space"></div></li>
+<li>A type Ia supernova in a nearby galaxy at 20 million light-years is used to calibrate the candle. Another is seen 10,000 times fainter. How far away is it? If it were instead seen 1 million times fainter?<div class="space short"></div></li>
+<li><b>The ladder on a log scale.</b> Compute \(\log_{10}\) of each distance in metres: Moon \(3.84 \times 10^{8}\) m; Sun \(1.50 \times 10^{11}\) m; Neptune 30 AU; Proxima 4.25 ly (1 ly \(= 9.46 \times 10^{15}\) m); galactic centre 26,000 ly; Andromeda 2.5 million ly; edge of the observable universe 46 billion ly. Mark them on a line with 1 cm per power of ten. How many centimetres separate the Moon from Andromeda, and how many times farther is Andromeda than the Moon?<div class="space tall"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: where Kepler's law comes from, and weighing the Sun</h2>
+<p>Take a planet of mass \(m\) in a circular orbit of radius \(r\) around the Sun of mass \(M\). Gravity provides the centripetal force: \(\dfrac{GMm}{r^2} = \dfrac{mv^2}{r}\). The planet's speed is circumference over period, \(v = 2\pi r/T\). Substitute and rearrange to show that</p>
+<p>\[T^2 = \frac{4\pi^2}{GM}\,r^3.\]</p>
+<p>So \(T^2 \propto r^3\), with a constant that depends only on the central mass. (Newton showed it also holds for ellipses with \(r\) replaced by \(a\).) Now turn it round: \(M = 4\pi^2 r^3/(G T^2)\). Use Earth's orbit, \(r = 1.496 \times 10^{11}\) m, \(T = 3.156 \times 10^{7}\) s, and \(G = 6.674 \times 10^{-11}\) in SI units, to weigh the Sun. You should get close to \(2 \times 10^{30}\) kg. Then explain why the moons of Jupiter in question 3 obey the same law with a different constant, and what you could compute from them.</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Venus: \(a^3 = 0.3779\), \(T^2 = 0.3782\). Saturn: \(a^3 = 868.3\), \(T^2 = 867.9\). Both agree to better than one part in a thousand.</li>
+<li>\(a = T^{2/3} = 8^{2/3} = 4\) AU exactly. Halley: \(a = 75.3^{2/3} = 17.83\) AU; farthest distance \(2 \times 17.83 - 0.586 = 35.1\) AU, beyond Neptune (30.1 AU).</li>
+<li>\(T_2 = 1.769 \times (671000/421700)^{1.5} = 1.769 \times 2.007 = 3.55\) days. Observed: 3.551 days.</li>
+<li>\(p = 0.1''\): 10 pc \(= 32.6\) ly. Barnard's Star: \(1/0.547 = 1.83\) pc \(= 5.96\) ly. Gaia: \(1/0.00002 = 50{,}000\) pc \(\approx 163{,}000\) ly, which is more than six times the distance to the galactic centre (about 8,000 pc), so parallax now reaches across the whole Milky Way for the brightest stars.</li>
+<li>10,000 times fainter means \(\sqrt{10000} = 100\) times farther: 2 billion light-years. A million times fainter: 1,000 times farther, 20 billion light-years.</li>
+<li>Logs (metres): Moon 8.58; Sun 11.17; Neptune (\(4.5 \times 10^{12}\) m) 12.65; Proxima (\(4.02 \times 10^{16}\) m) 16.60; galactic centre (\(2.46 \times 10^{20}\) m) 20.39; Andromeda (\(2.37 \times 10^{22}\) m) 22.37; observable universe (\(4.35 \times 10^{26}\) m) 26.64. Moon to Andromeda: 13.8 cm on the line, and Andromeda is \(10^{13.8} \approx 6 \times 10^{13}\) times farther than the Moon.</li>
+</ol>
+<p><b>Stretch.</b> From \(\frac{GMm}{r^2} = \frac{mv^2}{r}\) cancel \(m\) and one \(r\): \(\frac{GM}{r} = v^2 = \frac{4\pi^2 r^2}{T^2}\), so \(T^2 = \frac{4\pi^2}{GM} r^3\). Sun's mass: \(M = \dfrac{4\pi^2 (1.496\times10^{11})^3}{6.674\times10^{-11} \times (3.156\times10^7)^2} = 1.99 \times 10^{30}\) kg. Jupiter's moons orbit Jupiter, so their constant is \(4\pi^2/(G M_{\text{Jupiter}})\): the same law, a different \(M\). From Io's orbit you can weigh Jupiter the same way (about \(1.9 \times 10^{27}\) kg), which is exactly how the masses of planets with moons were first found.</p>
+</section>
+
+<div class="sheet-nav"><a href="c1-harmonics.html">← Previous</a><a href="c3-projectiles.html">Next: Parabolas in flight →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Similar triangles and the proof habit · Infinity Club</title>
+<meta name="description" content="Similarity by AA, SAS and SSS, how to write a short proof, and the altitude to the hypotenuse, which proves Pythagoras in three lines.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 10</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 10 · Sharpen · 10</div>
+  <h1>Similar triangles and the proof habit</h1>
+  <p class="teaser">AA, SAS and the altitude to the hypotenuse, which proves Pythagoras in three lines.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Two triangles are <b>similar</b> when one is a scaled copy of the other: same angles, sides in the same ratio \(k\). You do not need to check everything. Any one of these is enough:</p>
+<ul>
+<li><b>AA</b>: two angles match (the third then matches automatically, since angles sum to \(180^\circ\)).</li>
+<li><b>SAS</b>: two sides are in the same ratio and the angle between them matches.</li>
+<li><b>SSS</b>: all three sides are in the same ratio.</li>
+</ul>
+<p>Once triangles are similar, every corresponding length is in ratio \(k\), and every area is in ratio \(k^2\).</p>
+<p><b>The proof habit.</b> A proof is a chain of statements where each one follows from earlier ones by a named fact. Write it as <em>statement, reason</em>. Short is good. Here is the model, and it is the most useful similarity picture in the whole subject.</p>
+<figure>
+<svg viewBox="0 0 320 170" width="320" height="170" role="img" aria-label="Right triangle ABC with right angle at C and altitude CD to hypotenuse AB">
+<polygon points="20,150 300,150 90,30" fill="none" stroke="#1d1f3a" stroke-width="2"/>
+<line x1="90" y1="30" x2="90" y2="150" stroke="#3f44c9" stroke-width="2"/>
+<rect x="76" y="136" width="14" height="14" fill="none" stroke="#3f44c9" stroke-width="1.2"/>
+<text x="10" y="165" font-size="13" font-weight="700" fill="#1d1f3a">A</text>
+<text x="300" y="165" font-size="13" font-weight="700" fill="#1d1f3a">B</text>
+<text x="84" y="22" font-size="13" font-weight="700" fill="#1d1f3a">C</text>
+<text x="86" y="165" font-size="13" font-weight="700" fill="#3f44c9">D</text>
+<text x="40" y="82" font-size="12" fill="#1d1f3a">b</text>
+<text x="205" y="82" font-size="12" fill="#1d1f3a">a</text>
+<text x="160" y="146" font-size="12" fill="#1d1f3a">c</text>
+<text x="95" y="100" font-size="12" fill="#3f44c9">h</text>
+</svg>
+<figcaption>Right angle at \(C\). The altitude \(CD\) splits the big triangle into two smaller ones.</figcaption>
+</figure>
+<p><b>Claim.</b> Triangles \(ACD\), \(CBD\) and \(ABC\) are all similar.<br>
+<b>Proof.</b> \(\triangle ACD\) and \(\triangle ABC\) share angle \(A\), and each has a right angle (at \(D\) and at \(C\)). So they are similar by AA. Likewise \(\triangle CBD\) and \(\triangle ABC\) share angle \(B\) and each has a right angle: similar by AA. Two triangles similar to a third are similar to each other. \(\square\)</p>
+<p><b>Pythagoras in three lines.</b> From \(\triangle ACD \sim \triangle ABC\): \(\dfrac{AC}{AB} = \dfrac{AD}{AC}\), so \(b^2 = AD \cdot c\). From \(\triangle CBD \sim \triangle ABC\): \(\dfrac{BC}{AB} = \dfrac{BD}{BC}\), so \(a^2 = BD \cdot c\). Add: \(a^2 + b^2 = c\,(AD + BD) = c \cdot c = c^2\). \(\square\)</p>
+</section>
+
+<section class="example">
+<h2>Watch one: a shadow, and a proof</h2>
+<p>A 1.8 m person casts a 2.4 m shadow. At the same moment a tree casts a 14.4 m shadow. The sun's rays are parallel, so the angle at the tip of each shadow is the same, and both the person and the tree stand at right angles to the ground. AA: the triangles are similar. So \(\dfrac{\text{tree}}{14.4} = \dfrac{1.8}{2.4}\), and the tree is \(1.8 \times 14.4 / 2.4 = 10.8\) m tall.</p>
+<p>Now a written one. <b>Claim.</b> In \(\triangle ABC\), if \(D\) is on \(AB\) and \(E\) is on \(AC\) with \(DE \parallel BC\), then \(\dfrac{AD}{AB} = \dfrac{AE}{AC}\).<br>
+<b>Proof.</b> \(\angle ADE = \angle ABC\) (corresponding angles, \(DE \parallel BC\)). \(\angle A\) is shared. So \(\triangle ADE \sim \triangle ABC\) by AA, and corresponding sides are in the same ratio: \(\dfrac{AD}{AB} = \dfrac{AE}{AC}\). \(\square\)</p>
+<p>Three lines, every one with a reason. That is the whole skill.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Are triangles with sides 6, 8, 10 and 9, 12, 15 similar? Which test, and what is \(k\)? What about 5, 7, 9 and 10, 14, 17?<div class="space short"></div></li>
+<li>A right triangle has legs 6 and 8. Draw the altitude to the hypotenuse. Using the similar triangles from Tonight's idea, find the altitude \(h\) and the two pieces \(AD\) and \(BD\) of the hypotenuse. Check that the pieces add to 10 and that \(h^2 = AD \cdot BD\).<div class="space tall"></div></li>
+<li>A 1.6 m person stands 2 m from the base of a lamppost and casts a 1.2 m shadow away from it. Draw the picture, name the similar triangles, and find the height of the lamp.<div class="space"></div></li>
+<li>Two similar triangles have areas 18 cm² and 50 cm². A side of the smaller one is 6 cm. How long is the corresponding side of the larger?<div class="space short"></div></li>
+<li><b>Write a proof.</b> \(M\) and \(N\) are the midpoints of \(AB\) and \(AC\) in \(\triangle ABC\). Prove that \(MN \parallel BC\) and \(MN = \tfrac12 BC\). (Hint: SAS similarity, then corresponding angles backwards.)<div class="space tall"></div></li>
+<li>Using \(\triangle ACD \sim \triangle CBD\) in the figure, prove \(h^2 = AD \cdot BD\). Then use it as a construction: on a line, mark segments of length 1 and 7 end to end, draw a semicircle on the whole length 8, and raise a perpendicular at the join. How long is it, and why? (The angle in a semicircle is a right angle.)<div class="space tall"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the angle bisector theorem</h2>
+<p>In \(\triangle ABC\), the bisector of angle \(A\) meets \(BC\) at \(D\). Prove that \(\dfrac{BD}{DC} = \dfrac{AB}{AC}\).</p>
+<p>Plan: draw the line through \(C\) parallel to \(AD\), and extend \(BA\) until it meets that line at \(E\). Show \(\angle AEC = \angle ACE\) (chase the angles through the parallel lines), so \(\triangle ACE\) is isosceles with \(AE = AC\). Then apply the Watch one result to \(\triangle BCE\) with the parallel line \(AD\).</p>
+<p>Then use it: a triangle has \(AB = 6\), \(AC = 9\), \(BC = 10\). Find \(BD\) and \(DC\).</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Yes, by SSS: each side of the second is \(\tfrac32\) of the first, so \(k = \tfrac32\). The second pair: \(10/5 = 2\) and \(14/7 = 2\) but \(17/9 \ne 2\), so not similar.</li>
+<li>Hypotenuse \(c = 10\). From \(b^2 = AD \cdot c\) with \(b = 6\): \(AD = 36/10 = 3.6\). From \(a^2 = BD \cdot c\) with \(a = 8\): \(BD = 6.4\). Sum 10. Area two ways: \(\tfrac12 \cdot 6 \cdot 8 = \tfrac12 \cdot 10 \cdot h\), so \(h = 4.8\). Check: \(3.6 \times 6.4 = 23.04 = 4.8^2\).</li>
+<li>The small triangle (person, shadow) and the big triangle (lamp, ground from the lamp's base to the shadow's tip) are similar by AA: shared angle at the shadow tip, right angles at the ground. \(\dfrac{H}{2 + 1.2} = \dfrac{1.6}{1.2}\), so \(H = 1.6 \times 3.2/1.2 = \tfrac{64}{15} \approx 4.27\) m.</li>
+<li>Areas scale by \(k^2\), so \(k^2 = 50/18 = 25/9\) and \(k = 5/3\). The side is \(6 \times \tfrac53 = 10\) cm.</li>
+<li>\(\dfrac{AM}{AB} = \dfrac{AN}{AC} = \tfrac12\) and angle \(A\) is shared, so \(\triangle AMN \sim \triangle ABC\) by SAS with \(k = \tfrac12\). Hence \(MN = \tfrac12 BC\), and \(\angle AMN = \angle ABC\); equal corresponding angles mean \(MN \parallel BC\).</li>
+<li>In \(\triangle ACD \sim \triangle CBD\), the side opposite angle \(A\) in the first (\(CD = h\)) corresponds to the side opposite angle \(BCD\) in the second (\(BD\)), and \(AD\) corresponds to \(CD\). So \(\dfrac{h}{BD} = \dfrac{AD}{h}\), giving \(h^2 = AD \cdot BD\). Construction: the point on the semicircle above the join makes a right angle with the two ends (angle in a semicircle), so the perpendicular is the altitude of a right triangle with hypotenuse pieces 1 and 7, and its length is \(\sqrt{1 \times 7} = \sqrt7\).</li>
+</ol>
+<p><b>Stretch.</b> With \(CE \parallel AD\): \(\angle BAD = \angle AEC\) (corresponding) and \(\angle DAC = \angle ACE\) (alternate). Since \(AD\) bisects angle \(A\), \(\angle BAD = \angle DAC\), so \(\angle AEC = \angle ACE\) and \(AE = AC\). In \(\triangle BCE\), the line \(AD \parallel EC\) cuts the sides in the same ratio: \(\dfrac{BD}{DC} = \dfrac{BA}{AE} = \dfrac{AB}{AC}\). \(\square\) With \(AB = 6\), \(AC = 9\), \(BC = 10\): \(BD : DC = 6 : 9 = 2 : 3\), so \(BD = 4\) and \(DC = 6\).</p>
+</section>
+
+<div class="sheet-nav"><a href="a9-radicals.html">← Previous</a><a href="a11-trig.html">Next: SOHCAHTOA grows up: the unit circle →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

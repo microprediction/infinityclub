@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The number e · Infinity Club</title>
+<meta name="description" content="Compound interest compounded forever, the limit of (1 + 1/n)^n, continuous growth, and the function that is its own slope.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 10</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 10 · Around the corner · 9</div>
+  <h1>The number e</h1>
+  <p class="teaser">Compound interest compounded forever, (1 + 1/n)ⁿ, and the function that is its own slope.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A bank offers you 100% interest a year on 100 dollars. After a year you have 200. Now suppose they pay 50% twice a year instead: \(100 \times 1.5 \times 1.5 = 225\). Compounding more often pays more, because the second half-year's interest is earned on a bigger pile. Four times a year: \(100 \times 1.25^4 = 244.14\). Monthly: \(100(1 + \tfrac1{12})^{12} = 261.30\). Daily: 271.46.</p>
+<table>
+<thead><tr><th>\(n\) times a year</th><th>1</th><th>2</th><th>4</th><th>12</th><th>52</th><th>365</th><th>1000</th><th>1,000,000</th></tr></thead>
+<tbody><tr><td>\((1 + 1/n)^n\)</td><td>2</td><td>2.25</td><td>2.4414</td><td>2.6130</td><td>2.6926</td><td>2.7146</td><td>2.7169</td><td>2.71828</td></tr></tbody>
+</table>
+<p>The numbers climb, but they are clearly closing in on something just under 2.72. That something is</p>
+<p class="callout">\(e = \lim_{n \to \infty}\left(1 + \frac1n\right)^n = 2.718281828459\ldots\)</p>
+<p>\(e\) is irrational (it never repeats, like \(\pi\)) and it shows up wherever growth feeds on itself. Interest at rate \(r\) for \(t\) years, compounded \(n\) times a year, gives \(P(1 + r/n)^{nt}\). Let \(n \to \infty\) and this becomes \(Pe^{rt}\): <b>continuous compounding</b>. Populations, radioactive decay, cooling coffee and the charge on a capacitor all follow \(e^{rt}\) for the same reason: the rate of change is proportional to the amount present.</p>
+<p>A second way to reach \(e\) is a series (the <a href="b12-infinite-series.html">series sheet</a> shows why it is the same number): \(e = 1 + 1 + \frac1{2!} + \frac1{3!} + \frac1{4!} + \cdots\). The terms shrink so fast that seven of them give 2.71806.</p>
+<p>And a third, which is the real reason \(e\) matters. Look at the slope of \(y = e^x\) at \(x = 0\) by taking a small step \(h\) and computing rise over run, \((e^h - 1)/h\):</p>
+<table>
+<thead><tr><th>\(h\)</th><th>0.1</th><th>0.01</th><th>0.001</th></tr></thead>
+<tbody><tr><td>\((e^h - 1)/h\)</td><td>1.0517</td><td>1.0050</td><td>1.0005</td></tr><tr><td>\((2^h - 1)/h\)</td><td>0.7177</td><td>0.6956</td><td>0.6934</td></tr><tr><td>\((3^h - 1)/h\)</td><td>1.1612</td><td>1.1047</td><td>1.0992</td></tr></tbody>
+</table>
+<p>\(2^x\) starts with slope about 0.693, \(3^x\) with slope about 1.099, and \(e^x\) with slope exactly 1. \(e\) is the base that makes the slope at zero equal to 1, and that makes \(e^x\) its own slope everywhere (exercise 6, and the <a href="b10-derivative.html">next sheet</a>). It is the natural base for growth the way radians are the natural measure for angles.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: $1000 at 5% for 10 years</h2>
+<p>Compounded yearly: \(1000 \times 1.05^{10} = 1628.89\). Monthly: \(1000(1 + 0.05/12)^{120} = 1647.01\). Continuously: \(1000e^{0.5} = 1648.72\). Going from monthly to continuous adds under two dollars, which is why banks do not mind quoting continuous rates: the limit is close by.</p>
+<p><b>Rule of 72.</b> Money at \(r\%\) doubles in roughly \(72/r\) years. At 6%: 12 years (exact: 11.90). Where does 72 come from? For continuous growth you need \(e^{rt} = 2\), so \(t = \ln 2 / r = 0.693/r\); with \(r\) in percent that is \(69.3/r\). Yearly compounding is a touch slower, and 72 has more divisors than 69, so 72 wins in practice.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Compute \((1 + 1/n)^n\) to four decimal places for \(n = 1, 2, 4, 12, 365\) and confirm the table. Then explain in a sentence why the sequence should keep increasing but never pass 3. (For the "never pass 3" part, compare the series \(1 + 1 + \frac12 + \frac14 + \frac18 + \cdots\) with \(1 + 1 + \frac1{2!} + \frac1{3!} + \cdots\).)<div class="space"></div></li>
+<li>100 dollars at 100% compounded every hour (\(n = 8760\)). Compute it and compare with the continuous answer \(100e\).<div class="space short"></div></li>
+<li>Find the exact doubling time at 3%, 6% and 12% yearly compounding (solve \(1.03^t = 2\) using logs: \(t = \ln 2 / \ln 1.03\)) and compare each with the rule of 72.<div class="space"></div></li>
+<li>Add up \(1 + 1 + \frac1{2!} + \frac1{3!} + \cdots\) one term at a time. How many terms do you need before the sum agrees with \(e = 2.71828\) to five decimal places?<div class="space"></div></li>
+<li>For a base \(b\), the slope of \(b^x\) at 0 is the limit of \((b^h - 1)/h\), which turns out to be \(\ln b\). Using the table, roughly which base would have slope 2 at zero? Check your guess with \(h = 0.001\).<div class="space short"></div></li>
+<li>Show that \(e^x\) is its own slope. Write the slope at \(x\) as \(\dfrac{e^{x+h} - e^x}{h}\), factor out \(e^x\), and use the fact that \((e^h - 1)/h \to 1\). Then test it numerically at \(x = 2\): compute \((e^{2.001} - e^2)/0.001\) and compare with \(e^2\).<div class="space short"></div></li>
+</ol>
+<p class="small">The grade 6 sheet <a href="../../grade-6/sheets/b29-growth.html">A line, a curve and a rocket</a> raced linear against exponential growth. Tonight's \(e\) is the engine inside that rocket.</p>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the hat-check problem</h2>
+<p>\(n\) people hand in their hats; the hats are returned at random. What is the probability nobody gets their own hat back? With \(n = 3\), list the 6 orderings of hats 1, 2, 3 and count the ones where nothing is in its own place: you should find 2, so the probability is \(\tfrac26\). Now do \(n = 4\): of the 24 orderings, how many leave every hat in the wrong place? (Be systematic. The answer is 9.)</p>
+<p>It can be shown that the exact probability is \(1 - 1 + \frac1{2!} - \frac1{3!} + \frac1{4!} - \cdots \pm \frac1{n!}\). Compare that with the series for \(e^{-1}\). What does the probability approach as the party gets large? Compute \(1/e\) and compare with \(9/24\) and with the \(n = 5\) value \(44/120\). Secret Santa draws, shuffled decks and misdelivered letters all land on the same number.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>2, 2.25, 2.4414, 2.6130, 2.7146. Increasing: each extra compounding period earns interest on interest sooner. Bounded: expanding \((1 + 1/n)^n\) with the binomial theorem gives terms no bigger than \(1, 1, \frac1{2!}, \frac1{3!}, \ldots\), and since \(k! \ge 2^{k-1}\), that sum is at most \(1 + 1 + \frac12 + \frac14 + \cdots = 3\).</li>
+<li>\(100(1 + 1/8760)^{8760} = 271.81\) (to the nearest cent), against \(100e = 271.83\). Two cents short.</li>
+<li>3%: \(\ln 2 / \ln 1.03 = 23.45\) years (rule: 24). 6%: 11.90 (rule: 12). 12%: 6.12 (rule: 6). The rule is slightly generous at low rates and slightly stingy at high ones.</li>
+<li>Partial sums: 1, 2, 2.5, 2.66667, 2.70833, 2.71667, 2.71806, 2.71825, 2.71828. The sum through \(1/8!\) (nine terms) is the first to round to 2.71828.</li>
+<li>Slope grows with the base, and 3 gives about 1.1, so the base must be well above 3. Slope 2 means \(\ln b = 2\), \(b = e^2 \approx 7.39\). Check: \((7.39^{0.001} - 1)/0.001 \approx 2.002\), as close to 2 as a step of 0.001 allows (the leftover 0.002 shrinks with \(h\)).</li>
+<li>\(\dfrac{e^{x+h} - e^x}{h} = e^x \cdot \dfrac{e^h - 1}{h} \to e^x \cdot 1 = e^x\). Numerically at 2: \((e^{2.001} - e^2)/0.001 = 7.3928\), and \(e^2 = 7.3891\). Agreement to three significant figures, and the gap shrinks as \(h\) does.</li>
+</ol>
+<p><b>Stretch.</b> \(n = 3\): the orderings 231 and 312 leave nothing in place, so \(2/6 = 0.333\). \(n = 4\): nine orderings (2143, 2341, 2413, 3142, 3412, 3421, 4123, 4312, 4321), so \(9/24 = 0.375\). The series \(1 - 1 + \frac1{2!} - \frac1{3!} + \cdots\) is \(e^{x}\) at \(x = -1\), so the probability approaches \(1/e = 0.3679\). Already \(44/120 = 0.3667\) at \(n = 5\). For any party bigger than a handful, the chance that nobody gets their own hat is about 36.8%, no matter how big the party.</p>
+</section>
+
+<div class="sheet-nav"><a href="b8-euler-formula.html">← Previous</a><a href="b10-derivative.html">Next: The slope of a curve →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

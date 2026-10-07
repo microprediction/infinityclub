@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fermat's little theorem · Infinity Club</title>
+<meta name="description" content="a to the p minus 1 leaves remainder 1. Why, what it does to huge powers, how it tests primes, and the number 561 that fools the test.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 10</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 10 · Around the corner · 5</div>
+  <h1>Fermat's little theorem</h1>
+  <p class="teaser">\(a^{p-1}\) leaves remainder 1. Why, what it does to huge powers, and how it tests primes.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Write \(a \equiv b \pmod{n}\) ("\(a\) is congruent to \(b\) mod \(n\)") when \(a\) and \(b\) leave the same remainder on division by \(n\). You can add, subtract and multiply congruences just like equations. (If this is new, the <a href="../../grade-6/sheets/b3-clock-arithmetic.html">clock arithmetic sheet</a> is the gentle version.)</p>
+<p>Now take powers of 2 mod 7: \(2, 4, 8 \equiv 1, 2, 4, 1, \ldots\) And powers of 3 mod 7: \(3, 2, 6, 4, 5, 1, 3, \ldots\) Both are back at 1 by the sixth power (2 gets there early, at the third, and again at the sixth). Powers of 2 mod 5: \(2, 4, 3, 1\), hitting 1 at the fourth. That is no accident.</p>
+<p class="callout"><b>Fermat's little theorem.</b> If \(p\) is prime and \(a\) is not a multiple of \(p\), then \(a^{p-1} \equiv 1 \pmod p\). Equivalently, \(a^p \equiv a \pmod p\) for every whole number \(a\).</p>
+<p><b>Proof.</b> Look at the \(p-1\) numbers \(a, 2a, 3a, \ldots, (p-1)a\) and their remainders mod \(p\). None of them is 0, because \(p\) is prime and divides neither \(a\) nor the multiplier \(i \lt p\). And no two are equal: if \(ia \equiv ja\) then \(p\) divides \((i-j)a\), so \(p\) divides \(i - j\), impossible when \(0 \lt |i-j| \lt p\). So the \(p-1\) remainders are the numbers \(1, 2, \ldots, p-1\) in some shuffled order. (Mod 7 with \(a = 3\): \(3, 6, 2, 5, 1, 4\). Shuffled, nothing missing.)</p>
+<p>Multiply them all together. On one side, \(a \cdot 2a \cdots (p-1)a = a^{p-1} \cdot (p-1)!\). On the other, \(1 \cdot 2 \cdots (p-1) = (p-1)!\). So \(a^{p-1}(p-1)! \equiv (p-1)! \pmod p\), i.e. \(p\) divides \((p-1)!\,(a^{p-1} - 1)\). Since \(p\) is prime and divides none of the factors \(1, 2, \ldots, p-1\), it does not divide \((p-1)!\), so it must divide \(a^{p-1} - 1\). That is the theorem. ∎</p>
+<p>Why does it matter? Three reasons tonight: it crushes enormous powers down to small ones, it gives a lightning test for primality, and it is the engine inside <a href="b6-rsa.html">RSA encryption</a>, which is tomorrow night.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: \(2^{100}\) mod 7, and \(3^{1000}\) mod 11</h2>
+<p>Fermat says \(2^6 \equiv 1 \pmod 7\). So every block of six 2s is worth 1. Divide: \(100 = 6 \times 16 + 4\). Then \(2^{100} = (2^6)^{16} \cdot 2^4 \equiv 1^{16} \cdot 16 \equiv 2 \pmod 7\). A 31-digit number, remainder found in one line.</p>
+<p>\(3^{10} \equiv 1 \pmod{11}\), and \(1000 = 10 \times 100\) exactly, so \(3^{1000} \equiv 1 \pmod{11}\).</p>
+<p>The recipe: reduce the <em>exponent</em> mod \(p - 1\), then compute the small power. Reduce the exponent mod \(p-1\), not mod \(p\): that is the classic slip.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Find the remainders of \(5^{20}\) divided by 7, of \(10^{18}\) divided by 19, and of \(2^{35}\) divided by 13.<div class="space"></div></li>
+<li>What is the last digit of \(7^{2026}\)? 10 is not prime, so Fermat does not apply directly. Use mod 5 (where it does) and the fact that \(7^{2026}\) is odd.<div class="space"></div></li>
+<li>Fermat's theorem gives a primality test: pick \(a\), compute \(a^{n-1} \bmod n\), and if the answer is not 1 then \(n\) is definitely composite. Show the test is one-directional: \(341 = 11 \times 31\) is composite, yet \(2^{340} \equiv 1 \pmod{341}\). (Hint: \(2^{10} = 1024 = 3 \times 341 + 1\).) Then explain why checking base 3 would catch it, given that \(3^{340} \equiv 56 \pmod{341}\).<div class="space"></div></li>
+<li>Worse: \(561 = 3 \times 11 \times 17\) passes the test for <em>every</em> base \(a\) coprime to 561. Prove it: show \(a^{560} \equiv 1\) mod 3, mod 11 and mod 17 separately (check that 560 is a multiple of 2, 10 and 16), and explain why that forces \(a^{560} \equiv 1 \pmod{561}\). Numbers like 561 are called Carmichael numbers.<div class="space tall"></div></li>
+<li>Prove that \(n^5 - n\) is divisible by 30 for every whole number \(n\). (Use \(a^p \equiv a\) for \(p = 2, 3, 5\); for \(p = 3\) write \(n^5 = n^3 \cdot n^2\).)<div class="space"></div></li>
+<li>The <b>order</b> of \(a\) mod \(p\) is the smallest \(k \ge 1\) with \(a^k \equiv 1\). Find the orders of 2, 3 and 5 mod 13. Then prove the order always divides \(p - 1\). (Hint: write \(p - 1 = qk + r\) with \(0 \le r \lt k\), and show \(a^r \equiv 1\).) Connection: the order of 10 mod \(p\) is the length of the repeating block of \(1/p\), which is why the <a href="../../grade-6/sheets/a11-repeating-decimals.html">period of 1/13 is 6</a>, a divisor of 12.<div class="space tall"></div></li>
+</ol>
+<p class="small">The <a href="../../demos/circle-times.html">times tables on a circle</a> demo draws the multiplication-by-\(a\) shuffle from the proof: set \(n\) to a prime and watch every point get hit exactly once.</p>
+</section>
+
+<section class="stretch">
+<h2>Stretch: Euler's version, and a lock made of remainders</h2>
+<p>Fermat needs a prime modulus. Euler generalised it: let \(\varphi(n)\) be the number of integers from 1 to \(n\) that share no factor with \(n\). Then \(a^{\varphi(n)} \equiv 1 \pmod n\) whenever \(a\) and \(n\) are coprime. For a prime, \(\varphi(p) = p - 1\) and it is Fermat again. For \(n = 15\), the coprime numbers are 1, 2, 4, 7, 8, 11, 13, 14, so \(\varphi(15) = 8\). Check: \(7^8 \bmod 15\).</p>
+<p>Now the lock. Take \(n = 15\), \(\varphi = 8\), and choose two numbers \(e\) and \(d\) with \(ed \equiv 1 \pmod 8\), say \(e = d = 3\). Encrypt a message \(m\) (a number from 1 to 14, coprime to 15) as \(c = m^e \bmod 15\). Decrypt as \(c^d \bmod 15\). Encrypt \(m = 2\), then decrypt. Then explain why decryption always works: what is \(m^{ed}\) in terms of \(m^{\varphi}\)? Tomorrow this becomes RSA, with primes hundreds of digits long.</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(5^6 \equiv 1 \pmod 7\) and \(20 = 6 \cdot 3 + 2\), so \(5^{20} \equiv 5^2 = 25 \equiv 4\). \(10^{18} \equiv 1 \pmod{19}\) directly (\(18 = 19 - 1\)). \(2^{12} \equiv 1 \pmod{13}\) and \(35 = 12 \cdot 2 + 11\), so \(2^{35} \equiv 2^{11} = 2048 = 13 \cdot 157 + 7 \equiv 7\).</li>
+<li>Mod 5: \(7^4 \equiv 1\), and \(2026 = 4 \cdot 506 + 2\), so \(7^{2026} \equiv 7^2 = 49 \equiv 4 \pmod 5\). The last digit is 4 or 9; the number is odd, so it is <b>9</b>.</li>
+<li>\(2^{10} \equiv 1 \pmod{341}\), so \(2^{340} = (2^{10})^{34} \equiv 1\). The test with base 2 says "maybe prime" and is wrong. Base 3 gives 56, not 1, so 341 is exposed as composite: a single failing base is proof, a passing base is only evidence.</li>
+<li>\(560 = 2 \cdot 280 = 10 \cdot 56 = 16 \cdot 35\). By Fermat, \(a^2 \equiv 1 \pmod 3\), so \(a^{560} = (a^2)^{280} \equiv 1 \pmod 3\); likewise \(a^{560} = (a^{10})^{56} \equiv 1 \pmod{11}\) and \(a^{560} = (a^{16})^{35} \equiv 1 \pmod{17}\). So \(a^{560} - 1\) is divisible by 3, 11 and 17, which are distinct primes, hence by their product 561. No base coprime to 561 can expose it.</li>
+<li>\(n^5 \equiv n \pmod 5\) by Fermat. Mod 3: \(n^3 \equiv n\), so \(n^5 = n^3 n^2 \equiv n \cdot n^2 = n^3 \equiv n\). Mod 2: \(n^2 \equiv n\), so \(n^5 \equiv n\). Thus \(n^5 - n\) is divisible by 2, 3 and 5, hence by 30.</li>
+<li>Powers of 2 mod 13: 2, 4, 8, 3, 6, 12, 11, 9, 5, 10, 7, 1, so the order of 2 is 12. Powers of 3: 3, 9, 1, order 3. Powers of 5: 5, 12, 8, 1, order 4. Proof: let \(k\) be the order and write \(p - 1 = qk + r\) with \(0 \le r \lt k\). Then \(1 \equiv a^{p-1} = (a^k)^q a^r \equiv a^r\). Since \(k\) is the <em>smallest</em> positive exponent giving 1 and \(r \lt k\), we must have \(r = 0\). So \(k\) divides \(p - 1\).</li>
+</ol>
+<p><b>Stretch.</b> \(7^2 = 49 \equiv 4\), \(7^4 \equiv 16 \equiv 1\), so \(7^8 \equiv 1 \pmod{15}\). Lock: \(2^3 = 8\), so \(c = 8\). Decrypt: \(8^3 = 512 = 34 \cdot 15 + 2\), so we get 2 back. In general \(ed = 1 + t\varphi\) for some \(t\) (here \(9 = 1 + 8\)), so \(c^d = m^{ed} = m \cdot (m^{\varphi})^t \equiv m \cdot 1^t = m\). Euler's theorem is the reason the lock opens.</p>
+</section>
+
+<div class="sheet-nav"><a href="b4-counting.html">← Previous</a><a href="b6-rsa.html">Next: RSA: a lock anyone can close →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

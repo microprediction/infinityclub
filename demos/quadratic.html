@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quadratic Explorer · Infinity Club</title>
+<meta name="description" content="Slide a, b and c, or drag the vertex, and watch the roots, discriminant and completed-square form of a quadratic update live.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+#plot { cursor: grab; touch-action: none; }
+#plot.drag { cursor: grabbing; }
+.controls input[type=range] { width: 160px; }
+.controls .val { font-family: var(--mono); min-width: 3em; display: inline-block; }
+#forms { font-size: 1.05rem; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Quadratic explorer</h1>
+<p class="explain">One parabola, three ways of writing it. Slide a, b and c, or grab the vertex and drag it around. Watch which numbers change and which stay put, and watch the roots appear, kiss, and vanish as the discriminant crosses zero.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <label>a <input type="range" id="a" min="-3" max="3" step="0.1" value="1"> <span class="val" id="av">1</span></label>
+    <label>b <input type="range" id="b" min="-10" max="10" step="0.1" value="-2"> <span class="val" id="bv">-2</span></label>
+    <label>c <input type="range" id="c" min="-10" max="10" step="0.1" value="-3"> <span class="val" id="cv">-3</span></label>
+    <button id="reset" class="ghost">Reset</button>
+  </div>
+  <div class="readout" id="forms"></div>
+  <canvas id="plot" width="900" height="560"></canvas>
+  <div class="readout" id="info"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p><b>Standard form</b> y = ax² + bx + c tells you c at a glance (the y-intercept) and not much else. <b>Vertex form</b> y = a(x − h)² + k tells you the turning point (h, k) and the axis of symmetry x = h. Completing the square converts one into the other, and the conversion gives h = −b/(2a) and k = c − b²/(4a). <b>Factored form</b> y = a(x − r₁)(x − r₂) tells you the roots, when there are real ones.</p>
+<p>The <b>discriminant</b> Δ = b² − 4ac decides how many real roots there are. Geometrically, Δ/(4a²) is how far the vertex sits below the axis in units that make the parabola look like x², so Δ &gt; 0 means the vertex is on the far side of the x-axis from the arms (two roots), Δ = 0 means the vertex touches the axis (one repeated root), Δ &lt; 0 means the parabola never reaches the axis.</p>
+<p>Drag the vertex straight up and down: a stays fixed, h stays fixed, so b stays fixed, and only c moves. Drag it sideways: now b and c both change but a does not, because the shape of a parabola is set by a alone. Every parabola with the same a is the same shape, just moved.</p>
+<p>Sheets: <a href="../grade-10/sheets/a1-completing-the-square.html">Why the quadratic formula works</a> and <a href="../grade-10/sheets/a2-discriminant-vieta.html">What the roots are telling you</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  function quadInfo(a, b, c) {
+    var h = -b / (2 * a), k = c - b * b / (4 * a), D = b * b - 4 * a * c, roots = [];
+    if (D > 0) { var s = Math.sqrt(D); roots = [(-b - s) / (2 * a), (-b + s) / (2 * a)].sort(function (p, q) { return p - q; }); }
+    else if (D === 0) roots = [h];
+    return { h: h, k: k, D: D, roots: roots, sum: -b / a, product: c / a };
+  }
+  // vertex (h,k) with fixed a  ->  b, c
+  function fromVertex(a, h, k) { return { b: -2 * a * h, c: a * h * h + k }; }
+  function fmt(v, d) { d = d === undefined ? 2 : d; var r = Math.round(v * Math.pow(10, d)) / Math.pow(10, d); if (Object.is(r, -0)) r = 0; return r.toString().replace("-", "\u2212"); }
+  function signed(v, lead) { // " + 3" / " − 3", or lead form
+    if (lead) return (v < 0 ? "−" : "") + fmt(Math.abs(v));
+    return (v < 0 ? " − " : " + ") + fmt(Math.abs(v));
+  }
+  function standardForm(a, b, c) {
+    var s = "y = " + (a === 1 ? "" : a === -1 ? "−" : signed(a, true)) + "x²";
+    if (b !== 0) s += (b === 1 ? " + " : b === -1 ? " − " : signed(b)) + "x";
+    if (c !== 0) s += signed(c);
+    return s;
+  }
+  function vertexForm(a, h, k) {
+    var s = "y = " + (a === 1 ? "" : a === -1 ? "−" : signed(a, true)) + "(x" + (h === 0 ? "" : (h > 0 ? " − " : " + ") + fmt(Math.abs(h))) + ")²";
+    if (k !== 0) s += signed(k);
+    return s;
+  }
+  function factoredForm(a, roots) {
+    if (roots.length === 0) return "no real roots, so no factored form over the reals";
+    var r1 = roots[0], r2 = roots.length === 2 ? roots[1] : roots[0];
+    function br(r) { return "(x" + (r === 0 ? "" : (r > 0 ? " − " : " + ") + fmt(Math.abs(r))) + ")"; }
+    var lead = a === 1 ? "" : a === -1 ? "−" : signed(a, true);
+    return "y = " + lead + (roots.length === 1 ? br(r1) + "²" : br(r1) + br(r2));
+  }
+  /*ENDPURE*/
+
+  var canvas = document.getElementById("plot"), ctx = canvas.getContext("2d");
+  var info = document.getElementById("info"), forms = document.getElementById("forms");
+  var S = { a: 1, b: -2, c: -3 }, sl = {};
+  ["a", "b", "c"].forEach(function (key) {
+    sl[key] = document.getElementById(key);
+    sl[key].addEventListener("input", function () { S[key] = parseFloat(sl[key].value); if (key === "a" && S.a === 0) S.a = 0.1; draw(); });
+  });
+  document.getElementById("reset").addEventListener("click", function () { S = { a: 1, b: -2, c: -3 }; sync(); draw(); });
+  function sync() { sl.a.value = S.a; sl.b.value = S.b; sl.c.value = S.c; }
+
+  var XMIN = -10, XMAX = 10, YMIN = -12, YMAX = 12, W, H;
+  function X(x) { return (x - XMIN) / (XMAX - XMIN) * W; }
+  function Y(y) { return H - (y - YMIN) / (YMAX - YMIN) * H; }
+  function toMath(px, py) { return [XMIN + px / W * (XMAX - XMIN), YMIN + (H - py) / H * (YMAX - YMIN)]; }
+
+  function draw() {
+    var a = S.a, b = S.b, c = S.c, q = quadInfo(a, b, c);
+    document.getElementById("av").textContent = fmt(a, 1); document.getElementById("bv").textContent = fmt(b, 1); document.getElementById("cv").textContent = fmt(c, 1);
+    var dpr = window.devicePixelRatio || 1; W = canvas.clientWidth || 900; H = Math.round(W * 0.62);
+    canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, H);
+    ctx.strokeStyle = "#ece9e0"; ctx.lineWidth = 1;
+    for (var gx = XMIN; gx <= XMAX; gx++) { ctx.beginPath(); ctx.moveTo(X(gx), 0); ctx.lineTo(X(gx), H); ctx.stroke(); }
+    for (var gy = YMIN; gy <= YMAX; gy += 2) { ctx.beginPath(); ctx.moveTo(0, Y(gy)); ctx.lineTo(W, Y(gy)); ctx.stroke(); }
+    ctx.strokeStyle = "#8a8ca8"; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(X(0), 0); ctx.lineTo(X(0), H); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(0, Y(0)); ctx.lineTo(W, Y(0)); ctx.stroke();
+    ctx.fillStyle = "#5d6079"; ctx.font = "11px Nunito, sans-serif"; ctx.textAlign = "center";
+    for (var tx = XMIN; tx <= XMAX; tx += 2) if (tx !== 0) ctx.fillText(tx, X(tx), Y(0) + 13);
+    ctx.textAlign = "right";
+    for (var ty = YMIN; ty <= YMAX; ty += 2) if (ty !== 0) ctx.fillText(ty, X(0) - 5, Y(ty) + 4);
+    // axis of symmetry
+    ctx.strokeStyle = "#f5a524"; ctx.setLineDash([6, 5]); ctx.lineWidth = 1.2;
+    ctx.beginPath(); ctx.moveTo(X(q.h), 0); ctx.lineTo(X(q.h), H); ctx.stroke(); ctx.setLineDash([]);
+    // parabola
+    ctx.strokeStyle = "#3f44c9"; ctx.lineWidth = 3; ctx.beginPath();
+    var N = W;
+    for (var i = 0; i <= N; i++) { var x = XMIN + (XMAX - XMIN) * i / N, y = a * x * x + b * x + c; if (i === 0) ctx.moveTo(X(x), Y(y)); else ctx.lineTo(X(x), Y(y)); }
+    ctx.stroke();
+    // roots
+    q.roots.forEach(function (r) { ctx.fillStyle = "#1d1f3a"; ctx.beginPath(); ctx.arc(X(r), Y(0), 5.5, 0, Math.PI * 2); ctx.fill(); });
+    // y-intercept
+    ctx.fillStyle = "#8a8ca8"; ctx.beginPath(); ctx.arc(X(0), Y(c), 4.5, 0, Math.PI * 2); ctx.fill();
+    // vertex handle
+    ctx.fillStyle = "#f5a524"; ctx.beginPath(); ctx.arc(X(q.h), Y(q.k), 9, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = "#fff"; ctx.lineWidth = 2; ctx.stroke();
+    ctx.fillStyle = "#1d1f3a"; ctx.font = "bold 12px Nunito, sans-serif"; ctx.textAlign = "left";
+    ctx.fillText("vertex (" + fmt(q.h) + ", " + fmt(q.k) + ")  drag me", X(q.h) + 12, Y(q.k) - 10);
+
+    forms.textContent = "standard:  " + standardForm(a, b, c) + "\nvertex:    " + vertexForm(a, q.h, q.k) + "\nfactored:  " + factoredForm(a, q.roots);
+    var rootTxt = q.roots.length === 2 ? "two real roots, x = " + fmt(q.roots[0], 3) + " and x = " + fmt(q.roots[1], 3)
+      : q.roots.length === 1 ? "one repeated root, x = " + fmt(q.roots[0], 3) : "no real roots (the vertex is on the wrong side of the x-axis)";
+    var fourac = 4 * a * c; info.textContent = "discriminant Δ = b² − 4ac = " + fmt(b * b, 2) + " − " + (fourac < 0 ? "(−" + fmt(-fourac, 2) + ")" : fmt(fourac, 2)) + " = " + fmt(q.D, 2) + "  →  " + rootTxt
+      + "\nvertex h = −b/(2a) = " + fmt(q.h, 3) + ",  k = c − b²/(4a) = " + fmt(q.k, 3) + ",  axis x = " + fmt(q.h, 3)
+      + (q.roots.length === 2 ? "\nVieta: roots add to −b/a = " + fmt(q.sum, 3) + " and multiply to c/a = " + fmt(q.product, 3) : "");
+  }
+
+  // drag the vertex
+  var dragging = false;
+  function near(ev) {
+    var r = canvas.getBoundingClientRect(), q = quadInfo(S.a, S.b, S.c);
+    var dx = ev.clientX - r.left - X(q.h), dy = ev.clientY - r.top - Y(q.k);
+    return dx * dx + dy * dy < 22 * 22;
+  }
+  canvas.addEventListener("pointerdown", function (ev) {
+    if (!near(ev)) return;
+    dragging = true; canvas.classList.add("drag"); canvas.setPointerCapture(ev.pointerId); ev.preventDefault();
+  });
+  canvas.addEventListener("pointermove", function (ev) {
+    if (!dragging) return;
+    var r = canvas.getBoundingClientRect(), m = toMath(ev.clientX - r.left, ev.clientY - r.top);
+    var h = Math.round(m[0] * 10) / 10, k = Math.round(m[1] * 10) / 10, bc = fromVertex(S.a, h, k);
+    S.b = Math.round(bc.b * 100) / 100; S.c = Math.round(bc.c * 100) / 100; sync(); draw();
+  });
+  function up() { dragging = false; canvas.classList.remove("drag"); }
+  canvas.addEventListener("pointerup", up); canvas.addEventListener("pointercancel", up);
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(draw, 120); });
+  draw();
+})();
+</script>
+</body>
+</html>

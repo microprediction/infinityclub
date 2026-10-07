@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Secant to Tangent · Infinity Club</title>
+<meta name="description" content="Drag h toward zero and watch the secant line through two points of a curve become the tangent. The slopes approach the derivative.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.controls input[type=range] { width: 200px; }
+.controls .val { font-family: var(--mono); min-width: 4.5em; display: inline-block; }
+table.slopes { font-family: var(--mono); font-size: .92rem; }
+table.slopes th, table.slopes td { padding: .25em .8em; border-bottom: 1px solid var(--rule); text-align: right; }
+table.slopes th { background: #eeece6; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Secant to tangent</h1>
+<p class="explain">Pick a curve and a point a on it. A second point sits at a + h. The line through the two points is a <b>secant</b>, and its slope is rise over run: (f(a + h) − f(a)) / h. Drag h toward zero. The second point slides into the first and the secant settles onto the <b>tangent</b>. The slope it settles on is the derivative f′(a).</p>
+<div class="demo-panel">
+  <div class="controls">
+    <label>f(x)
+      <select id="fn">
+        <option value="sq">x²</option>
+        <option value="cube">x³</option>
+        <option value="sin">sin x</option>
+        <option value="exp">eˣ</option>
+      </select>
+    </label>
+    <label>a <input type="range" id="a" min="-2.5" max="2.5" step="0.1" value="1"> <span class="val" id="av">1</span></label>
+    <label>h <input type="range" id="hs" min="-3" max="0.3" step="0.01" value="0"> <span class="val" id="hv">1</span></label>
+    <label><input type="checkbox" id="showtan" checked> show the tangent</label>
+  </div>
+  <canvas id="plot" width="900" height="520"></canvas>
+  <div class="readout" id="info"></div>
+  <table class="slopes" id="tbl"></table>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>You cannot compute the slope of a curve at a single point directly, because a slope needs two points. Calculus gets round this by using two points and then asking what the slope <em>approaches</em> as the second point closes in. For f(x) = x² at a = 1, the secant slope is ((1 + h)² − 1) / h = (2h + h²) / h = 2 + h. As h shrinks, this is clearly heading for 2, and it never needs to arrive: the limit is 2, so f′(1) = 2.</p>
+<p>Do the same algebra with a general a and you get 2a + h → 2a. That is the famous result: the derivative of x² is 2x. The table below the graph shows the numbers doing exactly this for whichever curve you pick. For x³ the slopes approach 3a². For sin x they approach cos a. For eˣ they approach eᵃ, the function's own value, which is what makes e special.</p>
+<p>Notice h can be negative too: approach from the left and you should get the same answer. If a curve gave different answers from the two sides, it would have a corner there and no tangent. Try to imagine what |x| would do at a = 0.</p>
+<p>Sheet: <a href="../grade-10/sheets/b10-derivative.html">The slope of a curve</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  var FNS = {
+    sq:   { f: function (x) { return x * x; }, d: function (x) { return 2 * x; }, name: "x²", dname: "2a" },
+    cube: { f: function (x) { return x * x * x; }, d: function (x) { return 3 * x * x; }, name: "x³", dname: "3a²" },
+    sin:  { f: Math.sin, d: Math.cos, name: "sin x", dname: "cos a" },
+    exp:  { f: Math.exp, d: Math.exp, name: "eˣ", dname: "eᵃ" }
+  };
+  function secantSlope(f, a, h) { return (f(a + h) - f(a)) / h; }
+  // slider value s (log10 of |h|) and a sign -> h
+  function hFromSlider(s, neg) { var h = Math.pow(10, s); return neg ? -h : h; }
+  /*ENDPURE*/
+
+  var canvas = document.getElementById("plot"), ctx = canvas.getContext("2d"), info = document.getElementById("info"), tbl = document.getElementById("tbl");
+  var fnSel = document.getElementById("fn"), aSl = document.getElementById("a"), hSl = document.getElementById("hs"), tanCb = document.getElementById("showtan");
+  var neg = false;
+  [fnSel, aSl, hSl, tanCb].forEach(function (el) { el.addEventListener("input", draw); el.addEventListener("change", draw); });
+  // double-click (or tap) the h readout to flip the sign of h
+  document.getElementById("hv").title = "click to approach from the other side"; document.getElementById("hv").style.cursor = "pointer";
+  document.getElementById("hv").addEventListener("click", function () { neg = !neg; draw(); });
+
+  function fmtH(h) { var ah = Math.abs(h); return (h < 0 ? "−" : "") + (ah >= 0.1 ? ah.toFixed(2) : ah >= 0.01 ? ah.toFixed(3) : ah.toFixed(4)); }
+  function draw() {
+    var F = FNS[fnSel.value], a = parseFloat(aSl.value), h = hFromSlider(parseFloat(hSl.value), neg);
+    document.getElementById("av").textContent = a.toFixed(1); document.getElementById("hv").textContent = fmtH(h) + (neg ? " ◀" : " ▶");
+    var dpr = window.devicePixelRatio || 1, W = canvas.clientWidth || 900, H = Math.round(W * 0.58);
+    canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, H);
+    var XMIN = -3, XMAX = 3, YMIN = fnSel.value === "exp" ? -2 : -8, YMAX = fnSel.value === "exp" ? 14 : 8;
+    if (fnSel.value === "sin") { YMIN = -2; YMAX = 2; }
+    if (fnSel.value === "sq") { YMIN = -2; YMAX = 9; }
+    if (fnSel.value === "cube") { YMIN = -9; YMAX = 9; }
+    function X(x) { return (x - XMIN) / (XMAX - XMIN) * W; }
+    function Y(y) { return H - (y - YMIN) / (YMAX - YMIN) * H; }
+    ctx.strokeStyle = "#ece9e0"; ctx.lineWidth = 1;
+    for (var gx = Math.ceil(XMIN); gx <= XMAX; gx++) { ctx.beginPath(); ctx.moveTo(X(gx), 0); ctx.lineTo(X(gx), H); ctx.stroke(); }
+    for (var gy = Math.ceil(YMIN); gy <= YMAX; gy++) { ctx.beginPath(); ctx.moveTo(0, Y(gy)); ctx.lineTo(W, Y(gy)); ctx.stroke(); }
+    ctx.strokeStyle = "#8a8ca8"; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(X(0), 0); ctx.lineTo(X(0), H); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(0, Y(0)); ctx.lineTo(W, Y(0)); ctx.stroke();
+    ctx.fillStyle = "#5d6079"; ctx.font = "11px Nunito, sans-serif"; ctx.textAlign = "center";
+    for (var tx = Math.ceil(XMIN); tx <= XMAX; tx++) if (tx !== 0) ctx.fillText(tx, X(tx), Y(0) + 13);
+    ctx.textAlign = "right";
+    for (var ty = Math.ceil(YMIN); ty <= YMAX; ty += (YMAX - YMIN > 10 ? 2 : 1)) if (ty !== 0) ctx.fillText(ty, X(0) - 5, Y(ty) + 4);
+    // curve
+    ctx.strokeStyle = "#1d1f3a"; ctx.lineWidth = 2.5; ctx.beginPath();
+    for (var i = 0; i <= W; i++) { var x = XMIN + (XMAX - XMIN) * i / W, y = F.f(x); if (i === 0) ctx.moveTo(X(x), Y(y)); else ctx.lineTo(X(x), Y(y)); }
+    ctx.stroke();
+    var fa = F.f(a), fah = F.f(a + h), m = secantSlope(F.f, a, h), d = F.d(a);
+    function line(slope, through, color, width, dash) {
+      ctx.strokeStyle = color; ctx.lineWidth = width; ctx.setLineDash(dash || []); ctx.beginPath();
+      ctx.moveTo(X(XMIN), Y(fa + slope * (XMIN - a))); ctx.lineTo(X(XMAX), Y(fa + slope * (XMAX - a))); ctx.stroke(); ctx.setLineDash([]);
+    }
+    if (tanCb.checked) line(d, a, "#f5a524", 2, [7, 6]);
+    line(m, a, "#3f44c9", 2.5);
+    // rise / run triangle
+    ctx.strokeStyle = "#3f44c9"; ctx.lineWidth = 1.2; ctx.setLineDash([3, 4]);
+    ctx.beginPath(); ctx.moveTo(X(a), Y(fa)); ctx.lineTo(X(a + h), Y(fa)); ctx.lineTo(X(a + h), Y(fah)); ctx.stroke(); ctx.setLineDash([]);
+    // points
+    ctx.fillStyle = "#e0453a"; ctx.beginPath(); ctx.arc(X(a + h), Y(fah), 6, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = "#1d1f3a"; ctx.beginPath(); ctx.arc(X(a), Y(fa), 7, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = "#1d1f3a"; ctx.font = "bold 12px Nunito, sans-serif"; ctx.textAlign = "left";
+    ctx.fillText("(a, f(a))", X(a) + 10, Y(fa) - 10);
+    ctx.fillStyle = "#e0453a"; ctx.fillText("(a + h, f(a + h))", X(a + h) + 10, Y(fah) + 16);
+    info.textContent = "f(x) = " + F.name + ",  a = " + a.toFixed(1) + ",  h = " + fmtH(h)
+      + "\nsecant slope = (f(a + h) − f(a)) / h = (" + fah.toFixed(5) + " − " + fa.toFixed(5) + ") / " + fmtH(h) + " = " + m.toFixed(5)
+      + "\nderivative f′(a) = " + F.dname + " = " + d.toFixed(5) + "    gap = " + Math.abs(m - d).toExponential(2)
+      + "\n(click the h value to approach from the other side)";
+    var rows = [1, 0.5, 0.1, 0.01, 0.001, 0.0001].map(function (hh) { var s = neg ? -hh : hh; return "<tr><td>" + fmtH(s) + "</td><td>" + secantSlope(F.f, a, s).toFixed(6) + "</td><td>" + (secantSlope(F.f, a, s) - d).toExponential(2) + "</td></tr>"; });
+    tbl.innerHTML = "<tr><th>h</th><th>secant slope</th><th>slope − f′(a)</th></tr>" + rows.join("") + "<tr><th>h → 0</th><th>" + d.toFixed(6) + "</th><th>0</th></tr>";
+  }
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(draw, 120); });
+  draw();
+})();
+</script>
+</body>
+</html>

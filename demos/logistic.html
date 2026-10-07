@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Logistic Map · Infinity Club</title>
+<meta name="description" content="x becomes r x (1 − x), again and again. Slide r and watch a steady value turn into a 2-cycle, a 4-cycle, and then chaos.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.row { display: flex; flex-wrap: wrap; gap: 1rem; align-items: flex-start; }
+#cob { width: min(100%, 380px); aspect-ratio: 1 / 1; flex: 0 0 auto; touch-action: none; }
+#ts { flex: 1 1 280px; height: 260px; min-width: 0; }
+#bif { width: 100%; height: 340px; display: none; cursor: crosshair; touch-action: none; }
+.controls input[type=number] { width: 7em; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>The logistic map</h1>
+<p class="explain">One rule: replace x by r·x·(1 − x). Start anywhere between 0 and 1 and repeat. For small r the value settles down. Push r past 3 and it starts to flip between two values, then four, then eight, and then, past about 3.57, it never repeats at all. The left picture is a <b>cobweb</b>: bounce from the curve to the diagonal and back to follow the rule by eye. The right picture is the same numbers in order.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <label>r <input type="range" id="r" min="0" max="4" step="any" value="2.8"> <input type="number" id="rn" min="0" max="4" step="0.001" value="2.8"></label>
+    <label>start x₀ <input type="range" id="x0" min="0.001" max="0.999" step="any" value="0.2"> <span id="x0v">0.200</span></label>
+    <label>steps <input type="range" id="n" min="10" max="300" step="1" value="60"> <span id="nv">60</span></label>
+  </div>
+  <div class="controls">
+    <span style="font-weight:700">Try</span>
+    <button class="ghost" data-r="2.8">2.8</button>
+    <button class="ghost" data-r="3.2">3.2</button>
+    <button class="ghost" data-r="3.5">3.5</button>
+    <button class="ghost" data-r="3.56">3.56</button>
+    <button class="ghost" data-r="3.83">3.83</button>
+    <button class="ghost" data-r="4">4</button>
+    <button id="bifbtn" class="alt">Bifurcation diagram</button>
+  </div>
+  <div class="row">
+    <canvas id="cob" width="380" height="380"></canvas>
+    <canvas id="ts" width="500" height="260"></canvas>
+  </div>
+  <div class="readout" id="info"></div>
+  <canvas id="bif" width="900" height="340"></canvas>
+  <div class="readout" id="bifinfo" style="display:none"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>The rule x → r·x·(1 − x) was meant to model a population: next year's size is proportional to this year's (the r·x part) but shrinks as the habitat fills up (the 1 − x part). It is about the simplest nonlinear rule you can write down, and it contains a universe.</p>
+<p>For r below 1 everything dies out. Between 1 and 3 the population settles at the <b>fixed point</b> x* = 1 − 1/r, where the curve crosses the diagonal. At r = 3 that point stops attracting and a 2-cycle takes over; at about 3.449 it becomes a 4-cycle, at 3.544 an 8-cycle, and the doublings pile up ever faster until about r = 3.5699, after which the sequence is <b>chaotic</b>: it never repeats, and two starting values that differ in the tenth decimal place end up nowhere near each other. Try x₀ = 0.2 and 0.2001 at r = 4 and compare the time series after thirty steps.</p>
+<p>The <b>bifurcation diagram</b> plots, for each r across the bottom, every value the sequence keeps visiting after it has settled. The fork-shaped doublings are easy to see. So is a sudden window of calm at r ≈ 3.83, where a 3-cycle appears out of the chaos. The ratio of successive gaps between doublings approaches 4.669…, Feigenbaum's constant, and the astonishing fact is that this same number appears for almost any hump-shaped rule, not just this one.</p>
+<p>Sheet: <a href="../grade-10/sheets/b24-chaos.html">The logistic map and chaos</a>. Related demo: <a href="mandelbrot.html">the Mandelbrot set</a>, which is the same idea with complex numbers.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  // ---- pure maths ----
+  function step(r, x) { return r * x * (1 - x); }
+  function orbit(r, x0, n) { var xs = [x0]; for (var i = 0; i < n; i++) xs.push(step(r, xs[i])); return xs; }
+  // Smallest period p <= 64 of the long-run behaviour, or 0 if none is found (chaotic, or settling very slowly).
+  function period(r, x0) {
+    var x = x0, i; for (i = 0; i < 2000; i++) x = step(r, x);
+    var tail = []; for (i = 0; i < 160; i++) { tail.push(x); x = step(r, x); }
+    for (var p = 1; p <= 64; p++) { var ok = true; for (var k = 0; k + p < tail.length; k++) { if (Math.abs(tail[k + p] - tail[k]) > 1e-7) { ok = false; break; } } if (ok) return p; }
+    return 0;
+  }
+  function cycleValues(r, x0, p) { var x = x0, i; for (i = 0; i < 2000; i++) x = step(r, x); var v = []; for (i = 0; i < p; i++) { v.push(x); x = step(r, x); } return v.sort(function (a, b) { return a - b; }); }
+  if (typeof document === "undefined") { module.exports = { step: step, orbit: orbit, period: period, cycleValues: cycleValues }; return; }
+
+  // ---- state ----
+  var rVal = 2.8, x0Val = 0.2, nVal = 60;
+  var rS = document.getElementById("r"), rN = document.getElementById("rn"), x0S = document.getElementById("x0"), nS = document.getElementById("n");
+  var cob = document.getElementById("cob"), ts = document.getElementById("ts"), bif = document.getElementById("bif"), info = document.getElementById("info"), bifinfo = document.getElementById("bifinfo");
+  var bifImg = null, bifJob = null, bifRange = { lo: 2.4, hi: 4 };
+
+  function setup(c) { var dpr = window.devicePixelRatio || 1, W = c.clientWidth || c.width, H = c.clientHeight || c.height; c.width = Math.round(W * dpr); c.height = Math.round(H * dpr); var g = c.getContext("2d"); g.setTransform(dpr, 0, 0, dpr, 0, 0); return { g: g, W: W, H: H }; }
+  function fmt(v) { return v.toFixed(4); }
+
+  function drawCob() {
+    var s = setup(cob), g = s.g, W = s.W, H = s.H, pad = 28, L = pad, R = W - 10, T = 10, B = H - pad;
+    function X(x) { return L + (R - L) * x; } function Y(y) { return B - (B - T) * y; }
+    g.fillStyle = "#fff"; g.fillRect(0, 0, W, H);
+    g.strokeStyle = "#d9d6cc"; g.lineWidth = 1; g.strokeRect(L, T, R - L, B - T);
+    g.font = "12px Nunito, sans-serif"; g.fillStyle = "#5d6079"; g.textAlign = "center";
+    [0, 0.5, 1].forEach(function (v) { g.fillText(v, X(v), B + 15); }); g.textAlign = "right"; [0.5, 1].forEach(function (v) { g.fillText(v, L - 4, Y(v) + 4); });
+    g.strokeStyle = "#bdbbd6"; g.beginPath(); g.moveTo(X(0), Y(0)); g.lineTo(X(1), Y(1)); g.stroke();
+    g.strokeStyle = "#3f44c9"; g.lineWidth = 2; g.beginPath();
+    for (var i = 0; i <= 200; i++) { var x = i / 200, y = step(rVal, x); if (i === 0) g.moveTo(X(x), Y(y)); else g.lineTo(X(x), Y(y)); } g.stroke();
+    var xs = orbit(rVal, x0Val, nVal);
+    g.lineWidth = 1.2;
+    for (var k = 0; k < nVal; k++) {
+      var a = k / nVal; g.strokeStyle = "rgba(245,165,36," + (0.25 + 0.75 * a) + ")";
+      g.beginPath(); g.moveTo(X(xs[k]), k === 0 ? Y(0) : Y(xs[k])); g.lineTo(X(xs[k]), Y(xs[k + 1])); g.lineTo(X(xs[k + 1]), Y(xs[k + 1])); g.stroke();
+    }
+    g.fillStyle = "#1d1f3a"; g.font = "13px Nunito, sans-serif"; g.textAlign = "left"; g.fillText("y = " + rVal.toFixed(3) + " x (1 − x)", L + 8, T + 16);
+  }
+  function drawTs() {
+    var s = setup(ts), g = s.g, W = s.W, H = s.H, L = 36, R = W - 10, T = 12, B = H - 24;
+    function X(i) { return L + (R - L) * i / nVal; } function Y(y) { return B - (B - T) * y; }
+    g.fillStyle = "#fff"; g.fillRect(0, 0, W, H);
+    g.strokeStyle = "#d9d6cc"; g.lineWidth = 1; g.strokeRect(L, T, R - L, B - T);
+    g.font = "12px Nunito, sans-serif"; g.fillStyle = "#5d6079"; g.textAlign = "right"; [0, 0.5, 1].forEach(function (v) { g.fillText(v, L - 4, Y(v) + 4); });
+    g.textAlign = "center"; var stepN = nVal > 150 ? 50 : nVal > 60 ? 20 : 10; for (var t = 0; t <= nVal; t += stepN) g.fillText(t, X(t), B + 15);
+    var xs = orbit(rVal, x0Val, nVal);
+    if (rVal > 1) { var fx = 1 - 1 / rVal; g.strokeStyle = "#bdbbd6"; g.setLineDash([4, 4]); g.beginPath(); g.moveTo(L, Y(fx)); g.lineTo(R, Y(fx)); g.stroke(); g.setLineDash([]); }
+    g.strokeStyle = "#f5a524"; g.lineWidth = 1.5; g.beginPath(); xs.forEach(function (v, i) { if (i === 0) g.moveTo(X(i), Y(v)); else g.lineTo(X(i), Y(v)); }); g.stroke();
+    g.fillStyle = "#3f44c9"; xs.forEach(function (v, i) { g.beginPath(); g.arc(X(i), Y(v), nVal > 120 ? 1.5 : 2.5, 0, Math.PI * 2); g.fill(); });
+    g.fillStyle = "#1d1f3a"; g.font = "13px Nunito, sans-serif"; g.textAlign = "left"; g.fillText("xₙ against n", L + 8, T + 16);
+  }
+  function describe() {
+    var lines = ["r = " + rVal.toFixed(4) + "    x₀ = " + x0Val.toFixed(3)];
+    if (rVal <= 1) lines.push("Long run: dies out to 0. The only fixed point is 0, and it attracts.");
+    else {
+      var fx = 1 - 1 / rVal, slope = Math.abs(2 - rVal);
+      lines.push("Fixed point 1 − 1/r = " + fmt(fx) + ", slope there |2 − r| = " + slope.toFixed(3) + (slope < 1 ? " (attracts)" : " (repels)"));
+      var p = period(rVal, x0Val);
+      if (p === 1) lines.push("Long run: settles to " + fmt(cycleValues(rVal, x0Val, 1)[0]) + ".");
+      else if (p > 0) lines.push("Long run: a " + p + "-cycle: " + cycleValues(rVal, x0Val, p).map(fmt).join(", "));
+      else lines.push("Long run: no cycle of length up to 64 found. Chaos, or very close to a doubling point.");
+    }
+    var xs = orbit(rVal, x0Val, nVal); lines.push("Last three values: " + xs.slice(-3).map(fmt).join(", "));
+    info.textContent = lines.join("\n");
+  }
+  function redraw() { drawCob(); drawTs(); describe(); drawBifMarker(); }
+
+  // ---- bifurcation ----
+  function drawBif() {
+    if (bifJob) { cancelAnimationFrame(bifJob); bifJob = null; }
+    bif.style.display = "block"; bifinfo.style.display = "block";
+    var s = setup(bif), g = s.g, W = s.W, H = s.H, L = 36, R = W - 10, T = 10, B = H - 24, lo = bifRange.lo, hi = bifRange.hi;
+    g.fillStyle = "#fff"; g.fillRect(0, 0, W, H);
+    g.font = "12px Nunito, sans-serif"; g.fillStyle = "#5d6079"; g.textAlign = "right"; [0, 0.5, 1].forEach(function (v) { g.fillText(v, L - 4, B - (B - T) * v + 4); });
+    g.textAlign = "center"; var ticks = 8; for (var t = 0; t <= ticks; t++) { var rv = lo + (hi - lo) * t / ticks; g.fillText(rv.toFixed(2), L + (R - L) * t / ticks, B + 15); }
+    g.strokeStyle = "#d9d6cc"; g.strokeRect(L, T, R - L, B - T);
+    var col = 0, cols = R - L;
+    g.fillStyle = "rgba(63,68,201,0.35)";
+    bifinfo.textContent = "Drawing r from " + lo.toFixed(3) + " to " + hi.toFixed(3) + " …";
+    function chunk() {
+      var t0 = performance.now();
+      while (col <= cols && performance.now() - t0 < 16) {
+        var rv = lo + (hi - lo) * col / cols, x = 0.5, i;
+        for (i = 0; i < 400; i++) x = step(rv, x);
+        for (i = 0; i < 220; i++) { x = step(rv, x); g.fillRect(L + col, B - (B - T) * x, 1, 1); }
+        col++;
+      }
+      if (col <= cols) bifJob = requestAnimationFrame(chunk);
+      else { bifJob = null; bifImg = g.getImageData(0, 0, bif.width, bif.height); bifinfo.textContent = "Each column is one value of r; the dots are the values x keeps visiting after 400 warm-up steps. Click or drag on the diagram to set r. Drag a box to zoom in; double-click to reset."; drawBifMarker(); }
+    }
+    bifJob = requestAnimationFrame(chunk);
+  }
+  function drawBifMarker() {
+    if (!bifImg || bifJob) return;
+    var g = bif.getContext("2d"), dpr = window.devicePixelRatio || 1, W = bif.clientWidth, H = bif.clientHeight, L = 36, R = W - 10, T = 10, B = H - 24;
+    g.putImageData(bifImg, 0, 0);
+    if (rVal >= bifRange.lo && rVal <= bifRange.hi) { var x = L + (R - L) * (rVal - bifRange.lo) / (bifRange.hi - bifRange.lo); g.setTransform(dpr, 0, 0, dpr, 0, 0); g.strokeStyle = "#f5a524"; g.lineWidth = 1.5; g.beginPath(); g.moveTo(x, T); g.lineTo(x, B); g.stroke(); }
+  }
+  var dragStart = null;
+  function bifR(e) { var rect = bif.getBoundingClientRect(), L = 36, R = rect.width - 10; var f = Math.min(1, Math.max(0, (e.clientX - rect.left - L) / (R - L))); return bifRange.lo + (bifRange.hi - bifRange.lo) * f; }
+  bif.addEventListener("pointerdown", function (e) { dragStart = bifR(e); setR(dragStart); bif.setPointerCapture(e.pointerId); });
+  bif.addEventListener("pointermove", function (e) { if (dragStart === null) return; setR(bifR(e)); });
+  bif.addEventListener("pointerup", function (e) { if (dragStart === null) return; var end = bifR(e); if (Math.abs(end - dragStart) > 0.02) { bifRange = { lo: Math.min(dragStart, end), hi: Math.max(dragStart, end) }; drawBif(); } dragStart = null; });
+  bif.addEventListener("dblclick", function () { bifRange = { lo: 2.4, hi: 4 }; drawBif(); });
+  document.getElementById("bifbtn").addEventListener("click", function () { bifRange = { lo: 2.4, hi: 4 }; drawBif(); });
+
+  // ---- controls ----
+  function setR(v) { rVal = Math.min(4, Math.max(0, v)); rS.value = rVal; rN.value = rVal.toFixed(3); redraw(); }
+  rS.addEventListener("input", function () { setR(parseFloat(rS.value)); });
+  rN.addEventListener("input", function () { var v = parseFloat(rN.value); if (isFinite(v)) { rVal = Math.min(4, Math.max(0, v)); rS.value = rVal; redraw(); } });
+  x0S.addEventListener("input", function () { x0Val = parseFloat(x0S.value); document.getElementById("x0v").textContent = x0Val.toFixed(3); redraw(); });
+  nS.addEventListener("input", function () { nVal = parseInt(nS.value, 10); document.getElementById("nv").textContent = nVal; redraw(); });
+  document.querySelectorAll("[data-r]").forEach(function (b) { b.addEventListener("click", function () { setR(parseFloat(b.dataset.r)); }); });
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(function () { redraw(); if (bifImg) drawBif(); }, 150); });
+  redraw();
+})();
+</script>
+</body>
+</html>

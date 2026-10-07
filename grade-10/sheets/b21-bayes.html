@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bayes' theorem · Infinity Club</title>
+<meta name="description" content="Update a belief with evidence. Derive Bayes' theorem from conditional probability, use natural frequencies, dodge the prosecutor's fallacy and build a spam filter in four lines.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 10</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 10 · Around the corner · 21</div>
+  <h1>Bayes' theorem</h1>
+  <p class="teaser">Update a belief with evidence. Base rates, the prosecutor's fallacy, and a spam filter in four lines.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>The probability of \(A\) <em>given</em> \(B\) is written \(P(A \mid B)\) and defined as the share of the \(B\)-cases that are also \(A\)-cases:</p>
+\[ P(A \mid B) = \frac{P(A \text{ and } B)}{P(B)}. \]
+<p>Swap the letters and the same definition gives \(P(B \mid A) = P(A \text{ and } B)/P(A)\). Both equations contain \(P(A \text{ and } B)\). Set the two expressions for it equal, \(P(A\mid B)\,P(B) = P(B \mid A)\,P(A)\), and divide by \(P(B)\):</p>
+<p class="callout">\(\displaystyle P(A \mid B) = \frac{P(B \mid A)\,P(A)}{P(B)}\). That is Bayes' theorem. It turns "how likely is the evidence if the hypothesis is true" into "how likely is the hypothesis now that we have seen the evidence".</p>
+<p>The names: \(P(A)\) is the <b>prior</b>, what you believed before. \(P(B \mid A)\) is the <b>likelihood</b>. \(P(A \mid B)\) is the <b>posterior</b>. The denominator \(P(B)\) is the total probability of the evidence, adding up both ways it can happen: \(P(B) = P(B\mid A)P(A) + P(B \mid \text{not } A)P(\text{not } A)\).</p>
+<p><b>Natural frequencies.</b> The formula is easy to misapply and hard to feel. Imagining 10,000 people fixes both. Suppose 1% of people have a disease, the test catches 99% of cases (sensitivity) and wrongly flags 5% of healthy people (false positive rate). Out of 10,000 people: 100 are sick, and 99 of them test positive. The other 9,900 are healthy, and 5% of them, 495, also test positive. So 594 people test positive and only 99 are sick. \(P(\text{sick} \mid \text{positive}) = 99/594 \approx 17\%\). A "99% accurate" test, and five out of six positives are false alarms. The <b>base rate</b> of 1% did that, and ignoring it is the most common probability mistake there is.</p>
+<p><b>The odds form.</b> Divide Bayes for \(A\) by Bayes for not-\(A\) and \(P(B)\) cancels: \(\dfrac{P(A \mid B)}{P(\text{not }A \mid B)} = \dfrac{P(B \mid A)}{P(B \mid \text{not }A)} \times \dfrac{P(A)}{P(\text{not }A)}\). In words: <b>posterior odds = likelihood ratio × prior odds</b>. Each new independent piece of evidence just multiplies the odds by its own ratio. Bookmakers and spam filters think this way.</p>
+<p><b>The prosecutor's fallacy.</b> "The chance that an innocent person's DNA matches is one in a million, so the chance this defendant is innocent is one in a million." No. The first number is \(P(\text{match} \mid \text{innocent})\); the court needs \(P(\text{innocent} \mid \text{match})\). In a city of 10 million, about 10 innocent people match. If the match is the only evidence, the defendant is one of 11 matching people and \(P(\text{innocent} \mid \text{match}) \approx 10/11\). Courts have convicted on exactly this confusion.</p>
+<p><b>A spam filter in four lines.</b> Suppose 40% of your mail is spam, the word "prize" appears in 60% of spam and 2% of real mail. A message contains "prize". Spam route: \(0.4 \times 0.6 = 0.24\). Real route: \(0.6 \times 0.02 = 0.012\). \(P(\text{spam} \mid \text{prize}) = 0.24/(0.24 + 0.012) \approx 0.95\). Real filters multiply the ratios for every word in the message (that is the "naive" in naive Bayes: they pretend the words are independent) and it works astonishingly well.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: the two coins</h2>
+<p>A bag holds two coins: one fair, one with heads on both sides. You pull one out without looking, flip it, and get heads. What is the probability you are holding the double-headed coin?</p>
+<p><b>Formula.</b> Prior \(P(\text{DH}) = \tfrac12\). Likelihoods: \(P(\text{H} \mid \text{DH}) = 1\), \(P(\text{H} \mid \text{fair}) = \tfrac12\). Evidence: \(P(\text{H}) = 1 \cdot \tfrac12 + \tfrac12 \cdot \tfrac12 = \tfrac34\). Posterior: \(P(\text{DH} \mid \text{H}) = \dfrac{1 \cdot \tfrac12}{\tfrac34} = \tfrac23\).</p>
+<p><b>Frequencies.</b> Do it 400 times. In 200 you hold the double-header and see 200 heads. In 200 you hold the fair coin and see about 100 heads. Of the 300 heads, 200 came from the double-header: \(200/300 = \tfrac23\). Same answer, no formula.</p>
+<p><b>Update again.</b> Flip the same coin a second time: heads again. Now the posterior \(\tfrac23\) becomes the new prior. Odds form: prior odds \(2{:}1\), likelihood ratio \(1/\tfrac12 = 2\), posterior odds \(4{:}1\), so \(P(\text{DH}) = \tfrac45\). Each extra head multiplies the odds by 2. Ten heads in a row: odds \(1024{:}1\), still not certain, because a fair coin can do that too.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>A disease affects 1 person in 1,000. The test has sensitivity 99% and specificity 99% (it wrongly flags 1% of healthy people). Imagine 100,000 people. How many are sick, how many of them test positive, how many healthy people test positive, and what is \(P(\text{sick} \mid \text{positive})\)? Then say in one sentence why a "99% accurate" test is wrong most of the time here.<div class="space"></div></li>
+<li>Same test, but now the patient has symptoms and the doctor's prior is 20%. Redo the calculation with 10,000 people. What changed, and what does that say about ordering tests for people with no symptoms?<div class="space"></div></li>
+<li><b>Prosecutor's fallacy.</b> A DNA profile is shared by 1 person in 100,000. A city has 2,000,000 people. A database search finds one match and there is no other evidence. About how many innocent people in the city share the profile, and what is \(P(\text{guilty} \mid \text{match})\)? Now suppose other evidence had already narrowed the suspects to 200 people before the DNA test. Recompute.<div class="space"></div></li>
+<li><b>Spam filter.</b> 30% of your mail is spam. The word "free" appears in 50% of spam and 5% of real mail. A new message contains "free": \(P(\text{spam})\)? It also contains "meeting", which appears in 2% of spam and 20% of real mail. Treating the words as independent, multiply both likelihood ratios and find the new \(P(\text{spam})\).<div class="space"></div></li>
+<li><b>Monty Hall, properly.</b> You pick door 1. The host, who knows where the car is and always opens a goat door (choosing at random if he has two), opens door 3. Write down \(P(\text{opens 3} \mid \text{car behind 1})\), \(P(\text{opens 3} \mid \text{car behind 2})\) and \(P(\text{opens 3} \mid \text{car behind 3})\), then use Bayes to find \(P(\text{car behind 2} \mid \text{opens 3})\). (Grade 6 did this with a tree: <a href="../../grade-6/sheets/b23-monty.html">Monty Hall</a>. Tonight it is one line.)<div class="space"></div></li>
+<li><b>Three suspects.</b> A factory has three machines. Machine 1 makes 50% of the widgets and 3% of its output is faulty; machine 2 makes 30% with 4% faulty; machine 3 makes 20% with 5% faulty. A widget is faulty. Find the probability it came from each machine. Check your three answers add to 1.<div class="space"></div></li>
+</ol>
+<p class="small">Play with prevalence, sensitivity and specificity at <a href="../../demos/bayes.html">infinityclub.net/demos/bayes.html</a>: a thousand little people, coloured by what the test says and what is true.</p>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the taxi problem</h2>
+<p>A taxi was involved in a hit-and-run at night. In this city 85% of taxis are green and 15% are blue. A witness says the taxi was blue. Tested under the same night conditions, the witness identifies colours correctly 80% of the time. What is the probability the taxi was actually blue? Most people say 80%. Use the odds form: prior odds blue to green, times the likelihood ratio.</p>
+<p>Now a second, independent witness also says blue. Update again. Then find how reliable a <em>single</em> witness would have to be for "blue" to be more likely than not. (Set posterior odds equal to 1 and solve for the reliability \(w\).)</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>100 sick, 99 test positive. 99,900 healthy, 999 test positive. \(P(\text{sick} \mid \text{positive}) = 99/1098 \approx 9.0\%\). The 1% error rate is applied to a huge healthy population, so false positives (999) swamp true positives (99): the base rate matters more than the accuracy.</li>
+<li>2,000 sick, 1,980 positive. 8,000 healthy, 80 positive. \(1980/2060 \approx 96.1\%\). Only the prior changed. The same test is nearly useless for screening everyone and nearly decisive for someone with symptoms, which is why screening programmes for rare conditions are controversial.</li>
+<li>Innocent matches expected: \(2{,}000{,}000 \times 1/100{,}000 = 20\). The culprit is one of about 21 matching people, so \(P(\text{guilty} \mid \text{match}) \approx 1/21 \approx 4.8\%\). With 200 suspects: expected innocent matches \(199/100{,}000 \approx 0.002\), so \(P(\text{guilty}) \approx 1/1.002 \approx 99.8\%\). Same test, same match; the prior is everything.</li>
+<li>Spam route \(0.3 \times 0.5 = 0.15\); real route \(0.7 \times 0.05 = 0.035\); \(P(\text{spam}) = 0.15/0.185 \approx 0.81\). Add "meeting": spam route \(0.15 \times 0.02 = 0.003\); real route \(0.035 \times 0.2 = 0.007\); \(P(\text{spam}) = 0.003/0.010 = 0.30\). In odds: prior \(3{:}7\), times 10 for "free", times \(0.1\) for "meeting", back to \(3{:}7\).</li>
+<li>\(P(\text{opens 3} \mid \text{car 1}) = \tfrac12\) (he could open 2 or 3), \(P(\text{opens 3} \mid \text{car 2}) = 1\) (door 2 is off limits), \(P(\text{opens 3} \mid \text{car 3}) = 0\). Priors all \(\tfrac13\). \(P(\text{car 2} \mid \text{opens 3}) = \dfrac{1 \cdot \tfrac13}{\tfrac12\cdot\tfrac13 + 1\cdot\tfrac13 + 0} = \dfrac{\tfrac13}{\tfrac12} = \tfrac23\). Switch.</li>
+<li>Routes: \(0.5 \times 0.03 = 0.015\), \(0.3 \times 0.04 = 0.012\), \(0.2 \times 0.05 = 0.010\); total \(0.037\). Machine 1: \(0.015/0.037 \approx 0.405\). Machine 2: \(0.012/0.037 \approx 0.324\). Machine 3: \(0.010/0.037 \approx 0.270\). Sum \(= 1\). Machine 3 is the least reliable but still the least likely culprit, because it makes so few widgets.</li>
+</ol>
+<p><b>Stretch.</b> Prior odds blue:green \(= 15{:}85 = 3{:}17\). Likelihood ratio \(= 0.8/0.2 = 4\). Posterior odds \(12{:}17\), so \(P(\text{blue}) = 12/29 \approx 0.41\). Despite an 80% reliable witness, green is still more likely. Second witness: odds \(48{:}17\), \(P(\text{blue}) = 48/65 \approx 0.74\). For one witness to make blue more likely than not: \(\dfrac{3}{17} \times \dfrac{w}{1-w} = 1\), so \(\dfrac{w}{1-w} = \dfrac{17}{3}\), \(w = 0.85\). The witness must be exactly as reliable as the base rate is lopsided. (This is Kahneman and Tversky's taxi problem; most people answer 80% and never think about the 85%.)</p>
+</section>
+
+<div class="sheet-nav"><a href="b20-game-theory.html">← Previous</a><a href="b22-markov-pagerank.html">Next: Markov chains and how Google ranked the web →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

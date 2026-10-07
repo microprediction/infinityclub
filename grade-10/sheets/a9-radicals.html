@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Roots, rational exponents and rationalising · Infinity Club</title>
+<meta name="description" content="Why x to the one half is the square root, simplifying and rationalising radicals, solving radical equations, and nested radicals that collapse.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 10</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 10 · Sharpen · 9</div>
+  <h1>Roots, rational exponents and rationalising</h1>
+  <p class="teaser">\(x^{1/2}\) is a square root because the exponent laws insist. Nested radicals and a famous one that collapses.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>You know the exponent laws for whole numbers: \(a^m a^n = a^{m+n}\) and \((a^m)^n = a^{mn}\). Nobody <em>defined</em> \(x^{1/2}\); it was forced. If the laws are to keep working, then \(\left(x^{1/2}\right)^2 = x^{1/2 \cdot 2} = x^1 = x\). So \(x^{1/2}\) must be a number whose square is \(x\): a square root. We pick the non-negative one. The same argument gives \(x^{1/n} = \sqrt[n]{x}\), \(x^{m/n} = \left(\sqrt[n]{x}\right)^m\), \(x^0 = 1\) (because \(x^n x^0 = x^n\)) and \(x^{-n} = 1/x^n\) (because \(x^n x^{-n} = x^0 = 1\)). Every rule about roots is an exponent law in disguise.</p>
+<p><b>Simplifying.</b> \(\sqrt{72} = \sqrt{36 \cdot 2} = 6\sqrt2\). Pull out the biggest square. \(\sqrt{a}\sqrt{b} = \sqrt{ab}\), but \(\sqrt{a} + \sqrt{b}\) does <em>not</em> simplify; \(\sqrt9 + \sqrt{16} = 7\) while \(\sqrt{25} = 5\).</p>
+<p><b>Rationalising.</b> A root in the denominator is not wrong, just awkward. For \(\dfrac{1}{\sqrt2}\), multiply top and bottom by \(\sqrt2\): \(\dfrac{\sqrt2}{2}\). For \(\dfrac{1}{\sqrt5 - \sqrt3}\), multiply by the <b>conjugate</b> \(\sqrt5 + \sqrt3\); the bottom becomes \((\sqrt5)^2 - (\sqrt3)^2 = 2\) by the difference of squares, so the answer is \(\dfrac{\sqrt5 + \sqrt3}{2}\).</p>
+<p><b>Nested radicals.</b> Sometimes \(\sqrt{a + 2\sqrt b}\) is secretly \(\sqrt m + \sqrt n\). Square the guess: \(m + n + 2\sqrt{mn}\). So you need \(m + n = a\) and \(mn = b\): two numbers with a given sum and product, which is a quadratic you can usually do by inspection.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: four kinds of tidy-up</h2>
+<p>\(8^{2/3} = \left(\sqrt[3]{8}\right)^2 = 2^2 = 4\). Take the root first; the numbers stay small.</p>
+<p>\(16^{-3/4} = \dfrac{1}{\left(\sqrt[4]{16}\right)^3} = \dfrac{1}{2^3} = \dfrac18\).</p>
+<p>\(\dfrac{6}{\sqrt7 - 1} = \dfrac{6(\sqrt7 + 1)}{(\sqrt7 - 1)(\sqrt7 + 1)} = \dfrac{6(\sqrt7 + 1)}{7 - 1} = \sqrt7 + 1\).</p>
+<p>\(\sqrt{7 - 4\sqrt3}\). Write \(4\sqrt3 = 2\sqrt{12}\), so look for \(m + n = 7\), \(mn = 12\): that is 4 and 3. Guess \(\sqrt4 - \sqrt3 = 2 - \sqrt3\) (minus, because of the minus inside). Check: \((2 - \sqrt3)^2 = 4 - 4\sqrt3 + 3 = 7 - 4\sqrt3\). Yes. And \(2 - \sqrt3\) is positive, as a square root must be.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Evaluate without a calculator: \(27^{2/3}\), \(32^{-2/5}\), \(\left(\tfrac{1}{16}\right)^{-3/4}\), \(0.001^{1/3}\), \(4^{1.5}\).<div class="space"></div></li>
+<li>Simplify: \(\sqrt{50} + \sqrt{18} - \sqrt8\); \(\sqrt{12} \times \sqrt{27}\); \(\sqrt[3]{16} \times \sqrt[3]{4}\).<div class="space"></div></li>
+<li>Rationalise the denominators: \(\dfrac{5}{\sqrt5}\); \(\dfrac{2}{3 - \sqrt7}\); \(\dfrac{\sqrt3 + 1}{\sqrt3 - 1}\).<div class="space"></div></li>
+<li>Solve: \(x^{3/2} = 27\); \(2^x \cdot 4^x = 64\); \(\sqrt{x + 7} = x - 5\). (The last one produces two candidates. Check both.)<div class="space tall"></div></li>
+<li>Un-nest: \(\sqrt{11 + 6\sqrt2}\) and \(\sqrt{5 - 2\sqrt6}\). Check each answer by squaring.<div class="space"></div></li>
+<li>Let \(x = \sqrt2 + \sqrt3\). Compute \(x^2\), then \(x^4\), and show that \(x^4 - 10x^2 + 1 = 0\). The only possible rational roots of that equation are \(\pm1\) (why?). Conclude that \(\sqrt2 + \sqrt3\) is irrational.<div class="space tall"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: a cube root identity that looks impossible</h2>
+<p>Show that \(\sqrt[3]{2 + \sqrt5} + \sqrt[3]{2 - \sqrt5} = 1\). Call the two cube roots \(a\) and \(b\), and let \(s = a + b\). Work out \(a^3 + b^3\) and \(ab\) (both are simple), then expand \(s^3 = (a + b)^3 = a^3 + b^3 + 3ab(a + b)\) to get a cubic equation in \(s\). Factor it. Only one real root survives.</p>
+<p>Check with a calculator afterwards, and notice what \(a\) and \(b\) are individually: you have met them before.</p>
+<p>Warm-up if you want one: let \(x = \sqrt{2 + \sqrt{2 + \sqrt{2 + \cdots}}}\), going on forever. Then \(x = \sqrt{2 + x}\). Solve for \(x\).</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(27^{2/3} = 3^2 = 9\). \(32^{-2/5} = 1/2^2 = \tfrac14\). \(\left(\tfrac1{16}\right)^{-3/4} = 16^{3/4} = 2^3 = 8\). \(0.001^{1/3} = 0.1\). \(4^{1.5} = 4^{3/2} = 2^3 = 8\).</li>
+<li>\(5\sqrt2 + 3\sqrt2 - 2\sqrt2 = 6\sqrt2\). \(\sqrt{324} = 18\). \(\sqrt[3]{64} = 4\).</li>
+<li>\(\sqrt5\). \(\dfrac{2(3 + \sqrt7)}{9 - 7} = 3 + \sqrt7\). \(\dfrac{(\sqrt3 + 1)^2}{3 - 1} = \dfrac{4 + 2\sqrt3}{2} = 2 + \sqrt3\).</li>
+<li>\(x = 27^{2/3} = 9\). \(2^x \cdot 2^{2x} = 2^{3x} = 2^6\), so \(x = 2\). Squaring: \(x + 7 = x^2 - 10x + 25\), so \(x^2 - 11x + 18 = 0\), \(x = 2\) or \(9\). But \(x = 2\) gives \(\sqrt9 = 3\) against \(2 - 5 = -3\): false (squaring hid the sign). \(x = 9\) gives \(\sqrt{16} = 4 = 9 - 5\). Only \(x = 9\).</li>
+<li>\(\sqrt{11 + 6\sqrt2} = \sqrt{11 + 2\sqrt{18}}\): \(m + n = 11\), \(mn = 18\), so 9 and 2: \(3 + \sqrt2\). Check: \(9 + 6\sqrt2 + 2\). \(\sqrt{5 - 2\sqrt6}\): 3 and 2: \(\sqrt3 - \sqrt2\). Check: \(3 - 2\sqrt6 + 2\).</li>
+<li>\(x^2 = 5 + 2\sqrt6\). \(x^4 = 25 + 20\sqrt6 + 24 = 49 + 20\sqrt6\). Then \(x^4 - 10x^2 + 1 = 49 + 20\sqrt6 - 50 - 20\sqrt6 + 1 = 0\). A rational root \(p/q\) in lowest terms must have \(p\) dividing the constant 1 and \(q\) dividing the leading coefficient 1, so only \(\pm1\), and neither works (\(1 - 10 + 1 \ne 0\)). So the equation has no rational root, and \(\sqrt2 + \sqrt3\), which is a root, cannot be rational.</li>
+</ol>
+<p><b>Stretch.</b> \(a^3 + b^3 = (2 + \sqrt5) + (2 - \sqrt5) = 4\). \(ab = \sqrt[3]{(2 + \sqrt5)(2 - \sqrt5)} = \sqrt[3]{4 - 5} = -1\). So \(s^3 = 4 - 3s\), i.e. \(s^3 + 3s - 4 = 0 = (s - 1)(s^2 + s + 4)\). The quadratic has discriminant \(1 - 16 \lt 0\), so \(s = 1\). Numerically \(a \approx 1.618\) and \(b \approx -0.618\): the golden ratio \(\varphi\) and \(-1/\varphi\), whose sum is indeed 1. Warm-up: \(x^2 = 2 + x\), so \(x^2 - x - 2 = (x - 2)(x + 1) = 0\), and since \(x\) is positive, \(x = 2\).</p>
+</section>
+
+<div class="sheet-nav"><a href="a8-rational.html">← Previous</a><a href="a10-similarity-proof.html">Next: Similar triangles and the proof habit →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

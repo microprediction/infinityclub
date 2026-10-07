@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Unit Circle · Infinity Club</title>
+<meta name="description" content="Drag a point around the unit circle and see sine, cosine and tangent as lengths, the angle in degrees and radians, and the sine wave unrolling beside it.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+#plot { cursor: grab; touch-action: none; }
+#plot.drag { cursor: grabbing; }
+.swatch { display: inline-block; width: .9em; height: .9em; border-radius: 3px; vertical-align: -0.1em; margin-right: .3em; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>The unit circle</h1>
+<p class="explain">A circle of radius 1. Drag the point around it. The <span class="swatch" style="background:#3f44c9"></span>horizontal leg is cos θ, the <span class="swatch" style="background:#e0453a"></span>vertical leg is sin θ, and the <span class="swatch" style="background:#f5a524"></span>segment on the vertical line at x = 1 is tan θ. On the right, the sine wave unrolls as the angle grows.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <label>angle
+      <select id="preset">
+        <option value="">special angles…</option>
+        <option value="0">0°</option><option value="30">30°</option><option value="45">45°</option><option value="60">60°</option><option value="90">90°</option>
+        <option value="120">120°</option><option value="135">135°</option><option value="150">150°</option><option value="180">180°</option>
+        <option value="210">210°</option><option value="225">225°</option><option value="240">240°</option><option value="270">270°</option>
+        <option value="300">300°</option><option value="315">315°</option><option value="330">330°</option>
+      </select>
+    </label>
+    <label>degrees <input type="number" id="deg" min="0" max="360" step="1" value="60"></label>
+    <button id="anim">Animate</button>
+    <label><input type="checkbox" id="rad"> label axis in radians</label>
+  </div>
+  <canvas id="plot" width="900" height="420"></canvas>
+  <div class="readout" id="info"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>In a right triangle, sine is opposite over hypotenuse. Put the triangle inside a circle of radius 1 and the hypotenuse is 1, so sine is simply the height of the point, and cosine is simply how far right it is. That is the whole trick: it turns two ratios into two coordinates, and coordinates make sense for any angle, including ones no triangle could have. Past 90° the point keeps going round, so sin 150° is the height of a point in the second quadrant, which is the same height as sin 30°.</p>
+<p>Pythagoras on the triangle says (cos θ)² + (sin θ)² = 1². That is the identity sin²θ + cos²θ = 1, and now it is obvious rather than memorised. Tangent is sine over cosine, and the orange segment shows why it is also a length: the big triangle with base 1 is similar to the small one, so its height is sin θ / cos θ. When cos θ hits zero the segment shoots off to infinity, which is why tan 90° does not exist.</p>
+<p>Radians measure the angle by the length of arc it cuts on this circle. A full turn is the circumference, 2π, so 180° is π and 60° is π/3. The unrolled sine wave makes the point: the horizontal axis on the right is literally the distance travelled around the circle.</p>
+<p>Sheet: <a href="../grade-10/sheets/a11-trig.html">SOHCAHTOA grows up: the unit circle</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  var EXACT = {
+    0: ["0", "1", "0"], 30: ["1/2", "√3/2", "1/√3"], 45: ["√2/2", "√2/2", "1"], 60: ["√3/2", "1/2", "√3"], 90: ["1", "0", "undefined"],
+    120: ["√3/2", "−1/2", "−√3"], 135: ["√2/2", "−√2/2", "−1"], 150: ["1/2", "−√3/2", "−1/√3"], 180: ["0", "−1", "0"],
+    210: ["−1/2", "−√3/2", "1/√3"], 225: ["−√2/2", "−√2/2", "1"], 240: ["−√3/2", "−1/2", "√3"], 270: ["−1", "0", "undefined"],
+    300: ["−√3/2", "1/2", "−√3"], 315: ["−√2/2", "√2/2", "−1"], 330: ["−1/2", "√3/2", "−1/√3"], 360: ["0", "1", "0"]
+  };
+  function radLabel(deg) { // nice multiple of pi when possible
+    var fr = deg / 180; // in units of pi
+    for (var q = 1; q <= 12; q++) { var p = fr * q; if (Math.abs(p - Math.round(p)) < 1e-9) { p = Math.round(p); if (p === 0) return "0"; var num = p === 1 ? "π" : p === -1 ? "−π" : p + "π"; return q === 1 ? num : num + "/" + q; } }
+    return (deg * Math.PI / 180).toFixed(3);
+  }
+  function trig(deg) { var t = deg * Math.PI / 180; return { rad: t, sin: Math.sin(t), cos: Math.cos(t), tan: Math.tan(t) }; }
+  /*ENDPURE*/
+
+  var canvas = document.getElementById("plot"), ctx = canvas.getContext("2d"), info = document.getElementById("info");
+  var degIn = document.getElementById("deg"), preset = document.getElementById("preset"), radCb = document.getElementById("rad");
+  var deg = 60, animating = false, raf = null;
+  degIn.addEventListener("input", function () { var v = parseFloat(degIn.value); if (isFinite(v)) { deg = ((v % 360) + 360) % 360; draw(); } });
+  preset.addEventListener("change", function () { if (preset.value !== "") { deg = parseFloat(preset.value); degIn.value = deg; draw(); } preset.value = ""; });
+  radCb.addEventListener("change", draw);
+  document.getElementById("anim").addEventListener("click", function () {
+    animating = !animating; this.textContent = animating ? "Stop" : "Animate";
+    if (animating) { (function step() { if (!animating) return; deg = (deg + 0.6) % 360; degIn.value = Math.round(deg); draw(); raf = requestAnimationFrame(step); })(); }
+    else if (raf) cancelAnimationFrame(raf);
+  });
+
+  var cx, cy, R, gx0, gx1, W, H;
+  function draw() {
+    var dpr = window.devicePixelRatio || 1; W = canvas.clientWidth || 900;
+    var narrow = W < 560; H = narrow ? Math.round(W * 1.55) : Math.round(W * 0.47);
+    canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, H);
+    if (narrow) { R = W * 0.33; cx = W / 2; cy = R + 30; gx0 = 36; gx1 = W - 14; }
+    else { R = H * 0.36; cx = R + 50; cy = H / 2; gx0 = cx + R + 60; gx1 = W - 16; }
+    var gy = narrow ? cy + R + 40 + (H - (cy + R + 40)) / 2 : cy, gAmp = narrow ? (H - (cy + R + 40)) / 2 - 16 : R;
+    var t = trig(deg), px = cx + R * t.cos, py = cy - R * t.sin;
+    // axes + circle
+    ctx.strokeStyle = "#cfcdc3"; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(cx - R - 24, cy); ctx.lineTo(cx + R + 24, cy); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(cx, cy - R - 24); ctx.lineTo(cx, cy + R + 24); ctx.stroke();
+    ctx.strokeStyle = "#1d1f3a"; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.stroke();
+    // tangent line x = 1
+    ctx.strokeStyle = "#e9e6dc"; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(cx + R, cy - R - 24); ctx.lineTo(cx + R, cy + R + 24); ctx.stroke();
+    // angle arc
+    ctx.strokeStyle = "#8a8ca8"; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.arc(cx, cy, R * 0.22, 0, -t.rad, true); ctx.stroke();
+    // radius
+    ctx.strokeStyle = "#1d1f3a"; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(px, py); ctx.stroke();
+    // cos leg (blue) and sin leg (red)
+    ctx.lineWidth = 5; ctx.lineCap = "round";
+    ctx.strokeStyle = "#3f44c9"; ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(px, cy); ctx.stroke();
+    ctx.strokeStyle = "#e0453a"; ctx.beginPath(); ctx.moveTo(px, cy); ctx.lineTo(px, py); ctx.stroke();
+    // tan segment (orange) on x=1, clipped
+    if (Math.abs(t.cos) > 1e-6) {
+      var tanLen = Math.max(-3, Math.min(3, t.tan)) * R, ty = cy - tanLen;
+      ctx.strokeStyle = "#f5a524"; ctx.beginPath(); ctx.moveTo(cx + R, cy); ctx.lineTo(cx + R, ty); ctx.stroke();
+      // extension of radius to the tangent line
+      ctx.lineWidth = 1; ctx.strokeStyle = "#d9d6cc"; ctx.setLineDash([3, 4]);
+      ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx + R, cy - Math.max(-3, Math.min(3, t.tan)) * R); ctx.stroke();
+      ctx.setLineDash([]);
+    }
+    ctx.lineCap = "butt";
+    // the point
+    ctx.fillStyle = "#1d1f3a"; ctx.beginPath(); ctx.arc(px, py, 8, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = "#fff"; ctx.lineWidth = 2; ctx.stroke();
+    ctx.fillStyle = "#1d1f3a"; ctx.font = "bold 12px Nunito, sans-serif"; ctx.textAlign = "left";
+    ctx.fillText("(cos θ, sin θ) = (" + t.cos.toFixed(3) + ", " + t.sin.toFixed(3) + ")", cx - R, cy + R + 20);
+    ctx.fillText("θ = " + Math.round(deg * 10) / 10 + "°", cx + R * 0.25, cy - 8);
+    // unrolled sine
+    ctx.strokeStyle = "#cfcdc3"; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(gx0, gy); ctx.lineTo(gx1, gy); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(gx0, gy - gAmp - 6); ctx.lineTo(gx0, gy + gAmp + 6); ctx.stroke();
+    ctx.fillStyle = "#5d6079"; ctx.font = "11px Nunito, sans-serif"; ctx.textAlign = "center";
+    var ticks = radCb.checked ? [[0, "0"], [90, "π/2"], [180, "π"], [270, "3π/2"], [360, "2π"]] : [[0, "0°"], [90, "90°"], [180, "180°"], [270, "270°"], [360, "360°"]];
+    ticks.forEach(function (tk) { var x = gx0 + (gx1 - gx0) * tk[0] / 360; ctx.fillText(tk[1], x, gy + gAmp + 18); ctx.beginPath(); ctx.moveTo(x, gy - 3); ctx.lineTo(x, gy + 3); ctx.stroke(); });
+    ctx.textAlign = "right"; ctx.fillText("1", gx0 - 4, gy - gAmp + 4); ctx.fillText("−1", gx0 - 4, gy + gAmp + 4);
+    // full faint wave, then the travelled part
+    function wave(upto, color, width) {
+      ctx.strokeStyle = color; ctx.lineWidth = width; ctx.beginPath();
+      for (var d = 0; d <= upto; d += 1) { var x = gx0 + (gx1 - gx0) * d / 360, y = gy - gAmp * Math.sin(d * Math.PI / 180); if (d === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y); }
+      ctx.stroke();
+    }
+    wave(360, "#e9e6dc", 2); wave(deg, "#e0453a", 3);
+    var wx = gx0 + (gx1 - gx0) * deg / 360, wy = gy - gAmp * t.sin;
+    ctx.strokeStyle = "#e0453a"; ctx.lineWidth = 5; ctx.lineCap = "round"; ctx.beginPath(); ctx.moveTo(wx, gy); ctx.lineTo(wx, wy); ctx.stroke(); ctx.lineCap = "butt";
+    ctx.fillStyle = "#1d1f3a"; ctx.beginPath(); ctx.arc(wx, wy, 6, 0, Math.PI * 2); ctx.fill();
+    // connector (same height) when side by side
+    if (!narrow) { ctx.strokeStyle = "#e0453a"; ctx.setLineDash([3, 5]); ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(wx, wy); ctx.stroke(); ctx.setLineDash([]); }
+
+    var ex = EXACT[Math.round(deg)] && Math.abs(deg - Math.round(deg)) < 1e-9 ? EXACT[Math.round(deg)] : null;
+    var tanTxt = Math.abs(t.cos) < 1e-9 ? "undefined (cos θ = 0)" : t.tan.toFixed(4);
+    info.textContent = "θ = " + (Math.round(deg * 10) / 10) + "° = " + radLabel(deg) + (ex ? "" : " ≈ " + t.rad.toFixed(4)) + " rad"
+      + "\nsin θ = " + t.sin.toFixed(4) + (ex ? " = " + ex[0] : "") + "    cos θ = " + t.cos.toFixed(4) + (ex ? " = " + ex[1] : "") + "    tan θ = " + tanTxt + (ex ? " = " + ex[2] : "")
+      + "\nsin²θ + cos²θ = " + (t.sin * t.sin + t.cos * t.cos).toFixed(4);
+  }
+
+  var dragging = false;
+  function setFromPointer(ev) {
+    var r = canvas.getBoundingClientRect(), x = ev.clientX - r.left - cx, y = cy - (ev.clientY - r.top);
+    var a = Math.atan2(y, x) * 180 / Math.PI; if (a < 0) a += 360;
+    deg = Math.round(a * 10) / 10; degIn.value = Math.round(deg); draw();
+  }
+  canvas.addEventListener("pointerdown", function (ev) {
+    var r = canvas.getBoundingClientRect(), x = ev.clientX - r.left - cx, y = ev.clientY - r.top - cy;
+    if (Math.sqrt(x * x + y * y) > R + 40) return;
+    dragging = true; canvas.classList.add("drag"); canvas.setPointerCapture(ev.pointerId); ev.preventDefault(); setFromPointer(ev);
+  });
+  canvas.addEventListener("pointermove", function (ev) { if (dragging) setFromPointer(ev); });
+  function up() { dragging = false; canvas.classList.remove("drag"); }
+  canvas.addEventListener("pointerup", up); canvas.addEventListener("pointercancel", up);
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(draw, 120); });
+  draw();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Counting without counting · Infinity Club</title>
+<meta name="description" content="Permutations, combinations, the binomial theorem, and stars and bars: how many ways to share 10 sweets among 4 kids?">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 10</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 10 · Around the corner · 4</div>
+  <h1>Counting without counting</h1>
+  <p class="teaser">Permutations, combinations, the binomial theorem, and stars and bars: how many ways to share 10 sweets among 4 kids?</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Everything starts with the <b>multiplication principle</b>: if a choice can be made in \(m\) ways and a second independent choice in \(n\) ways, the pair can be made in \(mn\) ways. Three courses, 4 starters, 6 mains, 3 desserts: \(4 \times 6 \times 3 = 72\) dinners.</p>
+<p><b>Permutations</b> (order matters). Arranging \(n\) different things in a row: \(n\) choices for first place, \(n-1\) for second, and so on: \(n! = n(n-1)(n-2)\cdots 1\). Choosing and arranging \(k\) of them: \(n(n-1)\cdots(n-k+1) = \dfrac{n!}{(n-k)!}\).</p>
+<p><b>Combinations</b> (order does not matter). Choosing \(k\) of \(n\) things as a set: count the ordered choices, \(n!/(n-k)!\), then notice every set has been counted \(k!\) times, once per ordering. So \[\binom{n}{k} = \frac{n!}{k!\,(n-k)!}.\] Read "\(n\) choose \(k\)". \(\binom{5}{2} = 10\): ten possible pairs from five people.</p>
+<p><b>The binomial theorem.</b> Expand \((a+b)^n\) by picking \(a\) or \(b\) from each of the \(n\) brackets. The term \(a^{n-k}b^k\) arises once for each way of choosing which \(k\) brackets supply a \(b\): \[(a+b)^n = \sum_{k=0}^{n} \binom{n}{k} a^{n-k} b^k.\] Those coefficients are the rows of <a href="../../grade-6/sheets/b4-pascal.html">Pascal's triangle</a>, which is why \((a+b)^4 = a^4 + 4a^3b + 6a^2b^2 + 4ab^3 + b^4\).</p>
+<p><b>Stars and bars.</b> How many ways to share 10 identical sweets among 4 kids, any amounts allowed (including zero)? Lay the 10 sweets in a row as stars and insert 3 bars to cut the row into 4 groups: \(\star\star\star|\star\star|\,|\star\star\star\star\star\) means 3, 2, 0, 5. Every arrangement of 10 stars and 3 bars in 13 slots is one sharing, so the answer is \(\binom{13}{3} = 286\). In general, \(n\) identical items into \(k\) groups: \(\binom{n+k-1}{k-1}\).</p>
+</section>
+
+<section class="example">
+<h2>Watch one: MISSISSIPPI, and a committee two ways</h2>
+<p>How many distinct arrangements of the letters of MISSISSIPPI? Eleven letters, so \(11!\) if they were all different. But the four S's can be shuffled among themselves in \(4!\) ways without changing the word, likewise the four I's and the two P's. So \[\frac{11!}{4!\,4!\,2!} = \frac{39{,}916{,}800}{24 \cdot 24 \cdot 2} = 34{,}650.\]</p>
+<p>Now a committee of 3 from 8 people, one of whom is chair. Count it two ways. <em>Chair first:</em> 8 choices of chair, then \(\binom{7}{2} = 21\) for the other two: \(8 \times 21 = 168\). <em>Committee first:</em> \(\binom{8}{3} = 56\) committees, then 3 choices of chair: \(56 \times 3 = 168\). Same answer, of course. But look at what we proved along the way: \(n\binom{n-1}{k-1} = k\binom{n}{k}\) for any \(n\) and \(k\), without touching a factorial. That is <b>counting both ways</b>, and it is the most elegant trick in this subject.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Number plates have 3 letters then 3 digits. How many are possible? How many if no letter and no digit may repeat?<div class="space short"></div></li>
+<li>A poker hand is 5 cards from 52. How many hands are there? A flush is 5 cards all of one suit. How many flushes are there, and roughly what fraction of hands is that?<div class="space"></div></li>
+<li>Expand \((x+2)^5\) using the binomial theorem. Then find the coefficient of \(x^3\) in \((2x - 1)^7\) without expanding the whole thing.<div class="space"></div></li>
+<li>Twelve identical sweets, five kids. How many ways if any kid may get nothing? How many if every kid must get at least one? (Hint for the second: hand out one sweet each first.)<div class="space"></div></li>
+<li>Prove by a counting story, not by algebra: (a) \(\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}\) (think about whether one particular person is on the committee); (b) \(\binom{n}{0} + \binom{n}{1} + \cdots + \binom{n}{n} = 2^n\) (think about subsets).<div class="space"></div></li>
+<li>A city grid: you walk from \((0,0)\) to \((6,4)\) using only steps right and up. How many routes? How many pass through \((2,2)\)?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: Vandermonde, and boxes that must not be empty</h2>
+<p>(a) A class has 5 girls and 7 boys. Count the committees of 3 in two ways: directly, and by splitting according to how many girls are on the committee. Write the general identity you have proved, \(\sum_k \binom{m}{k}\binom{n}{r-k} = \binom{m+n}{r}\), and check the numbers: \(\binom{12}{3} = 220\).</p>
+<p>(b) Five different presents go into three different boxes and no box may be empty. Start from \(3^5\) (every present picks a box), subtract the arrangements that leave a given box empty, and then fix the over-subtraction. (This is <b>inclusion–exclusion</b>, and the answer is 150.)</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(26^3 \times 10^3 = 17{,}576{,}000\). Without repeats: \(26 \cdot 25 \cdot 24 \cdot 10 \cdot 9 \cdot 8 = 11{,}232{,}000\).</li>
+<li>\(\binom{52}{5} = 2{,}598{,}960\). Flushes: choose the suit (4), then 5 of its 13 cards: \(4\binom{13}{5} = 4 \times 1287 = 5148\). Fraction \(5148/2598960 \approx 0.00198\), about 1 in 500. (This count includes the 40 straight flushes.)</li>
+<li>\((x+2)^5 = x^5 + 10x^4 + 40x^3 + 80x^2 + 80x + 32\) (coefficients \(\binom{5}{k}2^k\)). In \((2x-1)^7\) the \(x^3\) term is \(\binom{7}{3}(2x)^3(-1)^4 = 35 \cdot 8 \cdot 1 = 280\), so the coefficient is 280.</li>
+<li>Any amounts: 12 stars, 4 bars, \(\binom{16}{4} = 1820\). At least one each: give each kid one sweet, then share the remaining 7 freely: \(\binom{11}{4} = 330\).</li>
+<li>(a) Committees of \(k\) from \(n\) people: either Alice is on it (choose the other \(k-1\) from the remaining \(n-1\): \(\binom{n-1}{k-1}\)) or she is not (choose all \(k\) from \(n-1\): \(\binom{n-1}{k}\)). Every committee is exactly one of these. (b) A subset of \(n\) people is formed by deciding in or out for each person: \(2^n\) subsets. Grouping subsets by size \(k\) gives \(\sum_k \binom{n}{k}\). Same thing counted twice.</li>
+<li>Ten steps, of which 4 are up: \(\binom{10}{4} = 210\). Through \((2,2)\): \(\binom{4}{2}\) routes to it, then \(\binom{6}{2}\) from it to \((6,4)\): \(6 \times 15 = 90\).</li>
+</ol>
+<p><b>Stretch.</b> (a) Directly \(\binom{12}{3} = 220\). By girls: \(\binom{5}{0}\binom{7}{3} + \binom{5}{1}\binom{7}{2} + \binom{5}{2}\binom{7}{1} + \binom{5}{3}\binom{7}{0} = 35 + 105 + 70 + 10 = 220\). The general identity is Vandermonde's. (b) \(3^5 = 243\) arrangements. Those avoiding box 1: \(2^5 = 32\), same for each box, so subtract \(3 \times 32 = 96\). But arrangements that avoid two boxes (all presents in the third box) were subtracted twice; there are 3 of them, so add 3 back: \(243 - 96 + 3 = 150\).</p>
+</section>
+
+<div class="sheet-nav"><a href="b3-pigeonhole.html">← Previous</a><a href="b5-fermat-little.html">Next: Fermat's little theorem →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

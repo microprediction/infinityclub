@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Test That Cries Wolf · Infinity Club</title>
+<meta name="description" content="A 99% accurate test for a rare disease is wrong most of the time it says yes. One thousand dots show why, and Bayes' theorem says it exactly.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+#grid { width: 100%; height: auto; aspect-ratio: 8 / 5; display: block; }
+.legend { display: flex; flex-wrap: wrap; gap: .5rem 1.2rem; font-size: .92rem; margin: .5rem 0; }
+.legend span { display: inline-flex; align-items: center; gap: .4rem; }
+.legend i { width: 14px; height: 14px; border-radius: 50%; display: inline-block; border: 2px solid transparent; }
+.controls input[type=number] { width: 5.5em; }
+.controls label { flex-wrap: wrap; max-width: 100%; }
+.controls input[type=range] { flex: 1 1 120px; min-width: 0; max-width: 100%; }
+.big { font-size: 1.25rem; font-weight: 800; color: var(--accent); }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>The test that cries wolf</h1>
+<p class="explain">One thousand people take a test. The disease is rare, the test is good. Then you test positive. How worried should you be? Slide the three numbers and count the dots before you trust your gut.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <label>prevalence <input type="range" id="prev" min="0.1" max="50" step="any" value="1"> <input type="number" id="prevn" min="0.1" max="50" step="0.1" value="1"> %</label>
+    <label>sensitivity <input type="range" id="sens" min="50" max="100" step="any" value="99"> <input type="number" id="sensn" min="50" max="100" step="0.1" value="99"> %</label>
+    <label>specificity <input type="range" id="spec" min="50" max="100" step="any" value="99"> <input type="number" id="specn" min="50" max="100" step="0.1" value="99"> %</label>
+  </div>
+  <div class="controls">
+    <span style="font-weight:700">Try</span>
+    <button class="ghost" data-p="1" data-se="99" data-sp="99">rare disease, 99% test</button>
+    <button class="ghost" data-p="0.5" data-se="95" data-sp="98">screening programme</button>
+    <button class="ghost" data-p="20" data-se="90" data-sp="90">common, decent test</button>
+    <button class="ghost" data-p="50" data-se="99" data-sp="99">already likely</button>
+  </div>
+  <div class="legend">
+    <span><i style="background:#3f44c9;border-color:#3f44c9"></i> sick, test positive (true positive)</span>
+    <span><i style="background:#fff;border-color:#3f44c9"></i> sick, test negative (missed)</span>
+    <span><i style="background:#f5a524;border-color:#f5a524"></i> healthy, test positive (false alarm)</span>
+    <span><i style="background:#e4e1d8;border-color:#e4e1d8"></i> healthy, test negative</span>
+  </div>
+  <canvas id="grid" width="800" height="500"></canvas>
+  <div class="readout" id="info"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p><b>Sensitivity</b> is the chance the test says yes when you are sick. <b>Specificity</b> is the chance it says no when you are healthy. Both can be 99% and the test can still be wrong most of the time it says yes, because the false alarms come from the huge healthy group and the true alarms come from the tiny sick group. One percent of 990 healthy people is about 10 false alarms, which is as many as the 10 sick people the test catches. Half the positives are healthy.</p>
+<p>Bayes' theorem is just this count written as a formula. The chance you are sick given a positive result is</p>
+<p style="text-align:center">P(sick | +) = <span style="display:inline-block;vertical-align:middle;text-align:center"><span style="display:block;border-bottom:1px solid #000;padding:0 .3em">prevalence × sensitivity</span><span style="display:block;padding:0 .3em">prevalence × sensitivity + (1 − prevalence) × (1 − specificity)</span></span></p>
+<p>The top is the true positives; the bottom is all the positives. Doctors call the answer the <b>positive predictive value</b>, and it depends on prevalence as much as on the test. The same test is reliable in a clinic full of people who already have symptoms (high prevalence) and misleading as a mass screen of healthy people (low prevalence). That is why a positive screening result is followed by a second, different test rather than by a diagnosis.</p>
+<p>Sheets: <a href="../grade-10/sheets/b21-bayes.html">Bayes' theorem</a> and <a href="../grade-10/sheets/c5-medical-tests.html">What a positive test really means</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  // ---- pure maths ----
+  function counts(p, se, sp, N) {
+    var sick = Math.round(N * p), tp = Math.round(sick * se), fn = sick - tp, healthy = N - sick, tn = Math.round(healthy * sp), fp = healthy - tn;
+    return { sick: sick, tp: tp, fn: fn, healthy: healthy, tn: tn, fp: fp, pos: tp + fp, neg: fn + tn };
+  }
+  function ppv(p, se, sp) { var d = p * se + (1 - p) * (1 - sp); return d > 0 ? p * se / d : NaN; }
+  function npv(p, se, sp) { var d = (1 - p) * sp + p * (1 - se); return d > 0 ? (1 - p) * sp / d : NaN; }
+  if (typeof document === "undefined") { module.exports = { counts: counts, ppv: ppv, npv: npv }; return; }
+
+  var N = 1000, COLS = 40, ROWS = 25;
+  var st = { p: 1, se: 99, sp: 99 };
+  var canvas = document.getElementById("grid"), info = document.getElementById("info");
+  var ctl = { p: ["prev", "prevn", 0.1, 50], se: ["sens", "sensn", 50, 100], sp: ["spec", "specn", 50, 100] };
+  Object.keys(ctl).forEach(function (k) {
+    var s = document.getElementById(ctl[k][0]), n = document.getElementById(ctl[k][1]);
+    s.addEventListener("input", function () { st[k] = parseFloat(s.value); n.value = st[k].toFixed(1); update(); });
+    n.addEventListener("input", function () { var v = parseFloat(n.value); if (isFinite(v)) { st[k] = Math.min(ctl[k][3], Math.max(ctl[k][2], v)); s.value = st[k]; update(); } });
+  });
+  document.querySelectorAll("[data-p]").forEach(function (b) { b.addEventListener("click", function () { st = { p: +b.dataset.p, se: +b.dataset.se, sp: +b.dataset.sp }; Object.keys(ctl).forEach(function (k) { document.getElementById(ctl[k][0]).value = st[k]; document.getElementById(ctl[k][1]).value = st[k]; }); update(); }); });
+
+  function draw(c) {
+    var dpr = window.devicePixelRatio || 1, W = canvas.clientWidth || 800, H = W * ROWS / COLS;
+    canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px";
+    var g = canvas.getContext("2d"); g.setTransform(dpr, 0, 0, dpr, 0, 0);
+    g.fillStyle = "#fff"; g.fillRect(0, 0, W, H);
+    var cw = W / COLS, r = Math.max(2, cw * 0.34);
+    // order: true positives, missed, false alarms, healthy negatives
+    var kinds = [], i;
+    for (i = 0; i < c.tp; i++) kinds.push(0); for (i = 0; i < c.fn; i++) kinds.push(1); for (i = 0; i < c.fp; i++) kinds.push(2); for (i = 0; i < c.tn; i++) kinds.push(3);
+    for (i = 0; i < N; i++) {
+      var x = (i % COLS + 0.5) * cw, y = (Math.floor(i / COLS) + 0.5) * cw, k = kinds[i];
+      g.beginPath(); g.arc(x, y, r, 0, Math.PI * 2);
+      if (k === 0) { g.fillStyle = "#3f44c9"; g.fill(); }
+      else if (k === 1) { g.fillStyle = "#fff"; g.fill(); g.lineWidth = 2; g.strokeStyle = "#3f44c9"; g.stroke(); }
+      else if (k === 2) { g.fillStyle = "#f5a524"; g.fill(); }
+      else { g.fillStyle = "#e4e1d8"; g.fill(); }
+    }
+  }
+  function pct(v) { return (100 * v).toFixed(1) + "%"; }
+  function update() {
+    var p = st.p / 100, se = st.se / 100, sp = st.sp / 100, c = counts(p, se, sp, N);
+    draw(c);
+    var lines = [];
+    lines.push("1,000 people, prevalence " + st.p.toFixed(1) + "%: " + c.sick + " sick, " + c.healthy + " healthy.");
+    lines.push("Sick: the test catches " + c.tp + " (true positives) and misses " + c.fn + ".");
+    lines.push("Healthy: " + c.fp + " get a false alarm, " + c.tn + " are correctly cleared.");
+    lines.push("Positives in total: " + c.pos + ", of whom " + c.tp + " are sick" + (c.pos ? " → " + c.tp + "/" + c.pos + " = " + pct(c.pos ? c.tp / c.pos : 0) : "") + ".");
+    lines.push("Exact by Bayes: P(sick | positive) = " + pct(ppv(p, se, sp)) + "    P(healthy | negative) = " + pct(npv(p, se, sp)));
+    info.textContent = lines.join("\n");
+  }
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(update, 150); });
+  update();
+})();
+</script>
+</body>
+</html>

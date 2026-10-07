@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Induction: infinitely many dominoes · Infinity Club</title>
+<meta name="description" content="Prove a statement for every whole number in two steps. Sum formulas, 2^n versus n squared, the Tower of Hanoi, and tiling a chessboard with L-shapes.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 10</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 10 · Around the corner · 2</div>
+  <h1>Induction: infinitely many dominoes</h1>
+  <p class="teaser">Prove a statement for every whole number in two steps. Sum formulas, 2ⁿ > n², and tiling a chessboard with L-shapes.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>How do you prove something is true for <em>every</em> whole number \(n = 1, 2, 3, \ldots\)? You cannot check them one at a time. But picture an infinite row of dominoes. If you know two things, that the first domino falls, and that <em>whenever</em> one falls the next one falls, then they all fall. That is <b>mathematical induction</b>.</p>
+<p class="callout">To prove a statement \(P(n)\) for all \(n \ge 1\): <b>Base case.</b> Show \(P(1)\) is true. <b>Inductive step.</b> Assume \(P(k)\) is true for some \(k \ge 1\) (the <em>inductive hypothesis</em>) and use it to prove \(P(k+1)\).</p>
+<p><b>Example: \(1 + 2 + \cdots + n = \dfrac{n(n+1)}{2}\).</b></p>
+<p><em>Base case.</em> \(n = 1\): left side 1, right side \(1 \cdot 2 / 2 = 1\). True.</p>
+<p><em>Inductive step.</em> Assume \(1 + 2 + \cdots + k = k(k+1)/2\). Add \(k+1\) to both sides: \[1 + 2 + \cdots + k + (k+1) = \frac{k(k+1)}{2} + (k+1) = (k+1)\left(\frac{k}{2} + 1\right) = \frac{(k+1)(k+2)}{2}.\] That is exactly the formula with \(n = k+1\). So \(P(k)\) implies \(P(k+1)\), and the dominoes fall.</p>
+<p>The same two steps prove \(1^2 + 2^2 + \cdots + n^2 = \dfrac{n(n+1)(2n+1)}{6}\): the base case is \(1 = 1 \cdot 2 \cdot 3 / 6\), and the inductive step adds \((k+1)^2\) to \(k(k+1)(2k+1)/6\) and factors out \((k+1)\). You will do it in question 1.</p>
+<p>Induction does not tell you <em>what</em> the formula is. Someone had to guess it first. Induction is the tool that turns a pattern you have spotted into a theorem. (The <a href="../../grade-6/sheets/b17-differences.html">grade 6 sequence-detective sheet</a> and the <a href="../../demos/differences.html">sequence detective</a> are about the guessing part.)</p>
+</section>
+
+<section class="example">
+<h2>Watch one: \(2^n > n^2\) for all \(n \ge 5\)</h2>
+<p>Check small cases first: \(2^1 = 2 > 1\), but \(2^2 = 4 = 2^2\), \(2^3 = 8 \lt 9\), \(2^4 = 16 = 16\), \(2^5 = 32 > 25\). It fails in the middle and then takes off. So the first domino is \(n = 5\), not \(n = 1\). Induction is happy to start anywhere.</p>
+<p><em>Base case.</em> \(n = 5\): \(32 > 25\). True.</p>
+<p><em>Inductive step.</em> Assume \(2^k > k^2\) for some \(k \ge 5\). Then \(2^{k+1} = 2 \cdot 2^k > 2k^2\). We want to reach \((k+1)^2 = k^2 + 2k + 1\). So it is enough to show \(2k^2 \ge k^2 + 2k + 1\), i.e. \(k^2 - 2k - 1 \ge 0\), i.e. \((k-1)^2 \ge 2\). For \(k \ge 5\), \((k-1)^2 \ge 16\). Done: \(2^{k+1} > 2k^2 \ge (k+1)^2\).</p>
+<p>Notice the move: we did not prove \(2^{k+1} > (k+1)^2\) directly. We used the hypothesis to get past \(2k^2\), then did a little algebra to close the gap. Most inductive steps look like this.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Prove \(1 + 3 + 5 + \cdots + (2n-1) = n^2\). Then prove the sum-of-squares formula \(1^2 + \cdots + n^2 = n(n+1)(2n+1)/6\). Write out base case and inductive step for each.<div class="space tall"></div></li>
+<li>Prove \(1^3 + 2^3 + \cdots + n^3 = \left(\dfrac{n(n+1)}{2}\right)^2\). (So the sum of the first \(n\) cubes is the square of the sum of the first \(n\) numbers. Check it for \(n = 3\): \(1 + 8 + 27 = 36 = 6^2\).)<div class="space tall"></div></li>
+<li>Prove that \(n^3 - n\) is divisible by 6 for every \(n \ge 1\). (Hint: expand \((k+1)^3 - (k+1)\) and separate out \(k^3 - k\). What is left should be a multiple of 6 for a reason you can state.)<div class="space"></div></li>
+<li><b>Tower of Hanoi.</b> With \(n\) discs the fewest moves \(T_n\) satisfies \(T_1 = 1\) and \(T_{n} = 2T_{n-1} + 1\) (move \(n-1\) discs aside, move the big one, move \(n-1\) back). Prove by induction that \(T_n = 2^n - 1\). Try it at <a href="../../demos/hanoi.html">infinityclub.net/demos/hanoi.html</a>.<div class="space"></div></li>
+<li><b>Find the flaw.</b> "Theorem: all horses are the same colour. Base case: one horse is the same colour as itself. Step: assume any \(k\) horses are the same colour. Take \(k+1\) horses. The first \(k\) are the same colour, and the last \(k\) are the same colour, and these two groups overlap, so all \(k+1\) are the same colour." Exactly which step from \(k\) to \(k+1\) fails, and why?<div class="space"></div></li>
+<li><b>Trominoes.</b> An L-tromino is three squares in an L. Prove that a \(2^n \times 2^n\) board with any one square removed can be tiled by L-trominoes. (Hint: cut the board into four quadrants of size \(2^{n-1}\). The missing square is in one of them. Put one tromino in the middle of the board so it takes one square from each of the other three quadrants. Now what does the inductive hypothesis give you?) How many trominoes does an \(8 \times 8\) board take?<div class="space tall"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: strong induction and the stamp problem</h2>
+<p>Sometimes to knock over domino \(k+1\) you need <em>all</em> the earlier dominoes, not just domino \(k\). That is <b>strong induction</b>: assume \(P(1), \ldots, P(k)\) all hold, and prove \(P(k+1)\). It is just as valid.</p>
+<p>(a) Prove that every amount of postage from 12 cents upward can be made with 4-cent and 5-cent stamps. Do four base cases, 12, 13, 14, 15, and then show that if it works for \(k\), it works for \(k+4\). Why is 11 cents impossible?</p>
+<p>(b) Prove that every whole number \(n \ge 2\) is a product of primes. (If \(n\) is prime, done. If not, \(n = ab\) with \(a, b\) both smaller than \(n\). Now use the strong hypothesis.)</p>
+<p>(c) Fibonacci: \(F_1 = F_2 = 1\), \(F_{n} = F_{n-1} + F_{n-2}\). Prove \(F_1 + F_2 + \cdots + F_n = F_{n+2} - 1\).</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Odd numbers: base \(1 = 1^2\). Step: assume \(1 + \cdots + (2k-1) = k^2\); add \(2k+1\): \(k^2 + 2k + 1 = (k+1)^2\). Squares: base \(1 = 1 \cdot 2 \cdot 3/6\). Step: \(\frac{k(k+1)(2k+1)}{6} + (k+1)^2 = \frac{(k+1)\,[k(2k+1) + 6(k+1)]}{6} = \frac{(k+1)(2k^2 + 7k + 6)}{6} = \frac{(k+1)(k+2)(2k+3)}{6}\), which is the formula at \(n = k+1\).</li>
+<li>Base: \(1 = (1 \cdot 2/2)^2\). Step: \(\left(\frac{k(k+1)}{2}\right)^2 + (k+1)^3 = (k+1)^2\left[\frac{k^2}{4} + (k+1)\right] = (k+1)^2 \cdot \frac{k^2 + 4k + 4}{4} = \left(\frac{(k+1)(k+2)}{2}\right)^2\).</li>
+<li>Base: \(1 - 1 = 0\), divisible by 6. Step: \((k+1)^3 - (k+1) = k^3 + 3k^2 + 3k + 1 - k - 1 = (k^3 - k) + 3k(k+1)\). The first bracket is a multiple of 6 by hypothesis. \(k(k+1)\) is a product of consecutive numbers, so it is even, so \(3k(k+1)\) is a multiple of 6. Sum of two multiples of 6.</li>
+<li>Base: \(T_1 = 1 = 2^1 - 1\). Step: assume \(T_k = 2^k - 1\). Then \(T_{k+1} = 2T_k + 1 = 2(2^k - 1) + 1 = 2^{k+1} - 1\).</li>
+<li>The step from \(k = 1\) to \(k = 2\) fails. With two horses, "the first 1" and "the last 1" are different single horses and the groups do not overlap, so nothing links their colours. The argument is fine from 2 to 3 onward, but the first domino never pushes the second, so none fall. (Base case true, step false at one point, conclusion false: induction needs the step at <em>every</em> \(k\).)</li>
+<li>Base \(n = 1\): a \(2 \times 2\) board minus one square is exactly one L-tromino. Step: assume every \(2^k \times 2^k\) board minus any one square can be tiled. Take a \(2^{k+1} \times 2^{k+1}\) board minus one square, and cut it into four \(2^k \times 2^k\) quadrants. The missing square lies in one quadrant. Place one tromino at the centre covering the three centre squares of the <em>other</em> three quadrants. Now every quadrant is a \(2^k \times 2^k\) board missing exactly one square, and each can be tiled by hypothesis. An \(8 \times 8\) board minus one square has 63 squares, so 21 trominoes.</li>
+</ol>
+<p><b>Stretch.</b> (a) \(12 = 4+4+4\), \(13 = 4+4+5\), \(14 = 4+5+5\), \(15 = 5+5+5\). If \(k \ge 12\) can be made, add one 4-cent stamp to make \(k + 4\). Every \(n \ge 12\) is one of 12, 13, 14, 15 plus a multiple of 4, so the four base cases and the step cover everything. 11 is impossible: with no 5s you get multiples of 4; with one 5 you need 6 from 4s; with two 5s you need 1. (b) Strong induction: suppose every number from 2 to \(k\) is a product of primes. If \(k+1\) is prime, it is a product of one prime. Otherwise \(k+1 = ab\) with \(2 \le a, b \le k\), so \(a\) and \(b\) are products of primes by hypothesis, and so is \(ab\). (c) Base: \(F_1 = 1 = F_3 - 1 = 2 - 1\). Step: \(F_1 + \cdots + F_k + F_{k+1} = F_{k+2} - 1 + F_{k+1} = F_{k+3} - 1\).</p>
+</section>
+
+<div class="sheet-nav"><a href="b1-contradiction.html">← Previous</a><a href="b3-pigeonhole.html">Next: The pigeonhole principle →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>R₀ and herd immunity · Infinity Club</title>
+<meta name="description" content="Exponential starts, the SIR model in difference form, and why the herd-immunity threshold is 1 − 1/R₀.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 10</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 10 · Connections · 6</div>
+  <h1>R₀ and herd immunity</h1>
+  <p class="teaser">Exponential starts, the SIR model, and the threshold 1 − 1/R₀.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Every epidemic has one number that matters more than any other. \(R_0\) (say "R nought") is the average number of people one infected person passes the disease to, when everybody around them can still catch it. Measles has an \(R_0\) somewhere between 12 and 18. The 1918 flu was around 2. If \(R_0 \gt 1\) each generation of cases is bigger than the last; if \(R_0 \lt 1\) the outbreak fizzles.</p>
+<p>At the start, cases grow in generations: 1, then \(R_0\), then \(R_0^2\), then \(R_0^3\). That is exponential growth, the same kind you met with the lily pad in <a href="../../grade-6/sheets/b29-growth.html">A line, a curve and a rocket</a>, and it is why the first weeks of an outbreak always look harmless and then suddenly do not.</p>
+<p>But \(R_0\) assumes everyone is susceptible, and that stops being true as people recover. The simplest honest model splits a population of \(N\) people into three boxes: <b>S</b>usceptible, <b>I</b>nfectious and <b>R</b>ecovered (or immune). Each day:</p>
+<div class="callout">
+\[\Delta S = -\beta\,\frac{S\,I}{N}, \qquad \Delta I = \beta\,\frac{S\,I}{N} - \gamma I, \qquad \Delta R = \gamma I.\]
+\(\beta\) is how many people an infectious person infects per day if everyone were susceptible. \(\gamma\) is the fraction of infectious people who recover each day, so \(1/\gamma\) is the average infectious period. And \(R_0 = \beta/\gamma\): infections per day, times days infectious.
+</div>
+<p>The fraction \(S/N\) is the key. An infectious person only passes the disease on when they meet a susceptible, so the <em>effective</em> reproduction number is \(R_{\text{eff}} = R_0 \cdot S/N\). The epidemic grows while \(R_{\text{eff}} \gt 1\) and shrinks once \(R_{\text{eff}} \lt 1\). Set \(R_{\text{eff}} = 1\) and solve: the turning point is \(S/N = 1/R_0\). The fraction who are <em>no longer</em> susceptible at that moment is</p>
+<div class="callout"><b>Herd-immunity threshold:</b> \(\;1 - \dfrac{1}{R_0}\). With \(R_0 = 2\) that is 50%. With \(R_0 = 12\) it is 92%.</div>
+<p>Immunity can come from infection or from vaccination. Either way, once that fraction is immune, each case produces fewer than one new case, and the disease cannot sustain itself even though some susceptible people remain. They are protected by the herd.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: two days by hand</h2>
+<p>\(N = 1000\), with \(S = 990\), \(I = 10\), \(R = 0\). Take \(\beta = 0.5\) and \(\gamma = 0.25\) (a four-day infectious period), so \(R_0 = 2\).</p>
+<p><b>Day 1.</b> New infections: \(0.5 \times 990 \times 10 / 1000 = 4.95\). Recoveries: \(0.25 \times 10 = 2.5\). So \(S = 985.05\), \(I = 10 + 4.95 - 2.5 = 12.45\), \(R = 2.5\).</p>
+<p><b>Day 2.</b> New infections: \(0.5 \times 985.05 \times 12.45 / 1000 \approx 6.13\). Recoveries: \(0.25 \times 12.45 \approx 3.11\). So \(S \approx 978.92\), \(I \approx 15.47\), \(R \approx 5.61\).</p>
+<p>Fractional people are fine: the model tracks averages. Notice \(I\) grows by about 25% a day at the start, because \(\beta S/N - \gamma \approx 0.5 - 0.25 = 0.25\). That growth rate falls as \(S\) falls. The demo at <a href="../../demos/sir.html">infinityclub.net/demos/sir.html</a> runs this for you for hundreds of days.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>A disease has \(R_0 = 3\) and a generation time of 5 days. Starting from one case, how many <em>new</em> cases are there in the fourth generation? How many cases in total by then, and how many days have passed?<div class="space short"></div></li>
+<li>Compute the herd-immunity threshold for \(R_0 = 1.5\), \(2\), \(3\), \(5\) and \(12\). Give each as a fraction and a percentage.<div class="space short"></div></li>
+<li>A vaccine stops infection in 90% of the people who receive it (the other 10% are unprotected). The disease has \(R_0 = 4\). What fraction of the population must be <em>vaccinated</em> to reach the herd-immunity threshold? Explain why the answer is bigger than the threshold itself.<div class="space"></div></li>
+<li>Run the SIR model by hand for two days: \(N = 1000\), \(S = 900\), \(I = 100\), \(R = 0\), \(\beta = 0.5\), \(\gamma = 0.25\). Give \(S\), \(I\), \(R\) after day 1 and after day 2 to one decimal place. What is \(R_{\text{eff}}\) on day 0?<div class="space tall"></div></li>
+<li>\(R_0 = 2.5\) in a city of 10,000 where everyone starts susceptible and nobody is vaccinated. How many people are still susceptible when daily cases peak? How many have therefore already been infected by the peak? Separately: if 40% of the city had been vaccinated beforehand, what would \(R_{\text{eff}}\) be on day 0?<div class="space"></div></li>
+<li>Early in an outbreak, cases are growing 25% a day. What is the doubling time? Starting from 100 cases, how many after 14 days? If a lockdown cuts growth to 10% a day, what is the new doubling time? (Doubling time is \(\ln 2 / \ln(1 + g)\); a calculator with \(\ln\) is fine.)<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the overshoot</h2>
+<p>Herd immunity is where the epidemic <em>stops growing</em>, not where it stops. Cases are at their peak then, and all those infectious people keep infecting. The epidemic overshoots. For the SIR model there is an exact equation for the fraction \(s_\infty\) still susceptible at the very end:</p>
+\[ s_\infty = e^{-R_0 (1 - s_\infty)}. \]
+<p>You cannot solve it with algebra, but you can iterate: guess \(s = 0.5\), compute \(e^{-R_0(1 - s)}\), feed the answer back in, repeat until it stops changing. Do this for \(R_0 = 2\). What fraction of the population is infected in total? Compare it with the herd-immunity threshold of 50%. Then try \(R_0 = 1.5\) and \(R_0 = 3\).</p>
+<p>Why does vaccination before an outbreak avoid the overshoot, when natural infection cannot?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Fourth generation: \(3^4 = 81\) new cases. Total \(1 + 3 + 9 + 27 + 81 = 121\). Four generations is 20 days.</li>
+<li>\(1 - 1/R_0\): \(1/3 \approx 33\%\), \(1/2 = 50\%\), \(2/3 \approx 67\%\), \(4/5 = 80\%\), \(11/12 \approx 92\%\).</li>
+<li>Threshold \(1 - 1/4 = 75\%\) must be immune. If a fraction \(v\) is vaccinated, \(0.9v\) are immune, so \(0.9v \ge 0.75\) gives \(v \ge 0.75/0.9 = 0.833\): about 83%. It is bigger because only 90% of each dose counts; you must over-vaccinate to make up for the 10% in whom it fails.</li>
+<li>Day 1: new infections \(0.5 \times 900 \times 100/1000 = 45\), recoveries 25. \(S = 855.0\), \(I = 120.0\), \(R = 25.0\). Day 2: new \(0.5 \times 855 \times 120/1000 = 51.3\), recoveries 30. \(S = 803.7\), \(I = 141.3\), \(R = 55.0\). On day 0, \(R_{\text{eff}} = 2 \times 900/1000 = 1.8\).</li>
+<li>Peak when \(S/N = 1/2.5 = 0.4\): 4,000 still susceptible, so 6,000 have been infected by the peak (very nearly; the handful of initial cases were not susceptible to begin with). With 40% vaccinated, \(R_{\text{eff}} = 2.5 \times 0.6 = 1.5\): still an epidemic, but a slower one.</li>
+<li>\(\ln 2 / \ln 1.25 \approx 3.1\) days. After 14 days: \(100 \times 1.25^{14} \approx 2{,}270\) cases. At 10% a day: \(\ln 2/\ln 1.1 \approx 7.3\) days.</li>
+</ol>
+<p><b>Stretch.</b> \(R_0 = 2\): from 0.5 the iterates go 0.368, 0.283, 0.238, 0.218, … and settle at \(s_\infty \approx 0.203\). So about 80% are infected in total, far more than the 50% threshold: the overshoot is 30 percentage points. \(R_0 = 1.5\): \(s_\infty \approx 0.417\), 58% infected (threshold 33%). \(R_0 = 3\): \(s_\infty \approx 0.060\), 94% infected (threshold 67%). Vaccination gets the population to the threshold while \(I\) is still essentially zero, so there is no stock of infectious people to drive the overshoot. Natural infection reaches the threshold at the exact moment infections are most numerous.</p>
+</section>
+
+<div class="sheet-nav"><a href="c5-medical-tests.html">← Previous</a><a href="c7-perspective.html">Next: Perspective, projective geometry and the golden ratio myth →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

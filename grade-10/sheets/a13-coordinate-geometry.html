@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Geometry with coordinates · Infinity Club</title>
+<meta name="description" content="Distance, midpoint, perpendicular slopes, the equation of a circle by completing the square, and proving a shape is a rhombus with algebra instead of a ruler.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 10</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 10 · Sharpen · 13</div>
+  <h1>Geometry with coordinates</h1>
+  <p class="teaser">Distance, midpoint, perpendicular slopes, the equation of a circle, and proving a shape is a rhombus by algebra.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Descartes' big idea was that a point is a pair of numbers. After that, every geometry statement becomes an algebra statement, and algebra can be checked without a ruler. Four tools do almost all the work.</p>
+<p><b>Distance.</b> From \((x_1, y_1)\) to \((x_2, y_2)\), go across \(x_2 - x_1\) and up \(y_2 - y_1\). Those are the legs of a right triangle, so the distance is the hypotenuse: \(d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}\). It is Pythagoras, nothing more.</p>
+<p><b>Midpoint.</b> Halfway across and halfway up: \(\left(\frac{x_1 + x_2}{2}, \frac{y_1 + y_2}{2}\right)\). Average the coordinates.</p>
+<p><b>Slope.</b> \(m = \dfrac{y_2 - y_1}{x_2 - x_1}\), rise over run. Parallel lines have equal slopes. <b>Perpendicular lines have slopes that multiply to \(-1\).</b> Why: a line of slope \(m\) goes across 1 and up \(m\). Rotate that little triangle a quarter turn and it goes across \(-m\) and up 1, so the perpendicular slope is \(\dfrac{1}{-m} = -\dfrac1m\). (Horizontal and vertical lines are the exception, since a vertical line has no slope.)</p>
+<p><b>Circle.</b> A circle is the set of points at distance \(r\) from the centre \((h, k)\). Write that with the distance formula and square both sides:</p>
+<p class="callout">\((x - h)^2 + (y - k)^2 = r^2\)</p>
+<p>If someone hands you a circle in expanded form, like \(x^2 + y^2 - 6x + 4y - 12 = 0\), complete the square in \(x\) and in \(y\) separately to read off the centre and radius. That is the same completing-the-square from sheet a1, used for a different purpose.</p>
+<p><b>The proof strategy.</b> To prove a shape has a property: put coordinates on it, compute, conclude. "All four sides equal" means four distance calculations. "Diagonals perpendicular" means two slopes multiplying to \(-1\). "Diagonals bisect each other" means two midpoints coinciding. Choose coordinates to make the arithmetic kind: a vertex at the origin, a side along an axis.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: is there a right angle at \(B\)?</h2>
+<p>\(A(1, 2)\), \(B(4, 6)\), \(C(8, 3)\). Slope of \(AB\): \(\frac{6 - 2}{4 - 1} = \frac43\). Slope of \(BC\): \(\frac{3 - 6}{8 - 4} = -\frac34\). Product: \(\frac43 \times \left(-\frac34\right) = -1\). So \(AB \perp BC\): a right angle at \(B\).</p>
+<p>Lengths: \(AB = \sqrt{3^2 + 4^2} = 5\) and \(BC = \sqrt{4^2 + 3^2} = 5\). An isosceles right triangle, so its area is \(\tfrac12 \times 5 \times 5 = 12.5\), and the hypotenuse should be \(5\sqrt2\). Check: \(AC = \sqrt{7^2 + 1^2} = \sqrt{50} = 5\sqrt2\). Everything agrees, which is how you know you have not made a slip.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>\(P(-3, 4)\) and \(Q(5, -2)\). Find the length \(PQ\), the midpoint \(M\), the slope of \(PQ\), and the equation of the perpendicular bisector of \(PQ\) in the form \(ax + by + c = 0\).<div class="space"></div></li>
+<li>The circle \(x^2 + y^2 - 6x + 4y - 12 = 0\). Complete the square to find its centre and radius. Show that \((7, 1)\) lies on it. Then find the equation of the tangent line at \((7, 1)\). (Hint: the tangent is perpendicular to the radius.)<div class="space tall"></div></li>
+<li>Prove that \(A(0,0)\), \(B(5,0)\), \(C(8,4)\), \(D(3,4)\) is a rhombus: show all four sides are equal. Then show its diagonals are perpendicular, and find its area two different ways (half the product of the diagonals; base times height).<div class="space tall"></div></li>
+<li>Find the point on the \(x\)-axis that is the same distance from \((2, 5)\) as from \((6, -1)\). Check your answer by computing both distances.<div class="space"></div></li>
+<li>Triangle with vertices \((0,0)\), \((6,0)\), \((0,8)\). Find the centre and radius of the circle through all three vertices, and write its equation. Which circle theorem told you where to look?<div class="space"></div></li>
+<li>Where does the line \(y = 2x + 1\) meet the circle \(x^2 + y^2 = 10\)? Find both points exactly, then the length of the chord between them, in simplest surd form.<div class="space tall"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: two theorems for the price of a good coordinate choice</h2>
+<p>(a) Prove that the diagonals of <em>any</em> parallelogram bisect each other. Place it as \(A(0,0)\), \(B(a, 0)\), \(D(b, c)\), and work out where \(C\) must be. Then compare the midpoints of \(AC\) and \(BD\).</p>
+<p>(b) Take <em>any</em> quadrilateral, \(A(0,0)\), \(B(a,0)\), \(C(b,c)\), \(D(d,e)\), and join the midpoints of its four sides in order. Prove the shape you get is always a parallelogram (Varignon's theorem). Hint: show two opposite sides of the new shape have the same "across and up".</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(PQ = \sqrt{8^2 + 6^2} = 10\). \(M = (1, 1)\). Slope \(= \frac{-6}{8} = -\frac34\). Perpendicular slope \(\frac43\), through \((1,1)\): \(y - 1 = \frac43(x - 1)\), i.e. \(3y - 3 = 4x - 4\), so \(4x - 3y - 1 = 0\).</li>
+<li>\((x^2 - 6x + 9) + (y^2 + 4y + 4) = 12 + 9 + 4\), so \((x - 3)^2 + (y + 2)^2 = 25\): centre \((3, -2)\), radius 5. At \((7, 1)\): \(4^2 + 3^2 = 25\). Yes. Radius slope \(\frac{1 - (-2)}{7 - 3} = \frac34\), so tangent slope \(-\frac43\): \(y - 1 = -\frac43(x - 7)\), or \(4x + 3y = 31\).</li>
+<li>\(AB = 5\), \(BC = \sqrt{3^2 + 4^2} = 5\), \(CD = 5\), \(DA = \sqrt{3^2 + 4^2} = 5\): a rhombus. Diagonal \(AC\) has slope \(\frac48 = \frac12\); diagonal \(BD\) has slope \(\frac{4}{3 - 5} = -2\); product \(-1\), perpendicular. Lengths \(AC = \sqrt{80}\), \(BD = \sqrt{20}\), so area \(= \tfrac12\sqrt{80}\sqrt{20} = \tfrac12\sqrt{1600} = 20\). Also base \(AB = 5\), height 4 (the \(y\)-coordinate of \(D\)): \(5 \times 4 = 20\).</li>
+<li>Call it \((x, 0)\). \((x - 2)^2 + 25 = (x - 6)^2 + 1\). Expand: \(x^2 - 4x + 29 = x^2 - 12x + 37\), so \(8x = 8\), \(x = 1\). The point is \((1, 0)\). Check: distances squared are \(1 + 25 = 26\) and \(25 + 1 = 26\).</li>
+<li>The right angle is at the origin, so the hypotenuse from \((6,0)\) to \((0,8)\) is a diameter (converse of Thales). Centre is its midpoint \((3, 4)\), radius half its length \(= \tfrac12 \times 10 = 5\). Equation \((x - 3)^2 + (y - 4)^2 = 25\). Check \((0,0)\): \(9 + 16 = 25\).</li>
+<li>Substitute: \(x^2 + (2x + 1)^2 = 10\), so \(5x^2 + 4x - 9 = 0\), which factors as \((5x + 9)(x - 1) = 0\). Points: \((1, 3)\) and \(\left(-\frac95, -\frac{13}{5}\right)\). Chord: across \(\frac{14}{5}\), up \(\frac{28}{5}\), length \(\sqrt{\frac{196}{25} + \frac{784}{25}} = \sqrt{\frac{980}{25}} = \frac{\sqrt{980}}{5} = \frac{14\sqrt5}{5} \approx 6.26\).</li>
+</ol>
+<p><b>Stretch.</b> (a) \(C\) is reached from \(B\) by the same move that takes \(A\) to \(D\), so \(C = (a + b, c)\). Midpoint of \(AC\): \(\left(\frac{a + b}{2}, \frac c2\right)\). Midpoint of \(BD\): \(\left(\frac{a + b}{2}, \frac c2\right)\). Same point, so each diagonal passes through the other's midpoint: they bisect each other. (b) The midpoints are \(M_1 = \left(\frac a2, 0\right)\), \(M_2 = \left(\frac{a + b}{2}, \frac c2\right)\), \(M_3 = \left(\frac{b + d}{2}, \frac{c + e}{2}\right)\), \(M_4 = \left(\frac d2, \frac e2\right)\). From \(M_1\) to \(M_2\): across \(\frac b2\), up \(\frac c2\). From \(M_4\) to \(M_3\): across \(\frac b2\), up \(\frac c2\). Same across-and-up means \(M_1M_2\) and \(M_4M_3\) are parallel and equal, which is enough for a parallelogram. (Both are parallel to the diagonal \(AC\) and half its length. The other pair is parallel to \(BD\).)</p>
+</section>
+
+<div class="sheet-nav"><a href="a12-circles.html">← Previous</a><a href="a14-sequences-series.html">Next: Sequences, series, and Gauss's trick →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

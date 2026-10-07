@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What a positive test really means · Infinity Club</title>
+<meta name="description" content="Sensitivity, specificity, base rates and the screening paradox: why a 99% accurate test can be wrong most of the time, and what a p-value is and is not.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+<style>
+table.tt { border-collapse: collapse; margin: .6em 0; }
+table.tt th, table.tt td { border: 1px solid var(--rule); padding: .3em .7em; text-align: center; }
+table.tt th { background: var(--accent-soft); }
+@media print { table.tt th { background: #eee; -webkit-print-color-adjust: exact; print-color-adjust: exact; } table.tt th, table.tt td { border-color: #000; } }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 10</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 10 · Connections · 5</div>
+  <h1>What a positive test really means</h1>
+  <p class="teaser">Sensitivity, specificity, base rates, and why a 99% accurate test can be wrong most of the time.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A test for a disease is "99% accurate". You test positive. How worried should you be? Most people, including most doctors when surveyed, say about 99%. The real answer can be under 1%. The gap is not a trick; it is the single most important idea in medical statistics, and it takes one table to see.</p>
+<p>A test has two accuracies, not one. <b>Sensitivity</b> is the chance it says positive when you <em>do</em> have the disease: \(P(+ \mid D)\). <b>Specificity</b> is the chance it says negative when you <em>don't</em>: \(P(- \mid \text{no } D)\). "99% accurate" usually means both are 99%. The third number, the one the headline leaves out, is the <b>prevalence</b> or base rate: how common the disease is among people like you before any test.</p>
+<p>What you actually want is the reverse conditional: \(P(D \mid +)\), the <b>positive predictive value</b>. The clean way to get it is to imagine a crowd and sort them:</p>
+<table class="tt">
+<tr><th></th><th>Test +</th><th>Test −</th><th>Total</th></tr>
+<tr><th>Disease</th><td>true positives</td><td>false negatives</td><td>prevalence × N</td></tr>
+<tr><th>No disease</th><td>false positives</td><td>true negatives</td><td>(1 − prevalence) × N</td></tr>
+</table>
+<p>Then \(P(D \mid +) = \dfrac{\text{true positives}}{\text{true positives} + \text{false positives}}\). When the disease is rare, the "no disease" row is enormous, and even a 1% false-positive rate applied to an enormous row produces more false positives than there are sick people. In formula form this is Bayes' theorem, which has its own sheet, <a href="b21-bayes.html">Bayes' theorem</a>:</p>
+<p class="callout">\(P(D \mid +) = \dfrac{\text{sens} \times \text{prev}}{\text{sens} \times \text{prev} + (1 - \text{spec}) \times (1 - \text{prev})}\).</p>
+<p>This is why population screening for rare conditions is controversial even with good tests: most positives are false, and each false positive costs anxiety, follow-up tests and sometimes treatment. It is also why the same test means something completely different in a specialist clinic, where prevalence is high, than in a general screening programme. Slide the three numbers at <a href="../../demos/bayes.html">infinityclub.net/demos/bayes.html</a> and watch the crowd recolour.</p>
+<p>One more phrase you will meet in every news report of a medical study: "statistically significant, \(p &lt; 0.05\)". A <b>p-value</b> is the probability of seeing data at least as extreme as what was observed, <em>if</em> the treatment did nothing (the "null hypothesis"). It is \(P(\text{data} \mid \text{no effect})\). It is <b>not</b> \(P(\text{no effect} \mid \text{data})\), which is the thing people want and which, exactly as with the medical test, depends on a base rate: how plausible the effect was before the study. The threshold 0.05 is a convention, not a law of nature, and a study that tests twenty things will on average find one "significant" result by chance alone.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: 1 in 1,000, with a 99% / 99% test</h2>
+<p>Take 100,000 people. Prevalence 1 in 1,000 means 100 have the disease and 99,900 do not.</p>
+<table class="tt">
+<tr><th></th><th>Test +</th><th>Test −</th><th>Total</th></tr>
+<tr><th>Disease</th><td>99</td><td>1</td><td>100</td></tr>
+<tr><th>No disease</th><td>999</td><td>98,901</td><td>99,900</td></tr>
+<tr><th>Total</th><td>1,098</td><td>98,902</td><td>100,000</td></tr>
+</table>
+<p>Of the 1,098 people who test positive, 99 are sick: \(P(D \mid +) = 99/1098 = 9.0\%\). A positive result from a "99% accurate" test leaves you with a 91% chance of being healthy. Meanwhile a negative result is almost perfectly reassuring: \(98{,}901/98{,}902 = 99.999\%\).</p>
+<p>Check with the formula: \(\dfrac{0.99 \times 0.001}{0.99 \times 0.001 + 0.01 \times 0.999} = \dfrac{0.00099}{0.00099 + 0.00999} = 0.090\). Same number, and the table is harder to get wrong.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>A test has sensitivity 90% and specificity 95%, and the disease has prevalence 2%. Fill in the table for 10,000 people and find the positive predictive value and the negative predictive value \(P(\text{no } D \mid -)\).
+<table class="tt">
+<tr><th></th><th>Test +</th><th>Test −</th><th>Total</th></tr>
+<tr><th>Disease</th><td style="width:5em">&nbsp;</td><td style="width:5em">&nbsp;</td><td style="width:5em">&nbsp;</td></tr>
+<tr><th>No disease</th><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><th>Total</th><td>&nbsp;</td><td>&nbsp;</td><td>10,000</td></tr>
+</table>
+<div class="space short"></div></li>
+<li>The same test is used in a specialist clinic where 30% of the patients referred turn out to have the disease. Redo the table for 10,000 patients. What is the positive predictive value now? What changed?<div class="space"></div></li>
+<li>A disease affects 1 person in 10,000. The test is 99% sensitive and 99% specific. Using a crowd of 1,000,000, find \(P(D \mid +)\).<div class="space"></div></li>
+<li>For the rare disease in question 3, a company offers two upgrades: raise sensitivity from 99% to 99.9%, or raise specificity from 99% to 99.9%. Compute the positive predictive value under each upgrade. Which one matters, and why?<div class="space"></div></li>
+<li>You test positive in question 3, then take a second, independent test with the same sensitivity and specificity, and it is also positive. Use your answer to question 3 as the new prevalence and find \(P(D \mid ++)\). Why do doctors confirm a screening result with a second test?<div class="space"></div></li>
+<li>Use the formula directly: prevalence 0.1%, sensitivity 90%, specificity 90%. Find \(P(D \mid +)\). Then explain in one sentence to a friend who has just tested positive why the number is so low, without using the words "sensitivity" or "specificity".<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: what a p-value is, with a coin</h2>
+<p>You suspect a coin is biased toward heads. You flip it 20 times and get 15 heads. The null hypothesis is "the coin is fair". The p-value is the probability that a fair coin gives 15 <em>or more</em> heads: \(P = \dfrac{\binom{20}{15} + \binom{20}{16} + \cdots + \binom{20}{20}}{2^{20}}\). Compute it. (The numerator is 21,700.) Is it below 0.05? If you had been looking for bias in <em>either</em> direction, you would double it: is it still below 0.05?</p>
+<p>Now the medical-test point again. Suppose 20 researchers each test a different, perfectly fair coin at the 0.05 level. What is the probability that at least one of them reports a "significant" bias? And what, therefore, should you think when a news story says a study found a significant link between a food and a disease, if you know that the same data were searched for links with fifty different diseases?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>200 have the disease: 180 true positives, 20 false negatives. 9,800 do not: 490 false positives, 9,310 true negatives. Column totals 670 and 9,330. PPV \(= 180/670 = 26.9\%\). NPV \(= 9310/9330 = 99.8\%\). Three in four positives are false.</li>
+<li>3,000 sick: 2,700 true positives, 300 false negatives. 7,000 healthy: 350 false positives, 6,650 true negatives. PPV \(= 2700/3050 = 88.5\%\). The test did not change; the base rate did. The same positive result is strong evidence in the clinic and weak evidence in the general population.</li>
+<li>100 sick: 99 true positives, 1 false negative. 999,900 healthy: 9,999 false positives, 989,901 true negatives. \(P(D \mid +) = 99/(99 + 9999) = 0.98\%\). Ninety-nine out of every hundred positives are false.</li>
+<li>Sensitivity 99.9%: \(99.9/(99.9 + 9999) = 0.99\%\), essentially no change. Specificity 99.9%: false positives drop to 999.9, \(99/(99 + 999.9) = 9.0\%\), nine times better. For a rare disease the positive predictive value is controlled almost entirely by the false-positive rate, because the healthy crowd is so large.</li>
+<li>New prevalence 0.98%. \(P(D \mid ++) = \dfrac{0.99 \times 0.0098}{0.99 \times 0.0098 + 0.01 \times 0.9902} = \dfrac{0.00970}{0.00970 + 0.00990} = 49.5\%\). Two positives take you from 1-in-10,000 to roughly a coin flip. A confirmatory test is cheap compared with treating 99 healthy people for every sick one.</li>
+<li>\(\dfrac{0.9 \times 0.001}{0.9 \times 0.001 + 0.1 \times 0.999} = \dfrac{0.0009}{0.0009 + 0.0999} = 0.89\%\). To a friend: "The test is wrong one time in ten, and far more than one in ten people don't have this, so most of the positives it hands out go to healthy people."</li>
+</ol>
+<p><b>Stretch.</b> \(P = 21700/1048576 = 0.0207\), which is below 0.05. Two-sided: \(0.0414\), still just below. With 20 fair coins, \(P(\text{at least one false alarm}) = 1 - 0.95^{20} = 0.64\). A study that searched fifty diseases for a link would be expected to find about 2.5 "significant" ones by chance; a single significant link in such a search is not evidence of anything until it is replicated on fresh data, which is the medical-test lesson in a different coat: the base rate of true effects among the things tested matters as much as the test.</p>
+</section>
+
+<div class="sheet-nav"><a href="c4-money.html">← Previous</a><a href="c6-epidemics.html">Next: R₀ and herd immunity →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

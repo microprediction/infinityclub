@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Proof by contradiction · Infinity Club</title>
+<meta name="description" content="Assume the opposite and watch it collapse: the square root of 2 is irrational, the primes never run out, and log base 2 of 3 cannot be a fraction.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 10</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 10 · Around the corner · 1</div>
+  <h1>Proof by contradiction</h1>
+  <p class="teaser">Assume the opposite and watch it collapse: √2 is irrational, and the primes never run out.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Some statements are hard to prove head-on but easy to prove backwards. You want to show a statement \(S\) is true. Instead you <b>assume \(S\) is false</b>, reason carefully, and arrive at something impossible: \(1 = 0\), or a number that is both even and odd. Since correct reasoning cannot lead from a true assumption to an impossibility, the assumption was false. So \(S\) is true. That is <b>proof by contradiction</b>, and the Greeks were using it 2,400 years ago.</p>
+<p><b>The classic: \(\sqrt{2}\) is irrational.</b> That means it cannot be written as a fraction \(p/q\) of whole numbers. Here is the proof, every step.</p>
+<p>Suppose it can. Then \(\sqrt{2} = p/q\) for some positive whole numbers \(p\) and \(q\). We may take the fraction in <b>lowest terms</b>: if \(p\) and \(q\) share a factor, divide both by it, and repeat until they share none. (This stops, because each division makes \(q\) smaller and \(q\) cannot shrink forever.) So \(p\) and \(q\) are not both even.</p>
+<p>Square both sides: \(2 = p^2/q^2\), so \(p^2 = 2q^2\). The right side is even, so \(p^2\) is even. An odd number squared is odd (\((2k+1)^2 = 4k^2 + 4k + 1\)), so \(p\) itself must be even: \(p = 2k\).</p>
+<p>Substitute: \((2k)^2 = 2q^2\), so \(4k^2 = 2q^2\), so \(q^2 = 2k^2\). Now \(q^2\) is even, so \(q\) is even too. But then \(p\) and \(q\) are both even, which contradicts lowest terms. The assumption was impossible. <b>\(\sqrt{2}\) is irrational.</b></p>
+<p><b>The other classic: there are infinitely many primes.</b> Suppose not. Then there is a complete, finite list of them: \(p_1, p_2, \ldots, p_k\). Form \(N = p_1 p_2 \cdots p_k + 1\). Divide \(N\) by any prime on the list and the remainder is 1, so no listed prime divides \(N\). But every whole number bigger than 1 has at least one prime factor. That prime factor of \(N\) is not on the list, so the list was not complete. Contradiction.</p>
+<p class="callout">Careful: the proof does <em>not</em> say \(N\) is prime. With the list 2, 3, 5, 7, 11, 13, \(N = 30031 = 59 \times 509\). It only says \(N\) has a prime factor the list missed, and here it missed two.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: \(\log_2 3\) is irrational</h2>
+<p>\(\log_2 3\) is the number \(x\) with \(2^x = 3\). It is about 1.585. Could it be a fraction?</p>
+<p>Suppose \(\log_2 3 = p/q\) with \(p, q\) positive whole numbers. Then \(2^{p/q} = 3\). Raise both sides to the power \(q\): \(2^p = 3^q\).</p>
+<p>The left side is a power of 2, so it is even (since \(p \ge 1\)). The right side is a product of 3s, so it is odd. An even number cannot equal an odd number. Contradiction, so \(\log_2 3\) is irrational.</p>
+<p>Notice the shape: three lines, and the whole weight rests on one unarguable fact, that even is not odd. Good contradiction proofs usually end on something that simple.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Prove that \(\sqrt{3}\) is irrational. Follow the \(\sqrt{2}\) proof, but at the step "\(p^2\) is a multiple of 3, so \(p\) is", you need a reason. (Hint: if \(p\) is not a multiple of 3 then \(p = 3m + 1\) or \(3m + 2\). Square each and look at the remainder.)<div class="space tall"></div></li>
+<li>Run the same proof on \(\sqrt{4}\) and find exactly where it breaks. (It had better break somewhere, because \(\sqrt{4} = 2\).)<div class="space"></div></li>
+<li>Prove that there is no smallest positive rational number.<div class="space short"></div></li>
+<li>Prove that if \(r\) is rational and \(x\) is irrational, then \(r + x\) is irrational. Then explain why \(\sqrt{2} + 1\) and \(\sqrt{2} - 7/3\) are irrational without any further work.<div class="space"></div></li>
+<li>Prove that \(\sqrt{2} + \sqrt{3}\) is irrational. (Hint: suppose it equals a rational \(r\), square both sides, and isolate \(\sqrt{6}\). You will need to show \(\sqrt{6}\) is irrational, which is a short proof of its own.)<div class="space tall"></div></li>
+<li>Euclid's proof adapted. Every odd prime leaves remainder 1 or 3 when divided by 4. Prove that there are infinitely many primes with remainder 3. Suppose the list \(q_1, \ldots, q_k\) of such primes is complete and look at \(N = 4q_1 q_2 \cdots q_k - 1\). (a) What is \(N\)'s remainder when divided by 4? (b) Why can't all of \(N\)'s prime factors have remainder 1? (c) Why is none of the \(q_i\) a factor of \(N\)? (d) Conclude.<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the cube root, and a famous cheat</h2>
+<p>Prove that \(\sqrt[3]{2}\) is irrational. The honest route copies the \(\sqrt{2}\) argument with cubes: show that if \(p^3\) is even then \(p\) is even.</p>
+<p>Now the cheat. Suppose \(\sqrt[3]{2} = p/q\). Then \(p^3 = 2q^3 = q^3 + q^3\). That is a solution in positive whole numbers to \(x^3 + y^3 = z^3\), which Fermat's Last Theorem says is impossible. Done. Is this a valid proof? Is it a <em>good</em> proof? (Fermat's Last Theorem was proved in 1995 after 358 years, and its proof runs to over a hundred pages. See <a href="b17-pythagorean-triples.html">Pythagorean triples and Fermat's margin</a>.)</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Suppose \(\sqrt{3} = p/q\) in lowest terms. Then \(p^2 = 3q^2\), so \(p^2\) is a multiple of 3. If \(p = 3m+1\), \(p^2 = 9m^2 + 6m + 1\), remainder 1. If \(p = 3m+2\), \(p^2 = 9m^2 + 12m + 4\), remainder 1. So \(p\) must be a multiple of 3: \(p = 3k\). Then \(9k^2 = 3q^2\), so \(q^2 = 3k^2\), so by the same argument \(q\) is a multiple of 3. Both divisible by 3 contradicts lowest terms.</li>
+<li>\(p^2 = 4q^2\) gives \(p\) even, \(p = 2k\), then \(4k^2 = 4q^2\), so \(k^2 = q^2\). That tells us nothing about \(q\) being even. The chain stops, no contradiction, and indeed \(p/q = 2/1\) works. The \(\sqrt{2}\) proof needed the 2 to survive the cancellation; here it was used up.</li>
+<li>Suppose \(r\) is the smallest positive rational. Then \(r/2\) is rational (a rational halved is rational), positive, and smaller than \(r\). Contradiction.</li>
+<li>Suppose \(r + x = s\) is rational. Then \(x = s - r\), the difference of two rationals, which is rational (common denominators). That contradicts \(x\) irrational. Since 1 and \(-7/3\) are rational and \(\sqrt{2}\) is irrational, both sums are irrational.</li>
+<li>Suppose \(\sqrt{2} + \sqrt{3} = r\), rational. Square: \(2 + 2\sqrt{6} + 3 = r^2\), so \(\sqrt{6} = (r^2 - 5)/2\), which is rational. Now show \(\sqrt{6}\) is irrational: if \(\sqrt{6} = p/q\) in lowest terms then \(p^2 = 6q^2\) is even, so \(p = 2k\), so \(4k^2 = 6q^2\), so \(2k^2 = 3q^2\). The left side is even, so \(3q^2\) is even, so \(q\) is even. Both even, contradiction. So \(\sqrt{6}\) is irrational, which contradicts the line before. Hence \(\sqrt{2} + \sqrt{3}\) is irrational.</li>
+<li>(a) \(N\) is one less than a multiple of 4, so its remainder is 3. (b) Multiply two numbers with remainder 1: \((4a+1)(4b+1) = 16ab + 4a + 4b + 1\), remainder 1 again. So any product of remainder-1 primes has remainder 1, but \(N\) has remainder 3. \(N\) is odd, so 2 is not a factor; therefore at least one prime factor of \(N\) has remainder 3. (c) Dividing \(N\) by \(q_i\) leaves remainder \(q_i - 1\), not 0. (d) \(N\) has a remainder-3 prime factor that is not on the list, so the list was incomplete. There are infinitely many such primes.</li>
+</ol>
+<p><b>Stretch.</b> Honest proof: suppose \(\sqrt[3]{2} = p/q\) in lowest terms, so \(p^3 = 2q^3\). If \(p\) were odd, \(p^3\) would be odd (odd × odd × odd), so \(p\) is even, \(p = 2k\), and \(8k^3 = 2q^3\) gives \(q^3 = 4k^3\), even, so \(q\) is even. Contradiction. The cheat is logically valid: Fermat's Last Theorem is a proven theorem, and the deduction is correct. It is a bad proof because it uses a hundred-page result to do what three lines do, and worse, the standard proofs of the theorem rely on facts about irrational numbers, so there is a real risk of circularity. A proof should rest on things simpler than what it proves.</p>
+</section>
+
+<div class="sheet-nav"><a href="a18-solids.html">← Previous</a><a href="b2-induction.html">Next: Induction: infinitely many dominoes →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

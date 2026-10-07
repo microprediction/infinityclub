@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Random Surfer · Infinity Club</title>
+<meta name="description" content="Build a tiny web of six pages, let a random surfer click through it, and watch PageRank emerge from a Markov chain.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+#web { cursor: pointer; touch-action: manipulation; }
+.mat { border-collapse: collapse; font-family: var(--mono); font-size: .85rem; margin: .5rem 0; }
+.mat th, .mat td { border: 1px solid var(--rule); padding: .2em .45em; text-align: right; }
+.mat th { background: #eeece6; text-align: center; }
+.mat td.hi { background: #e6e7fb; }
+.two { display: flex; flex-wrap: wrap; gap: 1.2rem; align-items: flex-start; }
+.two > * { flex: 1 1 280px; min-width: 0; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>The random surfer</h1>
+<p class="explain">Six web pages. Click a page, then click another, to add or remove a link between them. A surfer starts anywhere and keeps clicking random links. Where does the surfer spend their time? That fraction is the page's rank, and it is how Google first ordered the web.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <button id="step">One step</button>
+    <button id="run" class="alt">Run until it settles</button>
+    <button id="reset" class="ghost">Reset ranks</button>
+    <button id="random" class="ghost">Random web</button>
+    <button id="clear" class="ghost">Clear links</button>
+    <label>damping <input type="range" id="damp" min="0" max="1" step="0.05" value="0.85"> <span id="dampv">0.85</span></label>
+  </div>
+  <div class="two">
+    <div><canvas id="web" width="420" height="420"></canvas></div>
+    <div>
+      <div class="readout" id="info"></div>
+      <div id="matwrap"></div>
+    </div>
+  </div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>Each page shares its rank equally among the pages it links to. If page A has rank 0.3 and three outgoing links, each of those pages receives 0.1 from A. Add up what every page receives, and you have the ranks after one more click. That is a <b>Markov chain</b>: the next state depends only on the current one, through a fixed table of probabilities called the transition matrix.</p>
+<p>Repeat the step and the numbers stop changing. The vector that no longer moves is the <b>steady state</b>, and it is the same whatever ranks you started from. The step button lets you watch it happen; the readout shows the largest change each time, shrinking toward zero.</p>
+<p>Two problems and one fix. A page with no links out is a dead end, and a group of pages linking only to each other is a trap that would swallow all the rank. So with probability 1 − d the surfer ignores the links and jumps to a page chosen uniformly at random; d is the damping factor, and Google used 0.85. A dead-end page is treated as if it linked to everyone. With that fix the chain always settles, and settles to a unique answer.</p>
+<p>Try it: make every page link to page 1 and watch it dominate. Then add a single link from page 1 to page 2 and see how much rank flows along it. A link from an important page is worth more than a link from an obscure one, which is exactly the idea.</p>
+<p>Sheet: <a href="../grade-10/sheets/b22-markov-pagerank.html">Markov chains and how Google ranked the web</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+// --- numerics ---
+var PR = (function () {
+  // adj[i][j] = 1 if page i links to page j
+  function matrix(adj, d) {
+    var N = adj.length, G = [];
+    for (var j = 0; j < N; j++) {
+      var out = 0; for (var k = 0; k < N; k++) out += adj[j][k];
+      for (var i = 0; i < N; i++) {
+        if (!G[i]) G[i] = [];
+        var m = out === 0 ? 1 / N : adj[j][i] / out; // probability of going j -> i
+        G[i][j] = d * m + (1 - d) / N;
+      }
+    }
+    return G; // column j = where the surfer goes from page j
+  }
+  function step(G, r) {
+    var N = r.length, nr = [];
+    for (var i = 0; i < N; i++) { var s = 0; for (var j = 0; j < N; j++) s += G[i][j] * r[j]; nr.push(s); }
+    return nr;
+  }
+  function maxChange(a, b) { var m = 0; for (var i = 0; i < a.length; i++) m = Math.max(m, Math.abs(a[i] - b[i])); return m; }
+  function solve(adj, d, tol, maxIt) {
+    var N = adj.length, r = [], G = matrix(adj, d); for (var i = 0; i < N; i++) r.push(1 / N);
+    for (var it = 0; it < (maxIt || 1000); it++) { var nr = step(G, r), ch = maxChange(nr, r); r = nr; if (ch < (tol || 1e-10)) return { r: r, iterations: it + 1 }; }
+    return { r: r, iterations: maxIt || 1000 };
+  }
+  return { matrix: matrix, step: step, maxChange: maxChange, solve: solve };
+})();
+// --- ui ---
+(function () {
+  var N = 6, canvas = document.getElementById("web"), ctx = canvas.getContext("2d");
+  var info = document.getElementById("info"), matwrap = document.getElementById("matwrap"), dampIn = document.getElementById("damp");
+  var adj, r, iter, lastChange, selected = -1, timer = null, gen = 0;
+  function preset() { adj = []; for (var i = 0; i < N; i++) { adj.push([0, 0, 0, 0, 0, 0]); }
+    [[0, 1], [0, 2], [1, 2], [2, 0], [3, 2], [3, 4], [4, 3], [4, 5], [5, 3], [5, 2]].forEach(function (e) { adj[e[0]][e[1]] = 1; }); }
+  function resetRanks() { r = []; for (var i = 0; i < N; i++) r.push(1 / N); iter = 0; lastChange = null; }
+  function d() { return parseFloat(dampIn.value); }
+  function pos(i, W) { var a = -Math.PI / 2 + i * 2 * Math.PI / N, R = W * 0.36; return [W / 2 + R * Math.cos(a), W / 2 + R * Math.sin(a)]; }
+  function draw() {
+    var dpr = window.devicePixelRatio || 1, W = Math.min(canvas.clientWidth || 420, 420);
+    canvas.width = W * dpr; canvas.height = W * dpr; canvas.style.height = W + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, W);
+    var P = []; for (var i = 0; i < N; i++) P.push(pos(i, W));
+    function radius(i) { return 14 + 48 * r[i]; }
+    // edges
+    for (var a = 0; a < N; a++) for (var b = 0; b < N; b++) if (adj[a][b]) {
+      var x1 = P[a][0], y1 = P[a][1], x2 = P[b][0], y2 = P[b][1], dx = x2 - x1, dy = y2 - y1, L = Math.hypot(dx, dy), ux = dx / L, uy = dy / L;
+      var mutual = adj[b][a], off = mutual ? 7 : 0, nx = -uy * off, ny = ux * off;
+      var sx = x1 + ux * radius(a) + nx, sy = y1 + uy * radius(a) + ny, ex = x2 - ux * (radius(b) + 2) + nx, ey = y2 - uy * (radius(b) + 2) + ny;
+      ctx.strokeStyle = "#8a8db5"; ctx.fillStyle = "#8a8db5"; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(sx, sy); ctx.lineTo(ex, ey); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(ex, ey); ctx.lineTo(ex - ux * 10 - uy * 5, ey - uy * 10 + ux * 5); ctx.lineTo(ex - ux * 10 + uy * 5, ey - uy * 10 - ux * 5); ctx.closePath(); ctx.fill();
+    }
+    // nodes
+    for (var i = 0; i < N; i++) {
+      var rad = radius(i);
+      ctx.beginPath(); ctx.arc(P[i][0], P[i][1], rad, 0, 2 * Math.PI);
+      ctx.fillStyle = i === selected ? "#f5a524" : "#3f44c9"; ctx.fill();
+      if (i === selected) { ctx.lineWidth = 3; ctx.strokeStyle = "#1d1f3a"; ctx.stroke(); }
+      ctx.fillStyle = "#fff"; ctx.font = "800 15px Nunito, sans-serif"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+      ctx.fillText(i + 1, P[i][0], P[i][1] - 6);
+      ctx.font = "12px Nunito, sans-serif"; ctx.fillText(r[i].toFixed(3), P[i][0], P[i][1] + 9);
+    }
+    canvas._P = P; canvas._W = W;
+    writeInfo();
+  }
+  function writeInfo() {
+    var G = PR.matrix(adj, d()), order = r.map(function (v, i) { return i; }).sort(function (a, b) { return r[b] - r[a]; });
+    var dead = []; for (var j = 0; j < N; j++) { var o = 0; for (var k = 0; k < N; k++) o += adj[j][k]; if (!o) dead.push(j + 1); }
+    var txt = "steps taken: " + iter + (lastChange === null ? "" : "    largest change last step: " + lastChange.toExponential(2)) + "\n";
+    txt += "ranks, best first: " + order.map(function (i) { return "page " + (i + 1) + " " + r[i].toFixed(3); }).join(", ") + "\n";
+    txt += "sum of ranks: " + r.reduce(function (a, b) { return a + b; }, 0).toFixed(3) + (dead.length ? "    dead ends (treated as linking everywhere): " + dead.join(", ") : "");
+    if (selected >= 0) txt += "\nPage " + (selected + 1) + " selected. Click another page to add or remove a link from it, or click it again to cancel.";
+    info.textContent = txt;
+    var h = '<p class="small">Transition matrix with damping ' + d().toFixed(2) + '. Entry in row <i>to</i>, column <i>from</i>: the chance a surfer on the column page goes next to the row page. Columns sum to 1.</p><table class="mat"><tr><th>to \\ from</th>';
+    for (var j = 0; j < N; j++) h += '<th>' + (j + 1) + '</th>';
+    h += '</tr>';
+    for (var i = 0; i < N; i++) { h += '<tr><th>' + (i + 1) + '</th>'; for (var j = 0; j < N; j++) h += '<td class="' + (adj[j][i] ? 'hi' : '') + '">' + G[i][j].toFixed(2) + '</td>'; h += '</tr>'; }
+    h += '</table>';
+    matwrap.innerHTML = h;
+  }
+  function doStep() { var nr = PR.step(PR.matrix(adj, d()), r); lastChange = PR.maxChange(nr, r); r = nr; iter++; draw(); return lastChange; }
+  function stopRun() { if (timer) { clearTimeout(timer); timer = null; } gen++; }
+  function run() {
+    stopRun(); var my = gen;
+    (function tick() { if (my !== gen) return; var ch = doStep(); if (ch > 1e-6 && iter < 200) timer = setTimeout(tick, 120); else { timer = null; info.textContent += "\nSettled: the ranks no longer change (to 3 decimal places, long before step " + iter + ")."; } })();
+  }
+  canvas.addEventListener("click", function (e) {
+    var rect = canvas.getBoundingClientRect(), x = (e.clientX - rect.left) * (canvas._W / rect.width), y = (e.clientY - rect.top) * (canvas._W / rect.height), hit = -1;
+    for (var i = 0; i < N; i++) if (Math.hypot(x - canvas._P[i][0], y - canvas._P[i][1]) <= 14 + 48 * r[i] + 6) hit = i;
+    if (hit < 0) { selected = -1; draw(); return; }
+    if (selected < 0) { selected = hit; }
+    else if (selected === hit) { selected = -1; }
+    else { adj[selected][hit] = adj[selected][hit] ? 0 : 1; selected = -1; stopRun(); resetRanks(); }
+    draw();
+  });
+  document.getElementById("step").addEventListener("click", function () { stopRun(); doStep(); });
+  document.getElementById("run").addEventListener("click", run);
+  document.getElementById("reset").addEventListener("click", function () { stopRun(); resetRanks(); draw(); });
+  document.getElementById("random").addEventListener("click", function () { stopRun(); adj = []; for (var i = 0; i < N; i++) { adj.push([]); for (var j = 0; j < N; j++) adj[i].push(i !== j && Math.random() < 0.3 ? 1 : 0); } resetRanks(); selected = -1; draw(); });
+  document.getElementById("clear").addEventListener("click", function () { stopRun(); adj = []; for (var i = 0; i < N; i++) adj.push([0, 0, 0, 0, 0, 0]); resetRanks(); selected = -1; draw(); });
+  dampIn.addEventListener("input", function () { document.getElementById("dampv").textContent = d().toFixed(2); stopRun(); resetRanks(); draw(); });
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(draw, 150); });
+  preset(); resetRanks(); draw();
+})();
+</script>
+</body>
+</html>

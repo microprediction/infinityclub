@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shift, Stretch, Flip · Infinity Club</title>
+<meta name="description" content="Transform a graph with sliders for a, b, h and k and watch y = a·f(b(x − h)) + k move, stretch and flip against the ghosted original.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.controls input[type=range] { width: 150px; }
+.controls .val { font-family: var(--mono); min-width: 3.2em; display: inline-block; }
+#formula { font-size: 1.15rem; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Shift, stretch, flip</h1>
+<p class="explain">Start with a base graph y = f(x), shown in grey. The coloured graph is y = a·f(b(x − h)) + k. Move each slider on its own first and watch what it does, then combine them. The marked point shows where one particular point of the original lands.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <label>f(x)
+      <select id="base">
+        <option value="sq">x²</option>
+        <option value="abs">|x|</option>
+        <option value="sqrt">√x</option>
+        <option value="sin">sin x</option>
+        <option value="inv">1/x</option>
+        <option value="cube">x³</option>
+      </select>
+    </label>
+    <button id="reset" class="ghost">Reset</button>
+  </div>
+  <div class="controls">
+    <label>a <input type="range" id="a" min="-3" max="3" step="0.1" value="1"> <span class="val" id="av">1</span></label>
+    <label>b <input type="range" id="b" min="-3" max="3" step="0.1" value="1"> <span class="val" id="bv">1</span></label>
+    <label>h <input type="range" id="h" min="-6" max="6" step="0.1" value="0"> <span class="val" id="hv">0</span></label>
+    <label>k <input type="range" id="k" min="-6" max="6" step="0.1" value="0"> <span class="val" id="kv">0</span></label>
+  </div>
+  <div class="controls">
+    <button id="flipv" class="ghost">Flip vertically (a → −a)</button>
+    <button id="fliph" class="ghost">Flip horizontally (b → −b)</button>
+  </div>
+  <div class="readout" id="formula"></div>
+  <canvas id="plot" width="900" height="560"></canvas>
+  <div class="readout" id="info"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>Everything outside the brackets acts on the output, so it moves the graph vertically and behaves the way you expect: <b>a</b> stretches up and down (and flips when negative), <b>k</b> slides up and down. Everything inside the brackets acts on the input, and the input is sneaky. To get the same output as before, you have to feed in a different x. With f(x − 3), the number 5 is treated the way 2 used to be, so the whole picture slides <em>right</em> by 3. With f(2x), the number 1 is treated the way 2 used to be, so the picture is squashed towards the y-axis by a factor of 2, not stretched.</p>
+<p>A good habit: read a transformed formula from the inside out. For y = −2(x + 1)² + 3, start with x², shift left 1, stretch vertically by 2, flip, then move up 3. The order between a and k matters: flipping after you move up is not the same as moving up after you flip. The sliders here always apply a before k, as the formula says.</p>
+<p>Try the order experiment yourself: set b = 2 and h = 1. Is the graph shifted by 1 or by 1/2? Work it out from the formula a·f(b(x − h)) + k before you look.</p>
+<p>Sheets: <a href="../grade-10/sheets/a4-transformations.html">Shift, stretch, flip</a> and <a href="../grade-10/sheets/a3-functions.html">Functions as machines</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  var BASES = {
+    sq:   { f: function (x) { return x * x; }, name: "x²", wrap: function (s) { return "(" + s + ")²"; }, px: 1 },
+    abs:  { f: function (x) { return Math.abs(x); }, name: "|x|", wrap: function (s) { return "|" + s + "|"; }, px: 1 },
+    sqrt: { f: function (x) { return x < 0 ? NaN : Math.sqrt(x); }, name: "√x", wrap: function (s) { return "√(" + s + ")"; }, px: 4 },
+    sin:  { f: function (x) { return Math.sin(x); }, name: "sin x", wrap: function (s) { return "sin(" + s + ")"; }, px: Math.PI / 2 },
+    inv:  { f: function (x) { return x === 0 ? NaN : 1 / x; }, name: "1/x", wrap: function (s) { return "1/(" + s + ")"; }, px: 1 },
+    cube: { f: function (x) { return x * x * x; }, name: "x³", wrap: function (s) { return "(" + s + ")³"; }, px: 1 }
+  };
+  function fmt(v) { var r = Math.round(v * 100) / 100; if (Object.is(r, -0)) r = 0; return r.toString().replace("-", "\u2212"); }
+  // the transformed function
+  function T(base, a, b, h, k) { return function (x) { return a * BASES[base].f(b * (x - h)) + k; }; }
+  // where the point (p, f(p)) of the original lands
+  function image(base, a, b, h, k, p) { return [p / b + h, a * BASES[base].f(p) + k]; }
+  function inner(b, h) {
+    var bs = b === 1 ? "" : b === -1 ? "\u2212" : fmt(b);
+    if (h === 0) return bs + "x";
+    var hs = "x " + (h > 0 ? "\u2212 " : "+ ") + fmt(Math.abs(h));
+    return bs === "" ? hs : bs + "(" + hs + ")";
+  }
+  function formula(base, a, b, h, k) {
+    var core = BASES[base].wrap(inner(b, h));
+    var as = a === 1 ? "" : a === -1 ? "\u2212" : fmt(a);
+    var ks = k === 0 ? "" : (k > 0 ? " + " : " − ") + fmt(Math.abs(k));
+    if (a === 0) return "y = " + fmt(k);
+    return "y = " + as + core + ks;
+  }
+  /*ENDPURE*/
+
+  var canvas = document.getElementById("plot"), ctx = canvas.getContext("2d");
+  var info = document.getElementById("info"), form = document.getElementById("formula");
+  var baseSel = document.getElementById("base");
+  var S = { a: 1, b: 1, h: 0, k: 0 };
+  var sl = {};
+  ["a", "b", "h", "k"].forEach(function (key) {
+    sl[key] = document.getElementById(key);
+    sl[key].addEventListener("input", function () { S[key] = parseFloat(sl[key].value); draw(); });
+  });
+  baseSel.addEventListener("change", draw);
+  document.getElementById("reset").addEventListener("click", function () { S = { a: 1, b: 1, h: 0, k: 0 }; sync(); draw(); });
+  document.getElementById("flipv").addEventListener("click", function () { S.a = -S.a; if (S.a === 0) S.a = 1; sync(); draw(); });
+  document.getElementById("fliph").addEventListener("click", function () { S.b = -S.b; if (S.b === 0) S.b = 1; sync(); draw(); });
+  function sync() { ["a", "b", "h", "k"].forEach(function (key) { sl[key].value = S[key]; }); }
+
+  var XMIN = -8, XMAX = 8, YMIN = -6, YMAX = 6;
+  function draw() {
+    var base = baseSel.value, a = S.a, b = S.b, h = S.h, k = S.k;
+    document.getElementById("av").textContent = fmt(a); document.getElementById("bv").textContent = fmt(b);
+    document.getElementById("hv").textContent = fmt(h); document.getElementById("kv").textContent = fmt(k);
+    var dpr = window.devicePixelRatio || 1, W = canvas.clientWidth || 900, H = Math.round(W * 0.62);
+    canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, H);
+    function X(x) { return (x - XMIN) / (XMAX - XMIN) * W; }
+    function Y(y) { return H - (y - YMIN) / (YMAX - YMIN) * H; }
+    // grid
+    ctx.strokeStyle = "#ece9e0"; ctx.lineWidth = 1;
+    for (var gx = Math.ceil(XMIN); gx <= XMAX; gx++) { ctx.beginPath(); ctx.moveTo(X(gx), 0); ctx.lineTo(X(gx), H); ctx.stroke(); }
+    for (var gy = Math.ceil(YMIN); gy <= YMAX; gy++) { ctx.beginPath(); ctx.moveTo(0, Y(gy)); ctx.lineTo(W, Y(gy)); ctx.stroke(); }
+    ctx.strokeStyle = "#8a8ca8"; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(X(0), 0); ctx.lineTo(X(0), H); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(0, Y(0)); ctx.lineTo(W, Y(0)); ctx.stroke();
+    ctx.fillStyle = "#5d6079"; ctx.font = "11px Nunito, sans-serif"; ctx.textAlign = "center";
+    for (var tx = Math.ceil(XMIN); tx <= XMAX; tx++) if (tx !== 0) ctx.fillText(tx, X(tx), Y(0) + 13);
+    ctx.textAlign = "right";
+    for (var ty = Math.ceil(YMIN); ty <= YMAX; ty++) if (ty !== 0) ctx.fillText(ty, X(0) - 5, Y(ty) + 4);
+
+    function curve(fn, color, width) {
+      ctx.strokeStyle = color; ctx.lineWidth = width; ctx.beginPath();
+      var pen = false, prevY = null, N = W * 2;
+      for (var i = 0; i <= N; i++) {
+        var x = XMIN + (XMAX - XMIN) * i / N, y = fn(x);
+        if (!isFinite(y) || Math.abs(y) > 60) { pen = false; prevY = null; continue; }
+        var jump = prevY !== null && Math.abs(y - prevY) > (YMAX - YMIN) * 0.8;
+        if (!pen || jump) { ctx.moveTo(X(x), Y(y)); pen = true; } else ctx.lineTo(X(x), Y(y));
+        prevY = y;
+      }
+      ctx.stroke();
+    }
+    curve(BASES[base].f, "#c9c6bb", 2.5);
+    if (b !== 0) curve(T(base, a, b, h, k), "#3f44c9", 3);
+
+    // marked point
+    var p = BASES[base].px, fp = BASES[base].f(p);
+    ctx.fillStyle = "#c9c6bb"; ctx.beginPath(); ctx.arc(X(p), Y(fp), 5, 0, Math.PI * 2); ctx.fill();
+    var txt = "";
+    if (b !== 0) {
+      var im = image(base, a, b, h, k, p);
+      ctx.fillStyle = "#f5a524"; ctx.beginPath(); ctx.arc(X(im[0]), Y(im[1]), 6, 0, Math.PI * 2); ctx.fill();
+      ctx.strokeStyle = "#f5a524"; ctx.setLineDash([4, 4]); ctx.lineWidth = 1.2;
+      ctx.beginPath(); ctx.moveTo(X(p), Y(fp)); ctx.lineTo(X(im[0]), Y(im[1])); ctx.stroke(); ctx.setLineDash([]);
+      txt = "The grey point (" + fmt(p) + ", " + fmt(fp) + ") lands at (" + fmt(p) + "/b + h, a·" + fmt(fp) + " + k) = (" + fmt(im[0]) + ", " + fmt(im[1]) + ").";
+    } else txt = "b = 0 flattens everything to the single value f(0). Nudge b away from zero.";
+    form.textContent = formula(base, a, b, h, k) + "    (base: f(x) = " + BASES[base].name + ")";
+    info.textContent = txt + "\nInside the brackets: horizontal, and backwards (divide by b, add h). Outside: vertical, as written (multiply by a, add k).";
+  }
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(draw, 120); });
+  draw();
+})();
+</script>
+</body>
+</html>

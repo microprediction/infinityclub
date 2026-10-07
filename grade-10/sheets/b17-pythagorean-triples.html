@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pythagorean triples and Fermat's margin · Infinity Club</title>
+<meta name="description" content="Euclid's recipe for every Pythagorean triple, rational points on the unit circle, and the note in a margin that took 358 years to settle.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 10</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 10 · Around the corner · 17</div>
+  <h1>Pythagorean triples and Fermat's margin</h1>
+  <p class="teaser">Euclid's recipe for every triple, rational points on a circle, and the note that took 358 years.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>\(3^2 + 4^2 = 5^2\). \(5^2 + 12^2 = 13^2\). \(8^2 + 15^2 = 17^2\). Three whole numbers with \(a^2 + b^2 = c^2\) are a <b>Pythagorean triple</b>, and a Babylonian clay tablet from about 1800 BC lists fifteen of them, including \(12709^2 + 13500^2 = 18541^2\). They were not guessing. There is a recipe, and Euclid wrote it down.</p>
+<p class="callout"><b>Euclid's formula.</b> Pick whole numbers \(m > n > 0\). Then \(a = m^2 - n^2\), \(b = 2mn\), \(c = m^2 + n^2\) is a Pythagorean triple.</p>
+<p>Why it works is one line of algebra: \((m^2 - n^2)^2 + (2mn)^2 = m^4 - 2m^2n^2 + n^4 + 4m^2n^2 = m^4 + 2m^2n^2 + n^4 = (m^2 + n^2)^2\). Try \(m = 2, n = 1\): \((3, 4, 5)\). Try \(m = 3, n = 2\): \((5, 12, 13)\).</p>
+<p>A triple is <b>primitive</b> if \(a\), \(b\), \(c\) share no common factor. \((6, 8, 10)\) is just \((3, 4, 5)\) doubled, so it is not primitive. Euclid's recipe gives every primitive triple exactly once if you insist that \(m\) and \(n\) have no common factor and one of them is even. Every other triple is a primitive one scaled up.</p>
+<p>Where does the recipe come from? Divide \(a^2 + b^2 = c^2\) by \(c^2\): \((a/c)^2 + (b/c)^2 = 1\). So a triple is the same thing as a point on the unit circle with <em>fractional</em> coordinates. Finding all triples means finding all rational points on a circle, and there is a beautiful trick for that, which is tonight's worked example.</p>
+<p>And the margin. Around 1637 Pierre de Fermat, reading about triples in his copy of Diophantus, wrote in the margin that \(a^n + b^n = c^n\) has <em>no</em> whole-number solutions for any \(n > 2\), adding that he had a marvellous proof which the margin was too narrow to contain. He proved the case \(n = 4\) himself, by showing a solution would lead to a smaller solution, then a smaller one, forever, which is impossible for positive whole numbers; the method is called infinite descent. The general statement resisted everyone until Andrew Wiles announced a proof in 1993, repaired a gap, and published it in 1995. The proof is over a hundred pages and uses mathematics invented three centuries after Fermat. Nobody believes the margin ever held it.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: every rational point on the circle</h2>
+<p>Start at the point \((-1, 0)\), which is on the circle \(x^2 + y^2 = 1\). Draw a line through it with slope \(t\): \(y = t(x + 1)\). A line meets a circle in two points, and we already know one of them. Substitute:</p>
+<p>\[x^2 + t^2(x+1)^2 = 1 \quad\Rightarrow\quad (1 + t^2)x^2 + 2t^2x + (t^2 - 1) = 0.\]</p>
+<p>We know \(x = -1\) is a root, so the quadratic factors as \((x + 1)\big((1+t^2)x + (t^2 - 1)\big) = 0\). (Check by multiplying out.) The other root is</p>
+<p class="callout">\(x = \dfrac{1 - t^2}{1 + t^2}, \qquad y = t(x+1) = \dfrac{2t}{1 + t^2}.\)</p>
+<p>If \(t\) is a fraction, so are \(x\) and \(y\). And every rational point other than \((-1,0)\) comes from some rational slope, because the line joining it to \((-1,0)\) has rational slope. Put \(t = n/m\): \(x = \dfrac{m^2 - n^2}{m^2 + n^2}\), \(y = \dfrac{2mn}{m^2 + n^2}\). Clear the denominators and Euclid's formula appears. Try \(t = \tfrac12\): \(x = \tfrac{3/4}{5/4} = \tfrac35\), \(y = \tfrac{1}{5/4} = \tfrac45\). The point \((\tfrac35, \tfrac45)\), which is \((3, 4, 5)\).</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Use Euclid's formula with \((m, n) = (4, 1)\), \((5, 2)\) and \((7, 4)\). Check each triple by squaring. Which of them are primitive?<div class="space"></div></li>
+<li>Find every primitive triple with \(c \lt 50\). (There are seven. Work through \(m = 2, 3, 4, 5, 6, 7\) with \(n\) of the opposite parity and no common factor with \(m\), and stop when \(m^2 + n^2\) passes 50.)<div class="space tall"></div></li>
+<li>Use the slope trick with \(t = \tfrac13\) and \(t = \tfrac25\). Which triples do you get? Then go backwards: what slope \(t\) produces \((8, 15, 17)\)?<div class="space"></div></li>
+<li>In a primitive triple, exactly one of \(a\), \(b\) is even. Prove it: first explain why they cannot both be even, then show that if both are odd, \(a^2 + b^2\) leaves remainder 2 when divided by 4, which no square does. (Squares are \(0\) or \(1\) mod 4; why?)<div class="space"></div></li>
+<li>Find two <em>different</em> primitive triples with hypotenuse 65. (Hint: \(65 = m^2 + n^2\) in two ways.) Then find two non-primitive ones with the same hypotenuse.<div class="space"></div></li>
+<li>Fermat's \(n = 4\) case says \(a^4 + b^4 = c^4\) has no solutions. Explain in two sentences why that single case also kills every exponent that is a multiple of 4, such as \(n = 8\) or \(n = 100\). Then explain why proving the theorem for every odd prime exponent \(p\) would finish the job for all \(n > 2\).<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch" style="break-before: page">
+<h2>Stretch: 3, 4 and 5 are everywhere</h2>
+<p>Prove that in every Pythagorean triple, one side is divisible by 3, one by 4, and one by 5 (not necessarily different sides). The tool is remainders. Squares leave remainder \(0\) or \(1\) when divided by 3, and \(0\), \(1\) or \(4\) when divided by 5. Check both claims by squaring \(0, 1, 2\) and \(0, 1, 2, 3, 4\). Then suppose neither \(a\) nor \(b\) is a multiple of 3 and look at \(a^2 + b^2\) mod 3. Do the same for 5, where you will need to consider what \(c^2\) can be too. For the 4, use Euclid's formula: one of \(m, n\) is even in a primitive triple, so what can you say about \(b = 2mn\)?</p>
+<p>A consequence that sounds like magic: the product \(abc\) of any Pythagorean triple is a multiple of 60.</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\((4,1)\): \((15, 8, 17)\), \(225 + 64 = 289\). \((5,2)\): \((21, 20, 29)\), \(441 + 400 = 841\). \((7,4)\): \((33, 56, 65)\), \(1089 + 3136 = 4225\). All three are primitive: in each pair \(m, n\) are coprime with one even.</li>
+<li>\((3,4,5)\), \((5,12,13)\), \((8,15,17)\), \((7,24,25)\), \((20,21,29)\), \((12,35,37)\), \((9,40,41)\). From \((m,n) = (2,1), (3,2), (4,1), (4,3), (5,2), (6,1), (5,4)\). \((6,5)\) gives \(c = 61\) and \((7,2)\) gives 53, both past 50.</li>
+<li>\(t = \tfrac13\): \(x = \tfrac{8/9}{10/9} = \tfrac45\), \(y = \tfrac{2/3}{10/9} = \tfrac35\): again \((3,4,5)\) with the legs swapped. \(t = \tfrac25\): \(x = \tfrac{21/25}{29/25} = \tfrac{21}{29}\), \(y = \tfrac{20}{29}\): \((21, 20, 29)\). For \((8, 15, 17)\) the point is \((\tfrac{15}{17}, \tfrac{8}{17})\) (or legs swapped), so \(t = y/(x+1) = \tfrac{8/17}{32/17} = \tfrac14\), matching \(m = 4, n = 1\).</li>
+<li>If both were even, \(c^2\) would be even, so \(c\) even, and 2 would divide all three: not primitive. An odd number is \(2k+1\) and \((2k+1)^2 = 4k^2 + 4k + 1 = 4k(k+1) + 1\), remainder 1 mod 4; an even square is \(4k^2\), remainder 0. Two odd squares add to remainder 2, which is not \(0\) or \(1\), so \(c^2\) cannot equal it. Hence exactly one leg is even.</li>
+<li>\(65 = 8^2 + 1^2 = 7^2 + 4^2\). \((8,1)\): \((63, 16, 65)\). \((7,4)\): \((33, 56, 65)\). Non-primitive: \(5 \times (5, 12, 13) = (25, 60, 65)\) and \(13 \times (3, 4, 5) = (39, 52, 65)\).</li>
+<li>If \(a^8 + b^8 = c^8\) had a solution then \((a^2)^4 + (b^2)^4 = (c^2)^4\) would be a solution for \(n = 4\); in general \(n = 4k\) reduces to \(n = 4\) by setting \(A = a^k\). Every \(n > 2\) is either a multiple of 4 or has an odd prime factor \(p\); in the second case \(n = pk\) and \((a^k)^p + (b^k)^p = (c^k)^p\) would be a solution for exponent \(p\). So the odd primes plus \(n = 4\) cover everything.</li>
+</ol>
+<p><b>Stretch.</b> Mod 3: squares of \(0,1,2\) are \(0,1,1\). If neither leg is a multiple of 3 then \(a^2 + b^2 \equiv 1 + 1 = 2\), but \(c^2\) is \(0\) or \(1\): contradiction, so a leg is a multiple of 3. Mod 5: squares of \(0,1,2,3,4\) are \(0,1,4,4,1\). If no side is a multiple of 5, then \(a^2, b^2 \in \{1, 4\}\) and \(a^2 + b^2 \in \{2, 0, 3\}\) mod 5; the only value a square can take is \(0\), which forces \(c^2 \equiv 0\), so \(c\) is a multiple of 5 after all. For 4: in a primitive triple one of \(m, n\) is even, so \(2mn\) is a multiple of 4; scaling a primitive triple keeps the factor. Multiples of 3, 4 and 5 among \(a, b, c\) make \(abc\) a multiple of \(60\): check \(3 \times 4 \times 5 = 60\) and \(5 \times 12 \times 13 = 780 = 13 \times 60\).</p>
+</section>
+
+<div class="sheet-nav"><a href="b16-conics.html">← Previous</a><a href="b18-continued-fractions.html">Next: Continued fractions and the golden ratio →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

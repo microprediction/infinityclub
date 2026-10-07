@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Groups: the mathematics of symmetry · Infinity Club</title>
+<meta name="description" content="Symmetries compose, every element has an inverse, and Lagrange's theorem says the size of a subgroup divides the size of the group.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+<style>
+table.cayley { border-collapse: collapse; margin: .6em auto; font-size: 1.05em; }
+table.cayley th, table.cayley td { border: 1px solid var(--rule); width: 2.4em; height: 2.1em; text-align: center; }
+table.cayley th { background: var(--accent-soft); font-weight: 800; }
+table.cayley td.blank { background: #fff; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 10</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 10 · Around the corner · 28</div>
+  <h1>Groups: the mathematics of symmetry</h1>
+  <p class="teaser">Symmetries compose, every element has an inverse, and Lagrange's theorem says subgroups divide.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Cut an equilateral triangle out of card and label its corners A, B, C. There are exactly six ways to pick it up and put it back in the same outline: do nothing (\(e\)); rotate by 120° (\(r\)) or 240° (\(r^2\)); or flip it over about one of three axes, the one through corner A (\(a\)), through B (\(b\)), or through C (\(c\)). These six moves are the <b>symmetries</b> of the triangle. (The grade 6 <a href="../../grade-6/sheets/b24-symmetry.html">symmetry sheet</a> did the same for a square.)</p>
+<p>The interesting thing is not the list, it is what happens when you do one move after another. Flip about A, then rotate by 120°: the result is some single symmetry from the list. Which one? Track where the corners go and you will find it is a flip, and (with the triangle's corners read anticlockwise) it is \(c\). We write \(r \circ a = c\), reading right to left: do \(a\) first, then \(r\). Try the other order: \(a \circ r = b\). <b>Order matters.</b> The full multiplication table (a <b>Cayley table</b>; row then column means "column first, then row") is:</p>
+<table class="cayley">
+<tr><th>∘</th><th>e</th><th>r</th><th>r²</th><th>a</th><th>b</th><th>c</th></tr>
+<tr><th>e</th><td>e</td><td>r</td><td>r²</td><td>a</td><td>b</td><td>c</td></tr>
+<tr><th>r</th><td>r</td><td>r²</td><td>e</td><td>c</td><td>a</td><td>b</td></tr>
+<tr><th>r²</th><td>r²</td><td>e</td><td>r</td><td>b</td><td>c</td><td>a</td></tr>
+<tr><th>a</th><td>a</td><td>b</td><td>c</td><td>e</td><td>r</td><td>r²</td></tr>
+<tr><th>b</th><td>b</td><td>c</td><td>a</td><td>r²</td><td>e</td><td>r</td></tr>
+<tr><th>c</th><td>c</td><td>a</td><td>b</td><td>r</td><td>r²</td><td>e</td></tr>
+</table>
+<p>Notice four things, because they are the whole subject. (1) Combining two symmetries always gives a symmetry: the table has no gaps. (2) There is a do-nothing element \(e\). (3) Every element can be undone: \(r\) by \(r^2\), each flip by itself, so every row contains \(e\). (4) Bracketing does not matter: \((x \circ y) \circ z = x \circ (y \circ z)\), which is automatic for "do this, then that". Any set with an operation satisfying these four rules is called a <b>group</b>. This one is \(D_3\), and it has 6 elements, so we say it has <b>order</b> 6.</p>
+<p>Groups are everywhere once you look. The numbers \(\{0, 1, 2, 3, 4, 5\}\) under addition mod 6 form a group, \(\mathbb{Z}_6\): closure, identity 0, inverse of 2 is 4, and it <em>is</em> commutative. The 43,252,003,274,489,856,000 positions of a Rubik's cube form a group. The symmetries of a crystal, the rotations of a molecule, the rearrangements of the roots of a polynomial: all groups, all obeying the same four rules, so a theorem proved once applies to all of them.</p>
+<p class="callout"><b>Lagrange's theorem.</b> If a group has \(n\) elements and a subgroup (a subset that is itself a group under the same operation) has \(m\) elements, then \(m\) divides \(n\).</p>
+<p>In \(D_3\), \(\{e, r, r^2\}\) is a subgroup of order 3, and \(\{e, a\}\) is a subgroup of order 2. Both divide 6. No subgroup of order 4 or 5 can exist, and you do not need to search: Lagrange forbids them.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: why Lagrange is true, on one example</h2>
+<p>Take the subgroup \(H = \{e, a\}\) inside \(D_3\). For each element \(g\), form the <b>coset</b> \(gH = \{g \circ e,\ g \circ a\}\), reading off the table:</p>
+<p>\(eH = \{e, a\}\), \(aH = \{a, e\}\), \(rH = \{r, c\}\), \(cH = \{c, r\}\), \(r^2H = \{r^2, b\}\), \(bH = \{b, r^2\}\).</p>
+<p>Only three different cosets appear: \(\{e, a\}\), \(\{r, c\}\), \(\{r^2, b\}\). They do not overlap, each has exactly 2 elements (because \(g \circ e \ne g \circ a\), since \(e \ne a\) and you can cancel \(g\)), and together they cover all 6 elements. So \(6 = 3 \times 2\): the order of the group is the number of cosets times the order of \(H\). That argument is the proof of Lagrange's theorem in general. Cosets of a subgroup always partition the group into equal-sized pieces.</p>
+<p>A consequence you will meet again: the <b>order of an element</b> \(g\) is the smallest \(k\) with \(g^k = e\). The powers of \(g\) form a subgroup of that size, so the order of every element divides the order of the group. In \(D_3\) the orders are 1 (for \(e\)), 3 (for \(r\), \(r^2\)) and 2 (the flips). All divide 6.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Use the table to compute \(r \circ b\), \(b \circ r\), \(a \circ b \circ c\) (right to left), and \((r \circ a)^2\). Find the inverse of every element.<div class="space"></div></li>
+<li>The symmetries of a non-square rectangle: list them, write the 4 × 4 Cayley table, and check the four group rules. Is this group the same as \(\mathbb{Z}_4\) (addition mod 4)? Compare the orders of the elements before you decide.<div class="space tall"></div></li>
+<li>In \(\mathbb{Z}_{12}\) (addition mod 12), find the order of 8, of 9, of 5 and of 4. List every subgroup of \(\mathbb{Z}_{12}\), using Lagrange to limit the search. How many are there?<div class="space tall"></div></li>
+<li>Is \(\{1, 2, 3, 4\}\) under multiplication mod 5 a group? Find the inverse of each element and the order of each element. Which elements generate the whole group by repeated multiplication? Then do the same for \(\{1, 3, 5, 7\}\) under multiplication mod 8, and explain why these two groups of order 4 are genuinely different.<div class="space tall"></div></li>
+<li>List all six subgroups of \(D_3\). Prove that a group of prime order \(p\) has no subgroups except \(\{e\}\) and itself, and deduce that every element other than \(e\) generates the whole group.<div class="space"></div></li>
+<li>Fermat's little theorem says \(a^{p-1} \equiv 1 \pmod p\) for prime \(p\) and \(a\) not a multiple of \(p\). The nonzero residues mod \(p\) form a group of order \(p - 1\) under multiplication. Use the fact that the order of an element divides the order of the group to prove Fermat's theorem in three lines. (Compare the grade 10 <a href="b5-fermat-little.html">Fermat sheet</a>.)<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the rotations of a cube</h2>
+<p>How many ways can you rotate a cube so it lands back in the same box? Count like this: the face that was on top can end up in any of 6 positions, and once it is there, the cube can still be spun about that face's axis in 4 ways. So the rotation group has order \(6 \times 4 = 24\). Now test Lagrange. The rotations that keep one particular corner fixed form a subgroup; how many are there, and what are they? The cosets of that subgroup correspond to where the corner can go. Check that the numbers multiply correctly.</p>
+<p>Harder: a cube has 4 long diagonals (corner to opposite corner). Every rotation permutes them. Argue that different rotations give different permutations, and that there are exactly \(4! = 24\) permutations of 4 things. What does that tell you about which group the cube's rotations really are?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(r \circ b = a\), \(b \circ r = c\) (row \(b\), column \(r\)). \(a \circ b \circ c\): first \(b \circ c = r\), then \(a \circ r = b\). \((r \circ a)^2 = c \circ c = e\). Inverses: \(e^{-1} = e\), \(r^{-1} = r^2\), \((r^2)^{-1} = r\), and \(a, b, c\) are each their own inverse.</li>
+<li>Four symmetries: \(e\), the half-turn \(h\), the horizontal flip \(x\), the vertical flip \(y\). Table: every element squared is \(e\), and the product of any two different non-identity elements is the third (\(x \circ y = h\), \(h \circ x = y\), \(h \circ y = x\)). Closure, identity, inverses (each is its own), associativity all hold, and it is commutative. It is not \(\mathbb{Z}_4\): in \(\mathbb{Z}_4\) the element 1 has order 4 (you need four 1s to get back to 0), while here every element has order 1 or 2. This group is called the Klein four-group.</li>
+<li>Order of 8: \(8, 4, 0\), so 3. Order of 9: \(9, 6, 3, 0\), so 4. Order of 5: 12 (5 and 12 share no factor). Order of 4: \(4, 8, 0\), so 3. Subgroup sizes must divide 12: 1, 2, 3, 4, 6, 12. One of each: \(\{0\}\), \(\{0, 6\}\), \(\{0, 4, 8\}\), \(\{0, 3, 6, 9\}\), \(\{0, 2, 4, 6, 8, 10\}\), and \(\mathbb{Z}_{12}\). Six subgroups.</li>
+<li>Mod 5: yes. Inverses: \(1 \cdot 1\), \(2 \cdot 3 = 6 \equiv 1\), \(4 \cdot 4 = 16 \equiv 1\). Orders: 1 has order 1; 2: \(2, 4, 3, 1\), order 4; 3: \(3, 4, 2, 1\), order 4; 4: \(4, 1\), order 2. Generators: 2 and 3. Mod 8: \(\{1, 3, 5, 7\}\) is a group, and \(3^2 = 9 \equiv 1\), \(5^2 = 25 \equiv 1\), \(7^2 = 49 \equiv 1\), so every element has order 1 or 2 and nothing generates the whole group. The first group is cyclic (like \(\mathbb{Z}_4\)); the second is the Klein four-group from question 2. Same size, different structure.</li>
+<li>Subgroups of \(D_3\): \(\{e\}\); \(\{e, a\}\), \(\{e, b\}\), \(\{e, c\}\); \(\{e, r, r^2\}\); \(D_3\) itself. Six in all, of orders 1, 2, 2, 2, 3, 6. Prime order: a subgroup's order divides \(p\), so it is 1 or \(p\), giving only \(\{e\}\) and the whole group. Take any \(g \ne e\): its powers form a subgroup containing more than one element, so it must be the whole group. Every group of prime order is cyclic.</li>
+<li>Let \(k\) be the order of \(a\) in the group of nonzero residues mod \(p\), which has \(p - 1\) elements. By Lagrange, \(k\) divides \(p - 1\), say \(p - 1 = km\). Then \(a^{p-1} = (a^k)^m = 1^m = 1\). That is the whole proof; Fermat's theorem is Lagrange's theorem applied to one particular group.</li>
+</ol>
+<p><b>Stretch.</b> The rotations fixing a corner are the identity and the two rotations by 120° and 240° about the long diagonal through that corner: a subgroup of order 3. The corner can be sent to any of the 8 corners, so there are 8 cosets, and \(8 \times 3 = 24\). Lagrange holds, and the cosets have a meaning: each one is "all the rotations that send our corner to that particular corner". For the diagonals: if a rotation fixed all four long diagonals it would have to be the identity (a short argument: it fixes or swaps the ends of each diagonal, and a non-identity rotation of the cube cannot do that for all four at once). So the 24 rotations give 24 different permutations of the 4 diagonals, and there are exactly \(4! = 24\) permutations of four objects. The rotation group of the cube <em>is</em> the group of all permutations of four things, \(S_4\): the same abstract group, in two very different costumes.</p>
+</section>
+
+<div class="sheet-nav"><a href="b27-non-euclidean.html">← Previous</a><a href="c1-harmonics.html">Next: Why a violin doesn't sound like a flute →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

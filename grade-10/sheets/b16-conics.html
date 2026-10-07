@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Slicing a cone · Infinity Club</title>
+<meta name="description" content="Ellipse, parabola and hyperbola come from one cone. Derive the parabola from its focus and directrix, build an ellipse with string, and learn why whispering galleries work.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 10</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 10 · Around the corner · 16</div>
+  <h1>Slicing a cone</h1>
+  <p class="teaser">Ellipse, parabola, hyperbola from one cone, focus and directrix, and why whispering galleries work.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Take a double cone, two ice-cream cones tip to tip, and cut it with a flat plane. Cut straight across and you get a circle. Tilt the plane a little and the circle stretches into an <b>ellipse</b>. Tilt it until it is exactly parallel to the slanted side of the cone and the curve stops closing up: a <b>parabola</b>. Tilt further still and the plane hits both halves of the cone, giving the two branches of a <b>hyperbola</b>. The Greeks studied these shapes 2,300 years ago as pure geometry. Then Kepler found planets move on ellipses, Galileo found cannonballs fly on parabolas, and the shapes turned out to run the universe.</p>
+<figure>
+<svg viewBox="0 0 560 190" width="560" height="190" aria-label="A double cone cut by four planes: circle, ellipse, parabola, hyperbola">
+  <g stroke="#1d1f3a" stroke-width="1.5" fill="none">
+    <!-- cone 1: circle -->
+    <path d="M40 95 L80 20 L120 95 L80 170 Z"/><ellipse cx="80" cy="60" rx="21" ry="5" fill="#f5a524" opacity=".85"/>
+    <!-- cone 2: ellipse -->
+    <path d="M170 95 L210 20 L250 95 L210 170 Z"/><ellipse cx="210" cy="62" rx="26" ry="9" transform="rotate(-20 210 62)" fill="#f5a524" opacity=".85"/>
+    <!-- cone 3: parabola -->
+    <path d="M300 95 L340 20 L380 95 L340 170 Z"/><path d="M322 54 Q340 130 366 95 L366 95" fill="#f5a524" opacity=".85"/>
+    <!-- cone 4: hyperbola -->
+    <path d="M430 95 L470 20 L510 95 L470 170 Z"/><path d="M480 20 L480 170" stroke="#3f44c9" stroke-width="2.5"/><path d="M480 43 Q468 95 480 147" stroke="#f5a524" stroke-width="3"/>
+  </g>
+  <g font-family="Nunito, sans-serif" font-size="12" fill="#1d1f3a" text-anchor="middle">
+    <text x="80" y="186">circle</text><text x="210" y="186">ellipse</text><text x="340" y="186">parabola</text><text x="470" y="186">hyperbola</text>
+  </g>
+</svg>
+<figcaption>Same cone, four tilts of the knife. The hyperbola's second branch is on the other half of the cone.</figcaption>
+</figure>
+<p>There is a second way to define all three at once, and it is the one that makes the algebra work. Fix a point \(F\) (the <b>focus</b>) and a line \(d\) (the <b>directrix</b>). Look at all points \(P\) whose distance to the focus is a fixed multiple \(e\) of their distance to the line:</p>
+<p class="callout">\(\dfrac{PF}{P\,d} = e\). The number \(e\) is the <b>eccentricity</b>. If \(e \lt 1\) you get an ellipse, \(e = 1\) a parabola, \(e > 1\) a hyperbola. A circle is the limit \(e = 0\).</p>
+<p>An ellipse has a second, friendlier description too. Push two pins into a board, loop a string around them, pull it tight with a pencil and draw. The sum of the distances from the pencil to the two pins never changes, because the string does not stretch. Call the pins \(F_1\) and \(F_2\), the sum \(2a\), and the distance between the pins \(2c\). The longest radius of the ellipse is \(a\). The shortest, \(b\), comes from the moment the pencil is level with the midpoint: two equal halves of string of length \(a\), each the hypotenuse of a right triangle with legs \(b\) and \(c\). So</p>
+<p class="callout">\(a^2 = b^2 + c^2\), and the eccentricity is \(e = c/a\). The standard ellipse is \(\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} = 1\) with foci at \((\pm c, 0)\).</p>
+<p>Now the party trick. Sound (or light) leaving one focus of an ellipse bounces off the wall and arrives at the other focus, every ray, all at the same time. That is why a whispering gallery works: stand at one focus, whisper, and a friend at the other focus hears you across a crowded room. A parabola does the same thing with one focus and a point at infinity: everything arriving parallel to the axis bounces to the focus. That is a satellite dish, a car headlight run backwards, and a solar furnace.</p>
+<p>Play with the knife at <a href="../../demos/conics.html">infinityclub.net/demos/conics.html</a>.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: where does \(y = x^2\) come from?</h2>
+<p>Put the focus at \(F = (0, p)\) and the directrix at the line \(y = -p\). A point \(P = (x, y)\) is on the parabola when its distance to \(F\) equals its distance to the line (eccentricity 1).</p>
+<p>Distance to the line is vertical: \(y + p\). Distance to the focus is \(\sqrt{x^2 + (y - p)^2}\). Set them equal and square both sides:</p>
+<p>\[x^2 + (y - p)^2 = (y + p)^2.\]</p>
+<p>Expand: \(x^2 + y^2 - 2py + p^2 = y^2 + 2py + p^2\). The \(y^2\) and \(p^2\) cancel, leaving \(x^2 = 4py\), that is</p>
+<p class="callout">\(y = \dfrac{x^2}{4p}\). So the everyday parabola \(y = x^2\) has \(4p = 1\): focus at \((0, \tfrac14)\), directrix \(y = -\tfrac14\).</p>
+<p>Read it backwards too. A parabola \(y = x^2/8\) has \(4p = 8\), so \(p = 2\): focus \((0, 2)\), directrix \(y = -2\). The wider the dish, the further out the focus sits.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Find the focus and directrix of \(y = x^2/12\). Then write the equation of the parabola with focus \((0, 3)\) and directrix \(y = -3\). Sketch both on one set of axes and say which one is "wider".<div class="space"></div></li>
+<li>For the ellipse \(\dfrac{x^2}{25} + \dfrac{y^2}{9} = 1\): write down \(a\) and \(b\), find \(c\) and the two foci, and the eccentricity. Check with a point: show that \((0, 3)\) really is a total distance \(2a\) from the two foci.<div class="space"></div></li>
+<li><b>String construction.</b> You push two pins 6 cm apart and use a loop of string that, pulled tight into a straight line between the two pins and back, has total length 16 cm (so the pencil-to-pins part is 10 cm). How long and how wide is the ellipse you draw? What is its eccentricity? What happens to the shape if you keep the string and move the pins closer together?<div class="space"></div></li>
+<li>A satellite dish is 1 m across and 10 cm deep at the centre. Model its cross-section as \(y = x^2/(4p)\) with the vertex at the origin. How far above the vertex should the receiver sit?<div class="space short"></div></li>
+<li>A whispering gallery is an elliptical room 40 m long and 24 m wide. Where exactly should two people stand to hear each other whisper? Give the distance between them.<div class="space short"></div></li>
+<li>The hyperbola \(\dfrac{x^2}{9} - \dfrac{y^2}{16} = 1\) works like the ellipse but with \(c^2 = a^2 + b^2\). Find its foci and its eccentricity. Far from the origin the curve hugs two straight lines through the origin, the <b>asymptotes</b>. Find their equations by asking what \(y/x\) tends to when \(x\) is huge. Sketch.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: from string to equation</h2>
+<p>Prove the ellipse equation from the string. Put the foci at \((-c, 0)\) and \((c, 0)\) and let \(P = (x, y)\) satisfy \(PF_1 + PF_2 = 2a\). Write that as \(\sqrt{(x+c)^2 + y^2} = 2a - \sqrt{(x-c)^2 + y^2}\), square both sides, tidy up until only one square root is left, isolate it, square again, and show that everything collapses to \((a^2 - c^2)x^2 + a^2 y^2 = a^2(a^2 - c^2)\). Then divide by \(a^2(a^2 - c^2)\) and set \(b^2 = a^2 - c^2\). It is longer than it looks and shorter than you fear. Keep the algebra tidy: the middle step should read \(a\sqrt{(x-c)^2 + y^2} = a^2 - cx\).</p>
+<p>Then the real question: Earth's orbit has eccentricity \(0.0167\). If you drew it as an ellipse with \(a = 10\) cm, how far from the centre would the Sun sit, and how much shorter than \(a\) is \(b\)? Is the orbit visibly oval?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(4p = 12\) so \(p = 3\): focus \((0, 3)\), directrix \(y = -3\). The second parabola is the same one: \(y = x^2/12\). Larger \(p\) gives a wider parabola; \(y = x^2/12\) is wider than \(y = x^2\), whose focus is only \(\tfrac14\) up.</li>
+<li>\(a = 5\), \(b = 3\), \(c = \sqrt{25 - 9} = 4\). Foci \((\pm 4, 0)\), eccentricity \(e = 4/5 = 0.8\). From \((0, 3)\) each focus is \(\sqrt{4^2 + 3^2} = 5\) away, total \(10 = 2a\).</li>
+<li>\(2a = 10\), so \(a = 5\); pins \(2c = 6\), so \(c = 3\); \(b = \sqrt{25 - 9} = 4\). The ellipse is \(10\) cm long and \(8\) cm wide, \(e = 3/5 = 0.6\). Moving the pins together shrinks \(c\), so \(e\) falls and the ellipse gets rounder; pins on top of each other give a circle of radius 5.</li>
+<li>The rim passes through \((0.5, 0.1)\): \(0.1 = 0.25/(4p)\) gives \(4p = 2.5\), \(p = 0.625\) m. The receiver sits \(62.5\) cm above the vertex, well above the rim of the dish, which is why dish receivers stick out on an arm.</li>
+<li>\(a = 20\), \(b = 12\), \(c = \sqrt{400 - 144} = 16\). Stand at the two foci, \(16\) m either side of the centre along the long axis: \(32\) m apart.</li>
+<li>\(a = 3\), \(b = 4\), \(c = \sqrt{9 + 16} = 5\): foci \((\pm 5, 0)\), \(e = 5/3\). Rearranging, \(y^2 = 16(x^2/9 - 1)\), so \(y^2/x^2 = \tfrac{16}{9}(1 - 9/x^2) \to \tfrac{16}{9}\). Asymptotes \(y = \pm \tfrac43 x\). The curve has two branches opening left and right, crossing the \(x\)-axis at \(\pm 3\).</li>
+</ol>
+<p><b>Stretch.</b> Squaring once: \((x+c)^2 + y^2 = 4a^2 - 4a\sqrt{(x-c)^2 + y^2} + (x-c)^2 + y^2\). The \(x^2\), \(y^2\), \(c^2\) terms cancel, leaving \(4cx = 4a^2 - 4a\sqrt{\cdots}\), so \(a\sqrt{(x-c)^2 + y^2} = a^2 - cx\). Square again: \(a^2(x^2 - 2cx + c^2 + y^2) = a^4 - 2a^2cx + c^2x^2\). The \(-2a^2cx\) terms cancel; collect: \((a^2 - c^2)x^2 + a^2y^2 = a^4 - a^2c^2 = a^2(a^2 - c^2)\). Divide through and put \(b^2 = a^2 - c^2\) to get \(x^2/a^2 + y^2/b^2 = 1\). Earth: \(c = ea = 0.167\) cm, so the Sun sits under 2 mm from the centre; \(b = a\sqrt{1 - e^2} = 10 \times 0.99986 = 9.9986\) cm, shorter by about \(0.0014\) cm, a hundredth of a millimetre. Drawn to scale, Earth's orbit is a circle to the eye; what is noticeably off-centre is the Sun.</p>
+</section>
+
+<div class="sheet-nav"><a href="b15-vectors-dot.html">← Previous</a><a href="b17-pythagorean-triples.html">Next: Pythagorean triples and Fermat's margin →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RSA by Hand · Infinity Club</title>
+<meta name="description" content="Pick two primes, build an RSA key pair step by step, then encrypt and decrypt a number and watch the modular arithmetic do the work.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.steps-table { border-collapse: collapse; font-family: var(--mono); font-size: .9rem; margin: .5rem 0; }
+.steps-table th, .steps-table td { border: 1px solid var(--rule); padding: .25em .6em; text-align: right; white-space: nowrap; }
+.steps-table th { background: #eeece6; text-align: center; }
+.keybox { display: flex; flex-wrap: wrap; gap: .8rem; margin: .6rem 0; }
+.keybox div { border-radius: 10px; padding: .6rem .9rem; font-family: var(--mono); font-size: .95rem; }
+.keybox .pub { background: #e6e7fb; border: 1px solid var(--accent); }
+.keybox .priv { background: #fdf0d8; border: 1px solid var(--warm); }
+.keybox b { font-family: Nunito, sans-serif; display: block; font-size: .8rem; letter-spacing: .05em; text-transform: uppercase; }
+details { margin: .5rem 0; }
+summary { cursor: pointer; font-weight: 700; color: var(--accent); }
+.controls select, .controls input[type=number] { font: inherit; padding: .25em .4em; border: 1px solid var(--rule); border-radius: 6px; }
+.warn { color: #b3261e; font-weight: 700; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>RSA by hand</h1>
+<p class="explain">Choose two primes. The page builds a public key anyone may use to lock a message, and a private key only you can use to unlock it. Every step is ordinary arithmetic with remainders. The only secret is which two primes you started from.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <label>p <select id="p"></select></label>
+    <label>q <select id="q"></select></label>
+    <label>e <input type="number" id="e" min="3" step="2" value="7"></label>
+    <label>message m <input type="number" id="m" min="2" value="65"></label>
+    <button id="go">Build keys and encrypt</button>
+  </div>
+  <div class="readout" id="info"></div>
+  <div id="out"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>Multiply the primes: n = pq. Count the numbers below n that share no factor with n: φ(n) = (p − 1)(q − 1). Pick any e with no common factor with φ(n). Then find d, the number that undoes e: ed leaves remainder 1 when divided by φ(n). The pair (n, e) is public. The number d is private.</p>
+<p>To encrypt m, compute c = m<sup>e</sup> mod n. To decrypt, compute c<sup>d</sup> mod n, and the original m comes back. That works because of Fermat's little theorem, extended to two primes: raising anything to the power ed is the same as raising it to the power 1, as long as you only keep remainders mod n.</p>
+<p>The powers look enormous, but nobody computes them in full. Repeated squaring keeps every intermediate result below n, and needs only about twice as many multiplications as the exponent has binary digits. The tables above show every one of them.</p>
+<p>Why is it safe? Anyone can see n. To find d they need φ(n), and to find φ(n) they need p and q. With two-digit primes, trial division cracks it in seconds. Real keys use primes with about 300 digits each, so n has about 600 digits, and no known method factors that in the lifetime of the universe. Multiplying is easy. Unmultiplying is not.</p>
+<p>Sheets: <a href="../grade-10/sheets/b6-rsa.html">RSA: a lock anyone can close</a> and <a href="../grade-10/sheets/b5-fermat-little.html">Fermat's little theorem</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+// --- numerics ---
+var RSA = (function () {
+  function gcd(a, b) { a = a < 0n ? -a : a; b = b < 0n ? -b : b; while (b) { var t = a % b; a = b; b = t; } return a; }
+  // extended Euclid on (a, m): returns {steps:[{a,b,q,r}], x} with a*x ≡ gcd mod m
+  function egcd(a, m) {
+    var steps = [], r0 = m, r1 = a, s0 = 0n, s1 = 1n; // s tracks coefficient of a
+    while (r1 !== 0n) {
+      var q = r0 / r1, r2 = r0 - q * r1;
+      steps.push({ a: r0, b: r1, q: q, r: r2 });
+      var s2 = s0 - q * s1;
+      r0 = r1; r1 = r2; s0 = s1; s1 = s2;
+    }
+    return { g: r0, x: s0, steps: steps };
+  }
+  function modinv(a, m) { var r = egcd(a % m, m); if (r.g !== 1n) return null; return ((r.x % m) + m) % m; }
+  function nextCoprime(e, phi) { if (e < 3n) e = 3n; if (e % 2n === 0n) e += 1n; while (gcd(e, phi) !== 1n || e >= phi) { e += 2n; if (e >= phi) return null; } return e; }
+  // repeated squaring, left-to-right over bits; records steps
+  function powmod(base, exp, mod) {
+    var bits = exp.toString(2), result = 1n, steps = [];
+    base = base % mod;
+    for (var i = 0; i < bits.length; i++) {
+      var sq = (result * result) % mod, row = { bit: bits[i], before: result, squared: sq };
+      result = sq;
+      if (bits[i] === "1") { result = (result * base) % mod; row.times = result; }
+      steps.push(row);
+    }
+    return { value: result, steps: steps, bits: bits };
+  }
+  function isPrime(n) { if (n < 2) return false; for (var i = 2; i * i <= n; i++) if (n % i === 0) return false; return true; }
+  function trialDivisions(n) { var c = 0; for (var i = 2n; i * i <= n; i++) { c++; if (n % i === 0n) return { trials: c, factor: i }; } return { trials: c, factor: null }; }
+  return { gcd: gcd, egcd: egcd, modinv: modinv, nextCoprime: nextCoprime, powmod: powmod, isPrime: isPrime, trialDivisions: trialDivisions };
+})();
+// --- ui ---
+(function () {
+  var primes = []; for (var i = 2; i <= 100; i++) if (RSA.isPrime(i)) primes.push(i);
+  var selP = document.getElementById("p"), selQ = document.getElementById("q");
+  primes.forEach(function (v) { selP.add(new Option(v, v)); selQ.add(new Option(v, v)); });
+  selP.value = "61"; selQ.value = "53";
+  var eIn = document.getElementById("e"), mIn = document.getElementById("m"), info = document.getElementById("info"), out = document.getElementById("out");
+  function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;"); }
+  function stepsTable(res, label, base, exp, n) {
+    var h = '<details open><summary>' + label + ': ' + base + '<sup>' + exp + '</sup> mod ' + n + ' by repeated squaring (' + res.bits.length + ' binary digits: ' + res.bits + ')</summary>';
+    h += '<table class="steps-table"><tr><th>bit</th><th>start</th><th>square mod n</th><th>× ' + base + ' mod n</th></tr>';
+    res.steps.forEach(function (r) { h += '<tr><td>' + r.bit + '</td><td>' + r.before + '</td><td>' + r.squared + '</td><td>' + (r.times !== undefined ? r.times : '—') + '</td></tr>'; });
+    h += '</table><p class="small">Read the exponent in binary from the left. For every digit, square what you have. If the digit is 1, also multiply by ' + base + '. Keep only remainders mod ' + n + '. Result: <b>' + res.value + '</b>.</p></details>';
+    return h;
+  }
+  function run() {
+    var p = BigInt(selP.value), q = BigInt(selQ.value);
+    if (p === q) { info.textContent = "Choose two different primes."; out.innerHTML = ""; return; }
+    var n = p * q, phi = (p - 1n) * (q - 1n);
+    var eWanted = BigInt(Math.max(3, parseInt(eIn.value, 10) || 3)), e = eWanted, note = "";
+    if (RSA.gcd(e, phi) !== 1n || e >= phi) { e = RSA.nextCoprime(eWanted, phi); if (e === null) { info.textContent = "No valid e for these primes. Try larger ones."; out.innerHTML = ""; return; } note = "e = " + eWanted + " shares a factor with φ(n) = " + phi + " (gcd " + RSA.gcd(eWanted, phi) + "), so the next usable e is " + e + ". "; eIn.value = e.toString(); }
+    var eg = RSA.egcd(e, phi), d = RSA.modinv(e, phi);
+    var m = BigInt(Math.max(0, parseInt(mIn.value, 10) || 0)), mnote = "";
+    if (m >= n) { mnote = "m must be smaller than n = " + n + "; using m = " + (m % n) + ". "; m = m % n; mIn.value = m.toString(); }
+    var enc = RSA.powmod(m, e, n), dec = RSA.powmod(enc.value, d, n);
+    info.textContent = note + mnote + "n = " + p + " × " + q + " = " + n + "    φ(n) = " + (p - 1n) + " × " + (q - 1n) + " = " + phi + "    e = " + e + "    d = " + d + "    (check: " + e + " × " + d + " = " + (e * d) + " = " + ((e * d - 1n) / phi) + " × " + phi + " + 1)";
+    var h = '<div class="keybox"><div class="pub"><b>Public key, give to anyone</b>n = ' + n + '<br>e = ' + e + '</div><div class="priv"><b>Private key, tell nobody</b>d = ' + d + '<br>(p = ' + p + ', q = ' + q + ', φ = ' + phi + ')</div></div>';
+    h += '<details><summary>How d was found: extended Euclid on ' + e + ' and ' + phi + '</summary><table class="steps-table"><tr><th>a</th><th>b</th><th>a ÷ b</th><th>remainder</th></tr>';
+    eg.steps.forEach(function (s) { h += '<tr><td>' + s.a + '</td><td>' + s.b + '</td><td>' + s.q + '</td><td>' + s.r + '</td></tr>'; });
+    h += '</table><p class="small">The last nonzero remainder is 1, so e and φ(n) are coprime. Running the same divisions backwards writes 1 as a combination of ' + e + ' and ' + phi + '; the coefficient of ' + e + ' is ' + eg.x + ', and reduced mod ' + phi + ' that is d = ' + d + '.</p></details>';
+    h += stepsTable(enc, "Encrypt", m, e, n);
+    h += '<p>Ciphertext <b>c = ' + enc.value + '</b>. Send this. Anyone watching sees only c, n and e.</p>';
+    h += stepsTable(dec, "Decrypt", enc.value, d, n);
+    h += '<p>Recovered <b>m = ' + dec.value + '</b>' + (dec.value === m ? ' ✓, the original message.' : ' <span class="warn">✗ something is off.</span>') + '</p>';
+    var td = RSA.trialDivisions(n);
+    h += '<p class="small"><b>Try to crack it.</b> An eavesdropper knows n = ' + n + '. Trial division from 2 up to √n ≈ ' + Math.floor(Math.sqrt(Number(n))) + ' finds the factor ' + td.factor + ' after ' + td.trials + ' division' + (td.trials === 1 ? '' : 's') + ', then φ(n) and d follow in a moment. A real key has n with about 617 digits; √n has about 309 digits, and even skipping to clever methods, no computer on Earth gets there.</p>';
+    out.innerHTML = h;
+  }
+  document.getElementById("go").addEventListener("click", run);
+  [selP, selQ].forEach(function (s) { s.addEventListener("change", run); });
+  run();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Game theory: the prisoner's dilemma · Infinity Club</title>
+<meta name="description" content="Payoff matrices, dominant strategies, Nash equilibrium, chicken, matching pennies and the tragedy of the commons: why rational players can both lose.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 10</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 10 · Around the corner · 20</div>
+  <h1>Game theory: the prisoner's dilemma</h1>
+  <p class="teaser">Dominant strategies, Nash equilibrium, chicken, and why rational players can both lose.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Two suspects are arrested and questioned in separate rooms. Each can stay silent (cooperate with the other) or confess (defect). If both stay silent, the police can only prove a minor charge: one year each. If one confesses and the other stays silent, the confessor walks free and the silent one gets five years. If both confess, three years each. Write the years as negative payoffs, with your payoff first in each cell:</p>
+<table>
+<tr><th></th><th>She stays silent</th><th>She confesses</th></tr>
+<tr><th>You stay silent</th><td>\(-1, -1\)</td><td>\(-5, 0\)</td></tr>
+<tr><th>You confess</th><td>\(0, -5\)</td><td>\(-3, -3\)</td></tr>
+</table>
+<p>Now reason as you. If she stays silent, confessing gets you 0 instead of \(-1\): better. If she confesses, confessing gets you \(-3\) instead of \(-5\): better. Whatever she does, confessing is better for you. A move that is best no matter what the other player does is a <b>dominant strategy</b>. She reasons the same way. Both confess, three years each, when both staying silent would have cost one year each. Two perfectly rational people reach an outcome both of them would reject. That is the <b>prisoner's dilemma</b>, and once you have seen it you see it everywhere: arms races, overfishing, doping in sport, two shops both cutting prices, everyone standing up at a concert.</p>
+<p>The general idea is the <b>Nash equilibrium</b>, named for John Nash, who proved in 1950 that every finite game has at least one: a choice of move for each player such that <em>nobody can do better by changing their own move alone</em>. In the dilemma, (confess, confess) is the only equilibrium. (Silent, silent) is not, because either player gains by switching. The equilibrium is stable; it is just not good.</p>
+<p>Not every game has a dominant strategy. In <b>chicken</b>, two drivers speed towards each other; whoever swerves loses face, and if neither swerves both crash. There is no dominant move: if she goes straight you should swerve, if she swerves you should go straight. There are two equilibria, (swerve, straight) and (straight, swerve), and the whole game is about which one you end up in. In <b>matching pennies</b>, you each show a coin; you win if they match, she wins if they differ. No pair of fixed moves is stable: whoever is losing wants to switch. The equilibrium is to randomise, heads with probability exactly \(\tfrac12\). That is why penalty takers and goalkeepers must be unpredictable, and the maths tells you exactly how unpredictable.</p>
+<p>The dilemma with many players is the <b>tragedy of the commons</b>. A shared pasture can feed a limited number of cows well. Each farmer gains by adding one more cow, because the gain is theirs and the loss (slightly thinner cows) is shared by everyone. So everyone adds cows, and the pasture is ruined. The worked example puts numbers on it, and the numbers are brutal.</p>
+<p>You already know one game inside out. Nim, from <a href="../../grade-6/sheets/b15-nim.html">grade 6</a> and <a href="../../demos/nim.html">infinityclub.net/demos/nim.html</a>, is a game of perfect information where one player has a guaranteed win. Tonight's games are different: the trouble comes from not knowing what the other player will do at the same moment.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: the commons, with numbers</h2>
+<p>Three farmers share a pasture. If there are \(c\) cows in total, each cow yields \(120 - 2c\) litres of milk a week (more cows, thinner grass). Each farmer chooses how many cows \(k\) to put out; their payoff is their own milk, \(k(120 - 2c)\).</p>
+<p><b>Best for the village.</b> Total milk is \(c(120 - 2c) = 120c - 2c^2\), a downward parabola with its peak at \(c = 30\). So 30 cows in all, 10 each, \(60\) litres per cow, \(600\) litres per farmer.</p>
+<p><b>What actually happens.</b> Suppose the other two farmers have \(K\) cows between them. Your milk is \(k(120 - 2(k + K)) = (120 - 2K)k - 2k^2\), a parabola in \(k\) peaking at \(k = (120 - 2K)/4 = 30 - K/2\). At equilibrium all three choose the same \(k\), so \(K = 2k\) and \(k = 30 - k\), giving \(k = 15\). Total 45 cows, \(30\) litres per cow, \(450\) litres per farmer.</p>
+<p class="callout">Each farmer, acting sensibly, ends up with 450 litres instead of 600. Nobody can fix it alone: if you cut back to 10 cows while the others keep 15, the pasture improves to \(40\) litres a cow and <em>you</em> get \(400\), while they get \(600\) each. Fixing a commons needs an agreement, a rule, or a price.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Two bakeries can each set a High or Low price. Both High: 10 each. Both Low: 4 each. One Low, one High: the Low one takes the market, 14, and the High one gets 1. Write the payoff matrix. Does each bakery have a dominant strategy? Find the Nash equilibrium and say whether it is a prisoner's dilemma.<div class="space"></div></li>
+<li><b>Chicken.</b> Payoffs: both swerve \(0, 0\); you swerve and she goes straight \(-1, +1\); you go straight and she swerves \(+1, -1\); both straight \(-10, -10\). Show there is no dominant strategy, find both pure Nash equilibria, and explain why visibly throwing your steering wheel out of the window is a rational move.<div class="space"></div></li>
+<li><b>Matching pennies, properly.</b> You win 1 if the coins match, lose 1 if they differ. Suppose she plays heads with probability \(q\). Write your expected payoff from playing heads and from playing tails, as expressions in \(q\). For what \(q\) are you indifferent? Explain why that \(q\) is the only probability she can safely use.<div class="space"></div></li>
+<li><b>Penalty kick.</b> The kicker aims Left or Right, the keeper dives Left or Right. Scoring probabilities: (L, L) 0.5, (L, R) 0.9, (R, L) 0.8, (R, R) 0.4, written (kicker, keeper). The kicker wants a goal, the keeper does not. Find the probability \(p\) with which the kicker should aim Left (make the keeper indifferent) and the probability \(q\) with which the keeper should dive Left (make the kicker indifferent). What fraction of penalties are scored at equilibrium?<div class="space tall"></div></li>
+<li>In the commons example, suppose the village charges a rent of \(r\) litres per cow. A farmer's payoff is now \(k(120 - 2c) - rk\). Redo the equilibrium calculation for three farmers and find the rent that makes each farmer choose exactly 10 cows. What is each farmer's milk after rent, and where did the rest go?<div class="space tall"></div></li>
+<li>The dilemma changes if it is played again and again. Explain why "cooperate, then copy whatever the other player did last time" (tit for tat) can sustain cooperation when the same two players meet repeatedly, and why the argument breaks down if both players know exactly which round will be the last. (Start from the last round and work backwards.)<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: guess two-thirds of the average</h2>
+<p>Everyone in a room writes down a whole number from 0 to 100. The winner is whoever is closest to two-thirds of the average of all the numbers. What should you write?</p>
+<p>First: can it ever be right to write a number above 67? (The average is at most 100.) So nobody sensible writes above 67. But if nobody writes above 67, the average is at most 67, and two-thirds of that is about 44... Keep going. Where does this chain of reasoning end, and what is the unique Nash equilibrium? Then the real-world twist: when newspapers have run this contest with thousands of readers, the winning number has usually been somewhere between about 13 and 25, not the equilibrium. What does that tell you about the difference between "what a perfectly rational player does" and "what wins against actual people", and how many steps of reasoning does the typical entrant seem to do?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Rows you (High, Low), columns her (High, Low): \((10, 10)\), \((1, 14)\); \((14, 1)\), \((4, 4)\). Low is dominant for both (14 beats 10 and 4 beats 1). Equilibrium (Low, Low) with 4 each, though (High, High) gives 10 each: a prisoner's dilemma, which is why price-fixing is illegal and tempting.</li>
+<li>If she swerves you prefer straight (\(+1\) over \(0\)); if she goes straight you prefer swerving (\(-1\) over \(-10\)): no dominant move. Equilibria: (swerve, straight) and (straight, swerve); in each, the swerver cannot gain by changing (would crash) and the straight driver cannot gain either (would drop from \(+1\) to \(0\)). Throwing away the wheel makes "straight" your only option, which forces the other driver into the equilibrium where you win. Credible commitment is power.</li>
+<li>Heads: \(q(1) + (1 - q)(-1) = 2q - 1\). Tails: \(q(-1) + (1-q)(1) = 1 - 2q\). Indifferent when \(2q - 1 = 1 - 2q\), \(q = \tfrac12\). If she used any other \(q\), one of your moves would have a strictly positive expected payoff and you would play it every time, beating her; \(q = \tfrac12\) is the only choice that gives you no edge.</li>
+<li>Keeper indifferent between diving L and R (she wants the lower scoring chance): dive L gives \(0.5p + 0.8(1 - p)\), dive R gives \(0.9p + 0.4(1 - p)\). Equal when \(0.8 - 0.3p = 0.4 + 0.5p\), so \(p = 0.5\). Kicker indifferent: aim L gives \(0.5q + 0.9(1 - q)\), aim R gives \(0.8q + 0.4(1 - q)\). Equal when \(0.9 - 0.4q = 0.4 + 0.4q\), \(q = \tfrac58 = 0.625\). Scoring rate \(= 0.5 \times 0.625 + 0.9 \times 0.375 = 0.65\): 65% of penalties go in, whichever way the kicker aims.</li>
+<li>Your milk after rent is \((120 - 2K - r)k - 2k^2\), peaking at \(k = (120 - 2K - r)/4\). With \(K = 2k\): \(4k = 120 - 4k - r\), so \(k = (120 - r)/8\). For \(k = 10\): \(r = 40\). Then \(c = 30\), \(60\) litres per cow, each farmer keeps \(10 \times 60 - 10 \times 40 = 200\) litres and pays \(400\) in rent. Total milk is back at the village optimum of 1,800 litres; the rent (1,200 litres) is the village's to share out, so the village as a whole gets 1,800 instead of 1,350. The farmers are individually better off only if the rent is returned to them.</li>
+<li>Against tit for tat, defecting gains once (5 years saved becomes the tempting 0) but triggers defection next round, so over many rounds cooperation pays more than a one-off gain. If round 100 is known to be last, both defect in it (no future to protect); knowing that, round 99 has no future either, so both defect there; the argument unravels all the way to round 1. In practice people cooperate anyway, which is one reason the theory gets refined with uncertainty about when the game ends.</li>
+</ol>
+<p><b>Stretch.</b> Nobody writes above \(66.7\); then the average is at most that and nobody writes above \(44.4\); then \(29.6\), \(19.8\), \(13.2\), \(\ldots\); the chain only stops at 0. The unique Nash equilibrium is everyone writing 0 (then two-thirds of the average is 0 and everyone ties). Real contests are won in the teens or low twenties, which is what you get if most people do one or two steps of the reasoning (\(100 \to 67 \to 44 \to 30 \to 20\)) and stop. The lesson: a Nash equilibrium describes players who assume everyone else is perfectly rational and knows that everyone knows it. To win against real people you should think one step further than they do, not infinitely many.</p>
+</section>
+
+<div class="sheet-nav"><a href="b19-graphs-planar.html">← Previous</a><a href="b21-bayes.html">Next: Bayes' theorem →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Random walks and the gambler's ruin · Infinity Club</title>
+<meta name="description" content="A coin-flip walk has expected position zero and typical distance root n. Count paths with binomials and work out the exact probability of going broke.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 10</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 10 · Around the corner · 23</div>
+  <h1>Random walks and the gambler's ruin</h1>
+  <p class="teaser">Expected position zero, typical distance √n, and the exact probability of going broke.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Stand on 0 on a number line. Flip a coin: heads step right, tails step left. Repeat. After \(n\) flips your position is \(S_n = X_1 + X_2 + \cdots + X_n\), where each \(X_i\) is \(+1\) or \(-1\) with probability \(\tfrac12\). This is the <b>simple random walk</b>, and it is the skeleton inside diffusion, stock prices, polymer chains and the shuffle of a drunk walking home.</p>
+<p><b>Where are you on average?</b> Each step has expected value \(\tfrac12(+1) + \tfrac12(-1) = 0\), and expectations add, so \(E[S_n] = 0\). True but useless: you are almost never at 0. The useful question is how far away you typically are.</p>
+<p><b>How far, typically?</b> Square the position and take the expectation. \(S_n^2 = \sum_i X_i^2 + \sum_{i \ne j} X_i X_j\). Every \(X_i^2 = 1\), so the first sum is \(n\). Every cross term \(X_i X_j\) with \(i \ne j\) is \(+1\) or \(-1\) with equal probability (the two flips are independent), so its expectation is 0. Therefore</p>
+<p class="callout">\(E[S_n^2] = n\), so the typical distance from the start after \(n\) steps is \(\sqrt{n}\).</p>
+<p>After 100 steps you are typically about 10 away; after a million steps, about 1,000. Distance grows like the square root of time. That is why a drop of ink spreads slowly, why heat takes so long to get through a wall, and why financial risk over \(t\) days scales with \(\sqrt{t}\) rather than \(t\).</p>
+<p><b>Exact probabilities.</b> To be at position \(k\) after \(n\) steps you need \(u\) steps up and \(n - u\) down with \(u - (n - u) = k\), so \(u = (n + k)/2\). The number of such paths is \(\binom{n}{u}\), and every path has probability \(1/2^n\):</p>
+\[ P(S_n = k) = \binom{n}{(n+k)/2} \Big/ 2^n. \]
+<p>For instance \(P(S_{10} = 0) = \binom{10}{5}/1024 = 252/1024 \approx 0.246\). Even at the most likely spot you are only there a quarter of the time.</p>
+<p><b>Gambler's ruin.</b> You have \(a\) pounds and bet 1 pound a round on a fair coin until you reach a target \(N\) or hit 0. Let \(p_a\) be the probability of reaching \(N\) first. After one round you have \(a + 1\) or \(a - 1\), so \(p_a = \tfrac12 p_{a-1} + \tfrac12 p_{a+1}\): each \(p_a\) is the <em>average of its neighbours</em>. A sequence where each term is the average of its neighbours is a straight line. With \(p_0 = 0\) and \(p_N = 1\) that line is</p>
+<p class="callout">\(p_a = \dfrac{a}{N}\) for a fair game. Starting with 10 and aiming for 100, you succeed with probability \(0.1\), and go broke with probability \(0.9\).</p>
+<p>If each round is won with probability \(p \ne \tfrac12\) and lost with \(q = 1 - p\), the same idea gives a geometric rather than linear sequence: \(p_a = \dfrac{1 - (q/p)^a}{1 - (q/p)^N}\). When the odds are against you, \(q/p \gt 1\) and this collapses frighteningly fast as \(N\) grows.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: roulette, one chip at a time or all at once?</h2>
+<p>You have 10 chips and want 20. A bet on red at a double-zero roulette table wins with \(p = 18/38\) and loses with \(q = 20/38\), so \(q/p = 20/18 = 10/9\).</p>
+<p><b>Timid play</b>, one chip per spin: \(p_{10} = \dfrac{1 - (10/9)^{10}}{1 - (10/9)^{20}}\). Now \((10/9)^{10} \approx 2.868\) and \((10/9)^{20} \approx 8.225\), so \(p_{10} = \dfrac{1 - 2.868}{1 - 8.225} = \dfrac{-1.868}{-7.225} \approx 0.259\).</p>
+<p><b>Bold play</b>, all 10 chips on one spin: you win with probability \(18/38 \approx 0.474\).</p>
+<p>Bold play nearly doubles your chance. Every spin has the same small edge against you, so the fewer spins you give the house, the better. (In a fair game it would make no difference: \(a/N = 10/20\) either way.) Ten chips aiming for 100, one at a time: \(p_{10} \approx 0.00005\). The house edge is only 5.3% per spin, and yet.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>List all 8 paths of a 3-step walk (HHH, HHT, …) and the position each one ends at. Give the probability distribution of \(S_3\). Compute \(E[S_3]\) and \(E[S_3^2]\) directly from the distribution and check the second one against the formula.<div class="space tall"></div></li>
+<li>For a 6-step walk find \(P(S_6 = 0)\), \(P(S_6 = 2)\) and \(P(|S_6| \ge 4)\). Why is \(P(S_6 = 1)\) zero?<div class="space"></div></li>
+<li>Explain why \(E[X_i X_j] = 0\) when \(i \ne j\) by listing the four equally likely values of the product. Then: after 400 steps, what is the typical distance from the start? Roughly how many steps does it take to be typically 100 away?<div class="space"></div></li>
+<li>Fair gambler's ruin. Find the probability of reaching the target before going broke when you (a) have 10, target 100; (b) have 50, target 100; (c) have 10, target 20. (d) You have 100, the casino has 1,000,000, the game is perfectly fair, and you play until one of you has everything. What is your chance? Draw the moral.<div class="space"></div></li>
+<li><b>Coming home.</b> A walk starting at 0 is back at 0 after 2 steps with probability \(\tfrac12\). Find the probability it has visited 0 again <em>at some point</em> within the first 4 steps, then within the first 6. (Enumerate, or think about where you are at step 2.) The sequence \(\tfrac12, \tfrac58, \tfrac{11}{16}, \ldots\) is heading somewhere; guess where.<div class="space tall"></div></li>
+<li>A game you win with probability \(p = 0.6\). You have 5 and want 10, betting 1 a round. Use the biased formula with \(q/p = \tfrac23\). Compare with the fair answer, and with your chance of reaching 10 from 5 in the roulette game of the example.<div class="space"></div></li>
+</ol>
+<p class="small">Watch many walks at once at <a href="../../demos/dice.html">infinityclub.net/demos/dice.html</a> (the histogram of sums is the same \(\sqrt{n}\) spreading). The grade 6 sheet <a href="../../grade-6/sheets/b14-dice.html">Dice don't lie</a> has the one-dice version of this story.</p>
+</section>
+
+<section class="stretch">
+<h2>Stretch: how long does ruin take, and does the drunk get home?</h2>
+<p>Let \(D_a\) be the expected number of rounds a fair game lasts from a stake of \(a\), stopping at 0 or \(N\). One round costs 1 and then you are at \(a \pm 1\), so \(D_a = 1 + \tfrac12 D_{a-1} + \tfrac12 D_{a+1}\), with \(D_0 = D_N = 0\). Show that \(D_a = a(N - a)\) satisfies this equation (substitute it in and simplify). How many rounds, on average, for a stake of 10 and a target of 100? Does that number surprise you given that you only win 10% of the time?</p>
+<p>Finally, a fact to think about: on a line, a random walk returns to its start with probability 1 (it just might take a very long time). On a 2D grid, also probability 1. In 3D, the probability of ever returning is only about 0.34. A mathematician summarised Pólya's theorem as: a drunk man will find his way home, but a drunk bird may be lost forever. Why might more dimensions make returning harder?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>HHH 3, HHT 1, HTH 1, THH 1, HTT −1, THT −1, TTH −1, TTT −3. So \(P(S_3 = \pm 3) = \tfrac18\) each and \(P(S_3 = \pm 1) = \tfrac38\) each. \(E[S_3] = 0\) by symmetry. \(E[S_3^2] = \tfrac{2 \times 9 + 6 \times 1}{8} = \tfrac{24}{8} = 3 = n\). ✓</li>
+<li>\(P(S_6 = 0) = \binom{6}{3}/64 = 20/64 = \tfrac{5}{16}\). \(P(S_6 = 2) = \binom{6}{4}/64 = \tfrac{15}{64}\). \(P(|S_6| \ge 4) = (6 + 6 + 1 + 1)/64 = \tfrac{14}{64} = \tfrac{7}{32}\). After an even number of steps the position is even (each step changes parity), so odd positions are impossible.</li>
+<li>\(X_i X_j\) is \((+1)(+1) = 1\), \((+1)(-1) = -1\), \((-1)(+1) = -1\), \((-1)(-1) = 1\), each with probability \(\tfrac14\); average 0. After 400 steps the typical distance is \(\sqrt{400} = 20\). To be typically 100 away you need \(n = 100^2 = 10{,}000\) steps: distance 5 times bigger needs 25 times more steps.</li>
+<li>(a) \(10/100 = 0.1\). (b) \(0.5\). (c) \(10/20 = 0.5\). (d) \(100/1{,}000{,}100 \approx 0.0001\). The casino does not even need an edge: against a much richer opponent in a fair game, the poorer player is almost certain to be ruined first. Deep pockets are an advantage all by themselves.</li>
+<li>Within 4 steps: back at 0 at step 2 (probability \(\tfrac12\)), or at \(\pm 2\) at step 2 and then back in two steps (probability \(\tfrac12 \times \tfrac14\)): total \(\tfrac12 + \tfrac18 = \tfrac58\). Within 6 steps: enumerating the 64 paths, 44 visit 0 again, so \(\tfrac{44}{64} = \tfrac{11}{16}\). The sequence is creeping toward 1: a one-dimensional walk returns home with certainty, though the expected time to do so is infinite.</li>
+<li>\(p_5 = \dfrac{1 - (2/3)^5}{1 - (2/3)^{10}} = \dfrac{1 - 0.1317}{1 - 0.0173} \approx 0.884\). Fair game: \(5/10 = 0.5\). Roulette from 5 to 10 (one chip a spin): \(\dfrac{1 - (10/9)^5}{1 - (10/9)^{10}} = \dfrac{1 - 1.694}{1 - 2.868} \approx 0.371\). A modest edge either way moves the answer a long way from one half.</li>
+</ol>
+<p><b>Stretch.</b> Substitute \(D_a = a(N - a)\): \(\tfrac12\left[(a-1)(N-a+1) + (a+1)(N-a-1)\right] + 1\). Expand each product: \((a-1)(N-a+1) = a(N-a) + a - N + a - 1 = a(N-a) + 2a - N - 1\) and \((a+1)(N-a-1) = a(N-a) - a + N - a - 1 = a(N-a) - 2a + N - 1\). Their average is \(a(N-a) - 1\), plus 1 gives \(a(N-a)\). ✓ And \(D_0 = D_N = 0\). Stake 10, target 100: \(10 \times 90 = 900\) rounds on average, even though you win only 10% of the time: the game mostly drifts around for a long while before ruin. In higher dimensions there are many more directions to wander off in and the walk spreads over a volume that grows much faster than the number of steps, so it revisits any particular point less and less; in 3D the revisits are rare enough that the total probability of ever returning falls below 1 (Pólya, 1921; the 3D value is about 0.3405).</p>
+</section>
+
+<div class="sheet-nav"><a href="b22-markov-pagerank.html">← Previous</a><a href="b24-chaos.html">Next: The logistic map and chaos →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

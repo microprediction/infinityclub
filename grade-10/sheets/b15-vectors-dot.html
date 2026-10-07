@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vectors and the dot product · Infinity Club</title>
+<meta name="description" content="The dot product turns geometry into arithmetic: angles, projections, work, and a two-line proof that the diagonals of a rhombus are perpendicular.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 10</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 10 · Around the corner · 15</div>
+  <h1>Vectors and the dot product</h1>
+  <p class="teaser">The dot product measures alignment: angles, projections, work, and why perpendicular means zero.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A vector is an arrow: a length and a direction, written by its components, \(\mathbf{a} = (a_1, a_2)\). Its length is \(\lvert\mathbf{a}\rvert = \sqrt{a_1^2 + a_2^2}\) by Pythagoras. You add vectors tip to tail and scale them by multiplying each component. (The grade 6 sheet <a href="../../grade-6/sheets/b30-vectors.html">Arrows you can add</a> covers that.) Tonight is about multiplying two vectors, and the answer is not a vector but a number:</p>
+<p class="callout">\(\mathbf{a} \cdot \mathbf{b} = a_1 b_1 + a_2 b_2\)</p>
+<p>That looks like arbitrary arithmetic until you see what it measures. Put the two arrows tail to tail with angle \(\theta\) between them. The third side of the triangle is \(\mathbf{a} - \mathbf{b}\), and the cosine rule says \(\lvert\mathbf{a} - \mathbf{b}\rvert^2 = \lvert\mathbf{a}\rvert^2 + \lvert\mathbf{b}\rvert^2 - 2\lvert\mathbf{a}\rvert\lvert\mathbf{b}\rvert\cos\theta\). Now compute the same left-hand side in components: \((a_1 - b_1)^2 + (a_2 - b_2)^2 = a_1^2 + a_2^2 + b_1^2 + b_2^2 - 2(a_1 b_1 + a_2 b_2) = \lvert\mathbf{a}\rvert^2 + \lvert\mathbf{b}\rvert^2 - 2\,\mathbf{a}\cdot\mathbf{b}\). Compare the two:</p>
+<p class="callout">\(\mathbf{a} \cdot \mathbf{b} = \lvert\mathbf{a}\rvert\,\lvert\mathbf{b}\rvert\cos\theta\)</p>
+<p>So the dot product is "length times length times how aligned they are". Pointing the same way, \(\cos\theta = 1\) and the dot product is as big as it gets. At right angles, \(\cos 90° = 0\) and the dot product is <b>zero</b>: that is the perpendicular test, and it needs no angles at all, just a multiply and an add. Past \(90°\) it goes negative.</p>
+<p>Two consequences. <b>Projection:</b> the shadow of \(\mathbf{a}\) on the line of \(\mathbf{b}\) has length \(\lvert\mathbf{a}\rvert\cos\theta = \dfrac{\mathbf{a}\cdot\mathbf{b}}{\lvert\mathbf{b}\rvert}\), and as a vector it is \(\dfrac{\mathbf{a}\cdot\mathbf{b}}{\lvert\mathbf{b}\rvert^2}\,\mathbf{b}\). <b>Work:</b> a force \(\mathbf{F}\) moving something through displacement \(\mathbf{d}\) does work \(\mathbf{F}\cdot\mathbf{d}\), because only the part of the force along the motion counts. Everything also works in three dimensions with a third component added; the proof is identical.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: the angle between two arrows</h2>
+<p>\(\mathbf{a} = (1, 2)\), \(\mathbf{b} = (3, 1)\). Dot product \(1 \cdot 3 + 2 \cdot 1 = 5\). Lengths \(\sqrt5\) and \(\sqrt{10}\). So \(\cos\theta = \dfrac{5}{\sqrt5\sqrt{10}} = \dfrac{5}{\sqrt{50}} = \dfrac{1}{\sqrt2}\) and \(\theta = 45°\). Try measuring it on squared paper: it is exactly \(45°\), which is not obvious from the picture.</p>
+<p>The projection of \(\mathbf{a}\) onto \(\mathbf{b}\) is \(\dfrac{5}{10}(3, 1) = (1.5, 0.5)\), the point on the line of \(\mathbf{b}\) directly below the tip of \(\mathbf{a}\). Check perpendicularity: \(\mathbf{a} - (1.5, 0.5) = (-0.5, 1.5)\), and \((-0.5, 1.5)\cdot(3, 1) = -1.5 + 1.5 = 0\).</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Compute each dot product and say whether the angle between the vectors is acute, right or obtuse, without finding the angle: \((2, 3)\cdot(4, -1)\); \((1, 5)\cdot(-10, 2)\); \((-3, 1)\cdot(2, 4)\).<div class="space short"></div></li>
+<li>Find the angle between \((1, 0)\) and \((1, \sqrt3)\) exactly. Then find the angle between \((2, 1)\) and \((1, -3)\) to the nearest tenth of a degree.<div class="space"></div></li>
+<li>Find \(k\) so that \((k, 2)\) is perpendicular to \((3, -6)\). Then find a <em>unit</em> vector (length 1) perpendicular to \((3, 4)\). How many answers are there?<div class="space"></div></li>
+<li>A force \(\mathbf{F} = (6, 2)\) newtons moves a crate through \(\mathbf{d} = (4, 3)\) metres. Find the work done. Then find the component of the force along the direction of motion (a number, in newtons) and the vector projection of \(\mathbf{F}\) onto \(\mathbf{d}\).<div class="space"></div></li>
+<li><b>Rhombus.</b> Let two adjacent sides of a parallelogram be the vectors \(\mathbf{a}\) and \(\mathbf{b}\), so the diagonals are \(\mathbf{a} + \mathbf{b}\) and \(\mathbf{a} - \mathbf{b}\). Expand \((\mathbf{a} + \mathbf{b})\cdot(\mathbf{a} - \mathbf{b})\). Use it to prove: if the four sides are equal (a rhombus), the diagonals are perpendicular. Then prove the converse: if a parallelogram's diagonals are perpendicular, it is a rhombus.<div class="space tall"></div></li>
+<li><b>Thales, in two lines.</b> A circle has centre at the origin and radius \(r\). Let \(A = -\mathbf{u}\) and \(B = \mathbf{u}\) be the ends of a diameter (so \(\lvert\mathbf{u}\rvert = r\)) and let \(P = \mathbf{p}\) be any other point on the circle (so \(\lvert\mathbf{p}\rvert = r\)). Compute \((\mathbf{p} - \mathbf{a})\cdot(\mathbf{p} - \mathbf{b})\) where \(\mathbf{a} = -\mathbf{u}\), \(\mathbf{b} = \mathbf{u}\), and conclude something about the angle \(APB\). Then, in three dimensions: are \((1, 2, 2)\) and \((2, 1, -2)\) perpendicular, and what is the length of the first?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: an inequality from a cosine</h2>
+<p>Since \(\lvert\cos\theta\rvert \le 1\), the dot product formula gives \(\lvert\mathbf{a}\cdot\mathbf{b}\rvert \le \lvert\mathbf{a}\rvert\lvert\mathbf{b}\rvert\). (a) Write that out in components: it says \((a_1 b_1 + a_2 b_2)^2 \le (a_1^2 + a_2^2)(b_1^2 + b_2^2)\) for any four numbers. This is the Cauchy–Schwarz inequality. (b) Put \(\mathbf{b} = (1, 1)\) and deduce \((x + y)^2 \le 2(x^2 + y^2)\) for all \(x, y\). When is it equal? (c) Prove the triangle inequality \(\lvert\mathbf{a} + \mathbf{b}\rvert \le \lvert\mathbf{a}\rvert + \lvert\mathbf{b}\rvert\) by expanding \(\lvert\mathbf{a} + \mathbf{b}\rvert^2 = (\mathbf{a} + \mathbf{b})\cdot(\mathbf{a} + \mathbf{b})\) and using (a). Why is it called the triangle inequality?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(8 - 3 = 5 \gt 0\): acute. \(-10 + 10 = 0\): right angle. \(-6 + 4 = -2 \lt 0\): obtuse.</li>
+<li>Dot product 1, lengths 1 and 2, \(\cos\theta = \tfrac12\), \(\theta = 60°\). Second: dot product \(2 - 3 = -1\), lengths \(\sqrt5\) and \(\sqrt{10}\), \(\cos\theta = -\tfrac{1}{\sqrt{50}} \approx -0.1414\), \(\theta \approx 98.1°\).</li>
+<li>\(3k - 12 = 0\), so \(k = 4\). Perpendicular to \((3, 4)\): \((-4, 3)\) or \((4, -3)\) (swap and negate one), length 5, so the unit vectors are \(\left(-\tfrac45, \tfrac35\right)\) and \(\left(\tfrac45, -\tfrac35\right)\). Exactly two.</li>
+<li>Work \(= 24 + 6 = 30\) J. \(\lvert\mathbf{d}\rvert = 5\), so the component along the motion is \(\tfrac{30}{5} = 6\) N. Vector projection \(\tfrac{30}{25}(4, 3) = (4.8, 3.6)\).</li>
+<li>\((\mathbf{a} + \mathbf{b})\cdot(\mathbf{a} - \mathbf{b}) = \mathbf{a}\cdot\mathbf{a} - \mathbf{a}\cdot\mathbf{b} + \mathbf{b}\cdot\mathbf{a} - \mathbf{b}\cdot\mathbf{b} = \lvert\mathbf{a}\rvert^2 - \lvert\mathbf{b}\rvert^2\). Rhombus: \(\lvert\mathbf{a}\rvert = \lvert\mathbf{b}\rvert\), so the dot product of the diagonals is 0, so they are perpendicular. Converse: perpendicular diagonals give \(\lvert\mathbf{a}\rvert^2 - \lvert\mathbf{b}\rvert^2 = 0\), so \(\lvert\mathbf{a}\rvert = \lvert\mathbf{b}\rvert\), adjacent sides equal, so (being a parallelogram) all four sides are equal.</li>
+<li>\((\mathbf{p} + \mathbf{u})\cdot(\mathbf{p} - \mathbf{u}) = \lvert\mathbf{p}\rvert^2 - \lvert\mathbf{u}\rvert^2 = r^2 - r^2 = 0\). The vectors from \(P\) to \(A\) and from \(P\) to \(B\) are perpendicular: the angle in a semicircle is a right angle, Thales' theorem, with no diagram chasing. In 3D: \(2 + 2 - 4 = 0\), so yes, perpendicular; \(\lvert(1, 2, 2)\rvert = \sqrt{1 + 4 + 4} = 3\).</li>
+</ol>
+<p><b>Stretch.</b> (a) Square both sides of \(\lvert\mathbf{a}\cdot\mathbf{b}\rvert \le \lvert\mathbf{a}\rvert\lvert\mathbf{b}\rvert\). (b) \((x \cdot 1 + y \cdot 1)^2 \le (x^2 + y^2)(1 + 1)\). Equality when \(\cos\theta = \pm1\), i.e. \((x, y)\) is parallel to \((1, 1)\), i.e. \(x = y\). (c) \(\lvert\mathbf{a} + \mathbf{b}\rvert^2 = \lvert\mathbf{a}\rvert^2 + 2\,\mathbf{a}\cdot\mathbf{b} + \lvert\mathbf{b}\rvert^2 \le \lvert\mathbf{a}\rvert^2 + 2\lvert\mathbf{a}\rvert\lvert\mathbf{b}\rvert + \lvert\mathbf{b}\rvert^2 = (\lvert\mathbf{a}\rvert + \lvert\mathbf{b}\rvert)^2\); take square roots. The arrows \(\mathbf{a}\), \(\mathbf{b}\) and \(\mathbf{a} + \mathbf{b}\) form a triangle, and the inequality says one side of a triangle is never longer than the other two put together.</p>
+</section>
+
+<div class="sheet-nav"><a href="b14-matrices-transformations.html">← Previous</a><a href="b16-conics.html">Next: Slicing a cone →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

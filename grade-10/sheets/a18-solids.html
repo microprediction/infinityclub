@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Volumes: why the cone is a third · Infinity Club</title>
+<meta name="description" content="Cavalieri's principle, why a cone is one third of its cylinder, the sphere by Archimedes' argument, and how area and volume scale.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 10</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 10 · Sharpen · 18</div>
+  <h1>Volumes: why the cone is a third</h1>
+  <p class="teaser">Cavalieri's principle, the cone, the sphere via Archimedes' argument, and scaling: double the size, eight times the volume.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>You know the formulas. Prism and cylinder: base area times height. Pyramid and cone: a third of that. Sphere: \(\tfrac43\pi r^3\). Tonight is about where the \(\tfrac13\) and the \(\tfrac43\) come from, using one idea that is four hundred years old.</p>
+<div class="callout"><b>Cavalieri's principle.</b> Slice two solids by the same family of parallel planes. If at every height the two cross-sections have equal area, the solids have equal volume.</div>
+<p>Picture a stack of coins. Push it sideways into a leaning tower: same coins, same volume, and every horizontal slice is still one coin. That is the whole principle. It means an oblique cylinder has the same volume as the upright one, and that any two pyramids with the same base area and the same height have the same volume, because at each height their cross-sections are scaled copies of their bases by the same factor.</p>
+<p><b>Why a third.</b> A cube can be cut into three identical pyramids: pick one corner of the cube as the apex, and use the three faces that do <em>not</em> touch that corner as the three bases. Each pyramid has base area \(s^2\), height \(s\), and volume \(\tfrac13 s^3\). By Cavalieri, every pyramid or cone with base area \(B\) and height \(h\) then has volume \(\tfrac13 Bh\).</p>
+<p>Here is a second way to see it, which you will meet again in calculus. Build a cone out of \(n\) thin discs. The \(k\)th disc from the top has radius \(\tfrac{k}{n}r\), so area \(\pi r^2 \tfrac{k^2}{n^2}\), and thickness \(\tfrac hn\). Total volume \(\pi r^2 h \cdot \dfrac{1^2 + 2^2 + \cdots + n^2}{n^3}\). The sum of squares is \(\tfrac{n(n+1)(2n+1)}{6}\), so the fraction is \(\dfrac{(n+1)(2n+1)}{6n^2}\), which heads to \(\tfrac{2}{6} = \tfrac13\) as the discs get thinner. The stepped cone over-estimates, but by less and less.</p>
+<p><b>The sphere.</b> Archimedes compared a hemisphere of radius \(r\) with a cylinder of radius \(r\) and height \(r\) that has a cone scooped out of it (apex at the centre of the bottom, opening upward). At height \(y\) above the base the hemisphere's slice is a disc of radius \(\sqrt{r^2 - y^2}\), area \(\pi(r^2 - y^2)\). The scooped cylinder's slice is a ring: outer radius \(r\), inner radius \(y\) (the cone widens one unit per unit of height), area \(\pi r^2 - \pi y^2\). Equal at every height. So the hemisphere's volume is cylinder minus cone, \(\pi r^3 - \tfrac13\pi r^3 = \tfrac23\pi r^3\), and the sphere is \(\tfrac43\pi r^3\).</p>
+<p><b>Scaling.</b> Enlarge any shape by a factor \(k\): every length multiplies by \(k\), every area by \(k^2\), every volume by \(k^3\). This is why a giant twice your height weighs eight times as much but has bones with only four times the cross-section.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: a cone and the sphere in its tin</h2>
+<p>Cone, radius 3, height 4. \(V = \tfrac13 \pi \cdot 9 \cdot 4 = 12\pi \approx 37.7\). Its slant height is \(\sqrt{9 + 16} = 5\), so the curved surface is \(\pi r \ell = 15\pi\) and the total surface with the base is \(24\pi\).</p>
+<p>Sphere, radius 3: \(V = \tfrac43 \pi \cdot 27 = 36\pi\). The smallest cylinder that contains it has radius 3 and height 6, volume \(\pi \cdot 9 \cdot 6 = 54\pi\). Ratio \(\tfrac{36}{54} = \tfrac23\). Archimedes thought this was the finest thing he ever proved, and asked for a sphere in a cylinder to be carved on his tomb. Cicero found it, overgrown, 137 years later.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Find the volume of a square pyramid with base side 6 and height 5, and of a cone with radius 2 and height 9 (leave \(\pi\) in). How many times would you have to fill a cone to fill a cylinder with the same base and height? Explain with Cavalieri why the answer is the same for a leaning cone.<div class="space"></div></li>
+<li>A cylinder of radius 2 and height 7 is pushed sideways so that its top is no longer above its base, but every cross-section is still a circle of radius 2 at the same height. Find its volume, and state the principle you used.<div class="space short"></div></li>
+<li>Take a cone with \(r = h = 1\), true volume \(\tfrac\pi3 \approx 1.047\). Approximate it with 4 stacked discs of radii \(\tfrac14, \tfrac24, \tfrac34, 1\), each of thickness \(\tfrac14\), and compute the total volume. Repeat with 10 discs using the sum-of-squares formula. Then show that the fraction \(\dfrac{(n+1)(2n+1)}{6n^2}\) tends to \(\tfrac13\) as \(n\) grows.<div class="space tall"></div></li>
+<li>Earth's radius is about 6,371 km and the Moon's about 1,737 km. Find Earth's volume and surface area (\(4\pi r^2\)), then find the ratio of the two radii and, without computing the Moon's volume, the ratio of the two volumes.<div class="space"></div></li>
+<li>A model car is built at scale 1:24. How many times more paint does the real car need than the model? How many times heavier is it, if made of the same materials? Now explain, using scaling, why an animal twice as tall as another but the same shape has bones under twice the stress, and why there are no 20-metre insects.<div class="space tall"></div></li>
+<li>A hemispherical bowl of radius 10 cm is filled with water to a depth of 5 cm. Use Archimedes' slicing: the slice at height \(t\) above the bottom has area \(\pi\big(r^2 - (r - t)^2\big) = \pi(2rt - t^2)\). Adding the slices from \(t = 0\) to \(t = h\) gives \(\pi\big(r h^2 - \tfrac{h^3}{3}\big)\) (the \(\tfrac{h^3}{3}\) is the cone fact again: the slices \(\pi t^2\) stack into a cone of volume \(\tfrac13 \pi h^3\)). Compute the volume of water in cm³ and in litres.<div class="space tall"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the sphere's surface, from its volume</h2>
+<p>Cut a sphere into thousands of thin pyramids, all with their apex at the centre and their tiny bases tiling the surface. Each pyramid has volume \(\tfrac13 \times (\text{base area}) \times r\). Add them all up and explain why \(V = \tfrac13 S r\), where \(S\) is the surface area. Now use \(V = \tfrac43\pi r^3\) to deduce \(S\).</p>
+<p>Then finish Archimedes' tombstone. Show that the total surface area of the cylinder that just contains the sphere (two ends plus the curved side) is also in the ratio \(3 : 2\) with the sphere's surface area, the same ratio as the volumes.</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Pyramid: \(\tfrac13 \cdot 36 \cdot 5 = 60\). Cone: \(\tfrac13 \pi \cdot 4 \cdot 9 = 12\pi\). Three cones fill the cylinder. A leaning cone has, at every height, the same circular cross-section as the upright cone of the same base and height, so by Cavalieri it has the same volume, \(\tfrac13\) of the cylinder.</li>
+<li>\(\pi \cdot 4 \cdot 7 = 28\pi \approx 88.0\). Cavalieri's principle: same cross-sectional area at every height as the upright cylinder, so the same volume.</li>
+<li>Four discs: \(\pi \cdot \tfrac14 \left(\tfrac1{16} + \tfrac4{16} + \tfrac9{16} + \tfrac{16}{16}\right) = \tfrac{30}{64}\pi \approx 0.469\pi \approx 1.47\). Ten discs: \(\pi \cdot \tfrac{385}{1000} = 0.385\pi \approx 1.21\). In general \(\dfrac{(n+1)(2n+1)}{6n^2} = \dfrac{2n^2 + 3n + 1}{6n^2} = \tfrac13 + \tfrac{1}{2n} + \tfrac{1}{6n^2}\), and the last two terms shrink to zero. For \(n = 100\) the fraction is already \(0.3384\).</li>
+<li>\(V = \tfrac43\pi (6371)^3 \approx 1.08 \times 10^{12}\) km³. \(S = 4\pi(6371)^2 \approx 5.10 \times 10^{8}\) km². Radii ratio \(6371/1737 \approx 3.67\). Volume ratio \(3.67^3 \approx 49\): about 49 Moons fit inside Earth by volume.</li>
+<li>Paint is area: \(24^2 = 576\) times. Weight is volume: \(24^3 = 13{,}824\) times. An animal scaled by 2 weighs \(2^3 = 8\) times as much, but a bone's strength depends on its cross-sectional area, which grows only \(2^2 = 4\) times, so each square centimetre of bone carries \(8/4 = 2\) times the load. Scale an insect up by a factor of 1,000 and its legs carry 1,000 times the stress; they would snap, and its breathing tubes, which rely on surface area, could not supply its volume. Big animals need proportionally thicker legs, which is why an elephant is not a scaled-up gazelle.</li>
+<li>\(V = \pi\left(10 \cdot 25 - \tfrac{125}{3}\right) = \pi \cdot \tfrac{625}{3} \approx 654.5\) cm³, about 0.65 litres. (The general result \(\tfrac13\pi h^2(3r - h)\) is the volume of a spherical cap.)</li>
+</ol>
+<p><b>Stretch.</b> Summing the pyramids: \(V = \sum \tfrac13 (\text{base}_i) r = \tfrac13 r \sum \text{base}_i = \tfrac13 S r\) (the tiny bases are nearly flat and their areas add up to the surface). So \(S = 3V/r = 3 \cdot \tfrac43 \pi r^3 / r = 4\pi r^2\). The containing cylinder has radius \(r\) and height \(2r\): two ends \(2\pi r^2\), curved side \(2\pi r \cdot 2r = 4\pi r^2\), total \(6\pi r^2\). Compared with the sphere's \(4\pi r^2\), the ratio is \(6 : 4 = 3 : 2\), exactly the ratio of the volumes \(2\pi r^3 : \tfrac43\pi r^3\).</p>
+</section>
+
+<div class="sheet-nav"><a href="a17-inequalities.html">← Previous</a><a href="b1-contradiction.html">Next: Proof by contradiction →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

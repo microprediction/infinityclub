@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fit a Line · Infinity Club</title>
+<meta name="description" content="Click to place points and watch the least-squares line, the correlation r and the residuals update live. Then add one outlier and see what it does.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+#plot { width: 100%; height: auto; aspect-ratio: 3 / 2; display: block; cursor: crosshair; touch-action: none; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Fit a line</h1>
+<p class="explain">Click anywhere to add a point, drag a point to move it. The line is the one that makes the squared vertical gaps (the residuals) as small as possible. Watch r: it says how tightly the points hug the line, and its sign says which way the line tilts.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <button id="example">Example data</button>
+    <button id="outlier" class="alt">Add an outlier</button>
+    <button id="undo" class="ghost">Undo</button>
+    <button id="clear" class="ghost">Clear</button>
+    <label><input type="checkbox" id="resid" checked> residuals</label>
+    <label><input type="checkbox" id="squares"> squares</label>
+    <label><input type="checkbox" id="means"> mean lines</label>
+  </div>
+  <canvas id="plot" width="900" height="600"></canvas>
+  <div class="readout" id="info"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>For a line ŷ = a + bx, each point has a residual y − ŷ, the vertical distance to the line. Least squares picks a and b to minimise the sum of the squared residuals. The answer has a clean form: the slope is b = S<sub>xy</sub> / S<sub>xx</sub>, where S<sub>xy</sub> = Σ(x − x̄)(y − ȳ) and S<sub>xx</sub> = Σ(x − x̄)², and the line always passes through the point of means (x̄, ȳ). Tick "mean lines" to see it.</p>
+<p>The correlation coefficient r = S<sub>xy</sub> / √(S<sub>xx</sub> S<sub>yy</sub>) is always between −1 and 1. It measures how close the points are to <em>some</em> straight line, not how steep that line is: stretch the y-axis and r does not change. r² is the fraction of the variation in y that the line accounts for.</p>
+<p>Now press "Add an outlier". One point far from the others can swing the slope and wreck r, because squaring makes big residuals count enormously. That is a feature when the outlier is real and a bug when it is a typo, which is why the first thing a statistician does is look at the picture. Remember too that a strong r does not say x causes y: ice-cream sales and drownings are correlated because both follow the weather.</p>
+<p>Sheets: <a href="../grade-10/sheets/a16-statistics.html">Standard deviation and the bell curve</a> and <a href="../grade-10/sheets/c8-elo.html">Elo ratings and regression to the mean</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  // ---- pure maths ----
+  function fit(pts) {
+    var n = pts.length; if (n < 2) return null;
+    var sx = 0, sy = 0; pts.forEach(function (p) { sx += p.x; sy += p.y; }); var mx = sx / n, my = sy / n;
+    var sxx = 0, syy = 0, sxy = 0; pts.forEach(function (p) { sxx += (p.x - mx) * (p.x - mx); syy += (p.y - my) * (p.y - my); sxy += (p.x - mx) * (p.y - my); });
+    if (sxx === 0) return null;
+    var b = sxy / sxx, a = my - b * mx, r = syy > 0 ? sxy / Math.sqrt(sxx * syy) : NaN, sse = 0;
+    pts.forEach(function (p) { var e = p.y - (a + b * p.x); sse += e * e; });
+    return { n: n, mx: mx, my: my, a: a, b: b, r: r, sse: sse };
+  }
+  if (typeof document === "undefined") { module.exports = { fit: fit }; return; }
+
+  var pts = [], canvas = document.getElementById("plot"), ctx = canvas.getContext("2d"), info = document.getElementById("info");
+  var XM = 10, YM = 10, PAD = { l: 40, r: 16, t: 16, b: 30 };
+  var EXAMPLE = [[1.2, 2.1], [2.0, 2.9], [2.8, 3.2], [3.5, 4.4], [4.1, 3.9], [5.0, 5.6], [5.9, 5.3], [6.6, 6.9], [7.3, 6.4], [8.1, 7.8], [8.8, 8.3]];
+
+  function geom() { var dpr = window.devicePixelRatio || 1, W = canvas.clientWidth || 900, H = W * 2 / 3; if (canvas.width !== Math.round(W * dpr)) { canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr); canvas.style.height = H + "px"; } ctx.setTransform(dpr, 0, 0, dpr, 0, 0); return { W: W, H: H }; }
+  function X(g, x) { return PAD.l + (g.W - PAD.l - PAD.r) * x / XM; } function Y(g, y) { return g.H - PAD.b - (g.H - PAD.t - PAD.b) * y / YM; }
+  function toData(e) { var r = canvas.getBoundingClientRect(), g = { W: r.width, H: r.height }; return { x: (e.clientX - r.left - PAD.l) / (g.W - PAD.l - PAD.r) * XM, y: (g.H - PAD.b - (e.clientY - r.top)) / (g.H - PAD.t - PAD.b) * YM }; }
+  function clamp(p) { return { x: Math.min(XM, Math.max(0, p.x)), y: Math.min(YM, Math.max(0, p.y)) }; }
+
+  function draw() {
+    var g = geom(), W = g.W, H = g.H, f = fit(pts);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, H);
+    ctx.strokeStyle = "#e4e1d8"; ctx.lineWidth = 1; ctx.font = "12px Nunito, sans-serif"; ctx.fillStyle = "#5d6079";
+    for (var i = 0; i <= XM; i++) { ctx.beginPath(); ctx.moveTo(X(g, i), Y(g, 0)); ctx.lineTo(X(g, i), Y(g, YM)); ctx.stroke(); ctx.textAlign = "center"; ctx.fillText(i, X(g, i), H - PAD.b + 16); }
+    for (var j = 0; j <= YM; j++) { ctx.beginPath(); ctx.moveTo(X(g, 0), Y(g, j)); ctx.lineTo(X(g, XM), Y(g, j)); ctx.stroke(); ctx.textAlign = "right"; ctx.fillText(j, PAD.l - 6, Y(g, j) + 4); }
+    ctx.strokeStyle = "#1d1f3a"; ctx.strokeRect(X(g, 0), Y(g, YM), X(g, XM) - X(g, 0), Y(g, 0) - Y(g, YM));
+    if (f) {
+      if (document.getElementById("means").checked) { ctx.strokeStyle = "#bdbbd6"; ctx.setLineDash([5, 5]); ctx.beginPath(); ctx.moveTo(X(g, f.mx), Y(g, 0)); ctx.lineTo(X(g, f.mx), Y(g, YM)); ctx.moveTo(X(g, 0), Y(g, f.my)); ctx.lineTo(X(g, XM), Y(g, f.my)); ctx.stroke(); ctx.setLineDash([]); }
+      ctx.save(); ctx.beginPath(); ctx.rect(X(g, 0), Y(g, YM), X(g, XM) - X(g, 0), Y(g, 0) - Y(g, YM)); ctx.clip();
+      if (document.getElementById("squares").checked) { pts.forEach(function (p) { var e = p.y - (f.a + f.b * p.x), s = Math.abs(Y(g, 0) - Y(g, e)); ctx.fillStyle = "rgba(245,165,36,0.18)"; ctx.strokeStyle = "rgba(245,165,36,0.6)"; var x0 = X(g, p.x), y0 = Y(g, p.y), y1 = Y(g, f.a + f.b * p.x); ctx.fillRect(x0, Math.min(y0, y1), s, Math.abs(y1 - y0)); ctx.strokeRect(x0, Math.min(y0, y1), s, Math.abs(y1 - y0)); }); }
+      if (document.getElementById("resid").checked) { ctx.strokeStyle = "#f5a524"; ctx.lineWidth = 1.5; pts.forEach(function (p) { ctx.beginPath(); ctx.moveTo(X(g, p.x), Y(g, p.y)); ctx.lineTo(X(g, p.x), Y(g, f.a + f.b * p.x)); ctx.stroke(); }); }
+      ctx.strokeStyle = "#3f44c9"; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.moveTo(X(g, -1), Y(g, f.a - f.b)); ctx.lineTo(X(g, XM + 1), Y(g, f.a + f.b * (XM + 1))); ctx.stroke();
+      ctx.restore();
+      if (document.getElementById("means").checked) { ctx.fillStyle = "#3f44c9"; ctx.beginPath(); ctx.arc(X(g, f.mx), Y(g, f.my), 4, 0, Math.PI * 2); ctx.fill(); }
+    }
+    pts.forEach(function (p) { ctx.fillStyle = p.out ? "#f5a524" : "#1d1f3a"; ctx.beginPath(); ctx.arc(X(g, p.x), Y(g, p.y), 6, 0, Math.PI * 2); ctx.fill(); ctx.strokeStyle = "#fff"; ctx.lineWidth = 1.5; ctx.stroke(); });
+    if (!pts.length) { ctx.fillStyle = "#5d6079"; ctx.font = "15px Nunito, sans-serif"; ctx.textAlign = "center"; ctx.fillText("Click to add points, or press Example data", W / 2, H / 2); }
+  }
+  function describe() {
+    var f = fit(pts);
+    if (!f) { info.textContent = pts.length < 2 ? "n = " + pts.length + ". Add at least two points with different x values." : "All the x values are equal: no line of best fit of the form y = a + bx."; return; }
+    var sign = f.a >= 0 ? " + " : " − ";
+    info.textContent = "n = " + f.n + "    ŷ = " + f.b.toFixed(3) + "x" + sign + Math.abs(f.a).toFixed(3) + "\nr = " + (isNaN(f.r) ? "undefined (all y equal)" : f.r.toFixed(4)) + "    r² = " + (isNaN(f.r) ? "–" : (f.r * f.r).toFixed(4)) + "    sum of squared residuals = " + f.sse.toFixed(3) + "\npoint of means (x̄, ȳ) = (" + f.mx.toFixed(2) + ", " + f.my.toFixed(2) + "), which lies on the line";
+  }
+  function update() { draw(); describe(); }
+
+  var drag = null;
+  canvas.addEventListener("pointerdown", function (e) {
+    var r = canvas.getBoundingClientRect(), g = { W: r.width, H: r.height }, best = null, bd = 14;
+    pts.forEach(function (p, i) { var d = Math.hypot(X(g, p.x) - (e.clientX - r.left), Y(g, p.y) - (e.clientY - r.top)); if (d < bd) { bd = d; best = i; } });
+    if (best !== null) { drag = best; canvas.setPointerCapture(e.pointerId); }
+    else { var d = toData(e); if (d.x >= -0.3 && d.x <= XM + 0.3 && d.y >= -0.3 && d.y <= YM + 0.3) { pts.push(clamp(d)); update(); } }
+  });
+  canvas.addEventListener("pointermove", function (e) { if (drag === null) return; var d = clamp(toData(e)); pts[drag].x = d.x; pts[drag].y = d.y; update(); });
+  canvas.addEventListener("pointerup", function () { drag = null; });
+  canvas.addEventListener("pointercancel", function () { drag = null; });
+  document.getElementById("example").addEventListener("click", function () { pts = EXAMPLE.map(function (q) { return { x: q[0], y: q[1] }; }); update(); });
+  document.getElementById("outlier").addEventListener("click", function () { var f = fit(pts); var o = f && f.b >= 0 ? { x: 9.6, y: 0.6 } : { x: 9.6, y: 9.4 }; if (!f) o = { x: 9.6, y: 0.6 }; o.out = true; pts.push(o); update(); });
+  document.getElementById("undo").addEventListener("click", function () { pts.pop(); update(); });
+  document.getElementById("clear").addEventListener("click", function () { pts = []; update(); });
+  ["resid", "squares", "means"].forEach(function (id) { document.getElementById(id).addEventListener("change", draw); });
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(draw, 150); });
+  update();
+})();
+</script>
+</body>
+</html>

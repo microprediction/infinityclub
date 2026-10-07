@@ -121,6 +121,7 @@ canvas { max-width: 100%; display: block; background: #fff; border: 1px solid va
 @media screen and (max-width: 520px) {
   main.paper table, main.demo-wrap table { display: block; width: max-content; max-width: 100%; overflow-x: auto; }
   .katex-display { overflow-x: auto; overflow-y: hidden; padding: .2em 0; }
+  main.paper p, main.paper li, main.paper .callout, main.demo-wrap p { overflow-x: auto; }
 }
 
 @media print {

@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Area under a curve, Archimedes' way · Infinity Club</title>
+<meta name="description" content="Slice the region under a parabola into rectangles, add them up with a formula, and squeeze the answer to exactly one third. Then meet the man who did it 2,200 years early.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 10</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 10 · Around the corner · 11</div>
+  <h1>Area under a curve, Archimedes' way</h1>
+  <p class="teaser">Slice, sum, and squeeze: the area under x² from 0 to 1 is exactly 1/3, and Archimedes knew.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>You know how to find the area of anything with straight edges. Curves are the problem. Here is the region under \(y = x^2\) between \(x = 0\) and \(x = 1\): a slanted, bulging shape with one curved side. There is no formula for it in your geometry book. Tonight you make one.</p>
+<p>The plan has three steps. <b>Slice</b> the interval \([0, 1]\) into \(n\) equal strips, each of width \(\tfrac{1}{n}\). On each strip stand a rectangle whose height is the curve's value at the strip's right-hand edge. The \(k\)-th strip ends at \(x = \tfrac{k}{n}\), so its rectangle has height \(\left(\tfrac{k}{n}\right)^2\) and area \(\tfrac{1}{n}\cdot\tfrac{k^2}{n^2}\). <b>Sum</b> them:</p>
+<p class="callout">\(R_n = \dfrac{1}{n^3}\left(1^2 + 2^2 + \cdots + n^2\right) = \dfrac{1}{n^3}\cdot\dfrac{n(n+1)(2n+1)}{6}\)</p>
+<p>That last step uses the sum-of-squares formula, which you can prove by induction (see <a href="b2-induction.html">Induction</a>). Multiply it out and the sum becomes</p>
+<p class="callout">\(R_n = \dfrac{(n+1)(2n+1)}{6n^2} = \dfrac{1}{3} + \dfrac{1}{2n} + \dfrac{1}{6n^2}.\)</p>
+<p>Now <b>squeeze</b>. The right-hand rectangles poke above the curve, so \(R_n\) is too big. Use the left-hand edges instead and you get \(L_n = \tfrac{1}{3} - \tfrac{1}{2n} + \tfrac{1}{6n^2}\), which is too small. The true area \(A\) is trapped: \(L_n \lt A \lt R_n\) for every \(n\). As \(n\) grows, both \(\tfrac{1}{2n}\) and \(\tfrac{1}{6n^2}\) shrink toward zero, so both bounds close in on \(\tfrac{1}{3}\). The only number that fits between them forever is \(\tfrac{1}{3}\). So \(A = \tfrac{1}{3}\). Exactly. Not approximately.</p>
+<p>This is the whole idea of the integral, two thousand years before Newton, and it is how Archimedes found the area of a parabolic segment in about 250 BC. Play with the slices at <a href="../../demos/riemann.html">infinityclub.net/demos/riemann.html</a>, and see a completely different route to an area at <a href="../../demos/pi-darts.html">infinityclub.net/demos/pi-darts.html</a>.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: four slices, then ten</h2>
+<p>With \(n = 4\) the right-hand heights are \(\tfrac{1}{16}, \tfrac{4}{16}, \tfrac{9}{16}, \tfrac{16}{16}\), each on a base of \(\tfrac14\). So \(R_4 = \tfrac14 \cdot \tfrac{30}{16} = \tfrac{30}{64} = 0.46875\). The left-hand heights are \(0, \tfrac{1}{16}, \tfrac{4}{16}, \tfrac{9}{16}\), so \(L_4 = \tfrac{14}{64} = 0.21875\). Already the average of the two, \(0.34375\), is close to \(\tfrac13\).</p>
+<p>With \(n = 10\): \(R_{10} = \tfrac{385}{1000} = 0.385\) and \(L_{10} = \tfrac{285}{1000} = 0.285\). Check against the formula: \(\tfrac13 + \tfrac{1}{20} + \tfrac{1}{600} = 0.3333 + 0.05 + 0.0017 = 0.385\). The gap between \(L_n\) and \(R_n\) is exactly \(\tfrac{1}{n}\): the overhanging pieces of the right-hand rectangles slide together into one column of width \(\tfrac1n\) and height 1. Draw it and you will see.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Compute \(L_5\) and \(R_5\) for \(y = x^2\) on \([0, 1]\) by hand, as fractions. Check that \(\tfrac13\) sits between them and that they differ by \(\tfrac15\).<div class="space"></div></li>
+<li>Starting from \(R_n = \dfrac{(n+1)(2n+1)}{6n^2}\), multiply out the top and split the fraction to show \(R_n = \tfrac13 + \tfrac{1}{2n} + \tfrac{1}{6n^2}\). Then find the smallest \(n\) for which \(R_n\) is within \(0.01\) of \(\tfrac13\).<div class="space"></div></li>
+<li>Run the same method on \(y = x\) over \([0, 1]\), using \(1 + 2 + \cdots + n = \tfrac{n(n+1)}{2}\). Simplify \(R_n\), say what it tends to, and check it against the area of a triangle.<div class="space"></div></li>
+<li>Now the interval \([0, 2]\) under \(y = x^2\). The strips have width \(\tfrac{2}{n}\) and the \(k\)-th right-hand height is \(\left(\tfrac{2k}{n}\right)^2\). Show the area is \(\tfrac83\). Then explain, without a new calculation, why the area under \(x^2\) from 0 to \(a\) is \(\tfrac{a^3}{3}\), and find the area from 1 to 2.<div class="space tall"></div></li>
+<li>A gift: \(1^3 + 2^3 + \cdots + n^3 = \left(\tfrac{n(n+1)}{2}\right)^2\). Use it to find the area under \(y = x^3\) on \([0, 1]\). Look at the answers for \(x\), \(x^2\) and \(x^3\) together and guess the area under \(x^{10}\).<div class="space"></div></li>
+<li><b>Archimedes.</b> Take the parabola \(y = x^2\) and the chord joining \((0, 0)\) to \((2, 4)\). Archimedes said the segment between the chord and the curve has area exactly \(\tfrac43\) of the largest triangle you can inscribe in it, whose third corner is the point where the tangent is parallel to the chord. (a) The chord has slope 2; the tangent to \(y = x^2\) at \(x = t\) has slope \(2t\). Find the third corner. (b) Find the triangle's area. (c) Write down Archimedes' answer for the segment. (d) Check it: the area under the chord from 0 to 2 is a triangle, and you found the area under the curve in question 4.<div class="space tall"></div></li>
+</ol>
+</section>
+
+<section class="stretch" style="break-before: page">
+<h2>Stretch: the curve with a secret</h2>
+<p>Try the slicing method on \(y = \tfrac{1}{x}\) between \(x = 1\) and \(x = 2\). With \(n = 4\), compute \(L_4\) and \(R_4\) to three decimal places. You will find no tidy formula collapses the sum, and that is not your fault: the exact answer is a number called \(\ln 2 \approx 0.693\), which no fraction equals.</p>
+<p>But something tidy is true. Call the area under \(\tfrac1x\) from \(1\) to \(2\) by the name \(A\). Now stretch the picture horizontally by a factor of 2 (every \(x\) becomes \(2x\)) and squash it vertically by a factor of 2 (every \(y\) becomes \(\tfrac{y}{2}\)). What happens to areas? What happens to the curve \(y = \tfrac1x\)? Where does the region over \([1, 2]\) land? Use this to find the area from \(1\) to \(4\) in terms of \(A\), with no arithmetic at all.</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(R_5 = \tfrac{1}{125}(1 + 4 + 9 + 16 + 25) = \tfrac{55}{125} = \tfrac{11}{25} = 0.44\). \(L_5 = \tfrac{1}{125}(0 + 1 + 4 + 9 + 16) = \tfrac{30}{125} = \tfrac{6}{25} = 0.24\). \(\tfrac{6}{25} \lt \tfrac13 \lt \tfrac{11}{25}\), and \(\tfrac{11}{25} - \tfrac{6}{25} = \tfrac{5}{25} = \tfrac15\).</li>
+<li>\((n+1)(2n+1) = 2n^2 + 3n + 1\), so \(R_n = \tfrac{2n^2}{6n^2} + \tfrac{3n}{6n^2} + \tfrac{1}{6n^2} = \tfrac13 + \tfrac{1}{2n} + \tfrac{1}{6n^2}\). The excess over \(\tfrac13\) is \(\tfrac{1}{2n} + \tfrac{1}{6n^2}\). At \(n = 50\) that is \(0.01 + 0.00007\), just over. At \(n = 51\) it is \(0.009804 + 0.000064 = 0.009868\), under. So \(n = 51\).</li>
+<li>\(R_n = \tfrac{1}{n^2}(1 + 2 + \cdots + n) = \tfrac{n(n+1)}{2n^2} = \tfrac{n+1}{2n} = \tfrac12 + \tfrac{1}{2n} \to \tfrac12\). The region is a right triangle with legs 1 and 1, area \(\tfrac12\). (For instance \(R_6 = \tfrac{21}{36} = \tfrac{7}{12}\).)</li>
+<li>\(R_n = \tfrac{2}{n}\sum \tfrac{4k^2}{n^2} = \tfrac{8}{n^3}\sum k^2 = 8\left(\tfrac13 + \tfrac{1}{2n} + \tfrac{1}{6n^2}\right) \to \tfrac83\). (With \(n = 4\), \(R_4 = \tfrac{8 \cdot 30}{64} = \tfrac{15}{4}\), too big as it should be.) In general every height is \(a^2\) times the \([0, 1]\) height and every width is \(a\) times, so the area is \(a^3 \cdot \tfrac13\). From 1 to 2: \(\tfrac83 - \tfrac13 = \tfrac73\).</li>
+<li>\(R_n = \tfrac{1}{n^4}\left(\tfrac{n(n+1)}{2}\right)^2 = \tfrac{(n+1)^2}{4n^2} \to \tfrac14\). (\(R_4 = \tfrac{100}{256} = \tfrac{25}{64}\).) The pattern \(\tfrac12, \tfrac13, \tfrac14\) says the area under \(x^m\) on \([0, 1]\) is \(\tfrac{1}{m+1}\); for \(x^{10}\), \(\tfrac{1}{11}\). (It is true, and the integral sign makes it a one-line calculation next year.)</li>
+<li>(a) \(2t = 2\) gives \(t = 1\), the point \((1, 1)\). (b) Triangle \((0,0), (2,4), (1,1)\): by the shoelace formula \(\tfrac12\lvert 0(4-1) + 2(1-0) + 1(0-4)\rvert = \tfrac12\lvert 2 - 4 \rvert = 1\). (c) \(\tfrac43 \times 1 = \tfrac43\). (d) Under the chord from 0 to 2 is the triangle with corners \((0,0), (2,0), (2,4)\), area 4. Under the curve is \(\tfrac83\). Segment \(= 4 - \tfrac83 = \tfrac43\). Archimedes was right, and he got there by filling the segment with triangles of area \(1, \tfrac14, \tfrac1{16}, \ldots\) and summing the geometric series \(1 + \tfrac14 + \tfrac1{16} + \cdots = \tfrac43\). (See <a href="b12-infinite-series.html">Adding up forever</a>.)</li>
+</ol>
+<p><b>Stretch.</b> \(L_4 = \tfrac14\left(1 + \tfrac{1}{1.25} + \tfrac{1}{1.5} + \tfrac{1}{1.75}\right) \approx 0.760\) and \(R_4 = \tfrac14\left(\tfrac{1}{1.25} + \tfrac{1}{1.5} + \tfrac{1}{1.75} + \tfrac12\right) \approx 0.635\); \(\ln 2 = 0.693\ldots\) sits between. The stretch-and-squash keeps every area the same (widths double, heights halve). The point \((x, \tfrac1x)\) goes to \((2x, \tfrac{1}{2x})\), which is still on the curve \(y = \tfrac1x\), so the curve maps onto itself. The region over \([1, 2]\) lands exactly on the region over \([2, 4]\). So the area from 2 to 4 is also \(A\), and the area from 1 to 4 is \(2A\). In general the area from 1 to \(ab\) is the area from 1 to \(a\) plus the area from 1 to \(b\): this area behaves like a logarithm, which is exactly what \(\ln\) is.</p>
+</section>
+
+<div class="sheet-nav"><a href="b10-derivative.html">← Previous</a><a href="b12-infinite-series.html">Next: Adding up forever →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

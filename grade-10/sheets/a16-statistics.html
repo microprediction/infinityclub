@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Standard deviation and the bell curve · Infinity Club</title>
+<meta name="description" content="What the standard deviation measures, how to compute it by hand, the 68–95–99.7 rule, z-scores, and why correlation is not causation.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 10</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 10 · Sharpen · 16</div>
+  <h1>Standard deviation and the bell curve</h1>
+  <p class="teaser">What σ measures, 68–95–99.7, z-scores, and why correlation is not causation (with a real example).</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>The mean \(\mu\) tells you where a data set sits. The <b>standard deviation</b> \(\sigma\) tells you how spread out it is, and it is built in the most natural way possible once you see the obstacle.</p>
+<p>Take each value's <em>deviation</em> from the mean, \(x - \mu\). You might average these to measure spread, but they always sum to exactly zero: the values above the mean cancel the values below (that is what the mean is). So square them first. The average of the squared deviations is the <b>variance</b>, and its square root, which puts the units back to normal, is the standard deviation:</p>
+<p class="callout">\[\sigma^2 = \dfrac{(x_1-\mu)^2 + (x_2-\mu)^2 + \cdots + (x_n-\mu)^2}{n}, \qquad \sigma = \sqrt{\sigma^2}.\]</p>
+<p>(When the data are a <em>sample</em> from a bigger population, statisticians divide by \(n - 1\) instead and call it \(s\). It corrects a small bias. For tonight, divide by \(n\).)</p>
+<p>Why care? Because an enormous number of real measurements, heights, measurement errors, exam scores, the sum of many dice, pile up in the same bell-shaped <b>normal curve</b>, and on that curve \(\sigma\) is a ruler:</p>
+<div class="callout"><b>68–95–99.7.</b> About 68% of the data lie within one \(\sigma\) of the mean, 95% within two, and 99.7% within three.</div>
+<p>A <b>z-score</b> measures a value in those units: \(z = \dfrac{x - \mu}{\sigma}\). A \(z\) of 2 means two standard deviations above the mean, in the top 2.3% on a normal curve, whatever the original units were. That is how you compare a maths score with a running time.</p>
+<p>One warning that belongs in the same breath. Two quantities can rise and fall together, a <b>correlation</b>, without either causing the other. Ice cream sales and drownings both rise in the same months. Nobody thinks ice cream causes drowning: hot weather sends people to both the ice cream van and the water. The hidden third variable is called a <b>confounder</b>, and finding it is the first thing to try whenever a headline says "linked to".</p>
+</section>
+
+<section class="example">
+<h2>Watch one: eight numbers by hand</h2>
+<p>Data: 2, 4, 4, 4, 5, 5, 7, 9. Sum 40, so \(\mu = 5\). Deviations: \(-3, -1, -1, -1, 0, 0, 2, 4\) (check: they sum to 0). Squares: \(9, 1, 1, 1, 0, 0, 4, 16\), total 32. Variance \(32/8 = 4\), so \(\sigma = 2\).</p>
+<p>So the value 9 has \(z = (9 - 5)/2 = 2\): two standard deviations above the mean. If these were drawn from a normal population, a value that high or higher would show up about 2.3% of the time.</p>
+<p>A shortcut worth knowing: \(\sigma^2\) also equals (mean of the squares) minus (square of the mean). Here the squares are 4, 16, 16, 16, 25, 25, 49, 81, mean \(232/8 = 29\), and \(29 - 5^2 = 4\). Same answer, no deviations needed. The stretch asks you to prove it.</p>
+<table>
+<tr><th>\(z\)</th><td>1</td><td>1.5</td><td>2</td><td>2.5</td><td>3</td></tr>
+<tr><th>fraction above \(z\)</th><td>15.9%</td><td>6.7%</td><td>2.3%</td><td>0.6%</td><td>0.13%</td></tr>
+</table>
+<p class="small">A tiny normal table for tonight. By symmetry the fraction below \(-z\) is the same.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Compute \(\mu\) and \(\sigma\) for the data 3, 7, 7, 19, showing the deviations and their squares.<div class="space"></div></li>
+<li>Without recomputing from scratch, give \(\mu\) and \(\sigma\) when (a) 10 is added to every value in question 1, and (b) every value in question 1 is doubled. Explain each in one sentence using the formula.<div class="space"></div></li>
+<li>Adult heights in a population are roughly normal with \(\mu = 170\) cm and \(\sigma = 8\) cm. Estimate the fraction taller than 178 cm, the fraction between 154 and 186 cm, and the fraction shorter than 194 cm. Then find the z-score of someone 190 cm tall and, using the table, the fraction taller than them.<div class="space tall"></div></li>
+<li>On test A (\(\mu = 60\), \(\sigma = 10\)) Priya scored 75. On test B (\(\mu = 70\), \(\sigma = 4\)) Sam scored 76. Who did better relative to their class? What would Sam have needed on test B to reach \(z = 2\)?<div class="space"></div></li>
+<li>Two data sets both have mean 5: \(\{1, 1, 1, 9, 9, 9\}\) and \(\{1, 3, 5, 5, 7, 9\}\). Predict which has the larger \(\sigma\) before calculating, then calculate both. What is the smallest possible \(\sigma\) for any data set, and when does it happen?<div class="space tall"></div></li>
+<li>For each correlation, name a plausible confounder, and say what study would separate cause from coincidence: (a) cities with more firefighters suffer more fire damage; (b) children with bigger feet read better; (c) a 2012 medical-journal note found countries that eat more chocolate win more Nobel prizes.<div class="space tall"></div></li>
+</ol>
+<p class="small">Watch a bell curve build itself at <a href="../../demos/galton.html">infinityclub.net/demos/galton.html</a>, and fit lines to points at <a href="../../demos/regression.html">infinityclub.net/demos/regression.html</a>.</p>
+</section>
+
+<section class="stretch">
+<h2>Stretch: why the mean, and the shortcut formula</h2>
+<p>Why measure spread around the mean rather than around some other centre \(c\)? Write each deviation as \((x - c) = (x - \mu) + (\mu - c)\), square it, and sum over the data. Show that</p>
+\[\sum (x - c)^2 = \sum (x - \mu)^2 + n(\mu - c)^2 .\]
+<p>(The cross term vanishes. Why?) Conclude that the sum of squared deviations is <em>smallest</em> when \(c = \mu\): the mean is the point the data are, on average, squared-closest to.</p>
+<p>Then set \(c = 0\) in the same identity and divide by \(n\) to prove the shortcut from the example: \(\sigma^2 = \overline{x^2} - \mu^2\).</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Sum 36, \(\mu = 9\). Deviations \(-6, -2, -2, 10\); squares \(36, 4, 4, 100\), total 144; variance \(144/4 = 36\); \(\sigma = 6\).</li>
+<li>(a) \(\mu = 19\), \(\sigma = 6\): adding 10 shifts every value and the mean together, so every deviation is unchanged. (b) \(\mu = 18\), \(\sigma = 12\): doubling doubles every deviation, so squares quadruple, the variance quadruples, and \(\sigma\) doubles. In general \(\sigma\) scales with the data and ignores shifts.</li>
+<li>178 is one \(\sigma\) above: about 16% taller. 154 to 186 is \(\mu \pm 2\sigma\): about 95%. 194 is \(\mu + 3\sigma\): about 99.85% shorter (all but half of the outer 0.3%). 190 cm: \(z = 20/8 = 2.5\), so about 0.6% are taller.</li>
+<li>Priya: \(z = 15/10 = 1.5\). Sam: \(z = 6/4 = 1.5\). Equal, relative to their classes. For \(z = 2\) on test B Sam needs \(70 + 2 \times 4 = 78\).</li>
+<li>The first set has every value 4 away from the mean, so \(\sigma = 4\) exactly. The second: deviations \(-4, -2, 0, 0, 2, 4\), squares sum to 40, variance \(40/6 \approx 6.67\), \(\sigma \approx 2.58\). The first is more spread, as predicted: its values are all at the extremes. The smallest possible \(\sigma\) is 0, when every value equals the mean.</li>
+<li>(a) Confounder: the size of the fire. Big fires attract more firefighters <em>and</em> do more damage. Compare fires of similar size with different numbers of crews. (b) Age: older children have bigger feet and read better. Compare children of the same age. (c) National wealth: rich countries buy more chocolate and fund more research. Compare countries at similar incomes, or look within one country over time as chocolate consumption changes. In all three, the convincing test is an experiment or a comparison that holds the confounder fixed.</li>
+</ol>
+<p><b>Stretch.</b> \(\sum (x-c)^2 = \sum\big[(x-\mu)^2 + 2(x-\mu)(\mu-c) + (\mu-c)^2\big] = \sum(x-\mu)^2 + 2(\mu-c)\sum(x-\mu) + n(\mu-c)^2\). The middle sum is zero because deviations from the mean sum to zero, leaving the identity. Since \(n(\mu-c)^2 \ge 0\) with equality only at \(c = \mu\), the mean minimises the sum of squared deviations. With \(c = 0\): \(\sum x^2 = \sum(x-\mu)^2 + n\mu^2\); divide by \(n\): \(\overline{x^2} = \sigma^2 + \mu^2\), so \(\sigma^2 = \overline{x^2} - \mu^2\).</p>
+</section>
+
+<div class="sheet-nav"><a href="a15-probability.html">← Previous</a><a href="a17-inequalities.html">Next: Inequalities, absolute value, and sign charts →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

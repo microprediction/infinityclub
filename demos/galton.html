@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Galton Board · Infinity Club</title>
+<meta name="description" content="Balls bounce left or right through twelve rows of pegs and pile up in a bell curve. Watch the normal distribution build itself from coin flips.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+#board { width: 100%; height: auto; aspect-ratio: 9 / 8; display: block; }
+.controls input[type=range] { width: 140px; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>The Galton board</h1>
+<p class="explain">Each ball hits twelve pegs and bounces left or right at every one. Where it lands is just the number of rights. Drop a few and it looks random. Drop a thousand and the pile is a bell. The orange curve is the normal distribution with the same mean and spread, and it fits better the more balls you drop.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <span style="font-weight:700">Drop</span>
+    <button data-n="1">1</button><button data-n="20">20</button><button data-n="100">100</button><button data-n="1000" class="alt">1000 (instant)</button><button data-n="10000" class="alt">10 000 (instant)</button>
+    <button id="reset" class="ghost">Reset</button>
+    <label>bias p(right) <input type="range" id="p" min="0.1" max="0.9" step="any" value="0.5"> <span id="pv">0.50</span></label>
+    <label><input type="checkbox" id="curve" checked> normal curve</label>
+  </div>
+  <canvas id="board" width="900" height="800"></canvas>
+  <div class="readout" id="info"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>Each peg is a coin flip. Landing in bin k means exactly k of the twelve flips went right, so the chance of bin k is the binomial number C(12, k) / 2¹² when the coin is fair: 1, 12, 66, 220, 495, 792, 924, 792, 495, 220, 66, 12, 1 out of 4096. Those are the numbers in row 12 of Pascal's triangle. The middle bin is 924 times more likely than the edge.</p>
+<p>The mean position is 12p and the standard deviation is √(12 p (1 − p)), which for a fair coin is √3 ≈ 1.73. About 68% of the balls land within one standard deviation of the mean, about 95% within two. Those are the numbers that make the normal curve famous, and here you can watch them appear out of nothing but left-or-right.</p>
+<p>The deep reason is the <b>central limit theorem</b>: add up many small independent random nudges and the total is approximately normal, whatever the nudges look like individually. Heights, measurement errors and exam marks are bell-shaped for the same reason the balls are. Drag the bias slider to see what happens when the coin is unfair: the pile shifts and squashes but, with enough rows, it is still a bell.</p>
+<p>Sheet: <a href="../grade-10/sheets/a16-statistics.html">Standard deviation and the bell curve</a>. Related demo: <a href="dice.html">two dice, many rolls</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  var ROWS = 12, BINS = ROWS + 1;
+  // ---- pure maths ----
+  function binom(n, k) { var r = 1; for (var i = 1; i <= k; i++) r = r * (n - k + i) / i; return r; }
+  function binomPmf(n, k, p) { return binom(n, k) * Math.pow(p, k) * Math.pow(1 - p, n - k); }
+  function stats(bins) { var n = 0, s = 0, s2 = 0; bins.forEach(function (c, k) { n += c; s += c * k; s2 += c * k * k; }); if (!n) return { n: 0, mean: NaN, sd: NaN }; var m = s / n; return { n: n, mean: m, sd: Math.sqrt(Math.max(0, s2 / n - m * m)) }; }
+  function within(bins, mu, w) { var n = 0, c = 0; bins.forEach(function (v, k) { n += v; if (Math.abs(k - mu) <= w) c += v; }); return n ? c / n : NaN; }
+  function theoryWithin(p, w) { var mu = ROWS * p, c = 0; for (var k = 0; k <= ROWS; k++) if (Math.abs(k - mu) <= w) c += binomPmf(ROWS, k, p); return c; }
+  if (typeof document === "undefined") { module.exports = { binom: binom, binomPmf: binomPmf, stats: stats, within: within, theoryWithin: theoryWithin, ROWS: ROWS }; return; }
+
+  var bins = [], balls = [], p = 0.5, queue = 0, anim = null;
+  var canvas = document.getElementById("board"), ctx = canvas.getContext("2d"), info = document.getElementById("info");
+  function reset() { bins = []; for (var i = 0; i < BINS; i++) bins.push(0); balls = []; queue = 0; }
+  reset();
+
+  function geom() {
+    var dpr = window.devicePixelRatio || 1, W = canvas.clientWidth || 900, H = W * 8 / 9;
+    if (canvas.width !== Math.round(W * dpr)) { canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr); canvas.style.height = H + "px"; }
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    var s = W / (BINS + 1), top = 40, dy = (H * 0.5) / ROWS;
+    return { W: W, H: H, s: s, top: top, dy: dy, binTop: top + ROWS * dy + 20, binBottom: H - 24 };
+  }
+  function pegX(g, row, j) { return g.W / 2 + (j - row / 2) * g.s; } // row has row+1 pegs, j = 0..row
+  function draw() {
+    var g = geom(), W = g.W, H = g.H;
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, H);
+    ctx.fillStyle = "#1d1f3a";
+    for (var r = 0; r < ROWS; r++) for (var j = 0; j <= r; j++) { ctx.beginPath(); ctx.arc(pegX(g, r, j), g.top + r * g.dy, 3, 0, Math.PI * 2); ctx.fill(); }
+    // bins
+    var mx = 1; bins.forEach(function (c) { mx = Math.max(mx, c); });
+    var total = bins.reduce(function (a, b) { return a + b; }, 0), mu = ROWS * p, sd = Math.sqrt(ROWS * p * (1 - p));
+    var curveMax = total * binomPmf(ROWS, Math.round(mu), p); var scaleMax = Math.max(mx, curveMax * 1.05);
+    var bh = g.binBottom - g.binTop;
+    ctx.font = "12px Nunito, sans-serif"; ctx.textAlign = "center";
+    for (var k = 0; k < BINS; k++) {
+      var x = W / 2 + (k - ROWS / 2) * g.s, h = bins[k] / scaleMax * bh;
+      ctx.fillStyle = Math.abs(k - mu) <= sd ? "#3f44c9" : Math.abs(k - mu) <= 2 * sd ? "#8a8ee6" : "#c3c5ee";
+      ctx.fillRect(x - g.s * 0.42, g.binBottom - h, g.s * 0.84, h);
+      ctx.fillStyle = "#5d6079"; ctx.fillText(k, x, g.binBottom + 14);
+      if (bins[k] && h > 14) { ctx.fillStyle = "#fff"; ctx.fillText(bins[k], x, g.binBottom - 4); }
+    }
+    ctx.strokeStyle = "#d9d6cc"; ctx.beginPath(); ctx.moveTo(10, g.binBottom); ctx.lineTo(W - 10, g.binBottom); ctx.stroke();
+    if (document.getElementById("curve").checked && total > 0) {
+      ctx.strokeStyle = "#f5a524"; ctx.lineWidth = 2.5; ctx.beginPath();
+      for (var i = 0; i <= 200; i++) { var kk = -0.5 + (ROWS + 1) * i / 200, y = total * Math.exp(-0.5 * Math.pow((kk - mu) / sd, 2)) / (sd * Math.sqrt(2 * Math.PI)); var px = W / 2 + (kk - ROWS / 2) * g.s, py = g.binBottom - y / scaleMax * bh; if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py); }
+      ctx.stroke(); ctx.lineWidth = 1;
+    }
+    // balls
+    ctx.fillStyle = "#f5a524";
+    balls.forEach(function (b) { var x0 = pegX(g, b.row, b.j), x1 = b.row + 1 < ROWS ? pegX(g, b.row + 1, b.j + b.dir) : W / 2 + (b.j + b.dir - ROWS / 2) * g.s; var y0 = g.top + b.row * g.dy, y1 = y0 + g.dy; var t = b.t, x = x0 + (x1 - x0) * t, y = y0 + (y1 - y0) * (t * t); ctx.beginPath(); ctx.arc(x, y - 6, 5, 0, Math.PI * 2); ctx.fill(); });
+    // legend
+    ctx.textAlign = "left"; ctx.fillStyle = "#1d1f3a"; ctx.font = "13px Nunito, sans-serif";
+    ctx.fillText("dark: within 1σ of the mean, lighter: within 2σ", 12, 16);
+  }
+  function describe() {
+    var st = stats(bins), mu = ROWS * p, sd = Math.sqrt(ROWS * p * (1 - p));
+    var lines = ["Theory: mean 12p = " + mu.toFixed(2) + ", σ = √(12p(1−p)) = " + sd.toFixed(3) + "    expected within 1σ: " + (100 * theoryWithin(p, sd)).toFixed(1) + "%, within 2σ: " + (100 * theoryWithin(p, 2 * sd)).toFixed(1) + "%"];
+    if (st.n) lines.push("So far: " + st.n.toLocaleString() + " balls, mean " + st.mean.toFixed(3) + ", s.d. " + st.sd.toFixed(3) + "    within 1σ: " + (100 * within(bins, mu, sd)).toFixed(1) + "%, within 2σ: " + (100 * within(bins, mu, 2 * sd)).toFixed(1) + "%");
+    else lines.push("No balls yet. Drop some.");
+    info.textContent = lines.join("\n");
+  }
+  function spawn() { balls.push({ row: 0, j: 0, dir: Math.random() < p ? 1 : 0, t: 0 }); }
+  function tick() {
+    if (queue > 0 && balls.length < 40) { var k = Math.min(queue, 3); for (var i = 0; i < k; i++) spawn(); queue -= k; }
+    for (var b = balls.length - 1; b >= 0; b--) {
+      var ball = balls[b]; ball.t += 0.12;
+      if (ball.t >= 1) { ball.j += ball.dir; ball.row++; ball.t = 0; ball.dir = Math.random() < p ? 1 : 0; if (ball.row >= ROWS) { bins[ball.j]++; balls.splice(b, 1); } }
+    }
+    draw(); describe();
+    if (balls.length || queue) anim = requestAnimationFrame(tick); else anim = null;
+  }
+  function instant(n) { for (var i = 0; i < n; i++) { var k = 0; for (var r = 0; r < ROWS; r++) if (Math.random() < p) k++; bins[k]++; } draw(); describe(); }
+  document.querySelectorAll("[data-n]").forEach(function (btn) { btn.addEventListener("click", function () { var n = parseInt(btn.dataset.n, 10); if (n >= 1000) instant(n); else { queue += n; if (!anim) anim = requestAnimationFrame(tick); } }); });
+  document.getElementById("reset").addEventListener("click", function () { if (anim) { cancelAnimationFrame(anim); anim = null; } reset(); draw(); describe(); });
+  document.getElementById("p").addEventListener("input", function (e) { p = parseFloat(e.target.value); document.getElementById("pv").textContent = p.toFixed(2); if (anim) { cancelAnimationFrame(anim); anim = null; } reset(); draw(); describe(); });
+  document.getElementById("curve").addEventListener("change", draw);
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(draw, 150); });
+  draw(); describe();
+})();
+</script>
+</body>
+</html>

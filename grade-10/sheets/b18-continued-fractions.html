@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Continued fractions and the golden ratio · Infinity Club</title>
+<meta name="description" content="Continued fractions give the best possible fractions for pi and root 2, explain why 355/113 is so good, and show why the golden ratio is the hardest number to approximate.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 10</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 10 · Around the corner · 18</div>
+  <h1>Continued fractions and the golden ratio</h1>
+  <p class="teaser">The best fractions for π and √2, why 355/113 is so good, and why φ is the hardest number to approximate.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Decimals are one way to write a number as a list of digits. There is an older, stranger way that turns out to be better at one thing: finding the <em>best</em> fractions for a number. Take \(415/93\). It is \(4\) and a bit: \(415 = 4 \times 93 + 43\), so \(415/93 = 4 + 43/93\). Now flip the leftover: \(43/93 = 1/(93/43)\), and \(93/43 = 2 + 7/43\). Flip again: \(43/7 = 6 + 1/7\). Flip once more: \(7/1 = 7\). Done:</p>
+<p>\[\frac{415}{93} = 4 + \cfrac{1}{2 + \cfrac{1}{6 + \cfrac{1}{7}}}.\]</p>
+<p>That is a <b>continued fraction</b>, written for short as \([4; 2, 6, 7]\). The steps are exactly Euclid's algorithm for the greatest common divisor, which is why it always finishes for a fraction. For an irrational number it never finishes, and the pattern of terms is often far more revealing than the decimal digits.</p>
+<p class="callout">\(\sqrt2 = [1; 2, 2, 2, 2, \ldots]\), \(\qquad \varphi = \dfrac{1 + \sqrt5}{2} = [1; 1, 1, 1, 1, \ldots]\), \(\qquad \pi = [3; 7, 15, 1, 292, 1, 1, 1, \ldots]\).</p>
+<p>Stop a continued fraction early and tidy it into an ordinary fraction. These stopping points are the <b>convergents</b>, and they have a remarkable property: each convergent \(p/q\) is closer to the number than <em>any</em> fraction with a smaller denominator. They are the champion approximations. For \(\pi\) the convergents are \(3\), \(\tfrac{22}{7}\), \(\tfrac{333}{106}\), \(\tfrac{355}{113}\), and every one of them is a famous approximation for a reason.</p>
+<p>How good is a convergent? If the next term in the continued fraction is \(a\), the error is less than \(1/(a q^2)\). So a <em>big</em> term coming up means the convergent just before it is unusually good. In \(\pi\) the term after \(355/113\) is \(292\), huge, which is why \(355/113 = 3.14159292\ldots\) matches \(\pi\) to six decimal places with a three-digit denominator. The Chinese astronomer Zu Chongzhi found it in the fifth century.</p>
+<p>And the opposite. The golden ratio's terms are all 1s, the smallest possible, so its convergents are the <em>worst</em> that convergents can be. Those convergents are \(\tfrac11, \tfrac21, \tfrac32, \tfrac53, \tfrac85, \tfrac{13}{8}, \ldots\), ratios of Fibonacci numbers. In a precise sense \(\varphi\) is the most irrational number: the one that fractions approach most reluctantly. That is why sunflowers use it (see <a href="../../grade-6/sheets/b6-fibonacci.html">the grade 6 Fibonacci sheet</a>): seeds placed by a golden-angle turn never line up into spokes, because no fraction gets close enough to make them.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: the continued fraction of \(\sqrt2\)</h2>
+<p>\(\sqrt2 = 1.414\ldots\), so the first term is \(1\) and the leftover is \(\sqrt2 - 1\). Flip it. The trick is to multiply top and bottom by \(\sqrt2 + 1\):</p>
+<p>\[\frac{1}{\sqrt2 - 1} = \frac{\sqrt2 + 1}{(\sqrt2 - 1)(\sqrt2 + 1)} = \frac{\sqrt2 + 1}{2 - 1} = \sqrt2 + 1 = 2.414\ldots\]</p>
+<p>So the next term is \(2\), and the leftover is \(\sqrt2 + 1 - 2 = \sqrt2 - 1\): <em>the same leftover as before</em>. Flipping it gives \(2.414\ldots\) again, and again, forever. \(\sqrt2 = [1; 2, 2, 2, \ldots]\).</p>
+<p>Now the convergents. \([1] = 1\). \([1; 2] = 1 + \tfrac12 = \tfrac32\). \([1; 2, 2] = 1 + \cfrac{1}{2 + \frac12} = 1 + \tfrac25 = \tfrac75\). \([1; 2, 2, 2] = 1 + \cfrac{1}{2 + \frac25} = 1 + \tfrac{5}{12} = \tfrac{17}{12}\). There is a faster way: each convergent's top and bottom are (term) × (previous) + (one before that). With terms \(2, 2, 2, \ldots\): tops \(1, 3, 7, 17, 41, 99\); bottoms \(1, 2, 5, 12, 29, 70\). And \(\tfrac{99}{70} = 1.4142857\), against \(\sqrt2 = 1.4142136\): correct to four decimals with a two-digit denominator.</p>
+<p>Notice the errors alternate: \(1 \lt \sqrt2\), \(\tfrac32 > \sqrt2\), \(\tfrac75 \lt \sqrt2\), \(\tfrac{17}{12} > \sqrt2\). Convergents always close in from both sides.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Find the continued fraction of \(649/200\) and write out its convergents. (You should get four terms; the last convergent is the fraction itself.)<div class="space"></div></li>
+<li>Use the "term × previous + one before" rule with the terms of \(\pi\), \([3; 7, 15, 1, 292]\), to produce the convergents \(3, \tfrac{22}{7}, \tfrac{333}{106}, \tfrac{355}{113}\), and the one after. Then compute how far each of the first four is from \(\pi = 3.14159265\ldots\) and say which error is the surprise.<div class="space tall"></div></li>
+<li>Run the \(\sqrt2\) trick on \(\sqrt3\): start with \(1\), leftover \(\sqrt3 - 1\), and rationalise each flip. You should find the terms repeat with period 2. Write down the first six convergents and check that \(\tfrac{97}{56}\) is within \(0.0001\) of \(\sqrt3 = 1.7320508\).<div class="space tall"></div></li>
+<li>The convergents of \(\varphi\) are ratios of consecutive Fibonacci numbers. Compute \(\tfrac{13}{8}\), \(\tfrac{21}{13}\) and \(\tfrac{34}{21}\) as decimals, and the error of each against \(\varphi = 1.6180340\). Compare with the errors for \(\sqrt2\)'s convergents \(\tfrac{17}{12}\) and \(\tfrac{41}{29}\), whose denominators are similar in size. Which number is harder to approximate?<div class="space"></div></li>
+<li>Prove that \([1; 1, 1, 1, \ldots] = \varphi\). Call the whole thing \(x\). Explain why \(x = 1 + \tfrac1x\), turn that into a quadratic, and solve it. Then do the same for \([2; 2, 2, 2, \ldots]\) and \([1; 2, 2, 2, \ldots]\) and check it agrees with the worked example.<div class="space"></div></li>
+<li>A year is \(365.2422\) days. Write \(0.2422\) as a continued fraction (four terms is plenty) and find its convergents. Which convergent is the Julian calendar's rule of one leap day every 4 years? Which one would be a better rule, and what does it suggest about leap years every 33 years?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: why convergents are champions</h2>
+<p>Here is the key inequality, and it is worth proving once. Consecutive convergents \(\tfrac{p_n}{q_n}\) and \(\tfrac{p_{n+1}}{q_{n+1}}\) satisfy \(p_{n+1}q_n - p_nq_{n+1} = \pm 1\). Check it on \(\tfrac{3}{2}, \tfrac{7}{5}\) and on \(\tfrac{22}{7}, \tfrac{333}{106}\). Now, the number \(x\) lies between consecutive convergents, so</p>
+<p>\[\left|x - \frac{p_n}{q_n}\right| \lt \left|\frac{p_{n+1}}{q_{n+1}} - \frac{p_n}{q_n}\right| = \frac{1}{q_n q_{n+1}} \lt \frac{1}{q_n^2}.\]</p>
+<p>Every convergent is within \(1/q^2\) of the target. A random fraction with denominator \(q\) is only guaranteed to be within \(1/(2q)\). For \(q = 113\) that is the difference between an error of \(0.0044\) and \(0.00008\). Now use the recurrence \(q_{n+1} = a_{n+1}q_n + q_{n-1}\) to explain why a big next term \(a_{n+1}\) makes the bound even better, and why all-ones terms (the golden ratio) make it as weak as it can be.</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(649 = 3 \times 200 + 49\); \(200 = 4 \times 49 + 4\); \(49 = 12 \times 4 + 1\); \(4 = 4 \times 1\). So \(649/200 = [3; 4, 12, 4]\). Convergents \(\tfrac31, \tfrac{13}{4}, \tfrac{159}{49}, \tfrac{649}{200}\).</li>
+<li>Tops: \(3, 22, 15 \times 22 + 3 = 333, 333 + 22 = 355, 292 \times 355 + 333 = 103993\). Bottoms: \(1, 7, 106, 113, 33102\). Errors: \(3\) is off by \(0.1416\); \(\tfrac{22}{7} = 3.142857\), off by \(0.00126\); \(\tfrac{333}{106} = 3.141509\), off by \(0.000083\); \(\tfrac{355}{113} = 3.14159292\), off by \(0.00000027\). The surprise is \(355/113\): a jump of 300 times in accuracy for a slightly bigger denominator, because the next term is 292.</li>
+<li>\(\tfrac{1}{\sqrt3 - 1} = \tfrac{\sqrt3 + 1}{2} = 1.366\ldots\), term \(1\), leftover \(\tfrac{\sqrt3 - 1}{2}\). Flip: \(\tfrac{2}{\sqrt3 - 1} = \sqrt3 + 1 = 2.732\ldots\), term \(2\), leftover \(\sqrt3 - 1\), back to the start. \(\sqrt3 = [1; 1, 2, 1, 2, \ldots]\). Convergents \(\tfrac11, \tfrac21, \tfrac53, \tfrac74, \tfrac{19}{11}, \tfrac{26}{15}, \tfrac{71}{41}, \tfrac{97}{56}\); \(\tfrac{97}{56} = 1.732143\), within \(0.0001\) of \(1.7320508\).</li>
+<li>\(\tfrac{13}{8} = 1.625\) (error \(0.0070\)), \(\tfrac{21}{13} = 1.61538\) (error \(0.0026\)), \(\tfrac{34}{21} = 1.61905\) (error \(0.0010\)). For \(\sqrt2\): \(\tfrac{17}{12} = 1.41667\) (error \(0.0025\)) and \(\tfrac{41}{29} = 1.41379\) (error \(0.00042\)). Raw errors are not a fair comparison because the denominators differ, so multiply each error by \(q^2\): for \(\varphi\) you get \(0.446, 0.448, 0.447\), for \(\sqrt2\) you get \(0.353, 0.354\). The \(\sqrt2\) convergents are consistently closer for their size, and the golden ratio's figure \(0.447 \approx 1/\sqrt5\) is the worst any number can have (that is Hurwitz's theorem). The golden ratio is harder, and it is the hardest of all.</li>
+<li>Everything after the first \(1 +\) is the whole fraction again, so \(x = 1 + 1/x\), \(x^2 - x - 1 = 0\), \(x = \tfrac{1 + \sqrt5}{2}\) (the positive root). For \([2; 2, 2, \ldots]\): \(y = 2 + 1/y\), \(y^2 - 2y - 1 = 0\), \(y = 1 + \sqrt2\). Then \([1; 2, 2, \ldots] = 1 + 1/y = 1 + \tfrac{1}{1 + \sqrt2} = 1 + (\sqrt2 - 1) = \sqrt2\), as the worked example found.</li>
+<li>\(0.2422 = \tfrac{2422}{10000} = \tfrac{1211}{5000}\). \(5000 = 4 \times 1211 + 156\); \(1211 = 7 \times 156 + 119\); \(156 = 1 \times 119 + 37\); \(119 = 3 \times 37 + 8\). So \(0.2422 = [0; 4, 7, 1, 3, \ldots]\), convergents \(\tfrac14, \tfrac{7}{29}, \tfrac{8}{33}, \tfrac{31}{128}\). \(\tfrac14\) is the Julian rule, one leap day in 4 years (too many: it drifts a day every 128 years). \(\tfrac{8}{33}\) says 8 leap years in every 33, which is more accurate than our Gregorian 97 in 400 and was proposed by Omar Khayyam's calendar committee in 1079.</li>
+</ol>
+<p><b>Stretch.</b> \(7 \times 2 - 3 \times 5 = -1\); \(333 \times 7 - 22 \times 106 = 2331 - 2332 = -1\). The identity holds in general because each step of the recurrence changes the determinant \(p_{n+1}q_n - p_nq_{n+1}\) only by a sign. Since \(q_{n+1} = a_{n+1}q_n + q_{n-1} > a_{n+1}q_n\), the error is less than \(\tfrac{1}{q_n q_{n+1}} \lt \tfrac{1}{a_{n+1}q_n^2}\): a big next term shrinks the error by that factor, which is the 292 effect for \(\pi\). With every \(a = 1\) the denominators grow as slowly as the recurrence allows (Fibonacci numbers, each only about \(1.618\) times the last), so \(q_n q_{n+1}\) is as small as it can be and the convergents are as weak as convergents ever are. That is the precise meaning of "most irrational".</p>
+</section>
+
+<div class="sheet-nav"><a href="b17-pythagorean-triples.html">← Previous</a><a href="b19-graphs-planar.html">Next: Graphs: trees, planarity and Ramsey →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

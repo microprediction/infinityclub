@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The logistic map and chaos · Infinity Club</title>
+<meta name="description" content="Iterate x to r x (1 minus x) by hand: a steady population, then a two-cycle, then a four-cycle, then chaos, and the Feigenbaum constant that shows up everywhere.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+<style>
+table.iter { border-collapse: collapse; margin: .6em 0; font-size: .95em; }
+table.iter th, table.iter td { border: 1px solid var(--rule); padding: .25em .6em; text-align: center; }
+table.iter td.blank { min-width: 4.5em; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 10</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 10 · Around the corner · 24</div>
+  <h1>The logistic map and chaos</h1>
+  <p class="teaser">x → r x (1 − x). Steady, then periodic, then chaos, and a constant that shows up everywhere.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Here is a model of a population. Let \(x_n\) be this year's population as a fraction of the most the habitat could hold, so \(0 \le x_n \le 1\). Next year's is</p>
+<p class="callout">\(x_{n+1} = r\,x_n\,(1 - x_n)\). The \(r x_n\) part is growth; the \((1 - x_n)\) part is crowding: the fuller the habitat, the harder next year is.</p>
+<p>That is the whole rule. One multiplication, one subtraction. You can run it on a calculator, and tonight you will. What it does depends entirely on \(r\), and what it does is one of the great surprises of twentieth-century mathematics.</p>
+<p><b>Fixed points.</b> A population that stays put satisfies \(x = r x (1 - x)\). Either \(x = 0\) (extinct) or, dividing by \(x\), \(1 = r(1 - x)\), so \(x^* = 1 - \tfrac1r\). For \(r = 2.5\), \(x^* = 0.6\).</p>
+<p><b>Stable or not?</b> Being a fixed point is not enough; the question is whether nearby values are pulled in or pushed away. Picture the graph of \(f(x) = r x (1 - x)\), an upside-down parabola. Near \(x^*\) the graph is nearly a straight line with some steepness \(m\) (the slope of the curve at that point; sheet <a href="b10-derivative.html">b10</a> makes this precise, but all you need tonight is "steepness"). If you start a small distance \(\varepsilon\) from \(x^*\), one step later you are about \(m\varepsilon\) away. So errors shrink when \(|m| \lt 1\) and grow when \(|m| \gt 1\). For the parabola the steepness at \(x\) is \(r(1 - 2x)\), and at \(x^* = 1 - 1/r\) that works out to</p>
+\[ m = r\left(1 - 2 + \tfrac{2}{r}\right) = 2 - r. \]
+<p>So the fixed point is stable exactly when \(|2 - r| \lt 1\), that is, \(1 \lt r \lt 3\). A negative \(m\) means the population overshoots, landing alternately above and below \(x^*\) while it closes in.</p>
+<p><b>Past 3: period doubling.</b> At \(r = 3.2\) the fixed point \(0.6875\) is there but unstable (\(m = -1.2\)). The population settles instead into a <b>2-cycle</b>, bouncing forever between \(0.513\) and \(0.799\). At \(r = 3.5\) that 2-cycle has gone unstable too and a <b>4-cycle</b> takes over: \(0.383, 0.827, 0.501, 0.875\). Then 8, 16, 32, each doubling arriving faster than the last: at \(r = 3, 3.4495, 3.5441, 3.5644, \ldots\), piling up at \(r_\infty \approx 3.5699\). Beyond that: <b>chaos</b>. At \(r = 3.9\) the sequence never repeats and looks random, though every number is produced by that one deterministic rule.</p>
+<p><b>Sensitive dependence.</b> Start at \(0.2\) and at \(0.201\) with \(r = 3.9\). For a few steps they stay close. By step 8 one is at \(0.514\) and the other at \(0.397\); soon after they are unrelated. A tiny error in the starting value grows exponentially until it swamps everything. This is why weather forecasts die after about ten days however good the computers get: the atmosphere obeys rules like this one. Edward Lorenz called it the butterfly effect.</p>
+<p><b>The universal constant.</b> Look at the gaps between successive doublings: \(3.4495 - 3 = 0.4495\), then \(0.0946\), then \(0.0203\). Each is about 4.67 times smaller than the last. Mitchell Feigenbaum showed in 1975 that the ratio tends to \(\delta = 4.6692\ldots\), and, astonishingly, that the <em>same</em> number appears for any hump-shaped map: dripping taps, electronic circuits, animal populations, lasers. A new constant of nature, found with a pocket calculator.</p>
+<p>Play with all of this at <a href="../../demos/logistic.html">infinityclub.net/demos/logistic.html</a> (cobweb plot and the bifurcation diagram). The Mandelbrot set at <a href="../../demos/mandelbrot.html">infinityclub.net/demos/mandelbrot.html</a> is the same iteration \(z \to z^2 + c\) with complex numbers; its main cardioid and the bulbs along the real axis are this period-doubling cascade seen from above.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: r = 3.2 by hand, and the 2-cycle exactly</h2>
+<p>Start at \(x_0 = 0.2\). \(x_1 = 3.2 \times 0.2 \times 0.8 = 0.512\). \(x_2 = 3.2 \times 0.512 \times 0.488 = 0.7995\). \(x_3 = 3.2 \times 0.7995 \times 0.2005 = 0.5129\). \(x_4 = 0.7995\), \(x_5 = 0.5130\), \(x_6 = 0.7995\), \(\ldots\) Locked into a 2-cycle by the fourth step.</p>
+<p>Can we find the two values exactly? They are fixed points of the <em>double</em> step, \(f(f(x)) = x\). That is a quartic, but it contains the ordinary fixed points \(0\) and \(x^*\) as roots, and dividing those out leaves a quadratic: \(r^2 x^2 - r(r + 1)x + (r + 1) = 0\), so</p>
+\[ x = \frac{(r + 1) \pm \sqrt{(r + 1)(r - 3)}}{2r}. \]
+<p>For \(r = 3.2\): \(\dfrac{4.2 \pm \sqrt{4.2 \times 0.2}}{6.4} = \dfrac{4.2 \pm 0.9165}{6.4}\), giving \(0.7995\) and \(0.5130\). Exactly what the calculator found.</p>
+<p>Notice the square root: \((r + 1)(r - 3)\) is negative for \(r \lt 3\), so the 2-cycle does not exist until \(r = 3\). It is born at the precise moment the fixed point loses stability (\(m = 2 - r = -1\)). That is no coincidence, and it is the mechanism behind every doubling in the cascade.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Take \(r = 2.5\) and \(x_0 = 0.2\). Compute \(x_1\) to \(x_5\) (three decimals). Where is the population heading? Check it against \(1 - 1/r\). Then start from \(x_0 = 0.9\) instead and compute four steps. Same destination?<div class="space"></div></li>
+<li>For \(r = 2.5, 3.2, 3.5, 3.9\) find the non-zero fixed point \(x^*\) and the steepness \(m = 2 - r\) there. Which fixed points are stable? For the stable one, what does the sign of \(m\) tell you about how the sequence approaches it?<div class="space short"></div></li>
+<li>Explain from \(|2 - r| \lt 1\) why the stable range is exactly \(1 \lt r \lt 3\). What happens to \(x^*\) when \(r \lt 1\), and what does the population do then? (The steepness at \(x = 0\) is \(r\).)<div class="space short"></div></li>
+<li>Take \(r = 3.5\) and \(x_0 = 0.2\). Fill in the table (four decimals), then run on to \(x_{12}\). What pattern emerges? Compute the 2-cycle values from the formula in the example for \(r = 3.5\) and explain why the sequence is <em>not</em> settling on them.
+<table class="iter"><tr><th>\(n\)</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th></tr>
+<tr><td>\(x_n\)</td><td>0.2</td><td>0.56</td><td class="blank"></td><td class="blank"></td><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr></table>
+<div class="space short"></div></li>
+<li><b>Sensitive dependence.</b> With \(r = 3.9\), run two sequences side by side from \(x_0 = 0.2\) and \(x_0 = 0.201\) (three decimals). Fill in the gaps. At which step does the difference first exceed 0.1?
+<table class="iter"><tr><th>\(n\)</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th></tr>
+<tr><td>from 0.2</td><td>0.200</td><td>0.624</td><td>0.915</td><td class="blank"></td><td class="blank"></td><td class="blank"></td><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr>
+<tr><td>from 0.201</td><td>0.201</td><td>0.626</td><td>0.913</td><td class="blank"></td><td class="blank"></td><td class="blank"></td><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr></table>
+<div class="space short"></div></li>
+<li><b>Feigenbaum.</b> The first three doublings are at \(r_1 = 3\), \(r_2 = 3.4495\), \(r_3 = 3.5441\). Compute the ratio of the first two gaps. Using \(\delta = 4.669\), predict \(r_4\). Then predict where the whole cascade ends, \(r_\infty\), by treating the remaining gaps as a geometric series with ratio \(1/\delta\). (True values: \(r_4 = 3.5644\), \(r_\infty = 3.5699\).)<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: r = 4, and why chaos is just digit-shifting</h2>
+<p>At \(r = 4\) there is a trick. Write \(x = \sin^2\theta\). Then \(4x(1 - x) = 4\sin^2\theta\cos^2\theta = (2\sin\theta\cos\theta)^2 = \sin^2(2\theta)\). So the complicated map on \(x\) is simply \(\theta \to 2\theta\) on the angle: <b>doubling</b>.</p>
+<p>Now write \(\theta\) as a fraction of \(\pi\) in binary, say \(\theta = 0.b_1 b_2 b_3 \ldots \times \pi\). Doubling shifts every digit one place left and drops the first (angles repeat every \(\pi\) under \(\sin^2\)). After 50 steps, the 50th binary digit of your starting value is in charge. That is sensitive dependence made exact: chaos is reading out the digits of the initial condition, one per step.</p>
+<p>Try \(\theta = \pi/7\): doubling gives \(2\pi/7\), \(4\pi/7\), \(8\pi/7 \equiv \pi/7\). A 3-cycle. Compute the three \(x\) values \(\sin^2(\pi/7), \sin^2(2\pi/7), \sin^2(4\pi/7)\) and check with the calculator that \(4x(1 - x)\) really cycles through them. Then find the 2-cycle hiding at \(\theta = \pi/5\). Finally: why does a rational multiple of \(\pi\) always give a repeating orbit, and an irrational one never? (A 1975 paper proved that any map with a 3-cycle has cycles of <em>every</em> length and chaotic orbits too. Its title: "Period three implies chaos".)</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(0.400, 0.600, 0.600, 0.600, 0.600\): it lands on \(0.6 = 1 - 1/2.5\) in two steps and stays. From \(0.9\): \(0.225, 0.436, 0.615, 0.592\), then \(0.604, 0.598, \ldots\), spiralling in to \(0.6\) from alternate sides. Same destination.</li>
+<li>\(x^* = 0.6, 0.6875, 0.7143, 0.7436\); \(m = -0.5, -1.2, -1.5, -1.9\). Only \(r = 2.5\) is stable (\(|m| \lt 1\)). Negative \(m\) means each error flips sign: the sequence alternates above and below \(0.6\) while shrinking by half each step, which is exactly what question 1 showed from \(0.9\).</li>
+<li>\(|2 - r| \lt 1\) means \(-1 \lt 2 - r \lt 1\), so \(1 \lt r \lt 3\). For \(r \lt 1\), \(x^* = 1 - 1/r\) is negative, so there is no positive fixed point; the steepness at 0 is \(r \lt 1\), so 0 is stable and the population dies out.</li>
+<li>\(x_2 = 0.8624\), \(x_3 = 0.4153\), \(x_4 = 0.8499\), \(x_5 = 0.4465\), \(x_6 = 0.8650\); continuing, \(0.4088, 0.8459, 0.4563, 0.8683, 0.4002, 0.8401\), and after many steps it settles on the 4-cycle \(0.3828, 0.8269, 0.5009, 0.8750\). The 2-cycle formula gives \(\dfrac{4.5 \pm \sqrt{4.5 \times 0.5}}{7} = 0.8571\) and \(0.4286\). Those satisfy \(f(f(x)) = x\), but at \(r = 3.5\) the 2-cycle is itself unstable (the steepness of the double step has passed \(-1\)), so the sequence is repelled into the 4-cycle.</li>
+<li>From 0.2: \(0.303, 0.824, 0.566, 0.958, 0.156, 0.514\). From 0.201: \(0.311, 0.835, 0.537, 0.970, 0.115, 0.397\). The difference first exceeds 0.1 at step 8 (\(0.514\) against \(0.397\)); two steps later they are \(0.098\) and \(0.243\). A 0.5% error in the start becomes a 100% error in ten generations.</li>
+<li>Gaps \(0.4495\) and \(0.0946\); ratio \(4.75\) (it approaches \(4.669\) from above as the doublings go on). \(r_4 \approx r_3 + 0.0946/4.669 = 3.5441 + 0.0203 = 3.5644\). ✓ Remaining gaps form a geometric series: \(r_\infty \approx r_3 + 0.0946\left(\tfrac{1}{\delta} + \tfrac{1}{\delta^2} + \cdots\right) = r_3 + \dfrac{0.0946}{\delta - 1} = 3.5441 + 0.0258 = 3.5699\). ✓ Infinitely many doublings fit in a finite interval, so chaos begins at a definite \(r\).</li>
+</ol>
+<p><b>Stretch.</b> \(\sin^2(\pi/7) = 0.1883\), \(\sin^2(2\pi/7) = 0.6113\), \(\sin^2(4\pi/7) = 0.9505\). Check: \(4(0.1883)(0.8117) = 0.6113\), then \(0.9505\), then back to \(0.1883\): a 3-cycle. At \(\theta = \pi/5\): \(\sin^2(\pi/5) = 0.3455 \to \sin^2(2\pi/5) = 0.9045 \to \sin^2(4\pi/5) = \sin^2(\pi/5) = 0.3455\): a 2-cycle. A rational \(\theta/\pi = p/q\) has only \(q\) possible values under doubling mod 1 (its binary expansion repeats), so the orbit must eventually repeat; an irrational angle has a non-repeating expansion, so the orbit never repeats. Almost every number is irrational (sheet <a href="b13-cantor.html">b13</a>), so almost every start is chaotic. The 1975 paper is by Li and Yorke.</p>
+</section>
+
+<div class="sheet-nav"><a href="b23-random-walks.html">← Previous</a><a href="b25-entropy.html">Next: Information and entropy →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Information and entropy · Infinity Club</title>
+<meta name="description" content="How many yes/no questions does a message need? Bits, Shannon entropy, Huffman codes, and why compression has a hard limit.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 10</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 10 · Around the corner · 25</div>
+  <h1>Information and entropy</h1>
+  <p class="teaser">How many yes/no questions does a message need? Bits, Huffman codes, and why compression has a limit.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>In 1948 Claude Shannon asked a question nobody had made precise before: <b>how much information is in a message?</b> His answer starts with a game you already know. If I think of a number from 1 to 16, you can find it with four yes/no questions, each one halving what is left. Four questions, because \(2^4 = 16\). One yes/no answer is called a <b>bit</b>, and a choice among \(N\) equally likely things is worth \(\log_2 N\) bits. (The <a href="../../grade-6/sheets/c5-twenty-questions.html">Twenty Questions</a> sheet from grade 6 is the same idea; this is where it leads.)</p>
+<p>Now the clever step. Suppose the possibilities are <em>not</em> equally likely. A coin that lands heads 90% of the time is less surprising than a fair one, so a long run of its flips should need fewer bits to write down. Shannon defined the information in an outcome of probability \(p\) as \(\log_2(1/p)\): a one-in-two event is worth 1 bit, a one-in-a-thousand event is worth about 10. The average information per symbol is the <b>entropy</b>:</p>
+<p class="callout">\(\displaystyle H = \sum_i p_i \log_2 \frac{1}{p_i} = -\sum_i p_i \log_2 p_i\) bits per symbol.</p>
+<p>For a fair coin, \(H = \tfrac12 \cdot 1 + \tfrac12 \cdot 1 = 1\) bit. For the 90% coin, \(H = 0.9\log_2(1/0.9) + 0.1\log_2(1/0.1) \approx 0.469\) bits. That number is a promise and a threat: you <em>can</em> store a thousand of its flips in about 469 bits, and you can <em>never</em> do it in fewer, on average. Entropy is the exact price of a message.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: a Huffman code</h2>
+<p>A toy language has five letters with frequencies A 40%, B 30%, C 15%, D 10%, E 5%. With a fixed code of 3 bits per letter (eight patterns, five used), 100 letters cost 300 bits. Can we do better? Give common letters short codes, the way Morse gave E a single dot.</p>
+<p>Huffman's recipe: repeatedly merge the two least likely symbols into one. \(D + E = 15\%\). Now the two smallest are C (15%) and DE (15%): merge to 30%. Then B (30%) and CDE (30%) merge to 60%. Finally A and BCDE. Reading the merges backwards as a tree, left branch 0 and right branch 1, gives:</p>
+<p>A = 0, B = 10, C = 110, D = 1110, E = 1111.</p>
+<p>No codeword is the start of another, so a stream like 0100110 splits only one way: 0 | 10 | 0 | 110 = A B A C. Average length \(= 0.4(1) + 0.3(2) + 0.15(3) + 0.1(4) + 0.05(4) = 2.05\) bits per letter, so 100 letters cost about 205 bits instead of 300.</p>
+<p>The entropy of these frequencies is \(H \approx 2.009\) bits. Huffman got within 0.04 bits of the floor. Shannon proved the floor is real: no code of any kind averages below \(H\).</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>With twenty yes/no questions, how many equally likely possibilities can you tell apart? A deck has 52 cards; how many questions do you need to identify one card for certain, and why isn't the answer \(\log_2 52\) exactly?<div class="space short"></div></li>
+<li>Compute the entropy of a fair six-sided die, to three decimal places. Then of a coin that lands heads 75% of the time. Which is more uncertain, and does the ranking surprise you?<div class="space"></div></li>
+<li>A weather station reports one of four states each day: sunny \(\tfrac12\), cloudy \(\tfrac14\), rain \(\tfrac18\), snow \(\tfrac18\). Build a Huffman code. Compute its average length and the entropy. Explain why they agree exactly here when they did not in the example.<div class="space tall"></div></li>
+<li>A 100-letter message uses E 30 times, T 20, A 20, O 15, N 15. Find a Huffman code, the total bits it needs, and compare with the entropy bound \(100H\). (Rounded to the nearest bit.)<div class="space tall"></div></li>
+<li><b>Twelve coins.</b> One of twelve coins is counterfeit, either heavier or lighter than the rest; you have a balance scale with three outcomes per weighing. How many possibilities are there? Use information to prove two weighings cannot be enough, and explain why three might be.<div class="space"></div></li>
+<li>The 90% coin has entropy 0.469 bits. Design a code that beats 1 bit per flip: group flips in pairs (HH, HT, TH, TT), work out the four probabilities, give the pairs a Huffman code, and compute the bits per flip.<div class="space tall"></div></li>
+</ol>
+<p class="small">Play with the ideas at <a href="../../demos/guess.html">infinityclub.net/demos/guess.html</a> (binary search is a question strategy) and <a href="../../demos/hamming.html">infinityclub.net/demos/hamming.html</a>, where bits are spent on the opposite problem: adding information so errors can be undone. The <a href="../../grade-6/sheets/b31-mind-reader.html">mind reader sheet</a> explains that trick.</p>
+</section>
+
+<section class="stretch">
+<h2>Stretch: why no program can compress everything</h2>
+<p>Companies sometimes advertise a compressor that shrinks <em>any</em> file. Prove it is impossible. Count the files of exactly \(n\) bits. Count the files shorter than \(n\) bits (lengths \(0, 1, \ldots, n-1\)). A lossless compressor must send different inputs to different outputs. Why does the pigeonhole principle finish the job?</p>
+<p>Then go further: of the \(2^n\) files of length \(n\), at most how many can be shrunk by 3 bits or more? What fraction is that? Explain in one sentence why compression still works in practice on photos and text.</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(2^{20} = 1{,}048{,}576\). For 52 cards, \(\log_2 52 \approx 5.70\), so five questions (32 outcomes) are not enough and six (64) are. Questions come in whole numbers, so you round up; the fraction tells you that some branches of your question tree will finish early.</li>
+<li>Die: \(\log_2 6 \approx 2.585\) bits. The 75% coin: \(0.75\log_2(1/0.75) + 0.25\log_2(1/0.25) \approx 0.311 + 0.5 = 0.811\) bits. The die is far more uncertain: six options versus two, and a lean toward heads makes the coin more predictable still.</li>
+<li>Merge rain and snow (\(\tfrac14\)), then that with cloudy (\(\tfrac12\)), then with sunny. Code: sunny 0, cloudy 10, rain 110, snow 111. Average length \(\tfrac12(1) + \tfrac14(2) + \tfrac18(3) + \tfrac18(3) = 1.75\). Entropy \(= \tfrac12(1) + \tfrac14(2) + \tfrac18(3) + \tfrac18(3) = 1.75\), identical, because every probability is a power of \(\tfrac12\): the ideal length \(\log_2(1/p)\) is a whole number for each symbol, so Huffman can hit it exactly.</li>
+<li>Merge O and N (30), then T and A (40), then E with ON (60), then TA with EON. One valid code: T 00, A 01, E 10, O 110, N 111. Lengths \(0.3(2) + 0.2(2) + 0.2(2) + 0.15(3) + 0.15(3) = 2.3\) bits per letter, 230 bits total. Entropy \(H \approx 2.271\), bound \(100H \approx 227\) bits. Huffman is 3 bits over the floor; a fixed 3-bit code would need 300.</li>
+<li>\(12 \times 2 = 24\) possibilities (which coin, and heavy or light). Two weighings have \(3^2 = 9\) distinguishable outcomes and \(9 \lt 24\), so some outcome would have to cover several possibilities: impossible. Three weighings give \(27 \ge 24\), so the information bound allows it. (A bound allowing something does not build the strategy, but here one exists: it is a classic puzzle.) In bits: \(\log_2 24 \approx 4.58\), and each weighing delivers at most \(\log_2 3 \approx 1.58\) bits, so at least 2.9, hence 3, weighings.</li>
+<li>HH \(0.81\), HT \(0.09\), TH \(0.09\), TT \(0.01\). Huffman: merge TT and TH (0.10), then with HT (0.19), then with HH. Code HH 0, HT 10, TH 110, TT 111. Average \(0.81(1) + 0.09(2) + 0.09(3) + 0.01(3) = 1.29\) bits per pair, so \(0.645\) bits per flip, already under 1. Grouping in threes or more pushes it toward 0.469.</li>
+</ol>
+<p><b>Stretch.</b> There are \(2^n\) files of length \(n\) and \(1 + 2 + 4 + \cdots + 2^{n-1} = 2^n - 1\) files shorter than \(n\). A compressor that shrinks every \(n\)-bit file maps \(2^n\) inputs into \(2^n - 1\) outputs, so two inputs share an output and cannot both be recovered: pigeonhole. Shrinking by at least 3 bits means landing among files of length at most \(n - 3\), of which there are \(2^{n-2} - 1\), fewer than a quarter of the inputs. So most files are incompressible. Compression works in practice because real files are not typical bit strings: photos and text are hugely repetitive and predictable, so they live in the small, compressible corner, and random data (already-compressed files, encrypted files) will not shrink at all.</p>
+</section>
+
+<div class="sheet-nav"><a href="b24-chaos.html">← Previous</a><a href="b26-algorithms.html">Next: Algorithms and big-O →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

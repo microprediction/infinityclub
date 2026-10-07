@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Parabolas in flight · Infinity Club</title>
+<meta name="description" content="Why a thrown ball traces a parabola, derived from constant acceleration; the range formula; the 45 degree myth; and the pendulum's period.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 10</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 10 · Connections · 3</div>
+  <h1>Parabolas in flight</h1>
+  <p class="teaser">Why a thrown ball traces a parabola, the 45° myth, and the pendulum's √(L/g).</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>You have factored a hundred quadratics this year. Here is where one of them lives. Throw a ball with speed \(v\) at angle \(\theta\) above the horizontal. Gravity pulls down with constant acceleration \(g \approx 9.81\) m/s², and nothing pulls sideways (we ignore air for now). Split the motion into two independent problems.</p>
+<p><b>Sideways:</b> no acceleration, so constant speed \(v\cos\theta\). After time \(t\), \(x = v\cos\theta \cdot t\).</p>
+<p><b>Up and down:</b> starting speed \(v\sin\theta\), acceleration \(-g\). The standard constant-acceleration result \(s = ut + \tfrac12 a t^2\) gives \(y = v\sin\theta \cdot t - \tfrac12 g t^2\).</p>
+<p>Time is the thing we cannot see. Eliminate it: from the first equation \(t = x/(v\cos\theta)\). Substitute into the second:</p>
+<p class="callout">\(y = x\tan\theta - \dfrac{g}{2v^2\cos^2\theta}\,x^2.\) A quadratic in \(x\) with a negative leading coefficient: an upside-down parabola. Every thrown, kicked, struck or fired object follows one, to the extent air can be ignored.</p>
+<p>Where does it land, if the ground is flat and level with the launch? Set \(y = 0\): either \(x = 0\) (the start) or \(\tan\theta = \dfrac{g x}{2v^2\cos^2\theta}\), giving \(x = \dfrac{2v^2\sin\theta\cos\theta}{g}\). With the identity \(2\sin\theta\cos\theta = \sin 2\theta\):</p>
+<p class="callout">Range \(R = \dfrac{v^2 \sin 2\theta}{g}\). Maximum when \(\sin 2\theta = 1\), that is \(\theta = 45°\). And since \(\sin 2\theta = \sin(180° - 2\theta)\), the angles \(\theta\) and \(90° - \theta\) give the same range.</p>
+<p>So why does no shot-putter throw at 45°, and no long-jumper take off at 45°? Because the formula's assumptions fail in instructive ways. A shot leaves the hand two metres up, so the ball has extra time to travel and a flatter throw pays: the optimum drops to about 42°. A long-jumper cannot convert sprinting speed into vertical speed without losing most of it, so the best real take-off is around 20°. And air drag, which grows with speed, punishes high slow arcs more than low fast ones. The pure parabola is the first approximation; the corrections are where the engineering lives.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: 20 m/s at 30°</h2>
+<p>Range: \(R = \dfrac{20^2 \sin 60°}{9.81} = \dfrac{400 \times 0.866}{9.81} = 35.3\) m.</p>
+<p>Maximum height: the vertical speed \(v\sin\theta = 10\) m/s is used up when \(v_y^2 = u_y^2 - 2gh\) hits zero, so \(h = \dfrac{(v\sin\theta)^2}{2g} = \dfrac{100}{19.62} = 5.10\) m.</p>
+<p>Time of flight: up and down symmetric, \(t = \dfrac{2v\sin\theta}{g} = \dfrac{20}{9.81} = 2.04\) s. Check: \(x = v\cos\theta \cdot t = 17.32 \times 2.04 = 35.3\) m. Same answer two ways, which is how you catch mistakes.</p>
+<p>And the pendulum, the other piece of school physics with a square root in it: a small swing of a pendulum of length \(L\) has period \(T = 2\pi\sqrt{L/g}\), independent of how heavy the bob is and, for small swings, of how wide it swings. For \(L = 1\) m: \(T = 2\pi\sqrt{1/9.81} = 2.006\) s. Galileo noticed the independence from amplitude by timing a swinging lamp against his pulse, and that observation became the pendulum clock.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>A football is kicked at 25 m/s at 40° above the horizontal. Find the range, the maximum height and the time of flight. Take \(g = 9.81\) m/s².<div class="space"></div></li>
+<li>The same ball is kicked at 25 m/s at 50°. Without recalculating, state the range and explain why. Which kick stays in the air longer, and by how much?<div class="space short"></div></li>
+<li>A hose held 1.2 m above the ground squirts water horizontally at 8 m/s. How long does the water take to reach the ground, and how far away does it land? (Horizontal launch means \(\theta = 0\): the vertical motion is a pure drop.)<div class="space"></div></li>
+<li>A ball is launched at 45° from ground level and must clear a 3 m wall that is 20 m away. Use the trajectory equation (at 45°, \(\tan\theta = 1\) and \(\cos^2\theta = \tfrac12\)) to find the minimum launch speed.<div class="space"></div></li>
+<li>On the Moon, \(g = 1.62\) m/s². How far would the kick in question 1 travel there? Why does a lower \(g\) help the range exactly in inverse proportion?<div class="space short"></div></li>
+<li>Pendulums. What length gives a period of exactly 1 second? A grandfather clock "ticks" every second, which is a half-swing, so its period is 2 s: what length is its pendulum? Explain why pendulum clocks had to be re-adjusted when shipped from Paris to the equator, where \(g\) is about 0.5% smaller.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the real shot put</h2>
+<p>Launch from height \(h\) above the landing level. The landing point satisfies \(0 = h + x\tan\theta - \dfrac{g x^2}{2v^2\cos^2\theta}\), a quadratic in \(x\) whose positive root is</p>
+<p>\[R = \frac{v\cos\theta}{g}\left(v\sin\theta + \sqrt{v^2\sin^2\theta + 2gh}\right).\]</p>
+<p>Check that \(h = 0\) gives back \(v^2\sin 2\theta/g\). It can be shown (calculus, next year) that the best angle satisfies \(\tan\theta = \dfrac{v}{\sqrt{v^2 + 2gh}}\), which is below 45° whenever \(h > 0\). A good shot-putter releases at about \(v = 14\) m/s from \(h = 2.1\) m. Find the optimal angle, the range at that angle, the range at 45° from the same height, and the range the flat-ground formula would predict. How much does the release height buy, and how much does the angle correction add on top?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(R = 625 \sin 80° / 9.81 = 62.7\) m. Height \(= (25\sin 40°)^2/(2 \times 9.81) = 13.2\) m. Time \(= 2 \times 25 \sin 40° / 9.81 = 3.28\) s.</li>
+<li>Same range, 62.7 m, because \(\sin 100° = \sin 80°\): complementary angles share a range. The 50° kick is in the air longer: \(2 \times 25\sin 50°/9.81 = 3.90\) s against 3.28 s, about 0.63 s more, because more of its speed is vertical.</li>
+<li>Drop time from \(1.2 = \tfrac12 g t^2\): \(t = \sqrt{2.4/9.81} = 0.495\) s. Distance \(= 8 \times 0.495 = 3.96\) m.</li>
+<li>At 45° the trajectory is \(y = x - \dfrac{g x^2}{v^2}\). Require \(y \ge 3\) at \(x = 20\): \(3 = 20 - \dfrac{9.81 \times 400}{v^2}\), so \(v^2 = 3924/17 = 230.8\) and \(v = 15.2\) m/s.</li>
+<li>\(R = 62.7 \times 9.81/1.62 = 380\) m. \(R = v^2\sin 2\theta/g\) has \(g\) in the denominator and nowhere else, so dividing \(g\) by 6.06 multiplies \(R\) by 6.06.</li>
+<li>From \(T = 2\pi\sqrt{L/g}\), \(L = gT^2/(4\pi^2)\). \(T = 1\) s: \(L = 0.248\) m. \(T = 2\) s: \(L = 0.994\) m, almost exactly a metre (this is not a coincidence: the metre was once proposed to be defined this way). Smaller \(g\) means a longer period, so the clock runs slow near the equator; the pendulum must be shortened by about 0.5% to compensate. This is how Jean Richer discovered in 1672 that the Earth is not a perfect sphere.</li>
+</ol>
+<p><b>Stretch.</b> With \(h = 0\) the square root is \(v\sin\theta\), so \(R = \frac{v\cos\theta}{g} \cdot 2v\sin\theta = v^2 \sin 2\theta/g\). For \(v = 14\), \(h = 2.1\): \(\tan\theta = 14/\sqrt{196 + 41.2} = 0.909\), \(\theta = 42.3°\). Range at 42.3°: 21.98 m. Range at 45° from 2.1 m: 21.90 m. Flat-ground formula: \(196/9.81 = 19.98\) m. The release height buys about 1.9 m; the angle correction adds only another 8 cm. Real athletes release even lower, around 37–40°, because they can generate more speed at flatter angles, and speed enters squared.</p>
+</section>
+
+<div class="sheet-nav"><a href="c2-kepler.html">← Previous</a><a href="c4-money.html">Next: Compound interest, mortgages and why the casino wins →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

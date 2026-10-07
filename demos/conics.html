@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Slicing a Cone · Infinity Club</title>
+<meta name="description" content="Tilt a plane through a double cone and watch the cut turn from circle to ellipse to parabola to hyperbola, with focus, directrix and eccentricity.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.two { display: flex; flex-wrap: wrap; gap: 1.2rem; align-items: flex-start; }
+.two > * { flex: 1 1 280px; min-width: 0; }
+.two h3 { margin: 0 0 .3rem; font-size: 1rem; color: var(--muted); }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Slicing a cone</h1>
+<p class="explain">Two cones tip to tip, and a flat plane cutting through them. Tilt the plane. Flat across you get a circle. Tilt a little and it stretches into an ellipse. Tilt until the plane is parallel to the cone's side and the curve opens up into a parabola. Tilt further and the plane hits both cones: a hyperbola. One shape, one knife, four curves.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <label>plane tilt <input type="range" id="tilt" min="0" max="90" step="0.5" value="35"> <span id="tiltv">35°</span></label>
+    <button class="ghost" data-t="0">circle</button>
+    <button class="ghost" data-t="35">ellipse</button>
+    <button class="ghost" data-t="60">parabola</button>
+    <button class="ghost" data-t="80">hyperbola</button>
+  </div>
+  <div class="two">
+    <div><h3>Side view of the cone and the cutting plane</h3><canvas id="side" width="400" height="400"></canvas></div>
+    <div><h3>The curve, seen face on, with focus and directrix</h3><canvas id="curve" width="400" height="400"></canvas></div>
+  </div>
+  <div class="readout" id="info"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>The cone here has sides at 60° to the horizontal. Call the plane's tilt θ. While θ is less than 60° the plane crosses every line on one cone and the cut closes up: an ellipse, and a circle when θ = 0. At exactly 60° the plane is parallel to one line of the cone, so it never crosses that line and the curve never closes: a parabola. Past 60° the plane is steeper than the cone's side and must cut the upper cone too, giving the two branches of a hyperbola.</p>
+<p>One number tells the four apart: the <b>eccentricity</b> e. Every point on the curve is e times as far from a fixed point, the <b>focus</b>, as from a fixed line, the <b>directrix</b>. A circle has e = 0 (the directrix has gone off to infinity), an ellipse has 0 &lt; e &lt; 1, a parabola has e = 1 exactly, and a hyperbola has e &gt; 1. For this cone, e = sin θ ÷ cos 30°, which is why e reaches 1 at θ = 60°.</p>
+<p>The right-hand picture draws the curve from that rule alone, r = ℓ / (1 + e cos φ) measured from the focus. Change e continuously and the circle, ellipse, parabola and hyperbola slide into one another. They are not four shapes. They are one family.</p>
+<p>Planets travel on ellipses with the Sun at a focus. A ball thrown in the air follows a parabola. A comet passing once and leaving forever follows a hyperbola. Whispering galleries, satellite dishes and the shadow of a lampshade on a wall are all conics too.</p>
+<p>Sheets: <a href="../grade-10/sheets/b16-conics.html">Slicing a cone</a> and <a href="../grade-10/sheets/c2-kepler.html">Kepler's laws and measuring the universe</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+// --- numerics ---
+var CONIC = (function () {
+  var ALPHA = 30 * Math.PI / 180; // half-angle between axis and generator; sides at 60° to horizontal
+  function eccentricity(tiltDeg) { return Math.sin(tiltDeg * Math.PI / 180) / Math.cos(ALPHA); }
+  function classify(e) { if (e < 1e-9) return "circle"; if (e < 1 - 1e-9) return "ellipse"; if (e < 1 + 1e-9) return "parabola"; return "hyperbola"; }
+  // points of r = l/(1+e cos phi); returns array of branches, each an array of [x,y]
+  function points(e, l, steps) {
+    var br = [[], []], n = steps || 720;
+    for (var i = 0; i <= n; i++) {
+      var phi = -Math.PI + 2 * Math.PI * i / n, den = 1 + e * Math.cos(phi);
+      if (Math.abs(den) < 1e-6) continue;
+      var r = l / den, x = r * Math.cos(phi), y = r * Math.sin(phi);
+      (r > 0 ? br[0] : br[1]).push([x, y]);
+    }
+    return br.filter(function (b) { return b.length > 1; });
+  }
+  return { ALPHA: ALPHA, eccentricity: eccentricity, classify: classify, points: points };
+})();
+// --- ui ---
+(function () {
+  var side = document.getElementById("side"), sctx = side.getContext("2d"), cur = document.getElementById("curve"), cctx = cur.getContext("2d");
+  var tilt = document.getElementById("tilt"), tiltv = document.getElementById("tiltv"), info = document.getElementById("info");
+  function prep(c, ctx) { var dpr = window.devicePixelRatio || 1, W = Math.min(c.clientWidth || 400, 400); c.width = W * dpr; c.height = W * dpr; c.style.height = W + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, W); return W; }
+  function drawSide(theta) {
+    var W = prep(side, sctx), cx = W / 2, cy = W / 2, h = W * 0.42, half = h * Math.tan(CONIC.ALPHA);
+    // double cone
+    sctx.fillStyle = "#e6e7fb"; sctx.strokeStyle = "#3f44c9"; sctx.lineWidth = 2;
+    sctx.beginPath(); sctx.moveTo(cx, cy); sctx.lineTo(cx - half, cy + h); sctx.lineTo(cx + half, cy + h); sctx.closePath(); sctx.fill(); sctx.stroke();
+    sctx.beginPath(); sctx.moveTo(cx, cy); sctx.lineTo(cx - half, cy - h); sctx.lineTo(cx + half, cy - h); sctx.closePath(); sctx.fill(); sctx.stroke();
+    // axis
+    sctx.setLineDash([4, 4]); sctx.strokeStyle = "#9a9db8"; sctx.lineWidth = 1; sctx.beginPath(); sctx.moveTo(cx, cy - h - 10); sctx.lineTo(cx, cy + h + 10); sctx.stroke(); sctx.setLineDash([]);
+    // plane: a line through point (cx + off, cy + h*0.45) at angle theta from horizontal
+    var px = cx + W * 0.06, py = cy + h * 0.5, t = theta * Math.PI / 180, L = W;
+    var dx = Math.cos(t), dy = -Math.sin(t);
+    sctx.strokeStyle = "#f5a524"; sctx.lineWidth = 3; sctx.beginPath(); sctx.moveTo(px - dx * L, py - dy * L); sctx.lineTo(px + dx * L, py + dy * L); sctx.stroke();
+    // highlight the part of the plane inside the cones: sample along the line
+    sctx.strokeStyle = "#b3261e"; sctx.lineWidth = 5; sctx.lineCap = "round";
+    var inside = false, sx, sy;
+    for (var s = -L; s <= L; s += 1) {
+      var x = px + dx * s, y = py + dy * s, inCone = Math.abs(x - cx) <= Math.abs(y - cy) * Math.tan(CONIC.ALPHA) && Math.abs(y - cy) <= h;
+      if (inCone && !inside) { inside = true; sx = x; sy = y; }
+      if (!inCone && inside) { inside = false; sctx.beginPath(); sctx.moveTo(sx, sy); sctx.lineTo(x, y); sctx.stroke(); }
+    }
+    if (inside) { sctx.beginPath(); sctx.moveTo(sx, sy); sctx.lineTo(px + dx * L, py + dy * L); sctx.stroke(); }
+    sctx.lineCap = "butt";
+    sctx.fillStyle = "#5d6079"; sctx.font = "12px Nunito, sans-serif"; sctx.textAlign = "left";
+    sctx.fillText("plane tilt θ = " + theta.toFixed(1) + "°", 10, 18); sctx.fillText("cone sides at 60°", 10, 34);
+  }
+  function drawCurve(e) {
+    var W = prep(cur, cctx), cx = W * 0.42, cy = W / 2, l = W * 0.22, br = CONIC.points(e, l);
+    cctx.save(); cctx.beginPath(); cctx.rect(0, 0, W, W); cctx.clip();
+    // directrix
+    if (e > 1e-9) { var dxl = cx + l / e; if (dxl < W * 3) { cctx.setLineDash([6, 5]); cctx.strokeStyle = "#f5a524"; cctx.lineWidth = 2; cctx.beginPath(); cctx.moveTo(dxl, 0); cctx.lineTo(dxl, W); cctx.stroke(); cctx.setLineDash([]); cctx.fillStyle = "#b07200"; cctx.font = "12px Nunito, sans-serif"; cctx.textAlign = "left"; cctx.fillText("directrix", Math.min(dxl + 5, W - 60), 18); } }
+    // curve
+    cctx.strokeStyle = "#3f44c9"; cctx.lineWidth = 3;
+    br.forEach(function (b) { cctx.beginPath(); var started = false; b.forEach(function (p) { var x = cx + p[0], y = cy - p[1]; if (Math.abs(x) > 4 * W || Math.abs(y) > 4 * W) { started = false; return; } if (!started) { cctx.moveTo(x, y); started = true; } else cctx.lineTo(x, y); }); cctx.stroke(); });
+    // focus
+    cctx.fillStyle = "#b3261e"; cctx.beginPath(); cctx.arc(cx, cy, 5, 0, 2 * Math.PI); cctx.fill();
+    cctx.fillStyle = "#b3261e"; cctx.font = "12px Nunito, sans-serif"; cctx.textAlign = "left"; cctx.fillText("focus", cx + 8, cy - 8);
+    // sample point showing the ratio
+    if (e > 1e-9) { var phi = 1.1, r = l / (1 + e * Math.cos(phi)); if (r > 0) { var sxp = cx + r * Math.cos(phi), syp = cy - r * Math.sin(phi), dxl2 = cx + l / e; cctx.strokeStyle = "#9a9db8"; cctx.lineWidth = 1.5; cctx.beginPath(); cctx.moveTo(sxp, syp); cctx.lineTo(cx, cy); cctx.stroke(); cctx.beginPath(); cctx.moveTo(sxp, syp); cctx.lineTo(dxl2, syp); cctx.stroke(); cctx.fillStyle = "#1d1f3a"; cctx.beginPath(); cctx.arc(sxp, syp, 4, 0, 2 * Math.PI); cctx.fill(); } }
+    cctx.restore();
+  }
+  function update() {
+    var theta = parseFloat(tilt.value), e = CONIC.eccentricity(theta), name = CONIC.classify(e);
+    tiltv.textContent = theta.toFixed(1) + "°";
+    drawSide(theta); drawCurve(e);
+    var extra = name === "circle" ? "The directrix is infinitely far away." : name === "parabola" ? "The plane is parallel to the cone's side, so the curve never closes." : name === "hyperbola" ? "The plane cuts both cones: two branches." : "Tilt toward 60° and the ellipse stretches until it breaks open.";
+    info.textContent = "tilt θ = " + theta.toFixed(1) + "°    eccentricity e = sin θ / cos 30° = " + e.toFixed(3) + "    " + name.toUpperCase() + "\nEvery point of the curve is e × (its distance to the directrix) away from the focus. The grey lines show that for one point. " + extra;
+  }
+  tilt.addEventListener("input", update);
+  document.querySelectorAll("button[data-t]").forEach(function (b) { b.addEventListener("click", function () { tilt.value = b.getAttribute("data-t"); update(); }); });
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(update, 150); });
+  update();
+})();
+</script>
+</body>
+</html>

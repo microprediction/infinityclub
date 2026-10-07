@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Matrices that move the plane · Infinity Club</title>
+<meta name="description" content="A 2 by 2 matrix is a machine that moves every point of the plane. Rotations, shears, the determinant as area, inverses, and solving a system in one line.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 10</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 10 · Around the corner · 14</div>
+  <h1>Matrices that move the plane</h1>
+  <p class="teaser">Rotations, shears, determinants as area, inverses, and solving two equations with one matrix.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A \(2 \times 2\) matrix is a rule for moving every point of the plane at once:</p>
+<p class="callout">\(\begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix}\begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} ax + by \\ cx + dy \end{pmatrix}\)</p>
+<p>The fastest way to read a matrix is by its columns. Feed in \((1, 0)\) and out comes \((a, c)\), the first column. Feed in \((0, 1)\) and out comes \((b, d)\), the second. Since every point is \(x\) lots of \((1, 0)\) plus \(y\) lots of \((0, 1)\), and the rule respects adding and scaling, the whole plane follows: the unit square becomes the parallelogram spanned by the two columns, grid lines stay straight and parallel, and the origin never moves. Such a rule is called <b>linear</b>.</p>
+<p><b>Rotation.</b> Turning the plane anticlockwise by \(\theta\) sends \((1, 0)\) to \((\cos\theta, \sin\theta)\) and \((0, 1)\) to \((-\sin\theta, \cos\theta)\). Write those as columns and you have derived the rotation matrix: \(R_\theta = \begin{pmatrix} \cos\theta &amp; -\sin\theta \\ \sin\theta &amp; \cos\theta \end{pmatrix}\). <b>Shear.</b> \(\begin{pmatrix} 1 &amp; k \\ 0 &amp; 1 \end{pmatrix}\) leaves \((1, 0)\) alone and tips \((0, 1)\) over to \((k, 1)\): a deck of cards pushed sideways.</p>
+<p><b>The determinant</b> \(\det = ad - bc\) is the signed area of the image of the unit square. Why: the parallelogram with sides \((a, c)\) and \((b, d)\) fits inside the \((a + b) \times (c + d)\) rectangle; cut away two \(\tfrac12 ac\) triangles, two \(\tfrac12 bd\) triangles and two \(bc\) rectangles, and \((a+b)(c+d) - ac - bd - 2bc = ad - bc\) is left. A negative determinant means the square has been flipped over. A zero determinant means the two columns lie along one line through the origin (or one of them is zero), the square has been squashed flat onto a line, and infinitely many points pile onto each image point, so <em>no inverse exists</em>. Otherwise:</p>
+<p class="callout">\(\begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix}^{-1} = \dfrac{1}{ad - bc}\begin{pmatrix} d &amp; -b \\ -c &amp; a \end{pmatrix}\). Check: multiply them and you get \(\begin{pmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix}\).</p>
+<p>Doing one matrix after another is the <b>product</b>, and \(MN\) means "do \(N\), then \(M\)". Order matters. And a system of two equations is one matrix equation \(A\mathbf{x} = \mathbf{b}\), solved by \(\mathbf{x} = A^{-1}\mathbf{b}\). Drive the machine at <a href="../../demos/matrix.html">infinityclub.net/demos/matrix.html</a>; the grade 6 introduction is <a href="../../grade-6/sheets/b9-matrices.html">Matrices: grids that do things</a>.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: a rotation, then a shear, in both orders</h2>
+<p>\(R_{90°} = \begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix}\). Apply it to \((3, 1)\): \((0 \cdot 3 - 1 \cdot 1,\ 1 \cdot 3 + 0 \cdot 1) = (-1, 3)\). Draw it: a quarter turn anticlockwise.</p>
+<p>Let \(S = \begin{pmatrix} 1 &amp; 1 \\ 0 &amp; 1 \end{pmatrix}\). Rotate then shear is \(SR = \begin{pmatrix} 1 &amp; -1 \\ 1 &amp; 0 \end{pmatrix}\). Shear then rotate is \(RS = \begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 1 \end{pmatrix}\). Different matrices, different pictures. Both have determinant 1, because each step preserves area.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Write the matrix for each, using the column rule, then apply it to \((2, 5)\): reflection in the \(x\)-axis; reflection in the line \(y = x\); rotation by \(180°\); stretching by a factor of 3 horizontally only.<div class="space"></div></li>
+<li>Write \(R_{60°}\) exactly (using \(\cos 60° = \tfrac12\), \(\sin 60° = \tfrac{\sqrt3}{2}\)) and apply it to \((2, 0)\). Compute \(R_{60°}^2\) and recognise it. Explain without computing why \(R_{60°}^6 = I\), the identity.<div class="space"></div></li>
+<li>Find the determinant of \(R_\theta\), of the shear, of \(\begin{pmatrix} 2 &amp; 1 \\ 1 &amp; 3 \end{pmatrix}\), and of \(\begin{pmatrix} 2 &amp; 4 \\ 1 &amp; 2 \end{pmatrix}\). For each, say what happens to the area of the unit square. For the last one, describe the line the whole plane is squashed onto.<div class="space"></div></li>
+<li>Find the inverse of \(A = \begin{pmatrix} 2 &amp; 1 \\ 1 &amp; 3 \end{pmatrix}\) and check \(A^{-1}A = I\). Use it to solve \(2x + y = 7,\ x + 3y = 11\). Check your answer in the original equations.<div class="space"></div></li>
+<li>Let \(T\) = "shear with \(k = 2\), then rotate by \(90°\)". Find the matrix of \(T\) and apply it to the four corners of the unit square. Find its determinant two ways: from the formula and from the fact that it is a product of two area-preserving maps. Then find the matrix for the other order and show it is different.<div class="space tall"></div></li>
+<li>The Fibonacci matrix is \(F = \begin{pmatrix} 1 &amp; 1 \\ 1 &amp; 0 \end{pmatrix}\). Compute \(F^2\), \(F^3\) and (by multiplying on) \(F^5\), and guess a formula for \(F^n\) in terms of Fibonacci numbers. Then take determinants of both sides of your formula, remembering \(\det(MN) = \det M \det N\), to prove <em>Cassini's identity</em> \(F_{n+1}F_{n-1} - F_n^2 = (-1)^n\). Check it with \(n = 5\).<div class="space tall"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the directions a matrix cannot turn</h2>
+<p>Most vectors get rotated by \(B = \begin{pmatrix} 2 &amp; 1 \\ 1 &amp; 2 \end{pmatrix}\), but a few special directions are only stretched. Apply \(B\) to \((1, 1)\) and to \((1, -1)\), and read off the stretch factor for each. Multiply the two factors and compare with \(\det B\). Explain why that is no coincidence: picture what \(B\) does to a square whose sides point along those two directions.</p>
+<p>Now \(C = \begin{pmatrix} 3 &amp; 1 \\ 0 &amp; 2 \end{pmatrix}\). One unturned direction is easy to spot. For the other, you want \((x, y)\) with \(C(x, y) = 2(x, y)\); write out the two equations and solve. Check the product of the factors against \(\det C\). These directions are called eigenvectors, and finding them is how Google ranked the web and how engineers find the notes a bridge will hum at.</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(\begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix}\): \((2, -5)\). \(\begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{pmatrix}\): \((5, 2)\). \(\begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix}\): \((-2, -5)\). \(\begin{pmatrix} 3 &amp; 0 \\ 0 &amp; 1 \end{pmatrix}\): \((6, 5)\).</li>
+<li>\(R_{60°} = \begin{pmatrix} \tfrac12 &amp; -\tfrac{\sqrt3}{2} \\ \tfrac{\sqrt3}{2} &amp; \tfrac12 \end{pmatrix}\); \((2, 0) \mapsto (1, \sqrt3)\), length still 2, at \(60°\). \(R_{60°}^2 = \begin{pmatrix} -\tfrac12 &amp; -\tfrac{\sqrt3}{2} \\ \tfrac{\sqrt3}{2} &amp; -\tfrac12 \end{pmatrix} = R_{120°}\). Six turns of \(60°\) make a full turn, which moves nothing, so \(R_{60°}^6 = I\). (Or: \(R^3 = R_{180°} = -I\), and \((-I)^2 = I\).)</li>
+<li>\(\det R_\theta = \cos^2\theta + \sin^2\theta = 1\): areas unchanged. Shear: \(1 \cdot 1 - k \cdot 0 = 1\): unchanged. \(2 \cdot 3 - 1 \cdot 1 = 5\): the unit square becomes a parallelogram of area 5. \(2 \cdot 2 - 4 \cdot 1 = 0\): the columns \((2, 1)\) and \((4, 2)\) point the same way, so everything lands on the line through the origin in direction \((2, 1)\), that is \(y = \tfrac{x}{2}\). Area 0.</li>
+<li>\(A^{-1} = \tfrac15\begin{pmatrix} 3 &amp; -1 \\ -1 &amp; 2 \end{pmatrix}\). Check: \(\tfrac15\begin{pmatrix} 3 \cdot 2 - 1 \cdot 1 &amp; 3 \cdot 1 - 1 \cdot 3 \\ -2 + 2 &amp; -1 + 6 \end{pmatrix} = \tfrac15\begin{pmatrix} 5 &amp; 0 \\ 0 &amp; 5 \end{pmatrix} = I\). Solution \(\tfrac15(3 \cdot 7 - 11,\ -7 + 2 \cdot 11) = \tfrac15(10, 15) = (2, 3)\). Check: \(4 + 3 = 7\), \(2 + 9 = 11\).</li>
+<li>\(T = R_{90°}\begin{pmatrix} 1 &amp; 2 \\ 0 &amp; 1 \end{pmatrix} = \begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 2 \end{pmatrix}\). Corners: \((0,0) \mapsto (0,0)\), \((1,0) \mapsto (0,1)\), \((1,1) \mapsto (-1,3)\), \((0,1) \mapsto (-1,2)\). \(\det = 0 \cdot 2 - (-1)(1) = 1\), and \(1 \times 1 = 1\) from the product. Other order: \(\begin{pmatrix} 1 &amp; 2 \\ 0 &amp; 1 \end{pmatrix}R_{90°} = \begin{pmatrix} 2 &amp; -1 \\ 1 &amp; 0 \end{pmatrix}\), also determinant 1 but a different map (it sends \((1, 0)\) to \((2, 1)\), not \((0, 1)\)).</li>
+<li>\(F^2 = \begin{pmatrix} 2 &amp; 1 \\ 1 &amp; 1 \end{pmatrix}\), \(F^3 = \begin{pmatrix} 3 &amp; 2 \\ 2 &amp; 1 \end{pmatrix}\), \(F^5 = \begin{pmatrix} 8 &amp; 5 \\ 5 &amp; 3 \end{pmatrix}\). Pattern: \(F^n = \begin{pmatrix} F_{n+1} &amp; F_n \\ F_n &amp; F_{n-1} \end{pmatrix}\) (with \(F_1 = F_2 = 1\)). Determinants: left side \((\det F)^n = (-1)^n\); right side \(F_{n+1}F_{n-1} - F_n^2\). So \(F_{n+1}F_{n-1} - F_n^2 = (-1)^n\). Check \(n = 5\): \(8 \cdot 3 - 5^2 = 24 - 25 = -1 = (-1)^5\).</li>
+</ol>
+<p><b>Stretch.</b> \(B(1, 1) = (3, 3)\): factor 3. \(B(1, -1) = (1, -1)\): factor 1. Product \(3 \times 1 = 3 = \det B = 4 - 1\). A square with sides along \((1, 1)\) and \((1, -1)\) is stretched by 3 one way and 1 the other, so its area is multiplied by 3, and the determinant is exactly the area multiplier. For \(C\): \(C(1, 0) = (3, 0)\), factor 3. For factor 2: \(3x + y = 2x\) and \(2y = 2y\), so \(y = -x\); take \((1, -1)\): \(C(1, -1) = (2, -2)\), factor 2. Product \(6 = \det C = 3 \cdot 2 - 1 \cdot 0\).</p>
+</section>
+
+<div class="sheet-nav"><a href="b13-cantor.html">← Previous</a><a href="b15-vectors-dot.html">Next: Vectors and the dot product →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

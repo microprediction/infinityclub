@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The slope of a curve · Infinity Club</title>
+<meta name="description" content="Secants becoming tangents: the derivative of x², x³ and 1/x from first principles, and the equation of a tangent line.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 10</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 10 · Around the corner · 10</div>
+  <h1>The slope of a curve</h1>
+  <p class="teaser">Secants becoming tangents: the derivative of x², x³ and 1/x from first principles.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A straight line has one slope: rise over run, the same everywhere. A curve does not. \(y = x^2\) is flat at the bottom and steep out at the sides. So what should "the slope of \(y = x^2\) at \(x = 1\)" even mean?</p>
+<p>Here is Newton and Leibniz's answer, and it is the start of calculus. Pick the point \((1, 1)\) on the curve and a second point a little further along, at \(x = 1 + h\). The line through two points on a curve is a <b>secant</b>, and its slope is</p>
+<p>\[ \frac{f(1 + h) - f(1)}{h} = \frac{(1 + h)^2 - 1}{h}. \]</p>
+<p>Now shrink \(h\) and watch:</p>
+<table>
+<thead><tr><th>\(h\)</th><th>1</th><th>0.1</th><th>0.01</th><th>0.001</th></tr></thead>
+<tbody><tr><td>secant slope</td><td>3</td><td>2.1</td><td>2.01</td><td>2.001</td></tr></tbody>
+</table>
+<p>The secant slopes are closing in on 2. The line through \((1,1)\) with slope 2 just touches the curve there: the <b>tangent</b>. We say the slope of the curve at \(x = 1\) is 2, the <b>limit</b> of the secant slopes as \(h \to 0\).</p>
+<p>The table is suggestive; algebra makes it certain, and does every point at once. At a general \(x\),</p>
+<p>\[ \frac{(x + h)^2 - x^2}{h} = \frac{x^2 + 2xh + h^2 - x^2}{h} = \frac{2xh + h^2}{h} = 2x + h. \]</p>
+<p>As \(h \to 0\) this becomes \(2x\). That formula, \(2x\), is called the <b>derivative</b> of \(x^2\), written \(f'(x)\) or \(\dfrac{dy}{dx}\). It is a new function that tells you the slope of the old one wherever you ask. At \(x = 1\) it says 2 (matching the table), at \(x = 3\) it says 6, at \(x = 0\) it says 0, which is the flat bottom.</p>
+<p>Notice the move that made it work: we could not put \(h = 0\) straight in (that gives \(0/0\)), so we simplified first and <em>then</em> let \(h\) go to 0. That one idea is the whole subject.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: the derivative of \(x^3\), and a tangent line</h2>
+<p>\[ \frac{(x+h)^3 - x^3}{h} = \frac{x^3 + 3x^2h + 3xh^2 + h^3 - x^3}{h} = 3x^2 + 3xh + h^2 \;\to\; 3x^2. \]</p>
+<p>So the derivative of \(x^3\) is \(3x^2\). At \(x = 2\) the slope is 12; the secant table (19, 12.61, 12.0601, 12.006 for \(h = 1, 0.1, 0.01, 0.001\)) agrees. The tangent line passes through \((2, 8)\) with slope 12: \(y - 8 = 12(x - 2)\), that is \(y = 12x - 16\). Draw it and the cubic on the same axes; near \(x = 2\) you cannot tell them apart.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Make a secant-slope table for \(f(x) = 1/x\) at \(x = 2\), with \(h = 1, 0.1, 0.01, 0.001\) (five decimal places). What is the slope closing in on?<div class="space"></div></li>
+<li>Now do it with algebra: simplify \(\dfrac{\frac{1}{x+h} - \frac1x}{h}\) (put the top over a common denominator first), then let \(h \to 0\). Check that your formula gives the answer to question 1 at \(x = 2\).<div class="space"></div></li>
+<li>Find the derivative of \(f(x) = x^2 - 4x\) from first principles. Where is the derivative zero? What is happening on the graph there? Compare with the completed-square form \((x - 2)^2 - 4\).<div class="space"></div></li>
+<li>Write the equations of the tangent lines to \(y = x^2\) at \(x = 3\) and at \(x = -1\). Find where the two tangents meet. Compare the \(x\)-coordinate of the meeting point with 3 and \(-1\).<div class="space"></div></li>
+<li>Find the derivative of \(3x^2 + 5x - 7\) from first principles. Which part of the answer came from each term? What happened to the \(-7\), and why does that make sense on a graph?<div class="space"></div></li>
+<li>Estimate the slope of \(y = \sqrt x\) at \(x = 4\) numerically with \(h = 0.001\). Then find it exactly: write \(\dfrac{\sqrt{x+h} - \sqrt x}{h}\), multiply top and bottom by \(\sqrt{x+h} + \sqrt x\), simplify, and let \(h \to 0\).<div class="space short"></div></li>
+</ol>
+<p class="small">Drag \(h\) toward zero and watch the secant become the tangent at <a href="../../demos/tangent.html">infinityclub.net/demos/tangent.html</a>.</p>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the pattern, and a proof</h2>
+<p>Collect tonight's results: \(x^2 \to 2x\), \(x^3 \to 3x^2\), \(1/x = x^{-1} \to -x^{-2}\), \(\sqrt x = x^{1/2} \to \tfrac12 x^{-1/2}\). State the pattern for \(x^n\) in one line, and check that it predicts all four, including the negative and fractional exponents.</p>
+<p>Prove it for any positive whole number \(n\). The binomial theorem (<a href="b4-counting.html">counting sheet</a>) says \((x + h)^n = x^n + nx^{n-1}h + (\text{terms with } h^2 \text{ or higher})\). Subtract \(x^n\), divide by \(h\), and let \(h \to 0\). Why do all the later terms vanish?</p>
+<p>Then use the pattern: where are the tangents to \(y = x^3 - 3x\) horizontal? Find both points and sketch the curve through them. One is a local high point and one a local low point; which is which?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(h = 1\): \(-0.16667\); \(0.1\): \(-0.23810\); \(0.01\): \(-0.24876\); \(0.001\): \(-0.24988\). Closing in on \(-0.25 = -\tfrac14\). (Negative because \(1/x\) is falling.)</li>
+<li>\(\dfrac{1}{x+h} - \dfrac1x = \dfrac{x - (x + h)}{x(x+h)} = \dfrac{-h}{x(x+h)}\). Divide by \(h\): \(\dfrac{-1}{x(x+h)} \to -\dfrac{1}{x^2}\). At \(x = 2\): \(-\tfrac14\).</li>
+<li>\(\dfrac{(x+h)^2 - 4(x+h) - x^2 + 4x}{h} = \dfrac{2xh + h^2 - 4h}{h} = 2x + h - 4 \to 2x - 4\). Zero at \(x = 2\), where the tangent is horizontal: the bottom of the parabola, \(f(2) = -4\). The completed square \((x-2)^2 - 4\) says the same: minimum \(-4\) at \(x = 2\).</li>
+<li>Slopes \(2x\): 6 and \(-2\). Through \((3, 9)\): \(y = 6x - 9\). Through \((-1, 1)\): \(y = -2x - 1\). Meet when \(6x - 9 = -2x - 1\), \(x = 1\), \(y = -3\): the point \((1, -3)\). The meeting \(x\)-coordinate, 1, is the average of 3 and \(-1\). (True for any two tangents to a parabola.)</li>
+<li>\(\dfrac{3(x+h)^2 + 5(x+h) - 7 - 3x^2 - 5x + 7}{h} = \dfrac{6xh + 3h^2 + 5h}{h} = 6x + 3h + 5 \to 6x + 5\). The \(6x\) came from \(3x^2\), the 5 from \(5x\), and the \(-7\) vanished: it cancelled in the subtraction. On a graph, adding a constant slides the curve up or down without changing any slope.</li>
+<li>Numerically: \((\sqrt{4.001} - 2)/0.001 = 0.24998\). Exactly: \(\dfrac{\sqrt{x+h} - \sqrt x}{h} \cdot \dfrac{\sqrt{x+h} + \sqrt x}{\sqrt{x+h} + \sqrt x} = \dfrac{(x + h) - x}{h(\sqrt{x+h} + \sqrt x)} = \dfrac{1}{\sqrt{x+h} + \sqrt x} \to \dfrac{1}{2\sqrt x}\). At \(x = 4\): \(\tfrac14\).</li>
+</ol>
+<p><b>Stretch.</b> The derivative of \(x^n\) is \(nx^{n-1}\). Check: \(n = 2\) gives \(2x\); \(n = 3\) gives \(3x^2\); \(n = -1\) gives \(-x^{-2} = -1/x^2\); \(n = \tfrac12\) gives \(\tfrac12 x^{-1/2} = 1/(2\sqrt x)\). Proof: \(\dfrac{(x+h)^n - x^n}{h} = nx^{n-1} + (\text{terms each containing at least one factor } h)\); every one of those extra terms goes to 0 with \(h\), leaving \(nx^{n-1}\). For \(y = x^3 - 3x\) the derivative is \(3x^2 - 3\), zero at \(x = \pm1\): the points \((1, -2)\) and \((-1, 2)\). The slope is positive for \(x \lt -1\), negative between, positive again after 1, so \((-1, 2)\) is the local high and \((1, -2)\) the local low.</p>
+</section>
+
+<div class="sheet-nav"><a href="b9-e.html">← Previous</a><a href="b11-area-under-curves.html">Next: Area under a curve, Archimedes' way →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

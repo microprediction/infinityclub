@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Where curves meet · Infinity Club</title>
+<meta name="description" content="Systems of equations with lines, circles and parabolas: how many solutions there are, how to find them by substitution and elimination, and what the discriminant says about tangents.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 10</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 10 · Sharpen · 6</div>
+  <h1>Where curves meet</h1>
+  <p class="teaser">Lines, circles and parabolas intersecting: how many solutions, and how to find them without guessing.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Solving a system of equations is asking a geometric question: <b>where do these graphs meet?</b> Every solution \((x, y)\) is a point that sits on both curves at once. Two lines meet once, or never (parallel), or everywhere (the same line twice). Once a curve is involved the count gets more interesting, and there is one method that handles all of it.</p>
+<p><b>Substitution.</b> Solve one equation for a variable and feed it into the other. One equation in one unknown comes out, and you already know how to solve those. If what comes out is a quadratic, its <b>discriminant</b> \(b^2 - 4ac\) counts the meeting points: positive means two, zero means one (the curves just touch, a <b>tangent</b>), negative means they miss.</p>
+<p><b>Elimination.</b> When both equations are linear, or share a matching term, add or subtract multiples of them so a variable disappears. For two circles, subtracting the equations kills both \(x^2\) and \(y^2\) at once and leaves a line. That line is where the intersections must lie.</p>
+<figure>
+<svg viewBox="0 0 300 160" width="300" height="160" role="img" aria-label="A circle cut by a line at two points, a tangent line touching at one point, and a line that misses">
+<circle cx="70" cy="80" r="45" fill="none" stroke="#1d1f3a" stroke-width="2"/>
+<line x1="15" y1="125" x2="125" y2="35" stroke="#3f44c9" stroke-width="2"/>
+<circle cx="35.2" cy="108.5" r="3" fill="#3f44c9"/><circle cx="104.8" cy="51.5" r="3" fill="#3f44c9"/>
+<text x="70" y="150" font-size="11" text-anchor="middle" fill="#1d1f3a">two solutions</text>
+<circle cx="180" cy="80" r="45" fill="none" stroke="#1d1f3a" stroke-width="2"/>
+<line x1="125" y1="125" x2="235" y2="125" stroke="#3f44c9" stroke-width="2"/>
+<circle cx="180" cy="125" r="3" fill="#3f44c9"/>
+<text x="180" y="150" font-size="11" text-anchor="middle" fill="#1d1f3a">one: tangent</text>
+<circle cx="270" cy="80" r="25" fill="none" stroke="#1d1f3a" stroke-width="2"/>
+<line x1="235" y1="135" x2="300" y2="110" stroke="#3f44c9" stroke-width="2"/>
+<text x="270" y="150" font-size="11" text-anchor="middle" fill="#1d1f3a">none</text>
+</svg>
+<figcaption>The discriminant of the equation you get after substituting tells you which picture you are in.</figcaption>
+</figure>
+</section>
+
+<section class="example">
+<h2>Watch one: a line through a circle</h2>
+<p>Where does \(y = x + 1\) meet \(x^2 + y^2 = 25\)? Substitute: \(x^2 + (x+1)^2 = 25\), so \(2x^2 + 2x + 1 = 25\), so \(x^2 + x - 12 = 0\), which factors as \((x + 4)(x - 3) = 0\). Then \(x = 3\) gives \(y = 4\), and \(x = -4\) gives \(y = -3\). Check both in the circle: \(9 + 16 = 25\) and \(16 + 9 = 25\). Two points: \((3, 4)\) and \((-4, -3)\).</p>
+<p>Now slide the line up: \(y = x + 8\). Substituting gives \(2x^2 + 16x + 39 = 0\), with discriminant \(256 - 312 = -56\). Negative, so no real solutions: the line passes above the circle without touching. Somewhere between \(+1\) and \(+8\) there is a value of the constant where the discriminant is exactly zero and the line is tangent. Exercise 3 asks you to find that moment for a parabola.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Solve by elimination: \(3x + 2y = 12\) and \(5x - 2y = 4\). Then try \(2x + 3y = 7\) and \(4x + 6y = 15\). What goes wrong, and what does it mean about the two lines?<div class="space"></div></li>
+<li>Find where the line \(y = 2x - 1\) meets the parabola \(y = x^2 - 4x + 7\).<div class="space"></div></li>
+<li>For which value of \(c\) does the line \(y = 2x + c\) touch the parabola \(y = x^2\) at exactly one point? Find that point.<div class="space"></div></li>
+<li>Solve the system \(x + 2y = 10\) and \(x^2 + y^2 = 20\). You should get exactly one point. Show the line is tangent to the circle there by comparing the slope of the line with the slope of the radius to that point.<div class="space"></div></li>
+<li>Two circles: \(x^2 + y^2 = 25\) and \((x - 6)^2 + y^2 = 13\). Subtract one equation from the other, solve for \(x\), then find both meeting points.<div class="space"></div></li>
+<li>Where does the parabola \(y = x^2\) meet the circle \(x^2 + y^2 = 6\)? Substitute \(x^2 = y\). You will get two values of \(y\). Explain why one of them must be thrown away.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: how many times can two curves meet?</h2>
+<p>Argue that two <em>different</em> circles can meet at most twice. (Hint: subtracting the equations gives a line. How many times can a line meet a circle?)</p>
+<p>A line meets a parabola at most twice, and a circle at most twice. But a parabola and a circle can do better. Find all the points where \(y = x^2\) meets \(x^2 + (y - 3)^2 = 5\), and count them.</p>
+<p>Finally: the line \(x = 2\) meets \(y = x^2\) exactly once. Is it a tangent? Why does the discriminant argument not apply to vertical lines?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Adding the equations: \(8x = 16\), \(x = 2\), then \(y = 3\). For the second pair, doubling the first gives \(4x + 6y = 14\), which contradicts \(4x + 6y = 15\): no solution. The lines have the same slope \(-\tfrac23\) but different intercepts, so they are parallel and never meet.</li>
+<li>\(x^2 - 4x + 7 = 2x - 1\), so \(x^2 - 6x + 8 = 0\), \((x-2)(x-4) = 0\). Points \((2, 3)\) and \((4, 7)\).</li>
+<li>\(x^2 = 2x + c\) gives \(x^2 - 2x - c = 0\), discriminant \(4 + 4c\). Zero when \(c = -1\). Then \(x^2 - 2x + 1 = 0\), \(x = 1\), point \((1, 1)\).</li>
+<li>\(x = 10 - 2y\), so \((10 - 2y)^2 + y^2 = 20\), \(5y^2 - 40y + 80 = 0\), \(y^2 - 8y + 16 = 0\), \((y - 4)^2 = 0\). One point: \((2, 4)\). The radius from \((0,0)\) to \((2,4)\) has slope 2; the line \(x + 2y = 10\) has slope \(-\tfrac12\). The product is \(-1\), so they are perpendicular, which is exactly what a tangent does.</li>
+<li>Subtracting: \(x^2 - (x-6)^2 = 12\), so \(12x - 36 = 12\), \(x = 4\). Then \(y^2 = 9\), \(y = \pm 3\). Points \((4, 3)\) and \((4, -3)\). Check in the second circle: \(4 + 9 = 13\).</li>
+<li>\(y + y^2 = 6\), so \((y + 3)(y - 2) = 0\), \(y = 2\) or \(y = -3\). But \(y = x^2\) can never be negative, so \(y = -3\) gives no real \(x\). With \(y = 2\), \(x = \pm\sqrt2\). Two points: \((\pm\sqrt2, 2)\).</li>
+</ol>
+<p><b>Stretch.</b> Subtracting two circle equations removes \(x^2\) and \(y^2\) and leaves a linear equation, a line. Every common point lies on that line, and a line meets a circle at most twice, so two circles meet at most twice. For \(y = x^2\) and \(x^2 + (y-3)^2 = 5\): substitute \(x^2 = y\) to get \(y + (y-3)^2 = 5\), so \(y^2 - 5y + 4 = 0\), \(y = 1\) or \(4\), giving \(x = \pm1\) or \(\pm2\). Four points: \((\pm1, 1)\) and \((\pm2, 4)\). The vertical line \(x = 2\) crosses the parabola at \((2, 4)\) without touching it tangentially: it goes straight through. The discriminant argument needs the line written as \(y = mx + c\), and a vertical line cannot be written that way, so the one-solution-means-tangent rule does not apply to it.</p>
+</section>
+
+<div class="sheet-nav"><a href="a5-logs.html">← Previous</a><a href="a7-polynomials.html">Next: Factor, remainder, and the cubes →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

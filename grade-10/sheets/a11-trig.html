@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SOHCAHTOA grows up: the unit circle · Infinity Club</title>
+<meta name="description" content="Exact trig values from two triangles, the unit circle definition for angles past 90°, radians, and why sin squared plus cos squared equals 1 is just Pythagoras.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 10</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 10 · Sharpen · 11</div>
+  <h1>SOHCAHTOA grows up: the unit circle</h1>
+  <p class="teaser">Exact values, angles past 90°, and why sin² + cos² = 1 is just Pythagoras.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>In a right triangle, \(\sin\theta\) is opposite over hypotenuse, \(\cos\theta\) is adjacent over hypotenuse, \(\tan\theta\) is opposite over adjacent. That definition has a problem: it only works for angles between 0° and 90°, because a right triangle cannot contain an angle of 150°. Tonight we replace it with one that works for every angle, and we stop reaching for a calculator for the angles that matter.</p>
+<p><b>Two triangles give every exact value you will ever need.</b> Cut an equilateral triangle of side 2 in half: you get a 30-60-90 triangle with sides \(1, \sqrt3, 2\) (the \(\sqrt3\) is Pythagoras: \(2^2 - 1^2 = 3\)). Cut a unit square along a diagonal: a 45-45-90 triangle with sides \(1, 1, \sqrt2\).</p>
+<figure>
+<svg viewBox="0 0 300 130" width="300" height="130" xmlns="http://www.w3.org/2000/svg" font-family="Nunito, sans-serif" font-size="12" font-weight="700">
+  <g stroke="#000" stroke-width="2" fill="none">
+    <polygon points="20,110 124,110 124,50"/>
+    <polyline points="112,110 112,98 124,98"/>
+    <polygon points="170,110 270,110 270,10"/>
+    <polyline points="258,110 258,98 270,98"/>
+  </g>
+  <text x="72" y="124" text-anchor="middle">√3</text><text x="134" y="84">1</text><text x="60" y="72" text-anchor="middle">2</text>
+  <text x="38" y="106" font-size="11">30°</text><text x="110" y="62" font-size="11">60°</text>
+  <text x="220" y="124" text-anchor="middle">1</text><text x="278" y="64">1</text><text x="206" y="56" text-anchor="middle">√2</text>
+  <text x="186" y="104" font-size="11">45°</text><text x="252" y="30" font-size="11">45°</text>
+</svg>
+<figcaption>Read any exact value straight off these. \(\sin 30° = \tfrac12\), \(\cos 30° = \tfrac{\sqrt3}{2}\), \(\tan 60° = \sqrt3\), \(\sin 45° = \tfrac{1}{\sqrt2} = \tfrac{\sqrt2}{2}\).</figcaption>
+</figure>
+<p><b>The unit circle.</b> Draw a circle of radius 1 centred at the origin. Start at the point \((1, 0)\) and turn anticlockwise through an angle \(\theta\). Wherever you land, <em>define</em></p>
+<p class="callout">\(\cos\theta =\) the \(x\)-coordinate of the point, \(\;\sin\theta =\) the \(y\)-coordinate, \(\;\tan\theta = \dfrac{\sin\theta}{\cos\theta} =\) the slope of the line from the origin to the point.</p>
+<p>For angles under 90° this agrees with SOHCAHTOA (drop a perpendicular to the \(x\)-axis: hypotenuse 1, adjacent \(x\), opposite \(y\)). But now 150° makes sense: it is a point in the second quadrant, with \(x\) negative and \(y\) positive. So \(\cos 150°\) is negative and \(\sin 150°\) is positive. Signs by quadrant: in quadrant I all three are positive, in II only sine, in III only tangent, in IV only cosine. The mnemonic is "All Students Take Calculus".</p>
+<figure>
+<svg viewBox="0 0 220 220" width="220" height="220" xmlns="http://www.w3.org/2000/svg" font-family="Nunito, sans-serif" font-size="12" font-weight="700">
+  <g stroke="#999" stroke-width="1"><line x1="10" y1="110" x2="210" y2="110"/><line x1="110" y1="10" x2="110" y2="210"/></g>
+  <circle cx="110" cy="110" r="90" stroke="#000" stroke-width="2" fill="none"/>
+  <g stroke="#000" stroke-width="2"><line x1="110" y1="110" x2="32.1" y2="65"/></g>
+  <g stroke="#000" stroke-width="1.5" stroke-dasharray="4 3"><line x1="32.1" y1="65" x2="32.1" y2="110"/></g>
+  <path d="M 140 110 A 30 30 0 0 0 84 95" stroke="#3f44c9" stroke-width="2" fill="none"/>
+  <circle cx="32.1" cy="65" r="4" fill="#000"/>
+  <circle cx="200" cy="110" r="3" fill="#000"/>
+  <text x="120" y="100" fill="#3f44c9">150°</text>
+  <text x="14" y="56">(cos θ, sin θ)</text>
+  <text x="192" y="126" font-size="11">(1, 0)</text>
+  <text x="62" y="128" font-size="11">−√3/2</text>
+  <text x="38" y="92" font-size="11">1/2</text>
+</svg>
+<figcaption>150° lands at \((-\tfrac{\sqrt3}{2}, \tfrac12)\). The dashed reference triangle is the 30-60-90 again, reflected.</figcaption>
+</figure>
+<p><b>Pythagoras in disguise.</b> The point \((\cos\theta, \sin\theta)\) lies on a circle of radius 1, so its coordinates satisfy \(x^2 + y^2 = 1\). That is the whole proof of the most used identity in trigonometry:</p>
+<p class="callout">\(\sin^2\theta + \cos^2\theta = 1\) for every angle \(\theta\).</p>
+<p><b>Radians.</b> Degrees are a Babylonian accident (360 was convenient for them). The natural unit is the <b>radian</b>: the angle you turn through when you walk a distance of one radius along the circle. A full turn is a walk of \(2\pi r\), so a full turn is \(2\pi\) radians: \(180° = \pi\) rad, \(90° = \pi/2\), \(60° = \pi/3\), \(45° = \pi/4\), \(30° = \pi/6\). To convert, multiply by \(\pi/180\). In radians, arc length is simply \(s = r\theta\). From next year on, almost every formula is cleaner in radians, which is the real reason they exist.</p>
+<p class="small">Play with it: <a href="../../demos/unitcircle.html">infinityclub.net/demos/unitcircle.html</a> drags a point around the circle and unrolls the sine wave as you go.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: \(\sin 150°\), \(\cos 150°\), \(\tan 225°\), and 240° in radians</h2>
+<p><b>150°.</b> It is 30° short of 180°, so the reference angle is 30° and the point is in quadrant II. Reference values: \(\sin 30° = \tfrac12\), \(\cos 30° = \tfrac{\sqrt3}{2}\). Apply the signs: \(\sin 150° = \tfrac12\), \(\cos 150° = -\tfrac{\sqrt3}{2}\).</p>
+<p><b>225°.</b> That is \(180° + 45°\), quadrant III, reference angle 45°. Both coordinates are negative: \((-\tfrac{\sqrt2}{2}, -\tfrac{\sqrt2}{2})\). So \(\tan 225° = \dfrac{-\sqrt2/2}{-\sqrt2/2} = 1\). Makes sense: the line from the origin through that point has slope 1.</p>
+<p><b>240° in radians.</b> \(240 \times \dfrac{\pi}{180} = \dfrac{240\pi}{180} = \dfrac{4\pi}{3}\). Check: \(\tfrac{4}{3}\) of a half turn, which is a third of the way past 180°. Right.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Without a calculator, give exact values: \(\sin 60°\), \(\cos 45°\), \(\tan 30°\), \(\sin 90°\), \(\cos 180°\). Write \(\tan 30°\) with no square root in the denominator.<div class="space short"></div></li>
+<li>A 6 m ladder leans against a wall making 70° with the ground. How high up the wall does it reach, and how far is its foot from the wall? (Calculator allowed. Three significant figures.)<div class="space short"></div></li>
+<li>Use the unit circle, not a calculator. Find <em>every</em> angle \(\theta\) with \(0° \le \theta \lt 360°\) such that (a) \(\cos\theta = -\tfrac12\), (b) \(\sin\theta = -\tfrac{\sqrt2}{2}\), (c) \(\tan\theta = -1\). Each part has two answers.<div class="space"></div></li>
+<li>Convert 135° to radians (exactly), \(\tfrac{5\pi}{6}\) to degrees, and 1 radian to degrees (one decimal place). Then: a circle has radius 20 cm. How long is the arc cut off by a central angle of 2.5 radians?<div class="space"></div></li>
+<li>\(\sin\theta = \tfrac35\) and \(90° \lt \theta \lt 180°\). Find \(\cos\theta\) and \(\tan\theta\) exactly, with the correct signs. Explain how you knew the signs.<div class="space"></div></li>
+<li>Prove \(\sin^2\theta + \cos^2\theta = 1\) in one sentence using the unit circle. Then divide every term by \(\cos^2\theta\) to produce a second identity involving \(\tan\theta\) and \(\dfrac{1}{\cos\theta}\).<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the area formula and a twelve-sided π</h2>
+<p>(a) Using the symmetry of the unit circle, explain why \(\sin(180° - \theta) = \sin\theta\) and \(\cos(180° - \theta) = -\cos\theta\).</p>
+<p>(b) Any triangle with sides \(a\) and \(b\) meeting at angle \(C\) has area \(\tfrac12 ab\sin C\). Prove it: drop a perpendicular from the end of side \(a\) onto side \(b\) and write its length using \(\sin C\). (Part (a) tells you the formula survives when \(C\) is obtuse.)</p>
+<p>(c) A regular 12-sided polygon is inscribed in a circle of radius 1. Cut it into 12 triangles from the centre and use (b) to find its exact area. Compare with the area of the circle. What does that tell you about \(\pi\)?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(\sin 60° = \tfrac{\sqrt3}{2}\), \(\cos 45° = \tfrac{\sqrt2}{2}\), \(\tan 30° = \tfrac{1}{\sqrt3} = \tfrac{\sqrt3}{3}\), \(\sin 90° = 1\), \(\cos 180° = -1\). The last two come from the points \((0,1)\) and \((-1,0)\) on the unit circle.</li>
+<li>Height \(6\sin 70° \approx 5.64\) m; distance from the wall \(6\cos 70° \approx 2.05\) m. Check with Pythagoras: \(5.638^2 + 2.052^2 \approx 36\).</li>
+<li>(a) Reference angle 60° (since \(\cos 60° = \tfrac12\)), cosine negative in quadrants II and III: \(120°\) and \(240°\). (b) Reference 45°, sine negative in III and IV: \(225°\) and \(315°\). (c) Reference 45°, tangent negative in II and IV: \(135°\) and \(315°\).</li>
+<li>\(135° = \tfrac{3\pi}{4}\). \(\tfrac{5\pi}{6} = 150°\). \(1 \text{ rad} = \tfrac{180}{\pi} \approx 57.3°\). Arc \(= r\theta = 20 \times 2.5 = 50\) cm. (The radian makes that last one a one-step multiplication, which is the point of radians.)</li>
+<li>From \(\sin^2\theta + \cos^2\theta = 1\): \(\cos^2\theta = 1 - \tfrac{9}{25} = \tfrac{16}{25}\), so \(\cos\theta = \pm\tfrac45\). Quadrant II has negative \(x\), so \(\cos\theta = -\tfrac45\) and \(\tan\theta = \tfrac{3/5}{-4/5} = -\tfrac34\). (The 3-4-5 triangle, reflected into the second quadrant.)</li>
+<li>The point \((\cos\theta, \sin\theta)\) is on the circle \(x^2 + y^2 = 1\), so \(\cos^2\theta + \sin^2\theta = 1\). Dividing by \(\cos^2\theta\): \(\tan^2\theta + 1 = \dfrac{1}{\cos^2\theta}\) (valid whenever \(\cos\theta \ne 0\)). The quantity \(1/\cos\theta\) is called \(\sec\theta\), so this is usually written \(1 + \tan^2\theta = \sec^2\theta\).</li>
+</ol>
+<p><b>Stretch.</b> (a) The points for \(\theta\) and \(180° - \theta\) are mirror images in the \(y\)-axis: same height, opposite \(x\). So sines agree and cosines are negatives. (b) The perpendicular from the end of side \(a\) has length \(a\sin C\) (opposite over hypotenuse in the little right triangle), and it is the height on base \(b\), so area \(= \tfrac12 \cdot b \cdot a\sin C\). If \(C\) is obtuse the foot of the perpendicular falls outside the triangle and the little triangle has angle \(180° - C\), but \(\sin(180° - C) = \sin C\) by (a), so the formula is unchanged. (c) Each of the 12 triangles has two sides of length 1 meeting at \(360°/12 = 30°\), so area \(\tfrac12 \cdot 1 \cdot 1 \cdot \sin 30° = \tfrac14\). Total: \(12 \times \tfrac14 = 3\), exactly. The circle has area \(\pi\), and the polygon sits inside it, so \(\pi \gt 3\). Archimedes pushed this to 96 sides and got \(\pi\) between \(3\tfrac{10}{71}\) and \(3\tfrac17\).</p>
+</section>
+
+<div class="sheet-nav"><a href="a10-similarity-proof.html">← Previous</a><a href="a12-circles.html">Next: Circle theorems, with proofs →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>
