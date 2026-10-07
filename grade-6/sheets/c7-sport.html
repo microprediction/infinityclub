@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why the best team doesn't always win · Infinity Club</title>
+<meta name="description" content="A better team still loses a lot. Series lengths, tournament shapes, lucky streaks and the maths of sport.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 6</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 6 · Connections · 7</div>
+  <h1>Why the best team doesn't always win</h1>
+  <p class="teaser">Suppose one team really is better: it wins six games in ten against its rival. Play a best-of-seven final and the better team still loses nearly three times in ten. Tonight, the maths underneath the sports pages.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Say team A beats team B with probability 0.6 in any single game. That is a big edge in real sport. Now ask how often A wins a series.</p>
+<p>One game: 60%. Best of three: A needs two wins. The ways are WW, WLW, LWW. Each has probability \(0.6 \times 0.6 = 0.36\), \(0.6 \times 0.4 \times 0.6 = 0.144\), \(0.4 \times 0.6 \times 0.6 = 0.144\). Total 0.648, so 64.8%. Best of five: 68.3%. Best of seven: 71.0%. Longer series help the better team, but slowly, and never to certainty. Even a best-of-seven leaves the worse team winning 29 times in 100. That is not a scandal. That is what "probability 0.6" means (see <a href="b14-dice.html">Dice don't lie</a>).</p>
+<p>Tournament shape matters too. In a <b>knockout</b> (single elimination), one bad day and you are gone, so upsets pile up. In a <b>round robin</b>, where everyone plays everyone, luck has many games to average out, which is why league champions are usually stronger than cup winners. A round robin of \(n\) teams needs \(\binom{n}{2}\) games (see <a href="b18-factorials.html">How many ways</a>), which gets expensive fast.</p>
+<p>Then there are <b>streaks</b>. A player scores five in a row and the commentator says they are "hot". But flip a fair coin 20 times and the chance of seeing at least one run of four heads or four tails is about 77%. Runs are what randomness looks like. Researchers have argued for forty years about whether the hot hand in basketball exists at all, and the honest answer is: if it does, it is small.</p>
+<p>Finally, averages. A batter can have a higher average than a rival in the first half of the season and in the second half, and still a lower average for the whole season. It depends on how many times each batted in each half. This is Simpson's paradox, from <a href="a8-averages.html">Lying with averages</a>, and it bites sports statistics constantly.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: best of seven, sweep</h2>
+<p>What is the chance the 0.6 team wins a best-of-seven four games to nothing? Four wins in a row: \(0.6 \times 0.6 \times 0.6 \times 0.6 = 0.6^4 = 0.1296\), about 13%. A sweep by the <em>worse</em> team is \(0.4^4 = 0.0256\), about 2.6%. So sweeps by the underdog happen roughly one series in forty. Over decades of finals, you will see several.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Team A wins each game with probability 0.7. Compute the chance A wins a best-of-three by listing the cases WW, WLW, LWW. Compare with the single-game chance.<div class="space"></div></li>
+<li>Eight teams play a round robin (everyone plays everyone once). How many games is that? Explain where the number comes from, either by counting pairs or using Pascal's triangle.<div class="space short"></div></li>
+<li>A knockout cup starts with 64 teams. How many matches are played in total? Give a one-sentence reason that works without drawing the bracket.<div class="space short"></div></li>
+<li>In 20 coin flips there is roughly a 77% chance of a run of at least four the same. A coach sees a player miss four shots in a row and benches them "because they are cold". Write two sentences the team's statistician might say to the coach.<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: how often does it go to game seven?</h2>
+<p>Two perfectly equal teams play a best-of-seven. The series lasts exactly seven games when, after six games, it is 3–3. How many of the \(2^6 = 64\) possible six-game sequences have exactly three wins for each side? (Pascal's triangle, row 6.) So what fraction of evenly matched series go the distance?</p>
+<p>Real data from several sports show more game-sevens than this. Suggest two explanations that are not "the teams are equal", and one way you might test which is right.</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>WW: \(0.49\). WLW: \(0.7 \times 0.3 \times 0.7 = 0.147\). LWW: \(0.147\). Total \(0.784\), so 78.4%, up from 70% for a single game.</li>
+<li>\(\binom{8}{2} = 28\) games. Each of 8 teams plays 7 others, \(8 \times 7 = 56\), but that counts every game twice, so 28. It is the third entry of row 8 of Pascal's triangle.</li>
+<li>63 matches. Every match eliminates exactly one team, and 63 teams must be eliminated to leave one champion.</li>
+<li>Something like: "Four misses in a row happens by chance to any shooter many times a season; it is not evidence of anything. If you bench everyone after four misses you will bench your best players as often as your worst."</li>
+</ol>
+<p><b>Stretch.</b> Row 6 of Pascal's triangle is 1, 6, 15, 20, 15, 6, 1, so 20 of the 64 sequences are 3–3: \(20/64 = 31.25\%\). Possible reasons for more game-sevens in reality: home advantage alternates and the team behind is often at home in game six; a team that is behind tries harder or changes tactics; coaches rest players when ahead. To test: compare how often the trailing team wins game six at home versus away, or check whether the pattern persists in sports with no home advantage.</p>
+</section>
+
+<div class="sheet-nav"><a href="c6-maps.html">← Previous</a><a href="c8-calendar.html">Next: What day of the week were you born? →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

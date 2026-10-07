@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why bees build hexagons · Infinity Club</title>
+<meta name="description" content="Only three regular shapes tile a flat surface, and of those the hexagon uses the least wall for the most room. Bees, basalt and bubbles all know it; Saturn has one for a different reason.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 6</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 6 · Connections · 4</div>
+  <h1>Why bees build hexagons</h1>
+  <p class="teaser">Honeycomb is made of hexagons, and so are basalt columns, soap-bubble rafts and graphene. None of them chose the shape. Arithmetic chose it for them. Saturn has a hexagon too, bigger than the Earth, and that one has a different cause.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A bee has a problem. It needs to store honey in cells that share walls (wax is expensive: a bee eats about eight grams of honey to make one gram of wax), the cells must fit together with no gaps, and each cell should hold as much as possible for as little wall as possible.</p>
+<p>Start with "no gaps". Shapes that fit together with no gaps are said to <b>tile</b> the plane. If every cell is the same regular polygon, some number of them must meet at each corner, and their corner angles must add up to exactly 360°. The corner angle of a regular polygon with \(n\) sides is \(180(n-2)/n\) degrees. For a triangle that is 60°, and six of them make 360°. For a square, 90°, four make 360°. For a hexagon, 120°, three make 360°. For a pentagon, 108°, and 108 does not divide 360: three pentagons leave a gap and four overlap. For anything with more than six sides the angle is bigger than 120°, so even three will not fit. <b>Only the triangle, the square and the hexagon tile the plane.</b></p>
+<p>Now "most room for least wall". Fix the area of one cell and compare the perimeters. A regular hexagon with side 1 has area about 2.598. A square with that same area has side about 1.612 and perimeter about 6.45. An equilateral triangle with that area has side about 2.449 and perimeter about 7.35. The hexagon's perimeter is 6. Least wall wins, and the hexagon has the least.</p>
+<p>In fact the hexagon beats every possible way of dividing a plane into equal-area cells, not just the regular polygons. People believed that for two thousand years; it was finally proved by Thomas Hales in 1999, and the proof is long.</p>
+<p>Nature finds the same answer wherever something is squeezed into equal cells with as little boundary as possible. Cooling lava cracks into hexagonal columns (the Giant's Causeway in Ireland). Bubbles packed on the surface of water form hexagons, meeting at 120°. Carbon atoms in graphene form a hexagonal sheet one atom thick. Saturn has a hexagon too, through a different mechanism: at its north pole a jet stream has been blowing in a hexagon about 30,000 km across since at least 1981, when Voyager first photographed it. The leading explanation is a wave running around the jet with six crests, not cells squeezed together or walls meeting in threes. Same shape, different cause. That is worth remembering: when two things look alike, the reasons behind them can still be completely different.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: can octagons tile?</h2>
+<p>A regular octagon has corner angle \(180 \times 6 / 8 = 135°\). Two octagons at a corner use 270°, leaving 90°. A third will not fit, but a <b>square</b> will: \(135 + 135 + 90 = 360\). So octagons alone cannot tile, but octagons and squares together can. That is the pattern on many bathroom floors.</p>
+<p>Back to the honeycomb. Bees do not measure angles. They build roughly round cells of soft wax, packed as tightly as possible, and the wax walls between neighbours flatten under pressure and warmth. Round cells packed tightly each touch six others, so flattening produces six flat walls. The hexagon is what you get when circles are squeezed.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Work out the corner angle of a regular polygon with 5, 7, 9, 10 and 12 sides. For each, say whether some whole number of copies fits around a point.<div class="space"></div></li>
+<li>Honeycomb cells have side about 2.7 mm. A hexagon's area is about \(2.6 \times (\text{side})^2\). Find the area of one cell in mm², and the perimeter. Then find the side of a square cell of the same area, and its perimeter. How much more wall does the square need, as a percentage?<div class="space tall"></div></li>
+<li>In a honeycomb, how many cells meet at each corner? How many neighbours does each cell have? Draw a patch of seven hexagons to check.<div class="space"></div></li>
+<li>Find a tiling using regular triangles and squares together. (Hint: angles at a corner must sum to 360, so try three triangles and two squares.) Sketch it.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: why bubbles meet at 120°</h2>
+<p>When three soap films meet along a line, the angle between each pair is always 120°. The films pull with equal tension, like three people pulling equally hard on a knot in three ropes. Explain why the only angles that balance are 120°, 120°, 120°. (What happens to the knot if one angle is bigger than the others?)</p>
+<p>Then: a raft of equal bubbles on water forms hexagons. Use the 120° rule and the tiling rule to say why the cells could not be squares or pentagons.</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>5 sides: 108°, \(360 / 108 = 3.33\), no. 7 sides: about 128.6°, no. 9 sides: 140°, no. 10 sides: 144°, \(360/144 = 2.5\), no. 12 sides: 150°, no. Only 3, 4 and 6 sides work.</li>
+<li>Area \(\approx 2.6 \times 2.7^2 = 2.6 \times 7.29 \approx 19\) mm². Hexagon perimeter \(6 \times 2.7 = 16.2\) mm. Square of area 19 mm² has side \(\sqrt{19} \approx 4.36\) mm and perimeter \(\approx 17.4\) mm, about 7.5% more wall.</li>
+<li>Three cells meet at each corner; each cell has six neighbours.</li>
+<li>Three triangles and two squares at each corner: \(3 \times 60 + 2 \times 90 = 360\). There are two different ways to arrange them around the corner, giving two different patterns; either is correct.</li>
+</ol>
+<p><b>Stretch.</b> If one angle at the knot were bigger than 120°, the two ropes on either side of it would pull more nearly in opposite directions, and the third rope would win the tug of war, moving the knot until the angles equalised. Only equal angles balance equal pulls, and three equal angles making 360° are 120° each. For the raft: cells meeting in threes at 120° means corner angles of 120°, which is the hexagon's angle. Squares have 90° corners and pentagons 108°, so neither can be built from 120° junctions.</p>
+</section>
+
+<div class="sheet-nav"><a href="c3-magic.html">← Previous</a><a href="c5-twenty-questions.html">Next: Finding a needle in twenty questions →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

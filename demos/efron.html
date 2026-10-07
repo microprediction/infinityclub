@@ -29,7 +29,7 @@ table.faces th { text-align: left; }
 .pair td.hi { font-weight: 800; color: var(--accent); }
 .pair td.lo { color: var(--muted); }
 .two { display: flex; flex-wrap: wrap; gap: 1.2rem; align-items: flex-start; }
-.two > * { flex: 1 1 280px; }
+.two > * { flex: 1 1 280px; min-width: 0; }
 svg.graph { width: 100%; max-width: 320px; height: auto; display: block; }
 .hidden { display: none; }
 </style>
@@ -37,9 +37,8 @@ svg.graph { width: 100%; max-width: 320px; height: auto; display: block; }
 <body>
 <nav class="top">
   <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
-  <a href="../index.html#sheets">Sheets</a>
-  <a href="../index.html#demos">Demos</a>
-  <a href="../plan.html">Start here</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
   <a href="../parents.html">Parents</a>
 </nav>
 <main class="demo-wrap">
@@ -70,7 +69,7 @@ svg.graph { width: 100%; max-width: 320px; height: auto; display: block; }
 <p>When two dice are rolled there are 6 × 6 = 36 equally likely pairs of faces. Count the pairs where the first die shows the bigger number and you have its chance of winning. Die A (4, 4, 4, 4, 0, 0) against die B (3, 3, 3, 3, 3, 3): A wins on its four 4s whatever B shows, which is 4 × 6 = 24 of the 36 pairs. Two thirds.</p>
 <p>Do that for every pair and a strange shape appears: A beats B, B beats C, C beats D, and D beats A, each two thirds of the time. The dice form a circle, not a line. So "which die is best?" has no answer. Whichever die you pick, the one just behind it in the circle beats it. These are Bradley Efron's dice.</p>
 <p>The dark line on the score bar shows the exact prediction. Ten rolls can land anywhere near it. Ten thousand rolls hug it. That is the law of large numbers doing its job, exactly as in <a href="dice.html">Two dice, many rolls</a>.</p>
-<p>Sheet: <a href="../sheets/b32-efron-dice.html">Dice that go round in circles</a>. Related: <a href="../sheets/b14-dice.html">Dice don't lie</a> and <a href="../sheets/c9-voting.html">How an election can have no winner</a>.</p>
+<p>Sheet: <a href="../grade-6/sheets/b32-efron-dice.html">Dice that go round in circles</a>. Related: <a href="../grade-6/sheets/b14-dice.html">Dice don't lie</a> and <a href="../grade-6/sheets/c9-voting.html">How an election can have no winner</a>.</p>
 </div>
 
 <h2>Design your own circle</h2>

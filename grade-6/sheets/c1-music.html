@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why there are twelve notes · Infinity Club</title>
+<meta name="description" content="Notes are frequencies, harmony is simple ratios, and twelve fifths almost equal seven octaves. Learn why pianos are tuned slightly wrong on purpose.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 6</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 6 · Connections · 1</div>
+  <h1>Why there are twelve notes</h1>
+  <p class="teaser">Harmony is arithmetic. An octave is 2:1, a fifth is 3:2, and the reason a piano has twelve notes is that 1.5 to the twelfth power is almost, but not quite, 128.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A musical note is a vibration. Pluck a guitar string and it wobbles back and forth hundreds of times a second; the number of wobbles per second is the <b>frequency</b>, measured in hertz (Hz). The A that orchestras tune to is 440 Hz. Higher frequency, higher note.</p>
+<p>Now the surprising part. Two notes sound good together when their frequencies are in a <b>simple ratio</b>. The simplest ratio is 2:1. Play 440 Hz and 880 Hz together and they blend so completely that we give them the same name: both are A. That gap is called an <b>octave</b>. Halve the length of a string and it plays the octave above. Pythagoras noticed this 2,500 years ago, which is why he decided the universe was made of numbers.</p>
+<p>The next simplest ratio is 3:2. Play 440 Hz with \(440 \times \tfrac32 = 660\) Hz and you get the bright, open sound at the start of "Twinkle, Twinkle" (the jump from "twin-" to "-kle"). Musicians call it a <b>fifth</b>. The ratio 4:3 gives a <b>fourth</b>, the opening of "Here Comes the Bride". The ratio 5:4 gives a <b>major third</b>, the sweet sound in a major chord.</p>
+<p>So why does a piano have twelve notes in each octave, and not ten, or seven, or twenty? Try this. Start at some note and go up a fifth, multiplying the frequency by \(\tfrac32\). Do it again. Keep going. After twelve fifths you have multiplied by \(\left(\tfrac32\right)^{12}\), which is about 129.7. Meanwhile seven octaves is \(2^7 = 128\). Those are <em>almost</em> equal. So twelve fifths land you almost exactly back on the note you started from, seven octaves up. That near-coincidence is why the circle of fifths closes after twelve steps, and why there are twelve notes.</p>
+<p>Almost exactly is not exactly. The gap, a ratio of \(129.7 / 128 \approx 1.0136\), is called the <b>Pythagorean comma</b>. For centuries instrument makers fought over how to hide it. The modern solution, <b>equal temperament</b>, spreads the error evenly: every one of the twelve steps in an octave multiplies the frequency by exactly the same amount, \(2^{1/12} \approx 1.0595\). Twelve of those multiply to exactly 2. The price is that a piano's fifth is \(2^{7/12} \approx 1.4983\), not \(1.5\). Every note on every piano is very slightly out of tune, on purpose, so that every key sounds equally good.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: building a chord from ratios</h2>
+<p>Start from A = 440 Hz. A major chord uses ratios 4 : 5 : 6 for its three notes. So the notes are \(440\), \(440 \times \tfrac54 = 550\) and \(440 \times \tfrac64 = 660\) Hz. Those are A, C♯ and E: an A major chord.</p>
+<p>Now compare with the piano's equal-tempered versions. C♯ is 4 steps above A: \(440 \times 2^{4/12} \approx 554.4\) Hz. E is 7 steps above: \(440 \times 2^{7/12} \approx 659.3\) Hz. Close, but not identical. A choir singing without a piano will naturally drift to the pure ratios, 550 and 660, because they sound smoother. Listen for the difference in the demo at ../demos/tones.html.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Middle C is about 261.6 Hz. What is the frequency of the C one octave above? Two octaves above? One octave below?<div class="space short"></div></li>
+<li>A fifth above 440 Hz is 660 Hz. A fourth above 660 Hz uses the ratio 4:3. What frequency is that, and what do you notice?<div class="space short"></div></li>
+<li>Compute \(\left(\tfrac32\right)^{12}\) step by step (multiply by 1.5 twelve times; keep all the decimals as you go, or the rounding drifts), and compare with \(2^7\). How far off is the circle of fifths, as a percentage?<div class="space"></div></li>
+<li>A guitar string is 65 cm long. Where would you press to play the octave? The fifth? (Frequency is inversely proportional to the vibrating length: half the length, double the frequency.)<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: why a fifth and a fourth make an octave</h2>
+<p>Going up a fifth multiplies by \(\tfrac32\). Going up a fourth multiplies by \(\tfrac43\). Multiply the two ratios. What do you get, and what does it mean musically? Now explain why, on a piano, a fifth is 7 steps and a fourth is 5 steps.</p>
+<p>Then compute the piano's versions: \(2^{7/12}\) and \(2^{5/12}\), to four decimal places (a calculator is allowed). Multiply them. Why is the answer exactly 2 this time, with no comma left over?</p>
+<div class="space tall"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>523.2 Hz, 1046.4 Hz, 130.8 Hz.</li>
+<li>\(660 \times \tfrac43 = 880\) Hz, which is exactly an octave above 440. A fifth and then a fourth is an octave.</li>
+<li>1.5, 2.25, 3.375, 5.0625, 7.59375, 11.390625, 17.0859375, 25.62890625, 38.443359375, 57.6650390625, 86.49755859375, 129.746337890625. (If you round to two places at each step you end near 130.1, which is why the instruction says not to.) Compared with 128 it overshoots by about 1.36 percent.</li>
+<li>Octave: press at the halfway point, 32.5 cm from the bridge, leaving half the string. Fifth: leave two thirds of the string, \(65 \times \tfrac23 \approx 43.3\) cm, so press 21.7 cm from the nut.</li>
+</ol>
+<p><b>Stretch.</b> \(\tfrac32 \times \tfrac43 = 2\), an octave. A fifth up then a fourth up lands on the same note name an octave higher. On a piano 7 + 5 = 12 steps, the whole octave. \(2^{7/12} \approx 1.4983\) and \(2^{5/12} \approx 1.3348\); their product is \(2^{12/12} = 2\) exactly, because the exponents add to 1. Equal temperament has no comma because it is built from powers of a single number, and powers always multiply cleanly.</p>
+</section>
+
+<div class="sheet-nav"><a href="b32-efron-dice.html">← Previous</a><a href="c2-astronomy.html">Next: The size of everything →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

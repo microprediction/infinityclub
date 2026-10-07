@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to lie with a graph · Infinity Club</title>
+<meta name="description" content="Truncated axes, cherry-picked windows and inflated pictograms: how charts mislead and how to read them properly.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 6</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 6 · Sharpen · 15</div>
+  <h1>How to lie with a graph</h1>
+  <p class="teaser">A graph can be perfectly accurate and still fool you. Tonight you learn the five standard tricks, so nobody can use them on you.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Every graph makes a claim with its shape, before you read a single number. A tall bar says "big". A steep line says "fast". The tricks below all work by making the shape say something the numbers do not.</p>
+<p><b>The chopped axis.</b> Start the vertical axis at 50 instead of 0, and a change from 51 to 52 looks like doubling. The two charts below show the same data.</p>
+<figure>
+<svg viewBox="0 0 420 170" width="420" height="170" font-family="Nunito, sans-serif" font-size="12" fill="#000">
+  <g transform="translate(10,10)">
+    <text x="60" y="0" text-anchor="middle" font-weight="700">Axis from 0</text>
+    <line x1="30" y1="10" x2="30" y2="130" stroke="#000"/>
+    <line x1="30" y1="130" x2="130" y2="130" stroke="#000"/>
+    <text x="25" y="134" text-anchor="end">0</text><text x="25" y="14" text-anchor="end">60</text>
+    <rect x="45" y="28" width="30" height="102" fill="#bbb" stroke="#000"/>
+    <rect x="90" y="26" width="30" height="104" fill="#777" stroke="#000"/>
+    <text x="60" y="145" text-anchor="middle">51</text><text x="105" y="145" text-anchor="middle">52</text>
+  </g>
+  <g transform="translate(240,10)">
+    <text x="60" y="0" text-anchor="middle" font-weight="700">Axis from 50</text>
+    <line x1="30" y1="10" x2="30" y2="130" stroke="#000"/>
+    <line x1="30" y1="130" x2="130" y2="130" stroke="#000"/>
+    <text x="25" y="134" text-anchor="end">50</text><text x="25" y="14" text-anchor="end">52.5</text>
+    <rect x="45" y="82" width="30" height="48" fill="#bbb" stroke="#000"/>
+    <rect x="90" y="34" width="30" height="96" fill="#777" stroke="#000"/>
+    <text x="60" y="145" text-anchor="middle">51</text><text x="105" y="145" text-anchor="middle">52</text>
+  </g>
+</svg>
+<figcaption>Same two numbers. The right-hand chart makes a 2% rise look like a 100% rise.</figcaption>
+</figure>
+<p><b>The chosen window.</b> Show only the three months when something went up and hide the two years when it went down.</p>
+<p><b>The inflated picture.</b> A pictogram of a coin that is twice as tall is also twice as wide, so it has four times the area. Your eye reads area. "Sales doubled" becomes "sales quadrupled".</p>
+<p><b>Two axes.</b> Put two different scales on the left and right, and you can make any two lines cross wherever you like.</p>
+<p><b>The total that only goes up.</b> A graph of "total sales ever" rises even in a terrible year. Only the slope tells you anything.</p>
+<p>The honest rules: bars start at zero; axes are labelled with units; the whole relevant range is shown; pictures scale in one direction only.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: the pictogram</h2>
+<p>A chart shows last year's profit as a money bag 2 cm tall and this year's as a bag 3 cm tall, "because profit rose 50%".</p>
+<p>Heights are in the ratio \(3 : 2 = 1.5\), fine. But the bags are drawn in proportion, so widths are also \(1.5\times\), and areas are \(1.5 \times 1.5 = 2.25\times\). The eye sees profit more than doubling. If the artist drew a 3D bag, volume is \(1.5^3 \approx 3.4\times\).</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>A news chart shows a tax rate going from 35% to 39.6% with the vertical axis running from 34% to 42%. Roughly how many times taller is the second bar than the first? What is the real ratio?<div class="space short"></div></li>
+<li>Here are a shop's monthly sales for a year: 40, 42, 38, 35, 33, 30, 28, 31, 36, 41, 45, 48. The owner shows a chart of the last four months only, titled "Sales soaring". Is anything false? Is anything misleading? Which months would a rival show?<div class="space"></div></li>
+<li>A pictogram uses a house symbol for homes built. One year's house is drawn 4 cm tall, the next 6 cm. By what factor did the number of homes rise, by what factor does the area rise, and what should the artist have done?<div class="space short"></div></li>
+<li>Redraw the sales data from question 2 honestly: all twelve months, axis from zero. Use the grid space below (label your axes).<div class="space tall"></div></li>
+<li>A headline says "Average pay at the company is $95,000". Ninety workers earn $40,000 and ten managers earn $590,000. Which average did they use, and what would the other one say? (See <a href="a8-averages.html">Lying with averages</a>.)<div class="space short"></div></li>
+<li>A chart plots "total number of users since launch" and rises smoothly. The company says "growth has never been stronger". What would you need to see to check that?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the log scale</h2>
+<p>Some charts mark the vertical axis 1, 10, 100, 1,000 at equal spacing. That is a logarithmic scale (see <a href="b21-logarithms.html">Counting digits</a>). It is the honest choice for things that grow by multiplying, like a population doubling every year, because steady doubling becomes a straight line. But it also flattens drama: on a log scale, a rise from 1,000 to 10,000 looks exactly like a rise from 1 to 10. When might a company prefer a log scale for its losses, and when might a scientist insist on one for an epidemic?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Above the 34% baseline the bars are 1 and 5.6 units tall, so the second looks about 5.6 times taller. The real ratio is \(39.6 / 35 \approx 1.13\), a 13% rise.</li>
+<li>Nothing is false: sales did rise from 36 to 48 over four months. It is misleading because the year as a whole started at 40 and dipped to 28. A rival would show January to July (40 down to 28) titled "Sales collapsing". Both are cherry-picked windows.</li>
+<li>Heights \(6/4 = 1.5\), so homes rose by 50%. Area rises by \(1.5^2 = 2.25\). The artist should have used 1.5 houses of the same size, or a bar.</li>
+<li>Twelve bars from 28 up to 48 on an axis starting at 0. The honest picture is a shallow dip and recovery, not a surge.</li>
+<li>The mean: \((90 \times 40{,}000 + 10 \times 590{,}000)/100 = 95{,}000\). The median is $40,000, which is what a typical worker earns.</li>
+<li>Users per month (new sign-ups), not the running total. The total can only rise; "strongest growth ever" needs the slope to be steeper than before, which the smooth curve does not show.</li>
+</ol>
+<p><b>Stretch.</b> A company with losses growing from 1 million to 100 million would love a log scale, because the line looks gentle. A scientist tracking an epidemic insists on one because case counts multiply, and on a log scale a straight line means steady doubling and a bend tells you the doubling rate has changed: bending downward means growth is slowing relative to its size, bending upward means it is speeding up. On an ordinary axis the same data just looks like a curve getting steeper, and it is hard to tell steady doubling from doubling that is slowing down.</p>
+</section>
+
+<div class="sheet-nav"><a href="a14-fermi.html">← How many piano tuners are in Chicago?</a><a href="a16-order.html">Next: Why PEMDAS →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

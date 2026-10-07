@@ -1,12 +1,21 @@
 # Infinity Club
 
-Printable math sheets, one a night, for bright kids around grade 6 (58 sheets in three tracks), plus 29 interactive demos. Live at [infinityclub.net](https://infinityclub.net).
+Printable math sheets, one a night, organised by grade. Grade 6 is live (58 sheets in three tracks); other grades will follow. Shared interactive demos (29) live in `demos/`. Live at [infinityclub.net](https://infinityclub.net).
+
+## Layout
+
+- `index.html`: grade chooser.
+- `grade-6/index.html`: the grade hub (all sheets by track). `grade-6/plan.html`: first thirty nights and club card. `grade-6/sheets/`: the sheets.
+- `demos/index.html`: gallery of every demo; `demos/*.html` the demos themselves, shared across grades.
+- `sheets/*.html` and `plan.html` are redirect stubs for the original URLs.
+
+To add a grade, copy `grade-6/` to `grade-N/`, replace the sheets, update the kickers (`Infinity Club · Grade N · Track · n`), and turn that grade's card on `index.html` from `soon` to `live`.
 
 Three tracks:
 
-- **Sharpen** (`sheets/a*.html`): grade 6 curriculum topics one notch harder, with the why.
-- **Around the corner** (`sheets/b*.html`): primes, binary, modular arithmetic, Pascal, Fibonacci, imaginary numbers, matrices, infinity, graphs, probability.
-- **Connections** (`sheets/c*.html`): music, astronomy, magic.
+- **Sharpen** (`grade-6/sheets/a*.html`): grade 6 curriculum topics one notch harder, with the why.
+- **Around the corner** (`grade-6/sheets/b*.html`): primes, binary, modular arithmetic, Pascal, Fibonacci, imaginary numbers, matrices, infinity, graphs, probability.
+- **Connections** (`grade-6/sheets/c*.html`): music, astronomy, magic.
 
 `demos/` holds standalone vanilla-JS pages.
 
@@ -16,7 +25,7 @@ Plain static HTML, no build step. `.nojekyll` disables Jekyll on GitHub Pages. S
 
 ## Adding a sheet
 
-Copy any sheet in `sheets/`, keep the section structure (`idea`, `example`, `exercises`, `stretch`, `answers`), update the kicker, title, prev/next links, and add a card to `index.html`. Answers are hidden on screen and always print on their own page. Use `<div class="space"></div>` (`short`, `tall` variants) for ruled writing room, which only appears in print.
+Copy any sheet in `grade-6/sheets/`, keep the section structure (`idea`, `example`, `exercises`, `stretch`, `answers`), update the kicker, title, prev/next links, and add a card to that grade's `index.html` and `plan.html` club card. Answers are hidden on screen and always print on their own page. Use `<div class="space"></div>` (`short`, `tall` variants) for ruled writing room, which only appears in print.
 
 ## Local preview
 

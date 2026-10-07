@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Finding a needle in twenty questions · Infinity Club</title>
+<meta name="description" content="Halving is the most powerful idea in computing. Guess a number in seven questions, find a word in a dictionary in ten, and see why a billion is only thirty.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 6</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 6 · Connections · 5</div>
+  <h1>Finding a needle in twenty questions</h1>
+  <p class="teaser">Think of a number from 1 to 100. I can always get it in seven yes-or-no questions. A word in a thousand-page dictionary takes ten. One thing out of a billion takes thirty. Halving is the most powerful idea in computing.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>The game is simple. You think of a whole number from 1 to 100; I ask yes-or-no questions. The slow way is "Is it 1? Is it 2?", up to 100 questions. The fast way is to ask "Is it more than 50?" Whatever the answer, half the numbers are gone. Then "more than 75?" or "more than 25?", and half of what is left is gone. Each question halves the suspects.</p>
+<p>How many halvings to get from 100 down to 1? \(100 \to 50 \to 25 \to 13 \to 7 \to 4 \to 2 \to 1\): seven. Another way to see it: seven yes-or-no answers can be written as seven binary digits, and seven binary digits can name \(2^7 = 128\) different things, which is more than 100. Six would only cover \(2^6 = 64\), not enough. This is the same idea as the sheet on counting to 31 on one hand: every yes-or-no answer is one bit.</p>
+<p>Now the surprising part: the number of questions grows incredibly slowly. A thousand things take ten questions (\(2^{10} = 1024\)). A million take twenty (\(2^{20} \approx 1{,}000{,}000\)), which is why the parlour game Twenty Questions actually works: twenty well-chosen questions can single out one thing from a million. A billion take thirty. Every time the haystack gets a thousand times bigger, the search gets only ten questions longer.</p>
+<p>Computers live on this. Looking up a word in a sorted list of a billion words by halving takes about thirty steps; checking each word in turn could take a billion. It is called <b>binary search</b>, and the only requirement is that the list is in order. That is why so much effort goes into sorting things.</p>
+<p>Sorting itself uses the same trick. To sort a thousand cards, split them into two piles of five hundred, sort each pile (by splitting again, and again), then merge the two sorted piles by repeatedly taking whichever top card is smaller. Merging a thousand cards takes about a thousand looks, and there are about ten levels of splitting, so roughly \(1000 \times 10 = 10{,}000\) steps. Sorting by comparing neighbours and swapping, the way most people sort by hand, takes about \(1000 \times 1000 / 2 = 500{,}000\). Fifty times slower, and the gap only widens for bigger lists.</p>
+<p>You can play the guessing game against the computer, and watch it play against you, in <a href="../../demos/guess.html">the guess demo</a>.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: finding 73</h2>
+<p>Suspects 1–100. "More than 50?" Yes. Suspects 51–100. "More than 75?" No. Suspects 51–75. "More than 63?" Yes. 64–75. "More than 69?" Yes. 70–75. "More than 72?" Yes. 73–75. "More than 74?" No. 73–74. "More than 73?" No. It is 73, in seven questions.</p>
+<p>Notice each question asks about the <b>middle</b> of what is left. Ask about the middle and you lose half no matter what the answer is. Ask near the edge and a lucky answer loses a lot, but an unlucky one loses almost nothing. Since you cannot control the answer, the middle is the safe choice.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>What is the smallest number of yes-or-no questions that is <em>always</em> enough for a number from 1 to 1,000? From 1 to 1,000,000? Explain using powers of 2.<div class="space"></div></li>
+<li>Someone picks a card from a standard deck of 52. How many yes-or-no questions do you need to be sure of naming it? Design the first two questions.<div class="space"></div></li>
+<li>Play the game with a family member who picks a number from 1 to 100. Write your questions and their answers, and count. Did you need more than seven? If so, which question was not about the middle?<div class="space tall"></div></li>
+<li>A dictionary has 1,000 pages. You open it in the middle, see which half the word is in, and repeat. How many openings before you are on the right page? What if the dictionary had 4,000 pages?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: nine coins, two weighings</h2>
+<p>You have nine coins that look identical, but one is slightly lighter. You have a balance scale that compares two piles and tells you which is heavier (or that they are equal). Find the light coin in just <b>two</b> weighings.</p>
+<p>Hint: a weighing has three outcomes, not two, so each one can cut the suspects to a third, not a half. \(3 \times 3 = 9\). How many coins could you handle with three weighings?</p>
+<div class="space tall"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Ten, since \(2^{10} = 1024 \ge 1000\) but \(2^9 = 512\) is too few. Twenty, since \(2^{20} = 1{,}048{,}576\) just covers a million and \(2^{19} = 524{,}288\) does not.</li>
+<li>Six, since \(2^6 = 64 \ge 52\) and \(2^5 = 32\) is not enough. Good first questions split the deck in half: "Is it red?" (26 each) then "Is it a heart?" or "Is it a spade?" depending (13 each). After that, "Is it higher than 7?" and so on.</li>
+<li>Seven suffices if every question splits the remaining range as evenly as possible. Any question that asks about a number far from the middle risks an extra round.</li>
+<li>Ten openings: \(2^{10} = 1024 \ge 1000\). For 4,000 pages, twelve: \(2^{12} = 4096\). Four times the pages cost just two more openings.</li>
+</ol>
+<p><b>Stretch.</b> Split into three piles of three. Weigh pile A against pile B. If they balance, the light coin is in pile C; otherwise it is in the lighter pile. Now you have three suspects. Weigh one against another: if they balance, it is the third; otherwise it is the lighter one. Two weighings. With three weighings you can handle \(3^3 = 27\) coins, and in general \(3^n\) coins in \(n\) weighings, because each weighing has three outcomes. (The famous harder puzzle, twelve coins where you do not know whether the odd one is heavier or lighter, also takes exactly three weighings, but needs a cleverer plan. Look it up once you have done this one.)</p>
+</section>
+
+<div class="sheet-nav"><a href="c4-hexagons.html">← Previous</a><a href="c6-maps.html">Next: Why Greenland looks as big as Africa →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

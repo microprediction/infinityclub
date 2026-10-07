@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Primes and the Sieve · Infinity Club</title>
+<meta name="description" content="Prime numbers are the atoms of arithmetic. Sieve them out of 1 to 100 and learn the fastest way to test whether a number is prime.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 6</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 6 · Around the corner · 1</div>
+  <h1>Primes and the Sieve</h1>
+  <p class="teaser">Every number is built from primes, the way every molecule is built from atoms. Tonight you find all 25 of them under 100, and learn the fast way to test a number.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A <b>prime</b> is a whole number bigger than 1 whose only factors are 1 and itself. 7 is prime. 15 is not, because \(15 = 3 \times 5\).</p>
+<p>Here is the big fact, and it is a real theorem: <b>every whole number bigger than 1 is either prime, or can be written as a product of primes in exactly one way</b> (apart from the order). \(360 = 2 \times 2 \times 2 \times 3 \times 3 \times 5\), and there is no other recipe. That is why mathematicians call primes the atoms of arithmetic.</p>
+<p>Why isn't 1 prime? If it were, the "exactly one way" part would break: \(6 = 2\times3 = 1\times2\times3 = 1\times1\times2\times3\ldots\) So we leave 1 out on purpose.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: is 91 prime?</h2>
+<p>You only need to test prime divisors, and you can <b>stop once the divisor squared is bigger than the number</b>. Here \(10^2 = 100 > 91\), so test only 2, 3, 5, 7.</p>
+<p>2? No, 91 is odd. 3? Digits add to 10, not a multiple of 3, so no. 5? Doesn't end in 0 or 5. 7? \(7 \times 13 = 91\). <b>Not prime.</b></p>
+<p>Why can you stop at 10? If \(91 = a \times b\) with both \(a\) and \(b\) bigger than 10, the product would be bigger than 100. So at least one factor is 10 or less.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li><b>Run the sieve.</b> In the grid below: cross out 1. Circle 2, then cross out every other multiple of 2. Circle the next uncrossed number (3) and cross out its multiples. Keep going with 5 and 7. Then stop, because \(11^2 = 121\) is off the grid. Everything left is prime. <b>How many primes are there under 100?</b>
+<div class="grid100">
+<span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span>
+<span>11</span><span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span>
+<span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span><span>29</span><span>30</span>
+<span>31</span><span>32</span><span>33</span><span>34</span><span>35</span><span>36</span><span>37</span><span>38</span><span>39</span><span>40</span>
+<span>41</span><span>42</span><span>43</span><span>44</span><span>45</span><span>46</span><span>47</span><span>48</span><span>49</span><span>50</span>
+<span>51</span><span>52</span><span>53</span><span>54</span><span>55</span><span>56</span><span>57</span><span>58</span><span>59</span><span>60</span>
+<span>61</span><span>62</span><span>63</span><span>64</span><span>65</span><span>66</span><span>67</span><span>68</span><span>69</span><span>70</span>
+<span>71</span><span>72</span><span>73</span><span>74</span><span>75</span><span>76</span><span>77</span><span>78</span><span>79</span><span>80</span>
+<span>81</span><span>82</span><span>83</span><span>84</span><span>85</span><span>86</span><span>87</span><span>88</span><span>89</span><span>90</span>
+<span>91</span><span>92</span><span>93</span><span>94</span><span>95</span><span>96</span><span>97</span><span>98</span><span>99</span><span>100</span>
+</div>
+</li>
+<li>Is 221 prime? Use the stopping trick: which primes do you actually need to test?<div class="space short"></div></li>
+<li>Write each as a product of primes: \(360\), \(1001\), \(2^{10}\) (that last one is a trick question).<div class="space"></div></li>
+<li><b>Twin primes</b> are primes that differ by 2, like 11 and 13. List every twin-prime pair under 50.<div class="space short"></div></li>
+<li>Explain in one sentence why 2 is the only even prime.<div class="space short"></div></li>
+<li>Find <b>six numbers in a row</b> under 100 with no prime among them. (Your sieve grid will show you.)<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: do the primes ever run out?</h2>
+<p>Euclid proved they don't, 2,300 years ago, and his argument fits in four lines. Suppose you had a complete list of primes: \(2, 3, 5, 7, \ldots, p\). Multiply them all together and add 1. Call that number \(N\).</p>
+<p>Divide \(N\) by any prime on your list. What remainder do you get? So what can you say about the prime factors of \(N\)? Why does that mean your list was never complete?</p>
+<p>Try it with the list \(2, 3, 5\): \(N = 31\). Now try \(2, 3, 5, 7, 11, 13\): \(N = 30031\). Is 30031 prime? (Hint: it isn't. Try 59.) Does that break Euclid's argument?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li><b>25 primes</b> under 100: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97.</li>
+<li>\(15^2 = 225 > 221\), so test only 2, 3, 5, 7, 11, 13. \(221 = 13 \times 17\). Not prime.</li>
+<li>\(360 = 2^3 \times 3^2 \times 5\). \(1001 = 7 \times 11 \times 13\). \(2^{10}\) is already a product of primes: ten 2s.</li>
+<li>(3, 5), (5, 7), (11, 13), (17, 19), (29, 31), (41, 43).</li>
+<li>Every even number is a multiple of 2, so any even number other than 2 has 2 as an extra factor.</li>
+<li>90, 91, 92, 93, 94, 95, 96. (Also 74–78 is a run of five.)</li>
+</ol>
+<p><b>Stretch.</b> Dividing \(N\) by any prime on the list leaves remainder 1, so none of them divides \(N\). But \(N\) must have at least one prime factor (every number bigger than 1 does). That prime is not on the list, so the list was incomplete. This works for <em>any</em> finite list, so there is no finite list: infinitely many primes. \(30031 = 59 \times 509\) is not prime, and that is fine: the argument never claimed \(N\) is prime, only that it has a prime factor missing from the list. Here 59 and 509 are both missing.</p>
+</section>
+
+<div class="sheet-nav"><a href="../index.html#sheets">← All sheets</a><a href="b2-binary.html">Next: Counting to 31 on one hand →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

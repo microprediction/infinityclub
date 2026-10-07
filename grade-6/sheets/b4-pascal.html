@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pascal's triangle · Infinity Club</title>
+<meta name="description" content="Build Pascal's triangle and discover powers of two, grid paths, handshakes, the hockey stick and powers of eleven hiding inside it.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 6</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 6 · Around the corner · 4</div>
+  <h1>Pascal's triangle</h1>
+  <p class="teaser">One rule, "add the two numbers above", builds a triangle that counts handshakes, paths through a city, pizza toppings and the powers of 11. Tonight you build it and go looking for the patterns.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Start with a 1. Each new row begins and ends with 1, and every number in between is the sum of the two numbers diagonally above it. The rows are numbered from 0.</p>
+<figure>
+<table style="margin:0 auto; border:0">
+<tr><td style="border:0" colspan="9">1</td></tr>
+<tr><td style="border:0" colspan="9">1 &nbsp; 1</td></tr>
+<tr><td style="border:0" colspan="9">1 &nbsp; 2 &nbsp; 1</td></tr>
+<tr><td style="border:0" colspan="9">1 &nbsp; 3 &nbsp; 3 &nbsp; 1</td></tr>
+<tr><td style="border:0" colspan="9">1 &nbsp; 4 &nbsp; 6 &nbsp; 4 &nbsp; 1</td></tr>
+</table>
+<figcaption>Rows 0 to 4. The 6 in row 4 is \(3 + 3\) from the row above.</figcaption>
+</figure>
+<p>Here is why it matters. Suppose you are at the top of the triangle and you can only step down-left or down-right. The number in each spot is <b>the number of different routes to reach it</b>. There is one way to reach either edge (keep going the same way). To reach the middle of row 2 you can go left-then-right or right-then-left: two ways. Every inside number is a sum because the routes into it come from the two spots above.</p>
+<p>That makes the triangle a counting machine. The entry in row \(n\), position \(k\) (counting from 0) is the number of ways to <b>choose \(k\) things out of \(n\)</b>. Choosing which 2 of 6 people shake hands, choosing which 3 of 7 toppings go on a pizza, choosing which 3 of 6 moves in a city walk go east: all of these are entries in the triangle.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: how many handshakes among 6 people?</h2>
+<p>A handshake is a choice of 2 people out of 6. Go to row 6, position 2 (remember the first position is 0).</p>
+<p>Row 5 is 1, 5, 10, 10, 5, 1, so row 6 is 1, 6, 15, 20, 15, 6, 1. Position 2 is <b>15</b>.</p>
+<p>Check by counting: the first person shakes 5 hands, the next shakes 4 new ones, then 3, 2, 1. \(5 + 4 + 3 + 2 + 1 = 15\). Same answer, and notice that is a triangular number, which is a hint about one of the patterns you are about to find.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Write out rows 5, 6, 7 and 8. Keep the rows lined up so you can see the diagonals.<div class="space tall"></div></li>
+<li>Add up each row. What do you get for rows 0 to 8? Predict the sum of row 10 without writing it out. Why does the sum double each time? (Think about routes.)<div class="space"></div></li>
+<li>Five friends need to pick 2 of themselves for a team. How many different teams are possible? Find it in the triangle, then check by listing.<div class="space short"></div></li>
+<li>A city has streets in a grid. You walk from one corner to another going 4 blocks east and 2 blocks south, never backtracking. Every route is a sequence of 6 moves, of which you choose 2 to be "south". How many routes are there?<div class="space short"></div></li>
+<li><b>The hockey stick.</b> Start at any 1 on an edge, run your finger down a diagonal and stop anywhere. Add those numbers. The total is the number diagonally below your stopping point, on the other side. Try it with \(1 + 4 + 10 + 20\). Then try it with the diagonal 1, 3, 6, 10, 15: what are these numbers called?<div class="space"></div></li>
+<li>Work out \(11^0, 11^1, 11^2, 11^3, 11^4\). Compare with the rows of the triangle. Then compute \(11^5 = 161{,}051\) and explain what went wrong with row 5.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the triangle inside algebra</h2>
+<p>Multiply out \((a+b)^2 = (a+b)(a+b)\). You get \(a^2 + 2ab + b^2\), and the coefficients are 1, 2, 1: row 2. Now multiply out \((a+b)^3 = (a+b)(a^2 + 2ab + b^2)\) carefully and collect like terms. Which row do you get, and why do you think the triangle shows up here?</p>
+<p>Then, for a completely different kind of surprise: write out rows 0 to 15 and shade every <em>odd</em> number. Or let the computer do it at <a href="../../demos/pascal.html">infinityclub.net/demos/pascal</a> and try shading multiples of 3 and 5 too.</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Row 5: 1 5 10 10 5 1. Row 6: 1 6 15 20 15 6 1. Row 7: 1 7 21 35 35 21 7 1. Row 8: 1 8 28 56 70 56 28 8 1.</li>
+<li>1, 2, 4, 8, 16, 32, 64, 128, 256: the powers of 2, so row 10 sums to \(2^{10} = 1024\). Each number in a row feeds into two numbers below it, so the total of all routes doubles with each row. Another way: each row sums all the ways of going down \(n\) steps, and each step has 2 choices.</li>
+<li>Row 5, position 2: 10 teams. (AB, AC, AD, AE, BC, BD, BE, CD, CE, DE.)</li>
+<li>Row 6, position 2: 15 routes. (Choosing which 2 of the 6 moves are south, or equally which 4 are east: position 4 is also 15.)</li>
+<li>\(1 + 4 + 10 + 20 = 35\), which is row 7, position 3 (or 4). The diagonal 1, 3, 6, 10, 15 is the triangular numbers, the handshake numbers from the example.</li>
+<li>1, 11, 121, 1331, 14641: exactly rows 0 to 4. Row 5 is 1 5 10 10 5 1, but 10 is not a single digit, so the two 10s carry: \(1\,5\,10\,10\,5\,1 \to 161051\). The pattern is real (\(11 = 10 + 1\), so \(11^n\) is \((10+1)^n\), which is the stretch question in disguise), it is just hidden by carrying.</li>
+</ol>
+<p><b>Stretch.</b> \((a+b)^3 = a^3 + 3a^2b + 3ab^2 + b^3\), coefficients 1, 3, 3, 1: row 3. When you multiply out \((a+b)(a+b)(a+b)\), each term comes from choosing \(a\) or \(b\) from each bracket, and the coefficient of \(a^2b\) counts the ways to choose which 1 of the 3 brackets gives the \(b\): 3 ways, which is row 3, position 1. Shading the odd numbers gives the Sierpinski triangle, a fractal of triangles inside triangles, repeating at every scale.</p>
+</section>
+
+<div class="sheet-nav"><a href="b3-clock-arithmetic.html">← Clock arithmetic</a><a href="b5-gauss.html">Next: Gauss and the lazy sum →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

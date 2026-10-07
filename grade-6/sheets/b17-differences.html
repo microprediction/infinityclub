@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The detective's method for sequences · Infinity Club</title>
+<meta name="description" content="Find the rule behind a number sequence by taking differences, write down the nth term, and learn why patterns can lie.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 6</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 6 · Around the corner · 17</div>
+  <h1>The detective's method for sequences</h1>
+  <p class="teaser">"What comes next?" puzzles are usually solved by staring. There is a method instead. It finds the formula, not just the next number, and it also tells you when a pattern is lying to you.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Take a sequence and write the gaps between neighbours underneath it. These are the <b>first differences</b>. If they are all the same, the sequence is <b>linear</b>: the \(n\)th term is \(d \times n + c\), where \(d\) is the common difference and \(c\) is whatever makes the first term come out right.</p>
+<p>If the first differences are not constant, take differences again. If the <b>second differences</b> are constant, the sequence is <b>quadratic</b>: its formula contains \(n^2\), and the number in front of \(n^2\) is <b>half the second difference</b>. Subtract that \(n^2\) part from the sequence and what is left is linear, which you already know how to handle.</p>
+<p>Constant third differences mean a cube is involved. And so on. Any sequence made by a polynomial formula eventually gives constant differences at some level, and the level tells you the degree.</p>
+<p>Why does halving work? Look at the squares 1, 4, 9, 16, 25. First differences 3, 5, 7, 9. Second differences 2, 2, 2. So \(n^2\) on its own produces a second difference of 2; \(3n^2\) would produce 6; in general \(a n^2\) produces \(2a\). Divide by 2 to recover \(a\).</p>
+<p>Here is the warning that goes with the method. The differences only tell you about the terms you have been shown. They cannot promise anything about the next one, because the person who made the sequence may not have been using a polynomial at all. Question 5 is a famous trap.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: 2, 5, 10, 17, 26</h2>
+<table>
+<tr><th>n</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
+<tr><th>term</th><td>2</td><td>5</td><td>10</td><td>17</td><td>26</td></tr>
+<tr><th>1st diff</th><td></td><td>3</td><td>5</td><td>7</td><td>9</td></tr>
+<tr><th>2nd diff</th><td></td><td></td><td>2</td><td>2</td><td>2</td></tr>
+</table>
+<p>Second differences are a constant 2, so the formula has \(\tfrac{2}{2} n^2 = n^2\) in it. Subtract \(n^2\) from each term: \(2 - 1 = 1\), \(5 - 4 = 1\), \(10 - 9 = 1\), \(17 - 16 = 1\), \(26 - 25 = 1\). What is left is the constant 1. So the \(n\)th term is \(n^2 + 1\). Check: \(n = 5\) gives \(26\).</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>7, 11, 15, 19, 23. Take differences, state the kind of sequence, and write the \(n\)th term. Then find the 100th term.<div class="space"></div></li>
+<li>The triangular numbers 1, 3, 6, 10, 15 (see <a href="b5-gauss.html">Gauss and the lazy sum</a>). Show that the second differences are constant, find the \(n^2\) coefficient, subtract, and finish the formula. Does it agree with \(\tfrac{n(n+1)}{2}\)?<div class="space tall"></div></li>
+<li>3, 8, 15, 24, 35. Find the \(n\)th term. Then factorise it and notice something about each term and its neighbours.<div class="space tall"></div></li>
+<li>1, 8, 27, 64, 125, 216. Keep taking differences until they are constant. How many levels did it take, and what does that tell you about the formula? (You may recognise the sequence anyway. The method should agree.)<div class="space"></div></li>
+<li><b>The trap.</b> Put \(n\) dots on a circle and join every pair with a straight line, so that no three lines cross at a single point. Count the regions inside the circle. For \(n = 1, 2, 3, 4, 5\) you get 1, 2, 4, 8, 16. What would most people guess for \(n = 6\)? Draw it carefully with six dots and count. (Spread the dots unevenly so no three lines meet.)<div class="space tall"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the real formula for the circle</h2>
+<p>The true sequence for the circle regions is 1, 2, 4, 8, 16, 31, 57, 99. Take differences all the way down and find at which level they become constant. What degree is the formula?</p>
+<p>The formula turns out to be \(\binom{n}{4} + \binom{n}{2} + 1\), where \(\binom{n}{k}\) is the entry in row \(n\), position \(k\) of <a href="b4-pascal.html">Pascal's triangle</a> (positions counted from 0). Check it for \(n = 1\) to \(7\) by reading the entries off the triangle. Then explain the shape of the formula: each crossing point inside the circle comes from choosing 4 of the dots (why?), and each chord from choosing 2.</p>
+<div class="space tall"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Differences 4, 4, 4, 4: linear. \(4n + c\), and \(4 \times 1 + c = 7\) gives \(c = 3\). \(n\)th term \(4n + 3\). The 100th term is \(403\).</li>
+<li>First differences 2, 3, 4, 5; second differences 1, 1, 1. Coefficient \(\tfrac{1}{2}\). Subtracting \(\tfrac{1}{2}n^2\): \(1 - 0.5 = 0.5\), \(3 - 2 = 1\), \(6 - 4.5 = 1.5\), \(10 - 8 = 2\): that is \(\tfrac{1}{2}n\). Total \(\tfrac{1}{2}n^2 + \tfrac{1}{2}n = \tfrac{n(n+1)}{2}\). Yes.</li>
+<li>First differences 5, 7, 9, 11; second differences 2. Coefficient 1. Subtract \(n^2\): 2, 4, 6, 8, 10, which is \(2n\). \(n\)th term \(n^2 + 2n = n(n + 2)\). Each term is one less than a perfect square: \(3 = 4 - 1\), \(8 = 9 - 1\), \(15 = 16 - 1\). Indeed \(n(n+2) = (n+1)^2 - 1\).</li>
+<li>First differences 7, 19, 37, 61, 91; second 12, 18, 24, 30; third 6, 6, 6. Three levels, so the formula is cubic. It is \(n^3\).</li>
+<li>Most people guess 32. The true count for six dots is <b>31</b>. The doubling pattern was an accident of the first five terms.</li>
+</ol>
+<p><b>Stretch.</b> First differences 1, 2, 4, 8, 15, 26, 42; second 1, 2, 4, 7, 11, 16; third 1, 2, 3, 4, 5; fourth 1, 1, 1, 1. Constant at the fourth level, so the formula is a quartic (has \(n^4\)). Checks: \(n = 4\): \(1 + 6 + 1 = 8\). \(n = 5\): \(5 + 10 + 1 = 16\). \(n = 6\): \(15 + 15 + 1 = 31\). \(n = 7\): \(35 + 21 + 1 = 57\). (For \(n = 1, 2, 3\) the \(\binom{n}{4}\) term is 0.) Every crossing inside the circle is where two chords meet, and two crossing chords have four distinct endpoints on the circle; conversely any 4 dots give exactly one crossing (join them as a quadrilateral and take the diagonals). So crossings are \(\binom{n}{4}\) and chords are \(\binom{n}{2}\). Starting from one region, each chord adds a region and each crossing adds one more. Hence the formula.</p>
+</section>
+
+<div class="sheet-nav"><a href="b16-codes.html">← Secret codes and how to break them</a><a href="b18-factorials.html">Next: How many ways →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

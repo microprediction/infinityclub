@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clock arithmetic · Infinity Club</title>
+<meta name="description" content="Modular arithmetic: remainders, clocks, days of the week, last digits of huge powers, and a digit trick that checks any multiplication.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 6</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 6 · Around the corner · 3</div>
+  <h1>Clock arithmetic</h1>
+  <p class="teaser">On a clock, 9 + 5 = 2. That is not a mistake, it is a whole branch of mathematics. Tonight you use it to find the last digit of a number with 48 digits, without writing the number down.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Start at 9 o'clock and wait 5 hours. It is 2 o'clock. The clock throws away every full turn of 12 and keeps only what's left. Mathematicians write this as \(9 + 5 \equiv 2 \pmod{12}\), read "9 plus 5 is 2, mod 12". The word <b>mod</b> just means "keep the remainder after dividing by".</p>
+<p>So \(17 \bmod 5 = 2\), because 17 is three 5s with 2 left over. And \(100 \bmod 12 = 4\), because \(100 = 8 \times 12 + 4\). Days of the week are a mod 7 clock. Minutes are mod 60. Angles are mod 360.</p>
+<p>The useful part: you can do the mod <em>before</em> multiplying or adding, not just after, and the answer comes out the same. That lets you reason about enormous numbers by working only with their remainders. Want the last digit of \(7^{100}\)? The last digit is just the number mod 10, and \(7 \times 7 = 49\) has last digit 9, then \(9 \times 7 = 63\) gives 3, then \(3 \times 7 = 21\) gives 1, then \(1 \times 7\) gives 7 again. The last digits cycle 7, 9, 3, 1 forever, with period 4. Since 100 is a multiple of 4, \(7^{100}\) lands on the end of a cycle: last digit <b>1</b>.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: what day is it 1000 days after a Monday?</h2>
+<p>Every 7 days the weekday comes back around, so throw away the 7s: \(1000 = 142 \times 7 + 6\), so \(1000 \bmod 7 = 6\).</p>
+<p>Six days after Monday is <b>Sunday</b>. You did not need a calendar, only a remainder.</p>
+<p>Here is the same trick explaining something you have probably noticed: \(365 \bmod 7 = 1\). That is why your birthday moves forward one weekday each year (two after a leap year, because \(366 \bmod 7 = 2\)).</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Work out \(38 \bmod 7\), \(100 \bmod 12\), and \(365 \bmod 7\).<div class="space short"></div></li>
+<li>It is 10 o'clock. What time will it be in 100 hours? (Don't worry about a.m. or p.m.)<div class="space short"></div></li>
+<li>Your birthday fell on a Tuesday this year. There is no 29 February before your next birthday. What weekday is your next birthday? And the one after that, if a 29 February comes in between?<div class="space short"></div></li>
+<li>Find the last digit of \(7^4\) by actually multiplying it out, then find the last digit of \(2^{100}\) using the cycle trick. (Write out the cycle of last digits of \(2, 4, 8, 16, 32, \ldots\) first.)<div class="space"></div></li>
+<li><b>Casting out nines.</b> Add the digits of a number, and keep adding until one digit is left. Call that its <em>digit root</em>. Fact: a number and its digit root leave the same remainder mod 9. Now check: someone claims \(4321 \times 1234 = 5{,}332{,}124\). Find the digit root of 4321, of 1234, multiply those two little numbers, take the digit root of that, and compare with the digit root of \(5{,}332{,}124\). Is the claim right?<div class="space"></div></li>
+<li>Why does casting out nines work? Start from this: \(10 = 9 + 1\), \(100 = 99 + 1\), \(1000 = 999 + 1\). So what is \(347 \bmod 9\) compared to \(3 + 4 + 7\)?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: a trick that reads a crossed-out digit</h2>
+<p>Ask a friend to write any number with several digits, say 7,415. Have them scramble its digits into a new number, say 1,547, and subtract the smaller from the larger. Tell them to cross out any <em>nonzero</em> digit of the answer and read you the digits that are left, in any order. You name the crossed-out digit instantly.</p>
+<p>First, work out the last digit of \(3^{100}\) using cycles. Then figure out the trick: why is the difference always a multiple of 9? (Casting out nines is the whole secret.) How do you recover the missing digit from the ones you hear? Why did we ban crossing out a zero?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(38 \bmod 7 = 3\), \(100 \bmod 12 = 4\), \(365 \bmod 7 = 1\).</li>
+<li>\(10 + 100 = 110\), and \(110 \bmod 12 = 2\). So 2 o'clock.</li>
+<li>Wednesday (one day on). Then Friday, because a leap year moves it two days.</li>
+<li>\(7^4 = 2401\), last digit 1. Powers of 2 end in 2, 4, 8, 6, 2, 4, 8, 6, … with period 4. 100 is a multiple of 4, so \(2^{100}\) is at the end of a cycle: last digit 6.</li>
+<li>Digit root of 4321 is 1 (4+3+2+1 = 10, then 1+0 = 1). Digit root of 1234 is 1. \(1 \times 1 = 1\). Digit root of 5,332,124 is 2 (5+3+3+2+1+2+4 = 20, then 2). The roots disagree, so the claim is wrong. (The real product is 5,332,114, whose digit root is 1.)</li>
+<li>\(347 = 3 \times 100 + 4 \times 10 + 7 = 3 \times 99 + 4 \times 9 + (3 + 4 + 7)\). The 99 and 9 parts are multiples of 9, so \(347\) and \(3+4+7 = 14\) leave the same remainder mod 9 (both leave 5). The same works for any number because every power of 10 is one more than a multiple of 9.</li>
+</ol>
+<p><b>Stretch.</b> Powers of 3 end in 3, 9, 7, 1 with period 4, so \(3^{100}\) ends in 1. For the trick: a number and its scrambled version have the same digits, so the same digit sum, so the same remainder mod 9. Their difference therefore has remainder 0: it is a multiple of 9, and so its digit root is 9 (or the number is 0). Add up the digits you are told; the missing digit is whatever brings the total up to the next multiple of 9. If the digits you hear already sum to a multiple of 9, the missing digit would be 0 or 9 and you could not tell which, so we ban zero and answer 9. Example: \(7415 - 1547 = 5868\); cross out the 6, hear 5, 8, 8 which sum to 21, next multiple of 9 is 27, missing digit 6.</p>
+</section>
+
+<div class="sheet-nav"><a href="b2-binary.html">← Counting to 31 on one hand</a><a href="b4-pascal.html">Next: Pascal's triangle →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

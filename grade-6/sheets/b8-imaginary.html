@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Imaginary numbers are real · Infinity Club</title>
+<meta name="description" content="Meet i, the square root of minus one: how to add and multiply with it, why it lives on a plane, and why multiplying by i is a quarter turn.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 6</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 6 · Around the corner · 8</div>
+  <h1>Imaginary numbers are real</h1>
+  <p class="teaser">There is no ordinary number whose square is −1. So mathematicians invented one, called it i, and it turned out to be the key to electricity, waves and quantum physics. Tonight you learn to calculate with it.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Five hundred years ago, negative numbers were called "absurd" and "fictitious". How can you have less than nothing? Then people found that if you simply allow them and follow the rules, debts, temperatures and directions all become easy. The numbers were strange only until they were useful.</p>
+<p>The same thing happened again. Nothing squared gives a negative, because positive times positive and negative times negative are both positive. So define a new number \(i\) with the single property \(i^2 = -1\), and see what happens if you follow the ordinary rules of algebra.</p>
+<p>Numbers like \(3 + 2i\) are called <b>complex numbers</b>: an ordinary part and an \(i\) part. Adding is easy, just add the parts: \((3 + 2i) + (1 + 5i) = 4 + 7i\). Multiplying uses the distributive law and \(i^2 = -1\) whenever it appears.</p>
+<p>The picture is the real surprise. Plot \(a + bi\) as the point \((a, b)\): ordinary numbers along the horizontal axis, \(i\) one step up. Now multiply any point by \(i\) and plot the result. It has <b>rotated a quarter turn anticlockwise</b>. That explains \(i^2 = -1\) perfectly: two quarter turns make a half turn, and a half turn takes 1 to \(-1\). There was never anything imaginary about it. It was a rotation all along. Try it at <a href="../../demos/complex.html">infinityclub.net/demos/complex</a>.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: multiply (2 + 3i)(1 − i)</h2>
+<p>Expand like any pair of brackets: \(2 \times 1 + 2 \times (-i) + 3i \times 1 + 3i \times (-i) = 2 - 2i + 3i - 3i^2\).</p>
+<p>Now use \(i^2 = -1\): \(-3i^2 = +3\). So the total is \(2 + 3 + (-2i + 3i) = 5 + i\).</p>
+<figure>
+<svg viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="Complex plane with the point 2 plus i and its quarter-turn rotation minus 1 plus 2i">
+<g stroke="#999" stroke-width="1"><line x1="10" y1="100" x2="190" y2="100"/><line x1="100" y1="10" x2="100" y2="190"/></g>
+<g stroke="#ccc" stroke-width=".6"><line x1="125" y1="10" x2="125" y2="190"/><line x1="150" y1="10" x2="150" y2="190"/><line x1="175" y1="10" x2="175" y2="190"/><line x1="75" y1="10" x2="75" y2="190"/><line x1="50" y1="10" x2="50" y2="190"/><line x1="25" y1="10" x2="25" y2="190"/><line x1="10" y1="125" x2="190" y2="125"/><line x1="10" y1="150" x2="190" y2="150"/><line x1="10" y1="175" x2="190" y2="175"/><line x1="10" y1="75" x2="190" y2="75"/><line x1="10" y1="50" x2="190" y2="50"/><line x1="10" y1="25" x2="190" y2="25"/></g>
+<g stroke="#000" stroke-width="2"><line x1="100" y1="100" x2="150" y2="75"/><line x1="100" y1="100" x2="75" y2="50" stroke-dasharray="4 3"/></g>
+<circle cx="150" cy="75" r="3.5"/><circle cx="75" cy="50" r="3.5"/>
+<path d="M 128 86 A 30 30 0 0 0 112 72" fill="none" stroke="#000" stroke-width="1"/>
+<g font-size="10" font-family="sans-serif"><text x="154" y="72">2 + i</text><text x="40" y="46">−1 + 2i</text><text x="180" y="112">real</text><text x="104" y="20">i</text><text x="113" y="68" font-size="9">90°</text></g>
+</svg>
+<figcaption>Multiplying \(2 + i\) by \(i\) gives \(2i + i^2 = -1 + 2i\): the same arrow turned a quarter turn.</figcaption>
+</figure>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Work out \(i^1, i^2, i^3, i^4, i^5\). You should see a cycle. Use it to find \(i^7\) and \(i^{100}\).<div class="space short"></div></li>
+<li>Compute \((2 + 3i) + (1 - i)\) and \((2 + 3i) - (1 - i)\).<div class="space short"></div></li>
+<li>Compute \((1 + 2i)(3 + i)\). Show the \(i^2\) step.<div class="space"></div></li>
+<li>Compute \((3 + 2i)(3 - 2i)\). The \(i\) parts should vanish. Then compute \((a + bi)(a - bi)\) in general. This is why the number 13 can be split into two squares.<div class="space"></div></li>
+<li>On a grid, plot \(2 + i\). Multiply it by \(i\) and plot the result. Multiply by \(i\) again, and again, and again, plotting each time. Describe the shape your four points make and say why the fifth point is back where you started.<div class="space tall"></div></li>
+<li>Solve \(x^2 = -9\) and \(x^2 = -2\). (Each has two answers.)<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: an equation with no ordinary solution</h2>
+<p>The equation \(x^2 - 2x + 5 = 0\) has no ordinary solution. Try a few values of \(x\) and notice the left side never reaches zero. Now rewrite it: \(x^2 - 2x + 5 = (x - 1)^2 + 4\). (Check that by expanding.) So the equation says \((x - 1)^2 = -4\). Finish it off with \(i\). Then check one of your answers by substituting it back in.</p>
+<p>And a picture question: \(1 + i\) sits at 45° from the real axis, at distance \(\sqrt{2}\) from the centre. Compute \((1 + i)^2\). Where does it land, at what angle and what distance? Can you guess the rule for what squaring does to the angle and to the distance?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(i, -1, -i, 1, i\): a cycle of length 4. \(i^7 = i^3 = -i\) (since \(7 = 4 + 3\)). \(i^{100} = 1\) (100 is a multiple of 4).</li>
+<li>\(3 + 2i\) and \(1 + 4i\).</li>
+<li>\(3 + i + 6i + 2i^2 = 3 + 7i - 2 = 1 + 7i\).</li>
+<li>\(9 - 6i + 6i - 4i^2 = 9 + 4 = 13\). In general \((a + bi)(a - bi) = a^2 + b^2\). So \(13 = 3^2 + 2^2\).</li>
+<li>\(2 + i \to -1 + 2i \to -2 - i \to 1 - 2i \to 2 + i\). The four points are the corners of a square centred at 0, each a quarter turn from the last. Four quarter turns make a full turn, which is also the statement \(i^4 = 1\).</li>
+<li>\(x = 3i\) or \(x = -3i\) (check: \((3i)^2 = 9i^2 = -9\)). \(x = i\sqrt{2}\) or \(x = -i\sqrt{2}\).</li>
+</ol>
+<p><b>Stretch.</b> \((x - 1)^2 = -4\) means \(x - 1 = 2i\) or \(x - 1 = -2i\), so \(x = 1 + 2i\) or \(x = 1 - 2i\). Check with \(x = 1 + 2i\): \(x^2 = 1 + 4i + 4i^2 = -3 + 4i\), then \(x^2 - 2x + 5 = (-3 + 4i) - (2 + 4i) + 5 = 0\). Picture: \((1 + i)^2 = 1 + 2i + i^2 = 2i\), which sits straight up the \(i\) axis at 90°, at distance 2. The angle doubled (45° to 90°) and the distance squared (\(\sqrt{2}\) to 2). That is the general rule: multiplying complex numbers adds their angles and multiplies their distances. It is the reason they are so good at describing anything that rotates or oscillates.</p>
+</section>
+
+<div class="sheet-nav"><a href="b7-pythagoras.html">← Pythagoras and square roots</a><a href="b9-matrices.html">Next: Matrices →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

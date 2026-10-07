@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Counting to 31 on one hand · Infinity Club</title>
+<meta name="description" content="Binary numbers: count to 31 on one hand, convert between base 2 and base 10, and build a set of mind-reading cards.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 6</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 6 · Around the corner · 2</div>
+  <h1>Counting to 31 on one hand</h1>
+  <p class="teaser">Our number system uses ten digits because we have ten fingers. Computers get by with two. Tonight you learn to count the way they do, and by the end you can read minds with it.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>When you write 347, you really mean \(3 \times 100 + 4 \times 10 + 7 \times 1\). Each place is worth ten times the one to its right. That is <b>base 10</b>, and the ten is a choice, not a law.</p>
+<p>In <b>base 2</b> (binary) each place is worth <em>twice</em> the one to its right: 1, 2, 4, 8, 16, 32, and so on. The only digits you need are 0 and 1, because as soon as you would write a 2 you carry instead. So the binary number 1101 means \(1 \times 8 + 1 \times 4 + 0 \times 2 + 1 \times 1 = 13\).</p>
+<p>Now the finger trick. Hold up your right hand, palm toward you. Thumb is worth 1, index 2, middle 4, ring 8, little finger 16. A finger up means 1, down means 0. Thumb up alone is 1. Index alone is 2. Thumb and index is 3. Keep going and you reach 31 with all five up. (Be careful around 4.)</p>
+<p>Computers use binary because a wire is either carrying current or it isn't. Two states, two digits. Every photo, song and game is, underneath, an enormous list of 0s and 1s.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: turn 22 into binary, and 10110 back</h2>
+<p><b>22 to binary.</b> Find the biggest power of 2 that fits: 16. Left over: 6. Does 8 fit? No, write 0. Does 4? Yes, left over 2. Does 2? Yes, left over 0. Does 1? No. Reading the yes/no answers: <b>10110</b>.</p>
+<p>Check: \(16 + 4 + 2 = 22\). Good.</p>
+<p><b>10110 to base 10.</b> Write the place values under the digits: 16, 8, 4, 2, 1. Add the ones under a 1: \(16 + 4 + 2 = 22\). Same number, as it should be.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Write these in binary: 5, 10, 19, 37.<div class="space short"></div></li>
+<li>Write these in base 10: 1011, 11111, 1100100.<div class="space short"></div></li>
+<li>Add in binary, carrying when a column reaches 2 (write it as 0, carry 1): \(1011 + 110\). Check your answer by converting everything to base 10.<div class="space"></div></li>
+<li>A <b>bit</b> is one binary digit. What is the biggest number you can write with 8 bits? What about with both hands, 10 fingers? (Hint: it is one less than a power of 2. Why?)<div class="space short"></div></li>
+<li>How many bits do you need to write the number 1000? And 1,000,000? (You don't need the exact binary, just the number of digits.)<div class="space short"></div></li>
+<li>In binary, how can you tell at a glance whether a number is even? Whether it is a multiple of 4? Explain why.<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the mind-reading cards</h2>
+<p>Make five cards. Card A lists every number from 1 to 31 that has a 1 in the 1s place of its binary form. Card B lists every number with a 1 in the 2s place, and so on for 4, 8 and 16. Write the place value in the top-left corner of each card.</p>
+<p>Ask a friend to think of a number from 1 to 31 and hand you every card their number appears on. Add up the top-left corners of those cards. That is their number.</p>
+<p>Why does it work? And here is the real question: if you wanted to read minds up to 63, how many cards would you need, and what goes on the new one?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>5 = 101, 10 = 1010, 19 = 10011, 37 = 100101.</li>
+<li>1011 = 11, 11111 = 31, 1100100 = 100.</li>
+<li>\(1011 + 110 = 10001\). Check: \(11 + 6 = 17\), and 10001 is \(16 + 1 = 17\).</li>
+<li>8 bits: 11111111 = 255. 10 bits: 1023. Each is one less than a power of 2 (\(2^8 = 256\), \(2^{10} = 1024\)) because all-ones is the number just before the next place value switches on, like 999 is just before 1000.</li>
+<li>1000 needs 10 bits (\(2^9 = 512 \le 1000 &lt; 1024 = 2^{10}\)). 1,000,000 needs 20 bits (\(2^{19} = 524{,}288\) and \(2^{20} = 1{,}048{,}576\)).</li>
+<li>Even numbers end in 0, because every place except the 1s place is even. Multiples of 4 end in 00, because every place except the 1s and 2s places is a multiple of 4.</li>
+</ol>
+<p><b>Stretch.</b> The cards:</p>
+<table>
+<tr><th>Card</th><th>Numbers</th></tr>
+<tr><td>1</td><td>1, 3, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29, 31</td></tr>
+<tr><td>2</td><td>2, 3, 6, 7, 10, 11, 14, 15, 18, 19, 22, 23, 26, 27, 30, 31</td></tr>
+<tr><td>4</td><td>4, 5, 6, 7, 12, 13, 14, 15, 20, 21, 22, 23, 28, 29, 30, 31</td></tr>
+<tr><td>8</td><td>8, 9, 10, 11, 12, 13, 14, 15, 24, 25, 26, 27, 28, 29, 30, 31</td></tr>
+<tr><td>16</td><td>16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31</td></tr>
+</table>
+<p>It works because handing you a card says "my number has a 1 in this place". The cards together spell out the binary form, and adding the place values converts it back. For 1 to 63 you need a sixth card headed 32, listing 32 through 63, and every other card gets 16 more numbers (its old list plus 32).</p>
+</section>
+
+<div class="sheet-nav"><a href="b1-primes.html">← Primes and the Sieve</a><a href="b3-clock-arithmetic.html">Next: Clock arithmetic →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

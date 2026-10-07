@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The mind reader who survives a lie · Infinity Club</title>
+<meta name="description" content="Seven yes/no cards find a secret number from 0 to 15 even if the person lies once, and tell you which answer was the lie. This is a Hamming code, the trick that keeps computer memory honest.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+<style>
+.cards7 { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: .6rem; margin: .8em 0 1em; }
+.cards7 div { border: 2px solid var(--ink); border-radius: 8px; padding: .4rem .5rem .5rem; break-inside: avoid; }
+.cards7 b { display: block; font-size: .8rem; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); margin-bottom: .2rem; }
+.cards7 span { display: grid; grid-template-columns: repeat(4, 1fr); text-align: center; font-size: 1.1rem; font-weight: 700; }
+.cards7 .chk b { color: var(--warm); }
+.cards7 i { font-style: normal; }
+table.hm { font-size: .95rem; }
+table.hm th, table.hm td { border: 1px solid var(--rule); padding: .2em .55em; text-align: center; font-family: var(--mono); }
+table.hm th { background: var(--accent-soft); font-family: var(--sans); }
+@media print { .cards7 b { color: #000; } .cards7 .chk b { color: #000; text-decoration: underline; } }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 6</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 6 · Around the corner · 31</div>
+  <h1>The mind reader who survives a lie</h1>
+  <p class="teaser">"Think of a number from 0 to 15. I will show you seven cards and you tell me whether your number is on each one. You may lie once. I will still name your number, and I will tell you which answer was the lie." Tonight you learn the trick, and why every computer in the world uses it.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>You already know the ordinary version of this trick from <a href="b2-binary.html">Counting to 31 on one hand</a>. Four cards, one for each binary digit, and the four yes/no answers spell the number in binary. But if the person lies on one card, you get the wrong number and never know it.</p>
+<p>The fix is to add three <b>checking cards</b>. Here are all seven. Cut them out or just point at them.</p>
+<div class="cards7">
+<div class="chk"><b>Card 1</b><span><i>1</i><i>3</i><i>4</i><i>6</i><i>8</i><i>10</i><i>13</i><i>15</i></span></div>
+<div class="chk"><b>Card 2</b><span><i>1</i><i>2</i><i>5</i><i>6</i><i>8</i><i>11</i><i>12</i><i>15</i></span></div>
+<div><b>Card 3</b><span><i>8</i><i>9</i><i>10</i><i>11</i><i>12</i><i>13</i><i>14</i><i>15</i></span></div>
+<div class="chk"><b>Card 4</b><span><i>1</i><i>2</i><i>4</i><i>7</i><i>9</i><i>10</i><i>12</i><i>15</i></span></div>
+<div><b>Card 5</b><span><i>4</i><i>5</i><i>6</i><i>7</i><i>12</i><i>13</i><i>14</i><i>15</i></span></div>
+<div><b>Card 6</b><span><i>2</i><i>3</i><i>6</i><i>7</i><i>10</i><i>11</i><i>14</i><i>15</i></span></div>
+<div><b>Card 7</b><span><i>1</i><i>3</i><i>5</i><i>7</i><i>9</i><i>11</i><i>13</i><i>15</i></span></div>
+</div>
+<p>Cards 3, 5, 6 and 7 are the old binary cards: the 8s, 4s, 2s and 1s. Cards 1, 2 and 4 are new. Write each "yes" as a 1 and each "no" as a 0, in card order, and you get a string of seven bits. Call the bit from card \(k\) simply \(k\).</p>
+<p>The cards are built so that, if nobody lies, three <b>checks</b> all come out even:</p>
+<div class="callout">
+<b>Check A:</b> cards 1, 3, 5, 7 have an even number of yeses.<br>
+<b>Check B:</b> cards 2, 3, 6, 7 have an even number of yeses.<br>
+<b>Check C:</b> cards 4, 5, 6, 7 have an even number of yeses.
+</div>
+<p>Look at which cards are in each check. Check A is every card whose number has a 1 in the <em>ones</em> place (1, 3, 5, 7). Check B is every card with a 1 in the <em>twos</em> place (2, 3, 6, 7). Check C is every card with a 1 in the <em>fours</em> place (4, 5, 6, 7). Card 1 is only in check A, card 2 only in B, card 4 only in C, and card 7 is in all three.</p>
+<p>Now the magic. Suppose exactly one answer is a lie, on card \(k\). It breaks exactly the checks that card \(k\) belongs to, and those checks are precisely the binary digits of \(k\). So: <b>score 1 if check A fails, 2 if B fails, 4 if C fails, and add. The total is the number of the card they lied on.</b> If all three checks pass, the total is 0 and nobody lied. Flip that answer back, read cards 3, 5, 6, 7 as 8s, 4s, 2s, 1s, and announce the number. This is called a <b>Hamming code</b>, invented by Richard Hamming in 1950 because his computer kept crashing at weekends over single wrong bits and nobody was there to fix them.</p>
+</section>
+
+<section class="example">
+<h2>Watch one</h2>
+<p>Someone thinks of 13. Honestly, 13 is on cards 1, 3, 5, 7 and not on 2, 4, 6, so the true answers are \(1\,0\,1\,0\,1\,0\,1\). But they decide to lie on card 5 and say "no". You hear \(1\,0\,1\,0\,\mathbf{0}\,0\,1\).</p>
+<table class="hm">
+<tr><th>Check</th><th>Cards</th><th>Yeses</th><th>Even?</th><th>Score</th></tr>
+<tr><td>A</td><td>1, 3, 5, 7</td><td>1+1+0+1 = 3</td><td>no</td><td>1</td></tr>
+<tr><td>B</td><td>2, 3, 6, 7</td><td>0+1+0+1 = 2</td><td>yes</td><td>0</td></tr>
+<tr><td>C</td><td>4, 5, 6, 7</td><td>0+0+0+1 = 1</td><td>no</td><td>4</td></tr>
+</table>
+<p>Total \(1 + 0 + 4 = 5\). "You lied on card 5." Flip it back to yes. Now cards 3, 5, 6, 7 read \(1, 1, 0, 1\), which is \(8 + 4 + 0 + 1 = 13\). "Your number is 13."</p>
+<p>Try the same number with no lie: \(1\,0\,1\,0\,1\,0\,1\). Check A: \(1+1+1+1 = 4\), even. Check B: \(0+1+0+1 = 2\), even. Check C: \(0+1+0+1 = 2\), even. Total 0. "You told the truth, and your number is 13."</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li><b>Encode.</b> For each secret, write the seven honest answers as bits in card order. Use the cards, then check that all three checks come out even. Secrets: 11, 6, 0, 15.<div class="space"></div></li>
+<li><b>Decode, one lie allowed.</b> Here are the answers you heard. Find the lie (if any) and the secret.<br>(a) \(1\,0\,1\,0\,0\,1\,0\) &nbsp;&nbsp; (b) \(1\,1\,1\,0\,0\,1\,1\) &nbsp;&nbsp; (c) \(1\,1\,0\,0\,1\,1\,1\) &nbsp;&nbsp; (d) \(0\,0\,1\,1\,0\,0\,1\)<div class="space tall"></div></li>
+<li>Someone answers "no" to every card except card 5. Which card did they lie on, and what is their number? (Think before you compute: what happens if the lie is on a checking card?)<div class="space short"></div></li>
+<li>Why is card 7 in all three checks, while card 1 is only in check A? Write the numbers 1 to 7 in binary and explain in one sentence.<div class="space short"></div></li>
+<li>Build card 2 yourself, without looking. Card 2 must make check B come out even, and check B contains cards 2, 3, 6, 7. So a number is on card 2 exactly when it is on an <em>odd</em> number of the cards 3, 6, 7. Work through 0 to 15 and compare with the printed card.<div class="space"></div></li>
+<li>Perform the trick on someone. Do it three times, once with no lie. Record your hits and misses honestly. If you missed, redo the three checks and find your slip.<div class="space short"></div></li>
+</ol>
+<p class="small">Practise with the computer as the victim, or as the mind reader, at <a href="../../demos/hamming.html">infinityclub.net/demos/hamming.html</a>. It also shows what happens with two lies.</p>
+</section>
+
+<section class="stretch">
+<h2>Stretch: why one lie is the limit</h2>
+<p>There are 16 secrets. For each secret there are 8 things you might hear: the honest string, or one of 7 strings with a single lie. That makes \(16 \times 8 = 128\) possible strings you could hear. How many strings of seven bits are there altogether? What does that tell you?</p>
+<p>The answer means the 128 "one lie or none" strings use up <em>every</em> seven-bit string, with none to spare. So if someone lies twice, the string they produce is already claimed by some other secret with one lie, and the method will confidently name the wrong number. Try it: take the honest string for 5, which is \(0\,1\,0\,0\,1\,0\,1\), flip cards 2 and 6, and decode. What number does the trick announce, and which card does it blame?</p>
+<p>Computer memory, hard drives, QR codes and spacecraft all use codes like this. A QR code can lose up to 30% of its squares (that is why people can print logos in the middle) and still scan, using a bigger cousin of tonight's idea. The question engineers ask is always the same: how many extra checking bits buy how many corrected mistakes?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>11 is on cards 2, 3, 6, 7: \(0\,1\,1\,0\,0\,1\,1\). 6 is on cards 1, 2, 5, 6: \(1\,1\,0\,0\,1\,1\,0\). 0 is on no card: \(0\,0\,0\,0\,0\,0\,0\). 15 is on every card: \(1\,1\,1\,1\,1\,1\,1\). In each case A, B and C are even (for 15 every check has four yeses).</li>
+<li>(a) A: \(1+1+0+0 = 2\) even; B: \(0+1+1+0 = 2\) even; C: \(0+0+1+0 = 1\) odd. Score 4: the lie is on card 4. Cards 3, 5, 6, 7 read 1, 0, 1, 0, so the secret is \(8 + 2 = 10\).<br>(b) A: \(1+1+0+1 = 3\) odd; B: \(1+1+1+1 = 4\) even; C: \(0+0+1+1 = 2\) even. Score 1: the lie is on card 1, a checking card, so the secret is unaffected. Cards 3, 5, 6, 7 read 1, 0, 1, 1: secret \(8 + 2 + 1 = 11\).<br>(c) A: \(1+0+1+1 = 3\) odd; B: \(1+0+1+1 = 3\) odd; C: \(0+1+1+1 = 3\) odd. Score \(1+2+4 = 7\): the lie is on card 7. Flip it to 0; cards 3, 5, 6, 7 read 0, 1, 1, 0: secret \(4 + 2 = 6\).<br>(d) A: \(0+1+0+1 = 2\); B: \(0+1+0+1 = 2\); C: \(1+0+0+1 = 2\). All even, score 0, no lie. Cards 3, 5, 6, 7 read 1, 0, 0, 1: secret \(8 + 1 = 9\).</li>
+<li>Heard \(0\,0\,0\,0\,1\,0\,0\). A: 1 yes, odd, score 1. B: 0, even. C: 1 yes, odd, score 4. Total 5: they lied on card 5. The honest answers were all "no", so the secret is 0. (A single yes can never be honest, because every number except 0 is on at least three cards.)</li>
+<li>In binary, 1 = 001, 2 = 010, 3 = 011, 4 = 100, 5 = 101, 6 = 110, 7 = 111. A card belongs to check A, B or C when its number has a 1 in the ones, twos or fours place, so 7 = 111 is in all three and 1 = 001 is only in check A. That is exactly why the failed checks spell out the lying card's number.</li>
+<li>Card 3 holds 8–15, card 6 holds 2, 3, 6, 7, 10, 11, 14, 15, card 7 holds the odd numbers. Counting memberships: 0 (0 cards), 1 (1: card 7), 2 (1: card 6), 3 (2), 4 (0), 5 (1: card 7), 6 (1: card 6), 7 (2), 8 (1: card 3), 9 (2), 10 (2), 11 (3), 12 (1: card 3), 13 (2), 14 (2), 15 (3). Odd counts: 1, 2, 5, 6, 8, 11, 12, 15. That is card 2.</li>
+<li>If a performance failed, the usual slips are counting a check with the wrong cards, or forgetting to flip the lie before reading off the number.</li>
+</ol>
+<p><b>Stretch.</b> There are \(2^7 = 128\) strings of seven bits, exactly the number of "one lie or none" strings. So the 16 secrets, each with its ball of 8 nearby strings, tile the whole space perfectly with no overlap and no gaps. Two lies: 5 is \(0\,1\,0\,0\,1\,0\,1\); flipping cards 2 and 6 gives \(0\,0\,0\,0\,1\,1\,1\). A: \(0+0+1+1 = 2\) even. B: \(0+0+1+1 = 2\) even. C: \(0+1+1+1 = 3\) odd. Score 4, so the trick blames card 4 and flips it, giving \(0\,0\,0\,1\,1\,1\,1\), and reads cards 3, 5, 6, 7 as 0, 1, 1, 1: it announces 7. Wrong number, wrong card, and no warning. One extra check bit (an eighth card listing the numbers on an odd number of the other seven) would at least detect that two lies happened.</p>
+</section>
+
+<div class="sheet-nav"><a href="b30-vectors.html">← Previous</a><a href="b32-efron-dice.html">Next: Dice that go round in circles →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

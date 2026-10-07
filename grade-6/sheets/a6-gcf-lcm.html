@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gears, lockers and common factors · Infinity Club</title>
+<meta name="description" content="GCF and LCM from prime factorisations, Euclid's algorithm, gears, buses and the 1000 lockers problem for bright grade 6 students.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 6</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 6 · Sharpen · 6</div>
+  <h1>Gears, lockers and common factors</h1>
+  <p class="teaser">Two gears click together. When do the marked teeth meet again? The answer is a 2,300-year-old algorithm and the reason 31 lockers stay open.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Every whole number has a prime recipe (Sheet "Primes and the Sieve"). \(84 = 2^2 \cdot 3 \cdot 7\) and \(120 = 2^3 \cdot 3 \cdot 5\). Once you have the recipes, two important numbers fall out:</p>
+<p><b>Greatest common factor (GCF)</b>: the biggest number dividing both. Take each prime to the <em>smaller</em> power it appears with: \(2^2 \cdot 3 = 12\).</p>
+<p><b>Least common multiple (LCM)</b>: the smallest number both divide into. Take each prime to the <em>larger</em> power: \(2^3 \cdot 3 \cdot 5 \cdot 7 = 840\).</p>
+<p>A fact worth checking: \(\text{GCF} \times \text{LCM} = 84 \times 120\). Both are 10 080. Every prime goes into one or the other, so the product is the same. Knowing one, you can find the other by dividing.</p>
+<p>Factorising big numbers is slow. Euclid's trick is faster and needs no primes at all: <b>the GCF of two numbers is the same as the GCF of the smaller one and the remainder</b> when you divide. Any number dividing 120 and 84 must divide the leftover \(120 - 84 = 36\), and so on down. Keep taking remainders until you hit 0. The last nonzero remainder is the GCF. Computers do exactly this, billions of times a day, to keep your messages private.</p>
+</section>
+
+<section class="example">
+<h2>Watch one</h2>
+<p>GCF of 120 and 84 by Euclid: \(120 = 1 \times 84 + 36\). Then \(84 = 2 \times 36 + 12\). Then \(36 = 3 \times 12 + 0\). Stop. GCF \(= 12\). Three lines, no primes.</p>
+<p>Gears with 12 and 18 teeth, marked teeth touching. The marks meet again after a number of teeth that is a multiple of both 12 and 18: the LCM, 36. That is 3 turns of the small gear and 2 turns of the big one.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Find the GCF and LCM of 36 and 48, then of 45 and 75. Check that GCF × LCM equals the product each time.<div class="space"></div></li>
+<li>Run Euclid's algorithm on 252 and 198. Write every line.<div class="space"></div></li>
+<li>Buses on route A leave every 12 minutes, route B every 18 minutes, route C every 20 minutes. All three leave together at 8:00. When do all three next leave together?<div class="space short"></div></li>
+<li>A floor is 84 cm by 60 cm. What is the largest square tile that covers it exactly, and how many tiles are needed?<div class="space short"></div></li>
+<li>Two numbers have GCF 6 and LCM 180. One of them is 30. What is the other? (Use the product fact.)<div class="space short"></div></li>
+<li>Why does Euclid's method work? Explain in two sentences why any number that divides both 120 and 84 must also divide 36.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: a thousand lockers</h2>
+<p>A school has 1000 lockers, all closed, and 1000 students. Student 1 opens every locker. Student 2 closes every second locker. Student 3 <em>changes</em> every third locker (opens it if closed, closes it if open). Student \(k\) changes every \(k\)th locker. After all 1000 students, which lockers are open, and how many?</p>
+<p>Hints. Locker \(n\) is touched once for each divisor of \(n\). It ends open if it is touched an odd number of times. Divisors come in pairs, \(d\) and \(n/d\), so when does a number have an odd number of divisors? Try lockers 12, 16 and 36 by hand first.</p>
+<div class="space tall"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>36 and 48: \(36 = 2^2 \cdot 3^2\), \(48 = 2^4 \cdot 3\); GCF 12, LCM 144; \(12 \times 144 = 1728 = 36 \times 48\). 45 and 75: \(45 = 3^2 \cdot 5\), \(75 = 3 \cdot 5^2\); GCF 15, LCM 225; \(15 \times 225 = 3375 = 45 \times 75\).</li>
+<li>\(252 = 1 \times 198 + 54\); \(198 = 3 \times 54 + 36\); \(54 = 1 \times 36 + 18\); \(36 = 2 \times 18 + 0\). GCF 18.</li>
+<li>LCM(12, 18, 20) \(= 2^2 \cdot 3^2 \cdot 5 = 180\) minutes = 3 hours. 11:00.</li>
+<li>GCF(84, 60) = 12 cm tiles. \(7 \times 5 = 35\) tiles.</li>
+<li>\(6 \times 180 \div 30 = 36\). Check: GCF(30, 36) = 6 and LCM = 180.</li>
+<li>If a number \(g\) divides both 120 and 84, then 120 and 84 are both whole multiples of \(g\), and the difference of two multiples of \(g\) is still a multiple of \(g\). So \(g\) divides 36. The same reasoning works at every step, so the common factors never change, and at the end the GCF is sitting there on its own.</li>
+</ol>
+<p><b>Stretch.</b> Locker 12 has divisors 1, 2, 3, 4, 6, 12 (six of them, three pairs): closed. Locker 16 has 1, 2, 4, 8, 16 (five; the pair for 4 is 4 itself): open. Locker 36: 1, 2, 3, 4, 6, 9, 12, 18, 36 (nine): open. A number has an odd number of divisors exactly when it is a <b>perfect square</b>, because only then does one divisor pair with itself. Open lockers: \(1, 4, 9, \ldots, 961 = 31^2\). Thirty-one lockers.</p>
+</section>
+
+<div class="sheet-nav"><a href="a5-mental-multiplication.html">← Multiply like a magician</a><a href="a7-area-volume.html">Next: Why elephants have thick legs →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

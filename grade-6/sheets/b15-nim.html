@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nim: the game you cannot lose · Infinity Club</title>
+<meta name="description" content="The matchstick game Nim has a complete winning strategy hidden in binary. Learn it and never lose again.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 6</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 6 · Around the corner · 15</div>
+  <h1>Nim: the game you cannot lose</h1>
+  <p class="teaser">A game with coins that looks like luck and skill. It is neither. There is a secret rule, written in binary, that tells you the winning move every single time.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p><b>The rules.</b> Put coins in piles, say 3, 5 and 7. Two players take turns. On your turn you choose <em>one</em> pile and take as many coins from it as you like, at least one. Whoever takes the last coin wins. That is all.</p>
+<p>Play a few games of 1-2-3 with someone before reading on. You will start to feel that some positions are doomed: whoever has to move from them loses, if the other player is careful. Two equal piles, like 4-4, is one. Whatever you take from one pile, your opponent copies on the other, and they get the last coin.</p>
+<p><b>The secret.</b> Write each pile size in binary (see <a href="b2-binary.html">Counting to 31 on one hand</a>) and stack them up, lining up the columns. Now count the 1s in each column. If <b>every column has an even number of 1s</b>, the position is <b>balanced</b>, and the player who has to move from it will lose against good play. If any column has an odd count, the position is unbalanced, and the player to move can win by making a move that balances it.</p>
+<p>Charles Bouton proved this in 1901. It was the first game ever to be completely solved, and it was solved with binary, forty years before computers.</p>
+<div class="callout">Balanced (every column even) = bad for the player about to move.<br>Unbalanced = find the move that makes every column even, then play it.</div>
+</section>
+
+<section class="example">
+<h2>Watch one: 3, 5, 7. Your move.</h2>
+<table>
+<tr><th>pile</th><th>4s</th><th>2s</th><th>1s</th></tr>
+<tr><td>3</td><td>0</td><td>1</td><td>1</td></tr>
+<tr><td>5</td><td>1</td><td>0</td><td>1</td></tr>
+<tr><td>7</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><th>count of 1s</th><td>2</td><td>2</td><td><b>3</b></td></tr>
+</table>
+<p>The 4s and 2s columns are even. The 1s column has three 1s: odd. Unbalanced, so there is a winning move. We need to fix the 1s column without breaking the others, which means changing a pile's 1s digit from 1 to 0 and nothing else. Take one coin from the 3 to make it 2 (binary 010). Now the columns count 2, 2, 2. Balanced. Hand it over.</p>
+<p>Taking one from the 5 (making 4 = 100) or one from the 7 (making 6 = 110) also works. Check them.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Write out the binary table for 1-2-3. Is it balanced? If you are the first player in 1-2-3, do you want to be?<div class="space"></div></li>
+<li>Classify each position as balanced or unbalanced: 2-2, 4-6, 1-4-5, 2-3-4.<div class="space"></div></li>
+<li>For each <em>unbalanced</em> position in question 2, find a move that balances it. Say which pile and how many coins.<div class="space"></div></li>
+<li>5-6-7. Find <em>all</em> the winning moves. (There is more than one.)<div class="space tall"></div></li>
+<li>The classic opening is 1-3-5-7, four piles. Should you offer to go first or second? Explain using the table.<div class="space"></div></li>
+<li>Play 3-5-7 against someone three times using the rule. Record whether the rule ever failed you. If it did, find the mistake in your binary.<div class="space short"></div></li>
+</ol>
+<p class="small">Practise against the computer at <a href="../../demos/nim.html">infinityclub.net/demos/nim.html</a>, which shows the columns as you play.</p>
+</section>
+
+<section class="stretch">
+<h2>Stretch: why it works</h2>
+<p>You need to convince yourself of two things.</p>
+<p><b>From a balanced position, every move unbalances.</b> You change exactly one pile. Changing a number changes at least one of its binary digits, so at least one column's count changes by one, from even to odd.</p>
+<p><b>From an unbalanced position, some move balances.</b> Look at the leftmost odd column. Some pile has a 1 there. Take that pile and flip its digit in every odd column (1 to 0 or 0 to 1). The new number is smaller, because its leftmost change was a 1 becoming a 0. So the move is legal and it fixes every column at once.</p>
+<p>Put those together with the fact that the empty position 0-0-0 is balanced, and the player facing a balanced position is handed one again after every exchange, until they face 0-0-0 and have already lost. Write this argument out in your own words, as if explaining it to someone who has never seen binary.</p>
+<div class="space tall"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>1 = 01, 2 = 10, 3 = 11. Columns count 2 and 2: balanced. The first player in 1-2-3 loses against correct play, so you want to go second.</li>
+<li>2-2 balanced. 4-6 unbalanced (100 and 110: the 2s column has one 1). 1-4-5 balanced (001, 100, 101: columns 2, 0, 2). 2-3-4 unbalanced (010, 011, 100: columns 1, 2, 1).</li>
+<li>4-6: take 2 from the 6, leaving 4-4. 2-3-4: take 3 from the 4, leaving 2-3-1 (010, 011, 001: columns 0, 2, 2).</li>
+<li>5 = 101, 6 = 110, 7 = 111: columns count 3, 2, 2, so only the 4s column is odd and we must turn a 1 in that column into a 0. Three choices: 5 to 1 (leaving 1-6-7), 6 to 2 (leaving 5-2-7), or 7 to 3 (leaving 5-6-3). Each leaves every column even. Check 1-6-7: 001, 110, 111, columns 2, 2, 2.</li>
+<li>1 = 001, 3 = 011, 5 = 101, 7 = 111. Columns count 2, 2, 4: balanced. Whoever moves first from 1-3-5-7 loses against correct play. Offer to go second.</li>
+<li>If you lost, the binary was wrong or you missed a column. The rule does not fail.</li>
+</ol>
+<p><b>Stretch.</b> The two facts together mean: if you hand your opponent a balanced position, they must hand you back an unbalanced one, and you can always balance it again. The piles shrink every turn, so the game ends, and it ends with your opponent facing 0-0-0, which is balanced and already lost.</p>
+</section>
+
+<div class="sheet-nav"><a href="b14-dice.html">← Dice don't lie</a><a href="b16-codes.html">Next: Secret codes and how to break them →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

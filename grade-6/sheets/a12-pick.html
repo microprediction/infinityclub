@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Area by counting dots · Infinity Club</title>
+<meta name="description" content="Areas of polygons on the coordinate plane by cutting, by subtracting from a box, and then by Pick's theorem: count the dots.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 6</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 6 · Sharpen · 12</div>
+  <h1>Area by counting dots</h1>
+  <p class="teaser">School teaches you to chop a shape into rectangles and triangles. That works. But for shapes whose corners sit on grid points there is a formula so simple it feels like cheating.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>You know two honest ways to find the area of a polygon drawn on a grid. <b>Cut it up</b> into rectangles and right triangles, and add. Or <b>box it in</b>: draw the smallest rectangle around it, then subtract the pieces in the corners. Both work for any polygon. Both are fiddly when the shape has five or six corners.</p>
+<p>In 1899 Georg Pick noticed something odd. If every corner of the polygon sits exactly on a grid point (a <b>lattice polygon</b>), then the area depends only on two counts:</p>
+<div class="callout">\(I\) = number of grid points strictly <b>inside</b> the shape<br>\(B\) = number of grid points on the <b>boundary</b>, corners included<br><b>Area</b> \(= I + \dfrac{B}{2} - 1\)</div>
+<p>No lengths, no heights, no cutting. Just count dots. It works for any lattice polygon that does not cross itself, however spiky.</p>
+<p>Why should it? Think of each interior point as owning one full unit of area around it, and each boundary point as owning about half, because the other half of its surroundings is outside the shape. The \(-1\) is a correction: going all the way round the corners of any polygon loses exactly one unit's worth. The full proof takes a page. The checking takes thirty seconds, and you will do that now.</p>
+</section>
+
+<section class="example">
+<h2>Watch one</h2>
+<figure>
+<svg viewBox="0 0 232 204" width="232" height="204" xmlns="http://www.w3.org/2000/svg">
+<polygon points="46,158 158,158 186,102 130,46 74,74" fill="#e6e6e6" stroke="#000" stroke-width="1.6"/>
+<circle cx="18" cy="186" r="1.6" fill="#999"/>
+<circle cx="18" cy="158" r="1.6" fill="#999"/>
+<circle cx="18" cy="130" r="1.6" fill="#999"/>
+<circle cx="18" cy="102" r="1.6" fill="#999"/>
+<circle cx="18" cy="74" r="1.6" fill="#999"/>
+<circle cx="18" cy="46" r="1.6" fill="#999"/>
+<circle cx="18" cy="18" r="1.6" fill="#999"/>
+<circle cx="46" cy="186" r="1.6" fill="#999"/>
+<circle cx="46" cy="158" r="4" fill="#000"/>
+<circle cx="46" cy="130" r="1.6" fill="#999"/>
+<circle cx="46" cy="102" r="1.6" fill="#999"/>
+<circle cx="46" cy="74" r="1.6" fill="#999"/>
+<circle cx="46" cy="46" r="1.6" fill="#999"/>
+<circle cx="46" cy="18" r="1.6" fill="#999"/>
+<circle cx="74" cy="186" r="1.6" fill="#999"/>
+<circle cx="74" cy="158" r="4" fill="#000"/>
+<circle cx="74" cy="130" r="4" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<circle cx="74" cy="102" r="4" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<circle cx="74" cy="74" r="4" fill="#000"/>
+<circle cx="74" cy="46" r="1.6" fill="#999"/>
+<circle cx="74" cy="18" r="1.6" fill="#999"/>
+<circle cx="102" cy="186" r="1.6" fill="#999"/>
+<circle cx="102" cy="158" r="4" fill="#000"/>
+<circle cx="102" cy="130" r="4" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<circle cx="102" cy="102" r="4" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<circle cx="102" cy="74" r="4" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<circle cx="102" cy="46" r="1.6" fill="#999"/>
+<circle cx="102" cy="18" r="1.6" fill="#999"/>
+<circle cx="130" cy="186" r="1.6" fill="#999"/>
+<circle cx="130" cy="158" r="4" fill="#000"/>
+<circle cx="130" cy="130" r="4" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<circle cx="130" cy="102" r="4" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<circle cx="130" cy="74" r="4" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<circle cx="130" cy="46" r="4" fill="#000"/>
+<circle cx="130" cy="18" r="1.6" fill="#999"/>
+<circle cx="158" cy="186" r="1.6" fill="#999"/>
+<circle cx="158" cy="158" r="4" fill="#000"/>
+<circle cx="158" cy="130" r="4" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<circle cx="158" cy="102" r="4" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<circle cx="158" cy="74" r="4" fill="#000"/>
+<circle cx="158" cy="46" r="1.6" fill="#999"/>
+<circle cx="158" cy="18" r="1.6" fill="#999"/>
+<circle cx="186" cy="186" r="1.6" fill="#999"/>
+<circle cx="186" cy="158" r="1.6" fill="#999"/>
+<circle cx="186" cy="130" r="1.6" fill="#999"/>
+<circle cx="186" cy="102" r="4" fill="#000"/>
+<circle cx="186" cy="74" r="1.6" fill="#999"/>
+<circle cx="186" cy="46" r="1.6" fill="#999"/>
+<circle cx="186" cy="18" r="1.6" fill="#999"/>
+<circle cx="214" cy="186" r="1.6" fill="#999"/>
+<circle cx="214" cy="158" r="1.6" fill="#999"/>
+<circle cx="214" cy="130" r="1.6" fill="#999"/>
+<circle cx="214" cy="102" r="1.6" fill="#999"/>
+<circle cx="214" cy="74" r="1.6" fill="#999"/>
+<circle cx="214" cy="46" r="1.6" fill="#999"/>
+<circle cx="214" cy="18" r="1.6" fill="#999"/>
+</svg>
+<figcaption>Filled dots are on the boundary (\(B = 9\)). Hollow dots are strictly inside (\(I = 10\)). Faint dots are outside.</figcaption>
+</figure>
+<p>Pick: \(A = 10 + \tfrac{9}{2} - 1 = 13.5\).</p>
+<p>Check by boxing in. The bounding box runs from \(x = 1\) to \(6\) and \(y = 1\) to \(5\), area \(5 \times 4 = 20\). Subtract the four outside pieces: bottom right triangle \(\tfrac{1}{2} \times 1 \times 2 = 1\); top right triangle \(\tfrac{1}{2} \times 2 \times 2 = 2\); top left triangle \(\tfrac{1}{2} \times 2 \times 1 = 1\); left piece, a \(1 \times 1\) square plus a triangle \(\tfrac{1}{2} \times 1 \times 3\), total \(2.5\). \(20 - 1 - 2 - 1 - 2.5 = 13.5\). Same answer, five times the work.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Draw a \(5 \times 3\) rectangle with corners on grid points. Count \(I\) and \(B\), apply Pick's formula, and check it gives 15.<div class="space"></div></li>
+<li>Draw a right triangle with corners at (0,0), (4,0) and (0,3). You know its area is 6. Count \(I\) and \(B\) and check. Be careful: does the slanted side pass through any grid points?<div class="space"></div></li>
+<li>Find the area of this shape twice: once by boxing in and subtracting, once by Pick's formula. One corner is hidden on the right-hand slope; find the extra boundary dot.
+<figure>
+<svg viewBox="0 0 232 204" width="232" height="204" xmlns="http://www.w3.org/2000/svg">
+<polygon points="18,186 130,158 186,74 102,102 46,46" fill="#e6e6e6" stroke="#000" stroke-width="1.6"/>
+<circle cx="18" cy="186" r="4" fill="#000"/>
+<circle cx="18" cy="158" r="1.6" fill="#999"/>
+<circle cx="18" cy="130" r="1.6" fill="#999"/>
+<circle cx="18" cy="102" r="1.6" fill="#999"/>
+<circle cx="18" cy="74" r="1.6" fill="#999"/>
+<circle cx="18" cy="46" r="1.6" fill="#999"/>
+<circle cx="18" cy="18" r="1.6" fill="#999"/>
+<circle cx="46" cy="186" r="1.6" fill="#999"/>
+<circle cx="46" cy="158" r="4" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<circle cx="46" cy="130" r="4" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<circle cx="46" cy="102" r="4" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<circle cx="46" cy="74" r="4" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<circle cx="46" cy="46" r="4" fill="#000"/>
+<circle cx="46" cy="18" r="1.6" fill="#999"/>
+<circle cx="74" cy="186" r="1.6" fill="#999"/>
+<circle cx="74" cy="158" r="4" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<circle cx="74" cy="130" r="4" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<circle cx="74" cy="102" r="4" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<circle cx="74" cy="74" r="4" fill="#000"/>
+<circle cx="74" cy="46" r="1.6" fill="#999"/>
+<circle cx="74" cy="18" r="1.6" fill="#999"/>
+<circle cx="102" cy="186" r="1.6" fill="#999"/>
+<circle cx="102" cy="158" r="4" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<circle cx="102" cy="130" r="4" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<circle cx="102" cy="102" r="4" fill="#000"/>
+<circle cx="102" cy="74" r="1.6" fill="#999"/>
+<circle cx="102" cy="46" r="1.6" fill="#999"/>
+<circle cx="102" cy="18" r="1.6" fill="#999"/>
+<circle cx="130" cy="186" r="1.6" fill="#999"/>
+<circle cx="130" cy="158" r="4" fill="#000"/>
+<circle cx="130" cy="130" r="4" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<circle cx="130" cy="102" r="4" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<circle cx="130" cy="74" r="1.6" fill="#999"/>
+<circle cx="130" cy="46" r="1.6" fill="#999"/>
+<circle cx="130" cy="18" r="1.6" fill="#999"/>
+<circle cx="158" cy="186" r="1.6" fill="#999"/>
+<circle cx="158" cy="158" r="1.6" fill="#999"/>
+<circle cx="158" cy="130" r="1.6" fill="#999"/>
+<circle cx="158" cy="102" r="4" fill="#fff" stroke="#000" stroke-width="1.4"/>
+<circle cx="158" cy="74" r="1.6" fill="#999"/>
+<circle cx="158" cy="46" r="1.6" fill="#999"/>
+<circle cx="158" cy="18" r="1.6" fill="#999"/>
+<circle cx="186" cy="186" r="1.6" fill="#999"/>
+<circle cx="186" cy="158" r="1.6" fill="#999"/>
+<circle cx="186" cy="130" r="1.6" fill="#999"/>
+<circle cx="186" cy="102" r="1.6" fill="#999"/>
+<circle cx="186" cy="74" r="4" fill="#000"/>
+<circle cx="186" cy="46" r="1.6" fill="#999"/>
+<circle cx="186" cy="18" r="1.6" fill="#999"/>
+<circle cx="214" cy="186" r="1.6" fill="#999"/>
+<circle cx="214" cy="158" r="1.6" fill="#999"/>
+<circle cx="214" cy="130" r="1.6" fill="#999"/>
+<circle cx="214" cy="102" r="1.6" fill="#999"/>
+<circle cx="214" cy="74" r="1.6" fill="#999"/>
+<circle cx="214" cy="46" r="1.6" fill="#999"/>
+<circle cx="214" cy="18" r="1.6" fill="#999"/>
+</svg>
+</figure>
+<div class="space"></div></li>
+<li>A lattice polygon has \(B = 12\) and area 20. How many interior points does it have?<div class="space short"></div></li>
+<li>On the grid below, draw a lattice triangle with \(I = 0\) and \(B = 3\), so the only grid points touching it are its three corners. What does Pick say its area is? Draw a second, very different-looking one. Same area?
+<figure>
+<svg viewBox="0 0 260 176" width="260" height="176" xmlns="http://www.w3.org/2000/svg">
+<circle cx="18" cy="158" r="1.6" fill="#999"/>
+<circle cx="18" cy="130" r="1.6" fill="#999"/>
+<circle cx="18" cy="102" r="1.6" fill="#999"/>
+<circle cx="18" cy="74" r="1.6" fill="#999"/>
+<circle cx="18" cy="46" r="1.6" fill="#999"/>
+<circle cx="18" cy="18" r="1.6" fill="#999"/>
+<circle cx="46" cy="158" r="1.6" fill="#999"/>
+<circle cx="46" cy="130" r="1.6" fill="#999"/>
+<circle cx="46" cy="102" r="1.6" fill="#999"/>
+<circle cx="46" cy="74" r="1.6" fill="#999"/>
+<circle cx="46" cy="46" r="1.6" fill="#999"/>
+<circle cx="46" cy="18" r="1.6" fill="#999"/>
+<circle cx="74" cy="158" r="1.6" fill="#999"/>
+<circle cx="74" cy="130" r="1.6" fill="#999"/>
+<circle cx="74" cy="102" r="1.6" fill="#999"/>
+<circle cx="74" cy="74" r="1.6" fill="#999"/>
+<circle cx="74" cy="46" r="1.6" fill="#999"/>
+<circle cx="74" cy="18" r="1.6" fill="#999"/>
+<circle cx="102" cy="158" r="1.6" fill="#999"/>
+<circle cx="102" cy="130" r="1.6" fill="#999"/>
+<circle cx="102" cy="102" r="1.6" fill="#999"/>
+<circle cx="102" cy="74" r="1.6" fill="#999"/>
+<circle cx="102" cy="46" r="1.6" fill="#999"/>
+<circle cx="102" cy="18" r="1.6" fill="#999"/>
+<circle cx="130" cy="158" r="1.6" fill="#999"/>
+<circle cx="130" cy="130" r="1.6" fill="#999"/>
+<circle cx="130" cy="102" r="1.6" fill="#999"/>
+<circle cx="130" cy="74" r="1.6" fill="#999"/>
+<circle cx="130" cy="46" r="1.6" fill="#999"/>
+<circle cx="130" cy="18" r="1.6" fill="#999"/>
+<circle cx="158" cy="158" r="1.6" fill="#999"/>
+<circle cx="158" cy="130" r="1.6" fill="#999"/>
+<circle cx="158" cy="102" r="1.6" fill="#999"/>
+<circle cx="158" cy="74" r="1.6" fill="#999"/>
+<circle cx="158" cy="46" r="1.6" fill="#999"/>
+<circle cx="158" cy="18" r="1.6" fill="#999"/>
+<circle cx="186" cy="158" r="1.6" fill="#999"/>
+<circle cx="186" cy="130" r="1.6" fill="#999"/>
+<circle cx="186" cy="102" r="1.6" fill="#999"/>
+<circle cx="186" cy="74" r="1.6" fill="#999"/>
+<circle cx="186" cy="46" r="1.6" fill="#999"/>
+<circle cx="186" cy="18" r="1.6" fill="#999"/>
+<circle cx="214" cy="158" r="1.6" fill="#999"/>
+<circle cx="214" cy="130" r="1.6" fill="#999"/>
+<circle cx="214" cy="102" r="1.6" fill="#999"/>
+<circle cx="214" cy="74" r="1.6" fill="#999"/>
+<circle cx="214" cy="46" r="1.6" fill="#999"/>
+<circle cx="214" cy="18" r="1.6" fill="#999"/>
+<circle cx="242" cy="158" r="1.6" fill="#999"/>
+<circle cx="242" cy="130" r="1.6" fill="#999"/>
+<circle cx="242" cy="102" r="1.6" fill="#999"/>
+<circle cx="242" cy="74" r="1.6" fill="#999"/>
+<circle cx="242" cy="46" r="1.6" fill="#999"/>
+<circle cx="242" cy="18" r="1.6" fill="#999"/>
+</svg>
+</figure>
+</li>
+<li>Explain why Pick's formula can never give a lattice polygon an area like 2.3 or 7.1. What kind of numbers can it give?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: a shape with a hole</h2>
+<p>Draw a \(5 \times 5\) square and cut a \(1 \times 1\) square hole out of its middle, with the hole's corners on grid points. The true area is \(25 - 1 = 24\). Count \(I\) and \(B\) for the whole figure, treating the hole's edge as boundary too. What does Pick give? By how much is it wrong? Try a \(2 \times 2\) hole instead. Guess the corrected formula for a polygon with \(h\) holes.</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(B = 16\) (count round the edge: 5 + 3 + 5 + 3, each corner once), \(I = 4 \times 2 = 8\). \(8 + 8 - 1 = 15\).</li>
+<li>The slanted side from (4,0) to (0,3) passes through no grid points, because 4 and 3 have no common factor. \(B = 8\): the five points along the bottom and the three more up the left side. \(I = 3\): (1,1), (2,1), (1,2). \(3 + 4 - 1 = 6\).</li>
+<li>\(B = 6\): the five corners plus (2,4), which sits on the edge from (3,3) to (1,5). \(I = 12\). Pick: \(12 + 3 - 1 = 14\). Boxing in: the box is \(6 \times 5 = 30\). Three pieces lie outside the shape. Lower right, the quadrilateral with corners (0,0), (6,0), (6,4), (4,1): split it along the line \(y = 1\) into a trapezoid below (area 4) and a triangle above (area 3), total 7. Upper, the quadrilateral (6,4), (6,5), (1,5), (3,3): area 6.5. Left, the triangle (0,0), (0,5), (1,5): area 2.5. \(30 - 7 - 6.5 - 2.5 = 14\). Pick's formula had it in one line.</li>
+<li>\(20 = I + 6 - 1\), so \(I = 15\).</li>
+<li>\(0 + \tfrac{3}{2} - 1 = \tfrac{1}{2}\). Every such triangle has area exactly one half, however long and thin. Try corners (0,0), (3,1), (1,2) for a surprising one.</li>
+<li>\(I\) and \(B\) are whole numbers, so \(I + B/2 - 1\) is either a whole number or a whole number plus a half. Lattice polygon areas are always multiples of \(\tfrac{1}{2}\).</li>
+</ol>
+<p><b>Stretch.</b> \(5 \times 5\) with a \(1 \times 1\) hole in the middle: \(B = 20 + 4 = 24\), \(I = 16 - 4 = 12\). Pick gives \(12 + 12 - 1 = 23\), one too small. With a \(2 \times 2\) hole: \(B = 20 + 8 = 28\) and \(I = 7\) (the 16 inner points lose 8 on the hole's edge and 1 inside the hole). Pick gives \(7 + 14 - 1 = 20\) against a true area of 21, again one too small. Each hole costs exactly one: \(A = I + B/2 - 1 + h\).</p>
+</section>
+
+<div class="sheet-nav"><a href="a11-repeating-decimals.html">← Why 1/7 goes round in circles</a><a href="a13-multiplication.html">Next: Three ways to multiply →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>
