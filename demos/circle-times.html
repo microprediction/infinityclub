@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Times Tables on a Circle · Infinity Club</title>
+<meta name="description" content="Draw the multiplication table on a clock face and watch hearts and flowers appear.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../index.html#demos">Demos</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Times tables on a circle</h1>
+<p class="explain">Put <b>n</b> points around a circle, numbered 0 to n−1 like a giant clock. Draw a line from each point k to the point k × m, wrapping around the clock. That is all. Then press <b>Animate</b>.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <label>points n = <span id="nval">200</span> <input type="range" id="n" min="10" max="300" value="200"></label>
+    <label>multiplier m = <span id="mval">2.0</span> <input type="range" id="m" min="1" max="100" step="0.1" value="2" style="width:260px"></label>
+    <button id="anim">Animate</button>
+    <button data-m="2" class="ghost">2</button><button data-m="3" class="ghost">3</button><button data-m="4" class="ghost">4</button><button data-m="51" class="ghost">51</button><button data-m="99" class="ghost">99</button>
+  </div>
+  <canvas id="c" width="700" height="700"></canvas>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>"Wrapping around the clock" is clock arithmetic: the line from k goes to (k × m) mod n. With m = 2 the lines wrap into a heart shape called a cardioid, the same curve you see when light reflects inside a coffee cup. With m = 3 you get two lobes, with m = 4 three lobes, and so on.</p>
+<p>Multiplication by m = n − 1 is the same as multiplication by −1 (one step back on the clock), so m = 99 with n = 100 gives a mirror image of m = 1: every line just goes across. Try m = 51 with n = 100 and think about why it looks like m = 2 reflected.</p>
+<p>The slider allows fractional m so the animation flows, but the real pattern lives at the whole numbers.</p>
+<p>Sheet: <a href="../sheets/b3-clock-arithmetic.html">Clock arithmetic</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  var canvas = document.getElementById("c"), ctx = canvas.getContext("2d");
+  var nIn = document.getElementById("n"), mIn = document.getElementById("m"), raf = null;
+  function draw() {
+    var n = parseInt(nIn.value, 10), m = parseFloat(mIn.value);
+    document.getElementById("nval").textContent = n; document.getElementById("mval").textContent = m.toFixed(1);
+    var dpr = window.devicePixelRatio || 1, W = Math.min(canvas.clientWidth || 700, 700), H = W;
+    canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, H);
+    var cx = W / 2, cy = H / 2, R = W / 2 - 14;
+    ctx.strokeStyle = "#d9d6cc"; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.stroke();
+    function pt(k) { var t = (k / n) * Math.PI * 2 - Math.PI / 2; return [cx + R * Math.cos(t), cy + R * Math.sin(t)]; }
+    ctx.strokeStyle = "rgba(63,68,201,0.55)"; ctx.lineWidth = n > 150 ? 0.8 : 1.2;
+    ctx.beginPath();
+    for (var k = 0; k < n; k++) { var a = pt(k), b = pt((k * m) % n); ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); }
+    ctx.stroke();
+    if (n <= 40) { ctx.fillStyle = "#1d1f3a"; ctx.font = "12px Nunito, sans-serif"; ctx.textAlign = "center"; ctx.textBaseline = "middle"; for (var j = 0; j < n; j++) { var t = (j / n) * Math.PI * 2 - Math.PI / 2; ctx.fillText(j, cx + (R + 9) * Math.cos(t) * 1.0, cy + (R + 9) * Math.sin(t)); } }
+  }
+  nIn.addEventListener("input", draw); mIn.addEventListener("input", draw);
+  document.querySelectorAll("[data-m]").forEach(function (b) { b.addEventListener("click", function () { stop(); mIn.value = b.dataset.m; draw(); }); });
+  function stop() { if (raf) cancelAnimationFrame(raf); raf = null; document.getElementById("anim").textContent = "Animate"; }
+  document.getElementById("anim").addEventListener("click", function () {
+    if (raf) { stop(); return; }
+    this.textContent = "Stop";
+    (function tick() { var m = parseFloat(mIn.value) + 0.02; if (m > 100) m = 1; mIn.value = m.toFixed(2); draw(); raf = requestAnimationFrame(tick); })();
+  });
+  window.addEventListener("resize", draw); draw();
+})();
+</script>
+</body>
+</html>

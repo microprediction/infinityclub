@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Two Dice · Infinity Club</title>
+<meta name="description" content="Roll two dice thousands of times and watch the sums pile up into a triangle.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../index.html#demos">Demos</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Two dice, many rolls</h1>
+<p class="explain">Roll a few times and the bars look random. Roll ten thousand times and they settle into a triangle. The outlined bars show what the maths predicts: 7 should appear six times as often as 2.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <span style="font-weight:700">Roll</span>
+    <button data-n="1">1</button><button data-n="10">10</button><button data-n="100">100</button><button data-n="1000">1000</button><button data-n="10000">10 000</button>
+    <button id="reset" class="ghost">Reset</button>
+  </div>
+  <canvas id="c" width="900" height="420"></canvas>
+  <div class="readout" id="info"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>There are 36 equally likely outcomes when you roll two dice: six for the first die times six for the second. Only one of them gives a sum of 2 (a 1 and a 1), but six of them give 7 (1+6, 2+5, 3+4, 4+3, 5+2, 6+1). So the chance of 7 is 6/36 and the chance of 2 is 1/36.</p>
+<p>A single roll tells you nothing about these chances. But as the number of rolls grows, the fraction landing on each sum creeps toward the predicted fraction. This is the law of large numbers, and it is why casinos never worry about one lucky customer.</p>
+<p>Watch the gap between the empirical and theoretical P(7) in the readout. It wobbles, then shrinks.</p>
+<p>Sheet: <a href="../sheets/b14-dice.html">Dice don't lie</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  var counts = new Array(13).fill(0), total = 0, ways = [0,0,1,2,3,4,5,6,5,4,3,2,1];
+  var canvas = document.getElementById("c"), ctx = canvas.getContext("2d");
+  function draw() {
+    var dpr = window.devicePixelRatio || 1, W = canvas.clientWidth || 900, H = W * 0.47;
+    canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, H);
+    var left = 40, bottom = H - 36, top = 20, bw = (W - left - 20) / 11;
+    var maxFrac = 0.2;
+    ctx.strokeStyle = "#d9d6cc"; ctx.lineWidth = 1; ctx.font = "13px Nunito, sans-serif"; ctx.fillStyle = "#5d6079"; ctx.textAlign = "right";
+    for (var f = 0; f <= maxFrac + 1e-9; f += 0.05) { var y = bottom - (bottom - top) * f / maxFrac; ctx.beginPath(); ctx.moveTo(left, y); ctx.lineTo(W - 20, y); ctx.stroke(); ctx.fillText(Math.round(f * 100) + "%", left - 6, y + 4); }
+    ctx.textAlign = "center";
+    for (var s = 2; s <= 12; s++) {
+      var x = left + (s - 2) * bw;
+      var th = ways[s] / 36, hT = (bottom - top) * th / maxFrac;
+      var em = total ? counts[s] / total : 0, hE = (bottom - top) * Math.min(em, maxFrac) / maxFrac;
+      ctx.fillStyle = "#3f44c9"; ctx.fillRect(x + bw * 0.15, bottom - hE, bw * 0.7, hE);
+      ctx.strokeStyle = "#f5a524"; ctx.lineWidth = 2.5; ctx.strokeRect(x + bw * 0.15, bottom - hT, bw * 0.7, hT);
+      ctx.fillStyle = "#1d1f3a"; ctx.fillText(s, x + bw / 2, bottom + 18);
+      if (total) { ctx.fillStyle = "#5d6079"; ctx.font = "11px Nunito, sans-serif"; ctx.fillText(counts[s], x + bw / 2, bottom - hE - 5); ctx.font = "13px Nunito, sans-serif"; }
+    }
+    ctx.fillStyle = "#3f44c9"; ctx.fillRect(W - 230, 8, 12, 12); ctx.fillStyle = "#1d1f3a"; ctx.textAlign = "left"; ctx.fillText("your rolls", W - 212, 19);
+    ctx.strokeStyle = "#f5a524"; ctx.strokeRect(W - 120, 8, 12, 12); ctx.fillText("predicted", W - 102, 19);
+    var p7 = total ? (counts[7] / total) : 0;
+    document.getElementById("info").textContent = total ? ("Rolls: " + total + "    P(7) so far: " + p7.toFixed(4) + "    predicted 6/36 = " + (6/36).toFixed(4) + "    gap: " + Math.abs(p7 - 6/36).toFixed(4)) : "No rolls yet.";
+  }
+  function roll(n) { for (var i = 0; i < n; i++) { counts[1 + Math.floor(Math.random() * 6) + 1 + Math.floor(Math.random() * 6)]++; } total += n; draw(); }
+  document.querySelectorAll("[data-n]").forEach(function (b) { b.addEventListener("click", function () { roll(parseInt(b.dataset.n, 10)); }); });
+  document.getElementById("reset").addEventListener("click", function () { counts = new Array(13).fill(0); total = 0; draw(); });
+  window.addEventListener("resize", draw); draw();
+})();
+</script>
+</body>
+</html>

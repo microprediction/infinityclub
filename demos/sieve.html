@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sieve of Eratosthenes · Infinity Club</title>
+<meta name="description" content="Watch the primes fall out of 1 to 400 as the multiples get crossed off.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.sgrid { display: grid; gap: 3px; margin: .5rem 0 1rem; }
+.sgrid span { text-align: center; font-weight: 700; border-radius: 6px; border: 1px solid var(--rule); background: #fff; font-size: .85rem; padding: .25em 0; transition: background .25s, color .25s; position: relative; }
+.sgrid span.gone { color: #fff; }
+.sgrid span.prime { background: #fff; border: 2px solid var(--ink); }
+.sgrid span.now { outline: 3px solid var(--warm); }
+.sgrid span.one { background: #ddd; color: #777; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../index.html#demos">Demos</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>The Sieve of Eratosthenes</h1>
+<p class="explain">Press <b>Step</b>. Each step circles the next number nobody has crossed out (that number is prime) and crosses out all its multiples in a new colour. Watch how few steps it takes before nothing is left to cross out.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <label>Up to
+      <select id="nsel"><option>100</option><option>200</option><option>400</option></select>
+    </label>
+    <button id="step">Step</button>
+    <button id="run" class="alt">Run</button>
+    <button id="reset" class="ghost">Reset</button>
+  </div>
+  <div class="readout" id="status">Ready. Every number from 2 up is a suspect.</div>
+  <div class="sgrid" id="grid"></div>
+  <div class="readout" id="primes"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>The smallest uncrossed number has no smaller factor, because any smaller factor would already have crossed it out. So it must be prime. Crossing out its multiples removes everything it builds.</p>
+<p>Notice the first new cross-out for a prime <em>p</em> is always <em>p</em>×<em>p</em>. The smaller multiples like 2<em>p</em> and 3<em>p</em> were caught by 2 and 3 earlier. So once <em>p</em>×<em>p</em> is past the end of the grid, there is nothing new to cross out. For 100 you stop after 7, because 11×11 = 121. For 400 you stop after 19, because 23×23 = 529.</p>
+<p>The demo says so when that moment arrives. Everything still standing is prime, even though you never checked it directly.</p>
+<p>Sheet: <a href="../sheets/b1-primes.html">Primes and the Sieve</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  var colors = ["#3f44c9","#f5a524","#2a9d8f","#e76f51","#8e44ad","#1f77b4","#d62728","#2ca02c","#ff7f0e","#17becf","#bcbd22","#7f7f7f"];
+  var N, cells, marked, primes, pIndex, running = false, timer = null;
+  var grid = document.getElementById("grid"), status = document.getElementById("status"), plist = document.getElementById("primes");
+  function build() {
+    stop();
+    N = parseInt(document.getElementById("nsel").value, 10);
+    grid.innerHTML = "";
+    var cols = 10; if (N >= 200) cols = 20;
+    grid.style.gridTemplateColumns = "repeat(" + cols + ", 1fr)";
+    cells = []; marked = []; primes = []; pIndex = 0;
+    for (var i = 1; i <= N; i++) {
+      var s = document.createElement("span"); s.textContent = i; if (i === 1) s.className = "one";
+      grid.appendChild(s); cells[i] = s; marked[i] = (i === 1);
+    }
+    status.textContent = "Ready. Every number from 2 up is a suspect.";
+    plist.textContent = "";
+  }
+  function nextPrime() { for (var i = 2; i <= N; i++) if (!marked[i]) return i; return null; }
+  function step(cb) {
+    var p = nextPrime();
+    if (p === null) { status.textContent = "Done. " + primes.length + " primes up to " + N + "."; stop(); return; }
+    var color = colors[pIndex % colors.length]; pIndex++;
+    primes.push(p); marked[p] = true;
+    cells[p].classList.add("prime", "now"); cells[p].style.borderColor = color; cells[p].style.color = color;
+    plist.textContent = "Primes so far: " + primes.join(", ");
+    var multiples = [];
+    for (var m = p * p; m <= N; m += p) if (!marked[m]) { marked[m] = true; multiples.push(m); }
+    var note = p * p > N ? " Since " + p + "×" + p + " = " + (p*p) + " is off the grid, there is nothing new to cross out. Everything left is prime." :
+      " Crossing out multiples of " + p + ", starting at " + p + "×" + p + " = " + (p*p) + ".";
+    status.textContent = p + " is prime." + note;
+    var k = 0;
+    var delay = Math.max(15, Math.min(120, 1500 / Math.max(1, multiples.length)));
+    function tick() {
+      if (k < multiples.length) { var c = cells[multiples[k]]; c.classList.add("gone"); c.style.background = color; k++; timer = setTimeout(tick, delay); }
+      else { cells[p].classList.remove("now"); if (p * p > N) { for (var i = 2; i <= N; i++) if (!marked[i]) { marked[i] = true; primes.push(i); cells[i].classList.add("prime"); } plist.textContent = "Primes: " + primes.join(", ") + "  (" + primes.length + " of them)"; status.textContent += " Count: " + primes.length + "."; stop(); return; } if (cb) cb(); }
+    }
+    tick();
+  }
+  function stop() { running = false; if (timer) clearTimeout(timer); timer = null; document.getElementById("run").textContent = "Run"; }
+  document.getElementById("step").addEventListener("click", function () { if (!timer) step(); });
+  document.getElementById("run").addEventListener("click", function () {
+    if (running) { stop(); return; }
+    running = true; this.textContent = "Pause";
+    (function loop() { if (!running) return; step(function () { timer = setTimeout(loop, 400); }); })();
+  });
+  document.getElementById("reset").addEventListener("click", build);
+  document.getElementById("nsel").addEventListener("change", build);
+  build();
+})();
+</script>
+</body>
+</html>

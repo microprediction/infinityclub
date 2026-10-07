@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dice don't lie · Infinity Club</title>
+<meta name="description" content="Why 7 is six times as likely as 2, how to count outcomes with a 6 by 6 table, expected value, and the gambler's bet that helped invent probability.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../index.html#demos">Demos</a>
+  <a href="../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Around the corner · 14</div>
+  <h1>Dice don't lie</h1>
+  <p class="teaser">Two dice, eleven possible totals, and most people bet on the wrong one. A single table tells you every probability, and explains a 17th-century gambler's losing streak.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Roll two dice and add them. Which total should you bet on? Most people guess that every total from 2 to 12 is equally likely, or that the middle ones are "a bit" more likely. The truth is lopsided: 7 is <b>six times</b> as likely as 2.</p>
+<p>The reason is that a total is not an outcome. An <b>outcome</b> is what the two dice actually show, red die and blue die, and there are \(6 \times 6 = 36\) of those, each exactly as likely as the others. A total of 2 happens only one way (1 and 1). A total of 7 happens six ways: 1+6, 2+5, 3+4, 4+3, 5+2, 6+1. Here is the whole table, with the sevens shaded:</p>
+<table>
+<tr><th>+</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th></tr>
+<tr><th>1</th><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td style="background:#e6e6e6">7</td></tr>
+<tr><th>2</th><td>3</td><td>4</td><td>5</td><td>6</td><td style="background:#e6e6e6">7</td><td>8</td></tr>
+<tr><th>3</th><td>4</td><td>5</td><td>6</td><td style="background:#e6e6e6">7</td><td>8</td><td>9</td></tr>
+<tr><th>4</th><td>5</td><td>6</td><td style="background:#e6e6e6">7</td><td>8</td><td>9</td><td>10</td></tr>
+<tr><th>5</th><td>6</td><td style="background:#e6e6e6">7</td><td>8</td><td>9</td><td>10</td><td>11</td></tr>
+<tr><th>6</th><td style="background:#e6e6e6">7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td></tr>
+</table>
+<p>Probability is then just counting: the number of outcomes you want, divided by 36. \(P(\text{total } 7) = \tfrac{6}{36} = \tfrac16\). \(P(\text{total } 2) = \tfrac{1}{36}\). The table does all the thinking.</p>
+<p>One more idea for tonight: the <b>expected value</b> of a game is what you would win per play, on average, if you played it thousands of times. Multiply each prize by its probability and add. If a game pays $5 when you roll a 7 and costs $1 otherwise, the expected value is \(\tfrac{6}{36}(5) + \tfrac{30}{36}(-1) = 0\). Fair, exactly. Casinos make sure their games come out a little below zero for you.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: at least one six</h2>
+<p>Roll two dice. What is the probability that at least one of them shows a 6?</p>
+<p>Count in the table of outcomes (not totals). The red die is 6 in six outcomes. The blue die is 6 in six outcomes. But 6-and-6 has been counted twice, so the number of outcomes with at least one six is \(6 + 6 - 1 = 11\). \(P = \tfrac{11}{36}\), a bit under one third.</p>
+<p>A faster way for "at least one" questions: count the opposite. No six on either die is \(5 \times 5 = 25\) outcomes, so at least one six is \(36 - 25 = 11\). This trick, probability of the opposite, is the most useful move in all of probability. Remember it for the stretch.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Using the table, find the probability of each total from 2 to 12. Check your eleven answers add up to 1.<div class="space"></div></li>
+<li>What is the probability of rolling doubles? Of a total of 10 or more? Of a total of 6 or 8?<div class="space short"></div></li>
+<li>Your friend offers a bet: you win if the total is 6 or 8, they win if it is 7. Who has the better side? By how much?<div class="space short"></div></li>
+<li>Now multiply the dice instead of adding. What is the probability the product is even? (Hint: count the outcomes where it is odd.)<div class="space short"></div></li>
+<li>A game costs $2 to play. You roll two dice and win $10 if the total is 2 or 12, nothing otherwise. Find the expected value per play. Would you play?<div class="space"></div></li>
+<li>Roll two dice and keep the <b>higher</b> of the two numbers. Make a table like the one above showing the higher number in each cell. Which value is most likely, and what is its probability?<div class="space tall"></div></li>
+</ol>
+<p class="small">Try the dice demo at ../demos/dice.html: it rolls thousands of times in a second and draws the results next to the probabilities you just computed.</p>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the gambler who asked a mathematician</h2>
+<p>In the 1650s a French gambler, the Chevalier de Méré, had a profitable bet: he would get at least one 6 in four rolls of a die. He then switched to a bet he reckoned was equally good: at least one double-six in 24 rolls of two dice. He started losing money and wrote to Blaise Pascal to ask why. Pascal's reply helped invent probability theory.</p>
+<p>Use the "probability of the opposite" trick. The chance of <em>no</em> six in one roll is \(\tfrac56\). In four independent rolls it is \(\left(\tfrac56\right)^4\). So \(P(\text{at least one six in 4}) = 1 - \left(\tfrac56\right)^4\). Compute it. Then do the same for double-six: the chance of no double-six in one roll of two dice is \(\tfrac{35}{36}\), and he gets 24 tries. Which bet is above a half and which is below?</p>
+<div class="space tall"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Totals 2 through 12 have 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1 outcomes, so the probabilities are \(\tfrac1{36}, \tfrac2{36}, \tfrac3{36}, \tfrac4{36}, \tfrac5{36}, \tfrac6{36}, \tfrac5{36}, \tfrac4{36}, \tfrac3{36}, \tfrac2{36}, \tfrac1{36}\). The counts add to 36, so the probabilities add to 1.</li>
+<li>Doubles: 6 outcomes, \(\tfrac{6}{36} = \tfrac16\). Total 10 or more: 3 + 2 + 1 = 6 outcomes, \(\tfrac16\). Total 6 or 8: 5 + 5 = 10 outcomes, \(\tfrac{10}{36} = \tfrac{5}{18}\).</li>
+<li>You win on 10 outcomes, your friend on 6. You have the better side, by 10 to 6, and 20 outcomes are a push.</li>
+<li>The product is odd only when both dice are odd: \(3 \times 3 = 9\) outcomes. So the product is even in 27 outcomes, \(P = \tfrac{27}{36} = \tfrac34\).</li>
+<li>Totals 2 or 12: 2 outcomes out of 36. Expected winnings \(\tfrac{2}{36} \times 10 = \tfrac{20}{36} \approx 0.56\) dollars, against a cost of $2. Expected value about \(-$1.44\) per play. Do not play.</li>
+<li>The higher number is 1 in 1 cell, 2 in 3 cells, 3 in 5, 4 in 7, 5 in 9, 6 in 11 (the pattern is the odd numbers). Most likely is 6 with probability \(\tfrac{11}{36}\), the same count as "at least one six", because they are the same event.</li>
+</ol>
+<p><b>Stretch.</b> \(1 - \left(\tfrac56\right)^4 = 1 - 0.482 = 0.518\), just above a half, so the first bet wins slightly more often than it loses. \(1 - \left(\tfrac{35}{36}\right)^{24} = 1 - 0.509 = 0.491\), just below a half. De Méré's reasoning was that \(4/6 = 24/36\), so the bets should be "the same". Probabilities of repeated tries do not scale like that; you have to multiply the chances of missing. Over many evenings a 1.8 percent edge became a 0.9 percent deficit, and he noticed.</p>
+</section>
+
+<div class="sheet-nav"><a href="b13-bridges.html">← Seven bridges of Königsberg</a><a href="c1-music.html">Next: Why there are twelve notes →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../assets/site.js"></script>
+</body>
+</html>

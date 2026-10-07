@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fibonacci and the golden ratio · Infinity Club</title>
+<meta name="description" content="The Fibonacci sequence, staircases, the golden ratio 1.618, a miles-to-kilometres trick and why sunflowers count in Fibonacci numbers.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../index.html#demos">Demos</a>
+  <a href="../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Around the corner · 6</div>
+  <h1>Fibonacci and the golden ratio</h1>
+  <p class="teaser">Add the last two numbers to get the next: 1, 1, 2, 3, 5, 8, 13. This simple rule counts staircases, converts miles to kilometres, and shows up in the seeds of a sunflower.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>The <b>Fibonacci sequence</b> starts 1, 1 and then every term is the sum of the two before it: 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, … We write \(F_1 = 1\), \(F_2 = 1\), \(F_3 = 2\) and so on.</p>
+<p>It appears whenever something is built from the two previous steps. Suppose a staircase has \(n\) steps and you climb either 1 or 2 steps at a time. Your last move was either a single step (from step \(n-1\)) or a double (from step \(n-2\)), so the number of ways to climb \(n\) steps is the ways for \(n-1\) plus the ways for \(n-2\). That is the Fibonacci rule, and the counts are 1, 2, 3, 5, 8, 13, …</p>
+<p>Now divide each term by the one before: \(\frac{8}{5} = 1.6\), \(\frac{13}{8} = 1.625\), \(\frac{21}{13} = 1.615\ldots\) The ratios settle down toward a number called the <b>golden ratio</b>, \(\varphi = 1.6180339\ldots\) It is the proportion of a rectangle that, when you cut a square off one end, leaves a smaller rectangle of exactly the same shape.</p>
+<p>The nature link is real, not a myth. A sunflower adds each new seed at an angle of about 137.5° from the last, which is a full turn divided by \(\varphi^2\). That angle packs seeds with no gaps, and the spirals you can count in the head come in Fibonacci pairs: 34 one way and 55 the other, or 55 and 89. Play with the angle at <a href="../demos/sunflower.html">infinityclub.net/demos/sunflower</a> and watch the pattern fall apart when you change it even slightly.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: how many ways to climb 5 steps?</h2>
+<p>One step: 1 way. Two steps: 2 ways (1+1 or 2). Three steps: the last move was a 1 (from step 2, 2 ways) or a 2 (from step 1, 1 way): \(2 + 1 = 3\). Four steps: \(3 + 2 = 5\). Five steps: \(5 + 3 = 8\).</p>
+<p>Check by listing all eight: 1-1-1-1-1, 2-1-1-1, 1-2-1-1, 1-1-2-1, 1-1-1-2, 2-2-1, 2-1-2, 1-2-2. The pattern lets you skip the listing for a 20-step staircase, where there are 10,946 ways.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Write out the first 15 Fibonacci numbers.<div class="space short"></div></li>
+<li>How many ways are there to climb a 6-step staircase taking 1 or 2 steps at a time? An 8-step staircase?<div class="space short"></div></li>
+<li>Compute \(\frac{21}{13}\), \(\frac{34}{21}\), \(\frac{55}{34}\) and \(\frac{89}{55}\) to three decimal places. Notice that they alternate: one above \(\varphi\), the next below.<div class="space"></div></li>
+<li>Add the first ten Fibonacci numbers. Compare your total with \(F_{12}\). Try the same with the first five and \(F_7\). What is the rule?<div class="space short"></div></li>
+<li>Circle the even Fibonacci numbers in your list. Every third one is even and the others are odd. Explain why, using only the facts odd + odd = even, odd + even = odd.<div class="space"></div></li>
+<li><b>Miles to kilometres.</b> A mile is 1.609 km, and \(\varphi = 1.618\), close enough. So to convert, step forward one Fibonacci number: 5 miles ≈ 8 km, 8 miles ≈ 13 km. Convert 34 miles to km with the trick, then check with a calculator. How would you convert 10 miles? (Hint: 10 = 8 + 2.)<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the golden rectangle's secret</h2>
+<p>A golden rectangle has sides \(\varphi\) and 1. Cut a 1 by 1 square off the end. The rectangle left over is 1 by \(\varphi - 1\), and the claim is that it has the same proportions as the original. Write that as an equation: \(\dfrac{\varphi}{1} = \dfrac{1}{\varphi - 1}\). Multiply out and show it means \(\varphi^2 = \varphi + 1\). Check it with \(\varphi = 1.618\) on a calculator. Then try \(\frac{1}{\varphi}\) and see what you notice.</p>
+<p>One more: compute \(F_n^2 - F_{n-1}F_{n+1}\) for \(n = 3, 4, 5, 6\). (For \(n = 5\) that is \(5^2 - 3 \times 8\).) Cassini noticed this pattern in 1680, and it has been used to design a card trick where a rectangle appears to lose a square of area.</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610.</li>
+<li>6 steps: 13 ways. 8 steps: 34 ways. (The count for \(n\) steps is \(F_{n+1}\).)</li>
+<li>1.615, 1.619, 1.618, 1.618 (more precisely 1.6154, 1.6190, 1.6176, 1.6182: below, above, below, above \(\varphi = 1.6180\)).</li>
+<li>First ten sum to 143, and \(F_{12} = 144\). First five sum to 12, and \(F_7 = 13\). The sum of the first \(n\) Fibonacci numbers is \(F_{n+2} - 1\).</li>
+<li>Start odd, odd. Odd + odd = even. Then odd + even = odd, even + odd = odd, and now you are back to odd, odd, so the pattern odd, odd, even repeats forever.</li>
+<li>34 miles ≈ 55 km (calculator: 54.7 km). For 10 miles, split into 8 + 2: 13 + 3 = 16 km (calculator: 16.1 km).</li>
+</ol>
+<p><b>Stretch.</b> Cross-multiplying \(\varphi(\varphi - 1) = 1\) gives \(\varphi^2 - \varphi = 1\), so \(\varphi^2 = \varphi + 1\). Check: \(1.618^2 = 2.618\), and \(1.618 + 1 = 2.618\). Also \(1/\varphi = 0.618\), the same digits: dividing the equation by \(\varphi\) gives \(\varphi = 1 + 1/\varphi\). Cassini: \(n=3\): \(4 - 1 \times 3 = 1\). \(n=4\): \(9 - 2 \times 5 = -1\). \(n=5\): \(25 - 3 \times 8 = 1\). \(n=6\): \(64 - 5 \times 13 = -1\). It alternates \(+1, -1\) forever.</p>
+</section>
+
+<div class="sheet-nav"><a href="b5-gauss.html">← Gauss and the lazy sum</a><a href="b7-pythagoras.html">Next: Pythagoras and square roots →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../assets/site.js"></script>
+</body>
+</html>

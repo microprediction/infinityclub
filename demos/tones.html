@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hear the Ratios · Infinity Club</title>
+<meta name="description" content="Play musical intervals as frequency ratios and hear why twelve fifths do not quite make seven octaves.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../index.html#demos">Demos</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Hear the ratios</h1>
+<p class="explain">Turn your sound on. Each button plays the base note, then a note whose frequency is the base multiplied by a ratio, then both together. Simple ratios sound smooth. Listen for the slow wobble in the last button.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <label>Base frequency <input type="number" id="base" min="55" max="880" value="220"> Hz</label>
+    <button id="playbase" class="alt">Play base</button>
+  </div>
+  <div class="controls">
+    <button data-r="2" data-name="octave 2:1">Octave 2:1</button>
+    <button data-r="1.5" data-name="perfect fifth 3:2">Fifth 3:2</button>
+    <button data-r="1.3333333333" data-name="perfect fourth 4:3">Fourth 4:3</button>
+    <button data-r="1.25" data-name="major third 5:4">Major third 5:4</button>
+    <button data-r="1.125" data-name="whole tone 9:8">Whole tone 9:8</button>
+    <button data-r="1.0594630944" data-name="equal-tempered semitone 2^(1/12)">Semitone 2^(1/12)</button>
+    <button data-r="1.0666666667" data-name="minor second-ish 16:15">16:15</button>
+  </div>
+  <div class="controls">
+    <button id="comma" class="ghost">Twelve fifths vs seven octaves</button>
+  </div>
+  <div class="readout" id="info">Press a button.</div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>A note is a vibration, and its frequency is how many vibrations happen each second. Double the frequency and you get the same note an octave higher. Multiply by 3/2 and you get a perfect fifth, the interval at the start of "Twinkle, Twinkle". Two notes sound smooth together when their frequencies are in a simple ratio, because their waves line up often.</p>
+<p>Go up twelve fifths from a note and you should land back on the same note seven octaves up. But (3/2)¹² = 129.75 while 2⁷ = 128. They miss by about 1.4 percent, the Pythagorean comma. The last button plays 440 Hz against 440 × 129.75 / 128 ≈ 446 Hz and you hear the mismatch as a beat, a wobble about six times per second.</p>
+<p>Pianos solve this by making every semitone the same ratio, the twelfth root of 2, so twelve of them give exactly 2. Every interval except the octave is then very slightly out of tune, and almost nobody notices.</p>
+<p>Sheet: <a href="../sheets/c1-music.html">Why there are twelve notes</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  var actx = null, info = document.getElementById("info");
+  function ctx() { if (!actx) actx = new (window.AudioContext || window.webkitAudioContext)(); if (actx.state === "suspended") actx.resume(); return actx; }
+  function tone(freq, start, dur, gain) {
+    var a = ctx(), o = a.createOscillator(), g = a.createGain(); o.type = "sine"; o.frequency.value = freq;
+    var t0 = a.currentTime + start; g.gain.setValueAtTime(0, t0); g.gain.linearRampToValueAtTime(gain || 0.25, t0 + 0.04);
+    g.gain.setValueAtTime(gain || 0.25, t0 + dur - 0.08); g.gain.linearRampToValueAtTime(0, t0 + dur);
+    o.connect(g); g.connect(a.destination); o.start(t0); o.stop(t0 + dur + 0.02);
+  }
+  function base() { return Math.max(55, Math.min(880, parseFloat(document.getElementById("base").value) || 220)); }
+  document.getElementById("playbase").addEventListener("click", function () { tone(base(), 0, 0.9); info.textContent = "Base: " + base().toFixed(1) + " Hz"; });
+  document.querySelectorAll("[data-r]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var f = base(), r = parseFloat(b.dataset.r), f2 = f * r;
+      tone(f, 0, 0.7); tone(f2, 0.75, 0.7); tone(f, 1.55, 1.4, 0.2); tone(f2, 1.55, 1.4, 0.2);
+      info.textContent = b.dataset.name + "\n" + f.toFixed(1) + " Hz × " + r.toFixed(4) + " = " + f2.toFixed(1) + " Hz";
+    });
+  });
+  document.getElementById("comma").addEventListener("click", function () {
+    var f = 440, f2 = 440 * Math.pow(1.5, 12) / Math.pow(2, 7);
+    tone(f, 0, 3.0, 0.2); tone(f2, 0, 3.0, 0.2);
+    info.textContent = "(3/2)^12 = " + Math.pow(1.5, 12).toFixed(3) + "   2^7 = 128   ratio = " + (Math.pow(1.5, 12) / 128).toFixed(5) + "\n440 Hz against " + f2.toFixed(2) + " Hz.  Beat rate = " + (f2 - f).toFixed(2) + " wobbles per second.";
+  });
+})();
+</script>
+</body>
+</html>

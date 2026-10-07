@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pascal's Triangle Patterns · Infinity Club</title>
+<meta name="description" content="Colour Pascal's triangle by remainders and watch fractals appear.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../index.html#demos">Demos</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Pascal's triangle, coloured by remainder</h1>
+<p class="explain">Every cell is the sum of the two above it. Cells are coloured dark when the number is a multiple of <b>m</b>. Start with m = 2 (even numbers) and then try 3, 5 and 7. Then try 4 or 6 and notice the difference.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <label>Rows
+      <select id="rows"><option>16</option><option>32</option><option selected>64</option><option>128</option></select>
+    </label>
+    <label>m = <span id="mval">2</span> <input type="range" id="m" min="2" max="12" value="2"></label>
+    <label><input type="checkbox" id="nums" checked> show numbers when they fit</label>
+  </div>
+  <canvas id="c" width="900" height="800"></canvas>
+  <div class="readout" id="info"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>You do not need the actual numbers to know whether they are multiples of m. The remainder of a sum is the sum of the remainders (then take the remainder again). So the demo builds the whole triangle using only remainders, which is lucky, because row 128 contains numbers with 38 digits.</p>
+<p>With m = 2 the dark cells form the Sierpinski triangle, a shape made of three half-size copies of itself, forever. Any prime m gives a similar self-copying pattern with m copies. Composite m like 4 or 6 give a messier mix of patterns layered on each other.</p>
+<p>Row n of Pascal's triangle has exactly as many odd numbers as 2 to the power of (number of 1s in n written in binary). Row 7 is 1111 in binary, so all eight of its numbers are odd. Check it.</p>
+<p>Sheet: <a href="../sheets/b4-pascal.html">Pascal's triangle</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  var canvas = document.getElementById("c"), ctx = canvas.getContext("2d");
+  var rowsSel = document.getElementById("rows"), mIn = document.getElementById("m"), numsCb = document.getElementById("nums");
+  function draw() {
+    var R = parseInt(rowsSel.value, 10), m = parseInt(mIn.value, 10);
+    document.getElementById("mval").textContent = m;
+    var dpr = window.devicePixelRatio || 1, cssW = canvas.clientWidth || 900, cssH = cssW * 0.88;
+    canvas.width = cssW * dpr; canvas.height = cssH * dpr; canvas.style.height = cssH + "px";
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, cssW, cssH);
+    var cw = cssW / R, ch = cssH / R;
+    var prev = [1], count = 0, total = 0;
+    var full = [];
+    if (R <= 16) { var f = [1]; for (var i = 0; i < R; i++) { full.push(f); var g = [1]; for (var j = 1; j < f.length; j++) g.push(f[j-1] + f[j]); g.push(1); f = g; } }
+    ctx.font = Math.max(8, Math.min(14, cw * 0.4)) + "px Nunito, sans-serif"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    for (var r = 0; r < R; r++) {
+      var x0 = (cssW - (r + 1) * cw) / 2;
+      for (var k = 0; k <= r; k++) {
+        var v = prev[k], dark = (v % m === 0);
+        total++; if (dark) count++;
+        ctx.fillStyle = dark ? "#3f44c9" : "#f3f1ea";
+        ctx.fillRect(x0 + k * cw + 0.5, r * ch + 0.5, cw - 1, ch - 1);
+        if (numsCb.checked && R <= 16) { ctx.fillStyle = dark ? "#fff" : "#1d1f3a"; ctx.fillText(full[r][k], x0 + k * cw + cw / 2, r * ch + ch / 2); }
+      }
+      var next = [1]; for (var j = 1; j <= r; j++) next.push((prev[j-1] + prev[j]) % m); next.push(1); prev = next;
+    }
+    document.getElementById("info").textContent = count + " of " + total + " cells are multiples of " + m + " (" + (100 * count / total).toFixed(1) + "%)";
+  }
+  rowsSel.addEventListener("change", draw); mIn.addEventListener("input", draw); numsCb.addEventListener("change", draw);
+  window.addEventListener("resize", draw);
+  draw();
+})();
+</script>
+</body>
+</html>

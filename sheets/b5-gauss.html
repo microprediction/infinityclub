@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gauss and the lazy sum · Infinity Club</title>
+<meta name="description" content="Add 1 to 100 in ten seconds the way Gauss did, meet the triangular numbers, and see why adding odd numbers always makes a square.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../index.html#demos">Demos</a>
+  <a href="../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Around the corner · 5</div>
+  <h1>Gauss and the lazy sum</h1>
+  <p class="teaser">A teacher once told a class to add every number from 1 to 100, hoping for an hour of quiet. One boy answered in seconds. Tonight you learn his trick and the pictures behind it.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>The boy was Carl Friedrich Gauss, and the story may be polished, but the trick is real. Instead of adding in order, pair the ends: \(1 + 100 = 101\), \(2 + 99 = 101\), \(3 + 98 = 101\), and so on. There are 50 pairs, each worth 101, so the total is \(50 \times 101 = 5050\).</p>
+<p>In general, adding \(1 + 2 + \cdots + n\) gives \(\dfrac{n(n+1)}{2}\). You can see why with a picture instead of pairs: draw the sum as a staircase of dots, 1 dot in the first row, 2 in the second, up to \(n\). Two staircases fit together into an \(n\) by \((n+1)\) rectangle, so one staircase is half of that.</p>
+<p>These totals, 1, 3, 6, 10, 15, 21, …, are the <b>triangular numbers</b>, because the staircase is a triangle of dots. They turn up everywhere: the number of handshakes in a room of \(n+1\) people, the number of balls in a rack of pool, a diagonal of Pascal's triangle.</p>
+<p>The lazy habit behind all this is worth keeping: before you add a long list, look for a pattern that lets you skip the adding.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: add 11 + 12 + … + 30</h2>
+<p>Pairing works, but subtraction is lazier still. The sum from 1 to 30 is \(\dfrac{30 \times 31}{2} = 465\). The sum from 1 to 10 is \(\dfrac{10 \times 11}{2} = 55\). The sum from 11 to 30 is everything in the first total that is not in the second: \(465 - 55 = 410\).</p>
+<p>Check by pairing: \(11 + 30 = 41\), \(12 + 29 = 41\), … There are 20 numbers, so 10 pairs: \(10 \times 41 = 410\). Same answer.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Use the formula to find \(1 + 2 + \cdots + 10\), then \(1 + 2 + \cdots + 1000\). Check the first one by hand.<div class="space short"></div></li>
+<li>Add the even numbers \(2 + 4 + 6 + \cdots + 100\). (Hint: factor out a 2, and you are left with a sum you already know how to do.)<div class="space short"></div></li>
+<li>Add \(21 + 22 + \cdots + 60\) using the subtraction method.<div class="space short"></div></li>
+<li>Add the odd numbers \(1 + 3 + 5 + \cdots + 19\). Then add \(1 + 3\), \(1 + 3 + 5\), \(1 + 3 + 5 + 7\). What kind of numbers do you keep getting? How many odd numbers were in the first sum, and how does that predict its total?<div class="space"></div></li>
+<li>Everyone at a party of 100 people shakes hands with everyone else exactly once. How many handshakes? (The first person shakes 99 hands, the next shakes 98 new ones, …)<div class="space short"></div></li>
+<li>A staircase picture explains the formula. Draw the staircase for \(n = 4\) (rows of 1, 2, 3, 4 dots), then draw a second copy upside down beside it. What rectangle do you get, and how does it give \(\dfrac{4 \times 5}{2}\)?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: why odd numbers make squares</h2>
+<figure>
+<svg viewBox="0 0 170 170" width="170" height="170" role="img" aria-label="A 5 by 5 grid of squares shaded in L-shaped layers of 1, 3, 5, 7, 9 cells">
+<g stroke="#000" stroke-width="1">
+<rect x="10" y="130" width="30" height="30" fill="#222"/>
+<rect x="40" y="130" width="30" height="30" fill="#777"/><rect x="40" y="100" width="30" height="30" fill="#777"/><rect x="10" y="100" width="30" height="30" fill="#777"/>
+<rect x="70" y="130" width="30" height="30" fill="#bbb"/><rect x="70" y="100" width="30" height="30" fill="#bbb"/><rect x="70" y="70" width="30" height="30" fill="#bbb"/><rect x="40" y="70" width="30" height="30" fill="#bbb"/><rect x="10" y="70" width="30" height="30" fill="#bbb"/>
+<rect x="100" y="130" width="30" height="30" fill="#e6e6e6"/><rect x="100" y="100" width="30" height="30" fill="#e6e6e6"/><rect x="100" y="70" width="30" height="30" fill="#e6e6e6"/><rect x="100" y="40" width="30" height="30" fill="#e6e6e6"/><rect x="70" y="40" width="30" height="30" fill="#e6e6e6"/><rect x="40" y="40" width="30" height="30" fill="#e6e6e6"/><rect x="10" y="40" width="30" height="30" fill="#e6e6e6"/>
+<rect x="130" y="130" width="30" height="30" fill="#fff"/><rect x="130" y="100" width="30" height="30" fill="#fff"/><rect x="130" y="70" width="30" height="30" fill="#fff"/><rect x="130" y="40" width="30" height="30" fill="#fff"/><rect x="130" y="10" width="30" height="30" fill="#fff"/><rect x="100" y="10" width="30" height="30" fill="#fff"/><rect x="70" y="10" width="30" height="30" fill="#fff"/><rect x="40" y="10" width="30" height="30" fill="#fff"/><rect x="10" y="10" width="30" height="30" fill="#fff"/>
+</g>
+</svg>
+<figcaption>\(1 + 3 + 5 + 7 + 9 = 25 = 5^2\). Each L-shaped layer adds the next odd number.</figcaption>
+</figure>
+<p>Look at the picture. Start with one square. Wrap an L of 3 squares around it, then an L of 5, then 7, then 9. Why is each new L exactly 2 more squares than the last? Explain, in a sentence or two, why \(1 + 3 + 5 + \cdots + (2n-1) = n^2\) for every \(n\).</p>
+<p>Then try this one with a calculator and no proof needed: compute \(1^3\), \(1^3 + 2^3\), \(1^3 + 2^3 + 3^3\), \(1^3 + 2^3 + 3^3 + 4^3\). Compare with the triangular numbers 1, 3, 6, 10. What do you notice?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(\frac{10 \times 11}{2} = 55\) and \(\frac{1000 \times 1001}{2} = 500{,}500\).</li>
+<li>\(2 + 4 + \cdots + 100 = 2(1 + 2 + \cdots + 50) = 2 \times 1275 = 2550\).</li>
+<li>\(\frac{60 \times 61}{2} - \frac{20 \times 21}{2} = 1830 - 210 = 1620\).</li>
+<li>\(1 + 3 + \cdots + 19 = 100\). The short sums are 4, 9, 16. They are all perfect squares. There are 10 odd numbers in the first sum, and \(10^2 = 100\): the sum of the first \(n\) odd numbers is \(n^2\).</li>
+<li>\(99 + 98 + \cdots + 1 = \frac{99 \times 100}{2} = 4950\).</li>
+<li>Two staircases of 1, 2, 3, 4 fit together into a 4 by 5 rectangle of 20 dots. One staircase is half, 10 dots, which is \(\frac{4 \times 5}{2}\). The general picture is \(n\) by \(n+1\).</li>
+</ol>
+<p><b>Stretch.</b> Each L wraps around a square that is one unit bigger on each side, so it needs one extra square along the bottom and one extra up the side: 2 more than the previous L. The L around an \((n-1)\) by \((n-1)\) square has \(2n - 1\) cells: \(n\) along the bottom, \(n\) up the side, minus the shared corner. Adding the L turns an \((n-1)^2\) square into an \(n^2\) square, so the odd numbers add up to squares forever. The cubes: 1, 9, 36, 100, which are \(1^2, 3^2, 6^2, 10^2\), the squares of the triangular numbers. So \(1^3 + 2^3 + \cdots + n^3 = (1 + 2 + \cdots + n)^2\). That one is true for every \(n\), and the proof is a lovely picture you may meet later.</p>
+</section>
+
+<div class="sheet-nav"><a href="b4-pascal.html">← Pascal's triangle</a><a href="b6-fibonacci.html">Next: Fibonacci and the golden ratio →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../assets/site.js"></script>
+</body>
+</html>

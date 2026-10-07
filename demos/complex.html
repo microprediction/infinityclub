@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Complex Plane · Infinity Club</title>
+<meta name="description" content="Drag a complex number around and watch what multiplying by i, squaring and negating do to it.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>canvas { touch-action: none; cursor: grab; }</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../index.html#demos">Demos</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Drag a complex number</h1>
+<p class="explain">The blue dot is <b>z</b>. Drag it anywhere. The other dots are what you get by multiplying z by i, squaring it, and negating it. Try putting z on the unit circle, then outside it, then on the real axis.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <label><input type="checkbox" id="showi" checked> i·z (orange)</label>
+    <label><input type="checkbox" id="showsq" checked> z² (green)</label>
+    <label><input type="checkbox" id="showneg"> −z (grey)</label>
+    <label><input type="checkbox" id="showcirc" checked> unit circle</label>
+  </div>
+  <canvas id="c" width="700" height="700"></canvas>
+  <div class="readout" id="info"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>A complex number a + bi is just a point: a steps right, b steps up. Multiplying by i sends (a, b) to (−b, a), which is exactly a quarter turn anticlockwise. Do it twice and you have turned half way round, which is the same as multiplying by −1. That is what i² = −1 means in pictures.</p>
+<p>Squaring is more dramatic. Measure z by its length and its angle from the positive real axis. Then z² has the length squared and the angle doubled. Drag z around the unit circle and watch z² go round twice as fast while staying on the circle. Drag z inside the circle and z² shrinks toward 0.</p>
+<p>Sheet: <a href="../sheets/b8-imaginary.html">Imaginary numbers are real</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  var canvas = document.getElementById("c"), ctx = canvas.getContext("2d");
+  var z = { x: 1.2, y: 0.8 }, dragging = false, range = 3, W, H, S, cx, cy;
+  function toPx(p) { return [cx + p.x * S, cy - p.y * S]; }
+  function fromPx(px, py) { return { x: (px - cx) / S, y: (cy - py) / S }; }
+  function arrow(p, color, label) {
+    var e = toPx(p); ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineWidth = 2.5;
+    ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(e[0], e[1]); ctx.stroke();
+    ctx.beginPath(); ctx.arc(e[0], e[1], 7, 0, Math.PI * 2); ctx.fill();
+    ctx.font = "bold 15px Nunito, sans-serif"; ctx.fillText(label, e[0] + 10, e[1] - 10);
+  }
+  function fmt(p) { return p.x.toFixed(2) + (p.y < 0 ? " − " : " + ") + Math.abs(p.y).toFixed(2) + "i"; }
+  function draw() {
+    var dpr = window.devicePixelRatio || 1; W = Math.min(canvas.clientWidth || 700, 700); H = W;
+    canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    cx = W / 2; cy = H / 2; S = W / (2 * range);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, H);
+    ctx.strokeStyle = "#e6e4dc"; ctx.lineWidth = 1;
+    for (var g = -range; g <= range; g++) { ctx.beginPath(); ctx.moveTo(cx + g * S, 0); ctx.lineTo(cx + g * S, H); ctx.stroke(); ctx.beginPath(); ctx.moveTo(0, cy - g * S); ctx.lineTo(W, cy - g * S); ctx.stroke(); }
+    ctx.strokeStyle = "#1d1f3a"; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(W, cy); ctx.moveTo(cx, 0); ctx.lineTo(cx, H); ctx.stroke();
+    ctx.fillStyle = "#5d6079"; ctx.font = "12px Nunito, sans-serif";
+    for (var t = -range + 1; t < range; t++) if (t) { ctx.fillText(t, cx + t * S - 4, cy + 14); ctx.fillText(t + "i", cx + 5, cy - t * S + 4); }
+    ctx.fillText("real", W - 34, cy - 6); ctx.fillText("imaginary", cx + 6, 14);
+    if (document.getElementById("showcirc").checked) { ctx.strokeStyle = "#c9c6bc"; ctx.setLineDash([5, 5]); ctx.beginPath(); ctx.arc(cx, cy, S, 0, Math.PI * 2); ctx.stroke(); ctx.setLineDash([]); }
+    var iz = { x: -z.y, y: z.x }, sq = { x: z.x * z.x - z.y * z.y, y: 2 * z.x * z.y }, neg = { x: -z.x, y: -z.y };
+    if (document.getElementById("showneg").checked) arrow(neg, "#8a8d9e", "−z");
+    if (document.getElementById("showsq").checked) arrow(sq, "#2a9d8f", "z²");
+    if (document.getElementById("showi").checked) arrow(iz, "#f5a524", "i·z");
+    arrow(z, "#3f44c9", "z");
+    var r = Math.hypot(z.x, z.y), ang = Math.atan2(z.y, z.x) * 180 / Math.PI;
+    document.getElementById("info").textContent = "z  = " + fmt(z) + "    length " + r.toFixed(2) + ", angle " + ang.toFixed(0) + "°\n" +
+      "i·z = " + fmt(iz) + "    length " + r.toFixed(2) + ", angle " + ((ang + 90 + 540) % 360 - 180).toFixed(0) + "°\n" +
+      "z² = " + fmt(sq) + "    length " + (r * r).toFixed(2) + ", angle " + ((2 * ang + 540) % 360 - 180).toFixed(0) + "°";
+  }
+  function pos(ev) { var r = canvas.getBoundingClientRect(); return [ev.clientX - r.left, ev.clientY - r.top]; }
+  canvas.addEventListener("pointerdown", function (ev) { var p = pos(ev); dragging = true; canvas.setPointerCapture(ev.pointerId); z = fromPx(p[0], p[1]); draw(); });
+  canvas.addEventListener("pointermove", function (ev) { if (!dragging) return; var p = pos(ev); z = fromPx(p[0], p[1]); draw(); });
+  canvas.addEventListener("pointerup", function () { dragging = false; });
+  canvas.addEventListener("pointercancel", function () { dragging = false; });
+  document.querySelectorAll("input[type=checkbox]").forEach(function (c) { c.addEventListener("change", draw); });
+  window.addEventListener("resize", draw); draw();
+})();
+</script>
+</body>
+</html>

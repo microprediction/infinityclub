@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Multiply like a magician · Infinity Club</title>
+<meta name="description" content="The distributive law as area, difference of squares, squaring numbers ending in 5, and other mental multiplication tricks for bright grade 6 students.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../index.html#demos">Demos</a>
+  <a href="../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Sharpen · 5</div>
+  <h1>Multiply like a magician</h1>
+  <p class="teaser">Twenty-three times seventeen in two seconds, no paper. The secret is one law you already know, drawn as a rectangle.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>The <b>distributive law</b> says \(a(b + c) = ab + ac\). It sounds dull. It is actually the engine behind every multiplication trick there is, and the easiest way to believe it is as <b>area</b>. A rectangle \(a\) tall and \(b + c\) wide can be cut into two rectangles, \(a \times b\) and \(a \times c\). The area does not change when you cut.</p>
+<figure><svg viewBox="0 0 420 150" width="420" height="150" role="img" aria-label="23 by 17 rectangle split into four parts"><rect x="30" y="20" width="200" height="100" fill="none" stroke="#000" stroke-width="1.5"/><rect x="230" y="20" width="30" height="100" fill="none" stroke="#000" stroke-width="1.5"/><rect x="30" y="120" width="200" height="20" fill="none" stroke="#000" stroke-width="1.5"/><rect x="230" y="120" width="30" height="20" fill="none" stroke="#000" stroke-width="1.5"/><g font-family="Nunito, sans-serif" font-size="14" text-anchor="middle"><text x="130" y="75">20 × 10 = 200</text><text x="245" y="75" font-size="12">3×10</text><text x="245" y="88" font-size="12">= 30</text><text x="130" y="134" font-size="12">20 × 7 = 140</text><text x="245" y="134" font-size="11">21</text><text x="130" y="12">20</text><text x="245" y="12">3</text><text x="18" y="75">10</text><text x="18" y="134">7</text></g></svg>
+<figcaption>\(23 \times 17 = (20 + 3)(10 + 7) = 200 + 140 + 30 + 21 = 391\).</figcaption></figure>
+<p>Now the magician's version. Write \(23 \times 17\) as \((20 + 3)(20 - 3)\). Multiply out: \(400 - 60 + 60 - 9 = 400 - 9 = 391\). The middle terms always cancel. In general:</p>
+<p class="callout">\((a + b)(a - b) = a^2 - b^2\). Any two numbers the same distance either side of a round number multiply in one step.</p>
+<p>And a second trick for free. To square a number ending in 5, like 35: take the tens digit, 3, multiply by the next number up, 4, giving 12, and write 25 after it: \(35^2 = 1225\). It works because \((10n + 5)^2 = 100n^2 + 100n + 25 = 100\,n(n + 1) + 25\).</p>
+</section>
+
+<section class="example">
+<h2>Watch one</h2>
+<p>\(47 \times 53\). Both are 3 away from 50. So \(50^2 - 3^2 = 2500 - 9 = 2491\).</p>
+<p>\(65^2\). Tens digit 6, next up is 7, \(6 \times 7 = 42\), append 25: \(4225\).</p>
+<p>\(7 \times 48\). Use \(48 = 50 - 2\): \(350 - 14 = 336\).</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Distributive law, in your head: \(6 \times 199\), \(\;25 \times 36\) (hint: \(36 = 4 \times 9\)), \(\;8 \times 73\), \(\;15 \times 24\).<div class="space short"></div></li>
+<li>Difference of squares: \(19 \times 21\), \(\;28 \times 32\), \(\;98 \times 102\), \(\;45 \times 55\).<div class="space short"></div></li>
+<li>Squares ending in 5: \(45^2\), \(\;95^2\), \(\;105^2\), \(\;2.5^2\) (the trick still works; think about where the decimal point goes).<div class="space short"></div></li>
+<li>\(999 \times 1001\). Then \(999 \times 999\), using \((1000 - 1)^2 = 1000^2 - 2 \times 1000 + 1\).<div class="space short"></div></li>
+<li>Draw the rectangle picture for \(34 \times 26\) split as \((30 + 4)(20 + 6)\) and add the four parts. Then do it the fast way as \((30 + 4)(30 - 4)\) and check the answers agree.<div class="space tall"></div></li>
+<li>Square 41 and 39 using \((40 \pm 1)^2 = 40^2 \pm 2 \times 40 + 1\). Then explain why \(41^2 - 39^2 = 160\) without squaring anything.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: a proof you can cut out</h2>
+<p>Draw an \(a \times a\) square. Cut a \(b \times b\) square out of one corner. The L-shape left over has area \(a^2 - b^2\). Now cut the L-shape into two rectangles and slide one of them around so that together they make a single rectangle. What are its length and width? You have just proved the difference-of-squares formula with scissors.</p>
+<p>Then a last trick: for numbers near 50, \((50 + n)^2 = 2500 + 100n + n^2\). So \(53^2 = 2500 + 300 + 9 = 2809\). Use it for \(47^2\) (take \(n = -3\)) and \(58^2\).</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>1194 (\(1200 - 6\)); 900 (\(25 \times 4 = 100\), then \(\times 9\)); 584 (\(560 + 24\)); 360 (\(15 \times 24 = 30 \times 12\)).</li>
+<li>399; 896 (\(900 - 4\)); 9996 (\(10000 - 4\)); 2475 (\(2500 - 25\)).</li>
+<li>2025; 9025; 11025 (\(10 \times 11 = 110\), append 25); 6.25.</li>
+<li>\(999{,}999\) (\(1000^2 - 1\)). \(999^2 = 1{,}000{,}000 - 2000 + 1 = 998{,}001\).</li>
+<li>\(600 + 180 + 80 + 24 = 884\). Fast way: \(900 - 16 = 884\).</li>
+<li>\(41^2 = 1600 + 80 + 1 = 1681\); \(39^2 = 1600 - 80 + 1 = 1521\). Difference of squares: \(41^2 - 39^2 = (41 + 39)(41 - 39) = 80 \times 2 = 160\).</li>
+</ol>
+<p><b>Stretch.</b> The two pieces of the L-shape are \(b \times (a - b)\) and \(a \times (a - b)\) (or similar, depending on your cut). Laid end to end they form a rectangle \((a + b)\) long and \((a - b)\) wide, area \((a+b)(a-b)\). Since nothing was thrown away, that equals \(a^2 - b^2\). Near-50 trick: \(47^2 = 2500 - 300 + 9 = 2209\); \(58^2 = 2500 + 800 + 64 = 3364\).</p>
+</section>
+
+<div class="sheet-nav"><a href="a4-negatives.html">← Below zero</a><a href="a6-gcf-lcm.html">Next: Gears, lockers and common factors →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../assets/site.js"></script>
+</body>
+</html>

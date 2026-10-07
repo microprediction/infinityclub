@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hilbert's hotel · Infinity Club</title>
+<meta name="description" content="A hotel with infinitely many rooms, all full, still has space for a bus of infinitely many guests. Learn why infinity plus one is infinity, and why 0.999 repeating equals 1.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../index.html#demos">Demos</a>
+  <a href="../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Around the corner · 12</div>
+  <h1>Hilbert's hotel</h1>
+  <p class="teaser">The club's namesake. A full hotel with infinitely many rooms can always squeeze in more, 0.999… turns out to equal 1, and there are exactly as many even numbers as numbers.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Imagine a hotel with infinitely many rooms, numbered 1, 2, 3, and on forever. Tonight every room is full. A traveller arrives and asks for a room. In an ordinary full hotel, bad luck. In Hilbert's hotel the manager picks up the microphone: "Would every guest please move to the room one number higher." Room 1 moves to room 2, room 2 to room 3, and so on. Nobody is left without a room, because there is no last room to fall off the end of. Room 1 is now empty. The traveller checks in.</p>
+<p>Later an infinite bus arrives carrying infinitely many passengers, numbered 1, 2, 3, … The manager is unbothered. "Would every guest in room \(n\) please move to room \(2n\)." Now all the odd-numbered rooms are empty, and there are infinitely many of them. Passenger 1 takes room 1, passenger 2 takes room 3, passenger \(k\) takes room \(2k - 1\). Everyone fits.</p>
+<p>This is the German mathematician David Hilbert's way of showing that infinity does not behave like a big number. Add one to infinity and you have the same infinity. Double it and you still have the same infinity. The even numbers 2, 4, 6, … can be paired up perfectly with all the whole numbers 1, 2, 3, …, each even number with its half, nothing left over on either side. So in the only sense that makes sense for infinite collections, there are <em>exactly as many</em> even numbers as whole numbers, even though the evens are only "half" of them.</p>
+<p>This club is named after that idea. Infinity is not a number you reach by counting very high. It is a different kind of thing, with its own rules, and the rules can be worked out.</p>
+<figure>
+<svg viewBox="0 0 220 220" width="200" height="200" xmlns="http://www.w3.org/2000/svg" font-family="Nunito, sans-serif" font-size="13" text-anchor="middle">
+  <rect x="10" y="10" width="200" height="200" fill="none" stroke="#000" stroke-width="1.5"/>
+  <rect x="10" y="10" width="100" height="200" fill="#e6e6e6" stroke="#000"/><text x="60" y="115">1/2</text>
+  <rect x="110" y="10" width="100" height="100" fill="#cccccc" stroke="#000"/><text x="160" y="65">1/4</text>
+  <rect x="110" y="110" width="50" height="100" fill="#b3b3b3" stroke="#000"/><text x="135" y="165">1/8</text>
+  <rect x="160" y="110" width="50" height="50" fill="#999" stroke="#000"/><text x="185" y="140" font-size="11">1/16</text>
+  <rect x="160" y="160" width="25" height="50" fill="#808080" stroke="#000"/>
+  <rect x="185" y="160" width="25" height="25" fill="#666" stroke="#000"/>
+  <rect x="185" y="185" width="12.5" height="25" fill="#4d4d4d" stroke="#000"/>
+</svg>
+<figcaption>Half the square, then half of what is left, then half of that, forever. The pieces never cover the square completely at any finite step, yet nothing is left out: \(\tfrac12 + \tfrac14 + \tfrac18 + \cdots = 1\).</figcaption>
+</figure>
+</section>
+
+<section class="example">
+<h2>Watch one: is 0.999… really equal to 1?</h2>
+<p>Most people's gut says 0.999… (the 9s going on forever) is a tiny bit less than 1. The gut is wrong, and here is a proof you can do with a pencil.</p>
+<p>Let \(x = 0.999\ldots\) Multiply both sides by 10: \(10x = 9.999\ldots\) Now subtract the first line from the second. On the left, \(10x - x = 9x\). On the right, the infinite tails of 9s cancel exactly, leaving \(9.999\ldots - 0.999\ldots = 9\). So \(9x = 9\), and \(x = 1\).</p>
+<p>Still unconvinced? Ask what number would sit between 0.999… and 1. There is nowhere to put one. Two numbers with nothing between them are the same number. Or notice \(\tfrac13 = 0.333\ldots\), and multiply both sides by 3.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>The hotel is full and one guest arrives. After the "move up one" announcement, where does the guest from room 7 end up? Where does the guest from room 1,000,000 end up? Is anyone homeless?<div class="space short"></div></li>
+<li>The infinite bus arrives and everyone moves from room \(n\) to room \(2n\). Where does the guest from room 7 go? Which passenger from the bus gets room 15?<div class="space short"></div></li>
+<li>Pair up the whole numbers 1, 2, 3, … with the multiples of 5 (5, 10, 15, …) so that nothing is left over on either side. Write the rule, and say which whole number is paired with 1,000.<div class="space short"></div></li>
+<li>Use the same trick as the worked example to find what \(0.4999\ldots\) equals, and what \(0.272727\ldots\) equals as a fraction. (For the second one, multiply by 100 instead of 10.)<div class="space"></div></li>
+<li>Look at the square picture. Shade pieces of size \(\tfrac12, \tfrac14, \tfrac18, \tfrac1{16}\). What total have you shaded after those four? What is left unshaded? Write down what is left after \(n\) pieces, and explain why the leftover shrinks toward 0 but never reaches it at any single step.<div class="space"></div></li>
+<li><b>Two infinite buses</b> arrive at the full hotel at once. Find a way to house everybody. (Hint: first clear out infinitely many rooms, then split those spare rooms into two infinite groups.)<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: can every fraction get a room?</h2>
+<p>Write all the positive fractions in an infinite grid: row 1 has \(\tfrac11, \tfrac12, \tfrac13, \ldots\), row 2 has \(\tfrac21, \tfrac22, \tfrac23, \ldots\), and so on. Every fraction appears somewhere. Now draw a path that zig-zags through the grid along the diagonals: \(\tfrac11\), then \(\tfrac12, \tfrac21\), then \(\tfrac31, \tfrac22, \tfrac13\), then \(\tfrac14, \tfrac23, \tfrac32, \tfrac41\), and so on. Give the fractions rooms in the order the path visits them (skipping repeats like \(\tfrac22\)). Which room does \(\tfrac23\) get? Does every fraction eventually get a room?</p>
+<p>Teaser for another night: in 1891 Georg Cantor showed that the decimals between 0 and 1 <em>cannot</em> all be given rooms. Whatever list you make, he builds a decimal that differs from the first entry in the first digit, the second entry in the second digit, and so on, so it is on no line of your list. There are different sizes of infinity, and the decimals are a bigger one than the whole numbers.</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Room 7 goes to room 8; room 1,000,000 goes to room 1,000,001. Nobody is homeless because every room \(n\) has a room \(n + 1\) to move into.</li>
+<li>Room 7 goes to room 14. Passenger \(k\) takes room \(2k - 1\), so room 15 goes to passenger 8.</li>
+<li>Pair \(n\) with \(5n\). Then 1,000 is paired with 5,000 (and the multiple 1,000 is paired with 200).</li>
+<li>\(x = 0.4999\ldots\), \(10x = 4.999\ldots\), subtract: \(9x = 4.5\), so \(x = 0.5\). For \(y = 0.2727\ldots\): \(100y = 27.2727\ldots\), subtract: \(99y = 27\), so \(y = \tfrac{27}{99} = \tfrac{3}{11}\).</li>
+<li>After four pieces: \(\tfrac12 + \tfrac14 + \tfrac18 + \tfrac1{16} = \tfrac{15}{16}\), leaving \(\tfrac1{16}\). After \(n\) pieces the leftover is \(\tfrac1{2^n}\), which halves every step. Halving a positive number never gives zero, but you can make it smaller than any amount you name, which is exactly what "the sum is 1" means.</li>
+<li>Move everyone from room \(n\) to room \(3n\). Now rooms of the form \(3k - 2\) (1, 4, 7, …) and \(3k - 1\) (2, 5, 8, …) are all empty. Bus A's passenger \(k\) takes room \(3k - 2\); bus B's passenger \(k\) takes room \(3k - 1\). Any finite number of buses works the same way.</li>
+</ol>
+<p><b>Stretch.</b> The path order, skipping repeats, is \(\tfrac11, \tfrac12, \tfrac21, \tfrac31, \tfrac13, \tfrac14, \tfrac23, \tfrac32, \tfrac41, \ldots\) (\(\tfrac22\) is skipped as a repeat of \(\tfrac11\)). So \(\tfrac23\) gets room 7. Every fraction sits on some diagonal, every diagonal is finite, and the path reaches every diagonal, so every fraction gets a room. The fractions are the same size of infinity as the whole numbers, which surprised everyone, Cantor included.</p>
+</section>
+
+<div class="sheet-nav"><a href="b11-parity.html">← Odd, even and things that never change</a><a href="b13-bridges.html">Next: Seven bridges of Königsberg →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pi by Darts · Infinity Club</title>
+<meta name="description" content="Throw random darts at a square and estimate pi from how many land inside the circle.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../index.html#demos">Demos</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Measure π with random darts</h1>
+<p class="explain">Darts land at random points in a square. A quarter circle sits inside it. The fraction of darts inside the curve tells you the area of the quarter circle, and that gives π. More darts, better estimate, but slowly.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <span style="font-weight:700">Throw</span>
+    <button data-n="100">100</button><button data-n="1000">1000</button><button data-n="10000">10 000</button><button data-n="100000">100 000</button>
+    <button id="reset" class="ghost">Reset</button>
+  </div>
+  <canvas id="c" width="600" height="600"></canvas>
+  <div class="readout" id="info"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>The square has side 1, so area 1. The quarter circle has radius 1, so its area is π/4. A random dart lands inside the quarter circle with probability (area inside) ÷ (area of square) = π/4. So four times the fraction inside is an estimate of π.</p>
+<p>How does the computer know a dart is inside? By Pythagoras. A dart at (x, y) is at distance √(x² + y²) from the corner. It is inside the circle when x² + y² ≤ 1.</p>
+<p>The error shrinks roughly like 1 over the square root of the number of darts. To get one more correct digit you need about 100 times more darts. That is why this is a fun method, not a fast one.</p>
+<p>Sheets: <a href="../sheets/b14-dice.html">Dice don't lie</a> and <a href="../sheets/b7-pythagoras.html">Pythagoras and square roots</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  var canvas = document.getElementById("c"), ctx = canvas.getContext("2d"), inside = 0, total = 0, W, dpr;
+  function setup() {
+    dpr = window.devicePixelRatio || 1; W = Math.min(canvas.clientWidth || 600, 600);
+    canvas.width = W * dpr; canvas.height = W * dpr; canvas.style.height = W + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, W);
+    ctx.strokeStyle = "#1d1f3a"; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(0, W, W, -Math.PI / 2, 0); ctx.stroke();
+    ctx.strokeRect(1, 1, W - 2, W - 2);
+    inside = 0; total = 0; report();
+  }
+  function report() {
+    var est = total ? 4 * inside / total : 0;
+    document.getElementById("info").textContent = total ? ("Darts: " + total + "   inside: " + inside + "   4 × " + inside + "/" + total + " = " + est.toFixed(5) + "\nπ = 3.14159…   error: " + Math.abs(est - Math.PI).toFixed(5)) : "No darts yet.";
+  }
+  function throwDarts(n) {
+    var img = total + n > 20000;
+    for (var i = 0; i < n; i++) {
+      var x = Math.random(), y = Math.random(), inC = x * x + y * y <= 1;
+      if (inC) inside++; total++;
+      ctx.fillStyle = inC ? "rgba(63,68,201,0.7)" : "rgba(245,165,36,0.8)";
+      var px = x * W, py = W - y * W;
+      if (img) ctx.fillRect(px, py, 1, 1); else { ctx.beginPath(); ctx.arc(px, py, 1.6, 0, Math.PI * 2); ctx.fill(); }
+    }
+    report();
+  }
+  document.querySelectorAll("[data-n]").forEach(function (b) { b.addEventListener("click", function () { throwDarts(parseInt(b.dataset.n, 10)); }); });
+  document.getElementById("reset").addEventListener("click", setup);
+  setup();
+})();
+</script>
+</body>
+</html>

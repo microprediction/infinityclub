@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sunflower Seeds · Infinity Club</title>
+<meta name="description" content="Grow a sunflower one seed at a time and discover why nature picks the golden angle.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../index.html#demos">Demos</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Grow a sunflower</h1>
+<p class="explain">Each new seed is placed a fixed angle around from the last one, and pushed outward as the flower grows. Drag the angle slider slowly. Most angles give ugly spokes or gaps. One angle fills the disc perfectly.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <label>Angle <span id="aval">137.5</span>° <input type="range" id="angle" min="0" max="360" step="0.1" value="137.5" style="width:260px"></label>
+    <label>Seeds <span id="nval">500</span> <input type="range" id="n" min="20" max="1500" step="10" value="500"></label>
+  </div>
+  <div class="controls">
+    <span style="font-weight:700">Try</span>
+    <button data-a="90" class="ghost">90°</button><button data-a="120" class="ghost">120°</button><button data-a="137.4" class="ghost">137.4°</button><button data-a="137.5078" class="alt">golden 137.508°</button><button data-a="137.6" class="ghost">137.6°</button><button data-a="180" class="ghost">180°</button><button data-a="222.5" class="ghost">222.5°</button>
+  </div>
+  <canvas id="c" width="700" height="700"></canvas>
+  <div class="readout" id="info"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>If the angle is a simple fraction of a full turn, like 90° (a quarter) or 120° (a third), seeds line up in a few straight spokes, wasting all the space between them. Angles close to a simple fraction give spokes that slowly curl.</p>
+<p>The golden angle, about 137.508°, is the "most irrational" fraction of a turn: it is as far as possible from every simple fraction. So seeds never line up, and the disc fills evenly no matter how many seeds there are. Even 137.4° or 137.6° eventually falls apart into spokes if you add enough seeds.</p>
+<p>Count the spirals you can see curving one way, then the other. You will get neighbouring Fibonacci numbers: 13 and 21, or 21 and 34. Real sunflowers do the same thing.</p>
+<p>Sheet: <a href="../sheets/b6-fibonacci.html">Fibonacci and the golden ratio</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  var canvas = document.getElementById("c"), ctx = canvas.getContext("2d");
+  var aIn = document.getElementById("angle"), nIn = document.getElementById("n");
+  function draw() {
+    var a = parseFloat(aIn.value), n = parseInt(nIn.value, 10);
+    document.getElementById("aval").textContent = a.toFixed(1); document.getElementById("nval").textContent = n;
+    var dpr = window.devicePixelRatio || 1, W = Math.min(canvas.clientWidth || 700, 700), H = W;
+    canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, H);
+    var cx = W / 2, cy = H / 2, scale = (W / 2 - 10) / Math.sqrt(n), rad = a * Math.PI / 180;
+    var dot = Math.max(1.5, Math.min(6, scale * 0.42));
+    for (var k = 0; k < n; k++) {
+      var r = scale * Math.sqrt(k), t = k * rad;
+      var x = cx + r * Math.cos(t), y = cy + r * Math.sin(t);
+      ctx.fillStyle = k < 5 ? "#f5a524" : "#3f44c9"; ctx.beginPath(); ctx.arc(x, y, dot, 0, Math.PI * 2); ctx.fill();
+    }
+    var frac = a / 360;
+    document.getElementById("info").textContent = "Angle = " + (frac).toFixed(4) + " of a full turn.  Golden angle = 360 × (2 − φ) = 137.5078…°  (φ ≈ 1.6180)";
+  }
+  aIn.addEventListener("input", draw); nIn.addEventListener("input", draw);
+  document.querySelectorAll("[data-a]").forEach(function (b) { b.addEventListener("click", function () { aIn.value = b.dataset.a; draw(); }); });
+  window.addEventListener("resize", draw); draw();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Matrices: grids that do things · Infinity Club</title>
+<meta name="description" content="A 2 by 2 matrix is a machine that moves points. Learn to rotate, stretch, reflect and shear by hand, and discover the matrix that generates Fibonacci numbers.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../index.html#demos">Demos</a>
+  <a href="../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Around the corner · 9</div>
+  <h1>Matrices: grids that do things</h1>
+  <p class="teaser">A grid of four numbers can rotate, stretch or squash a whole picture. Tonight you build the machines that video games run on, and find one that secretly counts rabbits.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A <b>matrix</b> is a grid of numbers. That sounds dull until you learn what a matrix <em>does</em>: it is a machine that takes a point and moves it somewhere else. Feed it a point, it hands back a new point. Every rotation, stretch, squash and reflection you have ever seen in a video game is a matrix at work.</p>
+<p>Here is the machine with the numbers \(a, b, c, d\), and here is what it does to the point \((x, y)\):</p>
+\[ \begin{pmatrix} a & b \\ c & d \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} ax + by \\ cx + dy \end{pmatrix} \]
+<p>Read it row by row. The new \(x\) is "top row times the point": \(a\) times \(x\) plus \(b\) times \(y\). The new \(y\) is "bottom row times the point". That is the whole rule.</p>
+<p>Some machines are famous. The <b>identity</b> \(\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}\) sends every point to itself. The <b>doubler</b> \(\begin{pmatrix} 2 & 0 \\ 0 & 2 \end{pmatrix}\) pushes every point twice as far from the origin. The <b>quarter turn</b> \(\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}\) rotates everything 90° anticlockwise. The <b>mirror</b> \(\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}\) flips the picture over the \(x\)-axis.</p>
+<p>And you can chain machines. Running machine \(B\) and then machine \(A\) is the same as running one machine called \(AB\). Surprise: \(AB\) and \(BA\) are usually <em>different</em> machines. Order matters, just as "put on socks, then shoes" is not "put on shoes, then socks".</p>
+<figure>
+<svg viewBox="0 0 420 170" width="420" height="170" xmlns="http://www.w3.org/2000/svg" font-family="Nunito, sans-serif" font-size="12">
+  <g transform="translate(70,120)">
+    <line x1="-50" y1="0" x2="60" y2="0" stroke="#999"/><line x1="0" y1="40" x2="0" y2="-90" stroke="#999"/>
+    <polygon points="0,0 60,0 60,-60 0,-60" fill="#ddd" stroke="#000" stroke-width="1.5"/>
+    <text x="63" y="-62">(1,1)</text><text x="-14" y="14">0</text>
+    <text x="-40" y="-100" font-weight="700">before</text>
+  </g>
+  <text x="165" y="70" font-size="20">→</text>
+  <text x="140" y="95" font-size="11">quarter turn</text>
+  <g transform="translate(270,120)">
+    <line x1="-80" y1="0" x2="40" y2="0" stroke="#999"/><line x1="0" y1="40" x2="0" y2="-90" stroke="#999"/>
+    <polygon points="0,0 0,-60 -60,-60 -60,0" fill="#ddd" stroke="#000" stroke-width="1.5"/>
+    <text x="-110" y="-62">(−1,1)</text><text x="-14" y="14">0</text>
+    <text x="-40" y="-100" font-weight="700">after</text>
+  </g>
+  <g transform="translate(360,120)">
+    <line x1="-20" y1="0" x2="60" y2="0" stroke="#999"/>
+  </g>
+</svg>
+<figcaption>The quarter-turn machine applied to a unit square. The corner (1, 0) goes to (0, 1) and (0, 1) goes to (−1, 0).</figcaption>
+</figure>
+</section>
+
+<section class="example">
+<h2>Watch one: the quarter turn on (3, 1)</h2>
+<p>Top row \((0, -1)\) times the point: \(0 \times 3 + (-1) \times 1 = -1\). Bottom row \((1, 0)\) times the point: \(1 \times 3 + 0 \times 1 = 3\). So \((3, 1)\) goes to \((-1, 3)\).</p>
+<p>Sketch both points. \((3, 1)\) sits low and to the right; \((-1, 3)\) sits high and a little left. It really has been swung a quarter turn anticlockwise around the origin, and it is the same distance away: \(3^2 + 1^2 = 10\) and \((-1)^2 + 3^2 = 10\).</p>
+<p>To chain two machines, multiply the matrices. Each entry of the product is "a row of the first times a column of the second". For the quarter turn \(R\) followed by itself:</p>
+\[ RR = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} = \begin{pmatrix} 0\cdot0 + (-1)\cdot1 & 0\cdot(-1) + (-1)\cdot 0 \\ 1\cdot 0 + 0 \cdot 1 & 1\cdot(-1) + 0\cdot0 \end{pmatrix} = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \]
+<p>Two quarter turns make a half turn, and the half-turn machine sends \((x, y)\) to \((-x, -y)\). The arithmetic agrees with the geometry. It always does.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Apply the machine \(M = \begin{pmatrix} 2 & 1 \\ 1 & 3 \end{pmatrix}\) to the points \((1, 2)\) and \((-1, 4)\).<div class="space short"></div></li>
+<li>The <b>shear</b> \(\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}\) is what turns a square into a leaning parallelogram. Apply it to the four corners of the unit square: \((0,0), (1,0), (1,1), (0,1)\). Plot the results and join them up.<div class="space"></div></li>
+<li>Apply the quarter turn \(R\) four times in a row to \((2, 5)\). What do you get, and why did you already know that would happen?<div class="space short"></div></li>
+<li>Let \(R\) be the quarter turn and \(F\) the mirror \(\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}\). Compute \(RF\) and \(FR\). Are they the same machine?<div class="space"></div></li>
+<li>Take the point \((1, 0)\). Run it through \(F\) first, then \(R\). Now run it through \(R\) first, then \(F\). Which matrix from question 4 matches "F first, then R"? (Careful: the machine that runs first is written on the <em>right</em>.)<div class="space short"></div></li>
+<li>Write down a matrix that stretches everything to three times as wide but leaves heights alone. Then one that rotates by a half turn. Check each on the point \((1, 1)\).<div class="space short"></div></li>
+</ol>
+<p class="small">Play with these on screen at ../demos/matrix.html, where you can type any four numbers and watch a picture warp.</p>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the Fibonacci machine</h2>
+<p>Let \(Q = \begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix}\). Compute \(Q^2 = QQ\) and \(Q^3 = Q^2 Q\) by hand. Look at the four numbers in each answer. Do you recognise them? Predict \(Q^{10}\) without multiplying anything, then explain why the machine behaves this way. (Hint: what does \(Q\) do to the point \((F_{n}, F_{n-1})\)?)</p>
+<div class="space tall"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\((1,2) \to (2\cdot1 + 1\cdot2,\ 1\cdot1 + 3\cdot2) = (4, 7)\). \((-1, 4) \to (-2 + 4,\ -1 + 12) = (2, 11)\).</li>
+<li>\((0,0)\to(0,0)\), \((1,0)\to(1,0)\), \((1,1)\to(2,1)\), \((0,1)\to(1,1)\). The bottom edge stays put and the top edge slides one unit to the right: a parallelogram leaning right.</li>
+<li>\((2,5)\to(-5,2)\to(-2,-5)\to(5,-2)\to(2,5)\). Four quarter turns is a full turn, so every point comes home. In matrix language \(R^4 = I\).</li>
+<li>\(RF = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}\) and \(FR = \begin{pmatrix} 0 & -1 \\ -1 & 0 \end{pmatrix}\). Different machines. \(RF\) swaps \(x\) and \(y\) (a mirror in the diagonal line \(y = x\)); \(FR\) is a mirror in the line \(y = -x\).</li>
+<li>\(F\) first: \((1,0)\to(1,0)\), then \(R\): \((1,0)\to(0,1)\). \(R\) first: \((1,0)\to(0,1)\), then \(F\): \((0,1)\to(0,-1)\). "F first, then R" matches \(RF\) (check: \(RF\) sends \((1,0)\) to \((0,1)\)). The first machine to act sits nearest the point, on the right.</li>
+<li>Stretch: \(\begin{pmatrix} 3 & 0 \\ 0 & 1 \end{pmatrix}\), sending \((1,1)\to(3,1)\). Half turn: \(\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}\), sending \((1,1)\to(-1,-1)\).</li>
+</ol>
+<p><b>Stretch.</b> \(Q^2 = \begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix}\), \(Q^3 = \begin{pmatrix} 3 & 2 \\ 2 & 1 \end{pmatrix}\). The entries are consecutive Fibonacci numbers: \(Q^n = \begin{pmatrix} F_{n+1} & F_n \\ F_n & F_{n-1} \end{pmatrix}\), so \(Q^{10} = \begin{pmatrix} 89 & 55 \\ 55 & 34 \end{pmatrix}\). Why: \(Q\) sends \((F_n, F_{n-1})\) to \((F_n + F_{n-1}, F_n) = (F_{n+1}, F_n)\). It is the "add the last two" rule in matrix form, so each extra power steps the sequence forward once.</p>
+</section>
+
+<div class="sheet-nav"><a href="b8-imaginary.html">← Imaginary numbers are real</a><a href="b10-pigeonhole.html">Next: The pigeonhole principle →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../assets/site.js"></script>
+</body>
+</html>
