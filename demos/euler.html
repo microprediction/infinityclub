@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trace the Graph · Infinity Club</title>
+<meta name="description" content="Trace every edge of a graph without lifting your finger, and discover Euler's rule for when it can be done.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+#board { touch-action: none; cursor: crosshair; }
+.presets button { padding: .35rem .7rem; font-size: .92rem; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../index.html#demos">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Trace the graph</h1>
+<p class="explain">Put your finger (or mouse) on a dot and drag along the lines. Every line must be drawn exactly once, and you may not lift your finger. Some of these can be done and some cannot. Before you try each one, press <b>Count odd vertices</b> and make a prediction.</p>
+<div class="demo-panel">
+  <div class="controls presets">
+    <button data-g="house">House with X</button>
+    <button data-g="konig">Königsberg</button>
+    <button data-g="envelope">Envelope</button>
+    <button data-g="star">Star</button>
+    <button data-g="twosq">Two squares</button>
+    <button data-g="random" class="alt">Random</button>
+    <button id="oddbtn" class="ghost">Count odd vertices</button>
+    <button id="resetbtn" class="ghost">Reset</button>
+  </div>
+  <canvas id="board" width="800" height="480"></canvas>
+  <div class="readout" id="info"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>Count the lines meeting at each dot. That number is the dot's <b>degree</b>. Whenever your pencil passes through a dot it uses two lines, one in and one out. So a dot with an odd degree can only be where you start or where you finish.</p>
+<p>That gives Euler's rule. If every dot has even degree, you can trace the whole thing and end where you began. If exactly two dots are odd, you can trace it, but only by starting at one odd dot and ending at the other. If more than two dots are odd, no route exists, and no amount of cleverness will find one.</p>
+<p>The Königsberg bridges have four odd dots. That is the whole reason the townspeople could never find their walk, and the reason Euler invented graph theory to say so.</p>
+<p>Sheet: <a href="../sheets/b13-bridges.html">Seven bridges of Königsberg</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  var canvas = document.getElementById("board"), ctx = canvas.getContext("2d"), info = document.getElementById("info");
+  var W, H, G, traced, cur = null, drawing = false, showDeg = false, pointer = null;
+  // Graphs: vertices in unit coordinates, edges as pairs (parallel edges allowed, with a bend index)
+  var graphs = {
+    house: { v: [[0.3, 0.8], [0.7, 0.8], [0.7, 0.45], [0.3, 0.45], [0.5, 0.15]], e: [[0, 1], [1, 2], [2, 3], [3, 0], [0, 2], [1, 3], [3, 4], [4, 2]] },
+    konig: { v: [[0.5, 0.5], [0.5, 0.12], [0.5, 0.88], [0.88, 0.5]], e: [[0, 1], [0, 1], [0, 2], [0, 2], [0, 3], [1, 3], [2, 3]] },
+    envelope: { v: [[0.25, 0.85], [0.75, 0.85], [0.75, 0.45], [0.25, 0.45], [0.5, 0.12], [0.5, 0.62]], e: [[0, 1], [1, 2], [2, 3], [3, 0], [0, 5], [5, 1], [2, 5], [5, 3], [3, 4], [4, 2]] },
+    star: { v: [[0.5, 0.1], [0.12, 0.38], [0.88, 0.38], [0.26, 0.88], [0.74, 0.88]], e: [[0, 3], [3, 2], [2, 1], [1, 4], [4, 0]] },
+    twosq: { v: [[0.15, 0.75], [0.45, 0.75], [0.45, 0.25], [0.15, 0.25], [0.8, 0.75], [0.8, 0.25]], e: [[0, 1], [1, 2], [2, 3], [3, 0], [1, 4], [4, 5], [5, 2]] }
+  };
+  function randomGraph() {
+    var n = 6 + Math.floor(Math.random() * 3), v = [], e = [], i, j;
+    for (i = 0; i < n; i++) { var a = i / n * Math.PI * 2 - Math.PI / 2, r = 0.32 + Math.random() * 0.1; v.push([0.5 + r * Math.cos(a) * 1.4, 0.5 + r * Math.sin(a)]); }
+    for (i = 0; i < n; i++) e.push([i, (i + 1) % n]);
+    for (i = 0; i < n; i++) for (j = i + 2; j < n; j++) if (!(i === 0 && j === n - 1) && Math.random() < 0.28) e.push([i, j]);
+    return { v: v, e: e };
+  }
+  function load(name) { G = name === "random" ? randomGraph() : graphs[name]; traced = G.e.map(function () { return false; }); cur = null; drawing = false; showDeg = false; draw(); say("Drag from dot to dot along the lines. " + G.e.length + " lines to trace."); }
+  function say(t) { info.textContent = t; }
+  function P(i) { return [G.v[i][0] * W, G.v[i][1] * H]; }
+  function bend(k) { // offset for parallel edges
+    var e = G.e[k], same = [], idx = 0;
+    for (var i = 0; i < G.e.length; i++) { var f = G.e[i]; if ((f[0] === e[0] && f[1] === e[1]) || (f[0] === e[1] && f[1] === e[0])) { if (i === k) idx = same.length; same.push(i); } }
+    return same.length === 1 ? 0 : (idx - (same.length - 1) / 2) * 50;
+  }
+  function edgePath(k) {
+    var a = P(G.e[k][0]), b = P(G.e[k][1]), off = bend(k), mx = (a[0] + b[0]) / 2, my = (a[1] + b[1]) / 2;
+    var dx = b[0] - a[0], dy = b[1] - a[1], L = Math.hypot(dx, dy) || 1, nx = -dy / L, ny = dx / L;
+    ctx.beginPath(); ctx.moveTo(a[0], a[1]);
+    if (off) ctx.quadraticCurveTo(mx + nx * off * 2, my + ny * off * 2, b[0], b[1]); else ctx.lineTo(b[0], b[1]);
+  }
+  function degrees() { var d = G.v.map(function () { return 0; }); G.e.forEach(function (e) { d[e[0]]++; d[e[1]]++; }); return d; }
+  function draw() {
+    var dpr = window.devicePixelRatio || 1; W = canvas.clientWidth || 800; H = W * 0.6;
+    canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, W, H);
+    ctx.lineCap = "round";
+    for (var k = 0; k < G.e.length; k++) { ctx.lineWidth = traced[k] ? 7 : 4; ctx.strokeStyle = traced[k] ? "#f5a524" : "#b9b7c9"; edgePath(k); ctx.stroke(); }
+    if (drawing && cur !== null && pointer) { var a = P(cur); ctx.lineWidth = 3; ctx.strokeStyle = "#f5a524"; ctx.setLineDash([6, 6]); ctx.beginPath(); ctx.moveTo(a[0], a[1]); ctx.lineTo(pointer[0], pointer[1]); ctx.stroke(); ctx.setLineDash([]); }
+    var deg = degrees();
+    for (var i = 0; i < G.v.length; i++) {
+      var p = P(i), odd = deg[i] % 2 === 1;
+      ctx.beginPath(); ctx.arc(p[0], p[1], 15, 0, Math.PI * 2);
+      ctx.fillStyle = cur === i ? "#f5a524" : (showDeg && odd ? "#e24b4b" : "#3f44c9"); ctx.fill();
+      ctx.lineWidth = 3; ctx.strokeStyle = "#fff"; ctx.stroke();
+      if (showDeg) { ctx.fillStyle = "#fff"; ctx.font = "bold 14px Nunito, sans-serif"; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText(deg[i], p[0], p[1]); }
+    }
+  }
+  function nearest(x, y) { var best = null, bd = 26; for (var i = 0; i < G.v.length; i++) { var p = P(i), d = Math.hypot(p[0] - x, p[1] - y); if (d < bd) { bd = d; best = i; } } return best; }
+  function pos(e) { var r = canvas.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; }
+  function tryMove(to) {
+    if (to === null || to === cur) return;
+    for (var k = 0; k < G.e.length; k++) {
+      var e = G.e[k];
+      if (!traced[k] && ((e[0] === cur && e[1] === to) || (e[1] === cur && e[0] === to))) {
+        traced[k] = true; cur = to;
+        var left = traced.filter(function (t) { return !t; }).length;
+        say(left ? left + " line" + (left === 1 ? "" : "s") + " left." : "Every line traced. You did it.");
+        if (!left) drawing = false;
+        return;
+      }
+    }
+    var any = G.e.some(function (e) { return (e[0] === cur && e[1] === to) || (e[1] === cur && e[0] === to); });
+    say(any ? "That line is already traced. You cannot use it twice." : "There is no line between those dots.");
+  }
+  canvas.addEventListener("pointerdown", function (e) {
+    e.preventDefault(); var p = pos(e), v = nearest(p[0], p[1]);
+    if (traced.every(function (t) { return t; })) return;
+    if (v === null) return;
+    if (cur === null) { cur = v; drawing = true; say("Started at a dot. Keep dragging."); }
+    else if (drawing === false && v === cur) { drawing = true; }
+    else if (v !== cur) { say("You must continue from the orange dot without lifting. Press Reset to start again."); return; }
+    pointer = p; canvas.setPointerCapture(e.pointerId); draw();
+  });
+  canvas.addEventListener("pointermove", function (e) {
+    if (!drawing) return; pointer = pos(e); var v = nearest(pointer[0], pointer[1]);
+    if (v !== null && v !== cur) tryMove(v);
+    draw();
+  });
+  function up() { if (drawing) { drawing = false; pointer = null; var left = traced.filter(function (t) { return !t; }).length; if (left && cur !== null) say("You lifted your finger with " + left + " line" + (left === 1 ? "" : "s") + " left. Press Reset and try again, or press the orange dot to continue."); draw(); } }
+  canvas.addEventListener("pointerup", up); canvas.addEventListener("pointercancel", up);
+  document.getElementById("oddbtn").addEventListener("click", function () {
+    showDeg = true; var deg = degrees(), odd = deg.filter(function (d) { return d % 2; }).length; draw();
+    var verdict = odd === 0 ? "Every dot is even: a route exists, and it can end where it started." : odd === 2 ? "Exactly two odd dots (shown red): a route exists, but it must start at one red dot and end at the other." : odd + " odd dots: impossible. No route can trace every line once.";
+    say("Degrees: " + deg.join(", ") + ". " + verdict);
+  });
+  document.getElementById("resetbtn").addEventListener("click", function () { traced = G.e.map(function () { return false; }); cur = null; drawing = false; draw(); say("Reset. " + G.e.length + " lines to trace."); });
+  document.querySelectorAll("[data-g]").forEach(function (b) { b.addEventListener("click", function () { load(b.getAttribute("data-g")); }); });
+  window.addEventListener("resize", draw);
+  load("house");
+})();
+</script>
+</body>
+</html>

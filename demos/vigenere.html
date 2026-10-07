@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vigenère Cipher · Infinity Club</title>
+<meta name="description" content="A cipher that shifts each letter by a different amount, why it flattens the letter counts, and the trick that still breaks it.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+textarea, #key { font: inherit; width: 100%; padding: .4em .6em; border: 1px solid var(--rule); border-radius: 6px; }
+textarea { min-height: 70px; }
+#key { max-width: 12em; text-transform: uppercase; }
+.strip { font-family: var(--mono); overflow-x: auto; background: #fff; border: 1px solid var(--rule); border-radius: 8px; padding: .6rem .8rem; margin: .6rem 0; }
+.strip div { white-space: pre; line-height: 1.6; }
+.strip .lbl { display: inline-block; width: 5.5em; color: var(--muted); }
+.strip .k { color: #f5a524; font-weight: 700; }
+.strip .c { color: #3f44c9; font-weight: 700; }
+.bars { display: grid; grid-template-columns: repeat(26, 1fr); gap: 2px; align-items: end; height: 70px; margin: .3rem 0; }
+.bars div { background: #3f44c9; border-radius: 2px 2px 0 0; min-height: 1px; }
+.bars.alt div { background: #f5a524; }
+.letters { display: grid; grid-template-columns: repeat(26, 1fr); font-family: var(--mono); font-size: .7rem; text-align: center; color: var(--muted); }
+h3 { margin: .9rem 0 .2rem; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../index.html#demos">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>The Vigenère cipher</h1>
+<p class="explain">A Caesar cipher shifts every letter by the same amount. Vigenère uses a keyword: the first letter of the message is shifted by the first letter of the key (A = 0, B = 1, …), the second by the second, and the key repeats. The same plaintext letter comes out differently each time, which ruins simple letter counting. For 300 years it was called "the unbreakable cipher".</p>
+<div class="demo-panel">
+  <div class="controls" style="flex-direction:column;align-items:stretch">
+    <label>Message <textarea id="plain">The quick brown fox jumps over the lazy dog while the secret meeting happens at the old mill at midnight and nobody suspects a thing</textarea></label>
+    <div class="controls">
+      <label>Keyword <input id="key" value="LEMON"></label>
+      <label><input type="checkbox" id="decode"> decode instead</label>
+      <button id="kasiski" class="alt">Kasiski</button>
+    </div>
+  </div>
+  <div class="strip" id="strip"></div>
+  <h3>Result</h3>
+  <div class="readout" id="out"></div>
+  <h3>Letter counts of the Vigenère result</h3>
+  <div class="bars" id="barsV"></div>
+  <h3>Letter counts if the same message were a Caesar shift of 3</h3>
+  <div class="bars alt" id="barsC"></div>
+  <div class="letters" id="lettersRow"></div>
+  <div class="readout" id="kas" hidden></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>With one shift, the tallest bar in the ciphertext is almost always E in disguise, and the whole thing falls in minutes. With a keyword of length 5, each letter of the message is shifted by one of five different amounts, so the counts are smeared out and the bars go flat. There is no single tallest bar to attack.</p>
+<p>In 1863 Friedrich Kasiski noticed the weakness. Common words like THE land on the same part of the key whenever their distance apart is a multiple of the key length, and then they encrypt identically. Find repeated chunks in the ciphertext, measure the distances between them, and the key length is a factor of all those distances. Once you know the length is 5, the cipher is just five Caesar ciphers interleaved, and each one breaks the old way.</p>
+<p>Sheet: <a href="../sheets/b16-codes.html">Secret codes and how to break them</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  var plain = document.getElementById("plain"), key = document.getElementById("key"), dec = document.getElementById("decode"), strip = document.getElementById("strip"), out = document.getElementById("out"), barsV = document.getElementById("barsV"), barsC = document.getElementById("barsC"), kas = document.getElementById("kas");
+  var A = "ABCDEFGHIJKLMNOPQRSTUVWXYZ", lastCipher = "";
+  document.getElementById("lettersRow").innerHTML = A.split("").map(function (c) { return "<div>" + c + "</div>"; }).join("");
+  function cleanKey() { return (key.value.toUpperCase().replace(/[^A-Z]/g, "")) || "A"; }
+  function vig(text, k, decode) {
+    var i = 0, res = "", keyLine = "";
+    for (var p = 0; p < text.length; p++) {
+      var ch = text[p], up = ch.toUpperCase(), idx = A.indexOf(up);
+      if (idx < 0) { res += ch; keyLine += " "; continue; }
+      var s = A.indexOf(k[i % k.length]); i++;
+      var n = (idx + (decode ? 26 - s : s)) % 26, o = A[n];
+      res += ch === up ? o : o.toLowerCase(); keyLine += k[(i - 1) % k.length];
+    }
+    return { text: res, keyLine: keyLine };
+  }
+  function caesar(text, s) { return text.replace(/[a-z]/gi, function (ch) { var up = ch.toUpperCase(), o = A[(A.indexOf(up) + s) % 26]; return ch === up ? o : o.toLowerCase(); }); }
+  function counts(text) { var c = new Array(26).fill(0); text.toUpperCase().replace(/[A-Z]/g, function (ch) { c[A.indexOf(ch)]++; return ch; }); return c; }
+  function bars(el, c) { var m = Math.max.apply(null, c) || 1; el.innerHTML = c.map(function (v) { return '<div style="height:' + (v / m * 100) + '%" title="' + v + '"></div>'; }).join(""); }
+  function render() {
+    var k = cleanKey(), decode = dec.checked, r = vig(plain.value, k, decode);
+    var src = plain.value.slice(0, 60), kl = r.keyLine.slice(0, 60), res = r.text.slice(0, 60);
+    strip.innerHTML = '<div><span class="lbl">' + (decode ? "cipher" : "message") + "</span>" + esc(src) + "</div><div><span class=\"lbl\">key</span><span class=\"k\">" + esc(kl) + "</span></div><div><span class=\"lbl\">" + (decode ? "message" : "cipher") + '</span><span class="c">' + esc(res) + "</span></div>" + (plain.value.length > 60 ? '<div class="small">(first 60 characters shown)</div>' : "");
+    out.textContent = r.text;
+    lastCipher = decode ? plain.value : r.text;
+    bars(barsV, counts(decode ? plain.value : r.text));
+    bars(barsC, counts(caesar(decode ? r.text : plain.value, 3)));
+    kas.hidden = true;
+  }
+  function esc(s) { return s.replace(/&/g, "&amp;").replace(/</g, "&lt;"); }
+  function factors(n) { var f = []; for (var d = 2; d <= n; d++) if (n % d === 0) f.push(d); return f; }
+  document.getElementById("kasiski").addEventListener("click", function () {
+    var c = lastCipher.toUpperCase().replace(/[^A-Z]/g, ""), seen = {}, found = [], dist = [];
+    for (var i = 0; i + 3 <= c.length; i++) { var t = c.substr(i, 3); if (seen[t] !== undefined) { var d = i - seen[t]; found.push(t + " repeats " + d + " apart (factors " + factors(d).slice(0, 6).join(", ") + ")"); dist.push(d); } else seen[t] = i; }
+    var tally = {}; dist.forEach(function (d) { factors(d).forEach(function (f) { if (f <= 12) tally[f] = (tally[f] || 0) + 1; }); });
+    var ranked = Object.keys(tally).sort(function (a, b) { return tally[b] - tally[a] || a - b; }).slice(0, 4).map(function (f) { return f + " (in " + tally[f] + " of " + dist.length + ")"; });
+    kas.hidden = false;
+    kas.textContent = found.length ? "Repeated three-letter chunks in the ciphertext:\n" + found.slice(0, 10).join("\n") + (found.length > 10 ? "\n… and " + (found.length - 10) + " more" : "") + "\n\nFactors that keep showing up: " + ranked.join(", ") + "\nThe key length is very likely one of these. The current key has length " + cleanKey().length + "." : "No repeated three-letter chunk found. Try a longer message; Kasiski needs repeats to bite.";
+  });
+  [plain, key, dec].forEach(function (el) { el.addEventListener("input", render); el.addEventListener("change", render); });
+  render();
+})();
+</script>
+</body>
+</html>

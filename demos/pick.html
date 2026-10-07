@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pick's Theorem · Infinity Club</title>
+<meta name="description" content="Draw any polygon on a dot grid and find its area just by counting dots.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+#grid { touch-action: manipulation; cursor: crosshair; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../index.html#demos">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Area by counting dots</h1>
+<p class="explain">Click dots to make the corners of a shape, in order around it, then press <b>Close</b>. The page counts the dots strictly inside (I) and the dots on the boundary (B), and Pick's formula gives the area with no measuring at all. Try to break it.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <button data-p="rect">Rectangle</button>
+    <button data-p="tri">Right triangle</button>
+    <button data-p="L">L-shape</button>
+    <button data-p="star">Star</button>
+    <button id="closebtn" class="alt">Close</button>
+    <button id="undobtn" class="ghost">Undo</button>
+    <button id="clearbtn" class="ghost">Clear</button>
+  </div>
+  <canvas id="grid" width="800" height="560"></canvas>
+  <div class="readout" id="info">Click dots to start a shape.</div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>Pick's theorem says that for any polygon whose corners sit on grid dots, <b>Area = I + B/2 − 1</b>. Interior dots count fully, boundary dots count half, and you give one back at the end.</p>
+<p>The page checks it against a different method, the shoelace formula, which multiplies coordinates crosswise around the shape. The two always agree, which is more surprising the more wiggly your shape gets.</p>
+<p>The rule needs a proper polygon: edges may not cross each other, and there may not be holes. Draw a figure eight and the page will refuse. Draw a shape with a hole and the formula misses by exactly one for each hole.</p>
+<p>Sheet: <a href="../sheets/a12-pick.html">Area by counting dots</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  var canvas = document.getElementById("grid"), ctx = canvas.getContext("2d"), info = document.getElementById("info");
+  var NX = 20, NY = 14, W, H, cell, ox, oy, pts = [], closed = false, result = null;
+  var presets = { rect: [[2, 2], [7, 2], [7, 5], [2, 5]], tri: [[2, 2], [8, 2], [2, 6]], L: [[2, 2], [7, 2], [7, 4], [4, 4], [4, 7], [2, 7]], star: [[9, 10], [10, 7], [13, 7], [11, 5], [12, 2], [9, 4], [6, 2], [7, 5], [5, 7], [8, 7]] };
+  function gcd(a, b) { a = Math.abs(a); b = Math.abs(b); while (b) { var t = a % b; a = b; b = t; } return a; }
+  function segs(a, b, c, d) { // proper intersection of segments ab and cd (excluding shared endpoints)
+    function o(p, q, r) { var v = (q[0] - p[0]) * (r[1] - p[1]) - (q[1] - p[1]) * (r[0] - p[0]); return v > 0 ? 1 : v < 0 ? -1 : 0; }
+    function on(p, q, r) { return o(p, q, r) === 0 && Math.min(p[0], q[0]) <= r[0] && r[0] <= Math.max(p[0], q[0]) && Math.min(p[1], q[1]) <= r[1] && r[1] <= Math.max(p[1], q[1]); }
+    var o1 = o(a, b, c), o2 = o(a, b, d), o3 = o(c, d, a), o4 = o(c, d, b);
+    if (o1 !== o2 && o3 !== o4 && o1 && o2 && o3 && o4) return true;
+    return (on(a, b, c) || on(a, b, d) || on(c, d, a) || on(c, d, b));
+  }
+  function simple(P) {
+    var n = P.length; if (n < 3) return false;
+    for (var i = 0; i < n; i++) for (var j = i + 1; j < n; j++) {
+      if (j === i + 1 || (i === 0 && j === n - 1)) continue;
+      if (segs(P[i], P[(i + 1) % n], P[j], P[(j + 1) % n])) return false;
+    }
+    return true;
+  }
+  function onBoundary(P, x, y) {
+    for (var i = 0; i < P.length; i++) { var p = P[i], q = P[(i + 1) % P.length]; var cr = (q[0] - p[0]) * (y - p[1]) - (q[1] - p[1]) * (x - p[0]); if (cr !== 0) continue; if (Math.min(p[0], q[0]) <= x && x <= Math.max(p[0], q[0]) && Math.min(p[1], q[1]) <= y && y <= Math.max(p[1], q[1])) return true; }
+    return false;
+  }
+  function inside(P, x, y) { var c = false; for (var i = 0, j = P.length - 1; i < P.length; j = i++) { var xi = P[i][0], yi = P[i][1], xj = P[j][0], yj = P[j][1]; if (((yi > y) !== (yj > y)) && (x < (xj - xi) * (y - yi) / (yj - yi) + xi)) c = !c; } return c; }
+  function compute(P) {
+    var B = 0, S = 0, I = 0, interior = [], boundary = [];
+    for (var i = 0; i < P.length; i++) { var p = P[i], q = P[(i + 1) % P.length]; B += gcd(q[0] - p[0], q[1] - p[1]); S += p[0] * q[1] - q[0] * p[1]; }
+    for (var x = 0; x < NX; x++) for (var y = 0; y < NY; y++) { if (onBoundary(P, x, y)) boundary.push([x, y]); else if (inside(P, x, y)) { I++; interior.push([x, y]); } }
+    return { I: I, B: B, pick: I + B / 2 - 1, shoelace: Math.abs(S) / 2, interior: interior, boundary: boundary };
+  }
+  function draw() {
+    var dpr = window.devicePixelRatio || 1; W = canvas.clientWidth || 800; H = W * 0.7;
+    canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    cell = Math.min(W / (NX + 1), H / (NY + 1)); ox = (W - (NX - 1) * cell) / 2; oy = (H - (NY - 1) * cell) / 2;
+    ctx.clearRect(0, 0, W, H);
+    if (closed && pts.length >= 3) { ctx.beginPath(); pts.forEach(function (p, i) { var s = toS(p); if (i) ctx.lineTo(s[0], s[1]); else ctx.moveTo(s[0], s[1]); }); ctx.closePath(); ctx.fillStyle = "rgba(63,68,201,.12)"; ctx.fill(); }
+    for (var x = 0; x < NX; x++) for (var y = 0; y < NY; y++) { var s = toS([x, y]); ctx.beginPath(); ctx.arc(s[0], s[1], 3, 0, Math.PI * 2); ctx.fillStyle = "#b9b7c9"; ctx.fill(); }
+    if (result) {
+      result.interior.forEach(function (p) { var s = toS(p); ctx.beginPath(); ctx.arc(s[0], s[1], 6, 0, Math.PI * 2); ctx.fillStyle = "#3f44c9"; ctx.fill(); });
+      result.boundary.forEach(function (p) { var s = toS(p); ctx.beginPath(); ctx.arc(s[0], s[1], 6, 0, Math.PI * 2); ctx.fillStyle = "#f5a524"; ctx.fill(); });
+    }
+    if (pts.length) { ctx.beginPath(); pts.forEach(function (p, i) { var s = toS(p); if (i) ctx.lineTo(s[0], s[1]); else ctx.moveTo(s[0], s[1]); }); if (closed) ctx.closePath(); ctx.lineWidth = 3; ctx.strokeStyle = "#1d1f3a"; ctx.stroke(); }
+    pts.forEach(function (p) { var s = toS(p); ctx.beginPath(); ctx.arc(s[0], s[1], 7, 0, Math.PI * 2); ctx.fillStyle = "#1d1f3a"; ctx.fill(); });
+  }
+  function toS(p) { return [ox + p[0] * cell, oy + (NY - 1 - p[1]) * cell]; }
+  function fromS(x, y) { var gx = Math.round((x - ox) / cell), gy = NY - 1 - Math.round((y - oy) / cell); if (gx < 0 || gy < 0 || gx >= NX || gy >= NY) return null; var s = toS([gx, gy]); if (Math.hypot(s[0] - x, s[1] - y) > cell * 0.45) return null; return [gx, gy]; }
+  function close() {
+    if (pts.length < 3) { info.textContent = "A shape needs at least three corners."; return; }
+    if (!simple(pts)) { info.textContent = "Those edges cross each other. Pick's theorem only works for shapes whose boundary does not cross itself. Undo and try again."; return; }
+    closed = true; result = compute(pts); draw();
+    info.textContent = "Interior dots I = " + result.I + "   Boundary dots B = " + result.B + "\nPick:      I + B/2 − 1 = " + result.I + " + " + (result.B / 2) + " − 1 = " + result.pick + "\nShoelace:  " + result.shoelace + (Math.abs(result.pick - result.shoelace) < 1e-9 ? "   ✓ they agree" : "   ✗ (this should not happen)");
+  }
+  canvas.addEventListener("click", function (e) {
+    var r = canvas.getBoundingClientRect(), g = fromS(e.clientX - r.left, e.clientY - r.top); if (!g) return;
+    if (closed) { pts = []; closed = false; result = null; }
+    if (pts.length && pts[pts.length - 1][0] === g[0] && pts[pts.length - 1][1] === g[1]) return;
+    if (pts.length >= 3 && pts[0][0] === g[0] && pts[0][1] === g[1]) { close(); return; }
+    pts.push(g); draw(); info.textContent = pts.length + " corner" + (pts.length === 1 ? "" : "s") + ". Click the first dot again, or press Close, to finish.";
+  });
+  document.getElementById("closebtn").addEventListener("click", close);
+  document.getElementById("undobtn").addEventListener("click", function () { if (closed) { closed = false; result = null; } else pts.pop(); draw(); info.textContent = pts.length + " corners."; });
+  document.getElementById("clearbtn").addEventListener("click", function () { pts = []; closed = false; result = null; draw(); info.textContent = "Click dots to start a shape."; });
+  document.querySelectorAll("[data-p]").forEach(function (b) { b.addEventListener("click", function () { pts = presets[b.getAttribute("data-p")].map(function (p) { return p.slice(); }); closed = false; result = null; close(); }); });
+  window.addEventListener("resize", draw);
+  draw();
+})();
+</script>
+</body>
+</html>

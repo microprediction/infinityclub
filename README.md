@@ -1,6 +1,6 @@
 # Infinity Club
 
-Printable math sheets, one a night, for bright kids around grade 6 (56 sheets in three tracks), plus 21 interactive demos. Live at [infinityclub.net](https://infinityclub.net).
+Printable math sheets, one a night, for bright kids around grade 6 (56 sheets in three tracks), plus 26 interactive demos. Live at [infinityclub.net](https://infinityclub.net).
 
 Three tracks:
 

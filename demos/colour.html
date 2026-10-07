@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Colour the Map · Infinity Club</title>
+<meta name="description" content="Colour a map so no two neighbours match. Four colours are always enough, but a careless method can need five.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+#map { touch-action: manipulation; cursor: pointer; }
+.swatch { width: 38px; height: 38px; border-radius: 8px; border: 3px solid transparent; cursor: pointer; padding: 0; }
+.swatch.sel { border-color: #1d1f3a; transform: scale(1.1); }
+.swatch.erase { background: #fff; border: 2px dashed #999; font-size: .8rem; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../index.html#demos">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Colour the map</h1>
+<p class="explain">Pick a colour, then click regions. Two regions that share a border must not match. Try to finish every map with as few colours as you can. Four is always possible. Then press <b>Greedy auto</b> and watch a perfectly sensible method sometimes need five.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <button data-m="provinces">Provinces</button>
+    <button data-m="wheel">Odd wheel</button>
+    <button data-m="random" class="alt">Random map</button>
+    <button id="greedy" class="ghost">Greedy auto</button>
+    <button id="check" class="ghost">Check</button>
+    <button id="clear" class="ghost">Clear</button>
+  </div>
+  <div class="controls" id="swatches"></div>
+  <canvas id="map" width="800" height="600"></canvas>
+  <div class="readout" id="info"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>Every map here can be coloured with four colours. That is the Four Colour Theorem, and it took from 1852 to 1976 to prove. The hard part is not finding a colouring for one map. It is showing there is no map, anywhere, that needs a fifth.</p>
+<p><b>Greedy</b> colours the regions in numbered order, always picking the first colour not used by an already-coloured neighbour. It never fails to finish, but it can paint itself into a corner: a region whose neighbours have already used colours 1, 2, 3 and 4 gets a fifth. The theorem says a better order always exists. Finding one by hand is the puzzle.</p>
+<p>The odd wheel is the classic trap. A ring with an odd number of regions needs three colours on its own, and the centre touches all of them, so it needs a fourth. An even ring only needs two, and the centre a third.</p>
+<p>Sheet: <a href="../sheets/b25-four-colours.html">Four colours are always enough</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  var canvas = document.getElementById("map"), ctx = canvas.getContext("2d"), info = document.getElementById("info");
+  var COLS = ["#3f44c9", "#f5a524", "#3aa36b", "#d94f8a", "#7a4fd9"], NAMES = ["blue", "orange", "green", "pink", "purple"];
+  var W, H, GW = 60, GH = 45, cells, nreg, adj, fill, sel = 0;
+  function say(t) { info.textContent = t; }
+  // Build swatches: four colours + erase (purple only appears via greedy)
+  var sw = document.getElementById("swatches");
+  for (var c = 0; c < 4; c++) { var b = document.createElement("button"); b.className = "swatch" + (c === 0 ? " sel" : ""); b.style.background = COLS[c]; b.setAttribute("data-c", c); b.title = NAMES[c]; sw.appendChild(b); }
+  var er = document.createElement("button"); er.className = "swatch erase"; er.textContent = "erase"; er.setAttribute("data-c", -1); sw.appendChild(er);
+  sw.addEventListener("click", function (e) { var t = e.target.closest("[data-c]"); if (!t) return; sel = parseInt(t.getAttribute("data-c"), 10); sw.querySelectorAll(".swatch").forEach(function (s) { s.classList.toggle("sel", s === t); }); });
+  // Maps are built on a GW×GH grid of cell -> region id. Adjacency from neighbouring cells.
+  function fromSeeds(seeds) {
+    cells = new Array(GW * GH);
+    for (var y = 0; y < GH; y++) for (var x = 0; x < GW; x++) {
+      var best = 0, bd = 1e9;
+      for (var i = 0; i < seeds.length; i++) { var d = (x - seeds[i][0]) * (x - seeds[i][0]) + (y - seeds[i][1]) * (y - seeds[i][1]); if (d < bd) { bd = d; best = i; } }
+      cells[y * GW + x] = best;
+    }
+    nreg = seeds.length;
+  }
+  function wheelMap(k) {
+    cells = new Array(GW * GH); nreg = k + 2; // 0 centre, 1..k ring, k+1 outside
+    var cx = GW / 2, cy = GH / 2;
+    for (var y = 0; y < GH; y++) for (var x = 0; x < GW; x++) {
+      var dx = (x + 0.5 - cx) / 1.0, dy = (y + 0.5 - cy) * 1.333, r = Math.hypot(dx, dy);
+      var id; if (r < 8) id = 0; else if (r < 20) { var a = Math.atan2(dy, dx) + Math.PI; id = 1 + Math.min(k - 1, Math.floor(a / (2 * Math.PI) * k)); } else id = k + 1;
+      cells[y * GW + x] = id;
+    }
+  }
+  function buildAdj() {
+    adj = []; for (var i = 0; i < nreg; i++) adj.push({});
+    for (var y = 0; y < GH; y++) for (var x = 0; x < GW; x++) {
+      var a = cells[y * GW + x];
+      if (x + 1 < GW) { var b = cells[y * GW + x + 1]; if (a !== b) { adj[a][b] = 1; adj[b][a] = 1; } }
+      if (y + 1 < GH) { var c = cells[(y + 1) * GW + x]; if (a !== c) { adj[a][c] = 1; adj[c][a] = 1; } }
+    }
+    adj = adj.map(function (o) { return Object.keys(o).map(Number); });
+  }
+  function load(name) {
+    if (name === "provinces") fromSeeds([[8, 8], [22, 6], [38, 5], [52, 9], [6, 22], [18, 18], [30, 16], [44, 20], [55, 24], [10, 36], [24, 30], [36, 32], [50, 38], [30, 41]]);
+    else if (name === "wheel") wheelMap(5);
+    else { var s = []; for (var i = 0; i < 13; i++) s.push([2 + Math.random() * (GW - 4), 2 + Math.random() * (GH - 4)]); fromSeeds(s); }
+    buildAdj(); fill = new Array(nreg).fill(-1); draw(); say(nreg + " regions. Colour them so neighbours differ.");
+  }
+  function conflicts() { var n = 0, bad = {}; for (var a = 0; a < nreg; a++) adj[a].forEach(function (b) { if (a < b && fill[a] >= 0 && fill[a] === fill[b]) { n++; bad[a] = 1; bad[b] = 1; } }); return { n: n, bad: bad }; }
+  function centroid(r) { var sx = 0, sy = 0, n = 0; for (var i = 0; i < cells.length; i++) if (cells[i] === r) { sx += i % GW; sy += Math.floor(i / GW); n++; } return n ? [(sx / n + 0.5) * W / GW, (sy / n + 0.5) * H / GH] : [0, 0]; }
+  function draw() {
+    var dpr = window.devicePixelRatio || 1; W = canvas.clientWidth || 800; H = W * 0.75;
+    canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    var cw = W / GW, ch = H / GH, bad = conflicts().bad;
+    for (var y = 0; y < GH; y++) for (var x = 0; x < GW; x++) {
+      var r = cells[y * GW + x], f = fill[r];
+      ctx.fillStyle = f >= 0 ? COLS[f] : "#f7f5ee"; ctx.fillRect(x * cw, y * ch, cw + 0.6, ch + 0.6);
+    }
+    // borders
+    ctx.lineWidth = 2;
+    for (var y2 = 0; y2 < GH; y2++) for (var x2 = 0; x2 < GW; x2++) {
+      var a = cells[y2 * GW + x2];
+      var red = bad[a];
+      if (x2 + 1 < GW && cells[y2 * GW + x2 + 1] !== a) { ctx.strokeStyle = (red && bad[cells[y2 * GW + x2 + 1]]) ? "#e02020" : "#1d1f3a"; ctx.beginPath(); ctx.moveTo((x2 + 1) * cw, y2 * ch); ctx.lineTo((x2 + 1) * cw, (y2 + 1) * ch); ctx.stroke(); }
+      if (y2 + 1 < GH && cells[(y2 + 1) * GW + x2] !== a) { ctx.strokeStyle = (red && bad[cells[(y2 + 1) * GW + x2]]) ? "#e02020" : "#1d1f3a"; ctx.beginPath(); ctx.moveTo(x2 * cw, (y2 + 1) * ch); ctx.lineTo((x2 + 1) * cw, (y2 + 1) * ch); ctx.stroke(); }
+    }
+    ctx.font = "bold 14px Nunito, sans-serif"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    for (var r2 = 0; r2 < nreg; r2++) { var p = centroid(r2); ctx.fillStyle = fill[r2] >= 0 ? "#fff" : "#1d1f3a"; ctx.fillText(r2 + 1, p[0], p[1]); }
+  }
+  canvas.addEventListener("click", function (e) {
+    var rc = canvas.getBoundingClientRect(), x = Math.floor((e.clientX - rc.left) / W * GW), y = Math.floor((e.clientY - rc.top) / H * GH);
+    if (x < 0 || y < 0 || x >= GW || y >= GH) return;
+    var r = cells[y * GW + x]; fill[r] = sel; draw();
+    var c = conflicts(); say(c.n ? c.n + " clash" + (c.n === 1 ? "" : "es") + " (red borders)." : "No clashes so far.");
+  });
+  document.getElementById("check").addEventListener("click", function () {
+    var c = conflicts(), used = {}, empty = 0; fill.forEach(function (f) { if (f < 0) empty++; else used[f] = 1; });
+    var k = Object.keys(used).length;
+    say(empty ? empty + " region" + (empty === 1 ? "" : "s") + " still blank." : c.n ? "Not valid: " + c.n + " pair" + (c.n === 1 ? "" : "s") + " of neighbours match." : "Valid colouring with " + k + " colour" + (k === 1 ? "" : "s") + "." + (k > 4 ? " Four would have been enough." : k === 4 ? " Can you do it in three? Only if there is no odd ring around a centre." : ""));
+  });
+  document.getElementById("greedy").addEventListener("click", function () {
+    fill = new Array(nreg).fill(-1);
+    for (var r = 0; r < nreg; r++) { var used = {}; adj[r].forEach(function (b) { if (fill[b] >= 0) used[fill[b]] = 1; }); var c = 0; while (used[c]) c++; fill[r] = Math.min(c, 4); }
+    draw(); var k = Math.max.apply(null, fill) + 1;
+    say("Greedy coloured regions in order 1, 2, 3… and needed " + k + " colour" + (k === 1 ? "" : "s") + "." + (k === 5 ? " Five! Yet the theorem guarantees four. Greedy just chose a bad order." : " Try a random map a few times and watch for a five."));
+  });
+  document.getElementById("clear").addEventListener("click", function () { fill = new Array(nreg).fill(-1); draw(); say("Cleared."); });
+  document.querySelectorAll("[data-m]").forEach(function (b) { b.addEventListener("click", function () { load(b.getAttribute("data-m")); }); });
+  window.addEventListener("resize", draw);
+  load("provinces");
+})();
+</script>
+</body>
+</html>
