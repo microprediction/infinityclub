@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Doomsday Trainer · Infinity Club</title>
+<meta name="description" content="Work out the day of the week for any date in your head with the Doomsday method. See every step, then quiz yourself.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.steps { list-style: none; padding: 0; margin: .6rem 0; }
+.steps li { padding: .45rem .7rem; border-left: 3px solid var(--accent); background: var(--paper); margin-bottom: .4rem; border-radius: 0 8px 8px 0; }
+.steps li b { color: var(--accent); }
+.days { display: flex; flex-wrap: wrap; gap: .5rem; margin: .6rem 0; }
+.days button { font: inherit; font-weight: 700; padding: .5rem .8rem; border-radius: 8px; border: 2px solid var(--accent); background: var(--accent-soft); color: var(--ink); cursor: pointer; }
+.days button.right { background: #e3f6ea; border-color: #2e9e5b; }
+.days button.wrong { background: #fde2e2; border-color: #c0392b; }
+.controls input[type=date] { font: inherit; padding: .3em .4em; border: 1px solid var(--rule); border-radius: 6px; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../index.html#demos">Demos</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>What day of the week was it?</h1>
+<p class="explain">John Conway's Doomsday method lets you name the weekday of any date in your head. Every year has a "doomsday", the weekday shared by 4/4, 6/6, 8/8, 10/10, 12/12, 5/9, 9/5, 7/11, 11/7 and the last day of February. Find it, then count from the nearest one.</p>
+<div class="demo-panel">
+  <h2 style="margin-top:0">Reveal the steps</h2>
+  <div class="controls">
+    <label>Date <input type="date" id="date" value="2026-10-06" min="1800-01-01" max="2199-12-31"></label>
+    <button id="reveal">Reveal</button>
+  </div>
+  <ol class="steps" id="steps"></ol>
+  <div class="readout" id="answer"></div>
+</div>
+<div class="demo-panel">
+  <h2 style="margin-top:0">Quiz me</h2>
+  <div class="controls"><button id="quiz">New random date</button><span id="score" class="mono"></span></div>
+  <div class="readout" id="qdate">Press the button.</div>
+  <div class="days" id="days"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>The whole calendar repeats with a few simple facts. A normal year is 52 weeks and 1 day, so each year the doomsday moves forward one weekday, and a leap year pushes it two. That is where the "year + year ÷ 4" count comes from. The century anchors (Tuesday for the 2000s, Wednesday for the 1900s) are just the starting points.</p>
+<p>The doomsday dates are chosen to be memorable: the even months pair with themselves, and "I work 9 to 5 at the 7-Eleven" covers May, September, July and November. The last day of February is the anchor for the start of the year.</p>
+<p>With a little practice people do this in under ten seconds. Conway could do it in two.</p>
+<p>Sheet: <a href="../sheets/c8-calendar.html">The calendar in your head</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  var names = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  function leap(y) { return (y % 4 === 0 && y % 100 !== 0) || y % 400 === 0; }
+  function anchor(c) { return [2, 0, 5, 3][((c % 4) + 4) % 4]; } // 2000s Tue, 2100s Sun, 1800s Fri, 1900s Wed, repeating every 400 years
+  function doomsdayDate(y, m) { return [leap(y) ? 4 : 3, leap(y) ? 29 : 28, 14, 4, 9, 6, 11, 8, 5, 10, 7, 12][m - 1]; }
+  function compute(y, m, d) {
+    var c = Math.floor(y / 100), yy = y % 100, anc = anchor(c), q = Math.floor(yy / 4), dd = (anc + yy + q) % 7, ref = doomsdayDate(y, m), diff = d - ref, wd = ((dd + diff) % 7 + 7) % 7;
+    return { c: c, yy: yy, anc: anc, q: q, dd: dd, ref: ref, diff: diff, wd: wd };
+  }
+  function reveal() {
+    var v = document.getElementById("date").value; if (!v) return;
+    var parts = v.split("-"), y = +parts[0], m = +parts[1], d = +parts[2], r = compute(y, m, d);
+    var check = new Date(y, m - 1, d).getDay();
+    var li = [
+      "<b>Century anchor.</b> The " + c2s(r.c) + " start on <b>" + names[r.anc] + "</b>.",
+      "<b>Year offset.</b> " + r.yy + " + ⌊" + r.yy + " ÷ 4⌋ = " + r.yy + " + " + r.q + " = " + (r.yy + r.q) + ". Divide by 7, remainder " + ((r.yy + r.q) % 7) + ".",
+      "<b>This year's doomsday.</b> " + names[r.anc] + " + " + ((r.yy + r.q) % 7) + " = <b>" + names[r.dd] + "</b>. So 4/4, 6/6, 8/8, 10/10, 12/12 of " + y + " are all " + names[r.dd] + "s.",
+      "<b>Nearest doomsday in " + months[m - 1] + ".</b> " + months[m - 1] + " " + r.ref + (leap(y) && m <= 2 ? " (leap year)" : "") + " is a " + names[r.dd] + ".",
+      "<b>Count.</b> " + d + " − " + r.ref + " = " + r.diff + " days. " + r.diff + " mod 7 = " + ((r.diff % 7) + 7) % 7 + ".",
+      "<b>Answer.</b> " + names[r.dd] + " + " + (((r.diff % 7) + 7) % 7) + " = <b>" + names[r.wd] + "</b>."
+    ];
+    document.getElementById("steps").innerHTML = li.map(function (s) { return "<li>" + s + "</li>"; }).join("");
+    document.getElementById("answer").textContent = months[m - 1] + " " + d + ", " + y + " was a " + names[r.wd] + ". " + (check === r.wd ? "The computer's calendar agrees." : "Mismatch with the computer's calendar (" + names[check] + "), please report this.");
+  }
+  function c2s(c) { return c + "00s"; }
+  document.getElementById("reveal").addEventListener("click", reveal);
+  document.getElementById("date").addEventListener("change", reveal);
+  reveal();
+
+  // Quiz
+  var score = { right: 0, total: 0 }, cur = null, daysEl = document.getElementById("days");
+  names.forEach(function (nm, i) { var b = document.createElement("button"); b.textContent = nm; b.addEventListener("click", function () { answerQuiz(i, b); }); daysEl.appendChild(b); });
+  function newQuiz() {
+    var y = 1900 + Math.floor(Math.random() * 200), m = 1 + Math.floor(Math.random() * 12), dim = new Date(y, m, 0).getDate(), d = 1 + Math.floor(Math.random() * dim);
+    cur = { y: y, m: m, d: d, wd: new Date(y, m - 1, d).getDay(), answered: false };
+    document.getElementById("qdate").textContent = months[m - 1] + " " + d + ", " + y + "  —  which day of the week?";
+    Array.prototype.forEach.call(daysEl.children, function (b) { b.className = ""; });
+  }
+  function answerQuiz(i, btn) {
+    if (!cur || cur.answered) return;
+    cur.answered = true; score.total++;
+    if (i === cur.wd) { score.right++; btn.classList.add("right"); document.getElementById("qdate").textContent += "  Correct."; }
+    else { btn.classList.add("wrong"); daysEl.children[cur.wd].classList.add("right"); document.getElementById("qdate").textContent += "  It was a " + names[cur.wd] + "."; }
+    document.getElementById("score").textContent = score.right + " / " + score.total;
+    document.getElementById("date").value = cur.y + "-" + String(cur.m).padStart(2, "0") + "-" + String(cur.d).padStart(2, "0"); reveal();
+  }
+  document.getElementById("quiz").addEventListener("click", newQuiz);
+})();
+</script>
+</body>
+</html>

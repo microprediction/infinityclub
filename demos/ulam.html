@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ulam Spiral · Infinity Club</title>
+<meta name="description" content="Write the numbers in a spiral and colour the primes. Diagonal lines appear that nobody fully understands.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>#spiral { cursor: crosshair; image-rendering: pixelated; }</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../index.html#demos">Demos</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>The Ulam spiral</h1>
+<p class="explain">Start with 1 in the middle and spiral outward: 2 to the right, 3 above, 4 to the left, and so on, 40,000 numbers. Then colour the primes. They are supposed to be scattered without pattern. Look at the diagonals.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <label>Highlight <select id="mode">
+      <option value="primes">primes</option>
+      <option value="six">numbers of the form 6k ± 1</option>
+      <option value="squares">perfect squares</option>
+    </select></label>
+    <label><input type="checkbox" id="euler"> also show n² + n + 41</label>
+    <label>Cell size <input type="range" id="cell" min="2" max="6" value="3"> px</label>
+  </div>
+  <canvas id="spiral" width="600" height="600"></canvas>
+  <div class="readout" id="info">Click any cell to see its number.</div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>Stanisław Ulam doodled this during a boring talk in 1963 and noticed the primes lining up on diagonals. Each diagonal is a quadratic formula, something like 4n² + bn + c, and some quadratics produce far more primes than chance. The famous one is n² + n + 41, which is prime for every n from 0 to 39. Tick the box to see where those numbers sit.</p>
+<p>Some structure is easy to explain. Every prime above 3 is one more or one less than a multiple of 6, because the other remainders are divisible by 2 or 3. Choose "6k ± 1" and you will see the primes live inside that stripe pattern. Squares make one clean diagonal, since the spiral turns a corner right after each square.</p>
+<p>The full reason the diagonals are so strong is still an open problem. You are looking at something mathematicians cannot yet prove.</p>
+<p>Sheet: <a href="../sheets/b1-primes.html">Primes and the Sieve</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  var canvas = document.getElementById("spiral"), ctx = canvas.getContext("2d"), info = document.getElementById("info");
+  var SIDE = 200, N = SIDE * SIDE, isPrime, pos = new Array(N + 1), grid = new Int32Array(SIDE * SIDE), cell = 3;
+  // Sieve once
+  isPrime = new Uint8Array(N + 1); for (var i = 2; i <= N; i++) isPrime[i] = 1;
+  for (var p = 2; p * p <= N; p++) if (isPrime[p]) for (var q = p * p; q <= N; q += p) isPrime[q] = 0;
+  // Spiral positions: 1 at centre, 2 to the right, 3 up, 4 left...
+  (function () {
+    var x = SIDE / 2 - 1, y = SIDE / 2, dx = 1, dy = 0, steps = 1, n = 1;
+    while (n <= N) {
+      for (var rep = 0; rep < 2 && n <= N; rep++) {
+        for (var s = 0; s < steps && n <= N; s++) { if (x >= 0 && x < SIDE && y >= 0 && y < SIDE) { pos[n] = [x, y]; grid[y * SIDE + x] = n; } n++; x += dx; y += dy; }
+        var t = dx; dx = dy; dy = -t; // turn left (screen coords: right, up, left, down)
+      }
+      steps++;
+    }
+  })();
+  var euler = new Uint8Array(N + 1); for (var e = 0; e * e + e + 41 <= N; e++) euler[e * e + e + 41] = 1;
+  function highlight(n, mode) {
+    if (mode === "primes") return isPrime[n];
+    if (mode === "six") return n > 3 && (n % 6 === 1 || n % 6 === 5);
+    var r = Math.round(Math.sqrt(n)); return r * r === n;
+  }
+  function draw() {
+    cell = parseInt(document.getElementById("cell").value, 10);
+    var mode = document.getElementById("mode").value, showE = document.getElementById("euler").checked;
+    var px = SIDE * cell, dpr = window.devicePixelRatio || 1;
+    canvas.width = px * dpr; canvas.height = px * dpr; canvas.style.width = Math.min(px, canvas.parentNode.clientWidth - 2) + "px"; canvas.style.height = "auto"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, px, px);
+    var count = 0;
+    ctx.fillStyle = "#3f44c9";
+    for (var n = 1; n <= N; n++) { if (!pos[n]) continue; if (highlight(n, mode)) { ctx.fillRect(pos[n][0] * cell, pos[n][1] * cell, cell, cell); count++; } }
+    if (showE) { ctx.fillStyle = "#f5a524"; for (var m = 1; m <= N; m++) if (euler[m] && pos[m]) ctx.fillRect(pos[m][0] * cell, pos[m][1] * cell, cell, cell); }
+    info.textContent = "Showing " + count.toLocaleString() + " of " + N.toLocaleString() + " numbers" + (showE ? ", plus n² + n + 41 in orange" : "") + ". Click any cell to see its number.";
+  }
+  canvas.addEventListener("click", function (ev) {
+    var r = canvas.getBoundingClientRect(), scale = (SIDE * cell) / r.width;
+    var gx = Math.floor((ev.clientX - r.left) * scale / cell), gy = Math.floor((ev.clientY - r.top) * scale / cell);
+    if (gx < 0 || gy < 0 || gx >= SIDE || gy >= SIDE) return;
+    var n = grid[gy * SIDE + gx]; if (!n) return;
+    var why = isPrime[n] ? "prime" : (n === 1 ? "neither prime nor composite" : "not prime (divisible by " + smallest(n) + ")");
+    info.textContent = n.toLocaleString() + " is " + why + "." + (euler[n] ? "  It is also n² + n + 41 for some n." : "");
+  });
+  function smallest(n) { for (var d = 2; d * d <= n; d++) if (n % d === 0) return d; return n; }
+  ["mode", "euler", "cell"].forEach(function (id) { document.getElementById(id).addEventListener("change", draw); document.getElementById(id).addEventListener("input", draw); });
+  window.addEventListener("resize", draw); draw();
+})();
+</script>
+</body>
+</html>

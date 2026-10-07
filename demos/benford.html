@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Benford's Law · Infinity Club</title>
+<meta name="description" content="Count the first digits of powers of two, Fibonacci numbers or factorials. Thirty percent start with 1, and almost none start with 9.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../index.html#demos">Demos</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Benford's law</h1>
+<p class="explain">Take a long list of numbers and look only at the first digit of each. You would expect 1 through 9 to show up equally, about 11% each. For most real-world lists they do not. Pick a source and count.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <label>Numbers <select id="source">
+      <option value="pow2">powers of 2 (2⁰ … 2⁹⁹⁹)</option>
+      <option value="fib">Fibonacci numbers (first 1000)</option>
+      <option value="fact">factorials (1! … 500!)</option>
+      <option value="sq">squares (1² … 1000²)</option>
+      <option value="uni">random whole numbers 1–1000</option>
+      <option value="pop">populations of 200 random-sized towns</option>
+    </select></label>
+    <button id="recount" class="ghost">Count again</button>
+  </div>
+  <canvas id="chart" width="900" height="420"></canvas>
+  <div class="readout" id="info"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>Benford's law says that in many lists the first digit is 1 about 30.1% of the time, 2 about 17.6%, down to 9 at 4.6%. The formula is log<sub>10</sub>(1 + 1/d). The orange outlines show that prediction; the blue bars are what you counted.</p>
+<p>Why? Think about something that grows by multiplying, like a number that keeps doubling. To get from 1,000 to 2,000 it has to double once, but to get from 9,000 to 10,000 it needs only a small nudge. So the number spends a long time with a leading 1 and hurries through the leading 9s. Powers of 2, Fibonacci numbers and factorials all grow by multiplying, so they all obey the law almost perfectly.</p>
+<p>Squares grow too slowly and random numbers from 1 to 1000 do not grow at all, so they break the pattern. Tax inspectors use Benford's law to catch invented figures: people making up numbers spread the first digits evenly, and real accounts do not.</p>
+<p>Sheet: <a href="../sheets/b28-benford.html">Benford's law</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  var canvas = document.getElementById("chart"), ctx = canvas.getContext("2d"), info = document.getElementById("info");
+  var counts = new Array(10).fill(0), total = 0, label = "";
+  function lead(x) { while (x >= 10) x /= 10; return Math.floor(x); }
+  function leadFromLog(L) { var f = L - Math.floor(L); return Math.floor(Math.pow(10, f)); }
+  function gather(src) {
+    var out = [];
+    if (src === "pow2") { var l2 = Math.log10(2); for (var n = 0; n < 1000; n++) out.push(leadFromLog(n * l2)); label = "1000 powers of two"; }
+    else if (src === "fib") { // keep mantissa in [1,10) and track exponent
+      var a = 1, b = 1; out.push(1, 1);
+      for (var i = 2; i < 1000; i++) { var c = a + b; while (c >= 10) { c /= 10; a /= 10; b /= 10; } a = b; b = c; out.push(Math.floor(c)); }
+      label = "first 1000 Fibonacci numbers";
+    }
+    else if (src === "fact") { var L = 0; for (var k = 1; k <= 500; k++) { L += Math.log10(k); out.push(leadFromLog(L)); } label = "1! to 500!"; }
+    else if (src === "sq") { for (var m = 1; m <= 1000; m++) out.push(lead(m * m)); label = "squares of 1 to 1000"; }
+    else if (src === "uni") { for (var r = 0; r < 1000; r++) out.push(lead(1 + Math.floor(Math.random() * 1000))); label = "1000 random whole numbers from 1 to 1000"; }
+    else if (src === "pop") { // log-uniform between 100 and 10 million, like town sizes
+      for (var t = 0; t < 200; t++) out.push(lead(Math.pow(10, 2 + Math.random() * 5))); label = "200 made-up town populations spread across sizes";
+    }
+    return out;
+  }
+  function count() {
+    counts = new Array(10).fill(0); total = 0;
+    gather(document.getElementById("source").value).forEach(function (d) { if (d >= 1 && d <= 9) { counts[d]++; total++; } });
+    draw();
+  }
+  function draw() {
+    var dpr = window.devicePixelRatio || 1, W = canvas.clientWidth || 900, H = W * 0.47;
+    canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, H);
+    var left = 44, bottom = H - 36, top = 24, bw = (W - left - 20) / 9, maxF = 0.35;
+    ctx.strokeStyle = "#d9d6cc"; ctx.lineWidth = 1; ctx.font = "13px Nunito, sans-serif"; ctx.fillStyle = "#5d6079"; ctx.textAlign = "right";
+    for (var f = 0; f <= maxF + 1e-9; f += 0.05) { var y = bottom - (bottom - top) * f / maxF; ctx.beginPath(); ctx.moveTo(left, y); ctx.lineTo(W - 20, y); ctx.stroke(); ctx.fillText(Math.round(f * 100) + "%", left - 6, y + 4); }
+    ctx.textAlign = "center";
+    var txt = [];
+    for (var d = 1; d <= 9; d++) {
+      var x = left + (d - 1) * bw, pred = Math.log10(1 + 1 / d), em = total ? counts[d] / total : 0;
+      var hP = (bottom - top) * pred / maxF, hE = (bottom - top) * Math.min(em, maxF) / maxF;
+      ctx.fillStyle = "#3f44c9"; ctx.fillRect(x + bw * 0.15, bottom - hE, bw * 0.7, hE);
+      ctx.strokeStyle = "#f5a524"; ctx.lineWidth = 2.5; ctx.strokeRect(x + bw * 0.15, bottom - hP, bw * 0.7, hP);
+      ctx.fillStyle = "#1d1f3a"; ctx.font = "15px Nunito, sans-serif"; ctx.fillText(d, x + bw / 2, bottom + 20);
+      ctx.fillStyle = "#5d6079"; ctx.font = "11px Nunito, sans-serif"; ctx.fillText((100 * em).toFixed(1) + "%", x + bw / 2, bottom - hE - 5);
+      txt.push(d + ": " + counts[d]);
+    }
+    ctx.fillStyle = "#3f44c9"; ctx.fillRect(W - 250, 8, 12, 12); ctx.fillStyle = "#1d1f3a"; ctx.textAlign = "left"; ctx.font = "13px Nunito, sans-serif"; ctx.fillText("counted", W - 232, 19);
+    ctx.strokeStyle = "#f5a524"; ctx.strokeRect(W - 150, 8, 12, 12); ctx.fillText("Benford predicts", W - 132, 19);
+    info.textContent = "First digits of " + label + " (" + total + " numbers).  " + txt.join("  ") + "\nBenford predicts: 30.1  17.6  12.5  9.7  7.9  6.7  5.8  5.1  4.6 (%)";
+  }
+  document.getElementById("source").addEventListener("change", count);
+  document.getElementById("recount").addEventListener("click", count);
+  window.addEventListener("resize", draw);
+  count();
+})();
+</script>
+</body>
+</html>

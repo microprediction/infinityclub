@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The tower that takes forever · Infinity Club</title>
+<meta name="description" content="The Towers of Hanoi puzzle, the formula 2^n − 1, the idea of recursion, and why 64 disks would outlast the universe.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../index.html#demos">Demos</a>
+  <a href="../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Around the corner · 27</div>
+  <h1>The tower that takes forever</h1>
+  <p class="teaser">Three pegs, a stack of disks, one rule. Solving it teaches the single most useful trick in computer science, and explains why the monks will never finish.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Three pegs. On the left peg, a tower of disks, biggest at the bottom. Move the whole tower to the right peg, one disk at a time, and never put a bigger disk on a smaller one. That is the <b>Towers of Hanoi</b>, sold as a toy in 1883 with a story about monks moving 64 golden disks, after which the world would end.</p>
+<p>One disk takes 1 move. Two disks take 3. Three take 7. Each time you add a disk, the count doubles and adds one, and here is why. To move a tower of \(n\) disks you must at some point move the bottom disk, and when you do, all \(n-1\) smaller disks must be sitting on the spare peg. So: move \(n-1\) disks to the spare peg, move the big one, move the \(n-1\) disks back on top. If \(M(n)\) is the number of moves for \(n\) disks:</p>
+\[M(n) = 2M(n-1) + 1, \qquad M(1) = 1\]
+<p>which gives 1, 3, 7, 15, 31, 63, and in general \(M(n) = 2^n - 1\). (Look at the differences, as in the <a href="b17-differences.html">sequences sheet</a>: they double.)</p>
+<p>The way of thinking is called <b>recursion</b>: to solve a big problem, solve the same problem one size smaller, and trust it. You do not need to know how the \(n-1\) tower moves, only that it can. Programmers use this constantly.</p>
+<p>And the monks? \(2^{64} - 1 = 18{,}446{,}744{,}073{,}709{,}551{,}615\) moves. At one move per second, that is about 585 billion years, around forty times the current age of the universe. Try it yourself in the <a href="../demos/hanoi.html">tower demo</a>, with fewer disks.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: three disks in seven moves</h2>
+<p>Pegs A (start), B (spare), C (goal). Disks 1 (smallest), 2, 3.</p>
+<p>1 → C. &nbsp; 2 → B. &nbsp; 1 → B. &nbsp; <b>3 → C.</b> &nbsp; 1 → A. &nbsp; 2 → C. &nbsp; 1 → C.</p>
+<p>See the structure: the first three moves shift the two-disk tower to B, move four shifts the big disk, the last three shift the two-disk tower from B onto C. The two-disk solution is used twice, which is the \(2M(2) + 1 = 7\).</p>
+<p>There is also a mechanical rule. On moves 1, 3, 5, 7 you move disk 1, and it always travels in the same direction around the pegs (C, B, A, C, cycling). On the even moves there is only one legal move that does not involve disk 1. Following those two rules solves any tower without thinking.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>How many moves for 4 disks? For 5? For 10?<div class="space short"></div></li>
+<li>Write out the full 15-move solution for 4 disks from A to C. Use the recipe: 3 disks to B (7 moves, using C as spare), disk 4 to C, 3 disks from B to C (7 moves, using A as spare).<div class="space tall"></div></li>
+<li>With 20 disks at one move per second, roughly how long would it take? Give the answer in days.<div class="space"></div></li>
+<li>Check \(M(n) = 2M(n-1) + 1\) against the table 1, 3, 7, 15, 31 for \(n = 2, 3, 4, 5\). Then show that if \(M(n-1) = 2^{n-1} - 1\), the rule gives \(M(n) = 2^n - 1\).<div class="space"></div></li>
+<li>In the 3-disk solution, disk 1 moved first to C (the goal). In the 2-disk solution, where does disk 1 go first? Try 4 disks. Make a rule: for which numbers of disks does disk 1 start by going to the goal peg?<div class="space"></div></li>
+<li>Explain in your own words why the smaller tower has to be out of the way, on a single peg, at the moment the biggest disk moves. Why can it not be split across two pegs?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: no shortcuts, and a harder tower</h2>
+<p>Argue that \(2^n - 1\) is the minimum, not just what the recipe happens to use. (The bottom disk must move at least once. Just before it does, where must every other disk be? How many moves did that take, at least? And afterwards?)</p>
+<p>Variant: you may only move a disk to a neighbouring peg (A to B, B to C, never A to C directly). Work out the fewest moves for 1 disk and for 2 disks. Guess the formula. It is not \(2^n - 1\).</p>
+<div class="space tall"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(2^4 - 1 = 15\), \(2^5 - 1 = 31\), \(2^{10} - 1 = 1023\).</li>
+<li>1→B, 2→C, 1→C, 3→B, 1→A, 2→B, 1→B, <b>4→C</b>, 1→C, 2→A, 1→A, 3→C, 1→B, 2→C, 1→C. Fifteen moves.</li>
+<li>\(2^{20} - 1 = 1{,}048{,}575\) seconds. Divide by 86,400 seconds in a day: about 12.1 days.</li>
+<li>\(2(1)+1 = 3\), \(2(3)+1 = 7\), \(2(7)+1 = 15\), \(2(15)+1 = 31\). Algebra: \(2(2^{n-1} - 1) + 1 = 2^n - 2 + 1 = 2^n - 1\).</li>
+<li>With 2 disks, disk 1 goes first to the spare peg B. With 4 disks, also B. With 1, 3, 5 disks it goes to the goal. Rule: an odd number of disks, start toward the goal; an even number, start toward the spare.</li>
+<li>When the biggest disk moves, its destination peg must be empty (nothing smaller may be under it) and its starting peg has only it. So all the other disks are on the one remaining peg, in a legal stack.</li>
+</ol>
+<p><b>Stretch.</b> Before the bottom disk moves, the other \(n-1\) disks form a tower on the spare peg, which takes at least \(M(n-1)\) moves. After it moves, they must come back on top: another \(M(n-1)\) at least. Plus the one move. So any solution uses at least \(2M(n-1) + 1\), and by the same argument all the way down, at least \(2^n - 1\). The adjacent-only variant takes 2 moves for 1 disk and 8 moves for 2 disks (26 for 3), which is \(3^n - 1\).</p>
+</section>
+
+<div class="sheet-nav"><a href="b26-inclusion.html">← Counting without double counting</a><a href="b28-benford.html">Next: The law of the first digit →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../assets/site.js"></script>
+</body>
+</html>

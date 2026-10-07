@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Towers of Hanoi · Infinity Club</title>
+<meta name="description" content="Move the tower one disk at a time, never putting a bigger disk on a smaller one. The minimum number of moves doubles with every disk.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+#board { cursor: pointer; touch-action: manipulation; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../index.html#demos">Demos</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Towers of Hanoi</h1>
+<p class="explain">Move the whole tower from the left peg to the right peg. One disk at a time, and never a bigger disk on top of a smaller one. Click a peg to lift its top disk, then click where to drop it. Then try to do it in the fewest moves.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <label>Disks <input type="range" id="ndisks" min="3" max="8" value="4"> <span id="nlabel">4</span></label>
+    <button id="reset" class="ghost">Reset</button>
+    <button id="solve">Solve</button>
+    <label>Speed <input type="range" id="speed" min="1" max="10" value="5"></label>
+  </div>
+  <canvas id="board" width="900" height="360"></canvas>
+  <div class="readout" id="info"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>To move a tower of 4 you must first move the top 3 out of the way, then move the big disk, then move the 3 back on top. So moves(4) = 2 × moves(3) + 1. The same sentence works for any size: each extra disk doubles the work and adds one. Starting from moves(1) = 1 you get 1, 3, 7, 15, 31, 63, 127, 255. That is 2<sup>n</sup> − 1, always one short of a power of two.</p>
+<p>The Solve button follows exactly that plan, calling itself on smaller towers. A rule that refers to a smaller copy of itself is called <b>recursion</b>, and it is one of the main ideas in computer programming.</p>
+<p>The legend says monks are moving a tower of 64 golden disks, and the world ends when they finish. At one move per second that takes 2<sup>64</sup> − 1 seconds, about 585 billion years. No hurry.</p>
+<p>Sheet: <a href="../sheets/b27-hanoi.html">Towers of Hanoi</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  var canvas = document.getElementById("board"), ctx = canvas.getContext("2d"), info = document.getElementById("info");
+  var n = 4, pegs, held = null, moves = 0, solving = false, timer = null, W, H;
+  var colors = ["#3f44c9", "#f5a524", "#5a5fd6", "#f7b84a", "#2d3290", "#d98b0a", "#8a8ee6", "#fbd38d"];
+  function setup() {
+    n = parseInt(document.getElementById("ndisks").value, 10);
+    document.getElementById("nlabel").textContent = n;
+    pegs = [[], [], []]; for (var i = n; i >= 1; i--) pegs[0].push(i);
+    held = null; moves = 0; stopSolve(); draw();
+  }
+  function stopSolve() { solving = false; if (timer) { clearTimeout(timer); timer = null; } }
+  function draw() {
+    var dpr = window.devicePixelRatio || 1; W = canvas.clientWidth || 900; H = W * 0.4;
+    canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, H);
+    var base = H - 30, pegH = H * 0.7, unit = (W / 3) * 0.9 / (n + 1), dh = Math.min(26, pegH / (n + 1.5));
+    ctx.fillStyle = "#d9d6cc"; ctx.fillRect(W * 0.05, base, W * 0.9, 8);
+    for (var p = 0; p < 3; p++) {
+      var cx = W * (p + 0.5) / 3;
+      ctx.fillStyle = "#b9b6ac"; ctx.fillRect(cx - 4, base - pegH, 8, pegH);
+      pegs[p].forEach(function (d, k) {
+        if (held && held.from === p && k === pegs[p].length - 1 && held.disk === d) return;
+        var w = unit * d; ctx.fillStyle = colors[d - 1];
+        roundRect(cx - w / 2, base - (k + 1) * dh, w, dh - 3, 6);
+      });
+      ctx.fillStyle = "#5d6079"; ctx.font = "13px Nunito, sans-serif"; ctx.textAlign = "center"; ctx.fillText(["left", "middle", "right"][p], cx, H - 8);
+    }
+    if (held) { var cx2 = W * (held.from + 0.5) / 3, w2 = unit * held.disk; ctx.fillStyle = colors[held.disk - 1]; roundRect(cx2 - w2 / 2, base - pegH - dh - 10, w2, dh - 3, 6); }
+    var min = Math.pow(2, n) - 1, done = pegs[2].length === n;
+    info.textContent = "Moves: " + moves + "    minimum possible: " + min + (done ? (moves === min ? "    Solved in the minimum. Perfect." : "    Solved. Can you do it in " + min + "?") : held ? "    Holding disk " + held.disk + ". Click a peg to drop it." : "");
+  }
+  function roundRect(x, y, w, h, r) { ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r); ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath(); ctx.fill(); }
+  function moveDisk(from, to) {
+    var d = pegs[from][pegs[from].length - 1];
+    var top = pegs[to][pegs[to].length - 1];
+    if (d === undefined) return false;
+    if (top !== undefined && top < d) return false;
+    pegs[from].pop(); pegs[to].push(d); moves++; return true;
+  }
+  canvas.addEventListener("click", function (e) {
+    if (solving) return;
+    var r = canvas.getBoundingClientRect(), p = Math.min(2, Math.floor((e.clientX - r.left) / (r.width / 3)));
+    if (!held) {
+      if (!pegs[p].length) { info.textContent = "That peg is empty."; return; }
+      held = { from: p, disk: pegs[p][pegs[p].length - 1] }; draw();
+    } else {
+      if (p === held.from) { held = null; draw(); return; }
+      var top = pegs[p][pegs[p].length - 1];
+      if (top !== undefined && top < held.disk) { info.textContent = "Not allowed: disk " + held.disk + " is bigger than disk " + top + ". Pick another peg, or click the same peg to put it back."; return; }
+      moveDisk(held.from, p); held = null; draw();
+    }
+  });
+  function solve() {
+    setup(); solving = true;
+    var plan = [];
+    (function hanoi(k, from, to, via) { if (k === 0) return; hanoi(k - 1, from, via, to); plan.push([from, to]); hanoi(k - 1, via, to, from); })(n, 0, 2, 1);
+    var i = 0;
+    (function step() {
+      if (!solving || i >= plan.length) { solving = false; draw(); return; }
+      moveDisk(plan[i][0], plan[i][1]); i++; draw();
+      timer = setTimeout(step, 1100 / parseInt(document.getElementById("speed").value, 10));
+    })();
+  }
+  document.getElementById("ndisks").addEventListener("input", setup);
+  document.getElementById("reset").addEventListener("click", setup);
+  document.getElementById("solve").addEventListener("click", solve);
+  window.addEventListener("resize", draw);
+  setup();
+})();
+</script>
+</body>
+</html>

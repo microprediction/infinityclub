@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Growth Race · Infinity Club</title>
+<meta name="description" content="Linear, squared and doubling, racing on one chart. The exponential starts slow and always wins.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../index.html#demos">Demos</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Growth race</h1>
+<p class="explain">Three runners. One adds the same amount every step (a × n). One is the square (n²). One multiplies by the same factor every step (b<sup>n</sup>). Give the linear runner a huge head start and the exponential a tiny factor. See who wins anyway.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <label>steps N <input type="range" id="N" min="10" max="40" value="20"> <span id="Nv">20</span></label>
+    <label>linear a <input type="range" id="a" min="1" max="50" value="10"> <span id="av">10</span></label>
+    <label>factor b <input type="range" id="b" min="1.1" max="3" step="0.1" value="1.5"> <span id="bv">1.5</span></label>
+    <label><input type="checkbox" id="logy"> log scale</label>
+  </div>
+  <canvas id="plot" width="900" height="460"></canvas>
+  <div class="readout" id="info"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>Adding grows in a straight line. Squaring bends upward, but each step adds only a bit more than the last. Multiplying is different in kind: each step adds a fixed <em>fraction</em> of what you already have, so the additions themselves grow. Eventually that beats any polynomial, no matter how small the factor b or how big the head start a.</p>
+<p>Switch on the log scale. The exponential becomes a straight line, because a log turns multiplication into addition. The square becomes a curve that flattens. Straight on a log chart is the signature of exponential growth, which is how scientists spot it in epidemics, bank balances and bacteria.</p>
+<p>Try b = 1.1, which is only 10% growth per step, and a = 50. Push N to 40 and watch where the lines cross. Then imagine N = 100.</p>
+<p>Sheet: <a href="../sheets/b29-growth.html">Linear, squared, doubled</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  var canvas = document.getElementById("plot"), ctx = canvas.getContext("2d"), info = document.getElementById("info");
+  var ids = ["N", "a", "b"], el = {};
+  ids.forEach(function (i) { el[i] = document.getElementById(i); el[i].addEventListener("input", draw); });
+  document.getElementById("logy").addEventListener("change", draw);
+  function draw() {
+    var N = parseInt(el.N.value, 10), a = parseInt(el.a.value, 10), b = parseFloat(el.b.value), logy = document.getElementById("logy").checked;
+    document.getElementById("Nv").textContent = N; document.getElementById("av").textContent = a; document.getElementById("bv").textContent = b.toFixed(1);
+    var lin = [], sq = [], ex = [], ymax = 1, firstSq = null, firstLin = null;
+    for (var n = 0; n <= N; n++) { lin.push(a * n); sq.push(n * n); ex.push(Math.pow(b, n)); ymax = Math.max(ymax, a * n, n * n, Math.pow(b, n)); if (firstSq === null && n > 0 && Math.pow(b, n) > n * n) firstSq = n; if (firstLin === null && n > 0 && Math.pow(b, n) > a * n) firstLin = n; }
+    var dpr = window.devicePixelRatio || 1, W = canvas.clientWidth || 900, H = W * 0.5;
+    canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, H);
+    var L = 64, R = W - 20, T = 20, B = H - 36;
+    function X(n) { return L + (R - L) * n / N; }
+    function Y(v) { if (logy) { var lv = Math.log10(Math.max(v, 1)), lm = Math.log10(Math.max(ymax, 10)); return B - (B - T) * lv / lm; } return B - (B - T) * v / ymax; }
+    ctx.strokeStyle = "#d9d6cc"; ctx.lineWidth = 1; ctx.font = "12px Nunito, sans-serif"; ctx.fillStyle = "#5d6079"; ctx.textAlign = "right";
+    if (logy) { var lm = Math.ceil(Math.log10(Math.max(ymax, 10))); for (var p = 0; p <= lm; p++) { var y = Y(Math.pow(10, p)); ctx.beginPath(); ctx.moveTo(L, y); ctx.lineTo(R, y); ctx.stroke(); ctx.fillText(p < 7 ? Math.pow(10, p).toLocaleString() : "10^" + p, L - 6, y + 4); } }
+    else { for (var g = 0; g <= 5; g++) { var v = ymax * g / 5, yy = Y(v); ctx.beginPath(); ctx.moveTo(L, yy); ctx.lineTo(R, yy); ctx.stroke(); ctx.fillText(Math.round(v).toLocaleString(), L - 6, yy + 4); } }
+    ctx.textAlign = "center"; for (var t = 0; t <= N; t += (N > 20 ? 5 : 2)) ctx.fillText(t, X(t), B + 16);
+    function line(arr, color) { ctx.strokeStyle = color; ctx.lineWidth = 2.5; ctx.beginPath(); arr.forEach(function (v, i) { var x = X(i), y = Math.max(T, Y(v)); if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y); }); ctx.stroke(); }
+    line(lin, "#8a8ee6"); line(sq, "#3f44c9"); line(ex, "#f5a524");
+    ctx.textAlign = "left"; ctx.font = "13px Nunito, sans-serif";
+    [["#8a8ee6", a + " × n"], ["#3f44c9", "n²"], ["#f5a524", b.toFixed(1) + "ⁿ"]].forEach(function (k, i) { ctx.fillStyle = k[0]; ctx.fillRect(L + 10 + i * 120, T + 4, 14, 4); ctx.fillStyle = "#1d1f3a"; ctx.fillText(k[1], L + 30 + i * 120, T + 10); });
+    info.textContent = "At n = " + N + ":   " + a + "×n = " + (a * N).toLocaleString() + "    n² = " + (N * N).toLocaleString() + "    " + b.toFixed(1) + "ⁿ = " + fmt(Math.pow(b, N)) + "\n" + "The exponential overtakes n² " + (firstSq ? "at n = " + firstSq : "after n = " + N) + ", and overtakes " + a + "×n " + (firstLin ? "at n = " + firstLin : "after n = " + N) + ".";
+  }
+  function fmt(v) { return v < 1e6 ? Math.round(v).toLocaleString() : v.toExponential(2); }
+  window.addEventListener("resize", draw); draw();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Three ways to multiply · Infinity Club</title>
+<meta name="description" content="Long multiplication, the lattice method and Russian peasant multiplication, and why all three give the same answer.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../index.html#demos">Demos</a>
+  <a href="../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Sharpen · 13</div>
+  <h1>Three ways to multiply</h1>
+  <p class="teaser">You know one way to multiply. Tonight you learn two more, one from 13th-century Italy and one that is secretly binary. Having three ways means you can check yourself.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>The multiplication you do at school works because of one law: \(a \times (b + c) = a\times b + a \times c\). Multiplying 23 by 47 is really \(23 \times 40 + 23 \times 7\), and each of those splits again into tens and units. Long multiplication is just a tidy way of writing down four small products and adding them. (There is more on this in <a href="a5-mental-multiplication.html">Multiply like a magician</a>.)</p>
+<p>The <b>lattice method</b> does exactly the same four products but puts them in a grid, so you never have to carry while multiplying. Carrying only happens at the very end, along the diagonals. Italian merchants used it for centuries.</p>
+<p><b>Russian peasant multiplication</b> looks like a magic trick: you never multiply by anything except 2. Halve one number (throw away remainders), double the other, and keep going until the halved column reaches 1. Cross out every row where the halved number is even. Add what is left in the doubled column. That is the answer.</p>
+<p>Why does that work? Halving-and-throwing-away is how you find a number's binary digits (see <a href="b2-binary.html">Counting to 31 on one hand</a>). The odd rows are exactly the powers of two that add up to the first number, so you are adding the matching multiples of the second. Three methods, one law underneath.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: 23 × 47 three ways</h2>
+<p><b>Distributive.</b> \(23 \times 47 = 20\times40 + 20\times7 + 3\times40 + 3\times7 = 800 + 140 + 120 + 21 = 1081\).</p>
+<p><b>Lattice.</b> Write 23 across the top and 47 down the side. In each cell write the product of its row and column digits, tens above the diagonal, units below. Then add along the diagonals from bottom right, carrying leftwards.</p>
+<figure>
+<svg viewBox="0 0 240 200" width="240" height="200" font-family="Nunito, sans-serif" font-size="16" fill="#000">
+  <text x="85" y="22" text-anchor="middle" font-weight="700">2</text>
+  <text x="155" y="22" text-anchor="middle" font-weight="700">3</text>
+  <text x="212" y="78" text-anchor="middle" font-weight="700">4</text>
+  <text x="212" y="148" text-anchor="middle" font-weight="700">7</text>
+  <rect x="50" y="35" width="140" height="140" fill="none" stroke="#000" stroke-width="1.5"/>
+  <line x1="120" y1="35" x2="120" y2="175" stroke="#000" stroke-width="1.5"/>
+  <line x1="50" y1="105" x2="190" y2="105" stroke="#000" stroke-width="1.5"/>
+  <line x1="120" y1="35" x2="50" y2="105" stroke="#777"/>
+  <line x1="190" y1="35" x2="50" y2="175" stroke="#777"/>
+  <line x1="190" y1="105" x2="120" y2="175" stroke="#777"/>
+  <text x="68" y="60" text-anchor="middle">0</text><text x="102" y="95" text-anchor="middle">8</text>
+  <text x="138" y="60" text-anchor="middle">1</text><text x="172" y="95" text-anchor="middle">2</text>
+  <text x="68" y="130" text-anchor="middle">1</text><text x="102" y="165" text-anchor="middle">4</text>
+  <text x="138" y="130" text-anchor="middle">2</text><text x="172" y="165" text-anchor="middle">1</text>
+  <text x="38" y="80" text-anchor="middle" font-weight="700">1</text>
+  <text x="38" y="150" text-anchor="middle" font-weight="700">0</text>
+  <text x="85" y="195" text-anchor="middle" font-weight="700">8</text>
+  <text x="155" y="195" text-anchor="middle" font-weight="700">1</text>
+</svg>
+<figcaption>Diagonals from bottom right: 1; then 4+2+2 = 8; then 8+1+1 = 10, write 0 carry 1; then 0+1 = 1. Read down the left and along the bottom: 1081.</figcaption>
+</figure>
+<p><b>Peasant.</b> Halve 23, double 47:</p>
+<table><tr><th>halve</th><th>double</th><th></th></tr>
+<tr><td>23</td><td>47</td><td>odd, keep</td></tr>
+<tr><td>11</td><td>94</td><td>odd, keep</td></tr>
+<tr><td>5</td><td>188</td><td>odd, keep</td></tr>
+<tr><td>2</td><td>376</td><td>even, cross out</td></tr>
+<tr><td>1</td><td>752</td><td>odd, keep</td></tr></table>
+<p>\(47 + 94 + 188 + 752 = 1081\). The kept rows are \(1, 2, 4, 16\) times 47, and \(1 + 2 + 4 + 16 = 23\), which is 10111 in binary.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Work out \(36 \times 24\) all three ways: distributive (four small products), lattice, and peasant. Check they agree.<div class="space tall"></div></li>
+<li>Do \(18 \times 25\) by the peasant method. Which rows get crossed out? Write 18 in binary and explain the connection.<div class="space"></div></li>
+<li>Draw a 3-by-2 lattice and compute \(234 \times 56\).<div class="space tall"></div></li>
+<li>Explain, without doing the method, why peasant multiplication must give the right answer for \(13 \times 20\). Use \(13 = 8 + 4 + 1\).<div class="space"></div></li>
+<li>In the lattice, why do the diagonals correspond to units, tens, hundreds? (Think about what each cell's row and column digits are worth.)<div class="space short"></div></li>
+<li>A classmate says peasant multiplication is "cheating because you throw away remainders". Convince them it is not. (What does throwing the remainder away actually record?)<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the nineties trick</h2>
+<p>To multiply two numbers just under 100, write how far each is below 100. For \(97 \times 96\): the gaps are 3 and 4. Subtract crosswise: \(97 - 4 = 93\) (or \(96 - 3 = 93\), same thing). Multiply the gaps: \(3 \times 4 = 12\). Answer: 9312.</p>
+<p>Try \(98 \times 93\) and \(89 \times 97\). Then explain why it works: if the numbers are \(100 - a\) and \(100 - b\), expand \((100 - a)(100 - b)\) and show it equals \(100(100 - a - b) + ab\). What goes wrong if \(ab\) is 100 or more?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(36 \times 24 = 864\). Distributive: \(600 + 120 + 120 + 24\). Peasant rows: 36/24, 18/48, 9/96 (keep), 4/192, 2/384, 1/768 (keep); \(96 + 768 = 864\).</li>
+<li>Rows 18/25, 9/50 (keep), 4/100, 2/200, 1/400 (keep). \(50 + 400 = 450\). \(18 = 10010_2 = 16 + 2\), so the kept rows are \(2 \times 25\) and \(16 \times 25\).</li>
+<li>\(234 \times 56 = 13104\).</li>
+<li>Halving 13 gives 13, 6, 3, 1; the odd rows are 13, 3, 1, which are the rows where the doubled column holds \(1\times20\), \(4\times20\), \(8\times20\). Since \(13 = 1 + 4 + 8\), their sum is \(13 \times 20 = 260\).</li>
+<li>A cell in the tens column and the tens row holds tens times tens, so its digits are worth hundreds and thousands. Cells on the same diagonal have the same place value because moving one left and one down trades a factor of 10 for a factor of 10.</li>
+<li>Throwing away the remainder is exactly what happens when you find a binary digit: the remainder (0 or 1) is the digit, and the row being odd records that a 1 appeared. Nothing is lost; the information moves into the choice of rows to keep.</li>
+</ol>
+<p><b>Stretch.</b> \(98 \times 93\): gaps 2 and 7, \(98 - 7 = 91\), \(2 \times 7 = 14\), so 9114. \(89 \times 97\): gaps 11 and 3, \(89 - 3 = 86\), \(11 \times 3 = 33\), so 8633. Algebra: \((100-a)(100-b) = 10000 - 100a - 100b + ab = 100(100 - a - b) + ab\). The first part is the crosswise subtraction shifted two places; the second is the product of the gaps. If \(ab \ge 100\) you must carry into the hundreds: \(88 \times 87\) gives \(75\) and \(156\), so \(7500 + 156 = 7656\).</p>
+</section>
+
+<div class="sheet-nav"><a href="a12-pick.html">← Area by counting dots</a><a href="a14-fermi.html">Next: How many piano tuners are in Chicago? →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../assets/site.js"></script>
+</body>
+</html>

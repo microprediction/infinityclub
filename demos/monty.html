@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Monty Hall · Infinity Club</title>
+<meta name="description" content="Three doors, one car, two goats. Play it, then simulate ten thousand games and watch switching win two times out of three.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.doors { display: flex; gap: 1rem; justify-content: center; margin: 1rem 0; flex-wrap: wrap; }
+.door { width: 110px; height: 160px; border-radius: 10px; border: 3px solid var(--accent); background: var(--accent-soft); font: inherit; font-weight: 800; font-size: 1.1rem; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .4rem; color: var(--ink); }
+.door .big { font-size: 2.6rem; line-height: 1; }
+.door.picked { border-color: var(--warm); background: var(--warm-soft); }
+.door.open { background: #f4f1ea; border-color: var(--rule); }
+.door.win { border-color: #2e9e5b; background: #e3f6ea; }
+.door:disabled { cursor: default; }
+.tallies { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: .8rem; }
+.tally { border: 1px solid var(--rule); border-radius: 10px; padding: .6rem .9rem; }
+.tally b { display: block; font-size: 1.05rem; }
+.bar { height: 14px; background: #eeece6; border-radius: 7px; overflow: hidden; margin-top: .4rem; }
+.bar i { display: block; height: 100%; background: var(--accent); }
+.tally.sw .bar i { background: var(--warm); }
+.pct { font-family: var(--mono); font-size: .95rem; color: var(--muted); }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../index.html#demos">Demos</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>The Monty Hall problem</h1>
+<p class="explain">Behind one door is a car, behind the other two are goats. Pick a door. The host, who knows where the car is, opens a different door to show you a goat. Then you choose: <b>stay</b> with your door or <b>switch</b> to the other closed one. Play a few rounds, then let the computer play ten thousand.</p>
+
+<div class="demo-panel">
+  <h2 style="margin-top:0">Play</h2>
+  <div class="doors" id="doors">
+    <button class="door" data-d="0"><span class="big">🚪</span>Door 1</button>
+    <button class="door" data-d="1"><span class="big">🚪</span>Door 2</button>
+    <button class="door" data-d="2"><span class="big">🚪</span>Door 3</button>
+  </div>
+  <div class="controls">
+    <button id="stay" disabled>Stay</button>
+    <button id="switch" class="alt" disabled>Switch</button>
+    <button id="again" class="ghost">New round</button>
+  </div>
+  <div class="readout" id="msg">Pick a door.</div>
+  <div class="tallies">
+    <div class="tally"><b>You stayed</b><span class="pct" id="stayPct">0 wins / 0 games</span><div class="bar"><i id="stayBar" style="width:0"></i></div></div>
+    <div class="tally sw"><b>You switched</b><span class="pct" id="swPct">0 wins / 0 games</span><div class="bar"><i id="swBar" style="width:0"></i></div></div>
+  </div>
+</div>
+
+<div class="demo-panel">
+  <h2 style="margin-top:0">Simulate</h2>
+  <div class="controls">
+    <span>Play</span>
+    <button data-n="100">100 games</button>
+    <button data-n="1000">1,000 games</button>
+    <button data-n="10000">10,000 games</button>
+    <button id="simReset" class="ghost">Reset</button>
+    <label><input type="checkbox" id="forget"> host forgets and opens a random door</label>
+  </div>
+  <div class="tallies">
+    <div class="tally"><b>Always stay</b><span class="pct" id="simStayPct">0 wins / 0 games</span><div class="bar"><i id="simStayBar" style="width:0"></i></div></div>
+    <div class="tally sw"><b>Always switch</b><span class="pct" id="simSwPct">0 wins / 0 games</span><div class="bar"><i id="simSwBar" style="width:0"></i></div></div>
+  </div>
+  <div class="readout" id="simMsg">No games yet. Expected: stay wins 1/3 ≈ 33.3%, switch wins 2/3 ≈ 66.7%.</div>
+</div>
+
+<div class="explain">
+<h2>What's going on</h2>
+<p>Your first pick is right one time in three. That never changes, because nothing the host does moves the car. So two times in three the car is behind one of the other two doors, and the host has just told you which of those two it is not. Switching collects that whole two-thirds.</p>
+<p>The host's knowledge is doing the work. Tick the box that makes the host forget. Now he sometimes opens the car by accident, and those games are thrown out. In the games that survive, staying and switching each win half the time. Same doors, same goats, but the host's choice stopped carrying information.</p>
+<p>When this puzzle appeared in a magazine in 1990, thousands of readers, including many with mathematics PhDs, wrote in to say the answer was wrong. The simulation settles it faster than the arguing did.</p>
+<p>Sheet: <a href="../sheets/b23-monty.html">The Monty Hall problem</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  var doors = Array.prototype.slice.call(document.querySelectorAll(".door")), msg = document.getElementById("msg");
+  var car, pick, opened, phase = "pick";
+  var t = { stayW: 0, stayN: 0, swW: 0, swN: 0 };
+  function rnd(n) { return Math.floor(Math.random() * n); }
+  function pct(w, n) { return n ? (100 * w / n).toFixed(1) + "%" : "–"; }
+  function paint() {
+    doors.forEach(function (b, i) {
+      b.className = "door"; b.disabled = phase !== "pick";
+      b.querySelector(".big").textContent = "🚪";
+      if (i === pick && phase !== "pick") b.classList.add("picked");
+      if (i === opened) { b.classList.add("open"); b.querySelector(".big").textContent = "🐐"; }
+      if (phase === "done") { b.querySelector(".big").textContent = i === car ? "🚗" : "🐐"; if (i === car) b.classList.add("win"); if (i !== car) b.classList.add("open"); }
+    });
+    document.getElementById("stay").disabled = phase !== "choose";
+    document.getElementById("switch").disabled = phase !== "choose";
+    document.getElementById("stayPct").textContent = t.stayW + " wins / " + t.stayN + " games  (" + pct(t.stayW, t.stayN) + ")";
+    document.getElementById("swPct").textContent = t.swW + " wins / " + t.swN + " games  (" + pct(t.swW, t.swN) + ")";
+    document.getElementById("stayBar").style.width = (t.stayN ? 100 * t.stayW / t.stayN : 0) + "%";
+    document.getElementById("swBar").style.width = (t.swN ? 100 * t.swW / t.swN : 0) + "%";
+  }
+  function newRound() { car = rnd(3); pick = -1; opened = -1; phase = "pick"; msg.textContent = "Pick a door."; paint(); }
+  doors.forEach(function (b) {
+    b.addEventListener("click", function () {
+      if (phase !== "pick") return;
+      pick = parseInt(b.dataset.d, 10);
+      var goats = [0, 1, 2].filter(function (d) { return d !== pick && d !== car; });
+      opened = goats[rnd(goats.length)];
+      phase = "choose";
+      msg.textContent = "You picked door " + (pick + 1) + ". The host opens door " + (opened + 1) + ": a goat. Stay or switch?";
+      paint();
+    });
+  });
+  function finish(switched) {
+    var final = switched ? [0, 1, 2].filter(function (d) { return d !== pick && d !== opened; })[0] : pick;
+    var won = final === car;
+    if (switched) { t.swN++; if (won) t.swW++; } else { t.stayN++; if (won) t.stayW++; }
+    phase = "done";
+    msg.textContent = (switched ? "You switched to door " : "You stayed with door ") + (final + 1) + ". " + (won ? "The car. You win." : "A goat. The car was behind door " + (car + 1) + ".");
+    paint();
+  }
+  document.getElementById("stay").addEventListener("click", function () { finish(false); });
+  document.getElementById("switch").addEventListener("click", function () { finish(true); });
+  document.getElementById("again").addEventListener("click", newRound);
+  newRound();
+
+  // Simulation
+  var s = { stayW: 0, stayN: 0, swW: 0, swN: 0, discarded: 0 };
+  function simulate(n) {
+    var forget = document.getElementById("forget").checked;
+    for (var i = 0; i < n; i++) {
+      var c = rnd(3), p = rnd(3), o;
+      if (forget) {
+        var others = [0, 1, 2].filter(function (d) { return d !== p; });
+        o = others[rnd(2)];
+        if (o === c) { s.discarded++; continue; }
+      } else {
+        var g = [0, 1, 2].filter(function (d) { return d !== p && d !== c; });
+        o = g[rnd(g.length)];
+      }
+      var sw = [0, 1, 2].filter(function (d) { return d !== p && d !== o; })[0];
+      s.stayN++; s.swN++;
+      if (p === c) s.stayW++;
+      if (sw === c) s.swW++;
+    }
+    document.getElementById("simStayPct").textContent = s.stayW + " wins / " + s.stayN + " games  (" + pct(s.stayW, s.stayN) + ")";
+    document.getElementById("simSwPct").textContent = s.swW + " wins / " + s.swN + " games  (" + pct(s.swW, s.swN) + ")";
+    document.getElementById("simStayBar").style.width = (s.stayN ? 100 * s.stayW / s.stayN : 0) + "%";
+    document.getElementById("simSwBar").style.width = (s.swN ? 100 * s.swW / s.swN : 0) + "%";
+    document.getElementById("simMsg").textContent = (forget ? "Forgetful host: " + s.discarded + " games discarded because he opened the car. Expected in the rest: 50% each." : "Knowing host. Expected: stay 33.3%, switch 66.7%.") + "  Games counted: " + s.stayN + ".";
+  }
+  document.querySelectorAll("[data-n]").forEach(function (b) { b.addEventListener("click", function () { simulate(parseInt(b.dataset.n, 10)); }); });
+  document.getElementById("simReset").addEventListener("click", function () { s = { stayW: 0, stayN: 0, swW: 0, swN: 0, discarded: 0 }; simulate(0); document.getElementById("simMsg").textContent = "No games yet. Expected: stay wins 1/3 ≈ 33.3%, switch wins 2/3 ≈ 66.7%."; });
+  document.getElementById("forget").addEventListener("change", function () { s = { stayW: 0, stayN: 0, swW: 0, swN: 0, discarded: 0 }; simulate(0); });
+})();
+</script>
+</body>
+</html>
