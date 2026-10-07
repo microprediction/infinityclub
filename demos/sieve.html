@@ -52,10 +52,12 @@
 <script>
 (function () {
   var colors = ["#3f44c9","#f5a524","#2a9d8f","#e76f51","#8e44ad","#1f77b4","#d62728","#2ca02c","#ff7f0e","#17becf","#bcbd22","#7f7f7f"];
-  var N, cells, marked, primes, pIndex, running = false, timer = null;
+  // gen: a generation counter. Reset bumps it, so any callback from an old grid sees a stale gen and does nothing.
+  // batch: the prime currently being crossed out, with a painting cursor k, so pause/resume and Step continue where they left off.
+  var N, cells, marked, primes, pIndex, running = false, timer = null, gen = 0, batch = null;
   var grid = document.getElementById("grid"), status = document.getElementById("status"), plist = document.getElementById("primes");
   function build() {
-    stop();
+    gen++; stop(); batch = null;
     N = parseInt(document.getElementById("nsel").value, 10);
     grid.innerHTML = "";
     var cols = 10; if (N >= 200) cols = 20;
@@ -69,9 +71,9 @@
     plist.textContent = "";
   }
   function nextPrime() { for (var i = 2; i <= N; i++) if (!marked[i]) return i; return null; }
-  function step(cb) {
+  function startBatch() {
     var p = nextPrime();
-    if (p === null) { status.textContent = "Done. " + primes.length + " primes up to " + N + "."; stop(); return; }
+    if (p === null) { status.textContent = "Done. " + primes.length + " primes up to " + N + "."; stop(); return false; }
     var color = colors[pIndex % colors.length]; pIndex++;
     primes.push(p); marked[p] = true;
     cells[p].classList.add("prime", "now"); cells[p].style.borderColor = color; cells[p].style.color = color;
@@ -81,11 +83,31 @@
     var note = p * p > N ? " Since " + p + "×" + p + " = " + (p*p) + " is off the grid, there is nothing new to cross out. Everything left is prime." :
       " Crossing out multiples of " + p + ", starting at " + p + "×" + p + " = " + (p*p) + ".";
     status.textContent = p + " is prime." + note;
-    var k = 0;
-    var delay = Math.max(15, Math.min(120, 1500 / Math.max(1, multiples.length)));
+    batch = { p: p, color: color, multiples: multiples, k: 0, delay: Math.max(15, Math.min(120, 1500 / Math.max(1, multiples.length))) };
+    return true;
+  }
+  // Returns true when the whole sieve is finished.
+  function finishBatch() {
+    var p = batch.p; batch = null;
+    cells[p].classList.remove("now");
+    if (p * p > N) {
+      for (var i = 2; i <= N; i++) if (!marked[i]) { marked[i] = true; primes.push(i); cells[i].classList.add("prime"); }
+      plist.textContent = "Primes: " + primes.join(", ") + "  (" + primes.length + " of them)";
+      status.textContent += " Count: " + primes.length + ".";
+      stop(); return true;
+    }
+    return false;
+  }
+  function step(cb) {
+    if (!batch && !startBatch()) return;
+    var g = gen, b = batch;
     function tick() {
-      if (k < multiples.length) { var c = cells[multiples[k]]; c.classList.add("gone"); c.style.background = color; k++; timer = setTimeout(tick, delay); }
-      else { cells[p].classList.remove("now"); if (p * p > N) { for (var i = 2; i <= N; i++) if (!marked[i]) { marked[i] = true; primes.push(i); cells[i].classList.add("prime"); } plist.textContent = "Primes: " + primes.join(", ") + "  (" + primes.length + " of them)"; status.textContent += " Count: " + primes.length + "."; stop(); return; } if (cb) cb(); }
+      timer = null;
+      if (g !== gen || b !== batch) return;
+      if (b.k < b.multiples.length) {
+        var c = cells[b.multiples[b.k]]; c.classList.add("gone"); c.style.background = b.color; b.k++;
+        timer = setTimeout(tick, b.delay);
+      } else if (!finishBatch() && cb) cb();
     }
     tick();
   }
@@ -93,8 +115,10 @@
   document.getElementById("step").addEventListener("click", function () { if (!timer) step(); });
   document.getElementById("run").addEventListener("click", function () {
     if (running) { stop(); return; }
+    if (timer) clearTimeout(timer); timer = null;
     running = true; this.textContent = "Pause";
-    (function loop() { if (!running) return; step(function () { timer = setTimeout(loop, 400); }); })();
+    var g = gen;
+    (function loop() { timer = null; if (!running || g !== gen) return; step(function () { timer = setTimeout(loop, 400); }); })();
   });
   document.getElementById("reset").addEventListener("click", build);
   document.getElementById("nsel").addEventListener("change", build);

@@ -49,53 +49,84 @@
 <script>
 (function () {
   var seqIn = document.getElementById("seq"), tbl = document.getElementById("table"), fo = document.getElementById("formula"), info = document.getElementById("info");
-  // exact fractions
-  function gcd(a, b) { a = Math.abs(a); b = Math.abs(b); while (b) { var t = a % b; a = b; b = t; } return a || 1; }
-  function F(n, d) { d = d || 1; if (d < 0) { n = -n; d = -d; } var g = gcd(n, d); return [n / g, d / g]; }
+  // Exact rational arithmetic with BigInt, so 0.1, 0.2, 0.3 behave like 1/10, 2/10, 3/10 and never pick up rounding error.
+  function big(x) { return typeof x === "bigint" ? x : BigInt(x); }
+  function gcd(a, b) { if (a < 0n) a = -a; if (b < 0n) b = -b; while (b) { var t = a % b; a = b; b = t; } return a || 1n; }
+  function F(n, d) { n = big(n); d = d === undefined ? 1n : big(d); if (d < 0n) { n = -n; d = -d; } var g = gcd(n, d); return [n / g, d / g]; }
   function add(a, b) { return F(a[0] * b[1] + b[0] * a[1], a[1] * b[1]); }
+  function sub(a, b) { return F(a[0] * b[1] - b[0] * a[1], a[1] * b[1]); }
   function mul(a, b) { return F(a[0] * b[0], a[1] * b[1]); }
+  function eq(a, b) { return a[0] === b[0] && a[1] === b[1]; }
   function polyMul(p, q) { var r = []; for (var i = 0; i < p.length + q.length - 1; i++) r.push(F(0)); for (i = 0; i < p.length; i++) for (var j = 0; j < q.length; j++) r[i + j] = add(r[i + j], mul(p[i], q[j])); return r; }
   function binomPoly(k) { // C(n-1, k) as polynomial in n: prod_{j=1..k} (n - j) / k!
-    var p = [F(1)], fact = 1;
-    for (var j = 1; j <= k; j++) { p = polyMul(p, [F(-j), F(1)]); fact *= j; }
+    var p = [F(1)], fact = 1n;
+    for (var j = 1; j <= k; j++) { p = polyMul(p, [F(-j), F(1)]); fact *= BigInt(j); }
     return p.map(function (c) { return mul(c, F(1, fact)); });
   }
-  function fmtF(f) { return f[1] === 1 ? String(f[0]) : f[0] + "/" + f[1]; }
-  function fmtPoly(p) { // p[i] coefficient of n^i
+  function fact(n) { var f = 1n; for (var i = 2; i <= n; i++) f *= BigInt(i); return f; }
+  // Show a rational as a terminating decimal when it has one (denominator made of 2s and 5s), otherwise as a fraction.
+  function fmtF(f) {
+    var n = f[0], d = f[1]; if (d === 1n) return String(n);
+    var d2 = d, twos = 0, fives = 0; while (d2 % 2n === 0n) { d2 /= 2n; twos++; } while (d2 % 5n === 0n) { d2 /= 5n; fives++; }
+    if (d2 !== 1n) return n + "/" + d;
+    var places = Math.max(twos, fives), scale = 10n ** BigInt(places), neg = n < 0n, m = (neg ? -n : n) * scale / d;
+    var str = m.toString().padStart(places + 1, "0");
+    return (neg ? "-" : "") + str.slice(0, str.length - places) + "." + str.slice(str.length - places);
+  }
+  function fmtFrac(f) { return f[1] === 1n ? String(f[0]) : f[0] + "/" + f[1]; }
+  function fmtPoly(p) { // p[i] coefficient of n^i, written with exact fractions
     var terms = [];
     for (var i = p.length - 1; i >= 0; i--) {
-      var c = p[i]; if (c[0] === 0) continue;
-      var neg = c[0] < 0, a = [Math.abs(c[0]), c[1]], s;
-      var mag = fmtF(a), isOne = a[0] === 1 && a[1] === 1;
-      if (i === 0) s = mag; else s = (isOne ? "" : (a[1] === 1 ? mag : "(" + mag + ")")) + (i === 1 ? "n" : "n" + sup(i));
+      var c = p[i]; if (c[0] === 0n) continue;
+      var neg = c[0] < 0n, a = [neg ? -c[0] : c[0], c[1]], s, v = i === 1 ? "n" : "n" + sup(i);
+      if (i === 0) s = fmtFrac(a);
+      else if (a[1] === 1n) s = (a[0] === 1n ? "" : String(a[0])) + v;
+      else s = a[0] === 1n ? v + "/" + a[1] : "(" + fmtFrac(a) + ")" + v;
       terms.push((terms.length ? (neg ? " − " : " + ") : (neg ? "−" : "")) + s);
     }
     return terms.length ? terms.join("") : "0";
   }
   function sup(i) { return String(i).replace(/\d/g, function (d) { return "⁰¹²³⁴⁵⁶⁷⁸⁹"[d]; }); }
-  function evalP(p, n) { var v = [0, 1], pw = [1, 1]; for (var i = 0; i < p.length; i++) { v = add(v, mul(p[i], pw)); pw = mul(pw, [n, 1]); } return v; }
-  function table(seq) { var rows = [seq.slice()]; if (seq.every(function (v) { return v === seq[0]; })) return rows; while (rows.length <= 5 && rows[rows.length - 1].length > 1) { var r = rows[rows.length - 1], d = []; for (var i = 1; i < r.length; i++) d.push(r[i] - r[i - 1]); rows.push(d); if (d.every(function (v) { return v === d[0]; })) break; } return rows; }
+  function evalP(p, n) { var v = F(0), pw = F(1), nn = F(n); for (var i = 0; i < p.length; i++) { v = add(v, mul(p[i], pw)); pw = mul(pw, nn); } return v; }
+  function allSame(r) { return r.every(function (v) { return eq(v, r[0]); }); }
+  function table(seq) { var rows = [seq.slice()]; if (allSame(seq)) return rows; while (rows.length <= 5 && rows[rows.length - 1].length > 1) { var r = rows[rows.length - 1], d = []; for (var i = 1; i < r.length; i++) d.push(sub(r[i], r[i - 1])); rows.push(d); if (allSame(d)) break; } return rows; }
   function run(seq, note) {
-    if (seq.length < 2) { info.textContent = "Give at least two terms."; return; }
-    var rows = table(seq), last = rows[rows.length - 1], constant = last.length >= 1 && last.every(function (v) { return v === last[0]; }) && (last.length >= 2 || rows.length === seq.length);
+    if (seq.length < 2) { tbl.innerHTML = ""; fo.textContent = ""; info.textContent = "Give at least two terms."; return; }
+    var rows = table(seq), last = rows[rows.length - 1], constant = last.length >= 1 && allSame(last) && (last.length >= 2 || rows.length === seq.length);
     var degree = rows.length - 1;
-    var html = ""; var w = Math.max.apply(null, seq.map(function (v) { return String(v).length; })) + 2;
-    rows.forEach(function (r, i) { var pad = " ".repeat(Math.round(i * w / 2)); var isC = i === rows.length - 1 && constant; html += '<div class="row' + (isC ? ' const' : '') + '"><span class="lbl">' + (i === 0 ? "terms" : "Δ" + (i > 1 ? sup(i) : "")) + "</span>" + pad + r.map(function (v) { return String(v).padStart(w); }).join("") + "</div>"; });
+    var text = rows.map(function (r) { return r.map(fmtF); }), w = Math.max.apply(null, text[0].map(function (v) { return v.length; })) + 2;
+    var html = "";
+    text.forEach(function (r, i) { var pad = " ".repeat(Math.round(i * w / 2)); var isC = i === rows.length - 1 && constant; html += '<div class="row' + (isC ? ' const' : '') + '"><span class="lbl">' + (i === 0 ? "terms" : "Δ" + (i > 1 ? sup(i) : "")) + "</span>" + pad + r.map(function (v) { return v.padStart(w); }).join("") + "</div>"; });
     tbl.innerHTML = html;
-    if (!constant) { fo.textContent = ""; info.textContent = "No constant row within degree 5. Either the sequence is not polynomial (doubling, Fibonacci, primes…) or you need more terms."; return; }
+    if (!constant) { fo.textContent = ""; info.textContent = "No constant row within degree 5. Either the sequence is not polynomial (doubling, Fibonacci, primes…) or you need more terms." + (note ? "\n" + note : ""); return; }
     var poly = [F(0)];
-    for (var k = 0; k <= degree; k++) { var bp = binomPoly(k).map(function (c) { return mul(c, F(rows[k][0])); }); while (poly.length < bp.length) poly.push(F(0)); for (var i = 0; i < bp.length; i++) poly[i] = add(poly[i], bp[i]); }
+    for (var k = 0; k <= degree; k++) { var bp = binomPoly(k).map(function (c) { return mul(c, rows[k][0]); }); while (poly.length < bp.length) poly.push(F(0)); for (var i = 0; i < bp.length; i++) poly[i] = add(poly[i], bp[i]); }
     var next = [1, 2, 3].map(function (j) { return fmtF(evalP(poly, seq.length + j)); });
     var degName = ["constant", "linear", "quadratic", "cubic", "quartic", "quintic"][degree];
     fo.textContent = "nth term = " + fmtPoly(poly);
-    info.textContent = (degree === 0 ? "The terms themselves are constant" : "Row Δ" + (degree > 1 ? sup(degree) : "") + " is constant") + ", so the sequence is " + degName + " (degree " + degree + ")" + (degree >= 2 ? "; the n" + sup(degree) + " coefficient is " + rows[degree][0] + "/" + degree + "! = " + fmtF(F(rows[degree][0], fact(degree))) : "") + ".\nNext three terms: " + next.join(", ") + (seq.length <= degree + 1 ? "\nCareful: with only " + seq.length + " terms, a degree-" + degree + " polynomial fits ANY sequence. This is a guess, not a deduction." : "") + (note ? "\n" + note : "");
+    info.textContent = (degree === 0 ? "The terms themselves are constant" : "Row Δ" + (degree > 1 ? sup(degree) : "") + " is constant") + ", so the sequence is " + degName + " (degree " + degree + ")" + (degree >= 2 ? "; the n" + sup(degree) + " coefficient is " + fmtF(rows[degree][0]) + "/" + degree + "! = " + fmtFrac(mul(rows[degree][0], F(1, fact(degree)))) : "") + ".\nNext three terms: " + next.join(", ") + (seq.length <= degree + 1 ? "\nCareful: with only " + seq.length + " terms, a degree-" + degree + " polynomial fits ANY sequence. This is a guess, not a deduction." : "") + (note ? "\n" + note : "");
   }
-  function fact(n) { var f = 1; for (var i = 2; i <= n; i++) f *= i; return f; }
-  function parse() { return seqIn.value.split(/[\s,;]+/).filter(Boolean).map(Number).filter(function (v) { return !isNaN(v); }); }
-  document.getElementById("go").addEventListener("click", function () { run(parse()); });
-  seqIn.addEventListener("keydown", function (e) { if (e.key === "Enter") run(parse()); });
-  document.getElementById("trap").addEventListener("click", function () { seqIn.value = "1, 2, 4, 8, 16"; run([1, 2, 4, 8, 16], "Doubling says the next term is 32. The polynomial says 31. Both fit all five terms, so the terms alone cannot decide. (31 is the number of regions you get by joining 6 points on a circle.)"); });
-  run(parse());
+  // Accept whole numbers, decimals and simple fractions, exactly. Anything else is reported rather than dropped.
+  function parseToken(t) {
+    var m = /^([+\-−]?)(\d+)\/(\d+)$/.exec(t);
+    if (m) { if (m[3] === "0") return null; return F((m[1] === "-" || m[1] === "−" ? "-" : "") + m[2], m[3]); }
+    m = /^([+\-−]?)(\d*)(?:\.(\d*))?$/.exec(t);
+    if (!m || (m[2] === "" && (m[3] === undefined || m[3] === ""))) return null;
+    var ip = m[2] || "0", fp = m[3] || "";
+    return F((m[1] === "-" || m[1] === "−" ? "-" : "") + ip + fp, "1" + "0".repeat(fp.length));
+  }
+  function parse() {
+    var toks = seqIn.value.split(/[\s,;]+/).filter(Boolean), out = [], bad = [];
+    toks.forEach(function (t) { var q = parseToken(t); if (q) out.push(q); else bad.push(t); });
+    if (bad.length) { tbl.innerHTML = ""; fo.textContent = ""; info.textContent = "Could not read " + bad.map(function (b) { return '"' + b + '"'; }).join(", ") + ". Use whole numbers, decimals like 0.25, or fractions like 3/4, separated by commas."; return null; }
+    return out;
+  }
+  function go() { var q = parse(); if (q) run(q); }
+  document.getElementById("go").addEventListener("click", go);
+  seqIn.addEventListener("keydown", function (e) { if (e.key === "Enter") go(); });
+  document.getElementById("trap").addEventListener("click", function () { seqIn.value = "1, 2, 4, 8, 16"; run([1, 2, 4, 8, 16].map(function (v) { return F(v); }), "Doubling says the next term is 32. The polynomial says 31. Both fit all five terms, so the terms alone cannot decide. (31 is the number of regions you get by joining 6 points on a circle.)"); });
+  if (typeof module !== "undefined") module.exports = { F: F, parseToken: parseToken, table: table, fmtF: fmtF, fmtPoly: fmtPoly, binomPoly: binomPoly, mul: mul, add: add, evalP: evalP };
+  go();
 })();
 </script>
 </body>

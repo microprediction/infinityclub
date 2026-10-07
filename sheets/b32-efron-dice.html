@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dice that go round in circles · Infinity Club</title>
+<meta name="description" content="Four strange dice where A beats B, B beats C, C beats D, and D beats A. Build them, play them, and discover why 'which die is best' has no answer.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.wintable td, .wintable th { width: 2.2em; height: 2.2em; }
+.wintable th { background: #f3f1ea; }
+.nets { width: 100%; max-width: 560px; height: auto; display: block; margin: .4em auto .8em; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../index.html#demos">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Around the corner · 32</div>
+  <h1>Dice that go round in circles</h1>
+  <p class="teaser">Here is a bet you can always win: let your friend pick any of these four dice first, then you pick one, and you will beat them two times out of three. Tonight you build the dice and find out why nobody can name the best one.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>You know that if 7 is bigger than 5 and 5 is bigger than 3, then 7 is bigger than 3. Ordinary numbers line up in a row. "Which is biggest?" always has an answer.</p>
+<p>Dice are made of ordinary numbers, so you might expect the same of dice: surely one die is "best"? Meet four dice that break that expectation. Each has six faces, each is perfectly fair, and each face is as likely as any other.</p>
+<table>
+<tr><th>Die</th><th colspan="6">Faces</th><th>Average</th></tr>
+<tr><th>A</th><td>4</td><td>4</td><td>4</td><td>4</td><td>0</td><td>0</td><td>\(2\tfrac23\)</td></tr>
+<tr><th>B</th><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td><td>3</td></tr>
+<tr><th>C</th><td>6</td><td>6</td><td>2</td><td>2</td><td>2</td><td>2</td><td>\(3\tfrac13\)</td></tr>
+<tr><th>D</th><td>5</td><td>5</td><td>5</td><td>1</td><td>1</td><td>1</td><td>3</td></tr>
+</table>
+<p>Two players each roll their die; the higher number wins. The facts, which you are about to check:</p>
+<p class="callout">A beats B, B beats C, C beats D, and D beats A. Each of those happens 2 times in 3.</p>
+<p>So the dice do not line up in a row. They go round in a <b>circle</b>. Whichever die your friend chooses, there is one just behind it in the circle that beats it. That is why you should always let them choose first. These are called <b>Efron dice</b>, after the statistician Bradley Efron who designed them.</p>
+<figure>
+<svg class="nets" viewBox="0 0 560 380" role="img" aria-label="paper nets for the four dice A, B, C and D, each a cross of six squares to cut out and fold">
+<g font-family="Nunito, sans-serif" font-size="22" font-weight="700" text-anchor="middle" fill="#000">
+<!-- Die A -->
+<g transform="translate(10,10)">
+<rect x="50" y="0" width="50" height="50" fill="none" stroke="#000" stroke-width="1.5"/><text x="75" y="33">4</text>
+<rect x="0" y="50" width="50" height="50" fill="none" stroke="#000" stroke-width="1.5"/><text x="25" y="83">4</text>
+<rect x="50" y="50" width="50" height="50" fill="none" stroke="#000" stroke-width="1.5"/><text x="75" y="83">0</text>
+<rect x="100" y="50" width="50" height="50" fill="none" stroke="#000" stroke-width="1.5"/><text x="125" y="83">4</text>
+<rect x="150" y="50" width="50" height="50" fill="none" stroke="#000" stroke-width="1.5"/><text x="175" y="83">0</text>
+<rect x="50" y="100" width="50" height="50" fill="none" stroke="#000" stroke-width="1.5"/><text x="75" y="133">4</text>
+<text x="225" y="83" font-size="26">A</text>
+</g>
+<!-- Die B -->
+<g transform="translate(300,10)">
+<rect x="50" y="0" width="50" height="50" fill="none" stroke="#000" stroke-width="1.5"/><text x="75" y="33">3</text>
+<rect x="0" y="50" width="50" height="50" fill="none" stroke="#000" stroke-width="1.5"/><text x="25" y="83">3</text>
+<rect x="50" y="50" width="50" height="50" fill="none" stroke="#000" stroke-width="1.5"/><text x="75" y="83">3</text>
+<rect x="100" y="50" width="50" height="50" fill="none" stroke="#000" stroke-width="1.5"/><text x="125" y="83">3</text>
+<rect x="150" y="50" width="50" height="50" fill="none" stroke="#000" stroke-width="1.5"/><text x="175" y="83">3</text>
+<rect x="50" y="100" width="50" height="50" fill="none" stroke="#000" stroke-width="1.5"/><text x="75" y="133">3</text>
+<text x="225" y="83" font-size="26">B</text>
+</g>
+<!-- Die C -->
+<g transform="translate(10,200)">
+<rect x="50" y="0" width="50" height="50" fill="none" stroke="#000" stroke-width="1.5"/><text x="75" y="33">6</text>
+<rect x="0" y="50" width="50" height="50" fill="none" stroke="#000" stroke-width="1.5"/><text x="25" y="83">2</text>
+<rect x="50" y="50" width="50" height="50" fill="none" stroke="#000" stroke-width="1.5"/><text x="75" y="83">2</text>
+<rect x="100" y="50" width="50" height="50" fill="none" stroke="#000" stroke-width="1.5"/><text x="125" y="83">2</text>
+<rect x="150" y="50" width="50" height="50" fill="none" stroke="#000" stroke-width="1.5"/><text x="175" y="83">2</text>
+<rect x="50" y="100" width="50" height="50" fill="none" stroke="#000" stroke-width="1.5"/><text x="75" y="133">6</text>
+<text x="225" y="83" font-size="26">C</text>
+</g>
+<!-- Die D -->
+<g transform="translate(300,200)">
+<rect x="50" y="0" width="50" height="50" fill="none" stroke="#000" stroke-width="1.5"/><text x="75" y="33">5</text>
+<rect x="0" y="50" width="50" height="50" fill="none" stroke="#000" stroke-width="1.5"/><text x="25" y="83">1</text>
+<rect x="50" y="50" width="50" height="50" fill="none" stroke="#000" stroke-width="1.5"/><text x="75" y="83">1</text>
+<rect x="100" y="50" width="50" height="50" fill="none" stroke="#000" stroke-width="1.5"/><text x="125" y="83">5</text>
+<rect x="150" y="50" width="50" height="50" fill="none" stroke="#000" stroke-width="1.5"/><text x="175" y="83">1</text>
+<rect x="50" y="100" width="50" height="50" fill="none" stroke="#000" stroke-width="1.5"/><text x="75" y="133">5</text>
+<text x="225" y="83" font-size="26">D</text>
+</g>
+</g>
+</svg>
+<figcaption>Cut out each cross, fold along the lines, and tape it into a cube. (Or write the faces on four ordinary dice with a marker.)</figcaption>
+</figure>
+</section>
+
+<section class="example">
+<h2>Watch one: why B beats C</h2>
+<p>B always shows 3. C shows 6 on two faces and 2 on four faces. B beats C exactly when C shows a 2, which is 4 faces out of 6. So B wins \(\tfrac46 = \tfrac23\) of the time, even though C has the higher average.</p>
+<p>With two dice that both vary, count pairs. Roll A and D together and there are \(6 \times 6 = 36\) equally likely pairs of faces. D wins whenever D shows 5, which is 3 faces of D against any of the 6 faces of A: \(3 \times 6 = 18\) pairs. D also wins when D shows 1 and A shows 0: \(3 \times 2 = 6\) more pairs. That is \(18 + 6 = 24\) pairs out of 36, so D beats A with probability \(\tfrac{24}{36} = \tfrac23\).</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li><b>A against B.</b> Fill in the table: write A in a square when A's face beats B's face, and B when B's face wins. How many of the 36 squares does A win? What fraction is that?
+<table class="wintable">
+<tr><th>A ↓ &nbsp; B →</th><th>3</th><th>3</th><th>3</th><th>3</th><th>3</th><th>3</th></tr>
+<tr><th>4</th><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><th>4</th><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><th>4</th><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><th>4</th><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><th>0</th><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><th>0</th><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+</table>
+</li>
+<li><b>C against D.</b> No table this time. C wins in two different ways: when C shows 6, and when C shows 2 against a D showing 1. Count the pairs for each way, add them, and give the probability that C beats D.<div class="space"></div></li>
+<li>You now have all four links of the circle: A beats B, B beats C, C beats D, D beats A. A friend says: "A beats B and B beats C, so obviously A beats C." Test the claim. Count the pairs where A beats C. Who really wins that match-up, and how often?<div class="space"></div></li>
+<li>Look at the averages in the table on the first page. C has the highest average and A has the lowest. Does the die with the highest average always beat the one with the lowest? (Use question 3.) B and D have the same average, 3. Who wins B against D? Count the pairs.<div class="space"></div></li>
+<li><b>The bet.</b> Your friend picks first. Write down which die you pick if they choose A, if they choose B, if they choose C, and if they choose D. Then explain, in a sentence, why you should never agree to pick first.<div class="space"></div></li>
+<li>Play the bet for real. Let someone choose a die, pick yours using question 5, and roll 15 times. Record the score. Was it close to 10 to 5? Then swap roles and let them exploit you.<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: circles everywhere</h2>
+<p>You might think the circle only works because the dice have different averages. Try these three: <b>Red</b> 2, 2, 4, 4, 9, 9; <b>Green</b> 1, 1, 6, 6, 8, 8; <b>Blue</b> 3, 3, 5, 5, 7, 7. Check that all three have the same average. Then count pairs to find who beats whom. Do they go round in a circle too? With what probability?</p>
+<p>If you did the sheet <a href="c9-voting.html">How an election can have no winner</a>, this should feel familiar: three voters can prefer Alice to Bob, Bob to Carol, and Carol to Alice, all at once. A majority of rolls plays the part of a majority of voters. "Most of the time" and "on average" are different questions, and only one of them lines things up in a row. Hint for the proof-minded: each single roll is still an ordinary number, so where exactly does the circle come from?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Every square in the four rows of 4s is an A, every square in the two rows of 0s is a B. A wins \(4 \times 6 = 24\) squares out of 36, which is \(\tfrac{24}{36} = \tfrac23\).</li>
+<li>C shows 6 on 2 faces, beating all 6 faces of D: \(2 \times 6 = 12\) pairs. C shows 2 on 4 faces, beating D's three 1s: \(4 \times 3 = 12\) pairs. Total \(24\) out of 36, so C beats D with probability \(\tfrac23\).</li>
+<li>A wins only when A shows 4 and C shows 2: \(4 \times 4 = 16\) pairs. A's 0s never win. So A beats C only \(\tfrac{16}{36} = \tfrac49\) of the time, and <b>C beats A</b> \(\tfrac{20}{36} = \tfrac59\) of the time. The friend's "obviously" is wrong: winning is not like being bigger.</li>
+<li>Here, yes: C (average \(3\tfrac13\)) beats A (average \(2\tfrac23\)), but only \(\tfrac59\) of the time, and the averages do not predict any of the four \(\tfrac23\) match-ups: A beats B despite a lower average. B against D: B's 3 beats D's three 1s on every one of B's 6 faces, \(6 \times 3 = 18\) pairs, and loses the other 18. Exactly even, \(\tfrac12\) each, as the equal averages hint but do not guarantee.</li>
+<li>They choose A, you choose D. They choose B, you choose A. They choose C, you choose B. They choose D, you choose C. Whichever die you pick first, there is a die one step back round the circle that beats it two times in three, so the second chooser always has the edge.</li>
+<li>Over 15 rolls you expect about 10 wins to 5, but anything from about 7 to 13 is normal luck. The edge shows clearly over many rolls, not in any single one. Try the computer version at <a href="../demos/efron.html">infinityclub.net/demos/efron.html</a> to play ten thousand rolls in a second.</li>
+</ol>
+<p><b>Stretch.</b> Each die adds to 30, so every average is 5. Red beats Green: Red's 9s beat everything (\(2 \times 6 = 12\)), Red's 4s beat Green's 1s (\(2 \times 2 = 4\)), Red's 2s beat Green's 1s (\(2 \times 2 = 4\)): 20 of 36, so \(\tfrac59\). Green beats Blue: 8s beat everything (12), 6s beat 3s and 5s (\(2 \times 4 = 8\)): 20 of 36, \(\tfrac59\). Blue beats Red: 7s beat 2s and 4s (\(2 \times 4 = 8\)), 5s beat 2s and 4s (8), 3s beat 2s (\(2 \times 2 = 4\)): 20 of 36, \(\tfrac59\). A perfect circle with identical averages. The circle comes from comparing <em>pairs of rolls</em>, and a majority of pairs is a vote, not a number: each die wins its match-up on different rolls, so the wins never have to add up along a line.</p>
+</section>
+
+<div class="sheet-nav"><a href="b31-mind-reader.html">← Previous</a><a href="c1-music.html">Next: Why there are twelve notes →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../assets/site.js"></script>
+</body>
+</html>

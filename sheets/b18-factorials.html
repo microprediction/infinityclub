@@ -62,7 +62,7 @@
 <section class="stretch">
 <h2>Stretch: 99% sure</h2>
 <p>How many people do you need before a shared birthday is 99% likely? Keep multiplying fractions (a spreadsheet helps) until the no-match product drops below 0.01.</p>
-<p>Most people, asked this cold, say something like 183, half of 365. Explain what question 183 would be the answer to. (Hint: it is about matching <em>your</em> birthday, not <em>any</em> pair's.) Then estimate how many people are needed for a 50% chance that someone shares <em>your</em> birthday, and notice how different it is from 23.</p>
+<p>Most people, asked this cold, say something like 183, half of 365. What reasoning leads to 183, and why is it wrong even for the easier question of someone sharing <em>your</em> birthday? (Hint: with 183 other people, is it really a coin flip that one of them matches you? Try the no-match product \((364/365)^{183}\).) Then find how many people are needed for a 50% chance that someone shares <em>your</em> birthday, and notice how different it is from 23.</p>
 <div class="space tall"></div>
 </section>
 
@@ -76,7 +76,7 @@
 <li>\(\tfrac{365}{365} \times \tfrac{364}{365} \times \tfrac{363}{365} \times \tfrac{362}{365} \times \tfrac{361}{365} \approx 0.973\), so about 97% all different and about 3% chance of a match.</li>
 <li>\(\binom{10}{2} = 45\), \(\binom{23}{2} = 253\), \(\binom{50}{2} = 1{,}225\). Pairs grow roughly with the square of the number of people, and each pair is a fresh chance at a match, so the probability climbs much faster than the headcount.</li>
 </ol>
-<p><b>Stretch.</b> 57 people: the no-match product is about 0.0099, so a match is 99.0% likely. (56 people gives 98.8%.) The number 183 answers a different question: roughly how many people until one of them shares <em>your</em> birthday with better than even odds. Even that intuition is off. For someone to match you specifically, each person has only a 1 in 365 chance, and the no-match probability is \((364/365)^n\), which drops below one half at \(n = 253\). Matching a fixed date is hard; matching <em>any</em> pair is easy, because there are so many pairs.</p>
+<p><b>Stretch.</b> 57 people: the no-match product is about 0.0099, so a match is 99.0% likely. (56 people gives 98.8%.) The guess of 183 comes from thinking “half the days, so half a chance”: 183 people, each a 1 in 365 shot at your birthday, feels like 183/365, about one half. But chances do not add like that, because two people can both miss, and both can hit the same day. The no-match probability is \((364/365)^{183} \approx 0.605\), so 183 people give you only about a 39% chance of a match with your birthday. The no-match product drops below one half at \(n = 253\) (252 people give 49.9%, 253 give 50.05%). Matching a fixed date is hard; matching <em>any</em> pair is easy, because there are so many pairs.</p>
 </section>
 
 <div class="sheet-nav"><a href="b17-differences.html">← The detective's method for sequences</a><a href="b19-eratosthenes.html">Next →</a></div>

@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mind reader · Infinity Club</title>
+<meta name="description" content="Think of a number from 0 to 15, answer seven yes/no cards, lie once if you like. The page still finds your number and the lie. Then see the three checks that make it work.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.tabs { display: flex; flex-wrap: wrap; gap: .5rem; margin: .4rem 0 1rem; }
+.tabs button { font: inherit; font-weight: 700; background: transparent; color: var(--accent); border: 2px solid var(--accent); border-radius: 999px; padding: .4rem 1rem; cursor: pointer; }
+.tabs button.on { background: var(--accent); color: #fff; }
+.mode[hidden] { display: none; }
+.cardrow { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: .7rem; margin: .6rem 0 1rem; }
+.hcard { border: 2px solid var(--ink); border-radius: 10px; padding: .5rem .6rem .6rem; background: #fff; }
+.hcard.chk { border-color: var(--warm); }
+.hcard.lie { background: var(--warm-soft); }
+.hcard.lamp-on { box-shadow: 0 0 0 3px var(--accent-soft); }
+.hcard .ttl { font-size: .78rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); }
+.hcard.chk .ttl { color: var(--warm); }
+.hcard .nums { display: grid; grid-template-columns: repeat(4, 1fr); text-align: center; font-weight: 700; font-size: 1.05rem; margin: .25rem 0 .4rem; }
+.hcard .yn { display: flex; gap: .4rem; }
+.hcard .yn button { flex: 1; font: inherit; font-weight: 700; border: 2px solid var(--rule); background: #fff; border-radius: 8px; padding: .3rem 0; cursor: pointer; }
+.hcard .yn button.sel { border-color: var(--accent); background: var(--accent-soft); }
+.hcard .yn button.lied { border-color: var(--warm); background: var(--warm-soft); }
+.lamps { display: flex; flex-wrap: wrap; gap: 1rem; margin: .8rem 0; }
+.lamp { flex: 1 1 180px; border: 1px solid var(--rule); border-radius: 10px; padding: .6rem .8rem; background: #fff; }
+.lamp .dot { display: inline-block; width: 18px; height: 18px; border-radius: 50%; background: #ccc; vertical-align: middle; margin-right: .4rem; transition: background .3s; }
+.lamp.pass .dot { background: #2fa36b; }
+.lamp.fail .dot { background: #d23f31; }
+.lamp .sc { font-family: var(--mono); color: var(--muted); font-size: .9rem; }
+.build { display: grid; grid-template-columns: repeat(8, 1fr); gap: .3rem; max-width: 420px; margin: .6rem 0; }
+.build button { font: inherit; font-weight: 700; border: 2px solid var(--rule); background: #fff; border-radius: 8px; padding: .35rem 0; cursor: pointer; }
+.build button.in { border-color: var(--accent); background: var(--accent-soft); }
+.build button.bad { border-color: #d23f31; background: #fde3e0; }
+.bits { font-family: var(--mono); font-size: 1.2rem; letter-spacing: .25em; }
+.bits b { color: var(--warm); }
+.big { font-size: 1.25rem; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../index.html#demos">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>The mind reader who survives a lie</h1>
+<p class="explain">Think of a number from 0 to 15 and keep it secret. For each of the seven cards, say whether your number is on it. <b>You may lie on one card if you like.</b> The page will name your number anyway, and tell you which answer was the lie. Then switch to <b>Reveal</b> to see how.</p>
+<div class="demo-panel">
+  <div class="tabs">
+    <button id="tab-attack" class="on">Attack the mind reader</button>
+    <button id="tab-reveal">Reveal</button>
+    <button id="tab-two">Two lies</button>
+  </div>
+
+  <div class="mode" id="mode-attack">
+    <div class="cardrow" id="attack-cards"></div>
+    <div class="controls">
+      <button id="read">Read my mind</button>
+      <button id="again" class="ghost">Start again</button>
+    </div>
+    <div class="readout" id="attack-out">Answer all seven cards, then click Read my mind.</div>
+  </div>
+
+  <div class="mode" id="mode-reveal" hidden>
+    <p>Your seven answers, in card order: <span class="bits" id="rev-bits">–</span></p>
+    <div class="controls">
+      <button id="run-checks">Run the three checks</button>
+      <label>or try a string <input type="text" id="rev-input" size="9" maxlength="7" placeholder="1010001" style="font: inherit; font-family: var(--mono); width: 7em; padding: .25em .4em; border: 1px solid var(--rule); border-radius: 6px;"></label>
+    </div>
+    <div class="lamps">
+      <div class="lamp" id="lampA"><span class="dot"></span><b>Check A</b>: cards 1, 3, 5, 7<br><span class="sc">waiting</span></div>
+      <div class="lamp" id="lampB"><span class="dot"></span><b>Check B</b>: cards 2, 3, 6, 7<br><span class="sc">waiting</span></div>
+      <div class="lamp" id="lampC"><span class="dot"></span><b>Check C</b>: cards 4, 5, 6, 7<br><span class="sc">waiting</span></div>
+    </div>
+    <div class="readout" id="rev-out">A failed check scores 1, 2 or 4. The total is the number of the lying card.</div>
+    <h3>Build the cards yourself</h3>
+    <p class="small">Pick a card, click the numbers that should be on it, then check. Hint: cards 3, 5, 6, 7 are the 8s, 4s, 2s and 1s. Card 1 must make check A come out even, so a number is on card 1 exactly when it is on an odd number of cards 3, 5, 7.</p>
+    <div class="controls">
+      <label>Card <select id="build-card"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option></select></label>
+      <button id="build-check">Check my card</button>
+      <button id="build-clear" class="ghost">Clear</button>
+    </div>
+    <div class="build" id="build-grid"></div>
+    <div class="readout" id="build-out">Click numbers to put them on the card.</div>
+  </div>
+
+  <div class="mode" id="mode-two" hidden>
+    <p>Here the page plays the person and you choose where the lies go. Pick a secret, then click a card to turn its honest answer into a lie. Try one lie, then two.</p>
+    <div class="controls">
+      <label>Secret <select id="two-secret"></select></label>
+      <button id="two-decode">Decode</button>
+      <button id="two-reset" class="ghost">Undo lies</button>
+    </div>
+    <div class="cardrow" id="two-cards"></div>
+    <div class="readout" id="two-out"></div>
+  </div>
+</div>
+
+<div class="explain">
+<h2>What's going on</h2>
+<p>Cards 3, 5, 6 and 7 are the ordinary binary cards for 8, 4, 2 and 1. Cards 1, 2 and 4 are <b>checking cards</b>, chosen so that three groups of answers always contain an even number of yeses: cards 1, 3, 5, 7; cards 2, 3, 6, 7; and cards 4, 5, 6, 7. Those groups are the cards whose numbers have a 1 in the ones place, the twos place and the fours place.</p>
+<p>A lie on card k breaks exactly the checks that card k belongs to, and those checks are the binary digits of k. Score 1, 2 and 4 for the failed checks and the total names the liar. Flip it back and read the number off cards 3, 5, 6, 7. If nothing fails, nobody lied.</p>
+<p>This is the Hamming(7,4) code: four bits of message, three bits of checking, any single error corrected. The 16 honest strings, each with its 7 one-lie neighbours, account for 16 × 8 = 128 = 2<sup>7</sup> strings: every seven-bit string belongs to exactly one secret. That perfect fit is why two lies send the decoder confidently to the wrong answer, which the <b>Two lies</b> tab lets you watch.</p>
+<p>Sheet: <a href="../sheets/b31-mind-reader.html">The mind reader who survives a lie</a>. Related: <a href="../sheets/b2-binary.html">Counting to 31 on one hand</a>, <a href="../sheets/b11-parity.html">Odd, even and things that never change</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  // --- core ---
+  // bits is an array of 7 numbers (0/1) for cards 1..7; secret is 0..15
+  var CHECKS = [[1, 3, 5, 7], [2, 3, 6, 7], [4, 5, 6, 7]];
+  function encode(s) {
+    var c = [0, 0, 0, 0, 0, 0, 0, 0];
+    c[3] = (s >> 3) & 1; c[5] = (s >> 2) & 1; c[6] = (s >> 1) & 1; c[7] = s & 1;
+    c[1] = c[3] ^ c[5] ^ c[7]; c[2] = c[3] ^ c[6] ^ c[7]; c[4] = c[5] ^ c[6] ^ c[7];
+    return c.slice(1);
+  }
+  function syndrome(bits) {
+    var out = [];
+    for (var i = 0; i < 3; i++) {
+      var sum = 0; CHECKS[i].forEach(function (k) { sum += bits[k - 1]; });
+      out.push(sum % 2);
+    }
+    return out; // [A,B,C] each 1 if the check fails
+  }
+  function decode(bits) {
+    var s = syndrome(bits), pos = s[0] + 2 * s[1] + 4 * s[2];
+    var c = bits.slice();
+    if (pos) c[pos - 1] ^= 1;
+    return { secret: (c[2] << 3) | (c[4] << 2) | (c[5] << 1) | c[6], lie: pos, checks: s };
+  }
+  function cardMembers(k) { var m = []; for (var s = 0; s < 16; s++) if (encode(s)[k - 1]) m.push(s); return m; }
+  // --- end core ---
+
+  function el(id) { return document.getElementById(id); }
+  function bitsStr(bits, hl) { return bits.map(function (b, i) { return (hl && hl.indexOf(i + 1) >= 0) ? "<b>" + b + "</b>" : b; }).join(""); }
+  var CHECKCARD = [1, 2, 4];
+  function cardHTML(k) {
+    return '<div class="ttl">Card ' + k + (CHECKCARD.indexOf(k) >= 0 ? " · check" : "") + '</div><div class="nums">' + cardMembers(k).map(function (n) { return "<span>" + n + "</span>"; }).join("") + "</div>";
+  }
+
+  // tabs
+  var modes = ["attack", "reveal", "two"];
+  modes.forEach(function (m) {
+    el("tab-" + m).addEventListener("click", function () {
+      modes.forEach(function (x) { el("tab-" + x).classList.toggle("on", x === m); el("mode-" + x).hidden = x !== m; });
+      if (m === "reveal") syncReveal();
+    });
+  });
+
+  // ---- mode 1: attack ----
+  var answers = [null, null, null, null, null, null, null];
+  var attackCards = el("attack-cards");
+  for (var k = 1; k <= 7; k++) {
+    var d = document.createElement("div"); d.className = "hcard" + (CHECKCARD.indexOf(k) >= 0 ? " chk" : ""); d.id = "ac" + k;
+    d.innerHTML = cardHTML(k) + '<div class="yn"><button data-k="' + k + '" data-v="1">Yes</button><button data-k="' + k + '" data-v="0">No</button></div>';
+    attackCards.appendChild(d);
+  }
+  attackCards.addEventListener("click", function (e) {
+    var b = e.target.closest("button"); if (!b) return;
+    var k = +b.getAttribute("data-k"), v = +b.getAttribute("data-v");
+    answers[k - 1] = v;
+    var btns = el("ac" + k).querySelectorAll("button");
+    btns.forEach(function (x) { x.classList.toggle("sel", +x.getAttribute("data-v") === v); x.classList.remove("lied"); });
+    var left = answers.filter(function (a) { return a === null; }).length;
+    el("attack-out").textContent = left ? left + " card" + (left > 1 ? "s" : "") + " to go." : "All seven answered. Click Read my mind.";
+  });
+  el("read").addEventListener("click", function () {
+    if (answers.some(function (a) { return a === null; })) { el("attack-out").textContent = "Answer every card first."; return; }
+    var r = decode(answers);
+    var msg = "Your number is " + r.secret + ".";
+    if (r.lie) {
+      msg += "\nAnd you lied on card " + r.lie + ". Your honest answer there was " + (answers[r.lie - 1] ? "no" : "yes") + ".";
+      el("ac" + r.lie).querySelector(".yn button.sel").classList.add("lied");
+    } else msg += "\nYou told the truth on every card.";
+    msg += "\n\n(If that is wrong, you lied more than once. See the Two lies tab.)";
+    el("attack-out").textContent = msg;
+  });
+  function resetAttack() {
+    answers = [null, null, null, null, null, null, null];
+    attackCards.querySelectorAll("button").forEach(function (x) { x.classList.remove("sel", "lied"); });
+    el("attack-out").textContent = "Answer all seven cards, then click Read my mind.";
+  }
+  el("again").addEventListener("click", resetAttack);
+
+  // ---- mode 2: reveal ----
+  var lampNames = ["A", "B", "C"], lampTimer = [];
+  function currentBits() {
+    var t = el("rev-input").value.replace(/[^01]/g, "");
+    if (t.length === 7) return t.split("").map(Number);
+    if (!answers.some(function (a) { return a === null; })) return answers.slice();
+    return null;
+  }
+  function syncReveal() {
+    var b = currentBits();
+    el("rev-bits").innerHTML = b ? bitsStr(b) : "– (answer the seven cards on the first tab, or type seven 0s and 1s)";
+  }
+  el("rev-input").addEventListener("input", function () { syncReveal(); resetLamps(); });
+  function resetLamps() {
+    lampTimer.forEach(clearTimeout); lampTimer = [];
+    lampNames.forEach(function (n) { var L = el("lamp" + n); L.classList.remove("pass", "fail"); L.querySelector(".sc").textContent = "waiting"; });
+  }
+  el("run-checks").addEventListener("click", function () {
+    var b = currentBits(); resetLamps();
+    if (!b) { el("rev-out").textContent = "Nothing to check yet. Answer the cards on the first tab, or type a seven-bit string."; return; }
+    var r = decode(b);
+    el("rev-out").textContent = "Checking…";
+    lampNames.forEach(function (n, i) {
+      lampTimer.push(setTimeout(function () {
+        var L = el("lamp" + n), sum = 0; CHECKS[i].forEach(function (k) { sum += b[k - 1]; });
+        var fail = r.checks[i] === 1;
+        L.classList.add(fail ? "fail" : "pass");
+        L.querySelector(".sc").textContent = CHECKS[i].map(function (k) { return b[k - 1]; }).join(" + ") + " = " + sum + (fail ? " → odd, score " + (1 << i) : " → even, score 0");
+      }, 500 + i * 650));
+    });
+    lampTimer.push(setTimeout(function () {
+      var score = r.lie, lines = [];
+      lines.push("Score " + r.checks[0] * 1 + " + " + r.checks[1] * 2 + " + " + r.checks[2] * 4 + " = " + score + ".");
+      if (score) {
+        var fixed = b.slice(); fixed[score - 1] ^= 1;
+        lines.push("So the lie is on card " + score + ". Flip it: " + fixed.join(""));
+        lines.push("Cards 3, 5, 6, 7 read " + [fixed[2], fixed[4], fixed[5], fixed[6]].join(", ") + " → " + (fixed[2] * 8) + " + " + (fixed[4] * 4) + " + " + (fixed[5] * 2) + " + " + fixed[6] + " = " + r.secret + ".");
+      } else {
+        lines.push("No check failed, so nobody lied.");
+        lines.push("Cards 3, 5, 6, 7 read " + [b[2], b[4], b[5], b[6]].join(", ") + " → " + (b[2] * 8) + " + " + (b[4] * 4) + " + " + (b[5] * 2) + " + " + b[6] + " = " + r.secret + ".");
+      }
+      el("rev-out").textContent = lines.join("\n");
+      el("rev-bits").innerHTML = bitsStr(b, score ? [score] : []);
+    }, 500 + 3 * 650));
+  });
+
+  // build the cards
+  var buildGrid = el("build-grid"), chosen = {};
+  for (var n = 0; n < 16; n++) { var bb = document.createElement("button"); bb.textContent = n; bb.setAttribute("data-n", n); buildGrid.appendChild(bb); }
+  buildGrid.addEventListener("click", function (e) {
+    var b = e.target.closest("button"); if (!b) return;
+    var n = +b.getAttribute("data-n"); chosen[n] = !chosen[n];
+    b.classList.toggle("in", !!chosen[n]); b.classList.remove("bad");
+    el("build-out").textContent = "On the card: " + Object.keys(chosen).filter(function (x) { return chosen[x]; }).map(Number).sort(function (a, c) { return a - c; }).join(", ");
+  });
+  function clearBuild() { chosen = {}; buildGrid.querySelectorAll("button").forEach(function (x) { x.classList.remove("in", "bad"); }); el("build-out").textContent = "Click numbers to put them on the card."; }
+  el("build-clear").addEventListener("click", clearBuild);
+  el("build-card").addEventListener("change", clearBuild);
+  el("build-check").addEventListener("click", function () {
+    var k = +el("build-card").value, right = cardMembers(k), wrong = [];
+    for (var n = 0; n < 16; n++) {
+      var should = right.indexOf(n) >= 0, is = !!chosen[n];
+      var b = buildGrid.querySelector('[data-n="' + n + '"]');
+      b.classList.toggle("bad", should !== is);
+      if (should !== is) wrong.push(n + (should ? " (missing)" : " (should not be there)"));
+    }
+    el("build-out").textContent = wrong.length ? "Not yet. Problems: " + wrong.join(", ") + ".\nCard " + k + " should be " + right.join(", ") + "." : "Correct! Card " + k + " is " + right.join(", ") + ".";
+  });
+
+  // ---- mode 3: two lies ----
+  var sel = el("two-secret"); for (var s = 0; s < 16; s++) { var o = document.createElement("option"); o.textContent = s; sel.appendChild(o); }
+  sel.value = "5";
+  var lies = [], twoCards = el("two-cards");
+  for (var k2 = 1; k2 <= 7; k2++) { var d2 = document.createElement("div"); d2.className = "hcard" + (CHECKCARD.indexOf(k2) >= 0 ? " chk" : ""); d2.id = "tc" + k2; d2.setAttribute("data-k", k2); twoCards.appendChild(d2); }
+  function drawTwo() {
+    var s = +sel.value, honest = encode(s);
+    for (var k = 1; k <= 7; k++) {
+      var d = el("tc" + k), lied = lies.indexOf(k) >= 0, v = honest[k - 1] ^ (lied ? 1 : 0);
+      d.classList.toggle("lie", lied);
+      d.innerHTML = cardHTML(k) + '<div class="yn"><button class="' + (v ? "sel" : "") + (lied ? " lied" : "") + '">' + (v ? "Yes" : "No") + (lied ? " (lie)" : "") + "</button></div>";
+    }
+    el("two-out").textContent = "Honest answers for " + s + ": " + honest.join("") + ". Lies so far: " + (lies.length ? "cards " + lies.join(" and ") : "none") + ". Click cards to lie, then Decode.";
+  }
+  twoCards.addEventListener("click", function (e) {
+    var c = e.target.closest(".hcard"); if (!c) return;
+    var k = +c.getAttribute("data-k"), i = lies.indexOf(k);
+    if (i >= 0) lies.splice(i, 1); else if (lies.length < 2) lies.push(k); else { el("two-out").textContent = "Two lies is the most this tab allows. Undo one first."; return; }
+    drawTwo();
+  });
+  sel.addEventListener("change", function () { lies = []; drawTwo(); });
+  el("two-reset").addEventListener("click", function () { lies = []; drawTwo(); });
+  el("two-decode").addEventListener("click", function () {
+    var s = +sel.value, heard = encode(s);
+    lies.forEach(function (k) { heard[k - 1] ^= 1; });
+    var r = decode(heard), lines = ["Heard: " + heard.join("")];
+    lines.push("Checks failed: " + (r.checks.map(function (f, i) { return f ? lampNames[i] : null; }).filter(Boolean).join(", ") || "none") + " → score " + r.lie + ".");
+    lines.push("The trick says: number " + r.secret + ", " + (r.lie ? "lie on card " + r.lie : "no lie") + ".");
+    if (lies.length <= 1) lines.push("Truth: number " + s + ", " + (lies.length ? "lie on card " + lies[0] : "no lie") + ". Correct.");
+    else lines.push("Truth: number " + s + ", lies on cards " + lies.join(" and ") + ". The trick is wrong and does not know it: two lies land on a string that belongs to another secret's one-lie family.");
+    el("two-out").textContent = lines.join("\n");
+  });
+  drawTwo();
+})();
+</script>
+</body>
+</html>

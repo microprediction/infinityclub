@@ -52,7 +52,9 @@
 <footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
 <script>
 (function () {
-  var piles = [3, 5, 7], over = false, busy = false;
+  // gen: a game generation counter; aiTimer: the pending computer move. New game bumps gen and cancels the timer,
+  // so a move scheduled in an old game can never touch a new one.
+  var piles = [3, 5, 7], over = false, busy = false, gen = 0, aiTimer = null;
   var pilesEl = document.getElementById("piles"), status = document.getElementById("status"), secretBox = document.getElementById("secretbox");
   function nimSum(p) { return p.reduce(function (a, b) { return a ^ b; }, 0); }
   function winningMove(p) {
@@ -87,7 +89,8 @@
     if (total() === 0) { over = true; drawPiles(false); status.textContent = "You took the last counter. You win."; return; }
     busy = true; drawPiles(true);
     status.textContent = "You took " + take + " from pile " + (i + 1) + ". Computer is thinking…";
-    setTimeout(aiMove, 650);
+    var g = gen;
+    aiTimer = setTimeout(function () { aiTimer = null; if (g !== gen) return; aiMove(); }, 650);
   }
   function aiMove() {
     var mv = winningMove(piles), why;
@@ -99,6 +102,7 @@
     status.textContent = "Computer took " + mv.take + " from pile " + (mv.pile + 1) + ", " + why + ". Your move.";
   }
   function newGame(p) {
+    gen++; if (aiTimer) clearTimeout(aiTimer); aiTimer = null;
     piles = p.slice(); over = false; busy = false;
     [0, 1, 2].forEach(function (i) { document.getElementById("p" + i).value = piles[i]; });
     drawPiles(false);

@@ -58,9 +58,18 @@
     star: { v: [[0.5, 0.1], [0.12, 0.38], [0.88, 0.38], [0.26, 0.88], [0.74, 0.88]], e: [[0, 3], [3, 2], [2, 1], [1, 4], [4, 0]] },
     twosq: { v: [[0.15, 0.75], [0.45, 0.75], [0.45, 0.25], [0.15, 0.25], [0.8, 0.75], [0.8, 0.25]], e: [[0, 1], [1, 2], [2, 3], [3, 0], [1, 4], [4, 5], [5, 2]] }
   };
+  // Unit-coordinate padding that keeps a 15 px dot and its 26 px hit target on the board even on a phone-width canvas (about 360 × 216 px).
+  var PAD_X = 0.08, PAD_Y = 0.13;
+  function fitToBoard(v) { // rescale points so their bounding box exactly fills the padded board
+    var xs = v.map(function (p) { return p[0]; }), ys = v.map(function (p) { return p[1]; });
+    var x0 = Math.min.apply(null, xs), x1 = Math.max.apply(null, xs), y0 = Math.min.apply(null, ys), y1 = Math.max.apply(null, ys);
+    var sx = (1 - 2 * PAD_X) / ((x1 - x0) || 1), sy = (1 - 2 * PAD_Y) / ((y1 - y0) || 1);
+    return v.map(function (p) { return [PAD_X + (p[0] - x0) * sx, PAD_Y + (p[1] - y0) * sy]; });
+  }
   function randomGraph() {
     var n = 6 + Math.floor(Math.random() * 3), v = [], e = [], i, j;
     for (i = 0; i < n; i++) { var a = i / n * Math.PI * 2 - Math.PI / 2, r = 0.32 + Math.random() * 0.1; v.push([0.5 + r * Math.cos(a) * 1.4, 0.5 + r * Math.sin(a)]); }
+    v = fitToBoard(v);
     for (i = 0; i < n; i++) e.push([i, (i + 1) % n]);
     for (i = 0; i < n; i++) for (j = i + 2; j < n; j++) if (!(i === 0 && j === n - 1) && Math.random() < 0.28) e.push([i, j]);
     return { v: v, e: e };

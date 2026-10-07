@@ -50,10 +50,12 @@
 <script>
 (function () {
   var canvas = document.getElementById("map"), ctx = canvas.getContext("2d"), info = document.getElementById("info");
-  var COLS = ["#3f44c9", "#f5a524", "#3aa36b", "#d94f8a", "#7a4fd9"], NAMES = ["blue", "orange", "green", "pink", "purple"];
-  var W, H, GW = 60, GH = 45, cells, nreg, adj, fill, sel = 0;
+  var COLS = ["#3f44c9", "#f5a524", "#3aa36b", "#d94f8a", "#7a4fd9", "#1f9bb5", "#8a5a2b", "#5f6472"], NAMES = ["blue", "orange", "green", "pink", "purple", "teal", "brown", "grey"];
+  var WORDS = ["one", "two", "three", "four", "Five", "Six", "Seven", "Eight"];
+  function col(i) { return i < COLS.length ? COLS[i] : "hsl(" + ((i * 47) % 360) + ", 55%, 45%)"; } // greedy may, in principle, need more than the named palette
+  var W, H, GW = 60, GH = 45, cells, nreg, adj, fill, labels, sel = 0;
   function say(t) { info.textContent = t; }
-  // Build swatches: four colours + erase (purple only appears via greedy)
+  // Build swatches: four colours + erase (the fifth colour onward only appears via greedy)
   var sw = document.getElementById("swatches");
   for (var c = 0; c < 4; c++) { var b = document.createElement("button"); b.className = "swatch" + (c === 0 ? " sel" : ""); b.style.background = COLS[c]; b.setAttribute("data-c", c); b.title = NAMES[c]; sw.appendChild(b); }
   var er = document.createElement("button"); er.className = "swatch erase"; er.textContent = "erase"; er.setAttribute("data-c", -1); sw.appendChild(er);
@@ -85,6 +87,34 @@
       if (y + 1 < GH) { var c = cells[(y + 1) * GW + x]; if (a !== c) { adj[a][c] = 1; adj[c][a] = 1; } }
     }
     adj = adj.map(function (o) { return Object.keys(o).map(Number); });
+    labels = labelPoints();
+  }
+  // A label must sit inside its own region. The centroid of a ring or of the outside region can land in a different region,
+  // so instead pick the cell of each region furthest from any border with another region (ties broken toward the centroid).
+  function labelPoints() {
+    var N = GW * GH, dist = new Array(N), q = [], i, x, y;
+    for (i = 0; i < N; i++) dist[i] = -1;
+    for (y = 0; y < GH; y++) for (x = 0; x < GW; x++) {
+      i = y * GW + x;
+      var a = cells[i], edge = (x > 0 && cells[i - 1] !== a) || (x + 1 < GW && cells[i + 1] !== a) || (y > 0 && cells[i - GW] !== a) || (y + 1 < GH && cells[i + GW] !== a);
+      if (edge) { dist[i] = 0; q.push(i); }
+    }
+    for (var h = 0; h < q.length; h++) {
+      i = q[h]; x = i % GW; y = (i - x) / GW;
+      var nb = [];
+      if (x > 0) nb.push(i - 1); if (x + 1 < GW) nb.push(i + 1); if (y > 0) nb.push(i - GW); if (y + 1 < GH) nb.push(i + GW);
+      for (var k = 0; k < nb.length; k++) if (dist[nb[k]] < 0 && cells[nb[k]] === cells[i]) { dist[nb[k]] = dist[i] + 1; q.push(nb[k]); }
+    }
+    var sx = [], sy = [], cnt = [], best = [], bestKey = [], r;
+    for (r = 0; r < nreg; r++) { sx.push(0); sy.push(0); cnt.push(0); best.push(null); bestKey.push(-Infinity); }
+    for (i = 0; i < N; i++) { r = cells[i]; sx[r] += i % GW; sy[r] += Math.floor(i / GW); cnt[r]++; }
+    for (i = 0; i < N; i++) {
+      r = cells[i]; x = i % GW; y = Math.floor(i / GW);
+      var dx = x - sx[r] / cnt[r], dy = y - sy[r] / cnt[r];
+      var key = Math.min(dist[i], 3) * 1e4 - (dx * dx + dy * dy); // comfortably inside (3 cells from any border) first, then nearest the centroid
+      if (key > bestKey[r]) { bestKey[r] = key; best[r] = [x + 0.5, y + 0.5]; }
+    }
+    return best;
   }
   function load(name) {
     if (name === "provinces") fromSeeds([[8, 8], [22, 6], [38, 5], [52, 9], [6, 22], [18, 18], [30, 16], [44, 20], [55, 24], [10, 36], [24, 30], [36, 32], [50, 38], [30, 41]]);
@@ -93,14 +123,13 @@
     buildAdj(); fill = new Array(nreg).fill(-1); draw(); say(nreg + " regions. Colour them so neighbours differ.");
   }
   function conflicts() { var n = 0, bad = {}; for (var a = 0; a < nreg; a++) adj[a].forEach(function (b) { if (a < b && fill[a] >= 0 && fill[a] === fill[b]) { n++; bad[a] = 1; bad[b] = 1; } }); return { n: n, bad: bad }; }
-  function centroid(r) { var sx = 0, sy = 0, n = 0; for (var i = 0; i < cells.length; i++) if (cells[i] === r) { sx += i % GW; sy += Math.floor(i / GW); n++; } return n ? [(sx / n + 0.5) * W / GW, (sy / n + 0.5) * H / GH] : [0, 0]; }
   function draw() {
     var dpr = window.devicePixelRatio || 1; W = canvas.clientWidth || 800; H = W * 0.75;
     canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     var cw = W / GW, ch = H / GH, bad = conflicts().bad;
     for (var y = 0; y < GH; y++) for (var x = 0; x < GW; x++) {
       var r = cells[y * GW + x], f = fill[r];
-      ctx.fillStyle = f >= 0 ? COLS[f] : "#f7f5ee"; ctx.fillRect(x * cw, y * ch, cw + 0.6, ch + 0.6);
+      ctx.fillStyle = f >= 0 ? col(f) : "#f7f5ee"; ctx.fillRect(x * cw, y * ch, cw + 0.6, ch + 0.6);
     }
     // borders
     ctx.lineWidth = 2;
@@ -111,7 +140,7 @@
       if (y2 + 1 < GH && cells[(y2 + 1) * GW + x2] !== a) { ctx.strokeStyle = (red && bad[cells[(y2 + 1) * GW + x2]]) ? "#e02020" : "#1d1f3a"; ctx.beginPath(); ctx.moveTo(x2 * cw, (y2 + 1) * ch); ctx.lineTo((x2 + 1) * cw, (y2 + 1) * ch); ctx.stroke(); }
     }
     ctx.font = "bold 14px Nunito, sans-serif"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
-    for (var r2 = 0; r2 < nreg; r2++) { var p = centroid(r2); ctx.fillStyle = fill[r2] >= 0 ? "#fff" : "#1d1f3a"; ctx.fillText(r2 + 1, p[0], p[1]); }
+    for (var r2 = 0; r2 < nreg; r2++) { var p = labels[r2]; if (!p) continue; ctx.fillStyle = fill[r2] >= 0 ? "#fff" : "#1d1f3a"; ctx.fillText(r2 + 1, p[0] * W / GW, p[1] * H / GH); }
   }
   canvas.addEventListener("click", function (e) {
     var rc = canvas.getBoundingClientRect(), x = Math.floor((e.clientX - rc.left) / W * GW), y = Math.floor((e.clientY - rc.top) / H * GH);
@@ -126,9 +155,10 @@
   });
   document.getElementById("greedy").addEventListener("click", function () {
     fill = new Array(nreg).fill(-1);
-    for (var r = 0; r < nreg; r++) { var used = {}; adj[r].forEach(function (b) { if (fill[b] >= 0) used[fill[b]] = 1; }); var c = 0; while (used[c]) c++; fill[r] = Math.min(c, 4); }
-    draw(); var k = Math.max.apply(null, fill) + 1;
-    say("Greedy coloured regions in order 1, 2, 3… and needed " + k + " colour" + (k === 1 ? "" : "s") + "." + (k === 5 ? " Five! Yet the theorem guarantees four. Greedy just chose a bad order." : " Try a random map a few times and watch for a five."));
+    for (var r = 0; r < nreg; r++) { var used = {}; adj[r].forEach(function (b) { if (fill[b] >= 0) used[fill[b]] = 1; }); var c = 0; while (used[c]) c++; fill[r] = c; }
+    draw(); var k = Math.max.apply(null, fill) + 1, cf = conflicts();
+    if (cf.n) { say("Something went wrong: greedy left " + cf.n + " clash" + (cf.n === 1 ? "" : "es") + " (red borders)."); return; }
+    say("Greedy coloured regions in order 1, 2, 3… and needed " + k + " colour" + (k === 1 ? "" : "s") + ", with no clashes." + (k > 4 ? " " + (WORDS[k - 1] || k) + "! Yet the theorem guarantees four. Greedy just chose a bad order." : " Try a random map a few times and watch for a five or a six."));
   });
   document.getElementById("clear").addEventListener("click", function () { fill = new Array(nreg).fill(-1); draw(); say("Cleared."); });
   document.querySelectorAll("[data-m]").forEach(function (b) { b.addEventListener("click", function () { load(b.getAttribute("data-m")); }); });

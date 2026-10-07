@@ -39,7 +39,7 @@
 <h2>What's going on</h2>
 <p>Pick's theorem says that for any polygon whose corners sit on grid dots, <b>Area = I + B/2 − 1</b>. Interior dots count fully, boundary dots count half, and you give one back at the end.</p>
 <p>The page checks it against a different method, the shoelace formula, which multiplies coordinates crosswise around the shape. The two always agree, which is more surprising the more wiggly your shape gets.</p>
-<p>The rule needs a proper polygon: edges may not cross each other, and there may not be holes. Draw a figure eight and the page will refuse. Draw a shape with a hole and the formula misses by exactly one for each hole.</p>
+<p>The rule needs a proper polygon: edges may not cross each other or double back along the same line, and there may not be holes. Draw a figure eight, or a "shape" whose corners all sit on one line, and the page will refuse. Extra corners that merely sit along a straight side are fine. Draw a shape with a hole and the formula misses by exactly one for each hole.</p>
 <p>Sheet: <a href="../sheets/a12-pick.html">Area by counting dots</a>.</p>
 </div>
 </main>
@@ -57,13 +57,21 @@
     if (o1 !== o2 && o3 !== o4 && o1 && o2 && o3 && o4) return true;
     return (on(a, b, c) || on(a, b, d) || on(c, d, a) || on(c, d, b));
   }
-  function simple(P) {
-    var n = P.length; if (n < 3) return false;
-    for (var i = 0; i < n; i++) for (var j = i + 1; j < n; j++) {
-      if (j === i + 1 || (i === 0 && j === n - 1)) continue;
-      if (segs(P[i], P[(i + 1) % n], P[j], P[(j + 1) % n])) return false;
+  function problem(P) { // returns a message if P is not a simple polygon, else null
+    var n = P.length; if (n < 3) return "A shape needs at least three corners.";
+    for (var i = 0; i < n; i++) for (var j = i + 1; j < n; j++) if (P[i][0] === P[j][0] && P[i][1] === P[j][1]) return "The same dot is used twice as a corner. Each corner needs its own dot.";
+    for (i = 0; i < n; i++) { // adjacent edges may share only their common corner: no doubling back along the same line
+      var a = P[i], b = P[(i + 1) % n], c = P[(i + 2) % n];
+      var cross = (b[0] - a[0]) * (c[1] - b[1]) - (b[1] - a[1]) * (c[0] - b[0]), dot = (b[0] - a[0]) * (c[0] - b[0]) + (b[1] - a[1]) * (c[1] - b[1]);
+      if (cross === 0 && dot < 0) return "The edge into dot (" + b[0] + ", " + b[1] + ") doubles straight back on itself. A boundary may not retrace its own steps.";
     }
-    return true;
+    for (i = 0; i < n; i++) for (j = i + 1; j < n; j++) {
+      if (j === i + 1 || (i === 0 && j === n - 1)) continue;
+      if (segs(P[i], P[(i + 1) % n], P[j], P[(j + 1) % n])) return "Those edges cross or touch each other. Pick's theorem only works for shapes whose boundary does not cross itself.";
+    }
+    var S = 0; for (i = 0; i < n; i++) S += P[i][0] * P[(i + 1) % n][1] - P[(i + 1) % n][0] * P[i][1];
+    if (S === 0) return "That shape has no area: all its corners lie on one line.";
+    return null;
   }
   function onBoundary(P, x, y) {
     for (var i = 0; i < P.length; i++) { var p = P[i], q = P[(i + 1) % P.length]; var cr = (q[0] - p[0]) * (y - p[1]) - (q[1] - p[1]) * (x - p[0]); if (cr !== 0) continue; if (Math.min(p[0], q[0]) <= x && x <= Math.max(p[0], q[0]) && Math.min(p[1], q[1]) <= y && y <= Math.max(p[1], q[1])) return true; }
@@ -93,8 +101,8 @@
   function toS(p) { return [ox + p[0] * cell, oy + (NY - 1 - p[1]) * cell]; }
   function fromS(x, y) { var gx = Math.round((x - ox) / cell), gy = NY - 1 - Math.round((y - oy) / cell); if (gx < 0 || gy < 0 || gx >= NX || gy >= NY) return null; var s = toS([gx, gy]); if (Math.hypot(s[0] - x, s[1] - y) > cell * 0.45) return null; return [gx, gy]; }
   function close() {
-    if (pts.length < 3) { info.textContent = "A shape needs at least three corners."; return; }
-    if (!simple(pts)) { info.textContent = "Those edges cross each other. Pick's theorem only works for shapes whose boundary does not cross itself. Undo and try again."; return; }
+    var why = problem(pts);
+    if (why) { info.textContent = why + " Undo and try again."; return; }
     closed = true; result = compute(pts); draw();
     info.textContent = "Interior dots I = " + result.I + "   Boundary dots B = " + result.B + "\nPick:      I + B/2 − 1 = " + result.I + " + " + (result.B / 2) + " − 1 = " + result.pick + "\nShoelace:  " + result.shoelace + (Math.abs(result.pick - result.shoelace) < 1e-9 ? "   ✓ they agree" : "   ✗ (this should not happen)");
   }

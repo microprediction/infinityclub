@@ -21,7 +21,7 @@
 <p class="explain">Three runners. One adds the same amount every step (a × n). One is the square (n²). One multiplies by the same factor every step (b<sup>n</sup>). Give the linear runner a huge head start and the exponential a tiny factor. See who wins anyway.</p>
 <div class="demo-panel">
   <div class="controls">
-    <label>steps N <input type="range" id="N" min="10" max="40" value="20"> <span id="Nv">20</span></label>
+    <label>steps N <input type="range" id="N" min="10" max="100" value="20"> <span id="Nv">20</span></label>
     <label>linear a <input type="range" id="a" min="1" max="50" value="10"> <span id="av">10</span></label>
     <label>factor b <input type="range" id="b" min="1.1" max="3" step="0.1" value="1.5"> <span id="bv">1.5</span></label>
     <label><input type="checkbox" id="logy"> log scale</label>
@@ -31,9 +31,9 @@
 </div>
 <div class="explain">
 <h2>What's going on</h2>
-<p>Adding grows in a straight line. Squaring bends upward, but each step adds only a bit more than the last. Multiplying is different in kind: each step adds a fixed <em>fraction</em> of what you already have, so the additions themselves grow. Eventually that beats any polynomial, no matter how small the factor b or how big the head start a.</p>
+<p>Adding grows in a straight line. Squaring bends upward, but each step adds only a bit more than the last. Multiplying is different in kind: each step adds a fixed <em>fraction</em> of what you already have, so the additions themselves grow. Eventually that beats any polynomial, no matter how small the factor b or how big the head start a. Watch for the trap at the start: at n = 1 the exponential is b, which beats 1² = 1, so it begins in the lead. Then the square races past it. The crossing that matters is the later one, after which the exponential is never caught again.</p>
 <p>Switch on the log scale. The exponential becomes a straight line, because a log turns multiplication into addition. The square becomes a curve that flattens. Straight on a log chart is the signature of exponential growth, which is how scientists spot it in epidemics, bank balances and bacteria.</p>
-<p>Try b = 1.1, which is only 10% growth per step, and a = 50. Push N to 40 and watch where the lines cross. Then imagine N = 100.</p>
+<p>Try b = 1.1, which is only 10% growth per step, and a = 50. At N = 40 the exponential looks hopeless: about 45 against 1,600 for the square and 2,000 for the line. Push N to 100 and watch it pass the line at n = 89 and the square at n = 96. Then imagine N = 200.</p>
 <p>Sheet: <a href="../sheets/b29-growth.html">Linear, squared, doubled</a>.</p>
 </div>
 </main>
@@ -47,8 +47,9 @@
   function draw() {
     var N = parseInt(el.N.value, 10), a = parseInt(el.a.value, 10), b = parseFloat(el.b.value), logy = document.getElementById("logy").checked;
     document.getElementById("Nv").textContent = N; document.getElementById("av").textContent = a; document.getElementById("bv").textContent = b.toFixed(1);
-    var lin = [], sq = [], ex = [], ymax = 1, firstSq = null, firstLin = null;
-    for (var n = 0; n <= N; n++) { lin.push(a * n); sq.push(n * n); ex.push(Math.pow(b, n)); ymax = Math.max(ymax, a * n, n * n, Math.pow(b, n)); if (firstSq === null && n > 0 && Math.pow(b, n) > n * n) firstSq = n; if (firstLin === null && n > 0 && Math.pow(b, n) > a * n) firstLin = n; }
+    var lin = [], sq = [], ex = [], ymax = 1;
+    for (var n = 0; n <= N; n++) { lin.push(a * n); sq.push(n * n); ex.push(Math.pow(b, n)); ymax = Math.max(ymax, a * n, n * n, Math.pow(b, n)); }
+    var vsSq = overtake(b, function (n) { return n * n; }), vsLin = overtake(b, function (n) { return a * n; });
     var dpr = window.devicePixelRatio || 1, W = canvas.clientWidth || 900, H = W * 0.5;
     canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, H);
@@ -58,12 +59,24 @@
     ctx.strokeStyle = "#d9d6cc"; ctx.lineWidth = 1; ctx.font = "12px Nunito, sans-serif"; ctx.fillStyle = "#5d6079"; ctx.textAlign = "right";
     if (logy) { var lm = Math.ceil(Math.log10(Math.max(ymax, 10))); for (var p = 0; p <= lm; p++) { var y = Y(Math.pow(10, p)); ctx.beginPath(); ctx.moveTo(L, y); ctx.lineTo(R, y); ctx.stroke(); ctx.fillText(p < 7 ? Math.pow(10, p).toLocaleString() : "10^" + p, L - 6, y + 4); } }
     else { for (var g = 0; g <= 5; g++) { var v = ymax * g / 5, yy = Y(v); ctx.beginPath(); ctx.moveTo(L, yy); ctx.lineTo(R, yy); ctx.stroke(); ctx.fillText(Math.round(v).toLocaleString(), L - 6, yy + 4); } }
-    ctx.textAlign = "center"; for (var t = 0; t <= N; t += (N > 20 ? 5 : 2)) ctx.fillText(t, X(t), B + 16);
+    ctx.textAlign = "center"; for (var t = 0; t <= N; t += (N > 50 ? 10 : N > 20 ? 5 : 2)) ctx.fillText(t, X(t), B + 16);
     function line(arr, color) { ctx.strokeStyle = color; ctx.lineWidth = 2.5; ctx.beginPath(); arr.forEach(function (v, i) { var x = X(i), y = Math.max(T, Y(v)); if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y); }); ctx.stroke(); }
     line(lin, "#8a8ee6"); line(sq, "#3f44c9"); line(ex, "#f5a524");
     ctx.textAlign = "left"; ctx.font = "13px Nunito, sans-serif";
     [["#8a8ee6", a + " × n"], ["#3f44c9", "n²"], ["#f5a524", b.toFixed(1) + "ⁿ"]].forEach(function (k, i) { ctx.fillStyle = k[0]; ctx.fillRect(L + 10 + i * 120, T + 4, 14, 4); ctx.fillStyle = "#1d1f3a"; ctx.fillText(k[1], L + 30 + i * 120, T + 10); });
-    info.textContent = "At n = " + N + ":   " + a + "×n = " + (a * N).toLocaleString() + "    n² = " + (N * N).toLocaleString() + "    " + b.toFixed(1) + "ⁿ = " + fmt(Math.pow(b, N)) + "\n" + "The exponential overtakes n² " + (firstSq ? "at n = " + firstSq : "after n = " + N) + ", and overtakes " + a + "×n " + (firstLin ? "at n = " + firstLin : "after n = " + N) + ".";
+    info.textContent = "At n = " + N + ":   " + a + "×n = " + (a * N).toLocaleString() + "    n² = " + (N * N).toLocaleString() + "    " + b.toFixed(1) + "ⁿ = " + fmt(Math.pow(b, N)) + "\n" + describe(b.toFixed(1) + "ⁿ", "n²", vsSq, N) + "\n" + describe(b.toFixed(1) + "ⁿ", a + "×n", vsLin, N);
+  }
+  // Where does b^n overtake f(n) for good? Returns {behind: first n >= 1 with b^n <= f(n) or null, cross: 1 + last such n}.
+  // An exponential with b > 1 eventually beats any polynomial, so scanning far enough finds the last time it is behind.
+  function overtake(b, f) {
+    var behind = null, last = null;
+    for (var n = 1; n <= 20000; n++) { if (Math.pow(b, n) <= f(n)) { if (behind === null) behind = n; last = n; } }
+    return { behind: behind, cross: last === null ? null : last + 1 };
+  }
+  function describe(name, rival, r, N) {
+    if (r.behind === null) return name + " is ahead of " + rival + " from n = 1 and never falls behind.";
+    var s = (r.behind === 1 ? name + " is behind " + rival + " from n = 1" : name + " starts ahead at n = 1, falls behind " + rival + " at n = " + r.behind) + ", and overtakes it for good at n = " + r.cross;
+    return s + (r.cross > N ? ", beyond the plotted range. Increase N to see it." : ".");
   }
   function fmt(v) { return v < 1e6 ? Math.round(v).toLocaleString() : v.toExponential(2); }
   window.addEventListener("resize", draw); draw();

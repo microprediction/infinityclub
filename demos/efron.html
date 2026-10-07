@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Efron Dice · Infinity Club</title>
+<meta name="description" content="Four dice that beat each other in a circle. Pick first and the computer always finds a die that beats yours. Then design your own circle of dice.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.dice { display: flex; flex-wrap: wrap; gap: .7rem; margin: .6rem 0 1rem; }
+.die { font: inherit; border: 2px solid var(--rule); background: #fff; border-radius: 10px; padding: .5rem .8rem; cursor: pointer; text-align: left; min-width: 9.5rem; }
+.die b { display: block; font-size: 1.15rem; }
+.die span { font-family: var(--mono); font-size: .95rem; color: var(--muted); }
+.die.you { border-color: var(--accent); background: #eceefb; }
+.die.me { border-color: var(--warm); background: #fff4df; }
+.die:disabled { cursor: default; opacity: .55; }
+.msg { font-weight: 700; margin: .4rem 0; min-height: 1.4em; }
+.scorebar { height: 18px; border-radius: 9px; background: #f5d9a3; overflow: hidden; margin: .4rem 0; position: relative; }
+.scorebar div { height: 100%; background: var(--accent); width: 0; transition: width .15s; }
+.scorebar i { position: absolute; top: 0; bottom: 0; width: 2px; background: #1d1f3a; }
+.rolls { font-family: var(--mono); font-size: .95rem; margin: .4rem 0; white-space: pre-wrap; }
+table.win36 td, table.win36 th { width: 2.1em; height: 2.1em; font-family: var(--mono); font-size: .9rem; }
+table.win36 td.y { background: #c9ccf3; }
+table.win36 td.m { background: #fbe0ad; }
+table.win36 td.t { background: #e4e2dc; }
+table.faces input { width: 3.2em; font: inherit; text-align: center; padding: .2em; border: 1px solid var(--rule); border-radius: 6px; }
+table.faces th { text-align: left; }
+.pair td.hi { font-weight: 800; color: var(--accent); }
+.pair td.lo { color: var(--muted); }
+.two { display: flex; flex-wrap: wrap; gap: 1.2rem; align-items: flex-start; }
+.two > * { flex: 1 1 280px; }
+svg.graph { width: 100%; max-width: 320px; height: auto; display: block; }
+.hidden { display: none; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../index.html#demos">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Dice that go round in circles</h1>
+<p class="explain">Four fair dice. You pick one, I pick one, higher roll wins. Go on, pick first. Whatever you choose, I can choose a die that beats yours two times in three. Then swap: I pick first, and you find the die that beats mine.</p>
+
+<div class="demo-panel">
+  <div class="controls">
+    <label><input type="radio" name="mode" value="first" checked> You choose first</label>
+    <label><input type="radio" name="mode" value="second"> I choose first, you choose second</label>
+  </div>
+  <div class="dice" id="dice"></div>
+  <div class="msg" id="msg"></div>
+  <div class="controls">
+    <button id="roll10" disabled>Roll 10 times</button>
+    <button id="roll10k" class="alt" disabled>Roll 10 000 times</button>
+    <button id="table36" class="ghost" disabled>Show the 36 squares</button>
+    <button id="newgame" class="ghost">New game</button>
+  </div>
+  <div class="scorebar"><div id="bar"></div><i id="mark" style="left:50%"></i></div>
+  <div class="readout" id="score">Pick a die to start.</div>
+  <div class="rolls" id="rolls"></div>
+  <div id="tablebox" class="hidden"></div>
+</div>
+
+<div class="explain">
+<h2>What's going on</h2>
+<p>When two dice are rolled there are 6 × 6 = 36 equally likely pairs of faces. Count the pairs where the first die shows the bigger number and you have its chance of winning. Die A (4, 4, 4, 4, 0, 0) against die B (3, 3, 3, 3, 3, 3): A wins on its four 4s whatever B shows, which is 4 × 6 = 24 of the 36 pairs. Two thirds.</p>
+<p>Do that for every pair and a strange shape appears: A beats B, B beats C, C beats D, and D beats A, each two thirds of the time. The dice form a circle, not a line. So "which die is best?" has no answer. Whichever die you pick, the one just behind it in the circle beats it. These are Bradley Efron's dice.</p>
+<p>The dark line on the score bar shows the exact prediction. Ten rolls can land anywhere near it. Ten thousand rolls hug it. That is the law of large numbers doing its job, exactly as in <a href="dice.html">Two dice, many rolls</a>.</p>
+<p>Sheet: <a href="../sheets/b32-efron-dice.html">Dice that go round in circles</a>. Related: <a href="../sheets/b14-dice.html">Dice don't lie</a> and <a href="../sheets/c9-voting.html">How an election can have no winner</a>.</p>
+</div>
+
+<h2>Design your own circle</h2>
+<p class="explain">Change any faces you like (whole numbers from 0 to 20). The table shows the exact chance that the row die beats the column die, and the picture draws an arrow from a die to each die it beats more than half the time. Can you make a circle of four? Of three? Can you make a circle where every die has the same average?</p>
+<div class="demo-panel">
+  <div class="two">
+    <div>
+      <table class="faces" id="faces"></table>
+      <div class="controls">
+        <button id="compute">Compute</button>
+        <button id="efron" class="ghost">Efron's dice</button>
+        <button id="trio" class="ghost">Three with equal averages</button>
+        <button id="plain" class="ghost">Ordinary dice</button>
+      </div>
+    </div>
+    <div>
+      <table class="pair" id="pairs"></table>
+      <svg class="graph" id="graph" viewBox="0 0 320 300" role="img" aria-label="arrows between dice showing which beats which"></svg>
+      <div class="readout" id="design"></div>
+    </div>
+  </div>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  // --- pure ---
+  var EFRON = [[4,4,4,4,0,0],[3,3,3,3,3,3],[6,6,2,2,2,2],[5,5,5,1,1,1]];
+  var TRIO = [[2,2,4,4,9,9],[1,1,6,6,8,8],[3,3,5,5,7,7],[1,2,3,4,5,6]];
+  var PLAIN = [[1,2,3,4,5,6],[1,2,3,4,5,6],[1,2,3,4,5,6],[1,2,3,4,5,6]];
+  var NAMES = ["A","B","C","D"];
+  // Count the 36 ordered face pairs (x face, y face) where x wins, ties, y wins.
+  function winCount(x, y) {
+    var w = 0, t = 0, l = 0;
+    for (var i = 0; i < x.length; i++) for (var j = 0; j < y.length; j++) {
+      if (x[i] > y[j]) w++; else if (x[i] === y[j]) t++; else l++;
+    }
+    return { win: w, tie: t, lose: l, n: x.length * y.length };
+  }
+  function gcd(a, b) { while (b) { var r = a % b; a = b; b = r; } return a; }
+  function frac(k, n) { if (k === 0) return "0"; if (k === n) return "1"; var g = gcd(k, n); return (k / g) + "/" + (n / g); }
+  function mean(d) { var s = 0; for (var i = 0; i < d.length; i++) s += d[i]; return s / d.length; }
+  // In Efron's circle A>B>C>D>A, the die that beats index i is the one before it.
+  function beater(i) { return (i + 3) % 4; }
+  // --- end pure ---
+
+  var dice = EFRON.map(function (d) { return d.slice(); });
+  var mode = "first", you = -1, me = -1, wins = 0, losses = 0, ties = 0, rolls = 0;
+  var diceBox = document.getElementById("dice"), msg = document.getElementById("msg"), score = document.getElementById("score");
+  var rollsBox = document.getElementById("rolls"), bar = document.getElementById("bar"), mark = document.getElementById("mark"), tableBox = document.getElementById("tablebox");
+  var btn10 = document.getElementById("roll10"), btn10k = document.getElementById("roll10k"), btnTable = document.getElementById("table36");
+
+  function dieLabel(i) { return NAMES[i] + " · " + dice[i].join(" "); }
+  function renderDice() {
+    diceBox.innerHTML = "";
+    dice.forEach(function (d, i) {
+      var b = document.createElement("button"); b.className = "die"; b.type = "button";
+      b.innerHTML = "<b>Die " + NAMES[i] + "</b><span>" + d.join("  ") + "</span>";
+      if (i === you) b.classList.add("you"); if (i === me) b.classList.add("me");
+      b.disabled = (you >= 0 && me >= 0);
+      b.addEventListener("click", function () { pick(i); });
+      diceBox.appendChild(b);
+    });
+  }
+  function pick(i) {
+    if (you >= 0 && me >= 0) return;
+    if (mode === "first") {
+      you = i; me = beater(i);
+      msg.textContent = "You chose " + NAMES[you] + ". I choose " + NAMES[me] + ". Let's roll.";
+    } else {
+      if (i === me) { msg.textContent = "That one is mine. Pick a different die."; return; }
+      you = i;
+      var wc = winCount(dice[you], dice[me]);
+      msg.textContent = (wc.win * 2 > wc.n) ? "Good choice: " + NAMES[you] + " beats " + NAMES[me] + " " + frac(wc.win, wc.n) + " of the time." :
+        (wc.win * 2 === wc.n ? NAMES[you] + " against " + NAMES[me] + " is an even match. There was a better die." : "Hmm. " + NAMES[me] + " beats " + NAMES[you] + " " + frac(wc.lose, wc.n) + " of the time. There was a better die, one step back round the circle.");
+    }
+    btn10.disabled = btn10k.disabled = btnTable.disabled = false;
+    renderDice(); showScore();
+  }
+  function newGame() {
+    you = -1; me = -1; wins = 0; losses = 0; ties = 0; rolls = 0; rollsBox.textContent = ""; tableBox.classList.add("hidden"); tableBox.innerHTML = "";
+    btn10.disabled = btn10k.disabled = btnTable.disabled = true; btnTable.textContent = "Show the 36 squares";
+    if (mode === "second") { me = Math.floor(Math.random() * 4); msg.textContent = "I choose " + NAMES[me] + ". Which die beats it? Your pick."; }
+    else msg.textContent = "Your pick. Click any die.";
+    renderDice(); showScore();
+  }
+  function showScore() {
+    if (you < 0 || me < 0) { score.textContent = mode === "first" ? "Pick a die to start." : "Pick the die you think beats mine."; bar.style.width = "0"; mark.style.left = "50%"; return; }
+    var wc = winCount(dice[you], dice[me]), p = wc.win / wc.n;
+    mark.style.left = (p * 100) + "%";
+    var played = wins + losses;
+    bar.style.width = played ? (wins / (wins + losses + ties) * 100) + "%" : "0";
+    score.textContent = "You (" + NAMES[you] + ") " + wins + "   me (" + NAMES[me] + ") " + losses + (ties ? "   ties " + ties : "") + "   rolls " + rolls +
+      "\nyour win fraction so far: " + (rolls ? (wins / rolls).toFixed(4) : "–") + "   exact chance: " + frac(wc.win, wc.n) + " = " + p.toFixed(4) + (wc.tie ? "   (ties " + frac(wc.tie, wc.n) + ")" : "");
+  }
+  function doRolls(n, show) {
+    var lines = [];
+    for (var k = 0; k < n; k++) {
+      var a = dice[you][Math.floor(Math.random() * 6)], b = dice[me][Math.floor(Math.random() * 6)];
+      if (a > b) wins++; else if (a < b) losses++; else ties++;
+      rolls++;
+      if (show) lines.push("roll " + (k + 1) + ": you " + a + "  me " + b + "  " + (a > b ? "you win" : a < b ? "I win" : "tie"));
+    }
+    rollsBox.textContent = show ? lines.join("\n") : "";
+    showScore();
+  }
+  function render36() {
+    var x = dice[you], y = dice[me], h = "<table class='win36'><tr><th>" + NAMES[you] + " ↓ " + NAMES[me] + " →</th>";
+    for (var j = 0; j < 6; j++) h += "<th>" + y[j] + "</th>";
+    h += "</tr>";
+    for (var i = 0; i < 6; i++) {
+      h += "<tr><th>" + x[i] + "</th>";
+      for (var jj = 0; jj < 6; jj++) h += "<td class='" + (x[i] > y[jj] ? "y'>you" : x[i] < y[jj] ? "m'>me" : "t'>tie") + "</td>";
+      h += "</tr>";
+    }
+    var wc = winCount(x, y);
+    h += "</table><p class='small'>You win in " + wc.win + " of the 36 squares" + (wc.tie ? ", tie in " + wc.tie : "") + ", so your chance is " + frac(wc.win, 36) + ".</p>";
+    tableBox.innerHTML = h;
+  }
+
+  document.querySelectorAll("input[name=mode]").forEach(function (r) { r.addEventListener("change", function () { mode = r.value; newGame(); }); });
+  btn10.addEventListener("click", function () { doRolls(10, true); });
+  btn10k.addEventListener("click", function () { doRolls(10000, false); });
+  btnTable.addEventListener("click", function () {
+    if (tableBox.classList.contains("hidden")) { render36(); tableBox.classList.remove("hidden"); btnTable.textContent = "Hide the 36 squares"; }
+    else { tableBox.classList.add("hidden"); btnTable.textContent = "Show the 36 squares"; }
+  });
+  document.getElementById("newgame").addEventListener("click", newGame);
+
+  // ----- design your own -----
+  var facesTbl = document.getElementById("faces"), pairsTbl = document.getElementById("pairs"), graph = document.getElementById("graph"), designOut = document.getElementById("design");
+  var design = EFRON.map(function (d) { return d.slice(); });
+  function renderFaces() {
+    var h = "<tr><th></th><th colspan='6'>faces</th></tr>";
+    for (var i = 0; i < 4; i++) {
+      h += "<tr><th>" + NAMES[i] + "</th>";
+      for (var j = 0; j < 6; j++) h += "<td><input type='number' min='0' max='20' step='1' data-i='" + i + "' data-j='" + j + "' value='" + design[i][j] + "'></td>";
+      h += "</tr>";
+    }
+    facesTbl.innerHTML = h;
+  }
+  function readFaces() {
+    facesTbl.querySelectorAll("input").forEach(function (inp) {
+      var v = Math.round(parseFloat(inp.value)); if (!isFinite(v)) v = 0; v = Math.max(0, Math.min(20, v)); inp.value = v;
+      design[+inp.dataset.i][+inp.dataset.j] = v;
+    });
+  }
+  function compute() {
+    readFaces();
+    var h = "<tr><th>row beats column</th>"; for (var j = 0; j < 4; j++) h += "<th>" + NAMES[j] + "</th>"; h += "<th>average</th></tr>";
+    var P = [], arrows = [];
+    for (var i = 0; i < 4; i++) {
+      P.push([]); h += "<tr><th>" + NAMES[i] + "</th>";
+      for (var k = 0; k < 4; k++) {
+        if (i === k) { h += "<td>–</td>"; P[i].push(null); continue; }
+        var wc = winCount(design[i], design[k]); P[i].push(wc);
+        var cls = wc.win * 2 > wc.n ? "hi" : wc.win * 2 < wc.n ? "lo" : "";
+        h += "<td class='" + cls + "'>" + frac(wc.win, wc.n) + "</td>";
+        if (wc.win * 2 > wc.n) arrows.push([i, k, frac(wc.win, wc.n)]);
+      }
+      h += "<td>" + (+mean(design[i]).toFixed(2)) + "</td></tr>";
+    }
+    pairsTbl.innerHTML = h;
+    drawGraph(arrows);
+    // Find a 4-cycle or 3-cycle among the arrows.
+    var beats = function (a, b) { return P[a][b] && P[a][b].win * 2 > P[a][b].n; };
+    var found = "";
+    var perms4 = [[0,1,2,3],[0,1,3,2],[0,2,1,3],[0,2,3,1],[0,3,1,2],[0,3,2,1]];
+    for (var p = 0; p < perms4.length && !found; p++) { var q = perms4[p]; if (beats(q[0],q[1]) && beats(q[1],q[2]) && beats(q[2],q[3]) && beats(q[3],q[0])) found = "a circle of four: " + q.map(function (z) { return NAMES[z]; }).join(" → ") + " → " + NAMES[q[0]]; }
+    var tri = [[0,1,2],[0,1,3],[0,2,3],[1,2,3]];
+    for (var t = 0; t < tri.length && !found; t++) { var u = tri[t], a = u[0], b = u[1], c = u[2];
+      if (beats(a,b) && beats(b,c) && beats(c,a)) found = "a circle of three: " + NAMES[a] + " → " + NAMES[b] + " → " + NAMES[c] + " → " + NAMES[a];
+      else if (beats(a,c) && beats(c,b) && beats(b,a)) found = "a circle of three: " + NAMES[a] + " → " + NAMES[c] + " → " + NAMES[b] + " → " + NAMES[a]; }
+    designOut.textContent = found ? "You have " + found + ". No die is best." : "No circle here: these dice can be lined up (ties and even matches ignored).";
+  }
+  function drawGraph(arrows) {
+    var pos = [[60, 60], [260, 60], [260, 240], [60, 240]];
+    var s = "<defs><marker id='ah' viewBox='0 0 10 10' refX='9' refY='5' markerWidth='7' markerHeight='7' orient='auto-start-reverse'><path d='M0,0 L10,5 L0,10 z' fill='#3f44c9'/></marker></defs>";
+    arrows.forEach(function (ar) {
+      var a = pos[ar[0]], b = pos[ar[1]], dx = b[0] - a[0], dy = b[1] - a[1], L = Math.sqrt(dx * dx + dy * dy), ux = dx / L, uy = dy / L;
+      // offset parallel edges so A→B and B→A would not overlap (only one can exist, but keep room for labels)
+      var ox = -uy * 8, oy = ux * 8;
+      var x1 = a[0] + ux * 30 + ox, y1 = a[1] + uy * 30 + oy, x2 = b[0] - ux * 30 + ox, y2 = b[1] - uy * 30 + oy;
+      s += "<line x1='" + x1 + "' y1='" + y1 + "' x2='" + x2 + "' y2='" + y2 + "' stroke='#3f44c9' stroke-width='3' marker-end='url(#ah)'/>";
+      var lx = (x1 + x2) / 2 + ox * 1.6, ly = (y1 + y2) / 2 + oy * 1.6;
+      s += "<text x='" + lx + "' y='" + (ly + 4) + "' font-size='12' font-family='Nunito, sans-serif' text-anchor='middle' fill='#5d6079'>" + ar[2] + "</text>";
+    });
+    pos.forEach(function (p, i) {
+      s += "<circle cx='" + p[0] + "' cy='" + p[1] + "' r='26' fill='#fff' stroke='#1d1f3a' stroke-width='2'/>";
+      s += "<text x='" + p[0] + "' y='" + (p[1] + 7) + "' font-size='20' font-weight='800' font-family='Nunito, sans-serif' text-anchor='middle' fill='#1d1f3a'>" + NAMES[i] + "</text>";
+      s += "<text x='" + p[0] + "' y='" + (p[1] + (i < 2 ? -34 : 46)) + "' font-size='11' font-family='Nunito, sans-serif' text-anchor='middle' fill='#5d6079'>mean " + (+mean(design[i]).toFixed(2)) + "</text>";
+    });
+    graph.innerHTML = s;
+  }
+  function preset(src) { design = src.map(function (d) { return d.slice(); }); renderFaces(); compute(); }
+  document.getElementById("compute").addEventListener("click", compute);
+  document.getElementById("efron").addEventListener("click", function () { preset(EFRON); });
+  document.getElementById("trio").addEventListener("click", function () { preset(TRIO); });
+  document.getElementById("plain").addEventListener("click", function () { preset(PLAIN); });
+  facesTbl.addEventListener("change", compute);
+
+  renderFaces(); compute(); newGame();
+})();
+</script>
+</body>
+</html>

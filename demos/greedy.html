@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Break the Greedy Colourer · Infinity Club</title>
+<meta name="description" content="Four colours are always enough. Reorder the regions and make a sensible colouring method use five or six, then repair the same map with four.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+#map { touch-action: manipulation; cursor: pointer; }
+.order { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: .5rem 0; }
+.chip { display: inline-flex; align-items: center; border: 2px solid #1d1f3a; border-radius: 10px; background: #fff; overflow: hidden; font-weight: 800; }
+.chip span { padding: 4px 8px; min-width: 2ch; text-align: center; }
+.chip button { border: 0; background: #f3f1ea; padding: 4px 7px; cursor: pointer; font-size: 1rem; line-height: 1; }
+.chip button:hover { background: #e7e4d8; }
+.chip.done span { color: #fff; }
+.chip.now { box-shadow: 0 0 0 3px #f5a524; }
+.swatch { width: 38px; height: 38px; border-radius: 8px; border: 3px solid transparent; cursor: pointer; padding: 0; }
+.swatch.sel { border-color: #1d1f3a; transform: scale(1.1); }
+.swatch.erase { background: #fff; border: 2px dashed #999; font-size: .8rem; }
+.tabs button[aria-pressed="true"] { background: #1d1f3a; color: #fff; }
+.score { font-weight: 800; }
+.hidden { display: none; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../index.html#demos">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Four colours are enough. Can you make the computer use six?</h1>
+<p class="explain">The computer colours the map one region at a time, in the order you give it, always choosing the <b>smallest</b> colour not already used by a coloured neighbour. That method is called <b>greedy</b>. The map never changes. Only the order does. Push the regions around until greedy needs five colours, then six. Then switch to <b>Repair</b> and colour the very same map with four.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <button data-m="small">Small map</button>
+    <button data-m="challenge">Challenge map</button>
+    <button data-m="random" class="alt">Random map</button>
+  </div>
+  <div class="controls tabs">
+    <button id="tab-greedy" aria-pressed="true">Greedy order</button>
+    <button id="tab-repair" aria-pressed="false">Repair with four</button>
+  </div>
+  <div id="pane-greedy">
+    <p class="small">Colouring order. Use the arrows to move a region earlier or later.</p>
+    <div class="order" id="order"></div>
+    <div class="controls">
+      <button id="run">Run greedy</button>
+      <button id="shuffle" class="ghost">Shuffle order</button>
+      <button id="resetorder" class="ghost">Order 1, 2, 3…</button>
+    </div>
+  </div>
+  <div id="pane-repair" class="hidden">
+    <p class="small">Pick a colour, click regions. Neighbours must differ. Only four colours are offered.</p>
+    <div class="controls" id="swatches"></div>
+    <div class="controls">
+      <button id="check">Check</button>
+      <button id="solve" class="ghost">Show me a four-colouring</button>
+      <button id="clear" class="ghost">Clear</button>
+    </div>
+  </div>
+  <canvas id="map" width="800" height="600"></canvas>
+  <div class="readout" id="info"></div>
+  <div class="readout score hidden" id="score"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>The <b>Four Colour Theorem</b> says that every flat map can be coloured with four colours so that neighbours never match. It is an <em>existence</em> statement: a good colouring is out there. It says nothing about how to find it, and nothing at all about what happens if you colour in a careless order.</p>
+<p><b>Greedy</b> is an algorithm: a recipe that always finishes. Take the regions in order, give each the smallest colour its already-coloured neighbours have not used. It never produces a clash, because it checks the neighbours every time. But it can box itself in. If a region's neighbours have already been handed colours 1, 2, 3, 4 and 5, that region gets colour 6, even though a cleverer plan would have shared colours earlier.</p>
+<p>So two things can both be true: four colours exist for this map, and greedy in your order used six. The theorem is about the map. The six is about the method. Finding an order that makes greedy fail is you supplying a <b>counterexample</b> to the claim "greedy always does well". Repairing the map with four is you showing the theorem was right all along.</p>
+<p>The <b>Show me a four-colouring</b> button does not use greedy. It searches: try a colour, go on, and if it gets stuck it backs up and tries the next colour. On small maps that is quick. The fact that it always succeeds here is the theorem at work, not a property of the search.</p>
+<p>Every colouring on this page is checked against every shared border before it is reported, so the counts you see are the true counts.</p>
+<p>Sheet: <a href="../sheets/b25-four-colours.html">Four colours are always enough</a>. Colour maps by hand in <a href="colour.html">Colour the map</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  // --- logic ---
+  var GW = 60, GH = 45;
+  function fromSeeds(seeds) {
+    var cells = new Array(GW * GH);
+    for (var y = 0; y < GH; y++) for (var x = 0; x < GW; x++) {
+      var best = 0, bd = 1e9;
+      for (var i = 0; i < seeds.length; i++) { var d = (x - seeds[i][0]) * (x - seeds[i][0]) + (y - seeds[i][1]) * (y - seeds[i][1]); if (d < bd) { bd = d; best = i; } }
+      cells[y * GW + x] = best;
+    }
+    return { cells: cells, nreg: seeds.length };
+  }
+  function buildAdj(cells, nreg) {
+    var adj = []; for (var i = 0; i < nreg; i++) adj.push({});
+    for (var y = 0; y < GH; y++) for (var x = 0; x < GW; x++) {
+      var a = cells[y * GW + x];
+      if (x + 1 < GW) { var b = cells[y * GW + x + 1]; if (a !== b) { adj[a][b] = 1; adj[b][a] = 1; } }
+      if (y + 1 < GH) { var c = cells[(y + 1) * GW + x]; if (a !== c) { adj[a][c] = 1; adj[c][a] = 1; } }
+    }
+    return adj.map(function (o) { return Object.keys(o).map(Number); });
+  }
+  // One greedy step: the smallest colour not used by an already coloured neighbour of r.
+  function greedyStep(adj, fill, r) { var used = {}; adj[r].forEach(function (b) { if (fill[b] >= 0) used[fill[b]] = 1; }); var c = 0; while (used[c]) c++; return c; }
+  function greedy(adj, order) {
+    var fill = new Array(adj.length).fill(-1);
+    for (var i = 0; i < order.length; i++) fill[order[i]] = greedyStep(adj, fill, order[i]);
+    return fill;
+  }
+  function clashes(adj, fill) { var bad = []; for (var a = 0; a < adj.length; a++) adj[a].forEach(function (b) { if (a < b && fill[a] >= 0 && fill[a] === fill[b]) bad.push([a, b]); }); return bad; }
+  function coloursUsed(fill) { var s = {}; fill.forEach(function (f) { if (f >= 0) s[f] = 1; }); return Object.keys(s).length; }
+  // Backtracking search for a k-colouring. Not greedy: it backs up when stuck.
+  function solve(adj, k) {
+    var n = adj.length, fill = new Array(n).fill(-1), order = [];
+    for (var i = 0; i < n; i++) order.push(i);
+    order.sort(function (a, b) { return adj[b].length - adj[a].length; });
+    function go(i) {
+      if (i === n) return true;
+      var r = order[i];
+      for (var c = 0; c < k; c++) {
+        var ok = true;
+        for (var j = 0; j < adj[r].length; j++) if (fill[adj[r][j]] === c) { ok = false; break; }
+        if (ok) { fill[r] = c; if (go(i + 1)) return true; fill[r] = -1; }
+      }
+      return false;
+    }
+    return go(0) ? fill : null;
+  }
+  var MAPS = {
+    // 7 regions, three colours suffice, and the order 1..7 finds three. Some orders make greedy use five.
+    small: [[52, 21], [32, 10], [21, 19], [9, 14], [19, 36], [46, 5], [30, 31]],
+    // 13 regions, four colours suffice, and the order 1..13 makes greedy use six.
+    challenge: [[45.52, 32.23], [11.72, 8.45], [55.93, 39.84], [24.19, 3.24], [8.20, 36.53], [37.25, 32.04], [50.38, 5.18], [13.55, 6.79], [36.62, 26.70], [28.37, 3.60], [41.67, 38.64], [27.20, 14.35], [23.07, 19.00]]
+  };
+  // --- end logic ---
+
+  var canvas = document.getElementById("map"), ctx = canvas.getContext("2d");
+  var info = document.getElementById("info"), scoreEl = document.getElementById("score"), orderEl = document.getElementById("order");
+  var COLS = ["#3f44c9", "#f5a524", "#3aa36b", "#d94f8a", "#7a4fd9", "#1fa3a3", "#8a5a2b", "#6b6b6b"];
+  var NAMES = ["blue", "orange", "green", "pink", "purple", "teal", "brown", "grey"];
+  var W, H, cells, nreg, adj, fill, order, mode = "greedy", sel = 0, gen = 0, timer = null, record = 0, highlight = -1, mapName = "small";
+  function say(t) { info.textContent = t; }
+  function colName(c) { return c < NAMES.length ? NAMES[c] + " (colour " + (c + 1) + ")" : "colour " + (c + 1); }
+
+  function load(name) {
+    gen++; if (timer) { clearTimeout(timer); timer = null; }
+    mapName = name;
+    var seeds;
+    if (name === "random") { seeds = []; for (var i = 0; i < 13; i++) seeds.push([2 + Math.random() * (GW - 4), 2 + Math.random() * (GH - 4)]); }
+    else seeds = MAPS[name];
+    var m = fromSeeds(seeds); cells = m.cells; nreg = m.nreg; adj = buildAdj(cells, nreg);
+    fill = new Array(nreg).fill(-1); order = []; for (var r = 0; r < nreg; r++) order.push(r);
+    record = 0; highlight = -1; renderOrder(); draw();
+    var best = solve(adj, 4) ? 4 : "more than four";
+    var three = solve(adj, 3) ? " Three would even do." : "";
+    say(nreg + " regions. A valid colouring with " + best + " colours exists for this map." + three + (mode === "greedy" ? " Set an order and press Run greedy." : " Colour it by hand."));
+    scoreEl.textContent = ""; scoreEl.classList.add("hidden");
+  }
+
+  function renderOrder() {
+    orderEl.innerHTML = "";
+    order.forEach(function (r, i) {
+      var chip = document.createElement("div"); chip.className = "chip" + (fill[r] >= 0 ? " done" : "") + (r === highlight ? " now" : "");
+      var left = document.createElement("button"); left.textContent = "‹"; left.title = "colour earlier"; left.disabled = i === 0; left.setAttribute("data-mv", "-1"); left.setAttribute("data-i", i);
+      var right = document.createElement("button"); right.textContent = "›"; right.title = "colour later"; right.disabled = i === order.length - 1; right.setAttribute("data-mv", "1"); right.setAttribute("data-i", i);
+      var lab = document.createElement("span"); lab.textContent = r + 1; if (fill[r] >= 0) lab.style.background = COLS[fill[r] % COLS.length];
+      chip.appendChild(left); chip.appendChild(lab); chip.appendChild(right); orderEl.appendChild(chip);
+    });
+  }
+  orderEl.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-mv]"); if (!b || b.disabled) return;
+    var i = parseInt(b.getAttribute("data-i"), 10), d = parseInt(b.getAttribute("data-mv"), 10), j = i + d;
+    var t = order[i]; order[i] = order[j]; order[j] = t;
+    stopRun(); fill = new Array(nreg).fill(-1); highlight = -1; renderOrder(); draw(); say("Order changed. Press Run greedy.");
+  });
+
+  function stopRun() { gen++; if (timer) { clearTimeout(timer); timer = null; } }
+
+  function runGreedy() {
+    stopRun(); var my = gen;
+    fill = new Array(nreg).fill(-1); highlight = -1; var i = 0;
+    function step() {
+      if (my !== gen) return;
+      if (i >= order.length) {
+        highlight = -1; timer = null; renderOrder(); draw();
+        var bad = clashes(adj, fill), k = coloursUsed(fill);
+        if (bad.length) { say("Something is wrong: " + bad.length + " pair(s) of neighbours match. This should never happen."); return; }
+        if (k > record) record = k;
+        var expect = coloursUsed(greedy(adj, order));
+        var msg = "Greedy used " + k + " colour" + (k === 1 ? "" : "s") + " in this order. Checked: no two neighbours match.";
+        if (k !== expect) msg += " (Mismatch with the direct calculation: " + expect + ".)";
+        if (k >= 6) msg += " Six! The theorem promises four exist. The order you chose fooled the method.";
+        else if (k === 5) msg += " Five, when four would do. Can you squeeze out a sixth?";
+        else if (k === 4 && solve(adj, 3)) msg += " Four, but this map can be done in three. Can you make greedy do worse?";
+        else msg += " Can you reorder to make it worse?";
+        say(msg);
+        scoreEl.classList.remove("hidden"); scoreEl.textContent = "This run: " + k + " colours. Your record on this map: " + record + ".";
+        return;
+      }
+      var r = order[i], c = greedyStep(adj, fill, r); fill[r] = c; highlight = r;
+      var used = []; adj[r].forEach(function (b) { if (fill[b] >= 0 && b !== r) used.push(fill[b] + 1); });
+      used = used.filter(function (v, idx, arr) { return arr.indexOf(v) === idx; }).sort(function (a, b) { return a - b; });
+      say("Region " + (r + 1) + ": coloured neighbours use " + (used.length ? "colours " + used.join(", ") : "nothing yet") + ", so the smallest free colour is " + colName(c) + ".");
+      renderOrder(); draw(); i++;
+      timer = setTimeout(step, 420);
+    }
+    step();
+  }
+
+  function centroid(r) { var sx = 0, sy = 0, n = 0; for (var i = 0; i < cells.length; i++) if (cells[i] === r) { sx += i % GW; sy += Math.floor(i / GW); n++; } return n ? [(sx / n + 0.5) * W / GW, (sy / n + 0.5) * H / GH] : [0, 0]; }
+  function draw() {
+    var dpr = window.devicePixelRatio || 1; W = canvas.clientWidth || 800; H = W * 0.75;
+    canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    var cw = W / GW, ch = H / GH, bad = {};
+    clashes(adj, fill).forEach(function (p) { bad[p[0]] = 1; bad[p[1]] = 1; });
+    for (var y = 0; y < GH; y++) for (var x = 0; x < GW; x++) {
+      var r = cells[y * GW + x], f = fill[r];
+      ctx.fillStyle = f >= 0 ? COLS[f % COLS.length] : "#f7f5ee"; ctx.fillRect(x * cw, y * ch, cw + 0.6, ch + 0.6);
+    }
+    ctx.lineWidth = 2;
+    for (var y2 = 0; y2 < GH; y2++) for (var x2 = 0; x2 < GW; x2++) {
+      var a = cells[y2 * GW + x2];
+      if (x2 + 1 < GW && cells[y2 * GW + x2 + 1] !== a) { var b1 = cells[y2 * GW + x2 + 1]; ctx.strokeStyle = (bad[a] && bad[b1] && fill[a] === fill[b1]) ? "#e02020" : "#1d1f3a"; ctx.beginPath(); ctx.moveTo((x2 + 1) * cw, y2 * ch); ctx.lineTo((x2 + 1) * cw, (y2 + 1) * ch); ctx.stroke(); }
+      if (y2 + 1 < GH && cells[(y2 + 1) * GW + x2] !== a) { var b2 = cells[(y2 + 1) * GW + x2]; ctx.strokeStyle = (bad[a] && bad[b2] && fill[a] === fill[b2]) ? "#e02020" : "#1d1f3a"; ctx.beginPath(); ctx.moveTo(x2 * cw, (y2 + 1) * ch); ctx.lineTo((x2 + 1) * cw, (y2 + 1) * ch); ctx.stroke(); }
+    }
+    ctx.font = "bold 15px Nunito, sans-serif"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    for (var r2 = 0; r2 < nreg; r2++) {
+      var p = centroid(r2);
+      if (r2 === highlight) { ctx.beginPath(); ctx.arc(p[0], p[1], 15, 0, Math.PI * 2); ctx.fillStyle = "#fff"; ctx.fill(); ctx.strokeStyle = "#f5a524"; ctx.lineWidth = 3; ctx.stroke(); ctx.lineWidth = 2; ctx.fillStyle = "#1d1f3a"; }
+      else ctx.fillStyle = fill[r2] >= 0 ? "#fff" : "#1d1f3a";
+      ctx.fillText(r2 + 1, p[0], p[1]);
+    }
+  }
+
+  // Repair mode: four swatches + erase
+  var sw = document.getElementById("swatches");
+  for (var c = 0; c < 4; c++) { var b = document.createElement("button"); b.className = "swatch" + (c === 0 ? " sel" : ""); b.style.background = COLS[c]; b.setAttribute("data-c", c); b.title = NAMES[c]; sw.appendChild(b); }
+  var er = document.createElement("button"); er.className = "swatch erase"; er.textContent = "erase"; er.setAttribute("data-c", -1); sw.appendChild(er);
+  sw.addEventListener("click", function (e) { var t = e.target.closest("[data-c]"); if (!t) return; sel = parseInt(t.getAttribute("data-c"), 10); sw.querySelectorAll(".swatch").forEach(function (s) { s.classList.toggle("sel", s === t); }); });
+  canvas.addEventListener("click", function (e) {
+    if (mode !== "repair") return;
+    var rc = canvas.getBoundingClientRect(), x = Math.floor((e.clientX - rc.left) / W * GW), y = Math.floor((e.clientY - rc.top) / H * GH);
+    if (x < 0 || y < 0 || x >= GW || y >= GH) return;
+    fill[cells[y * GW + x]] = sel; draw();
+    var n = clashes(adj, fill).length; say(n ? n + " clash" + (n === 1 ? "" : "es") + " (red borders)." : "No clashes so far.");
+  });
+  document.getElementById("check").addEventListener("click", function () {
+    var bad = clashes(adj, fill), k = coloursUsed(fill), empty = fill.filter(function (f) { return f < 0; }).length;
+    say(empty ? empty + " region" + (empty === 1 ? "" : "s") + " still blank." : bad.length ? "Not valid: " + bad.length + " pair" + (bad.length === 1 ? "" : "s") + " of neighbours match (red borders)." : "Valid: every shared border checked, " + k + " colour" + (k === 1 ? "" : "s") + ". The same map that greedy " + (record ? "needed " + record + " for." : "colours in whatever order you give it."));
+  });
+  document.getElementById("solve").addEventListener("click", function () {
+    var s = solve(adj, 4);
+    if (!s) { say("The search found no four-colouring, which should be impossible for a flat map. Please report this map."); return; }
+    fill = s; draw();
+    var bad = clashes(adj, fill);
+    say("Found by backtracking search, not by greedy: " + coloursUsed(fill) + " colours, " + (bad.length ? bad.length + " clashes (!)" : "every border checked, no clashes") + ". Greedy would still use " + coloursUsed(greedy(adj, order)) + " in your current order.");
+  });
+  document.getElementById("clear").addEventListener("click", function () { fill = new Array(nreg).fill(-1); draw(); say("Cleared."); });
+
+  function setMode(m) {
+    mode = m; stopRun(); fill = new Array(nreg).fill(-1); highlight = -1; renderOrder(); draw();
+    document.getElementById("pane-greedy").classList.toggle("hidden", m !== "greedy");
+    document.getElementById("pane-repair").classList.toggle("hidden", m !== "repair");
+    document.getElementById("tab-greedy").setAttribute("aria-pressed", m === "greedy");
+    document.getElementById("tab-repair").setAttribute("aria-pressed", m === "repair");
+    say(m === "greedy" ? "Set an order and press Run greedy." : "Same map. Colour it yourself with four" + (record ? ", where greedy needed " + record : "") + ".");
+  }
+  document.getElementById("tab-greedy").addEventListener("click", function () { setMode("greedy"); });
+  document.getElementById("tab-repair").addEventListener("click", function () { setMode("repair"); });
+  document.getElementById("run").addEventListener("click", runGreedy);
+  document.getElementById("shuffle").addEventListener("click", function () { stopRun(); for (var i = order.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), t = order[i]; order[i] = order[j]; order[j] = t; } fill = new Array(nreg).fill(-1); highlight = -1; renderOrder(); draw(); say("Shuffled. Press Run greedy."); });
+  document.getElementById("resetorder").addEventListener("click", function () { stopRun(); order = []; for (var r = 0; r < nreg; r++) order.push(r); fill = new Array(nreg).fill(-1); highlight = -1; renderOrder(); draw(); say("Order 1, 2, 3… Press Run greedy."); });
+  document.querySelectorAll("[data-m]").forEach(function (b) { b.addEventListener("click", function () { load(b.getAttribute("data-m")); }); });
+  window.addEventListener("resize", draw);
+  load("small");
+})();
+</script>
+</body>
+</html>

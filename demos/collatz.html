@@ -40,8 +40,11 @@
 <footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
 <script>
 (function () {
-  var canvas = document.getElementById("c"), ctx = canvas.getContext("2d"), seq = [27];
-  function collatz(n) { var s = [n]; while (n !== 1 && s.length < 5000) { n = n % 2 ? 3 * n + 1 : n / 2; s.push(n); } return s; }
+  var canvas = document.getElementById("c"), ctx = canvas.getContext("2d");
+  var MAX_START = 999999, MAX_TERMS = 5000;
+  function collatz(n) { var s = [n]; while (n !== 1 && s.length < MAX_TERMS) { n = n % 2 ? 3 * n + 1 : n / 2; s.push(n); } return s; }
+  function reached(s) { return s[s.length - 1] === 1; }
+  var seq = collatz(27);
   function draw() {
     var dpr = window.devicePixelRatio || 1, W = canvas.clientWidth || 900, H = W * 0.47, useLog = document.getElementById("log").checked;
     canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -50,7 +53,7 @@
     function Y(v) { var f = useLog ? Math.log(v) / Math.log(Math.max(peak, 2)) : v / peak; return bottom - (bottom - top) * f; }
     function X(i) { return left + (right - left) * (seq.length > 1 ? i / (seq.length - 1) : 0); }
     ctx.strokeStyle = "#d9d6cc"; ctx.lineWidth = 1; ctx.font = "12px Nunito, sans-serif"; ctx.fillStyle = "#5d6079"; ctx.textAlign = "right";
-    var ticks = useLog ? [1, 10, 100, 1000, 10000, 100000, 1000000].filter(function (t) { return t <= peak; }) : [0, 0.25, 0.5, 0.75, 1].map(function (f) { return Math.round(f * peak); });
+    var ticks = useLog ? [1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000].filter(function (t) { return t <= peak; }) : [0, 0.25, 0.5, 0.75, 1].map(function (f) { return Math.round(f * peak); });
     ticks.forEach(function (t) { var y = Y(Math.max(t, 1)); ctx.beginPath(); ctx.moveTo(left, y); ctx.lineTo(right, y); ctx.stroke(); ctx.fillText(t, left - 6, y + 4); });
     ctx.textAlign = "center"; ctx.fillText("step", (left + right) / 2, H - 8); ctx.fillText(seq.length - 1, right, H - 8);
     ctx.strokeStyle = "#3f44c9"; ctx.lineWidth = 2; ctx.beginPath();
@@ -59,10 +62,20 @@
     if (seq.length <= 120) { ctx.fillStyle = "#f5a524"; for (var j = 0; j < seq.length; j++) { ctx.beginPath(); ctx.arc(X(j), Y(seq[j]), 3, 0, Math.PI * 2); ctx.fill(); } }
     var pi = seq.indexOf(peak);
     ctx.fillStyle = "#1d1f3a"; ctx.textAlign = pi > seq.length / 2 ? "right" : "left"; ctx.fillText("peak " + peak, X(pi) + (pi > seq.length / 2 ? -6 : 6), Y(peak) + 12);
-    document.getElementById("info").textContent = "Start " + seq[0] + ":  " + (seq.length - 1) + " steps to reach 1,  peak " + peak;
-    document.getElementById("seq").textContent = seq.join(" → ");
+    document.getElementById("info").textContent = reached(seq)
+      ? "Start " + seq[0] + ":  " + (seq.length - 1) + " steps to reach 1,  peak " + peak
+      : "Start " + seq[0] + ":  still going after " + (seq.length - 1) + " steps (we stop plotting there),  peak so far " + peak;
+    document.getElementById("seq").textContent = seq.join(" → ") + (reached(seq) ? "" : " → …");
   }
-  document.getElementById("go").addEventListener("click", function () { var n = Math.max(1, Math.floor(parseFloat(document.getElementById("n").value) || 1)); seq = collatz(n); draw(); });
+  function readStart() {
+    var raw = document.getElementById("n").value.trim(), n = Number(raw);
+    if (raw === "" || !isFinite(n) || n !== Math.floor(n) || n < 1 || n > MAX_START) {
+      document.getElementById("info").textContent = "Please enter a whole number from 1 to " + MAX_START.toLocaleString() + ".";
+      return null;
+    }
+    return n;
+  }
+  document.getElementById("go").addEventListener("click", function () { var n = readStart(); if (n === null) return; seq = collatz(n); draw(); });
   document.getElementById("n").addEventListener("keydown", function (e) { if (e.key === "Enter") document.getElementById("go").click(); });
   document.getElementById("champ").addEventListener("click", function () {
     var best = 1, bestLen = 0;

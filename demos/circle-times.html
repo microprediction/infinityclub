@@ -22,7 +22,7 @@
 <div class="demo-panel">
   <div class="controls">
     <label>points n = <span id="nval">200</span> <input type="range" id="n" min="10" max="300" value="200"></label>
-    <label>multiplier m = <span id="mval">2.0</span> <input type="range" id="m" min="1" max="100" step="0.1" value="2" style="width:260px"></label>
+    <label>multiplier m = <span id="mval">2.00</span> <input type="range" id="m" min="1" max="100" step="any" value="2" style="width:260px"></label>
     <button id="anim">Animate</button>
     <button data-m="2" class="ghost">2</button><button data-m="3" class="ghost">3</button><button data-m="4" class="ghost">4</button><button data-m="51" class="ghost">51</button><button data-m="99" class="ghost">99</button>
   </div>
@@ -41,9 +41,11 @@
 (function () {
   var canvas = document.getElementById("c"), ctx = canvas.getContext("2d");
   var nIn = document.getElementById("n"), mIn = document.getElementById("m"), raf = null;
+  // The real multiplier lives here, not in the slider: a range input rounds to its step, which froze the animation at 2.0.
+  var mVal = parseFloat(mIn.value);
   function draw() {
-    var n = parseInt(nIn.value, 10), m = parseFloat(mIn.value);
-    document.getElementById("nval").textContent = n; document.getElementById("mval").textContent = m.toFixed(1);
+    var n = parseInt(nIn.value, 10), m = mVal;
+    document.getElementById("nval").textContent = n; document.getElementById("mval").textContent = m.toFixed(2);
     var dpr = window.devicePixelRatio || 1, W = Math.min(canvas.clientWidth || 700, 700), H = W;
     canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, H);
@@ -56,13 +58,13 @@
     ctx.stroke();
     if (n <= 40) { ctx.fillStyle = "#1d1f3a"; ctx.font = "12px Nunito, sans-serif"; ctx.textAlign = "center"; ctx.textBaseline = "middle"; for (var j = 0; j < n; j++) { var t = (j / n) * Math.PI * 2 - Math.PI / 2; ctx.fillText(j, cx + (R + 9) * Math.cos(t) * 1.0, cy + (R + 9) * Math.sin(t)); } }
   }
-  nIn.addEventListener("input", draw); mIn.addEventListener("input", draw);
-  document.querySelectorAll("[data-m]").forEach(function (b) { b.addEventListener("click", function () { stop(); mIn.value = b.dataset.m; draw(); }); });
+  nIn.addEventListener("input", draw); mIn.addEventListener("input", function () { mVal = parseFloat(mIn.value); draw(); });
+  document.querySelectorAll("[data-m]").forEach(function (b) { b.addEventListener("click", function () { stop(); mVal = parseFloat(b.dataset.m); mIn.value = mVal; draw(); }); });
   function stop() { if (raf) cancelAnimationFrame(raf); raf = null; document.getElementById("anim").textContent = "Animate"; }
   document.getElementById("anim").addEventListener("click", function () {
     if (raf) { stop(); return; }
     this.textContent = "Stop";
-    (function tick() { var m = parseFloat(mIn.value) + 0.02; if (m > 100) m = 1; mIn.value = m.toFixed(2); draw(); raf = requestAnimationFrame(tick); })();
+    (function tick() { mVal += 0.02; if (mVal > 100) mVal = 1; mIn.value = mVal; draw(); raf = requestAnimationFrame(tick); })();
   });
   window.addEventListener("resize", draw); draw();
 })();
