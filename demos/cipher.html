@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Caesar Cipher · Infinity Club</title>
+<meta name="description" content="Encode a message with a Caesar shift, then break one using letter frequencies, the way codebreakers have for a thousand years.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+textarea { width: 100%; min-height: 5em; font: inherit; padding: .5em .7em; border: 1px solid var(--rule); border-radius: 8px; resize: vertical; }
+.out { font-family: var(--mono); background: #eeece6; border-radius: 8px; padding: .6rem .8rem; min-height: 3em; white-space: pre-wrap; word-break: break-word; margin: .5rem 0; }
+.shifts { font-family: var(--mono); font-size: .9rem; columns: 1; max-height: 20em; overflow: auto; background: #fff; border: 1px solid var(--rule); border-radius: 8px; padding: .5rem .8rem; }
+.shifts div { padding: .1rem 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.shifts b { display: inline-block; width: 2.5em; color: var(--accent); }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../index.html#demos">Demos</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Caesar cipher and how to break it</h1>
+<p class="explain">Julius Caesar hid messages by sliding every letter three places along the alphabet. Slide them back and the message returns. The trouble is that letters have habits, and habits give you away.</p>
+<div class="demo-panel">
+  <h2 style="margin-top:0">1. Make a secret message</h2>
+  <textarea id="plain">Meet me behind the gym at noon. Bring the map and tell nobody.</textarea>
+  <div class="controls">
+    <label>Shift <input type="range" id="shift" min="0" max="25" value="3"> <span id="shiftval" class="mono">3</span></label>
+    <span class="small">A → <span id="amap" class="mono">D</span>. Slide left of 0 to decode: a shift of 23 undoes a shift of 3.</span>
+  </div>
+  <div class="out" id="cipherout"></div>
+</div>
+<div class="demo-panel">
+  <h2 style="margin-top:0">2. Break one</h2>
+  <p class="small">Paste any Caesar-shifted text here. The bars show how often each letter appears in it (indigo) next to how often it appears in ordinary English (outline). Look for the tallest indigo bar: it is probably E, T or A in disguise.</p>
+  <textarea id="secret">Wkh txlfn eurzq ira mxpsv ryhu wkh odcb grj. Wklv lv d vhfuhw phvvdjh dqg brx vkrxog qrw eh deoh wr uhdg lw zlwkrxw wkh nhb. Exw wkh ohwwhu h lv hyhubzkhuh.</textarea>
+  <canvas id="freq" width="900" height="300"></canvas>
+  <div class="readout" id="hint"></div>
+  <div class="controls"><button id="tryall" class="ghost">Try all 25 shifts</button></div>
+  <div class="shifts" id="shifts" hidden></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>A Caesar cipher has only 25 possible keys, so you could just try them all, and the button does. But the frequency bars show something deeper that works even for harder ciphers. In English about one letter in eight is an E, and T, A, O, I, N follow close behind. Z, Q, X and J barely appear.</p>
+<p>Shifting the alphabet does not change those habits, it only moves them. If the most common letter in the secret text is H, the shift is probably 3, because H is three past E. Check the next few tallest bars and the guess becomes a certainty. Arab scholars worked this out over a thousand years ago, and it is the start of the whole science of codebreaking.</p>
+<p>Sheet: <a href="../sheets/b16-codes.html">Secret codes</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  var ENG = { E:12.7,T:9.1,A:8.2,O:7.5,I:7.0,N:6.7,S:6.3,H:6.1,R:6.0,D:4.3,L:4.0,C:2.8,U:2.8,M:2.4,W:2.4,F:2.2,G:2.0,Y:2.0,P:1.9,B:1.5,V:1.0,K:0.8,J:0.15,X:0.15,Q:0.10,Z:0.07 };
+  var A = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  function shiftText(s, k) {
+    k = ((k % 26) + 26) % 26;
+    return s.replace(/[A-Za-z]/g, function (ch) {
+      var base = ch <= "Z" ? 65 : 97;
+      return String.fromCharCode(base + (ch.charCodeAt(0) - base + k) % 26);
+    });
+  }
+  var plain = document.getElementById("plain"), shift = document.getElementById("shift"), shiftval = document.getElementById("shiftval");
+  function updateCipher() {
+    var k = parseInt(shift.value, 10);
+    shiftval.textContent = k; document.getElementById("amap").textContent = A[k];
+    document.getElementById("cipherout").textContent = shiftText(plain.value, k);
+  }
+  plain.addEventListener("input", updateCipher); shift.addEventListener("input", updateCipher); updateCipher();
+
+  var secret = document.getElementById("secret"), canvas = document.getElementById("freq"), ctx = canvas.getContext("2d");
+  function counts(s) {
+    var c = {}, n = 0; for (var i = 0; i < 26; i++) c[A[i]] = 0;
+    s.toUpperCase().replace(/[A-Z]/g, function (ch) { c[ch]++; n++; return ch; });
+    return { c: c, n: n };
+  }
+  function drawFreq() {
+    var r = counts(secret.value), dpr = window.devicePixelRatio || 1, W = canvas.clientWidth || 900, H = W * 0.33;
+    canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, H);
+    var left = 34, bottom = H - 26, top = 16, bw = (W - left - 10) / 26, maxP = 16;
+    ctx.font = "12px Nunito, sans-serif"; ctx.textAlign = "right"; ctx.fillStyle = "#5d6079"; ctx.strokeStyle = "#e4e1d8";
+    for (var p = 0; p <= maxP; p += 4) { var y = bottom - (bottom - top) * p / maxP; ctx.beginPath(); ctx.moveTo(left, y); ctx.lineTo(W - 10, y); ctx.stroke(); ctx.fillText(p + "%", left - 4, y + 4); }
+    ctx.textAlign = "center"; var best = "", bestv = -1;
+    for (var i = 0; i < 26; i++) {
+      var L = A[i], x = left + i * bw, pe = ENG[L], ps = r.n ? 100 * r.c[L] / r.n : 0;
+      if (ps > bestv) { bestv = ps; best = L; }
+      var hE = (bottom - top) * Math.min(pe, maxP) / maxP, hS = (bottom - top) * Math.min(ps, maxP) / maxP;
+      ctx.fillStyle = "#3f44c9"; ctx.fillRect(x + bw * 0.12, bottom - hS, bw * 0.76, hS);
+      ctx.strokeStyle = "#f5a524"; ctx.lineWidth = 2; ctx.strokeRect(x + bw * 0.12, bottom - hE, bw * 0.76, hE);
+      ctx.fillStyle = "#1d1f3a"; ctx.fillText(L, x + bw / 2, bottom + 16);
+    }
+    var hint = document.getElementById("hint");
+    if (r.n < 5) { hint.textContent = "Paste some ciphertext to see its letter habits."; return; }
+    var guess = (A.indexOf(best) - A.indexOf("E") + 26) % 26;
+    hint.textContent = "Letters counted: " + r.n + "    most common: " + best + " (" + bestv.toFixed(1) + "%)    if " + best + " is really E, the shift is " + guess + "    decoded that way: " + shiftText(secret.value, -guess).slice(0, 60) + (secret.value.length > 60 ? "…" : "");
+  }
+  secret.addEventListener("input", function () { drawFreq(); if (!shiftsBox.hidden) tryAll(); });
+  var shiftsBox = document.getElementById("shifts");
+  function tryAll() {
+    shiftsBox.hidden = false; shiftsBox.innerHTML = "";
+    for (var k = 1; k <= 25; k++) {
+      var d = document.createElement("div"); var b = document.createElement("b"); b.textContent = "−" + k; d.appendChild(b);
+      d.appendChild(document.createTextNode(shiftText(secret.value, -k).slice(0, 90))); shiftsBox.appendChild(d);
+    }
+  }
+  document.getElementById("tryall").addEventListener("click", tryAll);
+  window.addEventListener("resize", drawFreq); drawFreq();
+})();
+</script>
+</body>
+</html>

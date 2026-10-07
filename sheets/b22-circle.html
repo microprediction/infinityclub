@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why a pizza is πr² · Infinity Club</title>
+<meta name="description" content="Where the area formula for a circle comes from: cut the pizza into thin slices, rearrange, and a rectangle appears. Then a rope around the Earth.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../index.html#demos">Demos</a>
+  <a href="../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Around the corner · 22</div>
+  <h1>Why a pizza is πr²</h1>
+  <p class="teaser">You have probably been handed \(A = \pi r^2\) as a fact. Tonight you see where it comes from, using nothing but a pizza cutter, and then use it on a rope wrapped around the whole planet.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Start with the circumference. Wrap a piece of string around any can, measure it, and divide by the width of the can. You always get about 3.14. That ratio is \(\pi\), and it is the same for every circle, so <b>circumference \(= \pi d = 2\pi r\)</b>. The Greeks knew this; what took longer was the area.</p>
+<p>Here is the argument. Cut a pizza into many thin slices, say 16. Lay them in a row, points alternating up and down, so they interlock. The shape is nearly a rectangle. Its height is the radius \(r\) (the length of a slice). Its width is half the crust, because half the slices have their crust on top and half on the bottom: \(\tfrac{1}{2} \times 2\pi r = \pi r\).</p>
+<figure>
+<svg viewBox="0 0 440 150" width="440" height="150" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" font-size="12">
+  <circle cx="60" cy="70" r="50" fill="#eee" stroke="#000"/>
+  <g stroke="#000" stroke-width="0.8">
+    <line x1="60" y1="20" x2="60" y2="120"/><line x1="10" y1="70" x2="110" y2="70"/>
+    <line x1="24.6" y1="34.6" x2="95.4" y2="105.4"/><line x1="95.4" y1="34.6" x2="24.6" y2="105.4"/>
+    <line x1="60" y1="70" x2="79.1" y2="23.8"/><line x1="60" y1="70" x2="40.9" y2="23.8"/>
+    <line x1="60" y1="70" x2="106.2" y2="50.9"/><line x1="60" y1="70" x2="106.2" y2="89.1"/>
+    <line x1="60" y1="70" x2="79.1" y2="116.2"/><line x1="60" y1="70" x2="40.9" y2="116.2"/>
+    <line x1="60" y1="70" x2="13.8" y2="50.9"/><line x1="60" y1="70" x2="13.8" y2="89.1"/>
+  </g>
+  <text x="125" y="75" font-size="18">→</text>
+  <g fill="#eee" stroke="#000" stroke-width="0.8">
+    <polygon points="160,120 170,20 180,120"/><polygon points="170,20 180,120 190,20"/>
+    <polygon points="180,120 190,20 200,120"/><polygon points="190,20 200,120 210,20"/>
+    <polygon points="200,120 210,20 220,120"/><polygon points="210,20 220,120 230,20"/>
+    <polygon points="220,120 230,20 240,120"/><polygon points="230,20 240,120 250,20"/>
+    <polygon points="240,120 250,20 260,120"/><polygon points="250,20 260,120 270,20"/>
+    <polygon points="260,120 270,20 280,120"/><polygon points="270,20 280,120 290,20"/>
+    <polygon points="280,120 290,20 300,120"/><polygon points="290,20 300,120 310,20"/>
+    <polygon points="300,120 310,20 320,120"/><polygon points="310,20 320,120 330,20"/>
+  </g>
+  <line x1="345" y1="20" x2="345" y2="120" stroke="#000" stroke-dasharray="3 3"/>
+  <text x="350" y="75">height ≈ r</text>
+  <line x1="165" y1="135" x2="325" y2="135" stroke="#000" stroke-dasharray="3 3"/>
+  <text x="200" y="148">width ≈ half the crust = πr</text>
+</svg>
+<figcaption>Sixteen slices, points alternating. More slices make a straighter rectangle.</figcaption>
+</figure>
+<p>Area of a rectangle is width times height: \(\pi r \times r = \pi r^2\). With 16 slices the edges are a little bumpy. With 1,000 slices they are nearly straight, and the bumps can be made as small as you like. That "as small as you like" is the idea behind calculus, which you will meet in a few years.</p>
+<p>A second way: think of the pizza as rings, like a tree trunk. Cut along one radius and unroll the rings into straight strips, longest at the bottom (\(2\pi r\)), shortest at the top (nearly 0). Stacked, they make a triangle of base \(2\pi r\) and height \(r\), with area \(\tfrac{1}{2} \times 2\pi r \times r = \pi r^2\). Same answer, different picture.</p>
+<p>You can also find \(\pi\) by throwing random points at a square and counting how many land inside a circle. Try <a href="../demos/pi-darts.html">the darts demo</a>.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: the rope around the Earth</h2>
+<p>A rope lies snugly around the equator, about 40,000 km long. You add just 1 metre and spread the slack evenly, so the rope floats at the same height all the way round. How high? Enough for an ant? A cat?</p>
+<p>Old radius \(r\), new radius \(r + h\). The new circumference is \(2\pi(r + h) = 2\pi r + 2\pi h\), which is 1 metre longer: \(2\pi h = 1\), so \(h = 1 / 2\pi \approx 0.16\) m, about <b>16 cm</b>. A cat fits. Notice \(r\) vanished: the answer is the same for a rope around a basketball or around the Sun.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>A circular table has radius 60 cm. Find its circumference and its area. (Use \(\pi \approx 3.14\).)<div class="space short"></div></li>
+<li>A string around a can measures 26 cm. What is the can's diameter?<div class="space short"></div></li>
+<li>A 14-inch pizza costs $18 and a 10-inch costs $10. Which is the better deal per square inch? First compute how many times bigger the 14-inch is.<div class="space"></div></li>
+<li>On a running track the lanes are 1.22 m wide. In a full lap, how much further does lane 2 run than lane 1, if both keep to the inside of their lane? Does your answer depend on the size of the track?<div class="space"></div></li>
+<li>A bicycle wheel has diameter 70 cm. How many times does it turn in 1 km?<div class="space short"></div></li>
+<li>Explain the pizza-slice argument to someone in your own words, using a drawing with 8 slices. Why do more slices make the argument better?<div class="space tall"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: rings and Archimedes</h2>
+<p>A ring (the mathematical word is annulus) has outer radius 5 cm and inner radius 3 cm. Find its area. Then find the area of a 60° slice of a circle of radius 6 cm.</p>
+<p>Archimedes, around 250 BC, trapped a circle between two 96-sided polygons, one just inside and one just outside, and proved that \(\pi\) is between \(3\tfrac{10}{71}\) and \(3\tfrac{1}{7}\). Turn both into decimals. How many decimal places of \(\pi\) did he pin down?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Circumference \(2 \times 3.14 \times 60 \approx 377\) cm. Area \(3.14 \times 3600 \approx 11{,}300\) cm², about 1.13 m².</li>
+<li>\(26 / 3.14 \approx 8.3\) cm.</li>
+<li>Area scales with the square of the size: \((14/10)^2 = 1.96\), so the 14-inch is nearly twice the pizza. Per square inch the 14-inch costs \(18 / 1.96 \approx \$9.18\) per "10-inch pizza's worth", against $10 for the real 10-inch. The big one is the better deal. (In square inches: 10-inch is about 78.5 in² at 12.7 cents each; 14-inch is about 153.9 in² at 11.7 cents each.)</li>
+<li>Extra distance \(= 2\pi \times 1.22 \approx 7.67\) m per lap. It does not depend on the track's size at all, for the same reason as the rope around the Earth. That is why staggered starts on a 400 m track are about 7.7 m per lane.</li>
+<li>Circumference \(= 3.14 \times 0.7 \approx 2.2\) m, so \(1000 / 2.2 \approx 455\) turns.</li>
+<li>Key points: slices alternate up and down; height is a radius; width is half the crust because half the crusts are on top; more slices make the top and bottom flatter and the sides more vertical, so the shape approaches a true rectangle.</li>
+</ol>
+<p><b>Stretch.</b> Annulus: \(\pi(5^2 - 3^2) = 16\pi \approx 50.3\) cm². Sector: 60° is one sixth of a circle, so \(\tfrac{1}{6} \times \pi \times 36 = 6\pi \approx 18.8\) cm². Archimedes: \(3\tfrac{10}{71} \approx 3.1408\) and \(3\tfrac{1}{7} \approx 3.1429\). Both start 3.14, so he had two decimal places, and knew the third was between 0 and 2.</p>
+</section>
+
+<div class="sheet-nav"><a href="b21-logarithms.html">← Previous</a><a href="c1-music.html">Next: Why there are twelve notes →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../assets/site.js"></script>
+</body>
+</html>

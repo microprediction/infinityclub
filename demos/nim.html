@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nim · Infinity Club</title>
+<meta name="description" content="Play Nim against a computer that never makes a mistake, then switch on the secret and see why.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.piles { display: flex; flex-direction: column; gap: .7rem; margin: .8rem 0; }
+.pile { display: flex; align-items: center; gap: .4rem; flex-wrap: wrap; }
+.pile .lbl { width: 4.5em; font-weight: 700; color: var(--muted); }
+.counter { width: 34px; height: 34px; border-radius: 50%; border: 2px solid var(--accent); background: var(--accent-soft); cursor: pointer; padding: 0; transition: transform .1s; }
+.counter:hover { transform: scale(1.12); background: var(--warm-soft); border-color: var(--warm); }
+.counter:disabled { cursor: default; opacity: .35; transform: none; }
+.pile.ai .counter:hover { transform: none; background: var(--accent-soft); border-color: var(--accent); }
+.secret { font-family: var(--mono); font-size: .95rem; background: #eeece6; border-radius: 8px; padding: .6rem .9rem; margin-top: .6rem; white-space: pre; overflow-x: auto; }
+.setup input { width: 3.2em; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../index.html#demos">Demos</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Nim</h1>
+<p class="explain">Three piles of counters. On your turn, click a counter to take it <b>and every counter to its right</b> in that pile. The computer then does the same. Whoever takes the last counter wins. Try to beat it. Then switch on the secret.</p>
+<div class="demo-panel">
+  <div class="controls setup">
+    <label>Piles <input type="number" id="p0" min="1" max="9" value="3"> <input type="number" id="p1" min="1" max="9" value="5"> <input type="number" id="p2" min="1" max="9" value="7"></label>
+    <button id="newgame">New game</button>
+    <button id="random" class="ghost">Random piles</button>
+    <label><input type="checkbox" id="secret"> show the secret</label>
+  </div>
+  <div class="piles" id="piles"></div>
+  <div class="readout" id="status"></div>
+  <div class="secret" id="secretbox" hidden></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>Write each pile size in binary and stack them up. Add each column, but the odd way: write 0 if the column has an even number of 1s and 1 if it has an odd number. This column-by-column "add without carrying" is called XOR, and the result is the <b>Nim-sum</b>.</p>
+<p>The whole game rests on one fact. If the Nim-sum is 0 when it is your turn, every move you make leaves a position with Nim-sum not 0. And if the Nim-sum is not 0, there is always a move that makes it 0. The player who keeps handing over a Nim-sum of 0 will take the last counter, because the empty position has Nim-sum 0 and only the loser is ever faced with it.</p>
+<p>From 3, 5, 7 the Nim-sum is 1, so the first player can win by taking one counter from any pile. Set the piles to 1, 2, 3 instead, where the Nim-sum is already 0, and the computer will beat you no matter what you do.</p>
+<p>Sheet: <a href="../sheets/b15-nim.html">Nim and the secret of XOR</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  var piles = [3, 5, 7], over = false, busy = false;
+  var pilesEl = document.getElementById("piles"), status = document.getElementById("status"), secretBox = document.getElementById("secretbox");
+  function nimSum(p) { return p.reduce(function (a, b) { return a ^ b; }, 0); }
+  function winningMove(p) {
+    var x = nimSum(p); if (!x) return null;
+    for (var i = 0; i < p.length; i++) { var t = p[i] ^ x; if (t < p[i]) return { pile: i, take: p[i] - t }; }
+    return null;
+  }
+  function bin(n) { return ("0000" + n.toString(2)).slice(-4); }
+  function drawPiles(aiTurn) {
+    pilesEl.innerHTML = "";
+    piles.forEach(function (n, i) {
+      var row = document.createElement("div"); row.className = "pile" + (aiTurn ? " ai" : "");
+      var lbl = document.createElement("span"); lbl.className = "lbl"; lbl.textContent = "Pile " + (i + 1) + ": " + n; row.appendChild(lbl);
+      for (var k = 0; k < n; k++) {
+        var b = document.createElement("button"); b.className = "counter"; b.title = "take " + (n - k);
+        b.disabled = over || aiTurn;
+        (function (pi, take) { b.addEventListener("click", function () { playerMove(pi, take); }); })(i, n - k);
+        row.appendChild(b);
+      }
+      pilesEl.appendChild(row);
+    });
+    var x = nimSum(piles);
+    var lines = piles.map(function (n, i) { return "pile " + (i + 1) + ":  " + bin(n) + "   (" + n + ")"; });
+    lines.push("          ----");
+    lines.push("Nim-sum:  " + bin(x) + "   (" + x + ")  " + (x ? "→ the player to move CAN win" : "→ the player to move is LOST (if the other side plays perfectly)"));
+    secretBox.textContent = lines.join("\n");
+  }
+  function total() { return piles.reduce(function (a, b) { return a + b; }, 0); }
+  function playerMove(i, take) {
+    if (over || busy) return;
+    piles[i] -= take;
+    if (total() === 0) { over = true; drawPiles(false); status.textContent = "You took the last counter. You win."; return; }
+    busy = true; drawPiles(true);
+    status.textContent = "You took " + take + " from pile " + (i + 1) + ". Computer is thinking…";
+    setTimeout(aiMove, 650);
+  }
+  function aiMove() {
+    var mv = winningMove(piles), why;
+    if (mv) { why = "a winning move (Nim-sum back to 0)"; }
+    else { var big = piles.indexOf(Math.max.apply(null, piles)); mv = { pile: big, take: 1 }; why = "a stalling move, since every move from here is losing"; }
+    piles[mv.pile] -= mv.take; busy = false;
+    if (total() === 0) { over = true; drawPiles(false); status.textContent = "Computer took the last counter. Computer wins."; return; }
+    drawPiles(false);
+    status.textContent = "Computer took " + mv.take + " from pile " + (mv.pile + 1) + ", " + why + ". Your move.";
+  }
+  function newGame(p) {
+    piles = p.slice(); over = false; busy = false;
+    [0, 1, 2].forEach(function (i) { document.getElementById("p" + i).value = piles[i]; });
+    drawPiles(false);
+    status.textContent = "Your move. Nim-sum is " + nimSum(piles) + (nimSum(piles) ? ": a winning move exists for you." : ": you are already lost if the computer plays perfectly.");
+  }
+  function readInputs() { return [0, 1, 2].map(function (i) { var v = parseInt(document.getElementById("p" + i).value, 10); return isNaN(v) ? 1 : Math.min(9, Math.max(1, v)); }); }
+  document.getElementById("newgame").addEventListener("click", function () { newGame(readInputs()); });
+  document.getElementById("random").addEventListener("click", function () { newGame([0, 0, 0].map(function () { return 1 + Math.floor(Math.random() * 9); })); });
+  document.getElementById("secret").addEventListener("change", function (e) { secretBox.hidden = !e.target.checked; });
+  newGame([3, 5, 7]);
+})();
+</script>
+</body>
+</html>

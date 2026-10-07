@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guess the Number · Infinity Club</title>
+<meta name="description" content="Find a secret number between 1 and 1000 in ten guesses, every time, by halving.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.modes button[aria-pressed="true"] { background: var(--accent); color: #fff; }
+.log { font-family: var(--mono); font-size: .95rem; margin: .5rem 0; }
+.log div { display: flex; align-items: center; gap: .6rem; padding: .15rem 0; }
+.log .bar { position: relative; flex: 1; height: 14px; background: #eeece6; border-radius: 7px; overflow: hidden; }
+.log .bar span { position: absolute; top: 0; bottom: 0; background: var(--accent-soft); border-left: 2px solid var(--accent); border-right: 2px solid var(--accent); }
+.log .bar i { position: absolute; top: -2px; width: 4px; height: 18px; background: var(--warm); border-radius: 2px; }
+.log .g { width: 4.5em; text-align: right; }
+.log .r { width: 7em; color: var(--muted); }
+.big { font-size: 1.3rem; font-weight: 800; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../index.html#demos">Demos</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Guess the number</h1>
+<p class="explain">A number between 1 and 100 can always be found in 7 guesses. Between 1 and 1000, in 10. Not usually: always. Play both ways and watch the bar of possibilities shrink.</p>
+<div class="demo-panel">
+  <div class="controls modes">
+    <button id="modeA" aria-pressed="true">You guess</button>
+    <button id="modeB" aria-pressed="false">Computer guesses</button>
+    <label>Range 1 to <select id="range"><option>100</option><option>1000</option></select></label>
+    <button id="newgame" class="ghost">New game</button>
+  </div>
+  <div id="panelA">
+    <div class="controls">
+      <label>Your guess <input type="number" id="guessin" min="1" max="100"></label>
+      <button id="guessbtn">Guess</button>
+    </div>
+  </div>
+  <div id="panelB" hidden>
+    <div class="controls">
+      <span class="big" id="cguess"></span>
+      <button id="higher">My number is higher</button>
+      <button id="lower">My number is lower</button>
+      <button id="correct" class="alt">Correct</button>
+    </div>
+  </div>
+  <div class="readout" id="status"></div>
+  <div class="log" id="log"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>Each answer of "higher" or "lower" throws away part of the range. If you guess in the middle, you throw away half, whatever the answer is. Halving 1000 gives 500, then 250, 125, 63, 32, 16, 8, 4, 2, 1. That is ten halvings, so ten guesses always suffice. For 100 it is seven.</p>
+<p>The number of halvings needed is the number of binary digits in the range, which is why the bound is written log₂. Doubling the range costs just one more guess: a million numbers need only 20. The same idea is how a dictionary is searched, how a computer looks something up in a sorted list, and why twenty yes-or-no questions can pick out one of a million things.</p>
+<p>Guessing in the middle is the best possible strategy. Guessing anywhere else risks keeping the bigger half, and an unlucky run of those costs you extra guesses.</p>
+<p>Sheet: <a href="../sheets/c5-twenty-questions.html">Twenty questions</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  var mode = "A", R = 100, secretNum = 0, lo, hi, guesses, cg;
+  var $ = function (id) { return document.getElementById(id); };
+  var status = $("status"), log = $("log");
+  function bound(r) { return Math.ceil(Math.log2(r + 1)); }
+  function row(g, lo, hi, text) {
+    var d = document.createElement("div");
+    d.innerHTML = '<span class="g">' + g + '</span><span class="bar"><span style="left:' + (100 * (lo - 1) / R) + '%;width:' + (100 * (hi - lo + 1) / R) + '%"></span><i style="left:calc(' + (100 * (g - 0.5) / R) + '% - 2px)"></i></span><span class="r">' + text + '</span>';
+    log.appendChild(d);
+  }
+  function newGame() {
+    R = parseInt($("range").value, 10); $("guessin").max = R; $("guessin").value = "";
+    lo = 1; hi = R; guesses = 0; log.innerHTML = "";
+    if (mode === "A") {
+      secretNum = 1 + Math.floor(Math.random() * R);
+      status.textContent = "I am thinking of a number from 1 to " + R + ". Best possible: always within " + bound(R) + " guesses. Possibilities left: " + R + ".";
+      $("guessin").focus();
+    } else {
+      status.textContent = "Think of a number from 1 to " + R + ". I will find it within " + bound(R) + " guesses. Answer honestly.";
+      computerGuess();
+    }
+  }
+  function playerGuess() {
+    var g = parseInt($("guessin").value, 10);
+    if (isNaN(g) || g < 1 || g > R) { status.textContent = "Type a whole number from 1 to " + R + "."; return; }
+    guesses++;
+    if (g === secretNum) {
+      row(g, g, g, "correct");
+      status.textContent = "Got it in " + guesses + (guesses <= bound(R) ? " guesses. Within the bound of " + bound(R) + "." : " guesses. Halving would have needed at most " + bound(R) + ".");
+      $("guessin").value = ""; return;
+    }
+    if (g < secretNum) { lo = Math.max(lo, g + 1); row(g, lo, hi, "higher"); }
+    else { hi = Math.min(hi, g - 1); row(g, lo, hi, "lower"); }
+    status.textContent = (g < secretNum ? "Higher. " : "Lower. ") + "Guesses: " + guesses + " of " + bound(R) + ". Possibilities left: " + (hi - lo + 1) + " (" + lo + " to " + hi + "). Middle is " + Math.floor((lo + hi) / 2) + ".";
+    $("guessin").value = ""; $("guessin").focus();
+  }
+  function computerGuess() {
+    if (lo > hi) { status.textContent = "Those answers contradict each other. No number fits. Press New game."; $("cguess").textContent = "?"; return; }
+    cg = Math.floor((lo + hi) / 2); guesses++;
+    $("cguess").textContent = "Is it " + cg + "?";
+    status.textContent = "Guess " + guesses + " of at most " + bound(R) + ". Possibilities left: " + (hi - lo + 1) + " (" + lo + " to " + hi + ").";
+  }
+  $("higher").addEventListener("click", function () { if (lo > hi) return; row(cg, Math.min(cg + 1, R), hi, "higher"); lo = cg + 1; computerGuess(); });
+  $("lower").addEventListener("click", function () { if (lo > hi) return; row(cg, lo, Math.max(cg - 1, 1), "lower"); hi = cg - 1; computerGuess(); });
+  $("correct").addEventListener("click", function () { if (lo > hi) return; row(cg, cg, cg, "correct"); status.textContent = "Found " + cg + " in " + guesses + " guesses, inside the bound of " + bound(R) + ". It always is."; $("cguess").textContent = "It was " + cg + "."; lo = 1; hi = 0; });
+  $("guessbtn").addEventListener("click", playerGuess);
+  $("guessin").addEventListener("keydown", function (e) { if (e.key === "Enter") playerGuess(); });
+  function setMode(m) {
+    mode = m; $("modeA").setAttribute("aria-pressed", m === "A"); $("modeB").setAttribute("aria-pressed", m === "B");
+    $("panelA").hidden = m !== "A"; $("panelB").hidden = m !== "B"; newGame();
+  }
+  $("modeA").addEventListener("click", function () { setMode("A"); });
+  $("modeB").addEventListener("click", function () { setMode("B"); });
+  $("range").addEventListener("change", newGame);
+  $("newgame").addEventListener("click", newGame);
+  newGame();
+})();
+</script>
+</body>
+</html>

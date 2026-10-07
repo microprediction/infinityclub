@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mandelbrot Set · Infinity Club</title>
+<meta name="description" content="Zoom into the Mandelbrot set and see what repeating z squared plus c does to every point of the complex plane.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+#fractal { cursor: crosshair; touch-action: manipulation; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../index.html#demos">Demos</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>The Mandelbrot set</h1>
+<p class="explain">Every pixel is a complex number c. Start at 0 and repeat z → z² + c. If z stays small forever the pixel is dark. If it flies off to infinity, the colour says how fast. Click or tap anywhere to zoom in on that spot.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <button id="zoomout" class="ghost">Zoom out</button>
+    <button id="reset" class="ghost">Reset</button>
+    <label>Max iterations
+      <select id="iters"><option>50</option><option selected>100</option><option>250</option><option>500</option></select>
+    </label>
+  </div>
+  <canvas id="fractal" width="800" height="600"></canvas>
+  <div class="readout" id="info"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>A complex number c = a + bi is a point on the plane: a steps right, b steps up. For each such point we run a tiny machine. Start with z = 0, then replace z by z² + c, then do it again, and again. "Iterate" just means repeat.</p>
+<p>Try c = −1 by hand: 0, then 0² − 1 = −1, then (−1)² − 1 = 0, then −1, then 0. It bounces between two values forever and never escapes, so −1 is in the set and painted dark. Now try c = 1: 0, 1, 2, 5, 26, 677. It explodes, so 1 is outside, and it escaped quickly, so it gets a bright colour.</p>
+<p>The boundary between staying and escaping is the astonishing part. However far you zoom, the edge keeps producing new spirals, seahorses and tiny copies of the whole set. Points a hair apart can behave completely differently, so no amount of magnification ever makes the edge look smooth.</p>
+<p>Sheet: <a href="../sheets/b8-imaginary.html">Imaginary numbers are real</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  var canvas = document.getElementById("fractal"), ctx = canvas.getContext("2d");
+  var info = document.getElementById("info"), itersSel = document.getElementById("iters");
+  var home = { cx: -0.6, cy: 0, scale: 3.2 }; // scale = width of view in complex units
+  var view = { cx: home.cx, cy: home.cy, scale: home.scale };
+  var job = null, W, H, dpr, img;
+
+  function palette(t) {
+    // t in [0,1): blend indigo -> warm -> pale, cycling
+    var k = (t * 3) % 1, seg = Math.floor(t * 3) % 3;
+    var cols = [[63, 68, 201], [245, 165, 36], [250, 247, 240]];
+    var a = cols[seg], b = cols[(seg + 1) % 3];
+    return [a[0] + (b[0] - a[0]) * k, a[1] + (b[1] - a[1]) * k, a[2] + (b[2] - a[2]) * k];
+  }
+
+  function render() {
+    if (job) { cancelAnimationFrame(job); job = null; }
+    dpr = 1; // fractal detail does not need retina pixels, and speed matters more
+    W = Math.min(720, Math.floor((canvas.clientWidth || 720))); H = Math.floor(W * 0.75);
+    canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px";
+    var pw = canvas.width, ph = canvas.height;
+    img = ctx.createImageData(pw, ph);
+    var maxIt = parseInt(itersSel.value, 10);
+    var unit = view.scale / pw, x0 = view.cx - view.scale / 2, y0 = view.cy + (view.scale * ph / pw) / 2;
+    var row = 0, zoom = home.scale / view.scale;
+    info.textContent = "centre c = " + fmt(view.cx) + (view.cy >= 0 ? " + " : " − ") + fmt(Math.abs(view.cy)) + "i    zoom ×" + (zoom >= 100 ? Math.round(zoom) : zoom.toFixed(1)) + "    rendering…";
+    function chunk() {
+      var t0 = performance.now(), startRow = row;
+      while (row < ph && performance.now() - t0 < 24) {
+        var ci = y0 - row * unit, d = img.data, base = row * pw * 4;
+        for (var px = 0; px < pw; px++) {
+          var cr = x0 + px * unit, zr = 0, zi = 0, n = 0, zr2 = 0, zi2 = 0;
+          while (n < maxIt && zr2 + zi2 <= 4) { zi = 2 * zr * zi + ci; zr = zr2 - zi2 + cr; zr2 = zr * zr; zi2 = zi * zi; n++; }
+          var o = base + px * 4;
+          if (n >= maxIt) { d[o] = 20; d[o + 1] = 18; d[o + 2] = 40; }
+          else {
+            var sm = n + 1 - Math.log(Math.log(Math.sqrt(zr2 + zi2))) / Math.LN2; // smooth count
+            var c = palette((sm / 40) % 1);
+            d[o] = c[0]; d[o + 1] = c[1]; d[o + 2] = c[2];
+          }
+          d[o + 3] = 255;
+        }
+        row++;
+      }
+      ctx.putImageData(img, 0, 0, 0, startRow, pw, row - startRow);
+      if (row < ph) job = requestAnimationFrame(chunk);
+      else { job = null; info.textContent = info.textContent.replace("rendering…", "done. Click to zoom in."); }
+    }
+    job = requestAnimationFrame(chunk);
+  }
+  function fmt(v) { return Math.abs(v) < 1e-4 ? "0" : v.toPrecision(Math.min(12, Math.max(4, Math.ceil(Math.log10(home.scale / view.scale)) + 4))); }
+
+  canvas.addEventListener("click", function (e) {
+    var r = canvas.getBoundingClientRect();
+    var fx = (e.clientX - r.left) / r.width, fy = (e.clientY - r.top) / r.height;
+    var hgt = view.scale * (r.height / r.width);
+    view.cx = view.cx - view.scale / 2 + fx * view.scale;
+    view.cy = view.cy + hgt / 2 - fy * hgt;
+    view.scale /= 2;
+    render();
+  });
+  document.getElementById("zoomout").addEventListener("click", function () { view.scale = Math.min(view.scale * 2, home.scale); render(); });
+  document.getElementById("reset").addEventListener("click", function () { view = { cx: home.cx, cy: home.cy, scale: home.scale }; render(); });
+  itersSel.addEventListener("change", render);
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(render, 150); });
+  render();
+})();
+</script>
+</body>
+</html>
