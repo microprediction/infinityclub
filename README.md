@@ -32,3 +32,5 @@ Copy any sheet in `grade-6/sheets/`, keep the section structure (`idea`, `exampl
     python3 -m http.server 8000
 
 then open http://localhost:8000.
+
+- `research.html`: a running, verified list of rigorous studies (RCTs, meta-analyses, natural experiments) on what works in maths teaching, with designs, effect sizes and DOIs. To add one, open an issue with the DOI; entries are checked against the original record before they go in.
