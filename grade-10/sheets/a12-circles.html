@@ -32,7 +32,7 @@
 <section class="idea">
 <h2>Tonight's idea</h2>
 <p>Circle theorems are usually taught as a list to memorise. They are really one theorem and a few short consequences, and the one theorem has a proof you can carry in your head.</p>
-<p>Take a circle with centre \(O\). Pick two points \(A\) and \(B\) on it. The angle \(\angle AOB\) at the centre is the <b>central angle</b>. Pick any third point \(C\) on the circle, on the far side from the arc \(AB\): the angle \(\angle ACB\) is an <b>inscribed angle</b> standing on the same arc.</p>
+<p>Take a circle with centre \(O\) and two points \(A\), \(B\) on it. The angle \(\angle AOB\) at the centre is the <b>central angle</b>. Pick any third point \(C\) on the circle, on the far side from the arc \(AB\): \(\angle ACB\) is an <b>inscribed angle</b> on the same arc.</p>
 <p class="callout"><b>Inscribed angle theorem.</b> \(\angle ACB = \tfrac12 \angle AOB\). The angle at the centre is twice the angle at the circumference, when both stand on the same arc.</p>
 <figure>
 <svg viewBox="0 0 200 200" width="200" height="200" xmlns="http://www.w3.org/2000/svg" font-family="Nunito, sans-serif" font-size="13" font-weight="700">
@@ -43,42 +43,21 @@
   <text x="100" y="14" text-anchor="middle">C</text><text x="12" y="134">A</text><text x="182" y="134">B</text><text x="108" y="96">O</text><text x="100" y="194" text-anchor="middle" font-size="11">D</text>
   <text x="92" y="42" font-size="11" fill="#3f44c9">θ</text><text x="76" y="118" font-size="11" fill="#3f44c9">2θ</text>
 </svg>
-<figcaption>Inscribed angle \(\angle ACB = \theta\), central angle \(\angle AOB = 2\theta\). The dashed line \(CD\) through the centre is what the proof uses.</figcaption>
+<figcaption>Inscribed angle \(\angle ACB = \theta\), central angle \(\angle AOB = 2\theta\). The dashed diameter \(CD\) is what the proof uses.</figcaption>
 </figure>
-<p><b>Proof, first case: the centre lies on one side of the inscribed angle.</b> Suppose \(CB\) passes through \(O\). Then \(OA = OC\) (both radii), so triangle \(OAC\) is isosceles and its base angles are equal: \(\angle OCA = \angle OAC\). Call that angle \(\theta\). The angle \(\angle AOB\) is an exterior angle of triangle \(OAC\), and an exterior angle equals the sum of the two remote interior angles: \(\angle AOB = \theta + \theta = 2\theta = 2\angle ACB\). Done.</p>
-<p><b>The other two cases.</b> If the centre lies <em>inside</em> the angle, draw the diameter from \(C\) through \(O\) (the dashed line \(CD\)). It splits \(\angle ACB\) into two angles, each of the first type, each half of a central angle, and the two central angles add up to \(\angle AOB\). Add. If the centre lies <em>outside</em> the angle, the same diameter gives two first-type angles and you subtract instead of adding. That is the whole theorem.</p>
+<p><b>Proof, when \(CB\) passes through \(O\).</b> \(OA = OC\) (radii), so triangle \(OAC\) is isosceles: \(\angle OCA = \angle OAC = \theta\). Now \(\angle AOB\) is an exterior angle of triangle \(OAC\), so it equals the sum of the two remote interior angles: \(2\theta\). Done. If the centre is inside or outside the angle, draw the diameter \(CD\) and add or subtract two angles of this type.</p>
 <p><b>Consequences, each a one-liner now:</b></p>
 <ul>
-<li><b>Angles in the same segment are equal.</b> Two inscribed angles on the same arc are both half the same central angle.</li>
-<li><b>Thales: the angle in a semicircle is 90°.</b> A diameter subtends a central angle of 180°, so the inscribed angle is 90°.</li>
-<li><b>Opposite angles of a cyclic quadrilateral add to 180°.</b> Angles \(A\) and \(C\) stand on the two arcs that together make the whole circle, so the two central angles add to 360°, and halving gives 180°.</li>
-<li><b>A tangent is perpendicular to the radius at the point of contact.</b> The radius is the shortest segment from the centre to the tangent line (every other point of the line is outside the circle, so further than a radius), and the shortest segment from a point to a line is the perpendicular.</li>
-<li><b>The perpendicular from the centre bisects a chord.</b> Two congruent right triangles (shared leg, equal hypotenuses). So equal chords are equally far from the centre.</li>
-<li><b>Power of a point.</b> If chords \(AB\) and \(CD\) cross at \(P\), then \(PA \cdot PB = PC \cdot PD\). Proof: triangles \(PAC\) and \(PDB\) are similar (vertical angles at \(P\), and \(\angle CAB = \angle CDB\) by angles in the same segment), so \(\frac{PA}{PD} = \frac{PC}{PB}\). The same product rule holds when \(P\) is outside the circle, and if one of the lines is a tangent touching at \(T\), it reads \(PA \cdot PB = PT^2\).</li>
+<li><b>Angles in the same segment are equal.</b> Both are half the same central angle.</li>
+<li><b>Thales: the angle in a semicircle is 90°.</b> A diameter gives a central angle of 180°.</li>
+<li><b>Opposite angles of a cyclic quadrilateral add to 180°.</b> Their two arcs make the whole circle, so the central angles add to 360°; halve.</li>
+<li><b>A tangent is perpendicular to the radius at the point of contact</b>, and <b>the perpendicular from the centre bisects a chord</b> (two congruent right triangles).</li>
 </ul>
-<figure>
-<svg viewBox="0 0 420 200" width="420" height="200" xmlns="http://www.w3.org/2000/svg" font-family="Nunito, sans-serif" font-size="13" font-weight="700">
-  <circle cx="100" cy="100" r="80" stroke="#000" stroke-width="2" fill="none"/>
-  <g stroke="#000" stroke-width="2"><line x1="24.8" y1="72.6" x2="175.2" y2="127.4"/><line x1="140" y1="30.7" x2="48.6" y2="161.3"/></g>
-  <circle cx="93.2" cy="97.5" r="3" fill="#000"/>
-  <text x="10" y="70">A</text><text x="180" y="138">B</text><text x="146" y="30">C</text><text x="34" y="172">D</text><text x="98" y="92" font-size="12">P</text>
-  <text x="100" y="196" text-anchor="middle" font-size="11" font-weight="400">PA · PB = PC · PD</text>
-  <circle cx="310" cy="110" r="60" stroke="#000" stroke-width="2" fill="none"/>
-  <g stroke="#000" stroke-width="2"><line x1="400" y1="170" x2="365.4" y2="86.9"/><line x1="400" y1="170" x2="250" y2="110"/></g>
-  <circle cx="310" cy="110" r="3" fill="#000"/><circle cx="400" cy="170" r="3" fill="#000"/><circle cx="365.4" cy="86.9" r="3" fill="#000"/><circle cx="250" cy="110" r="3" fill="#000"/><circle cx="353.5" cy="151.4" r="3" fill="#000"/>
-  <g stroke="#000" stroke-width="1.5" stroke-dasharray="4 3"><line x1="310" y1="110" x2="365.4" y2="86.9"/></g>
-  <text x="404" y="186">P</text><text x="370" y="80">T</text><text x="300" y="106" font-size="12">O</text><text x="236" y="114">A</text><text x="340" y="168" font-size="12">B</text>
-  <text x="330" y="196" text-anchor="middle" font-size="11" font-weight="400">PT ⟂ OT and PT² = PA · PB</text>
-</svg>
-<figcaption>Left: two chords crossing. Right: a tangent and a secant from the same outside point.</figcaption>
-</figure>
 </section>
 
 <section class="example">
 <h2>Watch one: the figure above, with \(\angle AOB = 100°\)</h2>
-<p>In the first figure, suppose the central angle \(\angle AOB = 100°\). Then \(\angle ACB = 50°\) for \(C\) anywhere on the major arc: it does not matter where \(C\) is, which is the "same segment" fact.</p>
-<p>Now put a point \(D\) on the <em>minor</em> arc (the dashed line meets the circle at such a point). \(ACBD\) is a cyclic quadrilateral, so \(\angle ADB = 180° - 50° = 130°\). Alternatively: \(D\) sees arc \(AB\) from the other side, where the central angle is the reflex \(360° - 100° = 260°\), and half of that is 130°. Both routes agree, which is a good sign.</p>
-<p>One more: if \(AC\) were a diameter, \(\angle ABC\) would be 90° by Thales, no measuring needed.</p>
+<p>Then \(\angle ACB = 50°\) for \(C\) anywhere on the major arc: it does not matter where \(C\) is, which is the "same segment" fact. Put a point \(D\) on the <em>minor</em> arc. \(ACBD\) is a cyclic quadrilateral, so \(\angle ADB = 180° - 50° = 130°\). Alternatively, \(D\) sees arc \(AB\) from the other side, where the central angle is the reflex \(260°\), and half of that is 130°. Both routes agree.</p>
 </section>
 
 <section class="exercises">
@@ -86,18 +65,15 @@
 <ol>
 <li>\(O\) is the centre and \(\angle AOC = 140°\). \(B\) is on the major arc \(AC\) and \(D\) is on the minor arc. Find \(\angle ABC\) and \(\angle ADC\), and name the theorem you used for each.<div class="space short"></div></li>
 <li>Triangle \(PQR\) is inscribed in a circle with \(PR\) a diameter, and \(\angle QPR = 37°\). Find the other two angles of the triangle. Which theorem makes this a one-step problem?<div class="space short"></div></li>
-<li>\(ABCD\) is a cyclic quadrilateral with \(\angle A = 2x + 10\) and \(\angle C = 3x - 30\) (in degrees). Find \(x\) and both angles. If \(\angle B = 115°\), find \(\angle D\).<div class="space"></div></li>
-<li>(a) From a point \(P\) outside a circle with centre \(O\), the tangent \(PT\) has length 12 and \(PO = 13\). Find the radius. (b) A chord of length 24 is drawn in a circle of radius 13. How far is the chord from the centre? Draw the right triangle you used in each part.<div class="space"></div></li>
-<li>(a) Chords \(AB\) and \(CD\) cross at \(P\) inside a circle with \(PA = 4\), \(PB = 9\), \(PC = 6\). Find \(PD\). (b) A line from an outside point \(P\) meets a circle at \(A\) then \(B\) with \(PA = 4\) and \(PB = 9\). A tangent from \(P\) touches at \(T\). Find \(PT\).<div class="space"></div></li>
-<li>Write out two of the one-line proofs in your own words, with a sketch each: (a) angles in the same segment are equal; (b) the angle in a semicircle is a right angle. Each should begin "By the inscribed angle theorem…".<div class="space tall"></div></li>
+<li>\(ABCD\) is a cyclic quadrilateral with \(\angle A = 2x + 10\) and \(\angle C = 3x - 30\) (in degrees). Find \(x\) and both angles. If \(\angle B = 115°\), find \(\angle D\).<div class="space short"></div></li>
+<li>(a) From a point \(P\) outside a circle with centre \(O\), the tangent \(PT\) has length 12 and \(PO = 13\). Find the radius. (b) A chord of length 24 is drawn in a circle of radius 13. How far is the chord from the centre? Draw the right triangle you used in each part.<div class="space short"></div></li>
 </ol>
 </section>
 
 <section class="stretch">
-<h2>Stretch: the second case, and a five-pointed star</h2>
-<p>(a) Prove the inscribed angle theorem when the centre \(O\) lies <em>inside</em> \(\angle ACB\). Draw the diameter from \(C\) through \(O\) to a point \(D\) on the far side. Apply the first case to \(\angle ACD\) and to \(\angle DCB\), then add. Write it out properly, naming each equal pair of angles.</p>
-<p>(b) Draw a regular pentagon inscribed in a circle and join every vertex to every other: a pentagram. Each sharp point of the star is an inscribed angle. Which arc does it stand on, and how big is that arc? Find the angle at each point, and the total of all five points.</p>
-<div class="space"></div>
+<h2>Stretch: a five-pointed star</h2>
+<p>Draw a regular pentagon inscribed in a circle and join every vertex to every other: a pentagram. Each sharp point of the star is an inscribed angle. Which arc does it stand on, and how big is that arc? Find the angle at each point, and the total of all five points.</p>
+<div class="space short"></div>
 </section>
 
 <section class="answers">
@@ -107,10 +83,8 @@
 <li>\(\angle PQR = 90°\) by Thales (angle in a semicircle), so \(\angle PRQ = 180° - 90° - 37° = 53°\).</li>
 <li>\(2x + 10 + 3x - 30 = 180\), so \(5x = 200\) and \(x = 40\). \(\angle A = 90°\) and \(\angle C = 90°\) (so \(BD\) is a diameter, by the converse of Thales). \(\angle D = 180° - 115° = 65°\).</li>
 <li>(a) \(OT \perp PT\), so triangle \(OTP\) is right-angled at \(T\): \(r^2 = 13^2 - 12^2 = 25\), \(r = 5\). (b) The perpendicular from the centre bisects the chord into two halves of 12; with hypotenuse 13 the distance is \(\sqrt{169 - 144} = 5\). Same triangle, read the other way round.</li>
-<li>(a) \(PA \cdot PB = PC \cdot PD\): \(4 \times 9 = 6 \times PD\), so \(PD = 6\). (b) \(PT^2 = PA \cdot PB = 36\), so \(PT = 6\).</li>
-<li>(a) By the inscribed angle theorem, each inscribed angle on arc \(AB\) equals half of the central angle \(\angle AOB\); two things equal to the same thing are equal to each other. (b) By the inscribed angle theorem, the angle on a diameter is half the central angle, and the central angle on a diameter is a straight angle, 180°; half is 90°.</li>
 </ol>
-<p><b>Stretch.</b> (a) \(CD\) is a diameter, so \(O\) lies on side \(CD\) of both \(\angle ACD\) and \(\angle DCB\). By the first case, \(\angle AOD = 2\angle ACD\) and \(\angle DOB = 2\angle DCB\). Since \(O\) is inside \(\angle ACB\), the ray \(CD\) lies between \(CA\) and \(CB\), so \(\angle ACB = \angle ACD + \angle DCB\) and \(\angle AOB = \angle AOD + \angle DOB\). Adding the two equations: \(\angle AOB = 2\angle ACD + 2\angle DCB = 2\angle ACB\). (b) The five vertices cut the circle into five equal arcs of \(360°/5 = 72°\). A point of the star is an inscribed angle whose two sides go to the two vertices on the opposite side, and the arc between those two vertices (not containing the point's vertex) is one of the five arcs: 72°. So each point is \(36°\), and the five points total \(180°\). (Try it with a seven-pointed star drawn the same way: each point stands on one arc of \(360°/7\), so the total is still 180°. Any star drawn this way has points totalling 180°.)</p>
+<p><b>Stretch.</b> The five vertices cut the circle into five equal arcs of \(360°/5 = 72°\). A point of the star is an inscribed angle whose two sides go to the two vertices on the opposite side, and the arc between those two vertices (not containing the point's vertex) is one of the five arcs: 72°. So each point is \(36°\), and the five points total \(180°\). (A seven-pointed star drawn the same way also totals 180°: each point stands on one arc of \(360°/7\).)</p>
 </section>
 
 <div class="sheet-nav"><a href="a11-trig.html">← Previous</a><a href="a13-coordinate-geometry.html">Next: Geometry with coordinates →</a></div>

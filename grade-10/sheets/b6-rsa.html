@@ -31,58 +31,51 @@
 
 <section class="idea">
 <h2>Tonight's idea</h2>
-<p>Every time your phone talks to a bank, two machines that have never met agree on a secret while anyone can listen. The trick that makes this possible is a <b>one-way street</b> in arithmetic: multiplying two primes is easy, but given only the product, finding the primes again is slow. \(61 \times 53\) takes you ten seconds. Factoring 3233 takes longer, and factoring a 600-digit product would take every computer on Earth longer than the age of the universe.</p>
-<p>RSA (Rivest, Shamir and Adleman, 1977) turns that one-way street into a padlock. Here is the recipe.</p>
+<p>Every time your phone talks to a bank, two machines that have never met agree on a secret while anyone can listen. The trick is a <b>one-way street</b> in arithmetic: multiplying two primes is easy, but recovering them from the product is slow. \(61 \times 53\) takes ten seconds; factoring 3233 takes longer; factoring a 600-digit product would take every computer on Earth longer than the age of the universe.</p>
+<p>RSA (Rivest, Shamir and Adleman, 1977) turns that street into a padlock.</p>
 <ol>
 <li>Pick two primes \(p\) and \(q\). Let \(n = pq\) and \(\varphi = (p-1)(q-1)\).</li>
-<li>Pick a number \(e\) that shares no factor with \(\varphi\). Publish the pair \((n, e)\): that is the <b>public key</b>, the open padlock.</li>
-<li>Find \(d\) with \(ed \equiv 1 \pmod{\varphi}\). Keep \(d\) secret: that is the <b>private key</b>.</li>
-<li>To send a number \(m\) (smaller than \(n\)), anyone computes \(c = m^e \bmod n\). To read it, you compute \(c^d \bmod n\), and out comes \(m\).</li>
+<li>Pick \(e\) sharing no factor with \(\varphi\). Publish \((n, e)\): the <b>public key</b>, an open padlock.</li>
+<li>Find \(d\) with \(ed \equiv 1 \pmod{\varphi}\). Keep \(d\) secret: the <b>private key</b>.</li>
+<li>To send \(m \lt n\), anyone computes \(c = m^e \bmod n\). You compute \(c^d \bmod n\), and out comes \(m\).</li>
 </ol>
-<p>Why does step 4 undo step 3? Because \(ed = 1 + k\varphi\) for some whole number \(k\), so \(c^d = m^{ed} = m \cdot (m^{p-1})^{k(q-1)}\). By <a href="b5-fermat-little.html">Fermat's little theorem</a>, \(m^{p-1} \equiv 1 \pmod p\), so the whole thing is \(\equiv m \pmod p\). The same argument works mod \(q\). A number that is \(m\) mod \(p\) and \(m\) mod \(q\) is \(m\) mod \(pq\), because \(p\) and \(q\) are different primes. That is the entire proof, and it is the reason \(\varphi\) is built from \(p-1\) and \(q-1\).</p>
-<p>The eavesdropper sees \(n\), \(e\) and \(c\). To find \(d\) they need \(\varphi\), and to find \(\varphi\) they need \(p\) and \(q\). That is the factoring problem, and nobody knows a fast way to do it.</p>
+<p>Why does step 4 undo step 3? Because \(ed = 1 + k\varphi\), so \(c^d = m \cdot (m^{p-1})^{k(q-1)}\), and by <a href="b5-fermat-little.html">Fermat's little theorem</a> that is \(\equiv m \pmod p\). The same works mod \(q\), and a number that is \(m\) mod both is \(m\) mod \(pq\). The eavesdropper sees \(n\), \(e\), \(c\). To find \(d\) they need \(\varphi\), and for that they need \(p\) and \(q\): the factoring problem.</p>
 </section>
 
 <section class="example">
-<h2>Watch one: a full round with \(p = 11\), \(q = 13\)</h2>
-<p>\(n = 143\), \(\varphi = 10 \times 12 = 120\). Choose \(e = 7\), which shares no factor with 120.</p>
-<p><b>Find \(d\).</b> We need \(7d \equiv 1 \pmod{120}\). Divide: \(120 = 17 \times 7 + 1\), so \(1 = 120 - 17 \times 7\). Read that mod 120: \(7 \times (-17) \equiv 1\). So \(d = -17 \equiv 103\). Check: \(7 \times 103 = 721 = 6 \times 120 + 1\). Public key \((143, 7)\), private key 103.</p>
-<p><b>Encrypt \(m = 9\).</b> We need \(9^7 \bmod 143\). Never compute \(9^7\) directly; square and reduce as you go. \(9^2 = 81\). \(9^4 = 81^2 = 6561 = 45 \times 143 + 126\), so \(9^4 \equiv 126\). Then \(9^7 = 9^4 \cdot 9^2 \cdot 9 \equiv 126 \times 81 \times 9\). \(126 \times 81 = 10206 \equiv 53\) (since \(71 \times 143 = 10153\)), and \(53 \times 9 = 477 = 3 \times 143 + 48\). So \(c = 48\).</p>
-<p><b>Decrypt.</b> \(103 = 64 + 32 + 4 + 2 + 1\). Square repeatedly mod 143: \(48^2 = 2304 \equiv 16\); \(48^4 \equiv 16^2 = 256 \equiv 113\); \(48^8 \equiv 113^2 = 12769 \equiv 42\); \(48^{16} \equiv 42^2 = 1764 \equiv 48\); \(48^{32} \equiv 16\); \(48^{64} \equiv 113\). Multiply the ones we need: \(113 \times 16 \equiv 92\); \(92 \times 113 \equiv 100\); \(100 \times 16 \equiv 27\); \(27 \times 48 = 1296 \equiv 9\). The message is back: \(m = 9\).</p>
-<p>Seven squarings and a handful of multiplications instead of a 200-digit power. Real RSA does exactly this, with numbers 600 digits long.</p>
+<h2>Watch one: a round with \(p = 11\), \(q = 13\)</h2>
+<p>\(n = 143\), \(\varphi = 10 \times 12 = 120\). Choose \(e = 7\).</p>
+<p><b>Find \(d\).</b> \(120 = 17 \times 7 + 1\), so \(1 = 120 - 17 \times 7\), so \(7 \times (-17) \equiv 1 \pmod{120}\) and \(d = -17 \equiv 103\). Check: \(7 \times 103 = 721 = 6 \times 120 + 1\).</p>
+<p><b>Encrypt \(m = 9\).</b> Square and reduce as you go: \(9^2 = 81\); \(9^4 = 6561 \equiv 126\). Then \(9^7 = 9^4 \cdot 9^2 \cdot 9 \equiv 126 \times 81 \times 9\). \(126 \times 81 = 10206 \equiv 53\), and \(53 \times 9 = 477 \equiv 48\). So \(c = 48\).</p>
+<p><b>Decrypt.</b> Compute \(48^{103} \bmod 143\) the same way, squaring seven times and multiplying the pieces you need, and 9 comes back. Real RSA does exactly this with 600-digit numbers.</p>
 </section>
 
 <section class="exercises">
 <h2>Your turn</h2>
 <ol>
-<li>Confirm that 7 and 120 share no common factor, and verify \(7 \times 103 \equiv 1 \pmod{120}\). Then explain why \(e = 8\) would have been a bad choice: what goes wrong when you try to find \(d\)?<div class="space short"></div></li>
-<li>Encrypt \(m = 5\) with the public key \((143, 7)\). Use repeated squaring: find \(5^2\), \(5^4\) mod 143, then combine.<div class="space"></div></li>
-<li>Someone sends you \(c = 6\). Decrypt it with \(d = 103\). Build the table \(6^2, 6^4, 6^8, 6^{16}, 6^{32}, 6^{64}\) mod 143 first.<div class="space tall"></div></li>
-<li><b>Break a weak key.</b> A public key is \((221, 5)\). Factor 221, compute \(\varphi\), and find the private key \(d\) using the division trick from the example (you will need two division steps this time).<div class="space"></div></li>
-<li>In the example \(ed = 721 = 1 + 6 \times 120\). Using Fermat's little theorem, show that \(m^{721} \equiv m \pmod{11}\) for any \(m\) not divisible by 11, and separately that \(m^{721} \equiv m \pmod{13}\). Why does that force \(m^{721} \equiv m \pmod{143}\)? What happens if 11 does divide \(m\)?<div class="space"></div></li>
-<li>A slightly bigger key: \((3233, 17)\). Factor 3233 (you only need to test primes up to 56), compute \(\varphi\), and find \(d\). Then write two sentences on why a 600-digit \(n\) is safe when a 4-digit one took you a few minutes.<div class="space short"></div></li>
+<li>Verify \(7 \times 103 \equiv 1 \pmod{120}\). Then explain why \(e = 8\) would have been a bad choice: what goes wrong when you try to find \(d\)?<div class="space short"></div></li>
+<li>Encrypt \(m = 5\) with the public key \((143, 7)\). Find \(5^2\) and \(5^4\) mod 143 first, then combine.<div class="space"></div></li>
+<li><b>Break a weak key.</b> A public key is \((221, 5)\). Factor 221, compute \(\varphi\), and find \(d\) with the division trick from the example (two division steps this time).<div class="space"></div></li>
+<li>In the example \(ed = 721 = 1 + 6 \times 120\). Use Fermat's little theorem to show \(m^{721} \equiv m \pmod{11}\) when 11 does not divide \(m\), and likewise mod 13. Why does that force \(m^{721} \equiv m \pmod{143}\)?<div class="space"></div></li>
 </ol>
 <p class="small">Run keys of any size, with every squaring step shown, at <a href="../../demos/rsa.html">infinityclub.net/demos/rsa.html</a>.</p>
 </section>
 
 <section class="stretch">
 <h2>Stretch: agreeing a secret in public</h2>
-<p>RSA was not the first public-key idea. A year earlier Diffie and Hellman found a way for two people to <em>agree</em> on a secret number while shouting every message across a crowded room. Everyone agrees on a prime \(p = 23\) and a base \(g = 5\). Alice picks a secret \(a = 6\) and shouts \(A = 5^6 \bmod 23\). Bob picks a secret \(b = 15\) and shouts \(B = 5^{15} \bmod 23\).</p>
-<p>Compute \(A\) and \(B\). Then Alice computes \(B^a \bmod 23\) and Bob computes \(A^b \bmod 23\). Show they get the same number. Why must they? (Write both as a power of 5.) What would an eavesdropper, who hears 23, 5, \(A\) and \(B\), have to solve to get the secret? That problem is called the <b>discrete logarithm</b>, and like factoring, nobody knows a fast way.</p>
+<p>Everyone agrees on \(p = 23\) and \(g = 5\). Alice picks a secret \(a = 6\) and shouts \(A = 5^6 \bmod 23\). Bob picks \(b = 15\) and shouts \(B = 5^{15} \bmod 23\). Compute \(A\) and \(B\). Then show that \(B^a\) and \(A^b\) agree mod 23. Why must they? What would an eavesdropper have to solve?</p>
 <div class="space short"></div>
 </section>
 
 <section class="answers">
 <h2>Answers</h2>
 <ol>
-<li>\(120 = 2^3 \times 3 \times 5\) and 7 is prime, so no common factor. \(7 \times 103 = 721 = 6 \times 120 + 1\). With \(e = 8\): \(\gcd(8, 120) = 8\), so \(8d\) is always a multiple of 8 and can never be \(1 + 120k\) (which is odd). No \(d\) exists, so nothing could be decrypted.</li>
-<li>\(5^2 = 25\), \(5^4 = 625 = 4 \times 143 + 53 \equiv 53\). \(5^7 = 5^4 \cdot 5^2 \cdot 5 \equiv 53 \times 25 \times 5\). \(53 \times 25 = 1325 = 9 \times 143 + 38 \equiv 38\); \(38 \times 5 = 190 \equiv 47\). So \(c = 47\).</li>
-<li>\(6^2 = 36\); \(6^4 = 1296 = 9 \times 143 + 9 \equiv 9\); \(6^8 \equiv 81\); \(6^{16} \equiv 81^2 = 6561 \equiv 126\); \(6^{32} \equiv 126^2 = 15876 = 111 \times 143 + 3 \equiv 3\); \(6^{64} \equiv 9\). Then \(6^{103} = 6^{64} \cdot 6^{32} \cdot 6^4 \cdot 6^2 \cdot 6 \equiv 9 \times 3 \times 9 \times 36 \times 6\). \(27 \times 9 = 243 \equiv 100\); \(100 \times 36 = 3600 = 25 \times 143 + 25 \equiv 25\); \(25 \times 6 = 150 \equiv 7\). The message was \(m = 7\). (Check: \(7^7 \bmod 143 = 6\).)</li>
+<li>\(7 \times 103 = 721 = 6 \times 120 + 1\). With \(e = 8\): \(\gcd(8, 120) = 8\), so \(8d\) is always a multiple of 8 and can never equal \(1 + 120k\), which is odd. No \(d\) exists, so nothing could be decrypted.</li>
+<li>\(5^2 = 25\), \(5^4 = 625 = 4 \times 143 + 53 \equiv 53\). \(5^7 \equiv 53 \times 25 \times 5\): \(53 \times 25 = 1325 \equiv 38\); \(38 \times 5 = 190 \equiv 47\). So \(c = 47\).</li>
 <li>\(221 = 13 \times 17\), \(\varphi = 12 \times 16 = 192\). \(192 = 38 \times 5 + 2\) and \(5 = 2 \times 2 + 1\). Back-substitute: \(1 = 5 - 2 \times 2 = 5 - 2(192 - 38 \times 5) = 77 \times 5 - 2 \times 192\). So \(d = 77\). Check: \(5 \times 77 = 385 = 2 \times 192 + 1\).</li>
-<li>Mod 11: \(m^{721} = m \cdot (m^{10})^{72} \equiv m \cdot 1^{72} = m\) by Fermat (\(m^{10} \equiv 1\) when 11 does not divide \(m\)). Mod 13: \(m^{721} = m \cdot (m^{12})^{60} \equiv m\). So \(m^{721} - m\) is divisible by 11 and by 13, hence by \(143\). If 11 divides \(m\), both \(m^{721}\) and \(m\) are \(\equiv 0 \pmod{11}\), so the congruence still holds; the same for 13.</li>
-<li>\(3233 = 53 \times 61\), \(\varphi = 52 \times 60 = 3120\), and \(d = 2753\) (check: \(17 \times 2753 = 46801 = 15 \times 3120 + 1\)). Finding \(d\) took seconds once you had the factors; the factors took trial division up to 56. For a 600-digit \(n\), trial division would need around \(10^{300}\) steps, and the best known methods are still far too slow. Multiplying the two 300-digit primes to make \(n\) takes a computer a microsecond. Easy one way, hopeless the other: that asymmetry is the whole security.</li>
+<li>Mod 11: \(m^{721} = m \cdot (m^{10})^{72} \equiv m \cdot 1^{72} = m\) by Fermat. Mod 13: \(m^{721} = m \cdot (m^{12})^{60} \equiv m\). So \(m^{721} - m\) is divisible by 11 and by 13, hence by 143. (If 11 divides \(m\), both sides are 0 mod 11, so it still holds.)</li>
 </ol>
-<p><b>Stretch.</b> \(5^2 = 25 \equiv 2\), \(5^4 \equiv 4\), so \(A = 5^6 \equiv 4 \times 2 = 8\). \(5^8 \equiv 16\), so \(B = 5^{15} = 5^8 \cdot 5^4 \cdot 5^2 \cdot 5 \equiv 16 \times 4 \times 2 \times 5 = 640 = 27 \times 23 + 19\), \(B = 19\). Alice: \(19^6 \equiv (-4)^6 = 4096 = 178 \times 23 + 2 \equiv 2\). Bob: \(8^2 = 64 \equiv -5\), \(8^4 \equiv 25 \equiv 2\), \(8^8 \equiv 4\), so \(8^{15} \equiv 4 \times 2 \times (-5) \times 8 = -320 \equiv 2\). Same secret, 2, because \(B^a = (5^b)^a = 5^{ab} = (5^a)^b = A^b\). The eavesdropper knows \(5^a \equiv 8\) and must find \(a\): undoing a power mod a prime, the discrete logarithm. With a 600-digit prime that is as hopeless as factoring.</p>
+<p><b>Stretch.</b> \(5^2 \equiv 2\), \(5^4 \equiv 4\), so \(A = 5^6 \equiv 8\). \(5^8 \equiv 16\), so \(B = 5^{15} \equiv 16 \times 4 \times 2 \times 5 = 640 \equiv 19\). Alice: \(19^6 \equiv (-4)^6 = 4096 \equiv 2\). Bob: \(8^2 \equiv -5\), \(8^4 \equiv 2\), \(8^8 \equiv 4\), so \(8^{15} \equiv 4 \times 2 \times (-5) \times 8 = -320 \equiv 2\). Same secret, 2, because \(B^a = 5^{ab} = A^b\). The eavesdropper knows \(5^a \equiv 8\) and must find \(a\): the <b>discrete logarithm</b>, which like factoring has no known fast method.</p>
 </section>
 
 <div class="sheet-nav"><a href="b5-fermat-little.html">← Previous</a><a href="b7-complex-rotations.html">Next: Multiplying is rotating →</a></div>

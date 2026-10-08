@@ -33,55 +33,43 @@
 <h2>Tonight's idea</h2>
 <p>\(\log_2 8\) is a question: <em>what power of 2 gives 8?</em> The answer is 3. That is the whole definition:</p>
 <p class="callout">\(\log_b x = y\) means exactly \(b^y = x\). A logarithm is an exponent.</p>
-<p>So \(\log_{10} 1000 = 3\), \(\log_5 \tfrac{1}{25} = -2\), \(\log_9 3 = \tfrac12\), and \(\log_b 1 = 0\) for every base, because \(b^0 = 1\). Two bases get special buttons: \(\log\) with no base means base 10, and \(\ln\) means base \(e \approx 2.718\), which you will meet properly in <a href="b9-e.html">The number e</a>.</p>
-<p>Every log law is an exponent law read backwards. Let \(x = b^m\) and \(y = b^n\), so \(m = \log_b x\) and \(n = \log_b y\).</p>
-<ul>
-<li>\(xy = b^m b^n = b^{m+n}\), so \(\log_b(xy) = m + n = \log_b x + \log_b y\). <b>Multiplying numbers adds their logs.</b></li>
-<li>\(x/y = b^{m-n}\), so \(\log_b(x/y) = \log_b x - \log_b y\).</li>
-<li>\(x^k = (b^m)^k = b^{mk}\), so \(\log_b(x^k) = k\log_b x\). <b>Powers come down as multipliers.</b> This one solves equations.</li>
-</ul>
-<p><b>Change of base.</b> Your calculator only has base 10 and base \(e\). To get \(\log_2 10\): let \(y = \log_2 10\), so \(2^y = 10\). Take base-10 logs of both sides: \(y \log 2 = \log 10 = 1\), so \(y = \dfrac{1}{\log 2} \approx 3.32\). In general \(\log_b x = \dfrac{\log x}{\log b}\), any base on the right as long as it is the same twice.</p>
-<p><b>Counting digits.</b> A number \(N\) has \(d\) digits when \(10^{d-1} \leq N \lt 10^d\), which is \(d - 1 \leq \log N \lt d\). So the number of digits is \(\lfloor \log_{10} N \rfloor + 1\). For \(2^{1000}\): \(\log_{10} 2^{1000} = 1000 \log_{10} 2 \approx 1000 \times 0.30103 = 301.03\), so \(2^{1000}\) has \(301 + 1 = 302\) digits. No computer needed.</p>
+<p>So \(\log_{10} 1000 = 3\), \(\log_5 \tfrac{1}{25} = -2\), \(\log_9 3 = \tfrac12\), and \(\log_b 1 = 0\) for every base. Plain \(\log\) means base 10; \(\ln\) means base \(e \approx 2.718\), met properly in <a href="b9-e.html">The number e</a>.</p>
+<p>Every log law is an exponent law read backwards. Let \(x = b^m\) and \(y = b^n\), so \(m = \log_b x\) and \(n = \log_b y\). Then \(xy = b^{m+n}\), so \(\log_b(xy) = \log_b x + \log_b y\): <b>multiplying numbers adds their logs</b>. Similarly \(\log_b(x/y) = \log_b x - \log_b y\), and \(x^k = b^{mk}\) gives \(\log_b(x^k) = k\log_b x\): <b>powers come down as multipliers</b>, which is what solves equations.</p>
+<p><b>Change of base.</b> To get \(\log_2 10\) on a calculator: if \(2^y = 10\) then \(y \log 2 = \log 10 = 1\), so \(y = 1/\log 2 \approx 3.32\). In general \(\log_b x = \dfrac{\log x}{\log b}\).</p>
+<p><b>Counting digits.</b> \(N\) has \(\lfloor \log_{10} N \rfloor + 1\) digits. For \(2^{1000}\): \(1000 \log_{10} 2 \approx 301.03\), so \(2^{1000}\) has 302 digits. No computer needed.</p>
 </section>
 
 <section class="example">
-<h2>Watch one: three equations</h2>
-<p>\(5 \cdot 3^x = 200\). Isolate the power: \(3^x = 40\). Take logs: \(x \ln 3 = \ln 40\), so \(x = \dfrac{\ln 40}{\ln 3} \approx 3.358\). (Sanity: \(3^3 = 27\) and \(3^4 = 81\), so a bit over 3.)</p>
-<p>\(\log_2 x + \log_2(x - 2) = 3\). Combine: \(\log_2\big(x(x-2)\big) = 3\), so \(x(x - 2) = 2^3 = 8\), so \(x^2 - 2x - 8 = 0\), so \(x = 4\) or \(x = -2\). Reject \(-2\): you cannot take the log of a negative number. Answer \(x = 4\). Always check log equations against the domain.</p>
-<p>\(\log_4 32\) without a calculator: \(4 = 2^2\) and \(32 = 2^5\), so \(4^y = 32\) means \(2^{2y} = 2^5\), \(y = \tfrac52\).</p>
+<h2>Watch one: two equations</h2>
+<p>\(5 \cdot 3^x = 200\). Isolate the power: \(3^x = 40\). Take logs: \(x \ln 3 = \ln 40\), so \(x = \dfrac{\ln 40}{\ln 3} \approx 3.358\). (Sanity: \(3^3 = 27\), \(3^4 = 81\).)</p>
+<p>\(\log_2 x + \log_2(x - 2) = 3\). Combine: \(\log_2\big(x(x-2)\big) = 3\), so \(x(x-2) = 8\), so \(x = 4\) or \(x = -2\). Reject \(-2\): no log of a negative. Answer \(x = 4\). Always check log equations against the domain.</p>
 </section>
 
 <section class="exercises">
 <h2>Your turn</h2>
 <ol>
-<li>Evaluate without a calculator: \(\log_2 64\), \(\;\log_3 \tfrac{1}{27}\), \(\;\log_{10} 0.001\), \(\;\log_5 \sqrt5\), \(\;\log_8 4\), \(\;\ln e^3\).<div class="space short"></div></li>
-<li>Write \(2\log x + \log y - 3\log z\) as a single logarithm. Then expand \(\log\dfrac{\sqrt a}{b^2 c}\) into separate logs.<div class="space short"></div></li>
-<li>Solve, exactly where possible and to three decimal places otherwise: \(3^{2x} = 81\); \(\;7^x = 50\); \(\;2^{x+1} = 3^x\).<div class="space"></div></li>
-<li>How many digits are in \(3^{500}\)? In \(7^{77}\)? Use \(\log_{10} 3 \approx 0.47712\) and \(\log_{10} 7 \approx 0.84510\).<div class="space short"></div></li>
-<li>Logarithmic scales. The Richter magnitude is \(\log_{10}\) of the shaking amplitude, so each step of 1 is ten times the amplitude; the <em>energy</em> released grows by a factor of about \(10^{1.5}\) per step. Compare a magnitude 7 earthquake to a magnitude 5: how many times the amplitude, and roughly how many times the energy? Decibels are \(10\log_{10}\) of sound intensity: how many times more intense is 80 dB than 60 dB? pH is \(-\log_{10}\) of hydrogen ion concentration: how does pH 3 compare with pH 6?<div class="space"></div></li>
-<li>Money grows at 6% per year, so it multiplies by 1.06 annually. How many years until it doubles? Bankers use the "rule of 72": doubling time \(\approx 72 / (\text{percent rate})\). Check the rule at 6%, 3% and 12% against the exact answers.<div class="space"></div></li>
+<li>Evaluate without a calculator: \(\log_2 64\), \(\;\log_3 \tfrac{1}{27}\), \(\;\log_8 4\), \(\;\ln e^3\).<div class="space short"></div></li>
+<li>Solve to three decimal places: \(7^x = 50\); \(\;2^{x+1} = 3^x\).<div class="space"></div></li>
+<li>How many digits are in \(3^{500}\)? Use \(\log_{10} 3 \approx 0.47712\).<div class="space short"></div></li>
+<li>Money grows at 6% per year. How many years until it doubles? Bankers use the "rule of 72": doubling time \(\approx 72/(\text{percent rate})\). Check the rule at 6% and 12% against the exact answers.<div class="space"></div></li>
 </ol>
 </section>
 
 <section class="stretch">
 <h2>Stretch: a log you can prove is irrational</h2>
-<p>First a warm-up: show that \(\log_a b \cdot \log_b a = 1\) using change of base.</p>
-<p>Now prove \(\log_2 3\) is irrational. Suppose it were a fraction \(p/q\) with positive whole numbers \(p, q\). Then \(2^{p/q} = 3\), so \(2^p = 3^q\). Why is that impossible? Then adapt the argument to prove \(\log_{10} 2\) is irrational, which means the decimal \(0.30102999566\ldots\) never repeats.</p>
-<p>Last: estimate the number of digits in \(100! = 1 \times 2 \times \cdots \times 100\) without a computer. The log of a product is the sum of the logs, so you need \(\log 1 + \log 2 + \cdots + \log 100\). Group the terms (all two-digit numbers have a log between 1 and 2, for instance) to trap the sum between two whole numbers, and then sharpen the estimate as much as you can. The true value is on the answers page.</p>
-<div class="space"></div>
+<p>Suppose \(\log_2 3 = p/q\) with positive whole numbers \(p, q\). Then \(2^{p/q} = 3\), so \(2^p = 3^q\). Why is that impossible? Conclude that \(\log_2 3\) is irrational, then adapt the argument to \(\log_{10} 2\).</p>
+<div class="space short"></div>
 </section>
 
 <section class="answers">
 <h2>Answers</h2>
 <ol>
-<li>\(6\); \(\;-3\); \(\;-3\); \(\;\tfrac12\); \(\;\tfrac23\) (since \(8^{2/3} = 4\)); \(\;3\).</li>
-<li>\(\log\dfrac{x^2 y}{z^3}\). \(\;\tfrac12\log a - 2\log b - \log c\).</li>
-<li>\(3^{2x} = 3^4\), so \(x = 2\). \(\;x = \dfrac{\ln 50}{\ln 7} \approx 2.010\). \(\;(x+1)\ln 2 = x\ln 3\), so \(x(\ln 3 - \ln 2) = \ln 2\), \(x = \dfrac{\ln 2}{\ln 1.5} \approx 1.710\).</li>
-<li>\(500 \times 0.47712 = 238.56\), so \(239\) digits. \(77 \times 0.84510 = 65.07\), so \(66\) digits.</li>
-<li>Amplitude \(10^2 = 100\) times; energy about \(10^3 = 1000\) times (\(10^{1.5} \approx 31.6\) per step, squared). 80 dB is \(10^{2} = 100\) times as intense as 60 dB. pH 3 has \(10^3 = 1000\) times the hydrogen ion concentration of pH 6.</li>
-<li>\(1.06^n = 2\), so \(n = \dfrac{\ln 2}{\ln 1.06} \approx 11.9\) years; rule of 72 says 12. At 3%: exact 23.4, rule says 24. At 12%: exact 6.1, rule says 6. The rule is good to within a few percent for ordinary rates, because \(\ln 2 \approx 0.693\) and \(\ln(1 + r) \approx r\) for small \(r\), giving \(0.693/r\), and 72 is a nearby number with many divisors.</li>
+<li>\(6\); \(\;-3\); \(\;\tfrac23\) (since \(8^{2/3} = 4\)); \(\;3\).</li>
+<li>\(x = \dfrac{\ln 50}{\ln 7} \approx 2.010\). \(\;(x+1)\ln 2 = x\ln 3\), so \(x = \dfrac{\ln 2}{\ln 3 - \ln 2} = \dfrac{\ln 2}{\ln 1.5} \approx 1.710\).</li>
+<li>\(500 \times 0.47712 = 238.56\), so \(239\) digits.</li>
+<li>\(1.06^n = 2\), so \(n = \dfrac{\ln 2}{\ln 1.06} \approx 11.9\) years; the rule says 12. At 12%: exact 6.1, rule says 6. It works because \(\ln 2 \approx 0.693\) and \(\ln(1 + r) \approx r\) for small \(r\), and 72 is a nearby number with many divisors.</li>
 </ol>
-<p><b>Stretch.</b> \(\log_a b \cdot \log_b a = \dfrac{\log b}{\log a} \cdot \dfrac{\log a}{\log b} = 1\). If \(2^p = 3^q\) with \(p, q \geq 1\), the left side is even and the right side is odd: impossible. So no such fraction exists and \(\log_2 3\) is irrational. For \(\log_{10} 2 = p/q\): \(10^p = 2^q\), but the left side is divisible by 5 and the right side is not. For \(100!\): the nine numbers 1 to 9 have logs between 0 and 1 (sum less than 9), and the ninety numbers 10 to 99 have logs between 1 and 2, with \(\log 100 = 2\). So the total is between 90 + 2 = 92 and 9 + 180 + 2 = 191, meaning somewhere between 93 and 192 digits. Sharpen by splitting 10–99 further: for example the fifty numbers 50–99 have logs above \(\log 50 \approx 1.7\), adding 85 on their own. The exact sum is \(\log_{10}(100!) \approx 157.97\), so \(100!\) has \(158\) digits. (A famous formula, Stirling's, gives \(157.97\) directly; you have just reinvented the reason it exists.)</p>
+<p><b>Stretch.</b> \(2^p\) is even and \(3^q\) is odd, so they cannot be equal; no such fraction exists. For \(\log_{10} 2 = p/q\): \(10^p = 2^q\), but the left side is divisible by 5 and the right side is not. So the decimal \(0.30102999\ldots\) never repeats.</p>
 </section>
 
 <div class="sheet-nav"><a href="a4-transformations.html">← Previous</a><a href="a6-systems.html">Next: Where curves meet →</a></div>

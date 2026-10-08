@@ -31,60 +31,49 @@
 
 <section class="idea">
 <h2>Tonight's idea</h2>
-<p>A <b>sequence</b> is a list of numbers with a rule. A <b>series</b> is what you get when you add them up. Two kinds of sequence account for most of what you will meet, and each has a sum formula that you should be able to rebuild from scratch in thirty seconds.</p>
-<p><b>Arithmetic: add the same amount each time.</b> First term \(a\), common difference \(d\): \(a,\; a + d,\; a + 2d,\; \ldots\) The \(n\)th term is \(a + (n - 1)d\) (the first term has had zero \(d\)s added, the \(n\)th has had \(n - 1\)).</p>
-<p>The sum is Gauss's trick. Write the series forwards and backwards and add the columns:</p>
+<p>A <b>sequence</b> is a list of numbers with a rule. A <b>series</b> is what you get when you add them up. Two kinds account for most of what you will meet, and each has a sum formula you can rebuild from scratch in thirty seconds.</p>
+<p><b>Arithmetic: add the same amount each time.</b> First term \(a\), common difference \(d\), so the \(n\)th term is \(a + (n - 1)d\). The sum is Gauss's trick: write the series forwards and backwards and add the columns.</p>
 <p>\[\begin{aligned} S &= a + (a + d) + \cdots + (l - d) + l \\ S &= l + (l - d) + \cdots + (a + d) + a \\ 2S &= (a + l) + (a + l) + \cdots + (a + l) \end{aligned}\]</p>
 <p>Every column adds to \(a + l\), where \(l\) is the last term, and there are \(n\) columns. So</p>
-<p class="callout">\(S_n = \dfrac{n(a + l)}{2} = \dfrac n2\bigl(2a + (n - 1)d\bigr)\): number of terms times the average of first and last.</p>
-<p><b>Geometric: multiply by the same amount each time.</b> First term \(a\), common ratio \(r\): \(a,\; ar,\; ar^2,\; \ldots\), with \(n\)th term \(ar^{n-1}\). Gauss's trick does not work (the columns are not equal), but a different trick does. Multiply the whole sum by \(r\) and subtract:</p>
+<p class="callout">\(S_n = \dfrac{n(a + l)}{2}\): number of terms times the average of first and last.</p>
+<p><b>Geometric: multiply by the same amount each time.</b> First term \(a\), common ratio \(r\), \(n\)th term \(ar^{n-1}\). Multiply the whole sum by \(r\) and subtract:</p>
 <p>\[\begin{aligned} S &= a + ar + ar^2 + \cdots + ar^{n-1} \\ rS &= \phantom{a + {}} ar + ar^2 + \cdots + ar^{n-1} + ar^n \\ S - rS &= a - ar^n \end{aligned}\]</p>
-<p>Everything in the middle cancels. So \(S(1 - r) = a(1 - r^n)\), and</p>
-<p class="callout">\(S_n = \dfrac{a(1 - r^n)}{1 - r}\) (for \(r \ne 1\)).</p>
-<p><b>Adding forever.</b> If \(|r| \lt 1\), then \(r^n\) shrinks toward 0 as \(n\) grows: \((\tfrac12)^{10} \approx 0.001\), \((\tfrac12)^{20} \approx 0.000001\). So the finite sums settle down to a limit:</p>
-<p class="callout">\(S_\infty = \dfrac{a}{1 - r}\) when \(|r| \lt 1\).</p>
-<p>The famous case: \(\tfrac12 + \tfrac14 + \tfrac18 + \cdots = \dfrac{1/2}{1 - 1/2} = 1\). Not "approaches 1", not "practically 1": the sum of the infinite series is defined to be the limit of the finite sums, and that limit is exactly 1. Picture a square of area 1 cut into a half, a quarter, an eighth, and so on: the pieces fill the square with nothing left over.</p>
-<p>The same idea settles an old argument. \(0.999\ldots = \tfrac{9}{10} + \tfrac{9}{100} + \tfrac{9}{1000} + \cdots\) is geometric with \(a = \tfrac{9}{10}\) and \(r = \tfrac1{10}\), so it equals \(\dfrac{9/10}{1 - 1/10} = \dfrac{9/10}{9/10} = 1\). Two names for one number. Every repeating decimal is a geometric series, which is why every repeating decimal is a fraction.</p>
-<p><b>Notation.</b> \(\displaystyle\sum_{k=1}^{n} k\) means "add up \(k\) as \(k\) runs from 1 to \(n\)". So \(\displaystyle\sum_{k=1}^{100} k = \frac{100 \times 101}{2} = 5050\), which is the sum ten-year-old Gauss is said to have produced in seconds.</p>
-<p class="small">Related demo: <a href="../../demos/differences.html">infinityclub.net/demos/differences.html</a> finds the rule for a sequence from its differences. An arithmetic sequence has constant first differences; what does a geometric one have?</p>
+<p>Everything in the middle cancels, so</p>
+<p class="callout">\(S_n = \dfrac{a(1 - r^n)}{1 - r}\) (for \(r \ne 1\)), and if \(|r| \lt 1\), then \(r^n \to 0\) and \(S_\infty = \dfrac{a}{1 - r}\).</p>
+<p>The famous case: \(\tfrac12 + \tfrac14 + \tfrac18 + \cdots = \dfrac{1/2}{1 - 1/2} = 1\). Not "practically 1": the sum of an infinite series is defined as the limit of the finite sums, and that limit is exactly 1.</p>
 </section>
 
 <section class="example">
 <h2>Watch one: \(7 + 10 + 13 + \cdots + 100\), and ten doublings</h2>
-<p><b>Arithmetic.</b> \(a = 7\), \(d = 3\), last term 100. How many terms? \(7 + 3(n - 1) = 100\) gives \(3(n - 1) = 93\), \(n = 32\). Sum: \(\dfrac{32 \times (7 + 100)}{2} = 16 \times 107 = 1712\).</p>
-<p><b>Geometric.</b> \(3 + 6 + 12 + \cdots\) for 10 terms: \(a = 3\), \(r = 2\). \(S_{10} = \dfrac{3(1 - 2^{10})}{1 - 2} = \dfrac{3(1 - 1024)}{-1} = 3 \times 1023 = 3069\). (With \(r \gt 1\) it is tidier to write the formula as \(\dfrac{a(r^n - 1)}{r - 1}\). Same thing, both signs flipped.)</p>
+<p><b>Arithmetic.</b> \(a = 7\), \(d = 3\), last term 100. How many terms? \(7 + 3(n - 1) = 100\) gives \(n = 32\). Sum: \(\dfrac{32 \times (7 + 100)}{2} = 16 \times 107 = 1712\).</p>
+<p><b>Geometric.</b> \(3 + 6 + 12 + \cdots\) for 10 terms: \(a = 3\), \(r = 2\). \(S_{10} = \dfrac{3(1 - 2^{10})}{1 - 2} = 3 \times 1023 = 3069\). (With \(r \gt 1\) it is tidier to write \(\dfrac{a(r^n - 1)}{r - 1}\). Same thing.)</p>
 </section>
 
 <section class="exercises">
 <h2>Your turn</h2>
 <ol>
 <li>The sequence \(4, 11, 18, 25, \ldots\) Find the 50th term and the sum of the first 50 terms.<div class="space short"></div></li>
-<li>Find the sum of all multiples of 3 below 1000. Then find the sum of all numbers below 1000 that are multiples of 3 <em>or</em> 5. (Careful: some numbers are both.)<div class="space"></div></li>
 <li>The sequence \(5, 15, 45, \ldots\) Find the 8th term and the sum of the first 8 terms.<div class="space short"></div></li>
-<li>A ball is dropped from 2 m. Each bounce takes it to \(\tfrac34\) of its previous height. Find the total distance it travels before coming to rest. (Hint: the first drop is 2 m; after that every height is travelled twice, down and up.)<div class="space"></div></li>
-<li>Write \(0.272727\ldots\) as a geometric series and sum it to get a fraction in lowest terms. Then do \(0.8333\ldots\) (only the 3 repeats).<div class="space"></div></li>
-<li>Offer A: 1,000 a day for 30 days. Offer B: 1 cent on day 1, doubled every day, for 30 days. Find the total of each offer. Then find the first day on which B's running total overtakes A's running total.<div class="space tall"></div></li>
+<li>A ball is dropped from 2 m. Each bounce takes it to \(\tfrac34\) of its previous height. Find the total distance it travels before coming to rest. (Hint: the first drop is 2 m; after that every height is travelled twice, down and up.)<div class="space short"></div></li>
+<li>Write \(0.272727\ldots\) as a geometric series and sum it to get a fraction in lowest terms. Why does this show every repeating decimal is a fraction?<div class="space short"></div></li>
 </ol>
 </section>
 
 <section class="stretch">
 <h2>Stretch: a series with a twist</h2>
-<p>Let \(S = 1 + 2x + 3x^2 + 4x^3 + \cdots\) for some \(x\) with \(|x| \lt 1\). This is not geometric (the coefficients grow), but the subtraction trick still works. Compute \(S - xS\), notice what kind of series is left, sum it, and solve for \(S\).</p>
-<p>Then use your formula to find \(\dfrac12 + \dfrac24 + \dfrac38 + \dfrac4{16} + \cdots = \displaystyle\sum_{n=1}^{\infty}\frac{n}{2^n}\). (Hint: factor out one \(\tfrac12\) first so it matches the shape of \(S\).) If you toss a fair coin until the first head, this sum is the average number of tosses you need. Does the answer seem reasonable?</p>
-<div class="space"></div>
+<p>Let \(S = 1 + 2x + 3x^2 + 4x^3 + \cdots\) with \(|x| \lt 1\). Compute \(S - xS\), notice what kind of series is left, sum it, and solve for \(S\). Then find \(\dfrac12 + \dfrac24 + \dfrac38 + \dfrac4{16} + \cdots\). (Hint: factor out one \(\tfrac12\) first.)</p>
+<div class="space short"></div>
 </section>
 
 <section class="answers">
 <h2>Answers</h2>
 <ol>
 <li>\(d = 7\). 50th term \(= 4 + 49 \times 7 = 347\). Sum \(= \dfrac{50(4 + 347)}{2} = 25 \times 351 = 8775\).</li>
-<li>Multiples of 3: \(3 + 6 + \cdots + 999\), \(n = 333\), sum \(\dfrac{333 \times 1002}{2} = 166{,}833\). Multiples of 5: \(5 + \cdots + 995\), \(n = 199\), sum \(\dfrac{199 \times 1000}{2} = 99{,}500\). Multiples of 15 were counted twice: \(15 + \cdots + 990\), \(n = 66\), sum \(\dfrac{66 \times 1005}{2} = 33{,}165\). Total \(166{,}833 + 99{,}500 - 33{,}165 = 233{,}168\).</li>
 <li>\(r = 3\). 8th term \(= 5 \times 3^7 = 10{,}935\). Sum \(= \dfrac{5(3^8 - 1)}{3 - 1} = \dfrac{5 \times 6560}{2} = 16{,}400\).</li>
-<li>First drop 2 m. Then heights \(1.5, 1.125, \ldots\), each travelled twice: \(2 \times \dfrac{1.5}{1 - 3/4} = 2 \times 6 = 12\) m. Total \(2 + 12 = 14\) m. Infinitely many bounces, finite distance (and, it turns out, finite time too).</li>
-<li>\(0.272727\ldots = \tfrac{27}{100} + \tfrac{27}{10000} + \cdots = \dfrac{27/100}{1 - 1/100} = \dfrac{27}{99} = \dfrac{3}{11}\). \(0.8333\ldots = \tfrac{8}{10} + \left(\tfrac{3}{100} + \tfrac{3}{1000} + \cdots\right) = \tfrac{8}{10} + \dfrac{3/100}{1 - 1/10} = \tfrac{8}{10} + \tfrac{3}{90} = \tfrac{24}{30} + \tfrac{1}{30} = \tfrac{25}{30} = \tfrac56\).</li>
-<li>A: \(30 \times 1000 = 30{,}000\). B: \(0.01(2^{30} - 1) = 10{,}737{,}418.23\), about 10.7 million. Running totals: after day \(n\), A has \(1000n\) and B has \(0.01(2^n - 1)\). Day 21: B \(= 20{,}971.51\) against A \(= 21{,}000\), still behind. Day 22: B \(= 41{,}943.03\) against \(22{,}000\). B overtakes on day 22, and from then on it is not close.</li>
+<li>First drop 2 m. Then heights \(1.5, 1.125, \ldots\), each travelled twice: \(2 \times \dfrac{1.5}{1 - 3/4} = 12\) m. Total \(2 + 12 = 14\) m. Infinitely many bounces, finite distance.</li>
+<li>\(0.272727\ldots = \tfrac{27}{100} + \tfrac{27}{10000} + \cdots = \dfrac{27/100}{1 - 1/100} = \dfrac{27}{99} = \dfrac{3}{11}\). Any repeating block is a geometric series with ratio \(\tfrac{1}{10^k}\), and the formula gives a fraction.</li>
 </ol>
-<p><b>Stretch.</b> \(xS = x + 2x^2 + 3x^3 + \cdots\). Subtract term by term: \(S - xS = 1 + (2 - 1)x + (3 - 2)x^2 + (4 - 3)x^3 + \cdots = 1 + x + x^2 + \cdots\), an ordinary geometric series with sum \(\dfrac{1}{1 - x}\). So \(S(1 - x) = \dfrac{1}{1 - x}\) and \(S = \dfrac{1}{(1 - x)^2}\). For the coin: \(\displaystyle\sum \frac{n}{2^n} = \frac12\left(1 + 2 \cdot \tfrac12 + 3 \cdot \tfrac14 + \cdots\right) = \frac12 \cdot \frac{1}{(1 - \frac12)^2} = \frac12 \times 4 = 2\). On average you wait two tosses for a head. Reasonable: half the time it takes one toss, and the long waits are rare but they pull the average up. Partial sums: five terms give 1.78, ten give 1.99, twenty give 2.00 to four places.</p>
+<p><b>Stretch.</b> \(xS = x + 2x^2 + 3x^3 + \cdots\). Subtracting term by term, \(S - xS = 1 + x + x^2 + \cdots = \dfrac{1}{1 - x}\). So \(S(1 - x) = \dfrac{1}{1 - x}\) and \(S = \dfrac{1}{(1 - x)^2}\). Then \(\displaystyle\sum \frac{n}{2^n} = \frac12\left(1 + 2 \cdot \tfrac12 + 3 \cdot \tfrac14 + \cdots\right) = \frac12 \cdot \frac{1}{(1 - \frac12)^2} = 2\). If you toss a fair coin until the first head, this is the average number of tosses you need.</p>
 </section>
 
 <div class="sheet-nav"><a href="a13-coordinate-geometry.html">← Previous</a><a href="a15-probability.html">Next: Conditional probability and trees →</a></div>

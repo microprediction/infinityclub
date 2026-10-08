@@ -31,37 +31,31 @@
 
 <section class="idea">
 <h2>Tonight's idea</h2>
-<p>What could \(1 + \tfrac12 + \tfrac14 + \tfrac18 + \cdots\) possibly mean? You cannot add infinitely many numbers; you would never finish. Here is the honest definition. Add the first \(n\) terms and call that the <b>partial sum</b> \(S_n\). If the partial sums home in on a single number \(S\), getting as close as you like and staying there, we say the series <b>converges</b> and write \(S\) as its sum. If they do not, the series <b>diverges</b> and the infinite sum is just not a number.</p>
-<p>The <b>geometric series</b> \(a + ar + ar^2 + \cdots\) is the one you can finish by hand. Write \(S_n = a + ar + \cdots + ar^{n-1}\), multiply by \(r\), and subtract:</p>
+<p>What could \(1 + \tfrac12 + \tfrac14 + \tfrac18 + \cdots\) mean? You cannot add infinitely many numbers. The honest definition: add the first \(n\) terms, call that the <b>partial sum</b> \(S_n\), and if the partial sums home in on a single number \(S\), the series <b>converges</b> to \(S\). Otherwise it <b>diverges</b> and the sum is simply not a number.</p>
+<p>The <b>geometric series</b> \(a + ar + ar^2 + \cdots\) is the one you can finish by hand. Multiply \(S_n = a + ar + \cdots + ar^{n-1}\) by \(r\) and subtract:</p>
 <p class="callout">\(S_n - rS_n = a - ar^n\), so \(S_n = \dfrac{a(1 - r^n)}{1 - r}\).</p>
-<p>If \(\lvert r \rvert \lt 1\) then \(r^n\) shrinks to 0 and \(S_n \to \dfrac{a}{1 - r}\). If \(\lvert r \rvert \ge 1\) the terms do not even get small, and the series diverges. So \(1 + \tfrac12 + \tfrac14 + \cdots = \dfrac{1}{1 - 1/2} = 2\), and a repeating decimal is a geometric series: \(0.999\ldots = \tfrac{9}{10} + \tfrac{9}{100} + \cdots = \dfrac{9/10}{1 - 1/10} = 1\). Not close to 1. Equal to 1.</p>
-<p>Now the trap. In the <b>harmonic series</b> \(1 + \tfrac12 + \tfrac13 + \tfrac14 + \cdots\) the terms shrink to zero, so surely it converges? Nicole Oresme, around 1350, showed it does not. Group the terms:</p>
-<p class="callout">\(1 + \tfrac12 + \left(\tfrac13 + \tfrac14\right) + \left(\tfrac15 + \tfrac16 + \tfrac17 + \tfrac18\right) + \left(\tfrac19 + \cdots + \tfrac{1}{16}\right) + \cdots\)</p>
-<p>Each bracket has terms no smaller than its last one: \(\tfrac13 + \tfrac14 \gt \tfrac14 + \tfrac14 = \tfrac12\), the next four add to more than \(4 \cdot \tfrac18 = \tfrac12\), the next eight to more than \(8 \cdot \tfrac1{16} = \tfrac12\). You can keep collecting halves forever, so the partial sums pass every number eventually. It diverges, but with magnificent slowness: the partial sum passes 10 only after 12,367 terms.</p>
-<p>Change the terms from \(\tfrac1k\) to \(\tfrac{1}{k^2}\) and everything changes. The series \(1 + \tfrac14 + \tfrac19 + \tfrac1{16} + \cdots\) converges, and in 1735 Euler found its sum: \(\dfrac{\pi^2}{6}\). Why \(\pi\), a circle number, shows up when you add reciprocals of squares is a deep question with several beautiful answers, none of them short. It is called the Basel problem, and solving it made Euler famous at 28.</p>
+<p>If \(\lvert r \rvert \lt 1\) then \(r^n \to 0\) and \(S_n \to \dfrac{a}{1 - r}\). So \(1 + \tfrac12 + \tfrac14 + \cdots = 2\), and \(0.999\ldots = \dfrac{9/10}{1 - 1/10} = 1\). Not close to 1. Equal to 1.</p>
+<p>Now the trap. In the <b>harmonic series</b> \(1 + \tfrac12 + \tfrac13 + \cdots\) the terms shrink to zero, yet it diverges. Group the terms: \(\tfrac13 + \tfrac14 \gt \tfrac12\), the next four add to more than \(4 \cdot \tfrac18 = \tfrac12\), the next eight to more than \(\tfrac12\). You collect halves forever, so the partial sums pass every number. Change \(\tfrac1k\) to \(\tfrac1{k^2}\) and it converges: Euler showed the sum is \(\dfrac{\pi^2}{6}\).</p>
 </section>
 
 <section class="example">
-<h2>Watch one: Zeno, and a repeating decimal</h2>
-<p>Zeno said you can never cross a room: first you must cross half, then half of what remains, and so on forever. The distances are \(\tfrac12, \tfrac14, \tfrac18, \ldots\), a geometric series with \(a = \tfrac12\), \(r = \tfrac12\), sum \(\dfrac{1/2}{1 - 1/2} = 1\). Infinitely many steps, finite total, and you reach the wall.</p>
-<p>\(0.272727\ldots = \tfrac{27}{100} + \tfrac{27}{10000} + \cdots\) with \(a = \tfrac{27}{100}\), \(r = \tfrac{1}{100}\). Sum \(= \dfrac{27/100}{99/100} = \dfrac{27}{99} = \dfrac{3}{11}\). Every repeating decimal is a fraction for exactly this reason.</p>
+<h2>Watch one: a repeating decimal</h2>
+<p>\(0.272727\ldots = \tfrac{27}{100} + \tfrac{27}{10000} + \cdots\) is geometric with \(a = \tfrac{27}{100}\), \(r = \tfrac{1}{100}\). Sum \(= \dfrac{27/100}{99/100} = \dfrac{27}{99} = \dfrac{3}{11}\). Every repeating decimal is a fraction for exactly this reason.</p>
 </section>
 
 <section class="exercises">
 <h2>Your turn</h2>
 <ol>
-<li>Find the sums: \(3 + \tfrac34 + \tfrac{3}{16} + \tfrac{3}{64} + \cdots\) and \(1 - \tfrac13 + \tfrac19 - \tfrac{1}{27} + \cdots\). (What is \(r\) in the second one?)<div class="space"></div></li>
+<li>Find the sums: \(3 + \tfrac34 + \tfrac{3}{16} + \tfrac{3}{64} + \cdots\) and \(1 - \tfrac13 + \tfrac19 - \tfrac{1}{27} + \cdots\). (What is \(r\) in the second one?)<div class="space short"></div></li>
 <li>Turn \(0.\overline{36}\) and \(0.1\overline{6}\) into fractions using geometric series. For the second, the repeating part starts one digit late.<div class="space"></div></li>
-<li>A ball is dropped from 10 m and each bounce brings it back to 60% of its previous height. Find the total vertical distance it travels before coming to rest. Count the downs and the ups separately.<div class="space"></div></li>
-<li>For the harmonic series, find the first \(n\) with \(S_n \gt 3\) (a calculator and patience). Then: Oresme's grouping shows \(S_{2^k} \gt 1 + \tfrac{k}{2}\). How many terms does that <em>guarantee</em> are enough to pass 10? Compare with the true figure, 12,367.<div class="space"></div></li>
-<li>Compute the first five partial sums of \(1 + \tfrac14 + \tfrac19 + \cdots\) to four decimals and compare with \(\tfrac{\pi^2}{6} \approx 1.6449\). Then prove the series cannot exceed 2: use \(\tfrac{1}{k^2} \lt \tfrac{1}{k(k-1)} = \tfrac{1}{k-1} - \tfrac1k\) for \(k \ge 2\) and watch the sum telescope.<div class="space tall"></div></li>
-<li>The <b>alternating harmonic series</b> \(1 - \tfrac12 + \tfrac13 - \tfrac14 + \cdots\) converges. Compute \(S_1\) through \(S_6\) to four decimals and describe how they close in on the limit, which is \(\ln 2 \approx 0.6931\). Why does the alternating sign rescue a series whose unsigned version diverges?<div class="space"></div></li>
+<li>A ball is dropped from 10 m and each bounce brings it back to 60% of its previous height. Find the total vertical distance it travels. Count the downs and the ups separately.<div class="space"></div></li>
+<li>The grouping argument shows \(S_{2^k} \gt 1 + \tfrac{k}{2}\) for the harmonic series. How many terms does that <em>guarantee</em> are enough to pass 10? The true figure is 12,367; what does the comparison tell you about the bound?<div class="space"></div></li>
 </ol>
 </section>
 
-<section class="stretch" style="break-before: page">
-<h2>Stretch: two sums you can finish</h2>
-<p>(a) Find \(S = \tfrac12 + \tfrac24 + \tfrac38 + \tfrac{4}{16} + \cdots = \sum \tfrac{k}{2^k}\). Hint: write out \(S\) and \(\tfrac{S}{2}\) one above the other, lined up so the denominators match, and subtract. (b) Find \(\tfrac{1}{1 \cdot 2} + \tfrac{1}{2 \cdot 3} + \tfrac{1}{3 \cdot 4} + \cdots\). Hint: \(\tfrac{1}{k(k+1)} = \tfrac1k - \tfrac{1}{k+1}\). (c) A genuinely strange fact to look up: Riemann proved that the alternating harmonic series can be rearranged to add up to <em>any</em> number you like. Why can that never happen to a series of positive terms?</p>
+<section class="stretch">
+<h2>Stretch: a sum you can finish</h2>
+<p>Find \(S = \tfrac12 + \tfrac24 + \tfrac38 + \tfrac{4}{16} + \cdots = \sum \tfrac{k}{2^k}\). Hint: write \(S\) and \(\tfrac{S}{2}\) one above the other, lined up so the denominators match, and subtract.</p>
 <div class="space"></div>
 </section>
 
@@ -69,13 +63,11 @@
 <h2>Answers</h2>
 <ol>
 <li>\(a = 3\), \(r = \tfrac14\): \(\dfrac{3}{1 - 1/4} = 4\). Second: \(a = 1\), \(r = -\tfrac13\): \(\dfrac{1}{1 + 1/3} = \tfrac34\).</li>
-<li>\(0.\overline{36} = \dfrac{36/100}{1 - 1/100} = \dfrac{36}{99} = \dfrac{4}{11}\). \(0.1\overline{6} = \tfrac{1}{10} + \dfrac{6/100}{1 - 1/10} = \tfrac1{10} + \tfrac{6}{90} = \tfrac{1}{10} + \tfrac{1}{15} = \tfrac{5}{30} = \tfrac16\).</li>
-<li>Down: \(10 + 6 + 3.6 + \cdots = \dfrac{10}{1 - 0.6} = 25\). Up: \(6 + 3.6 + \cdots = \dfrac{6}{0.4} = 15\). Total 40 m. (Infinitely many bounces, finite distance, and in a frictionless model finite time too.)</li>
-<li>\(S_{10} \approx 2.929\), \(S_{11} \approx 3.020\), so \(n = 11\). Oresme guarantees \(S_{2^k} \gt 10\) once \(1 + \tfrac{k}{2} \ge 10\), i.e. \(k = 18\): \(2^{18} = 262{,}144\) terms. The true 12,367 is about twenty times smaller; the grouping bound is sure but crude.</li>
-<li>\(1, 1.25, 1.3611, 1.4236, 1.4636\). Slow: after five terms it is still 0.18 short of \(1.6449\). Bound: \(\sum_{k=1}^{n} \tfrac{1}{k^2} \lt 1 + \sum_{k=2}^{n}\left(\tfrac{1}{k-1} - \tfrac1k\right) = 1 + \left(1 - \tfrac1n\right) \lt 2\). Every partial sum is below 2, and they increase, so they must converge to something at most 2. (Euler's \(\tfrac{\pi^2}{6} = 1.6449\ldots\) obliges.)</li>
-<li>\(1,\ 0.5,\ 0.8333,\ 0.5833,\ 0.7833,\ 0.6167\). They leapfrog the limit, over then under, each jump smaller than the last, trapping \(\ln 2\) between consecutive partial sums. The alternating signs make each new term partly cancel the previous one, so the partial sums oscillate within an ever-shrinking band instead of drifting off; the band shrinks because the terms go to zero.</li>
+<li>\(0.\overline{36} = \dfrac{36/100}{1 - 1/100} = \dfrac{36}{99} = \dfrac{4}{11}\). \(0.1\overline{6} = \tfrac{1}{10} + \dfrac{6/100}{1 - 1/10} = \tfrac1{10} + \tfrac{1}{15} = \tfrac16\).</li>
+<li>Down: \(10 + 6 + 3.6 + \cdots = \dfrac{10}{0.4} = 25\). Up: \(6 + 3.6 + \cdots = \dfrac{6}{0.4} = 15\). Total 40 m.</li>
+<li>Need \(1 + \tfrac{k}{2} \ge 10\), so \(k = 18\): \(2^{18} = 262{,}144\) terms. About twenty times the true 12,367. The grouping bound is sure but crude.</li>
 </ol>
-<p><b>Stretch.</b> (a) \(S - \tfrac{S}{2} = \tfrac12 + \left(\tfrac24 - \tfrac14\right) + \left(\tfrac38 - \tfrac28\right) + \cdots = \tfrac12 + \tfrac14 + \tfrac18 + \cdots = 1\), so \(\tfrac{S}{2} = 1\) and \(S = 2\). (b) \(\left(1 - \tfrac12\right) + \left(\tfrac12 - \tfrac13\right) + \cdots\): everything cancels except the first 1 and a \(-\tfrac{1}{n+1}\) that vanishes, so the sum is 1. (c) With positive terms the partial sums only ever go up, and any rearrangement of the same terms is squeezed between the same partial sums, so the limit cannot change. Alternating series can be rearranged because the positive terms alone add to infinity and the negative terms alone add to minus infinity: you can draw on either pile for as long as you need to steer the total anywhere.</p>
+<p><b>Stretch.</b> \(S - \tfrac{S}{2} = \tfrac12 + \left(\tfrac24 - \tfrac14\right) + \left(\tfrac38 - \tfrac28\right) + \cdots = \tfrac12 + \tfrac14 + \tfrac18 + \cdots = 1\), so \(\tfrac{S}{2} = 1\) and \(S = 2\).</p>
 </section>
 
 <div class="sheet-nav"><a href="b11-area-under-curves.html">← Previous</a><a href="b13-cantor.html">Next: Some infinities are bigger →</a></div>

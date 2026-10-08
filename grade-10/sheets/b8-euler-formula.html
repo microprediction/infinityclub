@@ -31,45 +31,38 @@
 
 <section class="idea">
 <h2>Tonight's idea</h2>
-<p>Three functions you know can each be written as an endless polynomial. Take these as facts for tonight; you can check them numerically in a minute, and the sheet on <a href="b12-infinite-series.html">infinite series</a> says more about where they come from.</p>
-<p>\[ e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \frac{x^4}{4!} + \cdots \qquad \cos x = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \cdots \qquad \sin x = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \cdots \]</p>
-<p>(Angles in radians: \(\pi\) radians is 180°.) Check: \(1 - \tfrac12 + \tfrac1{24} - \tfrac1{720} = 0.54028\), and \(\cos 1 = 0.54030\). Four terms already agree to four decimals.</p>
-<p>Now do something that looks illegal. Put \(x = i\theta\) into the series for \(e^x\). Powers of \(i\) cycle: \(i, -1, -i, 1, i, \ldots\) So</p>
+<p>Three functions you know can each be written as an endless polynomial. Take these as facts tonight (the <a href="b12-infinite-series.html">series sheet</a> says where they come from; angles are in radians, \(\pi\) radians being 180°):</p>
+<p>\[ e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots \qquad \cos x = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \cdots \qquad \sin x = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \cdots \]</p>
+<p>Now do something that looks illegal: put \(x = i\theta\) into the series for \(e^x\). Powers of \(i\) cycle \(i, -1, -i, 1, \ldots\), so</p>
 <p>\[ e^{i\theta} = 1 + i\theta - \frac{\theta^2}{2!} - i\frac{\theta^3}{3!} + \frac{\theta^4}{4!} + i\frac{\theta^5}{5!} - \cdots \]</p>
-<p>Collect the real terms and the imaginary terms separately. The real ones are \(1 - \theta^2/2! + \theta^4/4! - \cdots = \cos\theta\). The imaginary ones are \(i(\theta - \theta^3/3! + \theta^5/5! - \cdots) = i\sin\theta\). That is <b>Euler's formula</b>:</p>
+<p>Collect the real terms: \(1 - \theta^2/2! + \theta^4/4! - \cdots = \cos\theta\). Collect the imaginary ones: \(i(\theta - \theta^3/3! + \cdots) = i\sin\theta\). That is <b>Euler's formula</b>:</p>
 <p class="callout">\(e^{i\theta} = \cos\theta + i\sin\theta\)</p>
-<p>There is a second reason to believe it. <a href="b7-complex-rotations.html">Last sheet</a> you proved \(\operatorname{cis}\alpha \cdot \operatorname{cis}\beta = \operatorname{cis}(\alpha + \beta)\): angles add when you multiply. That is exactly how exponentials behave, \(e^a e^b = e^{a+b}\). A function that turns addition into multiplication and has the right slope at 0 has to be an exponential, and the slope works out to \(i\). So \(\operatorname{cis}\theta = e^{i\theta}\) is not a coincidence of series; it is what rotation <em>is</em>.</p>
-<p>Put \(\theta = \pi\): \(\cos\pi = -1\), \(\sin\pi = 0\), so \(e^{i\pi} = -1\), usually written</p>
+<p>It fits <a href="b7-complex-rotations.html">last sheet</a>: angles add when you multiply, exactly as exponents do. Put \(\theta = \pi\): \(\cos\pi = -1\), \(\sin\pi = 0\), so</p>
 <p class="callout">\(e^{i\pi} + 1 = 0\)</p>
-<p>Five of the most important numbers in mathematics, each exactly once. It is less a miracle than a statement that half a turn points you backwards. But it is still a good one.</p>
+<p>Five of the most important numbers in mathematics, each once. It says that half a turn points you backwards. Still a good one.</p>
 </section>
 
 <section class="example">
 <h2>Watch one: two trig identities for the price of one</h2>
-<p>You may have been asked to memorise \(\cos(a + b)\) and \(\sin(a + b)\). Here they are from a single line. \(e^{i(a+b)} = e^{ia}e^{ib}\), so</p>
+<p>\(e^{i(a+b)} = e^{ia}e^{ib}\), so</p>
 <p>\[ \cos(a+b) + i\sin(a+b) = (\cos a + i\sin a)(\cos b + i\sin b) = (\cos a\cos b - \sin a\sin b) + i(\sin a\cos b + \cos a\sin b). \]</p>
-<p>Two complex numbers are equal when their real parts match and their imaginary parts match. Real parts: \(\cos(a+b) = \cos a\cos b - \sin a\sin b\). Imaginary parts: \(\sin(a+b) = \sin a\cos b + \cos a\sin b\). Nothing to memorise: multiply out and read off.</p>
-<p>Two more facts worth having. Since \(e^{-i\theta} = \cos\theta - i\sin\theta\), adding and subtracting gives \(\cos\theta = \dfrac{e^{i\theta} + e^{-i\theta}}{2}\) and \(\sin\theta = \dfrac{e^{i\theta} - e^{-i\theta}}{2i}\).</p>
+<p>Equal complex numbers have equal real parts and equal imaginary parts. Real: \(\cos(a+b) = \cos a\cos b - \sin a\sin b\). Imaginary: \(\sin(a+b) = \sin a\cos b + \cos a\sin b\). Nothing to memorise: multiply out and read off.</p>
 </section>
 
 <section class="exercises">
 <h2>Your turn</h2>
 <ol>
-<li>Write each in the form \(a + bi\): \(e^{i\pi/2}\), \(e^{i\pi}\), \(e^{2\pi i}\), \(e^{i\pi/4}\), \(e^{-i\pi/2}\).<div class="space short"></div></li>
-<li>Check the series for \(\sin\) at \(x = 1\) with four terms (\(1 - \tfrac16 + \tfrac1{120} - \tfrac1{5040}\)) against a calculator. Then verify that \(\cos 1 + i\sin 1\) has modulus 1 to four decimal places by squaring and adding.<div class="space short"></div></li>
-<li>Square both sides of Euler's formula: \((e^{i\theta})^2 = e^{2i\theta}\). Expand the left side and compare real and imaginary parts to get formulas for \(\cos2\theta\) and \(\sin2\theta\). Then use \(\sin^2\theta = 1 - \cos^2\theta\) to show \(\cos2\theta = 2\cos^2\theta - 1\).<div class="space short"></div></li>
-<li>Starting from \(\cos\theta = \frac{e^{i\theta} + e^{-i\theta}}{2}\), square it to show \(\cos^2\theta = \dfrac{1 + \cos2\theta}{2}\). (You will need \(e^{i\theta}e^{-i\theta} = e^0 = 1\).)<div class="space short"></div></li>
-<li>Multiply \(e^{i\theta}\) by \(e^{-i\theta}\) in two ways: as exponentials, and as \((\cos\theta + i\sin\theta)(\cos\theta - i\sin\theta)\). What identity drops out? Explain in one sentence why it says that \(e^{i\theta}\) always lies on the unit circle.<div class="space short"></div></li>
-<li>What is \(i^i\)? Write \(i = e^{i\pi/2}\) and use the power rule \((e^a)^b = e^{ab}\). Is the answer real, imaginary, or complex? Evaluate it to 4 decimal places.<div class="space short"></div></li>
+<li>Write each as \(a + bi\): \(e^{i\pi/2}\), \(e^{i\pi}\), \(e^{2\pi i}\), \(e^{i\pi/4}\), \(e^{-i\pi/2}\).<div class="space short"></div></li>
+<li>Multiply \(e^{i\theta}\) by \(e^{-i\theta}\) in two ways: as exponentials, and as \((\cos\theta + i\sin\theta)(\cos\theta - i\sin\theta)\). What identity drops out, and why does it say \(e^{i\theta}\) always lies on the unit circle?<div class="space short"></div></li>
+<li>Square Euler's formula: \((e^{i\theta})^2 = e^{2i\theta}\). Expand the left side and compare parts to get formulas for \(\cos2\theta\) and \(\sin2\theta\). Then show \(\cos2\theta = 2\cos^2\theta - 1\).<div class="space"></div></li>
+<li>What is \(i^i\)? Write \(i = e^{i\pi/2}\) and use \((e^a)^b = e^{ab}\). Is the answer real, imaginary or complex? Evaluate it to 4 decimal places.<div class="space short"></div></li>
 </ol>
 <p class="small">Watch \(e^{i\theta}\) go round the circle at <a href="../../demos/complex.html">infinityclub.net/demos/complex.html</a>.</p>
 </section>
 
 <section class="stretch">
 <h2>Stretch: why you cannot trisect an angle</h2>
-<p>Cube Euler's formula: \((\cos\theta + i\sin\theta)^3 = \cos3\theta + i\sin3\theta\). Expand the left side with \((a + b)^3 = a^3 + 3a^2b + 3ab^2 + b^3\), take real parts, and use \(\sin^2\theta = 1 - \cos^2\theta\) to show \(\cos3\theta = 4\cos^3\theta - 3\cos\theta\).</p>
-<p>Now put \(\theta = 20°\), so \(3\theta = 60°\) and \(\cos60° = \tfrac12\). Writing \(x = \cos20°\), show that \(x\) satisfies \(8x^3 - 6x - 1 = 0\). Check with a calculator that \(x \approx 0.9397\) works. Then show the cubic has no rational root (the only candidates are \(\pm1, \pm\tfrac12, \pm\tfrac14, \pm\tfrac18\)).</p>
-<p>Here is the payoff. Every length you can construct with ruler and compass comes from whole numbers using \(+, -, \times, \div\) and square roots. It can be proved that such a number can never be a root of a cubic with rational coefficients that has no rational root. So \(\cos20°\) cannot be constructed, so a 20° angle cannot be constructed, so the 60° angle cannot be trisected. The Greeks tried for two thousand years; Euler's formula and a cubic settle it.</p>
+<p>Cube Euler's formula, expand with \((a+b)^3 = a^3 + 3a^2b + 3ab^2 + b^3\), take real parts, and show \(\cos3\theta = 4\cos^3\theta - 3\cos\theta\). Put \(\theta = 20°\) and \(x = \cos20°\): show \(8x^3 - 6x - 1 = 0\), and check \(x \approx 0.9397\). That this cubic has no rational root is why a 60° angle cannot be trisected with ruler and compass.</p>
 <div class="space short"></div>
 </section>
 
@@ -77,13 +70,11 @@
 <h2>Answers</h2>
 <ol>
 <li>\(e^{i\pi/2} = i\). \(e^{i\pi} = -1\). \(e^{2\pi i} = 1\). \(e^{i\pi/4} = \tfrac{\sqrt2}{2} + \tfrac{\sqrt2}{2}i \approx 0.7071 + 0.7071i\). \(e^{-i\pi/2} = -i\).</li>
-<li>\(1 - 0.166667 + 0.008333 - 0.000198 = 0.841468\); calculator: \(\sin 1 = 0.841471\). \(\cos 1 = 0.5403\), \(\sin 1 = 0.8415\); \(0.5403^2 + 0.8415^2 = 0.2919 + 0.7081 = 1.0000\).</li>
-<li>\((\cos\theta + i\sin\theta)^2 = \cos^2\theta - \sin^2\theta + 2i\sin\theta\cos\theta\). So \(\cos2\theta = \cos^2\theta - \sin^2\theta\) and \(\sin2\theta = 2\sin\theta\cos\theta\). Substituting: \(\cos2\theta = \cos^2\theta - (1 - \cos^2\theta) = 2\cos^2\theta - 1\).</li>
-<li>\(\left(\frac{e^{i\theta} + e^{-i\theta}}{2}\right)^2 = \frac{e^{2i\theta} + 2e^{i\theta}e^{-i\theta} + e^{-2i\theta}}{4} = \frac{e^{2i\theta} + e^{-2i\theta} + 2}{4} = \frac{2\cos2\theta + 2}{4} = \frac{1 + \cos2\theta}{2}\).</li>
-<li>As exponentials: \(e^{i\theta}e^{-i\theta} = e^0 = 1\). As brackets: \(\cos^2\theta - i^2\sin^2\theta = \cos^2\theta + \sin^2\theta\). So \(\cos^2\theta + \sin^2\theta = 1\). The modulus of \(e^{i\theta}\) is \(\sqrt{\cos^2\theta + \sin^2\theta} = 1\), so the point is always at distance 1 from the origin: on the unit circle.</li>
-<li>\(i^i = (e^{i\pi/2})^i = e^{i \cdot i\pi/2} = e^{-\pi/2} \approx 0.2079\). A real number. (Strictly, \(i\) also equals \(e^{i(\pi/2 + 2\pi k)}\), giving other real values \(e^{-\pi/2 - 2\pi k}\); \(0.2079\) is the principal one.)</li>
+<li>As exponentials: \(e^0 = 1\). As brackets: \(\cos^2\theta - i^2\sin^2\theta = \cos^2\theta + \sin^2\theta\). So \(\cos^2\theta + \sin^2\theta = 1\): the modulus of \(e^{i\theta}\) is 1, so the point is always at distance 1 from the origin.</li>
+<li>\((\cos\theta + i\sin\theta)^2 = \cos^2\theta - \sin^2\theta + 2i\sin\theta\cos\theta\). So \(\cos2\theta = \cos^2\theta - \sin^2\theta\) and \(\sin2\theta = 2\sin\theta\cos\theta\). With \(\sin^2\theta = 1 - \cos^2\theta\): \(\cos2\theta = 2\cos^2\theta - 1\).</li>
+<li>\(i^i = (e^{i\pi/2})^i = e^{-\pi/2} \approx 0.2079\). A real number. (Strictly \(i = e^{i(\pi/2 + 2\pi k)}\) too, giving other real values; \(0.2079\) is the principal one.)</li>
 </ol>
-<p><b>Stretch.</b> Real part of \((c + is)^3 = c^3 + 3c^2(is) + 3c(is)^2 + (is)^3\) is \(c^3 - 3cs^2\), so \(\cos3\theta = \cos^3\theta - 3\cos\theta(1 - \cos^2\theta) = 4\cos^3\theta - 3\cos\theta\). With \(x = \cos20°\): \(\tfrac12 = 4x^3 - 3x\), so \(8x^3 - 6x - 1 = 0\). At \(x = 0.9397\): \(8(0.8298) - 5.638 - 1 \approx 0.000\). Rational candidates (factors of 1 over factors of 8): \(x = 1\) gives 1; \(-1\) gives \(-3\); \(\tfrac12\) gives \(-3\); \(-\tfrac12\) gives 1; \(\tfrac14\) gives \(-2.375\); \(-\tfrac14\) gives \(0.375\); \(\tfrac18\) gives \(-1.734\); \(-\tfrac18\) gives \(-0.266\). None is zero, so no rational root, so \(\cos20°\) is not constructible and the 60° angle cannot be trisected.</p>
+<p><b>Stretch.</b> The real part of \((c + is)^3\) is \(c^3 - 3cs^2\), so \(\cos3\theta = \cos^3\theta - 3\cos\theta(1 - \cos^2\theta) = 4\cos^3\theta - 3\cos\theta\). With \(x = \cos20°\) and \(\cos60° = \tfrac12\): \(\tfrac12 = 4x^3 - 3x\), so \(8x^3 - 6x - 1 = 0\). At \(x = 0.9397\): \(8(0.8298) - 5.638 - 1 \approx 0.000\). The only rational candidates are \(\pm1, \pm\tfrac12, \pm\tfrac14, \pm\tfrac18\), and none works. Every ruler-and-compass length comes from square roots, and such a number is never a root of a rational cubic with no rational root. So \(\cos20°\) is not constructible, and 60° cannot be trisected.</p>
 </section>
 
 <div class="sheet-nav"><a href="b7-complex-rotations.html">← Previous</a><a href="b9-e.html">Next: The number e →</a></div>

@@ -33,53 +33,45 @@
 <h2>Tonight's idea</h2>
 <p>Almost every probability problem you will meet this year is a <b>tree</b>. Each branch is a stage, each branch carries a probability, and two rules do all the work:</p>
 <div class="callout"><b>Multiply along a path</b> to get the probability of that whole sequence of events.<br><b>Add across paths</b> that lead to the outcome you care about.</div>
-<p>The branch probabilities at the second stage depend on what happened at the first. That dependence is the whole subject. If you draw a card and <em>put it back</em>, the second draw looks exactly like the first. If you <em>keep it</em>, the deck has changed, and the second-stage branches must say so.</p>
+<p>The branch probabilities at the second stage depend on what happened at the first. If you draw a card and <em>put it back</em>, the second draw looks exactly like the first. If you <em>keep it</em>, the deck has changed, and the second-stage branches must say so.</p>
 <p>Two events \(A\) and \(B\) are <b>independent</b> when knowing one tells you nothing about the other. The precise test is</p>
 <p class="callout">\(A\) and \(B\) are independent exactly when \(P(A \text{ and } B) = P(A)\,P(B)\).</p>
-<p>This is a definition you can check, not a feeling. Events that sound related can pass the test, and events that sound unrelated can fail it (question 1 has an example of each).</p>
-<p>The probability of \(A\) <em>given</em> that \(B\) has happened is written \(P(A \mid B)\). You compute it by shrinking the world to the cases where \(B\) is true and asking what fraction of those also have \(A\):</p>
+<p>This is a definition you can check, not a feeling. The probability of \(A\) <em>given</em> that \(B\) has happened is written \(P(A \mid B)\): shrink the world to the cases where \(B\) is true and ask what fraction of those also have \(A\):</p>
 <p class="callout">\(P(A \mid B) = \dfrac{P(A \text{ and } B)}{P(B)}\).</p>
-<p>Multiply both sides by \(P(B)\) and you get the multiplication rule for trees: \(P(A \text{ and } B) = P(B)\,P(A \mid B)\). So the branch probabilities on a tree <em>are</em> conditional probabilities. Independence is the special case where \(P(A \mid B) = P(A)\): the condition changed nothing.</p>
+<p>Multiply both sides by \(P(B)\) and you get the multiplication rule for trees. So branch probabilities <em>are</em> conditional probabilities, and independence is the special case \(P(A \mid B) = P(A)\).</p>
 </section>
 
 <section class="example">
 <h2>Watch one: a bag of 5 red and 3 blue</h2>
-<p>Draw two counters without replacement. Both red: along the path, \(\tfrac58 \times \tfrac47 = \tfrac{20}{56} = \tfrac{5}{14}\). One of each colour: two paths, red-then-blue and blue-then-red, \(\tfrac58\cdot\tfrac37 + \tfrac38\cdot\tfrac57 = \tfrac{30}{56} = \tfrac{15}{28}\).</p>
-<p>With replacement the second draw forgets the first, so both red is \(\tfrac58 \times \tfrac58 = \tfrac{25}{64}\), a little more than \(\tfrac{5}{14}\), because you never lose the red you drew.</p>
-<p>Now a question that runs the tree backwards. Without replacement, the second counter is red. What is the chance the first was red too? \(P(\text{first red} \mid \text{second red}) = \dfrac{P(\text{both red})}{P(\text{second red})}\). The numerator is \(\tfrac5{14}\). For the denominator, add the two paths ending in red: \(\tfrac58\cdot\tfrac47 + \tfrac38\cdot\tfrac57 = \tfrac{35}{56} = \tfrac58\). (The second draw, taken alone, is red with probability \(\tfrac58\), exactly like the first. Shuffling a bag does not care which draw you call "first".) So the answer is \(\tfrac{5/14}{5/8} = \tfrac{4}{7}\), which is also the chance the second is red given the first was. Conditioning is symmetric here, and that is not a coincidence: \(P(A \mid B)P(B) = P(B \mid A)P(A)\) always.</p>
+<p>Draw two counters without replacement. Both red: along the path, \(\tfrac58 \times \tfrac47 = \tfrac{20}{56} = \tfrac{5}{14}\). One of each colour: two paths, red-then-blue and blue-then-red, \(\tfrac58\cdot\tfrac37 + \tfrac38\cdot\tfrac57 = \tfrac{30}{56} = \tfrac{15}{28}\). With replacement the second draw forgets the first, so both red is \(\tfrac58 \times \tfrac58 = \tfrac{25}{64}\), a little more than \(\tfrac{5}{14}\), because you never lose the red you drew.</p>
 </section>
 
 <section class="exercises">
 <h2>Your turn</h2>
 <ol>
-<li>Two fair dice. Find \(P(\text{sum} = 7)\), \(P(\text{sum} = 7 \mid \text{first die shows } 3)\) and \(P(\text{at least one } 6)\). Then test with the definition: are "first die shows 6" and "sum is 7" independent? Are "first die shows 6" and "sum is 8"?<div class="space tall"></div></li>
-<li>Two cards from a shuffled 52-card deck, not replaced. Find \(P(\text{both aces})\). Then find \(P(\text{second card is an ace})\) by adding the two paths that end in an ace, and explain why the answer could have been written down without a tree.<div class="space"></div></li>
+<li>Two fair dice. Find \(P(\text{sum} = 7)\) and \(P(\text{sum} = 7 \mid \text{first die shows } 3)\). Then test with the definition: are "first die shows 6" and "sum is 7" independent? Are "first die shows 6" and "sum is 8"?<div class="space"></div></li>
 <li>A fair coin is flipped three times. Find \(P(\text{exactly two heads})\), \(P(\text{exactly two heads} \mid \text{first flip is a head})\) and \(P(\text{all heads} \mid \text{at least one head})\).<div class="space"></div></li>
-<li><b>The two-children problem.</b> A family has two children. Assume each child is a girl with probability \(\tfrac12\), independently. (a) You learn the <em>older</em> child is a girl. What is the probability both are girls? (b) Instead you learn only that <em>at least one</em> is a girl. Now what is the probability both are girls? Draw the four equally likely families and shrink the world. Explain in a sentence why the answers differ.<div class="space tall"></div></li>
-<li>A survey of 200 students: 120 play a sport, 80 play an instrument, 48 do both. Convert to probabilities for a randomly chosen student and test whether "plays a sport" and "plays an instrument" are independent. Then compute \(P(\text{instrument} \mid \text{sport})\) and check it agrees.<div class="space"></div></li>
-<li>A bag holds 3 red and 2 blue counters. You draw one at a time without replacement until you get a blue. Find the probability the first blue appears on draw 1, draw 2, draw 3 and draw 4, check they add to 1, and find the probability you have a blue by the end of draw 2.<div class="space tall"></div></li>
+<li><b>The two-children problem.</b> A family has two children, each a girl with probability \(\tfrac12\), independently. (a) You learn the <em>older</em> child is a girl. What is the probability both are girls? (b) Instead you learn only that <em>at least one</em> is a girl. Now what is the probability both are girls? Draw the four equally likely families and shrink the world.<div class="space"></div></li>
+<li>A survey of 200 students: 120 play a sport, 80 play an instrument, 48 do both. Test whether "plays a sport" and "plays an instrument" are independent. Then compute \(P(\text{instrument} \mid \text{sport})\) and check it agrees.<div class="space"></div></li>
 </ol>
 <p class="small">Play with these at <a href="../../demos/dice.html">infinityclub.net/demos/dice.html</a> and <a href="../../demos/monty.html">infinityclub.net/demos/monty.html</a>.</p>
 </section>
 
 <section class="stretch">
-<h2>Stretch: Monty Hall, and Monty Fall</h2>
+<h2>Stretch: Monty Hall</h2>
 <p>Three doors, a car behind one. You pick door 1. The host, who knows where the car is, opens one of the other doors to show a goat, and offers a switch. Draw the tree (car at 1, 2 or 3, each \(\tfrac13\); then which door the host opens) and show that switching wins with probability \(\tfrac23\).</p>
-<p>Now change one assumption. The host does <em>not</em> know where the car is. He opens door 2 or 3 at random, and it happens to show a goat. Add that randomness to the tree: when the car is behind door 1, both of his choices show goats; when it is behind door 2 or 3, only one of his choices does. Compute \(P(\text{goat revealed})\), then \(P(\text{car behind door 1} \mid \text{goat revealed})\). Does switching still help? Why does the host's knowledge change the answer when the thing you saw, an open door with a goat, is identical?</p>
-<div class="space"></div>
+<div class="space short"></div>
 </section>
 
 <section class="answers">
 <h2>Answers</h2>
 <ol>
-<li>\(P(7) = \tfrac{6}{36} = \tfrac16\). Given the first die is 3, the sum is 7 only if the second is 4: \(\tfrac16\). At least one 6: \(1 - \left(\tfrac56\right)^2 = \tfrac{11}{36}\). "First is 6" and "sum is 7": \(P(\text{both}) = P(6,1) = \tfrac1{36}\) and \(P(\text{first } 6)\,P(\text{sum } 7) = \tfrac16 \cdot \tfrac16 = \tfrac1{36}\). Equal, so <b>independent</b>, even though the first die obviously affects the sum: whatever the first die shows, exactly one value of the second makes 7. "First is 6" and "sum is 8": \(P(\text{both}) = P(6,2) = \tfrac1{36}\), but \(\tfrac16 \cdot \tfrac5{36} = \tfrac5{216}\). Not equal, so <b>dependent</b>.</li>
-<li>Both aces: \(\tfrac4{52} \cdot \tfrac3{51} = \tfrac{12}{2652} = \tfrac1{221}\). Second is an ace: \(\tfrac4{52}\cdot\tfrac3{51} + \tfrac{48}{52}\cdot\tfrac4{51} = \tfrac{12 + 192}{2652} = \tfrac{204}{2652} = \tfrac1{13}\). That is \(\tfrac4{52}\), the same as for the first card: by symmetry every position in a shuffled deck is equally likely to hold an ace, so no tree was needed.</li>
-<li>Eight equally likely sequences. Exactly two heads: HHT, HTH, THH, so \(\tfrac38\). Given the first is H, shrink to four sequences HHH, HHT, HTH, HTT; two have exactly two heads: \(\tfrac12\). (Or \(\tfrac{2/8}{1/2}\).) All heads given at least one head: \(\tfrac{1/8}{7/8} = \tfrac17\).</li>
-<li>Families, older first: GG, GB, BG, BB, each \(\tfrac14\). (a) Older is a girl: GG or GB, and GG is one of two: \(\tfrac12\). (b) At least one girl: GG, GB, BG, and GG is one of three: \(\tfrac13\). The information in (b) is weaker: it rules out only BB, leaving two mixed families and one all-girl family, whereas (a) also rules out BG. (How you came to know "at least one is a girl" matters too. If you met a randomly chosen child of the family and she was a girl, the answer goes back to \(\tfrac12\). The \(\tfrac13\) answer assumes you were told the fact in a way that does not depend on which child.)</li>
-<li>\(P(S) = \tfrac{120}{200} = 0.6\), \(P(I) = \tfrac{80}{200} = 0.4\), \(P(S \text{ and } I) = \tfrac{48}{200} = 0.24 = 0.6 \times 0.4\). Independent. \(P(I \mid S) = \tfrac{48}{120} = 0.4 = P(I)\), as independence requires.</li>
-<li>Draw 1: \(\tfrac25\). Draw 2: \(\tfrac35\cdot\tfrac24 = \tfrac3{10}\). Draw 3: \(\tfrac35\cdot\tfrac24\cdot\tfrac23 = \tfrac15\). Draw 4: \(\tfrac35\cdot\tfrac24\cdot\tfrac13\cdot 1 = \tfrac1{10}\) (after three reds only blues remain). Sum: \(\tfrac4{10} + \tfrac3{10} + \tfrac2{10} + \tfrac1{10} = 1\). A blue by draw 2: \(\tfrac25 + \tfrac3{10} = \tfrac7{10}\), or \(1 - P(\text{red, red}) = 1 - \tfrac3{10}\).</li>
+<li>\(P(7) = \tfrac{6}{36} = \tfrac16\). Given the first die is 3, the sum is 7 only if the second is 4: \(\tfrac16\). "First is 6" and "sum is 7": \(P(\text{both}) = P(6,1) = \tfrac1{36}\) and \(\tfrac16 \cdot \tfrac16 = \tfrac1{36}\). Equal, so <b>independent</b>: whatever the first die shows, exactly one value of the second makes 7. "First is 6" and "sum is 8": \(P(\text{both}) = \tfrac1{36}\), but \(\tfrac16 \cdot \tfrac5{36} = \tfrac5{216}\). Not equal, so <b>dependent</b>.</li>
+<li>Eight equally likely sequences. Exactly two heads: HHT, HTH, THH, so \(\tfrac38\). Given the first is H, shrink to HHH, HHT, HTH, HTT; two have exactly two heads: \(\tfrac12\). All heads given at least one head: \(\tfrac{1/8}{7/8} = \tfrac17\).</li>
+<li>Families, older first: GG, GB, BG, BB, each \(\tfrac14\). (a) Older is a girl: GG or GB, so \(\tfrac12\). (b) At least one girl: GG, GB, BG, so \(\tfrac13\). The information in (b) is weaker: it rules out only BB, whereas (a) also rules out BG.</li>
+<li>\(P(S) = 0.6\), \(P(I) = 0.4\), \(P(S \text{ and } I) = \tfrac{48}{200} = 0.24 = 0.6 \times 0.4\). Independent. \(P(I \mid S) = \tfrac{48}{120} = 0.4 = P(I)\), as independence requires.</li>
 </ol>
-<p><b>Stretch.</b> Standard Monty: if the car is behind door 1 (\(\tfrac13\)), switching loses; if it is behind 2 or 3 (\(\tfrac23\)), the host is forced to open the other goat door and switching wins. So switch: \(\tfrac23\). Monty Fall: \(P(\text{goat revealed}) = \tfrac13 \cdot 1 + \tfrac13\cdot\tfrac12 + \tfrac13\cdot\tfrac12 = \tfrac23\). \(P(\text{car at } 1 \mid \text{goat}) = \tfrac{1/3}{2/3} = \tfrac12\). Switching no longer helps: it is 50–50. The difference is that in the standard game the host's choice carried information (he avoided the car), while a random host's choice carries none. Same picture, different tree.</p>
+<p><b>Stretch.</b> If the car is behind door 1 (\(\tfrac13\)), switching loses. If it is behind door 2 or 3 (\(\tfrac23\)), the host is forced to open the other goat door and switching wins. So switch: \(\tfrac23\). The host's choice carried information, because he avoided the car.</p>
 </section>
 
 <div class="sheet-nav"><a href="a14-sequences-series.html">← Previous</a><a href="a16-statistics.html">Next: Standard deviation and the bell curve →</a></div>

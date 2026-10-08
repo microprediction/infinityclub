@@ -31,25 +31,18 @@
 
 <section class="idea">
 <h2>Tonight's idea</h2>
-<p>Last sheet ended with \(x = \dfrac{-b \pm \sqrt{b^2 - 4ac}}{2a}\). The part under the root, \(D = b^2 - 4ac\), is the <b>discriminant</b>, and it decides everything before you compute anything:</p>
-<ul>
-<li>\(D > 0\): two different real roots (the graph crosses the axis twice).</li>
-<li>\(D = 0\): one repeated root (the vertex sits on the axis).</li>
-<li>\(D \lt 0\): no real roots (the graph never reaches the axis). There are still two roots, but they are complex numbers; that story is in <a href="b7-complex-rotations.html">Multiplying is rotating</a>.</li>
-</ul>
-<p>Now the superpower. Suppose \(ax^2 + bx + c\) has roots \(r\) and \(s\). Then it factorises as \(a(x - r)(x - s)\). Expand that:</p>
-<p>\[a(x - r)(x - s) = a\big(x^2 - (r + s)x + rs\big) = ax^2 - a(r+s)x + a\,rs.\]</p>
-<p>This must be the same polynomial as \(ax^2 + bx + c\), so the coefficients match: \(b = -a(r + s)\) and \(c = a\,rs\). Rearranged:</p>
+<p>Last sheet ended with \(x = \dfrac{-b \pm \sqrt{b^2 - 4ac}}{2a}\). The part under the root, \(D = b^2 - 4ac\), is the <b>discriminant</b>, and it decides everything before you compute anything: \(D \gt 0\) means two real roots, \(D = 0\) one repeated root (the vertex sits on the axis), \(D \lt 0\) no real roots. (There are still two roots then, but they are complex; see <a href="b7-complex-rotations.html">Multiplying is rotating</a>.)</p>
+<p>Now the superpower. If \(ax^2 + bx + c\) has roots \(r\) and \(s\), it factorises as \(a(x - r)(x - s)\). Expand:</p>
+<p>\[a(x - r)(x - s) = ax^2 - a(r+s)x + a\,rs.\]</p>
+<p>This is the same polynomial as \(ax^2 + bx + c\), so the coefficients match: \(b = -a(r+s)\) and \(c = a\,rs\). Rearranged:</p>
 <p class="callout"><b>Vieta's formulas.</b> \(r + s = -\dfrac{b}{a}\) and \(rs = \dfrac{c}{a}\).</p>
-<p>So you can know the sum and product of the roots without ever finding them. That lets you check answers in two seconds, build an equation from its roots, and compute things like \(r^2 + s^2\) using the identity \(r^2 + s^2 = (r + s)^2 - 2rs\).</p>
-<p>One more gem. \((r - s)^2 = (r + s)^2 - 4rs = \tfrac{b^2}{a^2} - \tfrac{4c}{a} = \tfrac{b^2 - 4ac}{a^2}\). So the gap between the roots is \(|r - s| = \dfrac{\sqrt{D}}{|a|}\). The discriminant literally measures how far apart the roots are, and when it hits zero they collide.</p>
+<p>So you know the sum and product of the roots without finding them. That checks answers in two seconds, builds an equation from its roots, and computes things like \(r^2 + s^2 = (r+s)^2 - 2rs\). One more gem: \((r-s)^2 = (r+s)^2 - 4rs = D/a^2\), so the gap between the roots is \(\sqrt{D}/|a|\). The discriminant literally measures how far apart the roots are.</p>
 </section>
 
 <section class="example">
 <h2>Watch one: \(x^2 - 5x + 3 = 0\), without solving it</h2>
-<p>\(D = 25 - 12 = 13 > 0\), so two real roots, call them \(r\) and \(s\). Vieta: \(r + s = 5\), \(rs = 3\).</p>
-<p>\(r^2 + s^2 = (r+s)^2 - 2rs = 25 - 6 = 19\). \(\quad \dfrac1r + \dfrac1s = \dfrac{r + s}{rs} = \dfrac53\). \(\quad |r - s| = \sqrt{D} = \sqrt{13}\).</p>
-<p>Now solve it for real: \(x = \tfrac{5 \pm \sqrt{13}}{2}\). Their sum is \(\tfrac{5 + \sqrt{13} + 5 - \sqrt{13}}{2} = 5\). Their difference is \(\sqrt{13}\). Vieta knew.</p>
+<p>\(D = 25 - 12 = 13 \gt 0\), so two real roots \(r, s\). Vieta: \(r + s = 5\), \(rs = 3\). Then \(r^2 + s^2 = 25 - 6 = 19\), \(\;\dfrac1r + \dfrac1s = \dfrac{r+s}{rs} = \dfrac53\), \(\;|r - s| = \sqrt{13}\).</p>
+<p>Now solve it for real: \(x = \tfrac{5 \pm \sqrt{13}}{2}\). Sum 5, difference \(\sqrt{13}\). Vieta knew.</p>
 <p class="small">Drag \(a\), \(b\), \(c\) and watch the discriminant and roots at <a href="../../demos/quadratic.html">infinityclub.net/demos/quadratic.html</a>.</p>
 </section>
 
@@ -58,32 +51,26 @@
 <ol>
 <li>Find the discriminant and state how many real roots each has: \(x^2 + 4x + 4\), \(\;2x^2 - 3x + 5\), \(\;x^2 - x - 1\).<div class="space short"></div></li>
 <li>For which values of \(k\) does \(x^2 + kx + 16 = 0\) have (a) exactly one root, (b) no real roots?<div class="space short"></div></li>
-<li>The roots of \(2x^2 + 7x - 4 = 0\) are \(r\) and \(s\). Without solving, find \(r + s\), \(rs\) and \(r^2 + s^2\). Then solve and check all three.<div class="space"></div></li>
-<li>Write a quadratic with integer coefficients whose roots are \(2 + \sqrt3\) and \(2 - \sqrt3\).<div class="space short"></div></li>
-<li>One root of \(x^2 - 11x + c = 0\) is 3 more than the other. Find both roots and \(c\).<div class="space short"></div></li>
-<li>The line \(y = mx - 4\) touches the parabola \(y = x^2\) at exactly one point. Find both possible values of \(m\) and the point of contact for each. (Set the equations equal and think about the discriminant.)<div class="space"></div></li>
+<li>The roots of \(2x^2 + 7x - 4 = 0\) are \(r\) and \(s\). Without solving, find \(r + s\), \(rs\) and \(r^2 + s^2\).<div class="space short"></div></li>
+<li>The line \(y = mx - 4\) touches the parabola \(y = x^2\) at exactly one point. Find both possible values of \(m\) and the point of contact for each.<div class="space"></div></li>
 </ol>
 </section>
 
 <section class="stretch">
-<h2>Stretch: Vieta goes cubic</h2>
-<p>Expand \((x - a)(x - b)(x - c)\) and compare with \(x^3 + px^2 + qx + r\) to show that \(a + b + c = -p\), \(ab + bc + ca = q\) and \(abc = -r\).</p>
-<p>The cubic \(x^3 - 6x^2 + 11x - 6\) has three whole-number roots. Use the formulas to find them, then compute \(a^2 + b^2 + c^2\) without using the roots.</p>
-<p>Finally, let \(\varphi\) and \(\psi\) be the two roots of \(x^2 - x - 1 = 0\) (\(\varphi\) is the golden ratio). Explain why \(\varphi^2 = \varphi + 1\), then compute \(\varphi^2 + \psi^2\) and \(\varphi^4 + \psi^4\) using nothing but Vieta.</p>
-<div class="space"></div>
+<h2>Stretch: the golden ratio by Vieta</h2>
+<p>Let \(\varphi\) and \(\psi\) be the two roots of \(x^2 - x - 1 = 0\) (\(\varphi\) is the golden ratio). Explain why \(\varphi^2 = \varphi + 1\), then compute \(\varphi^2 + \psi^2\) and \(\varphi^4 + \psi^4\) using nothing but Vieta.</p>
+<div class="space short"></div>
 </section>
 
 <section class="answers">
 <h2>Answers</h2>
 <ol>
 <li>\(16 - 16 = 0\): one repeated root (\(x = -2\)). \(9 - 40 = -31\): no real roots. \(1 + 4 = 5\): two real roots.</li>
-<li>\(D = k^2 - 64\). (a) \(k = 8\) or \(k = -8\). (b) \(k^2 \lt 64\), so \(-8 \lt k \lt 8\).</li>
-<li>\(r + s = -\tfrac72\), \(rs = -2\), \(r^2 + s^2 = \tfrac{49}{4} + 4 = \tfrac{65}{4}\). Solving: \(x = \tfrac{-7 \pm 9}{4}\), so \(r = \tfrac12\), \(s = -4\). Sum \(-\tfrac72\) ✓, product \(-2\) ✓, \(\tfrac14 + 16 = \tfrac{65}{4}\) ✓.</li>
-<li>Sum \(4\), product \((2+\sqrt3)(2-\sqrt3) = 4 - 3 = 1\). So \(x^2 - 4x + 1\).</li>
-<li>Roots \(r\) and \(r + 3\) with \(2r + 3 = 11\), so \(r = 4\): roots 4 and 7, and \(c = 28\).</li>
-<li>\(x^2 = mx - 4\), so \(x^2 - mx + 4 = 0\). Touching means \(D = m^2 - 16 = 0\), so \(m = \pm 4\). With \(m = 4\) the repeated root is \(x = 2\), contact point \((2, 4)\); with \(m = -4\) it is \(x = -2\), contact point \((-2, 4)\).</li>
+<li>\(D = k^2 - 64\). (a) \(k = \pm 8\). (b) \(-8 \lt k \lt 8\).</li>
+<li>\(r + s = -\tfrac72\), \(rs = -2\), \(r^2 + s^2 = \tfrac{49}{4} + 4 = \tfrac{65}{4}\). (The roots are \(\tfrac12\) and \(-4\).)</li>
+<li>\(x^2 - mx + 4 = 0\) must have \(D = m^2 - 16 = 0\), so \(m = \pm 4\). With \(m = 4\) the repeated root is \(x = 2\), contact \((2, 4)\); with \(m = -4\), contact \((-2, 4)\).</li>
 </ol>
-<p><b>Stretch.</b> \((x-a)(x-b)(x-c) = x^3 - (a+b+c)x^2 + (ab+bc+ca)x - abc\), so matching gives the three formulas. For \(x^3 - 6x^2 + 11x - 6\): the roots add to 6, multiply to 6, and pair-products add to 11; the whole numbers 1, 2, 3 do all three, and the factorisation \((x-1)(x-2)(x-3)\) confirms it. \(a^2+b^2+c^2 = (a+b+c)^2 - 2(ab+bc+ca) = 36 - 22 = 14\). For \(x^2 - x - 1\): any root satisfies \(x^2 = x + 1\), so \(\varphi^2 = \varphi + 1\). Vieta: \(\varphi + \psi = 1\), \(\varphi\psi = -1\). Then \(\varphi^2 + \psi^2 = 1 - 2(-1) = 3\), and \(\varphi^4 + \psi^4 = (\varphi^2+\psi^2)^2 - 2(\varphi\psi)^2 = 9 - 2 = 7\). (The sequence 1, 3, 4, 7, 11, … you would get by continuing is the Lucas numbers, cousins of Fibonacci.)</p>
+<p><b>Stretch.</b> Any root satisfies \(x^2 = x + 1\), so \(\varphi^2 = \varphi + 1\). Vieta: \(\varphi + \psi = 1\), \(\varphi\psi = -1\). Then \(\varphi^2 + \psi^2 = 1 - 2(-1) = 3\), and \(\varphi^4 + \psi^4 = (\varphi^2+\psi^2)^2 - 2(\varphi\psi)^2 = 9 - 2 = 7\). (Continue and you get the Lucas numbers 1, 3, 4, 7, 11, …)</p>
 </section>
 
 <div class="sheet-nav"><a href="a1-completing-the-square.html">← Previous</a><a href="a3-functions.html">Next: Functions as machines →</a></div>

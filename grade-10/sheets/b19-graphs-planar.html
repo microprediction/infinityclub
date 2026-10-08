@@ -31,66 +31,44 @@
 
 <section class="idea">
 <h2>Tonight's idea</h2>
-<p>A <b>graph</b> is dots (vertices) joined by lines (edges). You met them in <a href="../../grade-6/sheets/b13-bridges.html">Königsberg</a>; tonight you prove three things about them, each with a different kind of argument.</p>
-<p><b>1. Trees.</b> A <b>tree</b> is a connected graph with no cycles: a family tree, a river system, the folders on a computer. <em>Every tree with \(n\) vertices has exactly \(n - 1\) edges.</em> Proof by induction on \(n\). One vertex, no edges: true. Now take a tree with \(n \ge 2\) vertices. It has a <b>leaf</b>, a vertex with only one edge (follow a path without repeating vertices; it cannot go on forever, and where it stops is a leaf). Remove that leaf and its edge: what is left is still connected and still has no cycles, a tree with \(n - 1\) vertices, which by induction has \(n - 2\) edges. Put the leaf back: \(n - 1\) edges. Done.</p>
-<p><b>2. Planarity.</b> A graph is <b>planar</b> if it can be drawn with no two edges crossing. Euler's formula says that for any connected planar drawing, \(V - E + F = 2\), where \(F\) counts the regions including the outside. (Prove it by building the graph one edge at a time: an edge that joins a new vertex changes \(V\) and \(E\) by 1 each; an edge between old vertices closes a new region, changing \(E\) and \(F\) by 1 each.) Now the trick. In a planar graph with at least 3 vertices, every region is bounded by at least 3 edges, and every edge borders at most 2 regions, so \(3F \le 2E\). Substitute \(F = 2 - V + E\):</p>
-<p class="callout">\(E \le 3V - 6\) for every planar graph with \(V \ge 3\). If the graph has no triangles, every region needs at least 4 edges and the bound tightens to \(E \le 2V - 4\).</p>
-<p>The complete graph \(K_5\) (five vertices, every pair joined) has \(V = 5\), \(E = 10\), and \(3 \times 5 - 6 = 9 \lt 10\). <b>It cannot be drawn flat.</b> The utility graph \(K_{3,3}\) (three houses, three utilities, nine connections) has \(V = 6\), \(E = 9\), no triangles, and \(2 \times 6 - 4 = 8 \lt 9\). Impossible too. Kuratowski proved in 1930 that these two are the <em>only</em> obstacles: a graph is non-planar exactly when it contains a stretched copy of \(K_5\) or \(K_{3,3}\).</p>
-<figure>
-<svg viewBox="0 0 420 150" width="420" height="150" aria-label="K5 drawn as a pentagon with all diagonals, and K3,3 drawn as two rows of three">
-  <g stroke="#3f44c9" stroke-width="1.5" fill="none">
-    <path d="M90 15 L153 61 L129 136 L51 136 L27 61 Z M90 15 L129 136 M90 15 L51 136 M153 61 L51 136 M153 61 L27 61 M129 136 L27 61"/>
-    <path d="M250 30 L250 120 M250 30 L320 120 M250 30 L390 120 M320 30 L250 120 M320 30 L320 120 M320 30 L390 120 M390 30 L250 120 M390 30 L320 120 M390 30 L390 120"/>
-  </g>
-  <g fill="#1d1f3a">
-    <circle cx="90" cy="15" r="5"/><circle cx="153" cy="61" r="5"/><circle cx="129" cy="136" r="5"/><circle cx="51" cy="136" r="5"/><circle cx="27" cy="61" r="5"/>
-    <circle cx="250" cy="30" r="5"/><circle cx="320" cy="30" r="5"/><circle cx="390" cy="30" r="5"/>
-  </g>
-  <g fill="#f5a524"><circle cx="250" cy="120" r="5"/><circle cx="320" cy="120" r="5"/><circle cx="390" cy="120" r="5"/></g>
-  <g font-family="Nunito, sans-serif" font-size="12" fill="#1d1f3a" text-anchor="middle"><text x="90" y="148">K₅: 5 vertices, 10 edges</text><text x="320" y="148">K₃,₃: 6 vertices, 9 edges</text></g>
-</svg>
-<figcaption>The two graphs that cannot be drawn without a crossing, however hard you try.</figcaption>
-</figure>
-<p><b>3. Ramsey.</b> At any party of six people, there are three who all know each other or three who are all strangers. Draw the six people as vertices, colour an edge red for "know each other" and blue for "strangers". Pick any person \(A\). She has 5 edges, so at least 3 are the same colour, say red, going to \(B, C, D\). If any edge among \(B, C, D\) is red, that edge plus \(A\) makes a red triangle. If none is, \(B, C, D\) is a blue triangle. Either way, done. Five people are not enough: colour a pentagon red and its inside star blue and there is no single-colour triangle. In the notation of Ramsey theory, \(R(3,3) = 6\). The next number, \(R(4,4) = 18\), was found in 1955; \(R(5,5)\) is somewhere between 43 and 46, and nobody knows which.</p>
-<p>Demos: <a href="../../demos/euler.html">infinityclub.net/demos/euler.html</a> to trace graphs, <a href="../../demos/colour.html">infinityclub.net/demos/colour.html</a> to colour planar maps.</p>
+<p>A <b>graph</b> is dots (vertices) joined by lines (edges). Tonight, two facts about graphs, proved two different ways.</p>
+<p><b>Trees.</b> A <b>tree</b> is a connected graph with no cycles. <em>Every tree with \(n\) vertices has exactly \(n - 1\) edges.</em> Induction: one vertex, no edges. A bigger tree has a <b>leaf</b>, a vertex with only one edge (walk without repeating vertices; where you get stuck is a leaf). Remove the leaf and its edge: a tree with \(n - 1\) vertices, which by induction has \(n - 2\) edges. Put the leaf back: \(n - 1\).</p>
+<p><b>Planarity.</b> A graph is <b>planar</b> if it can be drawn with no edges crossing. Euler's formula says a connected planar drawing has \(V - E + F = 2\), where \(F\) counts regions including the outside. With \(V \ge 3\), every region is bounded by at least 3 edges and every edge borders at most 2 regions, so \(3F \le 2E\). Substitute \(F = 2 - V + E\):</p>
+<p class="callout">\(E \le 3V - 6\) for every planar graph with \(V \ge 3\). With no triangles, regions need 4 edges and \(E \le 2V - 4\).</p>
+<p>\(K_5\) (five vertices, all ten pairs joined) has \(10 > 9\): <b>it cannot be drawn flat.</b> The utility graph \(K_{3,3}\) (three houses, three utilities, nine lines) has no triangles and \(9 > 8\): impossible too. Kuratowski proved these two are the <em>only</em> obstacles.</p>
 </section>
 
 <section class="example">
 <h2>Watch one: \(K_5\) minus an edge</h2>
-<p>Remove one edge from \(K_5\): \(V = 5\), \(E = 9\). The bound \(E \le 3V - 6 = 9\) is now satisfied, so planarity is not ruled out. But the inequality only says "not impossible"; to show the graph <em>is</em> planar you must draw it. Label the vertices 1 to 5 and let the missing edge be 45. Draw 1, 2, 3 as a triangle. Put 4 inside the triangle and join it to 1, 2, 3. Put 5 outside the triangle and join it to 1, 2, 3. Edges: three sides, three spokes inside, three spokes outside: \(9\), and nothing crosses.</p>
-<p>Check Euler: \(F = 2 - V + E = 2 - 5 + 9 = 6\). Count on the drawing: three small triangles inside around vertex 4, two regions outside between the spokes to 5, and the unbounded region. Six.</p>
-<p>The moral: the inequality is a one-way test. Fail it and you are certainly non-planar; pass it and you still have to draw the thing. The Petersen graph in the stretch is the classic example of passing the test and still being impossible.</p>
+<p>Remove one edge from \(K_5\): \(V = 5\), \(E = 9\), and \(E \le 3V - 6 = 9\) holds. That only says "not ruled out"; to show it <em>is</em> planar you must draw it. Let the missing edge be 45. Draw 1, 2, 3 as a triangle, put 4 inside joined to 1, 2, 3, and 5 outside joined to 1, 2, 3. Nine edges, no crossings.</p>
+<p>Check Euler: \(F = 2 - 5 + 9 = 6\). On the drawing: three regions inside, two outside between the spokes, and the unbounded one. Six. The inequality is a one-way test: fail it and you are non-planar; pass it and you still have to draw the thing.</p>
 </section>
 
 <section class="exercises">
 <h2>Your turn</h2>
 <ol>
-<li>A tree has 12 vertices. How many edges? A connected graph has 12 vertices and 15 edges; how many edges must you delete to leave a tree, and does it matter which? (Think about what each deleted edge must break.)<div class="space short"></div></li>
-<li>Draw a tree with 8 vertices in which every vertex has degree 1 or 3. How many leaves does it have? Prove in general that in such a tree the number of leaves is two more than the number of degree-3 vertices. (Add up the degrees: the total is \(2E = 2(n-1)\).) Then explain why no such tree has 7 vertices.<div class="space"></div></li>
-<li>Check Euler's formula on the cube (as a graph: 8 corners, 12 edges) and on the dodecahedron (20 vertices, each of degree 3). For the dodecahedron compute \(E\) from the degrees first, then \(F\).<div class="space"></div></li>
-<li>Use \(E \le 3V - 6\) to prove that every planar graph has a vertex of degree at most 5. (Suppose every vertex had degree \(\ge 6\) and add up the degrees.) This fact is the first step of every proof of the Four Colour Theorem.<div class="space"></div></li>
-<li>Draw the five-person party with no single-colour triangle: a pentagon of "friends" and a pentagram of "strangers". Explain why adding a sixth person forces a triangle, using the argument from tonight's idea, but this time start with the colour that gives the sixth person at least three edges.<div class="space"></div></li>
-<li>Suppose every edge of \(K_6\) is coloured red or blue. Tonight's argument finds <em>one</em> single-colour triangle. Show there must be at least <em>two</em>. (Hint: a triangle that is not single-coloured has exactly two vertices where the colours change. Count "colour-changing corners" over the whole graph: each vertex with \(r\) red edges and \(5 - r\) blue edges contributes \(r(5 - r)\) of them, which is at most 6. There are 20 triangles in all.)<div class="space tall"></div></li>
+<li>A tree has 12 vertices. How many edges? A connected graph has 12 vertices and 15 edges; how many edges must you delete to leave a tree?<div class="space short"></div></li>
+<li>Check Euler's formula on the cube (8 corners, 12 edges, 6 faces). The dodecahedron has 20 vertices, each of degree 3: find \(E\) from the degrees, then \(F\).<div class="space short"></div></li>
+<li>In a tree every vertex has degree 1 or 3. With \(L\) leaves and \(T\) vertices of degree 3, add up the degrees (the total is \(2E = 2(n-1)\)) to prove \(L = T + 2\). Why can no such tree have 7 vertices?<div class="space"></div></li>
+<li>Use \(E \le 3V - 6\) to prove every planar graph has a vertex of degree at most 5. (Suppose every degree were \(\ge 6\) and add up the degrees.) This is the first step of every proof of the Four Colour Theorem.<div class="space short"></div></li>
 </ol>
 </section>
 
 <section class="stretch">
-<h2>Stretch: the Petersen graph</h2>
-<p>The Petersen graph has 10 vertices and 15 edges: an outer pentagon, an inner pentagram, and five spokes joining them. It passes \(E \le 3V - 6\) (15 against 24) and even the triangle-free bound \(E \le 2V - 4\) (15 against 16). Yet it is not planar. The reason is that its shortest cycle has length 5, so in any flat drawing every region would be bounded by at least 5 edges. Redo the Euler argument with that fact: show that a planar graph whose shortest cycle has length 5 satisfies \(5F \le 2E\), hence \(E \le \tfrac53(V - 2)\), and check what that gives for \(V = 10\). Then find a stretched \(K_{3,3}\) inside the Petersen graph, which Kuratowski says must be there: three "house" vertices and three "utility" vertices joined by nine paths that share no vertices except their ends. Label the outer pentagon \(u_0, \ldots, u_4\) in order, the inner star \(v_0, \ldots, v_4\) with \(v_i\) joined to \(v_{i+2}\), and spokes \(u_i v_i\). One solution uses every vertex of the graph.</p>
+<h2>Stretch: the party of six</h2>
+<p>Prove that among any six people there are three who all know each other or three who are all strangers. Hint: colour the edges of \(K_6\) red (know) or blue (strangers). Pick a person \(A\); of her 5 edges, at least 3 share a colour. Now look at the triangle those three edges point to. Why do five people not suffice?</p>
 <div class="space short"></div>
 </section>
 
 <section class="answers">
 <h2>Answers</h2>
 <ol>
-<li>11 edges. You must delete \(15 - 11 = 4\) edges, and each deletion must break a cycle without disconnecting the graph; which four you choose matters (deleting a bridge disconnects it), but the number is always 4.</li>
-<li>One example: a centre \(C\) joined to \(P, Q, R\); \(P\) joined to two more leaves; \(Q\) joined to two more leaves. Degrees 3, 3, 3 and five 1s: eight vertices, 5 leaves. In general with \(L\) leaves and \(T\) vertices of degree 3, \(n = L + T\) and the degree sum is \(L + 3T = 2(n - 1) = 2L + 2T - 2\), so \(T = L - 2\), that is \(L = T + 2\). Then \(n = 2T + 2\) is always even, so 7 vertices is impossible.</li>
-<li>Cube: \(8 - 12 + 6 = 2\). Dodecahedron: degree sum \(20 \times 3 = 60 = 2E\), so \(E = 30\); \(F = 2 - 20 + 30 = 12\) faces, the twelve pentagons.</li>
-<li>If every degree were \(\ge 6\), the degree sum \(2E \ge 6V\), so \(E \ge 3V\). But \(E \le 3V - 6 \lt 3V\). Contradiction, so some vertex has degree 5 or less.</li>
-<li>In the pentagon-plus-pentagram colouring each vertex has 2 red and 2 blue edges, and every triangle uses at least one pentagon edge and at least one star edge, so none is single-coloured. Add a sixth person \(F\): she has 5 edges, so at least 3 share a colour, say blue, to \(X, Y, Z\). If any of \(XY, YZ, XZ\) is blue, it forms a blue triangle with \(F\); otherwise all three are red and \(X, Y, Z\) is a red triangle.</li>
-<li>Each non-single-coloured triangle has exactly 2 corners where a red edge meets a blue edge. Vertex with \(r\) red edges contributes \(r(5 - r)\) such corners, maximised at \(r = 2\) or \(3\): \(6\). Six vertices give at most 36 corners, so at most 18 two-coloured triangles. There are \(\binom63 = 20\) triangles, so at least 2 are single-coloured. (This bound is sharp: a colouring with exactly 2 exists.)</li>
+<li>11 edges. Delete \(15 - 11 = 4\) edges, each breaking a cycle without disconnecting the graph; which four matters, the number does not.</li>
+<li>Cube: \(8 - 12 + 6 = 2\). Dodecahedron: degree sum \(60 = 2E\), so \(E = 30\); \(F = 2 - 20 + 30 = 12\), the twelve pentagons.</li>
+<li>\(n = L + T\) and \(L + 3T = 2(n-1) = 2L + 2T - 2\), so \(T = L - 2\). Then \(n = 2T + 2\) is even, so 7 is impossible.</li>
+<li>If every degree were \(\ge 6\), then \(2E \ge 6V\), so \(E \ge 3V\). But \(E \le 3V - 6 \lt 3V\). Contradiction.</li>
 </ol>
-<p><b>Stretch.</b> Every region bounded by at least 5 edges and every edge bordering at most 2 regions gives \(5F \le 2E\). With \(F = 2 - V + E\): \(5(2 - V + E) \le 2E\), so \(3E \le 5V - 10\), \(E \le \tfrac53(V - 2)\). For \(V = 10\) that is \(E \le 13.3\), but Petersen has 15 edges: not planar. For the \(K_{3,3}\): take houses \(u_0, u_2, v_1\) and utilities \(u_1, u_3, v_2\). The nine paths: \(u_0u_1\); \(u_0u_4u_3\); \(u_0v_0v_2\); \(u_2u_1\); \(u_2u_3\); \(u_2v_2\); \(v_1u_1\); \(v_1v_3u_3\); \(v_1v_4v_2\). Every edge used exists (check the spokes and the \(v_iv_{i+2}\) rule) and the four middle vertices \(u_4, v_0, v_3, v_4\) each appear in only one path. Other solutions exist and any correct one earns full marks.</p>
+<p><b>Stretch.</b> Say \(A\) has three red edges, to \(B, C, D\). If any of \(BC, CD, BD\) is red, it makes a red triangle with \(A\); if none is, \(BCD\) is a blue triangle. Five people are not enough: colour a pentagon red and its inner pentagram blue; every triangle uses both colours. In Ramsey notation, \(R(3,3) = 6\).</p>
 </section>
 
 <div class="sheet-nav"><a href="b18-continued-fractions.html">← Previous</a><a href="b20-game-theory.html">Next: Game theory: the prisoner's dilemma →</a></div>

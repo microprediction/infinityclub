@@ -33,22 +33,19 @@
 <h2>Tonight's idea</h2>
 <p>Start with a picture. \(x^2 + 6x\) is a square of side \(x\) with two strips of width 3 glued on. Those strips almost make a bigger square of side \(x + 3\). What is missing is the \(3 \times 3\) corner. So</p>
 <p class="callout">\(x^2 + 6x = (x + 3)^2 - 9\). In general, \(x^2 + bx = \left(x + \tfrac{b}{2}\right)^2 - \tfrac{b^2}{4}\).</p>
-<p>Half the coefficient of \(x\), square it, and pay it back. That one move is called <b>completing the square</b>, and it does three jobs at once.</p>
-<p><b>Job 1: it solves every quadratic.</b> Take \(ax^2 + bx + c = 0\) with \(a \neq 0\). Divide by \(a\): \(x^2 + \tfrac{b}{a}x = -\tfrac{c}{a}\). Complete the square on the left:</p>
+<p>Half the coefficient of \(x\), square it, and pay it back. That move is <b>completing the square</b>, and it solves every quadratic. Take \(ax^2 + bx + c = 0\) with \(a \neq 0\). Divide by \(a\), then complete the square on the left:</p>
 <p>\[\left(x + \frac{b}{2a}\right)^2 - \frac{b^2}{4a^2} = -\frac{c}{a} \quad\Longrightarrow\quad \left(x + \frac{b}{2a}\right)^2 = \frac{b^2 - 4ac}{4a^2}.\]</p>
-<p>Take square roots of both sides (two of them, one positive and one negative) and move the \(\tfrac{b}{2a}\) across:</p>
+<p>Take square roots of both sides (one positive, one negative) and move the \(\tfrac{b}{2a}\) across:</p>
 <p>\[x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}.\]</p>
 <p>That is the quadratic formula. It is not a fact to memorise. It is what you get when you complete the square with letters instead of numbers.</p>
-<p><b>Job 2: it finds the turning point.</b> Writing \(y = ax^2 + bx + c\) as \(y = a(x - h)^2 + k\) is called <b>vertex form</b>. The square \((x - h)^2\) is never negative and is zero only at \(x = h\), so the graph turns at \((h, k)\): a minimum if \(a > 0\), a maximum if \(a \lt 0\). Comparing with the formula above, \(h = -\tfrac{b}{2a}\) and \(k = c - \tfrac{b^2}{4a}\).</p>
-<p><b>Job 3: it tells you how many solutions there are</b>, which is next sheet's whole story.</p>
+<p>The same move finds the turning point. Written as \(y = a(x - h)^2 + k\) (<b>vertex form</b>), the square is never negative and is zero only at \(x = h\), so the graph turns at \((h, k)\): a minimum if \(a > 0\), a maximum if \(a \lt 0\).</p>
 </section>
 
 <section class="example">
 <h2>Watch one: \(2x^2 - 12x + 7 = 0\)</h2>
 <p>Factor the leading coefficient out of the \(x\) terms only: \(2(x^2 - 6x) + 7\). Inside the bracket, half of \(-6\) is \(-3\), and \((-3)^2 = 9\):</p>
-<p>\[2\big((x - 3)^2 - 9\big) + 7 = 2(x - 3)^2 - 18 + 7 = 2(x - 3)^2 - 11.\]</p>
-<p>So the graph of \(y = 2x^2 - 12x + 7\) has its vertex at \((3, -11)\), and since \(a = 2 > 0\) that is the lowest point. The equation \(2(x-3)^2 = 11\) gives \((x - 3)^2 = \tfrac{11}{2}\), so \(x = 3 \pm \sqrt{\tfrac{11}{2}} = 3 \pm \tfrac{\sqrt{22}}{2}\), about 0.65 and 5.35.</p>
-<p>Check against the formula: \(x = \dfrac{12 \pm \sqrt{144 - 56}}{4} = \dfrac{12 \pm \sqrt{88}}{4} = 3 \pm \dfrac{\sqrt{22}}{2}\). Same answer, and now you know why.</p>
+<p>\[2\big((x - 3)^2 - 9\big) + 7 = 2(x - 3)^2 - 11.\]</p>
+<p>So the vertex is \((3, -11)\), a minimum since \(a = 2 > 0\). Solving \(2(x-3)^2 = 11\) gives \(x = 3 \pm \sqrt{\tfrac{11}{2}} = 3 \pm \tfrac{\sqrt{22}}{2}\), about 0.65 and 5.35. The formula gives \(\dfrac{12 \pm \sqrt{88}}{4}\), the same thing.</p>
 <p class="small">Play with \(a\), \(b\), \(c\) and watch the vertex and roots move: <a href="../../demos/quadratic.html">infinityclub.net/demos/quadratic.html</a>.</p>
 </section>
 
@@ -58,18 +55,14 @@
 <li>Write each in the form \((x + p)^2 + q\): \(x^2 + 10x + 7\) and \(x^2 - 3x + 1\).<div class="space short"></div></li>
 <li>Solve \(x^2 + 8x - 20 = 0\) by completing the square. No formula allowed.<div class="space short"></div></li>
 <li>Write \(3x^2 + 12x - 4\) in vertex form. Give the vertex, say whether it is a maximum or a minimum, and find the exact roots.<div class="space"></div></li>
-<li>A ball is thrown from a balcony and its height in metres after \(t\) seconds is \(h(t) = -5t^2 + 20t + 1\). Find the greatest height and when it happens. Then find, to two decimal places, when the ball hits the ground.<div class="space"></div></li>
-<li>Redo the derivation in the idea section for the case \(a = 1\): show that \(x^2 + bx + c = 0\) has solutions \(x = -\tfrac{b}{2} \pm \sqrt{\tfrac{b^2}{4} - c}\). Use it to solve \(x^2 - 7x + 12 = 0\) and check by factorising.<div class="space"></div></li>
-<li>You have 40 m of fencing and a long straight wall. You fence a rectangle using the wall as one side (so the fence covers three sides). If the two sides perpendicular to the wall have length \(x\), write the area as a quadratic in \(x\), complete the square, and find the largest possible area.<div class="space"></div></li>
+<li>You have 40 m of fencing and a long straight wall. You fence a rectangle using the wall as one side, so the fence covers three sides. If the two sides perpendicular to the wall have length \(x\), write the area as a quadratic in \(x\), complete the square, and find the largest possible area.<div class="space"></div></li>
 </ol>
 </section>
 
 <section class="stretch">
-<h2>Stretch: the minimum knows everything</h2>
-<p>For \(a > 0\), vertex form says the smallest value of \(ax^2 + bx + c\) is \(k = c - \tfrac{b^2}{4a}\). Show that \(k = -\dfrac{b^2 - 4ac}{4a}\). So the sign of \(b^2 - 4ac\) tells you whether the minimum sits below, on, or above the \(x\)-axis, which is the same as asking how many times the graph crosses it.</p>
-<p>Use that to find every value of \(k\) for which \(x^2 + kx + 9 = 0\) has exactly one solution.</p>
-<p>Then a problem that looks like it needs calculus and does not: two numbers add to 10. What is the smallest possible value of the sum of their squares? Write the sum of squares as a quadratic in one variable, complete the square, and read off the answer.</p>
-<div class="space"></div>
+<h2>Stretch: equal numbers win</h2>
+<p>Two numbers add to 10. What is the smallest possible value of the sum of their squares? Write the sum of squares as a quadratic in one variable and complete the square. Then: for which values of \(k\) does \(x^2 + kx + 9 = 0\) have exactly one solution?</p>
+<div class="space short"></div>
 </section>
 
 <section class="answers">
@@ -77,12 +70,10 @@
 <ol>
 <li>\(x^2 + 10x + 7 = (x + 5)^2 - 18\). \(x^2 - 3x + 1 = \left(x - \tfrac32\right)^2 - \tfrac54\).</li>
 <li>\((x + 4)^2 - 16 - 20 = 0\), so \((x + 4)^2 = 36\), \(x + 4 = \pm 6\), \(x = 2\) or \(x = -10\).</li>
-<li>\(3(x^2 + 4x) - 4 = 3\big((x+2)^2 - 4\big) - 4 = 3(x + 2)^2 - 16\). Vertex \((-2, -16)\), a minimum since \(a = 3 > 0\). Roots: \((x+2)^2 = \tfrac{16}{3}\), so \(x = -2 \pm \tfrac{4}{\sqrt 3} = -2 \pm \tfrac{4\sqrt3}{3}\), about 0.31 and \(-4.31\).</li>
-<li>\(h(t) = -5(t^2 - 4t) + 1 = -5\big((t-2)^2 - 4\big) + 1 = -5(t - 2)^2 + 21\). Greatest height 21 m at \(t = 2\) s. Ground: \(5(t-2)^2 = 21\), \(t = 2 + \sqrt{4.2} \approx 4.05\) s (the other root, \(t \approx -0.05\), is before the throw).</li>
-<li>\(x^2 + bx = -c\), so \(\left(x + \tfrac b2\right)^2 = \tfrac{b^2}{4} - c\), giving \(x = -\tfrac b2 \pm \sqrt{\tfrac{b^2}{4} - c}\). For \(x^2 - 7x + 12\): \(x = \tfrac72 \pm \sqrt{\tfrac{49}{4} - 12} = \tfrac72 \pm \tfrac12\), so \(x = 4\) or \(3\). Check: \((x-3)(x-4) = x^2 - 7x + 12\).</li>
-<li>The side along the wall is \(40 - 2x\), so \(A = x(40 - 2x) = -2x^2 + 40x = -2(x^2 - 20x) = -2(x - 10)^2 + 200\). Largest area \(200\) m², when \(x = 10\): a 10 m by 20 m rectangle.</li>
+<li>\(3(x^2 + 4x) - 4 = 3\big((x+2)^2 - 4\big) - 4 = 3(x + 2)^2 - 16\). Vertex \((-2, -16)\), a minimum since \(a = 3 > 0\). Roots: \((x+2)^2 = \tfrac{16}{3}\), so \(x = -2 \pm \tfrac{4\sqrt3}{3}\), about 0.31 and \(-4.31\).</li>
+<li>The side along the wall is \(40 - 2x\), so \(A = x(40 - 2x) = -2x^2 + 40x = -2(x - 10)^2 + 200\). Largest area \(200\) m², when \(x = 10\): a 10 m by 20 m rectangle.</li>
 </ol>
-<p><b>Stretch.</b> \(c - \tfrac{b^2}{4a} = \tfrac{4ac - b^2}{4a} = -\tfrac{b^2 - 4ac}{4a}\). With \(a > 0\): if \(b^2 - 4ac > 0\) the minimum is below the axis and the graph crosses it twice; if it equals 0 the vertex touches the axis, one solution; if it is negative the whole graph floats above, no real solution. Exactly one solution for \(x^2 + kx + 9\) needs \(k^2 - 36 = 0\), so \(k = 6\) or \(k = -6\). Sum of squares: if the numbers are \(x\) and \(10 - x\), then \(x^2 + (10 - x)^2 = 2x^2 - 20x + 100 = 2(x - 5)^2 + 50\). The minimum is 50, when both numbers are 5. Equal numbers always win this game; the square term is the penalty for being unequal.</p>
+<p><b>Stretch.</b> If the numbers are \(x\) and \(10 - x\), then \(x^2 + (10 - x)^2 = 2x^2 - 20x + 100 = 2(x - 5)^2 + 50\). The minimum is 50, when both numbers are 5; the square term is the penalty for being unequal. Exactly one solution needs the square root in the formula to vanish: \(k^2 - 36 = 0\), so \(k = 6\) or \(k = -6\).</p>
 </section>
 
 <div class="sheet-nav"><a href="../index.html#sheets">← All sheets</a><a href="a2-discriminant-vieta.html">Next: What the roots are telling you →</a></div>

@@ -32,16 +32,15 @@
 <section class="idea">
 <h2>Tonight's idea</h2>
 <p>If 10 pigeons fly into 9 pigeonholes, some hole gets at least two pigeons. Nobody argues with that. The surprise is how much it proves.</p>
-<p class="callout"><b>Pigeonhole principle.</b> If \(N\) objects are placed in \(k\) boxes and \(N > k\), some box holds at least 2. More precisely, some box holds at least \(\lceil N/k \rceil\) objects (that is \(N/k\) rounded <em>up</em>). Proof: if every box held fewer than \(N/k\), the total would be less than \(N\).</p>
-<p><b>Hairs.</b> A human head has at most about 150,000 hairs. London has about 9 million people. Boxes: the possible hair counts 0, 1, 2, ..., 150,000, which is 150,001 boxes. Pigeons: 9 million Londoners. So two Londoners have exactly the same number of hairs on their heads. In fact some hair count is shared by at least \(\lceil 9{,}000{,}000 / 150{,}001 \rceil = 60\) people. We have no idea who they are. Pigeonhole proves existence without finding anything, and that is its character.</p>
-<p>The craft is in choosing the boxes. Once the boxes are right, the proof is one line. Every problem tonight is really the question: <em>what are the pigeons, and what are the holes?</em></p>
+<p class="callout"><b>Pigeonhole principle.</b> If \(N\) objects are placed in \(k\) boxes and \(N > k\), some box holds at least 2. More precisely, some box holds at least \(\lceil N/k \rceil\) objects (\(N/k\) rounded <em>up</em>). Proof: if every box held fewer than \(N/k\), the total would be less than \(N\).</p>
+<p><b>Hairs.</b> A human head has at most about 150,000 hairs, and London has about 9 million people. Boxes: the 150,001 possible hair counts. Pigeons: the Londoners. So two Londoners have exactly the same number of hairs, and some count is shared by at least \(\lceil 9{,}000{,}000 / 150{,}001 \rceil = 60\) people. We have no idea who. Pigeonhole proves existence without finding anything.</p>
+<p>The craft is in choosing the boxes. Every problem tonight is really the question: <em>what are the pigeons, and what are the holes?</em></p>
 </section>
 
 <section class="example">
 <h2>Watch one: a multiple of 7 made of 1s and 0s</h2>
-<p>Claim: some multiple of 7 is written using only the digits 1 and 0. (The same works for any number in place of 7.)</p>
-<p>Look at the eight numbers \(1, 11, 111, 1111, \ldots, 11111111\). Divide each by 7 and note the remainder. There are only 7 possible remainders (0 to 6) and 8 numbers, so two of them, say the one with \(a\) ones and the one with \(b\) ones (\(a > b\)), leave the <em>same</em> remainder. Then their difference is a multiple of 7. And the difference is \(\underbrace{11\ldots1}_{a-b}\underbrace{00\ldots0}_{b}\): all 1s and 0s.</p>
-<p>Pigeons: the 8 repunits. Holes: the 7 remainders. The proof never found the multiple; it just proved one exists. (Here it is anyway: \(111111 = 7 \times 15873\). But for a nasty divisor like 2027 the proof still works and the search would be long.)</p>
+<p>Claim: some multiple of 7 is written using only the digits 1 and 0. Look at the eight numbers \(1, 11, 111, \ldots, 11111111\) and their remainders on division by 7. There are only 7 possible remainders and 8 numbers, so two of them, with \(a\) ones and \(b\) ones (\(a > b\)), leave the <em>same</em> remainder. Their difference is a multiple of 7, and it is \(a - b\) ones followed by \(b\) zeros.</p>
+<p>Pigeons: the 8 repunits. Holes: the 7 remainders. The proof never found the multiple (it is \(111111 = 7 \times 15873\)), and the same argument works for any divisor in place of 7.</p>
 </section>
 
 <section class="exercises">
@@ -50,16 +49,13 @@
 <li>In any group of 13 people, two share a birth month. How many people are needed to guarantee that <em>three</em> share a birth month? Explain with the \(\lceil N/k \rceil\) form.<div class="space short"></div></li>
 <li>A drawer has 10 black, 10 blue and 10 grey socks. You pull socks out in the dark. How many must you take to be sure of a matching pair? How many to be sure of a <em>black</em> pair?<div class="space short"></div></li>
 <li>Five points are placed anywhere inside a \(1 \times 1\) square. Prove that two of them are at most \(\sqrt{2}/2 \approx 0.707\) apart. (Hint: cut the square into four smaller squares.)<div class="space"></div></li>
-<li>Pick any 10 whole numbers, \(a_1, \ldots, a_{10}\). Prove that some of them, taken consecutively, add up to a multiple of 10. (Hint: the pigeons are the running totals \(a_1\), \(a_1 + a_2\), \(a_1 + a_2 + a_3\), and so on. What are the holes? What if one running total is already a multiple of 10?)<div class="space tall"></div></li>
-<li>Choose any 51 numbers from 1 to 100. Prove that (a) two of them are consecutive, and (b) two of them have no common factor bigger than 1.<div class="space"></div></li>
-<li>Choose any 51 numbers from 1 to 100. Prove that one of them divides another. (Hint: write each number as \(2^j \times m\) with \(m\) odd. How many possible odd parts \(m\) are there? If two numbers share the same odd part, what can you say?)<div class="space tall"></div></li>
+<li>Choose any 51 numbers from 1 to 100. Prove that one of them divides another. (Hint: write each number as \(2^j \times m\) with \(m\) odd. How many possible odd parts \(m\) are there?)<div class="space"></div></li>
 </ol>
 </section>
 
 <section class="stretch">
-<h2>Stretch: order out of any ten numbers</h2>
-<p>Write down any 10 different numbers in any order. Claim: you can always find 4 of them, read left to right, that are increasing, or 4 that are decreasing. For example in 4, 8, 1, 9, 2, 7, 3, 6, 5, 10 the subsequence 4, 8, 9, 10 is increasing. Try to design a sequence of 10 that defeats the claim, and then prove it cannot be done.</p>
-<p>Proof sketch to complete. For each position \(i\), let \(u_i\) be the length of the longest increasing subsequence <em>ending</em> at position \(i\), and \(d_i\) the longest decreasing one ending there. Suppose no monotone subsequence of length 4 exists, so every \(u_i\) and \(d_i\) is 1, 2 or 3. (a) How many possible pairs \((u_i, d_i)\) are there? (b) How many positions? (c) Show that two different positions cannot have the same pair: if \(i \lt j\) and \(x_i \lt x_j\), compare \(u_j\) with \(u_i\); if \(x_i > x_j\), compare \(d_j\) with \(d_i\). (d) Conclude. Then find a sequence of 9 numbers with no monotone subsequence of length 4, showing 10 is the smallest that works.</p>
+<h2>Stretch: a block that sums to a multiple of 10</h2>
+<p>Pick any 10 whole numbers \(a_1, \ldots, a_{10}\). Prove that some of them, taken consecutively, add up to a multiple of 10. (Hint: the pigeons are the running totals \(a_1\), \(a_1 + a_2\), \(a_1 + a_2 + a_3\), and so on. What are the holes?)</p>
 <div class="space"></div>
 </section>
 
@@ -68,12 +64,10 @@
 <ol>
 <li>25 people. With 12 months as boxes, \(\lceil 25/12 \rceil = 3\), so some month has at least 3. With 24 people, two per month is possible, so 24 is not enough.</li>
 <li>4 socks: three colours are the boxes, so 4 socks force two of one colour. For a black pair, the worst case is all 10 blue and all 10 grey first, then two black: 22 socks.</li>
-<li>Cut the unit square into four \(\frac12 \times \frac12\) squares. Five points, four small squares: two points share a small square (a point on a boundary can be assigned to either). Two points in a \(\frac12 \times \frac12\) square are at most a diagonal apart: \(\sqrt{(\frac12)^2 + (\frac12)^2} = \sqrt{\frac12} = \frac{\sqrt{2}}{2}\).</li>
-<li>Let \(s_i = a_1 + \cdots + a_i\) for \(i = 1, \ldots, 10\). If some \(s_i\) is a multiple of 10, done: \(a_1, \ldots, a_i\) is the block. Otherwise each \(s_i\) has one of the 9 remainders 1 to 9 when divided by 10. Ten sums, nine remainders: two of them, \(s_i\) and \(s_j\) with \(i \lt j\), share a remainder, so \(s_j - s_i = a_{i+1} + \cdots + a_j\) is a multiple of 10. (The same argument works for any \(n\) numbers and divisor \(n\).)</li>
-<li>(a) Boxes: the 50 pairs \(\{1,2\}, \{3,4\}, \ldots, \{99,100\}\). 51 numbers in 50 boxes: two in the same pair, and they are consecutive. (b) Consecutive numbers are coprime: any common factor of \(n\) and \(n+1\) divides their difference, 1. So the same pair works.</li>
-<li>Every number from 1 to 100 is \(2^j \times m\) with \(m\) odd, and \(m\) is one of the 50 odd numbers 1, 3, ..., 99. Boxes: the 50 odd parts. 51 numbers: two share an odd part, say \(2^a m\) and \(2^b m\) with \(a \lt b\). Then the first divides the second (the ratio is \(2^{b-a}\)). With only 50 numbers the claim can fail: 51, 52, ..., 100 has no number dividing another.</li>
+<li>Cut the unit square into four \(\frac12 \times \frac12\) squares. Five points, four small squares: two points share a small square (a point on a boundary can be assigned to either). Two points in a \(\frac12 \times \frac12\) square are at most a diagonal apart: \(\sqrt{\frac14 + \frac14} = \frac{\sqrt{2}}{2}\).</li>
+<li>Every number from 1 to 100 is \(2^j \times m\) with \(m\) one of the 50 odd numbers 1, 3, ..., 99. Boxes: the 50 odd parts. 51 numbers: two share an odd part, say \(2^a m\) and \(2^b m\) with \(a \lt b\), and the first divides the second. With only 50 numbers the claim can fail: 51, 52, ..., 100 has no number dividing another.</li>
 </ol>
-<p><b>Stretch.</b> (a) \(u_i, d_i \in \{1, 2, 3\}\) gives \(3 \times 3 = 9\) possible pairs. (b) 10 positions. (c) If \(i \lt j\) and \(x_i \lt x_j\), then any increasing subsequence ending at \(i\) extends by \(x_j\), so \(u_j \ge u_i + 1\) and the pairs differ. If \(x_i > x_j\), the same with \(d\): \(d_j \ge d_i + 1\). Either way positions \(i\) and \(j\) get different pairs. (d) 10 positions, 9 pairs, all pairs distinct: impossible. So some \(u_i\) or \(d_i\) is at least 4, which is a monotone subsequence of length 4. A sequence of 9 with none: 3, 2, 1, 6, 5, 4, 9, 8, 7 (longest increasing and decreasing are both 3). In general \(n^2 + 1\) numbers force a monotone subsequence of length \(n + 1\); this is the Erdős–Szekeres theorem.</p>
+<p><b>Stretch.</b> Let \(s_i = a_1 + \cdots + a_i\). If some \(s_i\) is a multiple of 10, done. Otherwise each of the ten sums has one of the 9 remainders 1 to 9, so two of them, \(s_i\) and \(s_j\) with \(i \lt j\), share a remainder, and \(s_j - s_i = a_{i+1} + \cdots + a_j\) is a multiple of 10. The same argument works for any \(n\) numbers and divisor \(n\).</p>
 </section>
 
 <div class="sheet-nav"><a href="b2-induction.html">← Previous</a><a href="b4-counting.html">Next: Counting without counting →</a></div>

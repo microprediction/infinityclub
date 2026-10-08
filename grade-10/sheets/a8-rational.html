@@ -31,9 +31,9 @@
 
 <section class="idea">
 <h2>Tonight's idea</h2>
-<p>A <b>rational function</b> is one polynomial divided by another: \(f(x) = \dfrac{p(x)}{q(x)}\). Everything interesting about it happens where the bottom is zero and where \(x\) is enormous.</p>
-<p><b>Where the bottom is zero</b>, \(f\) is undefined. But there are two very different ways to be undefined. If the factor that vanishes also appears on top, it cancels, and the graph is a perfectly ordinary curve with a single point missing: a <b>hole</b>. If the factor does not cancel, the top stays away from zero while the bottom shrinks, the quotient explodes, and the graph shoots off to \(\pm\infty\) along a <b>vertical asymptote</b>. Rule: factor everything, cancel, and then read off holes (cancelled) and asymptotes (not cancelled).</p>
-<p><b>Where \(x\) is enormous</b>, only the leading terms matter. Compare degrees. If the top's degree is smaller, \(f(x) \to 0\): horizontal asymptote \(y = 0\). If the degrees are equal, \(f(x)\) tends to the ratio of leading coefficients. If the top's degree is bigger by exactly one, divide, and the quotient (a line) is a <b>slant asymptote</b>. A horizontal asymptote describes the far-away behaviour; the graph is allowed to cross it in the middle. A vertical asymptote can never be crossed, because \(f\) has no value there at all.</p>
+<p>A <b>rational function</b> is one polynomial divided by another: \(f(x) = \dfrac{p(x)}{q(x)}\). Everything interesting happens where the bottom is zero and where \(x\) is enormous.</p>
+<p><b>Where the bottom is zero</b>, \(f\) is undefined, but in two very different ways. If the vanishing factor also appears on top, it cancels, and the graph is an ordinary curve with a single point missing: a <b>hole</b>. If it does not cancel, the top stays away from zero while the bottom shrinks, and the graph shoots off to \(\pm\infty\) along a <b>vertical asymptote</b>. Rule: factor everything, cancel, then read off holes (cancelled) and asymptotes (not cancelled).</p>
+<p><b>Where \(x\) is enormous</b>, only the leading terms matter, so compare degrees. Top smaller: \(f(x) \to 0\), horizontal asymptote \(y = 0\). Degrees equal: \(f(x)\) tends to the ratio of leading coefficients. Top bigger by exactly one: divide, and the quotient is a line, a <b>slant asymptote</b>. The graph may cross a horizontal asymptote in the middle; it can never cross a vertical one, because \(f\) has no value there.</p>
 <figure>
 <svg viewBox="0 0 320 170" width="320" height="170" role="img" aria-label="Graph of (x+1)/(x-2) with a vertical asymptote at x=2, horizontal asymptote y=1, and a hole at x=1">
 <line x1="20" y1="85" x2="310" y2="85" stroke="#999" stroke-width="1"/>
@@ -53,9 +53,7 @@
 
 <section class="example">
 <h2>Watch one: hole or asymptote?</h2>
-<p>\(f(x) = \dfrac{x^2 - 1}{x^2 - 3x + 2} = \dfrac{(x - 1)(x + 1)}{(x - 1)(x - 2)}\). The bottom is zero at \(x = 1\) and \(x = 2\).</p>
-<p>At \(x = 1\) the factor cancels: \(f(x) = \dfrac{x + 1}{x - 2}\) for every \(x\) except 1. Near \(x = 1\) the simplified form gives \(\dfrac{2}{-1} = -2\), so the graph has a <b>hole at \((1, -2)\)</b>. At \(x = 2\) nothing cancels: <b>vertical asymptote \(x = 2\)</b>. Just to the right of 2 the top is about 3 and the bottom is a tiny positive number, so \(f \to +\infty\); just to the left, \(f \to -\infty\).</p>
-<p>Degrees are equal (2 and 2) with leading coefficients 1 and 1, so the <b>horizontal asymptote is \(y = 1\)</b>. Intercepts: \(f(0) = \dfrac{-1}{2}\), and \(f = 0\) when the top is zero and the bottom is not, at \(x = -1\).</p>
+<p>\(f(x) = \dfrac{x^2 - 1}{x^2 - 3x + 2} = \dfrac{(x - 1)(x + 1)}{(x - 1)(x - 2)}\). The bottom is zero at \(x = 1\) and \(x = 2\). At \(x = 1\) the factor cancels, leaving \(\dfrac{x + 1}{x - 2}\), which is \(-2\) there: a <b>hole at \((1, -2)\)</b>. At \(x = 2\) nothing cancels: <b>vertical asymptote \(x = 2\)</b>. Degrees are equal with leading coefficients 1 and 1, so the <b>horizontal asymptote is \(y = 1\)</b>. Intercepts: \(f(0) = -\tfrac12\), and \(f = 0\) at \(x = -1\).</p>
 </section>
 
 <section class="exercises">
@@ -63,31 +61,26 @@
 <ol>
 <li>For \(g(x) = \dfrac{2x + 6}{x^2 - 9}\), give the domain, the coordinates of any hole, and the equations of all asymptotes.<div class="space"></div></li>
 <li>For \(h(x) = \dfrac{3x^2 + 1}{x^2 - 4}\), find the asymptotes and the \(y\)-intercept. Then show that the graph never crosses its horizontal asymptote.<div class="space"></div></li>
-<li>Sketch \(f(x) = \dfrac{1}{x - 2} + 3\) by shifting the graph of \(1/x\). Give both asymptotes and both intercepts.<div class="space tall"></div></li>
 <li>Divide to find the slant asymptote of \(\dfrac{x^2 + 1}{x - 1}\). Give the vertical asymptote too.<div class="space"></div></li>
-<li>Solve \(\dfrac{x + 2}{x - 1} = 3\). Then solve \(\dfrac{x^2}{x - 3} = \dfrac{9}{x - 3}\). One of the solutions you find in the second equation is not a solution. Which, and why?<div class="space"></div></li>
-<li>A journey is 120 km. Write the time taken \(t\) as a function of the average speed \(v\), name its asymptotes, and say what the vertical one means physically. Then: you drive there at 40 km/h and back at 60 km/h. Show the average speed for the round trip is 48 km/h, not 50, and find a formula for the average of two speeds \(a\) and \(b\) over equal distances.<div class="space tall"></div></li>
+<li>Solve \(\dfrac{x^2}{x - 3} = \dfrac{9}{x - 3}\). One of the two candidates you find is not a solution. Which, and why?<div class="space short"></div></li>
 </ol>
 </section>
 
 <section class="stretch">
-<h2>Stretch: crossing the uncrossable</h2>
-<p>Find the \(x\) where \(\dfrac{2x^2 + x}{x^2 + 1}\) crosses its horizontal asymptote. Explain in a sentence why crossing a horizontal asymptote is allowed but crossing a vertical one is impossible.</p>
-<p>Then find the <b>range</b> of \(f(x) = \dfrac{x + 1}{x - 2}\): set \(y = f(x)\), solve for \(x\) in terms of \(y\), and see which value of \(y\) makes that impossible. Does the answer surprise you, given the horizontal asymptote?</p>
-<div class="space"></div>
+<h2>Stretch: the missing value</h2>
+<p>Find the <b>range</b> of \(f(x) = \dfrac{x + 1}{x - 2}\): set \(y = f(x)\), solve for \(x\) in terms of \(y\), and see which value of \(y\) makes that impossible. How does the answer relate to the horizontal asymptote?</p>
+<div class="space short"></div>
 </section>
 
 <section class="answers">
 <h2>Answers</h2>
 <ol>
 <li>\(g(x) = \dfrac{2(x + 3)}{(x - 3)(x + 3)} = \dfrac{2}{x - 3}\) for \(x \ne -3\). Domain: all \(x\) except 3 and \(-3\). Hole at \(\left(-3, -\tfrac13\right)\). Vertical asymptote \(x = 3\); horizontal asymptote \(y = 0\) (degree 1 over degree 2).</li>
-<li>Vertical asymptotes \(x = 2\) and \(x = -2\); horizontal asymptote \(y = 3\). \(y\)-intercept \(h(0) = -\tfrac14\). Crossing would need \(3x^2 + 1 = 3(x^2 - 4) = 3x^2 - 12\), i.e. \(1 = -12\), impossible. So it never crosses.</li>
-<li>Shift \(1/x\) right 2 and up 3. Asymptotes \(x = 2\) and \(y = 3\). \(y\)-intercept: \(f(0) = -\tfrac12 + 3 = \tfrac52\). \(x\)-intercept: \(\tfrac{1}{x-2} = -3\) gives \(x - 2 = -\tfrac13\), \(x = \tfrac53\).</li>
+<li>Vertical asymptotes \(x = 2\) and \(x = -2\); horizontal asymptote \(y = 3\). \(y\)-intercept \(h(0) = -\tfrac14\). Crossing would need \(3x^2 + 1 = 3x^2 - 12\), i.e. \(1 = -12\), impossible.</li>
 <li>\(x^2 + 1 = (x - 1)(x + 1) + 2\), so \(\dfrac{x^2 + 1}{x - 1} = x + 1 + \dfrac{2}{x - 1}\). Slant asymptote \(y = x + 1\); vertical asymptote \(x = 1\).</li>
-<li>\(x + 2 = 3x - 3\), so \(x = \tfrac52\). In the second, multiplying by \((x - 3)\) gives \(x^2 = 9\), \(x = \pm 3\). But \(x = 3\) makes both denominators zero, so it is not in the domain: it is extraneous. Only \(x = -3\).</li>
-<li>\(t = 120/v\). Vertical asymptote \(v = 0\): at speeds near zero the journey takes forever. Horizontal asymptote \(t = 0\): no finite speed makes the trip instant. Round trip: 240 km in \(3 + 2 = 5\) hours, so 48 km/h. In general time is \(\dfrac{d}{a} + \dfrac{d}{b}\) for distance \(2d\), so the average speed is \(\dfrac{2d}{d/a + d/b} = \dfrac{2ab}{a + b}\), the harmonic mean. It is always at most the ordinary average, because you spend more time at the slow speed.</li>
+<li>Multiplying by \((x - 3)\) gives \(x^2 = 9\), \(x = \pm 3\). But \(x = 3\) makes both denominators zero, so it is not in the domain: it is extraneous. Only \(x = -3\).</li>
 </ol>
-<p><b>Stretch.</b> Horizontal asymptote \(y = 2\). Crossing: \(2x^2 + x = 2x^2 + 2\) gives \(x = 2\), at the point \((2, 2)\). A horizontal asymptote only describes where the graph heads as \(x \to \pm\infty\); in the middle the graph can do what it likes. A vertical asymptote sits at an \(x\) where the function has no value, so there is no point to cross through. Range: \(y(x - 2) = x + 1\) gives \(x(y - 1) = 2y + 1\), so \(x = \dfrac{2y + 1}{y - 1}\), which exists for every \(y\) except 1. Range: all reals except 1. The missing value is exactly the horizontal asymptote: this graph approaches \(y = 1\) but never reaches it.</p>
+<p><b>Stretch.</b> \(y(x - 2) = x + 1\) gives \(x(y - 1) = 2y + 1\), so \(x = \dfrac{2y + 1}{y - 1}\), which exists for every \(y\) except 1. Range: all reals except 1. The missing value is exactly the horizontal asymptote: this graph approaches \(y = 1\) but never reaches it.</p>
 </section>
 
 <div class="sheet-nav"><a href="a7-polynomials.html">← Previous</a><a href="a9-radicals.html">Next: Roots, rational exponents and rationalising →</a></div>

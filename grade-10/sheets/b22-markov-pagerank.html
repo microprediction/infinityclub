@@ -31,57 +31,48 @@
 
 <section class="idea">
 <h2>Tonight's idea</h2>
-<p>A <b>Markov chain</b> is a system that hops between states, where the next state depends only on the current one, not on the history. Tomorrow's weather depends on today's, not on last Tuesday's. That one assumption, the <b>Markov property</b>, turns an impossible problem into matrix multiplication.</p>
-<p>Take three states: Sunny, Cloudy, Rainy. Write the probabilities of tomorrow given today as a matrix, one row per <em>today</em>, one column per <em>tomorrow</em>:</p>
+<p>A <b>Markov chain</b> hops between states, and the next state depends only on the current one, not on the history.</p>
+<p>Three states, Sunny, Cloudy, Rainy. Write the probabilities of tomorrow given today as a matrix, one row per <em>today</em>, one column per <em>tomorrow</em>:</p>
 \[ P = \begin{pmatrix} 0.7 & 0.2 & 0.1 \\ 0.3 & 0.4 & 0.3 \\ 0.2 & 0.4 & 0.4 \end{pmatrix} \quad \begin{matrix} \text{from S} \\ \text{from C} \\ \text{from R} \end{matrix} \]
-<p>Every row adds to 1, because tomorrow has to be something. Row S says: after a sunny day, 70% sunny, 20% cloudy, 10% rain.</p>
-<p><b>Two days ahead.</b> Sunny today; what is the chance of rain the day after tomorrow? Tomorrow could be any of the three, so add up the routes: \(0.7 \times 0.1 + 0.2 \times 0.3 + 0.1 \times 0.4 = 0.17\). Look at what you just did: row S of \(P\) times column R of \(P\). That is matrix multiplication. The whole table of two-day probabilities is \(P^2\), three days is \(P^3\), and \(n\) days is \(P^n\). (Matrix multiplication is sheet <a href="b14-matrices-transformations.html">b14</a>; the demo at <a href="../../demos/matrix.html">infinityclub.net/demos/matrix.html</a> shows it geometrically.)</p>
-<p>If today's probabilities are a row vector \(v = (v_S, v_C, v_R)\), tomorrow's are \(vP\). Keep multiplying and something remarkable happens: whatever \(v\) you start with, \(vP^n\) settles down to the same vector \(\pi\). The chain forgets where it started. That limiting vector is the <b>steady state</b>, and it satisfies \(\pi P = \pi\): one more day changes nothing. For the weather above \(\pi = \left(\tfrac{6}{13}, \tfrac{4}{13}, \tfrac{3}{13}\right)\), so in the long run 46% of days are sunny, whatever today is like. We solve for it in the example.</p>
-<p><b>The random surfer.</b> In 1998 two students asked: what if a web page is important when important pages link to it? Circular, until you make it a Markov chain. Imagine a surfer who, on each page, clicks one of its links at random. The states are pages, the transition matrix comes from the links, and the steady state says what fraction of time the surfer spends on each page. That fraction is the page's <b>PageRank</b>.</p>
-<p>Two repairs make it work. Some pages have no links out (the surfer gets stuck), and some clusters of pages only link to each other (the surfer gets trapped). So with probability \(d = 0.85\) the surfer follows a link, and with probability \(0.15\) she types a random address instead. For \(N\) pages the rank of page \(p\) satisfies</p>
-<p class="callout">\(\displaystyle PR(p) = \frac{1 - d}{N} + d \sum_{q \to p} \frac{PR(q)}{\text{out}(q)}\), summing over every page \(q\) that links to \(p\), where \(\text{out}(q)\) is the number of links on \(q\).</p>
-<p>Take a four-page web: A links to B and C; B links to C; C links to A; D links to A and C. The ranks are \(A \approx 0.380\), \(B \approx 0.199\), \(C \approx 0.384\), \(D \approx 0.038\). C is top because A sends it half its vote and B sends it all of its vote. D has no links pointing in, so it gets only the teleport share, \(0.15/4 = 0.0375\). Google ran this on billions of pages by repeated multiplication, which is exactly the "keep multiplying by \(P\)" idea above. Try it at <a href="../../demos/pagerank.html">infinityclub.net/demos/pagerank.html</a>.</p>
+<p>Every row adds to 1. <b>Two days ahead:</b> sunny today, rain the day after tomorrow? Add up the routes through tomorrow: \(0.7 \times 0.1 + 0.2 \times 0.3 + 0.1 \times 0.4 = 0.17\). That is row S times column R: matrix multiplication. The two-day table is \(P^2\), and \(n\) days is \(P^n\).</p>
+<p>Keep multiplying and, whatever you start from, the rows of \(P^n\) settle to the same vector \(\pi\). This <b>steady state</b> satisfies \(\pi P = \pi\); here \(\pi = \left(\tfrac{6}{13}, \tfrac{4}{13}, \tfrac{3}{13}\right)\), so 46% of days are sunny in the long run.</p>
+<p><b>The random surfer.</b> In 1998 two students asked: what if a page is important when important pages link to it? Make it a Markov chain: a surfer clicks a random link on each page, and the steady state says what fraction of time she spends on each page. That is <b>PageRank</b>. To stop her getting stuck or trapped, with probability \(1 - d = 0.15\) she types a random address instead. For \(N\) pages,</p>
+<p class="callout">\(\displaystyle PR(p) = \frac{1 - d}{N} + d \sum_{q \to p} \frac{PR(q)}{\text{out}(q)}\), summing over pages \(q\) linking to \(p\), where \(\text{out}(q)\) is the number of links on \(q\).</p>
 </section>
 
 <section class="example">
 <h2>Watch one: solving for the steady state</h2>
-<p>We want \(\pi = (a, b, c)\) with \(\pi P = \pi\) and \(a + b + c = 1\). Multiply out \(\pi P\) column by column:</p>
+<p>We want \(\pi = (a, b, c)\) with \(\pi P = \pi\) and \(a + b + c = 1\). Column by column:</p>
 \[ 0.7a + 0.3b + 0.2c = a, \qquad 0.2a + 0.4b + 0.4c = b, \qquad 0.1a + 0.3b + 0.4c = c. \]
-<p>The third equation is the sum of the first two in disguise (rows add to 1, so one equation is always redundant); drop it and use \(a + b + c = 1\) instead. Tidy the first: \(0.3b = 0.3a - 0.2c\), so \(b = a - \tfrac23 c\). Put that in the second: \(0.2a - 0.6\left(a - \tfrac23 c\right) + 0.4c = 0\), which simplifies to \(-0.4a + 0.8c = 0\), so \(a = 2c\). Then \(b = 2c - \tfrac23 c = \tfrac43 c\).</p>
-<p>Sum: \(2c + \tfrac43 c + c = \tfrac{13}{3}c = 1\), so \(c = \tfrac{3}{13}\), \(a = \tfrac{6}{13}\), \(b = \tfrac{4}{13}\). Check with one row: \(0.7 \cdot \tfrac{6}{13} + 0.3 \cdot \tfrac{4}{13} + 0.2 \cdot \tfrac{3}{13} = \tfrac{4.2 + 1.2 + 0.6}{13} = \tfrac{6}{13}\). ✓</p>
+<p>One equation is always redundant (rows add to 1), so drop the third and use \(a + b + c = 1\). The first gives \(b = a - \tfrac23 c\). In the second: \(0.2a - 0.6\left(a - \tfrac23 c\right) + 0.4c = 0\), so \(a = 2c\), and then \(b = \tfrac43 c\). Sum: \(\tfrac{13}{3}c = 1\), so \(c = \tfrac{3}{13}\), \(a = \tfrac{6}{13}\), \(b = \tfrac{4}{13}\).</p>
 </section>
 
 <section class="exercises">
 <h2>Your turn</h2>
 <ol>
-<li>A machine is either Working or Broken. Each day a working machine breaks with probability 0.1, and a broken one is repaired with probability 0.6. Write the \(2 \times 2\) transition matrix and find the steady state. In the long run, what fraction of days is the machine broken?<div class="space short"></div></li>
-<li>Sunny today. Compute the whole first row of \(P^2\) (sunny, cloudy, rainy in two days) and check it adds to 1.<div class="space"></div></li>
-<li>Cloudy today. What is the probability of sunshine in two days? Compare your answer with the steady-state value \(6/13 \approx 0.46\), and explain in a sentence why every row of \(P^n\) creeps toward \(\pi\) as \(n\) grows.<div class="space"></div></li>
-<li>A three-page web: A links to B and C, B links to C, C links to A. Use the pure surfer (\(d = 1\), no teleporting) and solve for the ranks, which must add to 1. Hint: write \(r_A = r_C\), \(r_B = \tfrac12 r_A\), \(r_C = \tfrac12 r_A + r_B\).<div class="space"></div></li>
-<li>Same web with \(d = 0.85\). The exact ranks are \(r_A = \tfrac{686}{1769}\), \(r_B = \tfrac{380}{1769}\), \(r_C = \tfrac{703}{1769}\), about \(0.388, 0.215, 0.397\). Verify that these satisfy all three PageRank equations (to three decimals). Then do one round of the iteration starting from \(\left(\tfrac13, \tfrac13, \tfrac13\right)\) and say which direction each rank moved.<div class="space"></div></li>
-<li>Add a page D to the web in question 4, with a link from C to D and no links out of D. What happens to the pure surfer (\(d = 1\)) in the long run, and what does that do to the ranks? Explain why \(d = 0.85\) fixes it. Finally, in the four-page web from the idea section, explain why D's rank is exactly \(0.15/4\).<div class="space"></div></li>
+<li>A machine is Working or Broken. Each day a working machine breaks with probability 0.1 and a broken one is repaired with probability 0.6. Write the \(2 \times 2\) transition matrix and find the steady state. What fraction of days is it broken?<div class="space short"></div></li>
+<li>Sunny today. Compute the whole first row of \(P^2\) (sunny, cloudy, rainy in two days) and check it adds to 1.<div class="space short"></div></li>
+<li>Cloudy today. What is the probability of sunshine in two days? Compare with the one-day value 0.3 and the steady-state value \(6/13 \approx 0.46\).<div class="space short"></div></li>
+<li>A three-page web: A links to B and C, B links to C, C links to A (try it at <a href="../../demos/pagerank.html">infinityclub.net/demos/pagerank.html</a>). With the pure surfer (\(d = 1\)) the ranks satisfy \(r_A = r_C\), \(r_B = \tfrac12 r_A\), \(r_C = \tfrac12 r_A + r_B\). Solve them, given the ranks add to 1.<div class="space short"></div></li>
 </ol>
 </section>
 
 <section class="stretch">
 <h2>Stretch: how long until two heads in a row?</h2>
-<p>Toss a fair coin until you get two heads in a row. On average, how many tosses does it take? Make it a Markov chain with three states: 0 (no progress), 1 (last toss was a head), and Done. Let \(E_0\) and \(E_1\) be the expected number of tosses still needed from each state. Then</p>
-\[ E_0 = 1 + \tfrac12 E_1 + \tfrac12 E_0, \qquad E_1 = 1 + \tfrac12 \cdot 0 + \tfrac12 E_0, \]
-<p>because each toss costs one, and after it you are in a new state. Solve for \(E_0\). Then repeat for the pattern HT (heads then tails). One of the two patterns takes noticeably longer. Which, and can you explain why without the algebra? (Hint: what does a failed attempt leave you with in each case?)</p>
-<div class="space"></div>
+<p>Toss a fair coin until you see HH. States: 0 (no progress), 1 (last toss a head), Done. With \(E_0, E_1\) the expected tosses still needed,</p>
+\[ E_0 = 1 + \tfrac12 E_1 + \tfrac12 E_0, \qquad E_1 = 1 + \tfrac12 E_0. \]
+<p>Solve for \(E_0\). Then set up the same equations for the pattern HT. Which pattern takes longer, and why?</p>
 </section>
 
 <section class="answers">
 <h2>Answers</h2>
 <ol>
-<li>\(P = \begin{pmatrix} 0.9 & 0.1 \\ 0.6 & 0.4 \end{pmatrix}\). Steady state: \(0.9w + 0.6b = w\) gives \(0.6b = 0.1w\), so \(w = 6b\); with \(w + b = 1\), \(b = \tfrac17\), \(w = \tfrac67\). Broken about 14.3% of days.</li>
-<li>Row S of \(P^2\): sunny \(0.7(0.7) + 0.2(0.3) + 0.1(0.2) = 0.57\); cloudy \(0.7(0.2) + 0.2(0.4) + 0.1(0.4) = 0.26\); rainy \(0.17\) (from the idea section). \(0.57 + 0.26 + 0.17 = 1\). ✓</li>
-<li>Row C of \(P^2\), sunny column: \(0.3(0.7) + 0.4(0.3) + 0.3(0.2) = 0.39\). Already closer to \(0.46\) than the one-day value \(0.3\). Each multiplication by \(P\) mixes today's row with the others, so the influence of the starting state is diluted step by step until only \(\pi\) is left.</li>
-<li>From the hint, \(r_B = \tfrac12 r_A\) and \(r_C = \tfrac12 r_A + \tfrac12 r_A = r_A\). Sum: \(r_A + \tfrac12 r_A + r_A = \tfrac52 r_A = 1\), so \(r_A = \tfrac25\), \(r_B = \tfrac15\), \(r_C = \tfrac25\). B is lowest because its only incoming vote is half of A's.</li>
-<li>\(r_A = 0.05 + 0.85\,r_C = 0.05 + 0.85(0.3974) = 0.388\) ✓; \(r_B = 0.05 + 0.85\,r_A/2 = 0.05 + 0.1648 = 0.215\) ✓; \(r_C = 0.05 + 0.85(r_A/2 + r_B) = 0.05 + 0.85(0.1939 + 0.2148) = 0.397\) ✓. One iteration from thirds: \(r_A = 0.05 + 0.85(\tfrac13) = 0.333\), \(r_B = 0.05 + 0.85(\tfrac16) = 0.192\), \(r_C = 0.05 + 0.85(\tfrac16 + \tfrac13) = 0.475\). B fell toward 0.215 and C rose past 0.397; further rounds damp the overshoot and converge. The teleport term \(0.05 = 0.15/3\) keeps every rank above zero.</li>
-<li>With \(d = 1\) the surfer eventually clicks C → D and can never leave, so in the long run all the rank drains into D and A, B, C get 0, which is absurd for a page nobody chose on merit. With \(d = 0.85\) the surfer teleports out of D with probability 0.15 each step (and in practice a dangling page is treated as linking to everyone), so rank keeps circulating. In the four-page web nothing links to D, so the sum in the formula is empty and \(PR(D) = (1 - d)/N = 0.15/4 = 0.0375\).</li>
+<li>\(P = \begin{pmatrix} 0.9 & 0.1 \\ 0.6 & 0.4 \end{pmatrix}\). \(0.9w + 0.6b = w\) gives \(w = 6b\); with \(w + b = 1\), \(b = \tfrac17\). Broken about 14% of days.</li>
+<li>Sunny \(0.49 + 0.06 + 0.02 = 0.57\); cloudy \(0.14 + 0.08 + 0.04 = 0.26\); rainy \(0.17\). Sum 1. ✓</li>
+<li>\(0.3(0.7) + 0.4(0.3) + 0.3(0.2) = 0.39\), already much closer to 0.46 than 0.3 is. Each multiplication by \(P\) dilutes the starting state until only \(\pi\) is left.</li>
+<li>\(r_C = \tfrac12 r_A + \tfrac12 r_A = r_A\); sum \(\tfrac52 r_A = 1\), so \(r_A = \tfrac25\), \(r_B = \tfrac15\), \(r_C = \tfrac25\). B is lowest because its only incoming vote is half of A's.</li>
 </ol>
-<p><b>Stretch.</b> From the second equation \(E_1 = 1 + \tfrac12 E_0\). Substitute into the first: \(E_0 = 1 + \tfrac12\left(1 + \tfrac12 E_0\right) + \tfrac12 E_0 = \tfrac32 + \tfrac34 E_0\), so \(\tfrac14 E_0 = \tfrac32\) and \(E_0 = 6\) tosses. For HT: from state 1 (just saw H), a tail finishes and a head keeps you in state 1: \(E_1 = 1 + \tfrac12 E_1\), so \(E_1 = 2\); and \(E_0 = 1 + \tfrac12 E_1 + \tfrac12 E_0\) gives \(E_0 = 4\). HH takes longer because a failure costs more: waiting for HH, a tail after a head sends you back to zero progress, whereas waiting for HT, an extra head after a head leaves you still one step from done. Casinos, DNA sequencing and text search all use this "pattern waiting time" calculation.</p>
+<p><b>Stretch.</b> Substitute \(E_1 = 1 + \tfrac12 E_0\): \(E_0 = \tfrac32 + \tfrac34 E_0\), so \(E_0 = 6\) tosses. For HT, from state 1 a tail finishes and a head keeps you there: \(E_1 = 1 + \tfrac12 E_1\), so \(E_1 = 2\), and then \(E_0 = 4\). HH takes longer because a failure costs more: a tail after a head sends you back to zero, whereas while waiting for HT an extra head leaves you still one toss from done.</p>
 </section>
 
 <div class="sheet-nav"><a href="b21-bayes.html">← Previous</a><a href="b23-random-walks.html">Next: Random walks and the gambler's ruin →</a></div>

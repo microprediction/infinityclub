@@ -31,23 +31,21 @@
 
 <section class="idea">
 <h2>Tonight's idea</h2>
-<p>Arpad Elo was a physics professor and a strong chess player who, in 1960, gave chess a rating system built on one idea: a rating should be a <em>prediction</em>. If player A is rated \(R_A\) and player B is rated \(R_B\), A's expected score (1 for a win, ½ for a draw, 0 for a loss) is</p>
+<p>Arpad Elo, a physics professor and strong chess player, gave chess a rating system in 1960 built on one idea: a rating should be a <em>prediction</em>. If A is rated \(R_A\) and B is rated \(R_B\), A's expected score (1 for a win, ½ for a draw, 0 for a loss) is</p>
 <div class="callout">\[ E_A = \frac{1}{1 + 10^{(R_B - R_A)/400}}. \]</div>
-<p>Equal ratings give \(E_A = 1/2\). A 400-point edge gives \(E_A = 1/(1 + 10^{-1}) = 10/11 \approx 0.91\): the stronger player is expected to score ten times as much as the weaker one. The 400 is just a choice of scale. The shape, \(1/(1 + 10^{-x})\), is a <b>logistic curve</b>: an S that is flat near 0, steep in the middle and flat near 1, so that a rating gap matters most when the players are close.</p>
+<p>Equal ratings give \(E_A = 1/2\). A 400-point edge gives \(E_A = 10/11 \approx 0.91\): the stronger player is expected to score ten times as much as the weaker one. The shape \(1/(1 + 10^{-x})\) is a <b>logistic curve</b>: an S, flat near 0 and 1 and steep in the middle, so a rating gap matters most when the players are close.</p>
 <p>After a game with actual score \(S_A\), the rating moves by the surprise:</p>
 <div class="callout">\[ R_A' = R_A + K\,(S_A - E_A). \]</div>
-<p>Beat someone you were expected to beat and you gain little. Beat someone you were expected to lose to and you gain a lot. The <b>K-factor</b> sets how fast ratings move: FIDE uses \(K = 40\) for new players, 20 for established ones and 10 above 2400, because a new player's rating is a guess that should be allowed to move quickly while a grandmaster's is a long-run average that should not. If both players use the same \(K\), the points one gains the other loses exactly. Elo is a zero-sum bookkeeping of surprise.</p>
-<p>The same machinery now rates football clubs, tennis players, online gamers and, with a tweak for home advantage and margin of victory, is behind most published sports forecasts. (You met a related idea in <a href="../../grade-6/sheets/c7-sport.html">Why the best team doesn't always win</a>.)</p>
-<p>Now the second idea, which is about noise. Any performance is <b>skill plus luck</b>. When you pick out the top performer of the season, you are picking someone who probably had good skill <em>and</em> good luck. Next season the skill stays and the luck is rolled again, so their expected performance is lower than last year's. Nothing happened to them. This is <b>regression to the mean</b>, and it explains the "sophomore slump", the "Sports Illustrated cover jinx", and why the worst performers tend to improve after being shouted at. If skill and luck contribute equally to the spread of results, the correlation between one season and the next is \(r = 0.5\), and the best prediction for next season is</p>
+<p>Beat someone you were expected to beat and you gain little; beat someone you were expected to lose to and you gain a lot. The <b>K-factor</b> sets how fast ratings move (FIDE uses 40 for new players, 20 for established ones, 10 above 2400). If both players use the same \(K\), what one gains the other loses exactly. The same machinery now rates football clubs, tennis players and online gamers.</p>
+<p>The second idea is about noise. Any performance is <b>skill plus luck</b>. The season's top performer probably had good skill <em>and</em> good luck; next season the skill stays and the luck is rolled again. This is <b>regression to the mean</b>, and it explains the "sophomore slump" without anything happening to anyone. If the correlation between one season and the next is \(r\), the best prediction is</p>
 <div class="callout">\[ \text{next} \approx \text{mean} + r \times (\text{this} - \text{mean}). \]</div>
-<p>Halfway back toward average. Elo ratings regress for the same reason: a lucky run inflates a rating, and the inflated rating then predicts too much, and the following losses deflate it again.</p>
 </section>
 
 <section class="example">
 <h2>Watch one: an upset</h2>
 <p>Ana (1500) beats Ben (1700). With \(K = 32\):</p>
-<p>\(E_{\text{Ana}} = 1/(1 + 10^{(1700 - 1500)/400}) = 1/(1 + 10^{0.5}) = 1/(1 + 3.162) \approx 0.240\). Ben's expectation is the complement, 0.760.</p>
-<p>Ana: \(1500 + 32 \times (1 - 0.240) = 1500 + 24.3 = 1524.3\). Ben: \(1700 + 32 \times (0 - 0.760) = 1700 - 24.3 = 1675.7\). Had Ben won as expected he would have gained only \(32 \times 0.240 = 7.7\).</p>
+<p>\(E_{\text{Ana}} = 1/(1 + 10^{(1700 - 1500)/400}) = 1/(1 + 3.162) \approx 0.240\). Ben's expectation is the complement, 0.760.</p>
+<p>Ana: \(1500 + 32 \times (1 - 0.240) = 1524.3\). Ben: \(1700 + 32 \times (0 - 0.760) = 1675.7\). Had Ben won as expected he would have gained only \(32 \times 0.240 = 7.7\).</p>
 </section>
 
 <section class="exercises">
@@ -55,17 +53,14 @@
 <ol>
 <li>Compute the expected score of the higher-rated player when the rating gap is 0, 100, 200, 400 and 800 points. Sketch the five points: what shape is forming?<div class="space"></div></li>
 <li>Two 1800 players meet, \(K = 20\). How much does the winner gain? Now a 1800 player loses to a 2000 player with \(K = 20\): give both new ratings.<div class="space short"></div></li>
-<li>Ana starts at 1500 with \(K = 32\) and plays three games in order: she beats a 1600, loses to a 1400, and draws a 1500. Update her rating after each game (use the updated rating going into the next game) and give the final value to one decimal place. Why does she end up almost where she started?<div class="space tall"></div></li>
-<li>A 1500 player keeps beating opponents rated exactly 1500 (assume the opponents' ratings are frozen). With \(K = 16\), how many consecutive wins does it take to pass 1600? With \(K = 32\)? Explain why the gains shrink as the rating rises.<div class="space"></div></li>
-<li>A hundred students sit two equally hard tests. Scores are ability plus luck in equal measure, so the correlation between the tests is 0.5, and the class mean is 70 on both. The ten best students on test 1 averaged 85. Predict their average on test 2. The ten worst averaged 55. Predict theirs. Did the teacher's praise or scolding between the tests have anything to do with it?<div class="space"></div></li>
-<li>A rookie's first season was 2.5 standard deviations above average, and for this sport the season-to-season correlation of performance is 0.4. What is the best prediction for her second season, in standard deviations above average? Explain in two sentences to a journalist why "Rookie of the Year curse" is the wrong headline.<div class="space"></div></li>
+<li>Ana starts at 1500 with \(K = 32\) and plays three games in order: she beats a 1600, loses to a 1400, and draws a 1500. Update her rating after each game (use the updated rating going into the next game) and give the final value to one decimal place. Why does she end up almost where she started?<div class="space short"></div></li>
+<li>A hundred students sit two equally hard tests. Scores are ability plus luck in equal measure, so the correlation between the tests is 0.5, and the class mean is 70 on both. The ten best students on test 1 averaged 85. Predict their average on test 2. The ten worst averaged 55. Predict theirs. Did the teacher's praise or scolding between the tests have anything to do with it?<div class="space short"></div></li>
 </ol>
 </section>
 
 <section class="stretch">
 <h2>Stretch: what a rating gap is really claiming</h2>
-<p>Suppose A genuinely beats B with probability \(p\) in the long run. Ratings settle where the expected score matches reality, \(E_A = p\). Solve the Elo formula for the gap \(D = R_A - R_B\) in terms of \(p\). What gap corresponds to \(p = 0.75\)? To \(p = 0.9\)?</p>
-<p>Now suppose A beats B 75% of the time and B beats C 75% of the time. What does Elo predict for A against C? That prediction is a <em>modelling assumption</em>: Elo assumes strength is a single number on a line. Find a situation where this must fail. (Hint: <a href="../../grade-6/sheets/b32-efron-dice.html">Dice that go round in circles</a>.)</p>
+<p>If A beats B with long-run probability \(p\), ratings settle where \(E_A = p\). Solve for the gap \(D = R_A - R_B\) in terms of \(p\), and find \(D\) for \(p = 0.75\) and \(p = 0.9\). If A beats B 75% of the time and B beats C 75% of the time, what does Elo predict for A against C? Why might that be wrong? (Hint: <a href="../../grade-6/sheets/b32-efron-dice.html">Dice that go round in circles</a>.)</p>
 <div class="space"></div>
 </section>
 
@@ -74,12 +69,10 @@
 <ol>
 <li>Gap 0: 0.500. Gap 100: \(1/(1 + 10^{-0.25}) = 0.640\). Gap 200: 0.760. Gap 400: 0.909. Gap 800: 0.990. An S-shaped (logistic) curve, steepest at a gap of 0 and flattening toward 1.</li>
 <li>Equal ratings: \(E = 0.5\), the winner gains \(20 \times 0.5 = 10\) and the loser drops 10. The 1800 against 2000: \(E_{1800} = 1/(1 + 10^{0.5}) = 0.240\); losing gives \(1800 + 20(0 - 0.240) = 1795.2\). The 2000 player gains the same 4.8: 2004.8.</li>
-<li>Game 1 against 1600: \(E = 1/(1 + 10^{0.25}) = 0.360\), gain \(32 \times 0.640 = 20.5\), rating 1520.5. Game 2 against 1400: \(E = 1/(1 + 10^{-0.301}) = 0.667\), change \(32 \times (0 - 0.667) = -21.3\), rating 1499.2. Game 3 against 1500: \(E \approx 0.499\), change \(+0.04\), rating 1499.2. She beat someone better and lost to someone worse: two surprises of nearly equal size in opposite directions cancel, and the draw against an equal is no surprise at all.</li>
-<li>\(K = 16\): 15 wins (reaching about 1602.7). \(K = 32\): 8 wins (about 1609.4). Each win against a 1500 is less surprising once your rating is higher, so \(E\) rises toward 1 and the gain \(K(1 - E)\) shrinks.</li>
+<li>Game 1 against 1600: \(E = 1/(1 + 10^{0.25}) = 0.360\), gain \(32 \times 0.640 = 20.5\), rating 1520.5. Game 2 against 1400: \(E = 0.667\), change \(-21.3\), rating 1499.2. Game 3 against 1500: \(E \approx 0.499\), change \(+0.04\), rating 1499.2. She beat someone better and lost to someone worse: two surprises of nearly equal size cancel, and the draw against an equal is no surprise at all.</li>
 <li>Top ten: \(70 + 0.5 \times (85 - 70) = 77.5\). Bottom ten: \(70 + 0.5 \times (55 - 70) = 62.5\). Both groups move halfway back to the mean. Praise and scolding had nothing to do with it; this would happen with no teacher in the room, which is exactly why praise looks ineffective and criticism looks effective to anyone who does not know about regression.</li>
-<li>\(0.4 \times 2.5 = 1.0\) standard deviations above average: still a very good season, just not an extraordinary one. "Her first season was partly skill and partly luck, and the luck does not carry over. A drop from 2.5 to 1.0 is what the arithmetic predicts for anyone who was that far above average, curse or no curse."</li>
 </ol>
-<p><b>Stretch.</b> \(E = p\) gives \(10^{-D/400} = \dfrac{1 - p}{p}\), so \(D = 400 \log_{10}\dfrac{p}{1 - p}\). For \(p = 0.75\): \(D = 400 \log_{10} 3 \approx 191\) points. For \(p = 0.9\): \(400 \log_{10} 9 \approx 382\) points. If A is 191 above B and B is 191 above C, then A is 382 above C and Elo predicts A beats C with probability 0.90. That is forced by placing everyone on one line. Efron's dice break it: A beats B, B beats C, C beats D and D beats A, each two-thirds of the time, and no assignment of single numbers can predict all four results. Rock-paper-scissors style match-ups exist in real sports too (styles that trouble particular opponents), and Elo cannot see them.</p>
+<p><b>Stretch.</b> \(E = p\) gives \(10^{-D/400} = \dfrac{1 - p}{p}\), so \(D = 400 \log_{10}\dfrac{p}{1 - p}\). For \(p = 0.75\): \(400 \log_{10} 3 \approx 191\) points. For \(p = 0.9\): \(400 \log_{10} 9 \approx 382\) points. If A is 191 above B and B is 191 above C, A is 382 above C and Elo predicts A beats C with probability 0.90. That is forced by placing everyone on one line. Efron's dice break it: A beats B, B beats C, C beats D and D beats A, each two-thirds of the time, and no single number per player can predict all four. Rock-paper-scissors match-ups exist in real sports too, and Elo cannot see them.</p>
 </section>
 
 <div class="sheet-nav"><a href="c7-perspective.html">← Previous</a><a href="c9-gps.html">Next: How GPS knows where you are →</a></div>

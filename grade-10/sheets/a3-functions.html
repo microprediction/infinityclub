@@ -31,20 +31,16 @@
 
 <section class="idea">
 <h2>Tonight's idea</h2>
-<p>A <b>function</b> is a machine: feed in one number, get out exactly one number. The set of inputs it accepts is the <b>domain</b>; the set of outputs it can produce is the <b>range</b>. Unless told otherwise, the domain is every real number that does not break the machine. Two things break it: dividing by zero and taking the square root of a negative.</p>
+<p>A <b>function</b> is a machine: feed in one number, get out exactly one number. The inputs it accepts are its <b>domain</b>; the outputs it can produce are its <b>range</b>. Unless told otherwise, the domain is every real number that does not break the machine, and two things break it: dividing by zero and square-rooting a negative.</p>
 <p><b>Composition</b> is plugging one machine into another. \(f(g(x))\) means do \(g\) first, then \(f\). Order matters: with \(f(x) = x + 1\) and \(g(x) = 2x\), \(f(g(3)) = 7\) but \(g(f(3)) = 8\).</p>
-<p>An <b>inverse</b> \(f^{-1}\) runs the machine backwards: \(f^{-1}(f(x)) = x\). Not every machine can run backwards. If \(f(2) = f(-2) = 4\), then \(f^{-1}(4)\) cannot decide between 2 and \(-2\). A function has an inverse only when different inputs always give different outputs, which on a graph means no horizontal line hits it twice. Squaring fails; cubing passes.</p>
-<p>To find an inverse, write \(y = f(x)\), swap the letters, and solve for \(y\). Swapping \(x\) and \(y\) turns every point \((a, b)\) into \((b, a)\), and that is exactly a <b>reflection in the line \(y = x\)</b>. So the graph of \(f^{-1}\) is the mirror image of the graph of \(f\), and the domain of \(f^{-1}\) is the range of \(f\).</p>
-<p class="callout">If the input to a function has to be \(h\) bigger to get the same output, the graph moves right. If the output is the mirror, it is the inverse. Hold on to both pictures; next sheet is all about the first.</p>
+<p>An <b>inverse</b> \(f^{-1}\) runs the machine backwards: \(f^{-1}(f(x)) = x\). Not every machine can. If \(f(2) = f(-2) = 4\), then \(f^{-1}(4)\) cannot decide between 2 and \(-2\). A function has an inverse only when different inputs give different outputs: no horizontal line hits the graph twice. Squaring fails; cubing passes.</p>
+<p>To find an inverse, write \(y = f(x)\), swap the letters, solve for \(y\). Swapping turns every point \((a, b)\) into \((b, a)\), which is a <b>reflection in the line \(y = x\)</b>. So the graph of \(f^{-1}\) is the mirror image of the graph of \(f\), and the domain of \(f^{-1}\) is the range of \(f\).</p>
 </section>
 
 <section class="example">
 <h2>Watch one: two machines and a mirror</h2>
-<p>Let \(f(x) = 2x + 3\) and \(g(x) = x^2\).</p>
-<p>\(f(g(x)) = 2x^2 + 3\), but \(g(f(x)) = (2x + 3)^2 = 4x^2 + 12x + 9\). Different machines.</p>
-<p>Inverse of \(f\): \(y = 2x + 3 \;\to\; x = 2y + 3 \;\to\; y = \tfrac{x - 3}{2}\). So \(f^{-1}(x) = \tfrac{x - 3}{2}\). Check: \(f(5) = 13\) and \(f^{-1}(13) = 5\).</p>
-<p>\(g\) has no inverse on all the reals, because \(g(2) = g(-2)\). Restrict the domain to \(x \geq 0\) and it does: \(g^{-1}(x) = \sqrt{x}\). That restriction is the reason the calculator's \(\sqrt{\;}\) button only ever gives a non-negative answer.</p>
-<p>Domain of \(h(x) = \dfrac{\sqrt{x - 4}}{x - 6}\): need \(x - 4 \geq 0\) and \(x - 6 \neq 0\), so \(x \geq 4\) with \(x \neq 6\).</p>
+<p>Let \(f(x) = 2x + 3\) and \(g(x) = x^2\). Then \(f(g(x)) = 2x^2 + 3\), but \(g(f(x)) = (2x + 3)^2\). Different machines.</p>
+<p>Inverse of \(f\): \(y = 2x + 3 \;\to\; x = 2y + 3 \;\to\; y = \tfrac{x - 3}{2}\). Check: \(f(5) = 13\) and \(f^{-1}(13) = 5\). And \(g\) has no inverse on all the reals, because \(g(2) = g(-2)\); restrict to \(x \geq 0\) and \(g^{-1}(x) = \sqrt{x}\). That restriction is why the calculator's \(\sqrt{\;}\) button only gives non-negative answers.</p>
 <p class="small">See functions bend and slide at <a href="../../demos/transform.html">infinityclub.net/demos/transform.html</a>.</p>
 </section>
 
@@ -52,32 +48,27 @@
 <h2>Your turn</h2>
 <ol>
 <li>Give the domain and range of \(f(x) = \sqrt{9 - x^2}\), \(\;g(x) = \dfrac{1}{x - 2}\), \(\;h(x) = x^2 + 4\).<div class="space short"></div></li>
-<li>Let \(f(x) = 3x - 1\) and \(g(x) = x^2 + 2\). Find \(f(g(2))\), \(g(f(2))\), and simplified formulas for \(f(f(x))\) and \(g(g(x))\).<div class="space"></div></li>
-<li>Find the inverse of each and state the domain of the inverse: \(f(x) = \dfrac{2x + 1}{3}\); \(\;g(x) = x^3 - 5\); \(\;h(x) = \sqrt{x - 1}\) for \(x \geq 1\).<div class="space"></div></li>
-<li>Which of these have an inverse on their whole natural domain: \(x^3\), \(|x|\), \(1/x\), \(x^2 - 4x\)? For each one that does not, give a restricted domain on which it does.<div class="space short"></div></li>
-<li>Write \(h(x) = \sqrt{3x + 7}\) as \(f(g(x))\) with neither \(f\) nor \(g\) being the identity. Do the same for \(k(x) = \dfrac{1}{x^2 + 1}\). Then find a linear function \(f\) with \(f(f(x)) = 4x + 3\). (There are two.)<div class="space"></div></li>
-<li>Celsius from Fahrenheit is \(C = \tfrac59(F - 32)\). Find the inverse function (Fahrenheit from Celsius). Then find the temperature at which both scales read the same number, and explain why that point must lie on the line \(y = x\) and on both graphs.<div class="space"></div></li>
+<li>Let \(f(x) = 3x - 1\) and \(g(x) = x^2 + 2\). Find \(f(g(2))\), \(g(f(2))\), and a simplified formula for \(f(f(x))\).<div class="space short"></div></li>
+<li>Find the inverse of each and state its domain: \(f(x) = \dfrac{2x + 1}{3}\); \(\;h(x) = \sqrt{x - 1}\) for \(x \geq 1\).<div class="space"></div></li>
+<li>Celsius from Fahrenheit is \(C = \tfrac59(F - 32)\). Find the inverse function. Then find the temperature at which both scales read the same number, and say why that point lies on the line \(y = x\).<div class="space"></div></li>
 </ol>
 </section>
 
 <section class="stretch">
 <h2>Stretch: the machine that undoes itself in three</h2>
-<p>Let \(f(x) = \dfrac{ax + b}{cx + d}\). Show that \(f^{-1}(x) = \dfrac{dx - b}{-cx + a}\). Notice the recipe: swap \(a\) and \(d\), change the signs of \(b\) and \(c\). (If you later meet the inverse of a \(2 \times 2\) matrix, you will see this again.)</p>
-<p>Now take \(f(x) = \dfrac{x - 3}{x + 1}\). Compute \(f(f(x))\) and simplify it fully. Then compute \(f(f(f(x)))\). What do you get, and what does it tell you about \(f^{-1}\)?</p>
-<div class="space"></div>
+<p>Let \(f(x) = \dfrac{x - 3}{x + 1}\). Compute \(f(f(x))\) and simplify fully. Then compute \(f(f(f(x)))\). What do you get, and what does it tell you about \(f^{-1}\)?</p>
+<div class="space short"></div>
 </section>
 
 <section class="answers">
 <h2>Answers</h2>
 <ol>
-<li>\(f\): domain \(-3 \leq x \leq 3\), range \(0 \leq y \leq 3\) (the top half of a circle). \(g\): domain \(x \neq 2\), range \(y \neq 0\). \(h\): domain all reals, range \(y \geq 4\).</li>
-<li>\(f(g(2)) = f(6) = 17\). \(g(f(2)) = g(5) = 27\). \(f(f(x)) = 3(3x - 1) - 1 = 9x - 4\). \(g(g(x)) = (x^2+2)^2 + 2 = x^4 + 4x^2 + 6\).</li>
-<li>\(f^{-1}(x) = \dfrac{3x - 1}{2}\), all reals. \(g^{-1}(x) = \sqrt[3]{x + 5}\), all reals. \(h^{-1}(x) = x^2 + 1\) with domain \(x \geq 0\) (the range of \(h\)).</li>
-<li>\(x^3\): yes. \(|x|\): no; restrict to \(x \geq 0\). \(1/x\): yes (on \(x \neq 0\)). \(x^2 - 4x = (x-2)^2 - 4\): no; restrict to \(x \geq 2\) (or \(x \leq 2\)).</li>
-<li>\(g(x) = 3x + 7\), \(f(x) = \sqrt{x}\). \(\;g(x) = x^2 + 1\), \(f(x) = 1/x\). If \(f(x) = mx + n\) then \(f(f(x)) = m^2 x + mn + n\), so \(m^2 = 4\) and \(n(m + 1) = 3\): \(f(x) = 2x + 1\) or \(f(x) = -2x - 3\). Check the second: \(-2(-2x - 3) - 3 = 4x + 3\).</li>
-<li>\(F = \tfrac95 C + 32\). Same reading: \(C = \tfrac59(C - 32)\), so \(9C = 5C - 160\), \(C = -40\). A point where \(f(x) = x\) lies on \(y = x\) by definition, and since \(f^{-1}(x) = x\) there too, it lies on both graphs; it is where the graph crosses its own mirror line.</li>
+<li>\(f\): domain \(-3 \leq x \leq 3\), range \(0 \leq y \leq 3\) (the top half of a circle). \(g\): domain \(x \neq 2\), range \(y \neq 0\). \(h\): all reals, range \(y \geq 4\).</li>
+<li>\(f(g(2)) = f(6) = 17\). \(g(f(2)) = g(5) = 27\). \(f(f(x)) = 3(3x - 1) - 1 = 9x - 4\).</li>
+<li>\(f^{-1}(x) = \dfrac{3x - 1}{2}\), all reals. \(h^{-1}(x) = x^2 + 1\) with domain \(x \geq 0\) (the range of \(h\)).</li>
+<li>\(F = \tfrac95 C + 32\). Same reading: \(C = \tfrac59(C - 32)\), so \(9C = 5C - 160\), \(C = -40\). A point with \(f(x) = x\) is on \(y = x\) by definition; it is where the graph crosses its own mirror line, so it is on \(f^{-1}\) too.</li>
 </ol>
-<p><b>Stretch.</b> From \(y = \dfrac{ax+b}{cx+d}\): \(y(cx + d) = ax + b\), so \(x(cy - a) = b - dy\), so \(x = \dfrac{dy - b}{a - cy}\). Swap letters: \(f^{-1}(x) = \dfrac{dx - b}{-cx + a}\). For \(f(x) = \dfrac{x-3}{x+1}\): \(f(f(x)) = \dfrac{\frac{x-3}{x+1} - 3}{\frac{x-3}{x+1} + 1} = \dfrac{(x - 3) - 3(x+1)}{(x-3) + (x+1)} = \dfrac{-2x - 6}{2x - 2} = -\dfrac{x + 3}{x - 1}\). Then \(f(f(f(x))) = \dfrac{-\frac{x+3}{x-1} - 3}{-\frac{x+3}{x-1} + 1} = \dfrac{-(x+3) - 3(x-1)}{-(x+3) + (x-1)} = \dfrac{-4x}{-4} = x\). Three applications give the identity, so \(f^{-1} = f \circ f\): the inverse of \(f\) is \(f\) done twice. (You can confirm with the recipe: \(a = 1, b = -3, c = 1, d = 1\) gives \(f^{-1}(x) = \dfrac{x + 3}{-x + 1}\), which is the \(f(f(x))\) above.)</p>
+<p><b>Stretch.</b> \(f(f(x)) = \dfrac{\frac{x-3}{x+1} - 3}{\frac{x-3}{x+1} + 1} = \dfrac{(x - 3) - 3(x+1)}{(x-3) + (x+1)} = \dfrac{-2x - 6}{2x - 2} = -\dfrac{x + 3}{x - 1}\). Then \(f(f(f(x))) = \dfrac{-(x+3) - 3(x-1)}{-(x+3) + (x-1)} = \dfrac{-4x}{-4} = x\). Three applications give the identity, so \(f^{-1} = f \circ f\): the inverse of \(f\) is \(f\) done twice.</p>
 </section>
 
 <div class="sheet-nav"><a href="a2-discriminant-vieta.html">← Previous</a><a href="a4-transformations.html">Next: Shift, stretch, flip →</a></div>

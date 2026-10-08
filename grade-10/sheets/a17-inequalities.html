@@ -31,52 +31,46 @@
 
 <section class="idea">
 <h2>Tonight's idea</h2>
-<p>An equation has a handful of solutions. An inequality has a whole <em>region</em> of them, and the skill is describing that region without missing a piece or including a wrong one. Three tools do almost everything.</p>
-<p><b>1. Absolute value is distance.</b> \(|x - a|\) is the distance from \(x\) to \(a\) on the number line. So \(|x - 3| \lt 5\) says "within 5 of 3": \(-2 \lt x \lt 8\). And \(|x - 3| \gt 5\) says "further than 5 from 3": \(x \lt -2\) <em>or</em> \(x \gt 8\), two separate pieces. Read it as distance and you will never confuse the two.</p>
-<p><b>2. Multiplying by a negative flips the sign.</b> \(2 \lt 3\), but \(-2 \gt -3\). So \(-3x \gt 6\) becomes \(x \lt -2\). The common trap is multiplying through by something whose sign you do not know, like \(x - 3\): it is positive for some \(x\) and negative for others, so the inequality would flip for some solutions and not others. Do not do it. Move everything to one side instead.</p>
-<p><b>3. Sign charts.</b> A product or quotient changes sign only where a factor is zero (or undefined). Mark those points on a number line, test one value in each interval, and read off where the expression is positive or negative. For \((x-2)(x+3) \gt 0\): the critical points are \(-3\) and \(2\); test \(x = -4\) (positive), \(x = 0\) (negative), \(x = 3\) (positive). Solution: \(x \lt -3\) or \(x \gt 2\).</p>
-<p>And one inequality that is a theorem rather than a problem. For any non-negative \(a, b\),</p>
-<p class="callout">\(\dfrac{a + b}{2} \ge \sqrt{ab}\), with equality exactly when \(a = b\).</p>
-<p>The arithmetic mean is at least the geometric mean, <b>AM–GM</b>. The proof is one line: \((\sqrt a - \sqrt b)^2 \ge 0\) because squares are never negative; expand to get \(a - 2\sqrt{ab} + b \ge 0\), and rearrange. It answers questions like "what is the biggest rectangle you can fence with 40 m of wire?" without calculus.</p>
+<p>An equation has a handful of solutions. An inequality has a whole <em>region</em> of them. Three tools describe the region without missing a piece.</p>
+<p><b>1. Absolute value is distance.</b> \(|x - 3| \lt 5\) says "within 5 of 3": \(-2 \lt x \lt 8\). And \(|x - 3| \gt 5\) says "further than 5 from 3": \(x \lt -2\) <em>or</em> \(x \gt 8\), two separate pieces.</p>
+<p><b>2. Multiplying by a negative flips the sign.</b> \(-3x \gt 6\) becomes \(x \lt -2\). The trap is multiplying through by something whose sign you do not know, like \(x - 3\). Do not. Move everything to one side instead.</p>
+<p><b>3. Sign charts.</b> A product or quotient changes sign only where a factor is zero or undefined. Mark those points on a number line, test one value in each interval, read off the signs. For \((x-2)(x+3) \gt 0\): critical points \(-3\) and \(2\); test \(-4\) (positive), \(0\) (negative), \(3\) (positive). Solution: \(x \lt -3\) or \(x \gt 2\).</p>
+<p>And one inequality that is a theorem. For non-negative \(a, b\),</p>
+<p class="callout">\(\dfrac{a + b}{2} \ge \sqrt{ab}\), with equality exactly when \(a = b\). <b>(AM–GM)</b></p>
+<p>Proof in one line: \((\sqrt a - \sqrt b)^2 \ge 0\), expand to \(a - 2\sqrt{ab} + b \ge 0\), rearrange.</p>
 </section>
 
 <section class="example">
-<h2>Watch one: three kinds</h2>
-<p>\(|2x - 1| \le 7\). Within 7 of 0: \(-7 \le 2x - 1 \le 7\). Add 1 everywhere: \(-6 \le 2x \le 8\). Halve: \(-3 \le x \le 4\).</p>
-<p>\(x^2 - x - 6 \lt 0\). Factor: \((x - 3)(x + 2) \lt 0\). Critical points \(-2\) and \(3\). Test \(x = 0\): \((-3)(2) = -6\), negative, so the middle interval works; the outer intervals give positive products. Solution \(-2 \lt x \lt 3\). (Check: a parabola opening upward is below the axis between its roots.)</p>
-<p>\(\dfrac{x - 1}{x + 2} \ge 0\). Critical points \(1\) (numerator zero, allowed, since \(\ge\)) and \(-2\) (denominator zero, never allowed). Test \(x = -3\): \(\tfrac{-4}{-1} = 4 \gt 0\), yes. \(x = 0\): \(\tfrac{-1}{2}\), no. \(x = 2\): \(\tfrac14\), yes. Solution: \(x \lt -2\) or \(x \ge 1\). Note the mixed brackets: open at \(-2\), closed at \(1\).</p>
+<h2>Watch one: two kinds</h2>
+<p>\(x^2 - x - 6 \lt 0\). Factor: \((x - 3)(x + 2) \lt 0\). Critical points \(-2\) and \(3\). Test \(x = 0\): \((-3)(2) \lt 0\), so the middle interval works; the outer ones give positive products. Solution \(-2 \lt x \lt 3\). (A parabola opening upward is below the axis between its roots.)</p>
+<p>\(\dfrac{x - 1}{x + 2} \ge 0\). Critical points \(1\) (allowed, since \(\ge\)) and \(-2\) (never allowed). Test \(-3\): positive, yes. \(0\): negative, no. \(2\): positive, yes. Solution \(x \lt -2\) or \(x \ge 1\). Note the mixed brackets.</p>
 </section>
 
 <section class="exercises">
 <h2>Your turn</h2>
 <ol>
-<li>Solve, and say each answer in words as a distance: \(|x + 4| \lt 3\); \(|3 - x| \ge 2\); \(|2x + 5| \gt -1\).<div class="space"></div></li>
-<li>Solve \(-3(x - 2) \ge 12\). Then solve the double inequality \(2 \lt 5 - x \le 9\), keeping all three parts together, and say at which step the direction flips.<div class="space"></div></li>
-<li>Solve \(x^2 \ge 16\) (many people write only half the answer; draw the parabola to see why there are two pieces). Then \(x^2 - 5x \le 0\) and \(2x^2 - 7x + 3 \gt 0\) by sign chart.<div class="space tall"></div></li>
-<li>Solve \(\dfrac{x + 1}{x - 3} \lt 2\). Do <em>not</em> multiply both sides by \(x - 3\); move the 2 across, combine into one fraction, and make a sign chart. Then explain what goes wrong if you do multiply through.<div class="space tall"></div></li>
-<li>Use AM–GM. (a) A rectangle has perimeter 40 m. Show its area is at most 100 m² and say which rectangle achieves it. (b) Show \(x + \dfrac1x \ge 2\) for every \(x \gt 0\). (c) Find the smallest value of \(x + \dfrac9x\) for \(x \gt 0\) and the \(x\) that gives it.<div class="space tall"></div></li>
-<li>Solve \(|x - 1| + |x + 2| \le 5\) by splitting into the three cases \(x \ge 1\), \(-2 \le x \lt 1\), \(x \lt -2\). Then describe the solution geometrically: the sum of the distances from \(x\) to \(1\) and to \(-2\) is at most 5.<div class="space tall"></div></li>
+<li>Solve, saying each answer in words as a distance: \(|x + 4| \lt 3\); \(\;|3 - x| \ge 2\).<div class="space short"></div></li>
+<li>Solve \(x^2 \ge 16\) (many people write only half the answer). Then \(2x^2 - 7x + 3 \gt 0\) by sign chart.<div class="space"></div></li>
+<li>Solve \(\dfrac{x + 1}{x - 3} \lt 2\). Do <em>not</em> multiply by \(x - 3\); move the 2 across, combine into one fraction, make a sign chart.<div class="space"></div></li>
+<li>Use AM–GM. (a) A rectangle has perimeter 40 m. Show its area is at most 100 m². (b) Find the smallest value of \(x + \dfrac9x\) for \(x \gt 0\).<div class="space"></div></li>
 </ol>
 </section>
 
 <section class="stretch">
 <h2>Stretch: the triangle inequality</h2>
-<p>Prove that for all real \(a, b\), \(|a + b| \le |a| + |b|\). Hint: both sides are non-negative, so it is enough to compare their squares. Expand \((a+b)^2\) and \((|a| + |b|)^2\), and notice that \(ab \le |a||b|\) always.</p>
-<p>Then use it, with a clever choice of \(a\) and \(b\), to show \(|x| - |y| \le |x - y|\). Why is it called the triangle inequality? Draw \(a\) and \(b\) as arrows in the plane rather than numbers on a line, and look at the three lengths.</p>
-<div class="space"></div>
+<p>Prove that for all real \(a, b\), \(|a + b| \le |a| + |b|\). Hint: both sides are non-negative, so compare their squares, and use \(ab \le |a||b|\).</p>
+<div class="space short"></div>
 </section>
 
 <section class="answers">
 <h2>Answers</h2>
 <ol>
-<li>\(|x + 4| \lt 3\): within 3 of \(-4\), so \(-7 \lt x \lt -1\). \(|3 - x| = |x - 3| \ge 2\): at least 2 away from 3, so \(x \le 1\) or \(x \ge 5\). \(|2x + 5| \gt -1\): an absolute value is never negative, so this holds for every real \(x\).</li>
-<li>\(-3(x-2) \ge 12 \Rightarrow x - 2 \le -4\) (dividing by \(-3\) flips) \(\Rightarrow x \le -2\). Double inequality: subtract 5, \(-3 \lt -x \le 4\); multiply by \(-1\) and flip both signs, \(3 \gt x \ge -4\), that is \(-4 \le x \lt 3\). The flip happens at the multiplication by \(-1\).</li>
-<li>\(x^2 \ge 16 \Leftrightarrow x^2 - 16 \ge 0 \Leftrightarrow (x-4)(x+4) \ge 0\): \(x \le -4\) or \(x \ge 4\). The parabola \(y = x^2\) is above 16 on both sides. \(x^2 - 5x = x(x - 5) \le 0\): between the roots, \(0 \le x \le 5\). \(2x^2 - 7x + 3 = (2x - 1)(x - 3) \gt 0\): outside the roots, \(x \lt \tfrac12\) or \(x \gt 3\).</li>
-<li>\(\dfrac{x+1}{x-3} - 2 \lt 0 \Rightarrow \dfrac{x + 1 - 2(x - 3)}{x - 3} = \dfrac{7 - x}{x - 3} \lt 0\). Critical points 3 (excluded) and 7. Test 0: \(\tfrac{7}{-3} \lt 0\) yes; 5: \(\tfrac22 \gt 0\) no; 8: \(\tfrac{-1}{5} \lt 0\) yes. Solution \(x \lt 3\) or \(x \gt 7\). Multiplying through by \(x - 3\) treats it as positive and gives \(x + 1 \lt 2x - 6\), i.e. \(x \gt 7\), silently losing every solution below 3, where \(x - 3\) is negative and the inequality should have flipped.</li>
-<li>(a) Sides \(x, y\) with \(x + y = 20\). AM–GM: \(\sqrt{xy} \le \tfrac{x+y}{2} = 10\), so \(xy \le 100\), with equality when \(x = y = 10\): the square. (b) AM–GM on \(x\) and \(\tfrac1x\): \(\tfrac{x + 1/x}{2} \ge \sqrt{x \cdot \tfrac1x} = 1\). (c) \(\tfrac{x + 9/x}{2} \ge \sqrt{9} = 3\), so \(x + \tfrac9x \ge 6\), with equality when \(x = \tfrac9x\), i.e. \(x = 3\). Minimum 6.</li>
-<li>Case \(x \ge 1\): \((x-1) + (x+2) = 2x + 1 \le 5 \Rightarrow x \le 2\), giving \(1 \le x \le 2\). Case \(-2 \le x \lt 1\): \((1-x) + (x+2) = 3 \le 5\), always true, giving the whole interval. Case \(x \lt -2\): \((1-x) + (-x-2) = -2x - 1 \le 5 \Rightarrow x \ge -3\), giving \(-3 \le x \lt -2\). Union: \(-3 \le x \le 2\). Geometrically, the two points are 3 apart, so anywhere between them the distances sum to exactly 3; outside, each unit you move adds 2 to the sum, and you may move 1 unit past either end.</li>
+<li>Within 3 of \(-4\): \(-7 \lt x \lt -1\). \(|3 - x| = |x - 3| \ge 2\), at least 2 from 3: \(x \le 1\) or \(x \ge 5\).</li>
+<li>\((x-4)(x+4) \ge 0\): \(x \le -4\) or \(x \ge 4\). \((2x - 1)(x - 3) \gt 0\): outside the roots, \(x \lt \tfrac12\) or \(x \gt 3\).</li>
+<li>\(\dfrac{x+1}{x-3} - 2 = \dfrac{7 - x}{x - 3} \lt 0\). Critical points 3 (excluded) and 7. Test 0: yes; 5: no; 8: yes. Solution \(x \lt 3\) or \(x \gt 7\). (Multiplying through would silently lose every solution below 3.)</li>
+<li>(a) Sides \(x + y = 20\), so \(\sqrt{xy} \le 10\), \(xy \le 100\), equality for the \(10 \times 10\) square. (b) \(\tfrac{x + 9/x}{2} \ge \sqrt9 = 3\), so the minimum is 6, at \(x = 3\).</li>
 </ol>
-<p><b>Stretch.</b> \((a+b)^2 = a^2 + 2ab + b^2\) and \((|a|+|b|)^2 = a^2 + 2|a||b| + b^2\). Since \(ab \le |ab| = |a||b|\), the first is at most the second; both bases are non-negative, so \(|a+b| \le |a|+|b|\). For the second claim put \(a = x - y\), \(b = y\): \(|x| = |(x-y) + y| \le |x-y| + |y|\), so \(|x| - |y| \le |x-y|\). With arrows, \(a\) and \(b\) placed head to tail form two sides of a triangle and \(a + b\) is the third: one side of a triangle is never longer than the other two together.</p>
+<p><b>Stretch.</b> \((a+b)^2 = a^2 + 2ab + b^2 \le a^2 + 2|a||b| + b^2 = (|a|+|b|)^2\) since \(ab \le |a||b|\). Both bases are non-negative, so \(|a+b| \le |a|+|b|\). Drawn as arrows head to tail, \(a\), \(b\) and \(a+b\) are the three sides of a triangle, hence the name.</p>
 </section>
 
 <div class="sheet-nav"><a href="a16-statistics.html">← Previous</a><a href="a18-solids.html">Next: Volumes: why the cone is a third →</a></div>

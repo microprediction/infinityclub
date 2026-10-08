@@ -31,41 +31,36 @@
 
 <section class="idea">
 <h2>Tonight's idea</h2>
-<p>Three pieces of mathematics decide more of your financial life than anything else you will learn: a geometric series, a limit, and a weighted average. Tonight you meet all three in the places they actually live.</p>
-<p><b>Compounding.</b> Put \(P\) in an account paying annual rate \(r\), compounded \(n\) times a year. Each period multiplies the balance by \(1 + r/n\), so after \(t\) years \(A = P\left(1 + \frac{r}{n}\right)^{nt}\). Compound more often and you earn a little more, but not without limit: as \(n \to \infty\) the bracket tends to \(e^{rt}\), where \(e = 2.71828\ldots\) is the number from the sheet <a href="b9-e.html">The number e</a>. Continuous compounding gives \(A = Pe^{rt}\), and for ordinary rates the difference between monthly and continuous is a few parts in a thousand. A quick mental tool: money doubles in about \(72/\text{(rate in \%)}\) years, the <b>rule of 72</b>. You will check how good it is.</p>
-<p><b>The mortgage formula.</b> Borrow \(P\) at monthly rate \(r\) (annual rate divided by 12), repay a fixed \(M\) every month for \(n\) months. Each month the balance grows by the factor \((1 + r)\) and then drops by \(M\). After \(n\) months it must be zero:</p>
-<p>\[P(1+r)^n - M\left[(1+r)^{n-1} + (1+r)^{n-2} + \cdots + 1\right] = 0.\]</p>
+<p>Three pieces of mathematics decide more of your financial life than anything else you will learn: a geometric series, a limit, and a weighted average.</p>
+<p><b>Compounding.</b> Put \(P\) in an account paying annual rate \(r\), compounded \(n\) times a year. Each period multiplies the balance by \(1 + r/n\), so after \(t\) years \(A = P\left(1 + \frac{r}{n}\right)^{nt}\). As \(n \to \infty\) this tends to \(Pe^{rt}\), with \(e = 2.71828\ldots\) from <a href="b9-e.html">The number e</a>. For ordinary rates, monthly and continuous differ by a few parts in a thousand.</p>
+<p><b>The mortgage formula.</b> Borrow \(P\) at monthly rate \(r\), repay a fixed \(M\) every month for \(n\) months. Each month the balance grows by the factor \(1 + r\) and drops by \(M\). After \(n\) months it must be zero:</p>
+<p>\[P(1+r)^n - M\left[(1+r)^{n-1} + \cdots + (1+r) + 1\right] = 0.\]</p>
 <p>The bracket is a geometric series with sum \(\dfrac{(1+r)^n - 1}{r}\). Solve for \(M\):</p>
 <p class="callout">\(M = P \cdot \dfrac{r(1+r)^n}{(1+r)^n - 1}\). Every mortgage, car loan and student loan in the world is this one line.</p>
-<p><b>Expected value.</b> A bet pays amounts \(x_i\) with probabilities \(p_i\). Its expected value is \(E = \sum p_i x_i\), the average winnings per play over the long run. Casinos are built on bets with \(E\) slightly negative for you. A European roulette wheel has 37 pockets (0 to 36); betting on red wins on 18 of them and pays even money. American wheels add a 00, making 38 pockets, same payouts. Small changes in the denominator, large changes in the casino's profit.</p>
-<p>The <a href="../../demos/benford.html">Benford demo</a> is a reminder that financial numbers have structure that fraud forgets; tonight's structure is the kind the house never forgets.</p>
+<p><b>Expected value.</b> A bet pays \(x_i\) with probability \(p_i\). Its expected value \(E = \sum p_i x_i\) is the average result per play in the long run. Casinos are built on bets with \(E\) slightly negative for you. A European roulette wheel has 37 pockets (0 to 36); an American wheel adds a 00, making 38. Same payouts, different denominator.</p>
 </section>
 
 <section class="example">
 <h2>Watch one: a $300,000 mortgage at 6% over 30 years</h2>
-<p>Monthly rate \(r = 0.06/12 = 0.005\), \(n = 360\) months. \((1.005)^{360} = 6.0226\). So</p>
-<p>\[M = 300{,}000 \times \frac{0.005 \times 6.0226}{6.0226 - 1} = 300{,}000 \times \frac{0.030113}{5.0226} = \$1{,}798.65 \text{ per month.}\]</p>
-<p>Total paid: \(360 \times 1798.65 = \$647{,}515\). Interest: \(\$347{,}515\), more than the house. That is not a scandal, it is \((1.005)^{360}\): six doublings' worth of compounding spread over thirty years.</p>
-<p>And one spin of American roulette, $1 on a single number, paying 35 to 1: \(E = \frac{1}{38}(35) + \frac{37}{38}(-1) = \frac{35 - 37}{38} = -\frac{2}{38} = -5.26\%\). On a European wheel: \(\frac{35 - 36}{37} = -\frac{1}{37} = -2.70\%\). Every bet on the table has the same edge (bar one American exception that is worse). You can win tonight; you cannot win on average.</p>
+<p>Monthly rate \(r = 0.06/12 = 0.005\), \(n = 360\) months, \((1.005)^{360} = 6.0226\). So</p>
+<p>\[M = 300{,}000 \times \frac{0.005 \times 6.0226}{6.0226 - 1} = \$1{,}798.65 \text{ per month.}\]</p>
+<p>Total paid: \(360 \times 1798.65 = \$647{,}515\). Interest: \(\$347{,}515\), more than the house. Not a scandal, just \((1.005)^{360}\): six doublings' worth of compounding spread over thirty years.</p>
+<p>One spin of American roulette, $1 on a single number paying 35 to 1: \(E = \frac{1}{38}(35) + \frac{37}{38}(-1) = -\frac{2}{38} = -5.26\%\). You can win tonight; you cannot win on average.</p>
 </section>
 
 <section class="exercises">
 <h2>Your turn</h2>
 <ol>
 <li>$1,000 at 5% for 10 years. Find the balance with yearly, monthly and continuous compounding (\(e^{0.5}\)). How much does "compounding forever" add over monthly?<div class="space"></div></li>
-<li>Rule of 72: at 6% it predicts doubling in 12 years; at 9%, in 8. The exact doubling time is \(\ln 2 / \ln(1 + r)\). Compute both exact times. Is the rule good to a month?<div class="space short"></div></li>
-<li>$200,000 at 4.5% annual. Find the monthly payment and total interest over 15 years (\(n = 180\)) and over 30 years (\(n = 360\)). Comment on the trade.<div class="space tall"></div></li>
-<li>A $2 lottery ticket wins $5,000,000 with probability 1 in 10,000,000 and $5 with probability 1 in 100. Find the expected value of the ticket and the expected loss per ticket. If 50 million tickets are sold, how much does the lottery keep on average?<div class="space"></div></li>
-<li>Find the expected value of a $10 bet on red on a European wheel (18 red, 18 black, 1 green zero; even money), and of a $10 bet on a single number on an American wheel (35 to 1, 38 pockets). Which is the better bet for the player, and by how much per spin?<div class="space"></div></li>
-<li><b>The doubling system.</b> Bet $1 on red. If you lose, bet $2, then $4, and so on, until you win, which puts you $1 ahead; then start again. With $255 you can afford eight losses in a row (\(1 + 2 + \cdots + 128 = 255\)). On a European wheel the chance of losing a single spin is 19/37. Find the probability of losing eight in a row, and the expected value of one complete round of the system (win $1, or lose $255). Why does the "sure thing" fail?<div class="space"></div></li>
+<li>$200,000 at 4.5% annual, repaid over 15 years (\(n = 180\)). Find the monthly payment and the total interest paid.<div class="space short"></div></li>
+<li>A $2 lottery ticket wins $5,000,000 with probability 1 in 10,000,000 and $5 with probability 1 in 100. Find the expected value of the ticket and the expected loss per ticket. If 50 million tickets are sold, how much does the lottery keep on average?<div class="space short"></div></li>
+<li>Find the expected value of a $10 bet on red on a European wheel (18 red, 18 black, 1 green zero; even money), and of a $10 bet on a single number on an American wheel (35 to 1, 38 pockets). Which is the better bet for the player, and by how much per spin?<div class="space short"></div></li>
 </ol>
 </section>
 
 <section class="stretch">
 <h2>Stretch: a pension is a mortgage run backwards</h2>
-<p>You retire at 65 with a pot of money earning 4% a year and want to withdraw $40,000 at the end of every year for 25 years, leaving nothing. The pot is the <b>present value</b> of those withdrawals: each \(\$40{,}000\) due in \(k\) years is worth \(40{,}000/1.04^k\) today. Sum the geometric series to show the pot needed is</p>
-<p>\[PV = 40{,}000 \times \frac{1 - 1.04^{-25}}{0.04},\]</p>
-<p>and compute it. Then let the 25 become infinity: how much would let you withdraw $40,000 a year forever (a <b>perpetuity</b>)? Finally, show that the mortgage formula is this formula solved the other way round: the lender's "pot" is the loan, and your payments are the withdrawals.</p>
+<p>A pot earning 4% a year must pay out $40,000 at the end of each year. How big a pot pays forever (a <b>perpetuity</b>)? Now show that a pot lasting exactly 25 years is \(40{,}000 \times \dfrac{1 - 1.04^{-25}}{0.04}\) by summing a geometric series, and compute it.</p>
 <div class="space"></div>
 </section>
 
@@ -73,13 +68,11 @@
 <h2>Answers</h2>
 <ol>
 <li>Yearly: \(1000 \times 1.05^{10} = \$1{,}628.89\). Monthly: \(1000 \times (1 + 0.05/12)^{120} = \$1{,}647.01\). Continuous: \(1000e^{0.5} = \$1{,}648.72\). Continuous adds only $1.71 over monthly.</li>
-<li>\(\ln 2/\ln 1.06 = 11.90\) years (rule: 12); \(\ln 2/\ln 1.09 = 8.04\) years (rule: 8). Off by about a month at 6% and half a month at 9%. The rule is good for rates between about 4% and 12%.</li>
-<li>\(r = 0.00375\). 15 years: \(M = \$1{,}529.99\), total interest \(\$75{,}398\). 30 years: \(M = \$1{,}013.37\), total interest \(\$164{,}813\). The 30-year loan costs $517 less per month and $89,000 more in total. Which is "better" depends on what else you could do with $517 a month, which is the real financial question.</li>
+<li>\(r = 0.00375\), \((1.00375)^{180} = 1.9617\). \(M = \$1{,}529.99\). Total paid \(180 \times 1529.99 = \$275{,}398\), so interest \(\$75{,}398\).</li>
 <li>\(E = 5{,}000{,}000/10^7 + 5/100 = 0.50 + 0.05 = \$0.55\). Expected loss \(= 2 - 0.55 = \$1.45\) per ticket. 50 million tickets: \(\$72.5\) million kept on average.</li>
 <li>Red, European: \(10 \times \frac{18 - 19}{37} = -\$0.27\) per spin. Single number, American: \(10 \times \frac{35 - 37}{38} = -\$0.53\) per spin. Red on the European wheel loses about half as fast; it is the better of two bad bets.</li>
-<li>\((19/37)^8 = 0.00484\), about 1 in 207. Expected value per round: \(0.99516 \times 1 - 0.00484 \times 255 = -\$0.24\). Each spin still has the house edge; the doubling system only rearranges when the losses arrive, trading many small wins for a rare catastrophe. With a bigger bankroll the catastrophe is rarer and larger, and the expected value stays negative. Casinos also impose table limits, which cap the doubling.</li>
 </ol>
-<p><b>Stretch.</b> \(PV = \sum_{k=1}^{25} \frac{40000}{1.04^k} = 40000 \cdot \frac{1}{1.04} \cdot \frac{1 - 1.04^{-25}}{1 - 1/1.04} = 40000 \cdot \frac{1 - 1.04^{-25}}{0.04} = \$624{,}883\). As the term goes to infinity, \(1.04^{-n} \to 0\) and \(PV \to 40000/0.04 = \$1{,}000{,}000\): a million dollars at 4% pays $40,000 a year forever. In the mortgage, the bank pays out \(P\) today and receives \(M\) a month: \(P = M \cdot \frac{1 - (1+r)^{-n}}{r}\), and multiplying top and bottom by \((1+r)^n\) gives exactly \(M = P \frac{r(1+r)^n}{(1+r)^n - 1}\).</p>
+<p><b>Stretch.</b> Forever: the interest alone must cover the payout, so \(0.04 \times PV = 40{,}000\) and \(PV = \$1{,}000{,}000\). For 25 years each payment due in \(k\) years is worth \(40{,}000/1.04^k\) today; summing \(k = 1\) to 25 gives \(40{,}000 \cdot \dfrac{1}{1.04} \cdot \dfrac{1 - 1.04^{-25}}{1 - 1/1.04} = 40{,}000 \cdot \dfrac{1 - 1.04^{-25}}{0.04} = \$624{,}883\). Let 25 become infinity and \(1.04^{-n} \to 0\): the million dollars again. The mortgage formula is this sum solved for the payment.</p>
 </section>
 
 <div class="sheet-nav"><a href="c3-projectiles.html">← Previous</a><a href="c5-medical-tests.html">Next: What a positive test really means →</a></div>

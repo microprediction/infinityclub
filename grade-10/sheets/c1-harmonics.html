@@ -31,55 +31,48 @@
 
 <section class="idea">
 <h2>Tonight's idea</h2>
-<p>Play the A below middle C on a violin and on a flute. A tuner says both are 220 Hz. Your ear says they are obviously different instruments. Same pitch, different <b>timbre</b>. Tonight is about where timbre comes from, and the answer is a piece of mathematics that also runs your phone, your MRI scanner and JPEG.</p>
-<p>Start with a string of length \(L\) fixed at both ends. It can only vibrate in shapes that are still at the ends. The simplest is one hump: half a wavelength fits on the string, so \(\lambda_1 = 2L\). Next, two humps with a still point in the middle: \(\lambda_2 = L\). In general \(n\) humps give \(\lambda_n = 2L/n\). A wave on the string travels at some speed \(v\), and frequency is speed over wavelength, so</p>
-<p class="callout">\(f_n = \dfrac{v}{\lambda_n} = n \cdot \dfrac{v}{2L} = n f_1.\) The allowed frequencies are exact whole-number multiples of the lowest one. These are the <b>harmonics</b>.</p>
-<p>A real plucked or bowed string does not pick one shape. It does several at once, each with its own strength. The lowest, \(f_1\), is the pitch you name. The rest colour it. A flute's note is close to a pure sine: strong fundamental, weak upper harmonics. A violin's bowed string is rich in upper harmonics, which is why it sounds bright and edgy. A clarinet is a pipe closed at one end, which kills the even-numbered harmonics, and that hollow odd-harmonics-only recipe is exactly the clarinet sound.</p>
-<p>Here is the deep part, due to Joseph Fourier (1807). <b>Any</b> repeating sound with period \(T\) can be written as a sum of sines and cosines whose frequencies are \(1/T, 2/T, 3/T, \ldots\), each with its own amplitude. The list of amplitudes is the sound's recipe, its <b>spectrum</b>. Two instruments playing the same note have the same list of frequencies and different lists of amplitudes. That is the whole of timbre. (Fourier's claim needs care for signals with jumps, which is why mathematicians spent a century on it, but for the smooth periodic waves of music it holds exactly.)</p>
-<p>Play with the recipe at <a href="../../demos/fourier.html">infinityclub.net/demos/fourier.html</a>: slide the harmonics up and down and listen. The grade 6 sheet <a href="../../grade-6/sheets/c1-music.html">Why there are twelve notes</a> explains why the ratios 2:1 and 3:2 sound good; tonight explains why the instruments differ.</p>
+<p>Play the A below middle C on a violin and on a flute. A tuner says both are 220 Hz; your ear says they are obviously different. Same pitch, different <b>timbre</b>. Tonight is about where timbre comes from.</p>
+<p>A string of length \(L\) fixed at both ends can only vibrate in shapes that are still at the ends. One hump: half a wavelength fits, \(\lambda_1 = 2L\). Two humps: \(\lambda_2 = L\). In general \(\lambda_n = 2L/n\). Waves on the string travel at speed \(v\), and frequency is speed over wavelength, so</p>
+<p class="callout">\(f_n = \dfrac{v}{\lambda_n} = n \cdot \dfrac{v}{2L} = n f_1.\) The allowed frequencies are whole-number multiples of the lowest: the <b>harmonics</b>.</p>
+<p>A real string does several shapes at once, each with its own strength. The lowest, \(f_1\), is the pitch you name; the rest colour it. A flute is close to a pure sine. A bowed violin string is rich in upper harmonics, which is why it sounds bright. A clarinet's closed pipe kills the even harmonics, and that hollow recipe is the clarinet sound.</p>
+<p>The deep part, due to Fourier (1807): <b>any</b> repeating sound with period \(T\) is a sum of sines at frequencies \(1/T, 2/T, 3/T, \ldots\), each with its own amplitude. That list of amplitudes, the <b>spectrum</b>, is the whole of timbre. Slide the harmonics and listen at <a href="../../demos/fourier.html">infinityclub.net/demos/fourier.html</a>.</p>
 </section>
 
 <section class="example">
-<h2>Watch one: the harmonics of A = 220 Hz</h2>
-<p>A string sounding 220 Hz also contains 440, 660, 880, 1100, 1320 and 1540 Hz. Which notes are those? 440 is A, one octave up (ratio 2). 660 is a ratio of 3:2 above 440, a perfect fifth: E. 880 is A again. 1100 is \(5 \times 220\), a ratio of 5:4 above 880, a major third: roughly C♯. So the first five harmonics spell out an A major chord. That is not a coincidence; it is why a major chord sounds "built in".</p>
-<p>Roughly C♯, because a piano's C♯6 is \(220 \times 2^{28/12} = 1108.7\) Hz, not 1100. The harmonic is about 14 cents flat of the piano note (a cent is a hundredth of a semitone, \(1200\log_2\) of the ratio). The seventh harmonic, 1540 Hz, is 31 cents flat of the nearest piano key, which is why it sounds out of tune and why nobody builds chords on it.</p>
-<p>Now two flutes play 440 Hz and 444 Hz together. Using the identity \(\sin A + \sin B = 2\sin\frac{A+B}{2}\cos\frac{A-B}{2}\) with \(A = 2\pi\cdot 440t\) and \(B = 2\pi\cdot 444t\):</p>
+<h2>Watch one: the harmonics of A = 220 Hz, and beats</h2>
+<p>A string at 220 Hz also contains 440, 660, 880 and 1100 Hz. 440 is A an octave up. 660 is 3:2 above 440, a perfect fifth: E. 880 is A. 1100 is 5:4 above 880, a major third: roughly C♯. The first five harmonics spell an A major chord, which is why a major chord sounds "built in".</p>
+<p>Now two flutes play 440 Hz and 444 Hz. With \(\sin A + \sin B = 2\sin\frac{A+B}{2}\cos\frac{A-B}{2}\):</p>
 <p>\[\sin(2\pi\cdot 440 t) + \sin(2\pi\cdot 444 t) = 2\cos(2\pi\cdot 2t)\,\sin(2\pi\cdot 442 t).\]</p>
-<p>You hear a 442 Hz note whose loudness swells and fades with the slow \(\cos(2\pi \cdot 2t)\) factor. That cosine passes through zero twice per cycle, and loudness depends on its size, not its sign, so the note pulses <b>4 times a second</b>: the difference of the frequencies. These pulses are <b>beats</b>, and they are how every piano tuner and orchestral player tunes.</p>
+<p>You hear 442 Hz swelling and fading with the slow cosine. Loudness depends on its size, not its sign, so the note pulses <b>4 times a second</b>, the difference of the frequencies. These are <b>beats</b>, and they are how every piano tuner tunes.</p>
 </section>
 
 <section class="exercises">
 <h2>Your turn</h2>
 <ol>
-<li>The low A string of a guitar is 65 cm long and sounds 110 Hz. List its first six harmonics. Give the wavelengths <em>on the string</em> of the first three modes, and the speed of waves on that string.<div class="space"></div></li>
-<li>Guitarists touch a string lightly (without pressing) to force a still point. Touch it at its midpoint: which harmonic sounds, and at what frequency? At one third of its length? At one quarter? Explain why touching at one quarter does not give the second harmonic even though a quarter is "closer to the end".<div class="space"></div></li>
-<li>A piano is tuned so that each semitone multiplies frequency by \(2^{1/12}\). The piano's E above A440 is \(440 \times 2^{7/12}\) Hz; the string's third harmonic suggests 660 Hz. Compute both, and the gap in cents, \(1200\log_2(\text{ratio})\). Do the same for the piano's C♯ (\(440 \times 2^{4/12}\)) against the natural major third \(440 \times 5/4\). Which is the bigger compromise?<div class="space tall"></div></li>
-<li>You hold a 440 Hz tuning fork against a string and hear 3 beats per second. You tighten the string a little and the beats slow to 1 per second. Was the string at 437 Hz or 443 Hz before you tightened it? Explain.<div class="space short"></div></li>
-<li>Two notes at \(f_1 = 300\) Hz and \(f_2 = 303\) Hz are played together. Write the sum of the two sines as a product using the identity above, state the frequency you hear and the number of beats per second, and sketch one second of the loudness envelope.<div class="space"></div></li>
-<li>A pipe open at both ends behaves like the string: \(f_n = n v/(2L)\). A pipe closed at one end only allows odd harmonics, \(f_n = n v/(4L)\) with \(n = 1, 3, 5, \ldots\) Take \(v = 343\) m/s and \(L = 0.5\) m. List the first three frequencies of each pipe. Which is like a flute and which like a clarinet? Why does a clarinet play lower than a flute of about the same length?<div class="space"></div></li>
+<li>The low A string of a guitar is 65 cm long and sounds 110 Hz. List its first six harmonics, the wavelengths on the string of the first three modes, and the speed of waves on the string.<div class="space"></div></li>
+<li>Guitarists touch a string lightly to force a still point. Touch it at its midpoint: which harmonic sounds, at what frequency? At one third of its length? At one quarter? Why does one quarter not give the second harmonic?<div class="space"></div></li>
+<li>You hold a 440 Hz tuning fork against a string and hear 3 beats per second. You tighten the string a little and the beats slow to 1 per second. Was the string at 437 Hz or 443 Hz before? Explain.<div class="space short"></div></li>
+<li>Notes at 300 Hz and 303 Hz are played together. Write the sum of the two sines as a product, state the frequency you hear and the number of beats per second.<div class="space"></div></li>
 </ol>
 </section>
 
 <section class="stretch">
 <h2>Stretch: a square wave, and a formula for \(\pi\)</h2>
-<p>The square wave (a signal that jumps between \(+1\) and \(-1\)) is the harshest periodic sound, and Fourier's recipe for it is famous:</p>
-<p>\[\text{square}(x) = \frac{4}{\pi}\left(\sin x + \frac{\sin 3x}{3} + \frac{\sin 5x}{5} + \frac{\sin 7x}{7} + \cdots\right).\]</p>
-<p>Only odd harmonics, with amplitudes falling like \(1/n\). Now put \(x = \pi/2\), where the square wave equals 1. Every sine becomes \(\pm 1\). Write out what the equation says and rearrange it into a formula for \(\pi\). Add up the first five terms and multiply by 4. How close are you? (This series is correct but painfully slow. Ten terms get you 3.04.)</p>
-<p>In the demo, set the amplitudes to \(1, 0, 1/3, 0, 1/5, 0, 1/7\) and watch the waveform try to become square. The little ears at the corners that never go away are called the Gibbs phenomenon, and they are real.</p>
-<div class="space"></div>
+<p>Fourier's recipe for the square wave that jumps between \(+1\) and \(-1\) is</p>
+<p>\[\text{square}(x) = \frac{4}{\pi}\left(\sin x + \frac{\sin 3x}{3} + \frac{\sin 5x}{5} + \cdots\right).\]</p>
+<p>Put \(x = \pi/2\), where the square wave equals 1 and every sine is \(\pm1\). Rearrange into a formula for \(\pi\), and add the first five terms. How close are you?</p>
+<div class="space short"></div>
 </section>
 
 <section class="answers">
 <h2>Answers</h2>
 <ol>
 <li>110, 220, 330, 440, 550, 660 Hz. Wavelengths \(2L/n\): 130 cm, 65 cm, 43.3 cm. Speed \(v = f\lambda = 110 \times 1.30 = 143\) m/s.</li>
-<li>Midpoint: 2nd harmonic, 220 Hz. One third: 3rd harmonic, 330 Hz. One quarter: 4th harmonic, 440 Hz. A still point at \(L/4\) is allowed for the 4th mode (still points every \(L/4\)) and the 8th, but not the 2nd, whose only interior still point is at \(L/2\). The lowest mode that is still at the touched point is the one that sounds.</li>
-<li>Piano E: \(440 \times 2^{7/12} = 659.26\) Hz against 660, a gap of \(1200\log_2(660/659.26) \approx 2\) cents. Piano C♯: \(554.37\) Hz against \(550\), a gap of about 13.7 cents. The major third is the bigger compromise, almost seven times the fifth's error. This is why equal-temperament thirds sound slightly restless to a trained ear and fifths do not.</li>
-<li>437 Hz. Tightening raises the pitch. A string at 443 would move further from 440 and the beats would speed up. A string at 437 moves to 439, and 440 − 439 = 1 beat per second.</li>
-<li>\(\sin(2\pi\cdot300t) + \sin(2\pi\cdot303t) = 2\cos(2\pi\cdot1.5t)\sin(2\pi\cdot301.5t)\). You hear 301.5 Hz. The envelope \(|\cos(2\pi\cdot 1.5t)|\) peaks 3 times per second: 3 beats per second. The sketch is a fast wave inside a slow bulging outline with three bulges in one second.</li>
-<li>Open pipe: 343, 686, 1029 Hz (all harmonics). Closed pipe: 171.5, 514.5, 857.5 Hz (odd harmonics only). The open pipe is the flute, the closed pipe the clarinet (the reed end is effectively closed). The closed pipe's fundamental fits a quarter wavelength instead of a half, so its lowest note is an octave lower for the same length.</li>
+<li>Midpoint: 2nd harmonic, 220 Hz. One third: 3rd, 330 Hz. One quarter: 4th, 440 Hz. The 2nd mode's only interior still point is at \(L/2\); the lowest mode that is still at \(L/4\) is the 4th, and that is the one that sounds.</li>
+<li>437 Hz. Tightening raises the pitch. A string at 443 would move further from 440 and the beats would speed up. At 437 it moves to 439, and \(440 - 439 = 1\) beat per second.</li>
+<li>\(\sin(2\pi\cdot300t) + \sin(2\pi\cdot303t) = 2\cos(2\pi\cdot1.5t)\sin(2\pi\cdot301.5t)\). You hear 301.5 Hz, and the envelope \(|\cos(2\pi\cdot 1.5t)|\) peaks 3 times a second: 3 beats per second.</li>
 </ol>
-<p><b>Stretch.</b> At \(x = \pi/2\): \(1 = \frac{4}{\pi}\left(1 - \frac13 + \frac15 - \frac17 + \cdots\right)\), so \(\pi = 4\left(1 - \frac13 + \frac15 - \frac17 + \cdots\right)\). This is Leibniz's series. Five terms: \(1 - 0.3333 + 0.2 - 0.1429 + 0.1111 = 0.8349\), times 4 is 3.340. Ten terms give 3.042. The error after \(n\) terms is about \(1/n\), which is why nobody computes \(\pi\) this way, and why it is still astonishing that a sound wave knows about \(\pi\).</p>
+<p><b>Stretch.</b> \(1 = \frac{4}{\pi}\left(1 - \frac13 + \frac15 - \frac17 + \cdots\right)\), so \(\pi = 4\left(1 - \frac13 + \frac15 - \cdots\right)\), Leibniz's series. Five terms: \(0.8349 \times 4 = 3.340\). Ten terms give 3.042. The error after \(n\) terms is about \(1/n\), so nobody computes \(\pi\) this way, but a sound wave knows about \(\pi\).</p>
 </section>
 
 <div class="sheet-nav"><a href="b28-groups.html">← Previous</a><a href="c2-kepler.html">Next: Kepler's laws and measuring the universe →</a></div>
