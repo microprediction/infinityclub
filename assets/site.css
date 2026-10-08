@@ -136,6 +136,7 @@ canvas { max-width: 100%; display: block; background: #fff; border: 1px solid va
   .callout { background: #f3f3f3; border-left-color: #000; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   section.exercises li { break-inside: avoid; }
   h1, h2, h3 { break-after: avoid; }
+  section.example h2 { break-after: auto; } /* otherwise Chrome drags the whole example box to the next page */
   section.exercises li:first-child { break-before: avoid; }
   .space { display: block; height: 2.4cm; margin: .3em 0 .6em; background: repeating-linear-gradient(to bottom, transparent 0, transparent calc(0.8cm - 1px), #cfcfcf calc(0.8cm - 1px), #cfcfcf 0.8cm); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   .space.tall { height: 3.2cm; }

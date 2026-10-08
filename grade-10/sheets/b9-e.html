@@ -37,15 +37,16 @@
 <tbody><tr><td>\((1 + 1/n)^n\)</td><td>2</td><td>2.25</td><td>2.4414</td><td>2.6130</td><td>2.6926</td><td>2.7146</td><td>2.7169</td><td>2.71828</td></tr></tbody>
 </table>
 <p>The numbers climb but close in on something just under 2.72:</p>
-<p class="callout">\(e = \lim_{n \to \infty}\left(1 + \frac1n\right)^n = 2.718281828459\ldots\)</p>
+<p class="callout">\(e = \lim_{n \to \infty}\left(1 + \frac1n\right)^n = 2.718281828459\ldots\) (read: the number that \((1 + 1/n)^n\) gets ever closer to as \(n\) grows).</p>
 <p>Interest at rate \(r\) for \(t\) years, compounded \(n\) times a year, gives \(P(1 + r/n)^{nt}\); let \(n \to \infty\) and it becomes \(Pe^{rt}\), <b>continuous compounding</b>. Populations, radioactive decay and cooling coffee all follow \(e^{rt}\), because their rate of change is proportional to the amount present.</p>
-<p>A second route to \(e\) is the series \(e = 1 + 1 + \frac1{2!} + \frac1{3!} + \cdots\), whose terms shrink so fast that seven of them give 2.71806. And the real reason \(e\) matters: the slope of \(b^x\) at \(x = 0\) is about 0.693 for \(b = 2\) and 1.099 for \(b = 3\). For \(b = e\) it is exactly 1, and that makes \(e^x\) its own slope everywhere (exercise 4, and the <a href="b10-derivative.html">next sheet</a>).</p>
+<p>A second route to \(e\) is the series \(e = 1 + 1 + \frac1{2!} + \frac1{3!} + \cdots\), whose terms shrink so fast that seven of them give 2.71806.</p>
+<p>The real reason \(e\) matters: the slope of \(b^x\) at \(x = 0\) is about 0.693 for \(b = 2\) and 1.099 for \(b = 3\). For \(b = e\) it is exactly 1, and that makes \(e^x\) its own slope everywhere (exercise 4, and the <a href="b10-derivative.html">next sheet</a>).</p>
 </section>
 
 <section class="example">
 <h2>Watch one: $1000 at 5% for 10 years</h2>
-<p>Yearly: \(1000 \times 1.05^{10} = 1628.89\). Monthly: \(1000(1 + 0.05/12)^{120} = 1647.01\). Continuously: \(1000e^{0.5} = 1648.72\). Monthly to continuous adds under two dollars; the limit is close by.</p>
-<p><b>Rule of 72.</b> Money at \(r\%\) doubles in roughly \(72/r\) years. Continuous growth needs \(e^{rt} = 2\), so \(t = \ln 2/r = 0.693/r\), or \(69.3/r\) with \(r\) in percent. Yearly compounding is a touch slower, and 72 has more divisors, so 72 wins in practice.</p>
+<p>Yearly: \(1000 \times 1.05^{10} = 1628.89\). Monthly: \(1000(1 + 0.05/12)^{120} = 1647.01\). Continuously: \(1000e^{0.5} = 1648.72\). Monthly to continuous adds under two dollars.</p>
+<p><b>Rule of 72.</b> Money at \(r\%\) doubles in roughly \(72/r\) years. Continuous growth needs \(e^{rt} = 2\), so \(t = \ln 2/r = 0.693/r\), or \(69.3/r\) with \(r\) in percent. 72 is used because it has more divisors.</p>
 </section>
 
 <section class="exercises">
@@ -73,7 +74,7 @@
 <li>Partial sums: 1, 2, 2.5, 2.66667, 2.70833, 2.71667, 2.71806, 2.71825, 2.71828. The sum through \(1/8!\) (nine terms) is the first to round to 2.71828.</li>
 <li>\(\dfrac{e^{x+h} - e^x}{h} = e^x \cdot \dfrac{e^h - 1}{h} \to e^x\). At 2: \((e^{2.001} - e^2)/0.001 = 7.3928\), and \(e^2 = 7.3891\). The gap shrinks as \(h\) does.</li>
 </ol>
-<p><b>Stretch.</b> \(n = 3\): 231 and 312, so \(2/6 = 0.333\). \(n = 4\): 2143, 2341, 2413, 3142, 3412, 3421, 4123, 4312, 4321, so \(9/24 = 0.375\). The series is \(e^x\) at \(x = -1\), so the probability approaches \(1/e = 0.3679\); already \(44/120 = 0.3667\) at \(n = 5\). For any party bigger than a handful, the chance nobody gets their own hat is about 36.8%.</p>
+<p><b>Stretch.</b> \(n = 3\): 231 and 312 (231 means person 1 gets hat 2, person 2 gets hat 3, person 3 gets hat 1), so \(2/6 = 0.333\). \(n = 4\): 2143, 2341, 2413, 3142, 3412, 3421, 4123, 4312, 4321, so \(9/24 = 0.375\). The series is \(e^x\) at \(x = -1\), so the probability approaches \(1/e = 0.3679\); already \(44/120 = 0.3667\) at \(n = 5\). For any party bigger than a handful, the chance nobody gets their own hat is about 36.8%.</p>
 </section>
 
 <div class="sheet-nav"><a href="b8-euler-formula.html">← Previous</a><a href="b10-derivative.html">Next: The slope of a curve →</a></div>

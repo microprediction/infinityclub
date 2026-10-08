@@ -31,20 +31,22 @@
 
 <section class="idea">
 <h2>Tonight's idea</h2>
-<p>Three pieces of mathematics decide more of your financial life than anything else you will learn: a geometric series, a limit, and a weighted average.</p>
-<p><b>Compounding.</b> Put \(P\) in an account paying annual rate \(r\), compounded \(n\) times a year. Each period multiplies the balance by \(1 + r/n\), so after \(t\) years \(A = P\left(1 + \frac{r}{n}\right)^{nt}\). As \(n \to \infty\) this tends to \(Pe^{rt}\), with \(e = 2.71828\ldots\) from <a href="b9-e.html">The number e</a>. For ordinary rates, monthly and continuous differ by a few parts in a thousand.</p>
-<p><b>The mortgage formula.</b> Borrow \(P\) at monthly rate \(r\), repay a fixed \(M\) every month for \(n\) months. Each month the balance grows by the factor \(1 + r\) and drops by \(M\). After \(n\) months it must be zero:</p>
+<p>Three pieces of mathematics run most of your financial life: a geometric series, a limit, and a weighted average.</p>
+<p><b>Compounding.</b> Put \(P\) in an account paying annual rate \(r\), compounded \(n\) times a year. Each period multiplies the balance by \(1 + r/n\), so after \(t\) years \(A = P\left(1 + \frac{r}{n}\right)^{nt}\). As \(n \to \infty\) this tends to \(Pe^{rt}\), with \(e = 2.71828\ldots\) from <a href="b9-e.html">The number e</a>.</p>
+<p><b>The mortgage formula.</b> Borrow \(P\) at monthly rate \(r\), repay a fixed \(M\) every month for \(n\) months. Each month the balance grows by the factor \(1 + r\) and drops by \(M\):</p>
+<table class="tt"><tr><th>after month</th><th>balance owed</th></tr><tr><td>0</td><td>\(P\)</td></tr><tr><td>1</td><td>\(P(1+r) - M\)</td></tr><tr><td>2</td><td>\(P(1+r)^2 - M(1+r) - M\)</td></tr></table>
+<p>After \(n\) months it must be zero:</p>
 <p>\[P(1+r)^n - M\left[(1+r)^{n-1} + \cdots + (1+r) + 1\right] = 0.\]</p>
 <p>The bracket is a geometric series with sum \(\dfrac{(1+r)^n - 1}{r}\). Solve for \(M\):</p>
-<p class="callout">\(M = P \cdot \dfrac{r(1+r)^n}{(1+r)^n - 1}\). Every mortgage, car loan and student loan in the world is this one line.</p>
-<p><b>Expected value.</b> A bet pays \(x_i\) with probability \(p_i\). Its expected value \(E = \sum p_i x_i\) is the average result per play in the long run. Casinos are built on bets with \(E\) slightly negative for you. A European roulette wheel has 37 pockets (0 to 36); an American wheel adds a 00, making 38. Same payouts, different denominator.</p>
+<p class="callout">\(M = P \cdot \dfrac{r(1+r)^n}{(1+r)^n - 1}\). Every mortgage and car loan is this one line.</p>
+<p><b>Expected value.</b> A bet pays \(x_i\) with probability \(p_i\). Its expected value \(E = \sum p_i x_i\) (add up each outcome times its probability) is the average result per play in the long run. Casinos are built on bets with \(E\) slightly negative for you. A European roulette wheel has 37 pockets (0 to 36); an American wheel adds a 00, making 38. Same payouts, different denominator.</p>
 </section>
 
 <section class="example">
 <h2>Watch one: a $300,000 mortgage at 6% over 30 years</h2>
 <p>Monthly rate \(r = 0.06/12 = 0.005\), \(n = 360\) months, \((1.005)^{360} = 6.0226\). So</p>
 <p>\[M = 300{,}000 \times \frac{0.005 \times 6.0226}{6.0226 - 1} = \$1{,}798.65 \text{ per month.}\]</p>
-<p>Total paid: \(360 \times 1798.65 = \$647{,}515\). Interest: \(\$347{,}515\), more than the house. Not a scandal, just \((1.005)^{360}\): six doublings' worth of compounding spread over thirty years.</p>
+<p>Total paid: \(360 \times 1798.65 = \$647{,}515\). Interest: \(\$347{,}515\), more than the house. That is what \((1.005)^{360} \approx 6\) does over thirty years.</p>
 <p>One spin of American roulette, $1 on a single number paying 35 to 1: \(E = \frac{1}{38}(35) + \frac{37}{38}(-1) = -\frac{2}{38} = -5.26\%\). You can win tonight; you cannot win on average.</p>
 </section>
 
@@ -68,7 +70,7 @@
 <h2>Answers</h2>
 <ol>
 <li>Yearly: \(1000 \times 1.05^{10} = \$1{,}628.89\). Monthly: \(1000 \times (1 + 0.05/12)^{120} = \$1{,}647.01\). Continuous: \(1000e^{0.5} = \$1{,}648.72\). Continuous adds only $1.71 over monthly.</li>
-<li>\(r = 0.00375\), \((1.00375)^{180} = 1.9617\). \(M = \$1{,}529.99\). Total paid \(180 \times 1529.99 = \$275{,}398\), so interest \(\$75{,}398\).</li>
+<li>\(r = 0.00375\), \((1.00375)^{180} = 1.9616\). \(M = 200{,}000 \times \dfrac{0.00375 \times 1.9616}{0.9616} \approx \$1{,}530\); to the cent, \(\$1{,}529.99\). Total paid \(180 \times 1529.99 = \$275{,}398\), so interest \(\$75{,}398\).</li>
 <li>\(E = 5{,}000{,}000/10^7 + 5/100 = 0.50 + 0.05 = \$0.55\). Expected loss \(= 2 - 0.55 = \$1.45\) per ticket. 50 million tickets: \(\$72.5\) million kept on average.</li>
 <li>Red, European: \(10 \times \frac{18 - 19}{37} = -\$0.27\) per spin. Single number, American: \(10 \times \frac{35 - 37}{38} = -\$0.53\) per spin. Red on the European wheel loses about half as fast; it is the better of two bad bets.</li>
 </ol>

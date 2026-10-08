@@ -32,7 +32,7 @@
 <section class="idea">
 <h2>Tonight's idea</h2>
 <p>The game: a car is behind one of three doors, goats behind the other two. You pick a door, say door 1. The host, who knows where the car is, opens one of the other doors to reveal a goat, and asks whether you want to switch to the remaining closed door. Should you?</p>
-<p>Almost everyone says it makes no difference: two doors left, fifty-fifty. Marilyn vos Savant wrote in <i>Parade</i> magazine that you should switch, because switching wins two times out of three. About ten thousand letters arrived, around a thousand from people with PhDs, many of them rude, telling her to go back to school. She was right. Here are three ways to see it.</p>
+<p>Almost everyone says it makes no difference: two doors left, fifty-fifty. Marilyn vos Savant wrote in <i>Parade</i> magazine that you should switch, because switching wins two times out of three. Thousands wrote in to say she was wrong. She was right. Here are three ways to see it.</p>
 <p><b>Count the cases.</b> You picked door 1. The car is behind door 1, 2 or 3, each equally likely. If it is behind 1, switching loses. If it is behind 2, the host must open 3, and switching to 2 wins. If it is behind 3, the host must open 2, and switching wins. Switching wins in two of three cases.</p>
 <p><b>Nothing changed your first guess.</b> Your first pick was right one time in three. The host opening a goat door was always going to happen, so it tells you nothing about your door. It is still right one time in three, so the other closed door must be right two times in three.</p>
 <p><b>Make it a hundred doors.</b> Pick one of 100. The host opens 98 goat doors, leaving yours and one other. Do you really think your first guess was as good as the door the host carefully left closed?</p>
@@ -42,8 +42,12 @@
 <section class="example">
 <h2>Watch one: why the host knowing matters</h2>
 <p>Change one thing: the host does not know where the car is and opens one of the other two doors at random. It happens to be a goat. Now should you switch?</p>
-<p>List the cases with you on door 1. Car behind 1 (prob \(\frac13\)): host opens 2 or 3, always a goat. Car behind 2 (prob \(\frac13\)): host opens 2 (car, game ruined) or 3 (goat), half each. Car behind 3: likewise.</p>
-<p>We saw a goat, so throw out the ruined games. Remaining: car behind 1 with weight \(\frac13\); car behind 2 and goat shown, weight \(\frac16\); car behind 3 and goat shown, weight \(\frac16\). Staying wins \(\frac13\) of the surviving weight, switching wins \(\frac16 + \frac16 = \frac13\). Fifty-fifty after all.</p>
+<p>You are on door 1. The car is behind each door with probability \(\tfrac13\), and the host opens door 2 or 3 with probability \(\tfrac12\) each, so every row below has probability \(\tfrac16\).</p>
+<table><tr><th>Car behind</th><th>Host opens</th><th>Probability</th><th>You see</th></tr>
+<tr><td>1</td><td>2</td><td>\(\tfrac16\)</td><td>goat</td></tr><tr><td>1</td><td>3</td><td>\(\tfrac16\)</td><td>goat</td></tr>
+<tr><td>2</td><td>2</td><td>\(\tfrac16\)</td><td>car</td></tr><tr><td>2</td><td>3</td><td>\(\tfrac16\)</td><td>goat</td></tr>
+<tr><td>3</td><td>2</td><td>\(\tfrac16\)</td><td>goat</td></tr><tr><td>3</td><td>3</td><td>\(\tfrac16\)</td><td>car</td></tr></table>
+<p>Keep only the rows where you saw a goat. Staying (door 1) wins in two rows, \(\tfrac16 + \tfrac16\). Switching wins in the other two rows, also \(\tfrac16 + \tfrac16\). Fifty-fifty after all.</p>
 <p>The difference is information. A host who knows and deliberately avoids the car is telling you something with the door he leaves shut. A host who got lucky tells you nothing.</p>
 </section>
 

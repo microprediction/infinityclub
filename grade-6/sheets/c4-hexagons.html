@@ -25,17 +25,46 @@
 <header class="sheet-head">
   <div class="kicker">Infinity Club · Grade 6 · Connections · 4</div>
   <h1>Why bees build hexagons</h1>
-  <p class="teaser">Honeycomb is made of hexagons, and so are basalt columns, soap-bubble rafts and graphene. None of them chose the shape. Arithmetic chose it for them. Saturn has a hexagon too, bigger than the Earth, and that one has a different cause.</p>
+  <p class="teaser">Honeycomb is made of hexagons, and so are basalt columns, soap-bubble rafts and graphene. None of them chose the shape. Arithmetic chose it for them. Saturn has a hexagon too, bigger than the Earth, for a different reason.</p>
   <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
 </header>
 
 <section class="idea">
 <h2>Tonight's idea</h2>
 <p>A bee has a problem. It needs to store honey in cells that share walls (wax is expensive: a bee eats about eight grams of honey to make one gram of wax), the cells must fit together with no gaps, and each cell should hold as much as possible for as little wall as possible.</p>
-<p>Start with "no gaps". Shapes that fit together with no gaps are said to <b>tile</b> the plane. If every cell is the same regular polygon, some number of them must meet at each corner, and their corner angles must add up to exactly 360°. The corner angle of a regular polygon with \(n\) sides is \(180(n-2)/n\) degrees. For a triangle that is 60°, and six of them make 360°. For a square, 90°, four make 360°. For a hexagon, 120°, three make 360°. For a pentagon, 108°, and 108 does not divide 360: three pentagons leave a gap and four overlap. For anything with more than six sides the angle is bigger than 120°, so even three will not fit. <b>Only the triangle, the square and the hexagon tile the plane.</b></p>
+<p>Start with "no gaps". Shapes that fit together with no gaps are said to <b>tile</b> the plane. If every cell is the same <b>regular polygon</b> (all sides equal, all corners equal), some number of them must meet at each corner, and their <b>corner angles</b> (the angle inside one corner) must add up to exactly 360°. The corner angle of a regular polygon with \(n\) sides is \(180(n-2)/n\) degrees. For a triangle that is 60°, and six of them make 360°. For a square, 90°, four make 360°. For a hexagon, 120°, three make 360°. For a pentagon, 108°, and 108 does not divide 360: three pentagons leave a gap and four overlap. For anything with more than six sides the angle is bigger than 120°, so even three will not fit. <b>Only the triangle, the square and the hexagon tile the plane.</b></p>
+<figure><svg viewBox="0 0 496 112" width="496" height="112" role="img" aria-label="Regular polygons meeting at a point: six triangles, four squares and three hexagons fit exactly; three pentagons leave a 36 degree gap">
+<polygon points="60.0,52.0 86.0,52.0 73.0,29.5" fill="#e8e9f8" stroke="#000" stroke-width="1"/>
+<polygon points="60.0,52.0 73.0,29.5 47.0,29.5" fill="#e8e9f8" stroke="#000" stroke-width="1"/>
+<polygon points="60.0,52.0 47.0,29.5 34.0,52.0" fill="#e8e9f8" stroke="#000" stroke-width="1"/>
+<polygon points="60.0,52.0 34.0,52.0 47.0,74.5" fill="#e8e9f8" stroke="#000" stroke-width="1"/>
+<polygon points="60.0,52.0 47.0,74.5 73.0,74.5" fill="#e8e9f8" stroke="#000" stroke-width="1"/>
+<polygon points="60.0,52.0 73.0,74.5 86.0,52.0" fill="#e8e9f8" stroke="#000" stroke-width="1"/>
+<circle cx="60" cy="52" r="2" fill="#000"/>
+<text x="60" y="107" font-family="Nunito, sans-serif" font-size="12" text-anchor="middle">6 × 60° = 360°</text>
+<polygon points="180.0,52.0 202.0,52.0 202.0,30.0 180.0,30.0" fill="#e8e9f8" stroke="#000" stroke-width="1"/>
+<polygon points="180.0,52.0 180.0,30.0 158.0,30.0 158.0,52.0" fill="#e8e9f8" stroke="#000" stroke-width="1"/>
+<polygon points="180.0,52.0 158.0,52.0 158.0,74.0 180.0,74.0" fill="#e8e9f8" stroke="#000" stroke-width="1"/>
+<polygon points="180.0,52.0 180.0,74.0 202.0,74.0 202.0,52.0" fill="#e8e9f8" stroke="#000" stroke-width="1"/>
+<circle cx="180" cy="52" r="2" fill="#000"/>
+<text x="180" y="107" font-family="Nunito, sans-serif" font-size="12" text-anchor="middle">4 × 90° = 360°</text>
+<polygon points="300.0,52.0 316.0,52.0 324.0,38.1 316.0,24.3 300.0,24.3 292.0,38.1" fill="#e8e9f8" stroke="#000" stroke-width="1"/>
+<polygon points="300.0,52.0 292.0,38.1 276.0,38.1 268.0,52.0 276.0,65.9 292.0,65.9" fill="#e8e9f8" stroke="#000" stroke-width="1"/>
+<polygon points="300.0,52.0 292.0,65.9 300.0,79.7 316.0,79.7 324.0,65.9 316.0,52.0" fill="#e8e9f8" stroke="#000" stroke-width="1"/>
+<circle cx="300" cy="52" r="2" fill="#000"/>
+<text x="300" y="107" font-family="Nunito, sans-serif" font-size="12" text-anchor="middle">3 × 120° = 360°</text>
+<polygon points="420.0,52.0 438.0,52.0 443.6,34.9 429.0,24.3 414.4,34.9" fill="#fde9c4" stroke="#000" stroke-width="1"/>
+<polygon points="420.0,52.0 414.4,34.9 396.4,34.9 390.9,52.0 405.4,62.6" fill="#fde9c4" stroke="#000" stroke-width="1"/>
+<polygon points="420.0,52.0 405.4,62.6 411.0,79.7 429.0,79.7 434.6,62.6" fill="#fde9c4" stroke="#000" stroke-width="1"/>
+<path d="M 420,52 L 437.5,64.7 A 21.6,21.6 0 0 0 441.6,52.0 Z" fill="#f5a524" stroke="none"/>
+<text x="445" y="48" font-family="Nunito, sans-serif" font-size="11" fill="#1d1f3a">gap 36°</text>
+<circle cx="420" cy="52" r="2" fill="#000"/>
+<text x="420" y="107" font-family="Nunito, sans-serif" font-size="12" text-anchor="middle">3 × 108° = 324°</text>
+</svg><figcaption>Corners meeting at one point. The angles must add to exactly 360°; pentagons cannot do it.</figcaption></figure>
 <p>Now "most room for least wall". Fix the area of one cell and compare the perimeters. A regular hexagon with side 1 has area about 2.598. A square with that same area has side about 1.612 and perimeter about 6.45. An equilateral triangle with that area has side about 2.449 and perimeter about 7.35. The hexagon's perimeter is 6. Least wall wins, and the hexagon has the least.</p>
-<p>In fact the hexagon beats every possible way of dividing a plane into equal-area cells, not just the regular polygons. People believed that for two thousand years; it was finally proved by Thomas Hales in 1999, and the proof is long.</p>
-<p>Nature finds the same answer wherever something is squeezed into equal cells with as little boundary as possible. Cooling lava cracks into hexagonal columns (the Giant's Causeway in Ireland). Bubbles packed on the surface of water form hexagons, meeting at 120°. Carbon atoms in graphene form a hexagonal sheet one atom thick. Saturn has a hexagon too, through a different mechanism: at its north pole a jet stream has been blowing in a hexagon about 30,000 km across since at least 1981, when Voyager first photographed it. The leading explanation is a wave running around the jet with six crests, not cells squeezed together or walls meeting in threes. Same shape, different cause. That is worth remembering: when two things look alike, the reasons behind them can still be completely different.</p>
+<p>In fact the hexagon beats every possible way of dividing a plane into equal-area cells, not just the regular polygons. That was believed for two thousand years and proved only in 1999.</p>
+<p>Nature finds the same answer wherever something is squeezed into equal cells with as little boundary as possible. Cooling lava cracks into hexagonal columns (the Giant's Causeway in Ireland). Bubbles packed on the surface of water form hexagons, meeting at 120°. Carbon atoms in graphene form a hexagonal sheet one atom thick.</p>
+<p>Saturn's hexagon is different. At its north pole a jet stream has blown in a hexagon about 30,000 km across since at least 1981. The leading explanation is a wave with six crests running around the jet, not cells squeezed together. Same shape, different cause.</p>
 </section>
 
 <section class="example">
@@ -48,7 +77,7 @@
 <h2>Your turn</h2>
 <ol>
 <li>Work out the corner angle of a regular polygon with 5, 7, 9, 10 and 12 sides. For each, say whether some whole number of copies fits around a point.<div class="space"></div></li>
-<li>Honeycomb cells have side about 2.7 mm. A hexagon's area is about \(2.6 \times (\text{side})^2\). Find the area of one cell in mm², and the perimeter. Then find the side of a square cell of the same area, and its perimeter. How much more wall does the square need, as a percentage?<div class="space tall"></div></li>
+<li>Honeycomb cells have side about 2.7 mm. A hexagon's area is about \(2.6 \times (\text{side})^2\). (a) Find the area of one cell in mm². (b) Find its perimeter. (c) Find the side of a square cell with the same area, and its perimeter. (d) How much more wall does the square need, as a percentage? (Square perimeter minus hexagon perimeter, divided by the hexagon perimeter, times 100.)<div class="space tall"></div></li>
 <li>In a honeycomb, how many cells meet at each corner? How many neighbours does each cell have? Draw a patch of seven hexagons to check.<div class="space"></div></li>
 <li>Find a tiling using regular triangles and squares together. (Hint: angles at a corner must sum to 360, so try three triangles and two squares.) Sketch it.<div class="space"></div></li>
 </ol>
@@ -65,7 +94,7 @@
 <h2>Answers</h2>
 <ol>
 <li>5 sides: 108°, \(360 / 108 = 3.33\), no. 7 sides: about 128.6°, no. 9 sides: 140°, no. 10 sides: 144°, \(360/144 = 2.5\), no. 12 sides: 150°, no. Only 3, 4 and 6 sides work.</li>
-<li>Area \(\approx 2.6 \times 2.7^2 = 2.6 \times 7.29 \approx 19\) mm². Hexagon perimeter \(6 \times 2.7 = 16.2\) mm. Square of area 19 mm² has side \(\sqrt{19} \approx 4.36\) mm and perimeter \(\approx 17.4\) mm, about 7.5% more wall.</li>
+<li>(a) Area \(\approx 2.6 \times 2.7^2 = 2.6 \times 7.29 \approx 19\) mm². (b) Perimeter \(6 \times 2.7 = 16.2\) mm. (c) A square of area 19 mm² has side \(\sqrt{19} \approx 4.36\) mm and perimeter \(\approx 17.4\) mm. (d) \((17.4 - 16.2) / 16.2 \times 100 \approx 7.5\%\) more wall.</li>
 <li>Three cells meet at each corner; each cell has six neighbours.</li>
 <li>Three triangles and two squares at each corner: \(3 \times 60 + 2 \times 90 = 360\). There are two different ways to arrange them around the corner, giving two different patterns; either is correct.</li>
 </ol>

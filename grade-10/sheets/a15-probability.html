@@ -25,36 +25,47 @@
 <header class="sheet-head">
   <div class="kicker">Infinity Club · Grade 10 · Sharpen · 15</div>
   <h1>Conditional probability and trees</h1>
-  <p class="teaser">With and without replacement, independence, P(A given B), and a card problem that fools most adults.</p>
+  <p class="teaser">With and without replacement, independence, P(A given B), and the two-children problem, which fools most adults.</p>
   <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
 </header>
 
 <section class="idea">
 <h2>Tonight's idea</h2>
-<p>Almost every probability problem you will meet this year is a <b>tree</b>. Each branch is a stage, each branch carries a probability, and two rules do all the work:</p>
+<p>Almost every probability problem is a <b>tree</b>. Each branch is a stage, each branch carries a probability, and two rules do all the work:</p>
 <div class="callout"><b>Multiply along a path</b> to get the probability of that whole sequence of events.<br><b>Add across paths</b> that lead to the outcome you care about.</div>
-<p>The branch probabilities at the second stage depend on what happened at the first. If you draw a card and <em>put it back</em>, the second draw looks exactly like the first. If you <em>keep it</em>, the deck has changed, and the second-stage branches must say so.</p>
+<p>If you draw a card and <em>put it back</em>, the second draw looks exactly like the first. If you <em>keep it</em>, the deck has changed, and the second-stage branches must say so.</p>
 <p>Two events \(A\) and \(B\) are <b>independent</b> when knowing one tells you nothing about the other. The precise test is</p>
 <p class="callout">\(A\) and \(B\) are independent exactly when \(P(A \text{ and } B) = P(A)\,P(B)\).</p>
-<p>This is a definition you can check, not a feeling. The probability of \(A\) <em>given</em> that \(B\) has happened is written \(P(A \mid B)\): shrink the world to the cases where \(B\) is true and ask what fraction of those also have \(A\):</p>
+<p>The probability of \(A\) <em>given</em> that \(B\) has happened is written \(P(A \mid B)\): shrink the world to the cases where \(B\) is true and ask what fraction of those also have \(A\):</p>
 <p class="callout">\(P(A \mid B) = \dfrac{P(A \text{ and } B)}{P(B)}\).</p>
-<p>Multiply both sides by \(P(B)\) and you get the multiplication rule for trees. So branch probabilities <em>are</em> conditional probabilities, and independence is the special case \(P(A \mid B) = P(A)\).</p>
+<p>Multiply both sides by \(P(B)\): that is the tree's multiplication rule, so branch probabilities <em>are</em> conditional probabilities. Independence is the special case \(P(A \mid B) = P(A)\).</p>
 </section>
 
 <section class="example">
 <h2>Watch one: a bag of 5 red and 3 blue</h2>
-<p>Draw two counters without replacement. Both red: along the path, \(\tfrac58 \times \tfrac47 = \tfrac{20}{56} = \tfrac{5}{14}\). One of each colour: two paths, red-then-blue and blue-then-red, \(\tfrac58\cdot\tfrac37 + \tfrac38\cdot\tfrac57 = \tfrac{30}{56} = \tfrac{15}{28}\). With replacement the second draw forgets the first, so both red is \(\tfrac58 \times \tfrac58 = \tfrac{25}{64}\), a little more than \(\tfrac{5}{14}\), because you never lose the red you drew.</p>
+<p>Draw two counters without replacement. Both red: along the path, \(\tfrac58 \times \tfrac47 = \tfrac{20}{56} = \tfrac{5}{14}\). One of each colour: two paths, red-then-blue and blue-then-red, \(\tfrac58\cdot\tfrac37 + \tfrac38\cdot\tfrac57 = \tfrac{30}{56} = \tfrac{15}{28}\). With replacement the second draw forgets the first, so both red is \(\tfrac58 \times \tfrac58 = \tfrac{25}{64}\), a little more than \(\tfrac{5}{14}\).</p>
+<figure><svg viewBox="0 0 335 150" width="243" height="109" role="img" aria-label="Probability tree for two draws without replacement from 5 red and 3 blue: first branch red 5/8 or blue 3/8, then red or blue again with the four leaf probabilities" font-family="Nunito, sans-serif" font-size="12">
+<g stroke="#000" stroke-width="1.5"><line x1="20" y1="75" x2="115" y2="40"/><line x1="20" y1="75" x2="115" y2="110"/>
+<line x1="125" y1="40" x2="215" y2="20"/><line x1="125" y1="40" x2="215" y2="60"/><line x1="125" y1="110" x2="215" y2="90"/><line x1="125" y1="110" x2="215" y2="130"/></g>
+<circle cx="20" cy="75" r="3" fill="#000"/>
+<text x="120" y="44" text-anchor="middle" fill="#3f44c9" font-weight="700">R</text><text x="120" y="114" text-anchor="middle" fill="#3f44c9" font-weight="700">B</text>
+<text x="62" y="50" fill="#555">5⁄8</text><text x="62" y="104" fill="#555">3⁄8</text>
+<text x="166" y="24" fill="#555">4⁄7</text><text x="166" y="58" fill="#555">3⁄7</text><text x="166" y="94" fill="#555">5⁄7</text><text x="166" y="128" fill="#555">2⁄7</text>
+<text x="222" y="24">RR  5⁄8 × 4⁄7 = 20⁄56</text><text x="222" y="64" fill="#b36b00" font-weight="700">RB  5⁄8 × 3⁄7 = 15⁄56</text>
+<text x="222" y="94" fill="#b36b00" font-weight="700">BR  3⁄8 × 5⁄7 = 15⁄56</text><text x="222" y="134">BB  3⁄8 × 2⁄7 = 6⁄56</text>
+</svg><figcaption>Multiply along a path; add the two highlighted paths for "one of each colour".</figcaption></figure>
+
 </section>
 
 <section class="exercises">
 <h2>Your turn</h2>
 <ol>
-<li>Two fair dice. Find \(P(\text{sum} = 7)\) and \(P(\text{sum} = 7 \mid \text{first die shows } 3)\). Then test with the definition: are "first die shows 6" and "sum is 7" independent? Are "first die shows 6" and "sum is 8"?<div class="space"></div></li>
-<li>A fair coin is flipped three times. Find \(P(\text{exactly two heads})\), \(P(\text{exactly two heads} \mid \text{first flip is a head})\) and \(P(\text{all heads} \mid \text{at least one head})\).<div class="space"></div></li>
-<li><b>The two-children problem.</b> A family has two children, each a girl with probability \(\tfrac12\), independently. (a) You learn the <em>older</em> child is a girl. What is the probability both are girls? (b) Instead you learn only that <em>at least one</em> is a girl. Now what is the probability both are girls? Draw the four equally likely families and shrink the world.<div class="space"></div></li>
-<li>A survey of 200 students: 120 play a sport, 80 play an instrument, 48 do both. Test whether "plays a sport" and "plays an instrument" are independent. Then compute \(P(\text{instrument} \mid \text{sport})\) and check it agrees.<div class="space"></div></li>
+<li>Two fair dice. Find \(P(\text{sum} = 7)\) and \(P(\text{sum} = 7 \mid \text{first die shows } 3)\). Then test with the definition: are "first die shows 6" and "sum is 7" independent? Are "first die shows 6" and "sum is 8"?<div class="space short"></div></li>
+<li>A fair coin is flipped three times. Find \(P(\text{exactly two heads})\), \(P(\text{exactly two heads} \mid \text{first flip is a head})\) and \(P(\text{all heads} \mid \text{at least one head})\).<div class="space short"></div></li>
+<li><b>The two-children problem.</b> A family has two children, each a girl with probability \(\tfrac12\), independently. (a) You learn the <em>older</em> child is a girl. What is the probability both are girls? (b) Instead you learn only that <em>at least one</em> is a girl. Now what is the probability both are girls? Draw the four equally likely families and cross out the ones the information rules out.<div class="space"></div></li>
+<li>A survey of 200 students: 120 play a sport, 80 play an instrument, 48 do both. Test whether "plays a sport" and "plays an instrument" are independent. Then compute \(P(\text{instrument} \mid \text{sport})\) and check it agrees.<div class="space short"></div></li>
 </ol>
-<p class="small">Play with these at <a href="../../demos/dice.html">infinityclub.net/demos/dice.html</a> and <a href="../../demos/monty.html">infinityclub.net/demos/monty.html</a>.</p>
+<p class="small noprint">Play with these at <a href="../../demos/dice.html">infinityclub.net/demos/dice.html</a> and <a href="../../demos/monty.html">infinityclub.net/demos/monty.html</a>.</p>
 </section>
 
 <section class="stretch">

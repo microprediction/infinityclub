@@ -54,7 +54,7 @@ table.hm th { background: var(--accent-soft); font-family: var(--sans); }
 <div><b>Card 6</b><span><i>2</i><i>3</i><i>6</i><i>7</i><i>10</i><i>11</i><i>14</i><i>15</i></span></div>
 <div><b>Card 7</b><span><i>1</i><i>3</i><i>5</i><i>7</i><i>9</i><i>11</i><i>13</i><i>15</i></span></div>
 </div>
-<p>Cards 3, 5, 6 and 7 are the old binary cards: the 8s, 4s, 2s and 1s. Cards 1, 2 and 4 are new. Write each "yes" as a 1 and each "no" as a 0, in card order, and you get a string of seven bits. Call the bit from card \(k\) simply \(k\).</p>
+<p>Cards 3, 5, 6 and 7 are the old binary cards: the 8s, 4s, 2s and 1s. Cards 1, 2 and 4 are new. Write each "yes" as a 1 and each "no" as a 0, in card order, and you get a string of seven bits.</p>
 <p>The cards are built so that, if nobody lies, three <b>checks</b> all come out even:</p>
 <div class="callout">
 <b>Check A:</b> cards 1, 3, 5, 7 have an even number of yeses.<br>
@@ -62,7 +62,9 @@ table.hm th { background: var(--accent-soft); font-family: var(--sans); }
 <b>Check C:</b> cards 4, 5, 6, 7 have an even number of yeses.
 </div>
 <p>Look at which cards are in each check. Check A is every card whose number has a 1 in the <em>ones</em> place (1, 3, 5, 7). Check B is every card with a 1 in the <em>twos</em> place (2, 3, 6, 7). Check C is every card with a 1 in the <em>fours</em> place (4, 5, 6, 7). Card 1 is only in check A, card 2 only in B, card 4 only in C, and card 7 is in all three.</p>
-<p>Now the magic. Suppose exactly one answer is a lie, on card \(k\). It breaks exactly the checks that card \(k\) belongs to, and those checks are precisely the binary digits of \(k\). So: <b>score 1 if check A fails, 2 if B fails, 4 if C fails, and add. The total is the number of the card they lied on.</b> If all three checks pass, the total is 0 and nobody lied. Flip that answer back, read cards 3, 5, 6, 7 as 8s, 4s, 2s, 1s, and announce the number. This is called a <b>Hamming code</b>, invented by Richard Hamming in 1950 because his computer kept crashing at weekends over single wrong bits and nobody was there to fix them.</p>
+<p>Suppose exactly one answer is a lie, on card \(k\). It breaks exactly the checks that card \(k\) belongs to, and those checks are the binary digits of \(k\). So the failed checks spell out the lying card:</p>
+<div class="callout"><b>1.</b> For each failed check score 1 (A), 2 (B), 4 (C). Add them up: that is the card they lied on (0 means no lie).<br><b>2.</b> Flip that answer.<br><b>3.</b> Read cards 3, 5, 6, 7 as 8s, 4s, 2s, 1s and announce the number.</div>
+<p>This is a <b>Hamming code</b>, invented by Richard Hamming in 1950 because his computer kept crashing at weekends over single wrong bits.</p>
 </section>
 
 <section class="example">

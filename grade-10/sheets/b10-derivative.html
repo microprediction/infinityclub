@@ -32,7 +32,8 @@
 <section class="idea">
 <h2>Tonight's idea</h2>
 <p>A straight line has one slope, the same everywhere. A curve does not: \(y = x^2\) is flat at the bottom and steep out at the sides. So what should "the slope of \(y = x^2\) at \(x = 1\)" even mean?</p>
-<p>Here is Newton and Leibniz's answer. Pick the point \((1, 1)\) and a second point a little further along, at \(x = 1 + h\). The line through two points on a curve is a <b>secant</b>, with slope \(\dfrac{(1 + h)^2 - 1}{h}\). Now shrink \(h\):</p>
+<p>Here is the answer. Pick the point \((1, 1)\) and a second point a little further along, at \(x = 1 + h\). The line through two points on a curve is a <b>secant</b>, with slope \(\dfrac{(1 + h)^2 - 1}{h}\). Now shrink \(h\):</p>
+<figure><svg viewBox="0 0 260 145" width="260" height="145" role="img" aria-label="The parabola y = x squared with the secant line through (1,1) and (1+h, (1+h) squared) and the tangent line at (1,1); h is marked on the x-axis"><line x1="10" y1="128" x2="250" y2="128" stroke="#999" stroke-width="1"/><line x1="50" y1="140" x2="50" y2="6" stroke="#999" stroke-width="1"/><polyline points="15.2,118.6 18.1,120.1 21.0,121.5 23.9,122.7 26.8,123.8 29.7,124.8 32.6,125.7 35.5,126.4 38.4,127.0 41.3,127.4 44.2,127.7 47.1,127.9 50.0,128.0 52.9,127.9 55.8,127.7 58.7,127.4 61.6,127.0 64.5,126.4 67.4,125.7 70.3,124.8 73.2,123.8 76.1,122.7 79.0,121.5 81.9,120.1 84.8,118.6 87.7,117.0 90.6,115.3 93.5,113.4 96.4,111.4 99.3,109.2 102.2,106.9 105.1,104.5 108.0,102.0 110.9,99.3 113.8,96.5 116.7,93.6 119.6,90.6 122.5,87.4 125.4,84.1 128.3,80.6 131.2,77.0 134.1,73.3 137.0,69.5 139.9,65.5 142.8,61.4 145.7,57.2 148.6,52.9 151.5,48.4 154.4,43.8 157.3,39.0 160.2,34.1 163.1,29.1 166.0,24.0 168.9,18.7 171.8,13.3 174.7,7.8 177.6,2.2" fill="none" stroke="#3f44c9" stroke-width="2"/><line x1="76.1" y1="144.9" x2="177.6" y2="8.4" stroke="#f5a524" stroke-width="2.5"/><line x1="61.6" y1="143.6" x2="200.8" y2="18.8" stroke="#000" stroke-width="1.5" stroke-dasharray="5 3"/><line x1="108" y1="124" x2="108" y2="132" stroke="#000"/><line x1="166" y1="124" x2="166" y2="132" stroke="#000"/><circle cx="108" cy="102" r="3.5" fill="#000"/><circle cx="166" cy="24" r="3.5" fill="#f5a524" stroke="#000"/><g font-family="Nunito, sans-serif" font-size="12" fill="#1d1f3a"><text x="104" y="142">1</text><text x="152" y="142">1 + h</text><text x="114" y="116">(1, 1)</text><text x="62" y="12" fill="#3f44c9">y = x²</text></g></svg><figcaption>The secant (orange) through \((1, 1)\) and \((1+h, (1+h)^2)\). As \(h\) shrinks it swings onto the tangent (dashed).</figcaption></figure>
 <table>
 <thead><tr><th>\(h\)</th><th>1</th><th>0.1</th><th>0.01</th><th>0.001</th></tr></thead>
 <tbody><tr><td>secant slope</td><td>3</td><td>2.1</td><td>2.01</td><td>2.001</td></tr></tbody>
@@ -45,7 +46,7 @@
 <section class="example">
 <h2>Watch one: the derivative of \(x^3\), and a tangent line</h2>
 <p>\[ \frac{(x+h)^3 - x^3}{h} = \frac{3x^2h + 3xh^2 + h^3}{h} = 3x^2 + 3xh + h^2 \;\to\; 3x^2. \]</p>
-<p>So the derivative of \(x^3\) is \(3x^2\). At \(x = 2\) the slope is 12, and the tangent line through \((2, 8)\) with slope 12 is \(y - 8 = 12(x - 2)\), that is \(y = 12x - 16\). Near \(x = 2\) you cannot tell it from the cubic.</p>
+<p>So the derivative of \(x^3\) is \(3x^2\). At \(x = 2\) the slope is 12, and the tangent line through \((2, 8)\) with slope 12 is \(y - 8 = 12(x - 2)\), that is \(y = 12x - 16\).</p>
 </section>
 
 <section class="exercises">

@@ -32,9 +32,11 @@
 <section class="idea">
 <h2>Tonight's idea</h2>
 <p>Divide 3 by 8 by long division and it stops: \(3/8 = 0.375\). Divide 1 by 3 and it never stops: \(0.3333\ldots\) Divide 1 by 7 and you get \(0.142857\,142857\,142857\ldots\), the same six digits forever. A decimal that stops is called <b>terminating</b>. One that falls into a loop is called <b>repeating</b>, and we write a bar over the loop: \(1/7 = 0.\overline{142857}\).</p>
-<p>Here is the rule for which is which. A fraction in lowest terms terminates <b>exactly when its denominator has no prime factors other than 2 and 5</b>. That is because \(10 = 2 \times 5\), so a denominator like \(8 = 2^3\) or \(40 = 2^3 \times 5\) can be scaled up to a power of ten. A 3 or a 7 in the denominator can never be scaled away, so the division never finishes.</p>
-<p>And here is the deeper fact. <b>Every fraction's decimal either stops or repeats.</b> It cannot wander forever without a pattern. Why? When you divide by 7, each step of long division ends with a remainder, and the only possible remainders are 0, 1, 2, 3, 4, 5, 6. After at most seven steps a remainder has to come back, and from that moment the digits replay exactly. The same argument works for any denominator \(d\): the loop is at most \(d - 1\) digits long.</p>
-<p>The six digits of 1/7 do something strange. \(142857 \times 2 = 285714\). \(142857 \times 3 = 428571\). Multiply by 4, 5 or 6 and you get 571428, 714285, 857142. The same six digits, rotated. It is called a <b>cyclic number</b>, and 1/7 is where it lives.</p>
+<p>The rule: a fraction in lowest terms terminates <b>exactly when its denominator has no prime factors other than 2 and 5</b>. That is because \(10 = 2 \times 5\), so a denominator like \(8 = 2^3\) or \(40 = 2^3 \times 5\) can be scaled up to a power of ten. A 3 or a 7 in the denominator can never be scaled away, so the division never finishes.</p>
+<p>The deeper fact: <b>every fraction's decimal either stops or repeats.</b> Why? Each step of long division by 7 leaves a remainder from 0 to 6. Within seven steps a remainder must come back, and from then on the digits replay. Here is 1 ÷ 7:</p>
+<table><tr><th>remainder</th><th>divide</th><th>digit</th><th>next remainder</th></tr><tr><td>1</td><td>10 ÷ 7</td><td>1</td><td>3</td></tr><tr><td>3</td><td>30 ÷ 7</td><td>4</td><td>2</td></tr><tr><td>2</td><td>20 ÷ 7</td><td>2</td><td>6</td></tr><tr><td>6</td><td>60 ÷ 7</td><td>8</td><td>4</td></tr><tr><td>4</td><td>40 ÷ 7</td><td>5</td><td>5</td></tr><tr><td>5</td><td>50 ÷ 7</td><td>7</td><td><b>1</b> again, so the digits replay</td></tr></table>
+<p>The same argument works for any denominator \(d\): the loop is at most \(d - 1\) digits long.</p>
+<p>The six digits of 1/7 are strange. \(142857 \times 2 = 285714\). \(142857 \times 3 = 428571\). Multiply by 4, 5 or 6 and you get 571428, 714285, 857142. The same six digits, rotated. It is called a <b>cyclic number</b>, and it comes from 1/7.</p>
 </section>
 
 <section class="example">
@@ -49,7 +51,7 @@
 <h2>Your turn</h2>
 <ol>
 <li>Without dividing, say which of these terminate and which repeat: \(\tfrac{1}{40}\), \(\tfrac{1}{30}\), \(\tfrac{7}{20}\), \(\tfrac{1}{14}\), \(\tfrac{9}{12}\). Careful with the last one.<div class="space short"></div></li>
-<li>Do the long division for \(\tfrac{5}{12}\) and \(\tfrac{2}{11}\). Write each with a bar over the repeating part. Which digits repeat and which do not?<div class="space"></div></li>
+<li>Do the long division for \(\tfrac{5}{12}\) and \(\tfrac{2}{11}\). Write each with a bar over the repeating part. For \(\tfrac{5}{12}\), which digits come before the loop?<div class="space"></div></li>
 <li>Multiply 142857 by 2, 3, 4, 5 and 6 and check that each answer is a rotation of 142857. Then multiply by 7. What happens, and why does that make sense for the decimal of 1/7?<div class="space"></div></li>
 <li>Turn these into fractions in lowest terms using the subtraction trick: \(0.\overline{8}\), \(0.\overline{45}\), \(0.8\overline{3}\). For the last one, multiply by 10 first to get the non-repeating digit out of the way.<div class="space tall"></div></li>
 <li>Use the remainder argument. If you divide by 13, what is the longest the repeating block could possibly be? Now actually divide 1 by 13 and find the block.<div class="space"></div></li>
@@ -60,7 +62,7 @@
 <section class="stretch">
 <h2>Stretch: how long is the loop?</h2>
 <p>For 1/7 the loop has 6 digits, the maximum possible. For 1/13 you found a loop shorter than the maximum 12. Divide 1 by 17 (this takes patience, keep a neat column of remainders) and find the length of its loop. Is it the maximum?</p>
-<p>Primes whose loop is the full maximum, like 7 and 17, are called <em>full reptend primes</em>. Their decimal digits form a cyclic number, so 1/17's block does the same rotation trick as 142857. Nobody knows whether there are infinitely many such primes. That is an open problem you now understand.</p>
+<p>Primes whose loop is the full maximum, like 7 and 17, are called <em>full reptend primes</em>; their blocks are cyclic numbers like 142857. Nobody knows whether there are infinitely many.</p>
 <div class="space"></div>
 </section>
 

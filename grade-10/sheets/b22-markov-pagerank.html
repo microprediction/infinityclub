@@ -31,12 +31,13 @@
 
 <section class="idea">
 <h2>Tonight's idea</h2>
-<p>A <b>Markov chain</b> hops between states, and the next state depends only on the current one, not on the history.</p>
-<p>Three states, Sunny, Cloudy, Rainy. Write the probabilities of tomorrow given today as a matrix, one row per <em>today</em>, one column per <em>tomorrow</em>:</p>
+<p>In a <b>Markov chain</b> the next state depends only on the current one, not on the history.</p>
+<p>Three states, Sunny, Cloudy, Rainy. Tomorrow's probabilities given today, one row per <em>today</em>, one column per <em>tomorrow</em>:</p>
 \[ P = \begin{pmatrix} 0.7 & 0.2 & 0.1 \\ 0.3 & 0.4 & 0.3 \\ 0.2 & 0.4 & 0.4 \end{pmatrix} \quad \begin{matrix} \text{from S} \\ \text{from C} \\ \text{from R} \end{matrix} \]
-<p>Every row adds to 1. <b>Two days ahead:</b> sunny today, rain the day after tomorrow? Add up the routes through tomorrow: \(0.7 \times 0.1 + 0.2 \times 0.3 + 0.1 \times 0.4 = 0.17\). That is row S times column R: matrix multiplication. The two-day table is \(P^2\), and \(n\) days is \(P^n\).</p>
-<p>Keep multiplying and, whatever you start from, the rows of \(P^n\) settle to the same vector \(\pi\). This <b>steady state</b> satisfies \(\pi P = \pi\); here \(\pi = \left(\tfrac{6}{13}, \tfrac{4}{13}, \tfrac{3}{13}\right)\), so 46% of days are sunny in the long run.</p>
-<p><b>The random surfer.</b> In 1998 two students asked: what if a page is important when important pages link to it? Make it a Markov chain: a surfer clicks a random link on each page, and the steady state says what fraction of time she spends on each page. That is <b>PageRank</b>. To stop her getting stuck or trapped, with probability \(1 - d = 0.15\) she types a random address instead. For \(N\) pages,</p>
+<figure><svg viewBox="0 0 180 134" width="180" height="134" role="img" aria-label="Three states S, C, R with arrows between every pair and loops on each state, labelled with the transition probabilities"><g font-family="Nunito, sans-serif"><defs><marker id="mk" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#3f44c9"/></marker></defs><line x1="69.1" y1="65.5" x2="115.6" y2="46.4" stroke="#3f44c9" stroke-width="1.5" marker-end="url(#mk)"/><text x="92" y="65" font-size="11" fill="#1d1f3a" text-anchor="middle">0.2</text><line x1="64.5" y1="77.6" x2="111.1" y2="96.7" stroke="#3f44c9" stroke-width="1.5" marker-end="url(#mk)"/><text x="84.4" y="99.5" font-size="11" fill="#1d1f3a" text-anchor="middle">0.1</text><line x1="112.9" y1="34.5" x2="66.4" y2="53.6" stroke="#3f44c9" stroke-width="1.5" marker-end="url(#mk)"/><text x="86.2" y="39.7" font-size="11" fill="#1d1f3a" text-anchor="middle">0.3</text><line x1="124.0" y1="50.0" x2="124.0" y2="80.0" stroke="#3f44c9" stroke-width="1.5" marker-end="url(#mk)"/><text x="115.0" y="69.0" font-size="11" fill="#1d1f3a" text-anchor="middle">0.3</text><line x1="117.5" y1="86.4" x2="70.9" y2="67.3" stroke="#3f44c9" stroke-width="1.5" marker-end="url(#mk)"/><text x="94" y="86" font-size="11" fill="#1d1f3a" text-anchor="middle">0.2</text><line x1="136.0" y1="82.0" x2="136.0" y2="52.0" stroke="#3f44c9" stroke-width="1.5" marker-end="url(#mk)"/><text x="145.0" y="71.0" font-size="11" fill="#1d1f3a" text-anchor="middle">0.4</text><path d="M 43.4 79.5 Q 14.0 66.0 43.4 52.5" fill="none" stroke="#3f44c9" stroke-width="1.5" marker-end="url(#mk)"/><text x="24.0" y="70.0" font-size="11" fill="#1d1f3a" text-anchor="middle">0.7</text><path d="M 116.5 25.4 Q 130.0 -4.0 143.5 25.4" fill="none" stroke="#3f44c9" stroke-width="1.5" marker-end="url(#mk)"/><text x="130.0" y="10.0" font-size="11" fill="#1d1f3a" text-anchor="middle">0.4</text><path d="M 143.5 106.6 Q 130.0 136.0 116.5 106.6" fill="none" stroke="#3f44c9" stroke-width="1.5" marker-end="url(#mk)"/><text x="130.0" y="130.0" font-size="11" fill="#1d1f3a" text-anchor="middle">0.4</text><circle cx="52" cy="66" r="16" fill="#fff" stroke="#1d1f3a" stroke-width="1.5"/><text x="52" y="71" font-size="14" font-weight="700" text-anchor="middle" fill="#1d1f3a">S</text><circle cx="130" cy="34" r="16" fill="#fff" stroke="#1d1f3a" stroke-width="1.5"/><text x="130" y="39" font-size="14" font-weight="700" text-anchor="middle" fill="#1d1f3a">C</text><circle cx="130" cy="98" r="16" fill="#fff" stroke="#1d1f3a" stroke-width="1.5"/><text x="130" y="103" font-size="14" font-weight="700" text-anchor="middle" fill="#1d1f3a">R</text></g></svg><figcaption>Arrows carry tomorrow's probabilities; the matrix is this picture as a table.</figcaption></figure>
+<p>Every row adds to 1. <b>Two days ahead:</b> sunny today, rain the day after tomorrow? Add up the routes through tomorrow: \(0.7 \times 0.1 + 0.2 \times 0.3 + 0.1 \times 0.4 = 0.17\). That is row S times column R. Two days is \(P^2\), \(n\) days \(P^n\).</p>
+<p>Whatever you start from, the rows of \(P^n\) settle to the same vector, called \(\pi\) (a Greek letter here, not 3.14). This <b>steady state</b> satisfies \(\pi P = \pi\) (multiply the row \(\pi\) by \(P\) and you get \(\pi\) back: tomorrow's shares equal today's). Here \(\pi = \left(\tfrac{6}{13}, \tfrac{4}{13}, \tfrac{3}{13}\right)\), so 46% of days are sunny in the long run.</p>
+<p><b>The random surfer.</b> A page is important when important pages link to it. Make that a Markov chain: a surfer clicks a random link on each page; the steady state is the fraction of time she spends on each page, and that is <b>PageRank</b>. With probability \(1 - d = 0.15\) she types a random address instead. For \(N\) pages,</p>
 <p class="callout">\(\displaystyle PR(p) = \frac{1 - d}{N} + d \sum_{q \to p} \frac{PR(q)}{\text{out}(q)}\), summing over pages \(q\) linking to \(p\), where \(\text{out}(q)\) is the number of links on \(q\).</p>
 </section>
 
@@ -44,24 +45,22 @@
 <h2>Watch one: solving for the steady state</h2>
 <p>We want \(\pi = (a, b, c)\) with \(\pi P = \pi\) and \(a + b + c = 1\). Column by column:</p>
 \[ 0.7a + 0.3b + 0.2c = a, \qquad 0.2a + 0.4b + 0.4c = b, \qquad 0.1a + 0.3b + 0.4c = c. \]
-<p>One equation is always redundant (rows add to 1), so drop the third and use \(a + b + c = 1\). The first gives \(b = a - \tfrac23 c\). In the second: \(0.2a - 0.6\left(a - \tfrac23 c\right) + 0.4c = 0\), so \(a = 2c\), and then \(b = \tfrac43 c\). Sum: \(\tfrac{13}{3}c = 1\), so \(c = \tfrac{3}{13}\), \(a = \tfrac{6}{13}\), \(b = \tfrac{4}{13}\).</p>
+<p>One equation is redundant (rows add to 1): drop the third and use \(a + b + c = 1\). The first gives \(b = a - \tfrac23 c\). In the second: \(0.2a - 0.6\left(a - \tfrac23 c\right) + 0.4c = 0\), so \(a = 2c\), and then \(b = \tfrac43 c\). Sum: \(\tfrac{13}{3}c = 1\), so \(c = \tfrac{3}{13}\), \(a = \tfrac{6}{13}\), \(b = \tfrac{4}{13}\).</p>
 </section>
 
 <section class="exercises">
 <h2>Your turn</h2>
 <ol>
 <li>A machine is Working or Broken. Each day a working machine breaks with probability 0.1 and a broken one is repaired with probability 0.6. Write the \(2 \times 2\) transition matrix and find the steady state. What fraction of days is it broken?<div class="space short"></div></li>
-<li>Sunny today. Compute the whole first row of \(P^2\) (sunny, cloudy, rainy in two days) and check it adds to 1.<div class="space short"></div></li>
-<li>Cloudy today. What is the probability of sunshine in two days? Compare with the one-day value 0.3 and the steady-state value \(6/13 \approx 0.46\).<div class="space short"></div></li>
-<li>A three-page web: A links to B and C, B links to C, C links to A (try it at <a href="../../demos/pagerank.html">infinityclub.net/demos/pagerank.html</a>). With the pure surfer (\(d = 1\)) the ranks satisfy \(r_A = r_C\), \(r_B = \tfrac12 r_A\), \(r_C = \tfrac12 r_A + r_B\). Solve them, given the ranks add to 1.<div class="space short"></div></li>
+<li>Sunny today. Compute the whole first row of \(P^2\) (sunny, cloudy, rainy in two days).<div class="space short"></div></li>
+<li>Cloudy today. What is the probability of sunshine in two days? Compare with the one-day value 0.3 and with \(6/13\).<div class="space short"></div></li>
+<li>A three-page web: A links to B and C, B links to C, C links to A (demo: <a href="../../demos/pagerank.html">infinityclub.net/demos/pagerank.html</a>). With the pure surfer (\(d = 1\)), writing \(r_A, r_B, r_C\) for the long-run shares of time on each page, the ranks satisfy \(r_A = r_C\), \(r_B = \tfrac12 r_A\), \(r_C = \tfrac12 r_A + r_B\). Solve them, given the ranks add to 1.<div class="space short"></div></li>
 </ol>
 </section>
 
 <section class="stretch">
 <h2>Stretch: how long until two heads in a row?</h2>
-<p>Toss a fair coin until you see HH. States: 0 (no progress), 1 (last toss a head), Done. With \(E_0, E_1\) the expected tosses still needed,</p>
-\[ E_0 = 1 + \tfrac12 E_1 + \tfrac12 E_0, \qquad E_1 = 1 + \tfrac12 E_0. \]
-<p>Solve for \(E_0\). Then set up the same equations for the pattern HT. Which pattern takes longer, and why?</p>
+<p>Toss a fair coin until you see HH. States: 0 (no progress), 1 (last toss a head), Done. With \(E_0, E_1\) the expected tosses still needed, \(E_0 = 1 + \tfrac12 E_1 + \tfrac12 E_0\) and \(E_1 = 1 + \tfrac12 E_0\). Solve for \(E_0\). Then do the same for the pattern HT. Which takes longer, and why?</p>
 </section>
 
 <section class="answers">

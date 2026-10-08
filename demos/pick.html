@@ -20,7 +20,7 @@
 </nav>
 <main class="demo-wrap">
 <h1>Area by counting dots</h1>
-<p class="explain">Click dots to make the corners of a shape, in order around it, then press <b>Close</b>. The page counts the dots strictly inside (I) and the dots on the boundary (B), and Pick's formula gives the area with no measuring at all. Try to break it.</p>
+<p class="explain">Click dots to make the corners of a shape, <b>going round the shape in order</b>, then press <b>Close</b>. The page counts the dots strictly inside (I) and the dots on the boundary (B), and Pick's formula gives the area with no measuring at all. Try to break it.</p>
 <div class="demo-panel">
   <div class="controls">
     <button data-p="rect">Rectangle</button>
@@ -110,7 +110,7 @@
     if (closed) { pts = []; closed = false; result = null; }
     if (pts.length && pts[pts.length - 1][0] === g[0] && pts[pts.length - 1][1] === g[1]) return;
     if (pts.length >= 3 && pts[0][0] === g[0] && pts[0][1] === g[1]) { close(); return; }
-    pts.push(g); draw(); info.textContent = pts.length + " corner" + (pts.length === 1 ? "" : "s") + ". Click the first dot again, or press Close, to finish.";
+    pts.push(g); draw(); info.textContent = pts.length + " corner" + (pts.length === 1 ? "" : "s") + ". Click the next corner, going round the shape. Click the first dot again, or press Close, to finish.";
   });
   document.getElementById("closebtn").addEventListener("click", close);
   document.getElementById("undobtn").addEventListener("click", function () { if (closed) { closed = false; result = null; } else pts.pop(); draw(); info.textContent = pts.length + " corners."; });

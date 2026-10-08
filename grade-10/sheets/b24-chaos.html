@@ -36,39 +36,38 @@ table.iter td.blank { min-width: 4.5em; }
 
 <section class="idea">
 <h2>Tonight's idea</h2>
-<p>A model of a population. Let \(x_n\) be this year's population as a fraction of the most the habitat can hold, so \(0 \le x_n \le 1\). Next year's is</p>
+<p>Let \(x_n\) be this year's population as a fraction of the most the habitat can hold, so \(0 \le x_n \le 1\). Next year's is</p>
 <p class="callout">\(x_{n+1} = r\,x_n\,(1 - x_n)\). The \(r x_n\) part is growth; the \((1 - x_n)\) part is crowding.</p>
 <p><b>Fixed points.</b> A population that stays put satisfies \(x = r x (1 - x)\): either \(x = 0\) or \(x^* = 1 - \tfrac1r\).</p>
-<p><b>Stable or not?</b> Near \(x^*\) the parabola \(f(x) = rx(1-x)\) is nearly a straight line with some steepness \(m\). Start a small distance \(\varepsilon\) from \(x^*\) and one step later you are about \(m\varepsilon\) away, so errors shrink when \(|m| \lt 1\) and grow when \(|m| \gt 1\). The steepness at \(x\) is \(r(1 - 2x)\), and at \(x^*\) that is \(m = 2 - r\). So the fixed point is stable exactly when \(1 \lt r \lt 3\). Negative \(m\) means the population overshoots, landing alternately above and below \(x^*\).</p>
-<p><b>Past 3: period doubling.</b> At \(r = 3.2\) the fixed point is unstable and the population bounces forever between \(0.513\) and \(0.799\): a <b>2-cycle</b>. At \(r = 3.5\) a <b>4-cycle</b> takes over; then 8, 16, 32, faster and faster, piling up at \(r_\infty \approx 3.5699\). Beyond that, <b>chaos</b>: at \(r = 3.9\) the sequence never repeats, and two starts that differ by \(0.001\) are unrelated within ten steps.</p>
-<p><b>The universal constant.</b> Successive gaps between doublings shrink by a factor tending to Feigenbaum's \(\delta = 4.6692\ldots\), the same number for dripping taps, circuits and lasers. Play at <a href="../../demos/logistic.html">infinityclub.net/demos/logistic.html</a>.</p>
+<p><b>Stable or not?</b> Fixed points are where the parabola \(f(x) = rx(1-x)\) crosses the line \(y = x\). Near \(x^*\) the parabola is nearly a straight line with slope \(m\) (its derivative there). Start a small distance, call it \(\varepsilon\), from \(x^*\) and one step later you are about \(m\varepsilon\) away, so errors shrink when \(|m| \lt 1\) and grow when \(|m| \gt 1\). The steepness at \(x\) is \(r(1 - 2x)\), and at \(x^*\) that is \(m = 2 - r\). So the fixed point is stable exactly when \(1 \lt r \lt 3\). Negative \(m\) means the population overshoots, alternating sides of \(x^*\).</p>
+<figure><svg viewBox="0 0 230 132" width="230" height="132" role="img" aria-label="Cobweb plot for r equals 2.5: the parabola y equals 2.5 x (1 minus x), the diagonal y equals x, and a staircase from x0 equals 0.2 climbing to the crossing at 0.6"><line x1="30" y1="110" x2="190" y2="110" stroke="#999"/><line x1="30" y1="110" x2="30" y2="12" stroke="#999"/><line x1="30" y1="110" x2="180" y2="18" stroke="#999" stroke-width="1.2"/><polyline points="30.0 110.0 33.8 104.4 37.5 99.1 41.2 94.0 45.0 89.3 48.8 84.8 52.5 80.7 56.2 76.8 60.0 73.2 63.8 69.9 67.5 66.9 71.2 64.1 75.0 61.7 78.8 59.5 82.5 57.7 86.2 56.1 90.0 54.8 93.8 53.8 97.5 53.1 101.2 52.6 105.0 52.5 108.8 52.6 112.5 53.1 116.2 53.8 120.0 54.8 123.8 56.1 127.5 57.7 131.2 59.5 135.0 61.7 138.8 64.1 142.5 66.9 146.2 69.9 150.0 73.2 153.8 76.8 157.5 80.7 161.2 84.8 165.0 89.3 168.8 94.0 172.5 99.1 176.2 104.4 180.0 110.0" fill="none" stroke="#3f44c9" stroke-width="2"/><polyline points="60.0 110 60.0 73.19999999999999 90.0 73.19999999999999 90.0 54.800000000000004 120.0 54.800000000000004" fill="none" stroke="#f5a524" stroke-width="2"/><circle cx="120.0" cy="54.800000000000004" r="3.5" fill="#f5a524"/><g font-family="Nunito, sans-serif" font-size="12" fill="#1d1f3a"><text x="44" y="125">x₀ = 0.2</text><text x="176" y="125">1</text><text x="126" y="49">x* = 0.6</text><text x="142" y="87" fill="#3f44c9">y = 2.5x(1 − x)</text><text x="184" y="22" fill="#555">y = x</text></g></svg><figcaption>Cobweb for \(r = 2.5\): from \(x_0\) go up to the curve, across to the line, repeat. The staircase climbs to the crossing \(x^*\).</figcaption></figure>
+<p><b>Past 3: period doubling.</b> At \(r = 3.2\) the fixed point is unstable and the population bounces forever between \(0.513\) and \(0.799\): a <b>2-cycle</b>. At \(r = 3.5\) a <b>4-cycle</b> takes over; then 8, 16, 32, piling up at \(r_\infty \approx 3.5699\). Beyond that, <b>chaos</b>: at \(r = 3.9\) the sequence never repeats.</p>
+<p><b>The universal constant.</b> Successive gaps between doublings shrink by a factor tending to Feigenbaum's \(\delta = 4.6692\ldots\), the same for dripping taps and lasers. Demo: <a href="../../demos/logistic.html">infinityclub.net/demos/logistic.html</a>.</p>
 </section>
 
 <section class="example">
 <h2>Watch one: \(r = 3.2\) by hand, and the 2-cycle exactly</h2>
 <p>Start at \(x_0 = 0.2\): \(x_1 = 3.2 \times 0.2 \times 0.8 = 0.512\), \(x_2 = 0.7995\), \(x_3 = 0.5129\), \(x_4 = 0.7995\), \(\ldots\) A 2-cycle by the fourth step.</p>
-<p>Exactly: the two values are fixed points of the double step \(f(f(x)) = x\). Dividing out the roots \(0\) and \(x^*\) leaves a quadratic, whose roots are</p>
-\[ x = \frac{(r + 1) \pm \sqrt{(r + 1)(r - 3)}}{2r}. \]
-<p>For \(r = 3.2\): \(\dfrac{4.2 \pm 0.9165}{6.4}\), giving \(0.7995\) and \(0.5130\). The square root shows the 2-cycle is born exactly at \(r = 3\), when the fixed point loses stability.</p>
+<p>Exactly: the two values are fixed points of the double step \(f(f(x)) = x\). Dividing out the roots \(0\) and \(x^*\) leaves a quadratic with roots \(x = \dfrac{(r + 1) \pm \sqrt{(r + 1)(r - 3)}}{2r}\). For \(r = 3.2\): \(\dfrac{4.2 \pm 0.9165}{6.4}\), giving \(0.7995\) and \(0.5130\).</p>
 </section>
 
 <section class="exercises">
 <h2>Your turn</h2>
 <ol>
 <li>Take \(r = 2.5\) and \(x_0 = 0.2\). Compute \(x_1\) to \(x_5\) (three decimals). Where is the population heading? Check against \(1 - 1/r\).<div class="space short"></div></li>
-<li>For \(r = 2.5, 3.2, 3.5, 3.9\) find the non-zero fixed point \(x^*\) and the steepness \(m = 2 - r\) there. Which are stable? For the stable one, what does the sign of \(m\) tell you about how the sequence approaches it?<div class="space short"></div></li>
+<li>For \(r = 2.5, 3.2, 3.5, 3.9\) find the non-zero fixed point \(x^*\) and the steepness \(m = 2 - r\) there. Which are stable? For the stable one, what does the sign of \(m\) tell you?<div class="space short"></div></li>
 <li><b>Sensitive dependence.</b> With \(r = 3.9\), run two sequences from \(x_0 = 0.2\) and \(x_0 = 0.201\) (three decimals). Fill in the gaps. At which step does the difference first exceed 0.1?
 <table class="iter"><tr><th>\(n\)</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th></tr>
 <tr><td>from 0.2</td><td>0.200</td><td>0.624</td><td>0.915</td><td class="blank"></td><td class="blank"></td><td class="blank"></td><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr>
 <tr><td>from 0.201</td><td>0.201</td><td>0.626</td><td>0.913</td><td class="blank"></td><td class="blank"></td><td class="blank"></td><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr></table>
 <div class="space short"></div></li>
-<li><b>Feigenbaum.</b> The first three doublings are at \(r_1 = 3\), \(r_2 = 3.4495\), \(r_3 = 3.5441\). Compute the ratio of the two gaps. Using \(\delta = 4.669\), predict \(r_4\). (True value: \(3.5644\).)<div class="space short"></div></li>
+<li><b>Feigenbaum.</b> The first three doublings are at \(r_1 = 3\), \(r_2 = 3.4495\), \(r_3 = 3.5441\). Compute \((r_2 - r_1)/(r_3 - r_2)\). Using \(\delta = 4.669\), predict \(r_4\). (True value: \(3.5644\).)<div class="space short"></div></li>
 </ol>
 </section>
 
 <section class="stretch">
 <h2>Stretch: \(r = 4\) is just doubling</h2>
-<p>Write \(x = \sin^2\theta\). Show that \(4x(1 - x) = \sin^2(2\theta)\), so the map is simply \(\theta \to 2\theta\). Now take \(\theta = \pi/7\): doubling gives \(2\pi/7\), \(4\pi/7\), then \(8\pi/7\), which is \(\pi/7\) again under \(\sin^2\). Compute the three \(x\) values and check on a calculator that \(4x(1-x)\) really cycles through them.</p>
+<p>Write \(x = \sin^2\theta\). Show that \(4x(1 - x) = \sin^2(2\theta)\), so the map is \(\theta \to 2\theta\). Take \(\theta = \pi/7\): doubling gives \(2\pi/7\), \(4\pi/7\), then \(8\pi/7\), which is \(\pi/7\) again under \(\sin^2\). Compute the three \(x\) values and check that \(4x(1-x)\) cycles through them.</p>
 </section>
 
 <section class="answers">
@@ -79,7 +78,7 @@ table.iter td.blank { min-width: 4.5em; }
 <li>From 0.2: \(0.303, 0.824, 0.566, 0.958, 0.156, 0.514\). From 0.201: \(0.311, 0.835, 0.537, 0.970, 0.115, 0.397\). The difference first exceeds 0.1 at step 8. A 0.5% error in the start becomes a 100% error within ten generations.</li>
 <li>Gaps \(0.4495\) and \(0.0946\); ratio \(4.75\), approaching \(4.669\) from above. \(r_4 \approx 3.5441 + 0.0946/4.669 = 3.5644\). ✓</li>
 </ol>
-<p><b>Stretch.</b> \(4\sin^2\theta\cos^2\theta = (2\sin\theta\cos\theta)^2 = \sin^2 2\theta\). Values: \(\sin^2(\pi/7) = 0.1883\), \(\sin^2(2\pi/7) = 0.6113\), \(\sin^2(4\pi/7) = 0.9505\). Check: \(4(0.1883)(0.8117) = 0.6113\), then \(0.9505\), then back to \(0.1883\). A 3-cycle. Doubling an angle shifts its binary digits one place, so after 50 steps the 50th digit of the start is in charge: chaos is reading out the initial condition, one digit per step.</p>
+<p><b>Stretch.</b> \(4\sin^2\theta\cos^2\theta = (2\sin\theta\cos\theta)^2 = \sin^2 2\theta\). Values: \(\sin^2(\pi/7) = 0.1883\), \(\sin^2(2\pi/7) = 0.6113\), \(\sin^2(4\pi/7) = 0.9505\). Check: \(4(0.1883)(0.8117) = 0.6113\), then \(0.9505\), then back to \(0.1883\): a 3-cycle. (\(8\pi/7\) gives \(\pi/7\) again because \(\sin(\pi + \theta) = -\sin\theta\).) Doubling an angle shifts its binary digits one place, so after 50 steps the 50th digit of the start is in charge: chaos is reading out the initial condition, one digit per step.</p>
 </section>
 
 <div class="sheet-nav"><a href="b23-random-walks.html">← Previous</a><a href="b25-entropy.html">Next: Information and entropy →</a></div>

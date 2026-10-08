@@ -33,10 +33,11 @@ table.slopes th { background: #eeece6; }
         <option value="cube">x³</option>
         <option value="sin">sin x</option>
         <option value="exp">eˣ</option>
+        <option value="abs">|x|</option>
       </select>
     </label>
     <label>a <input type="range" id="a" min="-2.5" max="2.5" step="0.1" value="1"> <span class="val" id="av">1</span></label>
-    <label>h <input type="range" id="hs" min="-3" max="0.3" step="0.01" value="0"> <span class="val" id="hv">1</span></label>
+    <label>h (drag left to shrink toward 0) <input type="range" id="hs" min="-3" max="0.3" step="0.01" value="0"> <span class="val" id="hv">1</span></label>
     <label><input type="checkbox" id="showtan" checked> show the tangent</label>
   </div>
   <canvas id="plot" width="900" height="520"></canvas>
@@ -47,7 +48,7 @@ table.slopes th { background: #eeece6; }
 <h2>What's going on</h2>
 <p>You cannot compute the slope of a curve at a single point directly, because a slope needs two points. Calculus gets round this by using two points and then asking what the slope <em>approaches</em> as the second point closes in. For f(x) = x² at a = 1, the secant slope is ((1 + h)² − 1) / h = (2h + h²) / h = 2 + h. As h shrinks, this is clearly heading for 2, and it never needs to arrive: the limit is 2, so f′(1) = 2.</p>
 <p>Do the same algebra with a general a and you get 2a + h → 2a. That is the famous result: the derivative of x² is 2x. The table below the graph shows the numbers doing exactly this for whichever curve you pick. For x³ the slopes approach 3a². For sin x they approach cos a. For eˣ they approach eᵃ, the function's own value, which is what makes e special.</p>
-<p>Notice h can be negative too: approach from the left and you should get the same answer. If a curve gave different answers from the two sides, it would have a corner there and no tangent. Try to imagine what |x| would do at a = 0.</p>
+<p>Notice h can be negative too: approach from the left and you should get the same answer. If a curve gave different answers from the two sides, it would have a corner there and no tangent. Pick |x| and set a = 0: the two sides disagree, so there is no tangent there.</p>
 <p>Sheet: <a href="../grade-10/sheets/b10-derivative.html">The slope of a curve</a>.</p>
 </div>
 </main>
@@ -59,7 +60,8 @@ table.slopes th { background: #eeece6; }
     sq:   { f: function (x) { return x * x; }, d: function (x) { return 2 * x; }, name: "x²", dname: "2a" },
     cube: { f: function (x) { return x * x * x; }, d: function (x) { return 3 * x * x; }, name: "x³", dname: "3a²" },
     sin:  { f: Math.sin, d: Math.cos, name: "sin x", dname: "cos a" },
-    exp:  { f: Math.exp, d: Math.exp, name: "eˣ", dname: "eᵃ" }
+    exp:  { f: Math.exp, d: Math.exp, name: "eˣ", dname: "eᵃ" },
+    abs:  { f: Math.abs, d: function (x) { return x < 0 ? -1 : 1; }, name: "|x|", dname: "±1 (no tangent at a = 0)" }
   };
   function secantSlope(f, a, h) { return (f(a + h) - f(a)) / h; }
   // slider value s (log10 of |h|) and a sign -> h
@@ -85,6 +87,7 @@ table.slopes th { background: #eeece6; }
     if (fnSel.value === "sin") { YMIN = -2; YMAX = 2; }
     if (fnSel.value === "sq") { YMIN = -2; YMAX = 9; }
     if (fnSel.value === "cube") { YMIN = -9; YMAX = 9; }
+    if (fnSel.value === "abs") { YMIN = -1; YMAX = 4; }
     function X(x) { return (x - XMIN) / (XMAX - XMIN) * W; }
     function Y(y) { return H - (y - YMIN) / (YMAX - YMIN) * H; }
     ctx.strokeStyle = "#ece9e0"; ctx.lineWidth = 1;

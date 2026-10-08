@@ -31,11 +31,23 @@
 
 <section class="idea">
 <h2>Tonight's idea</h2>
-<p>You know the formulas. Prism and cylinder: base area times height. Pyramid and cone: a third of that. Sphere: \(\tfrac43\pi r^3\). Tonight is where the \(\tfrac13\) and the \(\tfrac43\) come from, using one idea.</p>
+<p>You know the formulas: cone and pyramid are a third of base times height, and the sphere is \(\tfrac43\pi r^3\). Tonight is where the \(\tfrac13\) and the \(\tfrac43\) come from, using one idea.</p>
 <div class="callout"><b>Cavalieri's principle.</b> Slice two solids by the same family of parallel planes. If at every height the cross-sections have equal area, the solids have equal volume.</div>
 <p>Picture a stack of coins pushed into a leaning tower: same coins, same volume, every slice still one coin.</p>
 <p><b>Why a third.</b> A cube can be cut into three identical pyramids: pick one corner as the apex and use the three faces not touching it as the bases. Each has base \(s^2\), height \(s\), volume \(\tfrac13 s^3\). By Cavalieri, any pyramid or cone with base area \(B\) and height \(h\) then has volume \(\tfrac13 Bh\).</p>
-<p><b>The sphere.</b> Archimedes compared a hemisphere of radius \(r\) with a cylinder of radius \(r\) and height \(r\) that has a cone scooped out (apex at the centre of the base, opening upward). At height \(y\) the hemisphere's slice is a disc of area \(\pi(r^2 - y^2)\). The scooped cylinder's slice is a ring, outer radius \(r\), inner radius \(y\), area \(\pi r^2 - \pi y^2\). Equal at every height, so the hemisphere is cylinder minus cone, \(\pi r^3 - \tfrac13\pi r^3 = \tfrac23\pi r^3\), and the sphere is \(\tfrac43\pi r^3\).</p>
+<p><b>The sphere.</b> Archimedes compared a hemisphere of radius \(r\) with a cylinder of radius \(r\) and height \(r\) that has a cone scooped out (apex at the centre of the base, opening upward), as in the figure. At height \(y\) the hemisphere's slice is a disc of area \(\pi(r^2 - y^2)\), and the scooped cylinder's slice is a ring of area \(\pi r^2 - \pi y^2\). Equal at every height, so the hemisphere is cylinder minus cone, \(\pi r^3 - \tfrac13\pi r^3 = \tfrac23\pi r^3\), and the sphere is \(\tfrac43\pi r^3\).</p>
+<figure><svg viewBox="0 0 320 118" width="320" height="118" role="img" aria-label="Side view: a hemisphere sliced at height y gives a disc of radius root of r squared minus y squared; a cylinder of radius r and height r with an inverted cone removed, sliced at the same height, gives a ring with outer radius r and inner radius y" font-family="Nunito, sans-serif" font-size="12">
+<path d="M 30 100 A 50 50 0 0 1 130 100 Z" fill="none" stroke="#000" stroke-width="1.5"/>
+<line x1="36.7" y1="75" x2="123.3" y2="75" stroke="#f5a524" stroke-width="4"/>
+<line x1="80" y1="100" x2="80" y2="75" stroke="#999" stroke-dasharray="3 3"/><text x="84" y="92" fill="#555" font-size="11">y</text>
+<text x="80" y="66" text-anchor="middle" font-size="11">√(r² − y²)</text><text x="80" y="114" text-anchor="middle" font-size="11">hemisphere, radius r</text>
+<rect x="190" y="50" width="100" height="50" fill="none" stroke="#000" stroke-width="1.5"/>
+<line x1="240" y1="100" x2="190" y2="50" stroke="#000" stroke-dasharray="4 3"/><line x1="240" y1="100" x2="290" y2="50" stroke="#000" stroke-dasharray="4 3"/>
+<line x1="190" y1="75" x2="215" y2="75" stroke="#f5a524" stroke-width="4"/><line x1="265" y1="75" x2="290" y2="75" stroke="#f5a524" stroke-width="4"/>
+<line x1="298" y1="100" x2="298" y2="75" stroke="#999"/><text x="302" y="92" fill="#555" font-size="11">y</text>
+<text x="240" y="68" text-anchor="middle" font-size="11">ring</text><text x="240" y="114" text-anchor="middle" font-size="11">cylinder minus cone</text>
+<text x="240" y="44" text-anchor="middle" font-size="11" fill="#555">r</text><text x="176" y="78" font-size="11" fill="#555">r</text>
+</svg><figcaption>At height \(y\), the disc on the left and the ring on the right both have area \(\pi(r^2 - y^2)\).</figcaption></figure>
 <p><b>Scaling.</b> Enlarge any shape by \(k\): lengths multiply by \(k\), areas by \(k^2\), volumes by \(k^3\).</p>
 </section>
 

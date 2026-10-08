@@ -38,7 +38,18 @@
 <tr><td>Ben</td><td>Sushi</td><td>Tacos</td><td>Pizza</td></tr>
 <tr><td>Cleo</td><td>Tacos</td><td>Pizza</td><td>Sushi</td></tr>
 </table>
-<p>Pizza or sushi? Ava and Cleo say pizza: 2 to 1. Sushi or tacos? Ava and Ben say sushi: 2 to 1. Tacos or pizza? Ben and Cleo say tacos: 2 to 1. The majority prefers pizza to sushi to tacos to pizza. Draw the three as dots with an arrow from each winner to each loser (see <a href="b13-bridges.html">graphs</a>) and you get a cycle. There is no dinner that beats every other, so "what the majority wants" has no answer. The Marquis de Condorcet spotted this in 1785.</p>
+<p>Pizza or sushi? Ava and Cleo say pizza: 2 to 1. Sushi or tacos? Ava and Ben say sushi: 2 to 1. Tacos or pizza? Ben and Cleo say tacos: 2 to 1. The majority prefers pizza to sushi to tacos to pizza. Draw the three as dots with an arrow from each winner to the loser and you get a cycle. There is no dinner that beats every other, so "what the majority wants" has no answer. Condorcet spotted this in 1785.</p>
+<figure><svg viewBox="0 0 260 140" width="260" height="140" role="img" aria-label="Three dots, Pizza, Sushi and Tacos, with arrows Pizza to Sushi, Sushi to Tacos and Tacos to Pizza, each labelled 2 to 1, forming a cycle">
+<line x1="138.0" y1="35.9" x2="164.3" y2="81.4" stroke="#3f44c9" stroke-width="2"/><polygon points="164.3,81.4 157.3,77.3 164.3,73.3" fill="#3f44c9"/><text x="162.1" y="55.7" font-family="Nunito, sans-serif" font-size="11" fill="#555" text-anchor="middle">2–1</text>
+<line x1="157.3" y1="97.0" x2="104.7" y2="97.0" stroke="#3f44c9" stroke-width="2"/><polygon points="104.7,97.0 111.7,93.0 111.7,101.0" fill="#3f44c9"/><text x="131.5" y="114.0" font-family="Nunito, sans-serif" font-size="11" fill="#555" text-anchor="middle">2–1</text>
+<line x1="94.7" y1="83.1" x2="121.0" y2="37.6" stroke="#3f44c9" stroke-width="2"/><polygon points="121.0,37.6 121.0,45.7 114.0,41.7" fill="#3f44c9"/><text x="96.3" y="58.3" font-family="Nunito, sans-serif" font-size="11" fill="#555" text-anchor="middle">2–1</text>
+<circle cx="130.0" cy="22.0" r="4" fill="#000"/>
+<text x="130.0" y="13.0" font-family="Nunito, sans-serif" font-size="13" text-anchor="middle">Pizza</text>
+<circle cx="173.3" cy="97.0" r="4" fill="#000"/>
+<text x="173.3" y="115.0" font-family="Nunito, sans-serif" font-size="13" text-anchor="middle">Sushi</text>
+<circle cx="86.7" cy="97.0" r="4" fill="#000"/>
+<text x="86.7" y="115.0" font-family="Nunito, sans-serif" font-size="13" text-anchor="middle">Tacos</text>
+</svg><figcaption>Each arrow points from the winner of a 2–1 vote to the loser; they go round in a circle.</figcaption></figure>
 <p>Real elections avoid the question by picking a <b>system</b>, and the surprise is that reasonable systems disagree with each other. Take 100 voters and three candidates:</p>
 <table>
 <tr><th>Voters</th><th>1st</th><th>2nd</th><th>3rd</th></tr>
@@ -46,29 +57,34 @@
 <tr><td>35</td><td>C</td><td>B</td><td>A</td></tr>
 <tr><td>25</td><td>B</td><td>C</td><td>A</td></tr>
 </table>
-<p><b>Plurality</b> (most first-place votes): A wins with 40. <b>Runoff</b> (drop the lowest, then vote again between the top two): B is dropped, and in A versus C the 25 B-voters switch to C, so C wins 60 to 40. <b>Borda count</b> (2 points for a first place, 1 for a second, 0 for a third): A gets 80, B gets \(40 + 35 + 50 = 125\), C gets \(70 + 25 = 95\). B wins. Same ballots, three systems, three different winners. And notice that A, the plurality winner, is ranked <em>last</em> by 60 of the 100 voters.</p>
-<p>In 1951 Kenneth Arrow proved there is no way out: no ranking system with three or more options can satisfy all of a short list of obviously fair rules at the same time. Every system you can invent breaks one of them. That is why award shows, sports leagues, student councils and countries all argue about voting rules, and always will.</p>
+<ul>
+<li><b>Plurality</b>: most first-place votes wins. A wins with 40.</li>
+<li><b>Runoff</b>: drop the candidate with fewest first places, then count again between the other two. B is dropped; in A versus C the 25 B-voters switch to C, so C wins 60 to 40.</li>
+<li><b>Borda count</b>: 2 points for a first place, 1 for a second, 0 for a third. A gets 80, B gets \(40 + 35 + 50 = 125\), C gets \(70 + 25 = 95\). B wins.</li>
+</ul>
+<p>Same ballots, three systems, three different winners. And notice that A, the plurality winner, is ranked <em>last</em> by 60 of the 100 voters.</p>
+<p>In 1951 Kenneth Arrow proved there is no way out: no ranking system with three or more options can satisfy all of a short list of obviously fair rules at the same time.</p>
 </section>
 
 <section class="example">
 <h2>Watch one: the pairwise table</h2>
-<p>For the 100-voter election, compare each pair directly. A vs B: only the 40 A-first voters prefer A, so B wins 60–40. A vs C: again only 40 prefer A, so C wins 60–40. B vs C: the 40 A-voters and the 25 B-voters prefer B, so B wins 65–35. B beats everyone head to head. A candidate like that is called a Condorcet winner, and B does not win under plurality or runoff.</p>
+<p>For the 100-voter election, compare each pair. A vs B: only the 40 A-first voters prefer A, so B wins 60–40. A vs C: again only 40 prefer A, so C wins 60–40. B vs C: the 40 A-voters and the 25 B-voters prefer B, so B wins 65–35. B beats everyone head to head. A candidate like that is called a <b>Condorcet winner</b>, and B does not win under plurality or runoff.</p>
 </section>
 
 <section class="exercises">
 <h2>Your turn</h2>
 <ol>
-<li>Twenty students rank three class trips: 9 rank Zoo &gt; Museum &gt; Beach, 7 rank Beach &gt; Museum &gt; Zoo, 4 rank Museum &gt; Beach &gt; Zoo. Find the plurality winner, the runoff winner, and the Borda winner (2, 1, 0 points).<div class="space tall"></div></li>
+<li>Twenty students rank three class trips: 9 rank Zoo &gt; Museum &gt; Beach, 7 rank Beach &gt; Museum &gt; Zoo, 4 rank Museum &gt; Beach &gt; Zoo. Find the plurality winner, the runoff winner (drop the trip with fewest first places, then count again between the other two), and the Borda winner (2, 1, 0 points).<div class="space tall"></div></li>
 <li>For the same twenty students, make the pairwise table: Zoo vs Museum, Zoo vs Beach, Museum vs Beach. Is there a Condorcet winner?<div class="space"></div></li>
-<li>Invent your own three-voter, three-option cycle like the dinner one. Write the three rankings and check all three pairwise votes come out 2–1 in a circle.<div class="space"></div></li>
+<li>Invent your own three-voter, three-option cycle like the dinner one. Write the rankings and check all three votes come out 2–1 in a circle.<div class="space"></div></li>
 <li>In one sentence, explain how "most first-place votes" can elect someone that most voters rank last.<div class="space short"></div></li>
 </ol>
 </section>
 
 <section class="stretch">
 <h2>Stretch: voting with a straight face</h2>
-<p>Back to the 100-voter election under plurality, where A wins. The 25 voters who honestly rank B first know B cannot win. Suppose they all vote for C instead, their second choice. Who wins now, and is that a better result for them than voting honestly?</p>
-<p>Now the Borda count, where B wins. The 40 A-first voters would prefer A. Suppose they lie and rank C second instead of B, to drag B's score down. Recompute the Borda totals. Who wins, and how do the A-voters feel about it?</p>
+<p>Back to the plurality election, where A wins. The 25 voters who honestly rank B first know B cannot win. Suppose they all vote for C instead, their second choice. Who wins now, and is that a better result for them than voting honestly?</p>
+<p>Now the Borda count, where B wins. The 40 A-first voters would prefer A. Suppose they rank C second instead of B, to drag B's score down. Recompute the Borda totals. Who wins, and how do the A-voters feel about it?</p>
 <div class="space tall"></div>
 </section>
 

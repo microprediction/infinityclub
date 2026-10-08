@@ -46,17 +46,17 @@
 <h2>Watch one: the commons, with numbers</h2>
 <p>Three farmers share a pasture. With \(c\) cows in total, each cow gives \(120 - 2c\) litres a week. A farmer with \(k\) cows gets \(k(120 - 2c)\).</p>
 <p><b>Best for the village.</b> Total milk \(120c - 2c^2\) peaks at \(c = 30\): 10 cows each, 60 litres a cow, 600 litres per farmer.</p>
-<p><b>What happens.</b> If the others have \(K\) cows, your milk \((120 - 2K)k - 2k^2\) peaks at \(k = 30 - K/2\). At equilibrium all choose the same \(k\), so \(K = 2k\) and \(k = 30 - k\): \(k = 15\). Total 45 cows, 30 litres a cow, 450 per farmer.</p>
+<p><b>What happens.</b> If the others have \(K\) cows, then \(c = K + k\) and your milk is \(k(120 - 2K - 2k) = (120 - 2K)k - 2k^2\), a parabola in \(k\) whose vertex is at \(k = 30 - K/2\). At equilibrium all choose the same \(k\), so \(K = 2k\) and \(k = 30 - k\): \(k = 15\). Total 45 cows, 30 litres a cow, 450 per farmer.</p>
 <p class="callout">Each farmer, acting sensibly, gets 450 instead of 600, and nobody can fix it alone: cut to 10 cows while the others keep 15 and <em>you</em> get 400. A commons needs an agreement, a rule, or a price.</p>
 </section>
 
 <section class="exercises">
 <h2>Your turn</h2>
 <ol>
-<li>Two bakeries each set a High or Low price. Both High: 10 each. Both Low: 4 each. One Low, one High: 14 for Low, 1 for High. Write the payoff matrix. Is there a dominant strategy? Find the Nash equilibrium. Is it a prisoner's dilemma?<div class="space short"></div></li>
+<li>Two bakeries each set a High or Low price. Both High: 10 each. Both Low: 4 each. One Low, one High: 14 for Low, 1 for High. Write the payoff matrix (rows: your price, columns: hers, your payoff first). Is there a dominant strategy? Find the Nash equilibrium. Is it a prisoner's dilemma?<div class="space short"></div></li>
 <li><b>Chicken.</b> Both swerve \(0, 0\); you swerve, she goes straight \(-1, +1\); you go straight, she swerves \(+1, -1\); both straight \(-10, -10\). Show there is no dominant strategy and find both equilibria. Why is visibly throwing your steering wheel out of the window a rational move?<div class="space short"></div></li>
 <li><b>Matching pennies.</b> You win 1 if the coins match, lose 1 if they differ. She plays heads with probability \(q\). Write your expected payoff from heads and from tails in terms of \(q\). For which \(q\) are you indifferent, and why is that the only \(q\) she can safely use?<div class="space short"></div></li>
-<li>Explain why "cooperate, then copy what the other player did last time" can sustain cooperation when the dilemma is played many times, and why the argument unravels if both players know which round is the last. (Start from the last round.)<div class="space short"></div></li>
+<li>(a) Why can "cooperate, then copy what the other player did last time" sustain cooperation when the dilemma is played many times? (b) Why does the argument unravel if both players know round 100 is the last? Start from round 100.<div class="space short"></div></li>
 </ol>
 </section>
 
@@ -71,7 +71,7 @@
 <li>Rows you (High, Low), columns her: \((10,10)\), \((1,14)\); \((14,1)\), \((4,4)\). Low is dominant for both (14 beats 10, 4 beats 1). Equilibrium (Low, Low) with 4 each, though (High, High) gives 10 each: a prisoner's dilemma, which is why price-fixing is both illegal and tempting.</li>
 <li>If she swerves you prefer straight (\(+1\) over 0); if she goes straight you prefer swerving (\(-1\) over \(-10\)): no dominant move. Equilibria: (swerve, straight) and (straight, swerve); in each, neither driver gains by switching. Throwing away the wheel makes straight your only option and forces the equilibrium where you win. Credible commitment is power.</li>
 <li>Heads: \(q - (1-q) = 2q - 1\). Tails: \(1 - 2q\). Indifferent when \(q = \tfrac12\). For any other \(q\) one of your moves has positive expected payoff and you play it every time; \(q = \tfrac12\) is the only choice that gives you no edge.</li>
-<li>Defecting gains once but triggers defection next round, so over many rounds cooperation pays more. If round 100 is known to be last, both defect in it; then round 99 has no future to protect, so both defect there too, and so on back to round 1. In practice people cooperate anyway, which is why the theory adds uncertainty about when the game ends.</li>
+<li>(a) Defecting gains once but triggers defection next round, so over many rounds cooperation pays more. (b) If round 100 is known to be last, both defect in it; then round 99 has no future to protect, so both defect there too, and so on back to round 1. In practice people cooperate anyway, which is why the theory adds uncertainty about when the game ends.</li>
 </ol>
 <p><b>Stretch.</b> The average is at most 100, so two-thirds of it is at most 67; nobody writes above that. Then the average is at most 67 and nobody writes above 44; then 30, 20, 13, \(\ldots\); the chain stops only at 0, the unique Nash equilibrium. Real winners in the teens or twenties are what you get when most people do one or two steps of reasoning and stop. To beat real people, think one step further than they do, not infinitely many.</p>
 </section>

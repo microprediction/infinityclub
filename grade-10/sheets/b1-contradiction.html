@@ -32,8 +32,8 @@
 <section class="idea">
 <h2>Tonight's idea</h2>
 <p>Some statements are hard to prove head-on but easy to prove backwards. To show a statement \(S\) is true, <b>assume \(S\) is false</b>, reason carefully, and arrive at something impossible. Correct reasoning cannot lead from a true assumption to an impossibility, so the assumption was false and \(S\) is true. That is <b>proof by contradiction</b>.</p>
-<p><b>The classic: \(\sqrt{2}\) is irrational</b>, meaning it is not a fraction \(p/q\) of whole numbers. Suppose it is, with the fraction in <b>lowest terms</b>, so \(p\) and \(q\) are not both even. Square: \(p^2 = 2q^2\), so \(p^2\) is even. An odd number squared is odd (\((2k+1)^2 = 4k^2 + 4k + 1\)), so \(p\) is even: \(p = 2k\). Substitute: \(4k^2 = 2q^2\), so \(q^2 = 2k^2\), so \(q\) is even too. Both even contradicts lowest terms. <b>\(\sqrt{2}\) is irrational.</b></p>
-<p>Notice the shape: the whole weight rests on one unarguable fact, that even is not odd. Good contradiction proofs usually end on something that simple.</p>
+<p><b>The classic: \(\sqrt{2}\) is irrational.</b> A number is <b>rational</b> if it equals a fraction \(p/q\) of whole numbers, and <b>irrational</b> if not. Suppose \(\sqrt{2} = p/q\) in <b>lowest terms</b> (no common factor), so in particular \(p\) and \(q\) are not both even. Square: \(p^2 = 2q^2\), so \(p^2\) is even. An odd number squared is odd (\((2k+1)^2 = 4k^2 + 4k + 1\)), so \(p\) is even: \(p = 2k\). Substitute: \(4k^2 = 2q^2\), so \(q^2 = 2k^2\), so \(q\) is even too. Both even contradicts lowest terms. <b>\(\sqrt{2}\) is irrational.</b></p>
+<p>Notice that the whole weight rests on one unarguable fact: even is not odd.</p>
 </section>
 
 <section class="example">
@@ -63,7 +63,7 @@
 <ol>
 <li>Suppose \(r\) is the smallest positive rational. Then \(r/2\) is rational, positive, and smaller than \(r\). Contradiction.</li>
 <li>Suppose \(r + x = s\) is rational. Then \(x = s - r\), the difference of two rationals, which is rational (common denominators). That contradicts \(x\) irrational. Since 1 and \(-7/3\) are rational and \(\sqrt{2}\) is irrational, both sums are irrational.</li>
-<li>\(p^2 = 4q^2\) gives \(p\) even, \(p = 2k\), then \(4k^2 = 4q^2\), so \(k^2 = q^2\). That tells us nothing about \(q\) being even. The chain stops, no contradiction, and indeed \(p/q = 2/1\) works. The \(\sqrt{2}\) proof needed the 2 to survive the cancellation; here it was used up.</li>
+<li>\(p^2 = 4q^2\) gives \(p\) even, \(p = 2k\), then \(4k^2 = 4q^2\), so \(k^2 = q^2\). That tells us nothing about \(q\) being even. The chain stops, no contradiction, and indeed \(p/q = 2/1\) works. With \(\sqrt{2}\), cancelling left a factor 2 on the \(q\) side, forcing \(q\) even. With \(\sqrt{4} = \sqrt{2^2}\), both 2s cancel and nothing is left to force anything.</li>
 <li>Suppose \(\sqrt{3} = p/q\) in lowest terms. Then \(p^2 = 3q^2\), so \(p^2\) is a multiple of 3. If \(p = 3m+1\), \(p^2 = 9m^2 + 6m + 1\), remainder 1. If \(p = 3m+2\), \(p^2 = 9m^2 + 12m + 4\), remainder 1. So \(p\) must be a multiple of 3: \(p = 3k\). Then \(9k^2 = 3q^2\), so \(q^2 = 3k^2\), so by the same argument \(q\) is a multiple of 3. Both divisible by 3 contradicts lowest terms.</li>
 </ol>
 <p><b>Stretch.</b> From \(2^{p/q} = 3\), raising to the power \(q\) gives \(2^p = 3^q\). The left side is a power of 2, so even (since \(p \ge 1\)); the right side is a product of 3s, so odd. Even cannot equal odd. Contradiction, so \(\log_2 3\) is irrational.</p>

@@ -31,15 +31,16 @@
 
 <section class="idea">
 <h2>Tonight's idea</h2>
-<p>Every time your phone talks to a bank, two machines that have never met agree on a secret while anyone can listen. The trick is a <b>one-way street</b> in arithmetic: multiplying two primes is easy, but recovering them from the product is slow. \(61 \times 53\) takes ten seconds; factoring 3233 takes longer; factoring a 600-digit product would take every computer on Earth longer than the age of the universe.</p>
+<p>Every time your phone talks to a bank, two machines that have never met agree on a secret while anyone can listen. The trick is a <b>one-way street</b> in arithmetic: multiplying two primes is easy, but recovering them from the product is slow. \(61 \times 53 = 3233\) takes seconds; factoring a 600-digit product would take longer than the age of the universe.</p>
 <p>RSA (Rivest, Shamir and Adleman, 1977) turns that street into a padlock.</p>
+<figure><svg viewBox="0 0 520 72" width="520" height="72" role="img" aria-label="Three boxes: Alice publishes n and e; Bob sends c equals m to the e mod n; Alice computes c to the d mod n, which is m"><g font-family="Nunito, sans-serif" font-size="12" fill="#1d1f3a"><rect x="3" y="14" width="158" height="44" rx="8" fill="none" stroke="#3f44c9" stroke-width="2"/><text x="82" y="32" text-anchor="middle" font-weight="700">Alice publishes (n, e)</text><text x="82" y="50" text-anchor="middle" fill="#555" font-size="10.5">public key: an open padlock</text><line x1="163" y1="36" x2="179" y2="36" stroke="#555" stroke-width="2"/><polygon points="181,36 174,31 174,41" fill="#555"/><rect x="181" y="14" width="158" height="44" rx="8" fill="none" stroke="#3f44c9" stroke-width="2"/><text x="260" y="32" text-anchor="middle" font-weight="700">Bob sends c = mᵉ mod n</text><text x="260" y="50" text-anchor="middle" fill="#555" font-size="10.5">anyone can lock</text><line x1="341" y1="36" x2="357" y2="36" stroke="#555" stroke-width="2"/><polygon points="359,36 352,31 352,41" fill="#555"/><rect x="359" y="14" width="158" height="44" rx="8" fill="none" stroke="#f5a524" stroke-width="2"/><text x="438" y="32" text-anchor="middle" font-weight="700">Alice: cᵈ mod n = m</text><text x="438" y="50" text-anchor="middle" fill="#555" font-size="10.5">private key d: only Alice opens</text></g></svg><figcaption>Who holds what. The eavesdropper sees n, e and c, never d.</figcaption></figure>
 <ol>
 <li>Pick two primes \(p\) and \(q\). Let \(n = pq\) and \(\varphi = (p-1)(q-1)\).</li>
 <li>Pick \(e\) sharing no factor with \(\varphi\). Publish \((n, e)\): the <b>public key</b>, an open padlock.</li>
 <li>Find \(d\) with \(ed \equiv 1 \pmod{\varphi}\). Keep \(d\) secret: the <b>private key</b>.</li>
 <li>To send \(m \lt n\), anyone computes \(c = m^e \bmod n\). You compute \(c^d \bmod n\), and out comes \(m\).</li>
 </ol>
-<p>Why does step 4 undo step 3? Because \(ed = 1 + k\varphi\), so \(c^d = m \cdot (m^{p-1})^{k(q-1)}\), and by <a href="b5-fermat-little.html">Fermat's little theorem</a> that is \(\equiv m \pmod p\). The same works mod \(q\), and a number that is \(m\) mod both is \(m\) mod \(pq\). The eavesdropper sees \(n\), \(e\), \(c\). To find \(d\) they need \(\varphi\), and for that they need \(p\) and \(q\): the factoring problem.</p>
+<p>Why does step 4 undo step 3? Because \(ed = 1 + k\varphi\), so \(c^d = m \cdot (m^{p-1})^{k(q-1)}\), and by <a href="b5-fermat-little.html">Fermat's little theorem</a> that is \(\equiv m \pmod p\). The same works mod \(q\), and a number that is \(m\) mod both is \(m\) mod \(pq\) (exercise 4 does this with the numbers from the example). The eavesdropper sees \(n\), \(e\), \(c\). To find \(d\) they need \(\varphi\), and for that they need \(p\) and \(q\): the factoring problem.</p>
 </section>
 
 <section class="example">
@@ -47,18 +48,18 @@
 <p>\(n = 143\), \(\varphi = 10 \times 12 = 120\). Choose \(e = 7\).</p>
 <p><b>Find \(d\).</b> \(120 = 17 \times 7 + 1\), so \(1 = 120 - 17 \times 7\), so \(7 \times (-17) \equiv 1 \pmod{120}\) and \(d = -17 \equiv 103\). Check: \(7 \times 103 = 721 = 6 \times 120 + 1\).</p>
 <p><b>Encrypt \(m = 9\).</b> Square and reduce as you go: \(9^2 = 81\); \(9^4 = 6561 \equiv 126\). Then \(9^7 = 9^4 \cdot 9^2 \cdot 9 \equiv 126 \times 81 \times 9\). \(126 \times 81 = 10206 \equiv 53\), and \(53 \times 9 = 477 \equiv 48\). So \(c = 48\).</p>
-<p><b>Decrypt.</b> Compute \(48^{103} \bmod 143\) the same way, squaring seven times and multiplying the pieces you need, and 9 comes back. Real RSA does exactly this with 600-digit numbers.</p>
+<p><b>Decrypt.</b> Compute \(48^{103} \bmod 143\) the same way, squaring seven times and multiplying the pieces you need, and 9 comes back.</p>
 </section>
 
 <section class="exercises">
 <h2>Your turn</h2>
 <ol>
-<li>Verify \(7 \times 103 \equiv 1 \pmod{120}\). Then explain why \(e = 8\) would have been a bad choice: what goes wrong when you try to find \(d\)?<div class="space short"></div></li>
+<li>Verify \(7 \times 103 \equiv 1 \pmod{120}\). Then explain why \(e = 8\) would have been a bad choice.<div class="space short"></div></li>
 <li>Encrypt \(m = 5\) with the public key \((143, 7)\). Find \(5^2\) and \(5^4\) mod 143 first, then combine.<div class="space"></div></li>
-<li><b>Break a weak key.</b> A public key is \((221, 5)\). Factor 221, compute \(\varphi\), and find \(d\) with the division trick from the example (two division steps this time).<div class="space"></div></li>
+<li><b>Break a weak key.</b> A public key is \((221, 5)\). Factor 221, compute \(\varphi\), and find \(d\). This time the division takes two steps: \(192 = 38 \times 5 + 2\), then \(5 = 2 \times 2 + 1\). Write \(1 = 5 - 2 \times 2\), replace the 2 by \(192 - 38 \times 5\), and collect the 5s.<div class="space"></div></li>
 <li>In the example \(ed = 721 = 1 + 6 \times 120\). Use Fermat's little theorem to show \(m^{721} \equiv m \pmod{11}\) when 11 does not divide \(m\), and likewise mod 13. Why does that force \(m^{721} \equiv m \pmod{143}\)?<div class="space"></div></li>
 </ol>
-<p class="small">Run keys of any size, with every squaring step shown, at <a href="../../demos/rsa.html">infinityclub.net/demos/rsa.html</a>.</p>
+<p class="small">Try bigger keys, every squaring shown, at <a href="../../demos/rsa.html">infinityclub.net/demos/rsa.html</a>.</p>
 </section>
 
 <section class="stretch">
@@ -75,7 +76,7 @@
 <li>\(221 = 13 \times 17\), \(\varphi = 12 \times 16 = 192\). \(192 = 38 \times 5 + 2\) and \(5 = 2 \times 2 + 1\). Back-substitute: \(1 = 5 - 2 \times 2 = 5 - 2(192 - 38 \times 5) = 77 \times 5 - 2 \times 192\). So \(d = 77\). Check: \(5 \times 77 = 385 = 2 \times 192 + 1\).</li>
 <li>Mod 11: \(m^{721} = m \cdot (m^{10})^{72} \equiv m \cdot 1^{72} = m\) by Fermat. Mod 13: \(m^{721} = m \cdot (m^{12})^{60} \equiv m\). So \(m^{721} - m\) is divisible by 11 and by 13, hence by 143. (If 11 divides \(m\), both sides are 0 mod 11, so it still holds.)</li>
 </ol>
-<p><b>Stretch.</b> \(5^2 \equiv 2\), \(5^4 \equiv 4\), so \(A = 5^6 \equiv 8\). \(5^8 \equiv 16\), so \(B = 5^{15} \equiv 16 \times 4 \times 2 \times 5 = 640 \equiv 19\). Alice: \(19^6 \equiv (-4)^6 = 4096 \equiv 2\). Bob: \(8^2 \equiv -5\), \(8^4 \equiv 2\), \(8^8 \equiv 4\), so \(8^{15} \equiv 4 \times 2 \times (-5) \times 8 = -320 \equiv 2\). Same secret, 2, because \(B^a = 5^{ab} = A^b\). The eavesdropper knows \(5^a \equiv 8\) and must find \(a\): the <b>discrete logarithm</b>, which like factoring has no known fast method.</p>
+<p><b>Stretch.</b> \(5^2 \equiv 2\), \(5^4 \equiv 4\), so \(A = 5^6 \equiv 8\). \(5^8 \equiv 16\), so \(B = 5^{15} \equiv 16 \times 4 \times 2 \times 5 = 640 \equiv 19\). Alice: \(19^6 \equiv (-4)^6 = 4096 \equiv 2\) (since \(19 \equiv -4 \pmod{23}\)). Bob: \(8^2 \equiv -5\), \(8^4 \equiv 2\), \(8^8 \equiv 4\), so \(8^{15} \equiv 4 \times 2 \times (-5) \times 8 = -320 \equiv 2\). Same secret, 2, because \(B^a = 5^{ab} = A^b\). The eavesdropper knows \(5^a \equiv 8\) and must find \(a\): the <b>discrete logarithm</b>, which like factoring has no known fast method.</p>
 </section>
 
 <div class="sheet-nav"><a href="b5-fermat-little.html">← Previous</a><a href="b7-complex-rotations.html">Next: Multiplying is rotating →</a></div>

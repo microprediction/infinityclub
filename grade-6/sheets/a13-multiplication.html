@@ -31,22 +31,23 @@
 
 <section class="idea">
 <h2>Tonight's idea</h2>
-<p>The multiplication you do at school works because of one law: \(a \times (b + c) = a\times b + a \times c\). Multiplying 23 by 47 is really \(23 \times 40 + 23 \times 7\), and each of those splits again into tens and units. Long multiplication is just a tidy way of writing down four small products and adding them. (There is more on this in <a href="a5-mental-multiplication.html">Multiply like a magician</a>.)</p>
-<p>The <b>lattice method</b> does exactly the same four products but puts them in a grid, so you never have to carry while multiplying. Carrying only happens at the very end, along the diagonals. Italian merchants used it for centuries.</p>
+<p>The multiplication you do at school works because of one law: \(a \times (b + c) = a\times b + a \times c\). Multiplying 23 by 47 is really \(23 \times 40 + 23 \times 7\), and each of those splits again into tens and units. Long multiplication is just a tidy way of writing down four small products and adding them. (See <a href="a5-mental-multiplication.html">Multiply like a magician</a>.)</p>
+<p>The <b>lattice method</b> does exactly the same four products but puts them in a grid, so carrying only happens at the end, along the diagonals.</p>
 <p><b>Russian peasant multiplication</b> looks like a magic trick: you never multiply by anything except 2. Halve one number (throw away remainders), double the other, and keep going until the halved column reaches 1. Cross out every row where the halved number is even. Add what is left in the doubled column. That is the answer.</p>
-<p>Why does that work? Halving-and-throwing-away is how you find a number's binary digits (see <a href="b2-binary.html">Counting to 31 on one hand</a>). The odd rows are exactly the powers of two that add up to the first number, so you are adding the matching multiples of the second. Three methods, one law underneath.</p>
+<p>Why? Halving-and-throwing-away is how you find a number's binary digits (see <a href="b2-binary.html">Counting to 31 on one hand</a>). The odd rows are exactly the powers of two that add up to the first number, so you are adding the matching multiples of the second.</p>
 </section>
 
 <section class="example">
 <h2>Watch one: 23 × 47 three ways</h2>
 <p><b>Distributive.</b> \(23 \times 47 = 20\times40 + 20\times7 + 3\times40 + 3\times7 = 800 + 140 + 120 + 21 = 1081\).</p>
-<p><b>Lattice.</b> Write 23 across the top and 47 down the side. In each cell write the product of its row and column digits, tens above the diagonal, units below. Then add along the diagonals from bottom right, carrying leftwards.</p>
+<p><b>Lattice.</b> Write 23 across the top and 47 down the side. In each cell write the product of its column and row digits: the tens digit in the upper-left triangle, the units digit in the lower-right (shaded in the first cell). Then add along the diagonals from bottom right, carrying leftwards.</p>
 <figure>
 <svg viewBox="0 0 240 200" width="240" height="200" font-family="Nunito, sans-serif" font-size="16" fill="#000">
   <text x="85" y="22" text-anchor="middle" font-weight="700">2</text>
   <text x="155" y="22" text-anchor="middle" font-weight="700">3</text>
   <text x="212" y="78" text-anchor="middle" font-weight="700">4</text>
   <text x="212" y="148" text-anchor="middle" font-weight="700">7</text>
+  <polygon points="50,35 120,35 50,105" fill="#e6e6e6"/><polygon points="120,35 120,105 50,105" fill="#fde3b4"/>
   <rect x="50" y="35" width="140" height="140" fill="none" stroke="#000" stroke-width="1.5"/>
   <line x1="120" y1="35" x2="120" y2="175" stroke="#000" stroke-width="1.5"/>
   <line x1="50" y1="105" x2="190" y2="105" stroke="#000" stroke-width="1.5"/>
@@ -79,7 +80,7 @@
 <ol>
 <li>Work out \(36 \times 24\) all three ways: distributive (four small products), lattice, and peasant. Check they agree.<div class="space tall"></div></li>
 <li>Do \(18 \times 25\) by the peasant method. Which rows get crossed out? Write 18 in binary and explain the connection.<div class="space"></div></li>
-<li>Draw a 3-by-2 lattice and compute \(234 \times 56\).<div class="space tall"></div></li>
+<li>Draw a 3-by-2 lattice, with 234 across the top (3 columns) and 56 down the side (2 rows), and compute \(234 \times 56\).<div class="space tall"></div></li>
 <li>Explain, without doing the method, why peasant multiplication must give the right answer for \(13 \times 20\). Use \(13 = 8 + 4 + 1\).<div class="space"></div></li>
 <li>In the lattice, why do the diagonals correspond to units, tens, hundreds? (Think about what each cell's row and column digits are worth.)<div class="space short"></div></li>
 <li>A classmate says peasant multiplication is "cheating because you throw away remainders". Convince them it is not. (What does throwing the remainder away actually record?)<div class="space short"></div></li>
@@ -96,9 +97,9 @@
 <section class="answers">
 <h2>Answers</h2>
 <ol>
-<li>\(36 \times 24 = 864\). Distributive: \(600 + 120 + 120 + 24\). Peasant rows: 36/24, 18/48, 9/96 (keep), 4/192, 2/384, 1/768 (keep); \(96 + 768 = 864\).</li>
+<li>\(36 \times 24 = 864\). Distributive: \(600 + 120 + 120 + 24\). Peasant rows: 36/24, 18/48, 9/96 (keep), 4/192, 2/384, 1/768 (keep); \(96 + 768 = 864\). Lattice cells (tens/units): top row 0/6, 1/2; bottom row 1/2, 2/4.</li>
 <li>Rows 18/25, 9/50 (keep), 4/100, 2/200, 1/400 (keep). \(50 + 400 = 450\). \(18 = 10010_2 = 16 + 2\), so the kept rows are \(2 \times 25\) and \(16 \times 25\).</li>
-<li>\(234 \times 56 = 13104\).</li>
+<li>\(234 \times 56 = 13104\). Lattice cells (tens/units): top row 1/0, 1/5, 2/0; bottom row 1/2, 1/8, 2/4.</li>
 <li>Halving 13 gives 13, 6, 3, 1; the odd rows are 13, 3, 1, which are the rows where the doubled column holds \(1\times20\), \(4\times20\), \(8\times20\). Since \(13 = 1 + 4 + 8\), their sum is \(13 \times 20 = 260\).</li>
 <li>A cell in the tens column and the tens row holds tens times tens, so its digits are worth hundreds and thousands. Cells on the same diagonal have the same place value because moving one left and one down trades a factor of 10 for a factor of 10.</li>
 <li>Throwing away the remainder is exactly what happens when you find a binary digit: the remainder (0 or 1) is the digit, and the row being odd records that a 1 appeared. Nothing is lost; the information moves into the choice of rows to keep.</li>

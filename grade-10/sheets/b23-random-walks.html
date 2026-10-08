@@ -31,11 +31,11 @@
 
 <section class="idea">
 <h2>Tonight's idea</h2>
-<p>Stand on 0 on a number line. Flip a coin: heads step right, tails step left. After \(n\) flips your position is \(S_n = X_1 + \cdots + X_n\), each \(X_i\) being \(+1\) or \(-1\) with probability \(\tfrac12\). This <b>simple random walk</b> is the skeleton inside diffusion, stock prices and a drunk walking home.</p>
-<p><b>On average?</b> Each step has expected value 0, so \(E[S_n] = 0\). True but useless: you are almost never at 0.</p>
-<p><b>How far, typically?</b> Square and take expectations. \(S_n^2 = \sum_i X_i^2 + \sum_{i \ne j} X_i X_j\). Every \(X_i^2 = 1\), so the first sum is \(n\). Each cross term \(X_i X_j\) is \(\pm 1\) with equal probability, so its expectation is 0. Therefore</p>
+<p>Stand on 0 on a number line. Flip a coin: heads step right, tails step left. After \(n\) flips your position is \(S_n = X_1 + \cdots + X_n\), each \(X_i\) being \(+1\) or \(-1\) with probability \(\tfrac12\). This <b>simple random walk</b> is the skeleton inside diffusion and stock prices.</p>
+<p><b>On average?</b> Each step has expected value 0, so \(E[S_n]\), the expected (long-run average) position, is 0. True but useless.</p>
+<p><b>How far, typically?</b> Square and take expectations. Try \(n = 2\): \((X_1 + X_2)^2 = X_1^2 + X_2^2 + 2X_1X_2\); the squares are 1 and the cross term averages 0, so \(E[S_2^2] = 2\). In general \(S_n^2 = \sum_i X_i^2 + \sum_{i \ne j} X_i X_j\). Every \(X_i^2 = 1\), so the first sum is \(n\). Each cross term \(X_i X_j\) is \(\pm 1\) with equal probability, so its expectation is 0. Therefore</p>
 <p class="callout">\(E[S_n^2] = n\): the typical distance from the start after \(n\) steps is \(\sqrt{n}\). After 100 steps, about 10; after a million, about 1,000.</p>
-<p><b>Exactly.</b> To be at \(k\) after \(n\) steps you need \(u = (n+k)/2\) up-steps, so \(P(S_n = k) = \binom{n}{u}/2^n\). For instance \(P(S_{10} = 0) = 252/1024 \approx 0.25\).</p>
+<p><b>Exactly.</b> To be at \(k\) after \(n\) steps you need \(u = (n+k)/2\) up-steps, so \(P(S_n = k) = \binom{n}{u}/2^n\), where \(\binom{n}{u}\) counts the ways to choose which \(u\) of the \(n\) steps go up. For instance \(P(S_{10} = 0) = 252/1024 \approx 0.25\).</p>
 <p><b>Gambler's ruin.</b> You have \(a\) pounds and bet 1 a round on a fair coin until you reach \(N\) or hit 0. If \(p_a\) is the chance of reaching \(N\), then \(p_a = \tfrac12 p_{a-1} + \tfrac12 p_{a+1}\): each value is the average of its neighbours, so the \(p_a\) lie on a straight line from \(p_0 = 0\) to \(p_N = 1\):</p>
 <p class="callout">\(p_a = a/N\) in a fair game. With a win probability \(p \ne \tfrac12\) and \(q = 1 - p\), the line becomes a geometric curve: \(p_a = \dfrac{1 - (q/p)^a}{1 - (q/p)^N}\).</p>
 </section>
@@ -45,7 +45,7 @@
 <p>You have 10 chips and want 20. Red at a double-zero table wins with \(p = 18/38\), so \(q/p = 10/9\).</p>
 <p><b>Timid play</b>, one chip a spin: \((10/9)^{10} \approx 2.868\) and \((10/9)^{20} \approx 8.225\), so \(p_{10} = \dfrac{1 - 2.868}{1 - 8.225} \approx 0.259\).</p>
 <p><b>Bold play</b>, all 10 chips on one spin: \(18/38 \approx 0.474\).</p>
-<p>Bold play nearly doubles your chance. Every spin has the same small edge against you, so give the house as few spins as possible. (In a fair game it would make no difference.)</p>
+<p>Bold play nearly doubles your chance: every spin carries the same edge against you, so give the house as few spins as possible.</p>
 </section>
 
 <section class="exercises">
@@ -53,10 +53,10 @@
 <ol>
 <li>List all 8 paths of a 3-step walk (HHH, HHT, …) and where each ends. Give the distribution of \(S_3\), then compute \(E[S_3^2]\) from it and check against the formula.<div class="space"></div></li>
 <li>For a 6-step walk find \(P(S_6 = 0)\), \(P(S_6 = 2)\) and \(P(|S_6| \ge 4)\). Why is \(P(S_6 = 1)\) zero?<div class="space short"></div></li>
-<li>Fair gambler's ruin. Find the chance of reaching the target first when you (a) have 10, target 100; (b) have 10, target 20; (c) have 100 and the casino has 1,000,000, playing until one of you has everything. Draw the moral.<div class="space short"></div></li>
+<li>Fair gambler's ruin. Find the chance of reaching the target first when you (a) have 10, target 100; (b) have 10, target 20; (c) have 100 and the casino has 1,000,000, playing until one of you has everything (so the target \(N\) is your stake plus theirs, 1,000,100). What is the lesson?<div class="space short"></div></li>
 <li>A game you win with probability \(p = 0.6\). You have 5 and want 10, betting 1 a round. Use the biased formula with \(q/p = \tfrac23\), and compare with the fair answer.<div class="space short"></div></li>
 </ol>
-<p class="small">Watch many walks at once at <a href="../../demos/dice.html">infinityclub.net/demos/dice.html</a>: the histogram of sums is the same \(\sqrt{n}\) spreading.</p>
+<p class="small">Demo: <a href="../../demos/dice.html">infinityclub.net/demos/dice.html</a>, where the histogram of sums shows the \(\sqrt{n}\) spreading.</p>
 </section>
 
 <section class="stretch">

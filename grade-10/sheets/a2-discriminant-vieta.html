@@ -25,24 +25,24 @@
 <header class="sheet-head">
   <div class="kicker">Infinity Club · Grade 10 · Sharpen · 2</div>
   <h1>What the roots are telling you</h1>
-  <p class="teaser">The discriminant counts solutions. Vieta says the roots add to −b/a and multiply to c/a, and that is a superpower.</p>
+  <p class="teaser">The discriminant counts solutions. Vieta says the roots add to −b/a and multiply to c/a, and that answers questions without solving the equation.</p>
   <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
 </header>
 
 <section class="idea">
 <h2>Tonight's idea</h2>
-<p>Last sheet ended with \(x = \dfrac{-b \pm \sqrt{b^2 - 4ac}}{2a}\). The part under the root, \(D = b^2 - 4ac\), is the <b>discriminant</b>, and it decides everything before you compute anything: \(D \gt 0\) means two real roots, \(D = 0\) one repeated root (the vertex sits on the axis), \(D \lt 0\) no real roots. (There are still two roots then, but they are complex; see <a href="b7-complex-rotations.html">Multiplying is rotating</a>.)</p>
-<p>Now the superpower. If \(ax^2 + bx + c\) has roots \(r\) and \(s\), it factorises as \(a(x - r)(x - s)\). Expand:</p>
+<p>Last sheet ended with \(x = \dfrac{-b \pm \sqrt{b^2 - 4ac}}{2a}\). The part under the root, \(D = b^2 - 4ac\), is the <b>discriminant</b>, and it decides everything before you compute anything: \(D \gt 0\) means two real roots, \(D = 0\) one repeated root (the vertex sits on the \(x\)-axis), \(D \lt 0\) no real roots. (There are still two roots then, but they are complex; see <a href="b7-complex-rotations.html">Multiplying is rotating</a>.)</p>
+<p>If \(ax^2 + bx + c\) has roots \(r\) and \(s\), it factorises as \(a(x - r)(x - s)\). Expand:</p>
 <p>\[a(x - r)(x - s) = ax^2 - a(r+s)x + a\,rs.\]</p>
 <p>This is the same polynomial as \(ax^2 + bx + c\), so the coefficients match: \(b = -a(r+s)\) and \(c = a\,rs\). Rearranged:</p>
 <p class="callout"><b>Vieta's formulas.</b> \(r + s = -\dfrac{b}{a}\) and \(rs = \dfrac{c}{a}\).</p>
-<p>So you know the sum and product of the roots without finding them. That checks answers in two seconds, builds an equation from its roots, and computes things like \(r^2 + s^2 = (r+s)^2 - 2rs\). One more gem: \((r-s)^2 = (r+s)^2 - 4rs = D/a^2\), so the gap between the roots is \(\sqrt{D}/|a|\). The discriminant literally measures how far apart the roots are.</p>
+<p>So you know the sum and product of the roots without finding them. That checks answers in two seconds, builds an equation from its roots, and computes things like \(r^2 + s^2 = (r+s)^2 - 2rs\). Also \((r-s)^2 = (r+s)^2 - 4rs = D/a^2\), so the gap between the roots is \(\sqrt{D}/|a|\).</p>
 </section>
 
 <section class="example">
 <h2>Watch one: \(x^2 - 5x + 3 = 0\), without solving it</h2>
 <p>\(D = 25 - 12 = 13 \gt 0\), so two real roots \(r, s\). Vieta: \(r + s = 5\), \(rs = 3\). Then \(r^2 + s^2 = 25 - 6 = 19\), \(\;\dfrac1r + \dfrac1s = \dfrac{r+s}{rs} = \dfrac53\), \(\;|r - s| = \sqrt{13}\).</p>
-<p>Now solve it for real: \(x = \tfrac{5 \pm \sqrt{13}}{2}\). Sum 5, difference \(\sqrt{13}\). Vieta knew.</p>
+<p>Now solve it for real: \(x = \tfrac{5 \pm \sqrt{13}}{2}\). Sum 5, difference \(\sqrt{13}\), as Vieta said.</p>
 <p class="small">Drag \(a\), \(b\), \(c\) and watch the discriminant and roots at <a href="../../demos/quadratic.html">infinityclub.net/demos/quadratic.html</a>.</p>
 </section>
 
@@ -52,7 +52,7 @@
 <li>Find the discriminant and state how many real roots each has: \(x^2 + 4x + 4\), \(\;2x^2 - 3x + 5\), \(\;x^2 - x - 1\).<div class="space short"></div></li>
 <li>For which values of \(k\) does \(x^2 + kx + 16 = 0\) have (a) exactly one root, (b) no real roots?<div class="space short"></div></li>
 <li>The roots of \(2x^2 + 7x - 4 = 0\) are \(r\) and \(s\). Without solving, find \(r + s\), \(rs\) and \(r^2 + s^2\).<div class="space short"></div></li>
-<li>The line \(y = mx - 4\) touches the parabola \(y = x^2\) at exactly one point. Find both possible values of \(m\) and the point of contact for each.<div class="space"></div></li>
+<li>The line \(y = mx - 4\) touches the parabola \(y = x^2\) at exactly one point. Find both possible values of \(m\) and the point of contact for each. (Set \(x^2 = mx - 4\), move everything to one side, and make the discriminant zero.)<div class="space"></div></li>
 </ol>
 </section>
 

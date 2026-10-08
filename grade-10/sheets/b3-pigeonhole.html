@@ -31,16 +31,16 @@
 
 <section class="idea">
 <h2>Tonight's idea</h2>
-<p>If 10 pigeons fly into 9 pigeonholes, some hole gets at least two pigeons. Nobody argues with that. The surprise is how much it proves.</p>
+<p>If 10 pigeons fly into 9 pigeonholes, some hole gets at least two pigeons. The surprise is how much that proves.</p>
 <p class="callout"><b>Pigeonhole principle.</b> If \(N\) objects are placed in \(k\) boxes and \(N > k\), some box holds at least 2. More precisely, some box holds at least \(\lceil N/k \rceil\) objects (\(N/k\) rounded <em>up</em>). Proof: if every box held fewer than \(N/k\), the total would be less than \(N\).</p>
-<p><b>Hairs.</b> A human head has at most about 150,000 hairs, and London has about 9 million people. Boxes: the 150,001 possible hair counts. Pigeons: the Londoners. So two Londoners have exactly the same number of hairs, and some count is shared by at least \(\lceil 9{,}000{,}000 / 150{,}001 \rceil = 60\) people. We have no idea who. Pigeonhole proves existence without finding anything.</p>
-<p>The craft is in choosing the boxes. Every problem tonight is really the question: <em>what are the pigeons, and what are the holes?</em></p>
+<p><b>Hairs.</b> A human head has at most about 150,000 hairs, and London has about 9 million people. Boxes: the 150,001 possible hair counts. Pigeons: the Londoners. So two Londoners have exactly the same number of hairs, and some count is shared by at least \(\lceil 9{,}000{,}000 / 150{,}001 \rceil = 60\) people. Pigeonhole proves existence without finding anything.</p>
+<p>Every problem tonight is really the question: <em>what are the pigeons, and what are the holes?</em></p>
 </section>
 
 <section class="example">
 <h2>Watch one: a multiple of 7 made of 1s and 0s</h2>
-<p>Claim: some multiple of 7 is written using only the digits 1 and 0. Look at the eight numbers \(1, 11, 111, \ldots, 11111111\) and their remainders on division by 7. There are only 7 possible remainders and 8 numbers, so two of them, with \(a\) ones and \(b\) ones (\(a > b\)), leave the <em>same</em> remainder. Their difference is a multiple of 7, and it is \(a - b\) ones followed by \(b\) zeros.</p>
-<p>Pigeons: the 8 repunits. Holes: the 7 remainders. The proof never found the multiple (it is \(111111 = 7 \times 15873\)), and the same argument works for any divisor in place of 7.</p>
+<p>Claim: some multiple of 7 is written using only the digits 1 and 0. Look at the eight numbers \(1, 11, 111, \ldots, 11111111\) and their remainders on division by 7. There are only 7 possible remainders and 8 numbers, so two of them, with \(a\) ones and \(b\) ones (\(a > b\)), leave the <em>same</em> remainder. Their difference is a multiple of 7, and it is \(a - b\) ones followed by \(b\) zeros (for instance \(11111 - 11 = 11100\): three 1s, then two 0s).</p>
+<p>Pigeons: the 8 repunits (numbers written with only 1s). Holes: the 7 remainders. The proof never found the multiple (it is \(111111 = 7 \times 15873\)), and the same argument works for any divisor in place of 7.</p>
 </section>
 
 <section class="exercises">
@@ -55,7 +55,7 @@
 
 <section class="stretch">
 <h2>Stretch: a block that sums to a multiple of 10</h2>
-<p>Pick any 10 whole numbers \(a_1, \ldots, a_{10}\). Prove that some of them, taken consecutively, add up to a multiple of 10. (Hint: the pigeons are the running totals \(a_1\), \(a_1 + a_2\), \(a_1 + a_2 + a_3\), and so on. What are the holes?)</p>
+<p>Pick any 10 whole numbers \(a_1, \ldots, a_{10}\). Prove that some block of neighbours \(a_i + a_{i+1} + \cdots + a_j\) adds up to a multiple of 10. (Hint: the pigeons are the running totals \(a_1\), \(a_1 + a_2\), \(a_1 + a_2 + a_3\), and so on. What are the holes?)</p>
 <div class="space"></div>
 </section>
 

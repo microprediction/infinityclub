@@ -22,7 +22,7 @@
 </nav>
 <main class="demo-wrap">
 <h1>Slicing a cone</h1>
-<p class="explain">Two cones tip to tip, and a flat plane cutting through them. Tilt the plane. Flat across you get a circle. Tilt a little and it stretches into an ellipse. Tilt until the plane is parallel to the cone's side and the curve opens up into a parabola. Tilt further and the plane hits both cones: a hyperbola. One shape, one knife, four curves.</p>
+<p class="explain">Tilt the plane. Flat: a circle. Tilted: an ellipse. Parallel to the cone's side: a parabola. Steeper still: a hyperbola, cutting both cones. One shape, one knife, four curves.</p>
 <div class="demo-panel">
   <div class="controls">
     <label>plane tilt <input type="range" id="tilt" min="0" max="90" step="0.5" value="35"> <span id="tiltv">35°</span></label>
@@ -41,7 +41,7 @@
 <h2>What's going on</h2>
 <p>The cone here has sides at 60° to the horizontal. Call the plane's tilt θ. While θ is less than 60° the plane crosses every line on one cone and the cut closes up: an ellipse, and a circle when θ = 0. At exactly 60° the plane is parallel to one line of the cone, so it never crosses that line and the curve never closes: a parabola. Past 60° the plane is steeper than the cone's side and must cut the upper cone too, giving the two branches of a hyperbola.</p>
 <p>One number tells the four apart: the <b>eccentricity</b> e. Every point on the curve is e times as far from a fixed point, the <b>focus</b>, as from a fixed line, the <b>directrix</b>. A circle has e = 0 (the directrix has gone off to infinity), an ellipse has 0 &lt; e &lt; 1, a parabola has e = 1 exactly, and a hyperbola has e &gt; 1. For this cone, e = sin θ ÷ cos 30°, which is why e reaches 1 at θ = 60°.</p>
-<p>The right-hand picture draws the curve from that rule alone, r = ℓ / (1 + e cos φ) measured from the focus. Change e continuously and the circle, ellipse, parabola and hyperbola slide into one another. They are not four shapes. They are one family.</p>
+<p>The right-hand picture draws the curve from that focus-and-directrix rule alone. Change e continuously and the circle, ellipse, parabola and hyperbola slide into one another.</p>
 <p>Planets travel on ellipses with the Sun at a focus. A ball thrown in the air follows a parabola. A comet passing once and leaving forever follows a hyperbola. Whispering galleries, satellite dishes and the shadow of a lampshade on a wall are all conics too.</p>
 <p>Sheets: <a href="../grade-10/sheets/b16-conics.html">Slicing a cone</a> and <a href="../grade-10/sheets/c2-kepler.html">Kepler's laws and measuring the universe</a>.</p>
 </div>

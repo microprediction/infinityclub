@@ -33,8 +33,8 @@
 <h2>Tonight's idea</h2>
 <p>Divide a polynomial \(p(x)\) by \((x - a)\), the way you divide 17 by 5 to get 3 remainder 2. You get a quotient \(q(x)\) and a remainder, and because the divisor has degree 1 the remainder is a plain number \(r\):
 \[ p(x) = (x - a)\,q(x) + r \quad\text{for every } x. \]
-Put \(x = a\). The first term dies, leaving \(p(a) = r\). That is the <b>remainder theorem</b>: the remainder on dividing by \((x - a)\) is \(p(a)\). No division required.</p>
-<p>The <b>factor theorem</b> follows in one line: \((x - a)\) is a factor exactly when the remainder is zero, so <b>\((x - a)\) divides \(p(x)\) if and only if \(p(a) = 0\).</b> Roots and factors are the same thing in different clothes. To find the quotient, use <b>synthetic division</b>: write the coefficients in a row, bring the first down, multiply by \(a\), add to the next, repeat.</p>
+Put \(x = a\). The first term is zero, leaving \(p(a) = r\). That is the <b>remainder theorem</b>: the remainder on dividing by \((x - a)\) is \(p(a)\). No division required.</p>
+<p>The <b>factor theorem</b> follows in one line: \((x - a)\) is a factor exactly when the remainder is zero, so <b>\((x - a)\) divides \(p(x)\) if and only if \(p(a) = 0\).</b> To find the quotient, use <b>synthetic division</b>, shown below.</p>
 <p>Two factorisations to know by heart:
 \[ a^3 - b^3 = (a - b)(a^2 + ab + b^2), \qquad a^3 + b^3 = (a + b)(a^2 - ab + b^2). \]
 The factor theorem predicts the first: \(a = b\) makes \(a^3 - b^3\) zero, so \((a - b)\) must divide it.</p>
@@ -44,11 +44,11 @@ The factor theorem predicts the first: \(a = b\) makes \(a^3 - b^3\) zero, so \(
 <h2>Watch one: factor a cubic completely</h2>
 <p>\(p(x) = x^3 - 6x^2 + 11x - 6\). Try small divisors of the constant term 6. \(p(1) = 1 - 6 + 11 - 6 = 0\), so \((x - 1)\) is a factor. Synthetic division by 1:</p>
 <table>
-<tr><td></td><td>1</td><td>−6</td><td>11</td><td>−6</td></tr>
-<tr><td>1</td><td></td><td>1</td><td>−5</td><td>6</td></tr>
-<tr><td></td><td><b>1</b></td><td><b>−5</b></td><td><b>6</b></td><td><b>0</b></td></tr>
+<tr><td>\(a = 1\)</td><td>1</td><td>−6</td><td>11</td><td>−6</td><td class="small">← coefficients of \(p\)</td></tr>
+<tr><td></td><td>↓</td><td>1</td><td>−5</td><td>6</td><td class="small">← \(a \times\) the number below-left</td></tr>
+<tr><td></td><td><b>1</b></td><td><b>−5</b></td><td><b>6</b></td><td><b>0</b></td><td class="small">← row 1 + row 2</td></tr>
 </table>
-<p>Quotient \(x^2 - 5x + 6 = (x - 2)(x - 3)\), remainder 0. So \(p(x) = (x-1)(x-2)(x-3)\). And the remainder on dividing the same \(p(x)\) by \((x - 4)\), without dividing: \(p(4) = 64 - 96 + 44 - 6 = 6\).</p>
+<p>Bring the first 1 down. Then repeat: multiply by \(a\), write it under the next coefficient, add. The last entry of the bottom row is the remainder; the others are the quotient, one degree lower: \(x^2 - 5x + 6 = (x - 2)(x - 3)\), remainder 0. So \(p(x) = (x-1)(x-2)(x-3)\). And the remainder on dividing the same \(p(x)\) by \((x - 4)\), without dividing: \(p(4) = 64 - 96 + 44 - 6 = 6\).</p>
 </section>
 
 <section class="exercises">

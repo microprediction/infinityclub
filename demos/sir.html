@@ -24,7 +24,7 @@
 <p class="explain">A town of 1,000 people. Everyone is Susceptible, Infected or Recovered. Each infected person passes the illness to R₀ others over the time they are infectious, but only to people who are still susceptible. Slide R₀, vaccinate some of the town in advance, and watch what happens to the curve.</p>
 <div class="demo-panel">
   <div class="controls">
-    <label>R₀ <input type="range" id="r0" min="0.5" max="8" step="0.1" value="3"> <span id="r0v">3.0</span></label>
+    <label>R₀ (people each case infects) <input type="range" id="r0" min="0.5" max="8" step="0.1" value="3"> <span id="r0v">3.0</span></label>
     <label>infectious for <input type="range" id="dur" min="2" max="14" step="1" value="7"> <span id="durv">7 days</span></label>
     <label>initially infected <input type="range" id="i0" min="1" max="50" step="1" value="1"> <span id="i0v">1</span></label>
     <label>vaccinated <input type="range" id="vac" min="0" max="95" step="1" value="0"> <span id="vacv">0%</span></label>
@@ -35,7 +35,7 @@
 </div>
 <div class="explain">
 <h2>What's going on</h2>
-<p>Each day, the number of new infections is proportional to how many infected people there are times how many susceptible people they can meet: new cases = β × S × I ÷ N. Each day a fraction γ of the infected recover, where γ = 1 ÷ (days infectious). The ratio β ÷ γ is R₀, the number of people one case infects in a town where everyone is susceptible.</p>
+<p>Each day, the number of new infections is proportional to how many infected people there are times how many susceptible people they can meet: new cases each day = (contact rate β) × S × I ÷ N. Each day a fraction γ of the infected recover, where γ = 1 ÷ (days infectious). The ratio β ÷ γ is R₀, the number of people one case infects in a town where everyone is susceptible.</p>
 <p>At the start almost everyone is susceptible, so each case causes about R₀ more, and those cause R₀ more again: exponential growth. But every infection removes a susceptible person. Once the susceptible fraction drops below 1 ÷ R₀, each case causes fewer than one new case, and the epidemic turns over. That moment is the peak.</p>
 <p>Turn the sentence around and you have the <b>herd immunity threshold</b>: when at least 1 − 1 ÷ R₀ of the town is immune, the illness cannot grow. For R₀ = 3 that is two thirds. The orange line marks it. Vaccination reaches it without anyone falling ill; an uncontrolled epidemic reaches it the hard way, and then overshoots, because the people infected around the peak go on to infect others.</p>
 <p>Try R₀ = 3 with 0% vaccinated and note the final size. Then set vaccination to 60%, just under the threshold, and to 70%, just over it. The epidemic does not simply shrink in proportion. It collapses, and the few remaining cases protect the unvaccinated too. That is what "herd" means.</p>

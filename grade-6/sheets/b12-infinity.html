@@ -32,9 +32,9 @@
 <section class="idea">
 <h2>Tonight's idea</h2>
 <p>Imagine a hotel with infinitely many rooms, numbered 1, 2, 3, and on forever. Tonight every room is full. A traveller arrives and asks for a room. In an ordinary full hotel, bad luck. In Hilbert's hotel the manager picks up the microphone: "Would every guest please move to the room one number higher." Room 1 moves to room 2, room 2 to room 3, and so on. Nobody is left without a room, because there is no last room to fall off the end of. Room 1 is now empty. The traveller checks in.</p>
-<p>Later an infinite bus arrives carrying infinitely many passengers, numbered 1, 2, 3, … The manager is unbothered. "Would every guest in room \(n\) please move to room \(2n\)." Now all the odd-numbered rooms are empty, and there are infinitely many of them. Passenger 1 takes room 1, passenger 2 takes room 3, passenger \(k\) takes room \(2k - 1\). Everyone fits.</p>
+<p>Later an infinite bus arrives carrying infinitely many passengers, numbered 1, 2, 3, … "Would every guest in room \(n\) please move to room \(2n\)." Now all the odd-numbered rooms are empty, and there are infinitely many of them. Passenger 1 takes room 1, passenger 2 takes room 3, passenger \(k\) takes room \(2k - 1\). Everyone fits.</p>
 <p>This is the German mathematician David Hilbert's way of showing that infinity does not behave like a big number. Add one to infinity and you have the same infinity. Double it and you still have the same infinity. The even numbers 2, 4, 6, … can be paired up perfectly with all the whole numbers 1, 2, 3, …, each even number with its half, nothing left over on either side. So in the only sense that makes sense for infinite collections, there are <em>exactly as many</em> even numbers as whole numbers, even though the evens are only "half" of them.</p>
-<p>This club is named after that idea. Infinity is not a number you reach by counting very high. It is a different kind of thing, with its own rules, and the rules can be worked out.</p>
+<p>This club is named after that idea. Infinity is not a number you reach by counting very high. It is a different kind of thing, with its own rules, and the rules can be worked out. The same idea in a picture:</p>
 <figure>
 <svg viewBox="0 0 220 220" width="200" height="200" xmlns="http://www.w3.org/2000/svg" font-family="Nunito, sans-serif" font-size="13" text-anchor="middle">
   <rect x="10" y="10" width="200" height="200" fill="none" stroke="#000" stroke-width="1.5"/>
@@ -71,8 +71,55 @@
 
 <section class="stretch">
 <h2>Stretch: can every fraction get a room?</h2>
-<p>Write all the positive fractions in an infinite grid: row 1 has \(\tfrac11, \tfrac12, \tfrac13, \ldots\), row 2 has \(\tfrac21, \tfrac22, \tfrac23, \ldots\), and so on. Every fraction appears somewhere. Now draw a path that zig-zags through the grid along the diagonals: \(\tfrac11\), then \(\tfrac12, \tfrac21\), then \(\tfrac31, \tfrac22, \tfrac13\), then \(\tfrac14, \tfrac23, \tfrac32, \tfrac41\), and so on. Give the fractions rooms in the order the path visits them (skipping repeats like \(\tfrac22\)). Which room does \(\tfrac23\) get? Does every fraction eventually get a room?</p>
-<p>Teaser for another night: in 1891 Georg Cantor showed that the decimals between 0 and 1 <em>cannot</em> all be given rooms. Whatever list you make, he builds a decimal that differs from the first entry in the first digit, the second entry in the second digit, and so on, so it is on no line of your list. There are different sizes of infinity, and the decimals are a bigger one than the whole numbers.</p>
+<p>Write all the positive fractions in an infinite grid: row 1 has \(\tfrac11, \tfrac12, \tfrac13, \ldots\), row 2 has \(\tfrac21, \tfrac22, \tfrac23, \ldots\), and so on. Every fraction appears somewhere. Now walk a path that zig-zags through the grid along the diagonals, as in the picture, and give the fractions rooms in the order the path visits them, skipping repeats like \(\tfrac22\). Which room does \(\tfrac23\) get? Which fraction gets room 12? Does every fraction eventually get a room?</p>
+<figure><svg viewBox="0 0 250 182" width="250" height="182" role="img" aria-label="A 4 by 4 grid of fractions with a zig-zag path along the diagonals and the first nine rooms numbered">
+<rect x="30" y="14" width="52" height="40" fill="#fff" stroke="#999" stroke-width=".8"/>
+<text x="50" y="39" font-family="Nunito, sans-serif" font-size="13" text-anchor="middle">1/1</text>
+<rect x="82" y="14" width="52" height="40" fill="#fff" stroke="#999" stroke-width=".8"/>
+<text x="102" y="39" font-family="Nunito, sans-serif" font-size="13" text-anchor="middle">1/2</text>
+<rect x="134" y="14" width="52" height="40" fill="#fff" stroke="#999" stroke-width=".8"/>
+<text x="154" y="39" font-family="Nunito, sans-serif" font-size="13" text-anchor="middle">1/3</text>
+<rect x="186" y="14" width="52" height="40" fill="#fff" stroke="#999" stroke-width=".8"/>
+<text x="206" y="39" font-family="Nunito, sans-serif" font-size="13" text-anchor="middle">1/4</text>
+<rect x="30" y="54" width="52" height="40" fill="#fff" stroke="#999" stroke-width=".8"/>
+<text x="50" y="79" font-family="Nunito, sans-serif" font-size="13" text-anchor="middle">2/1</text>
+<rect x="82" y="54" width="52" height="40" fill="#eee" stroke="#999" stroke-width=".8"/>
+<text x="102" y="79" font-family="Nunito, sans-serif" font-size="13" text-anchor="middle">2/2</text>
+<rect x="134" y="54" width="52" height="40" fill="#fff" stroke="#999" stroke-width=".8"/>
+<text x="154" y="79" font-family="Nunito, sans-serif" font-size="13" text-anchor="middle">2/3</text>
+<rect x="186" y="54" width="52" height="40" fill="#fff" stroke="#999" stroke-width=".8"/>
+<text x="206" y="79" font-family="Nunito, sans-serif" font-size="13" text-anchor="middle">2/4</text>
+<rect x="30" y="94" width="52" height="40" fill="#fff" stroke="#999" stroke-width=".8"/>
+<text x="50" y="119" font-family="Nunito, sans-serif" font-size="13" text-anchor="middle">3/1</text>
+<rect x="82" y="94" width="52" height="40" fill="#fff" stroke="#999" stroke-width=".8"/>
+<text x="102" y="119" font-family="Nunito, sans-serif" font-size="13" text-anchor="middle">3/2</text>
+<rect x="134" y="94" width="52" height="40" fill="#fff" stroke="#999" stroke-width=".8"/>
+<text x="154" y="119" font-family="Nunito, sans-serif" font-size="13" text-anchor="middle">3/3</text>
+<rect x="186" y="94" width="52" height="40" fill="#fff" stroke="#999" stroke-width=".8"/>
+<text x="206" y="119" font-family="Nunito, sans-serif" font-size="13" text-anchor="middle">3/4</text>
+<rect x="30" y="134" width="52" height="40" fill="#fff" stroke="#999" stroke-width=".8"/>
+<text x="50" y="159" font-family="Nunito, sans-serif" font-size="13" text-anchor="middle">4/1</text>
+<rect x="82" y="134" width="52" height="40" fill="#fff" stroke="#999" stroke-width=".8"/>
+<text x="102" y="159" font-family="Nunito, sans-serif" font-size="13" text-anchor="middle">4/2</text>
+<rect x="134" y="134" width="52" height="40" fill="#fff" stroke="#999" stroke-width=".8"/>
+<text x="154" y="159" font-family="Nunito, sans-serif" font-size="13" text-anchor="middle">4/3</text>
+<rect x="186" y="134" width="52" height="40" fill="#fff" stroke="#999" stroke-width=".8"/>
+<text x="206" y="159" font-family="Nunito, sans-serif" font-size="13" text-anchor="middle">4/4</text>
+<polyline points="56,34 108,34 56,74 56,114 108,74 160,34 212,34 160,74 108,114 56,154" fill="none" stroke="#f5a524" stroke-width="2" opacity=".8"/>
+<circle cx="73" cy="23" r="7" fill="#3f44c9"/><text x="73" y="26" font-family="Nunito, sans-serif" font-size="9" text-anchor="middle" fill="#fff">1</text>
+<circle cx="125" cy="23" r="7" fill="#3f44c9"/><text x="125" y="26" font-family="Nunito, sans-serif" font-size="9" text-anchor="middle" fill="#fff">2</text>
+<circle cx="73" cy="63" r="7" fill="#3f44c9"/><text x="73" y="66" font-family="Nunito, sans-serif" font-size="9" text-anchor="middle" fill="#fff">3</text>
+<circle cx="73" cy="103" r="7" fill="#3f44c9"/><text x="73" y="106" font-family="Nunito, sans-serif" font-size="9" text-anchor="middle" fill="#fff">4</text>
+<text x="130" y="65" font-family="Nunito, sans-serif" font-size="9" text-anchor="end" fill="#999">skip</text>
+<circle cx="177" cy="23" r="7" fill="#3f44c9"/><text x="177" y="26" font-family="Nunito, sans-serif" font-size="9" text-anchor="middle" fill="#fff">5</text>
+<circle cx="229" cy="23" r="7" fill="#3f44c9"/><text x="229" y="26" font-family="Nunito, sans-serif" font-size="9" text-anchor="middle" fill="#fff">6</text>
+<circle cx="177" cy="63" r="7" fill="#3f44c9"/><text x="177" y="66" font-family="Nunito, sans-serif" font-size="9" text-anchor="middle" fill="#fff">7</text>
+<circle cx="125" cy="103" r="7" fill="#3f44c9"/><text x="125" y="106" font-family="Nunito, sans-serif" font-size="9" text-anchor="middle" fill="#fff">8</text>
+<circle cx="73" cy="143" r="7" fill="#3f44c9"/><text x="73" y="146" font-family="Nunito, sans-serif" font-size="9" text-anchor="middle" fill="#fff">9</text>
+<text x="14" y="34" font-family="Nunito, sans-serif" font-size="10" fill="#555">top</text><text x="4" y="46" font-family="Nunito, sans-serif" font-size="10" fill="#555">1→4</text>
+<text x="134" y="180" font-family="Nunito, sans-serif" font-size="10" fill="#555" text-anchor="middle">bottom 1 → 4</text>
+</svg><figcaption>The zig-zag path through the fraction grid. Blue circles are room numbers; \(\tfrac22\) is skipped because it repeats \(\tfrac11\).</figcaption></figure>
+<p>Teaser for another night: in 1891 Georg Cantor showed that the decimals between 0 and 1 <em>cannot</em> all be given rooms. There are different sizes of infinity.</p>
 <div class="space"></div>
 </section>
 
@@ -86,7 +133,7 @@
 <li>After four pieces: \(\tfrac12 + \tfrac14 + \tfrac18 + \tfrac1{16} = \tfrac{15}{16}\), leaving \(\tfrac1{16}\). After \(n\) pieces the leftover is \(\tfrac1{2^n}\), which halves every step. Halving a positive number never gives zero, but you can make it smaller than any amount you name, which is exactly what "the sum is 1" means.</li>
 <li>Move everyone from room \(n\) to room \(3n\). Now rooms of the form \(3k - 2\) (1, 4, 7, …) and \(3k - 1\) (2, 5, 8, …) are all empty. Bus A's passenger \(k\) takes room \(3k - 2\); bus B's passenger \(k\) takes room \(3k - 1\). Any finite number of buses works the same way.</li>
 </ol>
-<p><b>Stretch.</b> The path order, skipping repeats, is \(\tfrac11, \tfrac12, \tfrac21, \tfrac31, \tfrac13, \tfrac14, \tfrac23, \tfrac32, \tfrac41, \ldots\) (\(\tfrac22\) is skipped as a repeat of \(\tfrac11\)). So \(\tfrac23\) gets room 7. Every fraction sits on some diagonal, every diagonal is finite, and the path reaches every diagonal, so every fraction gets a room. The fractions are the same size of infinity as the whole numbers, which surprised everyone, Cantor included.</p>
+<p><b>Stretch.</b> The path order, skipping repeats, is \(\tfrac11, \tfrac12, \tfrac21, \tfrac31, \tfrac13, \tfrac14, \tfrac23, \tfrac32, \tfrac41, \ldots\) (\(\tfrac22\) is skipped as a repeat of \(\tfrac11\)). So \(\tfrac23\) gets room 7. The next diagonal is \(\tfrac51, \tfrac42, \tfrac33, \tfrac24, \tfrac15\), of which only \(\tfrac51\) and \(\tfrac15\) are new: rooms 10 and 11. Room 12 goes to \(\tfrac16\), the first fraction of the next diagonal. Every fraction sits on some diagonal, every diagonal is finite, and the path reaches every diagonal, so every fraction gets a room. The fractions are the same size of infinity as the whole numbers, which surprised everyone, Cantor included.</p>
 </section>
 
 <div class="sheet-nav"><a href="b11-parity.html">← Odd, even and things that never change</a><a href="b13-bridges.html">Next: Seven bridges of Königsberg →</a></div>

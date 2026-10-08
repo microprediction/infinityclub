@@ -37,17 +37,17 @@ table.tt th { background: var(--accent-soft); }
 
 <section class="idea">
 <h2>Tonight's idea</h2>
-<p>A test for a disease is "99% accurate". You test positive. How worried should you be? Most people, including most doctors when surveyed, say about 99%. The real answer can be under 1%. It takes one table to see why.</p>
-<p>A test has two accuracies, not one. <b>Sensitivity</b> is the chance it says positive when you <em>do</em> have the disease: \(P(+ \mid D)\). <b>Specificity</b> is the chance it says negative when you <em>don't</em>: \(P(- \mid \text{no } D)\). The third number, the one the headline leaves out, is the <b>prevalence</b>: how common the disease is among people like you before any test.</p>
+<p>A test for a disease is "99% accurate". You test positive. How worried should you be? Most people, including most doctors, say about 99%. The real answer can be under 1%.</p>
+<p>A test has two accuracies, not one. <b>Sensitivity</b> is the chance it says positive when you <em>do</em> have the disease: \(P(+ \mid D)\), read "the probability of a positive, given disease". <b>Specificity</b> is the chance it says negative when you <em>don't</em>: \(P(- \mid \text{no } D)\). The third number, the one the headline leaves out, is the <b>prevalence</b>: how common the disease is among people like you before any test.</p>
 <p>What you want is the reverse conditional \(P(D \mid +)\), the <b>positive predictive value</b>. Imagine a crowd of \(N\) people and sort them into four boxes: sick or not, positive or not. The sick row holds prevalence × \(N\) people, the healthy row holds the rest.</p>
 <p>Then \(P(D \mid +) = \dfrac{\text{true positives}}{\text{true positives} + \text{false positives}}\). When the disease is rare, the "no disease" row is enormous, and even a 1% false-positive rate applied to it produces more false positives than there are sick people. As a formula this is <a href="b21-bayes.html">Bayes' theorem</a>:</p>
 <p class="callout">\(P(D \mid +) = \dfrac{\text{sens} \times \text{prev}}{\text{sens} \times \text{prev} + (1 - \text{spec}) \times (1 - \text{prev})}\).</p>
-<p>Slide the three numbers at <a href="../../demos/bayes.html">infinityclub.net/demos/bayes.html</a> and watch the crowd recolour.</p>
+<p>Slide the three numbers at <a href="../../demos/bayes.html">infinityclub.net/demos/bayes.html</a>.</p>
 </section>
 
 <section class="example">
 <h2>Watch one: 1 in 1,000, with a 99% / 99% test</h2>
-<p>Take 100,000 people. Prevalence 1 in 1,000 means 100 have the disease and 99,900 do not.</p>
+<p>Take 100,000 people. Prevalence 1 in 1,000 means 100 have the disease and 99,900 do not. Rows are the truth, columns the test result:</p>
 <table class="tt">
 <tr><th></th><th>Test +</th><th>Test −</th><th>Total</th></tr>
 <tr><th>Disease</th><td>99</td><td>1</td><td>100</td></tr>
@@ -69,7 +69,7 @@ table.tt th { background: var(--accent-soft); }
 </table></li>
 <li>The same test is used in a specialist clinic where 30% of the patients referred turn out to have the disease. Redo the table for 10,000 patients. What is the positive predictive value now? What changed?<div class="space short"></div></li>
 <li>A disease affects 1 person in 10,000. The test is 99% sensitive and 99% specific. Using a crowd of 1,000,000, find \(P(D \mid +)\).<div class="space short"></div></li>
-<li>You test positive in question 3, then take a second, independent test with the same sensitivity and specificity, and it is also positive. Use your answer to question 3 as the new prevalence and find \(P(D \mid ++)\). Why do doctors confirm a screening result with a second test?<div class="space short"></div></li>
+<li><b>Use your answer to question 3 as the new prevalence.</b> You test positive, then take a second, independent test with the same sensitivity and specificity, and it is also positive. Find \(P(D \mid ++)\). Why do doctors confirm a screening result with a second test?<div class="space short"></div></li>
 </ol>
 </section>
 
@@ -87,7 +87,7 @@ table.tt th { background: var(--accent-soft); }
 <li>100 sick: 99 true positives, 1 false negative. 999,900 healthy: 9,999 false positives, 989,901 true negatives. \(P(D \mid +) = 99/(99 + 9999) = 0.98\%\). Ninety-nine out of every hundred positives are false.</li>
 <li>New prevalence 0.98%. \(P(D \mid ++) = \dfrac{0.99 \times 0.0098}{0.99 \times 0.0098 + 0.01 \times 0.9902} = \dfrac{0.00970}{0.00970 + 0.00990} = 49.5\%\). Two positives take you from 1-in-10,000 to roughly a coin flip. A confirmatory test is cheap compared with treating 99 healthy people for every sick one.</li>
 </ol>
-<p><b>Stretch.</b> \(21700/1048576 = 0.0207\), below 0.05, so the result counts as "significant". With 20 fair coins, \(P(\text{at least one false alarm}) = 1 - 0.95^{20} = 0.64\). A study that searches many things for a link will find "significant" ones by chance; the medical-test lesson again, in a different coat.</p>
+<p><b>Stretch.</b> \(21700/1048576 = 0.0207\), below 0.05, so the result counts as "significant". With 20 fair coins, \(P(\text{at least one false alarm}) = 1 - 0.95^{20} = 0.64\). A study that searches many things for a link will find "significant" ones by chance; the same lesson as the medical test.</p>
 </section>
 
 <div class="sheet-nav"><a href="c4-money.html">← Previous</a><a href="c6-epidemics.html">Next: R₀ and herd immunity →</a></div>

@@ -31,8 +31,8 @@
 
 <section class="idea">
 <h2>Tonight's idea</h2>
-<p>In the 1700s the city of Königsberg had a river, two islands and seven bridges. The townspeople had a Sunday puzzle: can you walk around the city crossing every bridge exactly once? Nobody could do it, and nobody could say why not. Then Leonhard Euler looked at it and invented a whole branch of mathematics to answer no.</p>
-<p>His first move was to throw away the map. The land masses became dots (<b>vertices</b>) and the bridges became lines (<b>edges</b>). What is left is a <b>graph</b>: just dots and connections. The shape of the river, the size of the islands, the length of the bridges, none of it matters. Only who connects to whom.</p>
+<p>In the 1700s the city of Königsberg had a river, two islands and seven bridges. The townspeople had a Sunday puzzle: can you walk around the city crossing every bridge exactly once? Nobody could, and nobody could say why not. Then Leonhard Euler looked at it and invented a whole branch of mathematics to answer no.</p>
+<p>His first move was to throw away the map. The land masses became dots (<b>vertices</b>) and the bridges became lines (<b>edges</b>); we will just say dots and lines. What is left is a <b>graph</b>: just dots and connections. The shape of the river, the size of the islands, the length of the bridges, none of it matters. Only who connects to whom.</p>
 <figure>
 <svg viewBox="0 0 330 200" width="330" height="200" xmlns="http://www.w3.org/2000/svg" font-family="Nunito, sans-serif" font-size="14" font-weight="700">
   <g stroke="#000" stroke-width="2" fill="none">
@@ -51,7 +51,7 @@
 </figure>
 <p>Now count how many edges touch each dot. That number is the dot's <b>degree</b>. Here is Euler's insight. When your walk passes <em>through</em> a dot, you arrive by one edge and leave by another, using up two. So every dot you pass through, however many times, must have even degree. The only exceptions are where you start and where you finish, which can be odd. So:</p>
 <div class="callout"><b>Euler's rule.</b> A walk that uses every edge exactly once exists only if the number of odd-degree dots is 0 or 2. If it is 0, you can start anywhere and you will end where you began. If it is 2, you must start at one odd dot and end at the other.</div>
-<p>In Königsberg the degrees are 5, 3, 3 and 3. Four odd dots. No walk. The townspeople could have saved a lot of Sundays.</p>
+<p>In Königsberg the degrees are 5, 3, 3 and 3. Four odd dots. No walk.</p>
 </section>
 
 <section class="example">
@@ -78,7 +78,7 @@
 <li>The city builds an eighth bridge between B and C. Now is a walk possible? Where must it start and end?<div class="space short"></div></li>
 <li>Instead, the city demolishes one bridge. Which single bridge could they remove to make the walk possible? Is there more than one choice?<div class="space short"></div></li>
 <li>Draw a square with both diagonals (an envelope with no flap). Find the degrees. Can it be traced? Now add the flap (a triangle on top). Can it be traced now?<div class="space"></div></li>
-<li>Draw a five-pointed star in one stroke, the way you normally do. Count the dots and degrees and explain why that worked and why you ended where you started.<div class="space"></div></li>
+<li>Draw a five-pointed star in one stroke, the way you normally do. Count only the five points as dots (ignore where lines cross inside). Find the degrees and explain why the one-stroke drawing worked and why you ended where you started.<div class="space"></div></li>
 <li><b>Design a town.</b> Draw a river with two islands and exactly six bridges so that a walk crossing every bridge once <em>is</em> possible and ends back where it started. Check all the degrees.<div class="space tall"></div></li>
 </ol>
 </section>
@@ -98,7 +98,7 @@
 <li>B and C become degree 4. Now only A (5) and D (3) are odd, so the walk exists. It must start at A and finish at D, or the reverse.</li>
 <li>Every dot is odd, so removing <em>any</em> one bridge turns its two ends even and leaves exactly two odd dots. All seven bridges work. For example, remove one A–B bridge: then A has degree 4, B has 2, and the walk must run from C to D.</li>
 <li>Square with diagonals: all four corners have degree 3, four odd dots, impossible. Add the flap: the two top corners gain a line each and become degree 4, leaving the two bottom corners odd. Now possible, bottom corner to bottom corner, exactly the house.</li>
-<li>Five dots, each of degree 2 (two lines meet at each point of the star, if you only count the points as dots; if you also count the five inner crossings, those have degree 4). All degrees even, so the walk exists from anywhere and must return to its start.</li>
+<li>Five dots, each of degree 2 (two lines meet at each point). All degrees even, so the walk exists from anywhere and must return to its start.</li>
 <li>Many answers. One: islands A and B, banks N and S. Bridges A–N, A–S, B–N, B–S, A–B, A–B (two parallel bridges between the islands). Degrees: A 4, B 4, N 2, S 2, all even, so you can start anywhere and return.</li>
 </ol>
 <p><b>Stretch.</b> Cube: \(8 - 12 + 6 = 2\). Tetrahedron: \(4 - 6 + 4 = 2\). Square pyramid: \(5 - 8 + 5 = 2\). Hexagonal prism: \(12 - 18 + 8 = 2\). It does not fail for any solid without holes. The house drawn flat: the two diagonals cross, so count the crossing as a dot. Then \(V = 6\), \(E = 10\) (six outer lines plus four half-diagonals), and \(F = 6\) (the roof triangle, four triangles inside the square, and the outside). \(6 - 10 + 6 = 2\).</p>

@@ -33,8 +33,23 @@
 <h2>Tonight's idea</h2>
 <p>The boy was Carl Friedrich Gauss, and the story may be polished, but the trick is real. Instead of adding in order, pair the ends: \(1 + 100 = 101\), \(2 + 99 = 101\), \(3 + 98 = 101\), and so on. There are 50 pairs, each worth 101, so the total is \(50 \times 101 = 5050\).</p>
 <p>In general, adding \(1 + 2 + \cdots + n\) gives \(\dfrac{n(n+1)}{2}\). You can see why with a picture instead of pairs: draw the sum as a staircase of dots, 1 dot in the first row, 2 in the second, up to \(n\). Two staircases fit together into an \(n\) by \((n+1)\) rectangle, so one staircase is half of that.</p>
+<figure><svg viewBox="0 0 130 92" width="130" height="92" role="img" aria-label="Two staircases of 1, 2, 3 dots fitted together into a 3 by 4 rectangle">
+<circle cx="16" cy="16" r="7" fill="#3f44c9"/>
+<circle cx="40" cy="16" r="7" fill="#f5a524"/>
+<circle cx="64" cy="16" r="7" fill="#f5a524"/>
+<circle cx="88" cy="16" r="7" fill="#f5a524"/>
+<circle cx="16" cy="40" r="7" fill="#3f44c9"/>
+<circle cx="40" cy="40" r="7" fill="#3f44c9"/>
+<circle cx="64" cy="40" r="7" fill="#f5a524"/>
+<circle cx="88" cy="40" r="7" fill="#f5a524"/>
+<circle cx="16" cy="64" r="7" fill="#3f44c9"/>
+<circle cx="40" cy="64" r="7" fill="#3f44c9"/>
+<circle cx="64" cy="64" r="7" fill="#3f44c9"/>
+<circle cx="88" cy="64" r="7" fill="#f5a524"/>
+<rect x="4" y="4" width="96" height="72" fill="none" stroke="#999" stroke-dasharray="3 3"/>
+<text x="108" y="44" font-family="Nunito, sans-serif" font-size="12" fill="#555">3</text><text x="47" y="90" font-family="Nunito, sans-serif" font-size="12" fill="#555" text-anchor="middle">4</text>
+</svg><figcaption>\(1 + 2 + 3\) (blue) and a second copy upside down (orange) make a 3 by 4 rectangle of 12 dots. One staircase is half: 6.</figcaption></figure>
 <p>These totals, 1, 3, 6, 10, 15, 21, …, are the <b>triangular numbers</b>, because the staircase is a triangle of dots. They turn up everywhere: the number of handshakes in a room of \(n+1\) people, the number of balls in a rack of pool, a diagonal of Pascal's triangle.</p>
-<p>The lazy habit behind all this is worth keeping: before you add a long list, look for a pattern that lets you skip the adding.</p>
 </section>
 
 <section class="example">
@@ -51,7 +66,7 @@
 <li>Add \(21 + 22 + \cdots + 60\) using the subtraction method.<div class="space short"></div></li>
 <li>Add the odd numbers \(1 + 3 + 5 + \cdots + 19\). Then add \(1 + 3\), \(1 + 3 + 5\), \(1 + 3 + 5 + 7\). What kind of numbers do you keep getting? How many odd numbers were in the first sum, and how does that predict its total?<div class="space"></div></li>
 <li>Everyone at a party of 100 people shakes hands with everyone else exactly once. How many handshakes? (The first person shakes 99 hands, the next shakes 98 new ones, …)<div class="space short"></div></li>
-<li>A staircase picture explains the formula. Draw the staircase for \(n = 4\) (rows of 1, 2, 3, 4 dots), then draw a second copy upside down beside it. What rectangle do you get, and how does it give \(\dfrac{4 \times 5}{2}\)?<div class="space"></div></li>
+<li>The picture in Tonight's idea shows \(n = 3\). Draw the same thing for \(n = 4\): a staircase with rows of 1, 2, 3, 4 dots, and a second copy upside down beside it. What rectangle do you get, and how does it give \(\dfrac{4 \times 5}{2}\)?<div class="space"></div></li>
 </ol>
 </section>
 
@@ -84,7 +99,7 @@
 <li>\(99 + 98 + \cdots + 1 = \frac{99 \times 100}{2} = 4950\).</li>
 <li>Two staircases of 1, 2, 3, 4 fit together into a 4 by 5 rectangle of 20 dots. One staircase is half, 10 dots, which is \(\frac{4 \times 5}{2}\). The general picture is \(n\) by \(n+1\).</li>
 </ol>
-<p><b>Stretch.</b> Each L wraps around a square that is one unit bigger on each side, so it needs one extra square along the bottom and one extra up the side: 2 more than the previous L. The L around an \((n-1)\) by \((n-1)\) square has \(2n - 1\) cells: \(n\) along the bottom, \(n\) up the side, minus the shared corner. Adding the L turns an \((n-1)^2\) square into an \(n^2\) square, so the odd numbers add up to squares forever. The cubes: 1, 9, 36, 100, which are \(1^2, 3^2, 6^2, 10^2\), the squares of the triangular numbers. So \(1^3 + 2^3 + \cdots + n^3 = (1 + 2 + \cdots + n)^2\). That one is true for every \(n\), and the proof is a lovely picture you may meet later.</p>
+<p><b>Stretch.</b> Each L wraps around a square that is one unit bigger on each side, so it needs one extra square along the bottom and one extra up the side: 2 more than the previous L. The L around an \((n-1)\) by \((n-1)\) square has \(2n - 1\) cells: \(n\) along the bottom, \(n\) up the side, minus the shared corner. Adding the L turns an \((n-1)^2\) square into an \(n^2\) square, so the odd numbers add up to squares forever. The cubes: 1, 9, 36, 100, which are \(1^2, 3^2, 6^2, 10^2\), the squares of the triangular numbers. So \(1^3 + 2^3 + \cdots + n^3 = (1 + 2 + \cdots + n)^2\). That one is true for every \(n\); there is a picture proof, for another night.</p>
 </section>
 
 <div class="sheet-nav"><a href="b4-pascal.html">← Pascal's triangle</a><a href="b6-fibonacci.html">Next: Fibonacci and the golden ratio →</a></div>

@@ -31,33 +31,65 @@
 
 <section class="idea">
 <h2>Tonight's idea</h2>
-<p>Put your eye at the origin, look along the \(z\)-axis, and hang a sheet of glass at distance \(d\) in front of you. A point \((X, Y, Z)\) in the world is seen where the line from your eye to it pierces the glass. By similar triangles that is</p>
+<p>Put your eye at the origin, with \(x\) to the right, \(y\) up and \(z\) straight ahead, and hang a sheet of glass at distance \(d\) in front of you. A point \((X, Y, Z)\) in the world is seen where the line from your eye to it pierces the glass. By similar triangles that is</p>
 <div class="callout">\[ x = \frac{dX}{Z}, \qquad y = \frac{dY}{Z}. \]
 Everything about perspective is this one fact: <b>divide by depth</b>.</div>
-<p>Take a railway track running straight away from you, rails at \((\pm 1, -h, Z)\) where \(h\) is the height of your eye above the ground. Their images are \((\pm d/Z, -dh/Z)\). As \(Z\) grows both coordinates shrink toward 0. The rails, which never meet in the world, meet in the picture at \((0, 0)\): the <b>vanishing point</b>.</p>
-<p>This works for any family of parallel lines. A line through \(P\) in direction \((a, b, c)\) with \(c \ne 0\) is \(P + t(a, b, c)\), and its image as \(t \to \infty\) tends to \(\left(\dfrac{da}{c}, \dfrac{db}{c}\right)\), which does not depend on \(P\) at all. Horizontal directions have \(b = 0\), so their vanishing points all lie on \(y = 0\): the <b>horizon</b>, always at eye level. Directions with \(c = 0\) run parallel to the glass and never converge, which is why vertical edges stay vertical in an ordinary photograph.</p>
-<p><b>And the golden ratio?</b> \(\varphi = (1 + \sqrt 5)/2 \approx 1.618\) is a genuinely interesting number, but the claims that the Parthenon and the Mona Lisa were built around it do not survive measurement. Where \(\varphi\) really lives is in the regular pentagon (the stretch) and in sunflower spirals.</p>
+<figure><svg viewBox="0 0 520 125" width="458" height="110" role="img" aria-label="Left: side view of an eye, a sheet of glass at distance d, and a point at depth Z and height Y whose sight line crosses the glass at height y. Right: two rails converging to a vanishing point on the horizon, sleepers bunching up"><polygon points="28,100 100,100 100,79.4" fill="#fde7bd"/>
+<line x1="28" y1="100" x2="300" y2="100" stroke="#999" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="300" y1="100" x2="300" y2="22" stroke="#999" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="100" y1="12" x2="100" y2="112" stroke="#3f44c9" stroke-width="2.5"/>
+<line x1="28" y1="100" x2="300" y2="22" stroke="#000" stroke-width="1.2"/>
+<line x1="100" y1="100" x2="100" y2="79.4" stroke="#f5a524" stroke-width="3"/>
+<circle cx="28" cy="100" r="4" fill="#000"/><circle cx="300" cy="22" r="3.5" fill="#000"/><circle cx="100" cy="79.4" r="3" fill="#f5a524" stroke="#000" stroke-width="1"/>
+<g font-family="Nunito, sans-serif" font-size="12" fill="#1d1f3a">
+<text x="24" y="116">eye</text>
+<text x="104" y="22">glass</text>
+<text x="64" y="116" text-anchor="middle">d</text>
+<text x="106" y="93.7">y</text>
+<text x="307" y="65.0">Y</text>
+<text x="194" y="116" text-anchor="middle">Z</text>
+</g><line x1="360" y1="40" x2="520" y2="40" stroke="#999" stroke-width="1"/>
+<line x1="380" y1="118" x2="440" y2="40" stroke="#3f44c9" stroke-width="2"/>
+<line x1="500" y1="118" x2="440" y2="40" stroke="#3f44c9" stroke-width="2"/><line x1="380.0" y1="118.0" x2="500.0" y2="118.0" stroke="#555" stroke-width="2"/><line x1="400.0" y1="92.0" x2="480.0" y2="92.0" stroke="#555" stroke-width="2"/><line x1="410.0" y1="79.0" x2="470.0" y2="79.0" stroke="#555" stroke-width="2"/><line x1="420.0" y1="66.0" x2="460.0" y2="66.0" stroke="#555" stroke-width="2"/><line x1="425.0" y1="59.5" x2="455.0" y2="59.5" stroke="#555" stroke-width="2"/><line x1="430.0" y1="53.0" x2="450.0" y2="53.0" stroke="#555" stroke-width="2"/><circle cx="440" cy="40" r="3" fill="#f5a524" stroke="#000" stroke-width="1"/>
+<g font-family="Nunito, sans-serif" font-size="12" fill="#1d1f3a"><text x="360" y="34">horizon</text><text x="448" y="34">vanishing point</text></g></svg><figcaption>Left: the small and big triangles are similar, so \(y/d = Y/Z\). Right: what the glass shows.</figcaption></figure>
+
+<p>Take a railway track running straight away from you, rails at \((\pm 1, -h, Z)\) where \(h\) is the height of your eye above the ground. Their images are \((\pm d/Z, -dh/Z)\). As \(Z\) grows both coordinates shrink toward 0: the rails, which never meet in the world, meet in the picture at \((0, 0)\), the <b>vanishing point</b>.</p>
+<p>This works for any family of parallel lines. A line through \(P\) in direction \((a, b, c)\) is the set of points \(P + t(a, b, c)\). For large \(t\) its image heads to \(\left(\dfrac{da}{c}, \dfrac{db}{c}\right)\), which does not depend on \(P\). Horizontal directions have \(b = 0\), so their vanishing points all lie on \(y = 0\): the <b>horizon</b>, at eye level.</p>
+<p><b>And the golden ratio?</b> Claims that the Parthenon was built around \(\varphi \approx 1.618\) do not survive measurement. Where \(\varphi\) really lives is the regular pentagon (the stretch).</p>
 </section>
 
 <section class="example">
 <h2>Watch one: the floor tiles</h2>
-<p>Eye height \(h = 1.6\) m, glass at \(d = 1\) m. A line across the floor at depth \(Z = 4\) m has \(Y = -1.6\), so its image is at \(y = -1.6/4 = -0.4\). At \(Z = 8\): \(y = -0.2\). At \(Z = 16\): \(y = -0.1\). Doubling the distance halves the drop below the horizon, so equally spaced floor lines bunch up as they recede.</p>
-<p>A 2 m fence post at \(Z = 4\) runs from \(Y = -1.6\) to \(0.4\), so its image runs from \(-0.4\) to \(0.1\): half a metre tall on the glass. At \(Z = 8\) it is a quarter of a metre. Image size is inversely proportional to distance, and the top of the post is <em>above</em> the horizon because the post is taller than you.</p>
+<p>Eye height \(h = 1.6\) m, glass at \(d = 1\) m. A line across the floor at depth \(Z = 4\) m has \(Y = -1.6\), so its image is at \(y = -1.6/4 = -0.4\). At \(Z = 8\): \(y = -0.2\). At \(Z = 16\): \(y = -0.1\). Doubling the distance halves the drop below the horizon: equally spaced floor lines bunch up as they recede.</p>
+<p>A 2 m fence post at \(Z = 4\) runs from \(Y = -1.6\) to \(0.4\), so its image runs from \(-0.4\) to \(0.1\): half a metre tall on the glass. At \(Z = 8\) it is a quarter of a metre. Size is inversely proportional to distance, and the top is <em>above</em> the horizon because the post is taller than you.</p>
 </section>
 
 <section class="exercises">
 <h2>Your turn</h2>
 <ol>
-<li>With \(d = 1\), find the image of \((3, 2, 6)\), of \((3, 2, 12)\) and of \((3, 2, 24)\). These three points lie on a line parallel to the \(z\)-axis. Where are their images heading?<div class="space short"></div></li>
+<li>With \(d = 1\), find the image of \((3, 2, 6)\), of \((3, 2, 12)\) and of \((3, 2, 24)\). They lie on a line parallel to the \(z\)-axis. Where are their images heading?<div class="space short"></div></li>
 <li>Find the vanishing point (\(d = 1\)) of the lines in direction \((1, 0, 2)\); of the lines in direction \((1, 1, 1)\); of the lines in direction \((1, 0, 0)\). Which of these lie on the horizon, and what happens to the third family?<div class="space short"></div></li>
-<li>Railway sleepers lie across the track at depths \(Z = 3, 6, 9, 12\) m. Your eye is 1.5 m above the rails and \(d = 1\). Find the four image heights \(y\) and the three gaps between consecutive images. Equal spacing in the world becomes what kind of spacing in the picture?<div class="space short"></div></li>
+<li>Railway sleepers lie across the track (as in the figure) at depths \(Z = 3, 6, 9, 12\) m. Your eye is 1.5 m above the rails and \(d = 1\). Find the four image heights \(y\) and the three gaps between consecutive images. What happens to equal spacing in the picture?<div class="space short"></div></li>
 <li>A website draws a rectangle around a face in a painting, measures it at 10.0 cm by 6.2 cm, and announces the golden ratio. (a) What ratio did they get? (b) Their measurements are good to \(\pm 2\) mm. What are the smallest and largest ratios consistent with that? Does the data prefer \(\varphi = 1.618\) over \(1.6\) or \(5/3\)?<div class="space short"></div></li>
 </ol>
 </section>
 
-<section class="stretch">
-<h2>Stretch: where φ genuinely lives</h2>
-<p>A regular pentagon has side 1 and diagonal \(d\). Triangle \(ACD\) (two diagonals and a side) has angles 36°, 72°, 72°. Bisect the angle at \(C\) to meet \(AD\) at \(Q\). Explain why triangle \(CDQ\) is similar to \(ACD\), giving \(DQ = 1/d\), and why \(AQ = 1\). Deduce \(d = 1 + 1/d\) and solve it.</p>
+<section class="stretch" style="display:flow-root;margin-top:.4rem">
+<h2>Stretch: where φ really lives</h2>
+<figure style="float:right;margin:0 0 .2em .8em"><svg viewBox="0 0 160 150" width="112" height="105" role="img" aria-label="Regular pentagon ABCDE with diagonals AC and AD, and the bisector from C meeting AD at Q">
+<polygon points="82.0,16.0 141.0,58.8 118.4,128.2 45.6,128.2 23.0,58.8" fill="none" stroke="#000" stroke-width="1.5"/>
+<line x1="82.0" y1="16.0" x2="118.4" y2="128.2" stroke="#3f44c9" stroke-width="1.5"/>
+<line x1="82.0" y1="16.0" x2="45.6" y2="128.2" stroke="#3f44c9" stroke-width="1.5"/>
+<line x1="118.4" y1="128.2" x2="59.5" y2="85.3" stroke="#f5a524" stroke-width="1.5"/>
+<circle cx="59.5" cy="85.3" r="2.5" fill="#f5a524" stroke="#000" stroke-width="1"/>
+<g font-family="Nunito, sans-serif" font-size="12" fill="#1d1f3a">
+<text x="82.0" y="10.0" text-anchor="middle">A</text><text x="150.0" y="62.8" text-anchor="middle">B</text><text x="124.4" y="140.2" text-anchor="middle">C</text><text x="33.6" y="140.2" text-anchor="middle">D</text><text x="13.0" y="62.8" text-anchor="middle">E</text>
+<text x="68.5" y="81.3">Q</text>
+<text x="82.0" y="34.0" text-anchor="middle" font-size="10">36°</text>
+<text x="114.4" y="122.2" text-anchor="end" font-size="10">72°</text>
+<text x="53.6" y="122.2" font-size="10">72°</text>
+</g></svg></figure>
+<p>A regular pentagon has side 1 and diagonal \(d\). Triangle \(ACD\) has angles 36°, 72°, 72°. Bisect the angle at \(C\) to meet \(AD\) at \(Q\). Explain why triangle \(CDQ\) is similar to \(ACD\), giving \(DQ = 1/d\), and why \(AQ = 1\). Deduce \(d = 1 + 1/d\) and solve it.</p>
 <div class="space"></div>
 </section>
 

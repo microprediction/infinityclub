@@ -31,10 +31,21 @@
 
 <section class="idea">
 <h2>Tonight's idea</h2>
-<p>The <b>Fibonacci sequence</b> starts 1, 1 and then every term is the sum of the two before it: 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, … We write \(F_1 = 1\), \(F_2 = 1\), \(F_3 = 2\) and so on.</p>
+<p>The <b>Fibonacci sequence</b> starts 1, 1 and then every term is the sum of the two before it: 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, … We write \(F_n\) for the \(n\)-th Fibonacci number: \(F_1 = 1\), \(F_2 = 1\), \(F_3 = 2\) and so on.</p>
 <p>It appears whenever something is built from the two previous steps. Suppose a staircase has \(n\) steps and you climb either 1 or 2 steps at a time. Your last move was either a single step (from step \(n-1\)) or a double (from step \(n-2\)), so the number of ways to climb \(n\) steps is the ways for \(n-1\) plus the ways for \(n-2\). That is the Fibonacci rule, and the counts are 1, 2, 3, 5, 8, 13, …</p>
 <p>Now divide each term by the one before: \(\frac{8}{5} = 1.6\), \(\frac{13}{8} = 1.625\), \(\frac{21}{13} = 1.615\ldots\) The ratios settle down toward a number called the <b>golden ratio</b>, \(\varphi = 1.6180339\ldots\) It is the proportion of a rectangle that, when you cut a square off one end, leaves a smaller rectangle of exactly the same shape.</p>
-<p>The nature link is real, not a myth. A sunflower adds each new seed at an angle of about 137.5° from the last, which is a full turn divided by \(\varphi^2\). In the idealised model that angle spreads the seeds as evenly as possible, and the spirals you can count in the head come in neighbouring Fibonacci pairs: 34 one way and 55 the other, or 55 and 89. Real sunflowers are living things, not formulas. When a citizen-science project counted the spirals on 657 heads, most showed Fibonacci pairs, but some had other counts and some had no clear spiral count at all. A good model explains the usual case and still leaves room for exceptions. Play with the angle at <a href="../../demos/sunflower.html">infinityclub.net/demos/sunflower</a> and watch the pattern fall apart when you change it even slightly.</p>
+<figure><svg viewBox="0 -4 200 122" width="200" height="122" role="img" aria-label="A golden rectangle of width phi and height 1 with a 1 by 1 square cut off the left end, leaving a smaller rectangle of the same shape">
+<rect x="10" y="10" width="162" height="100" fill="none" stroke="#000" stroke-width="1.5"/>
+<rect x="10" y="10" width="100" height="100" fill="#e9e9f7" stroke="#000" stroke-width="1.5"/>
+<rect x="110" y="10" width="62" height="100" fill="#fde7bf" stroke="#3f44c9" stroke-width="1.5"/>
+<g font-family="Nunito, sans-serif" font-size="12" text-anchor="middle">
+<text x="60" y="65">1 by 1</text>
+<text x="141" y="56">1 by</text><text x="141" y="72">φ − 1</text>
+<text x="91" y="8" font-size="12" fill="#555">φ</text>
+<text x="186" y="64" fill="#555">1</text>
+</g>
+</svg><figcaption>Cut a square off a golden rectangle and the leftover (orange) has the same proportions as the whole.</figcaption></figure>
+<p>Sunflower seeds grow about 137.5° apart, which is a full turn divided by \(\varphi^2\). That angle packs the seeds as evenly as possible, and the spirals you can count in the head come in Fibonacci pairs: 34 and 55, or 55 and 89. Most real sunflowers do this; some don't. Change the angle at <a href="../../demos/sunflower.html">infinityclub.net/demos/sunflower</a> and watch the pattern fall apart.</p>
 </section>
 
 <section class="example">

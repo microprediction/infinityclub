@@ -31,24 +31,39 @@
 
 <section class="idea">
 <h2>Tonight's idea</h2>
-<p>Nothing in space is the size you think it is, and nothing is as close as the pictures suggest. The best tool for seeing how big and how far is not a telescope. It is a ratio.</p>
-<p>Start with light, the fastest thing there is, about 300,000 kilometres every second. Light from the Moon takes 1.3 seconds to reach us. Light from the Sun takes 8.3 minutes, so if the Sun vanished you would carry on seeing it for eight minutes. Light from the next nearest star, Proxima Centauri, takes 4.2 <em>years</em>. The light arriving from it now set off when you were about seven. (You will not spot Proxima tonight: it is a faint red dwarf, far too dim for the naked eye. Its bright neighbours Alpha Centauri A and B, 4.4 light-years away, are an easy naked-eye pair from the southern hemisphere.) A <b>light-year</b> is simply the distance light covers in a year, about \(9.46 \times 10^{12}\) km. It is a distance, not a time, even though it has "year" in the name.</p>
-<p>Numbers that size mean nothing to a human brain, so astronomers shrink everything by the same factor and build a <b>scale model</b>. Suppose the Sun is a basketball, 24 cm across. The real Sun is \(1.39 \times 10^6\) km across, so our model shrinks everything by the ratio \(24 \text{ cm} : 1{,}390{,}000 \text{ km}\). Apply that same ratio to the Earth, which is 12,742 km across, and you get about 2 mm: a peppercorn. Apply it to the Earth–Sun distance of \(1.496 \times 10^8\) km and the peppercorn sits 26 metres from the basketball. Across the width of a sports field, a basketball and a peppercorn, and nothing else. Jupiter is a large marble 134 m away. Neptune is a small pea three quarters of a kilometre off.</p>
+<p>Nothing in space is the size you think it is, and nothing is as close as the pictures suggest. The best tool for seeing how big and how far is a ratio.</p>
+<p>First, how far: measure distance in light-time. Light is the fastest thing there is, about 300,000 kilometres every second. Light from the Moon takes 1.3 seconds to reach us. Light from the Sun takes 8.3 minutes, so if the Sun vanished you would carry on seeing it for eight minutes. Light from the next nearest star, Proxima Centauri, takes 4.2 <em>years</em>. The light arriving from it now set off when you were about seven. A <b>light-year</b> is simply the distance light covers in a year, about \(9.46 \times 10^{12}\) km. It is a distance, not a time, even though it has "year" in the name.</p>
+<p>Numbers that size mean nothing to a human brain, so astronomers shrink everything by the same factor and build a <b>scale model</b>. Suppose the Sun is a basketball, 24 cm across. The real Sun is \(1.39 \times 10^6\) km across, so our model shrinks everything by the ratio \(24 \text{ cm} : 1{,}390{,}000 \text{ km}\). Apply that same ratio to the Earth, which is 12,742 km across, and you get about 2 mm: a peppercorn. Apply it to the Earth–Sun distance of \(1.496 \times 10^8\) km and the peppercorn sits 26 metres from the basketball. Jupiter is a large marble 134 m away. Neptune is a small pea three quarters of a kilometre off.</p>
 <p>And Proxima Centauri? It is a small red star, about one seventh of the Sun's width, so in our model it is a ping-pong ball about 4 cm across, not another basketball. Keep the same ratio for the distance and it lands roughly 6,900 km away: put the Sun in New York and the nearest star is in Berlin. Space is mostly space.</p>
-<p>Here is the deeper connection. In 1619 Johannes Kepler found that a planet's year \(T\) and its distance from the Sun \(a\) obey one rule: \(T^2 = a^3\), when \(T\) is measured in Earth years and \(a\) in Earth–Sun distances (an <b>astronomical unit</b>, AU). Far planets have long years, and the rule says exactly how long. Newton later showed it falls out of gravity. You can check it tonight with a table and a pencil.</p>
+<figure><svg viewBox="0 0 520 78" width="520" height="78" role="img" aria-label="Scale model strip, not to scale: basketball Sun, peppercorn Earth at 26 m, marble Jupiter at 134 m, pea Neptune at 750 m, ping-pong ball Proxima 6,900 km away">
+<line x1="48" y1="40" x2="488" y2="40" stroke="#999" stroke-width="1"/>
+<polygon points="488,35 500,40 488,45" fill="#999"/>
+<circle cx="48" cy="40" r="13" fill="#f5a524" stroke="#000" stroke-width="1"/>
+<circle cx="150" cy="40" r="1.6" fill="#3f44c9"/>
+<circle cx="250" cy="40" r="4" fill="#3f44c9"/>
+<circle cx="345" cy="40" r="3" fill="#3f44c9"/>
+<g font-family="Nunito, sans-serif" font-size="11" fill="#1d1f3a">
+<text x="48" y="68" text-anchor="middle">Sun: basketball</text>
+<text x="150" y="26" text-anchor="middle">Earth: peppercorn</text><text x="150" y="68" text-anchor="middle">26 m</text>
+<text x="250" y="26" text-anchor="middle">Jupiter: marble</text><text x="250" y="68" text-anchor="middle">134 m</text>
+<text x="345" y="26" text-anchor="middle">Neptune: pea</text><text x="345" y="68" text-anchor="middle">750 m</text>
+<text x="516" y="26" text-anchor="end">Proxima: ping-pong ball</text><text x="516" y="68" text-anchor="end">6,900 km →</text>
+</g>
+</svg><figcaption>The basketball model. Distances along the strip are not to scale; the labels are.</figcaption></figure>
+<p>Here is the deeper connection. In 1619 Johannes Kepler found that a planet's year \(T\) and its distance from the Sun \(a\) obey one rule: \(T^2 = a^3\), when \(T\) is measured in Earth years and \(a\) in Earth–Sun distances (an <b>astronomical unit</b>, AU). Far planets have long years, and the rule says exactly how long. You can check it tonight with a table and a pencil.</p>
 </section>
 
 <section class="example">
 <h2>Watch one: Mars by Kepler's rule</h2>
-<p>Mars orbits at 1.524 AU. Kepler predicts \(T^2 = 1.524^3\). Compute: \(1.524^2 = 2.323\), and \(2.323 \times 1.524 = 3.540\). So \(T = \sqrt{3.540}\). Squeeze it: \(1.8^2 = 3.24\) is too small, \(1.9^2 = 3.61\) is too big, \(1.88^2 = 3.534\) is very close. Mars's year should be about 1.88 Earth years.</p>
-<p>The measured value is 1.881 years. A rule written down four centuries ago, from naked-eye observations, predicts the Martian year to three decimal places. That is what a good law of nature feels like.</p>
+<p>Mars orbits at 1.524 AU. Kepler predicts \(T^2 = 1.524^3\). Compute: \(1.524^2 = 2.323\), and \(2.323 \times 1.524 = 3.540\). So \(T = \sqrt{3.540}\). Squeeze it: \(1.8^2 = 3.24\) is too small, \(1.9^2 = 3.61\) is too big, \(1.88^2 = 3.534\) is very close. Mars's year should be about 1.88 Earth years. This squeezing between two guesses is how you take a square root without a button; you will use it again in the stretch.</p>
+<p>The measured value is 1.881 years. A rule written down four centuries ago, from naked-eye observations, predicts the Martian year to three decimal places.</p>
 </section>
 
 <section class="exercises">
 <h2>Your turn</h2>
 <ol>
 <li>How many kilometres are in a light-second? A light-minute? Use 300,000 km/s. Then check: the Sun is \(1.496 \times 10^8\) km away. How many light-minutes is that?<div class="space short"></div></li>
-<li>In the basketball model, the Moon is 384,400 km from Earth and 3,474 km across. How far is the Moon from the peppercorn, and how big is it? (Use the ratio \(24 / 1{,}390{,}000\) cm per km.)<div class="space"></div></li>
+<li>In the basketball model, the Moon is 384,400 km from Earth and 3,474 km across. How far is the Moon from the peppercorn, and how big is it? (Every real kilometre becomes \(24 \div 1{,}390{,}000\) cm in the model, about 0.0000173 cm. Multiply each real distance by that.)<div class="space"></div></li>
 <li>Complete this table. Compute \(T^2\) and \(a^3\) for each planet and compare.
 <table>
 <tr><th>Planet</th><th>\(T\) (years)</th><th>\(a\) (AU)</th><th>\(T^2\)</th><th>\(a^3\)</th></tr>

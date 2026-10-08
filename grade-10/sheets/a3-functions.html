@@ -35,19 +35,29 @@
 <p><b>Composition</b> is plugging one machine into another. \(f(g(x))\) means do \(g\) first, then \(f\). Order matters: with \(f(x) = x + 1\) and \(g(x) = 2x\), \(f(g(3)) = 7\) but \(g(f(3)) = 8\).</p>
 <p>An <b>inverse</b> \(f^{-1}\) runs the machine backwards: \(f^{-1}(f(x)) = x\). Not every machine can. If \(f(2) = f(-2) = 4\), then \(f^{-1}(4)\) cannot decide between 2 and \(-2\). A function has an inverse only when different inputs give different outputs: no horizontal line hits the graph twice. Squaring fails; cubing passes.</p>
 <p>To find an inverse, write \(y = f(x)\), swap the letters, solve for \(y\). Swapping turns every point \((a, b)\) into \((b, a)\), which is a <b>reflection in the line \(y = x\)</b>. So the graph of \(f^{-1}\) is the mirror image of the graph of \(f\), and the domain of \(f^{-1}\) is the range of \(f\).</p>
+<figure><svg viewBox="0 0 185 175" width="185" height="175" role="img" aria-label="The line y = 2x + 3 and its inverse y = (x minus 3)/2 are mirror images in the dashed line y = x; the points (1, 5) and (5, 1) are marked" font-family="Nunito, sans-serif" font-size="12">
+<line x1="0" y1="119" x2="175" y2="119" stroke="#999"/><line x1="51" y1="0" x2="51" y2="175" stroke="#999"/>
+<line x1="0" y1="170" x2="170" y2="0" stroke="#555" stroke-dasharray="4 3"/>
+<line x1="0" y1="170" x2="85" y2="0" stroke="#3f44c9" stroke-width="2"/>
+<line x1="0" y1="170" x2="170" y2="85" stroke="#f5a524" stroke-width="2"/>
+<line x1="68" y1="34" x2="136" y2="102" stroke="#bbb" stroke-dasharray="2 2"/>
+<circle cx="68" cy="34" r="3" fill="#3f44c9"/><circle cx="136" cy="102" r="3" fill="#f5a524"/>
+<text x="68" y="28" text-anchor="end">(1, 5)</text><text x="142" y="116">(5, 1)</text>
+<text x="89" y="14" fill="#3f44c9">f</text><text x="146" y="79" fill="#f5a524">f⁻¹</text><text x="88" y="46" fill="#555">y = x</text>
+</svg><figcaption>Swapping \(x\) and \(y\) reflects every point in the line \(y = x\).</figcaption></figure>
 </section>
 
 <section class="example">
 <h2>Watch one: two machines and a mirror</h2>
-<p>Let \(f(x) = 2x + 3\) and \(g(x) = x^2\). Then \(f(g(x)) = 2x^2 + 3\), but \(g(f(x)) = (2x + 3)^2\). Different machines.</p>
-<p>Inverse of \(f\): \(y = 2x + 3 \;\to\; x = 2y + 3 \;\to\; y = \tfrac{x - 3}{2}\). Check: \(f(5) = 13\) and \(f^{-1}(13) = 5\). And \(g\) has no inverse on all the reals, because \(g(2) = g(-2)\); restrict to \(x \geq 0\) and \(g^{-1}(x) = \sqrt{x}\). That restriction is why the calculator's \(\sqrt{\;}\) button only gives non-negative answers.</p>
+<p>Let \(f(x) = 2x + 3\) and \(g(x) = x^2\). Then \(f(g(x)) = 2x^2 + 3\), but \(g(f(x)) = (2x + 3)^2\).</p>
+<p>Inverse of \(f\): \(y = 2x + 3 \;\to\; x = 2y + 3 \;\to\; y = \tfrac{x - 3}{2}\). Check: \(f(5) = 13\) and \(f^{-1}(13) = 5\). And \(g\) has no inverse on all the reals, because \(g(2) = g(-2)\); restrict to \(x \geq 0\) and \(g^{-1}(x) = \sqrt{x}\).</p>
 <p class="small">See functions bend and slide at <a href="../../demos/transform.html">infinityclub.net/demos/transform.html</a>.</p>
 </section>
 
 <section class="exercises">
 <h2>Your turn</h2>
 <ol>
-<li>Give the domain and range of \(f(x) = \sqrt{9 - x^2}\), \(\;g(x) = \dfrac{1}{x - 2}\), \(\;h(x) = x^2 + 4\).<div class="space short"></div></li>
+<li>Give the domain and range of \(f(x) = \sqrt{9 - x^2}\), \(\;g(x) = \dfrac{1}{x - 2}\), \(\;h(x) = x^2 + 4\). (Hint for \(f\): if \(y = \sqrt{9 - x^2}\) then \(x^2 + y^2 = 9\). What shape is that, and which half do you get?)<div class="space short"></div></li>
 <li>Let \(f(x) = 3x - 1\) and \(g(x) = x^2 + 2\). Find \(f(g(2))\), \(g(f(2))\), and a simplified formula for \(f(f(x))\).<div class="space short"></div></li>
 <li>Find the inverse of each and state its domain: \(f(x) = \dfrac{2x + 1}{3}\); \(\;h(x) = \sqrt{x - 1}\) for \(x \geq 1\).<div class="space"></div></li>
 <li>Celsius from Fahrenheit is \(C = \tfrac59(F - 32)\). Find the inverse function. Then find the temperature at which both scales read the same number, and say why that point lies on the line \(y = x\).<div class="space"></div></li>

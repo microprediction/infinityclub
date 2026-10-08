@@ -31,19 +31,20 @@
 
 <section class="idea">
 <h2>Tonight's idea</h2>
-<p>Treat every complex number \(z = a + bi\) as an <b>arrow</b> from the origin to the point \((a, b)\). Describe the arrow by its <b>modulus</b> \(r = |z| = \sqrt{a^2 + b^2}\), its length, and its <b>argument</b> \(\theta\), the angle it makes with the positive real axis. Since \(a = r\cos\theta\) and \(b = r\sin\theta\),</p>
+<p>A complex number is \(z = a + bi\) with \(i^2 = -1\) (the grade 6 <a href="../../grade-6/sheets/b8-imaginary.html">imaginary numbers</a> sheet). Treat it as an <b>arrow</b> from the origin to the point \((a, b)\). Describe the arrow by its <b>modulus</b> \(r = |z| = \sqrt{a^2 + b^2}\), its length, and its <b>argument</b> \(\theta\), the angle it makes with the positive real axis. Since \(a = r\cos\theta\) and \(b = r\sin\theta\),</p>
 <p class="callout">\(z = r(\cos\theta + i\sin\theta)\), abbreviated \(r\operatorname{cis}\theta\).</p>
-<p>Now the fact that makes complex numbers worth having. Multiply \(z = r\operatorname{cis}\alpha\) by \(w = s\operatorname{cis}\beta\):</p>
+<figure><svg viewBox="0 0 260 150" width="260" height="150" role="img" aria-label="The complex number z = a + bi drawn as an arrow from the origin to the point (a, b), with length r and angle theta from the positive real axis"><line x1="15" y1="125" x2="245" y2="125" stroke="#999" stroke-width="1"/><line x1="40" y1="140" x2="40" y2="10" stroke="#999" stroke-width="1"/><line x1="160" y1="45" x2="160" y2="125" stroke="#555" stroke-width="1" stroke-dasharray="4 3"/><line x1="40" y1="125" x2="160" y2="45" stroke="#3f44c9" stroke-width="2.5"/><polygon points="160,45 149,46 155,54" fill="#3f44c9"/><path d="M 70 125 A 30 30 0 0 0 65.0 108.4" fill="none" stroke="#f5a524" stroke-width="2"/><g font-family="Nunito, sans-serif" font-size="13" fill="#1d1f3a"><text x="92.0" y="79.0" fill="#3f44c9" font-weight="700">r</text><text x="76" y="117" fill="#f5a524" font-weight="700">θ</text><text x="166" y="89.0">b</text><text x="97.0" y="140">a</text><text x="166" y="41">z = a + bi</text><text x="236" y="140" fill="#555">Re</text><text x="46" y="18" fill="#555">Im</text></g></svg><figcaption>An arrow with length r and angle θ: a = r cos θ, b = r sin θ.</figcaption></figure>
+<p>Now multiply \(z = r\operatorname{cis}\alpha\) by \(w = s\operatorname{cis}\beta\):</p>
 <p>\[ zw = rs\big[(\cos\alpha\cos\beta - \sin\alpha\sin\beta) + i(\sin\alpha\cos\beta + \cos\alpha\sin\beta)\big]. \]</p>
 <p>The brackets are the angle-addition formulas for \(\cos(\alpha+\beta)\) and \(\sin(\alpha+\beta)\). So \(zw = rs\operatorname{cis}(\alpha + \beta)\).</p>
 <p class="callout"><b>To multiply complex numbers, multiply the lengths and add the angles.</b></p>
-<p>Multiplying by \(i\) (length 1, angle 90°) is a quarter turn, which is why \(i^2 = -1\): two quarter turns point you backwards. Repeat the rule \(n\) times and you get <b>De Moivre's theorem</b>: \((r\operatorname{cis}\theta)^n = r^n\operatorname{cis}(n\theta)\).</p>
+<p>Multiplying by \(i\) (length 1, angle 90°) is a quarter turn, which is why \(i^2 = -1\): two quarter turns point you backwards. Repeating the rule gives <b>De Moivre's theorem</b>: \((r\operatorname{cis}\theta)^n = r^n\operatorname{cis}(n\theta)\).</p>
 </section>
 
 <section class="example">
 <h2>Watch one: a coincidence, and a big power</h2>
-<p>\((2 + i)(3 + i) = 6 + 5i + i^2 = 5 + 5i\). Angles: \(2 + i\) sits at \(\arctan\tfrac12\), \(3 + i\) at \(\arctan\tfrac13\), and \(5 + 5i\) at exactly 45°. So \(\arctan\tfrac12 + \arctan\tfrac13 = 45°\), a genuine identity, proved by one multiplication.</p>
-<p>Now \((1 + i)^8\). Length \(\sqrt2\), angle 45°. De Moivre: length \((\sqrt2)^8 = 16\), angle \(8 \times 45° = 360°\), the same direction as 0°. So \((1+i)^8 = 16\). Try that by expanding brackets.</p>
+<p>\((2 + i)(3 + i) = 6 + 5i + i^2 = 5 + 5i\). Angles: \(2 + i\) sits at \(\arctan\tfrac12\), \(3 + i\) at \(\arctan\tfrac13\), and \(5 + 5i\) at exactly 45°. So \(\arctan\tfrac12 + \arctan\tfrac13 = 45°\), proved by one multiplication.</p>
+<p>Now \((1 + i)^8\). Length \(\sqrt2\), angle 45°. De Moivre: length \((\sqrt2)^8 = 16\), angle \(8 \times 45° = 360°\), the same direction as 0°. So \((1+i)^8 = 16\).</p>
 </section>
 
 <section class="exercises">
@@ -51,7 +52,7 @@
 <ol>
 <li>Find the modulus and argument of \(3 + 4i\), of \(-1 + i\), and of \(-2i\).<div class="space short"></div></li>
 <li>Write \(\sqrt3 + i\) as \(r\operatorname{cis}\theta\), then compute \((\sqrt3 + i)^6\) with De Moivre. Give the answer as \(a + bi\).<div class="space short"></div></li>
-<li>Rotate the point \((2, 1)\) by 90° anticlockwise about the origin by multiplying by the right complex number. Then rotate it by 60° instead, using \(\operatorname{cis}60° = \tfrac12 + \tfrac{\sqrt3}{2}i\), and give the new coordinates to 3 decimal places.<div class="space"></div></li>
+<li>Rotate the point \((2, 1)\), treated as \(2 + i\), by 90° anticlockwise about the origin by multiplying by the right complex number. Then rotate it by 60° instead, using \(\operatorname{cis}60° = \tfrac12 + \tfrac{\sqrt3}{2}i\), and give the new coordinates to 3 decimal places.<div class="space"></div></li>
 <li>Solve \(z^3 = -8\). (Hint: \(-8\) has length 8 and angle 180°, but also 540° and 900°. Divide each by 3.) Give all three answers as \(a + bi\) and check one non-real one by cubing it.<div class="space tall"></div></li>
 </ol>
 <p class="small">Drag two arrows and watch their product rotate at <a href="../../demos/complex.html">infinityclub.net/demos/complex.html</a>.</p>
@@ -59,7 +60,7 @@
 
 <section class="stretch">
 <h2>Stretch: the golden ratio in a pentagon</h2>
-<p>Let \(z = \operatorname{cis}72°\), so \(z^5 = 1\) and \(1 + z + z^2 + z^3 + z^4 = 0\). Let \(w = z + z^4 = 2\cos72°\) and \(w' = z^2 + z^3\). Show \(w + w' = -1\) and \(ww' = -1\), so \(w\) is a root of \(t^2 + t - 1 = 0\). Deduce an exact value for \(\cos72°\).</p>
+<p>Let \(z = \operatorname{cis}72°\), so \(z^5 = 1\) and \(1 + z + z^2 + z^3 + z^4 = 0\) (because \((z-1)(1 + z + \cdots + z^4) = z^5 - 1 = 0\) and \(z \ne 1\)). Let \(w = z + z^4 = 2\cos72°\) and \(w' = z^2 + z^3\). Show \(w + w' = -1\) and \(ww' = -1\), so \(w\) is a root of \(t^2 + t - 1 = 0\). Deduce an exact value for \(\cos72°\).</p>
 <div class="space short"></div>
 </section>
 

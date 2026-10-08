@@ -37,7 +37,7 @@
 <li><b>SAS</b>: two sides are in the same ratio and the angle between them matches.</li>
 <li><b>SSS</b>: all three sides are in the same ratio.</li>
 </ul>
-<p>Once triangles are similar, every length is in ratio \(k\) and every area is in ratio \(k^2\). A proof is a chain of <em>statement, reason</em>. Here is the model, and the most useful similarity picture in the subject.</p>
+<p>Once triangles are similar, every length is in ratio \(k\) and every area is in ratio \(k^2\). A proof is a chain of <em>statement, reason</em>. Here is the model.</p>
 <figure>
 <svg viewBox="0 0 320 170" width="320" height="170" role="img" aria-label="Right triangle ABC with right angle at C and altitude CD to hypotenuse AB">
 <polygon points="20,150 300,150 90,30" fill="none" stroke="#1d1f3a" stroke-width="2"/>
@@ -68,15 +68,24 @@
 <h2>Your turn</h2>
 <ol>
 <li>Are triangles with sides 6, 8, 10 and 9, 12, 15 similar? Which test, and what is \(k\)? What about 5, 7, 9 and 10, 14, 17?<div class="space short"></div></li>
-<li>A right triangle has legs 6 and 8. Draw the altitude to the hypotenuse. Using the similar triangles from Tonight's idea, find the two pieces \(AD\) and \(BD\) of the hypotenuse and the altitude \(h\). Check that \(h^2 = AD \cdot BD\).<div class="space"></div></li>
+<li>A right triangle has \(AC = 6\) and \(BC = 8\), right angle at \(C\), as in the figure. Draw the altitude \(CD\) to the hypotenuse. Using the similar triangles from Tonight's idea, find the two pieces \(AD\) and \(BD\) of the hypotenuse and the altitude \(h\). Check that \(h^2 = AD \cdot BD\).<div class="space"></div></li>
 <li>Two similar triangles have areas 18 cm² and 50 cm². A side of the smaller one is 6 cm. How long is the corresponding side of the larger?<div class="space short"></div></li>
-<li><b>Write a proof.</b> \(M\) and \(N\) are the midpoints of \(AB\) and \(AC\) in \(\triangle ABC\). Prove that \(MN \parallel BC\) and \(MN = \tfrac12 BC\). (Hint: SAS similarity, then corresponding angles backwards.)<div class="space tall"></div></li>
+<li><b>Write a proof.</b> \(M\) and \(N\) are the midpoints of \(AB\) and \(AC\) in \(\triangle ABC\). Prove that \(MN \parallel BC\) and \(MN = \tfrac12 BC\). (Hint: show \(\triangle AMN \sim \triangle ABC\) by SAS. Then \(\angle AMN = \angle ABC\), and equal corresponding angles force \(MN \parallel BC\).)<div class="space tall"></div></li>
 </ol>
 </section>
 
 <section class="stretch">
 <h2>Stretch: a square root with a ruler</h2>
 <p>Using \(\triangle ACD \sim \triangle CBD\) in the figure, prove \(h^2 = AD \cdot BD\). Then: on a line, mark segments of length 1 and 7 end to end, draw a semicircle on the whole length 8, and raise a perpendicular at the join up to the semicircle. How long is it, and why? (The angle in a semicircle is a right angle.)</p>
+<figure><svg viewBox="0 0 200 104" width="200" height="104" role="img" aria-label="A segment split into lengths 1 and 7 with a semicircle on it; the perpendicular at the join reaches the arc and has length root 7" font-family="Nunito, sans-serif" font-size="12">
+<path d="M 20 85 A 80 80 0 0 1 180 85" fill="none" stroke="#000" stroke-width="1.5"/>
+<line x1="20" y1="85" x2="180" y2="85" stroke="#000" stroke-width="1.5"/>
+<line x1="40" y1="85" x2="40" y2="32.1" stroke="#3f44c9" stroke-width="2"/>
+<line x1="20" y1="85" x2="40" y2="32.1" stroke="#999" stroke-dasharray="3 3"/><line x1="180" y1="85" x2="40" y2="32.1" stroke="#999" stroke-dasharray="3 3"/>
+<polyline points="40,77 48,77 48,85" fill="none" stroke="#555"/>
+<text x="30" y="99" text-anchor="middle">1</text><text x="110" y="99" text-anchor="middle">7</text>
+<text x="46" y="58.5" fill="#3f44c9">√7</text>
+</svg><figcaption>Lengths 1 and 7 end to end, a semicircle on the whole 8, and the perpendicular at the join.</figcaption></figure>
 <div class="space short"></div>
 </section>
 

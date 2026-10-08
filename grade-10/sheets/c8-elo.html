@@ -31,13 +31,23 @@
 
 <section class="idea">
 <h2>Tonight's idea</h2>
-<p>Arpad Elo, a physics professor and strong chess player, gave chess a rating system in 1960 built on one idea: a rating should be a <em>prediction</em>. If A is rated \(R_A\) and B is rated \(R_B\), A's expected score (1 for a win, ½ for a draw, 0 for a loss) is</p>
+<p>Elo's chess rating system (1960) rests on one idea: a rating is a <em>prediction</em>. If A is rated \(R_A\) and B is rated \(R_B\), A's expected score (1 for a win, ½ for a draw, 0 for a loss) is</p>
 <div class="callout">\[ E_A = \frac{1}{1 + 10^{(R_B - R_A)/400}}. \]</div>
-<p>Equal ratings give \(E_A = 1/2\). A 400-point edge gives \(E_A = 10/11 \approx 0.91\): the stronger player is expected to score ten times as much as the weaker one. The shape \(1/(1 + 10^{-x})\) is a <b>logistic curve</b>: an S, flat near 0 and 1 and steep in the middle, so a rating gap matters most when the players are close.</p>
+<p>Equal ratings give \(E_A = 1/2\); a 400-point edge gives \(E_A = 10/11 \approx 0.91\). The shape \(1/(1 + 10^{-x})\) is a <b>logistic curve</b>: an S, flat near 0 and 1 and steep in the middle, so a gap matters most between close players.</p>
+<figure><svg viewBox="0 0 360 150" width="245" height="102" role="img" aria-label="Logistic curve: expected score of A from 0 to 1 against rating gap from minus 800 to plus 800, an S shape through one half at gap zero">
+<line x1="40" y1="125" x2="330" y2="125" stroke="#000" stroke-width="1"/><line x1="40" y1="125" x2="40" y2="17" stroke="#000" stroke-width="1"/>
+<line x1="40" y1="75.0" x2="320" y2="75.0" stroke="#999" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="180.0" y1="125" x2="180.0" y2="25" stroke="#999" stroke-width="1" stroke-dasharray="3 3"/>
+<polyline points="40.0,124.0 43.5,123.9 47.0,123.8 50.5,123.6 54.0,123.4 57.5,123.3 61.0,123.0 64.5,122.8 68.0,122.5 71.5,122.3 75.0,121.9 78.5,121.6 82.0,121.2 85.5,120.7 89.0,120.2 92.5,119.7 96.0,119.1 99.5,118.4 103.0,117.6 106.5,116.8 110.0,115.9 113.5,114.9 117.0,113.8 120.5,112.6 124.0,111.3 127.5,109.9 131.0,108.4 134.5,106.7 138.0,104.9 141.5,103.0 145.0,101.0 148.5,98.8 152.0,96.5 155.5,94.1 159.0,91.6 162.5,89.0 166.0,86.3 169.5,83.5 173.0,80.7 176.5,77.9 180.0,75.0 183.5,72.1 187.0,69.3 190.5,66.5 194.0,63.7 197.5,61.0 201.0,58.4 204.5,55.9 208.0,53.5 211.5,51.2 215.0,49.0 218.5,47.0 222.0,45.1 225.5,43.3 229.0,41.6 232.5,40.1 236.0,38.7 239.5,37.4 243.0,36.2 246.5,35.1 250.0,34.1 253.5,33.2 257.0,32.4 260.5,31.6 264.0,30.9 267.5,30.3 271.0,29.8 274.5,29.3 278.0,28.8 281.5,28.4 285.0,28.1 288.5,27.7 292.0,27.5 295.5,27.2 299.0,27.0 302.5,26.7 306.0,26.6 309.5,26.4 313.0,26.2 316.5,26.1 320.0,26.0" fill="none" stroke="#3f44c9" stroke-width="2"/>
+<g font-family="Nunito, sans-serif" font-size="11" fill="#1d1f3a"><line x1="40.0" y1="125" x2="40.0" y2="130" stroke="#000"/><text x="40.0" y="143" text-anchor="middle">−800</text><line x1="110.0" y1="125" x2="110.0" y2="130" stroke="#000"/><text x="110.0" y="143" text-anchor="middle">−400</text><line x1="180.0" y1="125" x2="180.0" y2="130" stroke="#000"/><text x="180.0" y="143" text-anchor="middle">0</text><line x1="250.0" y1="125" x2="250.0" y2="130" stroke="#000"/><text x="250.0" y="143" text-anchor="middle">400</text><line x1="320.0" y1="125" x2="320.0" y2="130" stroke="#000"/><text x="320.0" y="143" text-anchor="middle">800</text><line x1="35" y1="125.0" x2="40" y2="125.0" stroke="#000"/><text x="32" y="129.0" text-anchor="end">0</text><line x1="35" y1="75.0" x2="40" y2="75.0" stroke="#000"/><text x="32" y="79.0" text-anchor="end">0.5</text><line x1="35" y1="25.0" x2="40" y2="25.0" stroke="#000"/><text x="32" y="29.0" text-anchor="end">1</text>
+<text x="326" y="116" text-anchor="end">rating gap Rᴀ − Rʙ</text>
+<text x="46" y="23">Eᴀ, expected score of A</text></g>
+</svg></figure>
+
 <p>After a game with actual score \(S_A\), the rating moves by the surprise:</p>
 <div class="callout">\[ R_A' = R_A + K\,(S_A - E_A). \]</div>
-<p>Beat someone you were expected to beat and you gain little; beat someone you were expected to lose to and you gain a lot. The <b>K-factor</b> sets how fast ratings move (FIDE uses 40 for new players, 20 for established ones, 10 above 2400). If both players use the same \(K\), what one gains the other loses exactly. The same machinery now rates football clubs, tennis players and online gamers.</p>
-<p>The second idea is about noise. Any performance is <b>skill plus luck</b>. The season's top performer probably had good skill <em>and</em> good luck; next season the skill stays and the luck is rolled again. This is <b>regression to the mean</b>, and it explains the "sophomore slump" without anything happening to anyone. If the correlation between one season and the next is \(r\), the best prediction is</p>
+<p>Beat someone you were expected to beat and you gain little; beat someone you were expected to lose to and you gain a lot. The <b>K-factor</b> sets how fast ratings move (chess uses 10 to 40); with the same \(K\), what one player gains the other loses. The same machinery rates football clubs.</p>
+<p>Any performance is <b>skill plus luck</b>. The season's top performer had good skill <em>and</em> good luck; next season the luck is rolled again. This is <b>regression to the mean</b>, and it explains the "sophomore slump" without anything happening to anyone. If the correlation between one season and the next is \(r\) (0 to 1; see <a href="a16-statistics.html">the statistics sheet</a>), the best prediction is</p>
 <div class="callout">\[ \text{next} \approx \text{mean} + r \times (\text{this} - \text{mean}). \]</div>
 </section>
 
@@ -51,23 +61,23 @@
 <section class="exercises">
 <h2>Your turn</h2>
 <ol>
-<li>Compute the expected score of the higher-rated player when the rating gap is 0, 100, 200, 400 and 800 points. Sketch the five points: what shape is forming?<div class="space"></div></li>
+<li>Compute the expected score of the higher-rated player when the rating gap is 0, 100, 200, 400 and 800 points. Plot the five points on the axes in Tonight's idea and check they land on the curve.<div class="space short"></div></li>
 <li>Two 1800 players meet, \(K = 20\). How much does the winner gain? Now a 1800 player loses to a 2000 player with \(K = 20\): give both new ratings.<div class="space short"></div></li>
-<li>Ana starts at 1500 with \(K = 32\) and plays three games in order: she beats a 1600, loses to a 1400, and draws a 1500. Update her rating after each game (use the updated rating going into the next game) and give the final value to one decimal place. Why does she end up almost where she started?<div class="space short"></div></li>
+<li>Ana starts at 1500 with \(K = 32\) and plays three games in order, using her updated rating going into each next game: she beats a 1600, loses to a 1400, and draws a 1500. Give her rating after each game, the final one to one decimal place. Why does she end up almost where she started?<div class="space short"></div></li>
 <li>A hundred students sit two equally hard tests. Scores are ability plus luck in equal measure, so the correlation between the tests is 0.5, and the class mean is 70 on both. The ten best students on test 1 averaged 85. Predict their average on test 2. The ten worst averaged 55. Predict theirs. Did the teacher's praise or scolding between the tests have anything to do with it?<div class="space short"></div></li>
 </ol>
 </section>
 
 <section class="stretch">
 <h2>Stretch: what a rating gap is really claiming</h2>
-<p>If A beats B with long-run probability \(p\), ratings settle where \(E_A = p\). Solve for the gap \(D = R_A - R_B\) in terms of \(p\), and find \(D\) for \(p = 0.75\) and \(p = 0.9\). If A beats B 75% of the time and B beats C 75% of the time, what does Elo predict for A against C? Why might that be wrong? (Hint: <a href="../../grade-6/sheets/b32-efron-dice.html">Dice that go round in circles</a>.)</p>
+<p>Ratings settle where \(E_A = p\), A's long-run chance of beating B. Solve for the gap \(D = R_A - R_B\) in terms of \(p\); find \(D\) for \(p = 0.75\) and \(0.9\). If A beats B and B beats C 75% of the time each, what does Elo say about A against C, and why might it be wrong? (Hint: <a href="../../grade-6/sheets/b32-efron-dice.html">dice that go round in circles</a>.)</p>
 <div class="space"></div>
 </section>
 
 <section class="answers">
 <h2>Answers</h2>
 <ol>
-<li>Gap 0: 0.500. Gap 100: \(1/(1 + 10^{-0.25}) = 0.640\). Gap 200: 0.760. Gap 400: 0.909. Gap 800: 0.990. An S-shaped (logistic) curve, steepest at a gap of 0 and flattening toward 1.</li>
+<li>Gap 0: 0.500. Gap 100: \(1/(1 + 10^{-0.25}) = 0.640\). Gap 200: 0.760. Gap 400: 0.909. Gap 800: 0.990. All five lie on the S-shaped (logistic) curve, steepest at a gap of 0 and flattening toward 1.</li>
 <li>Equal ratings: \(E = 0.5\), the winner gains \(20 \times 0.5 = 10\) and the loser drops 10. The 1800 against 2000: \(E_{1800} = 1/(1 + 10^{0.5}) = 0.240\); losing gives \(1800 + 20(0 - 0.240) = 1795.2\). The 2000 player gains the same 4.8: 2004.8.</li>
 <li>Game 1 against 1600: \(E = 1/(1 + 10^{0.25}) = 0.360\), gain \(32 \times 0.640 = 20.5\), rating 1520.5. Game 2 against 1400: \(E = 0.667\), change \(-21.3\), rating 1499.2. Game 3 against 1500: \(E \approx 0.499\), change \(+0.04\), rating 1499.2. She beat someone better and lost to someone worse: two surprises of nearly equal size cancel, and the draw against an equal is no surprise at all.</li>
 <li>Top ten: \(70 + 0.5 \times (85 - 70) = 77.5\). Bottom ten: \(70 + 0.5 \times (55 - 70) = 62.5\). Both groups move halfway back to the mean. Praise and scolding had nothing to do with it; this would happen with no teacher in the room, which is exactly why praise looks ineffective and criticism looks effective to anyone who does not know about regression.</li>

@@ -31,10 +31,10 @@
 
 <section class="idea">
 <h2>Tonight's idea</h2>
-<p>A <b>sequence</b> is a list of numbers with a rule. A <b>series</b> is what you get when you add them up. Two kinds account for most of what you will meet, and each has a sum formula you can rebuild from scratch in thirty seconds.</p>
-<p><b>Arithmetic: add the same amount each time.</b> First term \(a\), common difference \(d\), so the \(n\)th term is \(a + (n - 1)d\). The sum is Gauss's trick: write the series forwards and backwards and add the columns.</p>
+<p>A <b>sequence</b> is a list of numbers with a rule. A <b>series</b> is what you get when you add them up. Two kinds account for most of what you will meet, each with a sum formula you can rebuild from scratch.</p>
+<p><b>Arithmetic: add the same amount each time.</b> First term \(a\), common difference \(d\), so the \(n\)th term is \(a + (n - 1)d\). Call the last term \(l\). The sum is Gauss's trick: write the series forwards and backwards and add the columns.</p>
 <p>\[\begin{aligned} S &= a + (a + d) + \cdots + (l - d) + l \\ S &= l + (l - d) + \cdots + (a + d) + a \\ 2S &= (a + l) + (a + l) + \cdots + (a + l) \end{aligned}\]</p>
-<p>Every column adds to \(a + l\), where \(l\) is the last term, and there are \(n\) columns. So</p>
+<p>Every column adds to \(a + l\), and there are \(n\) columns. So</p>
 <p class="callout">\(S_n = \dfrac{n(a + l)}{2}\): number of terms times the average of first and last.</p>
 <p><b>Geometric: multiply by the same amount each time.</b> First term \(a\), common ratio \(r\), \(n\)th term \(ar^{n-1}\). Multiply the whole sum by \(r\) and subtract:</p>
 <p>\[\begin{aligned} S &= a + ar + ar^2 + \cdots + ar^{n-1} \\ rS &= \phantom{a + {}} ar + ar^2 + \cdots + ar^{n-1} + ar^n \\ S - rS &= a - ar^n \end{aligned}\]</p>
@@ -52,8 +52,8 @@
 <section class="exercises">
 <h2>Your turn</h2>
 <ol>
-<li>The sequence \(4, 11, 18, 25, \ldots\) Find the 50th term and the sum of the first 50 terms.<div class="space short"></div></li>
-<li>The sequence \(5, 15, 45, \ldots\) Find the 8th term and the sum of the first 8 terms.<div class="space short"></div></li>
+<li>The sequence \(4, 11, 18, 25, \ldots\) is arithmetic. Find the 50th term and the sum of the first 50 terms.<div class="space short"></div></li>
+<li>The sequence \(5, 15, 45, \ldots\) is geometric. Find the 8th term and the sum of the first 8 terms.<div class="space short"></div></li>
 <li>A ball is dropped from 2 m. Each bounce takes it to \(\tfrac34\) of its previous height. Find the total distance it travels before coming to rest. (Hint: the first drop is 2 m; after that every height is travelled twice, down and up.)<div class="space short"></div></li>
 <li>Write \(0.272727\ldots\) as a geometric series and sum it to get a fraction in lowest terms. Why does this show every repeating decimal is a fraction?<div class="space short"></div></li>
 </ol>

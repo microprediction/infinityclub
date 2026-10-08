@@ -26,7 +26,7 @@
 </nav>
 <main class="demo-wrap">
 <h1>The random surfer</h1>
-<p class="explain">Six web pages. Click a page, then click another, to add or remove a link between them. A surfer starts anywhere and keeps clicking random links. Where does the surfer spend their time? That fraction is the page's rank, and it is how Google first ordered the web.</p>
+<p class="explain">Six web pages. Click a page, then click another, to add or remove a link between them; the link points from the first page you click to the second. Press <b>One step</b> to watch the ranks move, or <b>Run until it settles</b>. A surfer starts anywhere and keeps clicking random links. Where does the surfer spend their time? That fraction is the page's rank, and it is how Google first ordered the web.</p>
 <div class="demo-panel">
   <div class="controls">
     <button id="step">One step</button>
@@ -34,7 +34,7 @@
     <button id="reset" class="ghost">Reset ranks</button>
     <button id="random" class="ghost">Random web</button>
     <button id="clear" class="ghost">Clear links</button>
-    <label>damping <input type="range" id="damp" min="0" max="1" step="0.05" value="0.85"> <span id="dampv">0.85</span></label>
+    <label>chance of following a link <input type="range" id="damp" min="0" max="1" step="0.05" value="0.85"> <span id="dampv">0.85</span> (otherwise jump to a random page)</label>
   </div>
   <div class="two">
     <div><canvas id="web" width="420" height="420"></canvas></div>
@@ -124,7 +124,7 @@ var PR = (function () {
   function writeInfo() {
     var G = PR.matrix(adj, d()), order = r.map(function (v, i) { return i; }).sort(function (a, b) { return r[b] - r[a]; });
     var dead = []; for (var j = 0; j < N; j++) { var o = 0; for (var k = 0; k < N; k++) o += adj[j][k]; if (!o) dead.push(j + 1); }
-    var txt = "steps taken: " + iter + (lastChange === null ? "" : "    largest change last step: " + lastChange.toExponential(2)) + "\n";
+    var txt = "steps taken: " + iter + (lastChange === null ? "" : "    largest change last step: " + (lastChange < 0.0005 ? "less than 0.001" : lastChange.toFixed(3))) + "\n";
     txt += "ranks, best first: " + order.map(function (i) { return "page " + (i + 1) + " " + r[i].toFixed(3); }).join(", ") + "\n";
     txt += "sum of ranks: " + r.reduce(function (a, b) { return a + b; }, 0).toFixed(3) + (dead.length ? "    dead ends (treated as linking everywhere): " + dead.join(", ") : "");
     if (selected >= 0) txt += "\nPage " + (selected + 1) + " selected. Click another page to add or remove a link from it, or click it again to cancel.";

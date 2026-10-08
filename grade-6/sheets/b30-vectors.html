@@ -31,13 +31,13 @@
 
 <section class="idea">
 <h2>Tonight's idea</h2>
-<p>Some things need two pieces of information. "Walk 5 km" is not enough; you need to know 5 km <em>which way</em>. A <b>vector</b> is an arrow: it has a length and a direction, and nothing else. It does not matter where you draw it. Slide it anywhere on the page and it is still the same vector.</p>
+<p>Some things need two pieces of information. "Walk 5 km" is not enough; you need to know 5 km <em>which way</em>. A <b>vector</b> is an arrow: it has a length and a direction, and nothing else. Slide it anywhere on the page and it is still the same vector.</p>
 <p>The easiest way to write a vector is as steps on a grid, like coordinates (see <a href="a4-negatives.html">Below zero</a>): \((3, 2)\) means 3 steps east and 2 steps north. \((-1, 4)\) means 1 step west and 4 north.</p>
 <p>Two rules do almost everything.</p>
 <p><b>Adding.</b> Put the tail of the second arrow on the head of the first. The sum is the arrow from the very start to the very end. In coordinates you just add the parts: \((3, 2) + (-1, 4) = (2, 6)\).</p>
 <p><b>Scaling.</b> Multiply a vector by a number and it stretches: \(2 \times (3, 2) = (6, 4)\), same direction, twice as long. Multiply by \(-1\) and it points the opposite way.</p>
 <p>The length of a vector comes from <a href="b7-pythagoras.html">Pythagoras</a>: \((3, 4)\) has length \(\sqrt{3^2 + 4^2} = 5\).</p>
-<p>Vectors are how physics talks about anything with a direction: velocity, force, wind, the pull of gravity. And a matrix (see <a href="b9-matrices.html">Matrices</a>) is a machine that eats one vector and produces another.</p>
+<p>Physics uses vectors for anything with a direction: velocity, force, wind, gravity. A <a href="b9-matrices.html">matrix</a> turns one vector into another.</p>
 <figure>
 <svg viewBox="0 0 320 200" width="320" height="200" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" font-size="12">
   <defs><marker id="ah" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#000"/></marker>
@@ -60,7 +60,7 @@
 <section class="example">
 <h2>Watch one: the river</h2>
 <p>A boat points straight across a river and moves at 3 m/s through the water. The current carries everything downstream at 4 m/s. Where does the boat actually go?</p>
-<p>Two velocities act at once, so add them. Across is \((0, 3)\) and downstream is \((4, 0)\). The sum is \((4, 3)\): every second the boat ends up 4 m downstream and 3 m across. Its real speed is the length of that arrow, \(\sqrt{4^2 + 3^2} = 5\) m/s, and its path is a straight diagonal line, not the straight-across line the boat is pointing along.</p>
+<p>Two velocities (speeds with a direction) act at once, so add them. Across is \((0, 3)\) and downstream is \((4, 0)\). The sum is \((4, 3)\): every second the boat ends up 4 m downstream and 3 m across. Its real speed is the length of that arrow, \(\sqrt{4^2 + 3^2} = 5\) m/s, and its path is a straight diagonal line, not the straight-across line the boat is pointing along.</p>
 <p>If the river is 30 m wide, crossing takes \(30 / 3 = 10\) seconds (only the across part matters for that), and in those 10 seconds the current carries the boat \(4 \times 10 = 40\) m downstream.</p>
 </section>
 
@@ -79,7 +79,7 @@
 <section class="stretch">
 <h2>Stretch: why order does not matter</h2>
 <p>Draw \(\mathbf{a}\) then \(\mathbf{b}\) head to tail. Now, from the same starting point, draw \(\mathbf{b}\) then \(\mathbf{a}\). The two routes form a four-sided shape. What kind of shape is it, and why does that prove \(\mathbf{a} + \mathbf{b} = \mathbf{b} + \mathbf{a}\) for every pair of vectors?</p>
-<p>Then: points \(P = (2, 6)\) and \(Q = (8, 2)\). The vector from \(P\) to \(Q\) is \(Q - P\). Half of that, added to \(P\), lands you where? Compare with the average of the two points, \(\left(\frac{2+8}{2}, \frac{6+2}{2}\right)\).</p>
+<p>Then: points \(P = (2, 6)\) and \(Q = (8, 2)\). The vector from \(P\) to \(Q\) is \(Q - P\) (think of each point as the arrow from \((0,0)\) to it). Half of that, added to \(P\), lands you where? Compare with the average of the two points, \(\left(\frac{2+8}{2}, \frac{6+2}{2}\right)\).</p>
 <div class="space"></div>
 </section>
 

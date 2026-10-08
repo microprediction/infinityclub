@@ -31,13 +31,13 @@ summary { cursor: pointer; font-weight: 700; color: var(--accent); }
 </nav>
 <main class="demo-wrap">
 <h1>RSA by hand</h1>
-<p class="explain">Choose two primes. The page builds a public key anyone may use to lock a message, and a private key only you can use to unlock it. Every step is ordinary arithmetic with remainders. The only secret is which two primes you started from.</p>
+<p class="explain">Choose two primes, press <b>Build keys and encrypt</b>, and read the steps. The page builds a public key anyone may use to lock a message, and a private key only you can use to unlock it. Every step is ordinary arithmetic with remainders. The only secret is which two primes you started from.</p>
 <div class="demo-panel">
   <div class="controls">
-    <label>p <select id="p"></select></label>
-    <label>q <select id="q"></select></label>
-    <label>e <input type="number" id="e" min="3" step="2" value="7"></label>
-    <label>message m <input type="number" id="m" min="2" value="65"></label>
+    <label>prime p <select id="p"></select></label>
+    <label>prime q <select id="q"></select></label>
+    <label>public exponent e (odd) <input type="number" id="e" min="3" step="2" value="7"></label>
+    <label>message m (a number below n) <input type="number" id="m" min="2" value="65"></label>
     <button id="go">Build keys and encrypt</button>
   </div>
   <div class="readout" id="info"></div>

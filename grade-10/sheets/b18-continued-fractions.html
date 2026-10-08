@@ -31,18 +31,19 @@
 
 <section class="idea">
 <h2>Tonight's idea</h2>
-<p>Decimals are one way to write a number as a list. There is an older way that is better at one thing: finding the <em>best</em> fractions for a number. Take \(415/93\). It is \(4\) and a bit: \(415 = 4 \times 93 + 43\). Flip the leftover: \(93/43 = 2 + 7/43\). Flip again: \(43/7 = 6 + 1/7\). Flip once more: \(7\). Done:</p>
+<p>A way of writing numbers built for finding their <em>best</em> fractions. Take \(415/93\). It is \(4\) and a bit: \(415 = 4 \times 93 + 43\). Flip the leftover: \(93/43 = 2 + 7/43\). Flip again: \(43/7 = 6 + 1/7\). Flip once more: \(7\). Done:</p>
 <p>\[\frac{415}{93} = 4 + \cfrac{1}{2 + \cfrac{1}{6 + \cfrac{1}{7}}} = [4; 2, 6, 7].\]</p>
-<p>That is a <b>continued fraction</b>. The steps are Euclid's algorithm, so it always finishes for a fraction. For an irrational number it never finishes, and the terms are often more revealing than the digits:</p>
+<p>That is a <b>continued fraction</b>. The steps are Euclid's algorithm, so it always finishes for a fraction. For an irrational number it never finishes:</p>
 <p class="callout">\(\sqrt2 = [1; 2, 2, 2, \ldots]\), \(\quad \varphi = [1; 1, 1, 1, \ldots]\), \(\quad \pi = [3; 7, 15, 1, 292, \ldots]\).</p>
-<p>Stop early and tidy up, and you get the <b>convergents</b>. Each convergent \(p/q\) is closer to the number than <em>any</em> fraction with a smaller denominator: the champion approximations. For \(\pi\) they are \(3, \tfrac{22}{7}, \tfrac{333}{106}, \tfrac{355}{113}\). If the next term is \(a\), the error is less than \(1/(a q^2)\), so a big term coming up means the convergent before it is unusually good. The term after \(355/113\) is \(292\), which is why that fraction matches \(\pi\) to six decimals. The golden ratio's terms are all 1s, the smallest possible, so it is the number fractions approach most reluctantly: the most irrational number.</p>
+<p>Stop after the first one, two, three, … terms and simplify the fraction you have: those are the <b>convergents</b>. Each convergent \(p/q\) is closer to the number than <em>any</em> fraction with a smaller denominator: the champion approximations.</p>
+<p>Why \(355/113\) is so good: the convergents of \(\pi\) are \(3, \tfrac{22}{7}, \tfrac{333}{106}, \tfrac{355}{113}\). If the next term is \(a\), the error is less than \(1/(a q^2)\): a big term coming up means the convergent before it is unusually good. After \(355/113\) comes \(292\), so it matches \(\pi\) to six decimals. The golden ratio's terms are all 1s, the smallest possible: it is the number fractions approach most reluctantly.</p>
 </section>
 
 <section class="example">
 <h2>Watch one: the continued fraction of \(\sqrt2\)</h2>
 <p>\(\sqrt2 = 1.414\ldots\), so the first term is \(1\) and the leftover is \(\sqrt2 - 1\). Flip it, multiplying top and bottom by \(\sqrt2 + 1\):</p>
 <p>\[\frac{1}{\sqrt2 - 1} = \frac{\sqrt2 + 1}{2 - 1} = \sqrt2 + 1 = 2.414\ldots\]</p>
-<p>Next term \(2\), leftover \(\sqrt2 - 1\) again, forever: \(\sqrt2 = [1; 2, 2, 2, \ldots]\). Convergents come from the rule top (or bottom) = term × previous + one before that. Tops \(1, 3, 7, 17, 41\); bottoms \(1, 2, 5, 12, 29\). And \(\tfrac{41}{29} = 1.41379\), against \(\sqrt2 = 1.41421\). The errors alternate in sign: convergents close in from both sides.</p>
+<p>Next term \(2\), leftover \(\sqrt2 - 1\) again, forever: \(\sqrt2 = [1; 2, 2, 2, \ldots]\). Convergents come from a rule: new top = term × previous top + the top before that, and the same for bottoms. The first two convergents are \(1\) and \(1 + \tfrac12 = \tfrac32\), so start with tops \(1, 3\) and bottoms \(1, 2\). Every later term is \(2\): tops \(2 \times 3 + 1 = 7\), \(2 \times 7 + 3 = 17\), then \(41\); bottoms \(2 \times 2 + 1 = 5\), \(2 \times 5 + 2 = 12\), then \(29\). And \(\tfrac{41}{29} = 1.41379\), against \(\sqrt2 = 1.41421\).</p>
 </section>
 
 <section class="exercises">
@@ -57,7 +58,7 @@
 
 <section class="stretch">
 <h2>Stretch: why convergents are champions</h2>
-<p>Check that \(p_{n+1}q_n - p_nq_{n+1} = \pm 1\) for \(\tfrac32, \tfrac75\) and for \(\tfrac{22}{7}, \tfrac{333}{106}\). The number \(x\) lies between consecutive convergents. Deduce \(\left|x - \tfrac{p_n}{q_n}\right| \lt \dfrac{1}{q_n q_{n+1}} \lt \dfrac{1}{q_n^2}\).</p>
+<p>Write the \(n\)-th convergent as \(p_n/q_n\). Check that \(p_{n+1}q_n - p_nq_{n+1} = \pm 1\) for \(\tfrac32, \tfrac75\) and for \(\tfrac{22}{7}, \tfrac{333}{106}\). The number \(x\) lies between consecutive convergents. Deduce \(\left|x - \tfrac{p_n}{q_n}\right| \lt \dfrac{1}{q_n q_{n+1}} \lt \dfrac{1}{q_n^2}\).</p>
 <div class="space"></div>
 </section>
 

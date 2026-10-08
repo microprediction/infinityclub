@@ -24,7 +24,7 @@
 </nav>
 <main class="demo-wrap">
 <h1>The logistic map</h1>
-<p class="explain">One rule: replace x by r·x·(1 − x). Start anywhere between 0 and 1 and repeat. For small r the value settles down. Push r past 3 and it starts to flip between two values, then four, then eight, and then, past about 3.57, it never repeats at all. The left picture is a <b>cobweb</b>: bounce from the curve to the diagonal and back to follow the rule by eye. The right picture is the same numbers in order.</p>
+<p class="explain">One rule: replace x by r·x·(1 − x). Start anywhere between 0 and 1 and repeat. For small r the value settles down. Push r past 3 and it starts to flip between two values, then four, then eight, and then, past about 3.57, it never repeats at all. The left picture is a <b>cobweb</b>. Start at x₀ on the bottom axis and go up to the curve: that height is the next x. Go across to the diagonal line, which carries the height back to the bottom axis. Repeat: up, across, up, across. The first step is drawn in blue. The right picture is the same numbers in order.</p>
 <div class="demo-panel">
   <div class="controls">
     <label>r <input type="range" id="r" min="0" max="4" step="any" value="2.8"> <input type="number" id="rn" min="0" max="4" step="0.001" value="2.8"></label>
@@ -97,6 +97,15 @@
     for (var k = 0; k < nVal; k++) {
       var a = k / nVal; g.strokeStyle = "rgba(245,165,36," + (0.25 + 0.75 * a) + ")";
       g.beginPath(); g.moveTo(X(xs[k]), k === 0 ? Y(0) : Y(xs[k])); g.lineTo(X(xs[k]), Y(xs[k + 1])); g.lineTo(X(xs[k + 1]), Y(xs[k + 1])); g.stroke();
+    }
+    // first step highlighted so the up-then-across move is visible
+    if (nVal > 0) {
+      g.strokeStyle = "#3f44c9"; g.lineWidth = 2.5;
+      g.beginPath(); g.moveTo(X(xs[0]), Y(0)); g.lineTo(X(xs[0]), Y(xs[1])); g.lineTo(X(xs[1]), Y(xs[1])); g.stroke();
+      g.fillStyle = "#3f44c9"; g.font = "12px Nunito, sans-serif";
+      g.textAlign = xs[0] < 0.5 ? "right" : "left"; g.fillText("1 up", X(xs[0]) + (xs[0] < 0.5 ? -4 : 4), (Y(0) + Y(xs[1])) / 2);
+      g.textAlign = "center"; g.fillText("2 across", (X(xs[0]) + X(xs[1])) / 2, Y(xs[1]) - 5);
+      g.lineWidth = 1.2;
     }
     g.fillStyle = "#1d1f3a"; g.font = "13px Nunito, sans-serif"; g.textAlign = "left"; g.fillText("y = " + rVal.toFixed(3) + " x (1 − x)", L + 8, T + 16);
   }

@@ -25,10 +25,10 @@
 </nav>
 <main class="demo-wrap">
 <h1>Sequence detective</h1>
-<p class="explain">Type a few terms of a sequence. The page takes differences, then differences of the differences, until a row goes constant. That tells it the degree, and from the first column it rebuilds the formula for the nth term.</p>
+<p class="explain">Type a few terms of a sequence. The page takes differences, then differences of the differences, until a row goes constant. That tells it the degree (the highest power of n in the formula), and from the first column it rebuilds the formula for the nth term.</p>
 <div class="demo-panel">
   <div class="controls">
-    <label style="flex:1 1 320px">Sequence <input id="seq" value="2, 5, 10, 17, 26, 37"></label>
+    <label style="flex:1 1 320px">Sequence <input id="seq" value="2, 5, 10, 17, 26, 37" placeholder="e.g. 2, 5, 10, 17"></label>
     <button id="go">Investigate</button>
     <button id="trap" class="alt">Try a trap</button>
   </div>
@@ -39,7 +39,7 @@
 <div class="explain">
 <h2>What's going on</h2>
 <p>If the first differences are constant, the sequence is <b>linear</b>, like 4n + 3. If the second differences are constant, it is <b>quadratic</b>, and the n² coefficient is half that constant. Third differences constant means cubic, with the constant divided by 6, and so on: the divisor is k! for degree k.</p>
-<p>The page uses Newton's method: the nth term equals the first term, plus the first difference times (n − 1), plus the second difference times (n − 1)(n − 2)/2, and so on down the left-hand edge of the table. Those pieces are then multiplied out into ordinary powers of n.</p>
+<p>The page uses Newton's forward-difference formula: the nth term equals the first term, plus the first difference times (n − 1), plus the second difference times (n − 1)(n − 2)/2, and so on down the left-hand edge of the table. Those pieces are then multiplied out into ordinary powers of n.</p>
 <p>The trap: 1, 2, 4, 8, 16 looks like doubling, but a degree-4 polynomial passes through those five numbers too, and it continues with 31, not 32. Five terms can never pin down a sequence. Only a rule can.</p>
 <p>Sheet: <a href="../grade-6/sheets/b17-differences.html">The detective's method for sequences</a>.</p>
 </div>

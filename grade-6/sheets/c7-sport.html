@@ -32,15 +32,57 @@
 <section class="idea">
 <h2>Tonight's idea</h2>
 <p>Say team A beats team B with probability 0.6 in any single game. That is a big edge in real sport. Now ask how often A wins a series.</p>
-<p>One game: 60%. Best of three: A needs two wins. The ways are WW, WLW, LWW. Each has probability \(0.6 \times 0.6 = 0.36\), \(0.6 \times 0.4 \times 0.6 = 0.144\), \(0.4 \times 0.6 \times 0.6 = 0.144\). Total 0.648, so 64.8%. Best of five: 68.3%. Best of seven: 71.0%. Longer series help the better team, but slowly, and never to certainty. Even a best-of-seven leaves the worse team winning 29 times in 100. That is not a scandal. That is what "probability 0.6" means (see <a href="b14-dice.html">Dice don't lie</a>).</p>
-<p>Tournament shape matters too. In a <b>knockout</b> (single elimination), one bad day and you are gone, so upsets pile up. In a <b>round robin</b>, where everyone plays everyone, luck has many games to average out, which is why league champions are usually stronger than cup winners. A round robin of \(n\) teams needs \(\binom{n}{2}\) games (see <a href="b18-factorials.html">How many ways</a>), which gets expensive fast.</p>
-<p>Then there are <b>streaks</b>. A player scores five in a row and the commentator says they are "hot". But flip a fair coin 20 times and the chance of seeing at least one run of four heads or four tails is about 77%. Runs are what randomness looks like. Researchers have argued for forty years about whether the hot hand in basketball exists at all, and the honest answer is: if it does, it is small.</p>
-<p>Finally, averages. A batter can have a higher average than a rival in the first half of the season and in the second half, and still a lower average for the whole season. It depends on how many times each batted in each half. This is Simpson's paradox, from <a href="a8-averages.html">Lying with averages</a>, and it bites sports statistics constantly.</p>
+<p>One game: 60%. Best of three: A needs two wins. The ways are WW, WLW, LWW. Each has probability \(0.6 \times 0.6 = 0.36\), \(0.6 \times 0.4 \times 0.6 = 0.144\), \(0.4 \times 0.6 \times 0.6 = 0.144\). Total 0.648, so 64.8%. Best of five: 68.3%. Best of seven: 71.0%. Longer series help the better team, but slowly, and never to certainty. Even a best-of-seven leaves the worse team winning 29 times in 100. That is what "probability 0.6" means (see <a href="b14-dice.html">Dice don't lie</a>).</p>
+<figure><svg viewBox="0 0 400 134" width="400" height="134" role="img" aria-label="Tree of a best-of-three series for a team that wins each game with probability 0.6; the three paths where A wins, WW, WLW and LWW, are highlighted">
+<text x="118" y="9" font-family="Nunito, sans-serif" font-size="11" fill="#555" text-anchor="middle">game 1</text>
+<text x="208" y="9" font-family="Nunito, sans-serif" font-size="11" fill="#555" text-anchor="middle">game 2</text>
+<text x="298" y="9" font-family="Nunito, sans-serif" font-size="11" fill="#555" text-anchor="middle">game 3</text>
+<line x1="36" y1="72" x2="108" y2="36" stroke="#999" stroke-width="1"/>
+<text x="73" y="51" font-family="Nunito, sans-serif" font-size="10" fill="#555" text-anchor="middle">0.6</text>
+<line x1="36" y1="72" x2="108" y2="110" stroke="#999" stroke-width="1"/>
+<text x="73" y="88" font-family="Nunito, sans-serif" font-size="10" fill="#555" text-anchor="middle">0.4</text>
+<line x1="126" y1="36" x2="198" y2="20" stroke="#999" stroke-width="1"/>
+<text x="163" y="25" font-family="Nunito, sans-serif" font-size="10" fill="#555" text-anchor="middle">0.6</text>
+<line x1="126" y1="36" x2="198" y2="51" stroke="#999" stroke-width="1"/>
+<text x="163" y="40" font-family="Nunito, sans-serif" font-size="10" fill="#555" text-anchor="middle">0.4</text>
+<line x1="126" y1="110" x2="198" y2="95" stroke="#999" stroke-width="1"/>
+<text x="163" y="100" font-family="Nunito, sans-serif" font-size="10" fill="#555" text-anchor="middle">0.6</text>
+<line x1="126" y1="110" x2="198" y2="126" stroke="#999" stroke-width="1"/>
+<text x="163" y="115" font-family="Nunito, sans-serif" font-size="10" fill="#555" text-anchor="middle">0.4</text>
+<line x1="216" y1="51" x2="288" y2="40" stroke="#999" stroke-width="1"/>
+<text x="253" y="42" font-family="Nunito, sans-serif" font-size="10" fill="#555" text-anchor="middle">0.6</text>
+<line x1="216" y1="51" x2="288" y2="62" stroke="#999" stroke-width="1"/>
+<text x="253" y="54" font-family="Nunito, sans-serif" font-size="10" fill="#555" text-anchor="middle">0.4</text>
+<line x1="216" y1="95" x2="288" y2="84" stroke="#999" stroke-width="1"/>
+<text x="253" y="86" font-family="Nunito, sans-serif" font-size="10" fill="#555" text-anchor="middle">0.6</text>
+<line x1="216" y1="95" x2="288" y2="106" stroke="#999" stroke-width="1"/>
+<text x="253" y="98" font-family="Nunito, sans-serif" font-size="10" fill="#555" text-anchor="middle">0.4</text>
+<text x="28" y="76" font-family="Nunito, sans-serif" font-size="12" text-anchor="middle">start</text>
+<text x="118" y="40" font-family="Nunito, sans-serif" font-size="12" font-weight="400" fill="#1d1f3a" text-anchor="middle">W</text>
+<text x="118" y="114" font-family="Nunito, sans-serif" font-size="12" font-weight="400" fill="#1d1f3a" text-anchor="middle">L</text>
+<text x="208" y="24" font-family="Nunito, sans-serif" font-size="12" font-weight="700" fill="#f5a524" text-anchor="middle">WW</text>
+<text x="230" y="24" font-family="Nunito, sans-serif" font-size="11" fill="#f5a524">0.36</text>
+<text x="208" y="55" font-family="Nunito, sans-serif" font-size="12" font-weight="400" fill="#1d1f3a" text-anchor="middle">WL</text>
+<text x="208" y="99" font-family="Nunito, sans-serif" font-size="12" font-weight="400" fill="#1d1f3a" text-anchor="middle">LW</text>
+<text x="208" y="130" font-family="Nunito, sans-serif" font-size="12" font-weight="400" fill="#1d1f3a" text-anchor="middle">LL</text>
+<text x="230" y="130" font-family="Nunito, sans-serif" font-size="11" fill="#555">0.16</text>
+<text x="298" y="44" font-family="Nunito, sans-serif" font-size="12" font-weight="700" fill="#f5a524" text-anchor="middle">WLW</text>
+<text x="320" y="44" font-family="Nunito, sans-serif" font-size="11" fill="#f5a524">0.144</text>
+<text x="298" y="66" font-family="Nunito, sans-serif" font-size="12" font-weight="400" fill="#1d1f3a" text-anchor="middle">WLL</text>
+<text x="320" y="66" font-family="Nunito, sans-serif" font-size="11" fill="#555">0.096</text>
+<text x="298" y="88" font-family="Nunito, sans-serif" font-size="12" font-weight="700" fill="#f5a524" text-anchor="middle">LWW</text>
+<text x="320" y="88" font-family="Nunito, sans-serif" font-size="11" fill="#f5a524">0.144</text>
+<text x="298" y="110" font-family="Nunito, sans-serif" font-size="12" font-weight="400" fill="#1d1f3a" text-anchor="middle">LWL</text>
+<text x="320" y="110" font-family="Nunito, sans-serif" font-size="11" fill="#555">0.096</text>
+</svg><figcaption>Best of three for a 0.6 team; the series stops at two wins. A wins on the orange paths: 0.36 + 0.144 + 0.144 = 0.648.</figcaption></figure>
+<p>Tournament shape matters too. In a <b>knockout</b> (single elimination), one bad day and you are gone, so upsets pile up. In a <b>round robin</b>, where everyone plays everyone, luck has many games to average out, which is why league champions are usually stronger than cup winners. A round robin of \(n\) teams needs one game for every pair of teams, which is the number of ways to choose 2 teams from \(n\), written \(\binom{n}{2}\) (see <a href="b18-factorials.html">How many ways</a>). It gets expensive fast.</p>
+<p>Then there are <b>streaks</b>. A player scores five in a row and the commentator says they are "hot". But flip a fair coin 20 times and the chance of seeing at least one run of four heads or four tails is about 77%. Runs are what randomness looks like. Researchers still argue about whether the hot hand in basketball exists; if it does, it is small.</p>
+<p>Finally, averages: a batter can beat a rival in both halves of a season and still lose over the whole season, which is Simpson's paradox from <a href="a8-averages.html">Lying with averages</a>.</p>
 </section>
 
 <section class="example">
 <h2>Watch one: best of seven, sweep</h2>
-<p>What is the chance the 0.6 team wins a best-of-seven four games to nothing? Four wins in a row: \(0.6 \times 0.6 \times 0.6 \times 0.6 = 0.6^4 = 0.1296\), about 13%. A sweep by the <em>worse</em> team is \(0.4^4 = 0.0256\), about 2.6%. So sweeps by the underdog happen roughly one series in forty. Over decades of finals, you will see several.</p>
+<p>What is the chance the 0.6 team wins a best-of-seven four games to nothing? Four wins in a row: \(0.6 \times 0.6 \times 0.6 \times 0.6 = 0.6^4 = 0.1296\), about 13%. A sweep by the <em>worse</em> team is \(0.4^4 = 0.0256\), about 2.6%. So sweeps by the underdog happen roughly one series in forty.</p>
 </section>
 
 <section class="exercises">
@@ -49,7 +91,7 @@
 <li>Team A wins each game with probability 0.7. Compute the chance A wins a best-of-three by listing the cases WW, WLW, LWW. Compare with the single-game chance.<div class="space"></div></li>
 <li>Eight teams play a round robin (everyone plays everyone once). How many games is that? Explain where the number comes from, either by counting pairs or using Pascal's triangle.<div class="space short"></div></li>
 <li>A knockout cup starts with 64 teams. How many matches are played in total? Give a one-sentence reason that works without drawing the bracket.<div class="space short"></div></li>
-<li>In 20 coin flips there is roughly a 77% chance of a run of at least four the same. A coach sees a player miss four shots in a row and benches them "because they are cold". Write two sentences the team's statistician might say to the coach.<div class="space short"></div></li>
+<li>In 20 coin flips there is roughly a 77% chance of a run of at least four the same. A coach sees a player miss four shots in a row and benches them "because they are cold". Write two sentences the team's statistician might say to the coach. Use the 77% number.<div class="space short"></div></li>
 </ol>
 </section>
 

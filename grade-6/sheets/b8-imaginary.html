@@ -31,16 +31,10 @@
 
 <section class="idea">
 <h2>Tonight's idea</h2>
-<p>Five hundred years ago, negative numbers were called "absurd" and "fictitious". How can you have less than nothing? Then people found that if you simply allow them and follow the rules, debts, temperatures and directions all become easy. The numbers were strange only until they were useful.</p>
-<p>The same thing happened again. Nothing squared gives a negative, because positive times positive and negative times negative are both positive. So define a new number \(i\) with the single property \(i^2 = -1\), and see what happens if you follow the ordinary rules of algebra.</p>
-<p>Numbers like \(3 + 2i\) are called <b>complex numbers</b>: an ordinary part and an \(i\) part. Adding is easy, just add the parts: \((3 + 2i) + (1 + 5i) = 4 + 7i\). Multiplying uses the distributive law and \(i^2 = -1\) whenever it appears.</p>
+<p>Five hundred years ago, negative numbers were called "absurd". They stopped being absurd when they became useful. The same thing happened again.</p>
+<p>Nothing squared gives a negative, because positive times positive and negative times negative are both positive. So define a new number \(i\) with the single property \(i^2 = -1\), and see what happens if you follow the ordinary rules of algebra.</p>
+<p>Numbers like \(3 + 2i\) are called <b>complex numbers</b>: an ordinary part and an \(i\) part. Adding is easy, just add the parts: \((3 + 2i) + (1 + 5i) = 4 + 7i\). To multiply, expand the brackets the usual way, every term in the first times every term in the second, then replace \(i^2\) by \(-1\).</p>
 <p>The picture is the real surprise. Plot \(a + bi\) as the point \((a, b)\): ordinary numbers along the horizontal axis, \(i\) one step up. Now multiply any point by \(i\) and plot the result. It has <b>rotated a quarter turn anticlockwise</b>. That explains \(i^2 = -1\) perfectly: two quarter turns make a half turn, and a half turn takes 1 to \(-1\). There was never anything imaginary about it. It was a rotation all along. Try it at <a href="../../demos/complex.html">infinityclub.net/demos/complex</a>.</p>
-</section>
-
-<section class="example">
-<h2>Watch one: multiply (2 + 3i)(1 − i)</h2>
-<p>Expand like any pair of brackets: \(2 \times 1 + 2 \times (-i) + 3i \times 1 + 3i \times (-i) = 2 - 2i + 3i - 3i^2\).</p>
-<p>Now use \(i^2 = -1\): \(-3i^2 = +3\). So the total is \(2 + 3 + (-2i + 3i) = 5 + i\).</p>
 <figure>
 <svg viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="Complex plane with the point 2 plus i and its quarter-turn rotation minus 1 plus 2i">
 <g stroke="#999" stroke-width="1"><line x1="10" y1="100" x2="190" y2="100"/><line x1="100" y1="10" x2="100" y2="190"/></g>
@@ -54,13 +48,19 @@
 </figure>
 </section>
 
+<section class="example">
+<h2>Watch one: multiply (2 + 3i)(1 − i)</h2>
+<p>Expand like any pair of brackets: \(2 \times 1 + 2 \times (-i) + 3i \times 1 + 3i \times (-i) = 2 - 2i + 3i - 3i^2\).</p>
+<p>Now use \(i^2 = -1\): \(-3i^2 = +3\). So the total is \(2 + 3 + (-2i + 3i) = 5 + i\).</p>
+</section>
+
 <section class="exercises">
 <h2>Your turn</h2>
 <ol>
 <li>Work out \(i^1, i^2, i^3, i^4, i^5\). You should see a cycle. Use it to find \(i^7\) and \(i^{100}\).<div class="space short"></div></li>
 <li>Compute \((2 + 3i) + (1 - i)\) and \((2 + 3i) - (1 - i)\).<div class="space short"></div></li>
 <li>Compute \((1 + 2i)(3 + i)\). Show the \(i^2\) step.<div class="space"></div></li>
-<li>Compute \((3 + 2i)(3 - 2i)\). The \(i\) parts should vanish. Then compute \((a + bi)(a - bi)\) in general. This is why the number 13 can be split into two squares.<div class="space"></div></li>
+<li>Compute \((3 + 2i)(3 - 2i)\). The \(i\) parts should vanish. Then compute \((a + bi)(a - bi)\) in general. Notice the answer, 13, equals \(3^2 + 2^2\).<div class="space"></div></li>
 <li>On a grid, plot \(2 + i\). Multiply it by \(i\) and plot the result. Multiply by \(i\) again, and again, and again, plotting each time. Describe the shape your four points make and say why the fifth point is back where you started.<div class="space tall"></div></li>
 <li>Solve \(x^2 = -9\) and \(x^2 = -2\). (Each has two answers.)<div class="space short"></div></li>
 </ol>

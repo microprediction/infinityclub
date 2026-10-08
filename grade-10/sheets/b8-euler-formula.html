@@ -31,22 +31,24 @@
 
 <section class="idea">
 <h2>Tonight's idea</h2>
-<p>Three functions you know can each be written as an endless polynomial. Take these as facts tonight (the <a href="b12-infinite-series.html">series sheet</a> says where they come from; angles are in radians, \(\pi\) radians being 180°):</p>
+<p>Three functions you know can each be written as an endless polynomial. Take these as facts tonight (the <a href="b12-infinite-series.html">series sheet</a> says where they come from). Angles are in <b>radians</b>: an angle is measured by the arc it cuts from a circle of radius 1, so a full turn is \(2\pi\).</p>
+<table class="tt"><tr><th>radians</th><td>\(\pi/4\)</td><td>\(\pi/2\)</td><td>\(\pi\)</td><td>\(2\pi\)</td></tr><tr><th>degrees</th><td>45°</td><td>90°</td><td>180°</td><td>360°</td></tr></table>
 <p>\[ e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots \qquad \cos x = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \cdots \qquad \sin x = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \cdots \]</p>
-<p>Now do something that looks illegal: put \(x = i\theta\) into the series for \(e^x\). Powers of \(i\) cycle \(i, -1, -i, 1, \ldots\), so</p>
+<p>Now put \(x = i\theta\) into the series for \(e^x\). Powers of \(i\) cycle \(i, -1, -i, 1, \ldots\), so</p>
 <p>\[ e^{i\theta} = 1 + i\theta - \frac{\theta^2}{2!} - i\frac{\theta^3}{3!} + \frac{\theta^4}{4!} + i\frac{\theta^5}{5!} - \cdots \]</p>
 <p>Collect the real terms: \(1 - \theta^2/2! + \theta^4/4! - \cdots = \cos\theta\). Collect the imaginary ones: \(i(\theta - \theta^3/3! + \cdots) = i\sin\theta\). That is <b>Euler's formula</b>:</p>
 <p class="callout">\(e^{i\theta} = \cos\theta + i\sin\theta\)</p>
+<figure><svg viewBox="0 0 200 130" width="200" height="130" role="img" aria-label="Unit circle with the point e to the i theta at angle theta; its horizontal leg is cos theta and its vertical leg is sin theta"><line x1="8" y1="72" x2="192" y2="72" stroke="#999" stroke-width="1"/><line x1="70" y1="126" x2="70" y2="8" stroke="#999" stroke-width="1"/><circle cx="70" cy="72" r="48" fill="none" stroke="#3f44c9" stroke-width="2"/><line x1="106.8" y1="41.1" x2="106.8" y2="72" stroke="#555" stroke-width="1.5" stroke-dasharray="4 3"/><line x1="70" y1="72" x2="106.8" y2="41.1" stroke="#000" stroke-width="1.5"/><path d="M 86 72 A 16 16 0 0 0 82.3 61.7" fill="none" stroke="#f5a524" stroke-width="2"/><circle cx="106.8" cy="41.1" r="3.5" fill="#f5a524"/><g font-family="Nunito, sans-serif" font-size="12" fill="#1d1f3a"><text x="112" y="35">e<tspan dy="-5" font-size="9">iθ</tspan></text><text x="90" y="67" fill="#f5a524" font-weight="700">θ</text><text x="115" y="63">sin θ</text><text x="78" y="86">cos θ</text><text x="122" y="85" fill="#555">1</text></g></svg><figcaption>\(e^{i\theta}\) sits on the unit circle at angle \(\theta\): real part \(\cos\theta\), imaginary part \(\sin\theta\).</figcaption></figure>
 <p>It fits <a href="b7-complex-rotations.html">last sheet</a>: angles add when you multiply, exactly as exponents do. Put \(\theta = \pi\): \(\cos\pi = -1\), \(\sin\pi = 0\), so</p>
 <p class="callout">\(e^{i\pi} + 1 = 0\)</p>
-<p>Five of the most important numbers in mathematics, each once. It says that half a turn points you backwards. Still a good one.</p>
+<p>Five of the most important numbers in mathematics, each once. It says that half a turn points you backwards.</p>
 </section>
 
 <section class="example">
 <h2>Watch one: two trig identities for the price of one</h2>
 <p>\(e^{i(a+b)} = e^{ia}e^{ib}\), so</p>
 <p>\[ \cos(a+b) + i\sin(a+b) = (\cos a + i\sin a)(\cos b + i\sin b) = (\cos a\cos b - \sin a\sin b) + i(\sin a\cos b + \cos a\sin b). \]</p>
-<p>Equal complex numbers have equal real parts and equal imaginary parts. Real: \(\cos(a+b) = \cos a\cos b - \sin a\sin b\). Imaginary: \(\sin(a+b) = \sin a\cos b + \cos a\sin b\). Nothing to memorise: multiply out and read off.</p>
+<p>Equal complex numbers have equal real parts and equal imaginary parts. Real: \(\cos(a+b) = \cos a\cos b - \sin a\sin b\). Imaginary: \(\sin(a+b) = \sin a\cos b + \cos a\sin b\). </p>
 </section>
 
 <section class="exercises">
@@ -74,7 +76,7 @@
 <li>\((\cos\theta + i\sin\theta)^2 = \cos^2\theta - \sin^2\theta + 2i\sin\theta\cos\theta\). So \(\cos2\theta = \cos^2\theta - \sin^2\theta\) and \(\sin2\theta = 2\sin\theta\cos\theta\). With \(\sin^2\theta = 1 - \cos^2\theta\): \(\cos2\theta = 2\cos^2\theta - 1\).</li>
 <li>\(i^i = (e^{i\pi/2})^i = e^{-\pi/2} \approx 0.2079\). A real number. (Strictly \(i = e^{i(\pi/2 + 2\pi k)}\) too, giving other real values; \(0.2079\) is the principal one.)</li>
 </ol>
-<p><b>Stretch.</b> The real part of \((c + is)^3\) is \(c^3 - 3cs^2\), so \(\cos3\theta = \cos^3\theta - 3\cos\theta(1 - \cos^2\theta) = 4\cos^3\theta - 3\cos\theta\). With \(x = \cos20°\) and \(\cos60° = \tfrac12\): \(\tfrac12 = 4x^3 - 3x\), so \(8x^3 - 6x - 1 = 0\). At \(x = 0.9397\): \(8(0.8298) - 5.638 - 1 \approx 0.000\). The only rational candidates are \(\pm1, \pm\tfrac12, \pm\tfrac14, \pm\tfrac18\), and none works. Every ruler-and-compass length comes from square roots, and such a number is never a root of a rational cubic with no rational root. So \(\cos20°\) is not constructible, and 60° cannot be trisected.</p>
+<p><b>Stretch.</b> The real part of \((c + is)^3\) is \(c^3 - 3cs^2\), so \(\cos3\theta = \cos^3\theta - 3\cos\theta(1 - \cos^2\theta) = 4\cos^3\theta - 3\cos\theta\). With \(x = \cos20°\) and \(\cos60° = \tfrac12\): \(\tfrac12 = 4x^3 - 3x\), so \(8x^3 - 6x - 1 = 0\). At \(x = 0.9397\): \(8(0.8298) - 5.638 - 1 \approx 0.000\). The only rational candidates are \(\pm1, \pm\tfrac12, \pm\tfrac14, \pm\tfrac18\), and none works. Every ruler-and-compass length comes from square roots, and such a number is never a root of a rational cubic with no rational root. So \(\cos20°\) is not constructible, and 60° cannot be trisected. (That last step is a theorem from a later course.)</p>
 </section>
 
 <div class="sheet-nav"><a href="b7-complex-rotations.html">← Previous</a><a href="b9-e.html">Next: The number e →</a></div>

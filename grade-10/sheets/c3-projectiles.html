@@ -25,7 +25,7 @@
 <header class="sheet-head">
   <div class="kicker">Infinity Club · Grade 10 · Connections · 3</div>
   <h1>Parabolas in flight</h1>
-  <p class="teaser">Why a thrown ball traces a parabola, the 45° myth, and the pendulum's √(L/g).</p>
+  <p class="teaser">Why a thrown ball traces a parabola, the 45° rule and when it is wrong, and the same kick on the Moon.</p>
   <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
 </header>
 
@@ -33,27 +33,47 @@
 <h2>Tonight's idea</h2>
 <p>Throw a ball with speed \(v\) at angle \(\theta\) above the horizontal. Gravity pulls down with constant acceleration \(g \approx 9.81\) m/s², nothing pulls sideways (ignore air), and the two directions can be treated separately.</p>
 <p><b>Sideways:</b> constant speed \(v\cos\theta\), so \(x = v\cos\theta \cdot t\). <b>Up and down:</b> starting speed \(v\sin\theta\), acceleration \(-g\), so \(y = v\sin\theta \cdot t - \tfrac12 g t^2\).</p>
+<figure><svg viewBox="0 0 360 150" width="300" height="125" role="img" aria-label="A projectile path: launch speed v at angle theta split into horizontal v cos theta and vertical v sin theta, peak height h, range R">
+<line x1="20" y1="130" x2="340" y2="130" stroke="#999" stroke-width="1"/>
+<polyline points="40.0,130.0 42.6,126.6 45.2,123.3 47.8,120.1 50.4,116.9 53.0,113.8 55.6,110.8 58.2,107.9 60.8,105.0 63.4,102.2 66.0,99.4 68.6,96.7 71.2,94.1 73.8,91.5 76.4,89.1 79.0,86.7 81.6,84.3 84.2,82.0 86.8,79.8 89.4,77.7 92.0,75.6 94.6,73.6 97.2,71.7 99.8,69.8 102.4,68.0 105.0,66.2 107.6,64.6 110.2,63.0 112.8,61.5 115.4,60.0 118.0,58.6 120.6,57.3 123.2,56.0 125.8,54.8 128.4,53.7 131.0,52.7 133.6,51.7 136.2,50.7 138.8,49.9 141.4,49.1 144.0,48.4 146.6,47.8 149.2,47.2 151.8,46.7 154.4,46.2 157.0,45.8 159.6,45.5 162.2,45.3 164.8,45.1 167.4,45.0 170.0,45.0 172.6,45.0 175.2,45.1 177.8,45.3 180.4,45.5 183.0,45.8 185.6,46.2 188.2,46.7 190.8,47.2 193.4,47.8 196.0,48.4 198.6,49.1 201.2,49.9 203.8,50.7 206.4,51.7 209.0,52.7 211.6,53.7 214.2,54.8 216.8,56.0 219.4,57.3 222.0,58.6 224.6,60.0 227.2,61.5 229.8,63.0 232.4,64.6 235.0,66.2 237.6,68.0 240.2,69.8 242.8,71.7 245.4,73.6 248.0,75.6 250.6,77.7 253.2,79.8 255.8,82.0 258.4,84.3 261.0,86.6 263.6,89.1 266.2,91.5 268.8,94.1 271.4,96.7 274.0,99.4 276.6,102.2 279.2,105.0 281.8,107.9 284.4,110.8 287.0,113.8 289.6,116.9 292.2,120.1 294.8,123.3 297.4,126.6 300.0,130.0" fill="none" stroke="#3f44c9" stroke-width="2"/>
+<line x1="40" y1="130" x2="82.5" y2="74.4" stroke="#f5a524" stroke-width="2.5"/>
+<polygon points="82.5,74.4 74.7,78.9 80.3,83.1" fill="#f5a524"/>
+<line x1="40" y1="130" x2="82.5" y2="130" stroke="#555" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="82.5" y1="130" x2="82.5" y2="74.4" stroke="#555" stroke-width="1" stroke-dasharray="3 3"/>
+<path d="M 68 130 A 28 28 0 0 0 57.0 107.8" fill="none" stroke="#000" stroke-width="1"/>
+<g font-family="Nunito, sans-serif" font-size="13" fill="#1d1f3a">
+<text x="72" y="124">θ</text>
+<text x="86.5" y="72.4">v</text>
+<text x="50" y="146">v cos θ</text>
+<text x="87.5" y="106.2">v sin θ</text>
+<text x="170.0" y="37" text-anchor="middle">h</text>
+<text x="300" y="146" text-anchor="middle">R</text>
+</g>
+<line x1="170.0" y1="45" x2="170.0" y2="130" stroke="#999" stroke-width="1" stroke-dasharray="3 3"/>
+<circle cx="300" cy="130" r="3" fill="#000"/><circle cx="40" cy="130" r="3" fill="#000"/>
+</svg><figcaption>Peak height \(h\), range \(R\).</figcaption></figure>
+
 <p>Eliminate the time: \(t = x/(v\cos\theta)\), and substituting,</p>
-<p class="callout">\[y = x\tan\theta - \frac{g}{2v^2\cos^2\theta}\,x^2.\] A quadratic in \(x\) with a negative leading coefficient: an upside-down parabola. Every thrown, kicked or struck object follows one, as far as air can be ignored.</p>
+<p class="callout">\[y = x\tan\theta - \frac{g}{2v^2\cos^2\theta}\,x^2.\] A quadratic in \(x\) with a negative leading coefficient: an upside-down parabola. Every thrown or kicked object follows one, air aside.</p>
 <p>Landing on level ground means \(y = 0\), which gives \(x = \dfrac{2v^2\sin\theta\cos\theta}{g}\), and with \(2\sin\theta\cos\theta = \sin 2\theta\):</p>
 <p class="callout">Range \(R = \dfrac{v^2 \sin 2\theta}{g}\), biggest at \(\theta = 45°\). Since \(\sin 2\theta = \sin(180° - 2\theta)\), the angles \(\theta\) and \(90° - \theta\) give the same range.</p>
-<p>Real shot-putters release at about 42°, not 45°, because the shot starts two metres up. The pure parabola is the first approximation; the corrections are where the engineering lives.</p>
+<p>Real shot-putters release at about 42°, not 45°, because the shot starts two metres up. The pure parabola is the first approximation; the corrections are the engineering.</p>
 </section>
 
 <section class="example">
 <h2>Watch one: 20 m/s at 30°</h2>
 <p>Range: \(R = \dfrac{20^2 \sin 60°}{9.81} = \dfrac{400 \times 0.866}{9.81} = 35.3\) m.</p>
-<p>Maximum height: the vertical speed \(v\sin\theta = 10\) m/s is used up when \(v_y^2 = u_y^2 - 2gh\) reaches zero, so \(h = \dfrac{(v\sin\theta)^2}{2g} = \dfrac{100}{19.62} = 5.10\) m.</p>
-<p>Time of flight: up and down are symmetric, so \(t = \dfrac{2v\sin\theta}{g} = \dfrac{20}{9.81} = 2.04\) s. Check: \(x = 17.32 \times 2.04 = 35.3\) m. Same answer two ways, which is how you catch mistakes.</p>
+<p>Maximum height: the vertical speed starts at \(v\sin\theta = 10\) m/s and gravity takes \(g\) off it each second; (final speed)² = (initial speed)² \(- 2gh\) reaches zero at \(h = \dfrac{(v\sin\theta)^2}{2g} = \dfrac{100}{19.62} = 5.10\) m.</p>
+<p>Time of flight: up and down are symmetric, so \(t = \dfrac{2v\sin\theta}{g} = \dfrac{20}{9.81} = 2.04\) s. Check: \(x = 17.32 \times 2.04 = 35.3\) m.</p>
 </section>
 
 <section class="exercises">
 <h2>Your turn</h2>
 <ol>
-<li>A football is kicked at 25 m/s at 40° above the horizontal. Find the range, the maximum height and the time of flight. Take \(g = 9.81\) m/s².<div class="space"></div></li>
+<li>A football is kicked at 25 m/s at 40° above the horizontal. Find the range, the maximum height and the time of flight. Take \(g = 9.81\) m/s².<div class="space short"></div></li>
 <li>The same ball is kicked at 25 m/s at 50°. Without recalculating, state the range and explain why. Which kick stays in the air longer, and by how much?<div class="space short"></div></li>
-<li>A hose held 1.2 m above the ground squirts water horizontally at 8 m/s. How long does the water take to reach the ground, and how far away does it land? (Horizontal launch means \(\theta = 0\): the vertical motion is a pure drop.)<div class="space"></div></li>
-<li>On the Moon, \(g = 1.62\) m/s². How far would the kick in question 1 travel there? Why does a lower \(g\) help the range in exact inverse proportion?<div class="space short"></div></li>
+<li>A hose held 1.2 m above the ground squirts water horizontally at 8 m/s. How long does the water take to reach the ground, and how far away does it land? (Horizontal launch: \(\theta = 0\), so the vertical motion is a pure drop.)<div class="space short"></div></li>
+<li>On the Moon, \(g = 1.62\) m/s². How far would the kick in question 1 travel there? Explain from the range formula why the range is multiplied by exactly the factor \(g\) is divided by.<div class="space short"></div></li>
 </ol>
 </section>
 

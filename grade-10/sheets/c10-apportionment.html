@@ -31,30 +31,39 @@
 
 <section class="idea">
 <h2>Tonight's idea</h2>
-<p>The US Constitution shares House seats among the states in proportion to population. Easy: population share times the number of seats. Except that gives 7.8 seats, and you cannot send 0.8 of a person to Washington. Deciding how to round is <b>apportionment</b>, and it caused the first presidential veto in American history.</p>
-<p><b>Hamilton's method</b> (1792): compute each state's exact share, its <b>quota</b>; give every state the whole-number part; hand the leftover seats, one each, to the states with the largest fractional parts. Washington vetoed it and Congress adopted <b>Jefferson's method</b>: pick a divisor \(D\), give each state \(\lfloor \text{population}/D \rfloor\) seats, and adjust \(D\) until the seats add up. Rounding down favours big states, which is not unrelated to Jefferson being from Virginia.</p>
-<p>Hamilton's method came back and in 1880 a clerk found that Alabama would get 8 seats in a house of 299 but only 7 in a house of 300: the <b>Alabama paradox</b>. Divisor methods avoid it, but can hand a state with quota 7.8 nine seats. Balinski and Young proved in 1982 that no method can both stay within quota and avoid such paradoxes.</p>
-<p>Voting is worse. Arrow (1951) asked for a rule turning everyone's rankings into one group ranking with <b>(1)</b> an answer for any set of rankings; <b>(2)</b> <em>unanimity</em>; <b>(3)</b> <em>independence of irrelevant alternatives</em>: the group's order of A against B depends only on how voters rank A against B; <b>(4)</b> <em>no dictator</em>. <b>Arrow's theorem:</b> with three or more options, no rule satisfies all four.</p>
+<p>The US Constitution shares House seats among the states in proportion to population. But a state's share comes out as 7.8 seats, and you cannot send 0.8 of a person to Washington. Deciding how to round is <b>apportionment</b>, and it caused the first presidential veto in American history.</p>
+<p><b>Hamilton's method</b>: compute each state's exact share, its <b>quota</b>; give every state the whole-number part; hand the leftover seats, one each, to the states with the largest fractional parts. Washington vetoed it and Congress adopted <b>Jefferson's method</b>: pick a divisor \(D\), give each state \(\lfloor \text{population}/D \rfloor\) seats (\(\lfloor x \rfloor\) means \(x\) rounded down to a whole number), and adjust \(D\) until the seats add up. Rounding down favours big states, and Jefferson was from the biggest one.</p>
+<p>Hamilton's method came back and in 1880 a clerk found that Alabama would get 8 seats in a house of 299 but only 7 in a house of 300: the <b>Alabama paradox</b>. Balinski and Young proved in 1982 that no method can both stay within quota and avoid such paradoxes.</p>
+<p>Voting is worse. Arrow (1951) asked for a rule turning everyone's rankings into one group ranking such that:</p>
+<ol>
+<li>it always gives an answer, whatever the rankings;</li>
+<li><em>unanimity</em>: if everyone prefers A to B, so does the group;</li>
+<li><em>independence of irrelevant alternatives</em>: the group's order of A against B depends only on how voters rank A against B;</li>
+<li><em>no dictator</em>: no one voter's ranking is automatically the group's.</li>
+</ol>
+<p><b>Arrow's theorem:</b> with three or more options, no rule satisfies all four.</p>
 </section>
 
 <section class="example">
 <h2>Watch one: Hamilton with three states</h2>
-<p>Populations 7, 6 and 2 million; 10 seats. Total 15 million, so one seat per 1.5 million. Quotas: \(7/1.5 = 4.667\), \(6/1.5 = 4\), \(2/1.5 = 1.333\). Whole parts 4, 4, 1, which is 9 seats. The largest fractional part is state A's 0.667, so it gets the spare seat. Final: <b>5, 4, 1</b>. Jefferson with \(D = 1.4\) million gives \(\lfloor 5 \rfloor, \lfloor 4.29 \rfloor, \lfloor 1.43 \rfloor = 5, 4, 1\) too. The methods usually agree; the interesting cases are the ones where they don't.</p>
+<p>Populations 7, 6 and 2 million; 10 seats. Total 15 million, so one seat per 1.5 million. Quotas: \(7/1.5 = 4.667\), \(6/1.5 = 4\), \(2/1.5 = 1.333\). Whole parts 4, 4, 1, which is 9 seats. The largest fractional part is state A's 0.667, so it gets the spare seat. Final: <b>5, 4, 1</b>. Jefferson with \(D = 1.4\) million gives \(\lfloor 5 \rfloor, \lfloor 4.29 \rfloor, \lfloor 1.43 \rfloor = 5, 4, 1\) too.</p>
 </section>
 
 <section class="exercises">
 <h2>Your turn</h2>
 <ol>
-<li><b>The Alabama paradox.</b> Three states with populations 6, 6 and 2 million. Apportion 10 seats by Hamilton's method, then 11 seats. What happens to the small state, and exactly why?<div class="space tall"></div></li>
-<li><b>Jefferson.</b> Five states with populations 650, 100, 100, 100 and 50 thousand share 12 seats. Compute the quotas. Show that \(D = 72\) thousand works for Jefferson's method and write down the result. Which state gets more than its quota rounded <em>up</em>? Which gets nothing?<div class="space"></div></li>
-<li><b>Twelve voters, three candidates.</b> 5 rank A &gt; B &gt; C, 4 rank B &gt; C &gt; A, 3 rank C &gt; B &gt; A. Who wins by plurality? By a runoff between the top two? Is there a Condorcet winner, who beats each other candidate head to head?<div class="space"></div></li>
-<li><b>The spoiler.</b> In question 3, suppose C withdraws and C's voters vote for their second choice. Who wins by plurality now? Which of Arrow's four conditions does plurality violate here, and what is the everyday name for this?<div class="space"></div></li>
+<li><b>The Alabama paradox.</b> Three states with populations 6, 6 and 2 million. Apportion 10 seats by Hamilton's method, then 11 seats. What happens to the small state, and exactly why?<div class="space short"></div></li>
+<li><b>Jefferson.</b> Five states with populations 650, 100, 100, 100 and 50 thousand share 12 seats. Compute the quotas. Show that \(D = 72\) thousand works for Jefferson's method and write down the result. Which state gets more than its quota rounded <em>up</em>? Which gets nothing?<div class="space short"></div></li>
+<li><b>Twelve voters, three candidates.</b> Their rankings:
+<table class="tt"><tr><th></th><th>5 voters</th><th>4 voters</th><th>3 voters</th></tr><tr><th>1st</th><td>A</td><td>B</td><td>C</td></tr><tr><th>2nd</th><td>B</td><td>C</td><td>B</td></tr><tr><th>3rd</th><td>C</td><td>A</td><td>A</td></tr></table>
+Who wins by plurality? By a runoff between the top two? Is there a Condorcet winner, who beats each other candidate head to head?<div class="space short"></div></li>
+<li><b>The spoiler.</b> In question 3, suppose C withdraws and C's voters vote for their second choice. Who wins by plurality now? Which of Arrow's four conditions does plurality violate here, and what is the everyday name for this?<div class="space short"></div></li>
 </ol>
 </section>
 
 <section class="stretch">
 <h2>Stretch: the theorem that says you must choose</h2>
-<p>Hamilton's method always stays within quota: explain why that is built in. Then check that a dictatorship satisfies Arrow's conditions (1), (2) and (3). So the theorem really says the only rules respecting (1) to (3) are dictatorships. Why does a Condorcet cycle (A beats B, B beats C, C beats A) make pairwise majority rule fail condition (1)?</p>
+<p>(a) Hamilton's method always stays within quota: explain why that is built in. (b) Check that a dictatorship satisfies Arrow's conditions (1), (2) and (3); so the theorem really says the only rules respecting (1) to (3) are dictatorships. (c) Why does a Condorcet cycle (A beats B, B beats C, C beats A) make pairwise majority rule fail condition (1)?</p>
 <div class="space"></div>
 </section>
 
@@ -66,7 +75,7 @@
 <li>Plurality: A 5, B 4, C 3, <b>A wins</b>. Runoff A against B: C's voters prefer B, so B wins 7 to 5. Head to head B beats A 7–5 and C 9–3, so <b>B is the Condorcet winner</b>, and plurality failed to elect it.</li>
 <li>Without C, its three voters go to B: B 7, A 5, <b>B wins</b>. The A-versus-B result changed because of C, who was not going to win either way: a violation of independence of irrelevant alternatives (3). Everyday name: the spoiler effect.</li>
 </ol>
-<p><b>Stretch.</b> Hamilton starts every state at \(\lfloor q \rfloor\) and adds at most one seat, so each ends at \(\lfloor q \rfloor\) or \(\lfloor q \rfloor + 1\). Dictatorship: it gives a ranking for any input (1); if everyone, including the dictator, ranks A above B so does the output (2); the output's A-versus-B order is the dictator's, which depends on nothing else (3). It fails only (4). A Condorcet cycle makes pairwise majority rule output A &gt; B &gt; C &gt; A, which is not a ranking, so the rule has no answer for that profile and fails (1). Every repair lets a third candidate's position change the A-versus-B outcome, the failure of (3) that Arrow proved unavoidable.</p>
+<p><b>Stretch.</b> (a) Hamilton starts every state at \(\lfloor q \rfloor\) and adds at most one seat, so each ends at \(\lfloor q \rfloor\) or \(\lfloor q \rfloor + 1\). (b) Dictatorship: it gives a ranking for any input (1); if everyone, including the dictator, ranks A above B so does the output (2); the output's A-versus-B order is the dictator's, which depends on nothing else (3). It fails only (4). (c) A Condorcet cycle makes pairwise majority rule output A &gt; B &gt; C &gt; A, which is not a ranking, so the rule has no answer for that profile and fails (1). Every repair lets a third candidate's position change the A-versus-B outcome, the failure of (3) that Arrow proved unavoidable.</p>
 </section>
 
 <div class="sheet-nav"><a href="c9-gps.html">← Previous</a><a href="../index.html#sheets">← All sheets</a></div>

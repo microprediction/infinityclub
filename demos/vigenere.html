@@ -32,22 +32,22 @@ h3 { margin: .9rem 0 .2rem; }
 </nav>
 <main class="demo-wrap">
 <h1>The Vigenère cipher</h1>
-<p class="explain">A Caesar cipher shifts every letter by the same amount. Vigenère uses a keyword: the first letter of the message is shifted by the first letter of the key (A = 0, B = 1, …), the second by the second, and the key repeats. The same plaintext letter comes out differently each time, which ruins simple letter counting. For 300 years it was called "the unbreakable cipher".</p>
+<p class="explain">A Caesar cipher shifts every letter by the same amount. Type a message and a keyword. Vigenère shifts the first letter of the message by the first letter of the key (A = 0, B = 1, …), the second by the second, and the key repeats. The same plaintext letter comes out differently each time, which ruins simple letter counting. For 300 years it was called "the unbreakable cipher".</p>
 <div class="demo-panel">
   <div class="controls" style="flex-direction:column;align-items:stretch">
     <label>Message <textarea id="plain">The quick brown fox jumps over the lazy dog while the secret meeting happens at the old mill at midnight and nobody suspects a thing</textarea></label>
     <div class="controls">
       <label>Keyword <input id="key" value="LEMON"></label>
       <label><input type="checkbox" id="decode"> decode instead</label>
-      <button id="kasiski" class="alt">Kasiski</button>
+      <button id="kasiski" class="alt">Find the key length (Kasiski's trick)</button>
     </div>
   </div>
   <div class="strip" id="strip"></div>
   <h3>Result</h3>
   <div class="readout" id="out"></div>
-  <h3>Letter counts of the Vigenère result</h3>
+  <h3>Letter counts of the Vigenère result (flat: nothing to grab)</h3>
   <div class="bars" id="barsV"></div>
-  <h3>Letter counts if the same message were a Caesar shift of 3</h3>
+  <h3>Letter counts if the same message were a Caesar shift of 3 (one tall bar: E in disguise)</h3>
   <div class="bars alt" id="barsC"></div>
   <div class="letters" id="lettersRow"></div>
   <div class="readout" id="kas" hidden></div>

@@ -31,33 +31,33 @@
 
 <section class="idea">
 <h2>Tonight's idea</h2>
-<p>Around 300 BC Euclid built geometry from five assumptions. Four are modest. The fifth is equivalent to this: <b>through a point not on a line, there is exactly one line parallel to it.</b> For two thousand years mathematicians tried to prove it from the other four. In the 1820s Bolyai and Lobachevsky saw why they failed: there are perfectly consistent geometries where it is false.</p>
+<p>Euclid built geometry from five assumptions. Four are modest. The fifth is equivalent to this: <b>through a point not on a line, there is exactly one line parallel to it.</b> For two thousand years people tried to prove it from the other four. Bolyai and Lobachevsky saw why they failed: there are consistent geometries where it is false.</p>
 <p>You are standing on one. On a sphere, the straightest path is a <b>great circle</b>, whose centre is the centre of the sphere: the equator, any meridian, the route a plane flies from London to Tokyo. Great circles are the sphere's "lines", and any two of them meet. There are no parallels at all.</p>
-<p>So the theorems change. Start at the North Pole, walk down a meridian to the equator, turn 90°, walk a quarter of the way round the equator, turn 90° again and walk back to the pole. That triangle has <b>three right angles</b>. On a sphere the angles of a triangle always add to more than 180°, and the excess is proportional to the area. That is Girard's theorem: for angles \(\alpha, \beta, \gamma\) in radians on a sphere of radius \(R\),</p>
+<p>So the theorems change. Start at the North Pole, walk down a meridian to the equator, turn 90°, walk a quarter of the way round the equator, turn 90° again and walk back to the pole. That triangle has <b>three right angles</b>. On a sphere the angles of a triangle always add to more than 180°, and the <b>excess</b> (angle sum minus 180°) is proportional to the area. That is Girard's theorem: for angles \(\alpha, \beta, \gamma\) in radians on a sphere of radius \(R\),</p>
 <p class="callout">\(\text{Area} = R^2(\alpha + \beta + \gamma - \pi)\). In degrees: angle sum \(= 180° + 720° \times \dfrac{\text{area}}{\text{area of sphere}}\).</p>
-<p>Check it: excess \(\frac{\pi}{2}\), area \(\frac{\pi}{2}R^2\), exactly one eighth of the sphere's \(4\pi R^2\). Small triangles have tiny excess, which is why a surveyor's field looks Euclidean. There is also a <b>hyperbolic</b> geometry with infinitely many parallels and triangles adding to <em>less</em> than 180°. Einstein's relativity says space itself is curved by mass: the fifth postulate is, in the end, a question for physics.</p>
+<figure><svg viewBox="0 0 160 132" width="160" height="132" role="img" aria-label="A globe with the triangle from the North Pole down a meridian to the equator, a quarter of the way along the equator, and back up another meridian; all three angles are right angles"><circle cx="72" cy="72" r="52" fill="none" stroke="#1d1f3a" stroke-width="1.5"/><path d="M 72 20 L 72 88 A 52 16 0 0 0 124 72 A 52 52 0 0 0 72 20 Z" fill="#fde9c7" stroke="none"/><path d="M 20 72 A 52 16 0 0 0 124 72" fill="none" stroke="#3f44c9" stroke-width="1.5"/><path d="M 20 72 A 52 16 0 0 1 124 72" fill="none" stroke="#3f44c9" stroke-width="1" stroke-dasharray="3 3"/><line x1="72" y1="20" x2="72" y2="88" stroke="#3f44c9" stroke-width="1.5"/><path d="M 72 20 A 52 52 0 0 1 124 72" fill="none" stroke="#3f44c9" stroke-width="2.5"/><path d="M 72 80 L 79 80 L 79 87" fill="none" stroke="#555" stroke-width="1"/><path d="M 117 72 L 117 65 L 123 65" fill="none" stroke="#555" stroke-width="1"/><path d="M 72 28 L 78 29 L 77 35" fill="none" stroke="#555" stroke-width="1"/><circle cx="72" cy="20" r="3" fill="#1d1f3a"/><g font-family="Nunito, sans-serif" font-size="12" fill="#1d1f3a"><text x="52" y="14">N pole</text><text x="2" y="90">equator</text><text x="82" y="84" fill="#555">90°</text><text x="104" y="60" fill="#555">90°</text><text x="80" y="42" fill="#555">90°</text></g></svg><figcaption>Pole to equator, a quarter turn along the equator, back to the pole: three right angles, one eighth of the sphere.</figcaption></figure>
+<p>Check it: excess \(\frac{\pi}{2}\), area \(\frac{\pi}{2}R^2\), exactly one eighth of the sphere's \(4\pi R^2\). There is also a <b>hyperbolic</b> geometry with infinitely many parallels and triangles adding to <em>less</em> than 180°. Einstein's relativity says mass curves space: the fifth postulate is a question for physics.</p>
 </section>
 
 <section class="example">
 <h2>Watch one: how big is a triangle with angles 90°, 90°, 45°?</h2>
-<p>Take the Earth as a sphere of radius \(R = 6371\) km. Vertices: the North Pole and the points on the equator at longitudes 0° and 45° E. The equator angles are right angles, and the angle at the pole is the longitude difference, 45°.</p>
-<p>Excess \(= 90° + 90° + 45° - 180° = 45° = \frac{\pi}{4}\). Area \(= 6371^2 \times 0.7854 \approx 3.19 \times 10^7\) km². Check: the sphere's area is \(4\pi R^2 \approx 510\) million km², and \(\frac{\pi/4}{4\pi} = \frac{1}{16}\) of it is \(31.9\) million km². It works.</p>
+<p>Earth, \(R = 6371\) km. Vertices: the North Pole and the points on the equator at longitudes 0° and 45° E. The equator angles are right angles, and the angle at the pole is the longitude difference, 45°.</p>
+<p>Excess \(= 90° + 90° + 45° - 180° = 45° = \frac{\pi}{4}\). Area \(= 6371^2 \times 0.7854 \approx 3.19 \times 10^7\) km². Check: the sphere's area is \(4\pi R^2 \approx 510\) million km², and \(\frac{\pi/4}{4\pi} = \frac{1}{16}\) of it is \(31.9\) million km².</p>
 </section>
 
 <section class="exercises">
 <h2>Your turn</h2>
 <ol>
 <li>Which of these are "straight lines" (great circles) on the Earth: the equator; the Arctic Circle; the Greenwich meridian; the Greenwich and 180° meridians together; the Tropic of Cancer? For each non-line, say why not.<div class="space short"></div></li>
-<li>A triangle has vertices at the North Pole and at two points on the equator 120° of longitude apart. Find its three angles, its angle sum, the fraction of the Earth's surface it covers, and its area in km² with \(R = 6371\) km.<div class="space"></div></li>
-<li>Can a spherical triangle have angle sum 540°? 541°? Use Girard's theorem and the fact that a triangle fits inside a hemisphere (area less than \(2\pi R^2\)) to find the full range of possible angle sums.<div class="space"></div></li>
-<li>A <b>lune</b> is the region between two meridians, with angle \(\theta\) at each pole (an orange segment). Explain why its area is \(\dfrac{\theta}{2\pi} \cdot 4\pi R^2 = 2\theta R^2\). What fraction of the sphere is the lune with \(\theta = 90°\)?<div class="space short"></div></li>
+<li>A triangle has vertices at the North Pole and at two points on the equator 120° of longitude apart. Find its three angles, its angle sum, the fraction of the Earth's surface it covers, and its area in km² with \(R = 6371\) km.<div class="space short"></div></li>
+<li>Can a spherical triangle have angle sum 540°? 541°? Use Girard's theorem and the fact that a triangle fits inside a hemisphere (area less than \(2\pi R^2\)) to find the full range of possible angle sums.<div class="space short"></div></li>
+<li>A <b>lune</b> is the region between two meridians, with angle \(\theta\) at each pole (an orange segment), \(\theta\) in radians. Explain why its area is \(\dfrac{\theta}{2\pi} \cdot 4\pi R^2 = 2\theta R^2\). What fraction of the sphere is the lune with \(\theta = 90°\)?<div class="space short"></div></li>
 </ol>
-<p class="small">The grade 6 <a href="../../grade-6/sheets/c6-maps.html">maps sheet</a> explains why great-circle routes look bent on a Mercator map.</p>
 </section>
 
 <section class="stretch">
 <h2>Stretch: rectangles</h2>
-<p>Split a quadrilateral along a diagonal into two triangles. Use angle sums to decide whether a quadrilateral with four right angles can exist on a sphere, and whether one can exist in the hyperbolic plane. What does that say about Euclid's fifth postulate?</p>
+<p>Split a quadrilateral along a diagonal into two triangles. Add the two triangles' angle sums to decide whether a quadrilateral with four right angles can exist on a sphere, and whether one can exist in the hyperbolic plane. What does that say about Euclid's fifth postulate?</p>
 <div class="space"></div>
 </section>
 

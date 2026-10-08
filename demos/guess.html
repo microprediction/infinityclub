@@ -81,7 +81,7 @@
       status.textContent = "I am thinking of a number from 1 to " + R + ". Best possible: always within " + bound(R) + " guesses. Possibilities left: " + R + ".";
       $("guessin").focus();
     } else {
-      status.textContent = "Think of a number from 1 to " + R + ". I will find it within " + bound(R) + " guesses. Answer honestly.";
+      status.textContent = "Think of a number from 1 to " + R + ". Don't type it anywhere. I will guess; press Higher, Lower or Correct each time. I will find it within " + bound(R) + " guesses.";
       computerGuess();
     }
   }

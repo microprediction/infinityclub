@@ -31,24 +31,56 @@
 
 <section class="idea">
 <h2>Tonight's idea</h2>
-<p>Try to flatten an orange peel. It tears, or it stretches, or both. You cannot lay a piece of a sphere flat without distorting it somewhere. Gauss proved this in 1827, and it means <b>every flat map of the Earth lies about something</b>. The only question is what.</p>
-<p>In 1569 Gerardus Mercator chose to keep <b>angles</b> true. On his map, if you draw a straight line between two ports and measure its compass bearing, you can sail that bearing and arrive. Sailors loved it, and we have been staring at it ever since. The price is <b>area</b>. To keep angles right, Mercator had to stretch east–west distances as you move away from the equator (lines of longitude get closer together on the globe but stay parallel on the map), and then stretch north–south by the same amount so shapes stay right.</p>
-<p>How much stretch? At latitude \(\varphi\), the Earth's circles of latitude are only \(\cos\varphi\) as long as the equator (see <a href="b22-circle.html">Why a pizza is πr²</a> for circumferences, and <a href="b19-eratosthenes.html">Eratosthenes</a> for angles on a sphere). The map draws them full width, so each direction is stretched by \(1/\cos\varphi\), and area by \(1/\cos^2\varphi\). At the equator that is 1. At 60° north, \(\cos 60° = 0.5\), so areas are shown four times too big. At 80°, about 33 times. At the pole, infinite, which is why Mercator maps simply stop before they get there.</p>
-<p>Greenland sits around 60° to 80° north. Africa straddles the equator. Real areas: Greenland about 2.2 million km², Africa about 30.4 million km². Africa is nearly fourteen Greenlands.</p>
-<p>Other maps make other trades. An equal-area map (Peters, Mollweide) gets sizes right and makes shapes look squashed. The Robinson map, used in many atlases, is a compromise that gets nothing exactly right and nothing badly wrong. A globe gets everything right and does not fit in a book.</p>
-<p>One more consequence. The shortest route between two points on a sphere is a <b>great circle</b>, and on a Mercator map it looks like a curve bending toward the pole. That is why a flight from New York to Tokyo goes up over Alaska. The pilot is not lost; the map is.</p>
+<p>Try to flatten an orange peel: it tears or stretches. You cannot lay a piece of a sphere flat without distorting it somewhere, so <b>every flat map of the Earth lies about something</b>. The only question is what.</p>
+<p>In 1569 Gerardus Mercator chose to keep <b>angles</b> true: draw a straight line between two ports on his map, measure its compass bearing, sail that bearing, and you arrive. The price is <b>area</b>. To keep angles right, Mercator had to stretch east–west distances as you move away from the equator, and then stretch north–south by the same amount so shapes stay right.</p>
+<figure><svg viewBox="0 0 400 104" width="400" height="104" role="img" aria-label="Left: a globe where lines of longitude meet at the pole, so the 60 degree circle is half the width of the equator. Right: the Mercator grid draws the lines of longitude parallel, so the 60 degree band is stretched to full width">
+<circle cx="54" cy="50" r="36" fill="#fff" stroke="#000" stroke-width="1.2"/>
+<ellipse cx="54" cy="50" rx="18.0" ry="36" fill="none" stroke="#999" stroke-width="1"/>
+<ellipse cx="54" cy="50" rx="31.2" ry="36" fill="none" stroke="#999" stroke-width="1"/>
+<line x1="54" y1="14" x2="54" y2="86" stroke="#999" stroke-width="1"/>
+<line x1="22.8" y1="32.0" x2="85.2" y2="32.0" stroke="#999" stroke-width="1"/>
+<line x1="36.0" y1="18.8" x2="72.0" y2="18.8" stroke="#999" stroke-width="1"/>
+<line x1="18" y1="50" x2="90" y2="50" stroke="#000" stroke-width="1"/>
+<line x1="54" y1="50" x2="72.0" y2="50" stroke="#f5a524" stroke-width="4"/>
+<line x1="54" y1="18.8" x2="63.0" y2="18.8" stroke="#f5a524" stroke-width="4"/>
+<text x="94" y="54" font-family="Nunito, sans-serif" font-size="11">equator</text>
+<text x="94" y="23" font-family="Nunito, sans-serif" font-size="11">60°: half as wide</text>
+<text x="54" y="100" font-family="Nunito, sans-serif" font-size="12" text-anchor="middle">Globe</text>
+<line x1="212" y1="23.5" x2="212" y2="86" stroke="#999" stroke-width="1"/>
+<line x1="234" y1="23.5" x2="234" y2="86" stroke="#999" stroke-width="1"/>
+<line x1="256" y1="23.5" x2="256" y2="86" stroke="#999" stroke-width="1"/>
+<line x1="278" y1="23.5" x2="278" y2="86" stroke="#999" stroke-width="1"/>
+<line x1="300" y1="23.5" x2="300" y2="86" stroke="#999" stroke-width="1"/>
+<line x1="322" y1="23.5" x2="322" y2="86" stroke="#999" stroke-width="1"/>
+<line x1="344" y1="23.5" x2="344" y2="86" stroke="#999" stroke-width="1"/>
+<line x1="212" y1="66.2" x2="344" y2="66.2" stroke="#999" stroke-width="1"/>
+<line x1="212" y1="38.6" x2="344" y2="38.6" stroke="#999" stroke-width="1"/>
+<line x1="212" y1="86" x2="344" y2="86" stroke="#000" stroke-width="1"/>
+<line x1="278" y1="86" x2="300" y2="86" stroke="#f5a524" stroke-width="4"/>
+<line x1="278" y1="38.6" x2="300" y2="38.6" stroke="#f5a524" stroke-width="4"/>
+<text x="348" y="90" font-family="Nunito, sans-serif" font-size="11">equator</text>
+<text x="348" y="43" font-family="Nunito, sans-serif" font-size="11">60°</text>
+<text x="278" y="100" font-family="Nunito, sans-serif" font-size="12" text-anchor="middle">Mercator map</text>
+</svg><figcaption>The same 30° slice of longitude at the equator and at 60° north: half as wide on the globe, the same width on the map.</figcaption></figure>
+<p>How much stretch? A circle of latitude is shorter than the equator. Compared with the equator, it is this fraction as long (this fraction is the <b>cosine</b> of the latitude):</p>
+<table>
+<tr><th>Latitude</th><td>0°</td><td>30°</td><td>45°</td><td>60°</td><td>70°</td><td>80°</td></tr>
+<tr><th>Fraction of equator</th><td>1</td><td>0.866</td><td>0.707</td><td>0.5</td><td>0.342</td><td>0.174</td></tr>
+</table>
+<p>The map draws every circle full width, so east–west is stretched by 1 ÷ fraction, north–south by the same, and area by 1 ÷ fraction². At 60° north the fraction is 0.5, so areas are shown four times too big. At 80°, about 33 times. At the pole, infinite, which is why Mercator maps simply stop before they get there.</p>
+<p>The shortest route between two points on a sphere is a <b>great circle</b>, and on a Mercator map it looks like a curve bending toward the pole. That is why a flight from New York to Tokyo goes up over Alaska. The pilot is not lost; the map is.</p>
 </section>
 
 <section class="example">
 <h2>Watch one: how big is the lie at 70° north?</h2>
-<p>\(\cos 70° \approx 0.342\). Each direction is stretched by \(1 / 0.342 \approx 2.92\). Area is stretched by \(2.92 \times 2.92 \approx 8.5\). So a country at 70° north is drawn about eight and a half times too large compared with one at the equator. Northern Norway, the north coast of Alaska and much of Greenland all live up here.</p>
+<p>At 70° the fraction is 0.342. Each direction is stretched by \(1 / 0.342 \approx 2.92\). Area is stretched by \(2.92 \times 2.92 \approx 8.5\). So a country at 70° north is drawn about eight and a half times too large compared with one at the equator.</p>
 </section>
 
 <section class="exercises">
 <h2>Your turn</h2>
 <ol>
-<li>Using \(\cos 30° = 0.866\), \(\cos 45° = 0.707\), \(\cos 60° = 0.5\) and \(\cos 70° = 0.342\), compute the Mercator area exaggeration at each of those latitudes. Round to one decimal place.<div class="space"></div></li>
-<li>Africa is 30.4 million km² and Greenland is 2.2 million km². What is the true ratio? Greenland's centre is near 72° north; using your answer above for 70° as an estimate, roughly how many times too big does Greenland look compared with Africa, and does that explain why they look similar?<div class="space"></div></li>
+<li>Using the table, compute the Mercator area exaggeration (1 ÷ fraction²) at 30°, 45°, 60° and 70°. Round to one decimal place.<div class="space short"></div></li>
+<li>Africa is 30.4 million km² and Greenland is 2.2 million km². (a) What is Africa's area divided by Greenland's? (b) Greenland's centre is near 72° north, so the map draws it about 8.5 times too big, while Africa, on the equator, is about true size. Divide your answer to (a) by 8.5. (c) In one sentence, what does that number say about how the two look on the map?<div class="space"></div></li>
 <li>Antarctica is a roundish continent about the size of the USA and Mexico together. On a Mercator map it appears as a long white strip across the entire bottom edge. Explain in two sentences why.<div class="space short"></div></li>
 <li>London is at 51° north and Los Angeles at 34° north. On a globe, is the shortest path between them along a line of latitude, or does it bend north of both cities? Explain using what you know about great circles.<div class="space short"></div></li>
 </ol>
@@ -56,15 +88,15 @@
 
 <section class="stretch">
 <h2>Stretch: how wide is one degree?</h2>
-<p>The Earth's circumference is about 40,000 km, so at the equator one degree of longitude is \(40{,}000 / 360 \approx 111\) km. At latitude \(\varphi\) the circle of latitude is only \(\cos\varphi\) times as long. How wide is one degree of longitude at 60° north? At 89° north (\(\cos 89° \approx 0.0175\))? At the pole? Then explain why the grid of latitude and longitude lines, which looks like equal squares on a Mercator map, is really a set of rectangles that get narrower and narrower toward the poles.</p>
+<p>The Earth's circumference is about 40,000 km, so at the equator one degree of longitude is \(40{,}000 / 360 \approx 111\) km. At 60° north the circle of latitude is only 0.5 times as long (from the table). How wide is one degree of longitude there? At 89° north, where the fraction is 0.0175? At the pole? Then explain why the grid cells, which look like equal squares on a Mercator map, are really rectangles that get narrower toward the poles.</p>
 <div class="space"></div>
 </section>
 
 <section class="answers">
 <h2>Answers</h2>
 <ol>
-<li>30°: \(1/0.866^2 \approx 1.3\). 45°: \(1/0.707^2 \approx 2.0\). 60°: \(1/0.5^2 = 4.0\). 70°: \(1/0.342^2 \approx 8.5\).</li>
-<li>True ratio \(30.4 / 2.2 \approx 13.8\), so Africa is about 14 Greenlands. Greenland at 70°-ish is drawn about 8.5 times too large, while Africa (near the equator) is drawn roughly true size. \(13.8 / 8.5 \approx 1.6\), so on the map Africa looks only about one and a half times Greenland, and much of Greenland is even further north than 70°, which closes the gap further. That is why they look similar.</li>
+<li>30°: \(1/0.866^2 \approx 1.3\). 45°: \(1/0.707^2 \approx 2.0\). 60°: \(1/0.5^2 = 4.0\). 70°: \(1/0.342^2 \approx 8.5\). (Each one is 1 divided by the fraction squared.)</li>
+<li>(a) \(30.4 / 2.2 \approx 13.8\): Africa is about 14 Greenlands. (b) \(13.8 / 8.5 \approx 1.6\). (c) On the map Africa looks only about one and a half times Greenland, and much of Greenland is even further north than 72°, which closes the gap further. That is why they look similar.</li>
 <li>Antarctica surrounds the South Pole, where the Mercator stretch becomes infinite. The map cuts off before the pole, so the continent is sliced across and its remaining edge is stretched to the full width of the map.</li>
 <li>It bends north. The shortest path on a sphere is a great circle, and a line of latitude (other than the equator) is not a great circle. The great circle from London to Los Angeles passes over Greenland and northern Canada, further north than either city.</li>
 </ol>

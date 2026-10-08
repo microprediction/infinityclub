@@ -32,12 +32,22 @@
 <section class="idea">
 <h2>Tonight's idea</h2>
 <p>Start with a picture. \(x^2 + 6x\) is a square of side \(x\) with two strips of width 3 glued on. Those strips almost make a bigger square of side \(x + 3\). What is missing is the \(3 \times 3\) corner. So</p>
+<figure><svg viewBox="0 0 200 132" width="200" height="132" role="img" aria-label="A square of side x with two 3-wide strips attached; the missing 3 by 3 corner is dashed" font-family="Nunito, sans-serif" font-size="13">
+<rect x="20" y="30" width="70" height="70" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="90" y="30" width="25" height="70" fill="#fde8c4" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="20" y="100" width="70" height="25" fill="#fde8c4" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="90" y="100" width="25" height="25" fill="none" stroke="#f5a524" stroke-width="1.5" stroke-dasharray="4 3"/>
+<text x="55" y="22" text-anchor="middle">x</text><text x="102" y="22" text-anchor="middle">3</text>
+<text x="10" y="70" text-anchor="middle">x</text><text x="10" y="117" text-anchor="middle">3</text>
+<text x="55" y="70" text-anchor="middle" fill="#3f44c9">x²</text><text x="102" y="70" text-anchor="middle" fill="#555">3x</text><text x="55" y="117" text-anchor="middle" fill="#555">3x</text>
+<text x="160" y="117" text-anchor="middle" fill="#f5a524" font-size="12">3 × 3</text>
+</svg><figcaption>\(x^2 + 6x\) is the solid part. Adding the dashed corner makes \((x+3)^2\).</figcaption></figure>
 <p class="callout">\(x^2 + 6x = (x + 3)^2 - 9\). In general, \(x^2 + bx = \left(x + \tfrac{b}{2}\right)^2 - \tfrac{b^2}{4}\).</p>
-<p>Half the coefficient of \(x\), square it, and pay it back. That move is <b>completing the square</b>, and it solves every quadratic. Take \(ax^2 + bx + c = 0\) with \(a \neq 0\). Divide by \(a\), then complete the square on the left:</p>
+<p>Half the coefficient of \(x\), square it, add it inside the bracket and subtract it outside. That move is <b>completing the square</b>, and it solves every quadratic. Take \(ax^2 + bx + c = 0\) with \(a \neq 0\). Divide by \(a\), then complete the square on the left:</p>
 <p>\[\left(x + \frac{b}{2a}\right)^2 - \frac{b^2}{4a^2} = -\frac{c}{a} \quad\Longrightarrow\quad \left(x + \frac{b}{2a}\right)^2 = \frac{b^2 - 4ac}{4a^2}.\]</p>
 <p>Take square roots of both sides (one positive, one negative) and move the \(\tfrac{b}{2a}\) across:</p>
 <p>\[x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}.\]</p>
-<p>That is the quadratic formula. It is not a fact to memorise. It is what you get when you complete the square with letters instead of numbers.</p>
+<p>That is the quadratic formula: completing the square with letters instead of numbers.</p>
 <p>The same move finds the turning point. Written as \(y = a(x - h)^2 + k\) (<b>vertex form</b>), the square is never negative and is zero only at \(x = h\), so the graph turns at \((h, k)\): a minimum if \(a > 0\), a maximum if \(a \lt 0\).</p>
 </section>
 
@@ -73,7 +83,7 @@
 <li>\(3(x^2 + 4x) - 4 = 3\big((x+2)^2 - 4\big) - 4 = 3(x + 2)^2 - 16\). Vertex \((-2, -16)\), a minimum since \(a = 3 > 0\). Roots: \((x+2)^2 = \tfrac{16}{3}\), so \(x = -2 \pm \tfrac{4\sqrt3}{3}\), about 0.31 and \(-4.31\).</li>
 <li>The side along the wall is \(40 - 2x\), so \(A = x(40 - 2x) = -2x^2 + 40x = -2(x - 10)^2 + 200\). Largest area \(200\) m², when \(x = 10\): a 10 m by 20 m rectangle.</li>
 </ol>
-<p><b>Stretch.</b> If the numbers are \(x\) and \(10 - x\), then \(x^2 + (10 - x)^2 = 2x^2 - 20x + 100 = 2(x - 5)^2 + 50\). The minimum is 50, when both numbers are 5; the square term is the penalty for being unequal. Exactly one solution needs the square root in the formula to vanish: \(k^2 - 36 = 0\), so \(k = 6\) or \(k = -6\).</p>
+<p><b>Stretch.</b> If the numbers are \(x\) and \(10 - x\), then \(x^2 + (10 - x)^2 = 2x^2 - 20x + 100 = 2(x - 5)^2 + 50\). The minimum is 50, when both numbers are 5; the \(2(x-5)^2\) term is zero only when both numbers are 5, and positive otherwise. Exactly one solution needs the square root in the formula to vanish: \(k^2 - 36 = 0\), so \(k = 6\) or \(k = -6\).</p>
 </section>
 
 <div class="sheet-nav"><a href="../index.html#sheets">← All sheets</a><a href="a2-discriminant-vieta.html">Next: What the roots are telling you →</a></div>

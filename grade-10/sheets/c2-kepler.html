@@ -31,25 +31,40 @@
 
 <section class="idea">
 <h2>Tonight's idea</h2>
-<p>Nobody has ever laid a tape measure to a star. Every distance in astronomy is an inference, and the inferences stack: each rung of the ladder is calibrated by the one below.</p>
-<p><b>Rung 1: the Solar System, with Kepler.</b> In 1619 Kepler found that for every planet the square of the orbital period is proportional to the cube of the orbit's size. In years and astronomical units (1 AU is the Earth–Sun distance) the constant is 1:</p>
+<p>Every distance in astronomy is inferred, and the inferences stack: each rung of the ladder is calibrated by the one below.</p>
+<p><b>Rung 1: the Solar System, with Kepler.</b> In 1619 Kepler found that for every planet the square of the orbital period \(T\) is proportional to the cube of the orbit's size \(a\). Here \(a\), the <b>semi-major axis</b>, is half the long diameter of the ellipse: nearest and farthest distances from the Sun add to \(2a\). In years and astronomical units (1 AU is the Earth–Sun distance) the constant is 1:</p>
 <p class="callout">\(T^2 = a^3\). Mars: \(a = 1.524\) AU, \(T = 1.881\) yr. \(1.524^3 = 3.540\), \(1.881^2 = 3.538\).</p>
-<p>Kepler had no idea why; Newton showed it is the inverse-square law in disguise (tonight's stretch). The law turns time into distance, and radar off Venus pins down the AU itself: 149.6 million km.</p>
-<p><b>Rung 2: nearby stars, with parallax.</b> Hold a finger at arm's length and blink one eye then the other: it jumps. The Earth does the same six months apart. Half a nearby star's total shift is its <b>parallax</b> \(p\); a star with \(p = 1\) arcsecond is 1 <b>parsec</b> away, 3.26 light-years, and in general \(d = 1/p\) parsecs. Proxima Centauri has \(p = 0.768''\), so \(d = 1.30\) pc \(= 4.25\) light-years.</p>
-<p><b>Rung 3: everything else, with standard candles.</b> A source of luminosity \(L\) at distance \(d\) has brightness \(b = L/(4\pi d^2)\). Know \(L\), because the object is a type calibrated on nearby examples by parallax, and \(b\) gives \(d\). Cepheid variables and type Ia supernovae are the famous candles.</p>
+<p>Newton later showed why (tonight's stretch). The law turns a period, easy to measure, into a distance. The AU itself comes from radar bounced off Venus: 149.6 million km.</p>
+<p><b>Rung 2: nearby stars, with parallax.</b> Seen from opposite ends of Earth's orbit, six months apart, a nearby star shifts against the far ones. Half that shift is its <b>parallax</b> \(p\). A star with \(p = 1\) arcsecond (an arcsecond is 1/3600 of a degree) is 1 <b>parsec</b> away, 3.26 light-years, and in general \(d = 1/p\) parsecs. Proxima Centauri has \(p = 0.768''\), so \(d = 1.30\) pc \(= 4.25\) light-years.</p>
+<figure><svg viewBox="0 0 400 150" width="400" height="150" role="img" aria-label="Parallax: Earth at two points of its orbit six months apart sees a nearby star shift against distant stars; half the shift is the parallax angle p">
+<ellipse cx="170" cy="118" rx="60" ry="12" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="170" cy="118" r="6" fill="#f5a524"/><text x="170" y="140" font-family="Nunito, sans-serif" font-size="12" text-anchor="middle" fill="#555">Sun</text>
+<circle cx="110" cy="118" r="3.5" fill="#3f44c9"/><text x="104" y="140" font-family="Nunito, sans-serif" font-size="12" text-anchor="middle" fill="#555">Earth, January</text>
+<circle cx="230" cy="118" r="3.5" fill="#3f44c9"/><text x="236" y="140" font-family="Nunito, sans-serif" font-size="12" text-anchor="middle" fill="#555">Earth, July</text>
+<line x1="110" y1="118" x2="191.0" y2="10" stroke="#3f44c9" stroke-width="1.2"/>
+<line x1="230" y1="118" x2="149.0" y2="10" stroke="#3f44c9" stroke-width="1.2"/>
+<line x1="170" y1="118" x2="170" y2="38" stroke="#999" stroke-width="1" stroke-dasharray="3 3"/>
+<circle cx="170" cy="38" r="4" fill="#000"/><text x="180" y="42" font-family="Nunito, sans-serif" font-size="12" fill="#1d1f3a">nearby star</text>
+<path d="M 170 60 A 22 22 0 0 1 156.8 55.6" fill="none" stroke="#f5a524" stroke-width="1.5"/>
+<text x="156" y="72" font-family="Nunito, sans-serif" font-size="13" fill="#1d1f3a">p</text>
+<g fill="#999"><circle cx="40" cy="14" r="1.5"/><circle cx="90" cy="9" r="1.5"/><circle cx="130" cy="18" r="1.5"/><circle cx="250" cy="12" r="1.5"/><circle cx="300" cy="20" r="1.5"/><circle cx="350" cy="10" r="1.5"/></g>
+<text x="295" y="70" font-family="Nunito, sans-serif" font-size="13" fill="#1d1f3a">d = 1/p</text>
+</svg><figcaption>Half the star's apparent shift over six months is \(p\).</figcaption></figure>
+
+<p><b>Rung 3: everything else, with standard candles.</b> A source of luminosity \(L\) at distance \(d\) has brightness \(b = L/(4\pi d^2)\). If you know \(L\) (the object is a known type, calibrated on nearby examples by parallax), then measuring \(b\) gives \(d\). Cepheid variables and type Ia supernovae are the famous candles.</p>
 </section>
 
 <section class="example">
 <h2>Watch one: Jupiter, Ceres, and a twin star</h2>
-<p>Jupiter: \(a = 5.203\) AU, \(T = 11.86\) yr. \(5.203^3 = 140.85\) and \(11.86^2 = 140.66\). Ceres orbits at \(a = 2.77\) AU, so predict \(T = a^{3/2} = 2.77^{1.5} = 4.61\) yr; observed, 4.60 yr. This is how new asteroids get orbits after a fraction of a lap.</p>
-<p>Now a distance from a brightness. Two stars are identical twins. Star A is 10 pc away by parallax; star B appears 25 times fainter. Brightness falls as \(1/d^2\), so B is \(\sqrt{25} = 5\) times farther: 50 pc. No parallax needed.</p>
+<p>Jupiter: \(a = 5.203\) AU, \(T = 11.86\) yr. \(5.203^3 = 140.85\) and \(11.86^2 = 140.66\). Ceres orbits at \(a = 2.77\) AU, so predict \(T = a^{3/2} = 2.77^{1.5} = 4.61\) yr; observed, 4.60 yr. </p>
+<p>Two stars are identical twins. Star A is 10 pc away by parallax; star B appears 25 times fainter. Brightness falls as \(1/d^2\), so B is \(\sqrt{25} = 5\) times farther: 50 pc.</p>
 </section>
 
 <section class="exercises">
 <h2>Your turn</h2>
 <ol>
 <li>Check Kepler's third law for Venus (\(a = 0.723\) AU, \(T = 0.615\) yr) and Saturn (\(a = 9.54\) AU, \(T = 29.46\) yr). Give \(a^3\) and \(T^2\) to four significant figures.<div class="space"></div></li>
-<li>An asteroid orbits the Sun every 8 years. How far from the Sun is it, on average? Halley's comet has period 75.3 years and comes within 0.586 AU of the Sun. Find its semi-major axis, then its farthest distance (the two extremes add to \(2a\)). Which planet does that take it beyond?<div class="space"></div></li>
+<li>An asteroid orbits the Sun every 8 years. How far from the Sun is it, on average? Halley's comet has period 75.3 years and comes within 0.586 AU of the Sun. Find its semi-major axis \(a\), then its farthest distance from the Sun. Which planet does that take it beyond?<div class="space"></div></li>
 <li>A star has parallax \(0.1''\). How far away is it in parsecs and in light-years? Barnard's Star has \(p = 0.547''\): its distance?<div class="space short"></div></li>
 <li>A type Ia supernova at 20 million light-years calibrates the candle. Another is seen 10,000 times fainter. How far away is it? And one seen a million times fainter?<div class="space short"></div></li>
 </ol>
@@ -57,7 +72,7 @@
 
 <section class="stretch">
 <h2>Stretch: where Kepler's law comes from, and weighing the Sun</h2>
-<p>For a circular orbit gravity is the centripetal force: \(\dfrac{GMm}{r^2} = \dfrac{mv^2}{r}\), with \(v = 2\pi r/T\). Show that \(T^2 = \dfrac{4\pi^2}{GM} r^3\). Then turn it round and weigh the Sun from Earth's orbit: \(r = 1.496 \times 10^{11}\) m, \(T = 3.156 \times 10^{7}\) s, \(G = 6.674 \times 10^{-11}\) SI.</p>
+<p>For a circular orbit gravity is the centripetal force (the inward force that keeps something on a circle): \(\dfrac{GMm}{r^2} = \dfrac{mv^2}{r}\), with \(v = 2\pi r/T\). Show that \(T^2 = \dfrac{4\pi^2}{GM} r^3\). Then weigh the Sun from Earth's orbit: \(r = 1.496 \times 10^{11}\) m, \(T = 3.156 \times 10^{7}\) s, \(G = 6.674 \times 10^{-11}\) in SI units.</p>
 <div class="space"></div>
 </section>
 

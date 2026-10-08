@@ -33,15 +33,20 @@
 <h2>Tonight's idea</h2>
 <p>When you write 347, you really mean \(3 \times 100 + 4 \times 10 + 7 \times 1\). Each place is worth ten times the one to its right. That is <b>base 10</b>, and the ten is a choice, not a law.</p>
 <p>In <b>base 2</b> (binary) each place is worth <em>twice</em> the one to its right: 1, 2, 4, 8, 16, 32, and so on. The only digits you need are 0 and 1, because as soon as you would write a 2 you carry instead. So the binary number 1101 means \(1 \times 8 + 1 \times 4 + 0 \times 2 + 1 \times 1 = 13\).</p>
-<p>Now the finger trick. Hold up your right hand, palm toward you. Thumb is worth 1, index 2, middle 4, ring 8, little finger 16. A finger up means 1, down means 0. Thumb up alone is 1. Index alone is 2. Thumb and index is 3. Keep going and you reach 31 with all five up. (Be careful around 4.)</p>
-<p>Computers use binary because a wire is either carrying current or it isn't. Two states, two digits. Every photo, song and game is, underneath, an enormous list of 0s and 1s.</p>
+<p>Now the finger trick. Hold up your right hand, palm toward you. Each finger is worth a place value, and a finger up means 1, down means 0:</p>
+<p style="text-align:center"><b>thumb</b> 1 &nbsp;·&nbsp; <b>index</b> 2 &nbsp;·&nbsp; <b>middle</b> 4 &nbsp;·&nbsp; <b>ring</b> 8 &nbsp;·&nbsp; <b>little</b> 16</p>
+<p>Thumb up alone is 1. Index alone is 2. Thumb and index is 3. Keep going and you reach 31 with all five up.</p>
+<p>Computers use binary because a wire is either carrying current or it isn't: two states, two digits.</p>
 </section>
 
 <section class="example">
 <h2>Watch one: turn 22 into binary, and 10110 back</h2>
-<p><b>22 to binary.</b> Find the biggest power of 2 that fits: 16. Left over: 6. Does 8 fit? No, write 0. Does 4? Yes, left over 2. Does 2? Yes, left over 0. Does 1? No. Reading the yes/no answers: <b>10110</b>.</p>
-<p>Check: \(16 + 4 + 2 = 22\). Good.</p>
-<p><b>10110 to base 10.</b> Write the place values under the digits: 16, 8, 4, 2, 1. Add the ones under a 1: \(16 + 4 + 2 = 22\). Same number, as it should be.</p>
+<p><b>22 to binary.</b> Go through the place values, biggest first, asking "does it fit in what is left?" 16 fits (6 left). 8 does not. 4 fits (2 left). 2 fits (0 left). 1 does not. Write 1 for yes and 0 for no, under the place values:</p>
+<table style="margin:.2em auto; font-size:.9em">
+<tr><th>16</th><th>8</th><th>4</th><th>2</th><th>1</th></tr>
+<tr><td>1</td><td>0</td><td>1</td><td>1</td><td>0</td></tr>
+</table>
+<p>So 22 is <b>10110</b>. <b>10110 back to base 10:</b> same table, read the other way. Add the place values that have a 1 under them: \(16 + 4 + 2 = 22\).</p>
 </section>
 
 <section class="exercises">
@@ -49,7 +54,7 @@
 <ol>
 <li>Write these in binary: 5, 10, 19, 37.<div class="space short"></div></li>
 <li>Write these in base 10: 1011, 11111, 1100100.<div class="space short"></div></li>
-<li>Add in binary, carrying when a column reaches 2 (write it as 0, carry 1): \(1011 + 110\). Check your answer by converting everything to base 10.<div class="space"></div></li>
+<li>Add in binary: \(1011 + 110\). Line the numbers up on the right, like ordinary addition, and when a column reaches 2 write 0 and carry 1. Check your answer by converting everything to base 10.<div class="space short"></div></li>
 <li>A <b>bit</b> is one binary digit. What is the biggest number you can write with 8 bits? What about with both hands, 10 fingers? (Hint: it is one less than a power of 2. Why?)<div class="space short"></div></li>
 <li>How many bits do you need to write the number 1000? And 1,000,000? (You don't need the exact binary, just the number of digits.)<div class="space short"></div></li>
 <li>In binary, how can you tell at a glance whether a number is even? Whether it is a multiple of 4? Explain why.<div class="space short"></div></li>

@@ -33,8 +33,8 @@
 <h2>Tonight's idea</h2>
 <p><b>Multiply the choices.</b> Four shirts and three pairs of trousers make \(4 \times 3 = 12\) outfits, because each shirt goes with each pair. Add two pairs of shoes and it is \(4 \times 3 \times 2 = 24\). Whenever choices are made one after another and do not interfere, the number of combinations is the product.</p>
 <p><b>Arrangements.</b> In how many orders can five books stand on a shelf? Five choices for the first slot, then four left for the second, three, two, one: \(5 \times 4 \times 3 \times 2 \times 1 = 120\). This product has a name, <b>five factorial</b>, written \(5!\). In general \(n!\) is the number of ways to put \(n\) different things in a row.</p>
-<p>Factorials grow absurdly fast. \(10! = 3{,}628{,}800\). \(20!\) is about \(2 \times 10^{18}\). And \(52!\), the number of orders for a deck of cards, is about \(8 \times 10^{67}\). For comparison, the universe is about \(4 \times 10^{17}\) seconds old, and there are perhaps \(10^{50}\) atoms in the whole Earth. If every atom on Earth had been shuffling a deck once a second since the Big Bang, together they would have produced about \(4 \times 10^{67}\) orders, still fewer than \(52!\). So a well-shuffled deck is, with near certainty, an order nobody has ever held.</p>
-<p><b>Choosing without order</b> is different: picking 2 books from 5 to take on holiday is \(\binom{5}{2} = 10\), the <a href="b4-pascal.html">Pascal's triangle</a> number, because the order you pick them in does not matter. Arranging cares about order. Choosing does not.</p>
+<p>Factorials grow absurdly fast. \(10! = 3{,}628{,}800\). \(20!\) is about \(2 \times 10^{18}\). And \(52!\), the number of orders for a deck of cards, is about \(8 \times 10^{67}\). That is more than the number of seconds since the Big Bang times the number of atoms in the Earth, so a well-shuffled deck is almost certainly an order nobody has ever held.</p>
+<p><b>Choosing without order</b> is different: picking 2 books from 5 to take on holiday is \(\binom{5}{2} = 10\) (said "five choose two"), the <a href="b4-pascal.html">Pascal's triangle</a> number, because the order you pick them in does not matter. Arranging cares about order. Choosing does not.</p>
 </section>
 
 <section class="example">
@@ -45,14 +45,14 @@
 <tr><th>people</th><td>10</td><td>23</td><td>30</td><td>50</td></tr>
 <tr><th>chance of a match</th><td>11.7%</td><td>50.7%</td><td>70.6%</td><td>97.0%</td></tr>
 </table>
-<p>Why so few? Because what matters is not the number of people but the number of <em>pairs</em>, and 23 people make \(\binom{23}{2} = 253\) pairs, each with a 1 in 365 chance.</p>
+<p>Why so few? Because what matters is not the number of people but the number of <em>pairs</em>, and 23 people make \(\binom{23}{2} = 253\) pairs, each with a 1 in 365 chance.</p><figure><svg viewBox="0 0 90 84" width="90" height="84" role="img" aria-label="Five dots joined by all ten possible lines"><g stroke="#3f44c9" stroke-width="1.2"><line x1="45.0" y1="9.0" x2="10.8" y2="33.9"/><line x1="45.0" y1="9.0" x2="23.8" y2="74.1"/><line x1="45.0" y1="9.0" x2="66.2" y2="74.1"/><line x1="45.0" y1="9.0" x2="79.2" y2="33.9"/><line x1="10.8" y1="33.9" x2="23.8" y2="74.1"/><line x1="10.8" y1="33.9" x2="66.2" y2="74.1"/><line x1="10.8" y1="33.9" x2="79.2" y2="33.9"/><line x1="23.8" y1="74.1" x2="66.2" y2="74.1"/><line x1="23.8" y1="74.1" x2="79.2" y2="33.9"/><line x1="66.2" y1="74.1" x2="79.2" y2="33.9"/></g><circle cx="45.0" cy="9.0" r="4" fill="#000"/><circle cx="10.8" cy="33.9" r="4" fill="#000"/><circle cx="23.8" cy="74.1" r="4" fill="#000"/><circle cx="66.2" cy="74.1" r="4" fill="#000"/><circle cx="79.2" cy="33.9" r="4" fill="#000"/></svg><figcaption>5 people make 10 pairs. 23 people make 253.</figcaption></figure>
 </section>
 
 <section class="exercises">
 <h2>Your turn</h2>
 <ol>
 <li>A café offers 3 breads, 4 fillings and 2 sauces. How many different sandwiches? If they add a fifth filling, how many more sandwiches does that create?<div class="space short"></div></li>
-<li>How many ways can 6 friends line up for a photo? How many if the two tallest insist on standing at the two ends? (Count the two ways round.)<div class="space"></div></li>
+<li>How many ways can 6 friends line up for a photo? How many if the two tallest insist on standing at the two ends? (The two tallest can swap ends, so count both ways.)<div class="space"></div></li>
 <li>A 4-digit PIN uses digits 0 to 9. How many PINs are there? How many have no repeated digit? What fraction of all PINs is that?<div class="space"></div></li>
 <li>Six people sit around a round table. Two seatings count as the same if everyone has the same left and right neighbours (so rotating the whole table changes nothing). Explain why the answer is \(5!\) and not \(6!\).<div class="space"></div></li>
 <li>Five people in a room. Compute the chance that they all have different birthdays, as a product of five fractions, to the nearest percent. (Use a calculator.) So what is the chance of a match?<div class="space"></div></li>

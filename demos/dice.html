@@ -31,7 +31,7 @@
 <h2>What's going on</h2>
 <p>There are 36 equally likely outcomes when you roll two dice: six for the first die times six for the second. Only one of them gives a sum of 2 (a 1 and a 1), but six of them give 7 (1+6, 2+5, 3+4, 4+3, 5+2, 6+1). So the chance of 7 is 6/36 and the chance of 2 is 1/36.</p>
 <p>A single roll tells you nothing about these chances. But as the number of rolls grows, the fraction landing on each sum creeps toward the predicted fraction. This is the law of large numbers, and it is why casinos never worry about one lucky customer.</p>
-<p>Watch the gap between the empirical and theoretical P(7) in the readout. It wobbles, then shrinks.</p>
+<p>Watch the gap in the readout between the measured share of 7s and the predicted share. It wobbles, then shrinks.</p>
 <p>Sheet: <a href="../grade-6/sheets/b14-dice.html">Dice don't lie</a>.</p>
 </div>
 </main>
@@ -61,7 +61,7 @@
     ctx.fillStyle = "#3f44c9"; ctx.fillRect(W - 230, 8, 12, 12); ctx.fillStyle = "#1d1f3a"; ctx.textAlign = "left"; ctx.fillText("your rolls", W - 212, 19);
     ctx.strokeStyle = "#f5a524"; ctx.strokeRect(W - 120, 8, 12, 12); ctx.fillText("predicted", W - 102, 19);
     var p7 = total ? (counts[7] / total) : 0;
-    document.getElementById("info").textContent = total ? ("Rolls: " + total + "    P(7) so far: " + p7.toFixed(4) + "    predicted 6/36 = " + (6/36).toFixed(4) + "    gap: " + Math.abs(p7 - 6/36).toFixed(4)) : "No rolls yet.";
+    document.getElementById("info").textContent = total ? ("Rolls: " + total + "    share of 7s so far: " + p7.toFixed(4) + "    predicted 6/36 = " + (6/36).toFixed(4) + "    gap: " + Math.abs(p7 - 6/36).toFixed(4)) : "No rolls yet.";
   }
   function roll(n) { for (var i = 0; i < n; i++) { counts[1 + Math.floor(Math.random() * 6) + 1 + Math.floor(Math.random() * 6)]++; } total += n; draw(); }
   document.querySelectorAll("[data-n]").forEach(function (b) { b.addEventListener("click", function () { roll(parseInt(b.dataset.n, 10)); }); });

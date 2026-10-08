@@ -27,7 +27,7 @@
 </nav>
 <main class="demo-wrap">
 <h1>The test that cries wolf</h1>
-<p class="explain">One thousand people take a test. The disease is rare, the test is good. Then you test positive. How worried should you be? Slide the three numbers and count the dots before you trust your gut.</p>
+<p class="explain">One thousand people take a test. Each dot is one of them, coloured by what the test said and whether it was right. You test positive. How worried should you be? Slide the three numbers and count the dots before you trust your gut. <b>Prevalence</b> is how common the disease is. <b>Sensitivity</b> is how often the test catches a sick person. <b>Specificity</b> is how often it clears a healthy one.</p>
 <div class="demo-panel">
   <div class="controls">
     <label>prevalence <input type="range" id="prev" min="0.1" max="50" step="any" value="1"> <input type="number" id="prevn" min="0.1" max="50" step="0.1" value="1"> %</label>
@@ -37,7 +37,7 @@
   <div class="controls">
     <span style="font-weight:700">Try</span>
     <button class="ghost" data-p="1" data-se="99" data-sp="99">rare disease, 99% test</button>
-    <button class="ghost" data-p="0.5" data-se="95" data-sp="98">screening programme</button>
+    <button class="ghost" data-p="0.5" data-se="95" data-sp="98">mass screening of healthy people</button>
     <button class="ghost" data-p="20" data-se="90" data-sp="90">common, decent test</button>
     <button class="ghost" data-p="50" data-se="99" data-sp="99">already likely</button>
   </div>

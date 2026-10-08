@@ -31,10 +31,10 @@
 
 <section class="idea">
 <h2>Tonight's idea</h2>
-<p>In a right triangle, \(\sin\theta\) is opposite over hypotenuse, \(\cos\theta\) adjacent over hypotenuse, \(\tan\theta\) opposite over adjacent. That only works for angles between 0° and 90°. Tonight we replace it with a definition that works for every angle, and we stop reaching for a calculator for the angles that matter.</p>
-<p><b>Two triangles give every exact value you will ever need.</b> Half an equilateral triangle of side 2 is a 30-60-90 triangle with sides \(1, \sqrt3, 2\). Half a unit square is a 45-45-90 triangle with sides \(1, 1, \sqrt2\).</p>
+<p>In a right triangle, \(\sin\theta\) is opposite over hypotenuse, \(\cos\theta\) adjacent over hypotenuse, \(\tan\theta\) opposite over adjacent. Tonight: a definition that also works past 90°.</p>
+<p><b>Two triangles give every exact value you need.</b> Half an equilateral triangle of side 2 is a 30-60-90 triangle with sides \(1, \sqrt3, 2\). Half a unit square is a 45-45-90 triangle with sides \(1, 1, \sqrt2\).</p>
 <figure>
-<svg viewBox="0 0 300 130" width="300" height="130" xmlns="http://www.w3.org/2000/svg" font-family="Nunito, sans-serif" font-size="12" font-weight="700">
+<svg viewBox="0 0 300 130" width="200" height="87" xmlns="http://www.w3.org/2000/svg" font-family="Nunito, sans-serif" font-size="12" font-weight="700">
   <g stroke="#000" stroke-width="2" fill="none">
     <polygon points="20,110 124,110 124,50"/>
     <polyline points="112,110 112,98 124,98"/>
@@ -46,35 +46,48 @@
   <text x="220" y="124" text-anchor="middle">1</text><text x="278" y="64">1</text><text x="206" y="56" text-anchor="middle">√2</text>
   <text x="186" y="104" font-size="11">45°</text><text x="252" y="30" font-size="11">45°</text>
 </svg>
-<figcaption>Read any exact value straight off these. \(\sin 30° = \tfrac12\), \(\cos 30° = \tfrac{\sqrt3}{2}\), \(\tan 60° = \sqrt3\), \(\sin 45° = \tfrac{\sqrt2}{2}\).</figcaption>
+<figcaption>Read exact values off these: \(\sin 30° = \tfrac12\), \(\sin 45° = \tfrac{\sqrt2}{2}\).</figcaption>
 </figure>
 <p><b>The unit circle.</b> Draw a circle of radius 1 centred at the origin. Start at \((1, 0)\) and turn anticlockwise through an angle \(\theta\). Wherever you land, <em>define</em></p>
 <p class="callout">\(\cos\theta =\) the \(x\)-coordinate of the point, \(\;\sin\theta =\) the \(y\)-coordinate, \(\;\tan\theta = \dfrac{\sin\theta}{\cos\theta}\).</p>
-<p>For angles under 90° this agrees with SOHCAHTOA. But now 150° makes sense: a point in the second quadrant, \(x\) negative and \(y\) positive. Signs by quadrant: in I all three are positive, in II only sine, in III only tangent, in IV only cosine ("All Students Take Calculus").</p>
+<p>For angles under 90° this agrees with SOHCAHTOA. Signs by quadrant: in I all three are positive, in II only sine, in III only tangent, in IV only cosine ("All Students Take Calculus"). The <b>reference angle</b> is the acute angle between the point's radius and the \(x\)-axis: it fixes the size of sine and cosine, and the quadrant fixes the signs.</p>
+<figure><svg viewBox="0 0 220 182" width="160" height="132" role="img" aria-label="Unit circle with quadrants I to IV, the point for 150 degrees at (minus root 3 over 2, one half), the 150 degree turn from (1, 0), and the 30 degree reference angle shaded" font-family="Nunito, sans-serif" font-size="12">
+<line x1="20" y1="90" x2="200" y2="90" stroke="#999"/><line x1="110" y1="8" x2="110" y2="172" stroke="#999"/>
+<circle cx="110" cy="90" r="70" fill="none" stroke="#000" stroke-width="1.5"/>
+<path d="M 110 90 L 92.0 90.0 A 18 18 0 0 1 94.4 81.0 Z" fill="#f5a524" opacity="0.6"/>
+<path d="M 135 90 A 25 25 0 0 0 88.3 77.5" fill="none" stroke="#3f44c9" stroke-width="1.5"/>
+<line x1="110" y1="90" x2="49.4" y2="55.0" stroke="#3f44c9" stroke-width="2"/>
+<line x1="49.4" y1="55.0" x2="49.4" y2="90" stroke="#3f44c9" stroke-dasharray="3 3"/>
+<circle cx="49.4" cy="55.0" r="3.5" fill="#3f44c9"/><circle cx="180" cy="90" r="3" fill="#000"/>
+<text x="4" y="48" font-size="11">(−√3⁄2, ½)</text><text x="166" y="106" font-size="11">(1, 0)</text>
+<text x="124" y="74" fill="#3f44c9" font-size="11">150°</text><text x="78" y="106" fill="#b36b00" font-size="11">30°</text>
+<text x="160" y="40" fill="#555">I</text><text x="44" y="28" fill="#555">II</text><text x="52" y="152" fill="#555">III</text><text x="158" y="152" fill="#555">IV</text>
+</svg><figcaption>Turn 150° from \((1, 0)\). The point is \((\cos 150°, \sin 150°) = (-\tfrac{\sqrt3}{2}, \tfrac12)\). The shaded 30° is the reference angle.</figcaption></figure>
+<p>Angles are also measured in <b>radians</b>, the arc length turned on this circle, so \(90° = \tfrac{\pi}{2}\), \(180° = \pi\), \(360° = 2\pi\).</p>
 <p><b>Pythagoras in disguise.</b> The point \((\cos\theta, \sin\theta)\) lies on the circle \(x^2 + y^2 = 1\). That is the whole proof of</p>
 <p class="callout">\(\sin^2\theta + \cos^2\theta = 1\) for every angle \(\theta\).</p>
-<p class="small">Play with it: <a href="../../demos/unitcircle.html">infinityclub.net/demos/unitcircle.html</a> drags a point around the circle and unrolls the sine wave.</p>
+<p class="small noprint">Drag the point round the circle at <a href="../../demos/unitcircle.html">infinityclub.net/demos/unitcircle.html</a>.</p>
 </section>
 
 <section class="example">
 <h2>Watch one: \(\sin 150°\), \(\cos 150°\) and \(\tan 225°\)</h2>
 <p><b>150°</b> is 30° short of 180°, so the reference angle is 30° and the point is in quadrant II. Apply the signs: \(\sin 150° = \tfrac12\), \(\cos 150° = -\tfrac{\sqrt3}{2}\).</p>
-<p><b>225°</b> is \(180° + 45°\), quadrant III, reference angle 45°. Both coordinates are negative: \((-\tfrac{\sqrt2}{2}, -\tfrac{\sqrt2}{2})\). So \(\tan 225° = 1\). Makes sense: the line from the origin through that point has slope 1.</p>
+<p><b>225°</b> is \(180° + 45°\), quadrant III, reference angle 45°. Both coordinates are negative: \((-\tfrac{\sqrt2}{2}, -\tfrac{\sqrt2}{2})\). So \(\tan 225° = 1\).</p>
 </section>
 
 <section class="exercises">
 <h2>Your turn</h2>
 <ol>
-<li>Without a calculator, give exact values: \(\sin 60°\), \(\cos 45°\), \(\tan 30°\), \(\sin 90°\), \(\cos 180°\). Write \(\tan 30°\) with no square root in the denominator.<div class="space"></div></li>
-<li>Use the unit circle, not a calculator. Find <em>every</em> angle \(\theta\) with \(0° \le \theta \lt 360°\) such that (a) \(\cos\theta = -\tfrac12\), (b) \(\sin\theta = -\tfrac{\sqrt2}{2}\), (c) \(\tan\theta = -1\). Each part has two answers.<div class="space"></div></li>
+<li>Without a calculator, give exact values: \(\sin 60°\), \(\cos 45°\), \(\tan 30°\), \(\sin 90°\), \(\cos 180°\). Write \(\tan 30°\) with no square root in the denominator.<div class="space short"></div></li>
+<li>Use the unit circle, not a calculator. Find <em>every</em> angle \(\theta\) with \(0° \le \theta \lt 360°\) such that (a) \(\cos\theta = -\tfrac12\), (b) \(\sin\theta = -\tfrac{\sqrt2}{2}\), (c) \(\tan\theta = -1\). Each part has two answers: give the reference angle, then the quadrants, then the angles.<div class="space short"></div></li>
 <li>\(\sin\theta = \tfrac35\) and \(90° \lt \theta \lt 180°\). Find \(\cos\theta\) and \(\tan\theta\) exactly, with the correct signs. Explain how you knew the signs.<div class="space short"></div></li>
-<li>Prove \(\sin^2\theta + \cos^2\theta = 1\) in one sentence using the unit circle. Then divide every term by \(\cos^2\theta\) to produce a second identity involving \(\tan\theta\) and \(\dfrac{1}{\cos\theta}\).<div class="space short"></div></li>
+<li>Prove \(\sin^2\theta + \cos^2\theta = 1\) in one sentence using the unit circle. Then divide every term by \(\cos^2\theta\) to get a second identity, in terms of \(\tan\theta\) and \(1/\cos\theta\).<div class="space short"></div></li>
 </ol>
 </section>
 
 <section class="stretch">
 <h2>Stretch: a twelve-sided π</h2>
-<p>Any triangle with sides \(a\) and \(b\) meeting at angle \(C\) has area \(\tfrac12 ab\sin C\). (Drop a perpendicular from the end of side \(a\) onto side \(b\) to see why.) A regular 12-sided polygon is inscribed in a circle of radius 1. Cut it into 12 triangles from the centre and find its exact area. What does that tell you about \(\pi\)?</p>
+<p>Any triangle with sides \(a\) and \(b\) meeting at angle \(C\) has area \(\tfrac12 ab\sin C\). (Why? Drop a perpendicular from the end of side \(a\) onto side \(b\).) A regular 12-sided polygon is inscribed in a circle of radius 1. Cut it into 12 triangles from the centre and find its exact area. What does that tell you about \(\pi\)?</p>
 <div class="space short"></div>
 </section>
 

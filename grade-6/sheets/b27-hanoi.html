@@ -31,11 +31,11 @@
 
 <section class="idea">
 <h2>Tonight's idea</h2>
-<p>Three pegs. On the left peg, a tower of disks, biggest at the bottom. Move the whole tower to the right peg, one disk at a time, and never put a bigger disk on a smaller one. That is the <b>Towers of Hanoi</b>, sold as a toy in 1883 with a story about monks moving 64 golden disks, after which the world would end.</p>
+<p>Three pegs. On the left peg, a tower of disks, biggest at the bottom. Move the whole tower to the right peg, one disk at a time, and never put a bigger disk on a smaller one. That is the <b>Towers of Hanoi</b>, sold as a toy in 1883 with a legend about monks moving 64 golden disks.</p>
 <p>One disk takes 1 move. Two disks take 3. Three take 7. Each time you add a disk, the count doubles and adds one, and here is why. To move a tower of \(n\) disks you must at some point move the bottom disk, and when you do, all \(n-1\) smaller disks must be sitting on the spare peg. So: move \(n-1\) disks to the spare peg, move the big one, move the \(n-1\) disks back on top. If \(M(n)\) is the number of moves for \(n\) disks:</p>
 \[M(n) = 2M(n-1) + 1, \qquad M(1) = 1\]
 <p>which gives 1, 3, 7, 15, 31, 63, and in general \(M(n) = 2^n - 1\). (Look at the differences, as in the <a href="b17-differences.html">sequences sheet</a>: they double.)</p>
-<p>The way of thinking is called <b>recursion</b>: to solve a big problem, solve the same problem one size smaller, and trust it. You do not need to know how the \(n-1\) tower moves, only that it can. Programmers use this constantly.</p>
+<p>The way of thinking is called <b>recursion</b>: to solve a big problem, solve the same problem one size smaller, and trust it. You do not need to know how the \(n-1\) tower moves, only that it can.</p>
 <p>And the monks? \(2^{64} - 1 = 18{,}446{,}744{,}073{,}709{,}551{,}615\) moves. At one move per second, that is about 585 billion years, around forty times the current age of the universe. Try it yourself in the <a href="../../demos/hanoi.html">tower demo</a>, with fewer disks.</p>
 </section>
 
@@ -43,8 +43,9 @@
 <h2>Watch one: three disks in seven moves</h2>
 <p>Pegs A (start), B (spare), C (goal). Disks 1 (smallest), 2, 3.</p>
 <p>1 → C. &nbsp; 2 → B. &nbsp; 1 → B. &nbsp; <b>3 → C.</b> &nbsp; 1 → A. &nbsp; 2 → C. &nbsp; 1 → C.</p>
+<figure><svg viewBox="0 0 300 108" width="300" height="108" role="img" aria-label="Three pegs after three moves: disk 3 alone on A, disks 2 and 1 stacked on B, C empty, arrow from disk 3 to C"><line x1="10" y1="80" x2="290" y2="80" stroke="#000" stroke-width="2"/><line x1="60" y1="20" x2="60" y2="80" stroke="#000" stroke-width="2"/><rect x="32.0" y="68" width="56" height="11" rx="3" fill="#f5a524"/><line x1="150" y1="20" x2="150" y2="80" stroke="#000" stroke-width="2"/><rect x="130.0" y="68" width="40" height="11" rx="3" fill="#3f44c9"/><rect x="138.0" y="56" width="24" height="11" rx="3" fill="#3f44c9"/><line x1="240" y1="20" x2="240" y2="80" stroke="#000" stroke-width="2"/><path d="M 75 62 Q 150 10 232 62" fill="none" stroke="#555" stroke-width="1.5" stroke-dasharray="5 4"/><polygon points="232,62 224,52 236,50" fill="#555"/><g font-family="Nunito, sans-serif" font-size="13" text-anchor="middle"><text x="60" y="100">A</text><text x="150" y="100">B</text><text x="240" y="100">C</text></g></svg><figcaption>After three moves. Now the big disk can go.</figcaption></figure>
 <p>See the structure: the first three moves shift the two-disk tower to B, move four shifts the big disk, the last three shift the two-disk tower from B onto C. The two-disk solution is used twice, which is the \(2M(2) + 1 = 7\).</p>
-<p>There is also a mechanical rule. On moves 1, 3, 5, 7 you move disk 1, and it always travels in the same direction around the pegs (C, B, A, C, cycling). On the even moves there is only one legal move that does not involve disk 1. Following those two rules solves any tower without thinking.</p>
+<p>A mechanical rule: on moves 1, 3, 5, 7 you move disk 1, and it always travels in the same direction around the pegs (C, B, A, C, cycling). On the even moves there is only one legal move that does not involve disk 1. Following those two rules solves any tower without thinking.</p>
 </section>
 
 <section class="exercises">

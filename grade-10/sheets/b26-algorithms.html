@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Algorithms and big-O · Infinity Club</title>
-<meta name="description" content="Binary search, sorting, exponential blowup, and the million-dollar question of P versus NP.">
+<meta name="description" content="Binary search, sorting, and why some problems blow up exponentially while others stay tame.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
 <link rel="stylesheet" href="../../assets/site.css">
@@ -25,22 +25,23 @@
 <header class="sheet-head">
   <div class="kicker">Infinity Club · Grade 10 · Around the corner · 26</div>
   <h1>Algorithms and big-O</h1>
-  <p class="teaser">Binary search, sorting, exponential blowup, and the million-dollar question of P versus NP.</p>
+  <p class="teaser">Binary search, sorting, and why some problems blow up exponentially while others stay tame.</p>
   <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
 </header>
 
 <section class="idea">
 <h2>Tonight's idea</h2>
-<p>An <b>algorithm</b> is a recipe precise enough for a machine. Two recipes can give the same answer and differ wildly in how long they take, and the difference is not about fast computers. It is about how the work grows as the problem grows.</p>
-<p>Take searching. Finding a name in an unsorted list of \(n\) names may take \(n\) looks. If the list is sorted, look at the middle name and throw away the wrong half. Each look halves the list, so about \(\log_2 n\) looks finish the job: precisely, \(\lceil \log_2(n+1) \rceil\) always suffice. A million names takes 20 looks. That is <b>binary search</b>.</p>
-<p>Take sorting. <b>Bubble sort</b> swaps out-of-order neighbours until nothing moves, about \(n(n-1)/2\) comparisons in the worst case. <b>Merge sort</b> splits the list in half, sorts each half the same way, then merges the two sorted halves in one pass of \(n\) comparisons. Each of the \(\log_2 n\) levels of splitting costs \(n\), so merge sort costs about \(n \log_2 n\). For a billion items the ratio between the two is thirty million. No hardware closes that gap.</p>
-<p class="callout"><b>Big-O.</b> A cost is \(O(f(n))\) if, for large \(n\), it is at most a constant times \(f(n)\). So \(3n^2 + 5n + 100\) is \(O(n^2)\). Big-O ignores constants and keeps the <em>shape</em> of growth: \(O(1)\), \(O(\log n)\), \(O(n)\), \(O(n \log n)\), \(O(n^2)\), \(O(2^n)\), \(O(n!)\), from tame to terrifying.</p>
+<p>An <b>algorithm</b> is a recipe precise enough for a machine. Two recipes can give the same answer and differ wildly in how long they take. The difference is about how the work grows as the problem grows, not about fast computers.</p>
+<p>Take searching. Finding a name in an unsorted list of \(n\) names may take \(n\) looks. If the list is sorted, look at the middle name and throw away the wrong half. Each look halves the list, so about \(\log_2 n\) looks finish the job: precisely, \(\lceil \log_2(n+1) \rceil\) always suffice (\(\lceil x \rceil\) means \(x\) rounded up to a whole number). A million names takes 20 looks. That is <b>binary search</b>.</p>
+<p>Take sorting. <b>Bubble sort</b> swaps out-of-order neighbours until nothing moves, about \(n(n-1)/2\) comparisons in the worst case. <b>Merge sort</b> splits the list in half, sorts each half the same way, then merges the two sorted halves in one pass of \(n\) comparisons. Each of the \(\log_2 n\) levels of splitting costs \(n\), so merge sort costs about \(n \log_2 n\).</p>
+<p class="callout"><b>Big-O.</b> A cost is \(O(f(n))\) if, for large \(n\), it is at most a constant times \(f(n)\). So \(3n^2 + 5n + 100\) is \(O(n^2)\). Big-O ignores constants and keeps the <em>shape</em> of growth: \(O(1)\), \(O(\log n)\), \(O(n)\), \(O(n \log n)\), \(O(n^2)\), \(O(2^n)\), \(O(n!)\), from slow-growing to explosive.</p>
 </section>
 
 <section class="example">
 <h2>Watch one: binary search by hand</h2>
 <p>Find 73 in the sorted list 2, 5, 11, 17, 23, 31, 41, 47, 59, 61, 67, 73, 83, 89, 97 (15 numbers). The middle, the 8th, is 47. Too small, so discard positions 1–8. Seven remain: 59, 61, 67, 73, 83, 89, 97. The middle is 73. Found in two looks. The worst case for 15 items is \(\lceil \log_2 16 \rceil = 4\) looks: 15 → 7 → 3 → 1.</p>
-<p>Merge sort on 8 items: one merge of 8, then two merges of 4, then four merges of 2, each level costing 8. Three levels, 24 comparisons at most, against bubble sort's \(8 \times 7/2 = 28\). The gap is small at 8 and enormous at 8 million.</p>
+<p>Merge sort on 8 items: one merge of 8, then two merges of 4, then four merges of 2, each level costing 8. Three levels, 24 comparisons at most, against bubble sort's \(8 \times 7/2 = 28\).</p>
+<figure><svg viewBox="0 0 330 122" width="330" height="122" role="img" aria-label="Eight boxes split into two groups of four, four pairs, then eight singles; each merge level costs 8"><g font-family="Nunito, sans-serif"><rect x="20" y="14" width="14" height="14" fill="#dfe0f7" stroke="#3f44c9"/><rect x="36" y="14" width="14" height="14" fill="#dfe0f7" stroke="#3f44c9"/><rect x="52" y="14" width="14" height="14" fill="#dfe0f7" stroke="#3f44c9"/><rect x="68" y="14" width="14" height="14" fill="#dfe0f7" stroke="#3f44c9"/><rect x="84" y="14" width="14" height="14" fill="#dfe0f7" stroke="#3f44c9"/><rect x="100" y="14" width="14" height="14" fill="#dfe0f7" stroke="#3f44c9"/><rect x="116" y="14" width="14" height="14" fill="#dfe0f7" stroke="#3f44c9"/><rect x="132" y="14" width="14" height="14" fill="#dfe0f7" stroke="#3f44c9"/><rect x="20" y="44" width="14" height="14" fill="#dfe0f7" stroke="#3f44c9"/><rect x="36" y="44" width="14" height="14" fill="#dfe0f7" stroke="#3f44c9"/><rect x="52" y="44" width="14" height="14" fill="#dfe0f7" stroke="#3f44c9"/><rect x="68" y="44" width="14" height="14" fill="#dfe0f7" stroke="#3f44c9"/><rect x="94" y="44" width="14" height="14" fill="#dfe0f7" stroke="#3f44c9"/><rect x="110" y="44" width="14" height="14" fill="#dfe0f7" stroke="#3f44c9"/><rect x="126" y="44" width="14" height="14" fill="#dfe0f7" stroke="#3f44c9"/><rect x="142" y="44" width="14" height="14" fill="#dfe0f7" stroke="#3f44c9"/><rect x="20" y="74" width="14" height="14" fill="#dfe0f7" stroke="#3f44c9"/><rect x="36" y="74" width="14" height="14" fill="#dfe0f7" stroke="#3f44c9"/><rect x="62" y="74" width="14" height="14" fill="#dfe0f7" stroke="#3f44c9"/><rect x="78" y="74" width="14" height="14" fill="#dfe0f7" stroke="#3f44c9"/><rect x="104" y="74" width="14" height="14" fill="#dfe0f7" stroke="#3f44c9"/><rect x="120" y="74" width="14" height="14" fill="#dfe0f7" stroke="#3f44c9"/><rect x="146" y="74" width="14" height="14" fill="#dfe0f7" stroke="#3f44c9"/><rect x="162" y="74" width="14" height="14" fill="#dfe0f7" stroke="#3f44c9"/><rect x="20" y="104" width="14" height="14" fill="#dfe0f7" stroke="#3f44c9"/><rect x="42" y="104" width="14" height="14" fill="#dfe0f7" stroke="#3f44c9"/><rect x="64" y="104" width="14" height="14" fill="#dfe0f7" stroke="#3f44c9"/><rect x="86" y="104" width="14" height="14" fill="#dfe0f7" stroke="#3f44c9"/><rect x="108" y="104" width="14" height="14" fill="#dfe0f7" stroke="#3f44c9"/><rect x="130" y="104" width="14" height="14" fill="#dfe0f7" stroke="#3f44c9"/><rect x="152" y="104" width="14" height="14" fill="#dfe0f7" stroke="#3f44c9"/><rect x="174" y="104" width="14" height="14" fill="#dfe0f7" stroke="#3f44c9"/><text x="196" y="25" font-size="12" fill="#1d1f3a">sorted: 8 items</text><text x="196" y="55" font-size="12" fill="#1d1f3a">level 1: merge cost 8</text><text x="196" y="85" font-size="12" fill="#1d1f3a">level 2: merge cost 8</text><text x="196" y="115" font-size="12" fill="#1d1f3a">level 3: merge cost 8</text></g></svg><figcaption>Merge sort on 8 items: 3 levels of halving, and merging back up costs 8 at every level, so at most \(3 \times 8 = 24\) comparisons.</figcaption></figure>
 </section>
 
 <section class="exercises">
@@ -48,8 +49,8 @@
 <ol>
 <li>How many looks does binary search need, in the worst case, for a sorted list of 100 names? 1000? One million? The eight billion people on Earth? Use \(\lceil \log_2(n+1) \rceil\).<div class="space short"></div></li>
 <li>Compute \(n(n-1)/2\) and \(n \log_2 n\) for \(n = 1000\), and say how many times faster merge sort is than bubble sort. Then do \(n = 10^9\), rounding freely.<div class="space short"></div></li>
-<li>Classify each in big-O: (a) \(7n + 12\); (b) \(n^2/2 + 100n\); (c) \(5 \log_2 n + 3\); (d) \(2^n + n^{10}\); (e) looking up a word in a printed dictionary; (f) checking every pair of students in a class of \(n\) for a shared birthday.<div class="space"></div></li>
-<li>A computer does \(10^9\) simple steps per second. How long does each take: an \(n^2\) algorithm with \(n = 10^6\); an \(n \log_2 n\) algorithm with \(n = 10^6\); a \(2^n\) algorithm with \(n = 60\); an \(n!\) algorithm with \(n = 20\)? Give each in sensible units.<div class="space"></div></li>
+<li>Classify each in big-O: (a) \(7n + 12\); (b) \(n^2/2 + 100n\); (c) \(5 \log_2 n + 3\); (d) \(2^n + n^{10}\); (e) looking up a word in a printed dictionary; (f) checking every pair of students in a class of \(n\) for a shared birthday.<div class="space short"></div></li>
+<li>A computer does \(10^9\) simple steps per second. How long does each take: an \(n^2\) algorithm with \(n = 10^6\); an \(n \log_2 n\) algorithm with \(n = 10^6\); a \(2^n\) algorithm with \(n = 60\); an \(n!\) algorithm with \(n = 20\)? Give each in sensible units.<div class="space short"></div></li>
 </ol>
 <p class="small">Binary search is the strategy behind <a href="../../demos/guess.html">infinityclub.net/demos/guess.html</a>.</p>
 </section>

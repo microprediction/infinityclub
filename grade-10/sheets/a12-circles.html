@@ -31,7 +31,7 @@
 
 <section class="idea">
 <h2>Tonight's idea</h2>
-<p>Circle theorems are usually taught as a list to memorise. They are really one theorem and a few short consequences, and the one theorem has a proof you can carry in your head.</p>
+<p>Circle theorems are one theorem and a few short consequences.</p>
 <p>Take a circle with centre \(O\) and two points \(A\), \(B\) on it. The angle \(\angle AOB\) at the centre is the <b>central angle</b>. Pick any third point \(C\) on the circle, on the far side from the arc \(AB\): \(\angle ACB\) is an <b>inscribed angle</b> on the same arc.</p>
 <p class="callout"><b>Inscribed angle theorem.</b> \(\angle ACB = \tfrac12 \angle AOB\). The angle at the centre is twice the angle at the circumference, when both stand on the same arc.</p>
 <figure>
@@ -41,11 +41,11 @@
   <g stroke="#000" stroke-width="1.5" stroke-dasharray="4 3"><line x1="100" y1="20" x2="100" y2="180"/></g>
   <circle cx="100" cy="100" r="3" fill="#000"/><circle cx="100" cy="20" r="3" fill="#000"/><circle cx="24.8" cy="127.4" r="3" fill="#000"/><circle cx="175.2" cy="127.4" r="3" fill="#000"/><circle cx="100" cy="180" r="3" fill="#000"/>
   <text x="100" y="14" text-anchor="middle">C</text><text x="12" y="134">A</text><text x="182" y="134">B</text><text x="108" y="96">O</text><text x="100" y="194" text-anchor="middle" font-size="11">D</text>
-  <text x="92" y="42" font-size="11" fill="#3f44c9">θ</text><text x="76" y="118" font-size="11" fill="#3f44c9">2θ</text>
+  <text x="86" y="46" font-size="11" fill="#3f44c9">α</text><text x="105" y="46" font-size="11" fill="#3f44c9">β</text><text x="76" y="118" font-size="11" fill="#3f44c9">2θ</text>
 </svg>
-<figcaption>Inscribed angle \(\angle ACB = \theta\), central angle \(\angle AOB = 2\theta\). The dashed diameter \(CD\) is what the proof uses.</figcaption>
+<figcaption>Inscribed angle \(\angle ACB = \theta = \alpha + \beta\), central angle \(\angle AOB = 2\theta\). The dashed diameter \(CD\) splits both.</figcaption>
 </figure>
-<p><b>Proof, when \(CB\) passes through \(O\).</b> \(OA = OC\) (radii), so triangle \(OAC\) is isosceles: \(\angle OCA = \angle OAC = \theta\). Now \(\angle AOB\) is an exterior angle of triangle \(OAC\), so it equals the sum of the two remote interior angles: \(2\theta\). Done. If the centre is inside or outside the angle, draw the diameter \(CD\) and add or subtract two angles of this type.</p>
+<p><b>Proof.</b> Draw the diameter \(CD\), splitting \(\theta\) into \(\alpha\) and \(\beta\) as in the figure. \(OA = OC\) (radii), so triangle \(OAC\) is isosceles: \(\angle OCA = \angle OAC = \alpha\). The exterior angle \(\angle AOD\) of that triangle equals the sum of the two remote interior angles: \(2\alpha\). In the same way \(\angle BOD = 2\beta\). Adding, \(\angle AOB = 2(\alpha + \beta) = 2\theta\). (If \(O\) lies outside the angle, subtract instead of adding.) \(\square\)</p>
 <p><b>Consequences, each a one-liner now:</b></p>
 <ul>
 <li><b>Angles in the same segment are equal.</b> Both are half the same central angle.</li>
@@ -57,7 +57,7 @@
 
 <section class="example">
 <h2>Watch one: the figure above, with \(\angle AOB = 100°\)</h2>
-<p>Then \(\angle ACB = 50°\) for \(C\) anywhere on the major arc: it does not matter where \(C\) is, which is the "same segment" fact. Put a point \(D\) on the <em>minor</em> arc. \(ACBD\) is a cyclic quadrilateral, so \(\angle ADB = 180° - 50° = 130°\). Alternatively, \(D\) sees arc \(AB\) from the other side, where the central angle is the reflex \(260°\), and half of that is 130°. Both routes agree.</p>
+<p>Then \(\angle ACB = 50°\) for \(C\) anywhere on the major arc (the longer way round from \(A\) to \(B\)): it does not matter where \(C\) is, which is the "same segment" fact. Put a point \(D\) on the <em>minor</em> arc (the shorter way). \(ACBD\) is a cyclic quadrilateral, so \(\angle ADB = 180° - 50° = 130°\). Alternatively, \(D\) sees arc \(AB\) from the other side, where the central angle is the reflex angle \(360° - 100° = 260°\), and half of that is 130°. Both routes agree.</p>
 </section>
 
 <section class="exercises">

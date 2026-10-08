@@ -46,7 +46,7 @@
 <section class="example">
 <h2>Watch one</h2>
 <p><b>Encode</b> MEET ME AT THE OAK TREE AT NOON with key 3. M = 12, plus 3 is 15 = P. E = 4 becomes 7 = H. T = 19 becomes 22 = W. Continue: <span class="mono">PHHW PH DW WKH RDN WUHH DW QRRQ</span>.</p>
-<p><b>Break</b> this one without being told the key: <span class="mono">WKLV LV HDVB</span>. Count: V appears three times, more than any other letter. Guess that V is E. V = 21 and E = 4, so the key is \(21 - 4 = 17\)... but try subtracting 17 from W: \(22 - 17 = 5 = \text{F}\). FKLV? That does not look like English. The guess is wrong, which happens with short messages. Second most common is L, twice. Guess L = E: key is \(11 - 4 = 7\). W becomes \(22 - 7 = 15 = \text{P}\). PDEO? No. With a message this short, use the shape instead: a two-letter word LV, and a four-letter word WKLV ending in the same two letters. THIS and IS fit that shape, and they say the key is 3. Check: W becomes T, K becomes H, L becomes I, V becomes S, and H D V B becomes E A S Y. <span class="mono">THIS IS EASY</span>. Short messages need a few guesses. Long ones almost never do.</p>
+<p><b>Break</b> this one without being told the key: <span class="mono">WKLV LV HDVB</span>. Count the letters: V appears 3 times, so guess V = E. V = 21 and E = 4, so the key would be 17. Decode the first word with key 17: FKLV. Not English, so the guess is wrong; short messages fool the count. Use word shapes instead: LV is a two-letter word and WKLV ends in the same two letters. THIS IS fits, and gives key 3. Decode the rest with key 3: <span class="mono">THIS IS EASY</span>. Long messages almost never need the second guess.</p>
 </section>
 
 <section class="exercises">
@@ -54,9 +54,13 @@
 <ol>
 <li>Encode your first name with key 5. Then decode <span class="mono">PDWK LV IXQ</span>, which uses key 3.<div class="space short"></div></li>
 <li>Encoding with key 10 and then encoding the result again with key 16 gives back the original message. Why? What single key is the same as key 10 followed by key 7?<div class="space"></div></li>
-<li>Here is a message encoded with an unknown key. Count the letters (a tally chart is fastest), find the most common one, work out the key, and decode it.
+<li>Here is a message encoded with an unknown key. Tally the letters in the strip below, find the most common one, work out the key, and decode it.
 <p class="mono" style="letter-spacing:.05em">OFOBI COMBOD WOCCKQO VOKFOC K DBKSV LOMKECO DRO VODDOB O BOPECOC DY RSNO</p>
-<div class="space tall"></div></li>
+<table style="font-size:.78em; margin:.4em auto">
+<tr><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td><td>I</td><td>J</td><td>K</td><td>L</td><td>M</td><td>N</td><td>O</td><td>P</td><td>Q</td><td>R</td><td>S</td><td>T</td><td>U</td><td>V</td><td>W</td><td>X</td><td>Y</td><td>Z</td></tr>
+<tr><td style="height:1.6em">&nbsp;</td><td style="height:1.6em">&nbsp;</td><td style="height:1.6em">&nbsp;</td><td style="height:1.6em">&nbsp;</td><td style="height:1.6em">&nbsp;</td><td style="height:1.6em">&nbsp;</td><td style="height:1.6em">&nbsp;</td><td style="height:1.6em">&nbsp;</td><td style="height:1.6em">&nbsp;</td><td style="height:1.6em">&nbsp;</td><td style="height:1.6em">&nbsp;</td><td style="height:1.6em">&nbsp;</td><td style="height:1.6em">&nbsp;</td><td style="height:1.6em">&nbsp;</td><td style="height:1.6em">&nbsp;</td><td style="height:1.6em">&nbsp;</td><td style="height:1.6em">&nbsp;</td><td style="height:1.6em">&nbsp;</td><td style="height:1.6em">&nbsp;</td><td style="height:1.6em">&nbsp;</td><td style="height:1.6em">&nbsp;</td><td style="height:1.6em">&nbsp;</td><td style="height:1.6em">&nbsp;</td><td style="height:1.6em">&nbsp;</td><td style="height:1.6em">&nbsp;</td><td style="height:1.6em">&nbsp;</td></tr>
+</table>
+<div class="space"></div></li>
 <li>In your decoded message from question 3, how many E's were there out of the 60 letters? Compare that with the "one in eight" claim.<div class="space short"></div></li>
 <li>A friend suggests a stronger cipher: instead of shifting, scramble the whole alphabet (A becomes Q, B becomes M, and so on, in any order). How many keys are there now? (Count: 26 choices for what A becomes, then 25 for B, and so on.) Does frequency analysis still work against it? Explain.<div class="space"></div></li>
 </ol>
@@ -79,7 +83,7 @@
 <li>17 out of 60, which is more than one in four. This sentence was chosen to be E-heavy; normal English runs nearer one in eight, but E is still almost always on top.</li>
 <li>\(26 \times 25 \times 24 \times \ldots \times 1 = 26!\), which is about \(4 \times 10^{26}\) keys. Far too many to try. But frequency analysis still works perfectly, because each letter is still always replaced by the same letter, so the most common cipher letter is still probably E, the next ones T, A, O, and common short words like THE and AND give the rest away. The number of keys was never the problem.</li>
 </ol>
-<p><b>Stretch.</b> ATTACK AT DAWN with CAT: A+2 = C, T+0 = T, T+19 = M, A+2 = C, C+0 = C, K+19 = D, A+2 = C, T+0 = T, D+19 = W, A+2 = C, W+0 = W, N+19 = G: <span class="mono">CTMCCD CT WCWG</span>. Notice the four A's became C, C, C, C by luck of position, but T became T once and M once. The same letter encodes differently depending on where it falls, so a single count mixes three different shifts together and flattens the peaks. Kasiski's trick: repeated chunks of plaintext (like THE) that happen to land in the same keyword position come out identical in the ciphertext, and the distance between the repeats must be a multiple of the keyword length. Measure a few such gaps, take their common factor, and you have the length.</p>
+<p><b>Stretch.</b> ATTACK AT DAWN with CAT: A+2 = C, T+0 = T, T+19 = M, A+2 = C, C+0 = C, K+19 = D, A+2 = C, T+0 = T, D+19 = W, A+2 = C, W+0 = W, N+19 = G: <span class="mono">CTMCCD CT WCWG</span>. Notice the four A's became C, C, C, C by luck of position, but T became T once and M once. The same letter encodes differently depending on where it falls, so a single count mixes three different shifts together and flattens the peaks. Kasiski's trick: repeated chunks of the real message (the plaintext), like THE, that happen to land in the same keyword position come out identical in the coded message (the ciphertext), and the distance between the repeats must be a multiple of the keyword length. Measure a few such gaps, take their common factor, and you have the length.</p>
 </section>
 
 <div class="sheet-nav"><a href="b15-nim.html">← Nim: the game you cannot lose</a><a href="b17-differences.html">Next: The detective's method for sequences →</a></div>

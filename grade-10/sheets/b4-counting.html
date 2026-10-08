@@ -25,16 +25,16 @@
 <header class="sheet-head">
   <div class="kicker">Infinity Club · Grade 10 · Around the corner · 4</div>
   <h1>Counting without counting</h1>
-  <p class="teaser">Permutations, combinations, the binomial theorem, and stars and bars: how many ways to share 10 sweets among 4 kids?</p>
+  <p class="teaser">Permutations, combinations and the binomial theorem: how many poker hands are a flush?</p>
   <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
 </header>
 
 <section class="idea">
 <h2>Tonight's idea</h2>
-<p>Everything starts with the <b>multiplication principle</b>: if a choice can be made in \(m\) ways and a second independent choice in \(n\) ways, the pair can be made in \(mn\) ways. Four starters, 6 mains, 3 desserts: \(4 \times 6 \times 3 = 72\) dinners.</p>
+<p>Start with the <b>multiplication principle</b>: if a choice can be made in \(m\) ways and a second independent choice in \(n\) ways, the pair can be made in \(mn\) ways. Four starters, 6 mains, 3 desserts: \(4 \times 6 \times 3 = 72\) dinners.</p>
 <p><b>Permutations</b> (order matters). Arranging \(n\) different things in a row: \(n\) choices for first place, \(n-1\) for second, and so on: \(n!\). Choosing and arranging \(k\) of them: \(n(n-1)\cdots(n-k+1) = \dfrac{n!}{(n-k)!}\).</p>
-<p><b>Combinations</b> (order does not matter). Choosing \(k\) of \(n\) things as a set: count the ordered choices, then notice every set has been counted \(k!\) times, once per ordering. So \[\binom{n}{k} = \frac{n!}{k!\,(n-k)!}.\] Read "\(n\) choose \(k\)". \(\binom{5}{2} = 10\): ten possible pairs from five people.</p>
-<p><b>The binomial theorem.</b> Expand \((a+b)^n\) by picking \(a\) or \(b\) from each of the \(n\) brackets. The term \(a^{n-k}b^k\) arises once for each way of choosing which \(k\) brackets supply a \(b\): \[(a+b)^n = \sum_{k=0}^{n} \binom{n}{k} a^{n-k} b^k.\] Those coefficients are the rows of <a href="../../grade-6/sheets/b4-pascal.html">Pascal's triangle</a>.</p>
+<p><b>Combinations</b> (order does not matter). Choosing \(k\) of \(n\) things as a set: count the ordered choices, then notice every set has been counted \(k!\) times, once per ordering. So \[\binom{n}{k} = \frac{n!}{k!\,(n-k)!}.\] Read "\(n\) choose \(k\)". \(\binom{5}{2} = 10\).</p>
+<p><b>The binomial theorem.</b> Expand \((a+b)^n\) by picking \(a\) or \(b\) from each of the \(n\) brackets. The term \(a^{n-k}b^k\) arises once for each way of choosing which \(k\) brackets supply a \(b\): \[(a+b)^n = \sum_{k=0}^{n} \binom{n}{k} a^{n-k} b^k.\] (The sign \(\sum\) means: add up the terms for \(k = 0, 1, \ldots, n\).) Those coefficients are the rows of <a href="../../grade-6/sheets/b4-pascal.html">Pascal's triangle</a>.</p>
 </section>
 
 <section class="example">
@@ -48,7 +48,7 @@
 <li>Number plates have 3 letters then 3 digits. How many are possible? How many if no letter and no digit may repeat?<div class="space short"></div></li>
 <li>A poker hand is 5 cards from 52. How many hands are there? A flush is 5 cards all of one suit. How many flushes are there, and roughly what fraction of hands is that?<div class="space"></div></li>
 <li>Expand \((x+2)^5\) using the binomial theorem. Then find the coefficient of \(x^3\) in \((2x - 1)^7\) without expanding the whole thing.<div class="space"></div></li>
-<li>A city grid: you walk from \((0,0)\) to \((6,4)\) using only steps right and up. How many routes? How many pass through \((2,2)\)?<div class="space"></div></li>
+<li>A city grid: you walk from \((0,0)\) to \((6,4)\) using only steps right (R) and up (U). How many routes? How many pass through \((2,2)\)?<figure><svg viewBox="0 0 200 130" width="200" height="130" role="img" aria-label="A 6 by 4 grid of streets with one route from (0,0) to (6,4) drawn, passing through (2,2)"><line x1="30" y1="105" x2="30" y2="25" stroke="#999" stroke-width="1"/><line x1="50" y1="105" x2="50" y2="25" stroke="#999" stroke-width="1"/><line x1="70" y1="105" x2="70" y2="25" stroke="#999" stroke-width="1"/><line x1="90" y1="105" x2="90" y2="25" stroke="#999" stroke-width="1"/><line x1="110" y1="105" x2="110" y2="25" stroke="#999" stroke-width="1"/><line x1="130" y1="105" x2="130" y2="25" stroke="#999" stroke-width="1"/><line x1="150" y1="105" x2="150" y2="25" stroke="#999" stroke-width="1"/><line x1="30" y1="105" x2="150" y2="105" stroke="#999" stroke-width="1"/><line x1="30" y1="85" x2="150" y2="85" stroke="#999" stroke-width="1"/><line x1="30" y1="65" x2="150" y2="65" stroke="#999" stroke-width="1"/><line x1="30" y1="45" x2="150" y2="45" stroke="#999" stroke-width="1"/><line x1="30" y1="25" x2="150" y2="25" stroke="#999" stroke-width="1"/><polyline points="30,105 50,105 70,105 70,85 70,65 90,65 110,65 110,45 130,45 150,45 150,25" fill="none" stroke="#3f44c9" stroke-width="3"/><circle cx="30" cy="105" r="3.5" fill="#000"/><circle cx="150" cy="25" r="3.5" fill="#000"/><circle cx="70" cy="65" r="5" fill="#f5a524"/><g font-family="Nunito, sans-serif" font-size="12" fill="#1d1f3a"><text x="26" y="121">(0,0)</text><text x="120" y="19">(6,4)</text><text x="77" y="60">(2,2)</text><text x="156" y="109">R</text><text x="16" y="29">U</text></g></svg><figcaption>One route: RRUURRURRU, ten steps of which four are U.</figcaption></figure><div class="space short"></div></li>
 </ol>
 </section>
 
