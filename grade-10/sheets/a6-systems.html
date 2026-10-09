@@ -32,7 +32,7 @@
 <section class="idea">
 <h2>Tonight's idea</h2>
 <p>Solving a system of equations is asking a geometric question: <b>where do these graphs meet?</b> Every solution \((x, y)\) is a point that sits on both curves at once. Two lines meet once, never (parallel), or everywhere (the same line twice). With a curve involved, one method handles every case.</p>
-<p><b>Substitution.</b> Solve one equation for a variable and feed it into the other. One equation in one unknown comes out. If it is a quadratic, its <b>discriminant</b> \(b^2 - 4ac\) counts the meeting points: positive means two, zero means one (the curves just touch, a <b>tangent</b>), negative means they miss.</p>
+<p><b>Substitution.</b> Solve one equation for a variable and feed it into the other. One equation in one unknown comes out. For a line meeting a circle or a parabola, each root fixes exactly one point, so the quadratic's <b>discriminant</b> \(b^2 - 4ac\) counts the meeting points: positive means two, zero means one (the curves just touch, a <b>tangent</b>), negative means they miss. Otherwise a root is not a point: back-substitute and count the real points you get (the stretch has two roots and four points).</p>
 <p><b>Elimination.</b> When both equations are linear, or share a matching term, add or subtract multiples of them so a variable disappears. For two circles, subtracting the equations removes both \(x^2\) and \(y^2\) at once and leaves a line, and the meeting points must lie on it.</p>
 <figure>
 <svg viewBox="0 0 300 160" width="300" height="160" role="img" aria-label="A circle cut by a line at two points, a tangent line touching at one point, and a line that misses">
@@ -48,7 +48,7 @@
 <line x1="235" y1="135" x2="300" y2="110" stroke="#3f44c9" stroke-width="2"/>
 <text x="270" y="150" font-size="11" text-anchor="middle" fill="#1d1f3a">none</text>
 </svg>
-<figcaption>The discriminant of the equation you get after substituting tells you which picture you are in.</figcaption>
+<figcaption>For a line and a circle, the discriminant after substituting tells you which picture you are in.</figcaption>
 </figure>
 </section>
 
@@ -81,7 +81,7 @@
 <li>Subtracting: \(x^2 - (x-6)^2 = 12\), so \(12x - 36 = 12\), \(x = 4\). Then \(y^2 = 9\), \(y = \pm 3\). Points \((4, 3)\) and \((4, -3)\). Check in the second circle: \(4 + 9 = 13\).</li>
 <li>\(y + y^2 = 6\), so \((y + 3)(y - 2) = 0\), \(y = 2\) or \(y = -3\). But \(y = x^2\) can never be negative, so \(y = -3\) gives no real \(x\). With \(y = 2\), \(x = \pm\sqrt2\). Two points: \((\pm\sqrt2, 2)\).</li>
 </ol>
-<p><b>Stretch.</b> Subtracting two circle equations removes \(x^2\) and \(y^2\) and leaves a linear equation, a line. Every common point lies on that line, and a line meets a circle at most twice, so two circles meet at most twice. For the parabola and circle, substitute \(x^2 = y\): \(y + (y-3)^2 = 5\), so \(y^2 - 5y + 4 = 0\), \(y = 1\) or \(4\), giving \(x = \pm1\) or \(\pm2\). Four points: \((\pm1, 1)\) and \((\pm2, 4)\).</p>
+<p><b>Stretch.</b> Subtracting two circle equations removes \(x^2\) and \(y^2\) and leaves a linear equation, a line. Every common point lies on that line, and a line meets a circle at most twice, so two circles meet at most twice. For the parabola and circle, substitute \(x^2 = y\): \(y + (y-3)^2 = 5\), so \(y^2 - 5y + 4 = 0\), \(y = 1\) or \(4\), giving \(x = \pm1\) or \(\pm2\). Four points: \((\pm1, 1)\) and \((\pm2, 4)\). A positive discriminant promised two roots, not two points: each \(y\) here gives two values of \(x\), while in exercise 4 one root gave none.</p>
 </section>
 
 <div class="sheet-nav"><a href="a5-logs.html">← Previous</a><a href="a7-polynomials.html">Next: Factor, remainder, and the cubes →</a></div>

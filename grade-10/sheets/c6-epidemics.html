@@ -31,17 +31,17 @@
 
 <section class="idea">
 <h2>Tonight's idea</h2>
-<p>\(R_0\) (say "R nought") is the average number of people one infected person passes the disease to, when everybody around them can still catch it. Measles: 12 to 18. The 1918 flu: about 2. If \(R_0 \gt 1\) each generation of cases is bigger than the last: 1, \(R_0\), \(R_0^2\), \(R_0^3\), exponential growth. If \(R_0 \lt 1\) the outbreak fizzles.</p>
-<p>But \(R_0\) assumes everyone is susceptible, and that stops being true as people recover. The simplest model splits \(N\) people into three boxes, <b>S</b>usceptible, <b>I</b>nfectious and <b>R</b>ecovered. \(\beta\) is infections per infectious person per day if everyone were susceptible; \(\gamma\) is the fraction of infectious people who recover each day, so \(1/\gamma\) is the infectious period.</p>
+<p>\(R_0\) (say "R nought") is how many people one infected person passes the disease to when everyone around them can still catch it. Measles: 12 to 18; the 1918 flu: about 2. If \(R_0 \gt 1\) each generation of cases is bigger than the last, 1, \(R_0\), \(R_0^2\), \(R_0^3\): exponential growth. If \(R_0 \lt 1\) the outbreak fizzles.</p>
+<p>But \(R_0\) assumes everyone is susceptible, which stops being true as people recover. The simplest model splits \(N\) people into three boxes. \(\beta\) is infections per infectious person per day if everyone were susceptible; \(\gamma\) is the fraction of infectious people recovering each day, so \(1/\gamma\) is the infectious period.</p>
 <figure><svg viewBox="0 0 420 72" width="420" height="72" role="img" aria-label="Three boxes S, I, R with an arrow from S to I labelled beta S I over N per day and an arrow from I to R labelled gamma I per day"><rect x="20" y="22" width="80" height="40" rx="6" fill="#fff" stroke="#3f44c9" stroke-width="2"/><text x="60" y="41" font-family="Nunito, sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="#1d1f3a">S</text><text x="60" y="56" font-family="Nunito, sans-serif" font-size="11" text-anchor="middle" fill="#555">susceptible</text><line x1="100" y1="42" x2="162" y2="42" stroke="#f5a524" stroke-width="2.5"/><polygon points="170,42 160,36 160,48" fill="#f5a524"/><text x="135" y="16" font-family="Nunito, sans-serif" font-size="12" text-anchor="middle" fill="#1d1f3a">βSI/N per day</text><rect x="170" y="22" width="80" height="40" rx="6" fill="#fff" stroke="#3f44c9" stroke-width="2"/><text x="210" y="41" font-family="Nunito, sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="#1d1f3a">I</text><text x="210" y="56" font-family="Nunito, sans-serif" font-size="11" text-anchor="middle" fill="#555">infectious</text><line x1="250" y1="42" x2="312" y2="42" stroke="#f5a524" stroke-width="2.5"/><polygon points="320,42 310,36 310,48" fill="#f5a524"/><text x="285" y="16" font-family="Nunito, sans-serif" font-size="12" text-anchor="middle" fill="#1d1f3a">γI per day</text><rect x="320" y="22" width="80" height="40" rx="6" fill="#fff" stroke="#3f44c9" stroke-width="2"/><text x="360" y="41" font-family="Nunito, sans-serif" font-size="15" font-weight="700" text-anchor="middle" fill="#1d1f3a">R</text><text x="360" y="56" font-family="Nunito, sans-serif" font-size="11" text-anchor="middle" fill="#555">recovered</text></svg></figure>
-<p>With \(\Delta\) meaning "change in one day":</p>
+<p>With \(\Delta\) meaning "change over one step", one day here (the true model takes vanishingly short steps):</p>
 <div class="callout">
 \[\Delta S = -\beta\,\frac{S\,I}{N}, \qquad \Delta I = \beta\,\frac{S\,I}{N} - \gamma I, \qquad \Delta R = \gamma I.\]
 And \(R_0 = \beta/\gamma\).
 </div>
-<p>An infectious person only passes the disease on when they meet a susceptible, so the <em>effective</em> reproduction number is \(R_{\text{eff}} = R_0 \cdot S/N\). The epidemic grows while \(R_{\text{eff}} \gt 1\). Set \(R_0 \cdot S/N = 1\): the peak comes when \(S/N = 1/R_0\). Everyone else, a fraction \(1 - 1/R_0\), is <em>no longer</em> susceptible by then.</p>
+<p>Infectious people only pass it on when they meet a susceptible, so the <em>effective</em> reproduction number is \(R_{\text{eff}} = R_0 \cdot S/N\). The number currently infectious, \(I\), grows while \(R_{\text{eff}} \gt 1\) and peaks when \(S/N = 1/R_0\). Everyone else, \(1 - 1/R_0\), is <em>no longer</em> susceptible by then.</p>
 <div class="callout"><b>Herd-immunity threshold:</b> \(\;1 - \dfrac{1}{R_0}\). With \(R_0 = 2\) that is 50%. With \(R_0 = 12\) it is 92%.</div>
-<p>Past the threshold, reached by infection or vaccination, each case produces fewer than one new case.</p>
+<p>Past the threshold, by infection or vaccination, each case produces fewer than one new case.</p>
 </section>
 
 <section class="example">
@@ -58,13 +58,13 @@ And \(R_0 = \beta/\gamma\).
 <li>A disease has \(R_0 = 3\) and a generation time of 5 days (one generation is one round of passing it on; it takes one generation time). Starting from one case, how many <em>new</em> cases are there in the fourth generation? How many cases in total by then, and how many days have passed?<div class="space short"></div></li>
 <li>Compute the herd-immunity threshold for \(R_0 = 1.5\), \(2\), \(3\), \(5\) and \(12\). Give each as a fraction and a percentage.<div class="space short"></div></li>
 <li>A vaccine stops infection in 90% of the people who receive it. The disease has \(R_0 = 4\). What fraction of the population must be <em>vaccinated</em> to reach the herd-immunity threshold? Why is the answer bigger than the threshold itself?<div class="space short"></div></li>
-<li>\(R_0 = 2.5\) in a city of 10,000 where everyone starts susceptible. (a) How many people are still susceptible when daily cases peak? (b) How many have therefore been infected by the peak? (c) If 40% had been vaccinated beforehand, what would \(R_{\text{eff}}\) be on day 0?<div class="space short"></div></li>
+<li>\(R_0 = 2.5\) in a city of 10,000, all susceptible. (a) How many are still susceptible when the number currently infectious peaks? (b) How many have been infected by then? (c) If 40% had been vaccinated beforehand, what is \(R_{\text{eff}}\) on day 0?<div class="space short"></div></li>
 </ol>
 </section>
 
 <section class="stretch">
 <h2>Stretch: the overshoot</h2>
-<p>Herd immunity is where the epidemic <em>stops growing</em>, not where it stops: the infectious people at the peak keep infecting. The fraction \(s_\infty\) still susceptible at the very end satisfies \(s_\infty = e^{-R_0(1 - s_\infty)}\). For \(R_0 = 2\), start from \(s = 0.5\), compute \(e^{-2(1-s)}\), feed it back in, and repeat until it settles. What fraction is infected in total, against the 50% threshold?</p>
+<p>Herd immunity is where the epidemic <em>stops growing</em>, not where it stops: the infectious people at the peak keep infecting. In the smooth model, started from a vanishingly small seed, the fraction \(s_\infty\) still susceptible at the very end satisfies \(s_\infty = e^{-R_0(1 - s_\infty)}\). For \(R_0 = 2\), start from \(s = 0.5\), compute \(e^{-2(1-s)}\), feed it back in, and repeat until it settles. What fraction is infected in total, against the 50% threshold? Do the one-day steps of "Watch one" end at the same place?</p>
 <div class="space"></div>
 </section>
 
@@ -74,9 +74,9 @@ And \(R_0 = \beta/\gamma\).
 <li>Fourth generation: \(3^4 = 81\) new cases. Total \(1 + 3 + 9 + 27 + 81 = 121\). Four generations is 20 days.</li>
 <li>\(1 - 1/R_0\): \(1/3 \approx 33\%\), \(1/2 = 50\%\), \(2/3 \approx 67\%\), \(4/5 = 80\%\), \(11/12 \approx 92\%\).</li>
 <li>Threshold \(1 - 1/4 = 75\%\) must be immune. If a fraction \(v\) is vaccinated, \(0.9v\) are immune, so \(0.9v \ge 0.75\) gives \(v \ge 0.833\): about 83%. Only 90% of each dose counts, so you must over-vaccinate to make up for the 10% in whom it fails.</li>
-<li>(a) Peak when \(S/N = 1/2.5 = 0.4\): 4,000 still susceptible. (b) So 6,000 have been infected by the peak (very nearly; the handful of initial cases were never susceptible). (c) With 40% vaccinated, \(R_{\text{eff}} = 2.5 \times 0.6 = 1.5\): still an epidemic, but a slower one.</li>
+<li>(a) \(I\) peaks when \(S/N = 1/2.5 = 0.4\): 4,000 still susceptible. (b) So about 6,000 have been infected by then, some still infectious, most recovered. Daily <em>new</em> cases peak slightly earlier. (c) With 40% vaccinated, \(R_{\text{eff}} = 2.5 \times 0.6 = 1.5\): still an epidemic, but a slower one.</li>
 </ol>
-<p><b>Stretch.</b> From 0.5 the iterates go 0.368, 0.282, 0.238, 0.218, … and settle at \(s_\infty \approx 0.203\). About 80% are infected in total, far more than the 50% threshold: a 30-point overshoot. Vaccination reaches the threshold while \(I\) is still essentially zero, so there is no stock of infectious people to drive an overshoot; natural infection reaches it at the exact moment infections are most numerous.</p>
+<p><b>Stretch.</b> From 0.5 the iterates go 0.368, 0.282, 0.238, 0.218, … and settle at \(s_\infty \approx 0.203\). About 80% are infected in total, far more than the 50% threshold: a 30-point overshoot. Vaccination reaches the threshold with \(I\) essentially zero, so nothing drives an overshoot; natural infection reaches it when infections are most numerous. The one-day steps end near \(S \approx 185\) of 1000, not 203: coarse steps and the 1% seed each shave a little off.</p>
 </section>
 
 <div class="sheet-nav"><a href="c5-medical-tests.html">← Previous</a><a href="c7-perspective.html">Next: Perspective, projective geometry and the golden ratio myth →</a></div>

@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why the 13th is most often a Friday · Infinity Club</title>
+<meta name="description" content="Does the 13th of the month land on every weekday equally often? The calendar repeats every 400 years, so 4,800 cases settle it forever. Friday wins, just.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 6</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 6 · Connections · 10</div>
+  <h1>Why the 13th is most often a Friday</h1>
+  <p class="teaser">Which weekday does the 13th of the month land on most often, over all of time? It sounds like a question nobody could ever finish checking. It is one you can finish tonight.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>In <a href="c8-calendar.html">What day of the week were you born?</a> you saw that the calendar is clock arithmetic. Here is a question it can settle completely: does the 13th fall on each of the seven weekdays equally often?</p>
+<p><b>Why "forever" is a finite job.</b> A normal year has 365 days and a leap year 366. Any 400 years contain 97 leap years: 100 multiples of 4, minus the three century years that are not multiples of 400. So 400 years hold \(400 \times 365 + 97 = 146{,}097\) days. And \(146{,}097 = 7 \times 20{,}871\) exactly. After 400 years the weekdays line up with the dates again, and the leap-year pattern starts over too. The whole calendar, forever, is one 400-year block on a loop.</p>
+<p>That block contains \(400 \times 12 = 4{,}800\) thirteenths. Count which weekday each one lands on and you have counted them all, past and future. <b>Before you look at the chart, write a prediction:</b> equal, or not? If not, which weekday wins?</p>
+<figure>
+<svg viewBox="0 0 520 200" width="520" height="200" role="img" aria-label="Bar chart of how often the 13th falls on each weekday in 400 years: Monday 685, Tuesday 685, Wednesday 687, Thursday 684, Friday 688, Saturday 684, Sunday 687" font-family="Nunito, sans-serif">
+<text x="20" y="16" font-size="12" fill="#333">Thirteenths per 400 years (4,800 in all). Bars start at 680, not 0, so the differences show.</text>
+<text x="20" y="34" font-size="12" fill="#999">400 × 365 + 97 = 146,097 days = 7 × 20,871 weeks, then everything repeats.</text>
+<g stroke="#999" stroke-width="1"><line x1="56" y1="166" x2="500" y2="166"/><line x1="56" y1="46" x2="56" y2="166"/></g>
+<g font-size="12" fill="#999" text-anchor="end"><text x="50" y="170">680</text><text x="50" y="50">690</text></g>
+<g font-size="12" fill="#999" text-anchor="middle" transform="translate(0,0)">
+<rect x="78" y="106" width="40" height="60" fill="#3f44c9"/><text x="98" y="100" font-size="13" font-weight="700" fill="#333">685</text><text x="98" y="184">Mon</text>
+<rect x="138" y="106" width="40" height="60" fill="#3f44c9"/><text x="158" y="100" font-size="13" font-weight="700" fill="#333">685</text><text x="158" y="184">Tue</text>
+<rect x="198" y="82" width="40" height="84" fill="#3f44c9"/><text x="218" y="76" font-size="13" font-weight="700" fill="#333">687</text><text x="218" y="184">Wed</text>
+<rect x="258" y="118" width="40" height="48" fill="#3f44c9"/><text x="278" y="112" font-size="13" font-weight="700" fill="#333">684</text><text x="278" y="184">Thu</text>
+<rect x="318" y="70" width="40" height="96" fill="#f5a524"/><text x="338" y="64" font-size="13" font-weight="700" fill="#333">688</text><text x="338" y="184" font-weight="700" fill="#333">Fri</text>
+<rect x="378" y="118" width="40" height="48" fill="#3f44c9"/><text x="398" y="112" font-size="13" font-weight="700" fill="#333">684</text><text x="398" y="184">Sat</text>
+<rect x="438" y="82" width="40" height="84" fill="#3f44c9"/><text x="458" y="76" font-size="13" font-weight="700" fill="#333">687</text><text x="458" y="184">Sun</text>
+</g>
+</svg>
+<figcaption>The seven counts, found by checking every 13th from the year 2000 to 2399. Friday wins by one. Any other 400-year stretch gives exactly the same seven numbers.</figcaption>
+</figure>
+</section>
+
+<section class="example">
+<h2>Watch one: what the remainder proves, and what it doesn't</h2>
+<p>Divide: \(4{,}800 = 7 \times 685 + 5\). If every weekday had the same share, that share would be \(4{,}800 \div 7\), which is not a whole number. So the seven counts <em>cannot</em> all be equal. That is a proof, and it took one line.</p>
+<p>But look at what it does not say. The remainder 5 is just as happy with Monday on top as with Friday. Nothing in the division mentions a weekday. To learn <em>which</em> day wins, somebody has to work through the 4,800 cases (or find a cleverer argument). Notice also that this has nothing to do with chance. Roll a 7-sided die 4,800 times and the counts would be unequal too, but differently every time. The calendar's counts are fixed by its rules, the same for everyone, forever.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Check the leap-year count for 2000 to 2399: how many multiples of 4 are there, which century years lose their leap day, and which keeps it? Then check \(7 \times 20{,}871\) by hand.<div class="space"></div></li>
+<li>A friend says: "4,800 isn't divisible by 7, so obviously Friday comes out on top." Which half of that sentence is right, and which half is not justified?<div class="space"></div></li>
+<li>From the chart: check the seven counts add to 4,800. How many more Friday-the-13ths than Thursday-the-13ths happen in 400 years? About how many Friday-the-13ths is that per year?<div class="space"></div></li>
+<li>13 January 2026 is a Tuesday. Add the month lengths (31, 28, 31, 30, …) and drop whole weeks to find the weekday of the 13th in every month of 2026. Which weekdays appear, and how many times each? Use your list to explain why <em>every</em> year has at least one Friday the 13th, and never more than three.<div class="space tall"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: finished and unfinished lists</h2>
+<p>The <a href="../../demos/collatz.html">hailstone rule</a> (halve if even, triple and add one if odd) has been checked for every starting number below \(2^{68}\), and every one reached 1. Nobody calls that a proof. Tonight you checked 4,800 cases, and it <em>is</em> a proof. Write two sentences explaining the difference.</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Multiples of 4 from 2000 to 2399: \(400 \div 4 = 100\). The century years 2100, 2200 and 2300 are not multiples of 400, so they lose their leap day; 2000 keeps it. \(100 - 3 = 97\). And \(7 \times 20{,}871 = 140{,}000 + 6{,}097 = 146{,}097\).</li>
+<li>Right: since \(4{,}800 = 7 \times 685 + 5\), equal counts are impossible, so some weekday must be most common. Not justified: nothing in that arithmetic picks out Friday. Only the full count (or a different argument) can say which day it is.</li>
+<li>\(685 + 685 + 687 + 684 + 688 + 684 + 687 = 4{,}800\). Friday beats Thursday by \(688 - 684 = 4\) in 400 years. \(688 \div 400 = 1.72\) Friday-the-13ths per year on average, which fits: every year has one, two or three.</li>
+<li>Jan Tue, Feb Fri (+31 days = +3), Mar Fri (+28 = +0), Apr Mon (+31 = +3), May Wed (+30 = +2), Jun Sat (+31 = +3), Jul Mon (+30 = +2), Aug Thu (+31 = +3), Sep Sun (+31 = +3), Oct Tue (+30 = +2), Nov Fri (+31 = +3), Dec Sun (+30 = +2). Counts: Fri 3, Mon 2, Tue 2, Sun 2, Wed 1, Thu 1, Sat 1. All seven weekdays appear. The shifts between one 13th and the next depend only on the month lengths, so in every non-leap year the 13ths fall into the same seven groups of months, just starting from a different weekday; February, March and November always share, and that group of three is the biggest. So some month's 13th is always a Friday, and at most three are. Leap years regroup the months (January, April and July share) but still cover all seven weekdays with a biggest group of three.</li>
+</ol>
+<p><b>Stretch.</b> There are infinitely many starting numbers for the hailstone rule, so checking the first \(2^{68}\) leaves infinitely many unchecked, and no argument says the rest behave the same. The calendar repeats exactly every 400 years, because \(146{,}097\) is a multiple of 7, so the 4,800 thirteenths in one cycle are every case that will ever occur. The check is complete because of the repetition, and the repetition is proved by arithmetic.</p>
+</section>
+
+<div class="sheet-nav"><a href="c9-voting.html">← How an election can have no winner</a><a href="../index.html#sheets">← All sheets</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

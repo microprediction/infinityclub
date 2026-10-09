@@ -8,6 +8,10 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
 <link rel="stylesheet" href="../../assets/site.css">
+<style>
+/* a closed <details> prints only its summary; show the hint text on paper */
+@media print { details.small { display: block; font-size: .9rem; color: #333; } details.small summary { display: inline; list-style: none; font-weight: 700; } details.small summary::after { content: ": "; } details.small::details-content { content-visibility: visible; display: inline; } }
+</style>
 </head>
 <body>
 <nav class="top">
@@ -26,6 +30,7 @@
   <div class="kicker">Infinity Club · Grade 6 · Around the corner · 15</div>
   <h1>Nim: the game you cannot lose</h1>
   <p class="teaser">A game with coins that looks like luck and skill. It is neither. There is a secret rule, written in binary, that tells you the winning move every single time.</p>
+  <p class="small">Helpful first: Binary from <a href="b2-binary.html">Counting to 31 on one hand</a>. Ready if you can write 13 in binary without looking it up.</p>
   <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
 </header>
 
@@ -53,11 +58,12 @@
 
 <section class="exercises">
 <h2>Your turn</h2>
+<p class="small">Tonight's core: the example and exercises 1 to 3. The rest can wait for another visit.</p>
 <ol>
 <li>Write out the binary table for 1-2-3. Is it balanced? If you are the first player in 1-2-3, do you want to be?<div class="space"></div></li>
 <li>Classify each position as balanced or unbalanced: 2-2, 4-6, 1-4-5, 2-3-4.<div class="space"></div></li>
 <li>For each <em>unbalanced</em> position in question 2, find a move that balances it. Say which pile and how many coins.<div class="space"></div></li>
-<li>5-6-7. Find <em>all</em> the winning moves. (There is more than one.)<div class="space tall"></div></li>
+<li>5-6-7. Find <em>all</em> the winning moves. (There is more than one.)<details class="small"><summary>Hint</summary>Only one column comes out odd. Every pile with a 1 in that column gives one winning move: turn that 1 into a 0 and leave its other digits alone.</details><div class="space tall"></div></li>
 <li>The classic opening is 1-3-5-7, four piles. Should you offer to go first or second? Explain using the table.<div class="space"></div></li>
 <li>Play 3-5-7 against someone three times, <b>going first</b> and using the rule. Did you win all three? If not, check your binary table and your moves.<div class="space short"></div></li>
 </ol>

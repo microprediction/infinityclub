@@ -47,7 +47,7 @@
 <p>After a game with actual score \(S_A\), the rating moves by the surprise:</p>
 <div class="callout">\[ R_A' = R_A + K\,(S_A - E_A). \]</div>
 <p>Beat someone you were expected to beat and you gain little; beat someone you were expected to lose to and you gain a lot. The <b>K-factor</b> sets how fast ratings move (chess uses 10 to 40); with the same \(K\), what one player gains the other loses. The same machinery rates football clubs.</p>
-<p>Any performance is <b>skill plus luck</b>. The season's top performer had good skill <em>and</em> good luck; next season the luck is rolled again. This is <b>regression to the mean</b>, and it explains the "sophomore slump" without anything happening to anyone. If the correlation between one season and the next is \(r\) (0 to 1; see <a href="a16-statistics.html">the statistics sheet</a>), the best prediction is</p>
+<p>Any performance is <b>skill plus luck</b>. The season's top performer had good skill <em>and</em> good luck; next season the luck is rolled again. This is <b>regression to the mean</b>; it explains the "sophomore slump" without anything happening to anyone. If the correlation between one season and the next is \(r\) (see <a href="a16-statistics.html">the statistics sheet</a>) and both seasons have the same mean and spread, the best straight-line prediction is</p>
 <div class="callout">\[ \text{next} \approx \text{mean} + r \times (\text{this} - \text{mean}). \]</div>
 </section>
 
@@ -61,16 +61,16 @@
 <section class="exercises">
 <h2>Your turn</h2>
 <ol>
-<li>Compute the expected score of the higher-rated player when the rating gap is 0, 100, 200, 400 and 800 points. Plot the five points on the axes in Tonight's idea and check they land on the curve.<div class="space short"></div></li>
+<li>Find the higher-rated player's expected score for rating gaps of 0, 100, 200, 400 and 800 points. Plot the five points on the axes in Tonight's idea and check they land on the curve.<div class="space short"></div></li>
 <li>Two 1800 players meet, \(K = 20\). How much does the winner gain? Now a 1800 player loses to a 2000 player with \(K = 20\): give both new ratings.<div class="space short"></div></li>
-<li>Ana starts at 1500 with \(K = 32\) and plays three games in order, using her updated rating going into each next game: she beats a 1600, loses to a 1400, and draws a 1500. Give her rating after each game, the final one to one decimal place. Why does she end up almost where she started?<div class="space short"></div></li>
-<li>A hundred students sit two equally hard tests. Scores are ability plus luck in equal measure, so the correlation between the tests is 0.5, and the class mean is 70 on both. The ten best students on test 1 averaged 85. Predict their average on test 2. The ten worst averaged 55. Predict theirs. Did the teacher's praise or scolding between the tests have anything to do with it?<div class="space short"></div></li>
+<li>Ana starts at 1500 with \(K = 32\) and plays three games, updating her rating after each: she beats a 1600, loses to a 1400, and draws a 1500. Give her rating after each game, the last to one decimal place. Why does she end up almost where she started?<div class="space short"></div></li>
+<li>A class sits two equally hard tests. Each score is ability plus fresh luck, independent and bell-shaped with equal spread, so the tests correlate at 0.5 and the class mean is 70 on both. The ten best on test 1 averaged 85; predict their test 2 average. The ten worst averaged 55; predict theirs. In between, the teacher praised the top ten and scolded the bottom ten. Did praise backfire and scolding work?<div class="space short"></div></li>
 </ol>
 </section>
 
 <section class="stretch">
 <h2>Stretch: what a rating gap is really claiming</h2>
-<p>Ratings settle where \(E_A = p\), A's long-run chance of beating B. Solve for the gap \(D = R_A - R_B\) in terms of \(p\); find \(D\) for \(p = 0.75\) and \(0.9\). If A beats B and B beats C 75% of the time each, what does Elo say about A against C, and why might it be wrong? (Hint: <a href="../../grade-6/sheets/b32-efron-dice.html">dice that go round in circles</a>.)</p>
+<p>With no draws, ratings settle where \(E_A = p\), A's long-run chance of beating B. Write \(D = R_A - R_B\) in terms of \(p\); find \(D\) for \(p = 0.75\) and \(0.9\). If A beats B and B beats C 75% of the time, what does Elo say about A against C, and why might it be wrong? (Hint: <a href="../../grade-6/sheets/b32-efron-dice.html">dice that go round in circles</a>.)</p>
 <div class="space"></div>
 </section>
 
@@ -80,7 +80,7 @@
 <li>Gap 0: 0.500. Gap 100: \(1/(1 + 10^{-0.25}) = 0.640\). Gap 200: 0.760. Gap 400: 0.909. Gap 800: 0.990. All five lie on the S-shaped (logistic) curve, steepest at a gap of 0 and flattening toward 1.</li>
 <li>Equal ratings: \(E = 0.5\), the winner gains \(20 \times 0.5 = 10\) and the loser drops 10. The 1800 against 2000: \(E_{1800} = 1/(1 + 10^{0.5}) = 0.240\); losing gives \(1800 + 20(0 - 0.240) = 1795.2\). The 2000 player gains the same 4.8: 2004.8.</li>
 <li>Game 1 against 1600: \(E = 1/(1 + 10^{0.25}) = 0.360\), gain \(32 \times 0.640 = 20.5\), rating 1520.5. Game 2 against 1400: \(E = 0.667\), change \(-21.3\), rating 1499.2. Game 3 against 1500: \(E \approx 0.499\), change \(+0.04\), rating 1499.2. She beat someone better and lost to someone worse: two surprises of nearly equal size cancel, and the draw against an equal is no surprise at all.</li>
-<li>Top ten: \(70 + 0.5 \times (85 - 70) = 77.5\). Bottom ten: \(70 + 0.5 \times (55 - 70) = 62.5\). Both groups move halfway back to the mean. Praise and scolding had nothing to do with it; this would happen with no teacher in the room, which is exactly why praise looks ineffective and criticism looks effective to anyone who does not know about regression.</li>
+<li>Top ten: \(70 + 0.5 \times (85 - 70) = 77.5\). Bottom ten: \(70 + 0.5 \times (55 - 70) = 62.5\). With bell-shaped ability and luck the best prediction really is this straight line, and both groups move halfway back to the mean with no teacher in the room at all. So the shifts by themselves say nothing about praise or scolding; to measure the teacher, compare the real test 2 scores with these predictions, not with test 1. Skip that step and praise looks like it fails and criticism looks like it works.</li>
 </ol>
 <p><b>Stretch.</b> \(E = p\) gives \(10^{-D/400} = \dfrac{1 - p}{p}\), so \(D = 400 \log_{10}\dfrac{p}{1 - p}\). For \(p = 0.75\): \(400 \log_{10} 3 \approx 191\) points. For \(p = 0.9\): \(400 \log_{10} 9 \approx 382\) points. If A is 191 above B and B is 191 above C, A is 382 above C and Elo predicts A beats C with probability 0.90. That is forced by placing everyone on one line. Efron's dice break it: A beats B, B beats C, C beats D and D beats A, each two-thirds of the time, and no single number per player can predict all four. Rock-paper-scissors match-ups exist in real sports too, and Elo cannot see them.</p>
 </section>

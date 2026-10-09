@@ -30,15 +30,15 @@
     <label>vaccinated <input type="range" id="vac" min="0" max="95" step="1" value="0"> <span id="vacv">0%</span></label>
   </div>
   <canvas id="plot" width="900" height="440"></canvas>
-  <p class="legend"><span><i style="background:#3f44c9"></i>Susceptible</span><span><i style="background:#b3261e"></i>Infected</span><span><i style="background:#2e8b57"></i>Recovered or vaccinated</span><span><i style="background:#f5a524"></i>herd immunity threshold</span></p>
+  <p class="legend"><span><i style="background:#3f44c9"></i>Susceptible</span><span><i style="background:#b3261e"></i>Infected</span><span><i style="background:#2e8b57"></i>Recovered or vaccinated</span><span><i style="background:#f5a524"></i>susceptible threshold 1/R₀</span></p>
   <div class="readout" id="info"></div>
 </div>
 <div class="explain">
 <h2>What's going on</h2>
-<p>Each day, the number of new infections is proportional to how many infected people there are times how many susceptible people they can meet: new cases each day = (contact rate β) × S × I ÷ N. Each day a fraction γ of the infected recover, where γ = 1 ÷ (days infectious). The ratio β ÷ γ is R₀, the number of people one case infects in a town where everyone is susceptible.</p>
-<p>At the start almost everyone is susceptible, so each case causes about R₀ more, and those cause R₀ more again: exponential growth. But every infection removes a susceptible person. Once the susceptible fraction drops below 1 ÷ R₀, each case causes fewer than one new case, and the epidemic turns over. That moment is the peak.</p>
-<p>Turn the sentence around and you have the <b>herd immunity threshold</b>: when at least 1 − 1 ÷ R₀ of the town is immune, the illness cannot grow. For R₀ = 3 that is two thirds. The orange line marks it. Vaccination reaches it without anyone falling ill; an uncontrolled epidemic reaches it the hard way, and then overshoots, because the people infected around the peak go on to infect others.</p>
-<p>Try R₀ = 3 with 0% vaccinated and note the final size. Then set vaccination to 60%, just under the threshold, and to 70%, just over it. The epidemic does not simply shrink in proportion. It collapses, and the few remaining cases protect the unvaccinated too. That is what "herd" means.</p>
+<p>New infections arrive at a rate proportional to how many infected people there are times how many susceptible people they can meet: new cases per day = (contact rate β) × S × I ÷ N. Infected people recover at rate γ = 1 ÷ (days infectious). The ratio β ÷ γ is R₀, the number of people one case infects in a town where everyone is susceptible. The demo nudges S, I and R forward in steps of a twentieth of a day, which closely follows the smooth equations; the sheet's one-day steps are a coarser version of the same thing.</p>
+<p>At the start almost everyone is susceptible, so each case causes about R₀ more, and those cause R₀ more again: exponential growth. But every infection removes a susceptible person. Once the susceptible fraction drops below 1 ÷ R₀, each case causes fewer than one new case, and the number currently infected turns over. That is the peak of the red curve, and it happens exactly where the blue curve crosses the orange line.</p>
+<p>Turn the sentence around and you have the <b>herd immunity threshold</b>: when at least 1 − 1 ÷ R₀ of the town is immune, the illness cannot grow. For R₀ = 3 that is two thirds; the readout shows it. At the peak the people who are no longer susceptible, infected plus recovered, make up exactly this fraction. Vaccination reaches it without anyone falling ill; an uncontrolled epidemic reaches it the hard way, and then overshoots, because the people infected around the peak go on to infect others.</p>
+<p>Try R₀ = 3 with 0% vaccinated and note the final size, the total who ever caught it once the last case has recovered. Then set vaccination to 60%, just under the threshold, and to 70%, just over it. The epidemic does not simply shrink in proportion. It collapses, and the few remaining cases protect the unvaccinated too. That is what "herd" means.</p>
 <p>Sheet: <a href="../grade-10/sheets/c6-epidemics.html">R₀ and herd immunity</a>.</p>
 </div>
 </main>
@@ -46,27 +46,34 @@
 <script>
 // --- numerics ---
 var SIR = (function () {
-  // fractions of the population; Euler steps of dt days; vaccinated start in R
+  // Fractions of the population. Euler steps of dt days approximate the continuous SIR equations;
+  // vaccinated people start in R. Runs until fewer than EXTINCT of the population are infectious
+  // (stop = "extinct") or maxDays is reached (stop = "timeLimit", so the totals are only "so far").
+  var EXTINCT = 1e-6;
   function run(R0, days, i0frac, vacfrac, dt, maxDays) {
     dt = dt || 0.05; maxDays = maxDays || 400;
     var gamma = 1 / days, beta = R0 * gamma;
     var S = Math.max(0, 1 - vacfrac - i0frac), I = i0frac, R = vacfrac, t = 0;
-    var out = { t: [0], S: [S], I: [I], R: [R], peakI: I, peakDay: 0 };
+    var out = { t: [0], S: [S], I: [I], R: [R], peakI: I, peakDay: 0, peakS: S, stop: "timeLimit" };
     var steps = Math.round(maxDays / dt), record = Math.round(1 / dt);
     for (var k = 1; k <= steps; k++) {
-      var newInf = beta * S * I * dt, rec = gamma * I * dt;
-      newInf = Math.min(newInf, S);
+      var newInf = Math.min(beta * S * I * dt, S), rec = gamma * I * dt;
       S -= newInf; I += newInf - rec; R += rec; t = k * dt;
-      if (I > out.peakI) { out.peakI = I; out.peakDay = t; }
-      if (k % record === 0) { out.t.push(t); out.S.push(S); out.I.push(I); out.R.push(R); }
-      if (I < 1e-7 && k % record === 0) break;
+      if (I > out.peakI) { out.peakI = I; out.peakDay = t; out.peakS = S; }
+      if (k % record === 0) {
+        out.t.push(t); out.S.push(S); out.I.push(I); out.R.push(R);
+        if (I < EXTINCT) { out.stop = "extinct"; break; }
+      }
     }
-    out.finalS = S; out.finalSize = R - vacfrac; // fraction who actually fell ill (includes i0)
-    out.threshold = Math.max(0, 1 - 1 / R0);
-    out.Reff0 = R0 * (1 - vacfrac - i0frac);
+    out.days = t;
+    out.finalS = S; out.finalI = I; out.finalR = R;
+    out.finalSize = I + R - vacfrac; // everyone who has caught it so far: still infectious or recovered, including the initial cases
+    out.susceptibleThreshold = 1 / R0; // I peaks when S/N falls to this
+    out.threshold = Math.max(0, 1 - 1 / R0); // herd immunity threshold
+    out.Reff0 = R0 * out.S[0];
     return out;
   }
-  return { run: run };
+  return { run: run, EXTINCT: EXTINCT };
 })();
 // --- ui ---
 (function () {
@@ -75,7 +82,7 @@ var SIR = (function () {
   function draw() {
     var R0 = parseFloat(el.r0.value), days = parseInt(el.dur.value, 10), i0 = parseInt(el.i0.value, 10), vac = parseInt(el.vac.value, 10);
     document.getElementById("r0v").textContent = R0.toFixed(1); document.getElementById("durv").textContent = days + " days"; document.getElementById("i0v").textContent = i0; document.getElementById("vacv").textContent = vac + "%";
-    var res = SIR.run(R0, days, i0 / 1000, vac / 100);
+    var res = SIR.run(R0, days, i0 / 1000, vac / 100, 0.05, 3000);
     var dpr = window.devicePixelRatio || 1, W = canvas.clientWidth || 900, H = Math.max(260, W * 0.48);
     canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, H);
@@ -83,20 +90,30 @@ var SIR = (function () {
     function X(t) { return L + (Rr - L) * t / Tmax; } function Y(f) { return B - (B - T) * f; }
     ctx.strokeStyle = "#e4e1d8"; ctx.lineWidth = 1; ctx.font = "12px Nunito, sans-serif"; ctx.fillStyle = "#5d6079"; ctx.textAlign = "right";
     for (var g = 0; g <= 4; g++) { var y = Y(g / 4); ctx.beginPath(); ctx.moveTo(L, y); ctx.lineTo(Rr, y); ctx.stroke(); ctx.fillText((g * 250) + "", L - 6, y + 4); }
-    ctx.textAlign = "center"; var stepT = Tmax > 200 ? 50 : Tmax > 100 ? 20 : 10;
+    ctx.textAlign = "center"; var stepT = [10, 20, 50, 100, 200, 500].filter(function (s) { return Tmax / s <= 12; })[0] || 1000;
     for (var t = 0; t <= Tmax; t += stepT) { ctx.fillText("day " + t, X(t), B + 16); }
-    // threshold
-    ctx.setLineDash([6, 5]); ctx.strokeStyle = "#f5a524"; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(L, Y(res.threshold)); ctx.lineTo(Rr, Y(res.threshold)); ctx.stroke(); ctx.setLineDash([]);
-    ctx.fillStyle = "#b07200"; ctx.textAlign = "left"; ctx.fillText("herd immunity threshold " + Math.round(res.threshold * 100) + "%", L + 6, Y(res.threshold) - 6);
+    // susceptible threshold: the blue curve crosses this where the red curve peaks
+    if (R0 > 1) {
+      var yS = Y(res.susceptibleThreshold);
+      ctx.setLineDash([6, 5]); ctx.strokeStyle = "#f5a524"; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(L, yS); ctx.lineTo(Rr, yS); ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle = "#b07200"; ctx.textAlign = "right"; ctx.fillText("susceptible threshold 1/R₀ = " + Math.round(res.susceptibleThreshold * 100) + "%", Rr - 6, yS - 6);
+    }
     function line(arr, col) { ctx.strokeStyle = col; ctx.lineWidth = 2.5; ctx.beginPath(); for (var i = 0; i < arr.length; i++) { var x = X(res.t[i]), y = Y(arr[i]); if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y); } ctx.stroke(); }
     line(res.S, "#3f44c9"); line(res.R, "#2e8b57"); line(res.I, "#b3261e");
-    // peak marker
-    if (res.peakI > i0 / 1000) { ctx.fillStyle = "#b3261e"; ctx.beginPath(); ctx.arc(X(res.peakDay), Y(res.peakI), 4, 0, 2 * Math.PI); ctx.fill(); }
-    var people = function (f) { return Math.round(f * 1000); };
+    // peak marker, with a tick on the S curve at the same moment
+    if (res.peakDay > 0) {
+      ctx.setLineDash([2, 4]); ctx.strokeStyle = "#9a9cb3"; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(X(res.peakDay), Y(res.peakS)); ctx.lineTo(X(res.peakDay), Y(res.peakI)); ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle = "#b3261e"; ctx.beginPath(); ctx.arc(X(res.peakDay), Y(res.peakI), 4, 0, 2 * Math.PI); ctx.fill();
+      ctx.fillStyle = "#3f44c9"; ctx.beginPath(); ctx.arc(X(res.peakDay), Y(res.peakS), 4, 0, 2 * Math.PI); ctx.fill();
+    }
+    var people = function (f) { return Math.round(f * 1000); }, pct = function (f) { return (f * 100).toFixed(1) + "%"; };
     var txt = "R₀ = " + R0.toFixed(1) + ", infectious " + days + " days, so β = " + (R0 / days).toFixed(3) + " per day and γ = " + (1 / days).toFixed(3) + " per day.\n";
     txt += "Effective R at the start = R₀ × susceptible fraction = " + res.Reff0.toFixed(2) + (res.Reff0 <= 1 ? "  (≤ 1: no epidemic, cases fizzle out)" : "") + "\n";
-    txt += "peak: " + people(res.peakI) + " infected at once on day " + Math.round(res.peakDay) + "    total who fall ill: " + people(res.finalSize) + " of 1,000 (" + (res.finalSize * 100).toFixed(1) + "%)    never infected: " + people(res.finalS) + "\n";
-    txt += "herd immunity threshold 1 − 1/R₀ = " + (res.threshold * 100).toFixed(1) + "%; vaccinated " + vac + "%" + (vac / 100 >= res.threshold && R0 > 1 ? "  (at or above threshold)" : "");
+    if (res.peakDay > 0) txt += "peak: " + people(res.peakI) + " infected at once on day " + Math.round(res.peakDay) + ", with " + people(res.peakS) + " still susceptible (S/N ≈ 1/R₀ = " + pct(res.susceptibleThreshold) + ")\n";
+    else txt += "no peak: the number infected falls from day 0\n";
+    if (res.stop === "extinct") txt += "outbreak over by day " + Math.round(res.days) + ".  total who fell ill: " + people(res.finalSize) + " of 1,000 (" + pct(res.finalSize) + ")    never infected: " + people(res.finalS) + "\n";
+    else txt += "still going at day " + Math.round(res.days) + " (run cut off).  fallen ill so far: " + people(res.finalSize) + " of 1,000 (" + pct(res.finalSize) + "), " + people(res.finalI) + " still infectious, " + people(res.finalS) + " still susceptible\n";
+    txt += "herd immunity threshold 1 − 1/R₀ = " + pct(res.threshold) + "; vaccinated " + vac + "%" + (vac / 100 >= res.threshold && R0 > 1 ? "  (at or above threshold)" : "");
     info.textContent = txt;
   }
   var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(draw, 150); });

@@ -20,31 +20,60 @@
 </nav>
 <main class="demo-wrap">
 <h1>The Mandelbrot set</h1>
-<p class="explain">Every pixel is a complex number c. Start at 0 and repeat z → z² + c. If z stays small forever the pixel is dark. If it flies off to infinity, the colour says how fast. Click or tap anywhere to zoom in on that spot.</p>
+<p class="explain">Every pixel is a complex number c. Start at 0 and repeat z → z² + c. If z flies off to infinity, the colour says how fast. If z has <b>not escaped within N iterations</b>, where N is the Detail setting, the pixel is dark. Dark means "not caught escaping yet", not "stays small forever". Click or tap anywhere to zoom in on that spot, or switch to inspecting and tap a point to see its orbit.</p>
 <div class="demo-panel">
   <div class="controls">
     <button id="zoomout" class="ghost">Zoom out</button>
     <button id="reset" class="ghost">Reset</button>
-    <label>Detail (more is slower)
+    <label>Detail: N = 
       <select id="iters"><option>50</option><option selected>100</option><option>250</option><option>500</option></select>
+      iterations (more is slower)
     </label>
+    <label><input type="checkbox" id="inspect"> tap inspects a point instead of zooming</label>
   </div>
   <canvas id="fractal" width="800" height="600"></canvas>
   <div class="readout" id="info"></div>
+  <div class="controls">
+    <label>c = <input type="number" id="cre" step="any" value="0.2501"> + <input type="number" id="cim" step="any" value="0"> i</label>
+    <button id="orbit">Show orbit</button>
+    <button class="ghost" data-c="0.2501,0">c = 0.2501</button>
+    <button class="ghost" data-c="-1,0">c = −1</button>
+  </div>
+  <div class="readout" id="orbitout">Pick a point and press Show orbit, or tick the box above and tap the picture.</div>
 </div>
 <div class="explain">
 <h2>What's going on</h2>
 <p>A complex number c = a + bi is a point on the plane: a steps right, b steps up. For each such point we run a tiny machine. Start with z = 0, then replace z by z² + c, then do it again, and again. "Iterate" just means repeat.</p>
 <p>Try c = −1 by hand: 0, then 0² − 1 = −1, then (−1)² − 1 = 0, then −1, then 0. It bounces between two values forever and never escapes, so −1 is in the set and painted dark. Now try c = 1: 0, 1, 2, 5, 26, 677. It explodes, so 1 is outside, and it escaped quickly, so it gets a bright colour.</p>
+<p>The computer cannot run forever, so it stops after N steps and paints dark anything that has not yet escaped. Once |z| is bigger than 2 the orbit is certain to fly off, so a coloured pixel is settled for good. A dark pixel is only "not escaped within N": a verdict of "not yet". Press <b>c = 0.2501</b> and <b>Show orbit</b> with N = 100: dark. Try N = 250: still dark. Try N = 500: the orbit crawls up past 0.5 and first passes 2 at iteration 312. The pixel was never in the set; the experiment simply had not run long enough.</p>
+<p><b>Predict, then test.</b> Can raising N turn a coloured pixel dark? Can it turn a dark pixel coloured? Decide, then switch Detail from 100 to 500 and watch which pixels change along the edge. Only one direction is possible.</p>
+<p>Compare the two kinds of knowing. For c = −1 the orbit repeats 0, −1, 0, −1 exactly, and one line of algebra, (−1)² − 1 = 0, proves it never escapes; no amount of iterating was needed. For c = 0.2501 only computation told us anything, and it was wrong until N was big enough. It is the same gap as in the Collatz problem, where every number up to 2⁶⁸ has been checked and it still is not a theorem. This demo shows the limit of its own experiment: the dark region you see is an upper estimate of the set, shrinking a little every time N grows.</p>
 <p>The boundary between staying and escaping is the astonishing part. However far you zoom, the edge keeps producing new spirals, seahorses and tiny copies of the whole set. Points a hair apart can behave completely differently, so no amount of magnification ever makes the edge look smooth.</p>
 <p>Sheet: <a href="../grade-6/sheets/b8-imaginary.html">Imaginary numbers are real</a>.</p>
 </div>
 </main>
 <footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
 <script>
+// --- numerics ---
+var MB = (function () {
+  // Iterate z -> z^2 + c from z = 0 for up to maxIt steps. Returns the orbit (as [re, im] pairs, z0 first),
+  // whether |z| exceeded 2, the iteration at which it first did, and any exact short cycle that was found.
+  function orbit(cr, ci, maxIt) {
+    var zs = [[0, 0]], zr = 0, zi = 0, n = 0, escaped = false, cycle = null;
+    while (n < maxIt) {
+      var nr = zr * zr - zi * zi + cr, ni = 2 * zr * zi + ci; zr = nr; zi = ni; n++; zs.push([zr, zi]);
+      if (zr * zr + zi * zi > 4) { escaped = true; break; }
+      if (!cycle) for (var p = 1; p <= 4 && p <= n; p++) { var w = zs[n - p]; if (w[0] === zr && w[1] === zi) { cycle = { period: p, from: n - p }; break; } }
+    }
+    return { zs: zs, n: n, escaped: escaped, escapeAt: escaped ? n : null, cycle: cycle, mod: Math.sqrt(zr * zr + zi * zi) };
+  }
+  return { orbit: orbit };
+})();
+// --- ui ---
 (function () {
   var canvas = document.getElementById("fractal"), ctx = canvas.getContext("2d");
-  var info = document.getElementById("info"), itersSel = document.getElementById("iters");
+  var info = document.getElementById("info"), itersSel = document.getElementById("iters"), inspectBox = document.getElementById("inspect");
+  var creIn = document.getElementById("cre"), cimIn = document.getElementById("cim"), orbitOut = document.getElementById("orbitout"), mark = null;
   var home = { cx: -0.6, cy: 0, scale: 3.2 }; // scale = width of view in complex units
   var view = { cx: home.cx, cy: home.cy, scale: home.scale };
   var job = null, W, H, dpr, img;
@@ -76,7 +105,7 @@
           var cr = x0 + px * unit, zr = 0, zi = 0, n = 0, zr2 = 0, zi2 = 0;
           while (n < maxIt && zr2 + zi2 <= 4) { zi = 2 * zr * zi + ci; zr = zr2 - zi2 + cr; zr2 = zr * zr; zi2 = zi * zi; n++; }
           var o = base + px * 4;
-          if (n >= maxIt) { d[o] = 20; d[o + 1] = 18; d[o + 2] = 40; }
+          if (zr2 + zi2 <= 4) { d[o] = 20; d[o + 1] = 18; d[o + 2] = 40; } // not escaped within maxIt: dark, whatever n is
           else {
             var sm = n + 1 - Math.log(Math.log(Math.sqrt(zr2 + zi2))) / Math.LN2; // smooth count
             var c = palette((sm / 40) % 1);
@@ -88,24 +117,47 @@
       }
       ctx.putImageData(img, 0, 0, 0, startRow, pw, row - startRow);
       if (row < ph) job = requestAnimationFrame(chunk);
-      else { job = null; info.textContent = info.textContent.replace("rendering…", "done. Click to zoom in."); }
+      else { job = null; info.textContent = info.textContent.replace("rendering…", "done. Dark = not escaped within " + maxIt + " iterations."); drawMark(); }
     }
     job = requestAnimationFrame(chunk);
   }
   function fmt(v) { return Math.abs(v) < 1e-4 ? "0" : v.toPrecision(Math.min(12, Math.max(4, Math.ceil(Math.log10(home.scale / view.scale)) + 4))); }
 
+  function drawMark() {
+    if (!mark) return;
+    var hgt = view.scale * (canvas.height / canvas.width), x = (mark[0] - (view.cx - view.scale / 2)) / view.scale * canvas.width, y = ((view.cy + hgt / 2) - mark[1]) / hgt * canvas.height;
+    if (x < 0 || y < 0 || x > canvas.width || y > canvas.height) return;
+    ctx.strokeStyle = "#b3261e"; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(x, y, 7, 0, 2 * Math.PI); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(x - 12, y); ctx.lineTo(x - 7, y); ctx.moveTo(x + 7, y); ctx.lineTo(x + 12, y); ctx.moveTo(x, y - 12); ctx.lineTo(x, y - 7); ctx.moveTo(x, y + 7); ctx.lineTo(x, y + 12); ctx.stroke();
+  }
+  function fmtz(z) { var re = +z[0].toPrecision(4), im = +z[1].toPrecision(4); if (Math.abs(im) < 1e-12) return String(re); return re + (im < 0 ? " − " : " + ") + Math.abs(im) + "i"; }
+  function showOrbit(cr, ci) {
+    var maxIt = parseInt(itersSel.value, 10), o = MB.orbit(cr, ci, maxIt), zs = o.zs, K = 6, parts = [];
+    for (var i = 0; i < Math.min(K, zs.length); i++) parts.push("z" + i + " = " + fmtz(zs[i]));
+    if (zs.length > 2 * K) parts.push("…"); 
+    for (var j = Math.max(K, zs.length - 3); j < zs.length; j++) parts.push("z" + j + " = " + fmtz(zs[j]));
+    var txt = "c = " + fmtz([cr, ci]) + ", limit N = " + maxIt + "\n" + parts.join(",  ") + "\n";
+    if (o.escaped) txt += "|z| first exceeded 2 at iteration " + o.escapeAt + " (|z" + o.escapeAt + "| = " + o.mod.toPrecision(3) + "), so this pixel is coloured. Once |z| > 2 the orbit is certain to fly off, so no larger N can ever make this point dark: it is outside the set for good.";
+    else if (o.cycle) txt += "The orbit repeats exactly with period " + o.cycle.period + " from z" + o.cycle.from + " on, so it never escapes: this point is in the set for certain, by algebra rather than by running out of iterations.";
+    else txt += "|z| never exceeded 2 within " + maxIt + " iterations (|z" + maxIt + "| = " + o.mod.toPrecision(3) + "), so this pixel is dark. That is \"not escaped yet\", not a proof of membership. Raise Detail and show the orbit again.";
+    orbitOut.textContent = txt;
+    mark = [cr, ci]; if (!job) drawMark();
+  }
   canvas.addEventListener("click", function (e) {
     var r = canvas.getBoundingClientRect();
     var fx = (e.clientX - r.left) / r.width, fy = (e.clientY - r.top) / r.height;
     var hgt = view.scale * (r.height / r.width);
-    view.cx = view.cx - view.scale / 2 + fx * view.scale;
-    view.cy = view.cy + hgt / 2 - fy * hgt;
+    var cr = view.cx - view.scale / 2 + fx * view.scale, ci = view.cy + hgt / 2 - fy * hgt;
+    if (inspectBox.checked) { creIn.value = +cr.toPrecision(8); cimIn.value = +ci.toPrecision(8); showOrbit(cr, ci); return; }
+    view.cx = cr; view.cy = ci;
     view.scale /= 2;
     render();
   });
+  document.getElementById("orbit").addEventListener("click", function () { var cr = parseFloat(creIn.value), ci = parseFloat(cimIn.value); if (isFinite(cr) && isFinite(ci)) showOrbit(cr, ci); });
+  document.querySelectorAll("button[data-c]").forEach(function (b) { b.addEventListener("click", function () { var v = b.getAttribute("data-c").split(","); creIn.value = v[0]; cimIn.value = v[1]; showOrbit(parseFloat(v[0]), parseFloat(v[1])); }); });
   document.getElementById("zoomout").addEventListener("click", function () { view.scale = Math.min(view.scale * 2, home.scale); render(); });
   document.getElementById("reset").addEventListener("click", function () { view = { cx: home.cx, cy: home.cy, scale: home.scale }; render(); });
-  itersSel.addEventListener("change", render);
+  itersSel.addEventListener("change", function () { render(); if (mark) showOrbit(mark[0], mark[1]); });
   var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(render, 150); });
   render();
 })();

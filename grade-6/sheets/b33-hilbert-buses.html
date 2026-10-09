@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hilbert's hotel: infinitely many buses · Infinity Club</title>
+<meta name="description" content="A full infinite hotel receives infinitely many buses, each with infinitely many passengers. A halving trick gives everyone a different room and leaves no room empty.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 6</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 6 · Around the corner · 33</div>
+  <h1>Hilbert's hotel: infinitely many buses</h1>
+  <p class="teaser">One infinite bus was easy. Tonight infinitely many infinite buses pull up at a hotel that is already full. A trick with halving gives every single person a room, and leaves none empty.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>In <a href="b12-infinity.html">Hilbert's hotel</a> the full hotel took in one infinite bus: guests moved to the even rooms and the passengers took the odd ones. Tonight is worse. Buses numbered 1, 2, 3, … pull up, each carrying passengers numbered 1, 2, 3, … Every person needs a different room, and the guests already inside must keep one too.</p>
+<p><b>First idea.</b> Draw a grid, one row per bus and one column per passenger, and walk it diagonally, as the fractions sheet did. Every seat is reached eventually. It works, but finding one person's room means counting along the path.</p>
+<p><b>Second idea.</b> Call the existing guests bus 0. Passenger \(k\) of bus \(b\) goes to room \(2^b(2k-1)\): an odd number, doubled \(b\) times. Bus 0 gets the odd rooms; bus 1 gets 2, 6, 10, …; bus 2 gets 4, 12, 20, … To read a room number backwards, halve it until it is odd. The number of halvings is the bus; the odd number left over tells you the passenger.</p>
+<figure>
+<svg viewBox="0 0 520 200" width="520" height="200" role="img" aria-label="Four bus rows with room cards for passengers 1 to 4, and the reverse example room 40 halved to 20, 10, 5, giving bus 3 passenger 3" font-family="Nunito, sans-serif">
+<text x="92" y="15" font-size="12" fill="#999" text-anchor="end">passenger</text>
+<text x="126" y="15" font-size="12" fill="#999" text-anchor="middle">1</text>
+<text x="186" y="15" font-size="12" fill="#999" text-anchor="middle">2</text>
+<text x="246" y="15" font-size="12" fill="#999" text-anchor="middle">3</text>
+<text x="306" y="15" font-size="12" fill="#999" text-anchor="middle">4</text>
+<text x="346" y="15" font-size="12" fill="#999" text-anchor="middle">…</text>
+<g font-size="12" text-anchor="end" fill="#333">
+<text x="92" y="43">Bus 0 (guests)</text><text x="92" y="83">Bus 1</text><text x="92" y="123">Bus 2</text><text x="92" y="163">Bus 3</text>
+</g>
+<g font-size="13" font-weight="700" text-anchor="middle">
+<rect x="100" y="22" width="52" height="32" fill="#f3f3f3" stroke="#999"/><text x="126" y="43">1</text>
+<rect x="160" y="22" width="52" height="32" fill="#f3f3f3" stroke="#999"/><text x="186" y="43">3</text>
+<rect x="220" y="22" width="52" height="32" fill="#f3f3f3" stroke="#999"/><text x="246" y="43">5</text>
+<rect x="280" y="22" width="52" height="32" fill="#f3f3f3" stroke="#999"/><text x="306" y="43">7</text>
+<rect x="100" y="62" width="52" height="32" fill="#fff" stroke="#999"/><text x="126" y="83">2</text>
+<rect x="160" y="62" width="52" height="32" fill="#fff" stroke="#999"/><text x="186" y="83">6</text>
+<rect x="220" y="62" width="52" height="32" fill="#fff" stroke="#999"/><text x="246" y="83">10</text>
+<rect x="280" y="62" width="52" height="32" fill="#fff" stroke="#999"/><text x="306" y="83">14</text>
+<rect x="100" y="102" width="52" height="32" fill="#fff" stroke="#999"/><text x="126" y="123">4</text>
+<rect x="160" y="102" width="52" height="32" fill="#fff" stroke="#999"/><text x="186" y="123">12</text>
+<rect x="220" y="102" width="52" height="32" fill="#fff" stroke="#999"/><text x="246" y="123">20</text>
+<rect x="280" y="102" width="52" height="32" fill="#fff" stroke="#999"/><text x="306" y="123">28</text>
+<rect x="100" y="142" width="52" height="32" fill="#fff" stroke="#999"/><text x="126" y="163">8</text>
+<rect x="160" y="142" width="52" height="32" fill="#fff" stroke="#999"/><text x="186" y="163">24</text>
+<rect x="220" y="142" width="52" height="32" fill="#3f44c9" stroke="#3f44c9"/><text x="246" y="163" fill="#fff">40</text>
+<rect x="280" y="142" width="52" height="32" fill="#fff" stroke="#999"/><text x="306" y="163">56</text>
+</g>
+<g font-size="13" fill="#999" text-anchor="middle"><text x="346" y="43">…</text><text x="346" y="83">…</text><text x="346" y="123">…</text><text x="346" y="163">…</text><text x="216" y="192">⋮ more buses below, more seats to the right ⋮</text></g>
+<text x="445" y="15" font-size="12" font-weight="700" fill="#3f44c9" text-anchor="middle">Who is in room 40?</text>
+<g font-size="14" font-weight="700" text-anchor="middle">
+<text x="420" y="48">40</text><text x="420" y="84">20</text><text x="420" y="120">10</text><text x="420" y="156" fill="#f5a524">5</text>
+</g>
+<g stroke="#999" stroke-width="1.2" fill="none"><path d="M420 54 v18 m-4 -5 l4 5 l4 -5"/><path d="M420 90 v18 m-4 -5 l4 5 l4 -5"/><path d="M420 126 v18 m-4 -5 l4 5 l4 -5"/></g>
+<g font-size="12" fill="#999" text-anchor="start"><text x="434" y="68">halve</text><text x="434" y="104">halve</text><text x="434" y="140">halve</text><text x="434" y="160">odd, stop</text></g>
+<text x="445" y="180" font-size="12" fill="#333" text-anchor="middle">3 halvings: <tspan font-weight="700" fill="#3f44c9">bus 3</tspan></text>
+<text x="445" y="196" font-size="12" fill="#333" text-anchor="middle">5 = 2·3 − 1: <tspan font-weight="700" fill="#f5a524">passenger 3</tspan></text>
+</svg>
+<figcaption>Room cards for the first four passengers of the first four buses, and how to decode a room number. The drawing stops at bus 3 and passenger 4; the hotel and the buses do not.</figcaption>
+</figure>
+</section>
+
+<section class="example">
+<h2>Watch one: room 100 and bus 5</h2>
+<p><b>Who is in room 100?</b> Halve: 100, 50, 25. Two halvings, then odd, so it is bus 2. The odd number 25 is \(2k - 1\) with \(k = 13\), so passenger 13. Check forwards: \(2^2(2 \times 13 - 1) = 4 \times 25 = 100\).</p>
+<p><b>Where does passenger 2 of bus 5 go?</b> \(2^5 = 32\) and \(2 \times 2 - 1 = 3\), so room \(32 \times 3 = 96\). In <a href="b2-binary.html">binary</a>, 96 is 1100000: the five zeros on the end are the five halvings. You met this odd-number-times-power-of-two idea before, as the <a href="b10-pigeonhole.html">odd core</a> in the pigeonhole sheet.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Buses 4 and 5 are also in the queue. Write down the rooms for passengers 1 to 4 of each. Do any of your eight rooms clash with the sixteen in the figure?<div class="space"></div></li>
+<li>Look at rooms 1 to 16. Which of them are missing from the figure? For each missing room, say who gets it.<div class="space"></div></li>
+<li>Decode rooms 24, 56, 81, 64 and 1000 into a bus and a passenger. Then find the room of passenger 100 on bus 7, and say whether you would rather have done that by counting along diagonals.<div class="space"></div></li>
+<li>Explain in your own words why <b>no two people</b> get the same room, and why <b>no room</b> is left empty. (Think about what halving a room number tells you.)<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: garages full of buses</h2>
+<p>Now infinitely many garages arrive, each holding infinitely many buses, each full of passengers. Can everyone still be housed? Hint: use tonight's rule once to give every bus in every garage its own single number, then use it again.</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Bus 4 (\(2^4 = 16\)): rooms 16, 48, 80, 112. Bus 5 (\(2^5 = 32\)): rooms 32, 96, 160, 224. No clashes: every room in the figure is an odd number times 1, 2, 4 or 8, and these are odd numbers times 16 or 32.</li>
+<li>In the figure: 1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 14. Missing: 9, 11, 13, 15 and 16. The odd ones belong to bus 0 (the old guests): passengers 5, 6, 7 and 8. Room 16 halves four times to 1, so it goes to bus 4, passenger 1.</li>
+<li>24 → 12 → 6 → 3: bus 3, passenger 2. 56 → 28 → 14 → 7: bus 3, passenger 4. 81 is already odd: bus 0, passenger 41. 64 halves six times to 1: bus 6, passenger 1. 1000 → 500 → 250 → 125: bus 3, passenger 63. Bus 7, passenger 100: \(2^7 \times 199 = 25{,}472\), one multiplication; the diagonal path reaches that seat after more than 5,500 others.</li>
+<li><b>No two people share.</b> If two people had the same room number, halving it would give the same number of halvings and the same odd number, so the same bus and the same passenger: they are the same person. <b>No room is empty.</b> Start with any room number. Halve it until it is odd; that always stops, because the number shrinks each time. You get some number of halvings \(b\) and an odd number \(2k - 1\), so the room belongs to passenger \(k\) of bus \(b\). Every whole number is an odd number times a power of two in exactly one way.</li>
+</ol>
+<p><b>Stretch.</b> Yes. Give bus \(b\) of garage \(g\) the label \(2^{g-1}(2b - 1)\). Tonight's argument shows every label 1, 2, 3, … is used exactly once, so the fleet is now just buses 1, 2, 3, … with the old guests as bus 0. Then passenger \(k\) of the bus labelled \(n\) takes room \(2^n(2k - 1)\). No clashes, no empty rooms, and you could do it a third time.</p>
+</section>
+
+<div class="sheet-nav"><a href="b32-efron-dice.html">← Previous</a><a href="b34-misere-nim.html">Next: Nim where the last counter loses →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

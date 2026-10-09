@@ -31,9 +31,9 @@
 
 <section class="idea">
 <h2>Tonight's idea</h2>
-<p>Every graph you will meet this year is a few basic shapes (\(x^2\), \(|x|\), \(\sqrt{x}\), \(1/x\), \(\sin x\), \(2^x\)) that have been slid, stretched or flipped.</p>
+<p>Every graph you meet this year is a few basic shapes (\(x^2\), \(|x|\), \(\sqrt{x}\), \(1/x\), \(\sin x\), \(2^x\)) slid, stretched or flipped.</p>
 <p><b>Outside the function changes the output (vertical).</b> \(y = f(x) + k\) lifts every point by \(k\). \(y = a\,f(x)\) multiplies every height by \(a\); if \(a \lt 0\) the graph flips as well.</p>
-<p><b>Inside the function changes the input (horizontal), and it works backwards.</b> Take \(y = f(x - 3)\). To get the output \(f(0)\) you now need \(x = 3\). Every feature appears 3 units later, so the graph moves <em>right</em>. Likewise \(y = f(2x)\) reaches \(f(4)\) already at \(x = 2\): everything happens twice as fast, and the graph is squashed horizontally by 2, not stretched.</p>
+<p><b>Inside the function changes the input (horizontal), and it works backwards.</b> Take \(y = f(x - 3)\). To get the output \(f(0)\) you now need \(x = 3\). Every feature appears 3 units later, so the graph moves <em>right</em>. Likewise \(y = f(2x)\) reaches \(f(4)\) already at \(x = 2\): everything happens twice as fast, so the graph is squashed horizontally by 2, not stretched.</p>
 <figure><svg viewBox="0 0 250 132" width="250" height="132" role="img" aria-label="y = x squared in grey and y = (x minus 3) squared in colour; an arrow shows the vertex moving from 0 to 3" font-family="Nunito, sans-serif" font-size="12">
 <line x1="0" y1="100" x2="245" y2="100" stroke="#999"/><line x1="78" y1="4" x2="78" y2="104" stroke="#999"/>
 <path d="M 26.0 12.0 L 28.6 20.6 L 31.2 28.7 L 33.8 36.4 L 36.4 43.7 L 39.0 50.5 L 41.6 56.9 L 44.2 62.8 L 46.8 68.3 L 49.4 73.4 L 52.0 78.0 L 54.6 82.2 L 57.2 85.9 L 59.8 89.2 L 62.4 92.1 L 65.0 94.5 L 67.6 96.5 L 70.2 98.0 L 72.8 99.1 L 75.4 99.8 L 78.0 100.0 L 80.6 99.8 L 83.2 99.1 L 85.8 98.0 L 88.4 96.5 L 91.0 94.5 L 93.6 92.1 L 96.2 89.2 L 98.8 85.9 L 101.4 82.2 L 104.0 78.0 L 106.6 73.4 L 109.2 68.3 L 111.8 62.8 L 114.4 56.9 L 117.0 50.5 L 119.6 43.7 L 122.2 36.4 L 124.8 28.7 L 127.4 20.6 L 130.0 12.0" fill="none" stroke="#bbb" stroke-width="2"/>
@@ -42,8 +42,8 @@
 <text x="78" y="128" text-anchor="middle">0</text><text x="156" y="128" text-anchor="middle">3</text>
 <text x="40" y="20" fill="#777">y = x²</text><text x="170" y="20" fill="#3f44c9">y = (x − 3)²</text>
 </svg><figcaption>\(f(x-3)\): every feature happens 3 units later, so the graph moves right.</figcaption></figure>
-<p class="callout">Vertical changes do what they say. Horizontal changes do the opposite, because they act on the input, and the input has to compensate.</p>
-<p>Putting it together, \(y = a\,f\big(b(x - h)\big) + k\): squash horizontally by \(b\), shift right \(h\), stretch vertically by \(a\) (flip if negative), lift by \(k\). Between a vertical stretch and a vertical shift, order matters: stretching after shifting also stretches the shift.</p>
+<p class="callout">Vertical changes do what they say. Horizontal changes do the opposite, because the input has to compensate.</p>
+<p>Putting it together, \(y = a\,f\big(b(x - h)\big) + k\) with \(b \neq 0\): scale horizontally by \(1/|b|\) (flip left-right if \(b \lt 0\)), shift right \(h\), stretch vertically by \(a\) (flip if \(a \lt 0\)), lift by \(k\). Order matters: stretching after shifting also stretches the shift.</p>
 </section>
 
 <section class="example">
@@ -65,7 +65,7 @@
 
 <section class="stretch">
 <h2>Stretch: when a horizontal move is secretly a vertical one</h2>
-<p>For \(f(x) = 2^x\), show that \(f(x + 1) = 2f(x)\): a horizontal <em>shift</em> is the same as a vertical <em>stretch</em>. For \(f(x) = \log_2 x\), show \(f(2x) = f(x) + 1\): a horizontal stretch is a vertical shift. Which exponent law is each one?</p>
+<p>For \(f(x) = 2^x\), show that \(f(x + 1) = 2f(x)\): a horizontal <em>shift</em> is the same as a vertical <em>stretch</em>. For \(f(x) = \log_2 x\), show \(f(2x) = f(x) + 1\): a horizontal squash is a vertical shift. Which exponent law is each one?</p>
 <div class="space short"></div>
 </section>
 
@@ -77,7 +77,7 @@
 <li>\(y = a(x - 3)^2 - 2\) with \(6 = 4a - 2\), so \(a = 2\): \(y = 2(x-3)^2 - 2\).</li>
 <li>(a) \(3(x - 2)^2 + 1\). (b) \(3\big((x-2)^2 + 1\big) = 3(x - 2)^2 + 3\). Stretching after lifting multiplies the lift too, so the vertex ends at \((2, 3)\) instead of \((2, 1)\).</li>
 </ol>
-<p><b>Stretch.</b> \(2^{x+1} = 2 \cdot 2^x\), which is \(2^{m+n} = 2^m 2^n\): sliding the graph left by 1 doubles every height. \(\log_2(2x) = \log_2 2 + \log_2 x = 1 + \log_2 x\), which is \(\log(xy) = \log x + \log y\): stretching horizontally by 2 lifts the graph by exactly 1. These two facts are the whole reason exponentials and logs behave as they do next sheet.</p>
+<p><b>Stretch.</b> \(2^{x+1} = 2 \cdot 2^x\), which is \(2^{m+n} = 2^m 2^n\): sliding the graph left by 1 doubles every height. \(\log_2(2x) = \log_2 2 + \log_2 x = 1 + \log_2 x\), which is \(\log(xy) = \log x + \log y\): squashing horizontally by 2 (every horizontal length halves) lifts the graph by exactly 1. A stretch by 2 would be \(\log_2(x/2) = \log_2 x - 1\), a drop of 1. These two facts are the whole reason exponentials and logs behave as they do next sheet.</p>
 </section>
 
 <div class="sheet-nav"><a href="a3-functions.html">← Previous</a><a href="a5-logs.html">Next: A logarithm is an exponent →</a></div>

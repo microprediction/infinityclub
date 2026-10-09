@@ -18,7 +18,7 @@
 table.hm { font-size: .95rem; }
 table.hm th, table.hm td { border: 1px solid var(--rule); padding: .2em .55em; text-align: center; font-family: var(--mono); }
 table.hm th { background: var(--accent-soft); font-family: var(--sans); }
-@media print { .cards7 b { color: #000; } .cards7 .chk b { color: #000; text-decoration: underline; } }
+@media print { .cards7 b { color: #000; } .cards7 .chk b { color: #000; text-decoration: underline; } details.small { display: block; font-size: .9rem; color: #333; } details.small summary { display: inline; list-style: none; font-weight: 700; } details.small summary::after { content: ": "; } details.small::details-content { content-visibility: visible; display: inline; } }
 </style>
 </head>
 <body>
@@ -38,6 +38,7 @@ table.hm th { background: var(--accent-soft); font-family: var(--sans); }
   <div class="kicker">Infinity Club · Grade 6 · Around the corner · 31</div>
   <h1>The mind reader who survives a lie</h1>
   <p class="teaser">"Think of a number from 0 to 15. I will show you seven cards and you tell me whether your number is on each one. You may lie once. I will still name your number, and I will tell you which answer was the lie." Tonight you learn the trick, and why every computer in the world uses it.</p>
+  <p class="small">Helpful first: the four-card trick in <a href="b2-binary.html">Counting to 31 on one hand</a>. Ready if you can say which of 8, 4, 2, 1 add up to 13.</p>
   <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
 </header>
 
@@ -82,12 +83,13 @@ table.hm th { background: var(--accent-soft); font-family: var(--sans); }
 
 <section class="exercises">
 <h2>Your turn</h2>
+<p class="small">Tonight's core: the example and exercises 1 and 2. The rest can wait for another visit.</p>
 <ol>
 <li><b>Encode.</b> For each secret, write the seven honest answers as bits in card order. Use the cards, then check that all three checks come out even. Secrets: 11, 6, 0, 15.<div class="space"></div></li>
 <li><b>Decode, one lie allowed.</b> Here are the answers you heard. Find the lie (if any) and the secret.<br>(a) \(1\,0\,1\,0\,0\,1\,0\) &nbsp;&nbsp; (b) \(1\,1\,1\,0\,0\,1\,1\) &nbsp;&nbsp; (c) \(1\,1\,0\,0\,1\,1\,1\) &nbsp;&nbsp; (d) \(0\,0\,1\,1\,0\,0\,1\)<div class="space tall"></div></li>
 <li>Someone answers "no" to every card except card 5. Which card did they lie on, and what is their number? (Think before you compute: what happens if the lie is on a checking card?)<div class="space short"></div></li>
 <li>Why is card 7 in all three checks, while card 1 is only in check A? Write the numbers 1 to 7 in binary and explain in one sentence.<div class="space short"></div></li>
-<li>Build card 2 yourself, without looking. Card 2 must make check B come out even, and check B contains cards 2, 3, 6, 7. So a number is on card 2 exactly when it is on an <em>odd</em> number of the cards 3, 6, 7. Work through 0 to 15 and compare with the printed card.<div class="space"></div></li>
+<li>Build card 2 yourself, without looking. Card 2 must make check B come out even, and check B contains cards 2, 3, 6, 7. So a number is on card 2 exactly when it is on an <em>odd</em> number of the cards 3, 6, 7. Work through 0 to 15 and compare with the printed card.<details class="small"><summary>Hint</summary>Take 11: is it on card 3? Card 6? Card 7? Three yeses, an odd count, so 11 goes on card 2.</details><div class="space short"></div></li>
 <li>Perform the trick on someone. Do it three times, once with no lie. Record your hits and misses honestly. If you missed, redo the three checks and find your slip.<div class="space short"></div></li>
 </ol>
 <p class="small">Practise with the computer as the victim, or as the mind reader, at <a href="../../demos/hamming.html">infinityclub.net/demos/hamming.html</a>. It also shows what happens with two lies.</p>

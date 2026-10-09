@@ -16,9 +16,14 @@
 .card-list li { margin: 0 0 .35em; break-inside: avoid; }
 .three { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem; }
 .three h3 { margin-top: 0; }
-.plan a, .card-list a { text-decoration: none; color: inherit; }
+.plan a, .card-list a, .routes a { text-decoration: none; color: inherit; }
+.routes { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem; }
+.routes h3 { margin-top: 0; }
+.routes ol { padding-left: 1.4em; margin: 0; }
+.routes li { margin-bottom: .35em; break-inside: avoid; }
+.routes .small { display: block; font-size: .8rem; }
 @media (max-width: 600px) { .plan { columns: 1; } }
-@media print { .three { grid-template-columns: repeat(3, 1fr); font-size: .74em; line-height: 1.3; } .card-list li { margin-bottom: .2em; } h2.club { break-before: page; } .plan { columns: 2; } }
+@media print { h2#routes { break-before: page; } .routes { grid-template-columns: repeat(3, 1fr); } .three { grid-template-columns: repeat(3, 1fr); font-size: .74em; line-height: 1.3; } .card-list li { margin-bottom: .2em; } h2.club { break-before: page; } .plan { columns: 2; } }
 </style>
 </head>
 <body>
@@ -35,7 +40,7 @@
 
 <main class="paper">
 <h1>Start here</h1>
-<p>There are about sixty sheets and no required order. If you would rather not choose, here is a first thirty nights that alternates school topics with new ideas and keeps the surprises coming. Tick each night off. If a sheet is a slog, stop, tick it anyway, and move on; nothing later depends on it.</p>
+<p>There are about sixty sheets and no required order. If you would rather not choose, here is a first thirty nights that alternates school topics with new ideas and keeps the surprises coming. Tick each night off. If a sheet is a slog, stop, tick it anyway, and move on. Choose freely: most sheets stand on their own, and when one leans on an earlier idea it says so in a "Helpful first" line under the title, so follow that link if you get stuck. A successful night is the worked example plus the first exercises; each sheet marks that core, and the rest can wait for another visit.</p>
 
 <h2>The first thirty nights</h2>
 <ol class="plan">
@@ -71,6 +76,26 @@
 <li><span class="box"></span><a href="sheets/b22-circle.html">Why a pizza is πr²</a></li>
 </ol>
 <p class="small">After night thirty, pick whatever looks interesting. The Connections sheets are good for tired evenings. The demos are for screens, five minutes each.</p>
+
+<h2 id="routes">Three short routes</h2>
+<p>If you would rather follow one idea than keep switching, each route below builds a single idea over three nights. Do them in order; each later sheet names the earlier one it leans on. The readiness line is a question to answer out loud before you start that sheet. Stopping after the worked example and the first few exercises still counts.</p>
+<div class="routes">
+<div><h3>Binary to mind reading</h3><ol>
+<li><a href="sheets/b2-binary.html">Counting to 31 on one hand</a></li>
+<li><a href="sheets/b15-nim.html">Nim: the game you cannot lose</a> <span class="small">Ready if: you can write 13 in binary.</span></li>
+<li><a href="sheets/b31-mind-reader.html">The mind reader who survives a lie</a> <span class="small">Ready if: you can say which of the four binary cards 13 is on.</span></li>
+</ol></div>
+<div><h3>Exponents to the first digit</h3><ol>
+<li><a href="sheets/a10-exponents.html">Big and tiny numbers</a></li>
+<li><a href="sheets/b21-logarithms.html">Counting digits</a> <span class="small">Ready if: you can say why 10<sup>2</sup> × 10<sup>3</sup> = 10<sup>5</sup>.</span></li>
+<li><a href="sheets/b28-benford.html">The law of the first digit</a> <span class="small">Ready if: you can say roughly what log 2 is and what it tells you.</span></li>
+</ol></div>
+<div><h3>Triangles to machines</h3><ol>
+<li><a href="sheets/b7-pythagoras.html">Pythagoras and square roots</a></li>
+<li><a href="sheets/b30-vectors.html">Arrows you can add</a> <span class="small">Ready if: you can find the long side of a right triangle with short sides 6 and 8.</span></li>
+<li><a href="sheets/b9-matrices.html">Matrices: grids that do things</a> <span class="small">Ready if: you can add (3, 2) and (−1, 4) as arrows.</span></li>
+</ol></div>
+</div>
 
 <h2 class="club">Club card</h2>
 <p>Every sheet on the site. Print this page, stick it on the fridge, and tick them off.</p>
@@ -125,6 +150,8 @@
 <li><span class="box"></span><a href="sheets/b30-vectors.html">Arrows you can add</a></li>
 <li><span class="box"></span><a href="sheets/b31-mind-reader.html">The mind reader who survives a lie</a></li>
 <li><span class="box"></span><a href="sheets/b32-efron-dice.html">Dice that go round in circles</a></li>
+<li><span class="box"></span><a href="sheets/b33-hilbert-buses.html">Hilbert's hotel: infinitely many buses</a></li>
+<li><span class="box"></span><a href="sheets/b34-misere-nim.html">Nim where the last counter loses</a></li>
 </ul></div>
 <div><h3>Connections</h3><ul class="card-list"><li><span class="box"></span><a href="sheets/c1-music.html">Why there are twelve notes</a></li>
 <li><span class="box"></span><a href="sheets/c2-astronomy.html">The size of everything</a></li>
@@ -135,6 +162,7 @@
 <li><span class="box"></span><a href="sheets/c7-sport.html">Why the best team doesn't always win</a></li>
 <li><span class="box"></span><a href="sheets/c8-calendar.html">What day of the week were you born?</a></li>
 <li><span class="box"></span><a href="sheets/c9-voting.html">How an election can have no winner</a></li>
+<li><span class="box"></span><a href="sheets/c10-friday-13th.html">Why the 13th is most often a Friday</a></li>
 </ul></div>
 </div>
 </main>

@@ -39,7 +39,7 @@
 </table>
 <p>If she stays silent, confessing gets you 0 instead of \(-1\). If she confesses, confessing gets you \(-3\) instead of \(-5\). Confessing is better whatever she does: a <b>dominant strategy</b>. She reasons the same way. Both confess, three years each, when silence would have cost one. That is the <b>prisoner's dilemma</b>: arms races, overfishing, price wars.</p>
 <p>A <b>Nash equilibrium</b> is a choice of move for each player such that <em>nobody gains by changing their own move alone</em>. Here (confess, confess) is the only one. Stable, but not good.</p>
-<p>Not every game has a dominant strategy. In <b>chicken</b> two drivers speed at each other: if she goes straight you should swerve, and vice versa, so there are two equilibria. In <b>matching pennies</b> (you win if the coins match) no fixed pair is stable at all; the equilibrium is to randomise.</p>
+<p>Not every game has a dominant strategy. In <b>chicken</b> two drivers speed at each other: if she goes straight you should swerve, and vice versa, so there are two <b>pure</b> equilibria. In <b>matching pennies</b> (you win if the coins match) no fixed pair is stable at all; the equilibrium is <b>mixed</b>: randomise.</p>
 </section>
 
 <section class="example">
@@ -54,26 +54,26 @@
 <h2>Your turn</h2>
 <ol>
 <li>Two bakeries each set a High or Low price. Both High: 10 each. Both Low: 4 each. One Low, one High: 14 for Low, 1 for High. Write the payoff matrix (rows: your price, columns: hers, your payoff first). Is there a dominant strategy? Find the Nash equilibrium. Is it a prisoner's dilemma?<div class="space short"></div></li>
-<li><b>Chicken.</b> Both swerve \(0, 0\); you swerve, she goes straight \(-1, +1\); you go straight, she swerves \(+1, -1\); both straight \(-10, -10\). Show there is no dominant strategy and find both equilibria. Why is visibly throwing your steering wheel out of the window a rational move?<div class="space short"></div></li>
-<li><b>Matching pennies.</b> You win 1 if the coins match, lose 1 if they differ. She plays heads with probability \(q\). Write your expected payoff from heads and from tails in terms of \(q\). For which \(q\) are you indifferent, and why is that the only \(q\) she can safely use?<div class="space short"></div></li>
+<li><b>Chicken.</b> Both swerve \(0, 0\); you swerve, she goes straight \(-1, +1\); you go straight, she swerves \(+1, -1\); both straight \(-10, -10\). Show there is no dominant strategy and find both pure-strategy equilibria. Why is visibly throwing your steering wheel out of the window a rational move?<div class="space short"></div></li>
+<li><b>Matching pennies.</b> You win 1 if the coins match, lose 1 if they differ. She plays heads with probability \(q\). Write your expected payoff from heads and from tails in terms of \(q\). For which \(q\) are you indifferent, and why is that the only \(q\) she can safely use? Then back to chicken: she goes straight with probability \(q\). For which \(q\) are you indifferent?<div class="space short"></div></li>
 <li>(a) Why can "cooperate, then copy what the other player did last time" sustain cooperation when the dilemma is played many times? (b) Why does the argument unravel if both players know round 100 is the last? Start from round 100.<div class="space short"></div></li>
 </ol>
 </section>
 
 <section class="stretch">
 <h2>Stretch: two-thirds of the average</h2>
-<p>Everyone in a room writes a whole number from 0 to 100. Closest to two-thirds of the average wins. Why would nobody sensible write above 67? Then above 44? Where does the chain end, and what is the Nash equilibrium? When newspapers ran this with thousands of readers, the winner was usually between 13 and 25. What does that tell you?</p>
+<p>Six people each write a whole number from 0 to 100. Closest to two-thirds of the average wins; ties share the prize. Why would nobody sensible write above 67? Then above 44? Where does the chain end? Everyone writing 0 is a Nash equilibrium. Is it the only one? Try all six writing 1, and check what each possible switch does to the target. When newspapers ran this with thousands of readers, the winner was usually between 13 and 25. What does that tell you?</p>
 </section>
 
 <section class="answers">
 <h2>Answers</h2>
 <ol>
 <li>Rows you (High, Low), columns her: \((10,10)\), \((1,14)\); \((14,1)\), \((4,4)\). Low is dominant for both (14 beats 10, 4 beats 1). Equilibrium (Low, Low) with 4 each, though (High, High) gives 10 each: a prisoner's dilemma, which is why price-fixing is both illegal and tempting.</li>
-<li>If she swerves you prefer straight (\(+1\) over 0); if she goes straight you prefer swerving (\(-1\) over \(-10\)): no dominant move. Equilibria: (swerve, straight) and (straight, swerve); in each, neither driver gains by switching. Throwing away the wheel makes straight your only option and forces the equilibrium where you win. Credible commitment is power.</li>
-<li>Heads: \(q - (1-q) = 2q - 1\). Tails: \(1 - 2q\). Indifferent when \(q = \tfrac12\). For any other \(q\) one of your moves has positive expected payoff and you play it every time; \(q = \tfrac12\) is the only choice that gives you no edge.</li>
+<li>If she swerves you prefer straight (\(+1\) over 0); if she goes straight you prefer swerving (\(-1\) over \(-10\)): no dominant move. Pure equilibria: (swerve, straight) and (straight, swerve); in each, neither driver gains by switching. Throwing away the wheel makes straight your only option and forces the equilibrium where you win. Credible commitment is power.</li>
+<li>Heads: \(q - (1-q) = 2q - 1\). Tails: \(1 - 2q\). Indifferent when \(q = \tfrac12\). For any other \(q\) one of your moves has positive expected payoff and you play it every time; \(q = \tfrac12\) is the only choice that gives you no edge. Chicken: straight pays \((1 - q) - 10q = 1 - 11q\), swerving pays \(-q\); equal at \(q = \tfrac1{10}\). Each going straight one time in ten is a third, mixed equilibrium, with a crash one time in a hundred.</li>
 <li>(a) Defecting gains once but triggers defection next round, so over many rounds cooperation pays more. (b) If round 100 is known to be last, both defect in it; then round 99 has no future to protect, so both defect there too, and so on back to round 1. In practice people cooperate anyway, which is why the theory adds uncertainty about when the game ends.</li>
 </ol>
-<p><b>Stretch.</b> The average is at most 100, so two-thirds of it is at most 67; nobody writes above that. Then the average is at most 67 and nobody writes above 44; then 30, 20, 13, \(\ldots\); the chain stops only at 0, the unique Nash equilibrium. Real winners in the teens or twenties are what you get when most people do one or two steps of reasoning and stop. To beat real people, think one step further than they do, not infinitely many.</p>
+<p><b>Stretch.</b> The average is at most 100, so two-thirds of it is at most 67; nobody writes above that. Then nobody writes above 44; then 30, 20, 13, \(\ldots\), down to 1. All zeros is an equilibrium: a lone switch to \(k\) moves the target only to \(k/9\), far closer to 0 than to \(k\). But all ones is an equilibrium too. Six 1s make the target \(2/3\) and a six-way tie. Switch to 0 and the target falls to \(5/9\): you are \(5/9\) away, the others \(4/9\), so you lose. Switch up and the target rises by less than you did. Whole numbers are to blame: with decimals allowed, 0.6 would beat five 1s, and 0 is the only equilibrium. Real winners in the teens or twenties are what you get when most people do one or two steps of reasoning and stop. To beat real people, think one step further than they do, not infinitely many.</p>
 </section>
 
 <div class="sheet-nav"><a href="b19-graphs-planar.html">← Previous</a><a href="b21-bayes.html">Next: Bayes' theorem →</a></div>

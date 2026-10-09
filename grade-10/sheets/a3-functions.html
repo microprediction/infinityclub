@@ -31,10 +31,10 @@
 
 <section class="idea">
 <h2>Tonight's idea</h2>
-<p>A <b>function</b> is a machine: feed in one number, get out exactly one number. The inputs it accepts are its <b>domain</b>; the outputs it can produce are its <b>range</b>. Unless told otherwise, the domain is every real number that does not break the machine, and two things break it: dividing by zero and square-rooting a negative.</p>
+<p>A <b>function</b> is a machine: feed in one number, get out exactly one number. The inputs it accepts are its <b>domain</b>; the outputs it can produce are its <b>range</b>. Unless told otherwise, the domain is every real that does not break the machine: no dividing by zero, no square-rooting a negative.</p>
 <p><b>Composition</b> is plugging one machine into another. \(f(g(x))\) means do \(g\) first, then \(f\). Order matters: with \(f(x) = x + 1\) and \(g(x) = 2x\), \(f(g(3)) = 7\) but \(g(f(3)) = 8\).</p>
-<p>An <b>inverse</b> \(f^{-1}\) runs the machine backwards: \(f^{-1}(f(x)) = x\). Not every machine can. If \(f(2) = f(-2) = 4\), then \(f^{-1}(4)\) cannot decide between 2 and \(-2\). A function has an inverse only when different inputs give different outputs: no horizontal line hits the graph twice. Squaring fails; cubing passes.</p>
-<p>To find an inverse, write \(y = f(x)\), swap the letters, solve for \(y\). Swapping turns every point \((a, b)\) into \((b, a)\), which is a <b>reflection in the line \(y = x\)</b>. So the graph of \(f^{-1}\) is the mirror image of the graph of \(f\), and the domain of \(f^{-1}\) is the range of \(f\).</p>
+<p>An <b>inverse</b> \(f^{-1}\) runs the machine backwards: \(f^{-1}(f(x)) = x\). Not every machine can. If \(f(2) = f(-2) = 4\), then \(f^{-1}(4)\) cannot decide between 2 and \(-2\). A function has an inverse only when different inputs give different outputs: no horizontal line hits the graph twice.</p>
+<p>To find an inverse, write \(y = f(x)\), swap the letters, solve for \(y\). Swapping turns every point \((a, b)\) into \((b, a)\), which is a <b>reflection in the line \(y = x\)</b>. So the graph of \(f^{-1}\) is the mirror image of \(f\)'s, and the domain of \(f^{-1}\) is the range of \(f\).</p>
 <figure><svg viewBox="0 0 185 175" width="185" height="175" role="img" aria-label="The line y = 2x + 3 and its inverse y = (x minus 3)/2 are mirror images in the dashed line y = x; the points (1, 5) and (5, 1) are marked" font-family="Nunito, sans-serif" font-size="12">
 <line x1="0" y1="119" x2="175" y2="119" stroke="#999"/><line x1="51" y1="0" x2="51" y2="175" stroke="#999"/>
 <line x1="0" y1="170" x2="170" y2="0" stroke="#555" stroke-dasharray="4 3"/>
@@ -66,7 +66,7 @@
 
 <section class="stretch">
 <h2>Stretch: the machine that undoes itself in three</h2>
-<p>Let \(f(x) = \dfrac{x - 3}{x + 1}\). Compute \(f(f(x))\) and simplify fully. Then compute \(f(f(f(x)))\). What do you get, and what does it tell you about \(f^{-1}\)?</p>
+<p>Let \(f(x) = \dfrac{x - 3}{x + 1}\), with \(x\) ranging over the reals except \(-1\) and \(1\). (Why leave out 1? Work out \(f(1)\) and see what happens next.) Compute \(f(f(x))\) and simplify fully. Then compute \(f(f(f(x)))\). What do you get, and what does it tell you about \(f^{-1}\)?</p>
 <div class="space short"></div>
 </section>
 
@@ -78,7 +78,7 @@
 <li>\(f^{-1}(x) = \dfrac{3x - 1}{2}\), all reals. \(h^{-1}(x) = x^2 + 1\) with domain \(x \geq 0\) (the range of \(h\)).</li>
 <li>\(F = \tfrac95 C + 32\). Same reading: \(C = \tfrac59(C - 32)\), so \(9C = 5C - 160\), \(C = -40\). A point with \(f(x) = x\) is on \(y = x\) by definition; it is where the graph crosses its own mirror line, so it is on \(f^{-1}\) too.</li>
 </ol>
-<p><b>Stretch.</b> \(f(f(x)) = \dfrac{\frac{x-3}{x+1} - 3}{\frac{x-3}{x+1} + 1} = \dfrac{(x - 3) - 3(x+1)}{(x-3) + (x+1)} = \dfrac{-2x - 6}{2x - 2} = -\dfrac{x + 3}{x - 1}\). Then \(f(f(f(x))) = \dfrac{-(x+3) - 3(x-1)}{-(x+3) + (x-1)} = \dfrac{-4x}{-4} = x\). Three applications give the identity, so \(f^{-1} = f \circ f\): the inverse of \(f\) is \(f\) done twice.</p>
+<p><b>Stretch.</b> \(f(f(x)) = \dfrac{\frac{x-3}{x+1} - 3}{\frac{x-3}{x+1} + 1} = \dfrac{(x - 3) - 3(x+1)}{(x-3) + (x+1)} = \dfrac{-2x - 6}{2x - 2} = -\dfrac{x + 3}{x - 1}\). The simplification is valid only for \(x \neq -1, 1\): at \(-1\) the first \(f\) is undefined, and \(f(1) = -1\), so the second is. Then \(f(f(f(x))) = \dfrac{-(x+3) - 3(x-1)}{-(x+3) + (x-1)} = \dfrac{-4x}{-4} = x\) on the reals minus \(\{-1, 1\}\). Three applications give the identity there, so on that set \(f^{-1} = f \circ f\): the inverse of \(f\) is \(f\) done twice. If you allow \(\infty\) as a value, with \(f(-1) = \infty\) and \(f(\infty) = 1\), the missing cycle \(-1 \to \infty \to 1 \to -1\) closes too.</p>
 </section>
 
 <div class="sheet-nav"><a href="a2-discriminant-vieta.html">← Previous</a><a href="a4-transformations.html">Next: Shift, stretch, flip →</a></div>

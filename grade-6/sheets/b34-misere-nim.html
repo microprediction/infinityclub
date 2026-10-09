@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nim where the last counter loses · Infinity Club</title>
+<meta name="description" content="Change one rule of Nim so the player who takes the last counter loses. Find out which part of the famous binary strategy survives, and which part breaks.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 6</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 6 · Around the corner · 34</div>
+  <h1>Nim where the last counter loses</h1>
+  <p class="teaser">Change one word in the rules of Nim and the perfect strategy almost survives. The one place it breaks tells you exactly what the original proof was quietly assuming.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>In <a href="b15-nim.html">Nim</a> you learned a complete strategy: write the piles in binary and always hand your opponent a <b>balanced</b> position, one where every column has an even number of 1s. Tonight we change the last rule only. <b>Whoever takes the last counter loses.</b> Every move is still legal. Does the strategy survive?</p>
+<p>Start tiny. A single pile of 1: you must take it, and you lose. Two piles of 1: you take one, your opponent must take the last, you win. Yet 1-1 is balanced, which in ordinary Nim meant the player to move was lost. The rule has flipped.</p>
+<p>So the theorem breaks. The interesting question is <em>where</em>. Try 2-1, then 2-1-1, then positions with two or more piles bigger than one. Keep a list of solved positions and look for the boundary between where the old rule works and where it fails. Then state a repaired rule and beat the computer with it.</p>
+<div class="callout">Same moves, opposite ending. Which part of "balanced is bad" is about the moves, and which part is about the ending?</div>
+</section>
+
+<section class="example">
+<h2>Watch one: 2-1-1</h2>
+<p>Binary: 2 = 10, 1 = 01, 1 = 01. The 2s column has one 1, so the position is unbalanced, and ordinary Nim says: balance it by taking the whole 2, leaving 1-1. Try that here. Your opponent takes a counter, you take the last one, and you lose. The balancing move is a losing move.</p>
+<p>Instead take <em>one</em> counter from the 2, leaving 1-1-1. Now your opponent faces three lone counters. Whatever they do, two are left, you take one, and they are forced to take the last. So in 2-1-1 the winning move is to shrink the big pile to 1, not 0. In 2-1, by contrast, taking the whole 2 leaves a single counter and wins. The big pile must leave behind an <b>odd</b> number of lone counters.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Who wins 1-1-1, 1-1-1-1 and 1-1-1-1-1, if everyone plays well? State the rule for positions where every pile is a single counter, and say how it compares with ordinary Nim.<div class="space"></div></li>
+<li>5-1-1 and 5-1-1-1. In each, should the 5 be cut down to 0 or to 1? Explain the rule for one big pile with some lone counters.<div class="space"></div></li>
+<li>Someone claims "the Nim strategy works unchanged in the last-counter-loses game". Give them a position and a move that proves them wrong.<div class="space short"></div></li>
+<li>Now two or more piles bigger than one: 3-4, 2-2, 1-2-3 and 3-5-7. For each, decide whether the player to move can win the last-counter-loses game and, if so, give a winning move. Compare with ordinary Nim.<div class="space tall"></div></li>
+<li>Write your complete rule in two sentences, then test it against the computer at <a href="../../demos/nim.html">infinityclub.net/demos/nim.html</a> with the <b>last counter loses</b> box ticked.<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: which sentence of the proof broke?</h2>
+<p>Reread the stretch of the Nim sheet. Its two facts about balancing are still true tonight, because the moves have not changed. Only one sentence relied on the last-counter rule. Find it. Then explain why the balance strategy keeps working right up until a single big pile remains, and why that is exactly where you had to improvise.</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>1-1-1: the player to move loses. 1-1-1-1: wins. 1-1-1-1-1: loses. When every pile is a single counter, the player to move wins exactly when the number of counters is <b>even</b>. In ordinary Nim it is the other way round: an even number of 1s is balanced and loses.</li>
+<li>5-1-1: cut the 5 down to 1, leaving 1-1-1 (three lone counters, odd, so the opponent loses). 5-1-1-1: take all 5, leaving 1-1-1. The rule: when exactly one pile is bigger than one, cut it to 0 or to 1, whichever leaves the opponent an <b>odd</b> number of lone counters. One of the two choices always works.</li>
+<li>2-1-1 is the simplest. Ordinary Nim says take both counters from the 2, leaving the balanced 1-1. In the last-counter-loses game that hands your opponent the win. (1-1 itself is another: the old rule says the player to move is lost, but they win.)</li>
+<li>3-4: unbalanced (011, 100), so the player to move can win by taking 1 from the 4 to leave 3-3. 2-2: balanced; the player to move loses. 1-2-3: balanced; loses. 3-5-7: unbalanced; take 1 from any pile, exactly as in ordinary Nim. While two or more piles are bigger than one, the answers are the same as ordinary Nim: balanced loses, and the balancing move wins. The only change is the endgame.</li>
+<li>If some pile has two or more counters, play ordinary Nim: hand over a balanced position. The moment your move would leave exactly one big pile, cut it to 0 or 1 so your opponent gets an odd number of lone counters. Checked by computer on every position with up to four piles of at most six counters.</li>
+</ol>
+<p><b>Stretch.</b> The sentence is "the empty position 0-0-0 is balanced, and the player facing it has already lost". Tonight the player facing 0-0-0 has <em>won</em>, because the other player took the last counter. Everything else in the proof is about moves, so handing over balanced positions still forces your opponent to unbalance, until one big pile is left. A balanced position can never have exactly one big pile (its top column would have a single 1), so the big-pile endgame is always yours to choose, and you choose the odd number of lone counters.</p>
+</section>
+
+<div class="sheet-nav"><a href="b33-hilbert-buses.html">← Hilbert's hotel: infinitely many buses</a><a href="c1-music.html">Next: Why there are twelve notes →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

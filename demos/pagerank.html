@@ -34,7 +34,9 @@
     <button id="reset" class="ghost">Reset ranks</button>
     <button id="random" class="ghost">Random web</button>
     <button id="clear" class="ghost">Clear links</button>
+    <button id="star" class="ghost" title="Page 1 links to every other page, and each of them links back to page 1">Star web</button>
     <label>chance of following a link <input type="range" id="damp" min="0" max="1" step="0.05" value="0.85"> <span id="dampv">0.85</span> (otherwise jump to a random page)</label>
+    <span class="small" id="dampnote"></span>
   </div>
   <div class="two">
     <div><canvas id="web" width="420" height="420"></canvas></div>
@@ -47,9 +49,10 @@
 <div class="explain">
 <h2>What's going on</h2>
 <p>Each page shares its rank equally among the pages it links to. If page A has rank 0.3 and three outgoing links, each of those pages receives 0.1 from A. Add up what every page receives, and you have the ranks after one more click. That is a <b>Markov chain</b>: the next state depends only on the current one, through a fixed table of probabilities called the transition matrix.</p>
-<p>Repeat the step and the numbers stop changing. The vector that no longer moves is the <b>steady state</b>, and it is the same whatever ranks you started from. The step button lets you watch it happen; the readout shows the largest change each time, shrinking toward zero.</p>
-<p>Two problems and one fix. A page with no links out is a dead end, and a group of pages linking only to each other is a trap that would swallow all the rank. So with probability 1 − d the surfer ignores the links and jumps to a page chosen uniformly at random; d is the damping factor, and Google used 0.85. A dead-end page is treated as if it linked to everyone. With that fix the chain always settles, and settles to a unique answer.</p>
+<p>Repeat the step and, usually, the numbers stop changing. A vector that no longer moves is a <b>steady state</b>. The step button lets you watch it happen; the readout shows the largest change each time, shrinking toward zero. The Run button stops when that change drops below one millionth, and says so honestly if it gives up first.</p>
+<p>Two problems and one fix. A page with no links out is a dead end, and a group of pages linking only to each other is a trap that would swallow all the rank. So with probability 1 − d the surfer ignores the links and jumps to a page chosen uniformly at random; d is the damping factor, and Google used 0.85. A dead-end page is treated as if it linked to everyone. For any d strictly less than 1 every entry of the matrix is positive, and then the chain has exactly one steady state and reaches it from any starting ranks. That is the guarantee; it needs 0 ≤ d &lt; 1.</p>
 <p>Try it: make every page link to page 1 and watch it dominate. Then add a single link from page 1 to page 2 and see how much rank flows along it. A link from an important page is worth more than a link from an obscure one, which is exactly the idea.</p>
+<p><b>Experiment at d = 1.</b> Press <b>Star web</b>: page 1 links to every other page and each of them links back. Slide d to 1, so the surfer never jumps, and press Run. The ranks swing between (1/6, 1/6, …) and (5/6, 1/30, …) forever, because every path from page 1 back to page 1 has even length, so odd and even steps never agree. The chain still has a steady state, (1/2, 1/10, 1/10, 1/10, 1/10, 1/10), but repeated stepping never finds it, and the last vector you see is not the ranking. Now nudge d down to 0.95 and watch the swing shrink step by step. Positive entries break the rhythm.</p>
 <p>Sheet: <a href="../grade-10/sheets/b22-markov-pagerank.html">Markov chains and how Google ranked the web</a>.</p>
 </div>
 </main>
@@ -76,10 +79,12 @@ var PR = (function () {
     return nr;
   }
   function maxChange(a, b) { var m = 0; for (var i = 0; i < a.length; i++) m = Math.max(m, Math.abs(a[i] - b[i])); return m; }
+  // Power iteration from uniform ranks. converged is true only when the change criterion was met;
+  // residual is the largest change on the final step. With d = 1 a periodic web never converges.
   function solve(adj, d, tol, maxIt) {
-    var N = adj.length, r = [], G = matrix(adj, d); for (var i = 0; i < N; i++) r.push(1 / N);
-    for (var it = 0; it < (maxIt || 1000); it++) { var nr = step(G, r), ch = maxChange(nr, r); r = nr; if (ch < (tol || 1e-10)) return { r: r, iterations: it + 1 }; }
-    return { r: r, iterations: maxIt || 1000 };
+    var N = adj.length, r = [], G = matrix(adj, d), T = tol || 1e-10, M = maxIt || 1000, ch = Infinity; for (var i = 0; i < N; i++) r.push(1 / N);
+    for (var it = 0; it < M; it++) { var nr = step(G, r); ch = maxChange(nr, r); r = nr; if (ch < T) return { r: r, iterations: it + 1, converged: true, residual: ch }; }
+    return { r: r, iterations: M, converged: false, residual: ch };
   }
   return { matrix: matrix, step: step, maxChange: maxChange, solve: solve };
 })();
@@ -90,7 +95,9 @@ var PR = (function () {
   var adj, r, iter, lastChange, selected = -1, timer = null, gen = 0;
   function preset() { adj = []; for (var i = 0; i < N; i++) { adj.push([0, 0, 0, 0, 0, 0]); }
     [[0, 1], [0, 2], [1, 2], [2, 0], [3, 2], [3, 4], [4, 3], [4, 5], [5, 3], [5, 2]].forEach(function (e) { adj[e[0]][e[1]] = 1; }); }
+  function star() { adj = []; for (var i = 0; i < N; i++) adj.push([0, 0, 0, 0, 0, 0]); for (var k = 1; k < N; k++) { adj[0][k] = 1; adj[k][0] = 1; } }
   function resetRanks() { r = []; for (var i = 0; i < N; i++) r.push(1 / N); iter = 0; lastChange = null; }
+  function dampNote() { document.getElementById("dampnote").textContent = d() >= 1 ? "d = 1: the surfer never jumps, so the ranks are not guaranteed to settle." : ""; }
   function d() { return parseFloat(dampIn.value); }
   function pos(i, W) { var a = -Math.PI / 2 + i * 2 * Math.PI / N, R = W * 0.36; return [W / 2 + R * Math.cos(a), W / 2 + R * Math.sin(a)]; }
   function draw() {
@@ -140,7 +147,14 @@ var PR = (function () {
   function stopRun() { if (timer) { clearTimeout(timer); timer = null; } gen++; }
   function run() {
     stopRun(); var my = gen;
-    (function tick() { if (my !== gen) return; var ch = doStep(); if (ch > 1e-6 && iter < 200) timer = setTimeout(tick, 120); else { timer = null; info.textContent += "\nSettled: the ranks no longer change (to 3 decimal places, long before step " + iter + ")."; } })();
+    var TOL = 1e-6, stopAt = iter + 200;
+    (function tick() {
+      if (my !== gen) return;
+      var ch = doStep();
+      if (ch < TOL) { timer = null; info.textContent += "\nSettled at step " + iter + ": the largest change is below " + TOL + ", so the ranks have stopped moving."; }
+      else if (iter < stopAt) timer = setTimeout(tick, 120);
+      else { timer = null; info.textContent += "\nStopped at step " + iter + " without settling: the ranks are still changing, residual " + (ch >= 0.001 ? ch.toFixed(3) : ch.toExponential(1)) + "." + (d() >= 1 ? " With d = 1 there is no jumping, and this web keeps the ranks swinging. Press One step and compare odd with even steps, or lower d a little." : " Press Run again to continue."); }
+    })();
   }
   canvas.addEventListener("click", function (e) {
     var rect = canvas.getBoundingClientRect(), x = (e.clientX - rect.left) * (canvas._W / rect.width), y = (e.clientY - rect.top) * (canvas._W / rect.height), hit = -1;
@@ -156,9 +170,10 @@ var PR = (function () {
   document.getElementById("reset").addEventListener("click", function () { stopRun(); resetRanks(); draw(); });
   document.getElementById("random").addEventListener("click", function () { stopRun(); adj = []; for (var i = 0; i < N; i++) { adj.push([]); for (var j = 0; j < N; j++) adj[i].push(i !== j && Math.random() < 0.3 ? 1 : 0); } resetRanks(); selected = -1; draw(); });
   document.getElementById("clear").addEventListener("click", function () { stopRun(); adj = []; for (var i = 0; i < N; i++) adj.push([0, 0, 0, 0, 0, 0]); resetRanks(); selected = -1; draw(); });
-  dampIn.addEventListener("input", function () { document.getElementById("dampv").textContent = d().toFixed(2); stopRun(); resetRanks(); draw(); });
+  document.getElementById("star").addEventListener("click", function () { stopRun(); star(); resetRanks(); selected = -1; draw(); });
+  dampIn.addEventListener("input", function () { document.getElementById("dampv").textContent = d().toFixed(2); dampNote(); stopRun(); resetRanks(); draw(); });
   var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(draw, 150); });
-  preset(); resetRanks(); draw();
+  preset(); resetRanks(); dampNote(); draw();
 })();
 </script>
 </body>

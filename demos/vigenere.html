@@ -20,6 +20,8 @@ textarea { min-height: 70px; }
 .bars div { background: #3f44c9; border-radius: 2px 2px 0 0; min-height: 1px; }
 .bars.alt div { background: #f5a524; }
 .letters { display: grid; grid-template-columns: repeat(26, 1fr); font-family: var(--mono); font-size: .7rem; text-align: center; color: var(--muted); }
+.bars.mini { height: 36px; }
+.lane { margin: .6rem 0; }
 h3 { margin: .9rem 0 .2rem; }
 </style>
 </head>
@@ -32,7 +34,7 @@ h3 { margin: .9rem 0 .2rem; }
 </nav>
 <main class="demo-wrap">
 <h1>The Vigenère cipher</h1>
-<p class="explain">A Caesar cipher shifts every letter by the same amount. Type a message and a keyword. Vigenère shifts the first letter of the message by the first letter of the key (A = 0, B = 1, …), the second by the second, and the key repeats. The same plaintext letter comes out differently each time, which ruins simple letter counting. For 300 years it was called "the unbreakable cipher".</p>
+<p class="explain">A Caesar cipher shifts every letter by the same amount. Type a message and a keyword. Vigenère shifts the first letter of the message by the first letter of the key (A = 0, B = 1, …), the second by the second, and the key repeats. The same plaintext letter can come out differently each time, which spoils simple letter counting. For 300 years it was called "the unbreakable cipher". Before you change the keyword, predict what the bars will do. Try LEMON, then AAAAA, BBBBB and ABCABC.</p>
 <div class="demo-panel">
   <div class="controls" style="flex-direction:column;align-items:stretch">
     <label>Message <textarea id="plain">The quick brown fox jumps over the lazy dog while the secret meeting happens at the old mill at midnight and nobody suspects a thing</textarea></label>
@@ -42,30 +44,45 @@ h3 { margin: .9rem 0 .2rem; }
       <button id="kasiski" class="alt">Find the key length (Kasiski's trick)</button>
     </div>
   </div>
+  <div class="readout" id="keyinfo"></div>
   <div class="strip" id="strip"></div>
   <h3>Result</h3>
   <div class="readout" id="out"></div>
-  <h3>Letter counts of the Vigenère result (flat: nothing to grab)</h3>
+  <h3 id="hV">Letter counts of the ciphertext</h3>
   <div class="bars" id="barsV"></div>
-  <h3>Letter counts if the same message were a Caesar shift of 3 (one tall bar: E in disguise)</h3>
+  <h3>Letter counts if the same message were a Caesar shift of 3 (one tall bar: probably E in disguise, if the message is ordinary English)</h3>
   <div class="bars alt" id="barsC"></div>
   <div class="letters" id="lettersRow"></div>
   <div class="readout" id="kas" hidden></div>
+  <div class="controls"><label>Split the ciphertext into Caesar lanes with period <select id="period"></select></label></div>
+  <div id="lanes"></div>
 </div>
 <div class="explain">
 <h2>What's going on</h2>
-<p>With one shift, the tallest bar in the ciphertext is almost always E in disguise, and the whole thing falls in minutes. With a keyword of length 5, each letter of the message is shifted by one of five different amounts, so the counts are smeared out and the bars go flat. There is no single tallest bar to attack.</p>
-<p>In 1863 Friedrich Kasiski noticed the weakness. Common words like THE land on the same part of the key whenever their distance apart is a multiple of the key length, and then they encrypt identically. Find repeated chunks in the ciphertext, measure the distances between them, and the key length is a factor of all those distances. Once you know the length is 5, the cipher is just five Caesar ciphers interleaved, and each one breaks the old way.</p>
+<p>With one shift, the tallest bar in the ciphertext is usually E in disguise, because E is the commonest letter in ordinary English. That is a guess about the message, not a law. Write BANANA a hundred times and shift by 3: A is 300 of the 600 letters, so the tallest bar is D, and "D must be E" gives the wrong key. A frequency guess needs two things: a message that behaves like English, and a check that the decoded result actually reads.</p>
+<p>With a keyword like LEMON, each letter of the message is shifted by one of five different amounts, so the counts are smeared out and the bars go flat. But what matters is the shortest repeating block of the key, not the length you typed. AAAAA has entered length 5 and effective period 1: it leaves the message untouched and the English bars survive. BBBBB is a Caesar shift of 1. ABCABC has entered length 6 and effective period 3. The readout above the strip tells them apart.</p>
+<p>In 1863 Friedrich Kasiski noticed a weakness. When a common word like THE appears twice at a distance that is a multiple of the period, both copies meet the same key letters and encrypt identically, so the distance between genuine repeats is a multiple of the period. Two cautions. Some three-letter repeats are accidents, and their distances mean nothing. And if 5 divides a distance, so do 1 and often 10 or 15: the factor list points at candidates, not an answer. Pick a candidate period, split the ciphertext into that many lanes, break each lane as a Caesar cipher, and read the result. If it is not English, the candidate was wrong, or a lane's tallest bar was not E.</p>
 <p>Sheet: <a href="../grade-6/sheets/b16-codes.html">Secret codes and how to break them</a>.</p>
 </div>
 </main>
 <footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
 <script>
 (function () {
-  var plain = document.getElementById("plain"), key = document.getElementById("key"), dec = document.getElementById("decode"), strip = document.getElementById("strip"), out = document.getElementById("out"), barsV = document.getElementById("barsV"), barsC = document.getElementById("barsC"), kas = document.getElementById("kas");
+  var plain = document.getElementById("plain"), key = document.getElementById("key"), dec = document.getElementById("decode"), strip = document.getElementById("strip"), out = document.getElementById("out"), barsV = document.getElementById("barsV"), barsC = document.getElementById("barsC"), kas = document.getElementById("kas"), keyinfo = document.getElementById("keyinfo"), hV = document.getElementById("hV"), periodSel = document.getElementById("period"), lanesEl = document.getElementById("lanes");
   var A = "ABCDEFGHIJKLMNOPQRSTUVWXYZ", lastCipher = "";
   document.getElementById("lettersRow").innerHTML = A.split("").map(function (c) { return "<div>" + c + "</div>"; }).join("");
+  var opts = '<option value="">choose</option>'; for (var pp = 1; pp <= 12; pp++) opts += '<option value="' + pp + '">' + pp + "</option>"; periodSel.innerHTML = opts;
   function cleanKey() { return (key.value.toUpperCase().replace(/[^A-Z]/g, "")) || "A"; }
+  // shortest block whose repetition gives the whole key: AAAAA -> 1, ABCABC -> 3, ABCAB -> 5
+  function period(k) { for (var p = 1; p < k.length; p++) { if (k.length % p) continue; var ok = true; for (var i = p; i < k.length; i++) if (k[i] !== k[i - p]) { ok = false; break; } if (ok) return p; } return k.length; }
+  function distinct(str) { var seen = {}, n = 0; for (var i = 0; i < str.length; i++) if (!seen[str[i]]) { seen[str[i]] = 1; n++; } return n; }
+  function describeKey(k) {
+    var p = period(k), block = k.slice(0, p), s = "Keyword " + k + ": entered length " + k.length + ", effective period " + p + ".";
+    if (p === 1) s += " The key stream " + k + k + "… is one shift repeated (" + block + " = " + A.indexOf(block) + "), so this is a Caesar cipher" + (A.indexOf(block) === 0 ? " with shift 0: the ciphertext is the message." : " with shift " + A.indexOf(block) + ".");
+    else if (p < k.length) s += " The key stream is just " + block + " repeated, so only " + p + " shifts take turns.";
+    else s += " " + p + " shifts take turns" + (distinct(block) < p ? ", " + distinct(block) + " of them different." : ", all different.");
+    return s;
+  }
   function vig(text, k, decode) {
     var i = 0, res = "", keyLine = "";
     for (var p = 0; p < text.length; p++) {
@@ -79,27 +96,49 @@ h3 { margin: .9rem 0 .2rem; }
   }
   function caesar(text, s) { return text.replace(/[a-z]/gi, function (ch) { var up = ch.toUpperCase(), o = A[(A.indexOf(up) + s) % 26]; return ch === up ? o : o.toLowerCase(); }); }
   function counts(text) { var c = new Array(26).fill(0); text.toUpperCase().replace(/[A-Z]/g, function (ch) { c[A.indexOf(ch)]++; return ch; }); return c; }
-  function bars(el, c) { var m = Math.max.apply(null, c) || 1; el.innerHTML = c.map(function (v) { return '<div style="height:' + (v / m * 100) + '%" title="' + v + '"></div>'; }).join(""); }
+  function barHtml(c) { var m = Math.max.apply(null, c) || 1; return c.map(function (v) { return '<div style="height:' + (v / m * 100) + '%" title="' + v + '"></div>'; }).join(""); }
+  function bars(el, c) { el.innerHTML = barHtml(c); }
+  function argmax(c) { var b = 0; for (var i = 1; i < 26; i++) if (c[i] > c[b]) b = i; return b; }
+  function esc(s) { return s.replace(/&/g, "&amp;").replace(/</g, "&lt;"); }
   function render() {
-    var k = cleanKey(), decode = dec.checked, r = vig(plain.value, k, decode);
+    var k = cleanKey(), decode = dec.checked, r = vig(plain.value, k, decode), p = period(k);
     var src = plain.value.slice(0, 60), kl = r.keyLine.slice(0, 60), res = r.text.slice(0, 60);
     strip.innerHTML = '<div><span class="lbl">' + (decode ? "cipher" : "message") + "</span>" + esc(src) + "</div><div><span class=\"lbl\">key</span><span class=\"k\">" + esc(kl) + "</span></div><div><span class=\"lbl\">" + (decode ? "message" : "cipher") + '</span><span class="c">' + esc(res) + "</span></div>" + (plain.value.length > 60 ? '<div class="small">(first 60 characters shown)</div>' : "");
     out.textContent = r.text;
     lastCipher = decode ? plain.value : r.text;
-    bars(barsV, counts(decode ? plain.value : r.text));
+    keyinfo.textContent = describeKey(k);
+    bars(barsV, counts(lastCipher));
     bars(barsC, counts(caesar(decode ? r.text : plain.value, 3)));
+    hV.textContent = p === 1 ? "Letter counts of the ciphertext (period 1: a plain Caesar shift, so the English shape survives)" : "Letter counts of the ciphertext (period " + p + ": " + p + " shifts mixed together, so the peaks smear out)";
     kas.hidden = true;
+    lanes();
   }
-  function esc(s) { return s.replace(/&/g, "&amp;").replace(/</g, "&lt;"); }
   function factors(n) { var f = []; for (var d = 2; d <= n; d++) if (n % d === 0) f.push(d); return f; }
   document.getElementById("kasiski").addEventListener("click", function () {
-    var c = lastCipher.toUpperCase().replace(/[^A-Z]/g, ""), seen = {}, found = [], dist = [];
+    var c = lastCipher.toUpperCase().replace(/[^A-Z]/g, ""), seen = {}, found = [], dist = [], k = cleanKey();
     for (var i = 0; i + 3 <= c.length; i++) { var t = c.substr(i, 3); if (seen[t] !== undefined) { var d = i - seen[t]; found.push(t + " repeats " + d + " apart (factors " + factors(d).slice(0, 6).join(", ") + ")"); dist.push(d); } else seen[t] = i; }
     var tally = {}; dist.forEach(function (d) { factors(d).forEach(function (f) { if (f <= 12) tally[f] = (tally[f] || 0) + 1; }); });
     var ranked = Object.keys(tally).sort(function (a, b) { return tally[b] - tally[a] || a - b; }).slice(0, 4).map(function (f) { return f + " (in " + tally[f] + " of " + dist.length + ")"; });
     kas.hidden = false;
-    kas.textContent = found.length ? "Repeated three-letter chunks in the ciphertext:\n" + found.slice(0, 10).join("\n") + (found.length > 10 ? "\n… and " + (found.length - 10) + " more" : "") + "\n\nFactors that keep showing up: " + ranked.join(", ") + "\nThe key length is very likely one of these. The current key has length " + cleanKey().length + "." : "No repeated three-letter chunk found. Try a longer message; Kasiski needs repeats to bite.";
+    kas.textContent = found.length ? "Repeated three-letter chunks in the ciphertext:\n" + found.slice(0, 10).join("\n") + (found.length > 10 ? "\n… and " + (found.length - 10) + " more" : "") + "\n\nFactors that keep showing up: " + ranked.join(", ") + "\nThese are candidates, not an answer. Some repeats are accidents, and every multiple of the true period divides the genuine gaps too. Pick a period below, split into lanes, and read the result.\nFor checking: the current key has entered length " + k.length + " and effective period " + period(k) + "." : "No repeated three-letter chunk found. Try a longer message; Kasiski needs repeats to bite.";
   });
+  function lanes() {
+    var p = parseInt(periodSel.value, 10);
+    if (!p) { lanesEl.innerHTML = ""; return; }
+    var c = lastCipher.toUpperCase().replace(/[^A-Z]/g, "");
+    if (!c.length) { lanesEl.innerHTML = '<div class="readout">Type a message first.</div>'; return; }
+    var html = "", guess = "";
+    for (var i = 0; i < p; i++) {
+      var lane = ""; for (var j = i; j < c.length; j += p) lane += c[j];
+      var cnt = counts(lane), t = argmax(cnt), shift = (t - 4 + 26) % 26;
+      guess += A[shift];
+      html += '<div class="lane"><div class="small">Lane ' + (i + 1) + " of " + p + " (every " + p + (p === 1 ? "st" : p === 2 ? "nd" : p === 3 ? "rd" : "th") + " letter, " + lane.length + " letters): <span class=\"mono\">" + esc(lane.slice(0, 40)) + (lane.length > 40 ? "…" : "") + "</span>. Tallest bar " + A[t] + " (" + cnt[t] + "). If that is E, this lane's shift is " + shift + ", key letter " + A[shift] + '.</div><div class="bars mini">' + barHtml(cnt) + "</div></div>";
+    }
+    var decoded = vig(lastCipher, guess, true).text;
+    html += '<div class="readout">Key guess from “tallest bar = E” in every lane: ' + guess + "\nDecoded under that guess: " + esc(decoded.slice(0, 160)) + (decoded.length > 160 ? "…" : "") + "\nDoes it read as English? If not, the hypothesis failed: try another period, or a lane's second-tallest bar. Short lanes fool the count, so a longer message helps.</div>";
+    lanesEl.innerHTML = html;
+  }
+  periodSel.addEventListener("change", lanes);
   [plain, key, dec].forEach(function (el) { el.addEventListener("input", render); el.addEventListener("change", render); });
   render();
 })();
