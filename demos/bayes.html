@@ -62,7 +62,7 @@
 <footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
 <script>
 (function () {
-  // ---- pure maths ----
+  // ---- pure math(s) ----
   function counts(p, se, sp, N) {
     var sick = Math.round(N * p), tp = Math.round(sick * se), fn = sick - tp, healthy = N - sick, tn = Math.round(healthy * sp), fp = healthy - tn;
     return { sick: sick, tp: tp, fn: fn, healthy: healthy, tn: tn, fp: fp, pos: tp + fp, neg: fn + tn };

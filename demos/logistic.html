@@ -67,7 +67,7 @@
 <footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
 <script>
 (function () {
-  // ---- pure maths ----
+  // ---- pure math(s) ----
   function step(r, x) { return r * x * (1 - x); }
   function orbit(r, x0, n) { var xs = [x0]; for (var i = 0; i < n; i++) xs.push(step(r, xs[i])); return xs; }
   // Smallest period p <= 64 of the long-run behaviour, or 0 if none is found (chaotic, or settling very slowly).

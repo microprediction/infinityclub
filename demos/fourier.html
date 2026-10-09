@@ -65,7 +65,7 @@
 <script>
 (function () {
   var K = 8;
-  // ---- pure maths ----
+  // ---- pure math(s) ----
   function wave(amps, t, ph) { ph = ph || 0; var y = 0; for (var n = 1; n <= amps.length; n++) y += amps[n - 1] * Math.sin(2 * Math.PI * n * t + (n === 1 ? ph : 0)); return y; }
   var PRESETS = {
     sine: [1, 0, 0, 0, 0, 0, 0, 0],

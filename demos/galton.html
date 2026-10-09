@@ -53,7 +53,7 @@
 <script>
 (function () {
   var ROWS = 12, BINS = ROWS + 1;
-  // ---- pure maths ----
+  // ---- pure math(s) ----
   function binom(n, k) { var r = 1; for (var i = 1; i <= k; i++) r = r * (n - k + i) / i; return r; }
   function binomPmf(n, k, p) { return binom(n, k) * Math.pow(p, k) * Math.pow(1 - p, n - k); }
   function stats(bins) { var n = 0, s = 0, s2 = 0; bins.forEach(function (c, k) { n += c; s += c * k; s2 += c * k * k; }); if (!n) return { n: 0, mean: NaN, sd: NaN }; var m = s / n; return { n: n, mean: m, sd: Math.sqrt(Math.max(0, s2 / n - m * m)) }; }
