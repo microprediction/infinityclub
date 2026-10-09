@@ -118,7 +118,7 @@
 <ol>
 <li>Seven people are at a party. Can each of them shake hands with exactly three of the others? What about eight people? Explain using the handshake fact.<div class="space short"></div></li>
 <li>Can a 5 by 5 board be covered exactly with dominoes? Give a one-line reason.<div class="space short"></div></li>
-<li>Cut two squares off a chessboard that are <em>different</em> colours (say one corner and the square next to it). Does the colour argument still rule out tiling with 31 dominoes? To get a feel, remove the top-left and top-right squares of a 2 by 4 strip and tile what is left.<div class="space"></div></li>
+<li>Cut two squares off a chessboard that are <em>different</em> colours (say one corner and the square next to it). Does the colour argument still rule out tiling with 31 dominoes? To get a feel, remove the top-left and top-right squares of a 2 by 4 strip and tile what is left. <b>Harder:</b> can you find a method for any two different-colour squares? Hint: draw a closed route through every square once.<div class="space"></div></li>
 <li>You write the numbers 1 to 10 on a board. A move is: erase any two numbers \(a\) and \(b\) and write \(a + b\) instead. After 9 moves one number is left. What is it, and why does it not matter which pairs you chose? Now change the move to writing \(a - b\) instead. Could the last number be 0? (Think about parity of the total.)<div class="space"></div></li>
 <li><b>Magic.</b> Lay 20 coins on a table, 7 of them heads up. Put on a blindfold. Challenge: split the coins into two piles so that both piles show the same number of heads. You may flip coins over but you cannot feel which side is up. Here is the method: take any 7 coins into a pile and <b>flip every coin in that pile</b>. Explain why it works. (Hint: suppose \(h\) of the 7 coins you grabbed were heads. How many heads are left in the big pile? How many in your pile after flipping?)<div class="space tall"></div></li>
 </ol>
@@ -136,11 +136,189 @@
 <ol>
 <li>Seven people each shaking 3 hands gives a hand-total of \(7 \times 3 = 21\), which is odd, but the total must be twice the number of handshakes. Impossible. Eight people: \(8 \times 3 = 24\), even, and it can be done (sit them in a circle and shake with both neighbours and the person opposite).</li>
 <li>A 5 by 5 board has 25 squares, an odd number, and dominoes cover 2 at a time. Impossible.</li>
-<li>No. With one black and one white removed, the counts are 31 and 31, so the colour argument allows it, and in fact it can always be done for any two squares of different colours (a theorem of Ralph Gomory). The 2 by 4 strip with its top-left and top-right squares removed tiles with three dominoes: one across the top, two across the bottom.</li>
+<li>No. With one black and one white removed, the counts are 31 and 31, so the colour argument no longer rules it out. The 2 by 4 strip with its top-left and top-right squares removed tiles with three dominoes: one across the top, two across the bottom. For the full chessboard, here is a method for <em>any</em> two different-colour squares; see the route proof below.</li>
 <li>Adding: the sum of all numbers on the board never changes, so the last number is \(1 + 2 + \cdots + 10 = 55\). Subtracting: replacing \(a, b\) by \(a - b\) changes the sum by \(2b\), an even amount, so the parity of the sum stays odd (it starts at 55). The final number is odd, so it cannot be 0.</li>
 <li>Suppose \(h\) of the 7 coins you grabbed are heads. Then the big pile has \(7 - h\) heads. Your pile has \(h\) heads and \(7 - h\) tails; after flipping it has \(7 - h\) heads. Both piles show \(7 - h\) heads. You never needed to know \(h\).</li>
 </ol>
 <p><b>Stretch.</b> A meeting lowers two counts by 1 and raises the third by 2. The difference between any two counts changes by 0 or by 3, so each difference keeps the same remainder when divided by 3. Start: 15 − 13 = 2, 17 − 15 = 2, 17 − 13 = 4, with remainders 2, 2, 1. If all chameleons were one colour, two of the counts would be 0 and their difference would be 0, remainder 0. No difference ever has remainder 0, so it can never happen.</p>
+<div style="break-inside: avoid;">
+<h3>Optional: a route that becomes dominoes</h3>
+<p>Trace the route in the left picture: it visits all 64 squares once and returns to its start. Neighbouring squares have different colours, so the colours alternate all the way round. Such a route is called a <b>Hamiltonian cycle</b>.</p>
+<p>Remove any one black square and any one white square. Cutting the route at those two gaps leaves two paths. Each nonempty path starts and ends on different colours, so it has an <b>even number of squares</b>. (A path can be empty if the removed squares were neighbours.) Pair the first two squares of each path, then the next two, and keep going. Every pair is a domino, and every remaining square is used exactly once.</p>
+<figure><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 313" width="560" height="313" role="img" aria-label="Two 8 by 8 chessboards. The first has a closed route through all 64 squares. The second removes a white square in the top row and a grey square at the right of row six, leaving routes of 30 and 32 squares. Consecutive squares are outlined in pairs to make 31 dominoes.">
+<g font-family="Nunito, sans-serif" fill="#1d1f3a" text-anchor="middle" font-size="17">
+<text x="126" y="25">1. One closed route</text><text x="416" y="25">2. Cut and pair neighbours</text>
+<rect x="14" y="48" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="42" y="48" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="70" y="48" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="98" y="48" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="126" y="48" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="154" y="48" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="182" y="48" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="210" y="48" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="14" y="76" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="42" y="76" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="70" y="76" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="98" y="76" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="126" y="76" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="154" y="76" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="182" y="76" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="210" y="76" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="14" y="104" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="42" y="104" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="70" y="104" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="98" y="104" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="126" y="104" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="154" y="104" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="182" y="104" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="210" y="104" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="14" y="132" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="42" y="132" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="70" y="132" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="98" y="132" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="126" y="132" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="154" y="132" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="182" y="132" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="210" y="132" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="14" y="160" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="42" y="160" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="70" y="160" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="98" y="160" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="126" y="160" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="154" y="160" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="182" y="160" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="210" y="160" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="14" y="188" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="42" y="188" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="70" y="188" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="98" y="188" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="126" y="188" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="154" y="188" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="182" y="188" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="210" y="188" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="14" y="216" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="42" y="216" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="70" y="216" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="98" y="216" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="126" y="216" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="154" y="216" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="182" y="216" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="210" y="216" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="14" y="244" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="42" y="244" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="70" y="244" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="98" y="244" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="126" y="244" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="154" y="244" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="182" y="244" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="210" y="244" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<polyline points="28,62 56,62 84,62 112,62 140,62 168,62 196,62 224,62 224,90 196,90 168,90 140,90 112,90 84,90 56,90 56,118 84,118 112,118 140,118 168,118 196,118 224,118 224,146 196,146 168,146 140,146 112,146 84,146 56,146 56,174 84,174 112,174 140,174 168,174 196,174 224,174 224,202 196,202 168,202 140,202 112,202 84,202 56,202 56,230 84,230 112,230 140,230 168,230 196,230 224,230 224,258 196,258 168,258 140,258 112,258 84,258 56,258 28,258 28,230 28,202 28,174 28,146 28,118 28,90 28,62" fill="none" stroke="#3f44c9" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="304" y="48" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="332" y="48" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="360" y="48" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="388" y="48" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="416" y="48" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="444" y="48" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="472" y="48" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="500" y="48" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="304" y="76" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="332" y="76" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="360" y="76" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="388" y="76" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="416" y="76" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="444" y="76" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="472" y="76" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="500" y="76" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="304" y="104" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="332" y="104" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="360" y="104" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="388" y="104" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="416" y="104" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="444" y="104" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="472" y="104" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="500" y="104" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="304" y="132" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="332" y="132" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="360" y="132" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="388" y="132" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="416" y="132" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="444" y="132" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="472" y="132" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="500" y="132" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="304" y="160" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="332" y="160" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="360" y="160" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="388" y="160" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="416" y="160" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="444" y="160" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="472" y="160" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="500" y="160" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="304" y="188" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="332" y="188" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="360" y="188" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="388" y="188" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="416" y="188" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="444" y="188" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="472" y="188" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="500" y="188" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="304" y="216" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="332" y="216" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="360" y="216" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="388" y="216" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="416" y="216" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="444" y="216" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="472" y="216" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="500" y="216" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="304" y="244" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="332" y="244" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="360" y="244" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="388" y="244" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="416" y="244" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="444" y="244" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<rect x="472" y="244" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
+<rect x="500" y="244" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
+<polyline points="486,62 514,62 514,90 486,90 458,90 430,90 402,90 374,90 346,90 346,118 374,118 402,118 430,118 458,118 486,118 514,118 514,146 486,146 458,146 430,146 402,146 374,146 346,146 346,174 374,174 402,174 430,174 458,174 486,174 514,174" fill="none" stroke="#3f44c9" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="474" y="50" width="52" height="24" rx="4" fill="none" stroke="#1d1f3a" stroke-width="1.5"/>
+<rect x="474" y="78" width="52" height="24" rx="4" fill="none" stroke="#1d1f3a" stroke-width="1.5"/>
+<rect x="418" y="78" width="52" height="24" rx="4" fill="none" stroke="#1d1f3a" stroke-width="1.5"/>
+<rect x="362" y="78" width="52" height="24" rx="4" fill="none" stroke="#1d1f3a" stroke-width="1.5"/>
+<rect x="334" y="78" width="24" height="52" rx="4" fill="none" stroke="#1d1f3a" stroke-width="1.5"/>
+<rect x="362" y="106" width="52" height="24" rx="4" fill="none" stroke="#1d1f3a" stroke-width="1.5"/>
+<rect x="418" y="106" width="52" height="24" rx="4" fill="none" stroke="#1d1f3a" stroke-width="1.5"/>
+<rect x="474" y="106" width="52" height="24" rx="4" fill="none" stroke="#1d1f3a" stroke-width="1.5"/>
+<rect x="474" y="134" width="52" height="24" rx="4" fill="none" stroke="#1d1f3a" stroke-width="1.5"/>
+<rect x="418" y="134" width="52" height="24" rx="4" fill="none" stroke="#1d1f3a" stroke-width="1.5"/>
+<rect x="362" y="134" width="52" height="24" rx="4" fill="none" stroke="#1d1f3a" stroke-width="1.5"/>
+<rect x="334" y="134" width="24" height="52" rx="4" fill="none" stroke="#1d1f3a" stroke-width="1.5"/>
+<rect x="362" y="162" width="52" height="24" rx="4" fill="none" stroke="#1d1f3a" stroke-width="1.5"/>
+<rect x="418" y="162" width="52" height="24" rx="4" fill="none" stroke="#1d1f3a" stroke-width="1.5"/>
+<rect x="474" y="162" width="52" height="24" rx="4" fill="none" stroke="#1d1f3a" stroke-width="1.5"/>
+<polyline points="486,202 458,202 430,202 402,202 374,202 346,202 346,230 374,230 402,230 430,230 458,230 486,230 514,230 514,258 486,258 458,258 430,258 402,258 374,258 346,258 318,258 318,230 318,202 318,174 318,146 318,118 318,90 318,62 346,62 374,62 402,62 430,62" fill="none" stroke="#865500" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="446" y="190" width="52" height="24" rx="4" fill="none" stroke="#1d1f3a" stroke-width="1.5"/>
+<rect x="390" y="190" width="52" height="24" rx="4" fill="none" stroke="#1d1f3a" stroke-width="1.5"/>
+<rect x="334" y="190" width="52" height="24" rx="4" fill="none" stroke="#1d1f3a" stroke-width="1.5"/>
+<rect x="334" y="218" width="52" height="24" rx="4" fill="none" stroke="#1d1f3a" stroke-width="1.5"/>
+<rect x="390" y="218" width="52" height="24" rx="4" fill="none" stroke="#1d1f3a" stroke-width="1.5"/>
+<rect x="446" y="218" width="52" height="24" rx="4" fill="none" stroke="#1d1f3a" stroke-width="1.5"/>
+<rect x="502" y="218" width="24" height="52" rx="4" fill="none" stroke="#1d1f3a" stroke-width="1.5"/>
+<rect x="446" y="246" width="52" height="24" rx="4" fill="none" stroke="#1d1f3a" stroke-width="1.5"/>
+<rect x="390" y="246" width="52" height="24" rx="4" fill="none" stroke="#1d1f3a" stroke-width="1.5"/>
+<rect x="334" y="246" width="52" height="24" rx="4" fill="none" stroke="#1d1f3a" stroke-width="1.5"/>
+<rect x="306" y="218" width="24" height="52" rx="4" fill="none" stroke="#1d1f3a" stroke-width="1.5"/>
+<rect x="306" y="162" width="24" height="52" rx="4" fill="none" stroke="#1d1f3a" stroke-width="1.5"/>
+<rect x="306" y="106" width="24" height="52" rx="4" fill="none" stroke="#1d1f3a" stroke-width="1.5"/>
+<rect x="306" y="50" width="24" height="52" rx="4" fill="none" stroke="#1d1f3a" stroke-width="1.5"/>
+<rect x="334" y="50" width="52" height="24" rx="4" fill="none" stroke="#1d1f3a" stroke-width="1.5"/>
+<rect x="390" y="50" width="52" height="24" rx="4" fill="none" stroke="#1d1f3a" stroke-width="1.5"/>
+<rect x="444" y="48" width="28" height="28" fill="#fff" stroke="#1d1f3a" stroke-width="1" stroke-dasharray="3 2"/><path d="M450 54 L466 70 M466 54 L450 70" stroke="#1d1f3a" stroke-width="2"/>
+<rect x="500" y="188" width="28" height="28" fill="#fff" stroke="#1d1f3a" stroke-width="1" stroke-dasharray="3 2"/><path d="M506 194 L522 210 M522 194 L506 210" stroke="#1d1f3a" stroke-width="2"/>
+<text x="126" y="296" font-size="16">Every square visited once</text><text x="416" y="296" font-size="16">30 squares + 32 squares</text>
+</g>
+</svg>
+<figcaption>One example: removing opposite colours leaves paths of 30 and 32 squares, which pair into 15 + 16 = 31 dominoes. The same method works wherever the two gaps are.</figcaption></figure>
+<p>Now pick a different opposite-colour pair on squared paper and try the construction. This proves the opposite-colour result, known as <b>Gomory's theorem</b>, by giving a tiling for every such pair.</p>
+</div>
+
 </section>
 
 <div class="sheet-nav"><a href="b10-pigeonhole.html">← The pigeonhole principle</a><a href="b12-infinity.html">Next: Hilbert's hotel →</a></div>
