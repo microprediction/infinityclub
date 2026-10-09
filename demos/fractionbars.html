@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fraction bars · Infinity Club</title>
+<meta name="description" content="Shade two fraction bars, then cut both into same-size pieces to see why fractions need a common denominator before you can add or subtract them. A demo for curious kids.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.controls button { min-height: 48px; min-width: 48px; font-size: 1.1rem; }
+.controls button[aria-pressed=false] { background: transparent; color: var(--accent); border: 2px solid var(--accent); }
+.pickers { display: flex; flex-wrap: wrap; gap: 1rem 2rem; margin: .4rem 0 1rem; }
+.picker { flex: 1 1 240px; min-width: 0; max-width: 340px; border: 1px solid var(--rule); border-radius: 10px; padding: .6rem .8rem; background: #fff; }
+.picker h3 { margin: 0 0 .4rem; font-size: 1rem; }
+.picker.one h3 { color: var(--accent); }
+.picker.two h3 { color: #b36f00; }
+.step { display: flex; align-items: center; gap: .5rem; margin: .35rem 0; }
+.step .what { flex: 1 1 0; min-width: 0; font-size: .9rem; font-weight: 700; line-height: 1.2; color: var(--muted); }
+.step button { font: inherit; font-size: 1.4rem; font-weight: 800; width: 48px; height: 48px; border-radius: 8px; border: 2px solid var(--accent); background: transparent; color: var(--accent); cursor: pointer; padding: 0; }
+.step button:disabled { opacity: .3; cursor: default; }
+.step .n { font-size: 1.4rem; font-weight: 800; min-width: 1.6em; text-align: center; }
+.row { display: flex; align-items: center; gap: .7rem; margin: .7rem 0; }
+.row .lab { flex: 0 0 2.6em; text-align: center; font-size: 1.15rem; font-weight: 800; }
+.row .bars { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: .35rem; }
+.bar { display: flex; height: 46px; border: 2px solid var(--ink); border-radius: 4px; overflow: hidden; background: #fff; }
+.bar i { flex: 1 1 0; min-width: 0; border-left: 1px solid rgba(29,31,58,.28); }
+.bar i:first-child { border-left: 0; }
+.bar i.thick { border-left: 2px solid var(--ink); }
+.bar i.a { background: #9da1ea; }
+.bar i.b { background: #f8c66d; }
+.bar i.gone { background: repeating-linear-gradient(45deg, #fff, #fff 3px, #c9cbe0 3px, #c9cbe0 5px); }
+.fr { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; line-height: 1.15; font-weight: 800; margin: 0 .15em; }
+.fr span:first-child { border-bottom: 2px solid currentColor; padding: 0 .25em; }
+.fr span:last-child { padding: 0 .25em; }
+#say { font-family: var(--sans); font-size: 1.05rem; white-space: normal; line-height: 2.2; }
+#say p { margin: .2rem 0; }
+#result[hidden] { display: none; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Fraction bars</h1>
+<p class="explain">Make two fractions with the <b>+</b> and <b>−</b> buttons. Each bar is one whole, cut into equal pieces. Then press <b>Cut smaller</b>. Both bars are cut again until their pieces are the same size, and now you can add them or take one away from the other.</p>
+<div class="demo-panel">
+  <div class="pickers" id="pickers"></div>
+  <div class="controls">
+    <button id="opadd" aria-pressed="true">Add</button>
+    <button id="opsub" aria-pressed="false">Take away</button>
+    <button id="cut" class="alt">Cut smaller</button>
+    <button id="swap" class="ghost">Swap</button>
+  </div>
+  <div class="row"><div class="lab" id="lab1"></div><div class="bars" id="bar1"></div></div>
+  <div class="row"><div class="lab" id="lab2"></div><div class="bars" id="bar2"></div></div>
+  <div class="row" id="result" hidden><div class="lab" id="lab3"></div><div class="bars" id="bar3"></div></div>
+  <div class="readout" id="say"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>The bottom number of a fraction says how many equal pieces the whole is cut into. The top number says how many of those pieces you have. So the bottom number is really a <b>size</b>: thirds are bigger than quarters.</p>
+<p>You can only count things together when they are the same kind of thing. One third and one quarter are two pieces, but two pieces of what? They are different sizes, so "two" tells you nothing yet.</p>
+<p>The fix is to cut both bars into smaller pieces that match. Cut each third into 4 and each quarter into 3, and both bars are in twelfths. Look at the shading while you press the button: <b>it does not move</b>. One third and four twelfths are the same amount with two different names.</p>
+<p>Once the pieces match, adding is just counting: 4 twelfths and 3 twelfths make 7 twelfths.</p>
+<p>Sheets: <a href="../grade-5/sheets/a5-same-fraction.html">The same fraction in disguise</a> and <a href="../grade-5/sheets/a6-adding-fractions.html">Why you cannot add thirds to quarters</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  function gcd(a, b) { while (b) { var t = a % b; a = b; b = t; } return a; }
+  function lcm(a, b) { return a / gcd(a, b) * b; }
+  // Rewrite n1/d1 and n2/d2 over the smallest shared denominator.
+  function common(n1, d1, n2, d2) {
+    var L = lcm(d1, d2);
+    return { den: L, x: n1 * (L / d1), y: n2 * (L / d2), cuts1: L / d1, cuts2: L / d2 };
+  }
+  function simplify(n, d) { var g = gcd(n, d) || 1; return { n: n / g, d: d / g }; }
+  function addFractions(n1, d1, n2, d2) { var c = common(n1, d1, n2, d2); return { n: c.x + c.y, d: c.den }; }
+  function subFractions(n1, d1, n2, d2) { var c = common(n1, d1, n2, d2); return { n: c.x - c.y, d: c.den }; }
+  function mixed(n, d) { return { whole: Math.floor(n / d), n: n % d, d: d }; }
+  var NAMES = ["", "wholes", "halves", "thirds", "quarters", "fifths", "sixths", "sevenths", "eighths", "ninths", "tenths", "elevenths", "twelfths"];
+  function pieceName(d) {
+    if (d < NAMES.length) return NAMES[d];
+    var t = d % 100, u = d % 10;
+    return d + (t >= 11 && t <= 13 ? "th" : u === 1 ? "st" : u === 2 ? "nd" : u === 3 ? "rd" : "th") + "s";
+  }
+  /*ENDPURE*/
+
+  var S = { n1: 1, d1: 3, n2: 1, d2: 4, op: "add", cut: false }, MAXD = 12;
+  var $ = function (id) { return document.getElementById(id); };
+  function fr(n, d) { return '<span class="fr"><span>' + n + "</span><span>" + d + "</span></span>"; }
+  function barHTML(cells, group, fills) { // fills: function(index) -> class name
+    var h = '<div class="bar">';
+    for (var i = 0; i < cells; i++) { var c = fills(i); if (i && i % group === 0) c += " thick"; h += '<i class="' + c.trim() + '"></i>'; }
+    return h + "</div>";
+  }
+  function stepper(parent, what, get, set, min, max) {
+    var row = document.createElement("div"); row.className = "step";
+    var w = document.createElement("span"); w.className = "what"; w.textContent = what;
+    var minus = document.createElement("button"); minus.textContent = "−"; minus.setAttribute("aria-label", what + ": one fewer");
+    var n = document.createElement("span"); n.className = "n";
+    var plus = document.createElement("button"); plus.textContent = "+"; plus.setAttribute("aria-label", what + ": one more");
+    minus.addEventListener("click", function () { if (get() > min()) { set(get() - 1); S.cut = false; draw(); } });
+    plus.addEventListener("click", function () { if (get() < max()) { set(get() + 1); S.cut = false; draw(); } });
+    row.appendChild(w); row.appendChild(minus); row.appendChild(n); row.appendChild(plus); parent.appendChild(row);
+    return function () { n.textContent = get(); minus.disabled = get() <= min(); plus.disabled = get() >= max(); };
+  }
+  var syncs = [];
+  [["one", "First fraction", "n1", "d1"], ["two", "Second fraction", "n2", "d2"]].forEach(function (p) {
+    var box = document.createElement("div"); box.className = "picker " + p[0];
+    var h = document.createElement("h3"); h.textContent = p[1]; box.appendChild(h);
+    syncs.push(stepper(box, "pieces shaded", function () { return S[p[2]]; }, function (v) { S[p[2]] = v; }, function () { return 0; }, function () { return S[p[3]]; }));
+    syncs.push(stepper(box, "pieces in the bar", function () { return S[p[3]]; }, function (v) { S[p[3]] = v; if (S[p[2]] > v) S[p[2]] = v; }, function () { return 1; }, function () { return MAXD; }));
+    $("pickers").appendChild(box);
+  });
+
+  function draw() {
+    syncs.forEach(function (f) { f(); });
+    $("opadd").setAttribute("aria-pressed", S.op === "add"); $("opsub").setAttribute("aria-pressed", S.op === "sub");
+    var c = common(S.n1, S.d1, S.n2, S.d2), L = c.den, sign = S.op === "add" ? " + " : " − ";
+    $("lab1").innerHTML = fr(S.n1, S.d1); $("lab2").innerHTML = fr(S.n2, S.d2);
+    $("lab1").style.color = "var(--accent)"; $("lab2").style.color = "#b36f00";
+    $("cut").textContent = S.cut ? "Put the pieces back" : "Cut smaller";
+    if (!S.cut) {
+      $("bar1").innerHTML = barHTML(S.d1, 1, function (i) { return i < S.n1 ? "a" : ""; });
+      $("bar2").innerHTML = barHTML(S.d2, 1, function (i) { return i < S.n2 ? "b" : ""; });
+      $("result").hidden = true;
+      $("say").innerHTML = S.d1 === S.d2
+        ? "<p>Both bars are cut into " + pieceName(S.d1) + ", so the pieces already match. Press <b>Cut smaller</b> to see " + fr(S.n1, S.d1) + sign + fr(S.n2, S.d2) + ".</p>"
+        : "<p>The top bar is cut into " + pieceName(S.d1) + " and the bottom bar into " + pieceName(S.d2) + ". The pieces are different sizes, so you cannot count them together yet. Press <b>Cut smaller</b>.</p>";
+      return;
+    }
+    $("bar1").innerHTML = barHTML(L, c.cuts1, function (i) { return i < c.x ? "a" : ""; });
+    $("bar2").innerHTML = barHTML(L, c.cuts2, function (i) { return i < c.y ? "b" : ""; });
+    var html = "";
+    if (S.d1 === S.d2) html += "<p>Both bars were already in " + pieceName(L) + ". Nothing to cut.</p>";
+    else {
+      html += "<p>Now both bars are in <b>" + pieceName(L) + "</b>.</p>";
+      html += "<p>" + (c.cuts1 === 1 ? "The top bar did not need cutting." : "Each of the top bar's pieces was cut into " + c.cuts1 + ", so " + fr(S.n1, S.d1) + " = " + fr(c.x, L) + ".") + "</p>";
+      html += "<p>" + (c.cuts2 === 1 ? "The bottom bar did not need cutting." : "Each of the bottom bar's pieces was cut into " + c.cuts2 + ", so " + fr(S.n2, S.d2) + " = " + fr(c.y, L) + ".") + "</p>";
+    }
+    var total, bars = "";
+    if (S.op === "add") {
+      total = c.x + c.y;
+      var nb = Math.max(1, Math.ceil(total / L));
+      for (var b = 0; b < nb; b++) (function (off) {
+        bars += barHTML(L, L, function (i) { var k = off + i; return k < c.x ? "a" : k < total ? "b" : ""; });
+      })(b * L);
+    } else {
+      total = c.x - c.y;
+      if (total < 0) {
+        $("result").hidden = true;
+        $("say").innerHTML = html + "<p>The second fraction is the bigger one (" + c.y + " " + pieceName(L) + " against " + c.x + "), so you cannot take it away from the first. Press <b>Swap</b>.</p>";
+        return;
+      }
+      bars = barHTML(L, L, function (i) { return i < total ? "a" : i < c.x ? "gone" : ""; });
+    }
+    $("result").hidden = false; $("bar3").innerHTML = bars; $("lab3").innerHTML = "=";
+    var s = simplify(total, L), m = mixed(s.n, s.d);
+    var line = fr(c.x, L) + sign + fr(c.y, L) + " = " + fr(total, L);
+    if (total === 0) line += " = 0";
+    else if (s.d === 1) line += " = " + s.n + (s.n === 1 ? " whole" : " wholes");
+    else {
+      if (s.d !== L) line += " = " + fr(s.n, s.d);
+      if (m.whole > 0) line += " = " + m.whole + " and " + fr(m.n, m.d);
+    }
+    html += "<p>" + (S.op === "add" ? "Count the pieces: " : "Take the pieces away: ") + c.x + sign + c.y + " = " + total + " " + pieceName(L) + ".</p><p>" + line + "</p>";
+    $("say").innerHTML = html;
+  }
+  $("opadd").addEventListener("click", function () { S.op = "add"; draw(); });
+  $("opsub").addEventListener("click", function () { S.op = "sub"; draw(); });
+  $("cut").addEventListener("click", function () { S.cut = !S.cut; draw(); });
+  $("swap").addEventListener("click", function () { var n = S.n1, d = S.d1; S.n1 = S.n2; S.d1 = S.d2; S.n2 = n; S.d2 = d; draw(); });
+  draw();
+})();
+</script>
+</body>
+</html>

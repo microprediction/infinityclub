@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Corners, edges and faces · Infinity Club</title>
+<meta name="description" content="Count the corners, edges and faces of a cube, a pyramid and a prism. Corners plus faces minus edges is always 2. A grade 5 sheet on Euler's rule for solids.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 5</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 5 · Around the corner · 10</div>
+  <h1>Corners, edges and faces</h1>
+  <p class="teaser">Count them on a cube, a pyramid, a prism. Corners plus faces minus edges is always 2.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A solid with flat sides has three things you can count. A <b>face</b> is a flat side. An <b>edge</b> is a line where two faces meet. A <b>corner</b> is a point where edges meet.</p>
+<figure><svg viewBox="0 0 520 152" width="520" height="152" role="img" aria-label="A cube, a pyramid with a square base and a prism with triangle ends, with hidden edges dashed. The cube has 8 corners, 12 edges and 6 faces. The pyramid has 5, 8 and 5. The prism has 6, 9 and 5." font-family="Nunito, sans-serif" font-size="12">
+<polygon points="30,114 104,114 104,40 30,40" fill="#dcdcf5" stroke="none" stroke-width="1.5" stroke-linejoin="round"/><line x1="30" y1="114" x2="104" y2="114" stroke="#000" stroke-width="2"/><line x1="104" y1="114" x2="104" y2="40" stroke="#000" stroke-width="2"/><line x1="104" y1="40" x2="30" y2="40" stroke="#000" stroke-width="2"/><line x1="30" y1="40" x2="30" y2="114" stroke="#000" stroke-width="2"/><line x1="58" y1="86" x2="132" y2="86" stroke="#000" stroke-width="1.2" stroke-dasharray="4 3"/><line x1="132" y1="86" x2="132" y2="12" stroke="#000" stroke-width="2"/><line x1="132" y1="12" x2="58" y2="12" stroke="#000" stroke-width="2"/><line x1="58" y1="12" x2="58" y2="86" stroke="#000" stroke-width="1.2" stroke-dasharray="4 3"/><line x1="30" y1="114" x2="58" y2="86" stroke="#000" stroke-width="1.2" stroke-dasharray="4 3"/><line x1="104" y1="114" x2="132" y2="86" stroke="#000" stroke-width="2"/><line x1="104" y1="40" x2="132" y2="12" stroke="#000" stroke-width="2"/><line x1="30" y1="40" x2="58" y2="12" stroke="#000" stroke-width="2"/>
+<polygon points="205,112 290,112 261,14" fill="#dcdcf5" stroke="none" stroke-width="1.5" stroke-linejoin="round"/><line x1="205" y1="112" x2="290" y2="112" stroke="#000" stroke-width="2"/><line x1="290" y1="112" x2="318" y2="90" stroke="#000" stroke-width="2"/><line x1="318" y1="90" x2="233" y2="90" stroke="#000" stroke-width="1.2" stroke-dasharray="4 3"/><line x1="233" y1="90" x2="205" y2="112" stroke="#000" stroke-width="1.2" stroke-dasharray="4 3"/><line x1="205" y1="112" x2="261" y2="14" stroke="#000" stroke-width="2"/><line x1="290" y1="112" x2="261" y2="14" stroke="#000" stroke-width="2"/><line x1="318" y1="90" x2="261" y2="14" stroke="#000" stroke-width="2"/><line x1="233" y1="90" x2="261" y2="14" stroke="#000" stroke-width="1.2" stroke-dasharray="4 3"/>
+<polygon points="378,112 440,112 409,52" fill="#dcdcf5" stroke="none" stroke-width="1.5" stroke-linejoin="round"/><line x1="378" y1="112" x2="440" y2="112" stroke="#000" stroke-width="2"/><line x1="440" y1="112" x2="409" y2="52" stroke="#000" stroke-width="2"/><line x1="409" y1="52" x2="378" y2="112" stroke="#000" stroke-width="2"/><line x1="420" y1="88" x2="482" y2="88" stroke="#000" stroke-width="1.2" stroke-dasharray="4 3"/><line x1="482" y1="88" x2="451" y2="28" stroke="#000" stroke-width="2"/><line x1="451" y1="28" x2="420" y2="88" stroke="#000" stroke-width="1.2" stroke-dasharray="4 3"/><line x1="378" y1="112" x2="420" y2="88" stroke="#000" stroke-width="1.2" stroke-dasharray="4 3"/><line x1="440" y1="112" x2="482" y2="88" stroke="#000" stroke-width="2"/><line x1="409" y1="52" x2="451" y2="28" stroke="#000" stroke-width="2"/>
+<text x="84" y="132" text-anchor="middle" font-weight="700" font-size="13">cube</text><text x="84" y="147" text-anchor="middle" fill="#3f44c9">8 corners, 12 edges, 6 faces</text>
+<text x="261" y="132" text-anchor="middle" font-weight="700" font-size="13">square pyramid</text><text x="261" y="147" text-anchor="middle" fill="#3f44c9">5 corners, 8 edges, 5 faces</text>
+<text x="432" y="132" text-anchor="middle" font-weight="700" font-size="13">triangle prism</text><text x="432" y="147" text-anchor="middle" fill="#3f44c9">6 corners, 9 edges, 5 faces</text>
+</svg><figcaption>Dashed edges are round the back. Count them too.</figcaption></figure>
+<p>For each solid, add the corners and the faces, then take away the edges.</p>
+<p>Cube: \(8 + 6 - 12 = 2\). Pyramid: \(5 + 5 - 8 = 2\). Prism: \(6 + 5 - 9 = 2\).</p>
+<p class="callout">For any solid with flat faces and no holes through it: <b>corners + faces − edges = 2</b>.</p>
+<p>Three very different solids, one answer. This is called Euler's rule, after Leonhard Euler (say "Oiler"), who noticed it more than 250 years ago.</p>
+<p>If you know two of the counts, it gives you the third. It also catches mistakes. If your three counts do not give 2, count again.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: saw off a corner</h2>
+<figure><svg viewBox="0 0 132 122" width="132" height="122" role="img" aria-label="A cube with one corner sawn off, leaving a small triangle face where the corner was." font-family="Nunito, sans-serif" font-size="12">
+<polygon points="14,112 90,112 90,63.36 62.64,36 14,36" fill="#dcdcf5" stroke="none" stroke-width="1.5" stroke-linejoin="round"/><polygon points="62.64,36 90,63.36 102.6,23.4" fill="#fde8c4" stroke="none" stroke-width="1.5" stroke-linejoin="round"/><line x1="14" y1="112" x2="90" y2="112" stroke="#000" stroke-width="2"/><line x1="14" y1="36" x2="14" y2="112" stroke="#000" stroke-width="2"/><line x1="118" y1="84" x2="118" y2="8" stroke="#000" stroke-width="2"/><line x1="118" y1="8" x2="42" y2="8" stroke="#000" stroke-width="2"/><line x1="14" y1="36" x2="42" y2="8" stroke="#000" stroke-width="2"/><line x1="90" y1="112" x2="118" y2="84" stroke="#000" stroke-width="2"/><line x1="14" y1="36" x2="62.64" y2="36" stroke="#000" stroke-width="2"/><line x1="90" y1="112" x2="90" y2="63.36" stroke="#000" stroke-width="2"/><line x1="118" y1="8" x2="102.6" y2="23.4" stroke="#000" stroke-width="2"/><line x1="42" y1="84" x2="118" y2="84" stroke="#000" stroke-width="1.2" stroke-dasharray="4 3"/><line x1="42" y1="8" x2="42" y2="84" stroke="#000" stroke-width="1.2" stroke-dasharray="4 3"/><line x1="14" y1="112" x2="42" y2="84" stroke="#000" stroke-width="1.2" stroke-dasharray="4 3"/><polygon points="62.64,36 90,63.36 102.6,23.4" fill="none" stroke="#f5a524" stroke-width="2.5" stroke-linejoin="round"/>
+</svg><figcaption>One corner off, one triangle on.</figcaption></figure>
+<p>Saw one corner off a wooden cube.</p>
+<p>The old corner goes and the cut makes three new ones: \(8 - 1 + 3 = 10\) corners. The cut is a new triangle face: \(6 + 1 = 7\) faces. The triangle has three new edges: \(12 + 3 = 15\) edges.</p>
+<p>Check: \(10 + 7 - 15 = 2\). Corners and faces went up by 3 between them. Edges went up by 3 as well. So the balance did not move.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>A pyramid with a triangle for its base has four faces, all triangles. Count its corners and its edges. Check the rule.<div class="space short"></div></li>
+<li>A prism has two five-sided ends joined by five rectangles. Count its corners, edges and faces. Check the rule.<div class="space short"></div></li>
+<li>(a) A solid has 12 corners and 8 faces. How many edges does it have? (b) Sam counts 7 corners, 7 faces and 11 edges on a solid. How do you know Sam has miscounted?<div class="space short"></div></li>
+<li>A pyramid has a base with 100 sides. (a) Without drawing it, find its corners, edges and faces. (b) Check the rule. (c) Explain why the rule works for every pyramid, whatever the base.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the football</h2>
+<p>A classic football (soccer ball) is sewn from 12 five-sided patches and 20 six-sided patches. Every edge is a seam shared by two patches. How many edges are there? Now use the rule to find the number of corners.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>4 corners and 6 edges. \(4 + 4 - 6 = 2\).</li>
+<li>10 corners (5 on each end). 15 edges (5 round each end and 5 joining them). 7 faces (2 ends and 5 rectangles). \(10 + 7 - 15 = 2\).</li>
+<li>(a) \(12 + 8 = 20\), and 20 take away the edges must be 2, so there are 18 edges. (b) \(7 + 7 - 11 = 3\), not 2. If the two 7s are right there must be 12 edges, so Sam probably missed one.</li>
+<li>(a) 101 corners (100 round the base and the tip). 200 edges (100 round the base and 100 up to the tip). 101 faces (100 triangles and the base). (b) \(101 + 101 - 200 = 2\). (c) Each side of the base brings one corner, one triangle face and two edges. So corners plus faces goes up by 2, and edges go up by 2 as well. The tip and the base are the extra 2.</li>
+</ol>
+<p><b>Stretch.</b> Count the sides of all the patches: \(12 \times 5 + 20 \times 6 = 180\). Each seam was counted twice, once for each patch, so there are \(180 \div 2 = 90\) edges. There are 32 faces. Corners \(+\ 32 - 90 = 2\), so there are 60 corners.</p>
+</section>
+
+<div class="sheet-nav"><a href="b9-cube-nets.html">← Previous</a><a href="b11-ways-home.html">Next: How many ways home? →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

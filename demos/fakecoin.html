@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Find the fake coin · Infinity Club</title>
+<meta name="description" content="Nine coins, one a little lighter, and a balance with no weights. Put coins on the pans, weigh, and find the fake in as few weighings as you can.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.balance { max-width: 520px; margin: 0 auto; }
+#beam { display: block; width: 100%; height: auto; }
+#beam .arm { transition: transform .5s ease; transform-origin: 150px 16px; transform-box: view-box; }
+.pans { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 16px 0; }
+.pan { border: 3px solid var(--rule); border-radius: 0 0 26px 26px; border-top-width: 0; background: #fff; min-height: 108px; padding: 0 4px 8px; transition: transform .5s ease; cursor: pointer; }
+.pan.on { border-color: var(--warm); background: var(--warm-soft); }
+.pan.up { transform: translateY(-14px); }
+.pan.down { transform: translateY(14px); }
+.pan h3 { margin: 0 0 .3rem; padding: .35rem 0; font-size: .92rem; text-align: center; color: var(--muted); }
+.pan.on h3 { color: var(--ink); }
+.zone { display: flex; flex-wrap: wrap; gap: 4px; justify-content: center; }
+.table { border: 2px dashed var(--rule); border-radius: 12px; padding: 8px 4px; min-height: 60px; margin: .4rem 0 .8rem; }
+.table h3 { margin: 0 0 .3rem; font-size: .92rem; text-align: center; color: var(--muted); }
+.coin { width: 40px; height: 40px; border-radius: 50%; border: 2px solid #b97a0c; background: #ffd66b; font: inherit; font-weight: 800; font-size: .9rem; color: var(--ink); padding: 0; cursor: pointer; touch-action: manipulation; }
+.coin.real { background: #e4e2dc; border-color: #b9b6ad; color: var(--muted); }
+.coin.fake { background: #fff; border: 3px solid #b3261e; color: #b3261e; }
+.coin.pick { box-shadow: 0 0 0 3px var(--accent); }
+.controls button { min-height: 48px; padding: .6rem 1rem; }
+.controls.big { justify-content: center; }
+.controls.big button { font-size: 1.15rem; min-height: 54px; min-width: 7.5rem; }
+.controls button:disabled { opacity: .4; cursor: default; }
+.controls select { font: inherit; padding: .5rem .6rem; border: 1px solid var(--rule); border-radius: 6px; min-height: 46px; background: #fff; }
+.controls input[type=checkbox] { width: 24px; height: 24px; }
+@media (max-width: 460px) {
+  .demo-panel { padding: 1rem .7rem; }
+  .pan h3 { font-size: .8rem; }
+}
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Find the fake coin</h1>
+<p class="explain">One of these coins is a fake. It looks the same but it is a little <b>lighter</b>. <b>Tap coins to put them on the pans</b>, then press <b>Weigh</b>. The lighter pan goes up. When you are sure, press <b>I know the fake</b> and tap it. Use as few weighings as you can.</p>
+<div class="demo-panel">
+  <div class="balance">
+    <svg id="beam" viewBox="0 0 300 44" role="img" aria-label="A balance">
+      <path d="M150 16 L138 42 L162 42 Z" fill="#dcdcf5" stroke="#3f44c9" stroke-width="2" stroke-linejoin="round"/>
+      <g class="arm" id="arm">
+        <line x1="40" y1="16" x2="260" y2="16" stroke="#3f44c9" stroke-width="5" stroke-linecap="round"/>
+        <line x1="40" y1="16" x2="40" y2="30" stroke="#3f44c9" stroke-width="3" stroke-linecap="round"/>
+        <line x1="260" y1="16" x2="260" y2="30" stroke="#3f44c9" stroke-width="3" stroke-linecap="round"/>
+      </g>
+      <circle cx="150" cy="16" r="5" fill="#f5a524"/>
+    </svg>
+    <div class="pans">
+      <div class="pan" id="panL"><h3 id="headL">Left pan</h3><div class="zone" id="zoneL"></div></div>
+      <div class="pan" id="panR"><h3 id="headR">Right pan</h3><div class="zone" id="zoneR"></div></div>
+    </div>
+  </div>
+  <div class="controls big">
+    <button id="weigh">Weigh</button>
+    <button id="accuse" class="alt">I know the fake</button>
+  </div>
+  <div class="readout" id="status"></div>
+  <div class="table"><h3>Table</h3><div class="zone" id="zoneT"></div></div>
+  <div class="controls">
+    <button id="swap" class="ghost">Fill the other pan</button>
+    <button id="clear" class="ghost">Clear the pans</button>
+    <button id="newgame" class="ghost">New puzzle</button>
+  </div>
+  <div class="controls">
+    <label>Coins <select id="count"><option>3</option><option selected>9</option><option>27</option></select></label>
+    <label><input type="checkbox" id="mark" checked> grey out coins that must be real</label>
+  </div>
+  <div class="readout" id="log" hidden></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>A balance can do <b>three</b> things, not two. The left pan can go up, the right pan can go up, or they can stay level. So one weighing can sort the coins into three piles: the left pan, the right pan, and <b>the coins you left on the table</b>.</p>
+<p>With 9 coins, put 3 on each pan and leave 3 on the table. If a pan goes up, the fake is one of its 3. If they stay level, the fake is one of the 3 on the table. Either way you are down to 3 coins. Now weigh one of those against another and leave the third on the table. Two weighings, every time.</p>
+<p>Splitting into two piles feels natural, but it wastes the table. Weigh 4 against 4 and you may be left with 4 coins, and then you need two more weighings.</p>
+<p>This demo is a little sneaky. It does not choose the fake until it has to, and it always keeps the fake in the biggest pile it still can. So luck never helps. Only a plan that works every time will do.</p>
+<p>Each weighing cuts the pile to a third: 3 coins need 1 weighing, 9 need 2, 27 need 3. How many coins could you handle with 4?</p>
+<p>Sheet: <a href="../grade-5/sheets/b18-fake-coin.html">Find the fake coin</a>. A cousin of this puzzle, where each question cuts the pile in half: <a href="guess.html">the guessing game</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  function has(list, x) { return list.indexOf(x) >= 0; }
+  // An honest balance: which pan goes UP (is lighter) when coin `fake` is the light one.
+  function weigh(left, right, fake) { return has(left, fake) ? "left" : has(right, fake) ? "right" : "level"; }
+  // the coins that could still be the fake after a weighing
+  function narrow(cands, left, right, outcome) {
+    return cands.filter(function (c) { return outcome === "left" ? has(left, c) : outcome === "right" ? has(right, c) : !has(left, c) && !has(right, c); });
+  }
+  // The sneaky balance: give the answer that leaves the most coins under suspicion.
+  // Every answer it gives is true for at least one coin, so it never contradicts itself.
+  function sneaky(cands, left, right, rnd) {
+    var opts = ["left", "right", "level"].map(function (o) { return { outcome: o, cands: narrow(cands, left, right, o) }; });
+    var most = Math.max.apply(null, opts.map(function (o) { return o.cands.length; }));
+    var best = opts.filter(function (o) { return o.cands.length === most; });
+    return best[Math.floor((rnd ? rnd() : 0) * best.length)];
+  }
+  // three-pile plan: two equal pans, each a third of the suspects (rounded up); the rest stay on the table
+  function threePiles(cands) {
+    var k = Math.ceil(cands.length / 3);
+    return { left: cands.slice(0, k), right: cands.slice(k, 2 * k) };
+  }
+  // two-pile plan: half against half (one coin left over if the number is odd)
+  function twoPiles(cands) {
+    var k = Math.floor(cands.length / 2);
+    return { left: cands.slice(0, k), right: cands.slice(k, 2 * k) };
+  }
+  // fewest weighings that always work for n coins: the smallest k with 3^k >= n
+  function fewest(n) { var k = 0, p = 1; while (p < n) { p *= 3; k++; } return k; }
+  function coinList(list) { return list.map(function (c) { return c + 1; }).join(" "); }
+  /*ENDPURE*/
+
+  var zone = { table: document.getElementById("zoneT"), left: document.getElementById("zoneL"), right: document.getElementById("zoneR") };
+  var panL = document.getElementById("panL"), panR = document.getElementById("panR"), arm = document.getElementById("arm");
+  var status = document.getElementById("status"), logEl = document.getElementById("log"), markCb = document.getElementById("mark");
+  var weighB = document.getElementById("weigh"), accuseB = document.getElementById("accuse"), swapB = document.getElementById("swap");
+  var N = 9, where = [], cands = [], count = 0, tilt = "level", fill = "left", over = false, accusing = false, fake = -1, log = [];
+
+  function on(side) { var out = []; where.forEach(function (w, i) { if (w === side) out.push(i); }); return out; }
+  function times(n) { return n === 1 ? "1 weighing" : n + " weighings"; }
+  function render() {
+    ["table", "left", "right"].forEach(function (z) { zone[z].innerHTML = ""; });
+    where.forEach(function (w, i) {
+      var b = document.createElement("button");
+      b.className = "coin" + (over && i === fake ? " fake" : (markCb.checked || over) && !has(cands, i) ? " real" : "") + (accusing ? " pick" : "");
+      b.textContent = i + 1; b.setAttribute("aria-label", "Coin " + (i + 1) + (w === "table" ? ", on the table" : ", on the " + w + " pan"));
+      b.addEventListener("click", function (ev) { ev.stopPropagation(); tapCoin(i); });
+      zone[w].appendChild(b);
+    });
+    panL.className = "pan" + (fill === "left" && !over ? " on" : "") + (tilt === "left" ? " up" : tilt === "right" ? " down" : "");
+    panR.className = "pan" + (fill === "right" && !over ? " on" : "") + (tilt === "right" ? " up" : tilt === "left" ? " down" : "");
+    document.getElementById("headL").textContent = fill === "left" && !over ? "Left pan: coins go here" : "Left pan";
+    document.getElementById("headR").textContent = fill === "right" && !over ? "Right pan: coins go here" : "Right pan";
+    arm.style.transform = "rotate(" + (tilt === "left" ? 5 : tilt === "right" ? -5 : 0) + "deg)";
+    weighB.disabled = over || accusing; accuseB.disabled = over; accuseB.textContent = accusing ? "Cancel" : "I know the fake";
+    logEl.hidden = log.length === 0; logEl.textContent = log.join("\n");
+  }
+  function tapCoin(i) {
+    if (over) return;
+    if (accusing) return accuse(i);
+    where[i] = where[i] === "table" ? fill : "table";
+    if (tilt !== "level") { tilt = "level"; status.textContent = "Weighings so far: " + count + ". Set up the next one."; }
+    render();
+  }
+  function setFill(side) { if (over) return; fill = side; render(); }
+  function doWeigh() {
+    if (over || accusing) return;
+    var L = on("left"), R = on("right");
+    if (!L.length || !R.length) { status.textContent = "Put some coins on both pans first. Tap a coin on the table to move it."; return; }
+    if (L.length !== R.length) { status.textContent = "Put the same number of coins on each pan. Now it is " + L.length + " against " + R.length + ", so the pan with more coins would just go down and tell you nothing."; return; }
+    var r = sneaky(cands, L, R, Math.random);
+    cands = r.cands; tilt = r.outcome; count++;
+    var what = tilt === "level" ? "stayed level" : "the " + tilt + " pan went up";
+    log.push("Weighing " + count + ": " + coinList(L) + "  against  " + coinList(R) + "  →  " + what);
+    status.textContent = "Weighing " + count + ". " + (tilt === "level"
+      ? "The pans stay level. All these coins are real, so the fake is not on a pan."
+      : "The " + tilt + " pan goes up. It is lighter, so the fake is on the " + tilt + " pan.")
+      + (markCb.checked ? "\nCoins that could still be the fake: " + cands.length + "." : "");
+    render();
+  }
+  function accuse(i) {
+    accusing = false; over = true;
+    var best = fewest(N);
+    if (cands.length === 1 && cands[0] === i) {
+      fake = i;
+      status.textContent = "Yes! Coin " + (i + 1) + " is the fake. You found it in " + times(count) + ".\n"
+        + (count <= best ? "That is the fewest possible for " + N + " coins." : "It can always be done in " + best + ". Press New puzzle and try for " + best + ".");
+    } else {
+      var others = cands.filter(function (c) { return c !== i; });
+      fake = others[Math.floor(Math.random() * others.length)];
+      status.textContent = (has(cands, i)
+        ? "Not this time. You could not be sure yet: " + cands.length + " coins could still have been the fake."
+        : "No. Coin " + (i + 1) + " was already shown to be real.")
+        + "\nThe fake was coin " + (fake + 1) + ". Press New puzzle and try again.";
+      cands = [fake];
+    }
+    tilt = "level"; render();
+  }
+  function newGame() {
+    N = parseInt(document.getElementById("count").value, 10) || 9;
+    where = []; cands = []; for (var i = 0; i < N; i++) { where.push("table"); cands.push(i); }
+    count = 0; tilt = "level"; fill = "left"; over = false; accusing = false; fake = -1; log = [];
+    status.textContent = N + " coins, one is lighter. Tap coins to fill the left pan.\nCan you find the fake in " + times(fewest(N)) + "?";
+    render();
+  }
+  panL.addEventListener("click", function () { setFill("left"); });
+  panR.addEventListener("click", function () { setFill("right"); });
+  swapB.addEventListener("click", function () { setFill(fill === "left" ? "right" : "left"); });
+  weighB.addEventListener("click", doWeigh);
+  accuseB.addEventListener("click", function () {
+    if (over) return;
+    accusing = !accusing;
+    status.textContent = accusing ? "Tap the coin you think is the fake." : "Weighings so far: " + count + ".";
+    render();
+  });
+  document.getElementById("clear").addEventListener("click", function () {
+    if (over) return;
+    where = where.map(function () { return "table"; }); tilt = "level"; fill = "left";
+    status.textContent = "Weighings so far: " + count + ". Set up the next one."; render();
+  });
+  document.getElementById("newgame").addEventListener("click", newGame);
+  document.getElementById("count").addEventListener("change", newGame);
+  markCb.addEventListener("change", render);
+  newGame();
+})();
+</script>
+</body>
+</html>

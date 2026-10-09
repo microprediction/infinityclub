@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Slide the digits · Infinity Club</title>
+<meta name="description" content="Multiply or divide by 10 and 100 and watch every digit slide along the place-value columns while the decimal point stays put. A demo for curious kids.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.controls button { min-height: 48px; min-width: 64px; font-size: 1.15rem; }
+.controls input[type=text] { font: inherit; font-size: 1.2rem; width: 6.5em; padding: .5em .5em; border: 1px solid var(--rule); border-radius: 6px; }
+.board { position: relative; max-width: 560px; margin: 1rem 0; }
+.cols { display: flex; align-items: stretch; }
+.col { flex: 1 1 0; min-width: 0; text-align: center; }
+.col .hd { height: 3em; display: flex; flex-direction: column; justify-content: flex-end; font-size: .7rem; font-weight: 700; color: var(--muted); line-height: 1.2; padding-bottom: .2em; overflow: hidden; }
+.col .hd .nm { display: none; }
+.col .slot { height: 60px; background: #fff; border: 1px solid var(--rule); border-left-width: 0; }
+.col.edge .slot { border-left-width: 1px; }
+.pt { flex: 0 0 16px; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; }
+.pt span { width: 10px; height: 10px; border-radius: 50%; background: var(--warm); margin-bottom: 9px; }
+.tile { position: absolute; display: flex; align-items: center; justify-content: center; font-size: 1.9rem; font-weight: 800; color: var(--accent); transition: left .6s ease, opacity .6s ease; pointer-events: none; }
+.tile.zero { color: #b3b5d2; }
+.mission { max-width: 70ch; margin: -.4rem 0 1rem; }
+.mission p { margin: .3rem 0; }
+.mission summary { cursor: pointer; font-weight: 700; padding: .4rem 0; }
+@media (min-width: 560px) { .col .hd .nm { display: block; } }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Slide the digits</h1>
+<p class="explain">Press <b>×10</b> and every digit slides one column to the left. Press <b>÷10</b> and every digit slides one column to the right. The orange decimal point never moves. Type your own number to start with, then try ×100 and ÷100.</p>
+<div class="mission">
+<p class="small"><b>Try this.</b> Start with 0.07. Which one button turns it into 7? Decide first, then press it.</p>
+<details class="small"><summary>Answer</summary><p>×100. The 7 has to slide two columns to the left, from the hundredths column to the ones column. Each column is worth ten times more than the one before, and 10 × 10 = 100.</p></details>
+</div>
+<div class="demo-panel">
+  <div class="controls">
+    <label>Start with <input type="text" id="num" inputmode="decimal" maxlength="9" value="3.45" autocomplete="off"></label>
+    <button id="set" class="ghost">Use this number</button>
+  </div>
+  <div class="board" id="board">
+    <div class="cols" id="cols"></div>
+  </div>
+  <div class="controls">
+    <button data-k="1">× 10</button>
+    <button data-k="-1" class="alt">÷ 10</button>
+    <button data-k="2">× 100</button>
+    <button data-k="-2" class="alt">÷ 100</button>
+  </div>
+  <div class="readout" id="say"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>Each column is worth <b>ten times</b> the column on its right. Ten ones make a ten. Ten tens make a hundred. It works past the decimal point too: ten tenths make a one, and ten hundredths make a tenth.</p>
+<p>So to make a number ten times bigger, you do not need to calculate. Move every digit one column to the left, and each digit is now worth ten times what it was. To make it ten times smaller, move every digit one column to the right.</p>
+<p>The pale zeros are <b>place holders</b>. They fill the empty columns so you can tell 3 from 30 and 0.3 from 0.03.</p>
+<p>People sometimes say "add a zero to multiply by 10". Try it on 3.45 and see why that rule lets you down: 3.450 is the same number as 3.45. Sliding the digits always works.</p>
+<p>Sheet: <a href="../grade-5/sheets/a1-ten-times.html">Ten times bigger, ten times smaller</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  // A number is seven digits: index 0 = thousands, 3 = ones, 6 = thousandths.
+  var PLACES = ["thousands", "hundreds", "tens", "ones", "tenths", "hundredths", "thousandths"];
+  var WORTH = ["1000", "100", "10", "1", "0.1", "0.01", "0.001"];
+  function parseNumber(str) {
+    var s = String(str).trim().replace(",", ".");
+    if (!/^\d{0,4}(\.\d{0,3})?$/.test(s) || !/\d/.test(s)) return null;
+    var parts = s.split("."), whole = parts[0] || "", frac = parts[1] || "";
+    var t = ("0000" + whole).slice(-4) + (frac + "000").slice(0, 3);
+    return t.split("").map(Number);
+  }
+  function formatNumber(d) {
+    var whole = d.slice(0, 4).join("").replace(/^0+/, "") || "0";
+    var frac = d.slice(4).join("").replace(/0+$/, "");
+    return frac ? whole + "." + frac : whole;
+  }
+  // k > 0 slides the digits k columns left (x10 each); k < 0 slides them right. null if a digit would fall off.
+  function shiftDigits(d, k) {
+    var out = [0, 0, 0, 0, 0, 0, 0];
+    for (var i = 0; i < 7; i++) {
+      if (!d[i]) continue;
+      var j = i - k;
+      if (j < 0 || j > 6) return null;
+      out[j] = d[i];
+    }
+    return out;
+  }
+  function firstDigit(d) { for (var i = 0; i < 7; i++) if (d[i]) return i; return -1; }
+  function lastDigit(d) { for (var i = 6; i >= 0; i--) if (d[i]) return i; return -1; }
+  // Which columns show a digit: from the first digit (or the ones) to the last digit (or the ones).
+  function shownRange(d) {
+    var f = firstDigit(d), l = lastDigit(d);
+    return [f < 0 ? 3 : Math.min(f, 3), l < 0 ? 3 : Math.max(l, 3)];
+  }
+  function opName(k) { return (k > 0 ? "× " : "÷ ") + (Math.abs(k) === 1 ? "10" : "100"); }
+  /*ENDPURE*/
+
+  var board = document.getElementById("board"), colsEl = document.getElementById("cols"), say = document.getElementById("say"), numIn = document.getElementById("num");
+  var digits = parseNumber("3.45"), cols = [], tiles = [], busy = false, gen = 0;
+
+  PLACES.forEach(function (name, i) {
+    if (i === 4) { var p = document.createElement("div"); p.className = "pt"; p.title = "decimal point"; p.appendChild(document.createElement("span")); colsEl.appendChild(p); }
+    var c = document.createElement("div"); c.className = "col" + (i === 0 || i === 4 ? " edge" : "");
+    var hd = document.createElement("div"); hd.className = "hd";
+    var nm = document.createElement("span"); nm.className = "nm"; nm.textContent = name;
+    var w = document.createElement("span"); w.textContent = WORTH[i];
+    hd.appendChild(nm); hd.appendChild(w);
+    var slot = document.createElement("div"); slot.className = "slot";
+    c.appendChild(hd); c.appendChild(slot); colsEl.appendChild(c);
+    cols.push({ col: c, slot: slot });
+  });
+
+  function place(el, idx) {
+    var inside = idx >= 0 && idx <= 6, c = cols[Math.max(0, Math.min(6, idx))];
+    var w = c.col.offsetWidth, left = c.col.offsetLeft;
+    if (idx < 0) left -= w; if (idx > 6) left += w;
+    el.style.left = left + "px"; el.style.width = w + "px";
+    el.style.top = c.slot.offsetTop + "px"; el.style.height = c.slot.offsetHeight + "px";
+    el.style.opacity = inside ? "1" : "0";
+  }
+  function render() {
+    tiles.forEach(function (t) { board.removeChild(t.el); });
+    tiles = [];
+    var r = shownRange(digits);
+    for (var i = r[0]; i <= r[1]; i++) {
+      var el = document.createElement("div"); el.className = "tile" + (digits[i] ? "" : " zero"); el.textContent = digits[i];
+      board.appendChild(el); place(el, i); tiles.push({ el: el, idx: i });
+    }
+  }
+  function slide(k) {
+    if (busy) return;
+    var next = shiftDigits(digits, k), before = formatNumber(digits);
+    if (!next) {
+      var edge = k > 0 ? digits[firstDigit(digits)] : digits[lastDigit(digits)];
+      say.textContent = opName(k) + " would push the " + edge + " off the " + (k > 0 ? "left" : "right") + " end of this board.\nThe board only has room from thousands to thousandths. Try a different number.";
+      return;
+    }
+    var f = firstDigit(digits), n = Math.abs(k);
+    var msg = before + " " + opName(k) + " = " + formatNumber(next) + "\n";
+    if (f < 0) msg += "Zero stays zero, however far you slide it.";
+    else msg += "Every digit slid " + (n === 1 ? "1 column" : "2 columns") + " to the " + (k > 0 ? "left" : "right") + ".\nThe " + digits[f] + " was in the " + PLACES[f] + " column. Now it is in the " + PLACES[f - k] + " column, so it is worth " + (n === 1 ? "10" : "100") + " times " + (k > 0 ? "more" : "less") + ".";
+    digits = next; numIn.value = formatNumber(digits); say.textContent = msg;
+    busy = true; var g = ++gen;
+    tiles.forEach(function (t) { t.idx -= k; place(t.el, t.idx); });
+    setTimeout(function () { if (g !== gen) return; busy = false; render(); }, 650);
+  }
+  function useTyped() {
+    var d = parseNumber(numIn.value);
+    if (!d) { say.textContent = "Type a number this board can hold, like 3.45 or 120 or 0.07.\nUp to four digits before the point and three after it."; return; }
+    gen++; busy = false; digits = d; numIn.value = formatNumber(d); render();
+    say.textContent = "Starting with " + formatNumber(d) + ". Press a button and watch the digits slide.";
+  }
+  Array.prototype.forEach.call(document.querySelectorAll("button[data-k]"), function (b) {
+    b.addEventListener("click", function () { slide(parseInt(b.getAttribute("data-k"), 10)); });
+  });
+  document.getElementById("set").addEventListener("click", useTyped);
+  numIn.addEventListener("keydown", function (e) { if (e.key === "Enter") useTyped(); });
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(function () { if (!busy) render(); }, 120); });
+  render();
+  say.textContent = "Starting with 3.45. Press a button and watch the digits slide.";
+})();
+</script>
+</body>
+</html>

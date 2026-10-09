@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The multiplication rectangle · Infinity Club</title>
+<meta name="description" content="Pick two 2-digit numbers and see their product as a rectangle cut into four pieces, next to the long multiplication it explains. A demo for curious kids.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.controls button { min-height: 48px; font-size: 1.1rem; }
+.controls input[type=number] { font-size: 1.3rem; font-weight: 800; width: 4em; padding: .45em .4em; text-align: center; }
+.controls .times { font-size: 1.4rem; font-weight: 800; }
+.split { display: flex; flex-wrap: wrap; gap: 1rem 2rem; align-items: flex-start; }
+#rect { flex: 1 1 280px; max-width: 460px; min-width: 0; }
+#rect svg { display: block; max-width: 100%; }
+#work { flex: 0 1 auto; font-family: var(--mono); font-size: 1.15rem; }
+#work .ln { display: flex; align-items: center; gap: .7rem; padding: .15rem .4rem; border-radius: 6px; }
+#work .num { width: 6ch; text-align: right; white-space: pre; font-weight: 700; }
+#work .note { font-family: var(--sans); font-size: .9rem; color: var(--ink); }
+#work .tens { background: #dcdcf5; }
+#work .ones { background: #fde8c4; }
+#work .rule { border-top: 2px solid var(--ink); width: 6ch; margin: .2rem .4rem; }
+#work .total .num { color: var(--accent); }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>The multiplication rectangle</h1>
+<p class="explain">Choose two numbers from 10 to 99. The rectangle is that many squares wide and that many squares tall, so its area is the answer. Each number is split into <b>tens and ones</b>, which cuts the rectangle into four pieces. Match each piece with a line of the long multiplication beside it.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <label><input type="number" id="a" min="10" max="99" value="47" inputmode="numeric" aria-label="first number"></label>
+    <span class="times">×</span>
+    <label><input type="number" id="b" min="10" max="99" value="23" inputmode="numeric" aria-label="second number"></label>
+    <button id="random" class="alt">New numbers</button>
+  </div>
+  <div class="split">
+    <div id="rect"></div>
+    <div id="work"></div>
+  </div>
+  <div class="readout" id="say"></div>
+  <p class="small">Thin pieces are drawn a little wider than they should be, so their labels fit.</p>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>A rectangle 47 squares wide and 23 squares tall holds 47 × 23 little squares. Counting them one at a time would take all evening. So cut it up. 47 is 40 and 7. 23 is 20 and 3. Two cuts make <b>four pieces</b>, and each piece is an easy multiplication.</p>
+<p>Long multiplication is the same four pieces, added in two steps. The first line, 47 × 3, is the <b>orange</b> row: 40 × 3 and 7 × 3 together. The second line, 47 × 20, is the <b>blue</b> row: 40 × 20 and 7 × 20 together. Add the two rows and you have the whole rectangle.</p>
+<p>That is also why you write a zero at the end of the second line. You are multiplying by 20, not by 2.</p>
+<p>Sheet: <a href="../grade-5/sheets/a3-area-multiplication.html">Why long multiplication works</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  function splitNumber(n) { return { tens: Math.floor(n / 10) * 10, ones: n % 10 }; }
+  // a is the width, b the height. Four pieces, the two long-multiplication lines and the total.
+  function partials(a, b) {
+    var A = splitNumber(a), B = splitNumber(b);
+    var p = { tt: A.tens * B.tens, ot: A.ones * B.tens, to: A.tens * B.ones, oo: A.ones * B.ones };
+    p.onesLine = p.to + p.oo;   // a x (ones of b)
+    p.tensLine = p.tt + p.ot;   // a x (tens of b)
+    p.total = p.onesLine + p.tensLine;
+    return p;
+  }
+  function clampTwoDigit(v) { v = Math.round(Number(v)); if (!isFinite(v)) return 10; return Math.max(10, Math.min(99, v)); }
+  // Share a length between the tens part and the ones part, keeping the ones part at least minOnes wide.
+  function shareOut(length, tens, ones, minOnes) {
+    if (ones === 0) return [length, 0];
+    var o = Math.max(minOnes, length * ones / (tens + ones));
+    return [length - o, o];
+  }
+  /*ENDPURE*/
+
+  var aIn = document.getElementById("a"), bIn = document.getElementById("b"), rect = document.getElementById("rect"), work = document.getElementById("work"), say = document.getElementById("say");
+  var a = 47, b = 23;
+  function piece(x, y, w, h, fill, l1, l2) {
+    if (w <= 0 || h <= 0) return "";
+    var cx = x + w / 2, cy = y + h / 2;
+    return '<rect x="' + x.toFixed(1) + '" y="' + y.toFixed(1) + '" width="' + w.toFixed(1) + '" height="' + h.toFixed(1) + '" fill="' + fill + '" stroke="#1d1f3a" stroke-width="1.5"/>'
+      + '<text x="' + cx.toFixed(1) + '" y="' + (cy - 3).toFixed(1) + '" text-anchor="middle" font-size="13">' + l1 + "</text>"
+      + '<text x="' + cx.toFixed(1) + '" y="' + (cy + 14).toFixed(1) + '" text-anchor="middle" font-size="14" font-weight="800">= ' + l2 + "</text>";
+  }
+  function draw() {
+    var A = splitNumber(a), B = splitNumber(b), p = partials(a, b);
+    var W = Math.max(240, Math.min(460, rect.clientWidth || 320)), mL = 34, mT = 26;
+    var aw = W - mL - 3, ah = Math.round(aw * 0.82), H = mT + ah + 3;
+    var ws = shareOut(aw, A.tens, A.ones, 66), hs = shareOut(ah, B.tens, B.ones, 46);
+    var x0 = mL, x1 = mL + ws[0], y0 = mT, y1 = mT + hs[0];
+    var s = '<svg viewBox="0 0 ' + W + " " + H + '" width="' + W + '" height="' + H + '" role="img" aria-label="A rectangle ' + a + " wide and " + b + ' tall, cut into tens and ones" font-family="Nunito, sans-serif" fill="#1d1f3a">';
+    s += piece(x0, y0, ws[0], hs[0], "#dcdcf5", A.tens + " × " + B.tens, p.tt);
+    s += piece(x1, y0, ws[1], hs[0], "#c8c9f0", A.ones + " × " + B.tens, p.ot);
+    s += piece(x0, y1, ws[0], hs[1], "#fde8c4", A.tens + " × " + B.ones, p.to);
+    s += piece(x1, y1, ws[1], hs[1], "#f9d08f", A.ones + " × " + B.ones, p.oo);
+    function lab(x, y, t, anchor) { return '<text x="' + x.toFixed(1) + '" y="' + y.toFixed(1) + '" text-anchor="' + anchor + '" font-size="15" font-weight="800" fill="#3f44c9">' + t + "</text>"; }
+    s += lab(x0 + ws[0] / 2, mT - 8, A.tens, "middle");
+    if (A.ones) s += lab(x1 + ws[1] / 2, mT - 8, A.ones, "middle");
+    s += lab(mL - 7, y0 + hs[0] / 2 + 5, B.tens, "end");
+    if (B.ones) s += lab(mL - 7, y1 + hs[1] / 2 + 5, B.ones, "end");
+    rect.innerHTML = s + "</svg>";
+
+    function sum(x, y) { return x && y ? " = " + x + " + " + y : ""; }
+    function ln(cls, num, note) { return '<div class="ln ' + cls + '"><span class="num">' + num + '</span><span class="note">' + note + "</span></div>"; }
+    work.innerHTML = ln("", a, "") + ln("", "× " + b, "") + '<div class="rule"></div>'
+      + ln("ones", p.onesLine, a + " × " + B.ones + sum(p.to, p.oo))
+      + ln("tens", p.tensLine, a + " × " + B.tens + sum(p.tt, p.ot))
+      + '<div class="rule"></div>' + ln("total", p.total, "the whole rectangle");
+    var parts = [p.tt, p.ot, p.to, p.oo].filter(function (v) { return v > 0; });
+    say.textContent = (parts.length > 1 ? parts.length + " pieces: " + parts.join(" + ") + " = " + p.total : "1 piece: " + p.total) + "\n" + a + " × " + b + " = " + p.total;
+  }
+  function read() { a = clampTwoDigit(aIn.value); b = clampTwoDigit(bIn.value); draw(); }
+  function tidy() { aIn.value = a; bIn.value = b; }
+  [aIn, bIn].forEach(function (el) {
+    el.addEventListener("input", function () { if (String(el.value).length >= 2) read(); });
+    el.addEventListener("change", function () { read(); tidy(); });
+  });
+  document.getElementById("random").addEventListener("click", function () {
+    a = 11 + Math.floor(Math.random() * 89); b = 11 + Math.floor(Math.random() * 89); tidy(); draw();
+  });
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(draw, 120); });
+  draw();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Race to 21 · Infinity Club</title>
+<meta name="description" content="Take turns adding 1, 2 or 3. Whoever says 21 wins. Play a computer that never slips, then open the secret box and see the safe numbers.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.total { text-align: center; font-weight: 800; margin: .4rem 0; }
+.total .lbl { display: block; color: var(--muted); font-size: 1rem; }
+.total .num { font-size: 3.6rem; line-height: 1.1; color: var(--accent); }
+.track { display: flex; flex-wrap: wrap; gap: 5px; justify-content: center; margin: .8rem 0; }
+.chip { width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--rule); background: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: .85rem; color: var(--muted); }
+.chip.safe { border-color: var(--warm); background: var(--warm-soft); }
+.chip.you { background: var(--accent); border-color: var(--accent); color: #fff; }
+.chip.ai { background: var(--ink); border-color: var(--ink); color: #fff; }
+.chip.safe.you, .chip.safe.ai { box-shadow: 0 0 0 3px var(--warm); }
+.chip.goal { border-style: dashed; border-color: var(--accent); }
+.chip.goal.you, .chip.goal.ai { border-style: solid; }
+.steps { justify-content: center; }
+.steps button { font-size: 1.5rem; min-width: 68px; min-height: 60px; padding: .5rem 1rem; }
+.controls button { min-height: 46px; }
+.controls button:disabled { opacity: .35; cursor: default; }
+.controls select { font: inherit; padding: .5rem .6rem; border: 1px solid var(--rule); border-radius: 6px; min-height: 46px; background: #fff; }
+.controls input[type=number] { width: 4em; min-height: 46px; }
+.controls input[type=checkbox] { width: 24px; height: 24px; }
+.key { display: flex; flex-wrap: wrap; gap: .4rem 1.2rem; justify-content: center; font-size: .9rem; color: var(--muted); }
+.key span { display: inline-flex; align-items: center; gap: .35rem; }
+.key .chip { width: 18px; height: 18px; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Race to 21</h1>
+<p class="explain">The total starts at 0. You and the computer take turns to <b>add 1, 2 or 3</b>. <b>Whoever makes the total exactly 21 wins.</b> Tap a big button to play. The computer never makes a mistake, but it can be beaten. Lose a few games first, then open the secret box.</p>
+<div class="demo-panel">
+  <div class="total"><span class="lbl">Total</span><span class="num" id="total">0</span></div>
+  <div class="controls steps" id="steps"></div>
+  <div class="readout" id="status"></div>
+  <div class="track" id="track"></div>
+  <div class="key"><span><i class="chip you"></i> you said it</span><span><i class="chip ai"></i> computer said it</span><span id="keysafe" hidden><i class="chip safe"></i> safe number</span></div>
+  <div class="controls">
+    <button id="newgame">New game</button>
+    <label><select id="first"><option value="you">You go first</option><option value="ai">Computer goes first</option></select></label>
+    <label><input type="checkbox" id="secret"> show the secret</label>
+  </div>
+  <div class="readout" id="secretbox" hidden></div>
+  <div class="controls">
+    <label>Race to <input type="number" id="target" min="10" max="50" value="21"></label>
+    <label>Biggest step <select id="maxstep"><option>2</option><option selected>3</option><option>4</option><option>5</option><option>6</option></select></label>
+  </div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>Work backwards from the end. If you say <b>17</b>, the other player must say 18, 19 or 20, and from each of those you can reach 21. So saying 17 is as good as winning.</p>
+<p>Now 17 is your new target. If you say <b>13</b>, the other player must say 14, 15 or 16, and you can reach 17 from each. Keep going back: 9, then 5, then 1. These are the <b>safe numbers</b>: 1, 5, 9, 13, 17, 21.</p>
+<p>They go up in fours, and here is why. Whatever the other player adds, you add the number that makes the two steps total 4. They add 1, you add 3. They add 2, you add 2. They add 3, you add 1. You hop from one safe number to the next and they can never land on one.</p>
+<p>So in the race to 21, go first and say 1. Then change the target or the biggest step and work out the new safe numbers before you open the box. Sometimes it is better to let the computer go first. When?</p>
+<p>Sheet: <a href="../grade-5/sheets/b20-race-to-21.html">The race to 21</a>. Next year's game is <a href="nim.html">Nim</a>, which has a deeper secret.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  // A number is safe to SAY if the gap left to the target is a multiple of (maxStep + 1).
+  function isSafe(n, target, maxStep) { return (target - n) % (maxStep + 1) === 0; }
+  function safeNumbers(target, maxStep) {
+    var out = [], n;
+    for (n = target % (maxStep + 1); n <= target; n += maxStep + 1) out.push(n);
+    return out;
+  }
+  // the steps allowed from a total: 1 up to maxStep, never past the target
+  function legalSteps(total, target, maxStep) {
+    var out = [], s;
+    for (s = 1; s <= maxStep && total + s <= target; s++) out.push(s);
+    return out;
+  }
+  // the step that lands on a safe number, or null if the total is already safe (then every step loses)
+  function bestStep(total, target, maxStep) {
+    var r = (target - total) % (maxStep + 1);
+    return r === 0 ? null : r;
+  }
+  function moverCanWin(total, target, maxStep) { return bestStep(total, target, maxStep) !== null; }
+  function clamp(v, lo, hi, dflt) { v = parseInt(v, 10); return isNaN(v) ? dflt : Math.min(hi, Math.max(lo, v)); }
+  /*ENDPURE*/
+
+  var totalEl = document.getElementById("total"), stepsEl = document.getElementById("steps"), status = document.getElementById("status");
+  var trackEl = document.getElementById("track"), secretBox = document.getElementById("secretbox"), secretCb = document.getElementById("secret");
+  var targetIn = document.getElementById("target"), stepSel = document.getElementById("maxstep"), firstSel = document.getElementById("first");
+  var explainLead = document.querySelector("p.explain");
+  var target = 21, maxStep = 3, total = 0, said = {}, over = false, busy = false, timer = null, gen = 0;
+
+  function listSteps(m) { var a = []; for (var s = 1; s <= m; s++) a.push(s); return a.length === 2 ? a.join(" or ") : a.slice(0, -1).join(", ") + " or " + a[a.length - 1]; }
+  function draw() {
+    totalEl.textContent = total;
+    stepsEl.innerHTML = "";
+    for (var s = 1; s <= maxStep; s++) (function (s) {
+      var b = document.createElement("button"); b.textContent = "+" + s;
+      b.disabled = over || busy || total + s > target;
+      b.setAttribute("aria-label", "Add " + s + " to make " + (total + s));
+      b.addEventListener("click", function () { playerMove(s); });
+      stepsEl.appendChild(b);
+    })(s);
+    trackEl.innerHTML = "";
+    for (var n = 1; n <= target; n++) {
+      var c = document.createElement("span"); c.textContent = n;
+      c.className = "chip" + (said[n] ? " " + said[n] : "") + (n === target ? " goal" : "") + (secretCb.checked && isSafe(n, target, maxStep) ? " safe" : "");
+      trackEl.appendChild(c);
+    }
+    document.getElementById("keysafe").hidden = !secretCb.checked;
+    var safe = safeNumbers(target, maxStep).filter(function (n) { return n > 0; }), lines = [];
+    lines.push("Safe numbers: " + safe.join(", "));
+    lines.push("They go up in " + (maxStep + 1) + "s, because " + (maxStep + 1) + " = " + maxStep + " + 1. Whatever the other player adds, you add what makes it up to " + (maxStep + 1) + ".");
+    if (!over) {
+      if (total === 0 && isSafe(0, target, maxStep)) lines.push("0 is safe too, so whoever goes first loses. Let the computer go first.");
+      else if (!busy) {
+        var b = bestStep(total, target, maxStep);
+        lines.push(b === null ? "The total is " + total + ", a safe number. Every step you can take lets the computer win." : "The total is " + total + ". Add " + b + " to say " + (total + b) + ", a safe number.");
+      }
+    }
+    secretBox.textContent = lines.join("\n");
+  }
+  function playerMove(s) {
+    if (over || busy || total + s > target) return;
+    total += s; said[total] = "you";
+    if (total === target) { over = true; draw(); status.textContent = "You said " + target + ". You win!"; return; }
+    busy = true; draw();
+    status.textContent = "You added " + s + " and said " + total + ". The computer is thinking…";
+    var g = gen; timer = setTimeout(function () { timer = null; if (g === gen) aiMove(); }, 700);
+  }
+  function aiMove() {
+    var s = bestStep(total, target, maxStep), stuck = s === null;
+    if (stuck) { var legal = legalSteps(total, target, maxStep); s = legal[Math.floor(Math.random() * legal.length)]; }
+    total += s; said[total] = "ai"; busy = false;
+    if (total === target) { over = true; draw(); status.textContent = "The computer added " + s + " and said " + target + ". The computer wins. Press New game and try again."; return; }
+    draw();
+    status.textContent = "The computer added " + s + " and said " + total + "." + (stuck && secretCb.checked ? " It was stuck, so it guessed." : "") + " Your turn.";
+  }
+  function newGame() {
+    gen++; if (timer) clearTimeout(timer); timer = null;
+    target = clamp(targetIn.value, 10, 50, 21); targetIn.value = target;
+    maxStep = clamp(stepSel.value, 2, 6, 3);
+    total = 0; said = {}; over = false; busy = false;
+    explainLead.innerHTML = "The total starts at 0. You and the computer take turns to <b>add " + listSteps(maxStep) + "</b>. <b>Whoever makes the total exactly " + target + " wins.</b> Tap a big button to play. The computer never makes a mistake, but it can be beaten. Lose a few games first, then open the secret box.";
+    if (firstSel.value === "ai") {
+      busy = true; draw(); status.textContent = "The computer goes first…";
+      var g = gen; timer = setTimeout(function () { timer = null; if (g === gen) aiMove(); }, 700);
+    } else { draw(); status.textContent = "Your turn. Add " + listSteps(maxStep) + "."; }
+  }
+  document.getElementById("newgame").addEventListener("click", newGame);
+  firstSel.addEventListener("change", newGame);
+  targetIn.addEventListener("change", newGame);
+  stepSel.addEventListener("change", newGame);
+  secretCb.addEventListener("change", function () { secretBox.hidden = !secretCb.checked; draw(); });
+  newGame();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shapes that tile · Infinity Club</title>
+<meta name="description" content="Fit copies of a regular shape around a point and watch the angles add up. Triangles, squares and hexagons close the gap exactly; the others leave a gap or overlap. A demo for curious kids.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.controls button { min-height: 48px; min-width: 48px; font-size: 1.05rem; }
+.controls button:disabled { opacity: .35; cursor: default; }
+.shapes button[aria-pressed=false] { background: transparent; color: var(--accent); border: 2px solid var(--accent); }
+#cv { width: 100%; max-width: 480px; }
+#tbl { border-collapse: collapse; margin: .8rem 0; }
+#tbl th, #tbl td { border: 1px solid var(--rule); padding: .35rem .6rem; text-align: center; }
+#tbl th { background: var(--accent-soft); }
+#tbl tr.yes td { background: var(--warm-soft); font-weight: 700; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Shapes that tile</h1>
+<p class="explain">Pick a shape. Then press <b>Add a shape</b> again and again to fit copies around the black dot, corner to corner. A full turn around the dot is 360°. Do the corners fill it exactly, leave a <b>gap</b>, or <b>overlap</b>?</p>
+<div class="demo-panel">
+  <div class="controls shapes" id="shapes"></div>
+  <div class="controls">
+    <button id="add" class="alt">Add a shape</button>
+    <button id="less" class="ghost">Take one away</button>
+    <button id="clear" class="ghost">Start again</button>
+  </div>
+  <canvas id="cv" width="480" height="480"></canvas>
+  <div class="readout" id="say"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>A <b>regular</b> shape has all its sides the same length and all its corners the same angle. To cover a floor with one regular shape and no holes, the corners that meet at a point have to add up to exactly 360°, one full turn.</p>
+<table id="tbl"></table>
+<p>Only three shapes manage it. Six triangles: 6 × 60° = 360°. Four squares: 4 × 90° = 360°. Three hexagons: 3 × 120° = 360°.</p>
+<p>A pentagon's corner is 108°. Three of them make 324°, which leaves a gap of 36°, too thin for another pentagon. Four make 432°, which is too much.</p>
+<p>After the hexagon it never works again. The corners keep getting bigger than 120°, so three are always too many, and two are never enough.</p>
+<p>Octagons can still tile if you let a second shape help: two octagons and one square make 135° + 135° + 90° = 360°. Look for that pattern on a tiled floor.</p>
+<p>Sheet: <a href="../grade-5/sheets/b8-tessellations.html">Shapes that tile</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  var SHAPES = { 3: "triangle", 4: "square", 5: "pentagon", 6: "hexagon", 7: "heptagon", 8: "octagon" };
+  function interiorAngle(n) { return 180 * (n - 2) / n; }
+  // 360 / interior = 2n / (n - 2), kept in whole numbers so the test is exact.
+  function closesAroundPoint(n) { return (2 * n) % (n - 2) === 0; }
+  function howManyFit(n) { return Math.floor(2 * n / (n - 2)); }
+  // With k copies: the angle used, and what is left (positive = gap, negative = overlap).
+  function around(n, k) {
+    var used = k * interiorAngle(n), left = 360 - used;
+    var exact = k * (n - 2) === 2 * n;
+    if (exact) left = 0;
+    return { used: used, left: left, state: exact ? "closed" : left > 0 ? "gap" : "overlap" };
+  }
+  function maxCopies(n) { return howManyFit(n) + (closesAroundPoint(n) ? 0 : 1); }
+  function deg(v) { var r = Math.round(v * 10) / 10; return (Math.abs(r - v) > 1e-9 ? "about " : "") + r + "°"; }
+  function plural(n, word) { return n + " " + word + (n === 1 ? "" : "s"); }
+  // Corners of copy number i (0-based) of a regular n-gon with one corner at (cx, cy), in screen coordinates.
+  function polygonPoints(n, i, cx, cy, side, start) {
+    var dir = start + i * interiorAngle(n) * Math.PI / 180, ext = 2 * Math.PI / n, x = cx, y = cy, pts = [];
+    for (var j = 0; j < n; j++) { pts.push([x, y]); x += side * Math.cos(dir); y += side * Math.sin(dir); dir += ext; }
+    return pts;
+  }
+  /*ENDPURE*/
+
+  var canvas = document.getElementById("cv"), ctx = canvas.getContext("2d"), say = document.getElementById("say");
+  var addBtn = document.getElementById("add"), lessBtn = document.getElementById("less");
+  var n = 5, k = 1, START = -Math.PI / 2, buttons = {};
+
+  Object.keys(SHAPES).forEach(function (key) {
+    var b = document.createElement("button"); b.textContent = SHAPES[key] + " (" + key + ")";
+    b.addEventListener("click", function () { n = parseInt(key, 10); k = 1; draw(); });
+    document.getElementById("shapes").appendChild(b); buttons[key] = b;
+  });
+  (function table() {
+    var h = "<tr><th>Shape</th><th>One corner</th><th>How many fit</th><th>Left over</th></tr>";
+    Object.keys(SHAPES).forEach(function (key) {
+      var m = parseInt(key, 10), f = howManyFit(m), r = around(m, f);
+      h += '<tr class="' + (r.state === "closed" ? "yes" : "") + '"><td>' + SHAPES[m] + "</td><td>" + deg(interiorAngle(m)) + "</td><td>" + f + "</td><td>" + (r.state === "closed" ? "nothing: it tiles" : "gap of " + deg(r.left)) + "</td></tr>";
+    });
+    document.getElementById("tbl").innerHTML = h;
+  })();
+
+  function label(text, x, y, colour) {
+    ctx.font = "bold 14px Nunito, sans-serif"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    ctx.lineWidth = 4; ctx.strokeStyle = "#fff"; ctx.lineJoin = "round"; ctx.strokeText(text, x, y);
+    ctx.fillStyle = colour; ctx.fillText(text, x, y);
+  }
+  function draw() {
+    var dpr = window.devicePixelRatio || 1, W = canvas.clientWidth || 480;
+    canvas.width = W * dpr; canvas.height = W * dpr; canvas.style.height = W + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, W);
+    var cx = W / 2, cy = W / 2, R = W / 2 - 8, side = 0.92 * R * Math.sin(Math.PI / n);
+    var a = interiorAngle(n) * Math.PI / 180, r = around(n, k), i;
+    for (i = 0; i < k; i++) {
+      var over = r.state === "overlap" && i === k - 1, pts = polygonPoints(n, i, cx, cy, side, START);
+      ctx.beginPath(); pts.forEach(function (p, j) { if (j) ctx.lineTo(p[0], p[1]); else ctx.moveTo(p[0], p[1]); }); ctx.closePath();
+      ctx.fillStyle = over ? "rgba(214, 69, 65, .32)" : (i % 2 ? "#c8c9f0" : "#dcdcf5"); ctx.fill();
+      ctx.strokeStyle = over ? "#c0392b" : "#3f44c9"; ctx.lineWidth = 2; ctx.lineJoin = "round"; ctx.stroke();
+    }
+    // corner arcs at the dot
+    var ar = Math.min(30, side * 0.45);
+    ctx.strokeStyle = "#1d1f3a"; ctx.lineWidth = 1.2;
+    for (i = 0; i < k; i++) { ctx.beginPath(); ctx.arc(cx, cy, ar, START + i * a + 0.04, START + (i + 1) * a - 0.04); ctx.stroke(); }
+    // gap or overlap wedge
+    var gr = R * 0.5, mid;
+    if (r.state === "gap") {
+      ctx.beginPath(); ctx.moveTo(cx, cy); ctx.arc(cx, cy, gr, START + k * a, START + 2 * Math.PI); ctx.closePath();
+      ctx.fillStyle = "rgba(245, 165, 36, .28)"; ctx.fill();
+      ctx.setLineDash([6, 5]); ctx.strokeStyle = "#f5a524"; ctx.lineWidth = 2; ctx.stroke(); ctx.setLineDash([]);
+      mid = START + (k * a + 2 * Math.PI) / 2;
+      label("gap " + deg(r.left), cx + gr * 0.72 * Math.cos(mid), cy + gr * 0.72 * Math.sin(mid), "#8a5a00");
+    } else if (r.state === "overlap") {
+      ctx.beginPath(); ctx.moveTo(cx, cy); ctx.arc(cx, cy, gr, START, START + k * a - 2 * Math.PI); ctx.closePath();
+      ctx.fillStyle = "rgba(214, 69, 65, .45)"; ctx.fill();
+      mid = START + (k * a - 2 * Math.PI) / 2;
+      label("overlap " + deg(-r.left), cx + gr * 1.15 * Math.cos(mid), cy + gr * 1.15 * Math.sin(mid), "#a52a1f");
+    }
+    if (!(r.state === "overlap" && k * a - 2 * Math.PI > a * 0.6)) label(deg(interiorAngle(n)).replace("about ", ""), cx + (ar + 22) * Math.cos(START + a / 2), cy + (ar + 22) * Math.sin(START + a / 2), "#1d1f3a");
+    ctx.fillStyle = "#1d1f3a"; ctx.beginPath(); ctx.arc(cx, cy, 5, 0, Math.PI * 2); ctx.fill();
+
+    Object.keys(buttons).forEach(function (key) { buttons[key].setAttribute("aria-pressed", parseInt(key, 10) === n); });
+    addBtn.disabled = k >= maxCopies(n); lessBtn.disabled = k <= 1;
+    var name = SHAPES[n], msg = "One corner of a regular " + name + " is " + deg(interiorAngle(n)) + ".\n" + plural(k, name) + ": " + k + " × " + deg(interiorAngle(n)).replace("about ", "") + " = " + deg(r.used) + "\n";
+    if (r.state === "closed") msg += "Exactly 360°. No gap and no overlap, so " + name + "s tile!";
+    else if (r.state === "gap") msg += "That leaves a gap of " + deg(r.left) + ". " + (r.left < interiorAngle(n) ? "Too small for another " + name + ". Add one anyway and see." : "Room for another one.");
+    else msg += "That is " + deg(-r.left) + " more than 360°, so the red one overlaps. Regular " + name + "s cannot tile on their own.";
+    say.textContent = msg;
+  }
+  addBtn.addEventListener("click", function () { if (k < maxCopies(n)) { k++; draw(); } });
+  lessBtn.addEventListener("click", function () { if (k > 1) { k--; draw(); } });
+  document.getElementById("clear").addEventListener("click", function () { k = 1; draw(); });
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(draw, 120); });
+  draw();
+})();
+</script>
+</body>
+</html>

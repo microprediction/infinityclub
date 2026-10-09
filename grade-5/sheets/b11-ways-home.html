@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How many ways home? · Infinity Club</title>
+<meta name="description" content="Walk only right and up on a grid of streets. Count the routes to each corner by adding two numbers, and a pattern appears. A grade 5 counting sheet.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 5</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 5 · Around the corner · 11</div>
+  <h1>How many ways home?</h1>
+  <p class="teaser">Walk only right and up on a grid of streets. Count the routes to each corner and a pattern appears.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>School is at the bottom-left corner of a grid of streets. Home is to the right and up. You only ever walk right or up, never back. How many different routes are there?</p>
+<p>Do not try to draw them all. Instead, write at every corner the number of routes that reach it.</p>
+<figure><svg viewBox="0 0 310 148" width="310" height="148" role="img" aria-label="A grid of streets three blocks wide and two blocks tall, with school at the bottom left and home at the top right. Each corner shows the number of routes to it. Bottom row: 1, 1, 1, 1. Middle row: 1, 2, 3, 4. Top row: 1, 3, 6, 10. The 6 and the 4 are highlighted next to the 10." font-family="Nunito, sans-serif" font-size="13">
+<path d="M66 126V38" stroke="#999" stroke-width="2"/><path d="M126 126V38" stroke="#999" stroke-width="2"/><path d="M186 126V38" stroke="#999" stroke-width="2"/><path d="M246 126V38" stroke="#999" stroke-width="2"/><path d="M66 126H246" stroke="#999" stroke-width="2"/><path d="M66 82H246" stroke="#999" stroke-width="2"/><path d="M66 38H246" stroke="#999" stroke-width="2"/>
+<circle cx="66" cy="126" r="11" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><text x="66" y="130.5" text-anchor="middle" font-weight="700">1</text><circle cx="126" cy="126" r="11" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><text x="126" y="130.5" text-anchor="middle" font-weight="700">1</text><circle cx="186" cy="126" r="11" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><text x="186" y="130.5" text-anchor="middle" font-weight="700">1</text><circle cx="246" cy="126" r="11" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><text x="246" y="130.5" text-anchor="middle" font-weight="700">1</text>
+<circle cx="66" cy="82" r="11" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><text x="66" y="86.5" text-anchor="middle" font-weight="700">1</text><circle cx="126" cy="82" r="11" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><text x="126" y="86.5" text-anchor="middle" font-weight="700">2</text><circle cx="186" cy="82" r="11" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><text x="186" y="86.5" text-anchor="middle" font-weight="700">3</text><circle cx="246" cy="82" r="11" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/><text x="246" y="86.5" text-anchor="middle" font-weight="700">4</text>
+<circle cx="66" cy="38" r="11" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><text x="66" y="42.5" text-anchor="middle" font-weight="700">1</text><circle cx="126" cy="38" r="11" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><text x="126" y="42.5" text-anchor="middle" font-weight="700">3</text><circle cx="186" cy="38" r="11" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/><text x="186" y="42.5" text-anchor="middle" font-weight="700">6</text><circle cx="246" cy="38" r="11" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/><text x="246" y="42.5" text-anchor="middle" font-weight="700">10</text>
+<text x="50" y="130" text-anchor="end">School</text><text x="262" y="42">Home</text>
+<text x="216" y="15" text-anchor="middle" fill="#f5a524" font-weight="700">6 + 4 = 10</text>
+</svg><figcaption>Each number counts the routes from school to that corner.</figcaption></figure>
+<p>Along the bottom street there is one route to each corner: keep going right. Up the left street there is one route too.</p>
+<p>Now take any other corner. Your last step came either from the left or from below. So add those two numbers.</p>
+<p class="callout">Routes to a corner = routes to the corner on its left + routes to the corner below it.</p>
+<p>Fill in the grid row by row. Each sum is small, and the number at home is the answer. Here there are 10 ways home.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: a closed corner</h2>
+<figure><svg viewBox="0 0 250 136" width="206" height="112" role="img" aria-label="A grid three blocks wide and three tall with one corner closed, one block right and one block up from school. The closed corner is marked 0. Bottom row: 1, 1, 1, 1. Second row: 1, 0, 1, 2. Third row: 1, 1, 2, 4. Top row: 1, 2, 4, 8." font-family="Nunito, sans-serif" font-size="13">
+<path d="M70 120V15" stroke="#999" stroke-width="2"/><path d="M108 120V15" stroke="#999" stroke-width="2"/><path d="M146 120V15" stroke="#999" stroke-width="2"/><path d="M184 120V15" stroke="#999" stroke-width="2"/><path d="M70 120H184" stroke="#999" stroke-width="2"/><path d="M70 85H184" stroke="#999" stroke-width="2"/><path d="M70 50H184" stroke="#999" stroke-width="2"/><path d="M70 15H184" stroke="#999" stroke-width="2"/>
+<circle cx="70" cy="120" r="11" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><text x="70" y="124.5" text-anchor="middle" font-weight="700">1</text><circle cx="108" cy="120" r="11" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><text x="108" y="124.5" text-anchor="middle" font-weight="700">1</text><circle cx="146" cy="120" r="11" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><text x="146" y="124.5" text-anchor="middle" font-weight="700">1</text><circle cx="184" cy="120" r="11" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><text x="184" y="124.5" text-anchor="middle" font-weight="700">1</text>
+<circle cx="70" cy="85" r="11" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><text x="70" y="89.5" text-anchor="middle" font-weight="700">1</text><circle cx="108" cy="85" r="11" fill="#fde8c4" stroke="#f5a524" stroke-width="2"/><text x="108" y="89.5" text-anchor="middle" font-weight="700" fill="#f5a524">0</text><circle cx="146" cy="85" r="11" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><text x="146" y="89.5" text-anchor="middle" font-weight="700">1</text><circle cx="184" cy="85" r="11" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><text x="184" y="89.5" text-anchor="middle" font-weight="700">2</text>
+<circle cx="70" cy="50" r="11" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><text x="70" y="54.5" text-anchor="middle" font-weight="700">1</text><circle cx="108" cy="50" r="11" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><text x="108" y="54.5" text-anchor="middle" font-weight="700">1</text><circle cx="146" cy="50" r="11" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><text x="146" y="54.5" text-anchor="middle" font-weight="700">2</text><circle cx="184" cy="50" r="11" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><text x="184" y="54.5" text-anchor="middle" font-weight="700">4</text>
+<circle cx="70" cy="15" r="11" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><text x="70" y="19.5" text-anchor="middle" font-weight="700">1</text><circle cx="108" cy="15" r="11" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><text x="108" y="19.5" text-anchor="middle" font-weight="700">2</text><circle cx="146" cy="15" r="11" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><text x="146" y="19.5" text-anchor="middle" font-weight="700">4</text><circle cx="184" cy="15" r="11" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><text x="184" y="19.5" text-anchor="middle" font-weight="700">8</text>
+<text x="54" y="124" text-anchor="end">School</text><text x="200" y="19">Home</text>
+</svg><figcaption>The closed corner gets a 0.</figcaption></figure>
+<p>Home is 3 blocks right and 3 blocks up. Roadworks close one corner. No route may pass through it, so it gets a 0.</p>
+<p>Fill in the rest with the same rule. Home gets 8.</p>
+<p>With no roadworks the same grid gives 20. So 12 of the 20 routes used that one corner.</p>
+<p class="small">Tap any corner to see its number and the two numbers it comes from: <a href="../../demos/gridpaths.html">infinityclub.net/demos/gridpaths.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<figure><svg viewBox="0 0 520 156" width="460" height="138" role="img" aria-label="Three blank grids to fill in. Grid 1 is two blocks wide and two tall. Grid 2 is four wide and two tall. Grid 3 is three wide and three tall. In each, S marks school at the bottom left and H marks home at the top right." font-family="Nunito, sans-serif" font-size="13">
+<path d="M26 128V52" stroke="#999" stroke-width="2"/><path d="M64 128V52" stroke="#999" stroke-width="2"/><path d="M102 128V52" stroke="#999" stroke-width="2"/><path d="M26 128H102" stroke="#999" stroke-width="2"/><path d="M26 90H102" stroke="#999" stroke-width="2"/><path d="M26 52H102" stroke="#999" stroke-width="2"/>
+<circle cx="26" cy="128" r="12" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><circle cx="64" cy="128" r="12" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><circle cx="102" cy="128" r="12" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/>
+<circle cx="26" cy="90" r="12" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><circle cx="64" cy="90" r="12" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><circle cx="102" cy="90" r="12" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/>
+<circle cx="26" cy="52" r="12" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><circle cx="64" cy="52" r="12" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><circle cx="102" cy="52" r="12" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="12" y="132" text-anchor="end" fill="#999">S</text><text x="118" y="56" fill="#999">H</text><text x="64.0" y="152" text-anchor="middle" font-weight="700">Grid 1</text>
+<path d="M166 128V52" stroke="#999" stroke-width="2"/><path d="M204 128V52" stroke="#999" stroke-width="2"/><path d="M242 128V52" stroke="#999" stroke-width="2"/><path d="M280 128V52" stroke="#999" stroke-width="2"/><path d="M318 128V52" stroke="#999" stroke-width="2"/><path d="M166 128H318" stroke="#999" stroke-width="2"/><path d="M166 90H318" stroke="#999" stroke-width="2"/><path d="M166 52H318" stroke="#999" stroke-width="2"/>
+<circle cx="166" cy="128" r="12" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><circle cx="204" cy="128" r="12" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><circle cx="242" cy="128" r="12" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><circle cx="280" cy="128" r="12" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><circle cx="318" cy="128" r="12" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/>
+<circle cx="166" cy="90" r="12" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><circle cx="204" cy="90" r="12" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><circle cx="242" cy="90" r="12" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><circle cx="280" cy="90" r="12" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><circle cx="318" cy="90" r="12" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/>
+<circle cx="166" cy="52" r="12" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><circle cx="204" cy="52" r="12" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><circle cx="242" cy="52" r="12" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><circle cx="280" cy="52" r="12" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><circle cx="318" cy="52" r="12" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="152" y="132" text-anchor="end" fill="#999">S</text><text x="334" y="56" fill="#999">H</text><text x="242.0" y="152" text-anchor="middle" font-weight="700">Grid 2</text>
+<path d="M378 128V14" stroke="#999" stroke-width="2"/><path d="M416 128V14" stroke="#999" stroke-width="2"/><path d="M454 128V14" stroke="#999" stroke-width="2"/><path d="M492 128V14" stroke="#999" stroke-width="2"/><path d="M378 128H492" stroke="#999" stroke-width="2"/><path d="M378 90H492" stroke="#999" stroke-width="2"/><path d="M378 52H492" stroke="#999" stroke-width="2"/><path d="M378 14H492" stroke="#999" stroke-width="2"/>
+<circle cx="378" cy="128" r="12" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><circle cx="416" cy="128" r="12" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><circle cx="454" cy="128" r="12" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><circle cx="492" cy="128" r="12" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/>
+<circle cx="378" cy="90" r="12" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><circle cx="416" cy="90" r="12" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><circle cx="454" cy="90" r="12" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><circle cx="492" cy="90" r="12" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/>
+<circle cx="378" cy="52" r="12" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><circle cx="416" cy="52" r="12" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><circle cx="454" cy="52" r="12" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><circle cx="492" cy="52" r="12" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/>
+<circle cx="378" cy="14" r="12" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><circle cx="416" cy="14" r="12" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><circle cx="454" cy="14" r="12" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/><circle cx="492" cy="14" r="12" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="364" y="132" text-anchor="end" fill="#999">S</text><text x="508" y="18" fill="#999">H</text><text x="435.0" y="152" text-anchor="middle" font-weight="700">Grid 3</text>
+</svg></figure>
+<ol>
+<li>Fill in Grid 1. How many routes are there? Write each one as a string of R (right) and U (up), like RRUU.<div class="space short"></div></li>
+<li>Fill in Grid 2. (a) How many routes are there? (b) How many blocks long is every route?<div class="space short"></div></li>
+<li>Fill in Grid 3. (a) How many routes are there? (b) Some numbers appear twice. Which ones, and why?<div class="space short"></div></li>
+<li>Home is 4 blocks right and 4 blocks up, and there are 70 routes. The sweet shop is 2 right and 2 up from school. (a) How many routes pass the shop? Hint: count school to shop, then shop to home. (b) How many miss it?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: add the diagonals</h2>
+<p>In Grid 3, add up the numbers on each slanting line of corners: the 1 at school, then 1 + 1, then 1 + 2 + 1, then the next line. What happens to the totals each time? Explain why.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Rows from the bottom: 1 1 1, then 1 2 3, then 1 3 6. There are 6 routes: RRUU, RURU, RUUR, URRU, URUR, UURR.</li>
+<li>Rows from the bottom: 1 1 1 1 1, then 1 2 3 4 5, then 1 3 6 10 15. (a) 15 routes. (b) Every route is 6 blocks: 4 right and 2 up, in some order.</li>
+<li>Rows from the bottom: 1 1 1 1, then 1 2 3 4, then 1 3 6 10, then 1 4 10 20. (a) 20 routes. (b) 3, 4 and 10 each appear twice (and there are lots of 1s). Swap "right" and "up" and the grid looks the same, so the numbers match across the slanting line from school to home.</li>
+<li>(a) School to shop is Grid 1: 6 routes. Shop to home is also 2 right and 2 up: 6 routes. Each first half can join each second half, so \(6 \times 6 = 36\) routes pass the shop. (b) \(70 - 36 = 34\).</li>
+</ol>
+<p><b>Stretch.</b> The totals are 1, 2, 4, 8. They double. Each slanting line holds the corners you can reach in the same number of steps. At every step you choose right or up, so each extra step doubles the number of walks. These slanting lines are the rows of Pascal's triangle, which is on a <a href="../../grade-6/sheets/b4-pascal.html">grade 6 sheet</a>.</p>
+</section>
+
+<div class="sheet-nav"><a href="b10-corners-edges-faces.html">← Previous</a><a href="b12-handshakes.html">Next: Everyone shakes hands →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

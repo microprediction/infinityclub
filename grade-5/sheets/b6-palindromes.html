@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reverse and add · Infinity Club</title>
+<meta name="description" content="Take a number, reverse it, and add. Most numbers turn into a palindrome quickly. Nobody has ever seen 196 do it.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 5</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 5 · Around the corner · 6</div>
+  <h1>Reverse and add</h1>
+  <p class="teaser">Take a number, reverse it, add. Do it again. Most numbers turn into a palindrome fast. One small number has never been seen to.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A <b>palindrome</b> reads the same forwards and backwards. The numbers 363 and 4884 are palindromes. So is the word "level".</p>
+<p>Here is a way to make them. Take a number. Write it backwards. Add the two. If the answer is a palindrome, stop. If not, do the same again with the answer.</p>
+<figure>
+<svg viewBox="0 0 330 70" width="330" height="70" role="img" aria-label="Three boxes joined by arrows: 57 plus 75 gives 132, and 132 plus 231 gives 363, a palindrome." font-family="Nunito, sans-serif" font-size="12">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3f44c9"/></marker></defs>
+<rect x="10" y="30" width="64" height="30" rx="6" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="42" y="50" text-anchor="middle" font-size="14" font-weight="700">57</text>
+<line x1="78" y1="45" x2="129" y2="45" stroke="#3f44c9" stroke-width="1.5" marker-end="url(#ah)"/>
+<text x="103.5" y="38" text-anchor="middle" fill="#3f44c9">+ 75</text>
+<rect x="133" y="30" width="64" height="30" rx="6" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="165" y="50" text-anchor="middle" font-size="14" font-weight="700">132</text>
+<line x1="201" y1="45" x2="252" y2="45" stroke="#3f44c9" stroke-width="1.5" marker-end="url(#ah)"/>
+<text x="226.5" y="38" text-anchor="middle" fill="#3f44c9">+ 231</text>
+<rect x="256" y="30" width="64" height="30" rx="6" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/>
+<text x="288" y="50" text-anchor="middle" font-size="14" font-weight="700">363</text>
+</svg>
+<figcaption>Start at 57. Two steps later you have a palindrome.</figcaption></figure>
+<p>\(57 + 75 = 132\), which is not a palindrome. \(132 + 231 = 363\), which is. Two steps.</p>
+<p>Most numbers get there quickly. Every number below 196 gets there in the end. None is slower than 89, which needs 24 steps.</p>
+<p>Then comes 196. People have run it on computers for millions of steps, and no palindrome has ever appeared. Nobody has proved that one never will. It is an open question: easy to ask, and still without an answer.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: start at 87</h2>
+<p>\(87 + 78 = 165\)<br>
+\(165 + 561 = 726\)<br>
+\(726 + 627 = 1353\)<br>
+\(1353 + 3531 = 4884\)</p>
+<p>Four steps. Check each answer by reading it backwards: 165 backwards is 561, so it is not a palindrome yet. 4884 backwards is 4884, so stop.</p>
+<p class="small">Another simple rule that nobody fully understands: <a href="../../demos/collatz.html">infinityclub.net/demos/collatz.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Reverse and add until you reach a palindrome. Say how many steps each one took. (a) 23 (b) 48 (c) 152<div class="space short"></div></li>
+<li>Start at 68 and go until you reach a palindrome. Then start at 59. What do you notice?<div class="space"></div></li>
+<li>(a) Do one step for 14, for 32 and for 45. (b) For each, add the two digits of the start. Where does that sum show up in the answer? (c) Why does a two-digit number finish in one step when its digits add to 9 or less?<div class="space"></div></li>
+<li>\(196 + 691 = 887\). Nobody has seen 196 reach a palindrome. Without any more adding, what does that tell you about 691? What about 887?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the elevens</h2>
+<p>Do one step for any three two-digit numbers. Divide each answer by 11. Then explain why one step on a two-digit number always gives a number in the 11 times table.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(23 + 32 = 55\): one step. (b) \(48 + 84 = 132\), \(132 + 231 = 363\): two steps. (c) \(152 + 251 = 403\), \(403 + 304 = 707\): two steps.</li>
+<li>\(68 + 86 = 154\), \(154 + 451 = 605\), \(605 + 506 = 1111\): three steps. \(59 + 95 = 154\) as well, so from there 59 follows exactly the same path. Different starts can join up.</li>
+<li>(a) \(14 + 41 = 55\), \(32 + 23 = 55\), \(45 + 54 = 99\). (b) The digit sums are 5, 5 and 9. Both digits of each answer are that sum. (c) The ones column adds the two digits. The tens column adds the same two digits. If the sum is 9 or less nothing is carried, so both columns show the same digit. That is a palindrome.</li>
+<li>691 and 196 give the same sum, because adding works in either order. After one step they are on the same path, so 691 has never been seen to reach a palindrome either. Nor has 887: it is on that path too.</li>
+</ol>
+<p><b>Stretch.</b> For example \(57 + 75 = 132 = 11 \times 12\) and \(23 + 32 = 55 = 11 \times 5\). Why: each digit is used twice, once as tens and once as ones. So each digit is counted \(10 + 1 = 11\) times. For 57 that is \(11 \times 5 + 11 \times 7 = 11 \times 12\). The answer is always 11 times the sum of the digits.</p>
+</section>
+
+<div class="sheet-nav"><a href="b5-kaprekar.html">← Previous</a><a href="b7-tangram.html">Next: Seven pieces, one area →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

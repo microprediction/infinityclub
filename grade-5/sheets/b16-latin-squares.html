@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Every row, every column, once · Infinity Club</title>
+<meta name="description" content="A Latin square puts each symbol once in every row and every column. Build them, count the small ones, and meet the idea behind Sudoku.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 5</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 5 · Around the corner · 16</div>
+  <h1>Every row, every column, once</h1>
+  <p class="teaser">A Latin square puts each symbol once in every row and column. Build them, count the small ones, and meet the idea behind Sudoku.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Take a grid with 3 rows and 3 columns, and the numbers 1, 2 and 3. Fill it so that each number appears exactly once in every row and exactly once in every column. That is a <b>Latin square</b>.</p>
+<figure><svg viewBox="0 0 300 112" width="300" height="112" role="img" aria-label="Two three by three grids of the numbers 1, 2 and 3. The left grid has each number once in every row and column. In the right grid the middle column, highlighted, contains 2 twice." font-family="Nunito, sans-serif" font-size="12">
+<rect x="40" y="6" width="28" height="28" fill="#dcdcf5" stroke="#000" stroke-width="1"/>
+<text x="54.0" y="25.0" text-anchor="middle" font-size="14" font-weight="700">1</text>
+<rect x="68" y="6" width="28" height="28" fill="#fde8c4" stroke="#000" stroke-width="1"/>
+<text x="82.0" y="25.0" text-anchor="middle" font-size="14" font-weight="700">2</text>
+<rect x="96" y="6" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<text x="110.0" y="25.0" text-anchor="middle" font-size="14" font-weight="700">3</text>
+<rect x="40" y="34" width="28" height="28" fill="#fde8c4" stroke="#000" stroke-width="1"/>
+<text x="54.0" y="53.0" text-anchor="middle" font-size="14" font-weight="700">2</text>
+<rect x="68" y="34" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<text x="82.0" y="53.0" text-anchor="middle" font-size="14" font-weight="700">3</text>
+<rect x="96" y="34" width="28" height="28" fill="#dcdcf5" stroke="#000" stroke-width="1"/>
+<text x="110.0" y="53.0" text-anchor="middle" font-size="14" font-weight="700">1</text>
+<rect x="40" y="62" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<text x="54.0" y="81.0" text-anchor="middle" font-size="14" font-weight="700">3</text>
+<rect x="68" y="62" width="28" height="28" fill="#dcdcf5" stroke="#000" stroke-width="1"/>
+<text x="82.0" y="81.0" text-anchor="middle" font-size="14" font-weight="700">1</text>
+<rect x="96" y="62" width="28" height="28" fill="#fde8c4" stroke="#000" stroke-width="1"/>
+<text x="110.0" y="81.0" text-anchor="middle" font-size="14" font-weight="700">2</text>
+<rect x="40" y="6" width="84" height="84" fill="none" stroke="#000" stroke-width="2"/>
+<text x="82.0" y="106" text-anchor="middle" fill="#999">a Latin square</text>
+<rect x="176" y="6" width="28" height="28" fill="#dcdcf5" stroke="#000" stroke-width="1"/>
+<text x="190.0" y="25.0" text-anchor="middle" font-size="14" font-weight="700">1</text>
+<rect x="204" y="6" width="28" height="28" fill="#fde8c4" stroke="#000" stroke-width="1"/>
+<text x="218.0" y="25.0" text-anchor="middle" font-size="14" font-weight="700">2</text>
+<rect x="232" y="6" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<text x="246.0" y="25.0" text-anchor="middle" font-size="14" font-weight="700">3</text>
+<rect x="176" y="34" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<text x="190.0" y="53.0" text-anchor="middle" font-size="14" font-weight="700">3</text>
+<rect x="204" y="34" width="28" height="28" fill="#fde8c4" stroke="#000" stroke-width="1"/>
+<text x="218.0" y="53.0" text-anchor="middle" font-size="14" font-weight="700">2</text>
+<rect x="232" y="34" width="28" height="28" fill="#dcdcf5" stroke="#000" stroke-width="1"/>
+<text x="246.0" y="53.0" text-anchor="middle" font-size="14" font-weight="700">1</text>
+<rect x="176" y="62" width="28" height="28" fill="#fde8c4" stroke="#000" stroke-width="1"/>
+<text x="190.0" y="81.0" text-anchor="middle" font-size="14" font-weight="700">2</text>
+<rect x="204" y="62" width="28" height="28" fill="#dcdcf5" stroke="#000" stroke-width="1"/>
+<text x="218.0" y="81.0" text-anchor="middle" font-size="14" font-weight="700">1</text>
+<rect x="232" y="62" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<text x="246.0" y="81.0" text-anchor="middle" font-size="14" font-weight="700">3</text>
+<rect x="202" y="4" width="32" height="88" rx="4" fill="none" stroke="#f5a524" stroke-width="3"/>
+<rect x="176" y="6" width="84" height="84" fill="none" stroke="#000" stroke-width="2"/>
+<text x="218.0" y="106" text-anchor="middle" fill="#999">not a Latin square</text>
+</svg><figcaption>Every row on the right is fine. The middle column is not: it has two 2s. The last column has two 3s as well.</figcaption></figure>
+<p>Here is one way to build one. Write 1 2 3 in the top row. For each new row, slide the numbers one place left and move the front number to the back. This works for a grid of any size.</p>
+<p>A finished Sudoku is a Latin square with 9 rows and 9 columns, plus one extra rule for its boxes.</p>
+<p class="callout">To fill a box, ask what is already in its row and what is already in its column. The box must be something else.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: fill a 4 by 4 square</h2>
+<p>This square uses 1, 2, 3 and 4. Look at the orange box. Its row already has 1 and 3. Its column already has 4. Only 2 is left, so write 2.</p>
+<figure><svg viewBox="0 0 300 134" width="300" height="134" role="img" aria-label="A four by four grid partly filled with the numbers 1 to 4, with the second box of the top row highlighted, and beside it the same grid completely filled in." font-family="Nunito, sans-serif" font-size="12">
+<rect x="22" y="4" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<text x="36.0" y="23.0" text-anchor="middle" font-size="14" font-weight="700">1</text>
+<rect x="50" y="4" width="28" height="28" fill="#fde8c4" stroke="#000" stroke-width="1"/>
+<rect x="78" y="4" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<text x="92.0" y="23.0" text-anchor="middle" font-size="14" font-weight="700">3</text>
+<rect x="106" y="4" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<rect x="22" y="32" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<rect x="50" y="32" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<text x="64.0" y="51.0" text-anchor="middle" font-size="14" font-weight="700">4</text>
+<rect x="78" y="32" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<rect x="106" y="32" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<text x="120.0" y="51.0" text-anchor="middle" font-size="14" font-weight="700">2</text>
+<rect x="22" y="60" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<rect x="50" y="60" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<rect x="78" y="60" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<text x="92.0" y="79.0" text-anchor="middle" font-size="14" font-weight="700">2</text>
+<rect x="106" y="60" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<text x="120.0" y="79.0" text-anchor="middle" font-size="14" font-weight="700">1</text>
+<rect x="22" y="88" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<rect x="50" y="88" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<rect x="78" y="88" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<rect x="106" y="88" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<rect x="50" y="4" width="28" height="28" fill="none" stroke="#f5a524" stroke-width="3"/>
+<rect x="22" y="4" width="112" height="112" fill="none" stroke="#000" stroke-width="2"/>
+<text x="78.0" y="132" text-anchor="middle" fill="#999">start</text>
+<line x1="140" y1="60" x2="162" y2="60" stroke="#999" stroke-width="2"/><path d="M162 60 l-7 -5 v10 z" fill="#999"/>
+<rect x="170" y="4" width="28" height="28" fill="#dcdcf5" stroke="#000" stroke-width="1"/>
+<text x="184.0" y="23.0" text-anchor="middle" font-size="14" font-weight="700">1</text>
+<rect x="198" y="4" width="28" height="28" fill="#fde8c4" stroke="#000" stroke-width="1"/>
+<text x="212.0" y="23.0" text-anchor="middle" font-size="14" font-weight="700">2</text>
+<rect x="226" y="4" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<text x="240.0" y="23.0" text-anchor="middle" font-size="14" font-weight="700">3</text>
+<rect x="254" y="4" width="28" height="28" fill="#eee" stroke="#000" stroke-width="1"/>
+<text x="268.0" y="23.0" text-anchor="middle" font-size="14" font-weight="700">4</text>
+<rect x="170" y="32" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<text x="184.0" y="51.0" text-anchor="middle" font-size="14" font-weight="700">3</text>
+<rect x="198" y="32" width="28" height="28" fill="#eee" stroke="#000" stroke-width="1"/>
+<text x="212.0" y="51.0" text-anchor="middle" font-size="14" font-weight="700">4</text>
+<rect x="226" y="32" width="28" height="28" fill="#dcdcf5" stroke="#000" stroke-width="1"/>
+<text x="240.0" y="51.0" text-anchor="middle" font-size="14" font-weight="700">1</text>
+<rect x="254" y="32" width="28" height="28" fill="#fde8c4" stroke="#000" stroke-width="1"/>
+<text x="268.0" y="51.0" text-anchor="middle" font-size="14" font-weight="700">2</text>
+<rect x="170" y="60" width="28" height="28" fill="#eee" stroke="#000" stroke-width="1"/>
+<text x="184.0" y="79.0" text-anchor="middle" font-size="14" font-weight="700">4</text>
+<rect x="198" y="60" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<text x="212.0" y="79.0" text-anchor="middle" font-size="14" font-weight="700">3</text>
+<rect x="226" y="60" width="28" height="28" fill="#fde8c4" stroke="#000" stroke-width="1"/>
+<text x="240.0" y="79.0" text-anchor="middle" font-size="14" font-weight="700">2</text>
+<rect x="254" y="60" width="28" height="28" fill="#dcdcf5" stroke="#000" stroke-width="1"/>
+<text x="268.0" y="79.0" text-anchor="middle" font-size="14" font-weight="700">1</text>
+<rect x="170" y="88" width="28" height="28" fill="#fde8c4" stroke="#000" stroke-width="1"/>
+<text x="184.0" y="107.0" text-anchor="middle" font-size="14" font-weight="700">2</text>
+<rect x="198" y="88" width="28" height="28" fill="#dcdcf5" stroke="#000" stroke-width="1"/>
+<text x="212.0" y="107.0" text-anchor="middle" font-size="14" font-weight="700">1</text>
+<rect x="226" y="88" width="28" height="28" fill="#eee" stroke="#000" stroke-width="1"/>
+<text x="240.0" y="107.0" text-anchor="middle" font-size="14" font-weight="700">4</text>
+<rect x="254" y="88" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<text x="268.0" y="107.0" text-anchor="middle" font-size="14" font-weight="700">3</text>
+<rect x="170" y="4" width="112" height="112" fill="none" stroke="#000" stroke-width="2"/>
+<text x="226.0" y="132" text-anchor="middle" fill="#999">finished</text>
+</svg></figure>
+<p>Now the top row is missing only 4. Carry on like this. Always pick a box where the row and column together leave one choice.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Which of these is a Latin square? For the one that is not, say what is wrong.
+<figure><svg viewBox="0 0 240 108" width="240" height="108" role="img" aria-label="Two three by three grids labelled P and Q. P reads 2 3 1, 1 2 3, 3 1 2. Q reads 1 2 3, 2 3 2, 3 1 1." font-family="Nunito, sans-serif" font-size="12">
+<rect x="20" y="4" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<text x="34.0" y="23.0" text-anchor="middle" font-size="14" font-weight="700">2</text>
+<rect x="48" y="4" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<text x="62.0" y="23.0" text-anchor="middle" font-size="14" font-weight="700">3</text>
+<rect x="76" y="4" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<text x="90.0" y="23.0" text-anchor="middle" font-size="14" font-weight="700">1</text>
+<rect x="20" y="32" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<text x="34.0" y="51.0" text-anchor="middle" font-size="14" font-weight="700">1</text>
+<rect x="48" y="32" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<text x="62.0" y="51.0" text-anchor="middle" font-size="14" font-weight="700">2</text>
+<rect x="76" y="32" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<text x="90.0" y="51.0" text-anchor="middle" font-size="14" font-weight="700">3</text>
+<rect x="20" y="60" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<text x="34.0" y="79.0" text-anchor="middle" font-size="14" font-weight="700">3</text>
+<rect x="48" y="60" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<text x="62.0" y="79.0" text-anchor="middle" font-size="14" font-weight="700">1</text>
+<rect x="76" y="60" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<text x="90.0" y="79.0" text-anchor="middle" font-size="14" font-weight="700">2</text>
+<rect x="20" y="4" width="84" height="84" fill="none" stroke="#000" stroke-width="2"/>
+<text x="62.0" y="104" text-anchor="middle" fill="#999">P</text>
+<rect x="136" y="4" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<text x="150.0" y="23.0" text-anchor="middle" font-size="14" font-weight="700">1</text>
+<rect x="164" y="4" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<text x="178.0" y="23.0" text-anchor="middle" font-size="14" font-weight="700">2</text>
+<rect x="192" y="4" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<text x="206.0" y="23.0" text-anchor="middle" font-size="14" font-weight="700">3</text>
+<rect x="136" y="32" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<text x="150.0" y="51.0" text-anchor="middle" font-size="14" font-weight="700">2</text>
+<rect x="164" y="32" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<text x="178.0" y="51.0" text-anchor="middle" font-size="14" font-weight="700">3</text>
+<rect x="192" y="32" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<text x="206.0" y="51.0" text-anchor="middle" font-size="14" font-weight="700">2</text>
+<rect x="136" y="60" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<text x="150.0" y="79.0" text-anchor="middle" font-size="14" font-weight="700">3</text>
+<rect x="164" y="60" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<text x="178.0" y="79.0" text-anchor="middle" font-size="14" font-weight="700">1</text>
+<rect x="192" y="60" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<text x="206.0" y="79.0" text-anchor="middle" font-size="14" font-weight="700">1</text>
+<rect x="136" y="4" width="84" height="84" fill="none" stroke="#000" stroke-width="2"/>
+<text x="178.0" y="104" text-anchor="middle" fill="#999">Q</text>
+</svg></figure></li>
+<li>Finish this Latin square. It uses 1, 2 and 3.
+<figure><svg viewBox="0 0 100 90" width="100" height="90" role="img" aria-label="A three by three grid. The top row is 1 2 3 and the second row starts with 3. The other boxes are empty." font-family="Nunito, sans-serif" font-size="12">
+<rect x="8" y="3" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<text x="22.0" y="22.0" text-anchor="middle" font-size="14" font-weight="700">1</text>
+<rect x="36" y="3" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<text x="50.0" y="22.0" text-anchor="middle" font-size="14" font-weight="700">2</text>
+<rect x="64" y="3" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<text x="78.0" y="22.0" text-anchor="middle" font-size="14" font-weight="700">3</text>
+<rect x="8" y="31" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<text x="22.0" y="50.0" text-anchor="middle" font-size="14" font-weight="700">3</text>
+<rect x="36" y="31" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<rect x="64" y="31" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<rect x="8" y="59" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<rect x="36" y="59" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<rect x="64" y="59" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<rect x="8" y="3" width="84" height="84" fill="none" stroke="#000" stroke-width="2"/>
+</svg></figure></li>
+<li>Finish this Latin square. It uses 1, 2, 3 and 4.
+<figure><svg viewBox="0 0 128 118" width="128" height="118" role="img" aria-label="A four by four grid. Row two ends in 2. Row three is 3, blank, blank, 4. Row four is 4, 2, 3, blank. The other boxes are empty." font-family="Nunito, sans-serif" font-size="12">
+<rect x="8" y="3" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<rect x="36" y="3" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<rect x="64" y="3" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<rect x="92" y="3" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<rect x="8" y="31" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<rect x="36" y="31" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<rect x="64" y="31" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<rect x="92" y="31" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<text x="106.0" y="50.0" text-anchor="middle" font-size="14" font-weight="700">2</text>
+<rect x="8" y="59" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<text x="22.0" y="78.0" text-anchor="middle" font-size="14" font-weight="700">3</text>
+<rect x="36" y="59" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<rect x="64" y="59" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<rect x="92" y="59" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<text x="106.0" y="78.0" text-anchor="middle" font-size="14" font-weight="700">4</text>
+<rect x="8" y="87" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<text x="22.0" y="106.0" text-anchor="middle" font-size="14" font-weight="700">4</text>
+<rect x="36" y="87" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<text x="50.0" y="106.0" text-anchor="middle" font-size="14" font-weight="700">2</text>
+<rect x="64" y="87" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<text x="78.0" y="106.0" text-anchor="middle" font-size="14" font-weight="700">3</text>
+<rect x="92" y="87" width="28" height="28" fill="#fff" stroke="#000" stroke-width="1"/>
+<rect x="8" y="3" width="112" height="112" fill="none" stroke="#000" stroke-width="2"/>
+</svg></figure></li>
+<li>(a) Draw every Latin square with 2 rows and 2 columns that uses 1 and 2. How many are there? (b) Find every 3 by 3 Latin square whose top row is 1 2 3. How many are there? Explain how you know you have them all.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: count them all</h2>
+<p>The numbers 1, 2 and 3 can be written in a row in 6 different orders. Each order could be the top row of a Latin square. Use question 4 to count every 3 by 3 Latin square.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>P is a Latin square. Q is not: its second row has two 2s and its third row has two 1s. Every column of Q is fine, but the rows must work too.</li>
+<li>Second row: 3 1 2. The middle box cannot be 2, because 2 is above it. Third row: 2 3 1.</li>
+<li>Reading across each row: 2 4 1 3 / 1 3 4 2 / 3 1 2 4 / 4 2 3 1. A good first box is the end of the bottom row, which must be 1.</li>
+<li>(a) Two: 1 2 over 2 1, and 2 1 over 1 2. (b) Two. The box under the 1 must be 2 or 3. If it is 2, the rows are 1 2 3 / 2 3 1 / 3 1 2. If it is 3, they are 1 2 3 / 3 1 2 / 2 3 1. Once that box is chosen, every other box is forced, so there are no more.</li>
+</ol>
+<p><b>Stretch.</b> Each of the 6 top rows can be finished in 2 ways, just as in question 4. \(6 \times 2 = 12\) Latin squares.</p>
+</section>
+
+<div class="sheet-nav"><a href="b15-logic-grid.html">← Previous</a><a href="b17-venn.html">Next: Sorting with circles →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

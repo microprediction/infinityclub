@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Will it fold? · Infinity Club</title>
+<meta name="description" content="Six squares joined edge to edge. Decide whether the shape folds into a cube, then watch it fold. Includes all eleven nets of the cube.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+#fold { width: 100%; max-width: 560px; margin: 0 auto; touch-action: manipulation; }
+.controls.big button { font-size: 1.15rem; padding: .8rem 1.3rem; min-height: 52px; min-width: 7.5rem; }
+.controls button:disabled { opacity: .4; cursor: default; }
+.controls input[type=range] { width: 200px; max-width: 100%; height: 36px; }
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(86px, 1fr)); gap: .6rem; margin: .8rem 0; }
+.gallery button { background: #fff; border: 2px solid var(--rule); border-radius: 10px; padding: .5rem; cursor: pointer; min-height: 72px; display: flex; align-items: center; justify-content: center; }
+.gallery button:hover, .gallery button.on { border-color: var(--warm); background: var(--warm-soft); }
+.gallery svg { width: 100%; height: auto; max-width: 76px; }
+details.nets summary { cursor: pointer; font-weight: 700; padding: .5rem 0; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Will it fold?</h1>
+<p class="explain">Six squares, joined edge to edge. Imagine cutting the shape out of card and folding along every line. <b>Does it fold into a cube?</b> Decide first, tap your answer, then watch it fold.</p>
+<div class="demo-panel">
+  <canvas id="fold" width="560" height="350"></canvas>
+  <div class="controls big">
+    <button id="yes">Cube</button>
+    <button id="no" class="alt">Not a cube</button>
+    <button id="next" class="ghost">Next shape</button>
+  </div>
+  <div class="readout" id="status"></div>
+  <div class="controls">
+    <label>Fold <input type="range" id="slider" min="0" max="100" value="0" disabled></label>
+    <button id="again" class="ghost" disabled>Fold again</button>
+    <span id="score" class="small"></span>
+  </div>
+  <details class="nets">
+    <summary>Show all eleven nets (this gives the game away)</summary>
+    <p class="small">Tap one to watch it fold.</p>
+    <div class="gallery" id="gallery"></div>
+  </details>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>A flat shape that folds up into a cube is called a <b>net</b> of the cube. There are 35 different shapes you can make from six squares, if a shape turned round or flipped over counts as the same shape. Only <b>11</b> of them are nets.</p>
+<p>A cube has six faces, so each of the six squares has to land on a different face. When a shape fails, two squares land on the same face and another face is left open. The demo paints those two squares red.</p>
+<p>Two quick checks save a lot of folding. <b>Four squares round one corner</b> (a 2 by 2 block) never work: they lie flat like a floor tile. <b>Five squares in a row</b> never work either: four in a row already go all the way round the cube, so the fifth lands on top of the first.</p>
+<p>Sheet: <a href="../grade-5/sheets/b9-cube-nets.html">Eleven ways to unfold a cube</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  var DIRS = [[1, 0], [-1, 0], [0, 1], [0, -1]];
+  // slide a shape so its top-left is at (0,0), cells in reading order
+  function norm(cells) {
+    var mx = Infinity, my = Infinity;
+    cells.forEach(function (c) { if (c[0] < mx) mx = c[0]; if (c[1] < my) my = c[1]; });
+    return cells.map(function (c) { return [c[0] - mx, c[1] - my]; }).sort(function (a, b) { return a[1] - b[1] || a[0] - b[0]; });
+  }
+  function key(cells) { return cells.map(function (c) { return c[0] + "," + c[1]; }).join(" "); }
+  // the 8 turned and flipped copies of a shape
+  function symmetries(cells) {
+    var out = [], cur = cells, f, r;
+    for (f = 0; f < 2; f++) {
+      for (r = 0; r < 4; r++) { cur = cur.map(function (c) { return [-c[1], c[0]]; }); out.push(norm(cur)); }
+      cur = cur.map(function (c) { return [-c[0], c[1]]; });
+    }
+    return out;
+  }
+  function canon(cells) {
+    var best = null;
+    symmetries(cells).forEach(function (s) { var k = key(s); if (best === null || k < best.k) best = { k: k, cells: s }; });
+    return best;
+  }
+  // every shape made of n squares, turned and flipped copies counted once
+  function freePolyominoes(n) {
+    var level = [canon([[0, 0]])], i;
+    for (i = 1; i < n; i++) {
+      var seen = {}, next = [];
+      level.forEach(function (p) {
+        var have = {}; p.cells.forEach(function (c) { have[c[0] + "," + c[1]] = 1; });
+        p.cells.forEach(function (c) {
+          DIRS.forEach(function (d) {
+            var q = [c[0] + d[0], c[1] + d[1]];
+            if (have[q[0] + "," + q[1]]) return;
+            var cn = canon(p.cells.concat([q]));
+            if (!seen[cn.k]) { seen[cn.k] = 1; next.push(cn); }
+          });
+        });
+      });
+      level = next;
+    }
+    return level.map(function (p) { return p.cells; });
+  }
+  function indexOfCell(cells) { var m = {}; cells.forEach(function (c, i) { m[c[0] + "," + c[1]] = i; }); return m; }
+  // Roll a cube across the shape. s = [down, up, north, south, east, west] face names.
+  function roll(s, dx, dy) {
+    if (dx === 1) return [s[4], s[5], s[2], s[3], s[1], s[0]];
+    if (dx === -1) return [s[5], s[4], s[2], s[3], s[0], s[1]];
+    if (dy === -1) return [s[2], s[3], s[1], s[0], s[4], s[5]];
+    return [s[3], s[2], s[0], s[1], s[4], s[5]];
+  }
+  // Which face of the cube each square lands on. ok is true exactly when the shape is a net:
+  // the six squares land on six different faces, and every join agrees about it.
+  function foldFaces(cells) {
+    var idx = indexOfCell(cells), state = [], queue = [0], agree = true;
+    state[0] = [0, 1, 2, 3, 4, 5];
+    while (queue.length) {
+      var i = queue.shift();
+      DIRS.forEach(function (d) {
+        var j = idx[(cells[i][0] + d[0]) + "," + (cells[i][1] + d[1])];
+        if (j === undefined) return;
+        var r = roll(state[i], d[0], d[1]);
+        if (!state[j]) { state[j] = r; queue.push(j); }
+        else if (state[j].join() !== r.join()) agree = false;
+      });
+    }
+    var face = state.map(function (s) { return s[0]; }), count = {}, distinct = 0;
+    face.forEach(function (f) { if (!count[f]) distinct++; count[f] = (count[f] || 0) + 1; });
+    return { face: face, ok: agree && distinct === cells.length && cells.length === 6, distinct: distinct,
+      clash: face.map(function (f) { return count[f] > 1; }) };
+  }
+  function isNet(cells) { return foldFaces(cells).ok; }
+  // the four squares of a 2 by 2 block, if the shape has one
+  function block2x2(cells) {
+    var idx = indexOfCell(cells), found = null;
+    cells.forEach(function (c) {
+      var a = idx[(c[0] + 1) + "," + c[1]], b = idx[c[0] + "," + (c[1] + 1)], d = idx[(c[0] + 1) + "," + (c[1] + 1)];
+      if (!found && a !== undefined && b !== undefined && d !== undefined) found = [idx[c[0] + "," + c[1]], a, b, d];
+    });
+    return found;
+  }
+  // A folding plan: every square hangs off a parent square by a hinge. Root is the most central square.
+  function foldTree(cells) {
+    var idx = indexOfCell(cells), best = null;
+    cells.forEach(function (c0, root) {
+      var parent = [], depth = [], queue = [root], deepest = 0;
+      parent[root] = -1; depth[root] = 0;
+      while (queue.length) {
+        var i = queue.shift();
+        DIRS.forEach(function (d) {
+          var j = idx[(cells[i][0] + d[0]) + "," + (cells[i][1] + d[1])];
+          if (j === undefined || depth[j] !== undefined) return;
+          parent[j] = i; depth[j] = depth[i] + 1; if (depth[j] > deepest) deepest = depth[j]; queue.push(j);
+        });
+      }
+      if (best === null || deepest < best.deepest) best = { root: root, parent: parent, deepest: deepest };
+    });
+    return best;
+  }
+  // Where the flat point (x, y) of square i is, once every hinge has turned through ang (0 flat, PI/2 folded).
+  function foldPoint(cells, parent, i, x, y, ang) {
+    var p = [x, y, 0], c = i, co = Math.cos(ang), si = Math.sin(ang);
+    while (parent[c] !== -1) {
+      var q = parent[c], dx = cells[c][0] - cells[q][0], dy = cells[c][1] - cells[q][1];
+      var a = dx ? 0 : 1, s = dx || dy, h = s === 1 ? cells[c][a] : cells[c][a] + 1, rel = p[a] - h, z = p[2];
+      p[a] = h + rel * co - s * z * si; p[2] = s * rel * si + z * co;
+      c = q;
+    }
+    return p;
+  }
+  // turn a shape so it is at least as wide as it is tall
+  function landscape(cells) {
+    var w = 0, h = 0; cells = norm(cells);
+    cells.forEach(function (c) { if (c[0] > w) w = c[0]; if (c[1] > h) h = c[1]; });
+    return h > w ? norm(cells.map(function (c) { return [c[1], c[0]]; })) : cells;
+  }
+  /*ENDPURE*/
+
+  var ALL = freePolyominoes(6), NETS = ALL.filter(isNet), DUDS = ALL.filter(function (c) { return !isNet(c); });
+  var FACE_FILL = ["#dcdcf5", "#fde8c4", "#d6efd9", "#f9d9e3", "#d5ecf5", "#ece0f7"];
+  var canvas = document.getElementById("fold"), ctx = canvas.getContext("2d");
+  var status = document.getElementById("status"), slider = document.getElementById("slider"), scoreEl = document.getElementById("score");
+  var yesB = document.getElementById("yes"), noB = document.getElementById("no"), againB = document.getElementById("again");
+  var cur = null, answered = false, t = 0, raf = null, right = 0, total = 0, lastKey = "";
+
+  function pick(list) { return list[Math.floor(Math.random() * list.length)]; }
+  function setShape(cells) {
+    var sym = symmetries(cells);
+    cells = landscape(pick(sym));
+    var f = foldFaces(cells), tree = foldTree(cells), w = 0, h = 0;
+    cells.forEach(function (c) { if (c[0] + 1 > w) w = c[0] + 1; if (c[1] + 1 > h) h = c[1] + 1; });
+    cur = { cells: cells, fold: f, tree: tree, block: block2x2(cells), w: w, h: h };
+  }
+  function stop() { if (raf) cancelAnimationFrame(raf); raf = null; }
+  function newRound() {
+    stop();
+    var cells;
+    do { cells = pick(Math.random() < 0.5 ? NETS : DUDS); } while (key(cells) === lastKey);
+    lastKey = key(cells);
+    setShape(cells); answered = false; t = 0; slider.value = 0; slider.disabled = true; againB.disabled = true;
+    yesB.disabled = false; noB.disabled = false;
+    status.textContent = "Will this shape fold into a cube?";
+    markGallery(null); draw();
+  }
+  function reveal(lead) {
+    answered = true; yesB.disabled = true; noB.disabled = true;
+    var f = cur.fold, msg;
+    if (f.ok) msg = "It folds into a cube. Each square lands on its own face.";
+    else if (cur.block) msg = "Four squares meet at one corner (the red ones). They lie flat like a floor tile and cannot bend round a corner of a cube.";
+    else msg = "The red squares land on the same face, so the squares cover only " + f.distinct + " of the 6 faces. The cube has a hole.";
+    status.textContent = lead + msg;
+    var canFold = !cur.block; slider.disabled = !canFold; againB.disabled = !canFold;
+    if (canFold) play(); else draw();
+  }
+  function answer(saysCube) {
+    if (answered) return;
+    var good = saysCube === cur.fold.ok; total++; if (good) right++;
+    scoreEl.textContent = "Score: " + right + " right out of " + total;
+    reveal(good ? (cur.fold.ok ? "Yes! " : "Right, not a cube. ") : (cur.fold.ok ? "Not this time: it is a cube. " : "Not this time: it is not a cube. "));
+  }
+  function play() {
+    stop(); var t0 = null;
+    function step(ts) {
+      if (t0 === null) t0 = ts;
+      t = Math.min(1, (ts - t0) / 2600); slider.value = Math.round(t * 100); draw();
+      raf = t < 1 ? requestAnimationFrame(step) : null;
+    }
+    t = 0; raf = requestAnimationFrame(step);
+  }
+  function draw() {
+    var dpr = window.devicePixelRatio || 1, W = canvas.clientWidth || 560, H = Math.round(W * 0.62);
+    canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, H);
+    if (!cur) return;
+    var e = t * t * (3 - 2 * t), ang = e * Math.PI / 2, pitch = e * 1.0, yaw = e * 0.55, u = W / 7.4;
+    var cells = cur.cells, root = cells[cur.tree.root];
+    var cx = cur.w / 2 + e * (root[0] + 0.5 - cur.w / 2), cy = cur.h / 2 + e * (root[1] + 0.5 - cur.h / 2), cz = e * 0.5;
+    var cyw = Math.cos(yaw), syw = Math.sin(yaw), cp = Math.cos(pitch), sp = Math.sin(pitch);
+    var faces = cells.map(function (c, i) {
+      var pts = [[0, 0], [1, 0], [1, 1], [0, 1]].map(function (o) {
+        var p = foldPoint(cells, cur.tree.parent, i, c[0] + o[0], c[1] + o[1], ang);
+        var x = p[0] - cx, y = p[1] - cy, z = p[2] - cz, xr = x * cyw - y * syw, yr = x * syw + y * cyw;
+        return [W / 2 + u * xr, H / 2 + u * (yr * cp - z * sp), z * cp + yr * sp];
+      });
+      return { i: i, pts: pts, near: (pts[0][2] + pts[1][2] + pts[2][2] + pts[3][2]) / 4 };
+    });
+    faces.sort(function (a, b) { return a.near - b.near; });
+    faces.forEach(function (f) {
+      var bad = answered && (cur.block ? cur.block.indexOf(f.i) >= 0 : cur.fold.clash[f.i]);
+      ctx.beginPath(); f.pts.forEach(function (p, k) { if (k) ctx.lineTo(p[0], p[1]); else ctx.moveTo(p[0], p[1]); }); ctx.closePath();
+      ctx.fillStyle = bad ? "#f4a3a3" : answered && cur.fold.ok ? FACE_FILL[cur.fold.face[f.i]] : "#dcdcf5";
+      ctx.fill(); ctx.strokeStyle = bad ? "#b3261e" : "#3f44c9"; ctx.lineWidth = 2.5; ctx.lineJoin = "round"; ctx.stroke();
+    });
+  }
+  // gallery of the eleven nets
+  var gallery = document.getElementById("gallery"), NS = "http://www.w3.org/2000/svg";
+  NETS.forEach(function (cells, n) {
+    var c = landscape(cells), w = 0, h = 0, b = document.createElement("button"), svg = document.createElementNS(NS, "svg");
+    c.forEach(function (q) { if (q[0] + 1 > w) w = q[0] + 1; if (q[1] + 1 > h) h = q[1] + 1; });
+    svg.setAttribute("viewBox", "-1 -1 " + (w * 14 + 2) + " " + (h * 14 + 2)); svg.setAttribute("aria-hidden", "true");
+    c.forEach(function (q) {
+      var r = document.createElementNS(NS, "rect");
+      r.setAttribute("x", q[0] * 14); r.setAttribute("y", q[1] * 14); r.setAttribute("width", 14); r.setAttribute("height", 14);
+      r.setAttribute("fill", "#dcdcf5"); r.setAttribute("stroke", "#3f44c9"); r.setAttribute("stroke-width", 1.2); svg.appendChild(r);
+    });
+    b.appendChild(svg); b.setAttribute("aria-label", "Net " + (n + 1) + " of 11");
+    b.addEventListener("click", function () {
+      stop(); setShape(cells); lastKey = key(cells); markGallery(b);
+      reveal("Net " + (n + 1) + " of 11. "); canvas.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    });
+    gallery.appendChild(b);
+  });
+  function markGallery(btn) { Array.prototype.forEach.call(gallery.children, function (g) { g.classList.toggle("on", g === btn); }); }
+
+  yesB.addEventListener("click", function () { answer(true); });
+  noB.addEventListener("click", function () { answer(false); });
+  document.getElementById("next").addEventListener("click", newRound);
+  againB.addEventListener("click", play);
+  slider.addEventListener("input", function () { stop(); t = slider.value / 100; draw(); });
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(draw, 120); });
+  newRound();
+})();
+</script>
+</body>
+</html>

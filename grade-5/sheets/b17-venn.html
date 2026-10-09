@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sorting with circles · Infinity Club</title>
+<meta name="description" content="Sort numbers into two overlapping circles. The overlap holds what fits both rules, the outside holds what fits neither, and counting needs care.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 5</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 5 · Around the corner · 17</div>
+  <h1>Sorting with circles</h1>
+  <p class="teaser">Multiples of 2 in one circle, multiples of 3 in the other. What lives in the overlap, and what is left outside?</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Take the numbers 1 to 12 and two rules. Rule one: the number is a multiple of 2. Rule two: it is a multiple of 3.</p>
+<p>Draw a circle for each rule and let the circles overlap. This picture is called a <b>Venn diagram</b>.</p>
+<figure><svg viewBox="0 0 340 180" width="340" height="180" role="img" aria-label="Two overlapping circles inside a box. The left circle holds multiples of 2 and the right circle holds multiples of 3. The numbers 2, 4, 8 and 10 are only in the left circle, 3 and 9 only in the right, 6 and 12 in the overlap, and 1, 5, 7 and 11 are outside both." font-family="Nunito, sans-serif" font-size="12">
+<rect x="6" y="6" width="328" height="168" rx="8" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="130" cy="98" r="66" fill="#dcdcf5" fill-opacity="0.7" stroke="#3f44c9" stroke-width="1.5"/>
+<circle cx="210" cy="98" r="66" fill="#fde8c4" fill-opacity="0.7" stroke="#f5a524" stroke-width="1.5"/>
+<text x="112" y="24" text-anchor="middle" fill="#3f44c9" font-weight="700">multiples of 2</text>
+<text x="228" y="24" text-anchor="middle" fill="#b97400" font-weight="700">multiples of 3</text>
+<text x="98" y="78" text-anchor="middle" font-size="14" font-weight="700">2</text>
+<text x="118" y="112" text-anchor="middle" font-size="14" font-weight="700">4</text>
+<text x="92" y="128" text-anchor="middle" font-size="14" font-weight="700">8</text>
+<text x="86" y="102" text-anchor="middle" font-size="14" font-weight="700">10</text>
+<text x="170" y="88" text-anchor="middle" font-size="14" font-weight="700">6</text>
+<text x="170" y="120" text-anchor="middle" font-size="14" font-weight="700">12</text>
+<text x="240" y="84" text-anchor="middle" font-size="14" font-weight="700">3</text>
+<text x="246" y="118" text-anchor="middle" font-size="14" font-weight="700">9</text>
+<text x="26" y="50" text-anchor="middle" font-size="14" font-weight="700">1</text>
+<text x="30" y="160" text-anchor="middle" font-size="14" font-weight="700">5</text>
+<text x="312" y="50" text-anchor="middle" font-size="14" font-weight="700">7</text>
+<text x="308" y="160" text-anchor="middle" font-size="14" font-weight="700">11</text>
+</svg><figcaption>The numbers 1 to 12, sorted. Every number has exactly one home.</figcaption></figure>
+<p>The picture has four regions. A number can pass rule one only, rule two only, both, or neither.</p>
+<p>The <b>overlap</b> holds the numbers that pass both rules. Here that is 6 and 12, the multiples of 6. The numbers outside both circles pass neither rule.</p>
+<p>Now count. There are 6 multiples of 2 and 4 multiples of 3. But only 8 numbers are inside the circles, not \(6 + 4 = 10\). Adding counted 6 and 12 twice.</p>
+<p class="callout">Inside the circles = first circle + second circle − overlap. Here \(6 + 4 - 2 = 8\).</p>
+</section>
+
+<section class="example">
+<h2>Watch one: football and chess</h2>
+<p>A class has 24 children. 14 play football, 9 play chess, and 4 play both. How many play neither?</p>
+<p>Fill in the overlap first: 4.</p>
+<p>Football only: \(14 - 4 = 10\).<br>
+Chess only: \(9 - 4 = 5\).<br>
+Inside the circles: \(10 + 4 + 5 = 19\).<br>
+Outside: \(24 - 19 = 5\).</p>
+<p>Five children play neither. Check with the rule: \(14 + 9 - 4 = 19\). Starting from the overlap stops you counting anyone twice.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Draw two overlapping circles in a box. Label them "multiples of 2" and "multiples of 5". Put each number from 1 to 20 in its home. Which numbers are in the overlap?<div class="space tall"></div></li>
+<li>Now use the numbers 1 to 30, with circles for "multiples of 3" and "multiples of 5". Do not draw it. (a) Which numbers are in the overlap? (b) What one rule describes them? (c) How many numbers are outside both circles?<div class="space"></div></li>
+<li>A club has 25 children. 16 have a brother and 14 have a sister. Every child has at least one of the two. How many have both a brother and a sister?<div class="space short"></div></li>
+<li>Sort 1 to 12 again. This time the circles are "multiples of 2" and "multiples of 4". (a) One of the four regions is empty. Which one, and why? (b) Draw a better picture for these two rules, with no empty region.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: three circles</h2>
+<p>Draw three circles that all overlap each other: multiples of 2, of 3 and of 5. Sort the numbers 1 to 30. Which number sits in the middle, inside all three? How many numbers are outside all three?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Multiples of 2 only: 2, 4, 6, 8, 12, 14, 16, 18. Multiples of 5 only: 5, 15. Overlap: 10 and 20. Outside: 1, 3, 7, 9, 11, 13, 17, 19.</li>
+<li>(a) 15 and 30. (b) They are the multiples of 15. (c) There are 10 multiples of 3 and 6 multiples of 5. Inside the circles: \(10 + 6 - 2 = 14\). Outside: \(30 - 14 = 16\).</li>
+<li>\(16 + 14 = 30\), but there are only 25 children. The extra 5 were counted twice, so 5 children have both. Check: 11 brother only, 9 sister only, 5 both, and \(11 + 9 + 5 = 25\).</li>
+<li>(a) "Multiple of 4 only" is empty. Every multiple of 4 is also a multiple of 2, so 4, 8 and 12 all sit in the overlap. (b) Draw the "multiples of 4" circle inside the "multiples of 2" circle. Then 4, 8, 12 go in the inner circle and 2, 6, 10 in the ring around it. The odd numbers stay outside.</li>
+</ol>
+<p><b>Stretch.</b> Only 30 is in the middle: it is the first number that 2, 3 and 5 all divide. Eight numbers are outside all three: 1, 7, 11, 13, 17, 19, 23, 29.</p>
+<p class="small">Next year's version counts with three circles: <a href="../../grade-6/sheets/b26-inclusion.html">grade 6, sheet b26</a>.</p>
+</section>
+
+<div class="sheet-nav"><a href="b16-latin-squares.html">← Previous</a><a href="b18-fake-coin.html">Next: Find the fake coin →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

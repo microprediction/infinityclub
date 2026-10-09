@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The number 6174 · Infinity Club</title>
+<meta name="description" content="Take four digits, sort them big and small, subtract, and repeat. Every start arrives at 6174 within seven steps.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 5</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 5 · Around the corner · 5</div>
+  <h1>The number 6174</h1>
+  <p class="teaser">Take four digits, sort them big and small, subtract, repeat. You always arrive at the same number.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Pick four digits that are not all the same. Say 3, 5, 2 and 4. Now follow three steps.</p>
+<p><b>Big.</b> Sort the digits biggest first: 5432.<br>
+<b>Small.</b> Sort them smallest first: 2345.<br>
+<b>Subtract.</b> \(5432 - 2345 = 3087\).</p>
+<p>Do the same three steps to the answer, and again to the next answer.</p>
+<figure>
+<svg viewBox="0 0 510 92" width="510" height="92" role="img" aria-label="A chain of four boxes joined by arrows: 3524, then 3087, then 8352, then 6174. A looping arrow shows that 6174 leads back to itself." font-family="Nunito, sans-serif" font-size="12">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3f44c9"/></marker></defs>
+<defs><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#f5a524"/></marker></defs>
+<rect x="10" y="30" width="56" height="30" rx="6" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="38" y="50" text-anchor="middle" font-size="14" font-weight="700">3524</text>
+<line x1="70" y1="45" x2="150.7" y2="45" stroke="#3f44c9" stroke-width="1.5" marker-end="url(#ah)"/>
+<text x="110.3" y="38" text-anchor="middle" fill="#3f44c9">5432 − 2345</text>
+<rect x="154.7" y="30" width="56" height="30" rx="6" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="182.7" y="50" text-anchor="middle" font-size="14" font-weight="700">3087</text>
+<line x1="214.7" y1="45" x2="295.3" y2="45" stroke="#3f44c9" stroke-width="1.5" marker-end="url(#ah)"/>
+<text x="255" y="38" text-anchor="middle" fill="#3f44c9">8730 − 0378</text>
+<rect x="299.3" y="30" width="56" height="30" rx="6" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="327.3" y="50" text-anchor="middle" font-size="14" font-weight="700">8352</text>
+<line x1="359.3" y1="45" x2="440" y2="45" stroke="#3f44c9" stroke-width="1.5" marker-end="url(#ah)"/>
+<text x="399.7" y="38" text-anchor="middle" fill="#3f44c9">8532 − 2358</text>
+<rect x="444" y="30" width="56" height="30" rx="6" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/>
+<text x="472" y="50" text-anchor="middle" font-size="14" font-weight="700">6174</text>
+<path d="M486,62 C498,90 446,90 458,63" fill="none" stroke="#f5a524" stroke-width="1.5" marker-end="url(#ah2)"/>
+<text x="442" y="82" fill="#f5a524" text-anchor="end">7641 − 1467</text>
+</svg>
+<figcaption>Start at 3524. Three subtractions later you reach 6174, and 6174 leads back to itself.</figcaption></figure>
+<p>Once you reach 6174 you are stuck, because \(7641 - 1467 = 6174\).</p>
+<p>The surprise is that <em>every</em> start ends here. There are fewer than ten thousand starts, so a computer can try them all. Each one reaches 6174, and none needs more than seven subtractions. The number is named Kaprekar's constant, after D. R. Kaprekar, the Indian mathematician who found it.</p>
+<p class="callout">One rule: always keep four digits. If an answer is 999, write it as 0999. The zero counts as a digit.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: start at 2111</h2>
+<p>Big is 2111 and small is 1112. The answer has only three digits, so put a zero in front.</p>
+<p>\(2111 - 1112 = 0999\)<br>
+\(9990 - 0999 = 8991\)<br>
+\(9981 - 1899 = 8082\)<br>
+\(8820 - 0288 = 8532\)<br>
+\(8532 - 2358 = 6174\)</p>
+<p>Five subtractions. Notice the zero is sorted like any other digit: it goes last in the big number and first in the small one.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Start at 1234. Keep going until you reach 6174. How many subtractions did you need?<div class="space"></div></li>
+<li>Start at 9998. Do the first subtraction. Then look at the example: you can finish without any more working. How many subtractions is it in all?<div class="space short"></div></li>
+<li>(a) What goes wrong if you start with 3333? (b) The starts 1234, 4321 and 2413 all give the same first answer. Why?<div class="space short"></div></li>
+<li>Try the same game with <b>three</b> digits. Start at 352 and keep going until the answer stops changing. Which number are you stuck at? Check that it leads back to itself.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: two digits</h2>
+<p>With two digits there is no number to get stuck at. Start at 52 and keep two digits each time, so 9 is written 09. Carry on until you see an answer for the second time. What happens instead of getting stuck?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(4321 - 1234 = 3087\), then \(8730 - 0378 = 8352\), then \(8532 - 2358 = 6174\). Three subtractions.</li>
+<li>\(9998 - 8999 = 0999\). The example also reached 0999 after one subtraction and needed four more. So 9998 takes five in all: 0999, 8991, 8082, 8532, 6174.</li>
+<li>(a) Big and small are both 3333, so the answer is 0000, and you stay at zero for ever. That is why the digits must not all be the same. (b) They use the same four digits. Sorting throws away the order, so all three give \(4321 - 1234 = 3087\).</li>
+<li>\(532 - 235 = 297\), \(972 - 279 = 693\), \(963 - 369 = 594\), \(954 - 459 = 495\). You are stuck at 495, because \(954 - 459 = 495\) again. Every three-digit start (digits not all the same) ends at 495.</li>
+</ol>
+<p><b>Stretch.</b> \(52 - 25 = 27\), \(72 - 27 = 45\), \(54 - 45 = 09\), \(90 - 09 = 81\), \(81 - 18 = 63\), \(63 - 36 = 27\). You are back at 27. Instead of one resting number there is a loop of five: 27, 45, 09, 81, 63, round and round.</p>
+</section>
+
+<div class="sheet-nav"><a href="b4-number-systems.html">← Previous</a><a href="b6-palindromes.html">Next: Reverse and add →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>
