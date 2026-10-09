@@ -143,10 +143,9 @@
 <p><b>Stretch.</b> A meeting lowers two counts by 1 and raises the third by 2. The difference between any two counts changes by 0 or by 3, so each difference keeps the same remainder when divided by 3. Start: 15 − 13 = 2, 17 − 15 = 2, 17 − 13 = 4, with remainders 2, 2, 1. If all chameleons were one colour, two of the counts would be 0 and their difference would be 0, remainder 0. No difference ever has remainder 0, so it can never happen.</p>
 <div style="break-inside: avoid;">
 <h3>Optional: a route that becomes dominoes</h3>
-<p>Trace the route in the left picture: it visits all 64 squares once and returns to its start. Neighbouring squares have different colours, so the colours alternate all the way round. Such a route is called a <b>Hamiltonian cycle</b>.</p>
-<p>Remove any one black square and any one white square. Cutting the route at those two gaps leaves two paths. Each nonempty path starts and ends on different colours, so it has an <b>even number of squares</b>. (A path can be empty if the removed squares were neighbours.) Pair the first two squares of each path, then the next two, and keep going. Every pair is a domino, and every remaining square is used exactly once.</p>
-<figure><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 313" width="560" height="313" role="img" aria-label="Two 8 by 8 chessboards. The first has a closed route through all 64 squares. The second removes a white square in the top row and a grey square at the right of row six, leaving routes of 30 and 32 squares. Consecutive squares are outlined in pairs to make 31 dominoes.">
-<g font-family="Nunito, sans-serif" fill="#1d1f3a" text-anchor="middle" font-size="17">
+<p>The left picture is a closed route through all 64 squares (a <b>Hamiltonian cycle</b>), so its colours alternate. Remove one black and one white square: the route breaks into two paths whose ends differ in colour, so each has an <b>even number of squares</b> (or none, if the gaps were neighbours). Pair up consecutive squares along each path: every pair is a domino and no square is missed.</p>
+<figure><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 313" width="260" height="145" role="img" aria-label="Two 8 by 8 chessboards. The first has a closed route through all 64 squares. The second removes a white square in the top row and a grey square at the right of row six, leaving routes of 30 and 32 squares. Consecutive squares are outlined in pairs to make 31 dominoes.">
+<g font-family="Nunito, sans-serif" fill="#1d1f3a" text-anchor="middle" font-size="21">
 <text x="126" y="25">1. One closed route</text><text x="416" y="25">2. Cut and pair neighbours</text>
 <rect x="14" y="48" width="28" height="28" fill="#d5d5d5" stroke="#777" stroke-width=".6"/>
 <rect x="42" y="48" width="28" height="28" fill="#fff" stroke="#777" stroke-width=".6"/>
@@ -312,11 +311,10 @@
 <rect x="390" y="50" width="52" height="24" rx="4" fill="none" stroke="#1d1f3a" stroke-width="1.5"/>
 <rect x="444" y="48" width="28" height="28" fill="#fff" stroke="#1d1f3a" stroke-width="1" stroke-dasharray="3 2"/><path d="M450 54 L466 70 M466 54 L450 70" stroke="#1d1f3a" stroke-width="2"/>
 <rect x="500" y="188" width="28" height="28" fill="#fff" stroke="#1d1f3a" stroke-width="1" stroke-dasharray="3 2"/><path d="M506 194 L522 210 M522 194 L506 210" stroke="#1d1f3a" stroke-width="2"/>
-<text x="126" y="296" font-size="16">Every square visited once</text><text x="416" y="296" font-size="16">30 squares + 32 squares</text>
+<text x="126" y="298" font-size="19">Every square visited once</text><text x="416" y="298" font-size="19">30 squares + 32 squares</text>
 </g>
 </svg>
-<figcaption>One example: removing opposite colours leaves paths of 30 and 32 squares, which pair into 15 + 16 = 31 dominoes. The same method works wherever the two gaps are.</figcaption></figure>
-<p>Now pick a different opposite-colour pair on squared paper and try the construction. This proves the opposite-colour result, known as <b>Gomory's theorem</b>, by giving a tiling for every such pair.</p>
+<figcaption>Here the paths have 30 and 32 squares, giving 15 + 16 = 31 dominoes. The method works wherever the two gaps are (try another pair on squared paper), so it proves <b>Gomory's theorem</b>.</figcaption></figure>
 </div>
 
 </section>
