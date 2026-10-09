@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Strategy stealing · Infinity Club</title>
+<meta name="description" content="In Chomp the first player can always force a win, and we can prove it without finding the winning move. The strategy-stealing argument, with small boards you can solve by hand.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 8 · Around the corner · 22</div>
+  <h1>Strategy stealing</h1>
+  <p class="teaser">In Chomp the first player can always win, and we can prove it without knowing how. The strangest kind of proof.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Chomp is played on a bar of chocolate whose bottom-left square is poisoned. On your turn you pick a square and eat it, together with every square above it or to its right. Whoever is left with only the poison must eat it, and loses.</p>
+<figure><svg viewBox="0 0 320 118" width="320" height="118" role="img" aria-label="A 5 by 3 chocolate bar. The bottom-left square is the poison. One square S in the middle row is chosen, and the five squares above or to the right of it are shown dashed, about to be eaten with it." font-family="Nunito, sans-serif" font-size="12">
+<g stroke="#3f44c9" stroke-width="1.5" fill="#dcdcf5">
+<rect x="20" y="20" width="28" height="28"/><rect x="48" y="20" width="28" height="28"/>
+<rect x="20" y="48" width="28" height="28"/><rect x="48" y="48" width="28" height="28"/>
+<rect x="48" y="76" width="28" height="28"/><rect x="76" y="76" width="28" height="28"/><rect x="104" y="76" width="28" height="28"/><rect x="132" y="76" width="28" height="28"/>
+</g>
+<rect x="20" y="76" width="28" height="28" fill="#f5a524" stroke="#3f44c9" stroke-width="1.5"/>
+<g stroke="#999" stroke-width="1.2" stroke-dasharray="4 3" fill="#fff">
+<rect x="104" y="20" width="28" height="28"/><rect x="132" y="20" width="28" height="28"/>
+<rect x="104" y="48" width="28" height="28"/><rect x="132" y="48" width="28" height="28"/>
+</g>
+<rect x="76" y="20" width="28" height="28" fill="#fff" stroke="#999" stroke-width="1.2" stroke-dasharray="4 3"/>
+<rect x="76" y="48" width="28" height="28" fill="#fde8c4" stroke="#f5a524" stroke-width="2"/>
+<text x="90" y="66" text-anchor="middle" fill="#555">S</text>
+<text x="34" y="113" text-anchor="middle" font-size="11" fill="#555">poison</text>
+<text x="180" y="40" fill="#555">eat S and everything</text>
+<text x="180" y="56" fill="#555">above or right of it</text>
+<text x="180" y="90" fill="#3f44c9">these squares stay</text>
+</svg><figcaption>One move on a \(5 \times 3\) bar: eating \(S\) removes it and the five dashed squares, six at once.</figcaption></figure>
+<p>Claim: on any bar bigger than \(1 \times 1\), the first player can force a win. We will prove it without saying what the winning move is.</p>
+<p>Chomp cannot draw and must end, so every position is a win or a loss for the player about to move; a <b>winning move</b> leaves the opponent a losing one. Consider eating only the top-right square. If that is a winning move, we are done. If not, the second player has a winning reply: eat some square \(S\). But eating \(S\) from the full bar removes the top-right square anyway, so it leaves exactly the position that "top-right, then \(S\)" leaves, with the <em>second</em> player facing it. The first player steals the reply.</p>
+<p class="callout">Either the top-right nibble wins, or the second player's answer to it would have. Either way the first player has a winning first move.</p>
+<p>The proof never says which move wins. For big bars nobody knows.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: a \(2 \times 4\) bar, and a strategy you can state</h2>
+<p>Call the first player A and the second B. A eats the top-right square: bottom row 4, top row 3. From now on A keeps the bottom row exactly one square longer than the top.</p>
+<p>Say B eats the second square of the top row, so the top row is 1. A eats the third square of the bottom row: bottom 2, top 1. If B eats the last top square, A eats the second bottom square and leaves the poison alone. If B eats the second bottom square instead, only the poison and the top square remain, and A eats the top square. Every road ends with B holding the poison.</p>
+<p class="small">Play against a computer that searches every line: <a href="../../demos/chomp.html">infinityclub.net/demos/chomp.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>The bar is a single row of \(n \ge 2\) squares. Who wins, and with what move?<div class="space short"></div></li>
+<li>A \(2 \times 5\) bar. A eats the top-right square, leaving bottom 5, top 4. B then eats the third square of the top row, so the top row is 2 squares long. What should A eat? State the rule A follows for the rest of the game, and explain why B, not A, ends up with the poison.<div class="space"></div></li>
+<li>A \(4 \times 4\) bar. Find A's winning first move and describe the strategy that follows it. Hint: look for a position with a symmetry A can copy.<div class="space"></div></li>
+<li>A \(3 \times 3\) bar. Suppose A opens badly by eating only the top-right square. Find B's winning reply, and check that it leaves exactly the position A could have made in one move from the full bar. Which step of tonight's proof is this?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: noughts and crosses on any board</h2>
+<p>Play noughts and crosses on a board of any size, with any winning-line length. Show that the second player cannot have a winning strategy. Hint: if they did, the first player could put one mark anywhere, then follow the second player's strategy as if that mark were not there. Why can a spare mark never hurt?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>The first player wins by eating the square next to the poison, which takes the whole row except the poison. The second player must eat it.</li>
+<li>A eats the fourth square of the bottom row, leaving bottom 3, top 2. The rule: after each of A's moves the bottom row is exactly one longer than the top row. Any move by B breaks this (shortening one row, or both), and A can always restore it, because the position after A's move is "bottom longer by one" and B cannot create that shape in one bite. The rows only shrink, so eventually A leaves bottom 1, top 0: just the poison, with B to move.</li>
+<li>A eats the square diagonally next to the poison (second row, second column). That removes the \(3 \times 3\) block, leaving an L: the bottom row of 4 and the left column of 4, sharing the poison. The two arms each have 3 squares beyond the poison. Whatever B bites from one arm, A bites the same amount from the other. The arms stay equal after A's moves, so B is the one who eventually faces the lone poison.</li>
+<li>After the top-right nibble, B eats the square diagonally next to the poison. That leaves the L with arms of 2, and B wins by copying, as in question 3. A could have eaten that same square at the start, and it would have removed the top-right square too, leaving the same L with B to move. This is the "stealing" step: B's winning reply was a winning first move for A all along.</li>
+</ol>
+<p><b>Stretch.</b> Suppose the second player had a winning strategy. The first player makes any mark, then pretends to be the second player and follows that strategy. If the strategy ever calls for the square already marked, mark any free square instead. At every stage the first player has every mark the strategy requires, plus one spare. A spare mark of your own can never block your own line or help the opponent, so the first player wins, which contradicts the assumption that the second player's strategy wins. So the game is a first-player win or a draw. (On the \(3 \times 3\) board it is a draw.)</p>
+</section>
+
+<div class="sheet-nav"><a href="b21-mediant.html">← Previous</a><a href="b23-josephus.html">Next: The Josephus problem →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

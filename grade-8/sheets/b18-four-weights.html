@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Four weights that weigh anything to 40 · Infinity Club</title>
+<meta name="description" content="Weights of 1, 3, 9 and 27 on a two-pan balance weigh every whole number up to 40. The reason is balanced ternary: a number system whose digits are −1, 0 and 1.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 8 · Around the corner · 18</div>
+  <h1>Four weights that weigh anything to 40</h1>
+  <p class="teaser">Weights of 1, 3, 9 and 27 on a two-pan balance measure every whole number up to 40. The reason is a number system with digits −1, 0, 1.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>On a two-pan balance a weight can go in either pan. Put the parcel on the left. A weight on the right adds to what you are measuring; a weight on the left, beside the parcel, subtracts. So each weight is used with a sign: \(+1\), \(-1\), or \(0\) if it stays in the box.</p>
+<figure><svg viewBox="0 0 360 150" width="360" height="150" role="img" aria-label="A two-pan balance. Left pan holds the parcel marked 20 with weights 9 and 1; right pan holds weights 27 and 3. Both sides total 30." font-family="Nunito, sans-serif" font-size="13">
+<line x1="40" y1="40" x2="320" y2="40" stroke="#000" stroke-width="2"/>
+<polygon points="172,40 188,40 180,28" fill="#000"/>
+<line x1="180" y1="40" x2="180" y2="130" stroke="#000" stroke-width="3"/>
+<line x1="140" y1="130" x2="220" y2="130" stroke="#000" stroke-width="3"/>
+<line x1="40" y1="40" x2="40" y2="85" stroke="#999" stroke-width="1.5"/><line x1="320" y1="40" x2="320" y2="85" stroke="#999" stroke-width="1.5"/>
+<path d="M5 85 L75 85 L68 100 L12 100 Z" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<path d="M285 85 L355 85 L348 100 L292 100 Z" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="8" y="55" width="32" height="30" fill="#fde8c4" stroke="#000" stroke-width="1.5"/><text x="24" y="75" text-anchor="middle" font-weight="700">20</text>
+<rect x="44" y="63" width="18" height="22" fill="#fff" stroke="#000" stroke-width="1.5"/><text x="53" y="79" text-anchor="middle" font-size="12">9</text>
+<rect x="64" y="72" width="11" height="13" fill="#fff" stroke="#000" stroke-width="1.5"/><text x="69.5" y="82" text-anchor="middle" font-size="10">1</text>
+<rect x="290" y="51" width="34" height="34" fill="#fff" stroke="#000" stroke-width="1.5"/><text x="307" y="73" text-anchor="middle" font-size="12">27</text>
+<rect x="328" y="70" width="15" height="15" fill="#fff" stroke="#000" stroke-width="1.5"/><text x="335.5" y="81" text-anchor="middle" font-size="10">3</text>
+<text x="52" y="122" text-anchor="middle" fill="#3f44c9">20 + 9 + 1 = 30</text>
+<text x="320" y="122" text-anchor="middle" fill="#3f44c9">27 + 3 = 30</text>
+<text x="180" y="145" text-anchor="middle" fill="#f5a524">20 = 27 − 9 + 3 − 1</text>
+</svg><figcaption>Weighing 20. The 9 and the 1 sit beside the parcel, so they count as negative.</figcaption></figure>
+<p>Which whole numbers can be written as \(\pm 27 \pm 9 \pm 3 \pm 1\), with terms allowed to be missing? This is place value like ordinary base 3, but with digits \(-1, 0, 1\) instead of \(0, 1, 2\): <b>balanced ternary</b>.</p>
+<p>Why is nothing skipped? The weight 1 alone weighs \(-1, 0, 1\). Add the 3: the same three values, shifted by \(+3\), by \(-3\), or not at all, give \(-4\) to \(4\) with no gap. Add the 9: \(-13\) to \(13\). Add the 27: \(-40\) to \(40\). Each new weight is one more than twice the old maximum, which is exactly what makes the three shifted ranges meet edge to edge.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: how to place the weights for 20</h2>
+<p>Divide by 3 and keep remainders, as for ordinary base 3, with one new rule: a remainder of 2 is written as \(3 - 1\), so the digit is \(-1\) and you carry 1.</p>
+<p>\[20 = 3 \cdot 6 + 2 \;\Rightarrow\; \text{digit } {-1}, \text{ carry to } 7.\qquad 7 = 3 \cdot 2 + 1 \;\Rightarrow\; \text{digit } 1.\]</p>
+<p>\[2 = 3 \cdot 0 + 2 \;\Rightarrow\; \text{digit } {-1}, \text{ carry to } 1.\qquad 1 \;\Rightarrow\; \text{digit } 1.\]</p>
+<p>Reading the digits from last to first: \(1, -1, 1, -1\) for the places \(27, 9, 3, 1\). So \(20 = 27 - 9 + 3 - 1\): the 27 and the 3 go opposite the parcel, the 9 and the 1 beside it. That is the figure above.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Say which pan each weight goes in to weigh (a) 5, (b) 7, (c) 13.<div class="space short"></div></li>
+<li>Use the divide-by-3 method to write 25 and 31 in balanced ternary. Give the digits for the places 27, 9, 3, 1, then check by adding.<div class="space"></div></li>
+<li>Each of the four weights can be in the left pan, the right pan, or the box. (a) How many arrangements are there in total? (b) Explain why that means no set of four weights, whatever their sizes, can weigh more than 40 different whole numbers.<div class="space"></div></li>
+<li>A fifth weight is added so that the set still weighs every whole number from 1 upwards with no gaps. What should it be, and what is the new largest weighable number? Show how to weigh 100 and 50.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: one pan or two</h2>
+<p>Suppose weights may only go in the pan opposite the parcel. Which four weights now cover the most, and up to what number? Then: a shop needs to weigh every whole number of grams up to 1000. How many weights does it need with the one-pan rule, and how many with the two-pan rule?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(5 = 9 - 3 - 1\): the 9 opposite the parcel, the 3 and 1 beside it. (b) \(7 = 9 - 3 + 1\): 9 and 1 opposite, 3 beside. (c) \(13 = 9 + 3 + 1\): all three opposite.</li>
+<li>\(25 = 3 \cdot 8 + 1\) (digit 1); \(8 = 3 \cdot 2 + 2\) (digit \(-1\), carry to 3); \(3 = 3 \cdot 1 + 0\) (digit 0); \(1\) (digit 1). Digits \(1, 0, -1, 1\), and \(27 - 3 + 1 = 25\). For 31: \(31 = 3 \cdot 10 + 1\) (digit 1); \(10 = 3 \cdot 3 + 1\) (digit 1); \(3\) (digit 0); \(1\) (digit 1). Digits \(1, 0, 1, 1\), and \(27 + 3 + 1 = 31\).</li>
+<li>(a) \(3 \times 3 \times 3 \times 3 = 81\). (b) One arrangement is "everything in the box", which weighs 0. The other 80 pair up: swap the two pans and a weighing of \(n\) becomes a weighing of \(-n\). So at most 40 of them give a positive number, and 1, 3, 9, 27 hits all 40. No four weights can do better.</li>
+<li>Add 81, one more than twice 40, so the ranges \(-40\) to \(40\), \(41\) to \(121\) and \(-121\) to \(-41\) meet with no gap. New maximum \(121\). \(100 = 81 + 27 - 9 + 1\); \(50 = 81 - 27 - 3 - 1\).</li>
+</ol>
+<p><b>Stretch.</b> With one pan each weight is used or not: \(2^4 = 16\) arrangements, one of them empty, so at most 15 values, and 1, 2, 4, 8 reaches all of them (binary). For 1000: one-pan needs \(2^k - 1 \ge 1000\), so \(k = 10\) weights (up to 1023). Two-pan needs \((3^k - 1)/2 \ge 1000\), so \(k = 7\) weights (up to 1093). Allowing the second pan saves three weights.</p>
+</section>
+
+<div class="sheet-nav"><a href="b17-taxicab.html">← Previous</a><a href="b19-trapping-pi.html">Next: Trapping π between polygons →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

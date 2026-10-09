@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Euclid's Algorithm · Infinity Club</title>
+<meta name="description" content="Type two numbers and watch Euclid's algorithm cut a rectangle into squares, one division step at a time, until the last square is the greatest common divisor.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.controls input[type=number] { width: 5.5em; }
+#steps { font-size: 1rem; line-height: 1.7; }
+#steps .cur { font-weight: 800; color: var(--accent); }
+#steps .done { color: var(--ink); }
+#steps .todo { color: #b4b2ab; }
+#plot { touch-action: manipulation; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Euclid's algorithm</h1>
+<p class="explain">Type two whole numbers and press <b>Step</b> (or <b>Play</b>). The rectangle is a × b. Each step slices off the biggest squares that fit, and the strip left over is the next, smaller rectangle. Watch the division line that appears with each slice: the number of squares is the quotient and the leftover strip is the remainder. The last square that fits with nothing left over is the greatest common divisor.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <label>a <input type="number" id="a" min="1" max="9999" value="1071"></label>
+    <label>b <input type="number" id="b" min="1" max="9999" value="462"></label>
+    <button id="step">Step</button>
+    <button id="play" class="alt">Play</button>
+    <button id="reset" class="ghost">Reset</button>
+  </div>
+  <canvas id="plot" width="900" height="400"></canvas>
+  <div class="readout" id="steps"></div>
+  <div class="readout" id="info"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>Any square that tiles both the a × b rectangle and the squares you cut off must also tile the leftover strip, because the strip is just the rectangle with some squares removed. So the common divisors of a and b are exactly the common divisors of b and the remainder. The pair gets smaller every step, so the process has to stop, and when the remainder is 0 the number you were dividing by is the gcd.</p>
+<p>It is fast. Each two steps at least halve the smaller number, so even numbers with hundreds of digits need only a few hundred divisions. This is the oldest algorithm still in daily use: it is how computers reduce fractions and it sits inside the maths that keeps web traffic private.</p>
+<p>Try 1071 and 462 (the classic), then 610 and 377 (two Fibonacci numbers, the slowest case for their size: every quotient is 1), then two numbers with no common factor and see the final square is 1 × 1.</p>
+<p>Sheet: <a href="../grade-8/sheets/b1-euclid.html">Euclid's algorithm</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  // Division steps: a = q·b + r, then (a, b) <- (b, r), until r = 0.
+  function euclidSteps(a, b) {
+    var out = [];
+    if (a < b) { var t = a; a = b; b = t; }
+    while (b > 0) { var q = Math.floor(a / b), r = a - q * b; out.push({ a: a, b: b, q: q, r: r }); a = b; b = r; }
+    return out;
+  }
+  function gcd(a, b) { while (b) { var t = a % b; a = b; b = t; } return a; }
+  // Squares cut from a w × h rectangle at (x, y); squares come off the left when wide, off the top when tall.
+  function tiling(w, h) {
+    var sq = [], x = 0, y = 0, step = 0;
+    while (w > 0 && h > 0) {
+      if (w >= h) { var q = Math.floor(w / h); for (var i = 0; i < q; i++) sq.push({ x: x + i * h, y: y, s: h, step: step }); x += q * h; w -= q * h; }
+      else { var q2 = Math.floor(h / w); for (var j = 0; j < q2; j++) sq.push({ x: x, y: y + j * w, s: w, step: step }); y += q2 * w; h -= q2 * w; }
+      step++;
+    }
+    return sq;
+  }
+  /*ENDPURE*/
+
+  var canvas = document.getElementById("plot"), ctx = canvas.getContext("2d");
+  var stepsEl = document.getElementById("steps"), info = document.getElementById("info");
+  var inA = document.getElementById("a"), inB = document.getElementById("b");
+  var btnStep = document.getElementById("step"), btnPlay = document.getElementById("play"), btnReset = document.getElementById("reset");
+  var PAL = ["#3f44c9", "#f5a524", "#2f9e6e", "#d9534f", "#8e5bd1", "#1fa7c4", "#c47a1f", "#6b7280"];
+  var S = { A: 1071, B: 462, steps: [], squares: [], shown: 0, timer: null };
+
+  function readInputs() {
+    var a = Math.round(parseFloat(inA.value)), b = Math.round(parseFloat(inB.value));
+    if (!(a >= 1)) a = 1; if (!(b >= 1)) b = 1; if (a > 9999) a = 9999; if (b > 9999) b = 9999;
+    inA.value = a; inB.value = b;
+    return [a, b];
+  }
+  function setup() {
+    stopPlay();
+    var ab = readInputs(); S.A = ab[0]; S.B = ab[1];
+    S.steps = euclidSteps(S.A, S.B); S.squares = tiling(Math.max(S.A, S.B), Math.min(S.A, S.B)); S.shown = 0;
+    draw();
+  }
+  function advance(k) {
+    if (S.shown >= S.squares.length) { stopPlay(); return; }
+    S.shown = Math.min(S.squares.length, S.shown + (k || 1)); draw();
+  }
+  function stopPlay() { if (S.timer) { clearInterval(S.timer); S.timer = null; } btnPlay.textContent = "Play"; }
+  btnStep.addEventListener("click", function () { stopPlay(); advance(1); });
+  btnPlay.addEventListener("click", function () {
+    if (S.timer) { stopPlay(); return; }
+    if (S.shown >= S.squares.length) S.shown = 0;
+    var n = S.squares.length, ms = n > 60 ? 40 : n > 20 ? 120 : 320, per = Math.max(1, Math.ceil(n / 150));
+    btnPlay.textContent = "Pause";
+    S.timer = setInterval(function () { advance(per); }, ms);
+  });
+  btnReset.addEventListener("click", function () { inA.value = 1071; inB.value = 462; setup(); });
+  [inA, inB].forEach(function (el) { el.addEventListener("change", setup); });
+  canvas.addEventListener("click", function () { stopPlay(); advance(1); });
+
+  function draw() {
+    var W0 = Math.max(S.A, S.B), H0 = Math.min(S.A, S.B);
+    var dpr = window.devicePixelRatio || 1, W = canvas.clientWidth || 900;
+    var ratio = Math.max(0.22, Math.min(0.62, H0 / W0)), H = Math.round(W * ratio) + 28;
+    canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, H);
+    var pad = 14, sc = Math.min((W - 2 * pad) / W0, (H - 2 * pad) / H0);
+    var ox = (W - W0 * sc) / 2, oy = (H - H0 * sc) / 2;
+    function X(v) { return ox + v * sc; } function Y(v) { return oy + v * sc; }
+    // outline of the whole rectangle
+    ctx.fillStyle = "#f4f1ea"; ctx.fillRect(X(0), Y(0), W0 * sc, H0 * sc);
+    // squares shown so far
+    var curStep = -1;
+    for (var i = 0; i < S.shown; i++) {
+      var q = S.squares[i], col = PAL[q.step % PAL.length];
+      ctx.fillStyle = col; ctx.globalAlpha = 0.28; ctx.fillRect(X(q.x), Y(q.y), q.s * sc, q.s * sc); ctx.globalAlpha = 1;
+      ctx.strokeStyle = col; ctx.lineWidth = q.s * sc > 6 ? 1.5 : 0.6; ctx.strokeRect(X(q.x), Y(q.y), q.s * sc, q.s * sc);
+      if (q.s * sc > 34) { ctx.fillStyle = "#1d1f3a"; ctx.font = "bold 12px Nunito, sans-serif"; ctx.textAlign = "center"; ctx.fillText(q.s + " × " + q.s, X(q.x + q.s / 2), Y(q.y + q.s / 2) + 4); }
+      curStep = q.step;
+    }
+    ctx.strokeStyle = "#1d1f3a"; ctx.lineWidth = 2; ctx.strokeRect(X(0), Y(0), W0 * sc, H0 * sc);
+    // dimension labels
+    ctx.fillStyle = "#5d6079"; ctx.font = "12px Nunito, sans-serif"; ctx.textAlign = "center";
+    ctx.fillText(W0 + "", X(W0 / 2), Y(0) - 3);
+    ctx.save(); ctx.translate(X(0) - 4, Y(H0 / 2)); ctx.rotate(-Math.PI / 2); ctx.fillText(H0 + "", 0, 0); ctx.restore();
+
+    // division lines
+    var countInStep = {}; for (var k = 0; k < S.shown; k++) countInStep[S.squares[k].step] = (countInStep[S.squares[k].step] || 0) + 1;
+    var html = "";
+    S.steps.forEach(function (st, idx) {
+      var n = countInStep[idx] || 0, cls = n === st.q ? (idx === curStep ? "cur" : "done") : (n > 0 ? "cur" : "todo");
+      var txt = n === st.q ? st.a + " = " + st.q + " × " + st.b + " + " + st.r : (n > 0 ? st.a + " = " + n + " × " + st.b + " + …  (cutting " + st.b + " × " + st.b + " squares)" : st.a + " = ? × " + st.b + " + ?");
+      html += '<div class="' + cls + '">' + (n === st.q && idx === curStep ? "→ " : "   ") + txt + "</div>";
+    });
+    stepsEl.innerHTML = html || "";
+    var finished = S.shown === S.squares.length, g = gcd(S.A, S.B), last = S.steps[S.steps.length - 1];
+    if (finished) {
+      info.textContent = "remainder 0, so stop.  gcd(" + S.A + ", " + S.B + ") = " + last.b + "  in " + S.steps.length + " division" + (S.steps.length === 1 ? "" : "s") + ".\nThe smallest squares are " + g + " × " + g + ", and every square drawn is a multiple of " + g + ".\nlcm(" + S.A + ", " + S.B + ") = " + S.A + " × " + S.B + " / " + g + " = " + (S.A * S.B / g);
+    } else {
+      info.textContent = S.shown + " of " + S.squares.length + " squares cut.  Press Step, Play, or tap the picture.";
+    }
+  }
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(draw, 120); });
+  setup();
+})();
+</script>
+</body>
+</html>

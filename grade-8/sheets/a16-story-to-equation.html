@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Turning a story into an equation · Infinity Club</title>
+<meta name="description" content="Name the unknown, write what you know as an equation, solve, then check against the story. Two cyclists, a mixture, and why the average of two speeds is not the average speed.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 8 · Sharpen · 16</div>
+  <h1>Turning a story into an equation</h1>
+  <p class="teaser">Name the unknown, write what you know, solve. Two cyclists, a mixture, and why the average of two speeds is not the average speed.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Solving the equation is the easy part (<a href="../../grade-6/sheets/a9-equations.html">grade 6, sheet 9</a>). The hard part is getting the equation out of the words. Three steps, every time.</p>
+<p><b>Name the unknown, with units.</b> "Let \(t\) be the time in hours until they meet." Choose the quantity that makes everything else easy to write, which is not always the one the question asks for.</p>
+<p><b>Write what you know.</b> Each sentence of the story becomes an expression in \(t\). One sentence says two expressions are equal: that sentence is your equation. For anything moving, use</p>
+<p class="callout">\(\text{distance} = \text{speed} \times \text{time}\), so \(\text{time} = \text{distance} / \text{speed}\). For mixtures, \(\text{pure stuff} = \text{concentration} \times \text{volume}\).</p>
+<p><b>Solve, then check against the story</b>, not against your equation. If the equation was wrong, it will happily agree with its own answer.</p>
+<p>The classic trap is averaging speeds. Average speed is total distance divided by total time. When you ride somewhere at 30 km/h and back at 60 km/h, you spend twice as long on the slow leg, so the slow speed counts twice as much. Averaging 30 and 60 to get 45 ignores time altogether.</p>
+<figure><svg viewBox="0 0 400 90" width="400" height="90" role="img" aria-label="A time bar three hours long: two hours outbound at 30 km/h, one hour back at 60 km/h" font-family="Nunito, sans-serif" font-size="13">
+<rect x="50" y="30" width="200" height="28" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="250" y="30" width="100" height="28" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/>
+<text x="150" y="49" text-anchor="middle" fill="#3f44c9" font-weight="700">out: 60 km at 30 km/h</text>
+<text x="300" y="49" text-anchor="middle" fill="#555" font-weight="700">back: 60 km</text>
+<g stroke="#999" stroke-width="1"><line x1="50" y1="62" x2="50" y2="68"/><line x1="150" y1="62" x2="150" y2="68"/><line x1="250" y1="62" x2="250" y2="68"/><line x1="350" y1="62" x2="350" y2="68"/></g>
+<line x1="50" y1="65" x2="350" y2="65" stroke="#999" stroke-width="1"/>
+<g text-anchor="middle" fill="#555" font-size="12"><text x="50" y="82">0 h</text><text x="150" y="82">1 h</text><text x="250" y="82">2 h</text><text x="350" y="82">3 h</text></g>
+<text x="200" y="20" text-anchor="middle" font-size="12" fill="#555">120 km in 3 hours</text>
+</svg><figcaption>Same distance each way, but the slow leg takes two of the three hours. Average speed: \(120 / 3 = 40\) km/h.</figcaption></figure>
+</section>
+
+<section class="example">
+<h2>Watch one: out at 30 km/h, back at 60 km/h</h2>
+<p>The distance is not given, so name it: let the one-way distance be \(d\) km. Time out is \(d/30\) hours, time back is \(d/60\). Total time:</p>
+<p>\[\frac{d}{30} + \frac{d}{60} = \frac{2d}{60} + \frac{d}{60} = \frac{3d}{60} = \frac{d}{20}.\]</p>
+<p>Total distance is \(2d\), so the average speed is</p>
+<p>\[\frac{2d}{d/20} = 40 \text{ km/h}.\]</p>
+<p>The \(d\) cancelled: the answer is 40 whatever the distance. Check with the story using \(d = 60\): 2 hours out, 1 hour back, 120 km in 3 hours. That is 40, not 45.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Two cyclists start 45 km apart and ride toward each other, one at 12 km/h and one at 18 km/h. Let \(t\) be the time in hours until they meet. Write an equation for \(t\), solve it, and say how far each has ridden.<div class="space short"></div></li>
+<li>Maria is three times as old as her brother. In six years she will be twice as old as he is then. Name the unknown, write the equation, and find both ages now. Check in the story.<div class="space short"></div></li>
+<li>A jug holds 2 litres of drink that is 10% juice. You add \(x\) litres of pure juice. (a) Write the amount of juice and the total volume after adding. (b) Find \(x\) so the drink is 25% juice. (c) Check your answer against the story.<div class="space"></div></li>
+<li>A cyclist rides to a town at 15 km/h and back along the same road at 10 km/h. The whole trip takes 5 hours. (a) How far away is the town? (b) What was the average speed for the round trip? Say in one sentence why it is not 12.5 km/h.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: does the wind cancel out?</h2>
+<p>A plane flies 500 km/h in still air. It flies 1,200 km with a 100 km/h tailwind and returns against the same wind. How long is the round trip, and how does that compare with no wind at all? Then: at what wind speed does the round trip take forever?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>After \(t\) hours they have covered \(12t\) and \(18t\) km, and they meet when the two distances add to 45: \(12t + 18t = 45\), so \(30t = 45\) and \(t = 1.5\) hours. The slower one has ridden 18 km, the faster one 27 km. Check: \(18 + 27 = 45\).</li>
+<li>Let the brother be \(b\) years old now, so Maria is \(3b\). In six years: \(3b + 6 = 2(b + 6)\), so \(3b + 6 = 2b + 12\) and \(b = 6\). The brother is 6 and Maria is 18. Check: in six years, 24 and 12.</li>
+<li>(a) Juice: \(0.2 + x\) litres (the jug started with 10% of 2 litres). Total: \(2 + x\) litres. (b) \(\dfrac{0.2 + x}{2 + x} = 0.25\), so \(0.2 + x = 0.5 + 0.25x\), \(0.75x = 0.3\), \(x = 0.4\) litres. (c) 0.6 litres of juice in 2.4 litres is 25%.</li>
+<li>(a) Let the distance be \(d\) km: \(\dfrac{d}{15} + \dfrac{d}{10} = 5\). Multiply by 30: \(2d + 3d = 150\), so \(d = 30\) km. (b) \(60\) km in 5 hours: \(12\) km/h. The slow leg took 3 of the 5 hours, so the slower speed gets more weight than the faster one.</li>
+</ol>
+<p><b>Stretch.</b> Out at 600 km/h takes \(1200/600 = 2\) hours; back at 400 km/h takes \(1200/400 = 3\) hours. Round trip 5 hours, against \(2400/500 = 4.8\) hours with no wind. The wind costs time even though it helps for half the distance, because the slow leg lasts longer. If the wind reaches 500 km/h, the return speed is zero and the plane never gets home.</p>
+</section>
+
+<div class="sheet-nav"><a href="a15-why-it-flips.html">← Previous</a><a href="a17-at-least-one.html">Next: "At least one": the complement trick →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

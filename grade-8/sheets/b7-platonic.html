@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why there are exactly five Platonic solids · Infinity Club</title>
+<meta name="description" content="A solid with identical regular faces needs at least three faces at every corner, adding to less than 360°. That single rule allows exactly five shapes. Count their faces, edges and corners, and find the 720° hidden in all of them.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+<style>
+table.tt { border-collapse: collapse; margin: .6em 0; }
+table.tt th, table.tt td { border: 1px solid var(--rule); padding: .3em .7em; text-align: center; }
+table.tt th { background: var(--accent-soft); }
+@media print { table.tt th { background: #eee; -webkit-print-color-adjust: exact; print-color-adjust: exact; } table.tt th, table.tt td { border-color: #000; } }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 8 · Around the corner · 7</div>
+  <h1>Why there are exactly five Platonic solids</h1>
+  <p class="teaser">Each corner needs at least three faces and less than 360°. That rule leaves five shapes, and no more.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A <b>Platonic solid</b> has faces that are all the same regular polygon, with the same number meeting at every corner. The cube is one: six squares, three at each corner. How many others are there?</p>
+<p>Look at one corner. The face angles meeting there add up. If they made exactly 360° the faces would lie flat, like floor tiles, and no corner would form; more than 360° cannot close up at all. And two faces alone just fold shut along an edge. So <b>at least three faces meet, with angles totalling less than 360°</b>.</p>
+<p>The interior angle of a regular \(n\)-gon is \(180° - 360°/n\) (see <a href="a11-triangle-angles.html">sheet a11</a>): 60°, 90°, 108°, 120° for \(n = 3, 4, 5, 6\). Now check every case.</p>
+<figure><svg viewBox="-10 0 540 172" width="540" height="172" role="img" aria-label="Five fans of regular polygons laid flat around a point: three, four and five triangles, three squares, three pentagons, each with the leftover gap marked in orange" font-family="Nunito, sans-serif" font-size="12">
+<g fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.2" stroke-linejoin="round">
+<polygon points="52.0,92.0 78.0,92.0 65.0,69.5"/><polygon points="52.0,92.0 65.0,69.5 39.0,69.5"/><polygon points="52.0,92.0 39.0,69.5 26.0,92.0"/>
+<polygon points="156.0,92.0 182.0,92.0 169.0,69.5"/><polygon points="156.0,92.0 169.0,69.5 143.0,69.5"/><polygon points="156.0,92.0 143.0,69.5 130.0,92.0"/><polygon points="156.0,92.0 130.0,92.0 143.0,114.5"/>
+<polygon points="260.0,92.0 286.0,92.0 273.0,69.5"/><polygon points="260.0,92.0 273.0,69.5 247.0,69.5"/><polygon points="260.0,92.0 247.0,69.5 234.0,92.0"/><polygon points="260.0,92.0 234.0,92.0 247.0,114.5"/><polygon points="260.0,92.0 247.0,114.5 273.0,114.5"/>
+<polygon points="364.0,92.0 390.0,92.0 390.0,66.0 364.0,66.0"/><polygon points="364.0,92.0 364.0,66.0 338.0,66.0 338.0,92.0"/><polygon points="364.0,92.0 338.0,92.0 338.0,118.0 364.0,118.0"/>
+<polygon points="468.0,92.0 494.0,92.0 502.0,67.3 481.0,52.0 460.0,67.3"/><polygon points="468.0,92.0 460.0,67.3 434.0,67.3 425.9,92.0 447.0,107.3"/><polygon points="468.0,92.0 447.0,107.3 455.0,132.0 481.0,132.0 489.0,107.3"/>
+</g>
+<g fill="none" stroke="#f5a524" stroke-width="2.2">
+<path d="M41.0,92.0 A11,11 0 0 0 63.0,92.0"/>
+<path d="M150.5,101.5 A11,11 0 0 0 167.0,92.0"/>
+<path d="M265.5,101.5 A11,11 0 0 0 271.0,92.0"/>
+<path d="M364.0,103.0 A11,11 0 0 0 375.0,92.0"/>
+<path d="M476.9,98.5 A11,11 0 0 0 479.0,92.0"/>
+</g>
+<g fill="#000" stroke="none"><circle cx="52" cy="92" r="2"/><circle cx="156" cy="92" r="2"/><circle cx="260" cy="92" r="2"/><circle cx="364" cy="92" r="2"/><circle cx="468" cy="92" r="2"/></g>
+<g text-anchor="middle">
+<text x="52" y="150">3 triangles, 180°</text><text x="156" y="150">4 triangles, 240°</text><text x="260" y="150">5 triangles, 300°</text><text x="364" y="150">3 squares, 270°</text><text x="468" y="150">3 pentagons, 324°</text>
+</g>
+<g text-anchor="middle" fill="#f5a524" font-weight="700">
+<text x="52" y="166">gap 180°</text><text x="156" y="166">gap 120°</text><text x="260" y="166">gap 60°</text><text x="364" y="166">gap 90°</text><text x="468" y="166">gap 36°</text>
+</g>
+</svg><figcaption>Each corner unfolded flat. Close the orange gap and the faces rise into a corner. Six triangles, four squares or three hexagons leave no gap.</figcaption></figure>
+<p>Triangles: 3, 4 or 5 of them work (180°, 240°, 300°); six give 360°. Squares: only 3. Pentagons: only 3, since four give 432°. Hexagons: three already make 360°, and bigger polygons are worse. Five cases, so at most five solids. Each case can actually be built:</p>
+<table class="tt">
+<tr><th>Solid</th><th>Face</th><th>At each corner</th><th>Faces \(F\)</th><th>Corners \(V\)</th><th>Edges \(E\)</th></tr>
+<tr><td>Tetrahedron</td><td>triangle</td><td>3</td><td>4</td><td>4</td><td>6</td></tr>
+<tr><td>Octahedron</td><td>triangle</td><td>4</td><td>8</td><td>6</td><td>12</td></tr>
+<tr><td>Icosahedron</td><td>triangle</td><td>5</td><td>20</td><td>12</td><td>30</td></tr>
+<tr><td>Cube</td><td>square</td><td>3</td><td>6</td><td>8</td><td>12</td></tr>
+<tr><td>Dodecahedron</td><td>pentagon</td><td>3</td><td>12</td><td>20</td><td>30</td></tr>
+</table>
+</section>
+
+<section class="example">
+<h2>Watch one: counting the icosahedron</h2>
+<p>Twenty triangles, five at each corner. The 20 faces have \(20 \times 3 = 60\) sides between them, but every edge of the solid is a side of two faces, so \(E = 60/2 = 30\). Those same 60 face-corners meet five at a time, so \(V = 60/5 = 12\). Check with Euler's formula \(V - E + F = 2\): \(12 - 30 + 20 = 2\). The same two divisions fill in the whole table.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Find the interior angle of a regular hexagon, heptagon and octagon. Explain in one sentence why none of them can be the face of a Platonic solid.<div class="space short"></div></li>
+<li>A dodecahedron has 12 pentagonal faces, three at each corner. Count its edges and corners the way the example did, and check Euler's formula.<div class="space short"></div></li>
+<li>The <b>gap</b> at a corner is 360° minus the angles that meet there: 90° for a cube. Find the gap for each of the five solids, multiply by the number of corners, and write down what you notice.<div class="space"></div></li>
+<li>Take as a fact that the gaps at the corners of any convex solid total 720°. (a) A solid is made of equilateral triangles, four at every corner. Use the 720° to find how many corners it has, then its edges and faces. Which solid is it? (b) What does the rule say about four squares at every corner? Match that to the picture.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the football</h2>
+<p>A classic football is sewn from regular pentagons and hexagons. At every corner, two hexagons and one pentagon meet. Find the gap at a corner, and use the 720° rule to find the number of corners. Then find the number of pentagons, hexagons and edges, and check Euler's formula.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Hexagon \(180° - 60° = 120°\); heptagon \(180° - 360°/7 \approx 128.6°\); octagon \(135°\). Each is at least 120°, so three of them add to at least 360°: no gap, no corner.</li>
+<li>Side count \(12 \times 5 = 60\), so \(E = 60/2 = 30\) and \(V = 60/3 = 20\). Euler: \(20 - 30 + 12 = 2\).</li>
+<li>Tetrahedron \(180° \times 4\); octahedron \(120° \times 6\); icosahedron \(60° \times 12\); cube \(90° \times 8\); dodecahedron \(36° \times 20\). Every product is 720°. (This is Descartes' theorem: the total gap is always two full turns.)</li>
+<li>(a) Four triangles give 240°, gap 120°, so \(V = 720/120 = 6\). Four edges meet at each corner and each edge has two ends: \(E = 6 \times 4/2 = 12\). Each face has three edges and each edge borders two faces: \(F = 12 \times 2/3 = 8\). The octahedron. (b) Four squares give 360°, gap 0°, and \(720/0\) is impossible: no finite solid. Four squares round a point lie flat, and the pattern continues forever as a tiled floor.</li>
+</ol>
+<p><b>Stretch.</b> Gap \(= 360° - 120° - 120° - 108° = 12°\), so \(V = 720/12 = 60\). Each corner touches exactly one pentagon and each pentagon has 5 corners: \(60/5 = 12\) pentagons. Each corner touches two hexagons and each hexagon has 6 corners: \(60 \times 2/6 = 20\) hexagons. Three edges meet at each corner: \(E = 60 \times 3/2 = 90\). Euler: \(60 - 90 + 32 = 2\). Any ball of pentagons and hexagons with three faces at each corner has exactly 12 pentagons, however many hexagons it has.</p>
+</section>
+
+<div class="sheet-nav"><a href="b6-divisors.html">← Previous</a><a href="b8-expected-value.html">Next: What a game is worth →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

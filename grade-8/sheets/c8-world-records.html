@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Will anyone run 100 m in 9 seconds? · Infinity Club</title>
+<meta name="description" content="Fit a line by eye to the men's 100 m world records and extrapolate. The line gives 9 seconds in 2067 and 0 seconds in 2967, which is how you know it must bend. The 2004 prediction that women would outsprint men at the 2156 Olympics, and what went wrong.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 8 · Connections · 8</div>
+  <h1>Will anyone run 100 m in 9 seconds?</h1>
+  <p class="teaser">Fit a line to world records and extrapolate. In 2004 a journal predicted women would outsprint men by 2156. What went wrong.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>The men's 100 m world record was 10.6 s in 1912, 10.2 in 1936, 9.95 in 1968, 9.79 in 1999 and 9.58 in 2009 (Usain Bolt). Plotted, they fall close to a line. Draw one by eye (see <a href="a12-scatter.html">the scatter-plot sheet</a>): it drops about 1 s per century, 0.01 s a year. Through the 2009 point:</p>
+<p>\[t = 9.58 - 0.01\,(y - 2009),\]</p>
+<p>where \(y\) is the year and \(t\) the predicted record in seconds. Check it on 1912: \(9.58 + 0.97 = 10.55\), close to 10.6.</p>
+<figure><svg viewBox="0 0 520 204" width="520" height="204" role="img" aria-label="Men's 100 m world records from 1912 to 2009 as dots, with a straight line through them extended to 2100; the line crosses 9 seconds in 2067" font-family="Nunito, sans-serif" font-size="12">
+<line x1="50" y1="168" x2="500" y2="168" stroke="#000" stroke-width="1.5"/><line x1="50" y1="14" x2="50" y2="168" stroke="#000" stroke-width="1.5"/>
+<line x1="50.0" y1="168" x2="50.0" y2="173" stroke="#000" stroke-width="1.5"/><text x="50.0" y="186" text-anchor="middle">1900</text>
+<line x1="162.5" y1="168" x2="162.5" y2="173" stroke="#000" stroke-width="1.5"/><text x="162.5" y="186" text-anchor="middle">1950</text>
+<line x1="275.0" y1="168" x2="275.0" y2="173" stroke="#000" stroke-width="1.5"/><text x="275.0" y="186" text-anchor="middle">2000</text>
+<line x1="387.5" y1="168" x2="387.5" y2="173" stroke="#000" stroke-width="1.5"/><text x="387.5" y="186" text-anchor="middle">2050</text>
+<line x1="500.0" y1="168" x2="500.0" y2="173" stroke="#000" stroke-width="1.5"/><text x="500.0" y="186" text-anchor="middle">2100</text>
+<line x1="45" y1="137.2" x2="50" y2="137.2" stroke="#000" stroke-width="1.5"/><text x="41" y="141.2" text-anchor="end">9 s</text>
+<line x1="45" y1="75.6" x2="50" y2="75.6" stroke="#000" stroke-width="1.5"/><text x="41" y="79.6" text-anchor="end">10 s</text>
+<line x1="45" y1="14.0" x2="50" y2="14.0" stroke="#000" stroke-width="1.5"/><text x="41" y="18.0" text-anchor="end">11 s</text>
+<line x1="50" y1="137.2" x2="500" y2="137.2" stroke="#999" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="77.0" y1="41.7" x2="295.2" y2="101.5" stroke="#3f44c9" stroke-width="2"/>
+<line x1="295.2" y1="101.5" x2="500.0" y2="157.5" stroke="#3f44c9" stroke-width="2" stroke-dasharray="6 4"/>
+<circle cx="77.0" cy="38.6" r="4" fill="#f5a524" stroke="#000" stroke-width="1"/>
+<circle cx="131.0" cy="63.3" r="4" fill="#f5a524" stroke="#000" stroke-width="1"/>
+<circle cx="203.0" cy="78.7" r="4" fill="#f5a524" stroke="#000" stroke-width="1"/>
+<circle cx="272.8" cy="88.5" r="4" fill="#f5a524" stroke="#000" stroke-width="1"/>
+<circle cx="295.2" cy="101.5" r="4" fill="#f5a524" stroke="#000" stroke-width="1"/>
+<circle cx="425.8" cy="137.2" r="4.5" fill="none" stroke="#3f44c9" stroke-width="2"/>
+<text x="417.8" y="153" text-anchor="end" fill="#3f44c9" font-weight="700">9.00 s in 2067</text>
+<text x="128.8" y="82" text-anchor="middle" fill="#555">world records</text>
+<text x="218.8" y="116" text-anchor="middle" fill="#3f44c9">slope −0.01 s per year</text>
+<text x="275" y="199" text-anchor="middle" fill="#555">year</text>
+</svg><figcaption>Five men's 100 m records (dots) and a line drawn by eye through the 2009 point with slope −0.01 s per year. Dashed: the same line continued.</figcaption></figure>
+<p>Now use the line as a crystal ball. For 9.00 s, set \(t = 9\): \(0.01(y - 2009) = 0.58\), so \(y = 2067\). Using a line beyond the data it was fitted to is called <b>extrapolation</b>.</p>
+<p>Keep going. The line gives 0 s in 2967 and negative times after that. So the line must bend somewhere; the only question is where. Inside the data a line can fit a gentle curve well. Outside it, the two part company.</p>
+<p class="callout">A straight line never levels off. If the real thing has a floor, extrapolating the line tells you when it must break, not what will happen.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: the 2156 Olympics</h2>
+<p>In 2004 a short letter in the journal <i>Nature</i> fitted one straight line to the men's Olympic 100 m winning times since 1900 and another to the women's. The women's line was steeper. Two lines with different slopes must cross; these crossed at the 2156 Games, at about 8 s.</p>
+<p>Readers spotted the catch. Followed further, both lines reach 0 s within a few centuries. The women's line was steeper partly because women's sprinting started later and caught up fast; a catching-up rate is not a permanent one. The women's record has stood at 10.49 s since 1988.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Use the line \(t = 9.58 - 0.01(y - 2009)\) to predict the record in 2050 and in 2100.<div class="space short"></div></li>
+<li>(a) In which year does the line give exactly 9.00 s? (b) In which year does it give 0 s? (c) What does (b) tell you about the line?<div class="space short"></div></li>
+<li>In 2009 the women's record (10.49 s) was 0.91 s slower than the men's 9.58 s. Suppose the women's line falls 0.017 s a year and the men's 0.010 s a year. (a) By how much does the gap close each year? (b) In which year do the lines cross? (c) What time does each line give in that year?<div class="space"></div></li>
+<li>Compare the drop from 1912 to 1936 with the drop from 1968 to 2009. (a) Find the rate of change, in seconds per year, over each stretch. (b) What is happening to the rate? (c) Does this make 9.00 s by 2067 more likely or less likely than the straight line says?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: a model with a floor</h2>
+<p>Suppose the record can never go below some floor \(L\), and the gap between the record and \(L\) halves every 41 years. From 1968 (9.95 s) to 2009 (9.58 s) is 41 years. (a) Find \(L\). (b) What does this model give for 2050? (c) Does it ever reach 9.00 s?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>2050: \(9.58 - 0.41 = 9.17\) s. 2100: \(9.58 - 0.91 = 8.67\) s.</li>
+<li>(a) \(0.01(y - 2009) = 0.58\), so \(y = 2067\). (b) \(0.01(y - 2009) = 9.58\), so \(y = 2967\). (c) A time of 0 s is impossible, so the line must stop describing the records before 2967. It is a good summary of the past, not a law.</li>
+<li>(a) \(0.017 - 0.010 = 0.007\) s a year. (b) \(0.91 \div 0.007 = 130\) years: 2139. (c) Men \(9.58 - 1.30 = 8.28\) s; women \(10.49 - 2.21 = 8.28\) s. The same, as they must be where the lines cross.</li>
+<li>(a) 1912 to 1936: \(-0.4/24 \approx -0.017\) s a year. 1968 to 2009: \(-0.37/41 \approx -0.009\) s a year. (b) The record is still falling, but about half as fast. (c) Less likely. The points are bending toward a floor, and the line ignores the bend. (Early records were hand-timed to the nearest tenth, so the early rate is rough.)</li>
+</ol>
+<p><b>Stretch.</b> (a) The gap in 1968 is twice the gap in 2009: \(9.95 - L = 2(9.58 - L)\), so \(9.95 - L = 19.16 - 2L\) and \(L = 9.21\) s. (b) The 2009 gap is 0.37, so in 2050 it is 0.185: about 9.40 s. (c) No. Halving a positive gap never makes it zero, so the record stays above 9.21 s. This model is also a guess; its merit is that it cannot predict a negative time.</p>
+</section>
+
+<div class="sheet-nav"><a href="c7-earthquakes-decibels.html">← Previous</a><a href="c9-gerrymandering.html">Next: Winning with fewer votes →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

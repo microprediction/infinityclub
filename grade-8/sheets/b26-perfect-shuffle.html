@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The perfect shuffle · Infinity Club</title>
+<meta name="description" content="Shuffle a 52-card deck perfectly eight times and it is back in order. Follow one card, write its position as 2p mod 51, and the arithmetic shows why.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 8 · Around the corner · 26</div>
+  <h1>The perfect shuffle</h1>
+  <p class="teaser">Shuffle a 52-card deck perfectly eight times and it is back in order. Follow one card and the arithmetic shows why.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Cut a deck of 52 cards in half, 26 and 26, and interleave the halves perfectly: one card from each in turn. If the top card stays on top, this is an <b>out-shuffle</b>. Card magicians practise it for years. Do it eight times and every card is back where it started.</p>
+<p>To see why, number the positions 0 to 51 from the top and follow one card. The top half, positions 0 to 25, lands on the even positions 0, 2, 4, …, 50: the card at position \(p\) goes to \(2p\). The bottom half, positions 26 to 51, fills the odd positions: 26 goes to 1, 27 goes to 3, so \(p\) goes to \(2p - 51\).</p>
+<figure><svg viewBox="0 0 480 130" width="480" height="130" role="img" aria-label="Eight cards numbered 0 to 7 in a row; lines show each card moving to its new position after an out-shuffle: 0 4 1 5 2 6 3 7" font-family="Nunito, sans-serif" font-size="13">
+<g stroke="#999" stroke-width="1.2">
+<line x1="30" y1="42" x2="30" y2="88"/><line x1="90" y1="42" x2="150" y2="88"/><line x1="150" y1="42" x2="270" y2="88"/><line x1="210" y1="42" x2="390" y2="88"/>
+<line x1="270" y1="42" x2="90" y2="88"/><line x1="330" y1="42" x2="210" y2="88"/><line x1="390" y1="42" x2="330" y2="88"/><line x1="450" y1="42" x2="450" y2="88"/>
+</g>
+<g stroke="#3f44c9" stroke-width="1.5">
+<rect x="16" y="18" width="28" height="24" rx="3" fill="#dcdcf5"/><rect x="76" y="18" width="28" height="24" rx="3" fill="#dcdcf5"/><rect x="136" y="18" width="28" height="24" rx="3" fill="#dcdcf5"/><rect x="196" y="18" width="28" height="24" rx="3" fill="#dcdcf5"/>
+<rect x="256" y="18" width="28" height="24" rx="3" fill="#fde8c4"/><rect x="316" y="18" width="28" height="24" rx="3" fill="#fde8c4"/><rect x="376" y="18" width="28" height="24" rx="3" fill="#fde8c4"/><rect x="436" y="18" width="28" height="24" rx="3" fill="#fde8c4"/>
+<rect x="16" y="88" width="28" height="24" rx="3" fill="#dcdcf5"/><rect x="76" y="88" width="28" height="24" rx="3" fill="#fde8c4"/><rect x="136" y="88" width="28" height="24" rx="3" fill="#dcdcf5"/><rect x="196" y="88" width="28" height="24" rx="3" fill="#fde8c4"/>
+<rect x="256" y="88" width="28" height="24" rx="3" fill="#dcdcf5"/><rect x="316" y="88" width="28" height="24" rx="3" fill="#fde8c4"/><rect x="376" y="88" width="28" height="24" rx="3" fill="#dcdcf5"/><rect x="436" y="88" width="28" height="24" rx="3" fill="#fde8c4"/>
+</g>
+<g text-anchor="middle" fill="#000">
+<text x="30" y="35">0</text><text x="90" y="35">1</text><text x="150" y="35">2</text><text x="210" y="35">3</text><text x="270" y="35">4</text><text x="330" y="35">5</text><text x="390" y="35">6</text><text x="450" y="35">7</text>
+<text x="30" y="105">0</text><text x="90" y="105">4</text><text x="150" y="105">1</text><text x="210" y="105">5</text><text x="270" y="105">2</text><text x="330" y="105">6</text><text x="390" y="105">3</text><text x="450" y="105">7</text>
+</g>
+<text x="4" y="12" font-size="12" fill="#555">before</text><text x="4" y="126" font-size="12" fill="#555">after</text>
+</svg><figcaption>An out-shuffle of 8 cards. Card \(p\) moves to \(2p \bmod 7\): card 1 goes to 2, card 4 goes to \(8 - 7 = 1\). The ends stay put.</figcaption></figure>
+<p class="callout">After one out-shuffle, the card at position \(p\) moves to \(2p \bmod 51\): the remainder when \(2p\) is divided by 51. The bottom card, position 51, stays put.</p>
+<p>"Mod" is clock arithmetic on a clock with 51 hours (<a href="../../grade-6/sheets/b3-clock-arithmetic.html">grade 6</a>). Each shuffle doubles the position, so after \(k\) shuffles the card sits at \(2^k p \bmod 51\). Every card is home when \(2^k\) leaves remainder 1 on division by 51. And \(2^8 = 256 = 5 \times 51 + 1\). Eight shuffles.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: the card at position 10</h2>
+<p>Double, and subtract 51 whenever the answer reaches 51:</p>
+<p>\[10 \to 20 \to 40 \to 80 - 51 = 29 \to 58 - 51 = 7 \to 14 \to 28 \to 56 - 51 = 5 \to 10.\]</p>
+<p>Eight arrows, and the card is back at 10. It visited eight different positions on the way, and so does almost every card: the trip takes exactly eight steps because 8 is the first power for which \(2^k\) has remainder 1. A smaller deck makes the pattern easy to test by hand. With 8 cards the rule is \(2p \bmod 7\), and \(1 \to 2 \to 4 \to 8 - 7 = 1\): three shuffles, because \(2^3 = 7 + 1\). Try it with eight playing cards.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Follow the card at position 3 through eight out-shuffles of a 52-card deck, writing each position. Check that it comes home.<div class="space short"></div></li>
+<li>A deck of 10 cards is out-shuffled; the rule is \(p \to 2p \bmod 9\). How many shuffles bring it back? Explain the answer using a power of 2.<div class="space short"></div></li>
+<li>Which positions in the 52-card deck are already home after a single out-shuffle? Which are home after two? (Solve \(2p \equiv p\) and \(4p \equiv p\) modulo 51; remember \(51 = 3 \times 17\).)<div class="space"></div></li>
+<li>(a) List \(2^k \bmod 51\) for \(k = 1, 2, \dots, 7\). Why does this prove that no number of out-shuffles below eight restores the deck? (b) A friend says that after four shuffles the deck is "half way back", so many cards must be home. Which cards actually are? Use \(16p \equiv p\).<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the in-shuffle</h2>
+<p>If the top card goes <em>second</em>, it is an <b>in-shuffle</b>. Check that its rule is \(p \to (2p + 1) \bmod 53\) by testing \(p = 0\) and \(p = 26\). Follow the top card for five in-shuffles. If the deck comes home after \(k\) in-shuffles, which number must divide \(2^k - 1\)? Show that \(k = 8\) fails. (It takes 52.)</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(3 \to 6 \to 12 \to 24 \to 48 \to 96 - 51 = 45 \to 90 - 51 = 39 \to 78 - 51 = 27 \to 54 - 51 = 3\). Home after eight.</li>
+<li>Six. \(2^1, \dots, 2^6\) leave remainders 2, 4, 8, 7, 5, 1 on division by 9, and the first remainder 1 is at \(2^6 = 64 = 7 \times 9 + 1\). (Check with a card: \(1 \to 2 \to 4 \to 8 \to 7 \to 5 \to 1\).)</li>
+<li>After one: \(2p \equiv p\) means \(p \equiv 0\), so only position 0, plus the bottom card 51 which never moves. After two: \(4p \equiv p\) means \(3p\) is a multiple of 51, so \(p\) is a multiple of 17: positions 0, 17 and 34 (and 51). Cards 17 and 34 simply swap places each shuffle.</li>
+<li>(a) \(2, 4, 8, 16, 32, 13, 26\). None is 1, so after \(k \lt 8\) shuffles the card at position 1 is at \(2^k \ne 1\): the deck is not restored. (b) \(16p \equiv p\) means \(15p\) is a multiple of 51, so \(5p\) is a multiple of 17, so \(p\) is: again only 0, 17, 34 and 51. Nobody else is home. There is no "half way".</li>
+</ol>
+<p><b>Stretch.</b> \(p = 0\) goes to 1 (the top card goes second) and \(p = 26\) goes to \(53 \bmod 53 = 0\) (the first card of the bottom half lands on top), as an in-shuffle should. Top card: \(1 \to 3 \to 7 \to 15 \to 31\). After \(k\) in-shuffles the top card is at \(2^k - 1 \bmod 53\), so coming home needs 53 to divide \(2^k - 1\). \(2^8 - 1 = 255 = 3 \times 5 \times 17\), not a multiple of 53. The first \(k\) that works is 52.</p>
+</section>
+
+<div class="sheet-nav"><a href="b25-hypercube.html">← Previous</a><a href="b27-half-planes.html">Next: Half-planes and the best corner →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

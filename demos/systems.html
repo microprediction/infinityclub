@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Two Lines · Infinity Club</title>
+<meta name="description" content="Set the slope and intercept of two lines and watch where they cross; the algebra for the crossing point is worked out live, and you can make the lines parallel or identical to see no solution and infinitely many.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.controls input[type=range] { width: 150px; }
+.controls .val { font-family: var(--mono); min-width: 3.2em; display: inline-block; }
+.controls .l1 { color: #3f44c9; }
+.controls .l2 { color: #b8731a; }
+#eq { font-size: 1.1rem; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Two lines</h1>
+<p class="explain">Set the slope and intercept of the blue line and of the orange line. The dot marks the one point that lies on both, and the readout works out its coordinates by setting the two right-hand sides equal. Now press "make parallel": the dot vanishes and the algebra asks for something impossible. Press "make the same line" and every point works. Those are the only three things that can happen.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <label class="l1">m₁ <input type="range" id="m1" min="-4" max="4" step="0.25" value="1"> <span class="val" id="m1v">1</span></label>
+    <label class="l1">b₁ <input type="range" id="b1" min="-6" max="6" step="0.5" value="-1"> <span class="val" id="b1v">-1</span></label>
+  </div>
+  <div class="controls">
+    <label class="l2">m₂ <input type="range" id="m2" min="-4" max="4" step="0.25" value="-0.5"> <span class="val" id="m2v">-0.5</span></label>
+    <label class="l2">b₂ <input type="range" id="b2" min="-6" max="6" step="0.5" value="2"> <span class="val" id="b2v">2</span></label>
+  </div>
+  <div class="controls">
+    <button id="parallel" class="ghost">Make parallel</button>
+    <button id="same" class="ghost">Make the same line</button>
+    <button id="random" class="ghost">Random</button>
+    <button id="reset" class="ghost">Reset</button>
+  </div>
+  <div class="readout" id="eq"></div>
+  <canvas id="plot" width="900" height="630"></canvas>
+  <div class="readout" id="info"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>A point (x, y) solves a system of two equations when it lies on both graphs. For two lines that means a crossing point. Setting m₁x + b₁ = m₂x + b₂ and collecting the x terms gives (m₁ − m₂)x = b₂ − b₁. If the slopes differ you can divide, and there is exactly one x, hence exactly <b>one solution</b>. Put that x back into either equation to get y.</p>
+<p>If the slopes are equal you cannot divide by m₁ − m₂ = 0. Then the equation reads 0 = b₂ − b₁. When the intercepts differ this is false for every x: the lines are parallel and there is <b>no solution</b>. When the intercepts agree too, it is true for every x: the two equations describe the same line and there are <b>infinitely many solutions</b>.</p>
+<p>So you can predict the outcome before solving anything: compare the slopes first, and then, only if they match, the intercepts. Equations that are not written as y = mx + b can hide this. Rearranging 2x + 4y = 8 into y = −½x + 2 shows what its slope is.</p>
+<p>Sheets: <a href="../grade-8/sheets/a4-systems.html">Two equations, two unknowns</a> and <a href="../grade-8/sheets/a1-one-none-infinite.html">One, none, or infinitely many</a>. Later: <a href="../grade-10/sheets/a6-systems.html">systems of curves</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  function lineY(m, b, x) { return m * x + b; }
+  // one crossing point, none (parallel) or every point (same line)
+  function solve(m1, b1, m2, b2) {
+    if (m1 !== m2) { var x = (b2 - b1) / (m1 - m2); return { kind: "one", x: x, y: m1 * x + b1 }; }
+    return { kind: b1 === b2 ? "all" : "none" };
+  }
+  function fmt(v, d) { d = d === undefined ? 2 : d; var r = Math.round(v * Math.pow(10, d)) / Math.pow(10, d); if (Object.is(r, -0)) r = 0; return r.toString().replace("-", "−"); }
+  function par(v) { return v < 0 ? "(" + fmt(v) + ")" : fmt(v); }
+  function coef(m) { return m === 1 ? "" : m === -1 ? "−" : fmt(m); }
+  function side(m, b) { // right-hand side  mx + b
+    if (m === 0) return fmt(b);
+    return coef(m) + "x" + (b === 0 ? "" : (b > 0 ? " + " : " − ") + fmt(Math.abs(b)));
+  }
+  function equation(m, b) { return "y = " + side(m, b); }
+  function workedSolution(m1, b1, m2, b2) {
+    var s = solve(m1, b1, m2, b2), dm = m1 - m2, db = b2 - b1;
+    var lines = ["Both equal y, so set them equal:   " + side(m1, b1) + " = " + side(m2, b2)];
+    lines.push("Collect the x terms:   (" + fmt(m1) + " − " + par(m2) + ")x = " + fmt(b2) + " − " + par(b1) + "   →   " + fmt(dm) + "x = " + fmt(db));
+    if (s.kind === "one") {
+      lines.push("Divide by " + fmt(dm) + ":   x = " + fmt(db) + " / " + par(dm) + " = " + fmt(s.x, 3));
+      lines.push("Back into line 1:   y = " + fmt(m1) + " · " + par(s.x, 3) + " " + (b1 < 0 ? "− " + fmt(-b1) : "+ " + fmt(b1)) + " = " + fmt(s.y, 3));
+      lines.push("Check in line 2:   " + fmt(m2) + " · " + par(s.x, 3) + " " + (b2 < 0 ? "− " + fmt(-b2) : "+ " + fmt(b2)) + " = " + fmt(lineY(m2, b2, s.x), 3) + "  ✓      one solution: (" + fmt(s.x, 3) + ", " + fmt(s.y, 3) + ")");
+    } else if (s.kind === "none") {
+      lines.push("0 · x = " + fmt(db) + " is false for every x. Same slope, different intercepts: parallel lines, no solution.");
+    } else {
+      lines.push("0 · x = 0 is true for every x. Same slope and same intercept: the same line twice, every point on it is a solution.");
+    }
+    return lines.join("\n");
+  }
+  /*ENDPURE*/
+
+  var canvas = document.getElementById("plot"), ctx = canvas.getContext("2d");
+  var info = document.getElementById("info"), eq = document.getElementById("eq");
+  var DEF = { m1: 1, b1: -1, m2: -0.5, b2: 2 }, S = Object.assign({}, DEF), sl = {};
+  ["m1", "b1", "m2", "b2"].forEach(function (key) {
+    sl[key] = document.getElementById(key);
+    sl[key].addEventListener("input", function () { S[key] = parseFloat(sl[key].value); draw(); });
+  });
+  function sync() { Object.keys(sl).forEach(function (k) { sl[k].value = S[k]; }); }
+  document.getElementById("reset").addEventListener("click", function () { S = Object.assign({}, DEF); sync(); draw(); });
+  document.getElementById("parallel").addEventListener("click", function () { S.m2 = S.m1; if (S.b2 === S.b1) S.b2 = S.b1 > 0 ? S.b1 - 2 : S.b1 + 2; sync(); draw(); });
+  document.getElementById("same").addEventListener("click", function () { S.m2 = S.m1; S.b2 = S.b1; sync(); draw(); });
+  document.getElementById("random").addEventListener("click", function () {
+    function pick(lo, hi, step) { var n = Math.round((hi - lo) / step); return lo + step * Math.floor(Math.random() * (n + 1)); }
+    S.m1 = pick(-3, 3, 0.5); S.b1 = pick(-5, 5, 1); do { S.m2 = pick(-3, 3, 0.5); } while (S.m2 === S.m1); S.b2 = pick(-5, 5, 1);
+    sync(); draw();
+  });
+
+  var XMIN = -10, XMAX = 10, YMIN, YMAX, W, H;
+  function X(x) { return (x - XMIN) / (XMAX - XMIN) * W; }
+  function Y(y) { return H - (y - YMIN) / (YMAX - YMIN) * H; }
+  function strokeLine(m, b) { ctx.beginPath(); ctx.moveTo(X(XMIN), Y(lineY(m, b, XMIN))); ctx.lineTo(X(XMAX), Y(lineY(m, b, XMAX))); ctx.stroke(); }
+
+  function draw() {
+    ["m1", "b1", "m2", "b2"].forEach(function (k) { document.getElementById(k + "v").textContent = fmt(S[k]); });
+    var dpr = window.devicePixelRatio || 1; W = canvas.clientWidth || 900; H = Math.round(W * 0.7);
+    YMAX = (XMAX - XMIN) / 2 * H / W; YMIN = -YMAX;
+    canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, H);
+    ctx.strokeStyle = "#ece9e0"; ctx.lineWidth = 1;
+    for (var gx = XMIN; gx <= XMAX; gx++) { ctx.beginPath(); ctx.moveTo(X(gx), 0); ctx.lineTo(X(gx), H); ctx.stroke(); }
+    for (var gy = Math.ceil(YMIN); gy <= YMAX; gy++) { ctx.beginPath(); ctx.moveTo(0, Y(gy)); ctx.lineTo(W, Y(gy)); ctx.stroke(); }
+    ctx.strokeStyle = "#8a8ca8"; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(X(0), 0); ctx.lineTo(X(0), H); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(0, Y(0)); ctx.lineTo(W, Y(0)); ctx.stroke();
+    ctx.fillStyle = "#5d6079"; ctx.font = "11px Nunito, sans-serif"; ctx.textAlign = "center";
+    for (var tx = XMIN; tx <= XMAX; tx += 2) if (tx !== 0) ctx.fillText(tx, X(tx), Y(0) + 13);
+    ctx.textAlign = "right";
+    for (var ty = Math.ceil(YMIN); ty <= YMAX; ty += 2) if (ty !== 0) ctx.fillText(ty, X(0) - 5, Y(ty) + 4);
+
+    var s = solve(S.m1, S.b1, S.m2, S.b2);
+    ctx.lineWidth = 3; ctx.strokeStyle = "#3f44c9"; strokeLine(S.m1, S.b1);
+    ctx.strokeStyle = "#f5a524"; if (s.kind === "all") ctx.setLineDash([10, 8]); strokeLine(S.m2, S.b2); ctx.setLineDash([]);
+    var head = equation(S.m1, S.b1) + "        " + equation(S.m2, S.b2);
+    if (s.kind === "one") {
+      var onScreen = Math.abs(s.x) <= XMAX && Math.abs(s.y) <= YMAX;
+      ctx.strokeStyle = "#8a8ca8"; ctx.setLineDash([4, 4]); ctx.lineWidth = 1.2;
+      ctx.beginPath(); ctx.moveTo(X(s.x), Y(s.y)); ctx.lineTo(X(s.x), Y(0)); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(X(s.x), Y(s.y)); ctx.lineTo(X(0), Y(s.y)); ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle = "#1d1f3a"; ctx.beginPath(); ctx.arc(X(s.x), Y(s.y), 8, 0, Math.PI * 2); ctx.fill();
+      ctx.strokeStyle = "#fff"; ctx.lineWidth = 2; ctx.stroke();
+      ctx.fillStyle = "#1d1f3a"; ctx.font = "bold 12px Nunito, sans-serif"; ctx.textAlign = "left";
+      ctx.fillText("(" + fmt(s.x, 2) + ", " + fmt(s.y, 2) + ")", X(s.x) + 12, Y(s.y) - 10);
+      head += onScreen ? "" : "        (the crossing point is off the edge of the picture)";
+    } else {
+      ctx.fillStyle = "#1d1f3a"; ctx.font = "bold 14px Nunito, sans-serif"; ctx.textAlign = "left";
+      ctx.fillText(s.kind === "none" ? "parallel: no solution" : "same line: every point is a solution", 12, 22);
+    }
+    eq.textContent = head;
+    info.textContent = workedSolution(S.m1, S.b1, S.m2, S.b2);
+  }
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(draw, 120); });
+  draw();
+})();
+</script>
+</body>
+</html>

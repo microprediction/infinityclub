@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trapping π · Infinity Club</title>
+<meta name="description" content="Squeeze a circle between a polygon inside and a polygon outside. Double the sides from 6 to 96 and watch the two perimeters close in on π, the way Archimedes did it.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+#plot { display: block; width: 100%; max-width: 560px; margin: 0 auto; border-radius: 8px; }
+.controls input[type=range] { width: 150px; }
+.controls .val { font-family: var(--mono); min-width: 2em; display: inline-block; }
+table.bounds { border-collapse: collapse; margin: .6rem 0; font-family: var(--mono); font-size: .95rem; }
+table.bounds th, table.bounds td { padding: .3rem .7rem; text-align: right; border-bottom: 1px solid var(--rule); }
+table.bounds th { font-family: var(--sans); color: var(--muted); font-weight: 700; }
+table.bounds tr.now td { background: var(--warm-soft); font-weight: 700; }
+table.bounds td.in { color: #3f44c9; }
+table.bounds td.out { color: #c47a00; }
+.key { display: flex; flex-wrap: wrap; gap: .4rem 1.2rem; font-size: .9rem; color: var(--muted); margin: .4rem 0 .6rem; }
+.key span::before { content: ""; display: inline-block; width: 14px; height: 4px; vertical-align: 3px; margin-right: .35rem; border-radius: 2px; }
+.key .in::before { background: #3f44c9; }
+.key .out::before { background: #f5a524; }
+.key .circ::before { background: #1d1f3a; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Trapping π</h1>
+<p class="explain">The circle has diameter 1, so its circumference is exactly π. Slide n, or press <b>double the sides</b>, to fit a regular polygon just inside the circle (blue) and one just outside (orange). The inside perimeter is too small, the outside one too big, so π is trapped between them. Tick <b>magnify</b> to zoom in on the edge when the three curves become hard to tell apart. Notice how each doubling shrinks the gap by roughly a factor of 4.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <label>sides n <input type="range" id="k" min="0" max="4" step="1" value="0"> <span class="val" id="nv">6</span></label>
+    <button id="dbl">Double the sides</button>
+    <button id="reset" class="ghost">Back to 6</button>
+    <label><input type="checkbox" id="zoom"> magnify the edge</label>
+  </div>
+  <div class="key"><span class="in">inscribed polygon</span><span class="out">circumscribed polygon</span><span class="circ">circle, diameter 1</span></div>
+  <canvas id="plot" width="560" height="560"></canvas>
+  <div class="readout" id="info"></div>
+  <table class="bounds"><thead><tr><th>n</th><th>inside perimeter</th><th>outside perimeter</th><th>gap</th></tr></thead><tbody id="rows"></tbody></table>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>A regular hexagon drawn inside a circle of diameter 1 is six equilateral triangles with sides ½, so its perimeter is exactly 3. The hexagon drawn outside has perimeter 2√3 ≈ 3.4641. The circle's circumference, which is π by definition, is longer than the inside path and shorter than the outside one. So 3 &lt; π &lt; 3.4641, and no measuring was needed.</p>
+<p>Archimedes then <b>doubled the number of sides</b> four times, to 12, 24, 48 and 96, using only Pythagoras and square roots. If the inside polygon with n sides has side s (on a circle of diameter 2), the one with 2n sides has side √(2 − √(4 − s²)). No trigonometry, no decimals: he carried the square roots as fractions and rounded them carefully in the safe direction, so his bounds stayed true. From the 96-gons he announced 3 10/71 &lt; π &lt; 3 1/7, that is 3.1408 &lt; π &lt; 3.1429.</p>
+<p>The gap between the two bounds is about 2π³/n² for large n, which is why each doubling divides it by about 4. To gain one more decimal digit you need roughly √10 ≈ 3.2 times as many sides. Ludolph van Ceulen pushed this exact method to 2⁶² sides around 1600 and got 35 digits, a life's work. Today we have formulas that converge far faster, but every one of them starts from the same idea: squeeze the unknown between two things you can compute.</p>
+<p>Sheet: <a href="../grade-8/sheets/b19-trapping-pi.html">Trapping π between polygons</a>. Related demo: <a href="pi-darts.html">π by throwing darts</a>, a much slower way to find it.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  // k doublings from a hexagon. s = side of the inscribed n-gon on a circle of diameter 2 (radius 1);
+  // the circumscribed side is t = 2s / sqrt(4 - s^2). Our circle has diameter 1, so perimeters are halved.
+  function bounds(k) {
+    var s = 1, n = 6;
+    for (var i = 0; i < k; i++) { s = Math.sqrt(2 - Math.sqrt(4 - s * s)); n *= 2; }
+    var t = 2 * s / Math.sqrt(4 - s * s);
+    return { n: n, lower: n * s / 2, upper: n * t / 2, s: s, t: t };
+  }
+  function fmt(v, d) { return v.toFixed(d === undefined ? 4 : d); }
+  /*ENDPURE*/
+
+  var canvas = document.getElementById("plot"), ctx = canvas.getContext("2d"), info = document.getElementById("info"), rowsEl = document.getElementById("rows");
+  var kSlider = document.getElementById("k"), zoomBox = document.getElementById("zoom");
+  var K = 0;
+
+  function polyPoints(n, radius, cx, cy) {
+    var pts = [];
+    for (var i = 0; i < n; i++) { var a = Math.PI / 2 + i * 2 * Math.PI / n; pts.push([cx + radius * Math.cos(a), cy - radius * Math.sin(a)]); }
+    return pts;
+  }
+  function strokePoly(pts, color, width) {
+    ctx.strokeStyle = color; ctx.lineWidth = width; ctx.beginPath();
+    pts.forEach(function (p, i) { if (i === 0) ctx.moveTo(p[0], p[1]); else ctx.lineTo(p[0], p[1]); });
+    ctx.closePath(); ctx.stroke();
+  }
+
+  function draw() {
+    var b = bounds(K), n = b.n;
+    document.getElementById("nv").textContent = n;
+    var dpr = window.devicePixelRatio || 1, W = canvas.clientWidth || 560, H = W;
+    canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, H);
+    var cx = W / 2, cy = H / 2, R = W * 0.36; // R is the radius in pixels (0.5 in our units)
+    var Rout = R / Math.cos(Math.PI / n);
+    // fill between polygons
+    ctx.fillStyle = "rgba(245,165,36,0.12)"; ctx.beginPath(); polyPoints(n, Rout, cx, cy).forEach(function (p, i) { i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]); }); ctx.closePath(); ctx.fill();
+    ctx.fillStyle = "#fff"; ctx.beginPath(); polyPoints(n, R, cx, cy).forEach(function (p, i) { i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]); }); ctx.closePath(); ctx.fill();
+    ctx.fillStyle = "rgba(63,68,201,0.07)"; ctx.fill();
+    strokePoly(polyPoints(n, Rout, cx, cy), "#f5a524", 2.5);
+    ctx.strokeStyle = "#1d1f3a"; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.stroke();
+    strokePoly(polyPoints(n, R, cx, cy), "#3f44c9", 2.5);
+    // diameter label
+    ctx.strokeStyle = "#8a8ca8"; ctx.lineWidth = 1; ctx.setLineDash([4, 4]); ctx.beginPath(); ctx.moveTo(cx - R, cy); ctx.lineTo(cx + R, cy); ctx.stroke(); ctx.setLineDash([]);
+    ctx.fillStyle = "#5d6079"; ctx.font = "12px Nunito, sans-serif"; ctx.textAlign = "center"; ctx.textBaseline = "top";
+    ctx.fillText("diameter 1", cx, cy + 4);
+    ctx.font = "bold 13px Nunito, sans-serif"; ctx.fillStyle = "#1d1f3a"; ctx.textAlign = "left";
+    ctx.fillText("n = " + n, 10, 8);
+
+    if (zoomBox.checked) drawInset(n, W, H, R, cx, cy);
+
+    info.textContent = "n = " + n + ":   " + fmt(b.lower) + "  <  π  <  " + fmt(b.upper) + "      gap = " + fmt(b.upper - b.lower)
+      + "\ninside side  = " + fmt(b.s / 2, 5) + "   (× " + n + " = " + fmt(b.lower) + ")" + "\noutside side = " + fmt(b.t / 2, 5) + "   (× " + n + " = " + fmt(b.upper) + ")"
+      + (K > 0 ? "\nthe gap shrank by a factor of " + fmt((bounds(K - 1).upper - bounds(K - 1).lower) / (b.upper - b.lower), 2) + " since n = " + (n / 2) : "");
+
+    rowsEl.innerHTML = "";
+    for (var k = 0; k <= 4; k++) {
+      var r = bounds(k), tr = document.createElement("tr"); if (k === K) tr.className = "now";
+      tr.innerHTML = "<td>" + r.n + "</td><td class=in>" + fmt(r.lower) + "</td><td class=out>" + fmt(r.upper) + "</td><td>" + fmt(r.upper - r.lower) + "</td>";
+      rowsEl.appendChild(tr);
+    }
+  }
+
+  // Magnified view of the top of the circle, where the two polygons have a vertex.
+  function drawInset(n, W, H, R, cx, cy) {
+    var size = Math.round(W * 0.40), x0 = W - size - 8, y0 = H - size - 8, icx = x0 + size / 2, icy = y0 + size * 0.62;
+    var halfWidth = 2 * R * Math.sin(Math.PI / n); // in pixels of the main picture
+    var z = (size / 2) * 0.9 / halfWidth;          // magnification
+    ctx.save();
+    ctx.fillStyle = "#fffdf8"; ctx.strokeStyle = "#8a8ca8"; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.rect(x0, y0, size, size); ctx.fill(); ctx.stroke();
+    ctx.beginPath(); ctx.rect(x0, y0, size, size); ctx.clip();
+    // map a main-picture point (px,py) near the top of the circle (cx, cy - R) to inset coords
+    function M(p) { return [icx + (p[0] - cx) * z, icy + (p[1] - (cy - R)) * z]; }
+    var Rout = R / Math.cos(Math.PI / n), span = 3;
+    function arcPts(radius) { var pts = []; for (var i = -40; i <= 40; i++) { var a = Math.PI / 2 + (i / 40) * span * Math.PI / n; pts.push(M([cx + radius * Math.cos(a), cy - radius * Math.sin(a)])); } return pts; }
+    function vertPts(radius) { var pts = []; for (var i = -span; i <= span; i++) { var a = Math.PI / 2 + i * 2 * Math.PI / n; pts.push(M([cx + radius * Math.cos(a), cy - radius * Math.sin(a)])); } return pts; }
+    function path(pts, color, width) { ctx.strokeStyle = color; ctx.lineWidth = width; ctx.beginPath(); pts.forEach(function (p, i) { i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]); }); ctx.stroke(); }
+    path(vertPts(Rout), "#f5a524", 2.5);
+    path(arcPts(R), "#1d1f3a", 2);
+    path(vertPts(R), "#3f44c9", 2.5);
+    ctx.fillStyle = "#3f44c9"; vertPts(R).forEach(function (p) { ctx.beginPath(); ctx.arc(p[0], p[1], 3, 0, Math.PI * 2); ctx.fill(); });
+    ctx.fillStyle = "#5d6079"; ctx.font = "11px Nunito, sans-serif"; ctx.textAlign = "left"; ctx.textBaseline = "top";
+    ctx.fillText("zoom ×" + Math.round(z), x0 + 6, y0 + 5);
+    ctx.restore();
+  }
+
+  kSlider.addEventListener("input", function () { K = parseInt(kSlider.value, 10); draw(); });
+  document.getElementById("dbl").addEventListener("click", function () { if (K < 4) { K++; kSlider.value = K; draw(); } });
+  document.getElementById("reset").addEventListener("click", function () { K = 0; kSlider.value = 0; draw(); });
+  zoomBox.addEventListener("change", draw);
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(draw, 120); });
+  draw();
+})();
+</script>
+</body>
+</html>

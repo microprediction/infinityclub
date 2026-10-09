@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Squeezing √2 · Infinity Club</title>
+<meta name="description" content="Trap a square root between decimals by squaring, halve the trap each step with bisection, then do it far faster with the Babylonian method: average your guess with 2 divided by your guess.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+<style>
+table.tt { border-collapse: collapse; margin: .6em 0; }
+table.tt th, table.tt td { border: 1px solid var(--rule); padding: .25em .6em; text-align: center; }
+table.tt th { background: var(--accent-soft); }
+@media print { table.tt th { background: #eee; -webkit-print-color-adjust: exact; print-color-adjust: exact; } table.tt th, table.tt td { border-color: #000; } }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 8 · Sharpen · 7</div>
+  <h1>Squeezing √2</h1>
+  <p class="teaser">It is between 1.4 and 1.5. Then 1.41 and 1.42. Trap a square root between decimals, then do it faster with the Babylonian method.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>\(\sqrt{2}\) is the number whose square is 2. The question is how to trap it. The test is always the same: square a guess and compare with 2.</p>
+<p>\(1^2 = 1\) and \(2^2 = 4\), so \(\sqrt2\) is between 1 and 2. \(1.4^2 = 1.96\) and \(1.5^2 = 2.25\), so it is between 1.4 and 1.5. \(1.41^2 = 1.9881\) and \(1.42^2 = 2.0164\): between 1.41 and 1.42. Each new decimal place takes up to nine squarings to find.</p>
+<p><b>Bisection</b> is tidier. Keep a trap \([\text{low}, \text{high}]\) with \(\sqrt2\) inside. Square the midpoint. If the square is above 2, the midpoint becomes the new high; if below, the new low. The trap halves every step.</p>
+<figure><svg viewBox="0 0 520 170" width="520" height="170" role="img" aria-label="Five nested intervals on a number line from 1 to 2 closing in on root two: 1 to 2, 1 to 1.5, 1.25 to 1.5, 1.375 to 1.5, 1.375 to 1.4375" font-family="Nunito, sans-serif" font-size="12">
+<line x1="205.7" y1="16" x2="205.7" y2="150" stroke="#f5a524" stroke-width="1.2" stroke-dasharray="4 3"/>
+<g stroke="#3f44c9" stroke-width="2" fill="none">
+<path d="M40 22V34 M40 28H440 M440 22V34"/>
+<path d="M40 46V58 M40 52H240 M240 46V58"/>
+<path d="M140 70V82 M140 76H240 M240 70V82"/>
+<path d="M190 94V106 M190 100H240 M240 94V106"/>
+<path d="M190 118V130 M190 124H215 M215 118V130"/>
+</g>
+<g fill="#f5a524">
+<circle cx="240" cy="28" r="3.5"/><circle cx="140" cy="52" r="3.5"/><circle cx="190" cy="76" r="3.5"/><circle cx="215" cy="100" r="3.5"/><circle cx="202.5" cy="124" r="3.5"/>
+</g>
+<g fill="#555">
+<text x="450" y="32">1 to 2</text><text x="250" y="56">1 to 1.5</text><text x="250" y="80">1.25 to 1.5</text><text x="250" y="104">1.375 to 1.5</text><text x="225" y="128">1.375 to 1.4375</text>
+</g>
+<line x1="30" y1="150" x2="490" y2="150" stroke="#999" stroke-width="1"/>
+<g stroke="#999" stroke-width="1"><path d="M40 146V154 M240 146V154 M440 146V154"/></g>
+<g text-anchor="middle" fill="#555"><text x="40" y="166">1</text><text x="240" y="166">1.5</text><text x="440" y="166">2</text></g>
+<text x="205.7" y="12" text-anchor="middle" fill="#f5a524" font-weight="700" font-size="13">√2</text>
+</svg><figcaption>Bisection. Each orange dot is the midpoint being tested; the trap keeps the half that contains √2.</figcaption></figure>
+<p>The <b>Babylonian method</b> is faster still. Take any guess \(x\). Then \(x\) and \(2/x\) multiply to 2, so they sit on opposite sides of \(\sqrt2\): if one is too big the other is too small. Their average is a better guess.</p>
+<p class="callout">New guess \(= \dfrac{1}{2}\left(x + \dfrac{2}{x}\right)\). Repeat.</p>
+<p>Picture a rectangle of area 2 with sides \(x\) and \(2/x\). Averaging the sides makes it squarer; the limit is a square of area 2.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: Babylonian from \(x = 1.5\)</h2>
+<p>\(2/1.5 = 1.3333\), so the next guess is \(\tfrac12(1.5 + 1.3333) = 1.41667\). Again: \(2/1.41667 = 1.41176\), average \(1.41422\). Again: \(1.41421356\). Compare with \(\sqrt2 = 1.41421356237\ldots\)</p>
+<table class="tt">
+<tr><th>Step</th><th>Guess</th><th>Correct digits</th></tr>
+<tr><td>0</td><td>1.5</td><td>1</td></tr>
+<tr><td>1</td><td>1.41667</td><td>3</td></tr>
+<tr><td>2</td><td>1.4142157</td><td>6</td></tr>
+<tr><td>3</td><td>1.414213562375</td><td>12</td></tr>
+</table>
+<p>The number of correct digits roughly doubles each step. Bisection earned one digit every three or four steps. Computers find square roots this way, or by close relatives of it.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Trap \(\sqrt{10}\) between consecutive tenths, then between consecutive hundredths. Show the two squarings that settle each trap.<div class="space short"></div></li>
+<li>Bisection for \(\sqrt5\), starting from the trap \([2, 3]\). Do four steps. Write the midpoint, its square, and the new trap each time. How wide is the trap at the end?<div class="space short"></div></li>
+<li>Babylonian for \(\sqrt{10}\) from \(x = 3\). Do two steps, keeping six decimal places. \(\sqrt{10} = 3.16227766\ldots\). How many digits are right after each step? Compare with question 1.<div class="space short"></div></li>
+<li>(a) Explain why, if \(x\) is bigger than \(\sqrt2\), then \(2/x\) must be smaller than \(\sqrt2\). (b) So after any Babylonian step you get a trap for free: \(\sqrt2\) lies between the new guess and 2 divided by it. Write that trap after the first step from \(x = 1.5\). How wide is it?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: with fractions, no decimals</h2>
+<p>Start the Babylonian method at \(x = 1\) and keep every guess as a fraction: \(1, \tfrac32, \tfrac{17}{12}, \ldots\) Find the next two. For each one, compute \(\text{top}^2 - 2 \times \text{bottom}^2\). What do you notice, and what does it say about how close the fraction is to \(\sqrt2\)?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(3.1^2 = 9.61\) and \(3.2^2 = 10.24\), so \(3.1 \lt \sqrt{10} \lt 3.2\). \(3.16^2 = 9.9856\) and \(3.17^2 = 10.0489\), so \(3.16 \lt \sqrt{10} \lt 3.17\).</li>
+<li>Midpoint 2.5, square 6.25, too big: \([2, 2.5]\). Midpoint 2.25, square 5.0625, too big: \([2, 2.25]\). Midpoint 2.125, square 4.515625, too small: \([2.125, 2.25]\). Midpoint 2.1875, square 4.78515625, too small: \([2.1875, 2.25]\). Width \(0.0625\). (\(\sqrt5 = 2.236\ldots\))</li>
+<li>\(10/3 = 3.333333\), average \(3.166667\): two digits right (3.1). Then \(10/3.166667 = 3.157895\), average \(3.162281\): right to five decimal places (3.16228). Two steps beat the nine squarings of question 1.</li>
+<li>(a) Dividing 2 by a larger number gives a smaller result. If \(x > \sqrt2\), then \(2/x \lt 2/\sqrt2 = \sqrt2\). (b) First step gives \(1.41667\), and \(2/1.41667 = 1.41176\). So \(1.41176 \lt \sqrt2 \lt 1.41667\), a trap of width about \(0.005\) after one step. (The guess is the upper end: the average of two numbers whose product is 2 is never below \(\sqrt2\).)</li>
+</ol>
+<p><b>Stretch.</b> \(\tfrac12\left(\tfrac{17}{12} + \tfrac{24}{17}\right) = \tfrac{577}{408}\), then \(\tfrac{665857}{470832}\). For every fraction, \(\text{top}^2 - 2 \times \text{bottom}^2 = 1\): \(3^2 - 2 \cdot 2^2 = 1\), \(17^2 - 2 \cdot 12^2 = 1\), \(577^2 - 2 \cdot 408^2 = 332929 - 332928 = 1\). So \(\left(\tfrac{577}{408}\right)^2 = 2 + \tfrac{1}{408^2}\), above 2 by only \(1/166464\). The bottoms grow fast, so the overshoot shrinks fast.</p>
+</section>
+
+<div class="sheet-nav"><a href="a6-multiply-by-one.html">← Previous</a><a href="a8-pythagoras-distance.html">Next: Pythagoras, distances, and the diagonal of a box →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Chicken McNugget problem · Infinity Club</title>
+<meta name="description" content="Which totals can you make from boxes of 6, 9 and 20? The largest impossible total is 43, and six successes in a row explain why. Then the Frobenius number for two coprime sizes.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 8 · Around the corner · 2</div>
+  <h1>The Chicken McNugget problem</h1>
+  <p class="teaser">Boxes of 6, 9 and 20. Which totals can you buy? The largest you cannot is 43, and there is a reason.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>McDonald's once sold Chicken McNuggets in boxes of 6, 9 and 20. You can buy 15 and 26, but not 16: nothing adds up. Which totals are possible?</p>
+<p>Try small ones: 1 to 5 fail, 6 works, 7 and 8 fail, 9 works, 10 and 11 fail, 12 works. The failures thin out but keep coming. The picture shows them in orange.</p>
+<figure><svg viewBox="0 0 520 58" width="520" height="58" role="img" aria-label="Numbers 1 to 50 on a line; the 22 totals you cannot buy are orange, the last of them is 43" font-family="Nunito, sans-serif" font-size="12">
+<line x1="8" y1="24" x2="512" y2="24" stroke="#999" stroke-width="1"/>
+<circle cx="12.0" cy="24" r="4" fill="#f5a524"/>
+<circle cx="22.1" cy="24" r="4" fill="#f5a524"/>
+<circle cx="32.2" cy="24" r="4" fill="#f5a524"/>
+<circle cx="42.3" cy="24" r="4" fill="#f5a524"/>
+<circle cx="52.4" cy="24" r="4" fill="#f5a524"/>
+<circle cx="62.5" cy="24" r="4" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.2"/>
+<circle cx="72.6" cy="24" r="4" fill="#f5a524"/>
+<circle cx="82.7" cy="24" r="4" fill="#f5a524"/>
+<circle cx="92.8" cy="24" r="4" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.2"/>
+<circle cx="102.9" cy="24" r="4" fill="#f5a524"/>
+<circle cx="113.0" cy="24" r="4" fill="#f5a524"/>
+<circle cx="123.1" cy="24" r="4" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.2"/>
+<circle cx="133.2" cy="24" r="4" fill="#f5a524"/>
+<circle cx="143.3" cy="24" r="4" fill="#f5a524"/>
+<circle cx="153.4" cy="24" r="4" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.2"/>
+<circle cx="163.5" cy="24" r="4" fill="#f5a524"/>
+<circle cx="173.6" cy="24" r="4" fill="#f5a524"/>
+<circle cx="183.7" cy="24" r="4" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.2"/>
+<circle cx="193.8" cy="24" r="4" fill="#f5a524"/>
+<circle cx="203.9" cy="24" r="4" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.2"/>
+<circle cx="214.0" cy="24" r="4" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.2"/>
+<circle cx="224.1" cy="24" r="4" fill="#f5a524"/>
+<circle cx="234.2" cy="24" r="4" fill="#f5a524"/>
+<circle cx="244.3" cy="24" r="4" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.2"/>
+<circle cx="254.4" cy="24" r="4" fill="#f5a524"/>
+<circle cx="264.5" cy="24" r="4" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.2"/>
+<circle cx="274.6" cy="24" r="4" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.2"/>
+<circle cx="284.7" cy="24" r="4" fill="#f5a524"/>
+<circle cx="294.8" cy="24" r="4" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.2"/>
+<circle cx="304.9" cy="24" r="4" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.2"/>
+<circle cx="315.0" cy="24" r="4" fill="#f5a524"/>
+<circle cx="325.1" cy="24" r="4" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.2"/>
+<circle cx="335.2" cy="24" r="4" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.2"/>
+<circle cx="345.3" cy="24" r="4" fill="#f5a524"/>
+<circle cx="355.4" cy="24" r="4" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.2"/>
+<circle cx="365.5" cy="24" r="4" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.2"/>
+<circle cx="375.6" cy="24" r="4" fill="#f5a524"/>
+<circle cx="385.7" cy="24" r="4" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.2"/>
+<circle cx="395.8" cy="24" r="4" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.2"/>
+<circle cx="405.9" cy="24" r="4" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.2"/>
+<circle cx="416.0" cy="24" r="4" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.2"/>
+<circle cx="426.1" cy="24" r="4" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.2"/>
+<circle cx="436.2" cy="24" r="4" fill="#f5a524"/>
+<circle cx="446.3" cy="24" r="4" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.2"/>
+<circle cx="456.4" cy="24" r="4" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.2"/>
+<circle cx="466.5" cy="24" r="4" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.2"/>
+<circle cx="476.6" cy="24" r="4" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.2"/>
+<circle cx="486.7" cy="24" r="4" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.2"/>
+<circle cx="496.8" cy="24" r="4" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.2"/>
+<circle cx="506.9" cy="24" r="4" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.2"/>
+<text x="12.0" y="44" text-anchor="middle" fill="#555">1</text>
+<text x="102.9" y="44" text-anchor="middle" fill="#555">10</text>
+<text x="203.9" y="44" text-anchor="middle" fill="#555">20</text>
+<text x="304.9" y="44" text-anchor="middle" fill="#555">30</text>
+<text x="405.9" y="44" text-anchor="middle" fill="#555">40</text>
+<text x="506.9" y="44" text-anchor="middle" fill="#555">50</text>
+<text x="436.2" y="12" text-anchor="middle" fill="#f5a524" font-weight="700">43</text>
+</svg>
+<figcaption>Totals from 1 to 50. Orange totals cannot be bought. There are 22 of them, and 43 is the last.</figcaption></figure>
+<p>The last failure is 43. Here is why nothing after it fails. The six totals 44 to 49 can all be made (you will check). Add a box of 6 to each and you get 50 to 55. Add another and you get 56 to 61. Every number from 44 up is one of those six plus some boxes of 6.</p>
+<p class="callout">A run of six successes in a row, one for each remainder on dividing by 6, ends the failures for good.</p>
+<p>The largest impossible total is the <b>Frobenius number</b> of the sizes. For two sizes with no common factor there is a formula (exercise 3); for three, nobody has found one.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: why 43 fails</h2>
+<p>Suppose \(43 = 20a + 9b + 6c\), with \(a, b, c\) the numbers of each box. At most two boxes of 20 fit, since three make 60. Remove them: \(a = 0\) leaves 43, \(a = 1\) leaves 23, \(a = 2\) leaves 3.</p>
+<p>The leftover must be made from 6s and 9s, both multiples of 3, so it must be a multiple of 3. But 43 and 23 are not, and 3 is smaller than any box. So 43 is impossible. The same check on every total up to 43 finds all 22 orange dots.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Make each of 44, 45, 46, 47, 48 and 49 from boxes of 6, 9 and 20. Then say, in one sentence, why 50 to 55 must also be possible.<div class="space"></div></li>
+<li>Use the method of the example to show that 25 and 31 are impossible.<div class="space short"></div></li>
+<li>A post office sells only 5-cent and 7-cent stamps. (a) List every postage that cannot be made exactly. (b) For two sizes \(a\) and \(b\) with no common factor, the Frobenius number is \(ab - a - b\). Check it against your list, and against sizes 3 and 5.<div class="space"></div></li>
+<li>Boxes of 6, 10 and 15. Any two of these share a factor, but no number bigger than 1 divides all three. Find the largest total that cannot be made. Look for six in a row, then prove the total just before the run fails.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the 4-piece box</h2>
+<p>A box of 4 is added to 6, 9 and 20. What is the largest impossible total now, and how many fail altogether? Then, for sizes 3 and 5, pair each total \(n\) from 0 to 7 with \(7 - n\). What do you notice about each pair, and what does it say about how many fail?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(44 = 20 + 4 \times 6\), \(45 = 9 + 6 \times 6\), \(46 = 2 \times 20 + 6\), \(47 = 20 + 9 + 3 \times 6\), \(48 = 8 \times 6\), \(49 = 2 \times 20 + 9\). Other ways exist. Adding one box of 6 to each gives 50 to 55, and another gives 56 to 61, and so on forever.</li>
+<li>25: with no 20 the leftover is 25, with one 20 it is 5. Neither is a multiple of 3, so neither can be made from 6s and 9s. 31: leftovers 31 and 11, again not multiples of 3.</li>
+<li>(a) 1, 2, 3, 4, 6, 8, 9, 11, 13, 16, 18, 23. Twelve postages fail, and 24 to 28 are five in a row (24 = 5 + 5 + 7 + 7, 25, 26 = 5 + 7 + 7 + 7, 27 = 5 + 5 + 5 + 5 + 7, 28), so everything after 23 works. (b) \(5 \times 7 - 5 - 7 = 23\). For 3 and 5: \(15 - 3 - 5 = 7\), and indeed 1, 2, 4, 7 fail while 8 = 3 + 5, 9 and 10 start a run of three.</li>
+<li>29. The run: 30 = 15 + 15, 31 = 6 + 10 + 15, 32 = 6 + 6 + 10 + 10, 33 = 6 + 6 + 6 + 15, 34 = 6 + 6 + 6 + 6 + 10, 35 = 10 + 10 + 15. Then 29: with one 15 the leftover is 14, with none it is 29. Sixes and tens only make even totals, so 29 fails; and 14 is not 6, 10, 12 or 16, so it fails too.</li>
+</ol>
+<p><b>Stretch.</b> With 4, 6, 9 and 20 the failures are 1, 2, 3, 5, 7 and 11: six of them, the largest 11. (After 11: 12, 13 = 4 + 9, 14, 15 = 6 + 9, which is four in a row, enough when a box of 4 exists.) For 3 and 5 the pairs are (0, 7), (1, 6), (2, 5), (3, 4), and in each pair exactly one total can be made. So exactly half of the totals from 0 to 7 fail: four of them. The same pairing works for any coprime \(a\) and \(b\), which is why the number of failures is always \(\tfrac{(a-1)(b-1)}{2}\).</p>
+</section>
+
+<div class="sheet-nav"><a href="b1-euclid.html">← Previous</a><a href="b3-digit-sum.html">Next: Why the digit-sum test works →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

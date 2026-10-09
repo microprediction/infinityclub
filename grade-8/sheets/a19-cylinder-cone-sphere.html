@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A cone, a sphere and a cylinder: 1, 2, 3 · Infinity Club</title>
+<meta name="description" content="Same radius, same height. Compute the volumes of a cone, a sphere and a cylinder and find the ratio 1 : 2 : 3 that Archimedes asked to have carved on his tomb.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 8 · Sharpen · 19</div>
+  <h1>A cone, a sphere and a cylinder: 1, 2, 3</h1>
+  <p class="teaser">Same radius, same height. Compute the three volumes and find the ratio Archimedes put on his tomb.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Three volume formulas, for a radius \(r\) and height \(h\):</p>
+<p>\[V_{\text{cylinder}} = \pi r^2 h, \qquad V_{\text{cone}} = \tfrac13 \pi r^2 h, \qquad V_{\text{sphere}} = \tfrac43 \pi r^3.\]</p>
+<p>Tonight we use them rather than prove them (<a href="../../grade-10/sheets/a18-solids.html">grade 10's solids sheet</a> shows where the \(\tfrac13\) and \(\tfrac43\) come from). Take a sphere of radius \(r\) and the tightest tin around it: a cylinder of radius \(r\) and height \(2r\). Stand a cone in the same tin, radius \(r\) and height \(2r\), point at the lid. Three solids, one radius, one height.</p>
+<figure><svg viewBox="0 0 410 140" width="410" height="140" role="img" aria-label="A cone, a sphere and a cylinder drawn side by side with the same radius and the same height, twice the radius" font-family="Nunito, sans-serif" font-size="13">
+<ellipse cx="70" cy="94" rx="32" ry="10" fill="#fde8c4" stroke="#000" stroke-width="1.5"/>
+<line x1="38" y1="94" x2="70" y2="30" stroke="#000" stroke-width="1.5"/><line x1="102" y1="94" x2="70" y2="30" stroke="#000" stroke-width="1.5"/>
+<circle cx="200" cy="62" r="32" fill="#dcdcf5" stroke="#000" stroke-width="1.5"/>
+<ellipse cx="200" cy="62" rx="32" ry="10" fill="none" stroke="#000" stroke-width="1" stroke-dasharray="4 3"/>
+<ellipse cx="330" cy="94" rx="32" ry="10" fill="#fde8c4" stroke="#000" stroke-width="1.5"/>
+<rect x="298" y="30" width="64" height="64" fill="#fde8c4" stroke="none"/>
+<line x1="298" y1="30" x2="298" y2="94" stroke="#000" stroke-width="1.5"/><line x1="362" y1="30" x2="362" y2="94" stroke="#000" stroke-width="1.5"/>
+<ellipse cx="330" cy="30" rx="32" ry="10" fill="#fde8c4" stroke="#000" stroke-width="1.5"/>
+<line x1="330" y1="94" x2="362" y2="94" stroke="#3f44c9" stroke-width="1.5"/><text x="346" y="110" text-anchor="middle" fill="#3f44c9">r</text>
+<line x1="376" y1="30" x2="376" y2="94" stroke="#3f44c9" stroke-width="1.5"/><text x="388" y="66" fill="#3f44c9">2r</text>
+<text x="70" y="128" text-anchor="middle" fill="#f5a524" font-weight="700">1</text><text x="200" y="128" text-anchor="middle" fill="#f5a524" font-weight="700">2</text><text x="330" y="128" text-anchor="middle" fill="#f5a524" font-weight="700">3</text>
+</svg><figcaption>Cone, sphere and cylinder, all of radius \(r\) and height \(2r\). Their volumes are in the ratio \(1 : 2 : 3\).</figcaption></figure>
+<p>Put \(h = 2r\) into the formulas:</p>
+<p>\[V_{\text{cone}} = \tfrac13 \pi r^2 (2r) = \tfrac23 \pi r^3, \qquad V_{\text{sphere}} = \tfrac43 \pi r^3, \qquad V_{\text{cylinder}} = \pi r^2 (2r) = \tfrac63 \pi r^3.\]</p>
+<p class="callout">Cone : sphere : cylinder \(= \tfrac23 : \tfrac43 : \tfrac63 = 1 : 2 : 3\). The sphere fills two thirds of its tin, and cone plus sphere fill it exactly.</p>
+<p>Archimedes proved the sphere result around 250 BC, without algebra, and prized it above his other work: he asked for a sphere in a cylinder to be carved on his tomb, and Cicero later claimed to have found the tomb by that carving.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: \(r = 3\) cm</h2>
+<p>Then \(h = 6\) cm.</p>
+<p>\[V_{\text{cone}} = \tfrac13 \pi \cdot 9 \cdot 6 = 18\pi, \qquad V_{\text{sphere}} = \tfrac43 \pi \cdot 27 = 36\pi, \qquad V_{\text{cylinder}} = \pi \cdot 9 \cdot 6 = 54\pi.\]</p>
+<p>In cubic centimetres, about 56.5, 113.1 and 169.6. The ratio \(18 : 36 : 54\) is \(1 : 2 : 3\). Leave \(\pi\) in: the ratio is exact, and decimals hide it.</p>
+<p>A tin of three tennis balls is one third air, whatever the radius: the balls have volume \(3 \times \tfrac43 \pi r^3 = 4\pi r^3\) and the tin, of height \(6r\), has \(\pi r^2 \cdot 6r = 6\pi r^3\).</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Take \(r = 5\) cm and \(h = 10\) cm. Compute the three volumes, leaving \(\pi\) in, and check that they are in the ratio \(1 : 2 : 3\).<div class="space short"></div></li>
+<li>A cone has radius 4 and height 8. (a) Without computing, how does its volume compare with a sphere of radius 4 and a cylinder of radius 4, height 8? (b) Compute all three to one decimal place.<div class="space short"></div></li>
+<li>A cylindrical glass of radius 6 cm and height 12 cm is full of water. A steel ball of radius 6 cm is lowered to the bottom; it just fits. What fraction of the water is left, and how many cm³?<div class="space"></div></li>
+<li>(a) Halve everything: a cone of radius \(r\) and height \(r\), a <em>hemisphere</em> of radius \(r\), a cylinder of radius \(r\) and height \(r\). Show the volumes are again \(1 : 2 : 3\). (b) Keep the sphere but make the cone and cylinder height \(3r\). Find the new ratio cone : sphere : cylinder.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the ice cream</h2>
+<p>A wafer cone has radius 3 cm and height 6 cm. It is filled with ice cream and topped with a hemisphere scoop of radius 3 cm. Show that the total ice cream equals the volume of a single sphere of radius 3 cm. Then explain why, using only the \(1 : 2 : 3\) and no arithmetic.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(V_{\text{cone}} = \tfrac13 \pi \cdot 25 \cdot 10 = \tfrac{250}{3}\pi\), \(V_{\text{sphere}} = \tfrac43 \pi \cdot 125 = \tfrac{500}{3}\pi\), \(V_{\text{cylinder}} = \pi \cdot 25 \cdot 10 = 250\pi = \tfrac{750}{3}\pi\). Ratio \(250 : 500 : 750 = 1 : 2 : 3\).</li>
+<li>(a) The height is \(2r\), so the sphere is twice the cone and the cylinder three times it. (b) \(V_{\text{cone}} = \tfrac13 \pi \cdot 16 \cdot 8 = \tfrac{128}{3}\pi \approx 134.0\); sphere \(\tfrac{256}{3}\pi \approx 268.1\); cylinder \(128\pi \approx 402.1\).</li>
+<li>The ball displaces its own volume, \(\tfrac43 \pi \cdot 216 = 288\pi\) cm³, which spills over. The glass holds \(\pi \cdot 36 \cdot 12 = 432\pi\) cm³, so \(144\pi \approx 452\) cm³ remains, exactly one third. The ball is two thirds of the tin; the water left is the other third, whatever the radius.</li>
+<li>(a) Cone \(\tfrac13 \pi r^2 \cdot r = \tfrac13 \pi r^3\); hemisphere \(\tfrac12 \cdot \tfrac43 \pi r^3 = \tfrac23 \pi r^3\); cylinder \(\pi r^3 = \tfrac33 \pi r^3\). Again \(1 : 2 : 3\), each solid being the top (or bottom) half of before. (b) Cone \(\tfrac13 \pi r^2 \cdot 3r = \pi r^3\), sphere \(\tfrac43 \pi r^3\), cylinder \(3\pi r^3\). Multiply by 3: \(3 : 4 : 9\).</li>
+</ol>
+<p><b>Stretch.</b> Cone: \(\tfrac13 \pi \cdot 9 \cdot 6 = 18\pi\). Hemisphere: \(\tfrac12 \cdot \tfrac43 \pi \cdot 27 = 18\pi\). Total \(36\pi\) cm³, and a sphere of radius 3 is \(\tfrac43 \pi \cdot 27 = 36\pi\). Without arithmetic: the cone has height \(2r\), so by \(1 : 2 : 3\) it is half the sphere of radius \(r\); the hemisphere is the other half. Half plus half is a whole sphere. If it melts, it will not fit back in the cone: the cone holds only half.</p>
+</section>
+
+<div class="sheet-nav"><a href="a18-expand-and-factor.html">← Previous</a><a href="b1-euclid.html">Next: Euclid's algorithm →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

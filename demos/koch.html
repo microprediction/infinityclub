@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Koch Snowflake · Infinity Club</title>
+<meta name="description" content="Build the Koch snowflake one iteration at a time and track its perimeter and area as exact fractions of the starting triangle: the edge grows without bound, the area stops at 8/5.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.controls .iter button { min-width: 2.4em; padding: .4rem .6rem; }
+.controls .iter button.on { background: var(--warm); }
+.controls .iter { display: flex; gap: .35rem; flex-wrap: wrap; }
+table.sums { font-family: var(--mono); font-size: .9rem; }
+table.sums th, table.sums td { padding: .25em .7em; border-bottom: 1px solid var(--rule); text-align: right; }
+table.sums th { background: #eeece6; }
+table.sums tr.cur td { font-weight: 800; color: var(--accent); }
+#plot { touch-action: manipulation; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>The Koch snowflake</h1>
+<p class="explain">Press the iteration buttons 0 to 6, or tap the picture to go to the next one. Each step replaces the middle third of every edge with a bump: a smaller equilateral triangle pointing outward. The bumps added at the current step are orange. Watch the two numbers under the picture: the perimeter is multiplied by 4/3 every time and keeps growing, while the area creeps up and stalls below 8/5 of the first triangle.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <label>iteration</label>
+    <div class="iter" id="iter"></div>
+    <button id="next" class="alt">Next</button>
+    <label><input type="checkbox" id="showNew" checked> colour the new bumps</label>
+  </div>
+  <canvas id="plot" width="900" height="760"></canvas>
+  <div class="readout" id="info"></div>
+  <table class="sums" id="tbl"></table>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p><b>Perimeter.</b> An edge of length L becomes four edges of length L/3, total 4L/3. So every step multiplies the whole perimeter by 4/3. After n steps it is (4/3)ⁿ times the original, and (4/3)ⁿ grows without limit: by step 6 it is more than 5 times round, by step 50 it would be more than a million times round, though the snowflake still fits on this page.</p>
+<p><b>Area.</b> Step 1 adds 3 triangles, each 1/9 of the original, so 1/3 is added. Step 2 adds 12 triangles each 1/81 of the original, 12/81 = 4/27 in total. Each step adds 4 times as many triangles, each 1/9 the size, so the added area is multiplied by 4/9 each time. The additions form a geometric series 1/3 + 4/27 + 16/243 + … whose sum is (1/3)/(1 − 4/9) = 3/5. Total area: 1 + 3/5 = 8/5 of the first triangle, and never more.</p>
+<p>A region with finite area and infinite boundary. Painting it takes a finite tin of paint; walking round it takes forever. The snowflake's edge is more than a line but less than a surface: its dimension is log 4 / log 3 ≈ 1.26.</p>
+<p>Sheet: <a href="../grade-8/sheets/b11-koch.html">The snowflake with an infinite edge</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  // Points of the Koch snowflake after n iterations, counterclockwise, in math coordinates (y up).
+  function kochPoints(n) {
+    var h = Math.sqrt(3) / 2, pts = [[0, 0], [1, 0], [0.5, h]];
+    for (var it = 0; it < n; it++) {
+      var out = [];
+      for (var i = 0; i < pts.length; i++) {
+        var P = pts[i], Q = pts[(i + 1) % pts.length], dx = Q[0] - P[0], dy = Q[1] - P[1];
+        out.push(P);
+        out.push([P[0] + dx / 3, P[1] + dy / 3]);
+        // apex: midpoint plus the outward (right-hand, for a CCW polygon) normal of length |PQ|·sqrt(3)/6
+        out.push([P[0] + dx / 2 + dy * Math.sqrt(3) / 6, P[1] + dy / 2 - dx * Math.sqrt(3) / 6]);
+        out.push([P[0] + 2 * dx / 3, P[1] + 2 * dy / 3]);
+      }
+      pts = out;
+    }
+    return pts;
+  }
+  function shoelace(pts) { var s = 0; for (var i = 0; i < pts.length; i++) { var a = pts[i], b = pts[(i + 1) % pts.length]; s += a[0] * b[1] - b[0] * a[1]; } return Math.abs(s) / 2; }
+  function gcd(a, b) { while (b) { var t = a % b; a = b; b = t; } return a; }
+  // exact ratios as [numerator, denominator]
+  function perimRatio(n) { return [Math.pow(4, n), Math.pow(3, n)]; }
+  function areaRatio(n) { // 1 + (3/5)(1 - (4/9)^n) = (8·9^n − 3·4^n) / (5·9^n)
+    var num = 8 * Math.pow(9, n) - 3 * Math.pow(4, n), den = 5 * Math.pow(9, n), g = gcd(num, den);
+    return [num / g, den / g];
+  }
+  function sides(n) { return 3 * Math.pow(4, n); }
+  /*ENDPURE*/
+
+  var canvas = document.getElementById("plot"), ctx = canvas.getContext("2d");
+  var info = document.getElementById("info"), tbl = document.getElementById("tbl"), iterBox = document.getElementById("iter"), showNew = document.getElementById("showNew");
+  var MAXN = 6, N = 2, cache = {};
+  function pts(n) { if (!cache[n]) cache[n] = kochPoints(n); return cache[n]; }
+  for (var k = 0; k <= MAXN; k++) { var b = document.createElement("button"); b.textContent = k; b.dataset.n = k; b.addEventListener("click", function () { N = parseInt(this.dataset.n, 10); draw(); }); iterBox.appendChild(b); }
+  document.getElementById("next").addEventListener("click", function () { N = (N + 1) % (MAXN + 1); draw(); });
+  canvas.addEventListener("click", function () { N = (N + 1) % (MAXN + 1); draw(); });
+  showNew.addEventListener("change", draw);
+
+  function frac(fr) { return fr[1] === 1 ? String(fr[0]) : fr[0] + "/" + fr[1]; }
+  function draw() {
+    Array.prototype.forEach.call(iterBox.children, function (b) { b.classList.toggle("on", parseInt(b.dataset.n, 10) === N); });
+    var dpr = window.devicePixelRatio || 1, W = canvas.clientWidth || 900, H = Math.round(W * 0.84);
+    canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, H);
+    // the snowflake spans x in [-1/3·... , ...]; simply fit the bounding box of iteration 6 (the limit is within 1/sqrt(3) of the centroid)
+    var h = Math.sqrt(3) / 2, cx = 0.5, cy = h / 3, Rr = 1 / Math.sqrt(3) * 1.02; // circumradius, with a little room
+    var sc = Math.min(W, H) / (2 * Rr) * 0.96;
+    function X(p) { return W / 2 + (p[0] - cx) * sc; } function Y(p) { return H / 2 - (p[1] - cy) * sc; }
+    function path(P) { ctx.beginPath(); for (var i = 0; i < P.length; i++) { if (i === 0) ctx.moveTo(X(P[i]), Y(P[i])); else ctx.lineTo(X(P[i]), Y(P[i])); } ctx.closePath(); }
+    var cur = pts(N);
+    if (N > 0 && showNew.checked) {
+      path(cur); ctx.fillStyle = "#f5a524"; ctx.fill();
+      path(pts(N - 1)); ctx.fillStyle = "#e6e7fb"; ctx.fill();
+    } else { path(cur); ctx.fillStyle = "#e6e7fb"; ctx.fill(); }
+    path(cur); ctx.strokeStyle = "#3f44c9"; ctx.lineWidth = N >= 5 ? 1 : 2; ctx.lineJoin = "round"; ctx.stroke();
+    if (N > 0 && showNew.checked) { path(pts(0)); ctx.strokeStyle = "rgba(29,31,58,0.35)"; ctx.setLineDash([5, 5]); ctx.lineWidth = 1; ctx.stroke(); ctx.setLineDash([]); }
+
+    var pr = perimRatio(N), ar = areaRatio(N), newTri = N === 0 ? 0 : sides(N - 1), newSize = Math.pow(9, N);
+    info.textContent = "iteration " + N + ":  " + sides(N) + " edges, each 1/" + Math.pow(3, N) + " of the first side"
+      + "\nperimeter = (4/3)^" + N + " = " + frac(pr) + " = " + (pr[0] / pr[1]).toFixed(4) + " × the original"
+      + "\narea      = " + frac(ar) + " = " + (ar[0] / ar[1]).toFixed(5) + " × the original triangle"
+      + (N === 0 ? "" : "\nthis step added " + newTri + " triangles, each 1/" + newSize + " of the original: +" + frac([newTri / gcd(newTri, newSize), newSize / gcd(newTri, newSize)]))
+      + "\nmeasured from the drawing: area " + (shoelace(cur) / shoelace(pts(0))).toFixed(5) + "   (limit 8/5 = 1.6)";
+    var rows = "";
+    for (var n = 0; n <= MAXN; n++) {
+      var p = perimRatio(n), a = areaRatio(n);
+      rows += "<tr" + (n === N ? ' class="cur"' : "") + "><td>" + n + "</td><td>" + sides(n) + "</td><td>" + frac(p) + "</td><td>" + (p[0] / p[1]).toFixed(3) + "</td><td>" + frac(a) + "</td><td>" + (a[0] / a[1]).toFixed(4) + "</td></tr>";
+    }
+    tbl.innerHTML = "<tr><th>step</th><th>edges</th><th>perimeter</th><th>≈</th><th>area</th><th>≈</th></tr>" + rows + "<tr><th>∞</th><th>∞</th><th>∞</th><th>∞</th><th>8/5</th><th>1.6000</th></tr>";
+  }
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(draw, 120); });
+  draw();
+})();
+</script>
+</body>
+</html>

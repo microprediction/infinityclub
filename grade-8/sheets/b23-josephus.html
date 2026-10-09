@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Josephus problem · Infinity Club</title>
+<meta name="description" content="People in a circle, every second one leaves. Where do you stand to be last? Powers of two, a one-line formula, and a binary trick that answers in seconds.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 8 · Around the corner · 23</div>
+  <h1>The Josephus problem</h1>
+  <p class="teaser">Forty-one people in a circle, every second one leaves. Where do you stand to be last? The answer is a binary trick.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Put \(n\) people in a circle, numbered 1 to \(n\). Skip 1, remove 2, skip 3, remove 4, and keep going round, always skipping one survivor and removing the next, until one person is left. Call that person \(J(n)\).</p>
+<figure><svg viewBox="0 0 320 140" width="320" height="140" role="img" aria-label="Ten people in a circle. The nine who are removed are grey, each with the order of removal beside it; person 5 remains, in blue." font-family="Nunito, sans-serif" font-size="12">
+<circle cx="70" cy="72" r="52" fill="none" stroke="#999" stroke-width="1"/>
+<g fill="#fff" stroke="#999" stroke-width="1.2">
+<circle cx="70" cy="20" r="9"/><circle cx="100.6" cy="29.9" r="9"/><circle cx="119.5" cy="55.9" r="9"/><circle cx="119.5" cy="88.1" r="9"/><circle cx="70" cy="124" r="9"/><circle cx="39.4" cy="114.1" r="9"/><circle cx="20.5" cy="88.1" r="9"/><circle cx="20.5" cy="55.9" r="9"/><circle cx="39.4" cy="29.9" r="9"/>
+</g>
+<circle cx="100.6" cy="114.1" r="10" fill="#3f44c9" stroke="#3f44c9"/>
+<g text-anchor="middle" fill="#555">
+<text x="70" y="24">1</text><text x="100.6" y="33.9">2</text><text x="119.5" y="59.9">3</text><text x="119.5" y="92.1">4</text><text x="70" y="128">6</text><text x="39.4" y="118.1">7</text><text x="20.5" y="92.1">8</text><text x="20.5" y="59.9">9</text><text x="39.4" y="33.9">10</text>
+</g>
+<text x="100.6" y="118.1" text-anchor="middle" fill="#fff" font-weight="700">5</text>
+<g text-anchor="middle" fill="#f5a524" font-size="11">
+<text x="70" y="8">8th</text><text x="112" y="18">1st</text><text x="138" y="52">6th</text><text x="138" y="92">2nd</text><text x="70" y="139">3rd</text><text x="28" y="130">7th</text><text x="2" y="92" text-anchor="start">4th</text><text x="2" y="52" text-anchor="start">9th</text><text x="28" y="18">5th</text>
+</g>
+<text x="165" y="60" fill="#555">removal order:</text>
+<text x="165" y="78" fill="#555">2, 4, 6, 8, 10, 3, 7, 1, 9</text>
+<text x="165" y="100" fill="#3f44c9" font-weight="700">J(10) = 5</text>
+</svg><figcaption>Ten people: the first lap removes the even numbers, the second lap removes 3, 7 and 1, and 9 goes last.</figcaption></figure>
+<p>Try \(n = 8\). The first lap removes 2, 4, 6, 8, leaving 1, 3, 5, 7 with the count back at 1: an 8-game shrunk to a 4-game, 1 still first. Halve again: 1 and 5 remain. So 1 survives, and the same halving works for any power of two: \(J(2^m) = 1\).</p>
+<p>Now any \(n\). Write \(n = 2^m + L\), where \(2^m\) is the largest power of two not above \(n\). The first \(L\) removals take out 2, 4, …, \(2L\). Exactly \(2^m\) people remain, and the next person to be skipped is \(2L + 1\). From here on it is a power-of-two game in which \(2L+1\) plays the part of "1", so \(2L+1\) survives.</p>
+<p class="callout">\(J(n) = 2L + 1\), where \(n = 2^m + L\) and \(0 \le L \lt 2^m\).</p>
+<p>In binary this is a rotation. \(n\) is a 1 followed by the digits of \(L\), and \(2L+1\) is the digits of \(L\) followed by a 1. Move the leading 1 to the end.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: \(n = 41\)</h2>
+<p>The largest power of two not above 41 is 32, so \(L = 41 - 32 = 9\) and \(J(41) = 2 \times 9 + 1 = 19\). In binary, \(41 = 101001_2\). Move the leading 1 to the end: \(010011_2 = 16 + 2 + 1 = 19\). Same answer, no arithmetic.</p>
+<p>The problem is named after Josephus, a historian who, as the story goes, survived a count like this in a cave during a Roman siege. The traditional puzzle removes every third person instead, and that version has no formula this neat.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Ten people. Run the count by hand and write down the order in which people are removed. Check that the survivor matches the formula.<div class="space short"></div></li>
+<li>Find (a) \(J(100)\) and (b) \(J(1000)\).<div class="space short"></div></li>
+<li>Write 100 in binary, rotate the leading 1 to the end, and convert back. Does it agree with 2(a)? Then use the rotation alone to find \(J(77)\), and check it with the formula.<div class="space"></div></li>
+<li>For which \(n\) does the last person standing also carry the last number, \(J(n) = n\)? List every such \(n\) below 100, then use the formula to explain the pattern. What do these numbers look like in binary?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: you and a friend</h2>
+<p>There are 41 people in the circle, and you and a friend both want to be among the last two left standing. Where should the two of you stand? Hint: after the first 9 removals, 32 people remain and the count starts at 19. Who are the last two in a circle of 32?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Removed in order: 2, 4, 6, 8, 10, 3, 7, 1, 9. Survivor 5. Formula: \(10 = 8 + 2\), so \(J(10) = 2 \times 2 + 1 = 5\).</li>
+<li>(a) \(100 = 64 + 36\), so \(J(100) = 73\). (b) \(1000 = 512 + 488\), so \(J(1000) = 977\).</li>
+<li>\(100 = 1100100_2\). Rotating gives \(1001001_2 = 64 + 8 + 1 = 73\), the same. \(77 = 1001101_2\), rotated \(0011011_2 = 16 + 8 + 2 + 1 = 27\). Check: \(77 = 64 + 13\), \(2 \times 13 + 1 = 27\).</li>
+<li>\(n = 1, 3, 7, 15, 31, 63\). We need \(2L + 1 = 2^m + L\), so \(L = 2^m - 1\) and \(n = 2^{m+1} - 1\), one less than a power of two. In binary these are all 1s, and rotating a string of 1s changes nothing.</li>
+</ol>
+<p><b>Stretch.</b> Stand at 19 and 35. After 2, 4, …, 18 are removed, 32 people remain and 19 is next to be skipped, so 19 plays "1" in a 32-game. In a circle of 32, each lap removes every second survivor and keeps 1 first: 16 remain, then 8, 4, and finally 2, namely 1 and 17 (the survivor halfway round). Position "17" in the shrunk game is the 17th of the 32 remaining people counted from 19, which is \(19 + 16 = 35\).</p>
+</section>
+
+<div class="sheet-nav"><a href="b22-chomp.html">← Previous</a><a href="b24-shortest-path-bounces.html">Next: The shortest path bounces →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

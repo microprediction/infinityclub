@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>When both groups improve and the total gets worse · Infinity Club</title>
+<meta name="description" content="Simpson's paradox: one hospital beats another for serious patients and for mild patients, yet loses on the overall rate. Weighted averages explain it, and show which number to trust.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+<style>
+table.tt { border-collapse: collapse; margin: .6em 0; }
+table.tt th, table.tt td { border: 1px solid var(--rule); padding: .3em .7em; text-align: center; }
+table.tt th { background: var(--accent-soft); }
+@media print { table.tt th { background: #eee; -webkit-print-color-adjust: exact; print-color-adjust: exact; } table.tt th, table.tt td { border-color: #000; } }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 8 · Connections · 2</div>
+  <h1>When both groups improve and the total gets worse</h1>
+  <p class="teaser">Simpson's paradox at Berkeley, in hospitals and in sport. The numbers are right. The conclusion is not.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A success rate is a fraction: successes over attempts. Combine two groups and the overall rate is not the average of the two rates but the <b>weighted average</b>, with the bigger group pulling harder. In the language of <a href="b21-mediant.html">the mediant</a>, adding tops and bottoms gives \(\frac{a + c}{b + d}\), between \(\frac{a}{b}\) and \(\frac{c}{d}\) and nearer the one with the larger bottom.</p>
+<p>That makes something strange possible. Hospital A can beat Hospital B on survival for serious patients <em>and</em> for mild patients, yet lose overall. A's total is dragged towards its serious-patient rate because it treats mostly serious cases; B's towards its mild-patient rate because it treats mostly mild ones. Both totals are correct, but comparing them compares the patients who walked in, not the hospitals. This is <b>Simpson's paradox</b>.</p>
+<p class="callout">A reversal needs a <b>lurking variable</b> that is tied to both the group you are comparing and the outcome. Here it is how sick the patient is.</p>
+<p>The famous case is Berkeley's 1973 graduate admissions. Men were admitted at a higher rate overall, but department by department the gap mostly vanished or reversed: women had applied more to the departments that admitted few of anyone.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: two hospitals</h2>
+<p>Five hundred patients each. Rates are survivors over patients.</p>
+<table class="tt">
+<tr><th></th><th>Serious</th><th>Mild</th><th>All patients</th></tr>
+<tr><th>Hospital A</th><td>320/400 = 80%</td><td>99/100 = 99%</td><td>419/500 = 83.8%</td></tr>
+<tr><th>Hospital B</th><td>35/50 = 70%</td><td>432/450 = 96%</td><td>467/500 = 93.4%</td></tr>
+</table>
+<p>A wins both columns and loses the total. Check with weights: A's overall rate is \(\tfrac{400}{500} \times 80\% + \tfrac{100}{500} \times 99\% = 64\% + 19.8\% = 83.8\%\). B's is \(\tfrac{50}{500} \times 70\% + \tfrac{450}{500} \times 96\% = 7\% + 86.4\% = 93.4\%\).</p>
+<figure><svg viewBox="0 0 400 120" width="400" height="120" role="img" aria-label="Two number lines from 70% to 100%. Hospital A has a large dot at 80 and a small dot at 99 with its overall marker at 83.8; Hospital B has a small dot at 70 and a large dot at 96 with its overall at 93.4" font-family="Nunito, sans-serif" font-size="12">
+<g stroke="#999" stroke-width="1"><line x1="40" y1="40" x2="370" y2="40"/><line x1="40" y1="90" x2="370" y2="90"/></g>
+<g fill="#555" text-anchor="middle"><text x="40" y="112">70%</text><text x="150" y="112">80%</text><text x="260" y="112">90%</text><text x="370" y="112">100%</text></g>
+<g stroke="#999" stroke-width="1"><line x1="40" y1="94" x2="40" y2="99"/><line x1="150" y1="94" x2="150" y2="99"/><line x1="260" y1="94" x2="260" y2="99"/><line x1="370" y1="94" x2="370" y2="99"/></g>
+<text x="4" y="44" fill="#000">A</text><text x="4" y="94" fill="#000">B</text>
+<circle cx="150" cy="40" r="9" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><circle cx="359" cy="40" r="4" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<polygon points="192,30 186,20 198,20" fill="#f5a524"/><text x="192" y="14" text-anchor="middle" fill="#f5a524" font-weight="700">83.8</text>
+<circle cx="40" cy="90" r="4" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><circle cx="326" cy="90" r="9" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<polygon points="297,80 291,70 303,70" fill="#f5a524"/><text x="297" y="64" text-anchor="middle" fill="#f5a524" font-weight="700">93.4</text>
+<text x="150" y="62" text-anchor="middle" fill="#555">400 serious</text><text x="345" y="62" text-anchor="middle" fill="#555">100 mild</text>
+<text x="52" y="86" fill="#555">50 serious</text><text x="348" y="78" text-anchor="middle" fill="#555">450 mild</text>
+</svg><figcaption>Each overall rate (orange) is the balance point of its two dots. The heavy dot wins.</figcaption></figure>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Two batters. Season 1: Ana 60 hits from 200, Ben 10 from 40. Season 2: Ana 20 from 40, Ben 90 from 200. Find all four season rates and both overall rates. Who had the better rate each season? Who had the better overall rate?<div class="space short"></div></li>
+<li>Hospital B is asked a fair question: what would its overall rate be if it had treated A's mix of patients, 400 serious and 100 mild, at its own rates of 70% and 96%? Compute it and compare with A's 83.8%.<div class="space short"></div></li>
+<li>The mediant fact says a hospital's overall rate must lie between its two group rates. Suppose A had rates 90% and 99% and B had 50% and 70%. Could any mix of patients make B's total beat A's? Explain in one sentence. What must be true of the two hospitals' rate ranges for the paradox to be possible?<div class="space short"></div></li>
+<li>A friend says: "I do not know whether my case is serious or mild, so B's 93.4% is the number that matters to me." Is she right? Say precisely which number she should look at, and why the 93.4% is not about her.<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the smallest paradox</h2>
+<p>Build Simpson's paradox with tiny numbers. Find two fractions for A and two for B, every top and bottom a whole number from 1 to 5, with A ahead in both groups but behind once tops and bottoms are added. Why can the total not reverse if the two groups are the same size in both hospitals?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Season 1: Ana \(60/200 = 30\%\), Ben \(10/40 = 25\%\). Season 2: Ana \(20/40 = 50\%\), Ben \(90/200 = 45\%\). Ana wins both seasons. Overall: Ana \(80/240 = 33.3\%\), Ben \(100/240 = 41.7\%\). Ben wins overall, because most of his attempts were in the easy season and most of Ana's in the hard one.</li>
+<li>\(0.70 \times 400 + 0.96 \times 100 = 280 + 96 = 376\) survivors of 500: 75.2%. On the same patients, B's 75.2% loses to A's 83.8%. This is called standardising, and it is how hospitals are actually compared.</li>
+<li>No. A's total must be at least 90% and B's at most 70%, whatever the mix. For a reversal the ranges must overlap: the weaker hospital's best group rate must exceed the stronger hospital's worst.</li>
+<li>She is wrong. She is a serious case or a mild case, even if she does not yet know which, and A has the better rate for both kinds. The 93.4% is high because of who walks into B, not because of what B does to them. The numbers for her are the group rates (A ahead in each) or the standardised rate from question 2.</li>
+</ol>
+<p><b>Stretch.</b> One answer: A scores \(1/1\) and \(1/3\); B scores \(4/5\) and \(1/4\). A leads both groups (100% against 80%, 33% against 25%), but overall A has \(2/4 = 50\%\) and B has \(5/9 \approx 56\%\). (Allowing a group with no successes, \(1/1, 1/3\) against \(3/4, 0/1\) works with nothing above 4.) If both hospitals had the same group sizes, the overall rates would be weighted averages with the same weights, and a hospital ahead in each group would be ahead in the average too. The paradox needs different mixes.</p>
+</section>
+
+<div class="sheet-nav"><a href="c1-check-digits.html">← Previous</a><a href="c3-capture-recapture.html">Next: Counting fish you cannot see →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

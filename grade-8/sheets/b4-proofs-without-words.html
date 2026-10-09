@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Proofs without words · Infinity Club</title>
+<meta name="description" content="Three facts about sums, each proved by a picture: the odd numbers fill a square, two staircases make a rectangle, and the sum of cubes is a square. What makes a picture count as a proof.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 8 · Around the corner · 4</div>
+  <h1>Proofs without words</h1>
+  <p class="teaser">1 + 3 + 5 + … + (2n − 1) = n², two staircases make a rectangle, and 1³ + 2³ + … + n³ is a perfect square. Each one is a picture.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Add the odd numbers in order: \(1\), \(1 + 3 = 4\), \(1 + 3 + 5 = 9\), \(1 + 3 + 5 + 7 = 16\). Squares every time. You could check more cases, but checking is not the same as knowing why.</p>
+<p>Here is the why, as a picture. Start with one cell. Wrap an L-shape of 3 cells round it: a \(2 \times 2\) square. Wrap an L of 5 round that: \(3 \times 3\). Each new L is the next odd number, because an L round an \(n \times n\) square has \(n\) cells along the top, \(n\) down the side and one in the corner: \(2n + 1\).</p>
+<figure><svg viewBox="0 0 290 150" width="232" height="120" role="img" aria-label="A 5 by 5 square built from L-shaped layers of 1, 3, 5, 7 and 9 cells" font-family="Nunito, sans-serif" font-size="13">
+<rect x="10" y="114" width="26" height="26" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="36" y="114" width="26" height="26" fill="#fde8c4" stroke="#fff" stroke-width="1"/>
+<rect x="62" y="114" width="26" height="26" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="88" y="114" width="26" height="26" fill="#fde8c4" stroke="#fff" stroke-width="1"/>
+<rect x="114" y="114" width="26" height="26" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="10" y="88" width="26" height="26" fill="#fde8c4" stroke="#fff" stroke-width="1"/>
+<rect x="36" y="88" width="26" height="26" fill="#fde8c4" stroke="#fff" stroke-width="1"/>
+<rect x="62" y="88" width="26" height="26" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="88" y="88" width="26" height="26" fill="#fde8c4" stroke="#fff" stroke-width="1"/>
+<rect x="114" y="88" width="26" height="26" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="10" y="62" width="26" height="26" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="36" y="62" width="26" height="26" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="62" y="62" width="26" height="26" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="88" y="62" width="26" height="26" fill="#fde8c4" stroke="#fff" stroke-width="1"/>
+<rect x="114" y="62" width="26" height="26" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="10" y="36" width="26" height="26" fill="#fde8c4" stroke="#fff" stroke-width="1"/>
+<rect x="36" y="36" width="26" height="26" fill="#fde8c4" stroke="#fff" stroke-width="1"/>
+<rect x="62" y="36" width="26" height="26" fill="#fde8c4" stroke="#fff" stroke-width="1"/>
+<rect x="88" y="36" width="26" height="26" fill="#fde8c4" stroke="#fff" stroke-width="1"/>
+<rect x="114" y="36" width="26" height="26" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="10" y="10" width="26" height="26" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="36" y="10" width="26" height="26" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="62" y="10" width="26" height="26" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="88" y="10" width="26" height="26" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="114" y="10" width="26" height="26" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<polygon points="10,114 36,114 36,140 10,140" fill="none" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="23.0" y="131.5" text-anchor="middle" fill="#333">1</text>
+<polygon points="10,88 62,88 62,140 36,140 36,114 10,114" fill="none" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="49.0" y="105.5" text-anchor="middle" fill="#333">3</text>
+<polygon points="10,62 88,62 88,140 62,140 62,88 10,88" fill="none" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="75.0" y="79.5" text-anchor="middle" fill="#333">5</text>
+<polygon points="10,36 114,36 114,140 88,140 88,62 10,62" fill="none" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="101.0" y="53.5" text-anchor="middle" fill="#333">7</text>
+<polygon points="10,10 140,10 140,140 114,140 114,36 10,36" fill="none" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="127.0" y="27.5" text-anchor="middle" fill="#333">9</text>
+<text x="215" y="70" text-anchor="middle" fill="#3f44c9" font-weight="700">1 + 3 + 5 + 7 + 9</text>
+<text x="215" y="90" text-anchor="middle" fill="#3f44c9" font-weight="700">= 25 = 5²</text>
+</svg>
+<figcaption>Each L-shape is the next odd number. Five of them make a 5 × 5 square.</figcaption></figure>
+<p class="callout">\(1 + 3 + 5 + \cdots + (2n - 1) = n^2\).</p>
+<p>A good picture does what a proof does: it shows the pattern <em>must</em> continue, not just that it has so far. Mathematicians call these <b>proofs without words</b>. The test: can you say, in a sentence, why it works for every \(n\) and not only the one drawn? Here: the \(n\)-th L always has \(2n - 1\) cells.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: two staircases</h2>
+<p>\(1 + 2 + 3 + 4\) is a staircase of cells, 4 high. Take a second copy, turn it upside down, and fit the two together. They make a rectangle 4 high and 5 wide. So \(2(1 + 2 + 3 + 4) = 4 \times 5\), and the sum is 10.</p>
+<figure><svg viewBox="0 0 290 140" width="232" height="112" role="img" aria-label="Two staircases of 1, 2, 3, 4 cells, one blue and one orange upside down, fitted together into a 4 by 5 rectangle" font-family="Nunito, sans-serif" font-size="13">
+<rect x="20" y="12" width="24" height="24" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="44" y="12" width="24" height="24" fill="#fde8c4" stroke="#fff" stroke-width="1"/>
+<rect x="68" y="12" width="24" height="24" fill="#fde8c4" stroke="#fff" stroke-width="1"/>
+<rect x="92" y="12" width="24" height="24" fill="#fde8c4" stroke="#fff" stroke-width="1"/>
+<rect x="116" y="12" width="24" height="24" fill="#fde8c4" stroke="#fff" stroke-width="1"/>
+<rect x="20" y="36" width="24" height="24" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="44" y="36" width="24" height="24" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="68" y="36" width="24" height="24" fill="#fde8c4" stroke="#fff" stroke-width="1"/>
+<rect x="92" y="36" width="24" height="24" fill="#fde8c4" stroke="#fff" stroke-width="1"/>
+<rect x="116" y="36" width="24" height="24" fill="#fde8c4" stroke="#fff" stroke-width="1"/>
+<rect x="20" y="60" width="24" height="24" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="44" y="60" width="24" height="24" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="68" y="60" width="24" height="24" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="92" y="60" width="24" height="24" fill="#fde8c4" stroke="#fff" stroke-width="1"/>
+<rect x="116" y="60" width="24" height="24" fill="#fde8c4" stroke="#fff" stroke-width="1"/>
+<rect x="20" y="84" width="24" height="24" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="44" y="84" width="24" height="24" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="68" y="84" width="24" height="24" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="92" y="84" width="24" height="24" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="116" y="84" width="24" height="24" fill="#fde8c4" stroke="#fff" stroke-width="1"/>
+<rect x="20" y="12" width="120" height="96" fill="none" stroke="#3f44c9" stroke-width="1.5"/>
+<polyline points="44,12 44,12 44,36 68,36 68,60 92,60 92,84 116,84 116,108" fill="none" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="80" y="124" text-anchor="middle" fill="#555">n + 1 = 5</text>
+<text x="150" y="64" fill="#555">n = 4</text>
+<text x="220" y="60" text-anchor="middle" fill="#3f44c9" font-weight="700">2(1 + 2 + 3 + 4)</text>
+<text x="220" y="80" text-anchor="middle" fill="#3f44c9" font-weight="700">= 4 × 5</text>
+</svg>
+<figcaption>Row \(k\) has \(k\) blue cells and \(5 - k\) orange cells: always 5.</figcaption></figure>
+<p>The picture works for any height. Two staircases of height \(n\) make an \(n\) by \((n+1)\) rectangle, because row \(k\) has \(k\) blue cells and \(n + 1 - k\) orange ones. So \(1 + 2 + \cdots + n = \tfrac{n(n+1)}{2}\), which is <a href="../../grade-6/sheets/b5-gauss.html">Gauss's shortcut</a> drawn instead of written.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Use the L-shape picture to find \(1 + 3 + 5 + \cdots + 99\) without adding. How many odd numbers are there, and what square do they make?<div class="space short"></div></li>
+<li>Find \(1 + 2 + \cdots + 100\) from the rectangle. Then find \(2 + 4 + 6 + \cdots + 40\).<div class="space short"></div></li>
+<li>Check that \(1^3 + 2^3 + 3^3 + 4^3\) is a perfect square, and compare it with \((1 + 2 + 3 + 4)^2\). Assuming the pattern holds, write down \(1^3 + 2^3 + \cdots + 10^3\) without computing a single cube beyond \(4^3\).<div class="space short"></div></li>
+<li>Draw the picture for \(1 + 2 + \cdots + (n-1) + n + (n-1) + \cdots + 2 + 1\): two staircases again, but fitted differently. What is the sum? Check it with \(n = 10\), and say in one sentence why your picture works for every \(n\).<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: a third of a square</h2>
+<p>Cut a square of area 1 in half, then cut half of what is left, and so on. The pieces have areas \(\tfrac12, \tfrac14, \tfrac18, \ldots\) and fill the square, so they add to 1. Now draw a picture that proves \(\tfrac14 + \tfrac1{16} + \tfrac1{64} + \cdots = \tfrac13\). Start by cutting the square into four.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>The odd numbers from 1 to 99 are the 50 L-shapes of a \(50 \times 50\) square, so the sum is \(50^2 = 2500\).</li>
+<li>\(\tfrac{100 \times 101}{2} = 5050\). The even numbers are twice \(1 + 2 + \cdots + 20 = 210\), so \(2 + 4 + \cdots + 40 = 420\), which is \(20 \times 21\): the whole rectangle this time.</li>
+<li>\(1 + 8 + 27 + 64 = 100 = 10^2\), and \(1 + 2 + 3 + 4 = 10\), so the two agree. For 10 cubes, \(1 + 2 + \cdots + 10 = 55\), so the sum of cubes is \(55^2 = 3025\). (The picture: \(k\) copies of a \(k \times k\) square for each \(k\), which tile a square of side \(1 + 2 + \cdots + n\).)</li>
+<li>\(n^2\). A staircase of height \(n\) and one of height \(n - 1\), turned over, fit into an \(n \times n\) square: row \(k\) has \(k\) cells from one and \(n - k\) from the other, always \(n\). With \(n = 10\): \(1 + \cdots + 9 + 10 + 9 + \cdots + 1 = 45 + 10 + 45 = 100\).</li>
+</ol>
+<p><b>Stretch.</b> Cut the square into four equal squares. Shade one of them and leave two blank; cut the fourth into four again, shade one, leave two blank, and keep going into the corner. At every stage you add one shaded square and two blank squares of the same size. So the shaded part is always exactly one third of everything coloured so far, and the total shaded area is \(\tfrac13\). The shaded squares have areas \(\tfrac14, \tfrac1{16}, \tfrac1{64}, \ldots\)</p>
+</section>
+
+<div class="sheet-nav"><a href="b3-digit-sum.html">← Previous</a><a href="b5-last-digit.html">Next: The last digit of 7²⁰²⁴ →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

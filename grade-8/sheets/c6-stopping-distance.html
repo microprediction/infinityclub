@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why speed squared matters · Infinity Club</title>
+<meta name="description" content="Double your speed and braking distance quadruples. Why braking distance grows with the square of speed, checked against the Highway Code stopping distances, and what it means for the car behind you.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 8 · Connections · 6</div>
+  <h1>Why speed squared matters</h1>
+  <p class="teaser">Double your speed and braking distance quadruples. A nonlinear function that most drivers get wrong, with the numbers from the Highway Code.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Stopping a car takes two stretches of road. First the <b>thinking distance</b>: for about two thirds of a second you have not reacted and the car rolls on at full speed. Twice the speed, twice the distance: linear.</p>
+<p>Then the <b>braking distance</b>, where intuition fails. Brakes take off roughly the same speed every second, so from twice the speed stopping takes twice as long, and your average speed meanwhile is also twice as high. Twice as long at twice the speed is four times the distance:</p>
+<p class="callout">Braking distance is proportional to the <em>square</em> of the speed. Double the speed, four times the distance; triple it, nine times.</p>
+<p>The UK Highway Code gives, in metres, thinking plus braking: 20 mph, 6 + 6; 30 mph, 9 + 14; 40 mph, 12 + 24; 50 mph, 15 + 38; 60 mph, 18 + 55; 70 mph, 21 + 75. The thinking distances are \(0.3\) m per mph. The braking distances fit \(0.015 v^2\) to within a metre or two.</p>
+<figure><svg viewBox="0 0 340 204" width="340" height="204" role="img" aria-label="Braking distance against speed: six Highway Code points on a rising curve, with a straight line through the 20 mph point for comparison" font-family="Nunito, sans-serif" font-size="12">
+<line x1="44" y1="170" x2="320" y2="170" stroke="#000" stroke-width="1.5"/>
+<line x1="44" y1="170" x2="44" y2="16" stroke="#000" stroke-width="1.5"/>
+<g fill="#555" text-anchor="middle"><text x="44" y="186">0</text><text x="113" y="186">20</text><text x="182" y="186">40</text><text x="251" y="186">60</text><text x="320" y="186">80</text></g>
+<g fill="#555" text-anchor="end"><text x="38" y="135">25</text><text x="38" y="97">50</text><text x="38" y="58">75</text><text x="38" y="20">100</text></g>
+<text x="182" y="199" text-anchor="middle" fill="#555">speed (mph)</text>
+<text x="14" y="90" text-anchor="middle" fill="#555" transform="rotate(-90 14 90)">braking (m)</text>
+<line x1="44" y1="170" x2="320" y2="133" stroke="#999" stroke-width="1.5" stroke-dasharray="5 3"/>
+<polyline fill="none" stroke="#3f44c9" stroke-width="2" points="44.0,170.0 57.8,169.6 71.6,168.5 85.4,166.7 99.2,164.1 113.0,160.8 126.8,156.7 140.6,151.9 154.4,146.3 168.2,140.1 182.0,133.0 195.8,125.3 209.6,116.8 223.4,107.5 237.2,97.6 251.0,86.8 264.8,75.4 278.6,63.2 292.4,50.2 306.2,36.6 320.0,22.2"/>
+<g fill="#f5a524" stroke="#000" stroke-width="1"><circle cx="113.0" cy="160.8" r="3.5"/><circle cx="147.5" cy="148.4" r="3.5"/><circle cx="182.0" cy="133.0" r="3.5"/><circle cx="216.5" cy="111.5" r="3.5"/><circle cx="251.0" cy="85.3" r="3.5"/><circle cx="285.5" cy="54.5" r="3.5"/></g>
+<text x="262" y="50" text-anchor="end" fill="#3f44c9">0.015 v²</text>
+<text x="300" y="128" text-anchor="end" fill="#999">if it were linear</text>
+</svg><figcaption>Highway Code braking distances (dots) and the curve \(0.015 v^2\). The dashed line is what "twice the speed, twice the distance" would predict.</figcaption></figure>
+<p>The 0.015 carries the units (metres per mph squared) and the grip of a dry road: roughly double it when wet, and ten times it on ice.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: 30 mph against 60 mph</h2>
+<p>At 30 mph the Highway Code says \(9 + 14 = 23\) m to stop. At 60 mph it says \(18 + 55 = 73\) m. The speed doubled; the stopping distance more than tripled, because the braking part quadrupled: \(14 \times 4 = 56\), and the Code's 55 is the same to the nearest metre.</p>
+<p>Check the formula too: \(0.015 \times 60^2 = 54\) m. In car lengths of about 4.5 m, 73 m is sixteen cars. Most people guess far fewer.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Use \(0.3v\) and \(0.015v^2\) to predict the thinking and braking distances at 50 mph and 70 mph. Compare with the Highway Code figures above.<div class="space short"></div></li>
+<li>At 30 mph the braking distance is 14 m. Using the square law only, at what speed is it 56 m? At what speed is it 126 m?<div class="space short"></div></li>
+<li>The thinking distance of 6 m at 20 mph corresponds to a reaction time of about 0.67 s (1 mph is 0.447 m/s, so 20 mph is 8.9 m/s). A driver glancing at a phone reacts in 1.5 s instead. Find the thinking distance at 70 mph, and the total stopping distance with the Code's 75 m of braking.<div class="space"></div></li>
+<li>A child steps into the road 30 m ahead of a car. (a) Show that at 30 mph the car stops in time. (b) At 40 mph, how many metres of braking are left before the car reaches the child? The braking distance still needed at any moment is \(0.015 v^2\), where \(v\) is the current speed. What speed is the car doing when it reaches the child?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: how hard do brakes work?</h2>
+<p>Steady braking from speed \(v\) has average speed \(v/2\), so distance \(= (v/2) \times \text{time}\). From 30 mph (13.4 m/s) in 14 m, find the stopping time, then the speed lost per second. On ice braking distances are ten times longer: what speed on ice has the dry-road braking distance of 70 mph?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>50 mph: thinking \(15\) m, braking \(0.015 \times 2500 = 37.5\) m (Code: 15 and 38). 70 mph: thinking \(21\) m, braking \(0.015 \times 4900 = 73.5\) m (Code: 21 and 75). The formula is a metre short at the top end, but close.</li>
+<li>56 m is 4 times 14, so the speed is \(\sqrt4 = 2\) times 30 mph: 60 mph. 126 m is 9 times 14, so \(3 \times 30 = 90\) mph.</li>
+<li>70 mph \(= 70 \times 0.447 \approx 31.3\) m/s. In 1.5 s that is \(31.3 \times 1.5 \approx 47\) m of thinking distance, up from 21. Total \(47 + 75 = 122\) m, against the Code's 96 m. The glance costs 26 m, about six car lengths.</li>
+<li>(a) \(9 + 14 = 23 \lt 30\), so it stops with 7 m to spare. (b) Thinking distance 12 m leaves \(30 - 12 = 18\) m of braking, but 24 m is needed, so 6 m of braking is still owed. \(0.015 v^2 = 6\) gives \(v^2 = 400\), \(v = 20\) mph. Ten extra mph at the start means hitting the child at 20 mph instead of stopping short.</li>
+</ol>
+<p><b>Stretch.</b> Time \(= 14 / 6.7 \approx 2.1\) s, so the brakes remove \(13.4 / 2.1 \approx 6.4\) m/s of speed every second (about two thirds of the acceleration of gravity). On ice the braking distance is \(0.15 v^2\). Setting \(0.15 v^2 = 75\) gives \(v^2 = 500\), so \(v \approx 22\) mph. On ice, 22 mph needs as much road as 70 mph on tarmac.</p>
+</section>
+
+<div class="sheet-nav"><a href="c5-hex-colours.html">← Previous</a><a href="c7-earthquakes-decibels.html">Next: Earthquakes and decibels →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

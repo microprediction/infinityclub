@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A cube in four dimensions · Infinity Club</title>
+<meta name="description" content="A point, a segment, a square, a cube. Keep going: the 4-cube has 16 corners, 32 edges, 24 squares and 8 cubes, and one dragging rule counts them all.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 8 · Around the corner · 25</div>
+  <h1>A cube in four dimensions</h1>
+  <p class="teaser">A point, a segment, a square, a cube. Keep going: the 4-cube has 16 corners, 32 edges and 8 cubes for faces, and you can count them.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Start with a point. Drag it one unit to the right and it sweeps out a segment: 2 corners, 1 edge. Drag the segment one unit up and it sweeps out a square: 4 corners, 4 edges. Drag the square one unit out of the page and you get a cube: 8 corners, 12 edges, 6 square faces.</p>
+<figure><svg viewBox="0 0 480 150" width="480" height="150" role="img" aria-label="A point, a segment, a square, a cube drawn in perspective, and a 4-cube drawn as a small cube inside a large cube with matching corners joined. Under each shape are its counts of corners, edges, squares and cubes." font-family="Nunito, sans-serif" font-size="12">
+<circle cx="25" cy="85" r="3.5" fill="#3f44c9"/>
+<line x1="60" y1="85" x2="100" y2="85" stroke="#3f44c9" stroke-width="2"/><circle cx="60" cy="85" r="3" fill="#3f44c9"/><circle cx="100" cy="85" r="3" fill="#3f44c9"/>
+<rect x="135" y="65" width="40" height="40" fill="#dcdcf5" stroke="#3f44c9" stroke-width="2"/>
+<g fill="#dcdcf5" stroke="#3f44c9" stroke-width="2" stroke-linejoin="round">
+<rect x="229" y="51" width="40" height="40" fill="#fde8c4"/>
+<polygon points="215,65 229,51 269,51 255,65"/><polygon points="255,65 269,51 269,91 255,105"/>
+<rect x="215" y="65" width="40" height="40"/>
+</g>
+<g fill="none" stroke="#3f44c9" stroke-width="1.6" stroke-linejoin="round">
+<polygon points="330,45 410,45 410,125 330,125"/><polygon points="352,23 432,23 432,103 352,103"/>
+<line x1="330" y1="45" x2="352" y2="23"/><line x1="410" y1="45" x2="432" y2="23"/><line x1="410" y1="125" x2="432" y2="103"/><line x1="330" y1="125" x2="352" y2="103"/>
+</g>
+<g fill="none" stroke="#f5a524" stroke-width="1.6" stroke-linejoin="round">
+<polygon points="355.5,59.5 395.5,59.5 395.5,99.5 355.5,99.5"/><polygon points="366.5,48.5 406.5,48.5 406.5,88.5 366.5,88.5"/>
+<line x1="355.5" y1="59.5" x2="366.5" y2="48.5"/><line x1="395.5" y1="59.5" x2="406.5" y2="48.5"/><line x1="395.5" y1="99.5" x2="406.5" y2="88.5"/><line x1="355.5" y1="99.5" x2="366.5" y2="88.5"/>
+</g>
+<g stroke="#999" stroke-width="1" stroke-dasharray="3 2">
+<line x1="330" y1="45" x2="355.5" y2="59.5"/><line x1="410" y1="45" x2="395.5" y2="59.5"/><line x1="410" y1="125" x2="395.5" y2="99.5"/><line x1="330" y1="125" x2="355.5" y2="99.5"/>
+<line x1="352" y1="23" x2="366.5" y2="48.5"/><line x1="432" y1="23" x2="406.5" y2="48.5"/><line x1="432" y1="103" x2="406.5" y2="88.5"/><line x1="352" y1="103" x2="366.5" y2="88.5"/>
+</g>
+<g text-anchor="middle" fill="#555">
+<text x="25" y="140">1</text><text x="80" y="140">2 · 1</text><text x="155" y="140">4 · 4 · 1</text><text x="242" y="140">8 · 12 · 6 · 1</text><text x="381" y="144">16 · 32 · 24 · 8</text>
+</g>
+</svg><figcaption>Corners · edges · squares · cubes. The 4-cube is drawn as a cube dragged "inwards": the start cube, the end cube, and the eight dashed edges swept out by the corners.</figcaption></figure>
+<p>Nothing stops you dragging the cube in a fourth direction, perpendicular to the other three. You cannot see it, but you can count what the drag produces. Every piece of the dragged shape appears twice, at the start and at the end, and as it moves it sweeps out a new piece one dimension higher: a corner sweeps an edge, an edge a square, a square a cube.</p>
+<p class="callout">new count = 2 × (old count of that piece) + (old count of the piece one dimension lower)</p>
+<p>Check it on the cube: edges \(2 \times 4 + 4 = 12\), squares \(2 \times 1 + 4 = 6\). Now drag the cube. Corners \(2 \times 8 = 16\). Edges \(2 \times 12 + 8 = 32\). Squares \(2 \times 6 + 12 = 24\). Cubes \(2 \times 1 + 6 = 8\). The 4-cube, or tesseract, has eight cubes for faces, just as a cube has six squares.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: the 32 edges, counted a second way</h2>
+<p>Give the 4-cube coordinates. A corner is a list of four numbers, each 0 or 1, such as \((1, 0, 1, 1)\): \(2^4 = 16\) corners. An edge runs between two corners that differ in one coordinate, so an edge is "three coordinates fixed, one running from 0 to 1". There are 4 choices for the running coordinate and \(2^3 = 8\) ways to fix the other three: \(4 \times 8 = 32\) edges, agreeing with the dragging rule.</p>
+<p>The same count works for every piece: a square has two running coordinates, a cube has three. For an \(n\)-cube, choose which \(k\) coordinates run, then fix the other \(n - k\) in \(2^{n-k}\) ways.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Use the dragging rule to find the counts for the 5-cube: corners, edges, squares, cubes, and 4-cubes.<div class="space short"></div></li>
+<li>Use the coordinate count instead. (a) Edges of the 5-cube: 5 choices of running coordinate, times what? (b) Squares of the 6-cube: the number of pairs of running coordinates is \(6 \times 5 / 2 = 15\); finish the count. Check (b) against the dragging rule applied to your answer to question 1.<div class="space"></div></li>
+<li>The diagonal of a unit square is \(\sqrt2\). Use <a href="a8-pythagoras-distance.html">Pythagoras</a> once more to show the long diagonal of a unit cube is \(\sqrt3\). What is the long diagonal of the unit 4-cube, and how does it compare with an edge? Which \(n\)-cube has a long diagonal of exactly 10?<div class="space"></div></li>
+<li>Each corner of the 4-cube has 4 edges, one for each direction. Multiplying, \(16 \times 4 = 64\), counts every edge twice, so there are 32. Each corner also lies on 6 squares and 4 cubes. Use the same idea to recover the number of squares and the number of cubes, and say what you divide by each time.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the corners as binary strings</h2>
+<p>Write the 16 corners as 4-digit binary strings, 0000 to 1111. Two corners share an edge when the strings differ in exactly one digit. How many corners are exactly 2 edges away from 0000? Sort all 16 corners by their distance from 0000 and compare the counts with a row of <a href="../../grade-6/sheets/b4-pascal.html">Pascal's triangle</a>.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Corners \(2 \times 16 = 32\). Edges \(2 \times 32 + 16 = 80\). Squares \(2 \times 24 + 32 = 80\). Cubes \(2 \times 8 + 24 = 40\). 4-cubes \(2 \times 1 + 8 = 10\).</li>
+<li>(a) \(5 \times 2^4 = 80\), the same as question 1. (b) Two coordinates run, four are fixed: \(15 \times 2^4 = 240\) squares. Dragging rule from the 5-cube: \(2 \times 80 + 80 = 240\). They agree.</li>
+<li>A face diagonal \(\sqrt2\) and an edge 1 meet at a right angle, so the long diagonal is \(\sqrt{(\sqrt2)^2 + 1^2} = \sqrt3\). Repeating, the unit 4-cube has long diagonal \(\sqrt{3 + 1} = \sqrt4 = 2\), exactly twice an edge. In general the diagonal is \(\sqrt n\), so \(\sqrt n = 10\) at \(n = 100\).</li>
+<li>Squares: \(16 \times 6 = 96\), and each square has 4 corners, so \(96 / 4 = 24\). Cubes: \(16 \times 4 = 64\), and each cube has 8 corners, so \(64 / 8 = 8\). You divide by the number of corners each piece has, because that is how many times it was counted.</li>
+</ol>
+<p><b>Stretch.</b> Six corners are 2 edges away: the strings with exactly two 1s (0011, 0101, 0110, 1001, 1010, 1100), since each edge changes one digit. The distance from 0000 is just the number of 1s, so the counts by distance are 1, 4, 6, 4, 1, row 4 of Pascal's triangle (rows numbered from 0): the number of ways to choose which digits are 1. (The number of digits where two binary strings differ is called the Hamming distance; the <a href="../../grade-6/sheets/b31-mind-reader.html">mind-reader</a> sheet uses a Hamming code built on the same idea.)</p>
+</section>
+
+<div class="sheet-nav"><a href="b24-shortest-path-bounces.html">← Previous</a><a href="b26-perfect-shuffle.html">Next: The perfect shuffle →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Problems nobody has solved · Infinity Club</title>
+<meta name="description" content="Collatz, Goldbach, twin primes and odd perfect numbers: four problems a grade 8 student can state in a minute and nobody on Earth can prove. Test them by hand and see where the difficulty hides.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 8 · Around the corner · 14</div>
+  <h1>Problems nobody has solved</h1>
+  <p class="teaser">Collatz, Goldbach, twin primes, odd perfect numbers. Each takes one minute to state. Test them, and see why they are hard.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Not every question in mathematics has an answer yet. Here are four that do not: easy to state, easy to test, unproved.</p>
+<p><b>Collatz.</b> Take a whole number. If it is even, halve it. If odd, triple it and add 1. Repeat. The claim: you always reach 1. Every start checked by computer, beyond \(2^{68}\), does. Nobody can prove all do.</p>
+<p><b>Goldbach.</b> Every even number above 2 is a sum of two primes: \(8 = 3 + 5\), \(20 = 7 + 13\). Goldbach proposed it in a letter to Euler. Checked up to \(4 \times 10^{18}\). No proof.</p>
+<p><b>Twin primes.</b> Primes two apart, like 11 and 13. Do the pairs go on forever? Nobody knows. It is proved that infinitely many pairs of primes are at most 246 apart. Not 2, yet.</p>
+<p><b>Odd perfect numbers.</b> A number is <b>perfect</b> if its proper divisors (all divisors except itself) add up to it: \(6 = 1 + 2 + 3\). Every known perfect number is even. An odd one, if it exists, has over 1500 digits.</p>
+<p>Why so hard? A billion checked cases prove nothing about the next. A proof must cover <em>every</em> number at once.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: Collatz from 27</h2>
+<p>Small starts finish fast: \(6 \to 3 \to 10 \to 5 \to 16 \to 8 \to 4 \to 2 \to 1\), eight steps. Then try 27:</p>
+<p>\[27 \to 82 \to 41 \to 124 \to 62 \to 31 \to 94 \to 47 \to 142 \to 71 \to 214 \to \cdots\]</p>
+<p>It climbs to 9232 before falling, and takes 111 steps to reach 1. No start below 27 takes anywhere near as long. That is the trouble: a rule this simple produces behaviour nobody can predict without running it.</p>
+<figure><svg viewBox="0 0 520 160" width="520" height="160" role="img" aria-label="Line graph of the Collatz sequence starting at 27: it stays low, spikes to 9232 at step 77, then falls to 1 at step 111" font-family="Nunito, sans-serif" font-size="12">
+<g stroke="#999" stroke-width="0.8" stroke-dasharray="3 3"><line x1="36" y1="83.1" x2="506" y2="83.1"/><line x1="36" y1="30.3" x2="506" y2="30.3"/></g>
+<line x1="36" y1="136" x2="506" y2="136" stroke="#000" stroke-width="1"/>
+<line x1="36" y1="14" x2="36" y2="136" stroke="#000" stroke-width="1"/>
+<polyline fill="none" stroke="#3f44c9" stroke-width="1.5" points="36.0,135.6 40.2,134.9 44.5,135.5 48.7,134.4 52.9,135.2 57.2,135.6 61.4,134.8 65.6,135.4 69.9,134.1 74.1,135.1 78.3,133.2 82.6,134.6 86.8,131.7 91.0,133.9 95.3,129.6 99.5,132.8 103.7,134.4 108.0,131.2 112.2,133.6 116.5,134.8 120.7,132.4 124.9,134.2 129.2,130.6 133.4,133.3 137.6,134.6 141.9,131.9 146.1,134.0 150.3,129.8 154.6,132.9 158.8,126.7 163.0,131.4 167.3,133.7 171.5,129.0 175.7,132.5 180.0,125.6 184.2,130.8 188.4,120.3 192.7,128.2 196.9,112.5 201.1,124.2 205.4,130.1 209.6,118.3 213.8,127.2 218.1,131.6 222.3,133.8 226.5,129.4 230.8,132.7 235.0,126.0 239.2,131.0 243.5,121.0 247.7,128.5 251.9,132.3 256.2,124.8 260.4,130.4 264.6,119.1 268.9,127.6 273.1,131.8 277.4,123.3 281.6,129.7 285.8,117.0 290.1,126.5 294.3,107.5 298.5,121.7 302.8,93.2 307.0,114.6 311.2,71.8 315.5,103.9 319.7,39.7 323.9,87.8 328.2,111.9 332.4,124.0 336.6,99.9 340.9,117.9 345.1,81.8 349.3,108.9 353.6,54.7 357.8,95.3 362.0,14.0 366.3,75.0 370.5,105.5 374.7,120.8 379.0,128.4 383.2,113.1 387.4,124.6 391.7,130.3 395.9,118.8 400.1,127.4 404.4,131.7 408.6,123.1 412.8,129.6 417.1,132.8 421.3,134.4 425.5,135.2 429.8,133.6 434.0,134.8 438.3,135.4 442.5,135.7 446.7,135.1 451.0,135.5 455.2,134.6 459.4,135.3 463.7,133.9 467.9,134.9 472.1,135.5 476.4,135.7 480.6,135.9 484.8,135.9 489.1,135.8 493.3,135.9 497.5,135.9 501.8,136.0 506.0,136.0"/>
+<circle cx="362" cy="14" r="3" fill="#f5a524"/>
+<text x="372" y="18" fill="#f5a524">9232 at step 77</text>
+<text x="30" y="87" text-anchor="end" fill="#555">4000</text><text x="30" y="34" text-anchor="end" fill="#555">8000</text>
+<text x="36" y="150" fill="#555">step 0</text><text x="506" y="150" text-anchor="end" fill="#555">step 111: reaches 1</text>
+</svg><figcaption>The hailstone flight of 27. Low, low, low, then a spike to 9232, then a fall to 1.</figcaption></figure>
+<p class="small">Try any start and watch the flight: <a href="../../demos/collatz.html">infinityclub.net/demos/collatz.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Run the Collatz rule from 7 and from 11. How many steps does each take to reach 1, and what is the highest number each one visits?<div class="space short"></div></li>
+<li>Write 36 as a sum of two primes in every possible way (count \(5 + 31\) and \(31 + 5\) once). Then do the same for 98.<div class="space short"></div></li>
+<li>(a) List every twin prime pair below 100. There are eight. (b) Look at the number sitting between each pair: 4, 6, 12, 18, … Explain why, from the pair (5, 7) onwards, that middle number is always a multiple of 6.<div class="space"></div></li>
+<li>(a) Show that 496 is perfect: list its divisors (they are \(1, 2, 4, 8, 16\) and \(31, 62, 124, 248, 496\)) and add the proper ones. (b) Show that a power of 2 is never perfect: add the proper divisors of \(2^k\). How far short does the sum fall?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: if Goldbach is right, then…</h2>
+<p>Suppose Goldbach's claim is true for every even number. Show that every odd number greater than 5 is then a sum of three primes. Then explain why the Collatz claim only needs proving for odd starting numbers.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>From 7: \(7, 22, 11, 34, 17, 52, 26, 13, 40, 20, 10, 5, 16, 8, 4, 2, 1\), 16 steps, peak 52. From 11 the sequence joins the same path at 11, so 14 steps, peak 52.</li>
+<li>\(36 = 5 + 31 = 7 + 29 = 13 + 23 = 17 + 19\), four ways. \(98 = 19 + 79 = 31 + 67 = 37 + 61\), three ways.</li>
+<li>(a) (3, 5), (5, 7), (11, 13), (17, 19), (29, 31), (41, 43), (59, 61), (71, 73). (b) Call the pair \(p\) and \(p + 2\). Both are odd, so \(p + 1\) is even. Of the three consecutive numbers \(p, p+1, p+2\), exactly one is a multiple of 3. It cannot be \(p\) or \(p + 2\), since those are primes bigger than 3. So \(p + 1\) is a multiple of 2 and of 3, hence of 6.</li>
+<li>(a) \(1 + 2 + 4 + 8 + 16 + 31 + 62 + 124 + 248 = 496\). (b) The proper divisors of \(2^k\) are \(1, 2, 4, \dots, 2^{k-1}\), and they add to \(2^k - 1\). (Check: \(1 + 2 + 4 + 8 = 15 = 16 - 1\).) The sum is always exactly 1 short, so no power of 2 is perfect.</li>
+</ol>
+<p><b>Stretch.</b> Let \(n\) be odd and greater than 5. Then \(n - 3\) is even and at least 4, so by Goldbach \(n - 3 = p + q\) for primes \(p, q\), and \(n = 3 + p + q\). For Collatz: an even start is halved, and halved again, until it becomes odd. If every odd number reaches 1, every even number reaches an odd number and then reaches 1.</p>
+</section>
+
+<div class="sheet-nav"><a href="b13-magic-squares.html">← Previous</a><a href="b15-knights-knaves.html">Next: Knights, knaves and truth tables →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

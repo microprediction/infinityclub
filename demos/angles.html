@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Parallel Lines and a Transversal · Infinity Club</title>
+<meta name="description" content="Drag a transversal across two parallel lines and watch the eight angles pair up by colour; then switch to triangle mode and see why the three angles of a triangle add to 180°.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+#plot { cursor: grab; touch-action: none; }
+#plot.drag { cursor: grabbing; }
+.controls input[type=range] { width: 160px; }
+.controls .val { font-family: var(--mono); min-width: 3em; display: inline-block; }
+.controls label.radio { font-weight: 700; }
+#head { font-size: 1.1rem; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Parallel lines and a transversal</h1>
+<p class="explain">Drag the handle at the top of the slanted line (or use the slider) to change its angle. The eight angles it makes with the two parallel lines are numbered and coloured, and there are only ever two sizes: every blue angle equals every other blue angle, every orange equals every other orange, and a blue plus an orange makes 180°. Then switch to the triangle and drag its corners: the line through the top corner is parallel to the base, and the three angles of the triangle reappear side by side along it.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <label class="radio"><input type="radio" name="mode" value="trans" checked> eight angles</label>
+    <label class="radio"><input type="radio" name="mode" value="tri"> triangle sum</label>
+    <label id="thetaLab">angle <input type="range" id="theta" min="20" max="160" step="1" value="60"> <span class="val" id="thetav">60°</span></label>
+    <button id="reset" class="ghost">Reset</button>
+  </div>
+  <div class="readout" id="head"></div>
+  <canvas id="plot" width="900" height="560"></canvas>
+  <div class="readout" id="info"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>Two facts do all the work. At any crossing, angles next to each other along a straight line add to 180°, and angles opposite each other are equal. That is why a single crossing has only two sizes of angle. The parallel lines add a third fact: the slanted line meets both of them at the same tilt, so the four angles at the upper crossing are a copy of the four at the lower crossing. <b>Corresponding</b> angles (same corner at each crossing) are equal, <b>alternate</b> angles (the Z shape between the lines) are equal, and <b>co-interior</b> angles (the C shape) add to 180°.</p>
+<p>Now the triangle. Draw the line through the top corner parallel to the base. The angle at the bottom-left corner and the blue angle at the top are alternate angles, so they are equal. Same for the bottom-right corner and the orange angle. The three angles at the top corner, blue, apex and orange, sit along a straight line, so they add to 180°. But those are the three angles of the triangle. So <b>the angles of every triangle add to 180°</b>, and the proof is the same whatever triangle you drag out.</p>
+<p>Try to drag the corners so the sum is not 180°. You cannot, and the picture tells you why.</p>
+<p>Sheets: <a href="../grade-8/sheets/a11-triangle-angles.html">Why a triangle's angles add to 180°</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  var DEG = 180 / Math.PI;
+  function fmt(v, d) { d = d === undefined ? 0 : d; var r = Math.round(v * Math.pow(10, d)) / Math.pow(10, d); if (Object.is(r, -0)) r = 0; return r.toString().replace("-", "−"); }
+  // the eight angles at two crossings, numbered anticlockwise from the right at each crossing:
+  // 1-4 at the upper crossing, 5-8 at the lower one. Odd numbers equal theta, even ones 180 - theta.
+  function eightAngles(theta) { var out = []; for (var i = 0; i < 8; i++) out.push(i % 2 === 0 ? theta : 180 - theta); return out; }
+  var PAIRS = {
+    corresponding: [[1, 5], [2, 6], [3, 7], [4, 8]],
+    alternate: [[3, 5], [4, 6]],
+    cointerior: [[3, 6], [4, 5]],
+    vertical: [[1, 3], [2, 4], [5, 7], [6, 8]]
+  };
+  // where a line through the origin at angle theta meets y = L and y = -L
+  function crossings(theta, L) { var t = Math.tan(theta / DEG); return { upper: [L / t, L], lower: [-L / t, -L] }; }
+  // angle at V between rays V->P and V->Q, in degrees, 0..180
+  function angleAt(V, P, Q) {
+    var a = Math.atan2(P[1] - V[1], P[0] - V[0]) - Math.atan2(Q[1] - V[1], Q[0] - V[0]);
+    a = Math.abs(a) % (2 * Math.PI); if (a > Math.PI) a = 2 * Math.PI - a; return a * DEG;
+  }
+  function triangleAngles(A, B, C) { return { A: angleAt(A, B, C), B: angleAt(B, C, A), C: angleAt(C, A, B) }; }
+  // direction of the ray from P to Q in radians, 0..2pi
+  function dir(P, Q) { var a = Math.atan2(Q[1] - P[1], Q[0] - P[0]); return a < 0 ? a + 2 * Math.PI : a; }
+  /*ENDPURE*/
+
+  var canvas = document.getElementById("plot"), ctx = canvas.getContext("2d");
+  var info = document.getElementById("info"), head = document.getElementById("head");
+  var thetaSl = document.getElementById("theta"), thetaLab = document.getElementById("thetaLab");
+  var L = 1.5, R = 3.1; // half-gap between the parallels, and the handle's distance from the origin
+  var S = { mode: "trans", theta: 60, ax: 0.5, bx: -2.5, cx: 2 };
+  var BLUE = "#3f44c9", BLUEF = "rgba(63,68,201,0.22)", ORANGE = "#d9891a", ORANGEF = "rgba(245,165,36,0.32)", TEAL = "#1f8a7a", TEALF = "rgba(31,138,122,0.25)";
+
+  thetaSl.addEventListener("input", function () { S.theta = parseInt(thetaSl.value, 10); draw(); });
+  Array.prototype.forEach.call(document.querySelectorAll("input[name=mode]"), function (r) { r.addEventListener("change", function () { S.mode = r.value; draw(); }); });
+  document.getElementById("reset").addEventListener("click", function () { S.theta = 60; S.ax = 0.5; S.bx = -2.5; S.cx = 2; thetaSl.value = 60; draw(); });
+
+  var XMIN = -6, XMAX = 6, YMIN, YMAX, W, H, U;
+  function X(x) { return (x - XMIN) / (XMAX - XMIN) * W; }
+  function Y(y) { return H - (y - YMIN) / (YMAX - YMIN) * H; }
+  function toMath(px, py) { return [XMIN + px / W * (XMAX - XMIN), YMIN + (H - py) / H * (YMAX - YMIN)]; }
+  function hline(y, color, width, dash) { ctx.strokeStyle = color; ctx.lineWidth = width; ctx.setLineDash(dash || []); ctx.beginPath(); ctx.moveTo(0, Y(y)); ctx.lineTo(W, Y(y)); ctx.stroke(); ctx.setLineDash([]); }
+  function seg(P, Q, color, width) { ctx.strokeStyle = color; ctx.lineWidth = width; ctx.beginPath(); ctx.moveTo(X(P[0]), Y(P[1])); ctx.lineTo(X(Q[0]), Y(Q[1])); ctx.stroke(); }
+  // filled wedge at V from direction a1 anticlockwise to a2 (math radians); label at the bisector
+  function wedge(V, a1, a2, r, fill, stroke, label) {
+    if (a2 < a1) a2 += 2 * Math.PI;
+    ctx.beginPath(); ctx.moveTo(X(V[0]), Y(V[1])); ctx.arc(X(V[0]), Y(V[1]), r * U, -a1, -a2, true); ctx.closePath();
+    ctx.fillStyle = fill; ctx.fill(); ctx.strokeStyle = stroke; ctx.lineWidth = 1.5; ctx.stroke();
+    if (label) {
+      var mid = (a1 + a2) / 2, d = r + 0.42;
+      ctx.fillStyle = stroke; ctx.font = "bold 12px Nunito, sans-serif"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+      ctx.fillText(label, X(V[0]) + d * U * Math.cos(mid), Y(V[1]) - d * U * Math.sin(mid));
+      ctx.textBaseline = "alphabetic";
+    }
+  }
+  function handle(P, color) { ctx.fillStyle = color; ctx.beginPath(); ctx.arc(X(P[0]), Y(P[1]), 9, 0, Math.PI * 2); ctx.fill(); ctx.strokeStyle = "#fff"; ctx.lineWidth = 2; ctx.stroke(); }
+
+  function setup() {
+    var dpr = window.devicePixelRatio || 1; W = canvas.clientWidth || 900; H = Math.round(W * 0.62);
+    U = W / (XMAX - XMIN); YMAX = H / 2 / U; YMIN = -YMAX;
+    canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, H);
+  }
+
+  function drawTrans() {
+    var th = S.theta, c = crossings(th, L), a = th / DEG, angs = eightAngles(th);
+    hline(L, "#1d1f3a", 2.5); hline(-L, "#1d1f3a", 2.5);
+    var far = Math.max(YMAX / Math.abs(Math.sin(a)), 1) * 1.1;
+    seg([-far * Math.cos(a), -far * Math.sin(a)], [far * Math.cos(a), far * Math.sin(a)], BLUE, 2.5);
+    var r = 0.55;
+    [c.upper, c.lower].forEach(function (V, k) {
+      var starts = [0, a, Math.PI, Math.PI + a], ends = [a, Math.PI, Math.PI + a, 2 * Math.PI];
+      for (var i = 0; i < 4; i++) {
+        var blue = i % 2 === 0, n = 4 * k + i + 1;
+        wedge(V, starts[i], ends[i], r, blue ? BLUEF : ORANGEF, blue ? BLUE : ORANGE, n + ": " + fmt(angs[n - 1]) + "°");
+      }
+    });
+    handle([R * Math.cos(a), R * Math.sin(a)], ORANGE);
+    ctx.fillStyle = "#5d6079"; ctx.font = "11px Nunito, sans-serif"; ctx.textAlign = "left";
+    ctx.fillText("drag me", X(R * Math.cos(a)) + 12, Y(R * Math.sin(a)) + 4);
+    head.textContent = "angle " + fmt(th) + "°:  blue angles (1, 3, 5, 7) are all " + fmt(th) + "°,  orange angles (2, 4, 6, 8) are all " + fmt(180 - th) + "°,  and " + fmt(th) + "° + " + fmt(180 - th) + "° = 180°";
+    function list(ps) { return ps.map(function (p) { return p[0] + " & " + p[1]; }).join(", "); }
+    info.textContent = "corresponding (same corner at each crossing):  " + list(PAIRS.corresponding) + "  → equal"
+      + "\nalternate (Z shape, between the lines):  " + list(PAIRS.alternate) + "  → equal"
+      + "\nco-interior (C shape, between the lines):  " + list(PAIRS.cointerior) + "  → add to 180°"
+      + "\nvertically opposite:  " + list(PAIRS.vertical) + "  → equal";
+  }
+
+  function drawTri() {
+    var A = [S.ax, L], B = [S.bx, -L], C = [S.cx, -L], t = triangleAngles(A, B, C);
+    hline(-L, "#1d1f3a", 2.5); hline(L, "#8a8ca8", 2, [8, 6]);
+    ctx.fillStyle = "#5d6079"; ctx.font = "11px Nunito, sans-serif"; ctx.textAlign = "right";
+    ctx.fillText("parallel to the base", W - 8, Y(L) - 7);
+    ctx.fillStyle = "rgba(29,31,58,0.05)"; ctx.beginPath(); ctx.moveTo(X(A[0]), Y(A[1])); ctx.lineTo(X(B[0]), Y(B[1])); ctx.lineTo(X(C[0]), Y(C[1])); ctx.closePath(); ctx.fill();
+    seg(A, B, "#1d1f3a", 2.5); seg(A, C, "#1d1f3a", 2.5);
+    var r = 0.6, dAB = dir(A, B), dAC = dir(A, C);
+    wedge(B, 0, dir(B, A), r, BLUEF, BLUE, fmt(t.B) + "°");
+    wedge(C, dir(C, A), Math.PI, r, ORANGEF, ORANGE, fmt(t.C) + "°");
+    wedge(A, Math.PI, dAB, r, BLUEF, BLUE, fmt(t.B) + "°");
+    wedge(A, dAB, dAC, r, TEALF, TEAL, fmt(t.A) + "°");
+    wedge(A, dAC, 2 * Math.PI, r, ORANGEF, ORANGE, fmt(t.C) + "°");
+    handle(A, "#1d1f3a"); handle(B, BLUE); handle(C, ORANGE);
+    ctx.fillStyle = "#1d1f3a"; ctx.font = "bold 13px Nunito, sans-serif"; ctx.textAlign = "center";
+    ctx.fillText("A", X(A[0]), Y(A[1]) - 16); ctx.fillText("B", X(B[0]) - 14, Y(B[1]) + 18); ctx.fillText("C", X(C[0]) + 14, Y(C[1]) + 18);
+    head.textContent = "∠B = " + fmt(t.B) + "°,  ∠A = " + fmt(t.A) + "°,  ∠C = " + fmt(t.C) + "°        sum = " + fmt(t.A + t.B + t.C) + "°";
+    info.textContent = "The dashed line through A is parallel to BC, so the blue angle at B reappears at A (alternate angles), and so does the orange angle at C."
+      + "\nAt A the blue, teal and orange angles lie along a straight line:  " + fmt(t.B) + "° + " + fmt(t.A) + "° + " + fmt(t.C) + "° = 180°."
+      + "\nDrag A, B or C. The numbers change; the sum does not.";
+  }
+
+  function draw() {
+    thetaLab.style.display = S.mode === "trans" ? "" : "none";
+    document.getElementById("thetav").textContent = fmt(S.theta) + "°";
+    setup();
+    if (S.mode === "trans") drawTrans(); else drawTri();
+  }
+
+  // dragging: the handle in transversal mode, a corner in triangle mode
+  var dragging = null;
+  function near(px, py, P, tol) { var dx = px - X(P[0]), dy = py - Y(P[1]); return dx * dx + dy * dy < tol * tol; }
+  canvas.addEventListener("pointerdown", function (ev) {
+    var r = canvas.getBoundingClientRect(), px = ev.clientX - r.left, py = ev.clientY - r.top;
+    if (S.mode === "trans") {
+      var a = S.theta / DEG;
+      if (!near(px, py, [R * Math.cos(a), R * Math.sin(a)], 28)) return;
+      dragging = "theta";
+    } else {
+      var pts = { ax: [S.ax, L], bx: [S.bx, -L], cx: [S.cx, -L] }, best = null, bestD = 28 * 28;
+      Object.keys(pts).forEach(function (k) { var dx = px - X(pts[k][0]), dy = py - Y(pts[k][1]), d = dx * dx + dy * dy; if (d < bestD) { bestD = d; best = k; } });
+      if (!best) return;
+      dragging = best;
+    }
+    canvas.classList.add("drag"); canvas.setPointerCapture(ev.pointerId); ev.preventDefault();
+  });
+  canvas.addEventListener("pointermove", function (ev) {
+    if (!dragging) return;
+    var r = canvas.getBoundingClientRect(), m = toMath(ev.clientX - r.left, ev.clientY - r.top);
+    if (dragging === "theta") {
+      var th = Math.atan2(m[1], m[0]) * DEG; if (th < 0) th += 180;
+      S.theta = Math.max(20, Math.min(160, Math.round(th))); thetaSl.value = S.theta;
+    } else {
+      var x = Math.max(-5.5, Math.min(5.5, Math.round(m[0] * 10) / 10));
+      if (dragging === "bx") x = Math.min(x, S.cx - 0.6);
+      if (dragging === "cx") x = Math.max(x, S.bx + 0.6);
+      S[dragging] = x;
+    }
+    draw();
+  });
+  function up() { dragging = null; canvas.classList.remove("drag"); }
+  canvas.addEventListener("pointerup", up); canvas.addEventListener("pointercancel", up);
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(draw, 120); });
+  draw();
+})();
+</script>
+</body>
+</html>

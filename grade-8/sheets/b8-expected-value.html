@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What a game is worth · Infinity Club</title>
+<meta name="description" content="Expected value: multiply each outcome by its probability and add. Use it to price a raffle ticket, measure the casino's edge, decide when to roll again, and meet a game whose expected value is infinite.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 8 · Around the corner · 8</div>
+  <h1>What a game is worth</h1>
+  <p class="teaser">Expected value: multiply each outcome by its chance and add. Fair prices, a lottery ticket, and a game that is worth infinity.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Roll a die and I pay you the number showing, in dollars. What should you pay to play? Imagine 600 games. Each face comes up about 100 times, so you collect about \(100(1 + 2 + 3 + 4 + 5 + 6) = 2100\) dollars: \(3.50\) per game. That average is the <b>expected value</b>, written \(E\). Pay less than $3.50 and you win in the long run; pay more and you lose. At $3.50 the game is <b>fair</b>.</p>
+<p class="callout">\(E = \) (each outcome) × (its probability), added over all outcomes. For the die: \(1 \cdot \tfrac16 + 2 \cdot \tfrac16 + \cdots + 6 \cdot \tfrac16 = 3.5\).</p>
+<p>\(E\) need not be a possible outcome; nobody rolls 3.5. Think of it as a balance point: a weight at each outcome, proportional to its probability, and \(E\) is where the beam balances.</p>
+<figure><svg viewBox="0 0 320 124" width="320" height="124" role="img" aria-label="A beam from 0 to 10 with a heavy block at 0 (probability nine tenths) and a light block at 10 (one tenth), balanced on a fulcrum at 1" font-family="Nunito, sans-serif" font-size="12">
+<line x1="30" y1="90" x2="290" y2="90" stroke="#000" stroke-width="2"/>
+<g stroke="#999" stroke-width="1"><line x1="56" y1="86" x2="56" y2="94"/><line x1="82" y1="86" x2="82" y2="94"/><line x1="108" y1="86" x2="108" y2="94"/><line x1="134" y1="86" x2="134" y2="94"/><line x1="160" y1="86" x2="160" y2="94"/><line x1="186" y1="86" x2="186" y2="94"/><line x1="212" y1="86" x2="212" y2="94"/><line x1="238" y1="86" x2="238" y2="94"/><line x1="264" y1="86" x2="264" y2="94"/></g>
+<rect x="20" y="27" width="20" height="63" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="280" y="83" width="20" height="7" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<polygon points="56,90 46,110 66,110" fill="#f5a524" stroke="#f5a524"/>
+<text x="30" y="20" text-anchor="middle" fill="#3f44c9" font-weight="700">P = 9/10</text>
+<text x="290" y="76" text-anchor="middle" fill="#3f44c9" font-weight="700">P = 1/10</text>
+<text x="30" y="106" text-anchor="middle">$0</text><text x="160" y="106" text-anchor="middle">$5</text><text x="290" y="106" text-anchor="middle">$10</text>
+<text x="56" y="122" text-anchor="middle" fill="#f5a524" font-weight="700">E = $1</text>
+</svg><figcaption>A 1-in-10 chance of $10, otherwise nothing. The beam balances at $1: \(0 \cdot \tfrac{9}{10} + 10 \cdot \tfrac{1}{10}\).</figcaption></figure>
+<p>Every lottery and casino game is priced above its expected value; the difference is the house's income. \(E\) is also how to price insurance and how to compare risky options: take the larger \(E\). It has one blind spot. The stretch describes a game with infinite expected value that nobody would pay $1000 to play once. A long-run average only guides you if you can afford the long run.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: a school raffle</h2>
+<p>1000 tickets are sold at $2 each. One wins $500, two win $100, the rest win nothing. A ticket's expected winnings are</p>
+<p>\[E = 500 \cdot \tfrac{1}{1000} + 100 \cdot \tfrac{2}{1000} + 0 \cdot \tfrac{997}{1000} = 0.50 + 0.20 = 0.70.\]</p>
+<p>A ticket is worth 70 cents and costs $2, so the expected loss is $1.30 per ticket. Check from the organiser's side: $2000 comes in, $700 goes out, and the $1300 difference is 1000 tickets times $1.30. Both views must agree, because the money has to go somewhere.</p>
+<p class="small">Roll dice many times and watch the running average settle at 3.5: <a href="../../demos/dice.html">infinityclub.net/demos/dice.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>A spinner pays $4 with probability \(\tfrac12\), $8 with probability \(\tfrac14\), and nothing otherwise. Find the expected value. What is the fair price to play?<div class="space short"></div></li>
+<li>An American roulette wheel has 38 pockets. (a) Bet $1 on a single number: with probability \(\tfrac{1}{38}\) you win $35, otherwise you lose your dollar. Find \(E\). (b) Bet $1 on red: 18 pockets win you $1, the other 20 lose it. Find \(E\). (c) Over 1000 bets of $1, how much does the casino expect to keep?<div class="space"></div></li>
+<li>A phone costs $600 and has a 1 in 20 chance of breaking this year. The shop sells a year's insurance for $45. What is the expected payout of the insurance? Who gains on average, and by how much? Give one good reason a person might buy it anyway.<div class="space short"></div></li>
+<li>Roll a die. You may take the face value in dollars, or reject it and roll once more, taking whatever the second roll shows. Which first rolls should you reject, and what is the game worth with that strategy?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the St Petersburg game</h2>
+<p>Flip a coin until it lands heads. If the first head is on flip \(k\), you win \(2^k\) dollars: $2, $4, $8, and so on. Find the probability that the first head is on flip \(k\), then the expected value. Now a casino caps the prize at \(2^{20}\) dollars (about a million). What is the game worth?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(E = 4 \cdot \tfrac12 + 8 \cdot \tfrac14 + 0 \cdot \tfrac14 = 2 + 2 = 4\). Fair price $4.</li>
+<li>(a) \(E = 35 \cdot \tfrac{1}{38} - 1 \cdot \tfrac{37}{38} = -\tfrac{2}{38} \approx -0.053\), a loss of about 5.3 cents per dollar. (b) \(E = 1 \cdot \tfrac{18}{38} - 1 \cdot \tfrac{20}{38} = -\tfrac{2}{38}\), exactly the same. The two green pockets are the house's edge whichever way you bet. (c) About $52.60.</li>
+<li>Expected payout \(600 \cdot \tfrac{1}{20} = 30\) dollars. The shop charges $45, so it gains $15 per policy on average. You might still buy it if a sudden $600 bill would be a disaster for you: expected value measures the average, not the damage a single bad outcome does. That is the whole business of insurance.</li>
+<li>A second roll is worth 3.5 on average, so reject any first roll below 3.5: reject 1, 2, 3 and keep 4, 5, 6. Half the time you keep, averaging \(5\); half the time you reroll, averaging \(3.5\). \(E = \tfrac12 \cdot 5 + \tfrac12 \cdot 3.5 = 4.25\). The option to reroll is worth 75 cents.</li>
+</ol>
+<p><b>Stretch.</b> The first head is on flip \(k\) when the first \(k - 1\) flips are tails and the next is heads: probability \(\tfrac{1}{2^k}\). The term for flip \(k\) is \(2^k \cdot \tfrac{1}{2^k} = 1\), and there are infinitely many flips possible, so \(E = 1 + 1 + 1 + \cdots\) with no end: infinite. With the cap, the first 20 flips contribute \(1\) each, and any run of 20 tails (probability \(\tfrac{1}{2^{20}}\)) pays \(2^{20}\), contributing one more. The capped game is worth exactly $21.</p>
+</section>
+
+<div class="sheet-nav"><a href="b7-platonic.html">← Previous</a><a href="b9-birthday.html">Next: The birthday paradox →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

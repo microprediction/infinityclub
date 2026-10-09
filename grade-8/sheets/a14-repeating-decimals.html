@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Turning 0.272727… back into a fraction · Infinity Club</title>
+<meta name="description" content="Call the repeating decimal x, multiply by a power of ten, subtract, and the tail cancels. Every repeating decimal is a fraction, and 0.999… is exactly 1.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 8 · Sharpen · 14</div>
+  <h1>Turning 0.272727… back into a fraction</h1>
+  <p class="teaser">Call it x, multiply by 100, subtract. Every repeating decimal is a fraction, and 0.999… is exactly 1.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Long division turns a fraction into a decimal that stops or repeats (<a href="../../grade-6/sheets/a11-repeating-decimals.html">grade 6, sheet 11</a>). Tonight we go the other way. The bar in \(0.\overline{27}\) means the digits 27 repeat forever: \(0.272727\ldots\)</p>
+<p>Call the number \(x\). The block is two digits long, so multiply by 100, shifting the point two places. The tail after the point is the same tail as before:</p>
+<figure><svg viewBox="0 0 300 100" width="300" height="100" role="img" aria-label="100x equals 27.272727 repeating, x equals 0.272727 repeating, subtract to get 99x equals 27; the identical tails are highlighted" font-family="Nunito, sans-serif" font-size="14">
+<text x="90" y="24" text-anchor="end">100x =</text><text x="126" y="24" text-anchor="end" font-weight="700">27</text><text x="128" y="24" fill="#f5a524" font-weight="700">.272727…</text>
+<text x="90" y="50" text-anchor="end">x =</text><text x="126" y="50" text-anchor="end" font-weight="700">0</text><text x="128" y="50" fill="#f5a524" font-weight="700">.272727…</text>
+<text x="40" y="50" text-anchor="end" fill="#3f44c9">−</text>
+<line x1="30" y1="60" x2="240" y2="60" stroke="#000" stroke-width="1.5"/>
+<text x="90" y="84" text-anchor="end">99x =</text><text x="126" y="84" text-anchor="end" font-weight="700">27</text><text x="128" y="84" fill="#999" font-weight="700">.000000…</text>
+</svg><figcaption>The same tail appears in both lines, so subtracting removes it completely.</figcaption></figure>
+<p class="callout">\(100x - x = 27.\overline{27} - 0.\overline{27}\), so \(99x = 27\) and \(x = \dfrac{27}{99} = \dfrac{3}{11}\).</p>
+<p>Check by dividing 3 by 11. In general a block of \(n\) digits sits over \(n\) nines, because multiplying by \(10^n\) and subtracting leaves \((10^n - 1)x\). If the repeat starts later, multiply by two different powers of ten so the tails line up, then subtract.</p>
+<p>Now \(x = 0.\overline{9}\): \(10x = 9.\overline{9}\), so \(9x = 9\) and \(x = 1\). Not "just under" 1: equal to 1. If you think there is a gap, name it. It would be smaller than \(0.1\), than \(0.01\), than every \(0.00\ldots01\). The only such number is 0. So \(0.\overline{9}\) and 1 are two names for one number.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: \(x = 2.1\overline{36}\)</h2>
+<p>The digits are \(2.1363636\ldots\) The repeat starts one place after the point, so shift once to reach it and then shift two more places for one full block:</p>
+<p>\[10x = 21.\overline{36}, \qquad 1000x = 2136.\overline{36}.\]</p>
+<p>Both have the tail \(.\overline{36}\). Subtract: \(990x = 2136 - 21 = 2115\), so</p>
+<p>\[x = \frac{2115}{990} = \frac{47}{22}.\]</p>
+<p>Check: \(47 \div 22 = 2.1363636\ldots\) Why 990? It is \(1000 - 10\), the gap between the two shifts. Choosing the two powers of ten was the whole skill; the subtraction did the rest.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Write each as a fraction in lowest terms: \(0.\overline{7}\), \(0.\overline{45}\), \(0.\overline{123}\). Check one of them by long division.<div class="space short"></div></li>
+<li>Write \(0.41\overline{6}\) and \(0.1\overline{6}\) as fractions in lowest terms. Say which two powers of ten you multiplied by, and why.<div class="space short"></div></li>
+<li>(a) Write \(0.\overline{142857}\) as a fraction and simplify it fully. (b) Show that \(0.\overline{09} = \tfrac{1}{11}\). Then write \(0.\overline{27}\) and \(0.\overline{63}\) as fractions with no further working.<div class="space"></div></li>
+<li>(a) Use the method on \(0.4\overline{9}\). (b) Use it on \(3.\overline{9}\). (c) What kind of number has two different decimal names? Describe them all.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: adding repeaters</h2>
+<p>Find \(0.\overline{1} + 0.\overline{2} + 0.\overline{3} + \cdots + 0.\overline{8}\) exactly. Then find \(0.\overline{1234} + 0.\overline{8765}\) without converting either to a fraction first. Explain the answer.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(0.\overline{7} = \tfrac{7}{9}\). \(0.\overline{45} = \tfrac{45}{99} = \tfrac{5}{11}\). \(0.\overline{123} = \tfrac{123}{999} = \tfrac{41}{333}\).</li>
+<li>\(0.41\overline{6}\): multiply by 100 and by 1000, since the repeat starts two places in and the block is one digit. \(1000x - 100x = 416.\overline{6} - 41.\overline{6} = 375\), so \(x = \tfrac{375}{900} = \tfrac{5}{12}\). \(0.1\overline{6}\): multiply by 10 and 100. \(90x = 16 - 1 = 15\), so \(x = \tfrac{15}{90} = \tfrac{1}{6}\).</li>
+<li>(a) \(\tfrac{142857}{999999} = \tfrac{1}{7}\), since \(142857 \times 7 = 999999\). (b) \(100x - x = 9\), so \(x = \tfrac{9}{99} = \tfrac{1}{11}\). Then \(0.\overline{27} = 3 \times 0.\overline{09} = \tfrac{3}{11}\) and \(0.\overline{63} = \tfrac{7}{11}\).</li>
+<li>(a) \(100x - 10x = 49.\overline{9} - 4.\overline{9} = 45\), so \(x = \tfrac{45}{90} = \tfrac{1}{2}\): \(0.4\overline{9} = 0.5\). (b) \(9x = 39.\overline{9} - 3.\overline{9} = 36\), so \(x = 4\). (c) Every decimal that stops (other than 0) has a second name: lower the last digit by one and follow it with nines forever. Numbers whose decimals never stop have only one name.</li>
+</ol>
+<p><b>Stretch.</b> Each \(0.\overline{d}\) is \(\tfrac{d}{9}\), so the sum is \(\tfrac{1 + 2 + \cdots + 8}{9} = \tfrac{36}{9} = 4\). Adding digit by digit, \(0.\overline{1234} + 0.\overline{8765} = 0.\overline{9999} = 0.\overline{9} = 1\). As fractions, \(\tfrac{1234 + 8765}{9999} = \tfrac{9999}{9999} = 1\). The two blocks add to 9999, which is why.</p>
+</section>
+
+<div class="sheet-nav"><a href="a13-percent-change.html">← Previous</a><a href="a15-why-it-flips.html">Next: Why the inequality flips →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

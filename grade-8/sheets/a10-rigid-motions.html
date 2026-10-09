@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Slide, flip, turn, scale · Infinity Club</title>
+<meta name="description" content="Coordinate rules for translations, reflections, rotations and dilations. Which moves keep lengths, and what congruent and similar really mean.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 8 · Sharpen · 10</div>
+  <h1>Slide, flip, turn, scale</h1>
+  <p class="teaser">Coordinate rules for translations, reflections, rotations and dilations, which ones keep lengths, and what congruent and similar really mean.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Put a shape on a coordinate grid and every move becomes a rule for the coordinates. The arrow \(\to\) means "goes to".</p>
+<ul>
+<li><b>Translation</b> (slide) by \(a\) across and \(b\) up: \((x, y) \to (x + a,\ y + b)\).</li>
+<li><b>Reflection</b> (flip) in the \(x\)-axis: \((x, y) \to (x, -y)\). In the \(y\)-axis: \((x, y) \to (-x, y)\). In the line \(y = x\): \((x, y) \to (y, x)\).</li>
+<li><b>Rotation</b> (turn) about the origin by 90° anticlockwise: \((x, y) \to (-y, x)\). By 180°: \((x, y) \to (-x, -y)\).</li>
+<li><b>Dilation</b> (scale) from the origin by factor \(k\): \((x, y) \to (kx, ky)\).</li>
+</ul>
+<figure><svg viewBox="0 0 240 158" width="240" height="158" role="img" aria-label="A triangle ABC on a grid and its image A'B'C' after a 90 degree anticlockwise rotation about the origin, with an arc showing B moving to B'" font-family="Nunito, sans-serif" font-size="12">
+<g stroke="#ddd" stroke-width="1"><line x1="20" y1="10" x2="20" y2="142"/><line x1="42" y1="10" x2="42" y2="142"/><line x1="64" y1="10" x2="64" y2="142"/><line x1="86" y1="10" x2="86" y2="142"/><line x1="130" y1="10" x2="130" y2="142"/><line x1="152" y1="10" x2="152" y2="142"/><line x1="174" y1="10" x2="174" y2="142"/><line x1="196" y1="10" x2="196" y2="142"/><line x1="218" y1="10" x2="218" y2="142"/><line x1="20" y1="142" x2="218" y2="142"/><line x1="20" y1="98" x2="218" y2="98"/><line x1="20" y1="76" x2="218" y2="76"/><line x1="20" y1="54" x2="218" y2="54"/><line x1="20" y1="32" x2="218" y2="32"/><line x1="20" y1="10" x2="218" y2="10"/></g>
+<line x1="20" y1="120" x2="218" y2="120" stroke="#999" stroke-width="1.2"/><line x1="108" y1="10" x2="108" y2="142" stroke="#999" stroke-width="1.2"/>
+<path d="M196,98 A90.7,90.7 0 0 0 86,32" fill="none" stroke="#999" stroke-width="1" stroke-dasharray="3 3"/>
+<polygon points="130,98 196,98 130,54" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<polygon points="86,98 86,32 42,98" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/>
+<g fill="#3f44c9" font-weight="700"><text x="126" y="112">A</text><text x="200" y="112">B</text><text x="134" y="52">C</text></g>
+<g fill="#b87400" font-weight="700"><text x="88" y="112">A′</text><text x="88" y="28">B′</text><text x="36" y="112">C′</text></g>
+<text x="112" y="132" fill="#666" font-size="11">O</text>
+</svg><figcaption>\(A(1,1)\), \(B(4,1)\), \(C(1,3)\) turned 90° anticlockwise: \((x, y) \to (-y, x)\) gives \(A'(-1,1)\), \(B'(-1,4)\), \(C'(-3,1)\).</figcaption></figure>
+<p>Why does the 90° rule work? The point \((x, y)\) is the far corner of a rectangle with sides \(x\) and \(y\) along the axes. Give the rectangle a quarter turn: the side of length \(y\) now runs along the negative \(x\)-axis and the side of length \(x\) runs up the \(y\)-axis. The corner lands at \((-y, x)\).</p>
+<p>The first three moves are <b>rigid motions</b>: every length and every angle is unchanged, so the image is <b>congruent</b> to the original, the same shape in a new position. Dilation multiplies every length by \(k\) and keeps every angle, so the image is <b>similar</b>: the same shape at a different size. Its area is multiplied by \(k^2\), because width and height both scale by \(k\).</p>
+</section>
+
+<section class="example">
+<h2>Watch one: reflect, then scale</h2>
+<p>Triangle \(P(2,1)\), \(Q(5,1)\), \(R(2,3)\). Reflect in the line \(y = x\) by swapping coordinates: \(P'(1,2)\), \(Q'(1,5)\), \(R'(3,2)\). Check a length: \(PQ = 3\) along the horizontal, and \(P'Q'\) runs from \((1,2)\) to \((1,5)\), also 3. Congruent, as a reflection should be. Now dilate by \(k = 2\): \((2,4)\), \((2,10)\), \((6,4)\). The side that was 3 is now 6, and the area goes from \(\tfrac12 \times 3 \times 2 = 3\) to \(\tfrac12 \times 6 \times 4 = 12\), four times as much.</p>
+<p class="small">Press the buttons and watch the coordinates change: <a href="../../demos/rigid.html">infinityclub.net/demos/rigid.html</a>. Later these same moves become matrices: <a href="../../demos/transform.html">infinityclub.net/demos/transform.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Triangle \(A(1,2)\), \(B(4,2)\), \(C(4,6)\). Write the coordinates of the image under (a) a translation by 3 left and 1 up, (b) a reflection in the \(x\)-axis, (c) a rotation of 180° about the origin.<div class="space short"></div></li>
+<li>Rotate the same triangle 90° anticlockwise about the origin. Then check that it is congruent: find \(AB\) and \(A'B'\), and find \(AC\) and \(A'C'\) using Pythagoras.<div class="space short"></div></li>
+<li>Dilate the same triangle from the origin by \(k = \tfrac12\). Write the image coordinates, then find the area of the original and the area of the image. What is the ratio?<div class="space short"></div></li>
+<li>Start from the point \((3, 5)\). (a) Reflect in the \(y\)-axis, then reflect the result in the \(x\)-axis. Which single rule from the list does the same job? (b) Reflect in the \(x\)-axis, then in the line \(y = x\). Compare with a 90° anticlockwise rotation. (c) Now do (b) in the other order: \(y = x\) first, then the \(x\)-axis. Is the result the same?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: turning about a different point</h2>
+<p>Rotate \((5, 3)\) by 90° anticlockwise about the point \((2, 1)\), not the origin. Method: slide everything so that \((2, 1)\) lands on the origin, rotate with the rule, slide back. Then write the rule for a general point \((x, y)\) rotated 90° anticlockwise about \((2, 1)\).</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \((-2,3)\), \((1,3)\), \((1,7)\). (b) \((1,-2)\), \((4,-2)\), \((4,-6)\). (c) \((-1,-2)\), \((-4,-2)\), \((-4,-6)\).</li>
+<li>\(A'(-2,1)\), \(B'(-2,4)\), \(C'(-6,4)\). \(AB = 3\) and \(A'B'\) is the vertical gap from 1 to 4, also 3. \(AC = \sqrt{3^2 + 4^2} = 5\) and \(A'C' = \sqrt{4^2 + 3^2} = 5\). Same lengths, so congruent.</li>
+<li>\((\tfrac12, 1)\), \((2, 1)\), \((2, 3)\). Original area \(\tfrac12 \times 3 \times 4 = 6\); image \(\tfrac12 \times 1.5 \times 2 = 1.5\). Ratio \(\tfrac14 = k^2\).</li>
+<li>(a) \((3,5) \to (-3,5) \to (-3,-5)\), the same as a 180° rotation. Two reflections in perpendicular lines make a half turn. (b) \((3,5) \to (3,-5) \to (-5,3)\), exactly the 90° rotation. (c) \((3,5) \to (5,3) \to (5,-3)\): a 90° turn the other way. The order matters.</li>
+</ol>
+<p><b>Stretch.</b> Slide by \((-2,-1)\): \((5,3) \to (3,2)\). Rotate: \((3,2) \to (-2,3)\). Slide back by \((2,1)\): \((0,4)\). In general \((x, y) \to (x-2,\ y-1) \to (1-y,\ x-2) \to (3-y,\ x-1)\). Check: \((5,3) \to (0,4)\), and the centre \((2,1) \to (2,1)\) stays put, as it must.</p>
+</section>
+
+<div class="sheet-nav"><a href="a9-linear-or-not.html">← Previous</a><a href="a11-triangle-angles.html">Next: Why a triangle's angles add to 180° →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

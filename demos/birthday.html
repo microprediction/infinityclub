@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Birthday Paradox · Infinity Club</title>
+<meta name="description" content="Slide the size of the room from 2 to 60 people, simulate a thousand rooms, and see how often two people share a birthday compared with the exact probability.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.controls input[type=range] { width: 200px; }
+.controls .val { font-family: var(--mono); min-width: 2em; display: inline-block; }
+#room { margin-top: .6rem; }
+.legend { font-size: .9rem; color: var(--muted); margin: .3rem 0 0; }
+.legend span { display: inline-block; width: 1em; height: .7em; border-radius: 2px; margin: 0 .3em 0 .8em; vertical-align: -0.05em; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>The birthday paradox</h1>
+<p class="explain">Slide n, the number of people in a room. Each time you move it the computer fills 1000 random rooms with n birthdays and counts how many rooms have at least one shared birthday. That fraction appears as an orange dot; the dark curve is the exact probability. Press <b>Simulate every n</b> to fill in the whole curve with dots. Find where the curve crosses one half, and notice how few people that takes.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <label>n <input type="range" id="n" min="2" max="60" step="1" value="23"> <span class="val" id="nv">23</span> people</label>
+    <button id="again">Simulate 1000 rooms again</button>
+    <button id="all" class="alt">Simulate every n</button>
+    <button id="clear" class="ghost">Clear dots</button>
+  </div>
+  <canvas id="plot" width="900" height="480"></canvas>
+  <p class="legend"><span style="background:#1d1f3a"></span>exact probability <span style="background:#f5a524"></span>fraction of 1000 simulated rooms <span style="background:#e6e7fb;border:1px solid #3f44c9"></span>one half</p>
+  <div class="readout" id="info"></div>
+  <canvas id="room" width="900" height="70"></canvas>
+  <p class="legend">One of the simulated rooms: the 365 days of the year, with a tick for each birthday. A shared day is drawn tall and orange.</p>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>Ask the opposite question: what is the chance that <i>nobody</i> shares? The first person can have any birthday. The second must avoid 1 day: 364/365. The third must avoid 2: 363/365. Multiply all the way to the n-th person, who must avoid n − 1 days. For n = 23 that product is about 0.493, so the chance of at least one match is about 0.507, just over a half.</p>
+<p>The reason it feels wrong is that you are picturing <i>your</i> birthday matching someone's. That needs about 253 people to be a coin flip. But a match between <i>any</i> two people is a different question: 23 people make 253 pairs, and each pair is a chance.</p>
+<p>The dots jitter around the curve because 1000 rooms is a sample. Press the simulate button a few times at the same n and watch how far the dot wanders: about ±0.03. That wobble is itself a lesson about what a thousand trials can and cannot tell you.</p>
+<p>Sheet: <a href="../grade-8/sheets/b9-birthday.html">The birthday paradox</a>. See also <a href="dice.html">Dice</a> for more probability by experiment.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  var DAYS = 365;
+  // exact P(at least one shared birthday among n people)
+  function exactP(n) { var p = 1; for (var k = 0; k < n; k++) p *= (DAYS - k) / DAYS; return 1 - p; }
+  // one random room: returns the array of birthdays (0..364)
+  function room(n, rnd) { var r = []; for (var i = 0; i < n; i++) r.push(Math.floor(rnd() * DAYS)); return r; }
+  function hasMatch(bd) { var seen = {}; for (var i = 0; i < bd.length; i++) { if (seen[bd[i]]) return true; seen[bd[i]] = 1; } return false; }
+  // simulate `rooms` rooms of n people; returns {matches, fraction, sample}
+  function simulate(n, rooms, rnd) {
+    var m = 0, sample = null;
+    for (var r = 0; r < rooms; r++) { var bd = room(n, rnd); if (hasMatch(bd)) m++; if (r === 0) sample = bd; }
+    return { matches: m, fraction: m / rooms, sample: sample };
+  }
+  /*ENDPURE*/
+
+  var canvas = document.getElementById("plot"), ctx = canvas.getContext("2d");
+  var roomC = document.getElementById("room"), rctx = roomC.getContext("2d");
+  var info = document.getElementById("info"), nSl = document.getElementById("n"), nv = document.getElementById("nv");
+  var ROOMS = 1000, NMIN = 2, NMAX = 60, sims = {}, lastSample = null, lastN = 23;
+
+  function runFor(n) { var s = simulate(n, ROOMS, Math.random); sims[n] = s; lastSample = s.sample; lastN = n; }
+  nSl.addEventListener("input", function () { runFor(parseInt(nSl.value, 10)); draw(); });
+  document.getElementById("again").addEventListener("click", function () { runFor(parseInt(nSl.value, 10)); draw(); });
+  document.getElementById("all").addEventListener("click", function () { for (var n = NMIN; n <= NMAX; n++) runFor(n); runFor(parseInt(nSl.value, 10)); draw(); });
+  document.getElementById("clear").addEventListener("click", function () { sims = {}; lastSample = null; draw(); });
+
+  function draw() {
+    var n = parseInt(nSl.value, 10); nv.textContent = n;
+    var dpr = window.devicePixelRatio || 1, W = canvas.clientWidth || 900, H = Math.round(W * 0.53);
+    canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, H);
+    var L = 44, R = W - 16, T = 18, B = H - 34;
+    function X(x) { return L + (R - L) * (x - NMIN) / (NMAX - NMIN); }
+    function Y(p) { return B - (B - T) * p; }
+    // grid
+    ctx.strokeStyle = "#ece9e0"; ctx.lineWidth = 1;
+    for (var p = 0; p <= 1.0001; p += 0.25) { ctx.beginPath(); ctx.moveTo(L, Y(p)); ctx.lineTo(R, Y(p)); ctx.stroke(); }
+    for (var g = 10; g <= NMAX; g += 10) { ctx.beginPath(); ctx.moveTo(X(g), T); ctx.lineTo(X(g), B); ctx.stroke(); }
+    // axes labels
+    ctx.fillStyle = "#5d6079"; ctx.font = "11px Nunito, sans-serif"; ctx.textAlign = "right";
+    [0, 0.25, 0.5, 0.75, 1].forEach(function (p) { ctx.fillText(p.toFixed(2), L - 5, Y(p) + 4); });
+    ctx.textAlign = "center";
+    for (var t = 10; t <= NMAX; t += 10) ctx.fillText(t, X(t), B + 15);
+    ctx.fillText("people in the room", (L + R) / 2, B + 29);
+    // one half line
+    ctx.strokeStyle = "#3f44c9"; ctx.setLineDash([6, 5]); ctx.lineWidth = 1.2;
+    ctx.beginPath(); ctx.moveTo(L, Y(0.5)); ctx.lineTo(R, Y(0.5)); ctx.stroke(); ctx.setLineDash([]);
+    // exact curve
+    ctx.strokeStyle = "#1d1f3a"; ctx.lineWidth = 2.5; ctx.beginPath();
+    for (var k = NMIN; k <= NMAX; k++) { if (k === NMIN) ctx.moveTo(X(k), Y(exactP(k))); else ctx.lineTo(X(k), Y(exactP(k))); }
+    ctx.stroke();
+    // current n marker
+    ctx.strokeStyle = "#f5a524"; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(X(n), T); ctx.lineTo(X(n), B); ctx.stroke();
+    // simulated dots
+    Object.keys(sims).forEach(function (key) {
+      var k = parseInt(key, 10), f = sims[k].fraction;
+      ctx.fillStyle = "#f5a524"; ctx.beginPath(); ctx.arc(X(k), Y(f), k === n ? 7 : 4.5, 0, Math.PI * 2); ctx.fill();
+      if (k === n) { ctx.strokeStyle = "#fff"; ctx.lineWidth = 2; ctx.stroke(); }
+    });
+    // exact point for current n
+    ctx.fillStyle = "#1d1f3a"; ctx.beginPath(); ctx.arc(X(n), Y(exactP(n)), 4, 0, Math.PI * 2); ctx.fill();
+
+    // readout
+    var ex = exactP(n), s = sims[n];
+    var noMatch = 1 - ex, factors = [];
+    for (var i = 0; i < Math.min(n, 4); i++) factors.push((DAYS - i) + "/" + DAYS);
+    var prod = n <= 4 ? factors.join(" × ") : factors.slice(0, 3).join(" × ") + " × … × " + (DAYS - n + 1) + "/" + DAYS;
+    var txt = "n = " + n + "\nP(no two share) = " + prod + " = " + noMatch.toFixed(4)
+      + "\nP(at least one shared birthday) = 1 − " + noMatch.toFixed(4) + " = " + ex.toFixed(4);
+    if (s) txt += "\nsimulation: " + s.matches + " of " + ROOMS + " rooms had a match  →  " + s.fraction.toFixed(3) + "  (off by " + (s.fraction - ex >= 0 ? "+" : "−") + Math.abs(s.fraction - ex).toFixed(3) + ")";
+    txt += "\npairs of people: n(n − 1)/2 = " + (n * (n - 1) / 2);
+    info.textContent = txt;
+    drawRoom();
+  }
+  function drawRoom() {
+    var dpr = window.devicePixelRatio || 1, W = roomC.clientWidth || 900, H = 70;
+    roomC.width = W * dpr; roomC.height = H * dpr; roomC.style.height = H + "px"; rctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    rctx.fillStyle = "#fff"; rctx.fillRect(0, 0, W, H);
+    var L = 8, R = W - 8, base = H - 18, cw = (R - L) / DAYS;
+    rctx.strokeStyle = "#d9d6cc"; rctx.lineWidth = 1; rctx.beginPath(); rctx.moveTo(L, base); rctx.lineTo(R, base); rctx.stroke();
+    rctx.fillStyle = "#5d6079"; rctx.font = "11px Nunito, sans-serif"; rctx.textAlign = "left"; rctx.fillText("Jan 1", L, H - 4); rctx.textAlign = "right"; rctx.fillText("Dec 31", R, H - 4);
+    if (!lastSample) { rctx.textAlign = "center"; rctx.fillText("move the slider to fill a room", W / 2, 30); return; }
+    var count = {}; lastSample.forEach(function (d) { count[d] = (count[d] || 0) + 1; });
+    var shared = 0;
+    Object.keys(count).forEach(function (d) {
+      var c = count[d], x = L + d * cw + cw / 2, shared2 = c > 1; if (shared2) shared++;
+      rctx.strokeStyle = shared2 ? "#f5a524" : "#3f44c9"; rctx.lineWidth = Math.max(1.5, cw);
+      rctx.beginPath(); rctx.moveTo(x, base); rctx.lineTo(x, shared2 ? 8 : 30); rctx.stroke();
+    });
+    rctx.fillStyle = "#1d1f3a"; rctx.font = "bold 11px Nunito, sans-serif"; rctx.textAlign = "center";
+    rctx.fillText("room of " + lastN + ": " + (shared ? shared + " shared day" + (shared > 1 ? "s" : "") : "no shared birthday"), W / 2, 12);
+  }
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(draw, 120); });
+  runFor(23); draw();
+})();
+</script>
+</body>
+</html>

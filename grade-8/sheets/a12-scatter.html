@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scatter plots and the line of best fit · Infinity Club</title>
+<meta name="description" content="Plot two variables, draw the trend, read the slope as a rate, and see what one outlier does to the line.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 8 · Sharpen · 12</div>
+  <h1>Scatter plots and the line of best fit</h1>
+  <p class="teaser">Draw the trend, read the slope as a rate, and see what one outlier does to the line.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A <b>scatter plot</b> shows two measurements per individual as one dot: here, each day's temperature and ice-cream sales. Dots rising to the right show a <b>positive</b> association; falling, a <b>negative</b> one; a shapeless cloud, none. The closer the dots hug a line, the stronger it is.</p>
+<figure><svg viewBox="0 0 300 185" width="240" height="148" role="img" aria-label="Scatter plot of ice-cream cones sold against temperature: six blue dots rising to the right with a solid line of best fit, one orange outlier low at the right, and a dashed flatter line that includes the outlier" font-family="Nunito, sans-serif" font-size="12">
+<line x1="45" y1="165" x2="290" y2="165" stroke="#999" stroke-width="1"/><line x1="45" y1="165" x2="45" y2="10" stroke="#999" stroke-width="1"/>
+<g fill="#666" text-anchor="middle"><text x="98.3" y="178">20</text><text x="165" y="178">25</text><text x="231.7" y="178">30</text><text x="275" y="178" font-size="11">°C</text></g>
+<g fill="#666" text-anchor="end"><text x="40" y="145.9">60</text><text x="40" y="99.8">100</text><text x="40" y="53.6">140</text></g>
+<text x="52" y="18" fill="#666" font-size="11">cones</text>
+<line x1="58.3" y1="137.3" x2="285" y2="56.2" stroke="#f5a524" stroke-width="1.5" stroke-dasharray="5 4"/>
+<line x1="58.3" y1="149.2" x2="285" y2="22.7" stroke="#3f44c9" stroke-width="1.8"/>
+<g fill="#3f44c9"><circle cx="71.7" cy="139.6" r="4"/><circle cx="111.7" cy="123.5" r="4"/><circle cx="151.7" cy="94.6" r="4"/><circle cx="191.7" cy="77.3" r="4"/><circle cx="231.7" cy="49.6" r="4"/><circle cx="271.7" cy="31.2" r="4"/></g>
+<circle cx="258.3" cy="130.4" r="4.5" fill="#f5a524" stroke="#b87400" stroke-width="1"/>
+<text x="252" y="150" fill="#b87400" text-anchor="middle" font-size="11">outlier</text>
+</svg><figcaption>Solid: the best line through the six blue days. Dashed: the line once the orange day joins in.</figcaption></figure>
+<p>A <b>line of best fit</b> runs through the middle of the cloud, about as many dots above as below. By eye is fine. The computer's version, <b>least squares</b>, makes the squared vertical gaps as small as possible and always passes through \((\bar x, \bar y)\), the point of means.</p>
+<p>Read the slope as a <a href="a9-linear-or-not.html">rate</a>: cones per degree, centimetres per year. Read the intercept with suspicion: \(x = 0\) is often far outside the data.</p>
+<p>An <b>outlier</b> is a dot far from the pattern. It drags the line toward itself, hardest at either end of the \(x\) range, where it acts as a lever. And a trend is not a cause: ice cream and sunburn rise together because of the sun, not each other.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: reading the figure</h2>
+<p>Cover the orange dot. The solid line passes close to \((18, 62)\) and \((30, 140)\), so its slope is about \(\frac{140 - 62}{30 - 18} = \frac{78}{12} = 6.5\) cones per degree.</p>
+<p>A forecast of 25° is 7 degrees above 18°: expect about \(62 + 6.5 \times 7 \approx 108\) cones. Now let the orange day back in: 32° but only 70 cones (it rained). The dashed slope is about 4.1: one day at the hot end cut the rate by a third. And do not use either line at 45°: nobody measured there.</p>
+<p class="small">Add an outlier and watch the line swing: <a href="../../demos/regression.html">infinityclub.net/demos/regression.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>For each pair, do you expect a positive, negative or no association, and strong or weak? (a) a car's age and its resale price; (b) a student's height and birth month; (c) a book's page count and its weight.<div class="space short"></div></li>
+<li>Five students practised a puzzle for different hours a week, then were timed on it in minutes:
+<table>
+<tr><th>hours \(x\)</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
+<tr><th>minutes \(y\)</th><td>20</td><td>17</td><td>15</td><td>11</td><td>9</td></tr>
+</table>
+Plot the points, draw a line of best fit by eye, and estimate its slope and intercept. What does the slope mean in words?<div class="space short"></div></li>
+<li>For children aged 5 to 12, a best-fit line for height \(h\) in cm against age \(a\) in years is \(h = 80 + 6a\). (a) What does the 6 mean? (b) Predict the height of a 9-year-old. (c) What does it say about a 30-year-old, and why is that wrong?<div class="space short"></div></li>
+<li>A sixth student joins the data in question 2: 5 hours of practice, 25 minutes. (a) Without calculating, does the line get steeper or flatter? (b) Find the new mean point \((\bar x, \bar y)\), which the line must pass through. (c) If instead the sixth student had practised 3 hours and taken 25 minutes, why would the slope not change, only the height of the line?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the computer's recipe</h2>
+<p>The least-squares slope is</p>
+<p>\[m = \frac{\sum (x - \bar x)(y - \bar y)}{\sum (x - \bar x)^2},\]</p>
+<p>with \(\bar x\), \(\bar y\) the means and \(\sum\) meaning "add up over all the points". Compute \(m\) for question 2's five students, then the intercept from the line passing through \((\bar x, \bar y)\). How close was your eye?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) Negative, fairly strong. (b) None: birth month has nothing to do with height. (c) Positive and strong, though paper thickness and cover add some scatter.</li>
+<li>Any sensible line slopes down at roughly \(-2.5\) to \(-3\) minutes per hour, crossing the \(y\)-axis near 22 or 23. The slope means: each extra hour of weekly practice is linked with about 3 minutes less on the puzzle. The least-squares answer is \(m = -2.8\), intercept 22.8.</li>
+<li>(a) Children in this group grow about 6 cm per year on average. (b) \(80 + 54 = 134\) cm. (c) \(80 + 180 = 260\) cm. Growth stops in the late teens; the line was fitted to ages 5 to 12 and says nothing beyond them. This is extrapolation, and <a href="c8-world-records.html">the world-records sheet</a> shows where it leads.</li>
+<li>(a) Flatter: the new dot is far above the line at the right-hand end, so it lifts that end. (b) \(\bar x = 20/6 = 3\tfrac13\), \(\bar y = 97/6 \approx 16.2\). (c) A dot at \(x = 3\) sits exactly above the middle of the \(x\) values, so it lifts the line without pushing either end up more than the other: the slope stays \(-2.8\) and the line moves up. (The new slope in (a) is about \(-0.8\).)</li>
+</ol>
+<p><b>Stretch.</b> \(\bar x = 3\), \(\bar y = 14.4\). The products \((x - 3)(y - 14.4)\) are \(-11.2, -2.6, 0, -3.4, -10.8\), summing to \(-28\). The squares \((x-3)^2\) are \(4, 1, 0, 1, 4\), summing to 10. So \(m = -2.8\). Through \((3, 14.4)\): intercept \(14.4 + 2.8 \times 3 = 22.8\), so \(y = 22.8 - 2.8x\).</p>
+</section>
+
+<div class="sheet-nav"><a href="a11-triangle-angles.html">← Previous</a><a href="a13-percent-change.html">Next: Up 20%, down 20% →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

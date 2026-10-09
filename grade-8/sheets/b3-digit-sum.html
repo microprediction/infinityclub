@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why the digit-sum test works · Infinity Club</title>
+<meta name="description" content="Why adding the digits tells you about dividing by 9 and 3: every power of ten is one more than a multiple of 9. The alternating test for 11, casting out nines, and a block test for 7.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 8 · Around the corner · 3</div>
+  <h1>Why the digit-sum test works</h1>
+  <p class="teaser">A number is divisible by 9 when its digits add to a multiple of 9. The reason is that 10 is one more than 9. Then the test for 11.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A number is divisible by 9 exactly when its digits add to a multiple of 9. Why should digits know anything about dividing?</p>
+<p>Because 10 is one more than 9: \(100 = 99 + 1\), \(1000 = 999 + 1\), and every power of ten is a multiple of 9 plus 1.</p>
+<figure><svg viewBox="0 0 300 126" width="300" height="126" role="img" aria-label="A 10 by 10 grid of 100 cells with one cell orange, and a row of 10 cells with one cell orange" font-family="Nunito, sans-serif" font-size="12">
+<rect x="20" y="10" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="29" y="10" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="38" y="10" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="47" y="10" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="56" y="10" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="65" y="10" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="74" y="10" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="83" y="10" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="92" y="10" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="101" y="10" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="20" y="19" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="29" y="19" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="38" y="19" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="47" y="19" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="56" y="19" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="65" y="19" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="74" y="19" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="83" y="19" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="92" y="19" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="101" y="19" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="20" y="28" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="29" y="28" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="38" y="28" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="47" y="28" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="56" y="28" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="65" y="28" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="74" y="28" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="83" y="28" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="92" y="28" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="101" y="28" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="20" y="37" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="29" y="37" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="38" y="37" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="47" y="37" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="56" y="37" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="65" y="37" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="74" y="37" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="83" y="37" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="92" y="37" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="101" y="37" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="20" y="46" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="29" y="46" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="38" y="46" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="47" y="46" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="56" y="46" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="65" y="46" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="74" y="46" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="83" y="46" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="92" y="46" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="101" y="46" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="20" y="55" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="29" y="55" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="38" y="55" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="47" y="55" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="56" y="55" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="65" y="55" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="74" y="55" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="83" y="55" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="92" y="55" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="101" y="55" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="20" y="64" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="29" y="64" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="38" y="64" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="47" y="64" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="56" y="64" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="65" y="64" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="74" y="64" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="83" y="64" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="92" y="64" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="101" y="64" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="20" y="73" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="29" y="73" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="38" y="73" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="47" y="73" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="56" y="73" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="65" y="73" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="74" y="73" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="83" y="73" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="92" y="73" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="101" y="73" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="20" y="82" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="29" y="82" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="38" y="82" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="47" y="82" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="56" y="82" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="65" y="82" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="74" y="82" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="83" y="82" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="92" y="82" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="101" y="82" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="20" y="91" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="29" y="91" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="38" y="91" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="47" y="91" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="56" y="91" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="65" y="91" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="74" y="91" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="83" y="91" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="92" y="91" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="101" y="91" width="9" height="9" fill="#f5a524" stroke="#fff" stroke-width="1"/>
+<rect x="20" y="10" width="90" height="90" fill="none" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="65" y="118" text-anchor="middle" fill="#3f44c9">100 = 99 + 1</text>
+<rect x="160" y="50" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="169" y="50" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="178" y="50" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="187" y="50" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="196" y="50" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="205" y="50" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="214" y="50" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="223" y="50" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="232" y="50" width="9" height="9" fill="#dcdcf5" stroke="#fff" stroke-width="1"/>
+<rect x="241" y="50" width="9" height="9" fill="#f5a524" stroke="#fff" stroke-width="1"/>
+<rect x="160" y="50" width="90" height="9" fill="none" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="205" y="80" text-anchor="middle" fill="#3f44c9">10 = 9 + 1</text>
+</svg>
+<figcaption>Take nines out of 100 and one cell is left over. Take nines out of 10 and one cell is left over.</figcaption></figure>
+<p>Take \(752 = 7 \times 100 + 5 \times 10 + 2\) and swap in that fact:</p>
+<p>\[752 = 7(99 + 1) + 5(9 + 1) + 2 = (7 \times 99 + 5 \times 9) + (7 + 5 + 2).\]</p>
+<p>The first bracket is a multiple of 9 whatever the digits are. So 752 and its digit sum 14 differ by a multiple of 9: they leave the <em>same remainder</em> on dividing by 9, and one is a multiple of 9 exactly when the other is. Since 9, 99, 999, … are also multiples of 3, the same argument gives the test for 3.</p>
+<p>For 11, 10 is one <em>less</em> than 11: \(10 = 11 - 1\), \(100 = 9 \times 11 + 1\), \(1000 = 91 \times 11 - 1\). Powers of ten alternate between one below and one above a multiple of 11, so for digits \(a, b, c, d\):</p>
+<p class="callout">\(1000a + 100b + 10c + d = (\text{multiple of } 11) - a + b - c + d.\)</p>
+<p>Alternately add and subtract the digits from the right. If the result is a multiple of 11 (0 counts), so is the number.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: 918,082 under both tests</h2>
+<p>Digit sum: \(9 + 1 + 8 + 0 + 8 + 2 = 28\), not a multiple of 3 or 9, so 918,082 is divisible by neither. Better: its remainder on dividing by 9 equals the remainder of 28, which is 1.</p>
+<p>For 11, start at the right and alternate: \(2 - 8 + 0 - 8 + 1 - 9 = -22\), a multiple of 11. So 918,082 is divisible by 11. Check: \(11 \times 83{,}462 = 918{,}082\).</p>
+<p class="small">Remainders are the subject of <a href="../../grade-6/sheets/b3-clock-arithmetic.html">clock arithmetic</a>: a number and its digit sum sit at the same place on a 9-hour clock.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Without dividing, say whether each of 7,254, 48,627 and 52,314 is divisible by 3, and whether it is divisible by 9.<div class="space short"></div></li>
+<li>(a) Find the digit \(\square\) that makes \(5\square 31\) divisible by 9. There are two answers. (b) Find every digit \(\square\) that makes \(7\square 2\) divisible by 3.<div class="space short"></div></li>
+<li>Apply the alternating test to 2,728, to 1,353 and to 10,000,001. Then explain, using \(10 = 11 - 1\), why 10,000,001 was certain to pass.<div class="space"></div></li>
+<li><b>Casting out nines.</b> A student claims \(347 \times 268 = 92{,}986\). Replace 347 and 268 by the remainders of their digit sums on dividing by 9, multiply those, and reduce again. Do the same to the claimed answer and show the claim is wrong without multiplying. Why does this work? Name one mistake it can never catch.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: blocks of three</h2>
+<p>\(1001 = 7 \times 11 \times 13\), and \(1000 = 1001 - 1\). So the alternating trick, applied to blocks of three digits instead of single digits, tests for 7, 11 and 13 at once. Is 1,234,562 divisible by 7? By 13? Explain why the block method is allowed.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>7,254: digit sum 18, divisible by 3 and by 9. 48,627: digit sum 27, divisible by both. 52,314: digit sum 15, divisible by 3 but not by 9.</li>
+<li>(a) \(5 + \square + 3 + 1 = 9 + \square\) must be a multiple of 9, so \(\square = 0\) or \(9\): 5,031 and 5,931. (b) \(9 + \square\) must be a multiple of 3, so \(\square = 0, 3, 6\) or \(9\).</li>
+<li>2,728: \(8 - 2 + 7 - 2 = 11\), divisible. 1,353: \(3 - 5 + 3 - 1 = 0\), divisible (\(11 \times 123\)). 10,000,001: \(1 - 0 + 0 - 0 + 0 - 0 + 0 - 1 = 0\), divisible. Why: \(10^7\) is an odd power of \(11 - 1\), so it is a multiple of 11 <em>minus</em> 1, and adding 1 gives a multiple of 11. In fact \(10{,}000{,}001 = 11 \times 909{,}091\).</li>
+<li>347 has digit sum 14, remainder 5. 268 has digit sum 16, remainder 7. \(5 \times 7 = 35\), remainder 8. So the true product leaves remainder 8 on dividing by 9. The claim 92,986 has digit sum 34, remainder 7. Wrong. (The product is 92,996.) It works because a number and its digit sum have the same remainder on dividing by 9, and remainders multiply. It can never catch two digits swapped, since the digit sum does not change.</li>
+</ol>
+<p><b>Stretch.</b> Blocks from the right: \(562 - 234 + 1 = 329 = 7 \times 47\), so 1,234,562 is divisible by 7. \(329 = 13 \times 25 + 4\), so it is not divisible by 13. The method is allowed because \(1000 = 1001 - 1\) and \(1000^2 = 1001 \times 999 + 1\): powers of 1000 alternate between one less and one more than a multiple of 1001, exactly as powers of 10 do for 11.</p>
+</section>
+
+<div class="sheet-nav"><a href="b2-mcnugget.html">← Previous</a><a href="b4-proofs-without-words.html">Next: Proofs without words →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

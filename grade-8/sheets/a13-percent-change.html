@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Up 20%, down 20% · Infinity Club</title>
+<meta name="description" content="Percent changes multiply. Why a 20% rise followed by a 20% fall is a 4% loss, how to chain changes, and the one multiplier that undoes any change.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 8 · Sharpen · 13</div>
+  <h1>Up 20%, down 20%</h1>
+  <p class="teaser">Percent changes multiply. Why a 20% rise followed by a 20% fall is a loss, and the one multiplier that undoes any change.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A percent change is a multiplication. Up 20% means the new amount is 120% of the old: multiply by \(1.2\). Down 20% means 80%: multiply by \(0.8\). The number you multiply by is the <b>multiplier</b>.</p>
+<p>Now do both, starting at 100. Up 20% is 120. The fall is then 20% of 120, not of 100: lose 24, land on 96.</p>
+<figure><svg viewBox="0 0 360 140" width="360" height="140" role="img" aria-label="Three bars of heights 100, 120 and 96, with arrows labelled times 1.2 and times 0.8" font-family="Nunito, sans-serif" font-size="13">
+<line x1="30" y1="115" x2="340" y2="115" stroke="#999" stroke-width="1"/>
+<rect x="40" y="45" width="50" height="70" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="150" y="31" width="50" height="84" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="260" y="47.8" width="50" height="67.2" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/>
+<line x1="30" y1="45" x2="340" y2="45" stroke="#999" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="65" y="38" text-anchor="middle" font-weight="700">100</text>
+<text x="175" y="24" text-anchor="middle" font-weight="700">120</text>
+<text x="285" y="40" text-anchor="middle" font-weight="700" fill="#f5a524">96</text>
+<path d="M 96 80 L 144 80" stroke="#3f44c9" stroke-width="1.5" marker-end="url(#ar)"/>
+<path d="M 206 80 L 254 80" stroke="#3f44c9" stroke-width="1.5" marker-end="url(#ar)"/>
+<text x="120" y="98" text-anchor="middle" fill="#3f44c9">× 1.2</text>
+<text x="230" y="98" text-anchor="middle" fill="#3f44c9">× 0.8</text>
+<text x="65" y="132" text-anchor="middle" font-size="12" fill="#555">start</text>
+<text x="175" y="132" text-anchor="middle" font-size="12" fill="#555">up 20%</text>
+<text x="285" y="132" text-anchor="middle" font-size="12" fill="#555">down 20%</text>
+<defs><marker id="ar" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#3f44c9"/></marker></defs>
+</svg><figcaption>Up 20% then down 20%: \(100 \times 1.2 \times 0.8 = 96\). The dashed line is where you started.</figcaption></figure>
+<p>With multipliers the whole trip is one product: \(1.2 \times 0.8 = 0.96\), a 4% loss. Down first, then up, also gives 0.96: the order does not matter.</p>
+<p>Why always a loss? Write the change as a fraction \(p\) (so 20% is \(p = 0.2\)). Up then down is</p>
+<p class="callout">\((1 + p)(1 - p) = 1 - p^2\), which is less than 1 whenever \(p \neq 0\). The loss is exactly \(p^2\): \(0.2^2 = 0.04\).</p>
+<p>The same idea undoes a change. To undo \(\times 1.2\), divide by 1.2, which is multiplying by \(1/1.2 = 0.8333\ldots\), a fall of 16.7%, not 20%. The undo multiplier is the <b>reciprocal</b>, one over the original. A chain of changes is one multiplier: multiply them all. (Basics: <a href="../../grade-6/sheets/a3-percentages.html">grade 6, sheet 3</a>.)</p>
+</section>
+
+<section class="example">
+<h2>Watch one: a share price rises 30%, then falls 30%</h2>
+<p>Multipliers: \(1.3\) then \(0.7\). Together, \(1.3 \times 0.7 = 0.91\), so the price ends 9% below where it began. Check against the formula: \(p = 0.3\) and \(p^2 = 0.09\).</p>
+<p>What rise would undo the 30% fall? Not 30%. The undo multiplier is \(1/0.7 = 1.4286\), a rise of about 42.9%:</p>
+<p>\[0.7 \times \frac{1}{0.7} = 1.\]</p>
+<p>A fall needs a bigger rise to repair it, because the rise acts on a smaller base.</p>
+<p class="small">Watch repeated multipliers run away from repeated additions: <a href="../../demos/growth.html">infinityclub.net/demos/growth.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>A jacket costs 120. The price goes up 25%, then the new price is cut by 25%. (a) Find the final price. (b) What single percent change takes the original price to the final one? Check it against \(p^2\).<div class="space short"></div></li>
+<li>(a) A rent rose 20% to 54 a night. What was it before? (b) A town's population fell 15% to 1,700. What was it before? In each case, write the multiplier first and divide.<div class="space short"></div></li>
+<li>A shop raises every price by 40%, then advertises "40% off everything". (a) What single multiplier connects the original price to the sale price, and is the sale price above or below the original? (b) What percentage discount, after the 40% rise, would bring prices back exactly to where they were?<div class="space"></div></li>
+<li>(a) A stock falls 50%. What percent rise gets it back to its starting price? (b) An amount goes up \(x\%\) and then down \(x\%\), and the overall result is a loss of exactly 1%. Find \(x\).<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: "50% extra free"</h2>
+<p>One bottle says "50% extra free". Another says "33% off". Which is the better deal per millilitre, or are they the same? Then: what amount of "extra free" would equal a 20% discount per millilitre? Use reciprocals, not guesswork.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(120 \times 1.25 = 150\), then \(150 \times 0.75 = 112.5\). (b) \(1.25 \times 0.75 = 0.9375\), a fall of 6.25%. And \(0.25^2 = 0.0625\), as the formula predicts.</li>
+<li>(a) Multiplier 1.2, so the old rent was \(54 / 1.2 = 45\). (b) Multiplier 0.85, so the old population was \(1700 / 0.85 = 2000\).</li>
+<li>(a) \(1.4 \times 0.6 = 0.84\): the sale price is 16% <em>below</em> the original. "40% off" after a 40% rise is a real discount of 16%. (b) The undo multiplier is \(1/1.4 = 0.714\ldots\), a discount of about 28.6%.</li>
+<li>(a) Multiplier 0.5; the undo multiplier is \(1/0.5 = 2\), a rise of 100%. Halve a price and you must double it to get back. (b) The loss is \(p^2\), so \(p^2 = 0.01\), \(p = 0.1\): \(x = 10\).</li>
+</ol>
+<p><b>Stretch.</b> "50% extra free" means you get 1.5 times the volume for the same money, so the price per millilitre is multiplied by \(1/1.5 = 2/3\): a discount of \(33\tfrac13\%\). The two deals are the same (the second is a hair better if it really is a flat 33%). For a 20% discount the price per millilitre is multiplied by 0.8, so the volume is multiplied by \(1/0.8 = 1.25\): "25% extra free".</p>
+</section>
+
+<div class="sheet-nav"><a href="a12-scatter.html">← Previous</a><a href="a14-repeating-decimals.html">Next: Turning 0.272727… back into a fraction →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

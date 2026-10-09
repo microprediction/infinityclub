@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How tall is that? · Infinity Club</title>
+<meta name="description" content="Measure a tree with its shadow and a metre stick. Parallel sun rays make similar triangles, so height over shadow is the same for everything. Then a mirror on the ground, a streetlight, and a home-made clinometer.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 8 · Connections · 4</div>
+  <h1>How tall is that?</h1>
+  <p class="teaser">A tree, its shadow, and a metre stick. Similar triangles, a mirror on the ground, and a clinometer you can make from a protractor.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>The sun is so far away that its rays arrive parallel, so at any moment every upright thing casts its shadow at the same angle. A tree and a metre stick each make a right-angled triangle: height, shadow, and the ray joining their tips. Same angles means the triangles are <b>similar</b>: one is a scaled copy of the other (see <a href="a10-rigid-motions.html">a10</a>), and matching sides are in the same ratio.</p>
+<figure><svg viewBox="0 0 360 170" width="360" height="170" role="img" aria-label="A tree of height H with shadow S and a stick of height h with shadow s; dashed parallel rays join the tops to the shadow tips" font-family="Nunito, sans-serif" font-size="13">
+<line x1="10" y1="150" x2="350" y2="150" stroke="#000" stroke-width="1.5"/>
+<line x1="70" y1="150" x2="205" y2="150" stroke="#f5a524" stroke-width="5"/>
+<line x1="250" y1="150" x2="295" y2="150" stroke="#f5a524" stroke-width="5"/>
+<rect x="67" y="86" width="6" height="64" fill="#3f44c9"/>
+<ellipse cx="70" cy="74" rx="20" ry="14" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<line x1="250" y1="120" x2="250" y2="150" stroke="#3f44c9" stroke-width="4"/>
+<line x1="70" y1="60" x2="205" y2="150" stroke="#999" stroke-width="1.5" stroke-dasharray="5 3"/>
+<line x1="250" y1="120" x2="295" y2="150" stroke="#999" stroke-width="1.5" stroke-dasharray="5 3"/>
+<text x="56" y="110" text-anchor="middle" fill="#3f44c9" font-weight="700">H</text>
+<text x="137" y="166" text-anchor="middle" fill="#f5a524" font-weight="700">S</text>
+<text x="240" y="138" text-anchor="middle" fill="#3f44c9" font-weight="700">h</text>
+<text x="272" y="166" text-anchor="middle" fill="#f5a524" font-weight="700">s</text>
+<text x="150" y="92" fill="#999" font-size="12">sun's rays, parallel</text>
+</svg><figcaption>Same angles, so \(H/S = h/s\). The big triangle is the small one scaled up.</figcaption></figure>
+<p class="callout">\(\dfrac{H}{S} = \dfrac{h}{s}\), so \(H = h \times \dfrac{S}{s}\). Height over shadow is the sun's steepness, a slope in the sense of <a href="a2-slope.html">a2</a>, shared by everything at that moment.</p>
+<p>No sun? Lay a mirror on the ground and step back until the tree's top appears in it. Light leaves at the angle it arrived, so your eye, feet and the mirror form a triangle similar to the tree's: eye height over your distance equals tree height over its distance.</p>
+<p>Or make a <b>clinometer</b>: hang a weighted string from a protractor and sight along its flat edge. At 45° the triangle from your eye is isosceles: the tree top is as far above your eye as you are from the trunk.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: a metre stick and a tree</h2>
+<p>At 4 pm a metre stick casts a shadow 1.6 m long. The tree's shadow is 12.8 m. The sun's steepness is \(1/1.6 = 0.625\) for both, so</p>
+<p>\[\frac{H}{12.8} = \frac{1}{1.6} \quad\Longrightarrow\quad H = \frac{12.8}{1.6} = 8 \text{ m}.\]</p>
+<p>Quicker: the tree's shadow is 8 times the stick's shadow, so the tree is 8 times the stick. Measure both shadows within a few minutes of each other. The sun moves, and so does the ratio.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>A 1.5 m tall student casts a 2.4 m shadow. At the same moment a flagpole casts an 11.2 m shadow. How tall is the flagpole?<div class="space short"></div></li>
+<li>Mirror method. Your eyes are 1.6 m above the ground. You see the top of a building in a mirror lying 2 m from your feet and 15 m from the building. How tall is the building? Sketch the two triangles.<div class="space short"></div></li>
+<li>A streetlight is 6 m high. A 1.8 m person stands 4 m from the base of the lamp post. Here the light is a point, not parallel rays, so the big triangle runs from the lamp to the tip of the shadow. Call the shadow length \(s\), write the proportion, and solve for \(s\).<div class="space"></div></li>
+<li>A pyramid's shadow is awkward: most of it lies under the pyramid. Suppose the shadow tip is 65 m beyond the middle of one side, the side is 230 m long, and at that moment a 1 m stick casts a 1.25 m shadow. How far is the shadow tip from the point under the apex? How tall is the pyramid?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the size of the Moon</h2>
+<p>A coin 2.4 cm across, held 264 cm from your eye, just covers the full Moon. The Moon is about 384,000 km away. Draw the two similar triangles that share your eye as a vertex and estimate the Moon's diameter.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(H = 1.5 \times 11.2/2.4 = 7\) m.</li>
+<li>\(H/15 = 1.6/2\), so \(H = 12\) m. The two right triangles meet at the mirror, and the angle in equals the angle out, so they are similar.</li>
+<li>\(\dfrac{1.8}{6} = \dfrac{s}{4 + s}\). Cross-multiply: \(1.8(4 + s) = 6s\), so \(7.2 = 4.2s\) and \(s \approx 1.71\) m.</li>
+<li>Half the side is 115 m, so the shadow tip is \(115 + 65 = 180\) m from the point under the apex. The steepness is \(1/1.25 = 0.8\), so \(H = 180 \times 0.8 = 144\) m. (The Great Pyramid was originally about 146 m, so a measurement like this is within a couple of per cent. The story goes that Thales did it.)</li>
+</ol>
+<p><b>Stretch.</b> Coin diameter over coin distance equals Moon diameter over Moon distance: \(D = 384000 \times 2.4/264 \approx 3{,}490\) km. The true figure is about 3,470 km. The ratio \(2.4/264 \approx 1/110\) is the Moon's angular size, and it happens to be almost exactly the Sun's too, which is why total eclipses are possible.</p>
+</section>
+
+<div class="sheet-nav"><a href="c3-capture-recapture.html">← Previous</a><a href="c5-hex-colours.html">Next: Sixteen million colours →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

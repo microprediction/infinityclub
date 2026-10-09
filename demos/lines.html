@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Slope and Intercept · Infinity Club</title>
+<meta name="description" content="Slide m and b in y = mx + b, drag two points along the line and watch the rise-over-run triangle; switch on a parallel line to see what sharing a slope means.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+#plot { cursor: grab; touch-action: none; }
+#plot.drag { cursor: grabbing; }
+.controls input[type=range] { width: 160px; }
+.controls .val { font-family: var(--mono); min-width: 3em; display: inline-block; }
+#eq { font-size: 1.15rem; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Slope and intercept</h1>
+<p class="explain">Slide m and b and watch the line y = mx + b move. Then grab either of the two dots and drag it along the line. The triangle between the dots shows the rise and the run, and the readout divides one by the other. Notice that wherever you put the dots, rise ÷ run comes out as m. Switch on the parallel line and compare its equation with the first one.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <label>m <input type="range" id="m" min="-5" max="5" step="0.25" value="0.5"> <span class="val" id="mv">0.5</span></label>
+    <label>b <input type="range" id="b" min="-6" max="6" step="0.5" value="1"> <span class="val" id="bv">1</span></label>
+    <label><input type="checkbox" id="ghost"> parallel line</label>
+    <button id="reset" class="ghost">Reset</button>
+  </div>
+  <div class="readout" id="eq"></div>
+  <canvas id="plot" width="900" height="630"></canvas>
+  <div class="readout" id="info"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>A line is the graph of a steady rate. Every time x goes up by 1, y goes up by the same amount, and that amount is the <b>slope</b> m. Between any two points on the line the rise is m times the run, so rise ÷ run is always m, no matter which two points you pick. That is why one number describes the steepness of the whole line. The triangles you make by dragging the dots are all similar: same shape, different size.</p>
+<p>The <b>intercept</b> b is where the line crosses the y-axis, because putting x = 0 into y = mx + b leaves y = b. Changing b slides the line up or down without tilting it. Changing m tilts the line about the point (0, b), which stays fixed.</p>
+<p>Two lines with the same m and different b are <b>parallel</b>: the gap between them is the same everywhere, so they never meet. If m = 0 the line is flat and y = b for every x. There is no slider for a vertical line because its slope would be rise ÷ 0, which is not a number. A vertical line is x = c, not y = mx + b.</p>
+<p>Sheets: <a href="../grade-8/sheets/a2-slope.html">Why slope is the same everywhere on a line</a> and <a href="../grade-8/sheets/a3-lines.html">Reading a line at sight</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  function lineY(m, b, x) { return m * x + b; }
+  // rise, run and their ratio between the points of the line at x1 and x2
+  function riseRun(m, b, x1, x2) {
+    var y1 = lineY(m, b, x1), y2 = lineY(m, b, x2);
+    return { x1: x1, y1: y1, x2: x2, y2: y2, rise: y2 - y1, run: x2 - x1, slope: (y2 - y1) / (x2 - x1) };
+  }
+  function xIntercept(m, b) { return m === 0 ? null : -b / m; }
+  function fmt(v, d) { d = d === undefined ? 2 : d; var r = Math.round(v * Math.pow(10, d)) / Math.pow(10, d); if (Object.is(r, -0)) r = 0; return r.toString().replace("-", "−"); }
+  function par(v) { return v < 0 ? "(" + fmt(v) + ")" : fmt(v); } // wrap negatives in brackets
+  function equation(m, b) {
+    if (m === 0) return "y = " + fmt(b);
+    var ms = m === 1 ? "" : m === -1 ? "−" : fmt(m);
+    var bs = b === 0 ? "" : (b > 0 ? " + " : " − ") + fmt(Math.abs(b));
+    return "y = " + ms + "x" + bs;
+  }
+  // a parallel line that stays on the picture: 3 below if there is room, else 3 above
+  function ghostB(b) { return b > 0 ? b - 3 : b + 3; }
+  /*ENDPURE*/
+
+  var canvas = document.getElementById("plot"), ctx = canvas.getContext("2d");
+  var info = document.getElementById("info"), eq = document.getElementById("eq");
+  var S = { m: 0.5, b: 1, x1: -4, x2: 2 }, sl = { m: document.getElementById("m"), b: document.getElementById("b") };
+  var ghostBox = document.getElementById("ghost");
+  ["m", "b"].forEach(function (key) { sl[key].addEventListener("input", function () { S[key] = parseFloat(sl[key].value); draw(); }); });
+  ghostBox.addEventListener("change", draw);
+  document.getElementById("reset").addEventListener("click", function () { S = { m: 0.5, b: 1, x1: -4, x2: 2 }; ghostBox.checked = false; sync(); draw(); });
+  function sync() { sl.m.value = S.m; sl.b.value = S.b; }
+
+  var XMIN = -10, XMAX = 10, YMIN, YMAX, W, H;
+  function X(x) { return (x - XMIN) / (XMAX - XMIN) * W; }
+  function Y(y) { return H - (y - YMIN) / (YMAX - YMIN) * H; }
+  function toMath(px, py) { return [XMIN + px / W * (XMAX - XMIN), YMIN + (H - py) / H * (YMAX - YMIN)]; }
+  function strokeLine(m, b) { ctx.beginPath(); ctx.moveTo(X(XMIN), Y(lineY(m, b, XMIN))); ctx.lineTo(X(XMAX), Y(lineY(m, b, XMAX))); ctx.stroke(); }
+  function dot(x, y, r, fill) { ctx.fillStyle = fill; ctx.beginPath(); ctx.arc(X(x), Y(y), r, 0, Math.PI * 2); ctx.fill(); ctx.strokeStyle = "#fff"; ctx.lineWidth = 2; ctx.stroke(); }
+
+  function draw() {
+    var m = S.m, b = S.b, rr = riseRun(m, b, S.x1, S.x2);
+    document.getElementById("mv").textContent = fmt(m); document.getElementById("bv").textContent = fmt(b);
+    var dpr = window.devicePixelRatio || 1; W = canvas.clientWidth || 900; H = Math.round(W * 0.7);
+    YMAX = (XMAX - XMIN) / 2 * H / W; YMIN = -YMAX; // equal scale so slopes look right
+    canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, H);
+    ctx.strokeStyle = "#ece9e0"; ctx.lineWidth = 1;
+    for (var gx = XMIN; gx <= XMAX; gx++) { ctx.beginPath(); ctx.moveTo(X(gx), 0); ctx.lineTo(X(gx), H); ctx.stroke(); }
+    for (var gy = Math.ceil(YMIN); gy <= YMAX; gy++) { ctx.beginPath(); ctx.moveTo(0, Y(gy)); ctx.lineTo(W, Y(gy)); ctx.stroke(); }
+    ctx.strokeStyle = "#8a8ca8"; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(X(0), 0); ctx.lineTo(X(0), H); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(0, Y(0)); ctx.lineTo(W, Y(0)); ctx.stroke();
+    ctx.fillStyle = "#5d6079"; ctx.font = "11px Nunito, sans-serif"; ctx.textAlign = "center";
+    for (var tx = XMIN; tx <= XMAX; tx += 2) if (tx !== 0) ctx.fillText(tx, X(tx), Y(0) + 13);
+    ctx.textAlign = "right";
+    for (var ty = Math.ceil(YMIN); ty <= YMAX; ty += 2) if (ty !== 0) ctx.fillText(ty, X(0) - 5, Y(ty) + 4);
+
+    // parallel ghost
+    var gb = ghostB(b);
+    if (ghostBox.checked) {
+      ctx.strokeStyle = "#f5a524"; ctx.lineWidth = 2.5; ctx.setLineDash([8, 6]); strokeLine(m, gb); ctx.setLineDash([]);
+      ctx.fillStyle = "#b8731a"; ctx.font = "bold 12px Nunito, sans-serif"; ctx.textAlign = "left";
+      ctx.fillText(equation(m, gb), X(XMIN) + 8, Y(lineY(m, gb, XMIN + 0.5)) + (m >= 0 ? 16 : -8));
+    }
+    // rise/run triangle
+    ctx.fillStyle = "rgba(63,68,201,0.08)"; ctx.beginPath();
+    ctx.moveTo(X(rr.x1), Y(rr.y1)); ctx.lineTo(X(rr.x2), Y(rr.y1)); ctx.lineTo(X(rr.x2), Y(rr.y2)); ctx.closePath(); ctx.fill();
+    ctx.strokeStyle = "#f5a524"; ctx.lineWidth = 3;
+    ctx.beginPath(); ctx.moveTo(X(rr.x1), Y(rr.y1)); ctx.lineTo(X(rr.x2), Y(rr.y1)); ctx.stroke(); // run
+    ctx.strokeStyle = "#1d1f3a";
+    ctx.beginPath(); ctx.moveTo(X(rr.x2), Y(rr.y1)); ctx.lineTo(X(rr.x2), Y(rr.y2)); ctx.stroke(); // rise
+    ctx.font = "bold 12px Nunito, sans-serif"; ctx.textAlign = "center"; ctx.fillStyle = "#b8731a";
+    ctx.fillText("run " + fmt(rr.run), X((rr.x1 + rr.x2) / 2), Y(rr.y1) + (rr.rise >= 0 ? 15 : -7));
+    ctx.fillStyle = "#1d1f3a"; ctx.textAlign = rr.run >= 0 ? "left" : "right";
+    ctx.fillText("rise " + fmt(rr.rise), X(rr.x2) + (rr.run >= 0 ? 7 : -7), Y((rr.y1 + rr.y2) / 2) + 4);
+    // the line
+    ctx.strokeStyle = "#3f44c9"; ctx.lineWidth = 3; strokeLine(m, b);
+    // intercept and handles
+    dot(0, b, 5, "#8a8ca8");
+    ctx.fillStyle = "#5d6079"; ctx.font = "11px Nunito, sans-serif"; ctx.textAlign = "left"; ctx.fillText("(0, " + fmt(b) + ")", X(0) + 8, Y(b) - 8);
+    dot(rr.x1, rr.y1, 9, "#3f44c9"); dot(rr.x2, rr.y2, 9, "#3f44c9");
+    ctx.fillStyle = "#1d1f3a"; ctx.font = "bold 12px Nunito, sans-serif"; ctx.textAlign = "right";
+    ctx.fillText("P (" + fmt(rr.x1) + ", " + fmt(rr.y1) + ")", X(rr.x1) - 12, Y(rr.y1) - 10);
+    ctx.textAlign = "left"; ctx.fillText("Q (" + fmt(rr.x2) + ", " + fmt(rr.y2) + ")", X(rr.x2) + 12, Y(rr.y2) - 10);
+
+    eq.textContent = equation(m, b) + "    (m = " + fmt(m) + ", b = " + fmt(b) + ")";
+    var xi = xIntercept(m, b);
+    var txt = "rise = " + fmt(rr.y2) + " − " + par(rr.y1) + " = " + fmt(rr.rise) + ",   run = " + fmt(rr.x2) + " − " + par(rr.x1) + " = " + fmt(rr.run)
+      + "\nrise ÷ run = " + fmt(rr.rise) + " ÷ " + par(rr.run) + " = " + fmt(rr.slope, 3) + (Math.abs(rr.slope - m) < 1e-9 ? "  = m, whichever two points you choose" : "")
+      + "\ny-intercept (0, " + fmt(b) + ")" + (xi === null ? ";  m = 0 so the line is flat and " + (b === 0 ? "is the x-axis itself" : "never crosses the x-axis") : ";  x-intercept where mx + b = 0, so x = −b/m = " + fmt(xi, 3));
+    if (ghostBox.checked) txt += "\nparallel line: " + equation(m, gb) + "  (same m, different b, so the same tilt and a constant gap of " + fmt(Math.abs(b - gb)) + " straight up)";
+    info.textContent = txt;
+  }
+
+  // drag P or Q along the line
+  var dragging = null;
+  function hit(ev) {
+    var r = canvas.getBoundingClientRect(), px = ev.clientX - r.left, py = ev.clientY - r.top, best = null, bestD = 24 * 24;
+    [["x1", S.x1], ["x2", S.x2]].forEach(function (p) {
+      var dx = px - X(p[1]), dy = py - Y(lineY(S.m, S.b, p[1])), d = dx * dx + dy * dy;
+      if (d < bestD) { bestD = d; best = p[0]; }
+    });
+    return best;
+  }
+  canvas.addEventListener("pointerdown", function (ev) {
+    var h = hit(ev); if (!h) return;
+    dragging = h; canvas.classList.add("drag"); canvas.setPointerCapture(ev.pointerId); ev.preventDefault();
+  });
+  canvas.addEventListener("pointermove", function (ev) {
+    if (!dragging) return;
+    var r = canvas.getBoundingClientRect(), mth = toMath(ev.clientX - r.left, ev.clientY - r.top);
+    var x = Math.max(-9.5, Math.min(9.5, Math.round(mth[0] * 2) / 2));
+    var other = dragging === "x1" ? S.x2 : S.x1;
+    if (x === other) return;
+    S[dragging] = x; draw();
+  });
+  function up() { dragging = null; canvas.classList.remove("drag"); }
+  canvas.addEventListener("pointerup", up); canvas.addEventListener("pointercancel", up);
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(draw, 120); });
+  draw();
+})();
+</script>
+</body>
+</html>

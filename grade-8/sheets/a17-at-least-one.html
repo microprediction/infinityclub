@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>"At least one": the complement trick · Infinity Club</title>
+<meta name="description" content="P(at least one six in four rolls) is 1 minus P(no sixes). Independence, the multiplication rule, and the two dice bets of the Chevalier de Méré.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 8 · Sharpen · 17</div>
+  <h1>"At least one": the complement trick</h1>
+  <p class="teaser">P(at least one six in four rolls) is 1 minus P(no sixes). Independence, the multiplication rule, and the gambler who lost to de Méré's dice.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Dice have no memory: one roll does not change the chances for the next. The rolls are <b>independent</b>, and for independent events the probability that both happen is the product: \(P(A \text{ and } B) = P(A) \times P(B)\). A six then a six is \(\tfrac16 \times \tfrac16 = \tfrac1{36}\): of all pairs of rolls, a sixth start with a six, and a sixth of those continue with one.</p>
+<p>"At least one" is awkward head-on: at least one six in four rolls could be one, two, three or four sixes, in many orders. But its opposite, "none", is one clean event: not a six, four times in a row. Each miss has probability \(\tfrac56\), so</p>
+<p>\[P(\text{no six in four rolls}) = \left(\tfrac56\right)^4 = \tfrac{625}{1296} \approx 0.482.\]</p>
+<p class="callout">\(P(\text{at least one}) = 1 - P(\text{none})\). Compute the easy side, then subtract from 1.</p>
+<p>So \(P(\text{at least one six in four rolls}) = 1 - 0.482 = 0.518\), slightly better than even. The figure shows how this grows with the number of rolls, and that it never reaches 1.</p>
+<figure><svg viewBox="0 0 320 140" width="320" height="140" role="img" aria-label="Bar chart of the probability of at least one six against the number of rolls, from one to six rolls, with a dashed line at one half crossed at four rolls" font-family="Nunito, sans-serif" font-size="12">
+<line x1="36" y1="118" x2="296" y2="118" stroke="#999" stroke-width="1"/>
+<line x1="36" y1="73" x2="296" y2="73" stroke="#f5a524" stroke-width="1.5" stroke-dasharray="4 3"/>
+<text x="300" y="77" fill="#f5a524">½</text>
+<rect x="44" y="103" width="28" height="15" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="86" y="90.5" width="28" height="27.5" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="128" y="80.1" width="28" height="37.9" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="170" y="71.4" width="28" height="46.6" fill="#fde8c4" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="212" y="64.2" width="28" height="53.8" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="254" y="58.1" width="28" height="59.9" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="58" y="99" text-anchor="middle" fill="#3f44c9">0.17</text><text x="100" y="86.5" text-anchor="middle" fill="#3f44c9">0.31</text><text x="142" y="76" text-anchor="middle" fill="#3f44c9">0.42</text><text x="184" y="67" text-anchor="middle" fill="#3f44c9" font-weight="700">0.52</text><text x="226" y="60" text-anchor="middle" fill="#3f44c9">0.60</text><text x="268" y="54" text-anchor="middle" fill="#3f44c9">0.67</text>
+<text x="58" y="133" text-anchor="middle">1</text><text x="100" y="133" text-anchor="middle">2</text><text x="142" y="133" text-anchor="middle">3</text><text x="184" y="133" text-anchor="middle">4</text><text x="226" y="133" text-anchor="middle">5</text><text x="268" y="133" text-anchor="middle">6</text>
+<text x="20" y="133" text-anchor="middle" fill="#555">rolls</text>
+<text x="36" y="16" fill="#555">P(at least one six)</text>
+</svg><figcaption>\(1 - \left(\tfrac56\right)^n\) for \(n = 1\) to \(6\) rolls. It passes one half at the fourth roll. Six rolls do not make a six certain.</figcaption></figure>
+</section>
+
+<section class="example">
+<h2>Watch one: de Méré's two bets</h2>
+<p>In the 1650s a French gambler, the Chevalier de Méré, bet even money on a six in four rolls of a die, and came out ahead: \(0.518\) beats a half. He then bet on a double six in 24 rolls of two dice, reasoning that \(\tfrac{4}{6} = \tfrac{24}{36}\) made it the same bet. He lost, and asked Pascal why.</p>
+<p>\[P(\text{no double six}) = \left(\tfrac{35}{36}\right)^{24} \approx 0.509, \qquad P(\text{at least one}) \approx 0.491.\]</p>
+<p>Just under a half. Twenty-five rolls would have given 0.506 and saved him.</p>
+<p class="small">Roll two dice thousands of times at <a href="../../demos/dice.html">infinityclub.net/demos/dice.html</a>, and see <a href="../../grade-6/sheets/b14-dice.html">the grade 6 dice sheet</a> for the 36-outcome table.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Toss a fair coin three times. (a) Find \(P(\text{three heads})\). (b) Find \(P(\text{at least one tail})\).<div class="space short"></div></li>
+<li>Roll two dice once. Find \(P(\text{at least one six})\) two ways: by the complement trick, and by counting squares in the \(6 \times 6\) table of outcomes. Many people answer \(\tfrac16 + \tfrac16 = \tfrac13\). What did they count twice?<div class="space"></div></li>
+<li>A forecaster gives each of the next five days a 30% chance of rain, independently. (a) Find the probability of at least one rainy day. (b) Find the probability of at least one dry day.<div class="space short"></div></li>
+<li>A game gives you a 1 in 20 chance of winning each time you play. Ten plays feel like a 50% chance of a win. Are they? Find the smallest number of plays that makes you more likely than not to have won at least once. A table of \(0.95^n\) is a fine method.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: where de Méré went wrong</h2>
+<p>How many rolls of one die are needed before \(P(\text{at least one six})\) passes 0.9? Then: de Méré's reasoning was proportional, \(\tfrac46 = \tfrac{24}{36}\). Apply it to six rolls of one die. What does it predict, and what is the truth? In one sentence, why can "at least one" never be proportional to the number of tries?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(\left(\tfrac12\right)^3 = \tfrac18\). (b) "At least one tail" is the complement of "three heads": \(1 - \tfrac18 = \tfrac78\).</li>
+<li>\(P(\text{no six}) = \tfrac56 \times \tfrac56 = \tfrac{25}{36}\), so \(P(\text{at least one six}) = \tfrac{11}{36} \approx 0.306\). In the table, the sixes row and the sixes column together cover \(6 + 6 - 1 = 11\) squares. Adding \(\tfrac16 + \tfrac16\) counts the double six twice; it is one outcome, not two.</li>
+<li>(a) \(1 - 0.7^5 = 1 - 0.168 = 0.832\). (b) \(1 - 0.3^5 = 1 - 0.00243 = 0.99757\), so about 99.8%.</li>
+<li>No. Ten plays give \(1 - 0.95^{10} \approx 0.401\). You need \(0.95^n \lt 0.5\): \(0.95^{13} \approx 0.513\) and \(0.95^{14} \approx 0.488\), so 14 plays, when \(P(\text{at least one win}) \approx 0.512\). Even then, almost half the time you win nothing.</li>
+</ol>
+<p><b>Stretch.</b> Need \(\left(\tfrac56\right)^n \lt 0.1\): \(\left(\tfrac56\right)^{12} \approx 0.112\) and \(\left(\tfrac56\right)^{13} \approx 0.093\), so 13 rolls. Proportional reasoning predicts \(\tfrac66 = 1\), a certain six in six rolls; the truth is \(1 - \left(\tfrac56\right)^6 \approx 0.665\). Each extra try can only add a share of the probability still unused, so the gains shrink and the total creeps towards 1 without ever reaching it. A straight line would pass 1.</p>
+</section>
+
+<div class="sheet-nav"><a href="a16-story-to-equation.html">← Previous</a><a href="a18-expand-and-factor.html">Next: Expand and factor →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

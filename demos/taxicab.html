@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Taxicab Circles · Infinity Club</title>
+<meta name="description" content="Measure distance the way a taxi drives, along the grid. Slide the radius to see a circle turn into a diamond, and tap two points to compare taxi distance with straight-line distance.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+#grid { touch-action: none; cursor: crosshair; display: block; width: 100%; max-width: 560px; margin: 0 auto; border-radius: 8px; }
+#grid.drag { cursor: grabbing; }
+.controls input[type=range] { width: 150px; }
+.controls .val { font-family: var(--mono); min-width: 1.5em; display: inline-block; }
+.key { display: flex; flex-wrap: wrap; gap: .4rem 1.2rem; font-size: .9rem; color: var(--muted); margin: .4rem 0 .6rem; }
+.key span::before { content: ""; display: inline-block; width: 14px; height: 14px; border-radius: 3px; vertical-align: -2px; margin-right: .35rem; }
+.key .taxi::before { background: #3f44c9; }
+.key .euc::before { background: #f5a524; }
+.key .pts::before { background: #1d1f3a; border-radius: 50%; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Taxicab circles</h1>
+<p class="explain">Slide the radius and watch the blue "circle" of all points a taxi can reach in exactly r blocks. The orange curve is the ordinary circle with the same radius. Then <b>tap any two grid points</b> (A, then B) to see both distances between them, one staircase route and the number of shortest routes. Drag the big dot to move the centre. Notice that the taxi circle is a diamond with exactly 4r corner-to-corner lattice points, and that taxi distance is never less than straight-line distance.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <label>radius r <input type="range" id="r" min="1" max="6" step="1" value="3"> <span class="val" id="rv">3</span></label>
+    <label><input type="checkbox" id="euc" checked> ordinary circle</label>
+    <label><input type="checkbox" id="dots" checked> lattice points on the taxi circle</label>
+    <button id="clear" class="ghost">Clear A and B</button>
+  </div>
+  <div class="key"><span class="taxi">taxicab circle</span><span class="euc">Euclidean circle</span><span class="pts">A and B</span></div>
+  <canvas id="grid" width="560" height="560"></canvas>
+  <div class="readout" id="info"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>A taxi in a city of square blocks cannot cut corners. To get from (0, 0) to (3, 2) it must drive 3 blocks east and 2 blocks north, in some order, so the <b>taxicab distance</b> is |Δx| + |Δy| = 5. The straight-line (Euclidean) distance is √(3² + 2²) = √13 ≈ 3.61. The taxi always goes at least as far, and it goes exactly as far only when the two points are on the same street.</p>
+<p>A circle is "all the points at distance r from the centre". Change the meaning of distance and you change the shape. In taxicab geometry the circle of radius r is a diamond, a square tilted by 45°, with perimeter 8r. Perimeter divided by diameter is 8r / 2r = 4, so taxicab π is exactly 4.</p>
+<p>There are many shortest taxi routes between two points. Every route from A to B is a sequence of |Δx| easts and |Δy| norths, so the count is the binomial coefficient C(|Δx| + |Δy|, |Δx|). From (0, 0) to (3, 2) that is C(5, 2) = 10 routes, all of length 5. Pascal's triangle is hiding in the street map.</p>
+<p>Sheet: <a href="../grade-8/sheets/b17-taxicab.html">Taxicab geometry</a>. Related demo: <a href="pick.html">Pick's theorem</a> for another game on lattice points.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  function taxi(a, b) { return Math.abs(a[0] - b[0]) + Math.abs(a[1] - b[1]); }
+  function euclid(a, b) { var dx = a[0] - b[0], dy = a[1] - b[1]; return Math.sqrt(dx * dx + dy * dy); }
+  // number of shortest taxi routes = C(dx+dy, dx)
+  function routes(a, b) {
+    var dx = Math.abs(a[0] - b[0]), dy = Math.abs(a[1] - b[1]), r = 1;
+    for (var i = 1; i <= dx; i++) r = r * (dy + i) / i;
+    return Math.round(r);
+  }
+  // lattice points at taxi distance exactly r from c
+  function circlePoints(c, r) {
+    var pts = [];
+    for (var x = -r; x <= r; x++) { var y = r - Math.abs(x); pts.push([c[0] + x, c[1] + y]); if (y !== 0) pts.push([c[0] + x, c[1] - y]); }
+    return pts;
+  }
+  function fmt(v, d) { d = d === undefined ? 2 : d; var r = Math.round(v * Math.pow(10, d)) / Math.pow(10, d); if (Object.is(r, -0)) r = 0; return r.toString().replace("-", "−"); }
+  /*ENDPURE*/
+
+  var N = 7; // grid runs -N..N
+  var canvas = document.getElementById("grid"), ctx = canvas.getContext("2d"), info = document.getElementById("info");
+  var S = { r: 3, c: [0, 0], A: null, B: null, euc: true, dots: true };
+  var W, cell, pad;
+
+  function px(x) { return pad + (x + N) * cell; }
+  function py(y) { return pad + (N - y) * cell; }
+  function toGrid(cx, cy) {
+    var rect = canvas.getBoundingClientRect(), sx = W / rect.width;
+    var gx = Math.round(((cx - rect.left) * sx - pad) / cell) - N, gy = N - Math.round(((cy - rect.top) * sx - pad) / cell);
+    return [Math.max(-N, Math.min(N, gx)), Math.max(-N, Math.min(N, gy))];
+  }
+
+  function draw() {
+    var dpr = window.devicePixelRatio || 1; W = canvas.clientWidth || 560;
+    canvas.width = W * dpr; canvas.height = W * dpr; canvas.style.height = W + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    pad = 14; cell = (W - 2 * pad) / (2 * N);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, W);
+    ctx.strokeStyle = "#e4e1d8"; ctx.lineWidth = 1;
+    for (var g = -N; g <= N; g++) {
+      ctx.beginPath(); ctx.moveTo(px(g), py(-N)); ctx.lineTo(px(g), py(N)); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(px(-N), py(g)); ctx.lineTo(px(N), py(g)); ctx.stroke();
+    }
+    var c = S.c, r = S.r;
+    // euclidean circle
+    if (S.euc) { ctx.strokeStyle = "#f5a524"; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(px(c[0]), py(c[1]), r * cell, 0, Math.PI * 2); ctx.stroke(); }
+    // taxicab diamond (fill + outline)
+    ctx.fillStyle = "rgba(63,68,201,0.08)"; ctx.strokeStyle = "#3f44c9"; ctx.lineWidth = 2.5;
+    ctx.beginPath(); ctx.moveTo(px(c[0] + r), py(c[1])); ctx.lineTo(px(c[0]), py(c[1] + r)); ctx.lineTo(px(c[0] - r), py(c[1])); ctx.lineTo(px(c[0]), py(c[1] - r)); ctx.closePath(); ctx.fill(); ctx.stroke();
+    if (S.dots) { ctx.fillStyle = "#3f44c9"; circlePoints(c, r).forEach(function (p) { ctx.beginPath(); ctx.arc(px(p[0]), py(p[1]), Math.max(3, cell * 0.14), 0, Math.PI * 2); ctx.fill(); }); }
+    // centre handle
+    ctx.fillStyle = "#3f44c9"; ctx.beginPath(); ctx.arc(px(c[0]), py(c[1]), Math.max(7, cell * 0.3), 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = "#fff"; ctx.lineWidth = 2; ctx.stroke();
+    // A and B
+    if (S.A && S.B) {
+      var A = S.A, B = S.B;
+      // straight line
+      ctx.strokeStyle = "#f5a524"; ctx.lineWidth = 2.5; ctx.setLineDash([]);
+      ctx.beginPath(); ctx.moveTo(px(A[0]), py(A[1])); ctx.lineTo(px(B[0]), py(B[1])); ctx.stroke();
+      // one staircase route: alternate east/west and north/south steps
+      var dx = B[0] - A[0], dy = B[1] - A[1], sx = dx > 0 ? 1 : -1, sy = dy > 0 ? 1 : -1, x = A[0], y = A[1], ax = Math.abs(dx), ay = Math.abs(dy);
+      ctx.strokeStyle = "#1d1f3a"; ctx.lineWidth = 4; ctx.lineJoin = "round"; ctx.beginPath(); ctx.moveTo(px(x), py(y));
+      var tx = 0, ty = 0;
+      while (tx < ax || ty < ay) {
+        // step in whichever direction is "behind" proportionally, giving a diagonal-ish staircase
+        if (ty >= ay || (tx < ax && (tx + 1) * ay <= (ty + 1) * ax)) { x += sx; tx++; } else { y += sy; ty++; }
+        ctx.lineTo(px(x), py(y));
+      }
+      ctx.stroke();
+    }
+    [S.A, S.B].forEach(function (p, i) {
+      if (!p) return;
+      ctx.fillStyle = "#1d1f3a"; ctx.beginPath(); ctx.arc(px(p[0]), py(p[1]), Math.max(6, cell * 0.26), 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = "#fff"; ctx.font = "bold " + Math.max(10, cell * 0.36) + "px Nunito, sans-serif"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+      ctx.fillText(i === 0 ? "A" : "B", px(p[0]), py(p[1]) + 1);
+    });
+    // axes labels (light)
+    ctx.fillStyle = "#8a8ca8"; ctx.font = "10px Nunito, sans-serif"; ctx.textAlign = "center"; ctx.textBaseline = "top";
+    for (var t = -N; t <= N; t += 1) if (t % 2 === 0 || N <= 5) ctx.fillText(t, px(t), py(-N) + 3);
+    ctx.textAlign = "right"; ctx.textBaseline = "middle";
+    for (var u = -N; u <= N; u += 1) if (u % 2 === 0 || N <= 5) ctx.fillText(u, px(-N) - 3, py(u));
+    writeInfo();
+  }
+
+  function writeInfo() {
+    var r = S.r, c = S.c, lines = [];
+    lines.push("centre (" + c[0] + ", " + c[1] + "), r = " + r + ":  taxi circle has " + circlePoints(c, r).length + " lattice points (4r), perimeter 8r = " + (8 * r) + ",  taxi π = 8r / 2r = 4");
+    if (S.A && S.B) {
+      var A = S.A, B = S.B, dx = Math.abs(B[0] - A[0]), dy = Math.abs(B[1] - A[1]), t = taxi(A, B), e = euclid(A, B);
+      lines.push("A = (" + A[0] + ", " + A[1] + "),  B = (" + B[0] + ", " + B[1] + ")");
+      lines.push("taxi distance     = |Δx| + |Δy| = " + dx + " + " + dy + " = " + t);
+      lines.push("straight distance = √(" + dx + "² + " + dy + "²) = √" + (dx * dx + dy * dy) + " ≈ " + fmt(e, 3) + (e > 0 ? "   ratio taxi/straight = " + fmt(t / e, 3) + " (between 1 and √2 ≈ 1.414)" : ""));
+      lines.push("shortest taxi routes: C(" + (dx + dy) + ", " + dx + ") = " + routes(A, B) + (t > 0 ? ", all of length " + t : ""));
+    } else if (S.A) {
+      lines.push("A = (" + S.A[0] + ", " + S.A[1] + "). Now tap a second point for B.");
+    } else {
+      lines.push("Tap two grid points to compare distances.");
+    }
+    info.textContent = lines.join("\n");
+  }
+
+  // pointer handling: drag the centre if you grab it, otherwise place A then B
+  var dragging = false, moved = false, downAt = null;
+  canvas.addEventListener("pointerdown", function (ev) {
+    ev.preventDefault();
+    var g = toGrid(ev.clientX, ev.clientY);
+    downAt = g; moved = false;
+    if (g[0] === S.c[0] && g[1] === S.c[1]) { dragging = true; canvas.classList.add("drag"); canvas.setPointerCapture(ev.pointerId); }
+  });
+  canvas.addEventListener("pointermove", function (ev) {
+    if (!dragging) return;
+    var g = toGrid(ev.clientX, ev.clientY);
+    if (g[0] !== S.c[0] || g[1] !== S.c[1]) { S.c = g; moved = true; draw(); }
+  });
+  function up(ev) {
+    if (dragging) { dragging = false; canvas.classList.remove("drag"); if (moved) { downAt = null; return; } }
+    if (!downAt) return;
+    var g = downAt; downAt = null;
+    if (!S.A || S.B) { S.A = g; S.B = null; }
+    else if (g[0] === S.A[0] && g[1] === S.A[1]) { return; }
+    else { S.B = g; }
+    draw();
+  }
+  canvas.addEventListener("pointerup", up); canvas.addEventListener("pointercancel", function () { dragging = false; downAt = null; canvas.classList.remove("drag"); });
+
+  var rs = document.getElementById("r");
+  rs.addEventListener("input", function () { S.r = parseInt(rs.value, 10); document.getElementById("rv").textContent = S.r; draw(); });
+  document.getElementById("euc").addEventListener("change", function (e) { S.euc = e.target.checked; draw(); });
+  document.getElementById("dots").addEventListener("change", function (e) { S.dots = e.target.checked; draw(); });
+  document.getElementById("clear").addEventListener("click", function () { S.A = null; S.B = null; draw(); });
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(draw, 120); });
+  draw();
+})();
+</script>
+</body>
+</html>

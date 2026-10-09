@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Euclid's algorithm · Infinity Club</title>
+<meta name="description" content="The fastest way to a common factor: divide, keep the remainder, repeat. Why it works, the rectangle picture, and gcd(1071, 462) in three lines.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 8 · Around the corner · 1</div>
+  <h1>Euclid's algorithm</h1>
+  <p class="teaser">The fastest way to a common factor: divide, keep the remainder, repeat. Why it works, and gcd(1071, 462) in three lines.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>\(\gcd(a, b)\), the <b>greatest common divisor</b>, is the largest whole number dividing both \(a\) and \(b\). <a href="../../grade-6/sheets/a6-gcf-lcm.html">Grade 6</a> called it the GCF and found it from prime factors, which is slow for big numbers. Euclid, around 300 BC, gave a method that never factors anything.</p>
+<p>Divide \(a\) by \(b\): \(a = qb + r\), with quotient \(q\) and remainder \(r\). The key fact is</p>
+<p class="callout">\(\gcd(a, b) = \gcd(b, r)\). The pair \((a, b)\) and the pair \((b, r)\) have exactly the same common divisors.</p>
+<p>Why? Anything dividing \(a\) and \(b\) divides \(a - qb = r\). Anything dividing \(b\) and \(r\) divides \(qb + r = a\). Same common divisors, so the same greatest one.</p>
+<p>Now repeat. Each remainder is smaller than the last, so the numbers shrink and must reach 0. Since \(\gcd(x, 0) = x\), the last nonzero remainder is the answer.</p>
+<figure><svg viewBox="0 0 440 200" width="440" height="200" role="img" aria-label="A 1071 by 462 rectangle tiled greedily by squares: two squares of side 462, then three of side 147, then seven of side 21" font-family="Nunito, sans-serif" font-size="13">
+<rect x="30" y="18" width="385.56" height="166.32" fill="none" stroke="#000" stroke-width="1.5"/>
+<rect x="30" y="18" width="166.32" height="166.32" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="196.32" y="18" width="166.32" height="166.32" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="362.64" y="18" width="52.92" height="52.92" fill="#fde8c4" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="362.64" y="70.92" width="52.92" height="52.92" fill="#fde8c4" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="362.64" y="123.84" width="52.92" height="52.92" fill="#fde8c4" stroke="#3f44c9" stroke-width="1.5"/>
+<g fill="#fff" stroke="#f5a524" stroke-width="1">
+<rect x="362.64" y="176.76" width="7.56" height="7.56"/><rect x="370.2" y="176.76" width="7.56" height="7.56"/><rect x="377.76" y="176.76" width="7.56" height="7.56"/><rect x="385.32" y="176.76" width="7.56" height="7.56"/><rect x="392.88" y="176.76" width="7.56" height="7.56"/><rect x="400.44" y="176.76" width="7.56" height="7.56"/><rect x="408" y="176.76" width="7.56" height="7.56"/>
+</g>
+<text x="222" y="12" text-anchor="middle" fill="#555">1071</text>
+<text x="14" y="105" text-anchor="middle" fill="#555">462</text>
+<text x="113" y="106" text-anchor="middle" fill="#3f44c9">462</text><text x="279" y="106" text-anchor="middle" fill="#3f44c9">462</text>
+<text x="389" y="49" text-anchor="middle" fill="#555" font-size="12">147</text><text x="389" y="102" text-anchor="middle" fill="#555" font-size="12">147</text><text x="389" y="155" text-anchor="middle" fill="#555" font-size="12">147</text>
+<text x="424" y="196" text-anchor="start" fill="#f5a524" font-size="12">21</text>
+</svg><figcaption>Cut the biggest squares you can: two of side 462, then three of side 147, then seven of side 21, which finish exactly. The last square's side is the gcd.</figcaption></figure>
+<p>The picture is the same algorithm: cut the biggest squares you can from a \(1071 \times 462\) rectangle, then repeat on the leftover strip. The square that finishes the last strip also tiles every earlier strip, and so the whole rectangle. Its side is the gcd.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: \(\gcd(1071, 462)\)</h2>
+<p>\[1071 = 2 \times 462 + 147, \qquad 462 = 3 \times 147 + 21, \qquad 147 = 7 \times 21 + 0.\]</p>
+<p>So \(\gcd(1071, 462) = 21\). Three divisions. Check: \(1071 = 21 \times 51\) and \(462 = 21 \times 22\), and 51 and 22 share nothing. Compare the picture: two 462-squares, three 147-squares, seven 21-squares. The quotients 2, 3, 7 count the squares.</p>
+<p>Two bonuses. The fraction \(\tfrac{462}{1071}\) simplifies in one step to \(\tfrac{22}{51}\). And since \(\gcd \times \text{lcm} = a \times b\), the least common multiple is \(1071 \times 462 \div 21 = 23\,562\).</p>
+<p class="small">Enter your own pair and watch the squares get cut at <a href="../../demos/euclid.html">infinityclub.net/demos/euclid.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Use Euclid's algorithm to find (a) \(\gcd(252, 105)\) and (b) \(\gcd(1001, 273)\). Write every step in the form \(a = qb + r\).<div class="space"></div></li>
+<li>Simplify \(\tfrac{748}{2024}\) fully, using one gcd computation and two divisions.<div class="space short"></div></li>
+<li>(a) Find \(\gcd(323, 221)\). (b) Hence write both 323 and 221 as products of primes. Neither looks easy to factor until the algorithm hands you a factor.<div class="space short"></div></li>
+<li>(a) Draw the rectangle picture for \(\gcd(84, 36)\): a \(84 \times 36\) rectangle. Which squares appear, how many of each, and what is the gcd? (b) Use the key fact to explain why two consecutive whole numbers, such as 1000 and 1001, always have gcd 1.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the slowest pair</h2>
+<p>Run the algorithm on 89 and 55. Count the divisions, and notice every quotient but the last is 1. What is special about 89, 55, 34, 21, …? Then show that after two divisions the first number has at least halved, so two numbers near a million need at most about 40 divisions.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(252 = 2 \times 105 + 42\), \(105 = 2 \times 42 + 21\), \(42 = 2 \times 21 + 0\). gcd 21. (b) \(1001 = 3 \times 273 + 182\), \(273 = 1 \times 182 + 91\), \(182 = 2 \times 91 + 0\). gcd 91.</li>
+<li>\(2024 = 2 \times 748 + 528\), \(748 = 1 \times 528 + 220\), \(528 = 2 \times 220 + 88\), \(220 = 2 \times 88 + 44\), \(88 = 2 \times 44\). gcd 44, and \(\tfrac{748}{2024} = \tfrac{17}{46}\).</li>
+<li>(a) \(323 = 1 \times 221 + 102\), \(221 = 2 \times 102 + 17\), \(102 = 6 \times 17\). gcd 17. (b) \(323 = 17 \times 19\) and \(221 = 13 \times 17\).</li>
+<li>(a) Two squares of side 36 leave a \(12 \times 36\) strip; three squares of side 12 finish it. gcd 12. (b) \(1001 = 1 \times 1000 + 1\), so \(\gcd(1001, 1000) = \gcd(1000, 1) = 1\). In general \(\gcd(n + 1, n) = \gcd(n, 1) = 1\).</li>
+</ol>
+<p><b>Stretch.</b> \(89 = 1 \times 55 + 34\), \(55 = 1 \times 34 + 21\), \(34 = 1 \times 21 + 13\), \(21 = 1 \times 13 + 8\), \(13 = 1 \times 8 + 5\), \(8 = 1 \times 5 + 3\), \(5 = 1 \times 3 + 2\), \(3 = 1 \times 2 + 1\), \(2 = 2 \times 1 + 0\). Nine divisions for a gcd of 1. The numbers are consecutive Fibonacci numbers: each is the sum of the next two, so each division goes in exactly once with the next Fibonacci number left over. These pairs are the slowest the algorithm ever gets. Halving: after one division, \((a, b)\) becomes \((b, r)\). If \(b \le a/2\) then \(r \lt b \le a/2\). If \(b > a/2\) then \(q = 1\) and \(r = a - b \lt a/2\). Either way \(r \lt a/2\), and \(r\) is the first number two steps on. A million is about \(2^{20}\), so it halves to 1 in about 20 pairs of steps: 40 divisions at most.</p>
+</section>
+
+<div class="sheet-nav"><a href="a19-cylinder-cone-sphere.html">← Previous</a><a href="b2-mcnugget.html">Next: The Chicken McNugget problem →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

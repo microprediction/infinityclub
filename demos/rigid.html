@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Slide, Flip, Turn, Scale · Infinity Club</title>
+<meta name="description" content="Translate, reflect, rotate and dilate a triangle on a coordinate grid; see the coordinate rule for each move, the before and after coordinates, and which moves keep lengths.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+#plot { cursor: grab; touch-action: none; }
+#plot.drag { cursor: grabbing; }
+.controls input[type=number] { width: 4.2em; }
+.controls select { font: inherit; padding: .25em .4em; border: 1px solid var(--rule); border-radius: 6px; }
+#rule { font-size: 1.1rem; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Slide, flip, turn, scale</h1>
+<p class="explain">Press a button to move the triangle. The grey copy is where it was, the blue one is where it is now, and the readout gives the rule that sends every point (x, y) to its new place, with the three corners worked out. Check one corner by hand before you trust the rule. Then compare side lengths: the slides, flips and turns keep them, and only the scale changes them. Drag any corner to start from a different triangle.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <label>dx <input type="number" id="dx" min="-8" max="8" step="1" value="3"></label>
+    <label>dy <input type="number" id="dy" min="-8" max="8" step="1" value="-2"></label>
+    <button id="slide">Slide by (dx, dy)</button>
+  </div>
+  <div class="controls">
+    <button id="flipx" class="alt">Flip in the x-axis</button>
+    <button id="flipy" class="alt">Flip in the y-axis</button>
+    <button id="flipd" class="alt">Flip in y = x</button>
+  </div>
+  <div class="controls">
+    <button id="rot90">Turn 90° anticlockwise</button>
+    <button id="rot180">Turn 180°</button>
+    <label>k <select id="k"><option value="2">2</option><option value="3">3</option><option value="0.5">½</option><option value="-1">−1</option></select></label>
+    <button id="dilate">Scale by k</button>
+  </div>
+  <div class="controls">
+    <button id="undo" class="ghost">Undo</button>
+    <button id="reset" class="ghost">Reset</button>
+  </div>
+  <div class="readout" id="rule"></div>
+  <canvas id="plot" width="900" height="675"></canvas>
+  <div class="readout" id="info"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>Each button is a rule for coordinates. A <b>slide</b> (translation) adds the same amounts to every x and every y: (x, y) → (x + dx, y + dy). A <b>flip</b> (reflection) in the x-axis changes the sign of y; in the y-axis it changes the sign of x; in the line y = x it swaps them. A quarter <b>turn</b> anticlockwise about the origin sends (x, y) to (−y, x): check it on (1, 0), which must land at (0, 1). Doing that twice gives the half turn (x, y) → (−x, −y).</p>
+<p>Slides, flips and turns are <b>rigid motions</b>: they move the triangle without stretching it, so every side keeps its length and every angle keeps its size. The new triangle is <b>congruent</b> to the old one. A flip does one extra thing a slide or turn cannot: it turns the triangle over, so reading the corners A, B, C now goes round the other way. No sequence of slides and turns can undo that.</p>
+<p>The <b>scale</b> (dilation) multiplies both coordinates by k. Lengths become k times as long, angles stay the same, and the area becomes k² times as big. The result is <b>similar</b> to the original but not congruent, unless k = 1 or −1. Try k = −1 and compare it with the half turn.</p>
+<p>Sheets: <a href="../grade-8/sheets/a10-rigid-motions.html">Slide, flip, turn, scale</a>. What comes later: the <a href="transform.html">shift, stretch, flip</a> demo for graphs and the <a href="matrix.html">matrix</a> demo, which writes these same rules as 2 × 2 matrices.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  function fmt(v) { var r = Math.round(v * 100) / 100; if (Object.is(r, -0)) r = 0; return r.toString().replace("-", "−"); }
+  function signed(v) { return (v < 0 ? " − " : " + ") + fmt(Math.abs(v)); }
+  // each move: a name, the coordinate rule as text, the function on a point, and what it draws
+  var MOVES = {
+    slide: function (dx, dy) { return { name: "slide by (" + fmt(dx) + ", " + fmt(dy) + ")", rule: "(x, y) → (x" + (dx ? signed(dx) : "") + ", y" + (dy ? signed(dy) : "") + ")", f: function (p) { return [p[0] + dx, p[1] + dy]; }, kind: "rigid", show: "arrows" }; },
+    flipx: function () { return { name: "flip in the x-axis", rule: "(x, y) → (x, −y)", f: function (p) { return [p[0], -p[1]]; }, kind: "rigid", show: "mirror", mirror: "x" }; },
+    flipy: function () { return { name: "flip in the y-axis", rule: "(x, y) → (−x, y)", f: function (p) { return [-p[0], p[1]]; }, kind: "rigid", show: "mirror", mirror: "y" }; },
+    flipd: function () { return { name: "flip in the line y = x", rule: "(x, y) → (y, x)", f: function (p) { return [p[1], p[0]]; }, kind: "rigid", show: "mirror", mirror: "d" }; },
+    rot90: function () { return { name: "turn 90° anticlockwise about the origin", rule: "(x, y) → (−y, x)", f: function (p) { return [-p[1], p[0]]; }, kind: "rigid", show: "arcs" }; },
+    rot180: function () { return { name: "turn 180° about the origin", rule: "(x, y) → (−x, −y)", f: function (p) { return [-p[0], -p[1]]; }, kind: "rigid", show: "arcs" }; },
+    dilate: function (k) { return { name: "scale by " + fmt(k) + " from the origin", rule: "(x, y) → (" + fmt(k) + "x, " + fmt(k) + "y)", f: function (p) { return [k * p[0], k * p[1]]; }, kind: "scale", k: k, show: "rays" }; }
+  };
+  function apply(move, tri) { return tri.map(function (p) { var q = move.f(p); return [q[0] + 0, q[1] + 0]; }); } // + 0 turns −0 into 0
+  function dist(p, q) { return Math.hypot(p[0] - q[0], p[1] - q[1]); }
+  function sides(tri) { return [dist(tri[0], tri[1]), dist(tri[1], tri[2]), dist(tri[2], tri[0])]; } // AB, BC, CA
+  // positive when A -> B -> C runs anticlockwise
+  function orientation(tri) { var a = tri[0], b = tri[1], c = tri[2]; return Math.sign((b[0] - a[0]) * (c[1] - a[1]) - (b[1] - a[1]) * (c[0] - a[0])); }
+  function area(tri) { var a = tri[0], b = tri[1], c = tri[2]; return Math.abs((b[0] - a[0]) * (c[1] - a[1]) - (b[1] - a[1]) * (c[0] - a[0])) / 2; }
+  function inBounds(tri, xm, ym) { return tri.every(function (p) { return Math.abs(p[0]) <= xm && Math.abs(p[1]) <= ym; }); }
+  function pt(p) { return "(" + fmt(p[0]) + ", " + fmt(p[1]) + ")"; }
+  /*ENDPURE*/
+
+  var canvas = document.getElementById("plot"), ctx = canvas.getContext("2d");
+  var info = document.getElementById("info"), ruleBox = document.getElementById("rule");
+  var NAMES = ["A", "B", "C"], START = [[1, 1], [5, 1], [2, 4]];
+  var XM = 12, YM = 9; // grid half-widths
+  var tri = START.map(function (p) { return p.slice(); }), prev = null, move = null, history = [], steps = [];
+
+  function doMove(mv) {
+    var next = apply(mv, tri);
+    if (!inBounds(next, XM, YM)) { info.textContent = "That would push the triangle off the grid. Slide it back towards the middle first, or Undo."; return; }
+    history.push({ tri: tri, prev: prev, move: move, steps: steps.slice() });
+    prev = tri; tri = next; move = mv; steps.push(mv.name); draw();
+  }
+  document.getElementById("slide").addEventListener("click", function () {
+    var dx = parseInt(document.getElementById("dx").value, 10) || 0, dy = parseInt(document.getElementById("dy").value, 10) || 0;
+    doMove(MOVES.slide(dx, dy));
+  });
+  ["flipx", "flipy", "flipd", "rot90", "rot180"].forEach(function (id) { document.getElementById(id).addEventListener("click", function () { doMove(MOVES[id]()); }); });
+  document.getElementById("dilate").addEventListener("click", function () { doMove(MOVES.dilate(parseFloat(document.getElementById("k").value))); });
+  document.getElementById("undo").addEventListener("click", function () {
+    var h = history.pop(); if (!h) return;
+    tri = h.tri; prev = h.prev; move = h.move; steps = h.steps; draw();
+  });
+  document.getElementById("reset").addEventListener("click", function () { tri = START.map(function (p) { return p.slice(); }); prev = null; move = null; history = []; steps = []; draw(); });
+
+  var W, H, XMIN = -XM, XMAX = XM, YMIN = -YM, YMAX = YM;
+  function X(x) { return (x - XMIN) / (XMAX - XMIN) * W; }
+  function Y(y) { return H - (y - YMIN) / (YMAX - YMIN) * H; }
+  function toMath(px, py) { return [XMIN + px / W * (XMAX - XMIN), YMIN + (H - py) / H * (YMAX - YMIN)]; }
+  function poly(t, stroke, fill, width) {
+    ctx.beginPath(); ctx.moveTo(X(t[0][0]), Y(t[0][1])); ctx.lineTo(X(t[1][0]), Y(t[1][1])); ctx.lineTo(X(t[2][0]), Y(t[2][1])); ctx.closePath();
+    ctx.fillStyle = fill; ctx.fill(); ctx.strokeStyle = stroke; ctx.lineWidth = width; ctx.lineJoin = "round"; ctx.stroke();
+  }
+  function labels(t, suffix, color) {
+    var cx = (t[0][0] + t[1][0] + t[2][0]) / 3, cy = (t[0][1] + t[1][1] + t[2][1]) / 3;
+    ctx.fillStyle = color; ctx.font = "bold 13px Nunito, sans-serif"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    t.forEach(function (p, i) { // push the label outwards from the centroid
+      var dx = p[0] - cx, dy = p[1] - cy, L = Math.hypot(dx, dy) || 1;
+      ctx.fillText(NAMES[i] + suffix, X(p[0]) + dx / L * 14, Y(p[1]) - dy / L * 14);
+    });
+    ctx.textBaseline = "alphabetic";
+  }
+
+  function draw() {
+    var dpr = window.devicePixelRatio || 1; W = canvas.clientWidth || 900; H = Math.round(W * YM / XM);
+    canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, H);
+    ctx.strokeStyle = "#ece9e0"; ctx.lineWidth = 1;
+    for (var gx = XMIN; gx <= XMAX; gx++) { ctx.beginPath(); ctx.moveTo(X(gx), 0); ctx.lineTo(X(gx), H); ctx.stroke(); }
+    for (var gy = YMIN; gy <= YMAX; gy++) { ctx.beginPath(); ctx.moveTo(0, Y(gy)); ctx.lineTo(W, Y(gy)); ctx.stroke(); }
+    ctx.strokeStyle = "#8a8ca8"; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(X(0), 0); ctx.lineTo(X(0), H); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(0, Y(0)); ctx.lineTo(W, Y(0)); ctx.stroke();
+    ctx.fillStyle = "#5d6079"; ctx.font = "11px Nunito, sans-serif"; ctx.textAlign = "center";
+    for (var tx = XMIN; tx <= XMAX; tx += 2) if (tx !== 0) ctx.fillText(tx, X(tx), Y(0) + 13);
+    ctx.textAlign = "right";
+    for (var ty = YMIN; ty <= YMAX; ty += 2) if (ty !== 0) ctx.fillText(ty, X(0) - 5, Y(ty) + 4);
+
+    if (prev && move) {
+      // helper lines for the move
+      ctx.strokeStyle = "#f5a524"; ctx.lineWidth = 1.5; ctx.setLineDash([6, 5]);
+      if (move.show === "mirror") {
+        ctx.lineWidth = 2.5; ctx.beginPath();
+        if (move.mirror === "x") { ctx.moveTo(0, Y(0)); ctx.lineTo(W, Y(0)); }
+        else if (move.mirror === "y") { ctx.moveTo(X(0), 0); ctx.lineTo(X(0), H); }
+        else { ctx.moveTo(X(-YM), Y(-YM)); ctx.lineTo(X(YM), Y(YM)); }
+        ctx.stroke(); ctx.lineWidth = 1.5;
+        prev.forEach(function (p, i) { ctx.beginPath(); ctx.moveTo(X(p[0]), Y(p[1])); ctx.lineTo(X(tri[i][0]), Y(tri[i][1])); ctx.stroke(); });
+      } else if (move.show === "arcs") {
+        prev.forEach(function (p, i) {
+          var r = Math.hypot(p[0], p[1]); if (r === 0) return;
+          var a0 = Math.atan2(p[1], p[0]), a1 = Math.atan2(tri[i][1], tri[i][0]);
+          ctx.beginPath(); ctx.arc(X(0), Y(0), r * W / (XMAX - XMIN), -a0, -a1, true); ctx.stroke();
+        });
+      } else if (move.show === "rays") {
+        tri.forEach(function (p, i) { var q = Math.abs(move.k) >= 1 ? p : prev[i]; ctx.beginPath(); ctx.moveTo(X(0), Y(0)); ctx.lineTo(X(q[0]), Y(q[1])); ctx.stroke(); });
+      } else {
+        prev.forEach(function (p, i) { ctx.beginPath(); ctx.moveTo(X(p[0]), Y(p[1])); ctx.lineTo(X(tri[i][0]), Y(tri[i][1])); ctx.stroke(); });
+      }
+      ctx.setLineDash([]);
+      if (move.show !== "mirror") { ctx.fillStyle = "#f5a524"; ctx.beginPath(); ctx.arc(X(0), Y(0), 5, 0, Math.PI * 2); ctx.fill(); }
+      poly(prev, "#9b9890", "rgba(150,148,140,0.18)", 2); labels(prev, "", "#5d6079");
+    }
+    poly(tri, "#3f44c9", "rgba(63,68,201,0.22)", 3); labels(tri, prev ? "′" : "", "#1d1f3a");
+    tri.forEach(function (p) { ctx.fillStyle = "#3f44c9"; ctx.beginPath(); ctx.arc(X(p[0]), Y(p[1]), 7, 0, Math.PI * 2); ctx.fill(); ctx.strokeStyle = "#fff"; ctx.lineWidth = 2; ctx.stroke(); });
+
+    var s = sides(tri);
+    if (!prev || !move) {
+      ruleBox.textContent = "A = " + pt(tri[0]) + ",  B = " + pt(tri[1]) + ",  C = " + pt(tri[2]) + "\nPick a move. Or drag a corner first.";
+      info.textContent = "sides: AB = " + fmt(s[0]) + ",  BC = " + fmt(s[1]) + ",  CA = " + fmt(s[2]) + ";  area = " + fmt(area(tri)) + ";  A → B → C runs " + (orientation(tri) > 0 ? "anticlockwise" : "clockwise");
+      return;
+    }
+    var s0 = sides(prev);
+    var txt = move.name.charAt(0).toUpperCase() + move.name.slice(1) + ":   " + move.rule + "\n";
+    txt += tri.map(function (p, i) { return NAMES[i] + pt(prev[i]) + " → " + NAMES[i] + "′" + pt(p); }).join("    ");
+    ruleBox.textContent = txt;
+    var lines = ["before: AB = " + fmt(s0[0]) + ",  BC = " + fmt(s0[1]) + ",  CA = " + fmt(s0[2]) + ";  area " + fmt(area(prev)),
+                 "after:  A′B′ = " + fmt(s[0]) + ",  B′C′ = " + fmt(s[1]) + ",  C′A′ = " + fmt(s[2]) + ";  area " + fmt(area(tri))];
+    var flipped = orientation(prev) !== orientation(tri);
+    if (move.kind === "rigid") lines.push("Every length is unchanged: a rigid motion, the triangles are congruent." + (flipped ? "  It has been turned over: A → B → C now runs the other way round, which no slide or turn can do." : "  A → B → C still runs the same way round."));
+    else lines.push("Every length is multiplied by " + fmt(Math.abs(move.k)) + " and the area by " + fmt(move.k * move.k) + "; angles are unchanged. Similar" + (Math.abs(move.k) === 1 ? ", and since |k| = 1 also congruent: compare with the 180° turn." : ", not congruent."));
+    if (steps.length > 1) lines.push("steps so far: " + steps.join("  →  "));
+    info.textContent = lines.join("\n");
+  }
+
+  // drag a corner of the current triangle (snaps to the grid)
+  var dragging = -1, dragStarted = false;
+  canvas.addEventListener("pointerdown", function (ev) {
+    var r = canvas.getBoundingClientRect(), px = ev.clientX - r.left, py = ev.clientY - r.top, best = -1, bestD = 24 * 24;
+    tri.forEach(function (p, i) { var dx = px - X(p[0]), dy = py - Y(p[1]), d = dx * dx + dy * dy; if (d < bestD) { bestD = d; best = i; } });
+    if (best < 0) return;
+    dragging = best; dragStarted = false; canvas.classList.add("drag"); canvas.setPointerCapture(ev.pointerId); ev.preventDefault();
+  });
+  canvas.addEventListener("pointermove", function (ev) {
+    if (dragging < 0) return;
+    var r = canvas.getBoundingClientRect(), m = toMath(ev.clientX - r.left, ev.clientY - r.top);
+    var x = Math.max(-XM, Math.min(XM, Math.round(m[0]))), y = Math.max(-YM, Math.min(YM, Math.round(m[1])));
+    if (x === tri[dragging][0] && y === tri[dragging][1]) return;
+    if (!dragStarted) { history.push({ tri: tri.map(function (p) { return p.slice(); }), prev: prev, move: move, steps: steps.slice() }); dragStarted = true; tri = tri.map(function (p) { return p.slice(); }); prev = null; move = null; steps = []; }
+    tri[dragging] = [x, y]; draw();
+  });
+  function up() { dragging = -1; canvas.classList.remove("drag"); }
+  canvas.addEventListener("pointerup", up); canvas.addEventListener("pointercancel", up);
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(draw, 120); });
+  draw();
+})();
+</script>
+</body>
+</html>

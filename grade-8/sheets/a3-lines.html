@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reading a line at sight · Infinity Club</title>
+<meta name="description" content="Intercepts, parallel lines, horizontal and vertical lines, and writing the equation of a line from two points without a formula sheet.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 8 · Sharpen · 3</div>
+  <h1>Reading a line at sight</h1>
+  <p class="teaser">Intercepts, parallel lines, horizontal and vertical lines, and writing the equation from two points without a formula sheet.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A line crosses the \(y\)-axis where \(x = 0\) and the \(x\)-axis where \(y = 0\). Those crossing points are its <b>intercepts</b>. In \(y = mx + b\), put \(x = 0\): \(y = b\), so the \(y\)-intercept is read straight off. For the \(x\)-intercept, put \(y = 0\) and solve \(mx + b = 0\).</p>
+<p>Lines also arrive as \(2x + 3y = 6\). Do not rearrange. Cover the \(y\) term: \(2x = 6\), \(x = 3\). Cover the \(x\) term: \(3y = 6\), \(y = 2\). Two points: the line is drawn.</p>
+<figure><svg viewBox="0 0 300 180" width="300" height="180" role="img" aria-label="Axes with two parallel falling lines. The line 2x + 3y = 6 has intercepts (0, 2) and (3, 0); the line 2x + 3y = 12 has intercepts (0, 4) and (6, 0)" font-family="Nunito, sans-serif" font-size="12">
+<line x1="26" y1="150" x2="218" y2="150" stroke="#999" stroke-width="1"/>
+<line x1="50" y1="174" x2="50" y2="30" stroke="#999" stroke-width="1"/>
+<text x="222" y="154" fill="#999">x</text><text x="56" y="38" fill="#999">y</text>
+<line x1="26" y1="86" x2="158" y2="174" stroke="#3f44c9" stroke-width="2"/>
+<line x1="26" y1="38" x2="218" y2="166" stroke="#f5a524" stroke-width="2"/>
+<circle cx="50" cy="102" r="3" fill="#3f44c9"/><circle cx="122" cy="150" r="3" fill="#3f44c9"/>
+<circle cx="50" cy="54" r="3" fill="#f5a524"/><circle cx="194" cy="150" r="3" fill="#f5a524"/>
+<text x="46" y="116" text-anchor="end" fill="#3f44c9">(0, 2)</text><text x="122" y="165" text-anchor="middle" fill="#3f44c9">(3, 0)</text>
+<text x="46" y="68" text-anchor="end" fill="#f5a524">(0, 4)</text><text x="200" y="146" fill="#f5a524">(6, 0)</text>
+<text x="91.5" y="117.7" text-anchor="middle" fill="#3f44c9" transform="rotate(33.7 91.5 117.7)">2x + 3y = 6</text>
+<text x="127.5" y="93.7" text-anchor="middle" fill="#f5a524" transform="rotate(33.7 127.5 93.7)">2x + 3y = 12</text>
+</svg><figcaption>Cover one term to find each intercept. The two lines have the same slope, \(-\tfrac23\), so they never meet.</figcaption></figure>
+<p>Two lines are <b>parallel</b> when they have the same slope and different intercepts. Same slope means they climb at the same rate, so the gap never changes. In the figure, both lines rearrange to slope \(-\tfrac23\): \(y = -\tfrac23 x + 2\) and \(y = -\tfrac23 x + 4\). Same \(m\), different \(b\).</p>
+<p>Two special cases. A horizontal line has slope 0: \(y = 0 \cdot x + b\), written \(y = b\). A vertical line has run 0, and dividing by 0 is not allowed, so its slope is undefined and it cannot be written as \(y = mx + b\). Its equation is \(x = c\): every point on it has the same \(x\).</p>
+<p>From two points: find \(m\) as rise over run, then substitute one point to find \(b\). No formula needed.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: the line through \((1, 5)\) and \((4, -1)\)</h2>
+<p>Run \(3\), rise \(-6\), so \(m = -2\). Then \(y = -2x + b\) with \((1, 5)\) on the line: \(5 = -2 + b\), so \(b = 7\). The line is \(y = -2x + 7\).</p>
+<p>Intercepts: \(y\)-intercept 7. \(x\)-intercept: \(0 = -2x + 7\), so \(x = 3.5\).</p>
+<p>Is it parallel to \(4x + 2y = 9\)? Rearrange: \(2y = -4x + 9\), so \(y = -2x + 4.5\). Same slope, different intercept: yes. Parallel to \(2x - y = 5\)? That is \(y = 2x - 5\), slope 2, not \(-2\). No.</p>
+<p class="small">Slide \(m\) and \(b\) and switch on the parallel ghost line: <a href="../../demos/lines.html">infinityclub.net/demos/lines.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Find both intercepts of each line: (a) \(3x + 4y = 12\); (b) \(y = -2x + 5\); (c) \(2x - 5y = 20\).<div class="space short"></div></li>
+<li>Write the equation of: (a) the horizontal line through \((3, -2)\); (b) the vertical line through \((3, -2)\), and say why it has no slope; (c) the line through \((3, -2)\) parallel to \(y = 4x - 1\).<div class="space short"></div></li>
+<li>A line passes through \((-2, 1)\) and \((4, 10)\). (a) Find its equation. (b) Find its intercepts. (c) Which of these are parallel to it: \(y = 1.5x - 7\); \(3x - 2y = 8\); \(2x - 3y = 8\); \(y = 4 + 1.5x\)? One of them is a trap.<div class="space"></div></li>
+<li>A line crosses the \(x\)-axis at 4 and the \(y\)-axis at \(-6\). (a) Write its equation. (b) A parallel line crosses the \(y\)-axis at 2. Find where it crosses the \(x\)-axis, first from its equation, then with no equation: what do the two triangles cut off by the axes have in common?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the intercept form</h2>
+<p>A line has \(x\)-intercept \(a\) and \(y\)-intercept \(b\), both non-zero. Show that its equation can be written \(\dfrac{x}{a} + \dfrac{y}{b} = 1\). Then find the line through \((2, 3)\) whose two intercepts are equal, and the line through \((2, 3)\) whose \(y\)-intercept is double its \(x\)-intercept.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \((4, 0)\) and \((0, 3)\). (b) \((2.5, 0)\) and \((0, 5)\). (c) \((10, 0)\) and \((0, -4)\).</li>
+<li>(a) \(y = -2\). (b) \(x = 3\). Any two points on it have run 0, and rise ÷ 0 is undefined. (c) Slope 4: \(y = 4x + b\) with \(-2 = 12 + b\), so \(y = 4x - 14\).</li>
+<li>(a) \(m = 9/6 = \tfrac32\); \(1 = \tfrac32(-2) + b\) gives \(b = 4\), so \(y = \tfrac32 x + 4\). (b) \((0, 4)\) and \((-\tfrac83, 0)\). (c) \(y = 1.5x - 7\): parallel. \(3x - 2y = 8\) is \(y = 1.5x - 4\): parallel. \(2x - 3y = 8\) is \(y = \tfrac23 x - \tfrac83\): not parallel. \(y = 4 + 1.5x\) is the same line, not a parallel one. That is the trap.</li>
+<li>(a) From \((0, -6)\) to \((4, 0)\): rise 6, run 4, \(m = \tfrac32\), so \(y = \tfrac32 x - 6\). (b) \(y = \tfrac32 x + 2\); at \(y = 0\), \(x = -\tfrac43\). Without the equation: each line cuts a right triangle off the axes, and the hypotenuses have the same slope, so the triangles are similar. Legs \(4\) and \(6\) are in ratio \(2 : 3\), so a \(y\)-leg of 2 goes with an \(x\)-leg of \(\tfrac43\). The line rises to the right and is already above the origin at \(x = 0\), so it crossed the \(x\)-axis to the left: at \(-\tfrac43\).</li>
+</ol>
+<p><b>Stretch.</b> From \((a, 0)\) to \((0, b)\) the slope is \(\dfrac{b - 0}{0 - a} = -\dfrac{b}{a}\), so \(y = -\dfrac{b}{a}x + b\). Divide every term by \(b\): \(\dfrac{y}{b} = -\dfrac{x}{a} + 1\), which is \(\dfrac{x}{a} + \dfrac{y}{b} = 1\). Equal intercepts \(a = b\): \(\dfrac{2}{a} + \dfrac{3}{a} = 1\), so \(a = 5\) and the line is \(x + y = 5\). With \(b = 2a\): \(\dfrac{2}{a} + \dfrac{3}{2a} = \dfrac{7}{2a} = 1\), so \(a = \tfrac72\), \(b = 7\), and the line is \(2x + y = 7\). Check: \(4 + 3 = 7\).</p>
+</section>
+
+<div class="sheet-nav"><a href="a2-slope.html">← Previous</a><a href="a4-systems.html">Next: Two equations, two unknowns →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

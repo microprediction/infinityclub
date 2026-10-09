@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Egyptian fractions · Infinity Club</title>
+<meta name="description" content="Write any fraction as a sum of different unit fractions, the way Egyptian scribes did. Fibonacci's greedy method always works, and a one-line argument shows why it must stop.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 8 · Around the corner · 12</div>
+  <h1>Egyptian fractions</h1>
+  <p class="teaser">The Egyptians wrote every fraction as a sum of different unit fractions. Fibonacci's greedy method always works. Why?</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A <b>unit fraction</b> has a 1 on top: \(\tfrac12, \tfrac13, \tfrac1{24}\). Egyptian scribes, more than 3,500 years ago, wrote fractions as sums of <em>different</em> unit fractions. Not \(\tfrac27 = \tfrac17 + \tfrac17\), but \(\tfrac27 = \tfrac14 + \tfrac1{28}\). It is a good way to share: to split 5 loaves among 6 people, \(\tfrac56 = \tfrac12 + \tfrac13\) says give everyone half a loaf, then a third.</p>
+<figure><svg viewBox="0 0 520 86" width="520" height="86" role="img" aria-label="A bar of 24 cells: 12 shaded as one half, 8 as one third, 1 as one twenty-fourth, 3 left empty" font-family="Nunito, sans-serif" font-size="13">
+<rect x="20" y="18" width="240" height="32" fill="#dcdcf5"/>
+<rect x="260" y="18" width="160" height="32" fill="#fde8c4"/>
+<rect x="420" y="18" width="20" height="32" fill="#f5a524"/>
+<g stroke="#999" stroke-width="1">
+<line x1="40" y1="18" x2="40" y2="50"/><line x1="60" y1="18" x2="60" y2="50"/><line x1="80" y1="18" x2="80" y2="50"/><line x1="100" y1="18" x2="100" y2="50"/><line x1="120" y1="18" x2="120" y2="50"/><line x1="140" y1="18" x2="140" y2="50"/><line x1="160" y1="18" x2="160" y2="50"/><line x1="180" y1="18" x2="180" y2="50"/><line x1="200" y1="18" x2="200" y2="50"/><line x1="220" y1="18" x2="220" y2="50"/><line x1="240" y1="18" x2="240" y2="50"/><line x1="280" y1="18" x2="280" y2="50"/><line x1="300" y1="18" x2="300" y2="50"/><line x1="320" y1="18" x2="320" y2="50"/><line x1="340" y1="18" x2="340" y2="50"/><line x1="360" y1="18" x2="360" y2="50"/><line x1="380" y1="18" x2="380" y2="50"/><line x1="400" y1="18" x2="400" y2="50"/><line x1="440" y1="18" x2="440" y2="50"/><line x1="460" y1="18" x2="460" y2="50"/><line x1="480" y1="18" x2="480" y2="50"/>
+</g>
+<rect x="20" y="18" width="480" height="32" fill="none" stroke="#000" stroke-width="1.5"/>
+<line x1="260" y1="12" x2="260" y2="56" stroke="#3f44c9" stroke-width="1.5"/><line x1="420" y1="12" x2="420" y2="56" stroke="#3f44c9" stroke-width="1.5"/><line x1="440" y1="12" x2="440" y2="56" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="140" y="74" text-anchor="middle" fill="#3f44c9" font-weight="700">1/2</text>
+<text x="340" y="74" text-anchor="middle" fill="#3f44c9" font-weight="700">1/3</text>
+<text x="430" y="74" text-anchor="middle" fill="#f5a524" font-weight="700">1/24</text>
+<text x="470" y="74" text-anchor="middle" fill="#999" font-size="12">left over</text>
+</svg><figcaption>\(\tfrac78\) of a bar is 21 of 24 cells: \(\tfrac12 + \tfrac13 + \tfrac1{24}\). Each piece is the biggest unit fraction that still fits.</figcaption></figure>
+<p>Fibonacci, in 1202, gave a method that always works. <b>Greedy:</b> take the largest unit fraction that fits, subtract it, and repeat on what is left. For \(\tfrac4{13}\): since \(13 \div 4 = 3.25\), \(\tfrac13\) is too big and \(\tfrac14\) fits. In general, the first denominator is \(b \div a\) rounded <em>up</em>.</p>
+<p>Why must it stop? Watch the numerators. Suppose \(\tfrac1d\) is the biggest unit fraction that fits under \(\tfrac ab\). Then \(\tfrac1{d-1}\) was too big: \(\tfrac ab \lt \tfrac1{d-1}\), so \(a(d-1) \lt b\), so \(ad - b \lt a\). The remainder is</p>
+<p class="callout">\(\dfrac ab - \dfrac1d = \dfrac{ad - b}{bd}\), and its numerator \(ad - b\) is smaller than \(a\).</p>
+<p>Each step makes the numerator a smaller whole number, so after at most \(a\) steps it reaches 1 and the process ends. The denominators never repeat: each remainder is smaller than the unit fraction just removed, so the next denominator is larger.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: \(\tfrac{4}{13}\)</h2>
+<p>\(13 \div 4 = 3.25\), round up to 4. Subtract: \(\tfrac4{13} - \tfrac14 = \tfrac{16 - 13}{52} = \tfrac3{52}\). Now \(52 \div 3 = 17.3\), round up to 18. Subtract: \(\tfrac3{52} - \tfrac1{18} = \tfrac{54 - 52}{936} = \tfrac{2}{936} = \tfrac1{468}\). That is a unit fraction, so stop:</p>
+<p>\[\tfrac{4}{13} = \tfrac14 + \tfrac1{18} + \tfrac1{468}.\]</p>
+<p>The numerators ran \(4, 3, 1\): falling, as promised. Check by putting everything over 468: \(117 + 26 + 1 = 144\), and \(\tfrac{144}{468} = \tfrac{4}{13}\).</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Run the greedy method on \(\tfrac23\), \(\tfrac34\) and \(\tfrac56\).<div class="space short"></div></li>
+<li>Run it on \(\tfrac{9}{20}\) and on \(\tfrac37\). Write down the numerator at each step and check that it falls.<div class="space"></div></li>
+<li>(a) Check that \(\tfrac16 = \tfrac17 + \tfrac1{42}\), then show that \(\tfrac1n = \tfrac1{n+1} + \tfrac1{n(n+1)}\) for every \(n\) by adding the right-hand side. (b) Use it to write \(\tfrac27 = \tfrac17 + \tfrac17\) as a sum of three <em>different</em> unit fractions. (c) Why does this show every fraction has infinitely many Egyptian forms?<div class="space"></div></li>
+<li>Greedy is not always shortest. For \(\tfrac4{17}\) it gives \(\tfrac15 + \tfrac1{29} + \tfrac1{1233} + \tfrac1{3039345}\). (a) Explain why \(\tfrac15\) is the first term. (b) After it, \(\tfrac4{17} - \tfrac15 = \tfrac3{85}\). Find two different unit fractions that add to \(\tfrac3{85}\), giving a three-term answer. Hint: write \(\tfrac{3}{85}\) with a bigger denominator so that the numerator is one more than a divisor of the denominator.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: beating the greedy method badly</h2>
+<p>Greedy turns \(\tfrac5{121}\) into five unit fractions, and the last denominator has 25 digits. Find three different unit fractions that add to \(\tfrac5{121}\). Hint: \(363 = 3 \times 121\), and 363 has small divisors that add up nicely.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(\tfrac23 = \tfrac12 + \tfrac16\). \(\tfrac34 = \tfrac12 + \tfrac14\). \(\tfrac56 = \tfrac12 + \tfrac13\).</li>
+<li>\(\tfrac9{20}\): \(20 \div 9 = 2.2\), so \(\tfrac13\); remainder \(\tfrac{7}{60}\); \(60 \div 7 = 8.6\), so \(\tfrac19\); remainder \(\tfrac{1}{180}\). So \(\tfrac9{20} = \tfrac13 + \tfrac19 + \tfrac1{180}\), numerators \(9, 7, 1\). \(\tfrac37\): \(\tfrac13\), remainder \(\tfrac2{21}\); \(\tfrac1{11}\), remainder \(\tfrac1{231}\). So \(\tfrac37 = \tfrac13 + \tfrac1{11} + \tfrac1{231}\), numerators \(3, 2, 1\).</li>
+<li>(a) \(\tfrac17 + \tfrac1{42} = \tfrac{6 + 1}{42} = \tfrac16\). In general \(\tfrac1{n+1} + \tfrac1{n(n+1)} = \tfrac{n + 1}{n(n+1)} = \tfrac1n\). (b) Split one of the sevenths: \(\tfrac27 = \tfrac17 + \tfrac18 + \tfrac1{56}\). (c) Any unit fraction in an answer can be split into two new ones, so you can always make a longer answer; there is no end to them.</li>
+<li>(a) \(17 \div 4 = 4.25\), rounded up is 5; \(\tfrac14\) would be more than \(\tfrac4{17}\) since \(4 \times 4 = 16 \lt 17\). (b) \(\tfrac3{85} = \tfrac6{170} = \tfrac5{170} + \tfrac1{170} = \tfrac1{34} + \tfrac1{170}\). So \(\tfrac4{17} = \tfrac15 + \tfrac1{34} + \tfrac1{170}\). (Another: \(\tfrac3{85} = \tfrac{18}{510} = \tfrac1{30} + \tfrac1{510}\).)</li>
+</ol>
+<p><b>Stretch.</b> \(\tfrac5{121} = \tfrac{15}{363}\), and \(15 = 11 + 3 + 1\), all divisors of 363. So \(\tfrac5{121} = \tfrac{11}{363} + \tfrac{3}{363} + \tfrac{1}{363} = \tfrac1{33} + \tfrac1{121} + \tfrac1{363}\). Greedy always finishes, but it is not always clever.</p>
+</section>
+
+<div class="sheet-nav"><a href="b11-koch.html">← Previous</a><a href="b13-magic-squares.html">Next: Magic squares →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

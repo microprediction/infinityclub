@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Linear or not? · Infinity Club</title>
+<meta name="description" content="Read the rate of change from a table, a graph and a story. Equal steps in x giving equal steps in y means a line; anything else does not.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 8 · Sharpen · 9</div>
+  <h1>Linear or not?</h1>
+  <p class="teaser">Read the rate of change from a table, a graph, and a story. Constant change means a line.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A relationship is <b>linear</b> when equal steps in \(x\) always produce equal steps in \(y\). The change in \(y\) for each extra unit of \(x\) is the <b>rate of change</b>. On a graph the rate is the slope, and <a href="a2-slope.html">a line has the same slope everywhere</a>.</p>
+<p>In a table, look at the gaps. If \(x\) goes up by 1 each row and \(y\) by 2, the rate is 2 and the rule is \(y = 2x + b\), with \(b\) the value of \(y\) at \(x = 0\). If the \(y\) gaps change, the points do not lie on a line.</p>
+<figure><div style="display:flex;gap:1.6em;justify-content:center;align-items:center;flex-wrap:wrap">
+<table>
+<tr><th>\(x\)</th><th>A</th><th>B</th></tr>
+<tr><td>0</td><td>3</td><td>0</td></tr>
+<tr><td>1</td><td>5</td><td>1</td></tr>
+<tr><td>2</td><td>7</td><td>4</td></tr>
+<tr><td>3</td><td>9</td><td>9</td></tr>
+<tr><td>4</td><td>11</td><td>16</td></tr>
+</table>
+<svg viewBox="0 0 215 165" width="215" height="165" role="img" aria-label="Column A plotted as five points on a straight line; column B plotted as five points on a curve that bends upward" font-family="Nunito, sans-serif" font-size="12">
+<line x1="30" y1="150" x2="200" y2="150" stroke="#999" stroke-width="1"/>
+<line x1="30" y1="150" x2="30" y2="10" stroke="#999" stroke-width="1"/>
+<g fill="#666" text-anchor="middle"><text x="30" y="162">0</text><text x="70" y="162">1</text><text x="110" y="162">2</text><text x="150" y="162">3</text><text x="190" y="162">4</text></g>
+<g fill="#666" text-anchor="end"><text x="25" y="120.4">4</text><text x="25" y="86.8">8</text><text x="25" y="53.2">12</text><text x="25" y="19.6">16</text></g>
+<polyline points="30,150 35,149.9 40,149.5 45,148.8 50,147.9 55,146.7 60,145.3 65,143.6 70,141.6 75,139.4 80,136.9 85,134.1 90,131.1 95,127.8 100,124.3 105,120.5 110,116.4 115,112.1 120,107.5 125,102.6 130,97.5 135,92.1 140,86.5 145,80.6 150,74.4 155,68 160,61.3 165,54.3 170,47.1 175,39.6 180,31.9 185,23.9 190,15.6" fill="none" stroke="#f5a524" stroke-width="1.5" stroke-dasharray="4 3"/>
+<line x1="30" y1="124.8" x2="190" y2="57.6" stroke="#3f44c9" stroke-width="1.5"/>
+<g fill="#3f44c9"><circle cx="30" cy="124.8" r="3.5"/><circle cx="70" cy="108" r="3.5"/><circle cx="110" cy="91.2" r="3.5"/><circle cx="150" cy="74.4" r="3.5"/><circle cx="190" cy="57.6" r="3.5"/></g>
+<g fill="#f5a524"><circle cx="30" cy="150" r="3.5"/><circle cx="70" cy="141.6" r="3.5"/><circle cx="110" cy="116.4" r="3.5"/><circle cx="150" cy="74.4" r="3.5"/><circle cx="190" cy="15.6" r="3.5"/></g>
+<text x="205" y="60" fill="#3f44c9" font-weight="700">A</text><text x="205" y="19" fill="#f5a524" font-weight="700">B</text>
+</svg></div>
+<figcaption>Column A rises by 2 at every step: a line, \(y = 2x + 3\). Column B rises by 1, 3, 5, 7: the points bend upward.</figcaption></figure>
+<p>In a story, ask: does each extra unit cost the same? A taxi with a fixed fee plus a fixed amount per kilometre is linear. The area of a square is not: side 3 to side 4 adds 7, side 4 to side 5 adds 9.</p>
+<p>One trap: the test needs equal steps in \(x\). If the \(x\) values are uneven, divide each \(y\) gap by its \(x\) gap and compare the rates instead.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: \(x = 1, 2, 4, 7\) and \(y = 5, 8, 14, 23\)</h2>
+<p>The \(y\) gaps are 3, 6, 9: not equal. But neither are the \(x\) gaps, 1, 2, 3. Divide:</p>
+<p>\[\frac{3}{1} = 3, \qquad \frac{6}{2} = 3, \qquad \frac{9}{3} = 3.\]</p>
+<p>Every rate is 3, so the points lie on a line, \(y = 3x + b\). One point gives \(b\): \(5 = 3 \times 1 + b\), so \(b = 2\), and \(y = 3x + 2\). Check the last point: \(3 \times 7 + 2 = 23\).</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Which tables are linear? For each linear one, give the rate and the rule \(y = mx + b\).<br>
+(a) \(x = 0, 1, 2, 3\) and \(y = 7, 4, 1, -2\). &nbsp; (b) \(x = 0, 1, 2, 3\) and \(y = 1, 3, 9, 27\). &nbsp; (c) \(x = 0, 2, 4, 6\) and \(y = 5, 6, 7, 8\).<div class="space short"></div></li>
+<li>Which of these stories is linear? Write a rule for each linear one.<br>
+(a) A phone plan costs $12 a month plus 5 cents per text. &nbsp; (b) A dropped ball falls \(5t^2\) metres in \(t\) seconds. &nbsp; (c) A candle 20 cm tall burns down 1.5 cm every hour. When does it burn out?<div class="space short"></div></li>
+<li>A table has \(x = 1, 3, 8, 12\) and \(y = 4, 10, 25, 37\). Is it linear? If so, find the rule and predict \(y\) when \(x = 20\).<div class="space short"></div></li>
+<li>A square has side \(s\). (a) Make a table of its perimeter and its area for \(s = 1, 2, 3, 4\). (b) Which is linear in \(s\)? (c) Show that going from side \(s\) to side \(s + 1\) adds \(2s + 1\) to the area, and explain why that means the area can never be linear.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the gaps of the gaps</h2>
+<p>A table has \(x = 0, 1, 2, 3, 4\) and \(y = 2, 3, 6, 11, 18\). Write down the gaps, then the gaps of the gaps. Guess a rule for \(y\) in terms of \(x\) and check it against all five rows. What kind of rule gives this pattern?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) Linear: gaps of \(-3\), so \(y = 7 - 3x\). (b) Not linear: the gaps are 2, 6, 18. (c) Linear: \(y\) rises 1 for every 2 in \(x\), so the rate is \(\tfrac12\) and \(y = 5 + \tfrac12 x\).</li>
+<li>(a) Linear: \(C = 12 + 0.05n\) dollars for \(n\) texts. (b) Not linear: in successive seconds it falls 5, 15, 25 metres. (c) Linear: \(h = 20 - 1.5t\). It burns out when \(h = 0\), at \(t = 20/1.5 = 13\tfrac13\) hours, 13 h 20 min.</li>
+<li>The rates are \(6/2\), \(15/5\), \(12/4\), all 3, so yes. \(y = 3x + b\) with \(4 = 3 + b\), so \(y = 3x + 1\). At \(x = 20\), \(y = 61\).</li>
+<li>(a) Perimeter 4, 8, 12, 16; area 1, 4, 9, 16. (b) Perimeter: equal gaps of 4, \(P = 4s\). The area gaps are 3, 5, 7. (c) \((s+1)^2 - s^2 = 2s + 1\). The gap depends on \(s\) and grows by 2 every step, so no single rate fits; linear would need the same gap every time.</li>
+</ol>
+<p><b>Stretch.</b> Gaps 1, 3, 5, 7; gaps of the gaps 2, 2, 2. The rule is \(y = x^2 + 2\): check \(0 + 2, 1 + 2, 4 + 2, 9 + 2, 16 + 2\). Constant second gaps are the signature of a squared term (a quadratic), just as constant first gaps are the signature of a line.</p>
+</section>
+
+<div class="sheet-nav"><a href="a8-pythagoras-distance.html">← Previous</a><a href="a10-rigid-motions.html">Next: Slide, flip, turn, scale →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trapping π between polygons · Infinity Club</title>
+<meta name="description" content="A hexagon inside a circle and one outside give 3 < π < 3.46. Double the sides with Pythagoras alone and the trap tightens; Archimedes reached 3.1408 < π < 3.1429 with a 96-gon.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 8 · Around the corner · 19</div>
+  <h1>Trapping π between polygons</h1>
+  <p class="teaser">A hexagon inside the circle and one outside give 3 &lt; π &lt; 3.46. Double the sides and the trap tightens. Archimedes got to 3.1408.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Take a circle of radius 1. Its circumference is \(2\pi\), so \(\pi\) is <em>half the perimeter</em> of the circle. We cannot measure a curve directly, but we can trap it. Any polygon drawn inside the circle has a shorter perimeter; any polygon wrapped around the outside has a longer one. Half of each perimeter is a bound on \(\pi\).</p>
+<figure><svg viewBox="0 0 420 200" width="420" height="200" role="img" aria-label="Left: a circle with an inscribed hexagon and a circumscribed hexagon. Right: the doubling step, a triangle from the centre O to a chord AB with midpoint M, and the arc midpoint P making the new side AP." font-family="Nunito, sans-serif" font-size="13">
+<circle cx="95" cy="100" r="70" fill="none" stroke="#000" stroke-width="2"/>
+<polygon points="165.0,100.0 130.0,39.4 60.0,39.4 25.0,100.0 60.0,160.6 130.0,160.6" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<polygon points="165.0,59.6 95.0,19.2 25.0,59.6 25.0,140.4 95.0,180.8 165.0,140.4" fill="none" stroke="#f5a524" stroke-width="1.5"/>
+<text x="95" y="104" text-anchor="middle" fill="#3f44c9" font-size="12">half-perimeter 3</text>
+<text x="95" y="196" text-anchor="middle" fill="#f5a524" font-size="12">half-perimeter 2√3 ≈ 3.46</text>
+<circle cx="310" cy="178" r="140" fill="none" stroke="#000" stroke-width="2" clip-path="url(#top)"/>
+<defs><clipPath id="top"><rect x="225" y="30" width="170" height="40"/></clipPath></defs>
+<polygon points="310,178 240,56.8 380,56.8" fill="#dcdcf5" stroke="#000" stroke-width="1.5"/>
+<line x1="310" y1="178" x2="310" y2="38" stroke="#999" stroke-width="1.5"/>
+<line x1="240" y1="56.8" x2="310" y2="38" stroke="#f5a524" stroke-width="2.5"/>
+<line x1="310" y1="38" x2="380" y2="56.8" stroke="#f5a524" stroke-width="2.5"/>
+<rect x="302" y="56.8" width="8" height="8" fill="none" stroke="#000" stroke-width="1"/>
+<circle cx="310" cy="178" r="2.5"/><circle cx="240" cy="56.8" r="2.5"/><circle cx="380" cy="56.8" r="2.5"/><circle cx="310" cy="56.8" r="2.5"/><circle cx="310" cy="38" r="2.5" fill="#f5a524"/>
+<text x="310" y="195" text-anchor="middle">O</text><text x="231" y="52">A</text><text x="384" y="52">B</text><text x="316" y="70">M</text><text x="310" y="32" text-anchor="middle" fill="#f5a524">P</text>
+<text x="272" y="70" text-anchor="middle" font-size="12">s/2</text>
+<text x="300" y="125" text-anchor="end" font-size="12">h</text>
+<text x="256" y="110" font-size="12" fill="#555">1</text>
+<text x="340" y="45" font-size="12" fill="#f5a524">new side</text>
+</svg><figcaption>Left: the trap at six sides. Right: cutting the arc \(AB\) in half at \(P\) turns one side of the inscribed polygon into two.</figcaption></figure>
+<p>Start with hexagons. The inscribed hexagon is six equilateral triangles of side 1, so its half-perimeter is 3: \(\pi > 3\). The circumscribed hexagon is bigger by the ratio \(1/h\), where \(h = \sqrt{1 - (1/2)^2} = \sqrt{3}/2\) is the distance from \(O\) to a side of the inscribed one (similar triangles, apex at \(O\)). Its half-perimeter is \(3 \cdot 2/\sqrt{3} = 2\sqrt{3} \approx 3.464\). So \(3 \lt \pi \lt 3.464\).</p>
+<p>Now double. Each side \(AB\) of the inner polygon is replaced by \(AP\) and \(PB\), where \(P\) is the midpoint of the arc. Pythagoras twice gives the new side from the old:</p>
+<p>\[h = \sqrt{1 - (s/2)^2}, \qquad s_{\text{new}} = \sqrt{(s/2)^2 + (1 - h)^2}.\]</p>
+<p>Repeat, and the bounds squeeze together. Archimedes did this by hand, to 96 sides.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: from 6 sides to 12</h2>
+<p>With \(s = 1\): \(h = \sqrt{3}/2 \approx 0.86603\), so \(MP = 1 - h \approx 0.13397\). Then</p>
+<p>\[s_{12} = \sqrt{0.5^2 + 0.13397^2} = \sqrt{0.26795} \approx 0.51764.\]</p>
+<p>Twelve sides: half-perimeter \(6 \times 0.51764 \approx 3.1058\), so \(\pi > 3.1058\). For the outer 12-gon, scale by \(1/h_{12}\) with \(h_{12} = \sqrt{1 - 0.25882^2} \approx 0.96593\): half-perimeter \(3.1058 / 0.96593 \approx 3.2154\). After one doubling, \(3.1058 \lt \pi \lt 3.2154\).</p>
+<p class="small">Slide the number of sides from 6 to 96 and watch both bounds move: <a href="../../demos/pi-polygons.html">infinityclub.net/demos/pi-polygons.html</a>. A different way to estimate \(\pi\), by throwing random darts, is at <a href="../../demos/pi-darts.html">infinityclub.net/demos/pi-darts.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Start with squares instead of hexagons. Find the half-perimeters of the inscribed and circumscribed squares of a circle of radius 1, and write down the trap they give for \(\pi\).<div class="space short"></div></li>
+<li>Take \(s_{12} \approx 0.51764\) and \(h_{12} \approx 0.96593\). Use the doubling formula to find \(s_{24}\) to five decimal places, and the lower bound it gives for \(\pi\).<div class="space"></div></li>
+<li>Find \(h_{24}\), scale the inner 24-gon up by \(1/h_{24}\), and write down the new upper bound. State the trap after two doublings.<div class="space"></div></li>
+<li>The gap between the bounds is \(0.464\) at 6 sides, \(0.110\) at 12 and \(0.027\) at 24. (a) Roughly what does each doubling do to the gap? (b) Estimate how many sides are needed to pin \(\pi\) to within \(0.001\). (c) Explain, using only the triangle inequality, why the inner half-perimeter must go up at every doubling.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: area instead of perimeter</h2>
+<p>Cut a polygon wrapped around a circle of radius 1 into triangles with apex \(O\). Show its area is exactly half its perimeter, so trapping the circle's area \(\pi\) gives the same upper bound. Then find the inscribed hexagon's area. Which trap, area or perimeter, gives the better lower bound?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Inscribed square: diagonal 2, so side \(\sqrt 2\), half-perimeter \(2\sqrt2 \approx 2.828\). Circumscribed square: side 2, half-perimeter 4. So \(2.828 \lt \pi \lt 4\). A wider trap than the hexagons give.</li>
+<li>\(1 - h_{12} \approx 0.03407\) and \(s_{12}/2 \approx 0.25882\), so \(s_{24} = \sqrt{0.25882^2 + 0.03407^2} = \sqrt{0.068148} \approx 0.26105\). Lower bound \(12 \times 0.26105 \approx 3.1326\).</li>
+<li>\(h_{24} = \sqrt{1 - 0.130525^2} \approx 0.99144\). Upper bound \(3.1326 / 0.99144 \approx 3.1597\). So \(3.1326 \lt \pi \lt 3.1597\).</li>
+<li>(a) Each doubling divides the gap by about 4 (\(0.464/0.110 \approx 4.2\), \(0.110/0.027 \approx 4.1\)). (b) From 0.027 at 24 sides: 48 gives about 0.0068, 96 about 0.0017, 192 about 0.0004. So 192 sides, or 96 if you only need the bounds to agree to two decimals. (c) The new path \(A \to P \to B\) is two sides of triangle \(APB\), which together are longer than the third side \(AB\). Every side grows this way, so the whole perimeter grows.</li>
+</ol>
+<p><b>Stretch.</b> Each triangle has a side of the polygon as its base and the radius to the point of contact as its height, which is 1. So its area is \(\tfrac12 \times \text{base} \times 1\), and summing gives area \(= \tfrac12 \times\) perimeter. The circumscribed hexagon has area \(2\sqrt3 \approx 3.464\), the same upper bound. The inscribed hexagon is six equilateral triangles of side 1, each of area \(\sqrt3/4\), total \(3\sqrt3/2 \approx 2.598\). The perimeter trap (\(\pi > 3\)) is better; the heights of the inner triangles are \(h \lt 1\), which costs area but not perimeter. Archimedes used perimeters, and with a 96-gon and no decimals reached \(3\tfrac{10}{71} \lt \pi \lt 3\tfrac17\): \(3.1408 \lt \pi \lt 3.1429\).</p>
+</section>
+
+<div class="sheet-nav"><a href="b18-four-weights.html">← Previous</a><a href="b20-constructions.html">Next: Ruler and compass →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

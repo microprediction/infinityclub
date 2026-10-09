@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why a typo in your card number gets caught · Infinity Club</title>
+<meta name="description" content="Check digits on ISBNs, barcodes and credit cards: a weighted sum modulo 11 or 10 that catches every single wrong digit and almost every swapped pair. The Luhn algorithm by hand.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 8 · Connections · 1</div>
+  <h1>Why a typo in your card number gets caught</h1>
+  <p class="teaser">ISBNs, barcodes and the Luhn check on credit cards: one extra digit that catches almost every slip.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>The last digit of an ISBN, a barcode or a card number carries no information. It is a <b>check digit</b>, computed from the others, so a scanner or website can tell at once whether the number is damaged.</p>
+<p>The simplest check makes the digits add to a multiple of 10. That catches one wrong digit, but the commonest slip is swapping two neighbours, 61 for 16, and a plain sum cannot see that. The fix is to weight each position differently.</p>
+<p>Ten-digit ISBNs (books printed before 2007) weight the positions 10, 9, 8, …, 1 from the left and demand a multiple of 11:</p>
+<p class="callout">\(10d_1 + 9d_2 + 8d_3 + \cdots + 2d_9 + 1d_{10}\) is a multiple of 11. Here \(d_1, \dots, d_{10}\) are the digits.</p>
+<p>Why 11? Suppose one digit is wrong by \(e\) (1 to 9) at a position of weight \(i\) (1 to 10). The sum shifts by \(i \times e\). Since 11 is prime and divides neither \(i\) nor \(e\), it cannot divide \(i \times e\) (<a href="../../grade-6/sheets/b3-clock-arithmetic.html">clock arithmetic</a>), so the total stops being a multiple of 11 and the error is caught. Every single-digit error, every time. The price: the check digit is sometimes 10, written X.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: the Luhn check on a card number</h2>
+<p>Credit cards use the <b>Luhn algorithm</b>, which works modulo 10 so the check is always a digit. Starting from the right-hand neighbour of the check digit, double every second digit; if doubling gives two digits, subtract 9. Add everything up. The number is valid when the total ends in 0. Take the test number 4539 1488 0343 6467 (not anyone's card):</p>
+<figure><svg viewBox="0 0 500 112" width="500" height="112" role="img" aria-label="The sixteen digits 4539 1488 0343 6467 in boxes with every second digit from the right shaded; below, the doubled values 8 5 6 9 2 4 7 8 0 3 8 3 3 4 3 7 which add to 80" font-family="Nunito, sans-serif" font-size="13">
+<g stroke="#3f44c9" stroke-width="1.2">
+<rect x="12" y="14" width="26" height="24" fill="#fde8c4"/><rect x="42" y="14" width="26" height="24" fill="#fff"/><rect x="72" y="14" width="26" height="24" fill="#fde8c4"/><rect x="102" y="14" width="26" height="24" fill="#fff"/>
+<rect x="132" y="14" width="26" height="24" fill="#fde8c4"/><rect x="162" y="14" width="26" height="24" fill="#fff"/><rect x="192" y="14" width="26" height="24" fill="#fde8c4"/><rect x="222" y="14" width="26" height="24" fill="#fff"/>
+<rect x="252" y="14" width="26" height="24" fill="#fde8c4"/><rect x="282" y="14" width="26" height="24" fill="#fff"/><rect x="312" y="14" width="26" height="24" fill="#fde8c4"/><rect x="342" y="14" width="26" height="24" fill="#fff"/>
+<rect x="372" y="14" width="26" height="24" fill="#fde8c4"/><rect x="402" y="14" width="26" height="24" fill="#fff"/><rect x="432" y="14" width="26" height="24" fill="#fde8c4"/><rect x="462" y="14" width="26" height="24" fill="#dcdcf5"/>
+</g>
+<g text-anchor="middle" fill="#000">
+<text x="25" y="31">4</text><text x="55" y="31">5</text><text x="85" y="31">3</text><text x="115" y="31">9</text><text x="145" y="31">1</text><text x="175" y="31">4</text><text x="205" y="31">8</text><text x="235" y="31">8</text>
+<text x="265" y="31">0</text><text x="295" y="31">3</text><text x="325" y="31">4</text><text x="355" y="31">3</text><text x="385" y="31">6</text><text x="415" y="31">4</text><text x="445" y="31">6</text><text x="475" y="31">7</text>
+</g>
+<g text-anchor="middle" font-size="12" fill="#555">
+<text x="25" y="60">×2</text><text x="85" y="60">×2</text><text x="145" y="60">×2</text><text x="205" y="60">×2</text><text x="265" y="60">×2</text><text x="325" y="60">×2</text><text x="385" y="60">×2</text><text x="445" y="60">×2</text>
+<text x="205" y="73">16−9</text><text x="385" y="73">12−9</text><text x="445" y="73">12−9</text>
+</g>
+<g text-anchor="middle" fill="#3f44c9" font-weight="700">
+<text x="25" y="96">8</text><text x="55" y="96">5</text><text x="85" y="96">6</text><text x="115" y="96">9</text><text x="145" y="96">2</text><text x="175" y="96">4</text><text x="205" y="96">7</text><text x="235" y="96">8</text>
+<text x="265" y="96">0</text><text x="295" y="96">3</text><text x="325" y="96">8</text><text x="355" y="96">3</text><text x="385" y="96">3</text><text x="415" y="96">4</text><text x="445" y="96">3</text><text x="475" y="96">7</text>
+</g>
+<text x="4" y="110" font-size="12" fill="#555">sum of the bottom row: 80</text>
+</svg><figcaption>Shaded digits are doubled (subtract 9 if the result has two digits); the check digit, in blue, is the last. Total 80, a multiple of 10: valid.</figcaption></figure>
+<p>Type the last two digits the wrong way round, 6476, and the bottom row ends 5, 6 instead of 3, 7: total 81. Rejected before the shop ever contacts the bank.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Find the check digit of the ISBN 1-86197-271-?. (Weights 10 down to 2 for the nine known digits; choose the last digit so the total is a multiple of 11.)<div class="space short"></div></li>
+<li>Run the Luhn check on 4539 1488 0433 6467, which is the test number with one pair of neighbours swapped. Is it caught?<div class="space short"></div></li>
+<li>The ISBN 0-306-40615-2 is valid: its weighted sum is 132. (a) The 4 is mistyped as 7. What is the new sum, and is the slip caught? (b) The neighbours 6 and 1 are swapped to give 0-306-40165-2. Find the new sum. Then explain why swapping <em>any</em> two neighbouring digits \(a\) and \(b\) in an ISBN is always caught. (Hint: their weights differ by 1.)<div class="space"></div></li>
+<li>The Luhn check misses one kind of neighbour swap. (a) Show that a doubled 0 next to an undoubled 9 contributes the same total as a doubled 9 next to an undoubled 0. (b) Write \(f(a)\) for "double \(a\), subtract 9 if needed". Swapping neighbours \(a, b\) changes the total by \(f(a) + b - f(b) - a\). Show this is a multiple of 10 only for \(\{a, b\} = \{0, 9\}\).<div class="space tall"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: barcodes</h2>
+<p>The 13-digit barcode on groceries uses weights 1, 3, 1, 3, … and demands a total that is a multiple of 10. (a) Explain why one wrong digit is always caught. (b) Which pairs of neighbouring digits can be swapped without the check noticing? Find all of them.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(10 \cdot 1 + 9 \cdot 8 + 8 \cdot 6 + 7 \cdot 1 + 6 \cdot 9 + 5 \cdot 7 + 4 \cdot 2 + 3 \cdot 7 + 2 \cdot 1 = 257\). The next multiple of 11 is 264, so the check digit is 7.</li>
+<li>Only the third group changes: the digits 0, 4, 3, 3 give \(0, 4, 6, 3\) (the 4 is now in an undoubled place and the 3 in a doubled one) instead of \(0, 3, 8, 3\). The total drops from 80 to 79. Caught.</li>
+<li>(a) The 4 had weight 6; replacing it by 7 adds \(6 \times 3 = 18\), giving 150, which is \(13 \times 11 + 7\). Caught. (b) The 6 (weight 4) and 1 (weight 3) become 1 and 6: the sum changes by \(4 \cdot 1 + 3 \cdot 6 - 4 \cdot 6 - 3 \cdot 1 = -5\), giving 127, not a multiple of 11. In general, swapping neighbours \(a, b\) with weights \(w, w - 1\) changes the sum by \(wb + (w-1)a - wa - (w-1)b = b - a\), which is between \(-9\) and 9 and not zero. It cannot be a multiple of 11.</li>
+<li>(a) \(f(0) + 9 = 0 + 9 = 9\) and \(f(9) + 0 = 9 + 0 = 9\). Same total, so 09 and 90 look alike. (b) \(f(a) - a = a\) when \(a \le 4\) and \(f(a) - a = a - 9\) when \(a \ge 5\). The change is \((f(a) - a) - (f(b) - b)\). If both digits are at most 4, or both at least 5, this is \(a - b\), which is between \(-4\) and 4, so a multiple of 10 only when \(a = b\). If \(a \ge 5\) and \(b \le 4\), it is \(a - 9 - b\), which lies between \(-8\) and 0 and equals 0 only when \(a = 9\), \(b = 0\). (The case \(a \le 4\), \(b \ge 5\) is the same swap read backwards.) The 0–9 swap is the one blind spot.</li>
+</ol>
+<p><b>Stretch.</b> (a) A wrong digit shifts the total by \(e\) or \(3e\) with \(e\) from 1 to 9. Neither is a multiple of 10: \(3e\) would need \(e\) itself to be a multiple of 10. (b) Swapping neighbours \(a, b\) changes the total from \(a + 3b\) to \(3a + b\), a shift of \(2(a - b)\). That is a multiple of 10 exactly when \(a - b = \pm 5\): the pairs 05, 16, 27, 38 and 49, in either order. ISBN's prime 11 has no such blind spot, but it needs the awkward X.</p>
+</section>
+
+<div class="sheet-nav"><a href="b27-half-planes.html">← Previous</a><a href="c2-simpson.html">Next: When both groups improve and the total gets worse →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

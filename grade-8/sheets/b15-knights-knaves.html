@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Knights, knaves and truth tables · Infinity Club</title>
+<meta name="description" content="Knights always tell the truth, knaves always lie. Solve the island puzzles by cases, then build truth tables for AND, OR and NOT that solve every puzzle of this kind mechanically.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+<style>
+.tt-row { display: flex; flex-wrap: wrap; gap: 1.2em; align-items: flex-start; }
+.tt-row table { margin: .3em 0; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 8 · Around the corner · 15</div>
+  <h1>Knights, knaves and truth tables</h1>
+  <p class="teaser">Knights always tell the truth, knaves always lie. Solve the island puzzles, then build the truth tables that solve them all.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>On the island every person is a <b>knight</b>, who only says true things, or a <b>knave</b>, who only says false things. You cannot tell them apart by looking, only by listening.</p>
+<p>One fact does all the work. Whatever islander \(A\) says is true exactly when \(A\) is a knight. So "\(A\) is a knight" and "what \(A\) said" are both true or both false.</p>
+<p>To use it, write \(A\) for the claim "\(A\) is a knight", and build the statement out of \(A\), \(B\) and three connectives. <b>NOT</b> flips true and false. <b>AND</b> is true only when both parts are. <b>OR</b> is true when at least one part is (so true even when both are). A <b>truth table</b> lists every combination, T for true and F for false:</p>
+<div class="tt-row">
+<table><tr><th>\(A\)</th><th>NOT \(A\)</th></tr><tr><td>T</td><td>F</td></tr><tr><td>F</td><td>T</td></tr></table>
+<table><tr><th>\(A\)</th><th>\(B\)</th><th>\(A\) AND \(B\)</th><th>\(A\) OR \(B\)</th></tr>
+<tr><td>T</td><td>T</td><td>T</td><td>T</td></tr>
+<tr><td>T</td><td>F</td><td>F</td><td>T</td></tr>
+<tr><td>F</td><td>T</td><td>F</td><td>T</td></tr>
+<tr><td>F</td><td>F</td><td>F</td><td>F</td></tr></table>
+</div>
+<p>To solve a puzzle, write each speaker's statement as a column, then keep only the rows where the statement's value matches the speaker's own column. Those rows are the answers. If no row survives, the situation is impossible; if several survive, the puzzle has not told you enough.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: "At least one of us is a knave"</h2>
+<p>You meet \(A\) and \(B\). \(A\) says: "At least one of us is a knave."</p>
+<p><b>By cases.</b> If \(A\) were a knave, the statement would be false, so neither is a knave, so \(A\) is a knight. Contradiction. So \(A\) is a knight, the statement is true, and the knave must be \(B\).</p>
+<p><b>By table.</b> The statement is (NOT \(A\)) OR (NOT \(B\)). Fill the column and compare it with the \(A\) column:</p>
+<table><tr><th>\(A\)</th><th>\(B\)</th><th>(NOT \(A\)) OR (NOT \(B\))</th><th>matches \(A\)?</th></tr>
+<tr><td>T</td><td>T</td><td>F</td><td>no</td></tr>
+<tr><td>T</td><td>F</td><td>T</td><td><b>yes</b></td></tr>
+<tr><td>F</td><td>T</td><td>T</td><td>no</td></tr>
+<tr><td>F</td><td>F</td><td>T</td><td>no</td></tr></table>
+<p>One row survives: \(A\) is a knight, \(B\) is a knave. Same answer, no cleverness required.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>(a) Can anyone on the island say "I am a knave"? Explain. (b) \(A\) says "I am a knight." What have you learned about \(A\)?<div class="space short"></div></li>
+<li>\(A\) says: "We are both knaves." Work out what \(A\) and \(B\) are, by cases.<div class="space short"></div></li>
+<li>\(A\) says: "Exactly one of us is a knight." Write the statement as (\(A\) OR \(B\)) AND NOT (\(A\) AND \(B\)), fill in a four-row truth table, and find every row that matches. What can you be sure of?<div class="space"></div></li>
+<li>Three islanders. \(A\) says: "All three of us are knaves." \(B\) says: "Exactly one of us is a knight." Find what each of \(A\), \(B\), \(C\) is. (Start with \(A\). Then split on \(B\).)<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: one question at the fork</h2>
+<p>At a fork, one road leads to the village. A stranger stands there, a knight or a knave, you do not know which. You may ask one yes-or-no question. Find a question whose answer tells you the road whatever the stranger is, and check it with a table of the four cases.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) No. A knight would be lying, a knave would be telling the truth. Neither is allowed. (b) Nothing. A knight says it truthfully and a knave says it falsely; everyone on the island says it.</li>
+<li>If \(A\) were a knight the statement would be true, making \(A\) a knave. Contradiction. So \(A\) is a knave and the statement is false: they are not both knaves. Since \(A\) is one, \(B\) is a knight.</li>
+<li>Statement column, rows TT, TF, FT, FF: F, T, T, F. Matches \(A\) in rows TF and FF. So \(B\) is a knave for certain, but \(A\) could be either. The puzzle does not settle \(A\).</li>
+<li>\(A\) cannot be a knight (a knight cannot truthfully call itself a knave), so \(A\) is a knave and not all three are knaves. If \(B\) is a knight, there is exactly one knight, so \(C\) is a knave: consistent. If \(B\) is a knave, then \(C\) must be the knight (someone is), which makes exactly one knight, so \(B\)'s statement would be true: contradiction. Answer: \(A\) knave, \(B\) knight, \(C\) knave.</li>
+</ol>
+<p><b>Stretch.</b> Ask: "If I asked you whether the left road leads to the village, would you say yes?" A knight answers honestly about an honest answer. A knave lies about a lie, and two lies cancel. The four cases: knight/left: yes; knight/right: no; knave/left: yes; knave/right: no. "Yes" means left, whoever is speaking.</p>
+</section>
+
+<div class="sheet-nav"><a href="b14-unsolved.html">← Previous</a><a href="b16-shoelace.html">Next: The shoelace formula →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

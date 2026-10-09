@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chomp · Infinity Club</title>
+<meta name="description" content="Play Chomp against a computer that searches every position and never slips. Eat squares of chocolate, avoid the poisoned corner, then switch on the hints and see which squares are safe.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.setup input { width: 3.2em; }
+.bar { display: inline-grid; gap: 3px; margin: .8rem auto; padding: 6px; background: #efe9dc; border-radius: 10px; touch-action: manipulation; }
+.barwrap { text-align: center; }
+.sq { width: 36px; height: 36px; border: 0; border-radius: 5px; padding: 0; cursor: pointer; background: #7a4a1e; box-shadow: inset 0 -3px 0 rgba(0,0,0,.25); transition: transform .08s, background .12s; position: relative; }
+.sq:hover { transform: scale(1.06); }
+.sq.gone { background: transparent; box-shadow: none; cursor: default; border: 1px dashed #d9d6cc; }
+.sq.gone:hover { transform: none; }
+.sq.poison { background: #2b2b3a; color: #fff; font-weight: 800; font-size: 1rem; }
+.sq.poison::after { content: "\2620"; }
+.sq.preview { background: #c9834a; }
+.sq.poison.preview { background: #5b3a6b; }
+.sq.win { outline: 3px solid var(--warm); outline-offset: -3px; }
+.sq.lastbite { box-shadow: inset 0 -3px 0 rgba(0,0,0,.25), 0 0 0 2px var(--accent); }
+.bar.ai .sq { cursor: default; }
+.bar.ai .sq:hover { transform: none; }
+.sq:disabled { cursor: default; }
+@media (max-width: 400px) { .sq { width: 30px; height: 30px; } .bar { gap: 2px; } }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Chomp</h1>
+<p class="explain">A bar of chocolate. The bottom-left square is poisoned. On your turn, <b>tap a square to eat it together with every square above it and to its right</b>. The computer then takes a bite. <b>Whoever is left with only the poisoned square must eat it, and loses.</b> Try to win from a few different bar sizes. Then tick "show winning squares" and notice that from every bar bigger than 1 × 1 the first player has a safe bite, even though nobody knows a formula for it.</p>
+<div class="demo-panel">
+  <div class="controls setup">
+    <label>rows <input type="number" id="rows" min="1" max="6" value="4"></label>
+    <label>columns <input type="number" id="cols" min="1" max="8" value="6"></label>
+    <label><input type="checkbox" id="aifirst"> computer goes first</label>
+    <button id="newgame">New game</button>
+    <label><input type="checkbox" id="hints"> show winning squares</label>
+  </div>
+  <div class="barwrap"><div class="bar" id="bar"></div></div>
+  <div class="readout" id="status"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>Chomp is a finite game with no draws, so every position is either a <b>win</b> for the player about to move or a <b>loss</b> for them. A position is a loss if only the poison is left, and a win if some bite leads to a position that is a loss for the other player. Working backwards from the smallest bars, the computer labels every reachable shape. A 6 × 8 bar has only 3003 possible shapes (each is a staircase of row lengths), so this takes a blink.</p>
+<p>The famous fact about Chomp is that <b>the first player always has a winning move</b>, yet the proof does not tell you what it is. The argument: suppose the first player bites off just the top-right square. Either that is a winning move, done, or the second player has a winning reply, some bite that leaves a losing position. But that bite was available to the first player at the start, and it would have eaten the top-right square anyway. So the first player could have made it instead and won. One of the two cases must hold, so a winning first move exists. This is a <b>strategy-stealing</b> argument. It proves a winner exists and gives you no clue how to play.</p>
+<p>For a square bar the trick is known: bite the square diagonally next to the poison, leaving an L of two equal arms, then copy whatever your opponent does on the other arm. For a 2-row bar, keep the top row exactly one shorter than the bottom. For 3 rows and more, nobody has a rule, only the search.</p>
+<p>Sheet: <a href="../grade-8/sheets/b22-chomp.html">Strategy stealing</a>. Related demo: <a href="nim.html">Nim</a>, a game where the winning rule is known.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  // A board is an array of row lengths, row 0 at the bottom (the poison row), non-increasing upwards.
+  // Biting (i, j) removes every square in rows >= i with column >= j.
+  var memo = {};
+  function key(s) { return s.join(","); }
+  function total(s) { var t = 0; for (var i = 0; i < s.length; i++) t += s[i]; return t; }
+  function bite(s, i, j) { var t = s.slice(); for (var k = i; k < t.length; k++) if (t[k] > j) t[k] = j; return t; }
+  function moves(s) { var m = []; for (var i = 0; i < s.length; i++) for (var j = 0; j < s[i]; j++) if (!(i === 0 && j === 0)) m.push([i, j]); return m; }
+  // true if the player about to move can force a win
+  function isWin(s) {
+    var k = key(s); if (k in memo) return memo[k];
+    var w = false;
+    if (total(s) > 1) { var m = moves(s); for (var q = 0; q < m.length; q++) if (!isWin(bite(s, m[q][0], m[q][1]))) { w = true; break; } }
+    memo[k] = w; return w;
+  }
+  function winningMoves(s) { return moves(s).filter(function (m) { return !isWin(bite(s, m[0], m[1])); }); }
+  function rect(rows, cols) { var s = []; for (var i = 0; i < rows; i++) s.push(cols); return s; }
+  /*ENDPURE*/
+
+  var board = rect(4, 6), rows = 4, cols = 6, over = false, busy = false, gen = 0, aiTimer = null, last = null;
+  var barEl = document.getElementById("bar"), status = document.getElementById("status"), hints = document.getElementById("hints");
+
+  function render(aiTurn) {
+    barEl.innerHTML = "";
+    barEl.className = "bar" + (aiTurn ? " ai" : "");
+    barEl.style.gridTemplateColumns = "repeat(" + cols + ", auto)";
+    var wins = hints.checked && !over && !aiTurn ? winningMoves(board) : [];
+    function isWinSq(i, j) { for (var q = 0; q < wins.length; q++) if (wins[q][0] === i && wins[q][1] === j) return true; return false; }
+    for (var i = rows - 1; i >= 0; i--) {
+      for (var j = 0; j < cols; j++) {
+        var b = document.createElement("button"), present = j < board[i];
+        b.className = "sq" + (present ? "" : " gone") + (i === 0 && j === 0 ? " poison" : "") + (present && isWinSq(i, j) ? " win" : "") + (last && present && i === last[0] && j === last[1] - 1 ? " lastbite" : "");
+        b.disabled = !present || over || aiTurn;
+        b.setAttribute("aria-label", "row " + (i + 1) + " column " + (j + 1));
+        b.dataset.i = i; b.dataset.j = j;
+        if (present && !over && !aiTurn) {
+          (function (ii, jj) {
+            b.addEventListener("click", function () { playerMove(ii, jj); });
+            b.addEventListener("mouseenter", function () { preview(ii, jj, true); });
+            b.addEventListener("mouseleave", function () { preview(ii, jj, false); });
+          })(i, j);
+        }
+        barEl.appendChild(b);
+      }
+    }
+  }
+  function preview(i, j, on) {
+    var sqs = barEl.querySelectorAll(".sq");
+    for (var q = 0; q < sqs.length; q++) {
+      var ii = +sqs[q].dataset.i, jj = +sqs[q].dataset.j;
+      if (ii >= i && jj >= j && jj < board[ii]) sqs[q].classList.toggle("preview", on);
+    }
+  }
+  function describe(prefix) {
+    var w = isWin(board), n = winningMoves(board).length;
+    return prefix + (over ? "" : (w ? " This position is a WIN for the player to move (" + n + " winning " + (n === 1 ? "square" : "squares") + ")." : " This position is a LOSS for the player to move: every bite hands over a winning position."));
+  }
+  function playerMove(i, j) {
+    if (over || busy) return;
+    if (i === 0 && j === 0) { over = true; render(false); status.textContent = "You ate the poison. Computer wins."; return; }
+    board = bite(board, i, j); last = [i, j];
+    if (total(board) === 1) { over = true; render(false); status.textContent = "Only the poison is left for the computer. You win!"; return; }
+    busy = true; render(true);
+    status.textContent = "You bit at row " + (i + 1) + ", column " + (j + 1) + ". Computer is thinking…";
+    var g = gen;
+    aiTimer = setTimeout(function () { aiTimer = null; if (g !== gen) return; aiMove(); }, 600);
+  }
+  function aiMove() {
+    var wins = winningMoves(board), mv, why;
+    if (wins.length) { mv = wins[Math.floor(Math.random() * wins.length)]; why = "a winning bite (it leaves you a losing position)"; }
+    else {
+      // lost: nibble a single square to make the game as long as possible
+      var m = moves(board), best = null, bestEaten = Infinity;
+      for (var q = 0; q < m.length; q++) { var eaten = total(board) - total(bite(board, m[q][0], m[q][1])); if (eaten < bestEaten) { bestEaten = eaten; best = m[q]; } }
+      mv = best; why = "a stalling bite, since every move from here loses against perfect play";
+    }
+    board = bite(board, mv[0], mv[1]); last = mv; busy = false;
+    if (total(board) === 1) { over = true; render(false); status.textContent = "Computer bit at row " + (mv[0] + 1) + ", column " + (mv[1] + 1) + ". Only the poison is left for you. Computer wins."; return; }
+    render(false);
+    status.textContent = describe("Computer bit at row " + (mv[0] + 1) + ", column " + (mv[1] + 1) + ", " + why + ". Your move.");
+  }
+  function newGame() {
+    gen++; if (aiTimer) clearTimeout(aiTimer); aiTimer = null;
+    rows = clamp(document.getElementById("rows"), 1, 6); cols = clamp(document.getElementById("cols"), 1, 8);
+    board = rect(rows, cols); over = false; busy = false; last = null;
+    if (total(board) === 1) { over = true; render(false); status.textContent = "A 1 × 1 bar is just the poison. Whoever moves first loses. Make the bar bigger."; return; }
+    if (document.getElementById("aifirst").checked) { busy = true; render(true); status.textContent = "Computer goes first…"; var g = gen; aiTimer = setTimeout(function () { aiTimer = null; if (g !== gen) return; aiMove(); }, 500); }
+    else { render(false); status.textContent = describe("Your move on a " + rows + " × " + cols + " bar."); }
+  }
+  function clamp(el, lo, hi) { var v = parseInt(el.value, 10); if (isNaN(v)) v = lo; v = Math.min(hi, Math.max(lo, v)); el.value = v; return v; }
+  document.getElementById("newgame").addEventListener("click", newGame);
+  hints.addEventListener("change", function () { render(busy); });
+  newGame();
+})();
+</script>
+</body>
+</html>

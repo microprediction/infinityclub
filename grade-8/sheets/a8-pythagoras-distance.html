@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pythagoras, distances, and the diagonal of a box · Infinity Club</title>
+<meta name="description" content="A rearrangement proof of Pythagoras you can see, the distance between two points on a grid, and the longest pencil that fits in a box.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 8 · Sharpen · 8</div>
+  <h1>Pythagoras, distances, and the diagonal of a box</h1>
+  <p class="teaser">A rearrangement proof you can see, the distance between two points, and the longest pencil that fits in a box.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A right triangle has legs \(a\) and \(b\) and a <b>hypotenuse</b> \(c\), the side opposite the right angle. Pythagoras says \(a^2 + b^2 = c^2\). Tonight: one proof you can see, and two uses.</p>
+<figure><svg viewBox="0 0 460 200" width="460" height="200" role="img" aria-label="Left: a square of side a plus b holding four copies of a right triangle in its corners, leaving a tilted square of side c in the middle. Right: a box with sides a, b, c, its floor diagonal f and its long diagonal d." font-family="Nunito, sans-serif" font-size="13">
+<rect x="20" y="25" width="150" height="150" fill="#fde8c4" stroke="#000" stroke-width="1.5"/>
+<polygon points="70,25 170,75 120,175 20,125" fill="#dcdcf5" stroke="#000" stroke-width="1.5"/>
+<g stroke="#000" stroke-width="1" fill="none">
+<path d="M20 35H30V25"/><path d="M160 25V35H170"/><path d="M170 165H160V175"/><path d="M30 175V165H20"/>
+</g>
+<g text-anchor="middle">
+<text x="45" y="18">a</text><text x="120" y="18">b</text>
+<text x="180" y="54">a</text><text x="180" y="130">b</text>
+<text x="70" y="190">b</text><text x="145" y="190">a</text>
+<text x="10" y="80">b</text><text x="10" y="155">a</text>
+<text x="95" y="105" fill="#3f44c9" font-weight="700" font-size="15">c²</text>
+<text x="113" y="59" fill="#3f44c9" font-weight="700">c</text>
+</g>
+<g stroke="#000" stroke-width="1.5" fill="none">
+<polygon points="270,165 390,165 390,95 270,95"/>
+<polyline points="270,95 315,63 435,63 390,95"/>
+<polyline points="435,63 435,133 390,165"/>
+</g>
+<g stroke="#999" stroke-width="1" stroke-dasharray="3 3" fill="none">
+<polyline points="270,165 315,133 435,133"/><line x1="315" y1="133" x2="315" y2="63"/>
+</g>
+<line x1="270" y1="165" x2="435" y2="133" stroke="#f5a524" stroke-width="1.5" stroke-dasharray="5 3"/>
+<line x1="270" y1="165" x2="435" y2="63" stroke="#f5a524" stroke-width="2"/>
+<g text-anchor="middle">
+<text x="330" y="181">a</text><text x="261" y="134">c</text><text x="426" y="152">b</text>
+<text x="354" y="141" fill="#f5a524" font-weight="700">f</text><text x="318" y="120" fill="#f5a524" font-weight="700">d</text>
+</g>
+</svg><figcaption>Left: four triangles in a square of side \(a + b\) leave a square of side \(c\). Right: \(f^2 = a^2 + b^2\), then \(d^2 = f^2 + c^2\).</figcaption></figure>
+<p><b>The proof.</b> Take a square of side \(a + b\) and put four copies of the triangle in its corners. The hole in the middle is a tilted square of side \(c\). (Its corners are 90° because the triangle's two sharp angles add to 90°.) Now find the big square's area two ways. As a square: \((a+b)^2 = a^2 + 2ab + b^2\). As four triangles plus the hole: \(4 \times \tfrac12 ab + c^2 = 2ab + c^2\). Same area, so \(a^2 + 2ab + b^2 = 2ab + c^2\), and \(a^2 + b^2 = c^2\).</p>
+<p><b>Distances.</b> Two points on a grid, \((x_1, y_1)\) and \((x_2, y_2)\). The horizontal gap is \(x_2 - x_1\), the vertical gap is \(y_2 - y_1\), and the line joining them is the hypotenuse:</p>
+<p class="callout">\(d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}\). Squaring kills signs, so point order does not matter.</p>
+<p><b>Boxes.</b> A box with sides \(a, b, c\). Its floor diagonal is \(f = \sqrt{a^2 + b^2}\). That diagonal and the height \(c\) make a second right triangle, so the long diagonal is \(d = \sqrt{a^2 + b^2 + c^2}\).</p>
+<p class="small">The grade 6 sheet <a href="../../grade-6/sheets/b7-pythagoras.html">Pythagoras and square roots</a> gives the two-square version with no algebra.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: the longest pencil in a 12 × 4 × 3 cm box</h2>
+<p>Floor first: \(f^2 = 12^2 + 4^2 = 144 + 16 = 160\). Do not take the root yet. Stand the height on it: \(d^2 = f^2 + 3^2 = 160 + 9 = 169\), so \(d = 13\) cm. A 13 cm pencil fits exactly, corner to opposite corner.</p>
+<p>The same in one line: \(d = \sqrt{144 + 16 + 9} = \sqrt{169} = 13\). Keeping squares until the last step avoids messy decimals and rounding errors.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>(a) A right triangle has legs 8 and 15. Find the hypotenuse. (b) A right triangle has hypotenuse 25 and one leg 7. Find the other leg.<div class="space short"></div></li>
+<li>Find the distance between (a) \((1, 2)\) and \((7, 10)\); (b) \((-3, 4)\) and \((2, -8)\). Sketch the right triangle you are using in (b).<div class="space short"></div></li>
+<li>A 6.5 m ladder leans against a wall with its foot 2.5 m from the wall. (a) How high up the wall does it reach? (b) The foot slides out to 3.9 m from the wall. How far does the top slide down? (c) The foot moved 1.4 m. Why did the top move less?<div class="space"></div></li>
+<li>(a) A suitcase measures 75 cm by 55 cm by 25 cm. Will a straight 1 m rod fit inside? What is the longest rod that fits? (b) A cube has side \(s\). Show that a face diagonal is \(s\sqrt2\) and the long diagonal is \(s\sqrt3\).<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: a spider on a cube</h2>
+<p>A spider sits at one corner of a cube-shaped room of side 2 m and wants the opposite corner. It must walk on the walls, floor or ceiling. Unfold two adjacent faces into a flat rectangle and find the shortest route. Compare with flying straight through and with walking along the edges.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(\sqrt{64 + 225} = \sqrt{289} = 17\). (b) \(\sqrt{625 - 49} = \sqrt{576} = 24\).</li>
+<li>(a) Gaps 6 and 8: \(\sqrt{36 + 64} = 10\). (b) Gaps \(5\) and \(-12\); squares 25 and 144: \(\sqrt{169} = 13\). The triangle has a horizontal leg from \(x = -3\) to \(x = 2\) and a vertical leg from \(y = 4\) down to \(y = -8\).</li>
+<li>(a) \(\sqrt{6.5^2 - 2.5^2} = \sqrt{42.25 - 6.25} = \sqrt{36} = 6\) m. (b) New height \(\sqrt{42.25 - 15.21} = \sqrt{27.04} = 5.2\) m, so the top slides down \(0.8\) m. (c) Pythagoras trades squares, not lengths. Near the top of the wall the ladder is steep, and a small change in height makes a big change in the foot's distance; near the floor it is the other way round.</li>
+<li>(a) \(d^2 = 75^2 + 55^2 + 25^2 = 5625 + 3025 + 625 = 9275\), so \(d \approx 96.3\) cm. A 1 m rod does not fit; 96.3 cm is the longest. (b) Face diagonal \(\sqrt{s^2 + s^2} = \sqrt{2s^2} = s\sqrt2\). Long diagonal \(\sqrt{s^2 + s^2 + s^2} = s\sqrt3\).</li>
+</ol>
+<p><b>Stretch.</b> Two adjacent faces unfold into a 2 m by 4 m rectangle, and the two corners are its opposite corners: \(\sqrt{2^2 + 4^2} = \sqrt{20} \approx 4.47\) m. Flying straight through: \(2\sqrt3 \approx 3.46\) m. Along three edges: 6 m. The walking route is straight on the unfolded paper, which is why it is shortest; on the cube it bends once, at the shared edge's midpoint.</p>
+</section>
+
+<div class="sheet-nav"><a href="a7-squeezing-root-two.html">← Previous</a><a href="a9-linear-or-not.html">Next: Linear or not? →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

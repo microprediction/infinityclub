@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Half-planes and the best corner · Infinity Club</title>
+<meta name="description" content="Graph y > 2x − 1 as a shaded half-plane. Stack constraints to get a feasible region, then find the best value of a linear expression by checking the corners.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 8 · Around the corner · 27</div>
+  <h1>Half-planes and the best corner</h1>
+  <p class="teaser">Graph y > 2x − 1 as a shaded region. Add constraints, find the feasible region, and the best answer is always at a corner.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>The line \(y = 2x - 1\) cuts the plane in two. The points with \(y > 2x - 1\) fill one side, a <b>half-plane</b>. Which side? Test a point off the line: at \((0, 0)\), \(0 > -1\) is true, so shade the origin's side. Dash the line for a strict inequality (its points are not included), solid for \(\le\) or \(\ge\).</p>
+<figure><svg viewBox="0 0 220 160" width="160" height="116" role="img" aria-label="Axes with the line y = 2x minus 1 dashed; the half-plane above and left of it is shaded; the origin is marked as the test point" font-family="Nunito, sans-serif" font-size="12">
+<polygon points="20,20 145,20 77,156 20,156" fill="#dcdcf5"/>
+<g stroke="#999" stroke-width="1"><line x1="20" y1="90" x2="190" y2="90"/><line x1="100" y1="20" x2="100" y2="155"/></g>
+<line x1="77" y1="156" x2="145" y2="20" stroke="#3f44c9" stroke-width="1.8" stroke-dasharray="5 4"/>
+<circle cx="100" cy="90" r="3" fill="#f5a524"/>
+<text x="106" y="104" fill="#f5a524">(0, 0)</text>
+<text x="146" y="34" fill="#3f44c9">y = 2x − 1</text>
+<text x="26" y="60" fill="#3f44c9" font-weight="700">y &gt; 2x − 1</text>
+<text x="185" y="104" fill="#555">x</text><text x="104" y="27" fill="#555">y</text>
+</svg><figcaption>Shade the side where the test point works. The dashed line itself is not included.</figcaption></figure>
+<p>Several inequalities shade their overlap, the <b>feasible region</b>: the points obeying every constraint, usually a polygon. Now suppose you want \(3x + 2y\) as large as possible inside that region. The points with \(3x + 2y = P\) form a line, and different \(P\) give parallel lines. Raise \(P\) and the line slides across the region; at the last moment it still touches, it rests on a corner (or, if parallel to an edge, on a whole edge). So:</p>
+<p class="callout">A linear expression's largest and smallest values over a polygon region are at corners. Check the corners and you are done.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: brownies and cookies</h2>
+<p>A tray of brownies uses 1 kg of flour and 3 hours; a tray of cookies 2 kg and 1 hour. With 10 kg and 15 hours, make \(x\) trays of brownies and \(y\) of cookies: \(x + 2y \le 10\), \(3x + y \le 15\), \(x \ge 0\), \(y \ge 0\). Brownies earn 3, cookies 2. Maximise \(P = 3x + 2y\).</p>
+<figure><svg viewBox="0 0 240 180" width="160" height="120" role="img" aria-label="Feasible region with corners (0,0), (5,0), (4,3), (0,5) shaded; the lines x + 2y = 10 and 3x + y = 15 are drawn; a dashed level line 3x + 2y = 18 touches the region at (4,3)" font-family="Nunito, sans-serif" font-size="12">
+<polygon points="40,150 140,150 120,90 40,50" fill="#dcdcf5"/>
+<g stroke="#999" stroke-width="1"><line x1="30" y1="150" x2="200" y2="150"/><line x1="40" y1="160" x2="40" y2="25"/></g>
+<g stroke="#3f44c9" stroke-width="1.8"><line x1="40" y1="50" x2="150" y2="105"/><line x1="103" y1="40" x2="143" y2="160"/></g>
+<line x1="160" y1="150" x2="80" y2="30" stroke="#f5a524" stroke-width="1.8" stroke-dasharray="5 4"/>
+<g fill="#000"><circle cx="40" cy="150" r="3"/><circle cx="140" cy="150" r="3"/><circle cx="120" cy="90" r="3"/><circle cx="40" cy="50" r="3"/></g>
+<text x="24" y="163">(0, 0)</text><text x="128" y="165">(5, 0)</text><text x="126" y="86" font-weight="700">(4, 3)</text><text x="46" y="46">(0, 5)</text>
+<text x="152" y="118" fill="#3f44c9">x + 2y = 10</text><text x="146" y="45" fill="#3f44c9">3x + y = 15</text>
+<text x="164" y="158" fill="#f5a524">3x + 2y = 18</text>
+</svg><figcaption>The dashed level line is as high as it can go while still touching: at the corner \((4, 3)\).</figcaption></figure>
+<p>The corner \((4, 3)\) is where the two lines cross (<a href="a4-systems.html">solve them as a pair</a>). Check the corners: \(P(0,0) = 0\), \(P(5,0) = 15\), \(P(4,3) = 18\), \(P(0,5) = 10\). Best: 4 trays of brownies and 3 of cookies, earning 18.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Shade the region given by \(x + y \le 4\), \(x \ge 1\), \(y \ge 0\). Give its three corners and its area.<div class="space short"></div></li>
+<li>Which of the points \((1, 3)\), \((2, 3)\), \((0, 4)\), \((3, 1)\) satisfy both \(y > 2x - 1\) and \(x + y \lt 5\)? For each rejected point, say which inequality fails.<div class="space short"></div></li>
+<li>Use the brownies-and-cookies region. (a) Cookies now earn 5: find the best corner for \(P = 2x + 5y\). (b) Now \(P = x + 2y\). Check all four corners. What is odd about the answer, and why does it happen?<div class="space short"></div></li>
+<li>A club sells bracelets (\(x\)) and keychains (\(y\)). A bracelet takes 20 minutes and 1 dollar of materials, a keychain 10 minutes and 2 dollars. There are 240 minutes and 30 dollars. Bracelets earn 3, keychains 2. Write the constraints, find the corners, and find the best plan.<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: cheapest, not biggest</h2>
+<p>A diet needs \(x + y \ge 4\) and \(2x + y \ge 6\), with \(x, y \ge 0\). Food \(x\) costs 4 per unit and \(y\) costs 3. Sketch the region. It is unbounded, with no top edge. Why does a minimum still exist? Find the cheapest diet.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>A triangle with corners \((1, 0)\), \((4, 0)\) and \((1, 3)\): base 3, height 3, area \(\tfrac92 = 4.5\).</li>
+<li>\((1, 3)\): \(3 > 1\) and \(4 \lt 5\), yes. \((2, 3)\): \(3 > 3\) is false (the point is on the dashed line), and \(5 \lt 5\) fails too, so it is out. \((0, 4)\): \(4 > -1\) and \(4 \lt 5\), yes. \((3, 1)\): \(1 > 5\) is false. Two of the four.</li>
+<li>(a) \(P = 0, 10, 23, 25\) at \((0,0), (5,0), (4,3), (0,5)\): best is \((0, 5)\), all cookies, earning 25. (b) \(P = 0, 5, 10, 10\). Two corners tie at 10, and so does every point on the edge between them. The level lines \(x + 2y = P\) are parallel to the constraint line \(x + 2y = 10\), so the top level line lies along that whole edge.</li>
+<li>\(20x + 10y \le 240\), that is \(2x + y \le 24\); \(x + 2y \le 30\); \(x, y \ge 0\). Corners \((0,0)\), \((12,0)\), \((6,12)\) (solving the pair: \(y = 24 - 2x\), so \(x + 48 - 4x = 30\), \(x = 6\)) and \((0,15)\). \(P = 3x + 2y\) gives \(0, 36, 42, 30\). Best: 6 bracelets and 12 keychains, earning 42.</li>
+</ol>
+<p><b>Stretch.</b> Corners: \((0, 6)\), \((4, 0)\), and \((2, 2)\) where \(x + y = 4\) meets \(2x + y = 6\). Cost \(C = 4x + 3y\) is 18, 16 and 14, so the cheapest diet is 2 of each, costing 14. Moving out into the unbounded part only adds food and cost, so the missing top edge cannot hide a cheaper point. A maximum, by contrast, would not exist.</p>
+</section>
+
+<div class="sheet-nav"><a href="b26-perfect-shuffle.html">← Previous</a><a href="c1-check-digits.html">Next: Why a typo in your card number gets caught →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

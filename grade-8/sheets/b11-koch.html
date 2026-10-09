@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The snowflake with an infinite edge · Infinity Club</title>
+<meta name="description" content="The Koch snowflake: add bumps to every side forever. The perimeter multiplies by 4/3 each step and grows without bound, while the area adds up to exactly 8/5 of the first triangle.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 8 · Around the corner · 11</div>
+  <h1>The snowflake with an infinite edge</h1>
+  <p class="teaser">The Koch snowflake: add bumps forever. The perimeter grows without bound while the area stays under 8/5 of the first triangle.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Start with an equilateral triangle of side 1 and area 1. Apply one rule to every side: cut out the middle third and replace it with two sides of a smaller equilateral triangle, pointing outward. Repeat forever. Helge von Koch drew it in 1904.</p>
+<figure><svg viewBox="0 0 520 200" width="416" height="160" role="img" aria-label="Stages 0, 1 and 2 of the Koch snowflake: a triangle, a six-pointed star, and a star with bumps on every side" font-family="Nunito, sans-serif" font-size="13">
+<polygon points="85.0,55.4 145.0,159.3 25.0,159.3" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<polygon points="260.0,55.4 280.0,90.0 320.0,90.0 300.0,124.6 320.0,159.3 280.0,159.3 260.0,193.9 240.0,159.3 200.0,159.3 220.0,124.6 200.0,90.0 240.0,90.0" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<polygon points="260.0,55.4 320.0,159.3 200.0,159.3" fill="none" stroke="#999" stroke-width="1" stroke-dasharray="3 3"/>
+<polygon points="435.0,55.4 441.7,66.9 455.0,66.9 448.3,78.5 455.0,90.0 468.3,90.0 475.0,78.5 481.7,90.0 495.0,90.0 488.3,101.5 495.0,113.1 481.7,113.1 475.0,124.6 481.7,136.2 495.0,136.2 488.3,147.7 495.0,159.3 481.7,159.3 475.0,170.8 468.3,159.3 455.0,159.3 448.3,170.8 455.0,182.4 441.7,182.4 435.0,193.9 428.3,182.4 415.0,182.4 421.7,170.8 415.0,159.3 401.7,159.3 395.0,170.8 388.3,159.3 375.0,159.3 381.7,147.7 375.0,136.2 388.3,136.2 395.0,124.6 388.3,113.1 375.0,113.1 381.7,101.5 375.0,90.0 388.3,90.0 395.0,78.5 401.7,90.0 415.0,90.0 421.7,78.5 415.0,66.9 428.3,66.9" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="85" y="36" text-anchor="middle" font-weight="700">Stage 0</text><text x="85" y="186" text-anchor="middle" fill="#555" font-size="12">3 sides, perimeter 3</text>
+<text x="260" y="36" text-anchor="middle" font-weight="700">Stage 1</text><text x="260" y="46" text-anchor="middle" fill="#555" font-size="12">12 sides, perimeter 4</text>
+<text x="435" y="36" text-anchor="middle" font-weight="700">Stage 2</text><text x="435" y="46" text-anchor="middle" fill="#555" font-size="12">48 sides, perimeter 16/3</text>
+</svg><figcaption>Every stage adds a bump to every side. Dashed at stage 1: the stage 0 triangle.</figcaption></figure>
+<p><b>Perimeter.</b> Each step turns every side into four sides of one third the length, so the perimeter is multiplied by \(\tfrac43\): \(3,\; 4,\; \tfrac{16}{3},\; \tfrac{64}{9},\; \ldots\) Repeated, that passes any number you name. The edge is infinitely long.</p>
+<p><b>Area.</b> Stage \(n\) adds one small triangle to each of the \(3 \times 4^{n-1}\) sides of stage \(n-1\). Each new triangle has side \(\tfrac{1}{3^n}\), so area \(\tfrac{1}{9^n}\) (lengths shrink by 3, area by 9). The area added at stage \(n\) is</p>
+<p class="callout">\(\dfrac{3 \times 4^{n-1}}{9^n} = \dfrac13 \left(\dfrac49\right)^{n-1}\): each stage adds \(\tfrac49\) of what the stage before added.</p>
+<p>Write \(S = 1 + \tfrac49 + \left(\tfrac49\right)^2 + \cdots\). Then \(\tfrac49 S = S - 1\) (the move that <a href="a14-repeating-decimals.html">turns 0.272727… into a fraction</a>), so \(S = \tfrac95\) and the total area is \(1 + \tfrac13 \times \tfrac95 = \tfrac85\). An edge longer than any road, around a region smaller than two triangles.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: stage 2 by hand</h2>
+<p>Stage 2 has \(3 \times 4 \times 4 = 48\) sides, each of length \(\tfrac19\). Perimeter: \(\tfrac{48}{9} = \tfrac{16}{3}\), which is \(3 \times \tfrac43 \times \tfrac43\), as it should be.</p>
+<p>Area: stage 1 added 3 triangles of side \(\tfrac13\), area \(\tfrac19\) each, total \(\tfrac13\). Stage 2 added 12 triangles of side \(\tfrac19\), area \(\tfrac1{81}\) each, total \(\tfrac{12}{81} = \tfrac{4}{27}\). So \(\text{area}_2 = 1 + \tfrac13 + \tfrac{4}{27} = \tfrac{40}{27} \approx 1.48\). The bumps are already getting small while the perimeter keeps climbing.</p>
+<p class="small">Step through the stages and watch the two numbers at <a href="../../demos/koch.html">infinityclub.net/demos/koch.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Stage 3: how many sides, how long is each, and what is the perimeter? Give the perimeter as a fraction and as a decimal.<div class="space short"></div></li>
+<li>Each stage multiplies the perimeter by \(\tfrac43\). After how many stages does the perimeter first exceed 30, ten times the original? Show the powers you computed.<div class="space short"></div></li>
+<li>How much area does stage 3 add? Give the total area after stage 3 as a single fraction and as a decimal.<div class="space short"></div></li>
+<li>(a) Explain, by counting triangles and comparing their sizes, why the area added at any stage is exactly \(\tfrac49\) of the area added at the stage before. (b) The gap between the final area \(\tfrac85\) and the area after stage 2 is \(\tfrac85 - \tfrac{40}{27}\). Compute it, and check it equals \(\tfrac35 \times \left(\tfrac49\right)^2\). Why does the gap shrink by a factor of \(\tfrac49\) every stage?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the anti-snowflake</h2>
+<p>Apply the same rule but point every new triangle <em>inward</em>. The perimeter at each stage is the same as before. What happens to the area, stage by stage, and what does it settle down to? Give the final area as a fraction of the original triangle.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(3 \times 4^3 = 192\) sides, each \(\tfrac{1}{27}\) long. Perimeter \(\tfrac{192}{27} = \tfrac{64}{9} \approx 7.11\).</li>
+<li>You need \(\left(\tfrac43\right)^n > 10\). The powers run \(1.33, 1.78, 2.37, 3.16, 4.21, 5.62, 7.49, 9.99, 13.3\). Eight stages give \(9.99\), just short; nine stages give \(13.3\). So nine stages.</li>
+<li>Stage 3 adds \(3 \times 16 = 48\) triangles of side \(\tfrac{1}{27}\), area \(\tfrac{1}{729}\) each: \(\tfrac{48}{729} = \tfrac{16}{243}\). Total \(\tfrac{40}{27} + \tfrac{16}{243} = \tfrac{376}{243} \approx 1.547\).</li>
+<li>(a) Each stage has four times as many sides as the one before, so four times as many new triangles; each new triangle has one third the side and therefore one ninth the area. Four times as many, each a ninth the size: \(\tfrac49\). (b) \(\tfrac85 - \tfrac{40}{27} = \tfrac{216 - 200}{135} = \tfrac{16}{135}\), and \(\tfrac35 \times \tfrac{16}{81} = \tfrac{48}{405} = \tfrac{16}{135}\). The gap is the sum of all the additions still to come. Every one of those is \(\tfrac49\) of the corresponding addition one stage earlier, so the whole remaining sum is \(\tfrac49\) of the previous gap.</li>
+</ol>
+<p><b>Stretch.</b> The same triangles are removed instead of added, so the area is \(1 - \tfrac13 - \tfrac{4}{27} - \cdots\). The subtractions total \(\tfrac13 \times \tfrac95 = \tfrac35\), so the area settles at \(1 - \tfrac35 = \tfrac25\) of the original triangle. The perimeter is still infinite.</p>
+</section>
+
+<div class="sheet-nav"><a href="b10-secret-in-public.html">← Previous</a><a href="b12-egyptian-fractions.html">Next: Egyptian fractions →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

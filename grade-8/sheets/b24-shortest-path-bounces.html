@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The shortest path bounces · Infinity Club</title>
+<meta name="description" content="To get from A to B via a wall, reflect B and draw a straight line. Heron's problem, why light reflects at equal angles, and pool shots you can compute with coordinates.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 8 · Around the corner · 24</div>
+  <h1>The shortest path bounces</h1>
+  <p class="teaser">To get from A to B via a wall, reflect B. Heron's problem, why light obeys it, and a pool shot you can compute.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>You are at \(A\), your friend is at \(B\), and on the way you must touch a long straight wall. Where should you touch it to make the walk shortest?</p>
+<figure><svg viewBox="0 0 260 200" width="260" height="200" role="img" aria-label="Points A and B above a horizontal wall, and the reflection B prime below it. The straight line from A to B prime crosses the wall at P. The path A to P to B is drawn, and a longer path through another wall point Q is dashed." font-family="Nunito, sans-serif" font-size="13">
+<line x1="10" y1="110" x2="250" y2="110" stroke="#000" stroke-width="2"/>
+<line x1="168" y1="30" x2="168" y2="190" stroke="#999" stroke-width="1" stroke-dasharray="3 3"/>
+<path d="M40 62 L136 110 L168 30" fill="none" stroke="#999" stroke-width="1.3" stroke-dasharray="5 3"/>
+<line x1="88" y1="110" x2="168" y2="190" stroke="#f5a524" stroke-width="1.6" stroke-dasharray="6 3"/>
+<path d="M40 62 L88 110 L168 30" fill="none" stroke="#3f44c9" stroke-width="2.2"/>
+<circle cx="40" cy="62" r="3.2" fill="#000"/><circle cx="168" cy="30" r="3.2" fill="#000"/><circle cx="168" cy="190" r="3.2" fill="#f5a524"/><circle cx="88" cy="110" r="3.2" fill="#3f44c9"/><circle cx="136" cy="110" r="3" fill="#999"/>
+<text x="30" y="58" text-anchor="middle" font-weight="700">A</text>
+<text x="180" y="28" font-weight="700">B</text>
+<text x="180" y="194" font-weight="700" fill="#f5a524">B′</text>
+<text x="88" y="126" text-anchor="middle" font-weight="700" fill="#3f44c9">P</text>
+<text x="136" y="126" text-anchor="middle" fill="#555">Q</text>
+<text x="246" y="104" text-anchor="end" fill="#555" font-size="12">wall</text>
+</svg><figcaption>\(QB = QB'\) for every point \(Q\) on the wall, so the bent path \(A \to Q \to B\) is as long as \(A \to Q \to B'\). The shortest of those is the straight line, through \(P\).</figcaption></figure>
+<p>Reflect \(B\) in the wall to get its mirror image \(B'\). For any point \(Q\) on the wall, \(QB = QB'\): the wall is the perpendicular bisector of \(BB'\), and a <a href="a10-rigid-motions.html">reflection</a> keeps lengths. So the bent path \(A \to Q \to B\) is exactly as long as \(A \to Q \to B'\).</p>
+<p>The shortest route from \(A\) to \(B'\) is the straight line, which crosses the wall at one point, \(P\). Any other \(Q\) gives a bent route \(A \to Q \to B'\), and in triangle \(AQB'\) two sides add to more than the third. So \(P\) is the place to touch the wall.</p>
+<p class="callout">Reflect the target across the wall, draw the straight line, and bounce where it crosses.</p>
+<p>The straight line also fixes the angles. At \(P\), the line \(AB'\) makes equal (vertically opposite) angles with the wall, and folding \(B'\) back up to \(B\) keeps its angle with the wall. So the shortest path arrives and leaves at equal angles. Heron of Alexandria saw this about two thousand years ago: reflected light takes the shortest route, which is why the angle in equals the angle out.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: \(A = (0, 3)\), \(B = (8, 5)\), the wall is the \(x\)-axis</h2>
+<p>Reflecting \(B\) in the \(x\)-axis flips the sign of \(y\): \(B' = (8, -5)\). The line from \(A\) to \(B'\) goes 8 to the right while dropping 8, so its slope is \(-1\). Starting 3 above the wall, it reaches the wall after moving 3 to the right: \(P = (3, 0)\).</p>
+<p>The total length is \(AB' = \sqrt{8^2 + 8^2} = 8\sqrt2 \approx 11.3\). Check it in pieces: \(AP = \sqrt{3^2 + 3^2} = 3\sqrt2\) and \(PB = \sqrt{5^2 + 5^2} = 5\sqrt2\). Both legs sit at \(45°\) to the wall, as the angle rule says.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>\(A = (0, 2)\), \(B = (9, 4)\), wall along the \(x\)-axis. Find the bounce point \(P\) and the total length of the shortest path.<div class="space short"></div></li>
+<li>In question 1, someone instead walks straight down from \(A\) to \((0, 0)\) and then to \(B\). How much longer is that? Then explain in one sentence why no point other than \(P\) can even tie.<div class="space short"></div></li>
+<li>A pool table has corners \((0, 0)\) and \((8, 4)\). The cue ball is at \((2, 1)\) and the target is at \((6, 3)\). (a) You play off the bottom cushion, \(y = 0\). Where should the ball hit the cushion? (b) Off the top cushion, \(y = 4\), instead? (c) Which route is shorter?<div class="space"></div></li>
+<li>A \(4 \times 4\) table, cue ball at \((1, 1)\), target at \((3, 3)\). You want the ball to hit the bottom cushion and then the right cushion \(x = 4\) before reaching the target. Reflect the target twice, once in each cushion, to find both bounce points and the total length.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the corner reflector</h2>
+<p>Two cushions meet at a right angle. A ball hits one and then the other. Show that it leaves travelling parallel to the direction it arrived from, whatever angle it came in at. Hint: write its direction as a <a href="../../grade-6/sheets/b30-vectors.html">vector</a> \((a, b)\) and work out what each bounce does to it.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(B' = (9, -4)\). The line from \((0, 2)\) to \((9, -4)\) drops 6 over 9, slope \(-\tfrac23\), so it reaches the wall after moving 3 to the right: \(P = (3, 0)\). Length \(AB' = \sqrt{9^2 + 6^2} = \sqrt{117} = 3\sqrt{13} \approx 10.8\). (Pieces: \(AP = \sqrt{13}\), \(PB = \sqrt{52} = 2\sqrt{13}\).)</li>
+<li>\(2 + \sqrt{81 + 16} = 2 + \sqrt{97} \approx 11.85\), about 1.0 longer. Any \(Q \ne P\) makes a genuine triangle \(AQB'\), and two sides of a triangle add to strictly more than the third, so \(AQ + QB' > AB'\).</li>
+<li>(a) Reflect the target in \(y = 0\): \((6, -3)\). From \((2, 1)\) the line drops 4 over 4, slope \(-1\), and reaches the cushion at \((3, 0)\). (b) Reflect in \(y = 4\): \((6, 5)\). The line rises 4 over 4 and reaches \(y = 4\) at \((5, 4)\). (c) Both routes have length \(\sqrt{4^2 + 4^2} = 4\sqrt2 \approx 5.66\). A tie.</li>
+<li>Reflect the target in the right cushion, \(x = 4\): \((5, 3)\). Reflect that in the bottom cushion: \((5, -3)\). The line from \((1, 1)\) to \((5, -3)\) has slope \(-1\). It crosses \(y = 0\) at \((2, 0)\), the first bounce. It would cross \(x = 4\) at \((4, -2)\); folding back up, the real second bounce is \((4, 2)\). From there the ball goes to \((3, 3)\). Total length \(\sqrt{4^2 + 4^2} = 4\sqrt2 \approx 5.66\).</li>
+</ol>
+<p><b>Stretch.</b> Put the cushions on the axes. Bouncing off the horizontal cushion reverses the vertical part of the direction: \((a, b) \to (a, -b)\). Bouncing off the vertical cushion then reverses the horizontal part: \((a, -b) \to (-a, -b)\). The ball leaves with direction \((-a, -b)\), exactly opposite to how it arrived, so parallel to it. This is why the reflectors on bicycles and on satellites are built from right-angled corners: they send light straight back where it came from.</p>
+</section>
+
+<div class="sheet-nav"><a href="b23-josephus.html">← Previous</a><a href="b25-hypercube.html">Next: A cube in four dimensions →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What "70% chance of rain" means · Infinity Club</title>
+<meta name="description" content="A single day cannot prove a forecast wrong, but many days can. Calibration, the Brier score (p minus outcome) squared, why always saying 50% scores 0.25 a day and loses to anyone who can read the sky, and why honesty is the best forecast.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 8 · Connections · 10</div>
+  <h1>What "70% chance of rain" means</h1>
+  <p class="teaser">How to judge a forecaster: calibration, the Brier score, and why always saying 50% is not safe.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>The forecast said 70% chance of rain. It stayed dry. Was the forecast wrong? No: 70% allows for three dry days in ten. One day cannot catch a forecaster out. Many days can.</p>
+<p>First, <b>calibration</b>. Collect every day the forecaster said 70%. It should have rained on about 70% of them. Likewise for every level.</p>
+<p>That is not enough. If it rains on 30% of days, someone who says 30% every morning is perfectly calibrated and perfectly useless.</p>
+<p>Second, a score. Write rain as 1, dry as 0. With forecast \(p\), the day's <b>Brier score</b> is</p>
+<p>\[(p - \text{outcome})^2.\]</p>
+<p>Lower is better. Say 0.9 and it rains: \((0.9 - 1)^2 = 0.01\). Say 0.9 and it stays dry: \(0.81\). A perfect forecaster, 1 before every wet day and 0 before every dry one, scores 0.</p>
+<figure><svg viewBox="0 0 340 184" width="340" height="184" role="img" aria-label="Two curves: the Brier score of a forecast p on a rainy day, (p minus 1) squared, and on a dry day, p squared; they cross at p = 0.5, score 0.25" font-family="Nunito, sans-serif" font-size="12">
+<line x1="44" y1="150" x2="316" y2="150" stroke="#000" stroke-width="1.5"/><line x1="44" y1="14" x2="44" y2="150" stroke="#000" stroke-width="1.5"/>
+<line x1="44.0" y1="150" x2="44.0" y2="155" stroke="#000" stroke-width="1.5"/><text x="44.0" y="168" text-anchor="middle">0</text>
+<line x1="180.0" y1="150" x2="180.0" y2="155" stroke="#000" stroke-width="1.5"/><text x="180.0" y="168" text-anchor="middle">0.5</text>
+<line x1="316.0" y1="150" x2="316.0" y2="155" stroke="#000" stroke-width="1.5"/><text x="316.0" y="168" text-anchor="middle">1</text>
+<line x1="39" y1="116.0" x2="44" y2="116.0" stroke="#000" stroke-width="1.5"/><text x="36" y="120.0" text-anchor="end">0.25</text>
+<line x1="39" y1="82.0" x2="44" y2="82.0" stroke="#000" stroke-width="1.5"/><text x="36" y="86.0" text-anchor="end">0.5</text>
+<line x1="39" y1="14.0" x2="44" y2="14.0" stroke="#000" stroke-width="1.5"/><text x="36" y="18.0" text-anchor="end">1</text>
+<polyline points="44.0,14.0 50.8,20.7 57.6,27.3 64.4,33.6 71.2,39.8 78.0,45.9 84.8,51.7 91.6,57.4 98.4,63.0 105.2,68.3 112.0,73.5 118.8,78.5 125.6,83.4 132.4,88.0 139.2,92.5 146.0,96.9 152.8,101.0 159.6,105.0 166.4,108.9 173.2,112.5 180.0,116.0 186.8,119.3 193.6,122.5 200.4,125.4 207.2,128.2 214.0,130.9 220.8,133.3 227.6,135.6 234.4,137.8 241.2,139.7 248.0,141.5 254.8,143.1 261.6,144.6 268.4,145.8 275.2,146.9 282.0,147.9 288.8,148.6 295.6,149.2 302.4,149.7 309.2,149.9 316.0,150.0" fill="none" stroke="#3f44c9" stroke-width="2"/>
+<polyline points="44.0,150.0 50.8,149.9 57.6,149.7 64.4,149.2 71.2,148.6 78.0,147.9 84.8,146.9 91.6,145.8 98.4,144.6 105.2,143.1 112.0,141.5 118.8,139.7 125.6,137.8 132.4,135.6 139.2,133.3 146.0,130.9 152.8,128.2 159.6,125.4 166.4,122.5 173.2,119.3 180.0,116.0 186.8,112.5 193.6,108.9 200.4,105.0 207.2,101.0 214.0,96.9 220.8,92.5 227.6,88.0 234.4,83.4 241.2,78.5 248.0,73.5 254.8,68.3 261.6,63.0 268.4,57.4 275.2,51.7 282.0,45.9 288.8,39.8 295.6,33.6 302.4,27.3 309.2,20.7 316.0,14.0" fill="none" stroke="#f5a524" stroke-width="2"/>
+<line x1="180.0" y1="116.0" x2="180.0" y2="150" stroke="#999" stroke-width="1" stroke-dasharray="3 3"/><circle cx="180.0" cy="116.0" r="4" fill="#000"/><line x1="44" y1="116.0" x2="180.0" y2="116.0" stroke="#999" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="125" y="28" fill="#3f44c9" font-weight="700">rainy day: (p − 1)²</text><text x="316" y="89" fill="#f5a524" font-weight="700" text-anchor="end">dry day: p²</text>
+<text x="180.0" y="180" text-anchor="middle" fill="#555">forecast p</text>
+</svg><figcaption>What one forecast \(p\) costs. Saying 0.5 costs 0.25 whatever happens; saying 0.1 on a day it rains costs 0.81.</figcaption></figure>
+<p>Say 0.5 and you score \(0.25\) whatever happens. It looks safe. It is not: a week costs \(7 \times 0.25 = 1.75\), and anyone who can read the sky at all comes in under that.</p>
+<p class="callout">Judge over many days: calibration at each level and a low Brier total. Confident and wrong costs most.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: a five-day week</h2>
+<p>A forecaster says 0.8, 0.2, 0.6, 0.1 and 0.9 on five mornings. It rains on days 1 and 5 only. The scores are \((0.8 - 1)^2 = 0.04\), \((0.2 - 0)^2 = 0.04\), then \(0.36\), \(0.01\) and \(0.01\). Total \(0.46\).</p>
+<p>The lazy forecaster who says 0.5 every day totals \(5 \times 0.25 = 1.25\). The perfect forecaster totals 0. Day 3 cost the most: 60% on a day that stayed dry. That forecast was not wrong, just expensive this time. The real test is whether, over many 60% days, it rained about six times in ten.</p>
+<p class="small">Play ten days against the lazy forecaster and a calibrated one: <a href="../../demos/forecast.html">infinityclub.net/demos/forecast.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Score each day. (a) Forecast 0.3, it rains. (b) Forecast 0.3, dry. (c) Forecast 1, dry. (d) Forecast 0, it rains.<div class="space short"></div></li>
+<li>A week of forecasts: 0.9, 0.7, 0.4, 0.1, 0.2, 0.6, 0.8. It rains on days 1, 2, 5 and 7. (a) Find the total Brier score. (b) Compare with always saying 0.5. (c) Which day cost the most, and was that forecast wrong?<div class="space"></div></li>
+<li>Over a season a forecaster said 70% on 30 days and it rained on 21 of them. She said 20% on 50 days and it rained on 15. (a) Is she calibrated at each level? (b) Find her total Brier score on the fifty 20% days. (c) What would the total have been if she had said 30% on those days instead?<div class="space"></div></li>
+<li>In a certain town the true chance of rain is 70% every day. In a typical ten days, seven are wet and three dry. Find the ten-day total for a forecaster who every day says (a) 0.5, (b) 0.7, (c) 0.9, (d) 1. Which wins, and why does the honest forecaster beat the confident one?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: why honesty wins</h2>
+<p>On a day with a true 70% chance of rain, a forecast \(p\) scores, on average, \(0.7(1 - p)^2 + 0.3p^2\). Expand and simplify this (see <a href="a18-expand-and-factor.html">Expand and factor</a>). Then check that it equals \((p - 0.7)^2 + 0.21\). Why does that make 0.7 the best possible forecast, and what is the 0.21?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \((0.3 - 1)^2 = 0.49\). (b) \(0.3^2 = 0.09\). (c) \(1\). (d) \(1\). Being certain and wrong costs the maximum.</li>
+<li>(a) \(0.01 + 0.09 + 0.16 + 0.01 + 0.64 + 0.36 + 0.04 = 1.31\). (b) Always 0.5 totals \(7 \times 0.25 = 1.75\), so this forecaster is better. (c) Day 5: 20% on a wet day, costing 0.64. Not wrong on its own; 20% allows for rain one day in five. It would be a problem only if 20% days kept turning out wet.</li>
+<li>(a) At 70%: \(21/30 = 70\%\), calibrated. At 20%: \(15/50 = 30\%\), not calibrated; it rained more often than she said. (b) Wet days \(15 \times 0.64 = 9.6\), dry days \(35 \times 0.04 = 1.4\), total \(11.0\). (c) \(15 \times 0.49 + 35 \times 0.09 = 7.35 + 3.15 = 10.5\). Saying what actually happens scores better.</li>
+<li>(a) \(10 \times 0.25 = 2.5\). (b) \(7 \times 0.09 + 3 \times 0.49 = 0.63 + 1.47 = 2.1\). (c) \(7 \times 0.01 + 3 \times 0.81 = 2.5\). (d) \(7 \times 0 + 3 \times 1 = 3\). The honest 0.7 wins. Saying 0.9 or 1 gains little on the seven wet days and pays heavily on the three dry ones, because the penalty grows with the square of the error.</li>
+</ol>
+<p><b>Stretch.</b> \(0.7(1 - 2p + p^2) + 0.3p^2 = 0.7 - 1.4p + p^2\). And \((p - 0.7)^2 + 0.21 = p^2 - 1.4p + 0.49 + 0.21\), the same. A square is never negative and is zero only at \(p = 0.7\), so 0.7 gives the lowest possible average. The leftover \(0.21 = 0.7 \times 0.3\) is the weather's own randomness, which no forecaster can remove.</p>
+</section>
+
+<div class="sheet-nav"><a href="c9-gerrymandering.html">← Previous</a><a href="../index.html#sheets">← All sheets</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

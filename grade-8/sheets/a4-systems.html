@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Two equations, two unknowns · Infinity Club</title>
+<meta name="description" content="Solve a pair of linear equations by substitution and by elimination, and see the picture: two lines cross once, never, or everywhere.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 8 · Sharpen · 4</div>
+  <h1>Two equations, two unknowns</h1>
+  <p class="teaser">Substitution, elimination, and the picture: two lines cross once, never, or everywhere.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>An equation in \(x\) and \(y\) with no powers, like \(2x + 3y = 12\), is a line: the points \((x, y)\) that make it true. Two such equations together are a <b>system</b>. A solution makes both true, so it is on both lines: where they cross.</p>
+<figure><svg viewBox="0 0 300 180" width="300" height="180" role="img" aria-label="Axes with two lines, 2x + 3y = 12 falling and x minus y = 1 rising, crossing at the point (3, 2)" font-family="Nunito, sans-serif" font-size="12">
+<line x1="26" y1="150" x2="218" y2="150" stroke="#999" stroke-width="1"/>
+<line x1="50" y1="174" x2="50" y2="30" stroke="#999" stroke-width="1"/>
+<text x="214" y="146" fill="#999" text-anchor="end">x</text><text x="56" y="38" fill="#999">y</text>
+<line x1="26" y1="38" x2="218" y2="166" stroke="#3f44c9" stroke-width="2"/>
+<line x1="50" y1="174" x2="194" y2="30" stroke="#f5a524" stroke-width="2"/>
+<line x1="122" y1="102" x2="122" y2="150" stroke="#999" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="50" y1="102" x2="122" y2="102" stroke="#999" stroke-width="1" stroke-dasharray="3 3"/>
+<circle cx="122" cy="102" r="4" fill="#000"/>
+<text x="142" y="104" font-weight="700">(3, 2)</text>
+<text x="122" y="165" text-anchor="middle" fill="#555">3</text><text x="44" y="106" text-anchor="end" fill="#555">2</text>
+<text x="91.5" y="69.7" text-anchor="middle" fill="#3f44c9" transform="rotate(33.7 91.5 69.7)">2x + 3y = 12</text>
+<text x="202" y="58" fill="#f5a524">x − y = 1</text>
+</svg><figcaption>Every point on the blue line satisfies the first equation, every point on the orange line the second. Only \((3, 2)\) satisfies both.</figcaption></figure>
+<p>Two lines can do only three things. Cross once: one solution. Run parallel: none. Lie on top of each other: every point is a solution. This is the picture behind <a href="a1-one-none-infinite.html">One, none, or infinitely many</a>.</p>
+<p>Two ways to find it without drawing.</p>
+<p><b>Substitution.</b> If one equation gives a letter on its own, such as \(x = y + 1\), write \(y + 1\) wherever \(x\) appears in the other. At the crossing both equations hold, so swapping equal expressions changes nothing. One equation in one letter remains.</p>
+<p><b>Elimination.</b> Add equal things to equal things and the results are equal. If one equation has \(+3y\) and the other \(-3y\), adding them removes \(y\). If they do not match, multiply one whole equation by a number first.</p>
+<p>Both methods end with one letter. Find it, go back for the other, check both.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: \(2x + 3y = 12\) and \(x - y = 1\)</h2>
+<p>Substitution: the second equation gives \(x = y + 1\). Put that into the first: \(2(y + 1) + 3y = 12\), so \(5y + 2 = 12\) and \(y = 2\). Then \(x = 3\).</p>
+<p>Elimination: multiply the second equation by 3 to get \(3x - 3y = 3\). Add it to the first: \(5x = 15\), so \(x = 3\). Then \(3 - y = 1\) gives \(y = 2\).</p>
+<p>Same point, \((3, 2)\). Check in both: \(6 + 6 = 12\) and \(3 - 2 = 1\). That is where the lines cross in the figure.</p>
+<p class="small">Move the two lines and watch the crossing point, or make them parallel: <a href="../../demos/systems.html">infinityclub.net/demos/systems.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Solve by substitution: \(y = 2x - 1\) and \(3x + y = 14\). Check your point in both equations.<div class="space short"></div></li>
+<li>Solve by elimination: (a) \(3x + 2y = 16\) and \(5x - 2y = 8\); (b) \(4x + 3y = 1\) and \(2x + 5y = -3\).<div class="space"></div></li>
+<li>For each pair, say how many solutions there are, then find them if there are any. (a) \(2x - y = 3\) and \(4x - 2y = 6\); (b) \(2x - y = 3\) and \(4x - 2y = 10\); (c) \(2x - y = 3\) and \(4x + 2y = 10\). Describe what elimination does in (a) and (b).<div class="space"></div></li>
+<li>A show sells 250 tickets. Adults pay £8, children pay £5, and the takings are £1565. (a) How many adults and how many children? (b) The next night's report says 250 tickets and £2010. Set up the same system and solve it. Explain why the lines still cross but the report must be wrong.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: when do the lines go parallel?</h2>
+<p>The system \(x + ky = 3\) and \(kx + 4y = 6\) depends on a number \(k\). For which values of \(k\) does it have no solution? For which does it have infinitely many? Think about when the two lines have the same slope.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(3x + (2x - 1) = 14\), so \(5x = 15\), \(x = 3\), \(y = 5\). Check: \(2(3) - 1 = 5\) and \(9 + 5 = 14\).</li>
+<li>(a) Add: \(8x = 24\), \(x = 3\); then \(9 + 2y = 16\), \(y = \tfrac72\). (b) Double the second: \(4x + 10y = -6\). Subtract the first: \(7y = -7\), \(y = -1\); then \(4x - 3 = 1\), \(x = 1\).</li>
+<li>(a) Doubling the first gives the second exactly. Subtracting leaves \(0 = 0\): the same line, infinitely many solutions. (b) Doubling the first gives \(4x - 2y = 6\), but the second says \(4x - 2y = 10\). Subtracting leaves \(0 = 4\), which is false: parallel lines, no solution. (c) Double the first and add: \(8x = 16\), \(x = 2\), \(y = 1\). One solution, \((2, 1)\).</li>
+<li>(a) \(a + c = 250\) and \(8a + 5c = 1565\). Substitute \(c = 250 - a\): \(8a + 1250 - 5a = 1565\), so \(3a = 315\), \(a = 105\) adults and \(c = 145\) children. (b) Now \(3a = 760\), so \(a = 253\tfrac13\) and \(c = -3\tfrac13\). The lines cross, but at a point with a negative number of children and a fraction of an adult. With 250 tickets the most you can take is \(250 \times 8 = £2000\), so £2010 cannot have happened.</li>
+</ol>
+<p><b>Stretch.</b> The slopes are \(-\dfrac{1}{k}\) and \(-\dfrac{k}{4}\). They are equal when \(k^2 = 4\), so \(k = 2\) or \(k = -2\). With \(k = 2\) the second equation is exactly twice the first: the same line, infinitely many solutions. With \(k = -2\) the equations are \(x - 2y = 3\) and \(-2x + 4y = 6\); doubling the first and adding gives \(0 = 12\): parallel, no solution. Every other \(k\), including \(k = 0\), gives exactly one crossing.</p>
+</section>
+
+<div class="sheet-nav"><a href="a3-lines.html">← Previous</a><a href="a5-exponent-laws.html">Next: Why a⁰ = 1 and a⁻³ = 1/a³ →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

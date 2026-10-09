@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why a⁰ = 1 and a⁻³ = 1/a³ · Infinity Club</title>
+<meta name="description" content="The exponent laws come from counting factors. The strange cases, a to the zero and negative exponents, are forced by the laws, not invented. Then (2³)⁴, 2⁻⁵ and 10⁶ ÷ 10⁹.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 8 · Sharpen · 5</div>
+  <h1>Why a⁰ = 1 and a⁻³ = 1/a³</h1>
+  <p class="teaser">The exponent laws follow from counting factors, and the strange cases follow from the laws. Then (2³)⁴, 2⁻⁵, and 10⁶ ÷ 10⁹.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>\(a^5\) means five copies of \(a\) multiplied together. The small number, the <b>exponent</b>, is a count, and every law below is just counting.</p>
+<p>Multiply \(a^3 \cdot a^4\): three copies times four copies is seven copies. Divide \(a^7 / a^3\): three cancel, four remain. Raise a power to a power, \((a^3)^4\): four groups of three, twelve in all.</p>
+<p class="callout">\(a^m \cdot a^n = a^{m+n}\), \(\quad \dfrac{a^m}{a^n} = a^{m-n}\), \(\quad (a^m)^n = a^{mn}\).</p>
+<p>Now the strange cases. Nobody can multiply zero copies of \(a\), but the division law does not care. \(a^3 / a^3\) is 1, and the law says it is \(a^{3-3} = a^0\). If the law is to keep working, \(a^0\) must equal 1.</p>
+<p>Same for negatives. \(a^2 / a^5\): two copies cancel, three are left on the bottom, so the answer is \(1/a^3\). The law says \(a^{2-5} = a^{-3}\). So \(a^{-3}\) must mean \(1/a^3\).</p>
+<figure><svg viewBox="0 0 460 84" width="460" height="84" role="img" aria-label="Powers of 2 from 2 cubed down to 2 to the minus 2: 8, 4, 2, 1, one half, one quarter, each arrow dividing by 2" font-family="Nunito, sans-serif" font-size="13">
+<g fill="#3f44c9" font-weight="700" text-anchor="middle">
+<text x="40" y="22">2³</text><text x="116" y="22">2²</text><text x="192" y="22">2¹</text><text x="268" y="22">2⁰</text><text x="344" y="22">2⁻¹</text><text x="420" y="22">2⁻²</text>
+</g>
+<g fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5">
+<rect x="18" y="32" width="44" height="26" rx="4"/><rect x="94" y="32" width="44" height="26" rx="4"/><rect x="170" y="32" width="44" height="26" rx="4"/>
+</g>
+<g fill="#fde8c4" stroke="#f5a524" stroke-width="1.5">
+<rect x="246" y="32" width="44" height="26" rx="4"/><rect x="322" y="32" width="44" height="26" rx="4"/><rect x="398" y="32" width="44" height="26" rx="4"/>
+</g>
+<g text-anchor="middle" font-weight="700">
+<text x="40" y="50">8</text><text x="116" y="50">4</text><text x="192" y="50">2</text><text x="268" y="50">1</text><text x="344" y="50">½</text><text x="420" y="50">¼</text>
+</g>
+<g stroke="#999" stroke-width="1.2" fill="none">
+<path d="M64 45 H90 M86 41 L90 45 L86 49"/><path d="M140 45 H166 M162 41 L166 45 L162 49"/><path d="M216 45 H242 M238 41 L242 45 L238 49"/><path d="M292 45 H318 M314 41 L318 45 L314 49"/><path d="M368 45 H394 M390 41 L394 45 L390 49"/>
+</g>
+<g fill="#555" font-size="12" text-anchor="middle">
+<text x="78" y="74">÷2</text><text x="154" y="74">÷2</text><text x="230" y="74">÷2</text><text x="306" y="74">÷2</text><text x="382" y="74">÷2</text>
+</g>
+</svg><figcaption>Each step to the right lowers the exponent by 1 and divides by 2. The pattern does not stop at 1.</figcaption></figure>
+<p>The picture says the same thing. Going right, each step divides by 2. Keep going past \(2^1 = 2\): \(2^0 = 1\), then \(2^{-1} = \tfrac12\), then \(2^{-2} = \tfrac14\). Nothing else lets the pattern continue.</p>
+<p>One more law for free: \((ab)^n = a^n b^n\), since \(n\) copies of \(ab\) regroup into \(n\) copies of \(a\) and \(n\) copies of \(b\).</p>
+</section>
+
+<section class="example">
+<h2>Watch one: \((2^3)^4\), \(2^{-5}\), and \(10^6 \div 10^9\)</h2>
+<p>Power of a power: \((2^3)^4 = 2^{12} = 4096\). Not \(2^7\); four groups of three is twelve.</p>
+<p>Negative exponent: \(2^{-5} = \dfrac{1}{2^5} = \dfrac{1}{32}\). The minus sign means "one over", nothing about the answer being negative.</p>
+<p>Division: \(10^6 \div 10^9 = 10^{6-9} = 10^{-3} = \dfrac{1}{1000}\). Check by cancelling: six zeros on top, nine on the bottom, three left on the bottom.</p>
+<p class="small">Scientific notation uses the same idea, with \(10^{-3}\) for thousandths: see <a href="../../grade-6/sheets/a10-exponents.html">Big and tiny numbers</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Write each as a single power, then as a number: (a) \(5^7 \cdot 5^{-3}\); (b) \((3^2)^5 \div 3^7\); (c) \(10^{-2} \cdot 10^5\).<div class="space short"></div></li>
+<li>Evaluate: (a) \(2^{10} / 2^{13}\); (b) \((-3)^0\); (c) \(-3^0\); (d) \(\left(\tfrac12\right)^{-3}\). Two of these are traps. Say which.<div class="space short"></div></li>
+<li>Find \(n\) in each case by writing both sides as powers of the same base: (a) \(4^n = 2^{10}\); (b) \(9^n \cdot 3 = 3^7\); (c) \(2^n = \tfrac{1}{32}\).<div class="space"></div></li>
+<li>(a) Which is bigger, \(2^{300}\) or \(3^{200}\)? No calculator can hold these. Rewrite each as a power with exponent 100. (b) Show that \(4^{50} \cdot 25^{50}\) is a power of 10, and say how many digits it has.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: what the laws force \(x^{1/2}\) to mean</h2>
+<p>Suppose fractional exponents obey the same laws. Then \((x^{1/2})^2 = x^{1} = x\). So \(x^{1/2}\) is a number whose square is \(x\): it has to be \(\sqrt{x}\). Use the same reasoning to evaluate \(8^{1/3}\), \(8^{2/3}\) and \(16^{-3/4}\).</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(5^{4} = 625\). (b) \(3^{10} \div 3^7 = 3^3 = 27\). (c) \(10^3 = 1000\).</li>
+<li>(a) \(2^{-3} = \tfrac18\). (b) \(1\): anything non-zero to the power 0 is 1. (c) \(-1\): the exponent applies to 3 only, then the minus sign. (d) \(8\): one over \(\left(\tfrac12\right)^3 = \tfrac18\). The traps are (c) and (d).</li>
+<li>(a) \(4^n = (2^2)^n = 2^{2n}\), so \(2n = 10\), \(n = 5\). (b) \(3^{2n} \cdot 3^1 = 3^{2n+1} = 3^7\), so \(n = 3\). (c) \(\tfrac{1}{32} = 2^{-5}\), so \(n = -5\).</li>
+<li>(a) \(2^{300} = (2^3)^{100} = 8^{100}\) and \(3^{200} = (3^2)^{100} = 9^{100}\). Since \(9 > 8\), \(3^{200}\) is bigger. (b) \(4^{50} \cdot 25^{50} = (4 \cdot 25)^{50} = 100^{50} = 10^{100}\): a 1 followed by 100 zeros, so 101 digits.</li>
+</ol>
+<p><b>Stretch.</b> \((8^{1/3})^3 = 8\), so \(8^{1/3} = 2\). \(8^{2/3} = (8^{1/3})^2 = 2^2 = 4\). \(16^{-3/4} = 1 / 16^{3/4} = 1/(16^{1/4})^3 = 1/2^3 = \tfrac18\).</p>
+</section>
+
+<div class="sheet-nav"><a href="a4-systems.html">← Previous</a><a href="a6-multiply-by-one.html">Next: Multiply by 1 →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

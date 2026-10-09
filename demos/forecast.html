@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Beat the Forecaster · Infinity Club</title>
+<meta name="description" content="Ten days of weather. Read the sky, give a rain probability, see what happens, and let the Brier score judge you against a lazy forecaster who always says 50% and a perfectly calibrated one.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.day { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem 1.4rem; padding: .9rem 1rem; border: 2px solid var(--accent-soft); border-radius: 10px; margin: .6rem 0; background: #fff; }
+.day .sky { font-weight: 700; flex: 1 1 14em; }
+.day .sky small { display: block; font-weight: 400; color: var(--muted); }
+.day input[type=range] { width: 170px; }
+.day .pv { font-family: var(--mono); font-weight: 700; min-width: 3.2em; display: inline-block; }
+.day button { font: inherit; font-weight: 700; background: var(--accent); color: #fff; border: 0; border-radius: 8px; padding: .5rem 1rem; cursor: pointer; }
+.day button:disabled { opacity: .4; cursor: default; }
+table.log { border-collapse: collapse; margin: .6rem 0; font-family: var(--mono); font-size: .9rem; width: 100%; }
+table.log th, table.log td { padding: .25rem .45rem; text-align: right; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+table.log th { font-family: var(--sans); color: var(--muted); font-weight: 700; }
+table.log td.rain { color: #3f44c9; font-weight: 700; }
+table.log td.dry { color: #c47a00; font-weight: 700; }
+table.log tr.tot td { font-weight: 800; border-top: 2px solid var(--ink); }
+table.log td.best { background: var(--warm-soft); }
+#chart { display: block; width: 100%; max-width: 640px; margin: .5rem auto; }
+.key { display: flex; flex-wrap: wrap; gap: .4rem 1.2rem; font-size: .9rem; color: var(--muted); margin: .4rem 0; }
+.key span::before { content: ""; display: inline-block; width: 14px; height: 4px; vertical-align: 3px; margin-right: .35rem; border-radius: 2px; }
+.key .you::before { background: #3f44c9; }
+.key .half::before { background: #8a8ca8; }
+.key .cal::before { background: #f5a524; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Beat the forecaster</h1>
+<p class="explain">Each morning you get a look at the sky. <b>Slide to your probability of rain and press "Lock in"</b>; the day then plays out and your Brier score for it is (p − outcome)², with rain counting as 1 and dry as 0. Lower is better. Do all ten days, then compare your total with a lazy forecaster who always says 50% and with a perfectly calibrated one who knows the true chance. Notice that saying 50% is not "safe": it is beaten by anyone who reads the sky even roughly. Notice too that the calibrated forecaster can lose a day, or even a week, and still be the one you should trust.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <button id="newweek">New week</button>
+    <label><input type="checkbox" id="truth" disabled> reveal the true probabilities</label>
+  </div>
+  <div class="day" id="day">
+    <div class="sky" id="sky"></div>
+    <label>chance of rain <input type="range" id="p" min="0" max="100" step="5" value="50"> <span class="pv" id="pv">50%</span></label>
+    <button id="lock">Lock in</button>
+  </div>
+  <div class="readout" id="status"></div>
+  <table class="log"><thead><tr><th>day</th><th>sky</th><th>you</th><th>outcome</th><th>your score</th><th>50% score</th><th>calibrated</th><th id="truthHead" hidden>true p</th></tr></thead><tbody id="log"></tbody></table>
+  <div class="key"><span class="you">you</span><span class="half">always 50%</span><span class="cal">calibrated forecaster</span></div>
+  <canvas id="chart" width="640" height="220"></canvas>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>A forecast of "70% chance of rain" cannot be right or wrong on a single day. Whether it rains or not, 70% allowed for it. So how do we judge a forecaster? The <b>Brier score</b> charges (p − outcome)² for each day. Say 90% and it rains: you pay 0.01. Say 90% and it stays dry: you pay 0.81. Say 50% and you pay exactly 0.25 whatever happens.</p>
+<p>That 0.25 is the trap. Always saying 50% feels cautious, but anyone who can tell a clear sky from a thunderstorm will beat it over a week. If the true chance of rain is q and you say p, your expected score is (p − q)² + q(1 − q). The second part is the weather's own randomness, which nobody can remove. The first part is your error, and it is zero only when you say the true chance. So the Brier score rewards honesty: your best strategy is to report what you really believe, no hedging toward 50% and no rounding to 0% or 100%.</p>
+<p>A forecaster is <b>calibrated</b> if, on the days they say 70%, it rains about 70% of the time. The calibrated forecaster here says the true probability every day. It is the best possible strategy on average, yet in any single week the dice can go against it. That is why a weather service is judged over years, not over the week your picnic was rained out.</p>
+<p>Sheet: <a href="../grade-8/sheets/c10-rain.html">What "70% chance of rain" means</a>. Related demo: <a href="bayes.html">Bayes' rule</a>, on updating a probability when new evidence arrives.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  function brier(p, outcome) { return (p - outcome) * (p - outcome); }
+  var SKIES = [
+    { p: 0.08, text: "Clear blue sky, high pressure, not a breath of wind." },
+    { p: 0.25, text: "A few white clouds drifting. The air feels dry." },
+    { p: 0.45, text: "Grey and muggy. Could go either way." },
+    { p: 0.65, text: "Clouds thickening all morning, wind picking up." },
+    { p: 0.88, text: "Dark sky, thunder already rumbling in the distance." }
+  ];
+  // ten days: a sky description and a hidden true probability near that sky's typical value
+  function makeWeek(rand) {
+    var days = [];
+    for (var d = 0; d < 10; d++) {
+      var s = Math.floor(rand() * SKIES.length), q = SKIES[s].p + (rand() - 0.5) * 0.2;
+      q = Math.min(0.97, Math.max(0.03, Math.round(q * 100) / 100));
+      days.push({ sky: s, q: q, rained: rand() < q });
+    }
+    return days;
+  }
+  function fmt(v, d) { return v.toFixed(d === undefined ? 3 : d); }
+  /*ENDPURE*/
+
+  var week, day, forecasts, tot;
+  var skyEl = document.getElementById("sky"), slider = document.getElementById("p"), pv = document.getElementById("pv"), lock = document.getElementById("lock");
+  var status = document.getElementById("status"), log = document.getElementById("log"), truthBox = document.getElementById("truth"), truthHead = document.getElementById("truthHead");
+  var canvas = document.getElementById("chart"), ctx = canvas.getContext("2d");
+
+  function newWeek() {
+    week = makeWeek(Math.random); day = 0; forecasts = []; tot = { you: 0, half: 0, cal: 0 };
+    truthBox.checked = false; truthBox.disabled = true; truthHead.hidden = true;
+    slider.value = 50; pv.textContent = "50%"; lock.disabled = false;
+    log.innerHTML = "";
+    showDay();
+    status.textContent = "Day 1 of 10. Read the sky, set your probability, lock it in.";
+    drawChart();
+  }
+  function showDay() {
+    var d = week[day];
+    skyEl.innerHTML = "Day " + (day + 1) + " of 10<small>" + SKIES[d.sky].text + "</small>";
+  }
+  function lockIn() {
+    if (day >= 10) return;
+    var d = week[day], p = parseInt(slider.value, 10) / 100, o = d.rained ? 1 : 0;
+    var you = brier(p, o), half = brier(0.5, o), cal = brier(d.q, o);
+    forecasts.push({ p: p, you: you, half: half, cal: cal });
+    tot.you += you; tot.half += half; tot.cal += cal;
+    var tr = document.createElement("tr"), best = Math.min(you, half, cal);
+    tr.innerHTML = "<td>" + (day + 1) + "</td><td title=\"" + SKIES[d.sky].text + "\">" + ["clear", "few clouds", "grey", "thickening", "thunder"][d.sky] + "</td><td>" + Math.round(p * 100) + "%</td><td class=" + (o ? "rain>rain" : "dry>dry") + "</td>"
+      + "<td" + (you === best ? " class=best" : "") + ">" + fmt(you) + "</td><td" + (half === best ? " class=best" : "") + ">" + fmt(half) + "</td><td" + (cal === best ? " class=best" : "") + ">" + fmt(cal) + "</td><td class=truth" + (truthBox.checked ? "" : " hidden") + ">" + Math.round(d.q * 100) + "%</td>";
+    log.appendChild(tr);
+    day++;
+    var old = log.querySelector("tr.tot"); if (old) old.remove();
+    var tt = document.createElement("tr"); tt.className = "tot"; var b2 = Math.min(tot.you, tot.half, tot.cal);
+    tt.innerHTML = "<td colspan=4>total after " + day + (day === 1 ? " day" : " days") + "</td><td" + (tot.you === b2 ? " class=best" : "") + ">" + fmt(tot.you) + "</td><td" + (tot.half === b2 ? " class=best" : "") + ">" + fmt(tot.half) + "</td><td" + (tot.cal === b2 ? " class=best" : "") + ">" + fmt(tot.cal) + "</td><td class=truth" + (truthBox.checked ? "" : " hidden") + "></td>";
+    log.appendChild(tt);
+    var line = "Day " + day + ": you said " + Math.round(p * 100) + "%, it " + (o ? "RAINED" : "stayed DRY") + ". Your score (" + fmt(p, 2) + " − " + o + ")² = " + fmt(you) + ".";
+    if (day >= 10) {
+      lock.disabled = true; truthBox.disabled = false;
+      var order = [["you", tot.you], ["always 50%", tot.half], ["the calibrated forecaster", tot.cal]].sort(function (a, b) { return a[1] - b[1]; });
+      line += "\n\nWeek over. Totals: you " + fmt(tot.you) + ", always 50% " + fmt(tot.half, 2) + " (10 × 0.25), calibrated " + fmt(tot.cal) + ".";
+      line += "\nBest this week: " + order[0][0] + ". " + (order[0][0] === "you" ? (tot.you < tot.cal ? "You beat the calibrated forecaster, partly skill and partly luck. Try another week and see if it lasts." : "") : "")
+        + (tot.you < tot.half ? (order[0][0] === "you" ? "" : "You beat always-50%, so reading the sky paid off.") : "Always-50% beat you this week. Were you too sure, or too timid?")
+        + "\nTick \"reveal the true probabilities\" to compare your numbers with the real chances, then press New week.";
+      skyEl.innerHTML = "Week complete<small>Press New week for ten fresh days.</small>";
+    } else {
+      line += " Day " + (day + 1) + " of 10 next.";
+      showDay();
+    }
+    status.textContent = line;
+    drawChart();
+  }
+
+  function drawChart() {
+    var dpr = window.devicePixelRatio || 1, W = canvas.clientWidth || 640, H = Math.round(W * 0.36);
+    canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, H);
+    var padL = 34, padR = 10, padT = 10, padB = 22, pw = W - padL - padR, ph = H - padT - padB;
+    var ymax = 3; forecasts.reduce(function (acc, f) { acc.you += f.you; acc.half += f.half; acc.cal += f.cal; ymax = Math.max(ymax, acc.you, acc.half, acc.cal); return acc; }, { you: 0, half: 0, cal: 0 });
+    ymax = Math.ceil(ymax * 2) / 2;
+    function X(i) { return padL + pw * i / 10; }
+    function Y(v) { return padT + ph * (1 - v / ymax); }
+    ctx.strokeStyle = "#ece9e0"; ctx.lineWidth = 1; ctx.fillStyle = "#5d6079"; ctx.font = "10px Nunito, sans-serif"; ctx.textAlign = "right"; ctx.textBaseline = "middle";
+    for (var v = 0; v <= ymax + 1e-9; v += 0.5) { ctx.beginPath(); ctx.moveTo(padL, Y(v)); ctx.lineTo(W - padR, Y(v)); ctx.stroke(); ctx.fillText(v.toFixed(1), padL - 4, Y(v)); }
+    ctx.textAlign = "center"; ctx.textBaseline = "top";
+    for (var i = 1; i <= 10; i++) ctx.fillText(i, X(i), H - padB + 4);
+    ctx.fillText("day", padL + pw / 2, H - padB + 4 + 0); ctx.textAlign = "left"; ctx.fillText("cumulative Brier score (lower is better)", padL + 4, padT);
+    // expected line for always-50%
+    ctx.strokeStyle = "#8a8ca8"; ctx.setLineDash([4, 4]); ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(X(0), Y(0)); ctx.lineTo(X(10), Y(2.5)); ctx.stroke(); ctx.setLineDash([]);
+    ["half", "you", "cal"].forEach(function (k) {
+      var acc = 0; ctx.strokeStyle = k === "you" ? "#3f44c9" : k === "cal" ? "#f5a524" : "#8a8ca8"; ctx.lineWidth = k === "you" ? 3 : 2.5; ctx.beginPath(); ctx.moveTo(X(0), Y(0));
+      forecasts.forEach(function (f, i) { acc += f[k]; ctx.lineTo(X(i + 1), Y(acc)); });
+      ctx.stroke();
+      if (forecasts.length) { ctx.fillStyle = ctx.strokeStyle; ctx.beginPath(); ctx.arc(X(forecasts.length), Y(acc), 4, 0, Math.PI * 2); ctx.fill(); }
+    });
+  }
+
+  slider.addEventListener("input", function () { pv.textContent = slider.value + "%"; });
+  lock.addEventListener("click", lockIn);
+  document.getElementById("newweek").addEventListener("click", newWeek);
+  truthBox.addEventListener("change", function () {
+    var show = truthBox.checked; truthHead.hidden = !show;
+    var cells = log.querySelectorAll("td.truth"); for (var i = 0; i < cells.length; i++) cells[i].hidden = !show;
+  });
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(drawChart, 120); });
+  newWeek();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The last digit of 7²⁰²⁴ · Infinity Club</title>
+<meta name="description" content="The last digit of a product depends only on the last digits of the factors, so the last digits of powers repeat in short cycles. Find the cycle, divide the exponent, and read off the answer.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 8 · Around the corner · 5</div>
+  <h1>The last digit of 7²⁰²⁴</h1>
+  <p class="teaser">Last digits of powers go round in cycles. Find the cycle, use the remainder, and answer in seconds.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>What is the last digit of \(7^{2024}\)? The number itself has 1,711 digits. You will never write it down, but its last digit takes ten seconds.</p>
+<p>The key fact: <b>the last digit of a product depends only on the last digits of the factors.</b> \(23 \times 47\) ends like \(3 \times 7 = 21\), in 1. Reason: \(23 \times 47 = (20 + 3)(40 + 7)\), and the pieces \(20 \times 40\), \(20 \times 7\) and \(3 \times 40\) are all multiples of 10. Only \(3 \times 7\) touches the units.</p>
+<p>So to follow the last digit of \(7, 7^2, 7^3, \ldots\) you never need the whole number. Start at 7. Times 7: 49, last digit 9. Then \(9 \times 7 = 63\), last digit 3. Then \(3 \times 7 = 21\), last digit 1. Then \(1 \times 7 = 7\): back at the start.</p>
+<figure><svg viewBox="0 0 200 124" width="200" height="124" role="img" aria-label="Four circles labelled 7, 9, 3, 1 arranged in a loop with arrows between them, each arrow marked times 7" font-family="Nunito, sans-serif" font-size="14">
+<defs><marker id="ah" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#3f44c9"/></marker></defs>
+<path d="M116.3,25.5 A40,40 0 0 1 136.5,45.7" fill="none" stroke="#3f44c9" stroke-width="1.5" marker-end="url(#ah)"/>
+<text x="139.6" y="26.4" text-anchor="middle" fill="#f5a524" font-size="12">×7</text>
+<path d="M136.5,78.3 A40,40 0 0 1 116.3,98.5" fill="none" stroke="#3f44c9" stroke-width="1.5" marker-end="url(#ah)"/>
+<text x="139.6" y="105.6" text-anchor="middle" fill="#f5a524" font-size="12">×7</text>
+<path d="M83.7,98.5 A40,40 0 0 1 63.5,78.3" fill="none" stroke="#3f44c9" stroke-width="1.5" marker-end="url(#ah)"/>
+<text x="60.4" y="105.6" text-anchor="middle" fill="#f5a524" font-size="12">×7</text>
+<path d="M63.5,45.7 A40,40 0 0 1 83.7,25.5" fill="none" stroke="#3f44c9" stroke-width="1.5" marker-end="url(#ah)"/>
+<text x="60.4" y="26.4" text-anchor="middle" fill="#f5a524" font-size="12">×7</text>
+<circle cx="100.0" cy="22.0" r="13" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="100.0" y="27.0" text-anchor="middle" font-weight="700" fill="#333">7</text>
+<circle cx="140.0" cy="62.0" r="13" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="140.0" y="67.0" text-anchor="middle" font-weight="700" fill="#333">9</text>
+<circle cx="100.0" cy="102.0" r="13" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="100.0" y="107.0" text-anchor="middle" font-weight="700" fill="#333">3</text>
+<circle cx="60.0" cy="62.0" r="13" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="60.0" y="67.0" text-anchor="middle" font-weight="700" fill="#333">1</text>
+</svg>
+<figcaption>Powers of 7 end in 7, 9, 3, 1, 7, 9, 3, 1, … The cycle has length 4.</figcaption></figure>
+<p>The position in the cycle is set by the remainder of the exponent on dividing by 4: remainder 1 gives 7, 2 gives 9, 3 gives 3, and 0 (the end of a lap) gives 1.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: \(7^{2024}\) and \(7^{2023}\)</h2>
+<p>Divide 2024 by 4: \(2024 = 4 \times 506\), remainder 0, the end of a lap, where the last digit is 1. So \(7^{2024}\) ends in 1. Another way: \(7^4 = 2401\) ends in 1, and \(7^{2024} = (7^4)^{506}\) is 2401 multiplied by itself, which can only end in 1.</p>
+<p>2023 leaves remainder 3, the third spot, so \(7^{2023}\) ends in 3. Check: \(7 \times 7^{2023}\) should end like \(7 \times 3 = 21\). It does.</p>
+<p class="small">Remainders as positions on a clock: <a href="../../grade-6/sheets/b3-clock-arithmetic.html">clock arithmetic</a>. Why cycles of remainders modulo a prime \(p\) always have length dividing \(p - 1\): <a href="../../grade-10/sheets/b5-fermat-little.html">Fermat's little theorem</a> (grade 10).</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Write out the cycle of last digits for the powers of 2, of 3, of 4 and of 9. How long is each cycle?<div class="space"></div></li>
+<li>Find the last digit of \(3^{100}\), of \(2^{2025}\) and of \(9^{99}\).<div class="space short"></div></li>
+<li>Find the last digit of \(2024^{2024}\) and of \(13^{2024}\). Only one digit of the base matters.<div class="space short"></div></li>
+<li>Find the last digit of \(1^1 + 2^2 + 3^3 + \cdots + 10^{10}\).<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: a tower</h2>
+<p>What is the last digit of \(7^{(7^7)}\)? You need the remainder of the exponent \(7^7\) on dividing by 4, and you do not need to compute \(7^7\). Think of 7 as \(8 - 1\).</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>2: 2, 4, 8, 6 (length 4). 3: 3, 9, 7, 1 (length 4). 4: 4, 6 (length 2). 9: 9, 1 (length 2). Powers of 0, 1, 5 and 6 never change their last digit.</li>
+<li>\(3^{100}\): 100 has remainder 0 on dividing by 4, so the last digit is the end of the 3, 9, 7, 1 lap: 1. \(2^{2025}\): remainder 1, so 2. \(9^{99}\): odd exponent, so 9.</li>
+<li>\(2024^{2024}\) ends like \(4^{2024}\); the cycle 4, 6 gives 6 for every even exponent. \(13^{2024}\) ends like \(3^{2024}\); 2024 has remainder 0, so 1.</li>
+<li>Last digits: \(1, 4, 7, 6, 5, 6, 3, 6, 9, 0\). (For \(7^7\), remainder 3 gives 3; for \(8^8\), remainder 0 in the cycle 8, 4, 2, 6 gives 6; \(9^9\) has an odd exponent, so 9.) Their sum is 47, so the last digit is 7.</li>
+</ol>
+<p><b>Stretch.</b> \(7 = 8 - 1\), so \(7^7 = (8-1)^7\). Expanding, every term has a factor of 8 except the last, \((-1)^7 = -1\). So \(7^7\) is a multiple of 8 minus 1, hence a multiple of 4 minus 1, which leaves remainder 3 on dividing by 4. (Check: \(7^7 = 823{,}543 = 4 \times 205{,}885 + 3\).) Remainder 3 is the third spot in 7, 9, 3, 1, so \(7^{(7^7)}\) ends in 3.</p>
+</section>
+
+<div class="sheet-nav"><a href="b4-proofs-without-words.html">← Previous</a><a href="b6-divisors.html">Next: Counting divisors, and perfect numbers →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The mediant · Infinity Club</title>
+<meta name="description" content="Add the tops and add the bottoms: (a + c)/(b + d) always lands between a/b and c/d. A two-line proof by cross-multiplying, and the Stern–Brocot tree that lists every fraction exactly once.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 8 · Around the corner · 21</div>
+  <h1>The mediant</h1>
+  <p class="teaser">Add tops and add bottoms: (a + c)/(b + d) always lands between a/b and c/d. Why, and the tree that lists every fraction once.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Adding tops and bottoms is the classic wrong way to add fractions, but it does something useful. For positive \(b\) and \(d\), the <b>mediant</b> of \(\tfrac ab\) and \(\tfrac cd\) is \(\tfrac{a + c}{b + d}\), and it always lies between them. Scores of \(5/8\) and \(3/4\) on two tests combine to \(8/12\) overall, which must sit between them.</p>
+<p><b>Why.</b> Suppose \(\tfrac ab \lt \tfrac cd\). Multiply both sides by \(bd\), which is positive: \(ad \lt bc\), so \(bc - ad > 0\). Now subtract:</p>
+<p>\[\frac{a+c}{b+d} - \frac ab = \frac{b(a+c) - a(b+d)}{b(b+d)} = \frac{bc - ad}{b(b+d)} > 0.\]</p>
+<p>The same subtraction the other way gives \(\tfrac cd - \tfrac{a+c}{b+d} = \tfrac{bc - ad}{d(b+d)} > 0\). Both gaps are positive. The proof never asked for lowest terms: \(\tfrac 24\) and \(\tfrac 13\) have mediant \(\tfrac 37\), while \(\tfrac 12\) and \(\tfrac 13\) have mediant \(\tfrac 25\). Different answers, both in between.</p>
+<p>Now build with it. Start with \(\tfrac 01\) and \(\tfrac 11\), insert the mediant between every pair of neighbours, and repeat: the <b>Stern–Brocot tree</b>. Every fraction between 0 and 1 appears exactly once, already in lowest terms.</p>
+<figure><svg viewBox="0 0 520 170" width="520" height="170" role="img" aria-label="The Stern–Brocot tree between 0/1 and 1/1: 1/2, then 1/3 and 2/3, then 1/4, 2/5, 3/5, 3/4, then eight more fractions in the fourth row." font-family="Nunito, sans-serif" font-size="13">
+<g stroke="#999" stroke-width="1">
+<line x1="260" y1="34" x2="140" y2="70"/><line x1="260" y1="34" x2="380" y2="70"/>
+<line x1="140" y1="74" x2="80" y2="110"/><line x1="140" y1="74" x2="200" y2="110"/><line x1="380" y1="74" x2="320" y2="110"/><line x1="380" y1="74" x2="440" y2="110"/>
+<line x1="80" y1="114" x2="50" y2="150"/><line x1="80" y1="114" x2="110" y2="150"/><line x1="200" y1="114" x2="170" y2="150"/><line x1="200" y1="114" x2="230" y2="150"/>
+<line x1="320" y1="114" x2="290" y2="150"/><line x1="320" y1="114" x2="350" y2="150"/><line x1="440" y1="114" x2="410" y2="150"/><line x1="440" y1="114" x2="470" y2="150"/>
+</g>
+<g text-anchor="middle" font-weight="700">
+<text x="20" y="34" fill="#999">0/1</text><text x="500" y="34" fill="#999">1/1</text>
+<text x="260" y="34" fill="#3f44c9">1/2</text>
+<text x="140" y="74" fill="#3f44c9">1/3</text><text x="380" y="74" fill="#3f44c9">2/3</text>
+<text x="80" y="114" fill="#3f44c9">1/4</text><text x="200" y="114" fill="#3f44c9">2/5</text><text x="320" y="114" fill="#3f44c9">3/5</text><text x="440" y="114" fill="#3f44c9">3/4</text>
+<text x="50" y="154">1/5</text><text x="110" y="154">2/7</text><text x="170" y="154" fill="#f5a524">3/8</text><text x="230" y="154">3/7</text><text x="290" y="154">4/7</text><text x="350" y="154">5/8</text><text x="410" y="154">5/7</text><text x="470" y="154">4/5</text>
+</g>
+<text x="20" y="14" font-size="12" fill="#555">each fraction is the mediant of its nearest neighbours above</text>
+</svg><figcaption>Four rows of the tree. \(\tfrac 38\) is the mediant of \(\tfrac 13\) and \(\tfrac 25\), the fractions just left and right of it in the rows above.</figcaption></figure>
+</section>
+
+<section class="example">
+<h2>Watch one: \(\tfrac 58\) and \(\tfrac 34\)</h2>
+<p>Cross-multiply to order them: \(5 \cdot 4 = 20\) and \(8 \cdot 3 = 24\), so \(\tfrac 58 \lt \tfrac 34\) and \(bc - ad = 4\). The mediant is \(\tfrac{8}{12} = \tfrac 23\). The formula predicts the two gaps:</p>
+<p>\[\frac 23 - \frac 58 = \frac{4}{8 \cdot 12} = \frac{1}{24}, \qquad \frac 34 - \frac 23 = \frac{4}{4 \cdot 12} = \frac{1}{12}.\]</p>
+<p>Check directly: \(\tfrac{16}{24} - \tfrac{15}{24} = \tfrac{1}{24}\) and \(\tfrac{9}{12} - \tfrac{8}{12} = \tfrac{1}{12}\). The mediant sits closer to the fraction with the bigger denominator, which is the one that carries more weight: eight questions count for more than four.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Find the mediant of \(\tfrac 13\) and \(\tfrac 12\), then the mediant of your answer and \(\tfrac 12\). Convert all four fractions to decimals and check that each mediant landed between its parents.<div class="space short"></div></li>
+<li>Write out the fifth row of the tree: the sixteen fractions that fill the gaps in the fourth row, in order. Where does \(\tfrac{5}{12}\) land, and which two fractions is it the mediant of?<div class="space"></div></li>
+<li>For neighbours \(\tfrac ab \lt \tfrac cd\) in any row of the tree, \(bc - ad = 1\). Check this for \(\tfrac 13, \tfrac 38\) and for \(\tfrac 38, \tfrac 25\). Then show algebraically that if \(bc - ad = 1\), the mediant has \(bc - ad = 1\) with each of its parents too, so the property survives forever.<div class="space"></div></li>
+<li>Use exercise 3 to explain why every fraction in the tree is automatically in lowest terms. Hint: suppose a whole number \(g\) divides both \(a + c\) and \(b + d\). What else must it divide?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the smallest denominator in a gap</h2>
+<p>\(\tfrac 58\) and \(\tfrac 23\) have \(bc - ad = 1\). Find the fraction with the smallest denominator strictly between them. Then prove it in general: if \(\tfrac ab \lt \tfrac pq \lt \tfrac cd\) and \(bc - ad = 1\), show \(q \ge b + d\). Hint: \(bp - aq\) is a positive whole number.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(\tfrac{1+1}{3+2} = \tfrac 25\), then \(\tfrac{2+1}{5+2} = \tfrac 37\). Decimals: \(0.333 \lt 0.4 \lt 0.5\) and \(0.4 \lt 0.4286 \lt 0.5\).</li>
+<li>\(\tfrac16, \tfrac29, \tfrac3{11}, \tfrac3{10}, \tfrac4{11}, \tfrac5{13}, \tfrac5{12}, \tfrac49, \tfrac59, \tfrac7{12}, \tfrac8{13}, \tfrac7{11}, \tfrac7{10}, \tfrac8{11}, \tfrac79, \tfrac56\). \(\tfrac5{12}\) sits between \(\tfrac25\) and \(\tfrac37\), and \(\tfrac{2+3}{5+7} = \tfrac5{12}\).</li>
+<li>\(3 \cdot 3 - 1 \cdot 8 = 1\) and \(8 \cdot 2 - 3 \cdot 5 = 1\). Algebra: the mediant \(\tfrac{a+c}{b+d}\) against the left parent \(\tfrac ab\) gives \(b(a+c) - a(b+d) = bc - ad = 1\); against the right parent, \(c(b+d) - d(a+c) = bc - ad = 1\). Each new pair of neighbours inherits the value 1 from the pair it came from.</li>
+<li>If \(g\) divides \(a + c\) and \(b + d\), it divides \(b(a+c) - a(b+d)\), which equals 1 by exercise 3. So \(g = 1\): the top and bottom share no factor, which is what lowest terms means. (No fraction appears twice either: each row is in strictly increasing order, because every mediant lands strictly between its two neighbours, so a new entry can never equal an old one.)</li>
+</ol>
+<p><b>Stretch.</b> \(8 \cdot 2 - 5 \cdot 3 = 1\), and the mediant \(\tfrac{7}{11}\) is the answer: \(0.625 \lt 0.636 \lt 0.667\), and checking denominators 1 to 10 finds nothing in the gap. Proof: \(\tfrac pq > \tfrac ab\) means \(bp - aq > 0\), and these are whole numbers, so \(bp - aq \ge 1\); likewise \(cq - dp \ge 1\). Multiply the first by \(d\), the second by \(b\), and add: \(bdp - adq + bcq - bdp = (bc - ad)q = q \ge b + d\). So nothing with a denominator below \(b + d = 11\) fits, and the mediant is the simplest fraction in the gap. Lists of all fractions with denominator up to \(n\), in order, are called Farey sequences, and neighbours in them always satisfy \(bc - ad = 1\).</p>
+</section>
+
+<div class="sheet-nav"><a href="b20-constructions.html">← Previous</a><a href="b22-chomp.html">Next: Strategy stealing →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

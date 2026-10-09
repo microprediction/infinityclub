@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The birthday paradox · Infinity Club</title>
+<meta name="description" content="Why 23 people are enough for a shared birthday to be more likely than not. Multiply the chances of no match, watch the product fall, and see that the real count is the number of pairs.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 8 · Around the corner · 9</div>
+  <h1>The birthday paradox</h1>
+  <p class="teaser">In a room of 23 people it is more likely than not that two share a birthday. Multiply the chances of no match and watch it fall.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>There are 365 days in a year, so you might guess you need about 183 people before a shared birthday becomes likely. The real number is 23.</p>
+<p>Work out the opposite event, as in <a href="a17-at-least-one.html">the complement trick</a>: the chance that all \(n\) birthdays are <em>different</em>. Line the people up. The first person can have any birthday. The second must avoid one day: probability \(\tfrac{364}{365}\). The third must avoid two: \(\tfrac{363}{365}\). Each new person has one more day to avoid, and we multiply, because each of these must happen in turn.</p>
+<p class="callout">\[P(\text{all different}) = \frac{365}{365} \cdot \frac{364}{365} \cdot \frac{363}{365} \cdots \frac{365 - n + 1}{365}, \qquad P(\text{shared}) = 1 - P(\text{all different}).\]</p>
+<p>Each factor is a little less than 1, and a long product of numbers a little less than 1 shrinks fast. By the 23rd factor the product has dropped below one half.</p>
+<figure><svg viewBox="0 0 320 170" width="320" height="170" role="img" aria-label="Probability of a shared birthday against number of people, an S-shaped curve passing through one half at 23 people and 0.97 at 50" font-family="Nunito, sans-serif" font-size="12">
+<line x1="40" y1="140" x2="300" y2="140" stroke="#000" stroke-width="1.5"/><line x1="40" y1="140" x2="40" y2="20" stroke="#000" stroke-width="1.5"/>
+<line x1="40" y1="80" x2="300" y2="80" stroke="#999" stroke-width="1" stroke-dasharray="4 3"/>
+<line x1="139.7" y1="140" x2="139.7" y2="79.1" stroke="#f5a524" stroke-width="1.5" stroke-dasharray="4 3"/>
+<polyline fill="none" stroke="#3f44c9" stroke-width="2.2" points="40.0,140.0 44.3,140.0 48.7,139.7 53.0,139.0 57.3,138.0 61.7,136.7 66.0,135.1 70.3,133.3 74.7,131.1 79.0,128.6 83.3,126.0 87.7,123.1 92.0,120.0 96.3,116.7 100.7,113.2 105.0,109.7 109.3,106.0 113.7,102.2 118.0,98.4 122.3,94.5 126.7,90.6 131.0,86.8 135.3,82.9 139.7,79.1 144.0,75.4 148.3,71.8 152.7,68.2 157.0,64.8 161.3,61.5 165.7,58.3 170.0,55.2 174.3,52.3 178.7,49.6 183.0,47.0 187.3,44.6 191.7,42.3 196.0,40.1 200.3,38.2 204.7,36.3 209.0,34.6 213.3,33.1 217.7,31.6 222.0,30.3 226.3,29.1 230.7,28.1 235.0,27.1 239.3,26.2 243.7,25.4 248.0,24.7 252.3,24.1 256.7,23.6 261.0,23.1 265.3,22.6 269.7,22.3 274.0,21.9 278.3,21.6 282.7,21.4 287.0,21.2 291.3,21.0 295.7,20.8 300.0,20.7"/>
+<circle cx="139.7" cy="79.1" r="3.5" fill="#f5a524"/>
+<circle cx="256.7" cy="23.6" r="3" fill="#3f44c9"/>
+<text x="34" y="144" text-anchor="end">0</text><text x="34" y="84" text-anchor="end">0.5</text><text x="34" y="24" text-anchor="end">1</text>
+<text x="40" y="156" text-anchor="middle">0</text><text x="139.7" y="156" text-anchor="middle" fill="#f5a524" font-weight="700">23</text><text x="256.7" y="156" text-anchor="middle">50</text><text x="300" y="156" text-anchor="middle">60</text>
+<text x="170" y="168" text-anchor="middle" fill="#555">people in the room</text>
+<text x="150" y="72" fill="#f5a524" font-weight="700">0.507</text>
+<text x="262" y="36" fill="#3f44c9" font-size="11">0.970</text>
+</svg><figcaption>\(P(\text{shared})\) against the number of people. It crosses one half at 23 and reaches 97% at 50.</figcaption></figure>
+<p>Why so few? Because matches come from <em>pairs</em>, and 23 people make \(\tfrac{23 \times 22}{2} = 253\) pairs. Each pair has a \(\tfrac{1}{365}\) chance to match, and 253 attempts at a 1-in-365 event is a fair fight. The 183 guess is nearer to a different question, how many people before one shares a birthday with <em>you</em>, and even that takes 253 (question 4).</p>
+</section>
+
+<section class="example">
+<h2>Watch one: 23 people</h2>
+<p>Twenty-two factors (the first person's factor is 1):</p>
+<p>\[\frac{364}{365} \cdot \frac{363}{365} \cdot \frac{362}{365} \cdots \frac{343}{365} = 0.4927.\]</p>
+<p>So \(P(\text{shared}) = 1 - 0.4927 = 0.507\), just over one half. With 22 people the product is 0.524 and the shared chance is 0.476, just under. On a calculator, multiply by \(\tfrac{364}{365}\), then \(\tfrac{363}{365}\), and so on, watching the display shrink.</p>
+<p class="small">Simulate 1000 rooms of any size and compare with the exact curve: <a href="../../demos/birthday.html">infinityclub.net/demos/birthday.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Find \(P(\text{shared})\) for 3 people and for 4 people, to three decimal places.<div class="space short"></div></li>
+<li>How many pairs are there in a room of 23 people? Of 50? Explain in one sentence why the number of pairs, not the number of people, is what matters.<div class="space short"></div></li>
+<li>Birth <em>months</em> instead, with 12 equally likely months. Compute \(P(\text{shared month})\) for 4 people and for 5 people. How many people make a shared month more likely than not?<div class="space"></div></li>
+<li>The other question: the chance that at least one of \(n\) other people shares <em>your</em> birthday is \(1 - \left(\tfrac{364}{365}\right)^n\). Use a calculator to show that \(n = 253\) is the first \(n\) where this passes one half. Why is 253 so much bigger than 23?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: how many matches to expect</h2>
+<p>Each pair of people matches with probability \(\tfrac{1}{365}\). Using <a href="b8-expected-value.html">expected value</a>, find the expected number of matching pairs in a class of 30, and in a school of 1000 students. Then explain why a class of 30 can have an expected 1.19 matches but only a 71% chance of any match.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Three: \(1 - \tfrac{364 \cdot 363}{365^2} = 1 - 0.99180 = 0.008\). Four: \(1 - \tfrac{364 \cdot 363 \cdot 362}{365^3} = 1 - 0.98364 = 0.016\).</li>
+<li>\(\tfrac{23 \cdot 22}{2} = 253\) and \(\tfrac{50 \cdot 49}{2} = 1225\). A match is an event between two people, so every pair is a separate chance of a match, and the number of pairs grows roughly like the square of the number of people.</li>
+<li>Four people: \(1 - \tfrac{12 \cdot 11 \cdot 10 \cdot 9}{12^4} = 1 - 0.573 = 0.427\). Five: \(1 - \tfrac{12 \cdot 11 \cdot 10 \cdot 9 \cdot 8}{12^5} = 1 - 0.382 = 0.618\). Five people suffice.</li>
+<li>\(\left(\tfrac{364}{365}\right)^{252} = 0.5009\) and \(\left(\tfrac{364}{365}\right)^{253} = 0.4995\), so the chance passes one half at 253. Only the \(n\) pairs that include you can count, instead of all \(\tfrac{n(n-1)}{2}\) pairs. You need about 253 chances at a 1-in-365 event either way; 23 people supply 253 pairs, but 253 "pairs with you" need 253 people.</li>
+</ol>
+<p><b>Stretch.</b> Expected matches \(= \text{pairs} \times \tfrac{1}{365}\). Class of 30: \(\tfrac{30 \cdot 29}{2} = 435\) pairs, so \(435/365 \approx 1.19\). School of 1000: \(\tfrac{1000 \cdot 999}{2} = 499{,}500\) pairs, so about 1368 matching pairs. An expected value is an average: some classes have no match (29%), and the rest average more than one, with some having two or three. The average of 1.19 says nothing about the chance of zero.</p>
+</section>
+
+<div class="sheet-nav"><a href="b8-expected-value.html">← Previous</a><a href="b10-secret-in-public.html">Next: Agreeing on a secret in public →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

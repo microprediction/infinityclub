@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sixteen million colours · Infinity Club</title>
+<meta name="description" content="Why #FF8800 is orange: hexadecimal digits, three bytes of red, green and blue, and why every screen offers exactly 256³ = 16,777,216 colours.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 8 · Connections · 5</div>
+  <h1>Sixteen million colours</h1>
+  <p class="teaser">Why #FF8800 is orange: hexadecimal, three bytes, and 256³ colours on every screen.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Every dot on a screen is three tiny lights: red, green and blue. Each light has 256 brightness levels, from 0 (off) to 255 (full). A colour is three numbers. Pure red is \((255, 0, 0)\); white is \((255, 255, 255)\); equal amounts of all three make grey.</p>
+<p>Why 256? A computer stores each level in one <b>byte</b>, which is 8 binary digits, and 8 bits can be arranged in \(2^8 = 256\) ways (see <a href="../../grade-6/sheets/b2-binary.html">binary, grade 6</a>). Three bytes give \(256 \times 256 \times 256 = 256^3 = 16{,}777{,}216\) colours. That is the "16 million colours" on the box.</p>
+<p>Writing bytes in decimal is clumsy, so programmers use <b>hexadecimal</b>, base 16. The digits are 0 to 9 and then A, B, C, D, E, F for 10 to 15. Two hex digits run from 00 to FF, that is \(15 \times 16 + 15 = 255\): exactly one byte. So a colour is six hex digits, two per channel, written after a hash.</p>
+<figure><svg viewBox="0 0 340 100" width="340" height="100" role="img" aria-label="An orange swatch beside three bars: red full at 255, green at 136, blue at 0" font-family="Nunito, sans-serif" font-size="13">
+<rect x="8" y="8" width="84" height="84" fill="#FF8800" stroke="#000" stroke-width="1.5"/>
+<text x="50" y="56" text-anchor="middle" fill="#000" font-weight="700" font-size="12">#FF8800</text>
+<g stroke="#999" stroke-width="1" fill="#f2f2f2"><rect x="130" y="14" width="200" height="16"/><rect x="130" y="42" width="200" height="16"/><rect x="130" y="70" width="200" height="16"/></g>
+<rect x="130" y="14" width="200" height="16" fill="#d9342b"/>
+<rect x="130" y="42" width="106.7" height="16" fill="#2e9e44"/>
+<text x="122" y="27" text-anchor="end" font-weight="700" fill="#d9342b">R</text><text x="122" y="55" text-anchor="end" font-weight="700" fill="#2e9e44">G</text><text x="122" y="83" text-anchor="end" font-weight="700" fill="#3f44c9">B</text>
+<text x="325" y="27" text-anchor="end" fill="#fff" font-size="12">FF = 255</text>
+<text x="243" y="55" text-anchor="start" fill="#000" font-size="12">88 = 136</text>
+<text x="136" y="83" text-anchor="start" fill="#555" font-size="12">00 = 0</text>
+</svg><figcaption>#FF8800: red full on, green just over half, blue off. Red plus some green is orange.</figcaption></figure>
+<p class="callout">A hex pair \(\mathrm{XY}\) is worth \(16X + Y\). To go back, divide by 16: the quotient is the first digit, the remainder the second.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: #1E90FF, and back again</h2>
+<p>Split into pairs: 1E, 90, FF. Then \(\mathrm{1E} = 1 \times 16 + 14 = 30\), \(\mathrm{90} = 9 \times 16 + 0 = 144\), \(\mathrm{FF} = 255\). The colour is \((30, 144, 255)\): little red, some green, full blue. A bright sky blue.</p>
+<p>Now the reverse, for \((200, 120, 40)\). \(200 = 12 \times 16 + 8\), and 12 is C, so C8. \(120 = 7 \times 16 + 8\): 78. \(40 = 2 \times 16 + 8\): 28. The code is #C87828, a warm brown. Red high, green medium, blue low is the recipe for browns and oranges.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Convert each code to three decimal numbers, and name the colour roughly: #00FF00, #808080, #FFD700.<div class="space short"></div></li>
+<li>Write as hex codes: white \((255, 255, 255)\), black \((0, 0, 0)\), and indigo \((75, 0, 130)\).<div class="space short"></div></li>
+<li>Start from #FF8800. (a) Halve each channel, rounding down, to make a darker orange. Give the new code. (b) Replace each channel \(x\) by \(255 - x\) to make the "negative" of the colour. Give the code and describe the colour.<div class="space"></div></li>
+<li>Older phones used 16-bit colour: 5 bits for red, 6 for green, 5 for blue. (a) How many levels does each channel have? (b) How many colours in total, and why is the answer the same as \(256^2\)? (c) Suggest why green got the extra bit.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the web-safe palette</h2>
+<p>Early browsers used 216 "web-safe" colours. Each channel had to be one of 00, 33, 66, 99, CC, FF. Convert the six to decimal and show they are equally spaced. Explain where 216 comes from. How many of the 216 are greys?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>#00FF00 \(= (0, 255, 0)\), pure green. #808080 \(= (128, 128, 128)\), mid grey. #FFD700 \(= (255, 215, 0)\), gold: red full, green high, no blue.</li>
+<li>#FFFFFF, #000000, #4B0082 (since \(75 = 4 \times 16 + 11\) and \(130 = 8 \times 16 + 2\)).</li>
+<li>(a) \(127 = 7 \times 16 + 15\), so 7F; \(68 = 4 \times 16 + 4\), so 44; 0 stays 00. The code is #7F4400. (b) \(255 - 255 = 0\), \(255 - 136 = 119 = 7 \times 16 + 7\), \(255 - 0 = 255\): #0077FF, a strong sky blue. Orange and blue are opposites on a colour wheel, and this is why.</li>
+<li>(a) \(2^5 = 32\) levels of red and blue, \(2^6 = 64\) of green. (b) \(32 \times 64 \times 32 = 65{,}536 = 2^{16}\), the same as \(256^2 = 2^{16}\) because 16 bits are 16 bits however you split them. (c) Human eyes are most sensitive to green, so extra green steps are the ones you would notice.</li>
+</ol>
+<p><b>Stretch.</b> \(\mathrm{33} = 3 \times 16 + 3 = 51\), and the six values are 0, 51, 102, 153, 204, 255, each 51 apart: \(255 = 5 \times 51\). Six choices for each of three channels gives \(6^3 = 216\). A grey needs all three channels equal, so there are 6 greys.</p>
+</section>
+
+<div class="sheet-nav"><a href="c4-shadows.html">← Previous</a><a href="c6-stopping-distance.html">Next: Why speed squared matters →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>
