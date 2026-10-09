@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The equation that says "rate ∝ amount" · Infinity Club</title>
+<meta name="description" content="The differential equation dy/dt = ky solved by separation of variables. Half-life T = ln 2 / k, radioactive decay, Newton's law of cooling with real numbers, and why exponential decay never reaches zero.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Sharpen · 11</div>
+  <h1>The equation that says "rate ∝ amount"</h1>
+  <p class="teaser">dy/dt = ky solved by separating variables. Radioactive decay, a cooling coffee, and why half-lives never reach zero.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Many quantities change at a rate proportional to how much there is. Radioactive atoms decay independently, so a fixed fraction of them decays each second. Bacteria divide. Money earns interest. In each case</p>
+<p class="callout">\(\dfrac{dy}{dt} = ky\): the rate of change of \(y\) is \(k\) times \(y\). With \(k > 0\) it grows; with \(k \lt 0\) it decays.</p>
+<p>This is a <b>differential equation</b>: it gives the slope, not the function. To solve it, treat \(dy/dt\) as a fraction and put all the \(y\) on one side, all the \(t\) on the other:</p>
+<p>\[\frac{dy}{y} = k\,dt \quad\Longrightarrow\quad \int\frac{dy}{y} = \int k\,dt \quad\Longrightarrow\quad \ln|y| = kt + C.\]</p>
+<p>Exponentiate: \(y = e^Ce^{kt} = Ae^{kt}\), and \(t = 0\) shows \(A = y(0)\). This is <b>separation of variables</b>. Check: the derivative of \(Ae^{kt}\) is \(kAe^{kt} = ky\).</p>
+<p>For decay write \(y = y_0e^{-kt}\) with \(k > 0\). The <b>half-life</b> \(T\) is the time to halve: \(y_0e^{-kT} = \tfrac12y_0\), so \(e^{-kT} = \tfrac12\) and</p>
+<p class="callout">\(T = \dfrac{\ln 2}{k}\).</p>
+<p>Halving takes the same time from any level, so after \(T, 2T, 3T\) you have \(\tfrac12, \tfrac14, \tfrac18\) of the start. Half of something is never nothing.</p>
+<figure><svg viewBox="0 0 300 150" width="300" height="150" role="img" aria-label="An exponential decay curve starting at y0. Dashed lines mark the half-life T where it has fallen to y0 over 2, 2T where it is y0 over 4, and 3T where it is y0 over 8. The curve approaches the axis but never touches it." font-family="Nunito, sans-serif" font-size="12">
+<line x1="36" y1="125" x2="296" y2="125" stroke="#000" stroke-width="1.2"/><line x1="36" y1="125" x2="36" y2="14" stroke="#000" stroke-width="1.2"/>
+<line x1="98" y1="75" x2="98" y2="125" stroke="#999" stroke-dasharray="3 3"/><line x1="36" y1="75" x2="98" y2="75" stroke="#999" stroke-dasharray="3 3"/><circle cx="98" cy="75" r="3" fill="#f5a524"/><line x1="160" y1="100" x2="160" y2="125" stroke="#999" stroke-dasharray="3 3"/><line x1="36" y1="100" x2="160" y2="100" stroke="#999" stroke-dasharray="3 3"/><circle cx="160" cy="100" r="3" fill="#f5a524"/><line x1="222" y1="112.5" x2="222" y2="125" stroke="#999" stroke-dasharray="3 3"/><line x1="36" y1="112.5" x2="222" y2="112.5" stroke="#999" stroke-dasharray="3 3"/><circle cx="222" cy="112.5" r="3" fill="#f5a524"/>
+<path d="M 36,25 L 41,30.4 L 46,35.6 L 51,40.4 L 56,45 L 61,49.4 L 66,53.5 L 71,57.4 L 76,61.1 L 81,64.5 L 86,67.8 L 91,70.9 L 96,73.9 L 101,76.6 L 106,79.3 L 111,81.8 L 116,84.1 L 121,86.3 L 126,88.4 L 131,90.4 L 136,92.3 L 141,94.1 L 146,95.8 L 151,97.4 L 156,98.9 L 161,100.3 L 166,101.6 L 171,102.9 L 176,104.1 L 181,105.2 L 186,106.3 L 191,107.3 L 196,108.3 L 201,109.2 L 206,110.1 L 211,110.9 L 216,111.6 L 221,112.4 L 226,113 L 231,113.7 L 236,114.3 L 241,114.9 L 246,115.4 L 251,116 L 256,116.5 L 261,116.9 L 266,117.4 L 271,117.8 L 276,118.2 L 281,118.5 L 286,118.9 L 291,119.2" fill="none" stroke="#3f44c9" stroke-width="2"/>
+<text x="31" y="29" text-anchor="end">y₀</text><text x="31" y="79" text-anchor="end">y₀/2</text><text x="31" y="104" text-anchor="end">y₀/4</text><text x="31" y="117" text-anchor="end" font-size="11">y₀/8</text>
+<text x="98" y="141" text-anchor="middle">T</text><text x="160" y="141" text-anchor="middle">2T</text><text x="222" y="141" text-anchor="middle">3T</text><text x="292" y="141" text-anchor="middle">t</text>
+</svg><figcaption>\(y = y_0e^{-kt}\). Each half-life \(T = \ln 2/k\) halves whatever is left, from any starting level, so the curve never reaches zero.</figcaption></figure>
+</section>
+
+<section class="example">
+<h2>Watch one: coffee in a cool room</h2>
+<p><b>Newton's law of cooling</b>: a drink loses heat at a rate proportional to the gap between its temperature and the room's. With \(u = \text{temperature} - \text{room}\), that is \(du/dt = -ku\), the same equation. Coffee at 90 °C in a 20 °C room is 60 °C after ten minutes. When does it reach 40 °C?</p>
+<p>\(u_0 = 70\) and \(u(10) = 40\), so \(70e^{-10k} = 40\) and \(k = \tfrac{1}{10}\ln\tfrac74 \approx 0.0560\) per minute. For 40 °C we need \(u = 20\):</p>
+<p>\[e^{-kt} = \tfrac{20}{70} = \tfrac27, \qquad t = \frac{\ln 3.5}{k} \approx 22.4 \text{ minutes}.\]</p>
+<p>The first 30 degrees took ten minutes; the next 20 take more than twelve. Cooling slows as the gap closes.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Solve \(dy/dt = -0.2y\) with \(y(0) = 50\). Find \(y(10)\) and the half-life.<div class="space short"></div></li>
+<li>A medical isotope has a half-life of 8 days. (a) Find \(k\) in \(y = y_0e^{-kt}\). (b) What fraction remains after 24 days? After 30 days?<div class="space short"></div></li>
+<li>A population satisfies \(dP/dt = kP\) with \(k > 0\) and doubles every 20 years. (a) Show that the doubling time is \(\ln 2/k\). (b) How long does tripling take? Do you need to know \(k\)?<div class="space short"></div></li>
+<li>A body is found at midnight at 30 °C in a room held at 20 °C; an hour later it is 28 °C. A living body is at 37 °C. Use Newton's law of cooling to estimate the time of death. (Find \(k\) from the two readings, then run the clock backwards.)<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: an equation that does reach zero</h2>
+<p>Water drains from a tank at a rate proportional to the square root of its depth: \(dh/dt = -k\sqrt h\). Separate variables and solve. A tank 1 m deep is half empty after 10 minutes. When is it completely empty, and why does this one reach zero when \(e^{-kt}\) never does?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(y = 50e^{-0.2t}\). \(y(10) = 50e^{-2} \approx 6.77\). \(T = \ln 2/0.2 \approx 3.47\).</li>
+<li>(a) \(k = \ln 2/8 \approx 0.0866\) per day. (b) 24 days is three half-lives: \(\tfrac18 = 12.5\%\). 30 days: \(2^{-30/8} = e^{-30k} \approx 0.074\), about 7.4%.</li>
+<li>(a) \(P_0e^{kT} = 2P_0\) gives \(kT = \ln 2\). (b) \(e^{kt} = 3\) gives \(t = \ln 3/k = \dfrac{\ln 3}{\ln 2}\times 20 \approx 31.7\) years. You never need \(k\): tripling always takes \(\ln 3/\ln 2 \approx 1.585\) doubling times.</li>
+<li>Let \(u = T - 20\). At midnight \(u = 10\), an hour later \(u = 8\), so \(e^{-k} = 0.8\) and \(k = \ln 1.25 \approx 0.223\) per hour. At death \(u = 17\). The time \(t\) from death to midnight satisfies \(17e^{-kt} = 10\), so \(t = \ln 1.7/k \approx 2.38\) hours, about 2 h 23 min: death at roughly 9:37 pm. The estimate is only as good as its assumptions (a constant room temperature, 37 °C at death, and the simple law itself).</li>
+</ol>
+<p><b>Stretch.</b> \(\dfrac{dh}{\sqrt h} = -k\,dt\) gives \(2\sqrt h = -kt + C\); with \(h(0) = 1\), \(C = 2\), so \(\sqrt h = 1 - kt/2\). Half empty at \(t = 10\): \(\sqrt{1/2} = 1 - 5k\), \(k = (2 - \sqrt2)/10 \approx 0.0586\). Empty when \(\sqrt h = 0\): \(t = 2/k = 20/(2 - \sqrt2) \approx 34.1\) minutes. Near zero, \(\sqrt h\) is much larger than \(h\), so the outflow does not shrink fast enough to stall. With rate proportional to \(h\) itself, the closer you get to zero the slower you go, and you never arrive.</p>
+</section>
+
+<div class="sheet-nav"><a href="a10-volumes.html">← Previous</a><a href="a12-taylor.html">Next: Where the power series come from →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

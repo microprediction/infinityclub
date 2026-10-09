@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Substitution: the chain rule backwards · Infinity Club</title>
+<meta name="description" content="Spot the inner function and its derivative, change variable, and ∫ 2x cos(x²) dx becomes ∫ cos u du. Why the area survives the change, and how to move the limits.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Sharpen · 8</div>
+  <h1>Substitution: the chain rule backwards</h1>
+  <p class="teaser">Spot the inner function and its derivative, change variable, and ∫ 2x cos(x²) dx becomes ∫ cos u du.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>The <a href="a3-chain-rule.html">chain rule</a> says \(\frac{d}{dx}F(g(x)) = F'(g(x))\,g'(x)\). Read it backwards:</p>
+<p class="callout">\(\displaystyle\int F'(g(x))\,g'(x)\,dx = F(g(x)) + C.\)</p>
+<p>So an integrand that is "a function of something, times that something's derivative" is a chain rule in disguise. The bookkeeping: name the inner function \(u = g(x)\). Then \(\frac{du}{dx} = g'(x)\), which we write as \(du = g'(x)\,dx\). (Not a fraction being split; a reminder that a small step \(dx\) moves \(u\) by \(g'(x)\,dx\).) Replace \(g(x)\) by \(u\) and \(g'(x)\,dx\) by \(du\), and the \(x\) is gone.</p>
+<p>Try \(\int 2x\cos(x^2)\,dx\). The inner function is \(x^2\); its derivative \(2x\) is sitting right there. Put \(u = x^2\), \(du = 2x\,dx\):</p>
+<p>\[\int 2x\cos(x^2)\,dx = \int \cos u\,du = \sin u + C = \sin(x^2) + C.\]</p>
+<p>Check by differentiating: \(\cos(x^2) \cdot 2x\). Correct. For a definite integral, move the limits too: if \(x\) runs from \(a\) to \(b\), then \(u\) runs from \(g(a)\) to \(g(b)\), and you never return to \(x\). Why is the area unchanged? The \(u\)-axis is a stretched copy of the \(x\)-axis. A strip of width \(dx\) becomes a strip of width \(du = g'(x)\,dx\), wider by the factor \(g'(x)\), and its height drops from \(F'(g(x))\,g'(x)\) to \(F'(u)\), shorter by the same factor. Strip by strip, the area is the same.</p>
+<figure><svg viewBox="0 0 470 165" width="410" height="144" role="img" aria-label="Two shaded regions of equal area. Left: the area under y = 2x cos(x squared) from x = 0 to the square root of pi over 2, a hump that rises to about 1.28 and falls back to zero. Right: the area under y = cos u from u = 0 to pi over 2, a quarter-wave starting at height 1. Both are labelled area 1." font-family="Nunito, sans-serif" font-size="12">
+<polygon fill="#dcdcf5" points="30.0,150.0 32.3,146.5 34.7,143.0 37.0,139.6 39.3,136.1 41.7,132.6 44.0,129.1 46.3,125.6 48.7,122.2 51.0,118.7 53.3,115.2 55.7,111.8 58.0,108.3 60.3,104.9 62.7,101.4 65.0,98.0 67.3,94.6 69.7,91.3 72.0,88.0 74.3,84.7 76.7,81.4 79.0,78.2 81.3,75.1 83.7,72.1 86.0,69.1 88.3,66.2 90.7,63.4 93.0,60.7 95.3,58.2 97.7,55.8 100.0,53.5 102.3,51.4 104.7,49.5 107.0,47.8 109.3,46.4 111.7,45.1 114.0,44.2 116.3,43.5 118.7,43.1 121.0,43.0 123.3,43.3 125.7,44.0 128.0,45.0 130.3,46.4 132.7,48.3 135.0,50.6 137.3,53.4 139.7,56.7 142.0,60.5 144.3,64.8 146.7,69.6 149.0,75.0 151.3,81.0 153.7,87.6 156.0,94.7 158.3,102.5 160.7,110.8 163.0,119.7 165.3,129.2 167.7,139.3 170.0,150.0"/>
+<polyline fill="none" stroke="#3f44c9" stroke-width="2" points="30.0,150.0 32.3,146.5 34.7,143.0 37.0,139.6 39.3,136.1 41.7,132.6 44.0,129.1 46.3,125.6 48.7,122.2 51.0,118.7 53.3,115.2 55.7,111.8 58.0,108.3 60.3,104.9 62.7,101.4 65.0,98.0 67.3,94.6 69.7,91.3 72.0,88.0 74.3,84.7 76.7,81.4 79.0,78.2 81.3,75.1 83.7,72.1 86.0,69.1 88.3,66.2 90.7,63.4 93.0,60.7 95.3,58.2 97.7,55.8 100.0,53.5 102.3,51.4 104.7,49.5 107.0,47.8 109.3,46.4 111.7,45.1 114.0,44.2 116.3,43.5 118.7,43.1 121.0,43.0 123.3,43.3 125.7,44.0 128.0,45.0 130.3,46.4 132.7,48.3 135.0,50.6 137.3,53.4 139.7,56.7 142.0,60.5 144.3,64.8 146.7,69.6 149.0,75.0 151.3,81.0 153.7,87.6 156.0,94.7 158.3,102.5 160.7,110.8 163.0,119.7 165.3,129.2 167.7,139.3 170.0,150.0"/>
+<line x1="20" y1="150" x2="200" y2="150" stroke="#999"/><line x1="30" y1="150" x2="30" y2="30" stroke="#999"/>
+<line x1="170" y1="147" x2="170" y2="153" stroke="#999"/>
+<text x="170" y="163" text-anchor="middle" fill="#555">√(π/2)</text><text x="30" y="163" text-anchor="middle" fill="#555">0</text><text x="204" y="154" fill="#555">x</text>
+<text x="100" y="118" text-anchor="middle" fill="#3f44c9" font-weight="700">area 1</text>
+<text x="100" y="26" text-anchor="middle" fill="#3f44c9">y = 2x cos(x²)</text>
+<polygon fill="#fde8c4" points="300.0,150.0 300.0,66.7 302.3,66.7 304.7,66.8 307.0,66.9 309.3,67.1 311.7,67.4 314.0,67.7 316.3,68.1 318.7,68.5 321.0,69.0 323.3,69.5 325.7,70.1 328.0,70.7 330.3,71.4 332.7,72.2 335.0,73.0 337.3,73.9 339.7,74.8 342.0,75.7 344.3,76.8 346.7,77.8 349.0,78.9 351.3,80.1 353.7,81.3 356.0,82.6 358.3,83.9 360.7,85.2 363.0,86.6 365.3,88.1 367.7,89.6 370.0,91.1 372.3,92.6 374.7,94.2 377.0,95.9 379.3,97.6 381.7,99.3 384.0,101.0 386.3,102.8 388.7,104.6 391.0,106.5 393.3,108.3 395.7,110.2 398.0,112.2 400.3,114.1 402.7,116.1 405.0,118.1 407.3,120.1 409.7,122.2 412.0,124.2 414.3,126.3 416.7,128.4 419.0,130.5 421.3,132.7 423.7,134.8 426.0,137.0 428.3,139.1 430.7,141.3 433.0,143.5 435.3,145.6 437.7,147.8 440.0,150.0"/>
+<polyline fill="none" stroke="#f5a524" stroke-width="2" points="300.0,66.7 302.3,66.7 304.7,66.8 307.0,66.9 309.3,67.1 311.7,67.4 314.0,67.7 316.3,68.1 318.7,68.5 321.0,69.0 323.3,69.5 325.7,70.1 328.0,70.7 330.3,71.4 332.7,72.2 335.0,73.0 337.3,73.9 339.7,74.8 342.0,75.7 344.3,76.8 346.7,77.8 349.0,78.9 351.3,80.1 353.7,81.3 356.0,82.6 358.3,83.9 360.7,85.2 363.0,86.6 365.3,88.1 367.7,89.6 370.0,91.1 372.3,92.6 374.7,94.2 377.0,95.9 379.3,97.6 381.7,99.3 384.0,101.0 386.3,102.8 388.7,104.6 391.0,106.5 393.3,108.3 395.7,110.2 398.0,112.2 400.3,114.1 402.7,116.1 405.0,118.1 407.3,120.1 409.7,122.2 412.0,124.2 414.3,126.3 416.7,128.4 419.0,130.5 421.3,132.7 423.7,134.8 426.0,137.0 428.3,139.1 430.7,141.3 433.0,143.5 435.3,145.6 437.7,147.8 440.0,150.0"/>
+<line x1="290" y1="150" x2="462" y2="150" stroke="#999"/><line x1="300" y1="150" x2="300" y2="30" stroke="#999"/>
+<line x1="440" y1="147" x2="440" y2="153" stroke="#999"/><line x1="297" y1="66.7" x2="303" y2="66.7" stroke="#999"/>
+<text x="440" y="163" text-anchor="middle" fill="#555">π/2</text><text x="300" y="163" text-anchor="middle" fill="#555">0</text><text x="466" y="154" fill="#555">u</text><text x="292" y="71" text-anchor="end" fill="#555">1</text>
+<text x="350" y="122" text-anchor="middle" fill="#b36d00" font-weight="700">area 1</text>
+<text x="380" y="50" text-anchor="middle" fill="#b36d00">y = cos u</text>
+<text x="235" y="100" text-anchor="middle" fill="#3f44c9" font-size="22">→</text><text x="235" y="118" text-anchor="middle" fill="#555" font-size="11">u = x²</text>
+</svg><figcaption>Both areas are \(\sin(\pi/2) = 1\). The hump on the left is reshaped, not resized, into the quarter-wave on the right.</figcaption></figure>
+</section>
+
+<section class="example">
+<h2>Watch one: \(\int_0^1 \frac{x}{1 + x^2}\,dx\)</h2>
+<p>Inner function \(1 + x^2\), derivative \(2x\). We only have \(x\), so fix the constant: \(du = 2x\,dx\) means \(x\,dx = \tfrac12\,du\). Limits: \(x = 0\) gives \(u = 1\), \(x = 1\) gives \(u = 2\).</p>
+<p>\[\int_0^1 \frac{x}{1 + x^2}\,dx = \frac12\int_1^2 \frac{du}{u} = \frac12\Big[\ln u\Big]_1^2 = \frac12\ln 2 \approx 0.347.\]</p>
+<p>Two habits. A missing constant can be supplied, but a missing \(x\) cannot: \(\int \cos(x^2)\,dx\) does not yield to this method. And once the limits are in \(u\), the answer is a number; nothing is substituted back.</p>
+<p class="small">See an area under \(1/x\) built from rectangles (there from 1 to \(e\)) at <a href="../../demos/riemann.html">infinityclub.net/demos/riemann.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Find (a) \(\int (3x + 2)^4\,dx\) and (b) \(\int x\,e^{x^2}\,dx\). Name the substitution each time, and check by differentiating.<div class="space short"></div></li>
+<li>Evaluate \(\int_0^{\pi/2} \sin^3 x\,\cos x\,dx\), moving the limits to \(u\).<div class="space short"></div></li>
+<li>(a) Write \(\tan x\) as \(\sin x / \cos x\) and find \(\int \tan x\,dx\). (b) Evaluate \(\int_0^1 x\sqrt{1 - x}\,dx\) with \(u = 1 - x\). Here the leftover \(x\) must be rewritten as \(1 - u\).<div class="space short"></div></li>
+<li>(a) With \(u = a - x\), show that \(\int_0^a f(x)\,dx = \int_0^a f(a - x)\,dx\) for any \(f\). (b) Hence show \(\int_0^{\pi/2} \sin^2 x\,dx = \int_0^{\pi/2} \cos^2 x\,dx\), add the two, and find both.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: substituting the other way</h2>
+<p>Evaluate \(\displaystyle\int_0^1 \sqrt{1 - x^2}\,dx\) by putting \(x = \sin\theta\): the new variable is introduced, not spotted. Say what \(dx\) becomes, what the limits become, and check the answer against a picture of the integrand.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(u = 3x + 2\), \(du = 3\,dx\): \(\tfrac13\int u^4\,du = \tfrac{1}{15}(3x+2)^5 + C\). (b) \(u = x^2\), \(du = 2x\,dx\): \(\tfrac12\int e^u\,du = \tfrac12 e^{x^2} + C\). Differentiating each gives back the integrand.</li>
+<li>\(u = \sin x\), \(du = \cos x\,dx\); \(u\) runs from 0 to 1. \(\int_0^1 u^3\,du = \tfrac14\).</li>
+<li>(a) \(u = \cos x\), \(du = -\sin x\,dx\): \(\int \tan x\,dx = -\int \frac{du}{u} = -\ln|\cos x| + C\). (b) \(x = 1 - u\), \(dx = -du\), limits 1 to 0; flipping them absorbs the sign: \(\int_0^1 (1-u)\sqrt u\,du = \int_0^1 (u^{1/2} - u^{3/2})\,du = \tfrac23 - \tfrac25 = \tfrac{4}{15}\).</li>
+<li>(a) \(u = a - x\), \(dx = -du\), limits \(a \to 0\): \(\int_0^a f(a - x)\,dx = -\int_a^0 f(u)\,du = \int_0^a f(u)\,du\), which is \(\int_0^a f(x)\,dx\) with the variable renamed. (b) \(\sin(\tfrac\pi2 - x) = \cos x\), so the two integrals are equal; call each \(I\). Their sum is \(\int_0^{\pi/2}(\sin^2 x + \cos^2 x)\,dx = \pi/2\), so \(I = \pi/4\).</li>
+</ol>
+<p><b>Stretch.</b> \(x = \sin\theta\), \(dx = \cos\theta\,d\theta\); \(x = 0 \to \theta = 0\), \(x = 1 \to \theta = \pi/2\). Then \(\sqrt{1 - \sin^2\theta} = \cos\theta\) (positive on this range), so the integral is \(\int_0^{\pi/2}\cos^2\theta\,d\theta = \pi/4\) by exercise 4. Picture: \(y = \sqrt{1 - x^2}\) on \([0, 1]\) is a quarter of the unit circle, area \(\pi/4\). Same number, two routes.</p>
+</section>
+
+<div class="sheet-nav"><a href="a7-related-rates.html">← Previous</a><a href="a9-by-parts.html">Next: Integration by parts →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Counting with polynomials · Infinity Club</title>
+<meta name="description" content="Multiply (1 + x + x²)(1 + x³) and the coefficients count ways to make change. Generating functions turn counting into algebra, and pack the whole Fibonacci sequence into x/(1 − x − x²).">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Around the corner · 6</div>
+  <h1>Counting with polynomials</h1>
+  <p class="teaser">Multiply (1 + x + x²)(1 + x³) and the coefficients count ways to make change. Generating functions turn counting into algebra.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>You have 1-cent coins, at most two of them, and a 3-cent coin, at most one. Write a polynomial for each coin whose <em>exponents</em> are the amounts it can contribute: \(1 + x + x^2\) for the pennies (0, 1 or 2 cents) and \(1 + x^3\) for the 3-cent coin. Multiply:</p>
+<p class="callout">\((1 + x + x^2)(1 + x^3) = 1 + x + x^2 + x^3 + x^4 + x^5.\)</p>
+<figure><svg viewBox="0 0 250 112" width="250" height="112" role="img" aria-label="A grid: columns for 0, 1, 2 pennies, rows for 0 or 1 three-cent coin; each cell shows the power of x whose exponent is the total" font-family="Nunito, sans-serif" font-size="13">
+<text x="97" y="14" text-anchor="middle" fill="#555">1</text><text x="147" y="14" text-anchor="middle" fill="#555">x</text><text x="197" y="14" text-anchor="middle" fill="#555">x²</text>
+<text x="40" y="46" text-anchor="end" fill="#555">1</text><text x="40" y="84" text-anchor="end" fill="#555">x³</text>
+<text x="6" y="108" font-size="11" fill="#999">rows: 3-cent coin</text><text x="66" y="14" text-anchor="end" font-size="11" fill="#999">pennies →</text>
+<g stroke="#3f44c9" stroke-width="1.5"><rect x="72" y="22" width="50" height="34" fill="#dcdcf5"/><rect x="122" y="22" width="50" height="34" fill="#dcdcf5"/><rect x="172" y="22" width="50" height="34" fill="#dcdcf5"/><rect x="72" y="60" width="50" height="34" fill="#fde8c4"/><rect x="122" y="60" width="50" height="34" fill="#fde8c4"/><rect x="172" y="60" width="50" height="34" fill="#fde8c4"/></g>
+<text x="97" y="44" text-anchor="middle" fill="#3f44c9" font-weight="700">x⁰</text><text x="147" y="44" text-anchor="middle" fill="#3f44c9" font-weight="700">x¹</text><text x="197" y="44" text-anchor="middle" fill="#3f44c9" font-weight="700">x²</text>
+<text x="97" y="82" text-anchor="middle" fill="#3f44c9" font-weight="700">x³</text><text x="147" y="82" text-anchor="middle" fill="#3f44c9" font-weight="700">x⁴</text><text x="197" y="82" text-anchor="middle" fill="#3f44c9" font-weight="700">x⁵</text>
+</svg><figcaption>Each cell is one way to pay. Exponents add, so the cell's exponent is the amount.</figcaption></figure>
+<p>When you multiply out, each term of the product picks one term from each bracket, and the exponents add. So \(x^n\) appears once for every way of choosing coins totalling \(n\) cents: <b>the coefficient of \(x^n\) counts the ways.</b> Every amount from 0 to 5 can be made in exactly one way.</p>
+<p>The polynomial is a <b>generating function</b> for the sequence of counts. The letter \(x\) is just a place to hang exponents; nothing is plugged in. The payoff is that algebra on the function does the counting. Unlimited pennies give \(1 + x + x^2 + \cdots = \frac{1}{1 - x}\), the infinite geometric series from <a href="../../grade-10/sheets/b12-infinite-series.html">grade 10</a>. Unlimited 1s and 5s give \(\frac{1}{(1 - x)(1 - x^5)}\); expanding it reads off every count. The binomial theorem is the same idea: \((1 + x)^n\) takes each of \(n\) objects or not.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: Fibonacci in one fraction</h2>
+<p>Let \(F(x) = F_0 + F_1 x + F_2 x^2 + \cdots = x + x^2 + 2x^3 + 3x^4 + 5x^5 + \cdots\), with \(F_0 = 0\), \(F_1 = 1\). The rule \(F_n = F_{n-1} + F_{n-2}\) for \(n \ge 2\) says that the coefficient of \(x^n\) in \(F(x)\) equals the coefficient of \(x^n\) in \(xF(x) + x^2F(x)\). The two agree from \(x^2\) onward and differ only in the \(x\) term, so \(F(x) - xF(x) - x^2F(x) = x\):</p>
+<p class="callout">\(F(x) = \dfrac{x}{1 - x - x^2}.\)</p>
+<p>Check by multiplying back: \((1 - x - x^2)(x + x^2 + 2x^3 + 3x^4 + 5x^5 + \cdots) = x\), every other term cancelling in pairs. The whole infinite sequence sits inside one fraction. The <a href="b7-eigenvectors.html">next sheet</a> gets a formula for \(F_n\) from the same recurrence another way.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Expand \((1 + x)(1 + x^2)(1 + x^4)\). What does the result say about writing the numbers 0 to 7 as sums of distinct powers of 2?<div class="space short"></div></li>
+<li>Two dice: \((x + x^2 + \cdots + x^6)^2\). (a) Find the coefficients of \(x^7\), \(x^9\) and \(x^{10}\), and the probability of each total. (b) Put \(x = 1\). What does the number you get count?<div class="space short"></div></li>
+<li>Unlimited 2-cent and 3-cent stamps: \(\frac{1}{(1 - x^2)(1 - x^3)}\). Expand \((1 + x^2 + x^4 + x^6 + x^8)(1 + x^3 + x^6)\) and list the coefficients of \(x^0, \dots, x^8\). Which amounts cannot be made? In how many ways can 6 be made?<div class="space"></div></li>
+<li>Unlimited 1s and 2s: \(C(x) = \sum c_n x^n = \frac{1}{(1 - x)(1 - x^2)}\). (a) Find \(c_0, \dots, c_6\) by expanding. (b) Multiply \(C(x)\) by \(1 - x^2\) and simplify. Compare coefficients of \(x^n\) on both sides to prove \(c_n = c_{n-2} + 1\) for \(n \ge 2\). (c) Give a formula for \(c_n\).<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: 1/89</h2>
+<p>A generating function can be evaluated when its series converges. Put \(x = \tfrac{1}{10}\) into \(F(x) = \frac{x}{1 - x - x^2}\) and simplify. Then compute \(1/89\) to ten decimal places and explain what you see. Why does the pattern eventually blur?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(1 + x + x^2 + x^3 + x^4 + x^5 + x^6 + x^7\). Every number from 0 to 7 is a sum of distinct powers of 2 in exactly one way: binary notation exists and is unique.</li>
+<li>(a) Coefficients 6, 4, 3, so \(P(7) = \tfrac{6}{36}\), \(P(9) = \tfrac{4}{36}\), \(P(10) = \tfrac{3}{36}\). (b) \(6^2 = 36\): setting \(x = 1\) adds up all the coefficients, the total number of ordered outcomes.</li>
+<li>Coefficients of \(x^0, \dots, x^8\): 1, 0, 1, 1, 1, 1, 2, 1, 2. Only 1 cent cannot be made. Six can be made in two ways: \(2 + 2 + 2\) and \(3 + 3\).</li>
+<li>(a) \(1, 1, 2, 2, 3, 3, 4\). (b) \((1 - x^2)C(x) = \frac{1}{1 - x} = 1 + x + x^2 + \cdots\). The coefficient of \(x^n\) on the left is \(c_n - c_{n-2}\); on the right it is 1. So \(c_n = c_{n-2} + 1\). (c) \(c_n = \lfloor n/2 \rfloor + 1\): choose 0, 1, …, \(\lfloor n/2 \rfloor\) two-cent coins and fill the rest with pennies.</li>
+</ol>
+<p><b>Stretch.</b> \(F(\tfrac{1}{10}) = \dfrac{1/10}{1 - 1/10 - 1/100} = \dfrac{10}{89}\), so \(\dfrac{1}{89} = \displaystyle\sum_{n \ge 1} \frac{F_n}{10^{\,n+1}} = 0.01 + 0.001 + 0.0002 + 0.00003 + 0.000005 + 0.0000008 + \cdots\), and indeed \(1/89 = 0.0112359550\ldots\) The digits 1, 1, 2, 3, 5, 8 are visible; from \(F_7 = 13\) onward the terms have two or more digits and carry into each other, so the pattern blurs. The series converges because \(F_n\) grows like \(\varphi^n \approx 1.618^n\), slower than \(10^n\); it would fail for \(x \ge 1/\varphi \approx 0.618\).</p>
+</section>
+
+<div class="sheet-nav"><a href="b5-two-squares.html">← Previous</a><a href="b7-eigenvectors.html">Next: The directions a matrix leaves alone →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

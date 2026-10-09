@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Escape velocity · Infinity Club</title>
+<meta name="description" content="Integrate the inverse-square law from the surface to infinity and the energy needed to leave a planet is finite. 11.2 km/s for Earth, checked from G, M and R, and the radius at which escape speed reaches the speed of light.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Connections · 1</div>
+  <h1>Escape velocity</h1>
+  <p class="teaser">Integrate the inverse-square law from the surface to infinity and the energy needed is finite. 11.2 km/s for Earth, and why a black hole follows.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A mass \(m\) at distance \(r\) from the Earth's centre is pulled with force \(F = \dfrac{GMm}{r^2}\), where \(M\) is the Earth's mass and \(G\) the gravitational constant. Lifting it a short distance \(dr\) against that pull takes work \(F\,dr\). To lift it from the surface \(r = R\) all the way out, add up the slices:</p>
+<figure><svg viewBox="0 0 320 150" width="240" height="112" role="img" aria-label="The inverse-square force plotted against distance from the Earth's centre, with the area under the curve from R outwards shaded" font-family="Nunito, sans-serif" font-size="12">
+<path d="M92.0 125.0 L92.0 20.0 97.2 38.2 102.4 52.1 107.6 62.9 112.8 71.4 118.0 78.3 123.2 84.0 128.4 88.7 133.6 92.6 138.8 95.9 144.0 98.8 149.2 101.2 154.4 103.3 159.6 105.2 164.8 106.8 170.0 108.2 175.2 109.5 180.4 110.6 185.6 111.6 190.8 112.5 196.0 113.3 201.2 114.1 206.4 114.7 211.6 115.4 216.8 115.9 222.0 116.4 227.2 116.9 232.4 117.3 237.6 117.7 242.8 118.1 248.0 118.4 253.2 118.8 258.4 119.0 263.6 119.3 268.8 119.6 274.0 119.8 279.2 120.0 284.4 120.2 289.6 120.4 294.8 120.6 300.0 120.8 L300.0 125.0 Z" fill="#dcdcf5"/>
+<path d="M92.0 20.0 97.2 38.2 102.4 52.1 107.6 62.9 112.8 71.4 118.0 78.3 123.2 84.0 128.4 88.7 133.6 92.6 138.8 95.9 144.0 98.8 149.2 101.2 154.4 103.3 159.6 105.2 164.8 106.8 170.0 108.2 175.2 109.5 180.4 110.6 185.6 111.6 190.8 112.5 196.0 113.3 201.2 114.1 206.4 114.7 211.6 115.4 216.8 115.9 222.0 116.4 227.2 116.9 232.4 117.3 237.6 117.7 242.8 118.1 248.0 118.4 253.2 118.8 258.4 119.0 263.6 119.3 268.8 119.6 274.0 119.8 279.2 120.0 284.4 120.2 289.6 120.4 294.8 120.6 300.0 120.8" fill="none" stroke="#3f44c9" stroke-width="2"/>
+<line x1="40" y1="125" x2="312" y2="125" stroke="#999" stroke-width="1"/>
+<line x1="92" y1="125" x2="92" y2="14" stroke="#999" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="144" y1="125" x2="144" y2="129" stroke="#999"/><line x1="196" y1="125" x2="196" y2="129" stroke="#999"/><line x1="248" y1="125" x2="248" y2="129" stroke="#999"/>
+<text x="92" y="141" text-anchor="middle">R</text><text x="144" y="141" text-anchor="middle" fill="#555">2R</text><text x="196" y="141" text-anchor="middle" fill="#555">3R</text><text x="248" y="141" text-anchor="middle" fill="#555">4R</text><text x="316" y="141" text-anchor="end" fill="#555">r → ∞</text>
+<text x="104" y="34" fill="#3f44c9" font-weight="700">F = GMm/r²</text>
+<text x="175" y="98" fill="#3f44c9" font-weight="700" font-size="13">area = GMm/R</text>
+</svg><figcaption>Work is area under the force curve. The curve falls like \(1/r^2\), fast enough that the area out to infinity is finite.</figcaption></figure>
+<p>\[W = \int_R^{\infty} \frac{GMm}{r^2}\,dr = \left[-\frac{GMm}{r}\right]_R^{\infty} = 0 - \left(-\frac{GMm}{R}\right) = \frac{GMm}{R}.\]</p>
+<p>The journey is infinite but the cost is not, because the force dies off fast enough. Had gravity fallen like \(1/r\), the integral would be a logarithm, unbounded, and nothing could ever leave.</p>
+<p>The energy comes from speed. Launch at \(v\), ignore air. The kinetic energy \(\tfrac12 mv^2\) is spent against gravity, and to just reach infinity it must equal \(W\):</p>
+<p class="callout">\(\tfrac12 mv^2 = \dfrac{GMm}{R}\), so \(v_{\text{esc}} = \sqrt{\dfrac{2GM}{R}}\).</p>
+<p>The \(m\) cancels: a pebble and a spacecraft need the same speed. Direction does not appear either; energy does not care which way you point. Compare the circular orbit speed \(\sqrt{GM/R}\) from <a href="../../grade-10/sheets/c2-kepler.html">Kepler's laws</a>: escaping costs exactly \(\sqrt2\) times orbiting.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: the Earth</h2>
+<p>\(G = 6.674 \times 10^{-11}\) in SI units, \(M = 5.972 \times 10^{24}\) kg, \(R = 6.371 \times 10^{6}\) m. First \(GM = 3.986 \times 10^{14}\). Then \(v_{\text{esc}} = \sqrt{2 \times 3.986 \times 10^{14} / (6.371 \times 10^{6})} = \sqrt{1.251 \times 10^{8}} = 11{,}190\) m/s \(\approx 11.2\) km/s, about 33 times the speed of sound.</p>
+<p> A check without \(G\): surface gravity is \(g = GM/R^2 = 9.82\) m/s², so \(2GM/R = 2gR\) and \(v_{\text{esc}} = \sqrt{2 \times 9.82 \times 6.371 \times 10^6} = 11{,}190\) m/s. Same answer, because \(g\) already contains \(GM\).</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>The Moon: \(M = 7.35 \times 10^{22}\) kg, \(R = 1.74 \times 10^{6}\) m. Find its escape velocity in km/s. Gas molecules in a warm atmosphere move at a few hundred m/s, with a tail of much faster ones. Why does this make it hard for the Moon to keep an atmosphere?<div class="space short"></div></li>
+<li>Show algebraically that \(v_{\text{esc}} = \sqrt{2gR}\) where \(g = GM/R^2\). Then: a planet has the same surface gravity as Earth but twice the radius. What is its escape velocity?<div class="space short"></div></li>
+<li>A projectile leaves the surface straight up at 5.0 km/s, no air. Use \(\tfrac12 v^2 - \dfrac{GM}{R} = -\dfrac{GM}{r_{\max}}\) (energy per kilogram at launch equals energy at the top, where it is momentarily still) to find \(r_{\max}\) and the height above the surface. Compare with the constant-\(g\) estimate \(v^2/2g\). Which is bigger, and why?<div class="space short"></div></li>
+<li>(a) Set \(v_{\text{esc}} = c = 3.00 \times 10^{8}\) m/s and solve for \(R\) in terms of \(M\). Compute it for the Sun (\(M = 1.989 \times 10^{30}\) kg) and for the Earth. (b) \(R\) is proportional to \(M\). How does the average density needed, \(M / \tfrac43 \pi R^3\), depend on \(M\)? Which is easier to turn into a black hole, something heavy or something light?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: leaving the Sun</h2>
+<p>Escape velocity from the Sun starting at the Earth's orbit (\(r = 1.496 \times 10^{11}\) m) is \(\sqrt{2GM_{\odot}/r}\). Compute it. The Earth already moves at \(\sqrt{GM_{\odot}/r}\) around the Sun. A probe launched in the direction of the Earth's motion keeps that speed for free. How much extra does it need? (Ignore the Earth's own pull.)</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(v = \sqrt{2 \times 6.674 \times 10^{-11} \times 7.35 \times 10^{22} / 1.74 \times 10^{6}} = 2{,}370\) m/s, about 2.4 km/s, a fifth of Earth's. The fastest molecules in the tail of the speed distribution exceed 2.4 km/s far more often than they exceed 11.2 km/s, so over billions of years the Moon's gas leaks away while Earth's stays.</li>
+<li>\(g = GM/R^2\) gives \(GM = gR^2\), so \(2GM/R = 2gR\) and \(v_{\text{esc}} = \sqrt{2gR}\). Doubling \(R\) at fixed \(g\) multiplies \(v_{\text{esc}}\) by \(\sqrt2\): \(11.2 \times 1.414 = 15.8\) km/s.</li>
+<li>Per kilogram: \(\tfrac12 (5000)^2 = 1.25 \times 10^{7}\) and \(GM/R = 6.256 \times 10^{7}\). So \(GM/r_{\max} = 6.256 \times 10^{7} - 1.25 \times 10^{7} = 5.006 \times 10^{7}\) and \(r_{\max} = 3.986 \times 10^{14} / 5.006 \times 10^{7} = 7.96 \times 10^{6}\) m. Height \(= 7.96 \times 10^{6} - 6.371 \times 10^{6} = 1{,}590\) km. Constant \(g\) gives \(v^2/2g = 2.5 \times 10^{7}/19.62 = 1{,}270\) km. The true height is bigger because gravity weakens on the way up; the constant-\(g\) formula keeps pulling at full strength.</li>
+<li>\(c^2 = 2GM/R\) gives \(R = 2GM/c^2\). Sun: \(2 \times 6.674 \times 10^{-11} \times 1.989 \times 10^{30} / (9.00 \times 10^{16}) = 2{,}950\) m, about 3 km. Earth: \(2 \times 3.986 \times 10^{14} / 9.00 \times 10^{16} = 8.9 \times 10^{-3}\) m, under a centimetre. (b) With \(R \propto M\), the density \(M/R^3 \propto M/M^3 = 1/M^2\). A heavier body needs a <em>lower</em> density to trap light, so very massive objects are the easy ones: a black hole of a hundred million solar masses has roughly the density of water. This Newtonian argument is not the right physics for light, but by a happy accident it gives exactly the radius that Einstein's theory does, the Schwarzschild radius.</li>
+</ol>
+<p><b>Stretch.</b> \(GM_{\odot} = 6.674 \times 10^{-11} \times 1.989 \times 10^{30} = 1.327 \times 10^{20}\). Escape speed at Earth's orbit: \(\sqrt{2 \times 1.327 \times 10^{20} / 1.496 \times 10^{11}} = 42{,}100\) m/s \(= 42.1\) km/s. Earth's orbital speed: \(42.1/\sqrt2 = 29.8\) km/s. Extra needed: \(42.1 - 29.8 = 12.3\) km/s, about the same as leaving Earth itself. That is why probes to the outer planets launch in the direction the Earth is already going.</p>
+</section>
+
+<div class="sheet-nav"><a href="b28-lagrange.html">← Previous</a><a href="c2-rocket.html">Next: The rocket equation →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

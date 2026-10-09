@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The derivatives of sin, eˣ and ln x · Infinity Club</title>
+<meta name="description" content="Why the derivative of sin is cos, from a small triangle on the unit circle; why e to the x is its own slope; and why ln x has slope 1/x because it is the inverse of e to the x.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Sharpen · 4</div>
+  <h1>The derivatives of sin, eˣ and ln x</h1>
+  <p class="teaser">Why sin′ = cos from the unit circle, why eˣ is its own slope, and why ln x has slope 1/x because it is the inverse.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p><b>Sine.</b> On the unit circle, the point at angle \(\theta\) is \(P = (\cos\theta, \sin\theta)\). Increase the angle by a tiny \(d\theta\). The point slides to \(Q\) along an arc of length \(d\theta\) (radius 1, radians). For a tiny step the arc is straight, and perpendicular to the radius.</p>
+<figure><svg viewBox="0 0 300 200" width="270" height="180" role="img" aria-label="A quarter of the unit circle with a point P at angle theta and a nearby point Q; the small right triangle between them has hypotenuse d theta and vertical side cos theta times d theta" font-family="Nunito, sans-serif" font-size="13">
+<path d="M180,190 A160,160 0 0,0 20,30" fill="none" stroke="#000" stroke-width="1.5"/>
+<line x1="20" y1="190" x2="190" y2="190" stroke="#999" stroke-width="1"/>
+<line x1="20" y1="190" x2="20" y2="22" stroke="#999" stroke-width="1"/>
+<line x1="20" y1="190" x2="142.6" y2="87.2" stroke="#000" stroke-width="1.5"/>
+<line x1="20" y1="190" x2="118.5" y2="63.9" stroke="#999" stroke-width="1" stroke-dasharray="4 3"/>
+<path d="M50,190 A30,30 0 0,0 43,170.7" fill="none" stroke="#3f44c9" stroke-width="1.2"/>
+<text x="54" y="182" fill="#3f44c9">θ</text>
+<line x1="142.6" y1="87.2" x2="142.6" y2="190" stroke="#999" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="148" y="140" fill="#555" font-size="12">sin θ</text>
+<polygon points="142.6,87.2 118.5,63.9 118.5,87.2" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/>
+<rect x="118.5" y="81.2" width="6" height="6" fill="none" stroke="#f5a524" stroke-width="1"/>
+<path d="M118.5,77.9 A14,14 0 0,0 128.6,73.6" fill="none" stroke="#3f44c9" stroke-width="1.2"/>
+<text x="122" y="68" fill="#3f44c9" font-size="11">θ</text>
+<circle cx="142.6" cy="87.2" r="2.5"/><circle cx="118.5" cy="63.9" r="2.5"/>
+<text x="150" y="86">P</text><text x="106" y="60">Q</text>
+<text x="137" y="68" fill="#f5a524" font-size="12">dθ</text>
+<text x="113" y="80" text-anchor="end" fill="#f5a524" font-size="12">cos θ·dθ</text>
+<text x="12" y="200" font-size="12">O</text>
+<text x="68" y="122" fill="#555" font-size="12">1</text>
+<text x="290" y="40" text-anchor="end" fill="#3f44c9" font-size="12" font-weight="700">rise of sin θ</text>
+<text x="290" y="56" text-anchor="end" fill="#3f44c9" font-size="12" font-weight="700">= cos θ · dθ</text>
+</svg><figcaption>The step \(PQ\) is perpendicular to the radius, so it makes angle \(\theta\) with the vertical. Its rise is \(\cos\theta\,d\theta\).</figcaption></figure>
+<p>Turning the radius by \(90°\) turns its angle with the horizontal into an angle with the vertical. So the little right triangle at \(Q\) has angle \(\theta\), hypotenuse \(d\theta\), and vertical side \(\cos\theta\,d\theta\). That vertical side is the change in \(\sin\theta\):</p>
+<p class="callout">\(\dfrac{d}{d\theta}\sin\theta = \cos\theta\), and reading the horizontal side, \(\dfrac{d}{d\theta}\cos\theta = -\sin\theta\) (the point moves left).</p>
+<p><b>The exponential.</b> \(e\) was chosen (<a href="../../grade-10/sheets/b9-e.html">grade 10</a>) as the base for which \(b^x\) has slope exactly 1 at \(x = 0\): \((e^h - 1)/h \to 1\). Everywhere else is a copy of that:</p>
+<p>\[\frac{e^{x+h} - e^x}{h} = e^x \cdot \frac{e^h - 1}{h} \;\to\; e^x \cdot 1.\]</p>
+<p><b>The logarithm.</b> \(\ln x\) is the inverse of \(e^x\): \(e^{\ln x} = x\). Differentiate both sides with the chain rule: \(e^{\ln x} \cdot (\ln x)' = 1\). But \(e^{\ln x}\) is just \(x\), so \((\ln x)' = 1/x\).</p>
+<p class="callout">\((e^x)' = e^x\), \(\;(\ln x)' = \dfrac1x\). Three functions, three reasons: a triangle, a definition, an inverse.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: two chains</h2>
+<p>\(y = e^{2x}\sin x\) is a product. By the product rule, with the chain rule on \(e^{2x}\):</p>
+<p>\[y' = 2e^{2x}\sin x + e^{2x}\cos x = e^{2x}(2\sin x + \cos x).\]</p>
+<p>\(y = \ln(\cos x)\) is a chain: outer \(\ln u\), inner \(u = \cos x\). So \(y' = \dfrac{1}{\cos x}\cdot(-\sin x) = -\tan x\). Check at \(x = 0\): \(\cos x\) is flat there, so \(\ln(\cos x)\) should be too, and \(-\tan 0 = 0\). If you forget a derivative, go back to the triangle, the definition or the inverse.</p>
+<p class="small">Drag the point round the unit circle and watch \(\sin\theta\) rise fastest where \(\cos\theta = 1\): <a href="../../demos/unitcircle.html">infinityclub.net/demos/unitcircle.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Differentiate: (a) \(\sin 3x\); (b) \(\cos(x^2)\); (c) \(e^{-x}\); (d) \(\ln(5x)\). For (d), explain the answer using \(\ln(5x) = \ln 5 + \ln x\).<div class="space short"></div></li>
+<li>Write \(\tan x = \sin x \cdot (\cos x)^{-1}\). Use the product rule and the chain rule to show \((\tan x)' = 1 + \tan^2 x = 1/\cos^2 x\).<div class="space short"></div></li>
+<li>Write \(2^x\) as \(e^{x \ln 2}\) and differentiate it. What is the slope of \(y = 2^x\) at \(x = 0\), to three decimals? Then give the general formula for \((a^x)'\).<div class="space short"></div></li>
+<li>(a) Use \(\cos x = \sin\!\left(\tfrac{\pi}{2} - x\right)\) and the chain rule to derive \((\cos x)' = -\sin x\) from \((\sin x)' = \cos x\). (b) Show that \(y = \sin x\) and \(y = \cos x\) both satisfy \(y'' = -y\), where \(y''\) is the derivative of the derivative. Where is each graph curving downwards?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: which is bigger, \(e^\pi\) or \(\pi^e\)?</h2>
+<p>Let \(f(x) = \dfrac{\ln x}{x} = \ln x \cdot \dfrac1x\). Find \(f'(x)\) and where it is zero. Argue that \(f\) is largest there. Then compare \(f(\pi)\) with \(f(e)\) and decide which is bigger, \(e^\pi\) or \(\pi^e\), without a calculator.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(3\cos 3x\). (b) \(-2x\sin(x^2)\). (c) \(-e^{-x}\). (d) \(\dfrac{1}{5x} \cdot 5 = \dfrac1x\): adding the constant \(\ln 5\) shifts the graph up without changing any slope.</li>
+<li>\(\cos x \cdot (\cos x)^{-1} + \sin x \cdot \big(-(\cos x)^{-2}\big)(-\sin x) = 1 + \dfrac{\sin^2 x}{\cos^2 x} = 1 + \tan^2 x\), and \(1 + \tan^2 x = \dfrac{\cos^2 x + \sin^2 x}{\cos^2 x} = \dfrac{1}{\cos^2 x}\).</li>
+<li>\((e^{x\ln 2})' = e^{x \ln 2} \cdot \ln 2 = 2^x \ln 2\). At \(x = 0\) the slope is \(\ln 2 \approx 0.693\), the number quoted in the grade 10 sheet on \(e\). In general \((a^x)' = a^x \ln a\), which is why \(e\) is the convenient base: \(\ln e = 1\).</li>
+<li>(a) Outer \(\sin u\), inner \(u = \tfrac{\pi}{2} - x\) with \(u' = -1\): \((\cos x)' = \cos\!\left(\tfrac{\pi}{2} - x\right)\cdot(-1) = -\sin x\). (b) \((\sin x)'' = (\cos x)' = -\sin x\); \((\cos x)'' = (-\sin x)' = -\cos x\). Each graph curves downwards exactly where it is positive and upwards where it is negative: always bending back towards the axis, which is why it oscillates.</li>
+</ol>
+<p><b>Stretch.</b> \(f'(x) = \dfrac1x \cdot \dfrac1x + \ln x \cdot \left(-\dfrac{1}{x^2}\right) = \dfrac{1 - \ln x}{x^2}\), zero only at \(x = e\). For \(x \lt e\), \(\ln x \lt 1\) so \(f' > 0\): \(f\) is rising. For \(x > e\), \(f' \lt 0\): falling. So \(f(e) = 1/e\) is the largest value, and \(f(\pi) \lt f(e)\) since \(\pi \ne e\). That is \(\dfrac{\ln\pi}{\pi} \lt \dfrac1e\), so \(e\ln\pi \lt \pi\), so \(\pi^e \lt e^\pi\). (Numerically, 22.46 against 23.14.)</p>
+</section>
+
+<div class="sheet-nav"><a href="a3-chain-rule.html">← Previous</a><a href="a5-optimisation.html">Next: The cheapest can →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

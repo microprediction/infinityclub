@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Related rates · Infinity Club</title>
+<meta name="description" content="A ladder slides, a balloon inflates, a shadow stretches. Differentiate the relationship, not the numbers, and the rates connect through the chain rule.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Sharpen · 7</div>
+  <h1>Related rates</h1>
+  <p class="teaser">A ladder slides, a ripple spreads, a balloon inflates. Differentiate the relationship, not the numbers, and the rates connect.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<figure style="float:right;width:190px;margin:0 0 .3em .8em"><svg viewBox="0 0 200 185" width="190" height="176" role="img" aria-label="A ladder of length 5 leans against a vertical wall. Its foot is a distance x from the wall along the ground and its top is a height y up the wall. An orange arrow at the foot points away from the wall, marked dx/dt; an orange arrow at the top points down the wall, marked dy/dt." font-family="Nunito, sans-serif" font-size="13">
+<line x1="40" y1="10" x2="40" y2="160" stroke="#000" stroke-width="2"/><line x1="20" y1="160" x2="190" y2="160" stroke="#000" stroke-width="2"/>
+<line x1="40" y1="40" x2="130" y2="160" stroke="#3f44c9" stroke-width="4" stroke-linecap="round"/>
+<circle cx="40" cy="40" r="3" fill="#000"/><circle cx="130" cy="160" r="3" fill="#000"/>
+<text x="94" y="92" fill="#3f44c9" font-weight="700">5</text>
+<text x="85" y="176" text-anchor="middle">x</text>
+<text x="29" y="104" text-anchor="middle">y</text>
+<line x1="138" y1="150" x2="168" y2="150" stroke="#f5a524" stroke-width="2"/><polygon points="168,146 176,150 168,154" fill="#f5a524"/>
+<text x="157" y="143" text-anchor="middle" fill="#f5a524" font-size="12">dx/dt</text>
+<line x1="50" y1="46" x2="50" y2="76" stroke="#f5a524" stroke-width="2"/><polygon points="46,76 50,84 54,76" fill="#f5a524"/>
+<text x="58" y="68" fill="#f5a524" font-size="12">dy/dt</text>
+</svg><figcaption>\(x^2 + y^2 = 25\) at every instant.</figcaption></figure>
+<p>A 5 m ladder leans against a wall. Its foot is pulled away from the wall at 0.5 m/s. When the foot is 3 m out, how fast is the top sliding down?</p>
+<p>Two things change, the foot's distance \(x\) and the top's height \(y\), both functions of time \(t\). What links them is Pythagoras, \(x^2 + y^2 = 25\), and it holds at <em>every</em> instant. The numbers \(x = 3\), \(y = 4\) hold at <em>one</em> instant. Only something true at every instant can be differentiated with respect to time, so differentiate the relationship, not the numbers.</p>
+<p>By the chain rule, \(\frac{d}{dt}(x^2) = 2x\,\frac{dx}{dt}\); the same for \(y^2\), and the constant 25 has derivative zero:</p>
+<p>\[2x\frac{dx}{dt} + 2y\frac{dy}{dt} = 0 \quad\Longrightarrow\quad \frac{dy}{dt} = -\frac{x}{y}\,\frac{dx}{dt}.\]</p>
+<p>Only now put in the snapshot: \(x = 3\), \(y = 4\), \(dx/dt = 0.5\). So \(dy/dt = -\tfrac34 \times 0.5 = -0.375\) m/s. The minus sign says \(y\) is decreasing. The ratio \(x/y\) says the top moves slower than the foot while the ladder is steep, faster once it is flat.</p>
+<p class="callout">Name the changing quantities. Write one equation linking them that is true at all times. Differentiate it with respect to \(t\), chain rule throughout. Substitute the instant's values last.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: a balloon</h2>
+<p>A spherical balloon is inflated at 100 cm³ per second. How fast is its radius growing when \(r = 5\) cm? The relationship is \(V = \tfrac43\pi r^3\). Differentiate with respect to time:</p>
+<p>\[\frac{dV}{dt} = 4\pi r^2\,\frac{dr}{dt} \quad\Longrightarrow\quad \frac{dr}{dt} = \frac{100}{4\pi \cdot 25} = \frac{1}{\pi} \approx 0.32 \text{ cm/s}.\]</p>
+<p>At \(r = 10\) cm the same pump gives \(\frac{100}{400\pi} \approx 0.08\) cm/s, four times slower. The factor \(4\pi r^2\) is the surface area: each second's air is spread as a thin skin over the whole surface, and a bigger balloon has more surface to cover.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>A stone dropped in a pond makes a circular ripple whose radius grows at 0.3 m/s. How fast is the enclosed area growing when the radius is 2 m? Is that rate constant?<div class="space short"></div></li>
+<li>Water pours into an inverted cone (point down) at 0.5 m³ per minute. The cone is 6 m tall and 2 m in radius at the top. Use similar triangles to write the volume in terms of the depth \(h\) alone, then find how fast the depth is rising when \(h = 3\) m.<div class="space"></div></li>
+<li>A street lamp is 5 m high. A person 1.8 m tall walks away from it at 1.5 m/s. Let \(x\) be their distance from the lamp post and \(s\) the distance of the shadow's tip from the post. Use similar triangles to link \(s\) and \(x\), then find how fast the tip of the shadow moves. Does the answer depend on where the person is?<div class="space"></div></li>
+<li>Two cars leave the same junction at the same time, one north at 60 km/h, the other east at 80 km/h. (a) How fast is the distance between them growing? (b) Your answer is constant. Explain why from the geometry, and say what would change if the eastbound car had left an hour earlier.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the ladder's last moment</h2>
+<p>Let \(\theta\) be the angle between the ladder and the ground. Find \(d\theta/dt\) at the instant in tonight's idea. Then look at \(dy/dt = -(x/y)\,dx/dt\) as the top nears the ground. What does the formula predict, and what does that tell you about the model?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(A = \pi r^2\), so \(\frac{dA}{dt} = 2\pi r\frac{dr}{dt} = 2\pi(2)(0.3) = 1.2\pi \approx 3.8\) m²/s. Not constant: it grows with \(r\), because the ring added each second has circumference \(2\pi r\).</li>
+<li>At depth \(h\) the water's radius is \(r = h/3\) (the full cone has \(2/6 = 1/3\)). \(V = \tfrac13\pi r^2 h = \pi h^3/27\). Then \(\frac{dV}{dt} = \frac{\pi h^2}{9}\frac{dh}{dt}\). At \(h = 3\): \(0.5 = \pi\,\frac{dh}{dt}\), so \(\frac{dh}{dt} = \frac{1}{2\pi} \approx 0.16\) m/min.</li>
+<li>Similar triangles: \(\dfrac{s}{5} = \dfrac{s - x}{1.8}\), so \(1.8s = 5s - 5x\), \(s = \tfrac{25}{16}x\). Then \(\frac{ds}{dt} = \tfrac{25}{16}(1.5) \approx 2.34\) m/s. No: \(s\) is proportional to \(x\), so the tip's speed is the same everywhere. (The shadow itself lengthens at \(\tfrac{9}{16}(1.5) \approx 0.84\) m/s.)</li>
+<li>(a) \(D^2 = x^2 + y^2\), so \(D\frac{dD}{dt} = x\frac{dx}{dt} + y\frac{dy}{dt}\). With \(x = 80t\), \(y = 60t\), \(D = 100t\): \(\frac{dD}{dt} = \frac{80 \cdot 80t + 60 \cdot 60t}{100t} = 100\) km/h. (b) The triangle keeps the same shape (3 : 4 : 5) and simply scales, so every side grows in proportion. With a head start the shape changes as time passes, and \(dD/dt\) would vary, approaching 100 km/h only eventually.</li>
+</ol>
+<p><b>Stretch.</b> \(\cos\theta = x/5\), so \(-\sin\theta\,\frac{d\theta}{dt} = \tfrac15\frac{dx}{dt}\). At \(x = 3\), \(\sin\theta = 4/5\), giving \(\frac{d\theta}{dt} = -\frac{0.5}{5 \cdot 0.8} = -0.125\) rad/s. As \(y \to 0\) with \(x \to 5\) and \(dx/dt\) fixed, the formula gives \(dy/dt \to -\infty\): infinite speed. Nothing moves infinitely fast, so an assumption must fail first. The one that fails is that the top stays in contact with the wall; a real ladder's top leaves the wall before it reaches the ground. The maths is right about the model; the model stops describing the ladder.</p>
+</section>
+
+<div class="sheet-nav"><a href="a6-curve-sketching.html">← Previous</a><a href="a8-substitution.html">Next: Substitution: the chain rule backwards →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

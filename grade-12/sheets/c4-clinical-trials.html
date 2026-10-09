@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How many patients does a trial need? · Infinity Club</title>
+<meta name="description" content="Randomise two groups, measure the difference in means, and ask how many patients it takes to see a real effect through the noise. The sample-size formula n ≈ 16σ²/δ² derived from the standard error, with real numbers.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Connections · 4</div>
+  <h1>How many patients does a trial need?</h1>
+  <p class="teaser">Randomisation, the size of the effect, the noise, and the power. The sample-size formula from the standard error, with real numbers.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A new blood-pressure drug: \(n\) patients get it, \(n\) others a placebo, assigned by coin flip. The coin is the point: <b>randomisation</b> makes the groups alike in everything but the drug and chance. Compare the mean drops, \(\bar x_T - \bar x_C\). Drug, or noise?</p>
+<p>Patients vary with standard deviation \(\sigma\), so a mean of \(n\) has spread \(\sigma/\sqrt n\) (<a href="a16-clt.html">the standard error</a>). For a difference of independent means, <em>variances</em> add: \(\text{SE} = \sqrt{\sigma^2/n + \sigma^2/n} = \sigma\sqrt{2/n}\).</p>
+<p>Convention says the drug works if the observed difference exceeds \(1.96\,\text{SE}\), the two-sided 5% rule (<a href="a17-p-values.html">p-values</a>). If the true effect is \(\delta\), the observed difference is bell-shaped around \(\delta\) with spread \(\text{SE}\), and we want it to clear the bar 80% of the time: the trial's <b>power</b>. So the bar sits at that bell's 20th percentile, \(0.84\,\text{SE}\) below its centre:</p>
+<figure><svg viewBox="0 0 320 150" width="240" height="112" role="img" aria-label="Two bell curves: the null centred at zero and the alternative centred at delta, with the critical value at 1.96 standard errors and the power region shaded" font-family="Nunito, sans-serif" font-size="12">
+<path d="M181.6 120.0 L181.6 53.4 185.7 45.8 191.6 36.4 197.6 29.4 203.5 25.7 209.4 25.7 215.3 29.4 221.2 36.4 227.1 45.8 233.1 56.8 239.0 68.3 244.9 79.3 250.8 89.2 256.7 97.7 262.7 104.4 268.6 109.6 274.5 113.3 280.4 115.8 286.3 117.5 292.2 118.6 298.2 119.2 304.1 119.6 310.0 119.8 L310.0 120.0 Z" fill="#fde8c4"/>
+<path d="M181.6 120.0 L181.6 106.1 185.7 109.6 191.6 113.3 197.6 115.8 203.5 117.5 209.4 118.6 215.3 119.2 221.2 119.6 227.1 119.8 L227.1 120.0 Z" fill="#dcdcf5"/>
+<path d="M20.0 119.8 25.9 119.6 31.8 119.2 37.8 118.6 43.7 117.5 49.6 115.8 55.5 113.3 61.4 109.6 67.3 104.4 73.3 97.7 79.2 89.2 85.1 79.3 91.0 68.3 96.9 56.8 102.9 45.8 108.8 36.4 114.7 29.4 120.6 25.7 126.5 25.7 132.4 29.4 138.4 36.4 144.3 45.8 150.2 56.8 156.1 68.3 162.0 79.3 168.0 89.2 173.9 97.7 179.8 104.4 185.7 109.6 191.6 113.3 197.6 115.8 203.5 117.5 209.4 118.6 215.3 119.2 221.2 119.6 227.1 119.8" fill="none" stroke="#3f44c9" stroke-width="2"/>
+<path d="M102.9 119.8 108.8 119.6 114.7 119.2 120.6 118.6 126.5 117.5 132.4 115.8 138.4 113.3 144.3 109.6 150.2 104.4 156.1 97.7 162.0 89.2 168.0 79.3 173.9 68.3 179.8 56.8 185.7 45.8 191.6 36.4 197.6 29.4 203.5 25.7 209.4 25.7 215.3 29.4 221.2 36.4 227.1 45.8 233.1 56.8 239.0 68.3 244.9 79.3 250.8 89.2 256.7 97.7 262.7 104.4 268.6 109.6 274.5 113.3 280.4 115.8 286.3 117.5 292.2 118.6 298.2 119.2 304.1 119.6 310.0 119.8" fill="none" stroke="#f5a524" stroke-width="2"/>
+<line x1="14" y1="120" x2="316" y2="120" stroke="#999"/>
+<line x1="181.6" y1="120" x2="181.6" y2="14" stroke="#000" stroke-width="1.5" stroke-dasharray="4 3"/>
+<line x1="123.6" y1="120" x2="123.6" y2="124" stroke="#999"/><line x1="206.4" y1="120" x2="206.4" y2="124" stroke="#999"/>
+<text x="123.6" y="136" text-anchor="middle">0</text><text x="206.4" y="136" text-anchor="middle" fill="#f5a524" font-weight="700">δ</text><text x="181.6" y="136" text-anchor="middle">1.96 SE</text>
+<text x="70" y="40" fill="#3f44c9" font-weight="700">no effect</text>
+<text x="230" y="40" fill="#f5a524" font-weight="700">true effect δ</text>
+<text x="262" y="110" fill="#b86f00" font-size="11">power 80%</text>
+<text x="190" y="104" fill="#3f44c9" font-size="11">2.5%</text>
+<text x="186" y="22" font-size="11">bar</text>
+</svg><figcaption>Both bells have width SE. The bar is \(1.96\) SE right of zero and \(0.84\) SE left of \(\delta\), so \(\delta = 2.8\) SE.</figcaption></figure>
+<p>\[\delta = (1.96 + 0.84)\,\text{SE} = 2.8\,\sigma\sqrt{\tfrac{2}{n}} \quad\Longrightarrow\quad n = \frac{2 \times 2.8^2\,\sigma^2}{\delta^2}.\]</p>
+<p class="callout">\(n \approx \dfrac{16\,\sigma^2}{\delta^2}\) per group, for a 5% two-sided test with 80% power. In general \(n = 2(z_{\alpha/2} + z_\beta)^2\sigma^2/\delta^2\).</p>
+<p>Read the shape: noise squared on top, effect squared underneath. Halve the effect you are hunting and the trial must be four times larger.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: a modest blood-pressure drug</h2>
+<p>Drops in systolic pressure vary with \(\sigma = 12\) mmHg. The drug is hoped to beat placebo by \(\delta = 5\) mmHg. Then \(n \approx \dfrac{16 \times 12^2}{5^2} = \dfrac{16 \times 144}{25} = 92\) per group, so about 184 patients. (The exact \(2 \times 2.8^2 = 15.7\) gives 90; the 16 is a rounding for the head.) If the honest hope were only \(\delta = 2.5\) mmHg, the same arithmetic gives 369 per group, four times as many. Check the logic the other way: with 92 per group, \(\text{SE} = 12\sqrt{2/92} = 1.77\), and \(5/1.77 = 2.83\) standard errors, just over the 2.8 we built in.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>\(\sigma = 10\), 50 patients per group. Find the SE of the difference in means. The treated group does 3.0 better. How many SE is that? Does it pass the 1.96 bar? How big a difference would?<div class="space short"></div></li>
+<li>Cholesterol readings have \(\sigma = 1.0\) mmol/L. How many per group to detect a drop of \(\delta = 0.5\) mmol/L with 80% power? And \(\delta = 0.25\)? State the rule that connects the two answers.<div class="space short"></div></li>
+<li>A clinic can recruit only 20 patients per group, with \(\sigma = 10\). Turn the formula round: what is the smallest effect \(\delta\) this trial can detect with 80% power?<div class="space short"></div></li>
+<li>A company trials its drug on 16 patients per group, \(\sigma = 10\), and the true effect is \(\delta = 5\). (a) Find the SE and how many SE \(\delta\) is. (b) The power is the chance the observed difference clears \(1.96\) SE: \(P(Z > 1.96 - \delta/\text{SE})\). Use \(P(Z > 0.55) = 0.29\). (c) The trial finds no significant effect. Has it shown the drug does not work?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: when the outcome is life or death</h2>
+<p>If the outcome is "died within a year" (1) or not (0), each patient's value has variance \(p(1-p)\). A heart drug is hoped to cut one-year mortality from 10% to 8%. Take \(\sigma^2 \approx 0.09 \times 0.91\) and \(\delta = 0.02\). How many patients per group? Why do such trials run across dozens of hospitals?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(\text{SE} = 10\sqrt{2/50} = 2.0\). A difference of 3.0 is 1.5 SE, below 1.96, so it does not pass. It would need \(1.96 \times 2.0 = 3.9\) or more.</li>
+<li>\(n = 16 \times 1.0/0.25 = 64\) per group. For \(\delta = 0.25\): \(16 \times 1.0/0.0625 = 256\). Halving the effect quadruples the trial, because \(\delta\) sits squared in the denominator.</li>
+<li>\(\delta = 2.8\,\sigma\sqrt{2/n} = 2.8 \times 10 \times \sqrt{0.1} = 2.8 \times 3.16 = 8.9\). Anything smaller than about 9 units will be missed more than one time in five. The trial can only be trusted to find a large effect.</li>
+<li>(a) \(\text{SE} = 10\sqrt{2/16} = 3.54\), and \(\delta/\text{SE} = 1.41\). (b) Power \(= P(Z > 1.96 - 1.41) = P(Z > 0.55) = 0.29\). (c) No. Even if the drug works exactly as hoped, this trial fails to show it 71% of the time. A non-significant result from an underpowered trial is close to no information. The formula says 64 per group were needed; the company ran a quarter of that.</li>
+</ol>
+<p><b>Stretch.</b> \(\sigma^2 = 0.09 \times 0.91 = 0.0819\) and \(\delta^2 = 0.0004\), so \(n \approx 16 \times 0.0819/0.0004 \approx 3{,}300\) per group, about 6,600 patients. A 2-percentage-point change in a rare event is tiny against the noise of a 0/1 outcome, so cardiac trials enrol thousands and need many hospitals to find them. The <a href="../../research.html">same formula</a> decides whether a study of a teaching method can show anything, and most small ones cannot. Compare the screening logic in <a href="../../grade-10/sheets/c5-medical-tests.html">What a positive test really means</a>: there a false alarm came from a rare disease; here a false reassurance comes from a small trial.</p>
+</section>
+
+<div class="sheet-nav"><a href="c3-options.html">← Previous</a><a href="c5-cruise-control.html">Next: Cruise control →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

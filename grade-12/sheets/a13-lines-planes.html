@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lines and planes in space · Infinity Club</title>
+<meta name="description" content="A line is a point plus a direction; a plane is a point plus a normal. Build the normal with the cross product and read distances off the dot product.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Sharpen · 13</div>
+  <h1>Lines and planes in space</h1>
+  <p class="teaser">A line is a point plus a direction; a plane is a point plus a normal. Distances fall out of the dot product.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A line is a point plus a direction. If it passes through \(A\) along \(\mathbf{d}\), its points are \(\mathbf{r} = \mathbf{a} + t\,\mathbf{d}\), where \(\mathbf{a}\) is the <b>position vector</b> of \(A\) (the arrow from the origin to \(A\)) and \(\mathbf{r} = (x, y, z)\) is a general point.</p>
+<p>A plane holds two directions, so describe it by the one direction it does <em>not</em> hold: a <b>normal</b> \(\mathbf{n}\), perpendicular to the plane. \(R\) lies in the plane through \(A\) exactly when \(R - A\) is perpendicular to \(\mathbf{n}\), and the <a href="../../grade-10/sheets/b15-vectors-dot.html">dot product</a> tests that:</p>
+<p>\[\mathbf{n}\cdot(\mathbf{r} - \mathbf{a}) = 0 \quad\Longleftrightarrow\quad n_1 x + n_2 y + n_3 z = d,\]</p>
+<p>with \(d = \mathbf{n}\cdot\mathbf{a}\). So \(ax + by + cz = d\) is a plane with normal \((a, b, c)\).</p>
+<figure><svg viewBox="0 0 330 165" width="330" height="165" role="img" aria-label="A plane drawn as a parallelogram with a point A on it, the normal vector n standing up from A, a point P above the plane, and the perpendicular from P down to the plane" font-family="Nunito, sans-serif" font-size="13">
+<polygon points="24,142 240,142 312,90 96,90" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<line x1="99.6" y1="129" x2="99.6" y2="58.6" stroke="#3f44c9" stroke-width="2"/>
+<polygon points="99.6,52.6 94.6,63.6 104.6,63.6" fill="#3f44c9"/>
+<line x1="99.6" y1="129" x2="227.4" y2="36.5" stroke="#999" stroke-width="1.5" stroke-dasharray="4 3"/>
+<line x1="227.4" y1="36.5" x2="227.4" y2="106.9" stroke="#f5a524" stroke-width="2"/>
+<line x1="99.6" y1="129" x2="227.4" y2="106.9" stroke="#999" stroke-width="1.5" stroke-dasharray="4 3"/>
+<circle cx="99.6" cy="129" r="3" fill="#000"/><circle cx="227.4" cy="36.5" r="3" fill="#000"/><circle cx="227.4" cy="106.9" r="3" fill="#f5a524"/>
+<text x="93.6" y="145" text-anchor="middle">A</text>
+<text x="87.6" y="60.6" fill="#3f44c9" font-weight="700">n</text>
+<text x="237.4" y="34.5">P</text>
+<text x="237.4" y="120.9" fill="#f5a524">F</text>
+<text x="149.5" y="76.8" fill="#555" font-size="12">P − A</text>
+<text x="245.4" y="75.7" fill="#f5a524" font-size="12">distance</text>
+<text x="232" y="158" fill="#3f44c9" font-size="12" text-anchor="end">the plane n · (r − A) = 0</text>
+</svg><figcaption>The distance from \(P\) to the plane is the shadow of \(P - A\) on the normal \(\mathbf{n}\).</figcaption></figure>
+<p>From two directions \(\mathbf{u}\), \(\mathbf{v}\) in the plane, the <b>cross product</b> builds a normal:</p>
+<p>\[\mathbf{u}\times\mathbf{v} = (u_2 v_3 - u_3 v_2,\; u_3 v_1 - u_1 v_3,\; u_1 v_2 - u_2 v_1).\]</p>
+<p>Dot it with \(\mathbf{u}\) and the six terms cancel in pairs (exercise 2), so it is perpendicular to \(\mathbf{u}\), and likewise to \(\mathbf{v}\).</p>
+<p>Take any point \(A\) in the plane. The distance from \(P\) to the plane is the shadow of \(P - A\) on \(\mathbf{n}\):</p>
+<p class="callout">\(\text{distance} = \dfrac{\lvert\mathbf{n}\cdot(\mathbf{p} - \mathbf{a})\rvert}{\lvert\mathbf{n}\rvert} = \dfrac{\lvert n_1 p_1 + n_2 p_2 + n_3 p_3 - d\rvert}{\lvert\mathbf{n}\rvert}.\)</p>
+</section>
+
+<section class="example">
+<h2>Watch one: the plane through \((1,0,0)\), \((0,2,0)\), \((0,0,3)\)</h2>
+<p>Call the points \(A\), \(B\), \(C\). Two directions in the plane are \(\overrightarrow{AB} = (-1, 2, 0)\) and \(\overrightarrow{AC} = (-1, 0, 3)\). Cross them:</p>
+<p>\[\mathbf{n} = (2\cdot 3 - 0\cdot 0,\; 0\cdot(-1) - (-1)\cdot 3,\; (-1)\cdot 0 - 2\cdot(-1)) = (6, 3, 2).\]</p>
+<p>Then \(d = \mathbf{n}\cdot\mathbf{a} = 6\), so the plane is \(6x + 3y + 2z = 6\). The normal has length \(\sqrt{36 + 9 + 4} = 7\), so the origin is \(\lvert 0 - 6\rvert/7 = 6/7\) from the plane and \(P = (2, 2, 2)\) is \(\lvert 12 + 6 + 4 - 6\rvert/7 = 16/7\) away.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>A line passes through \((1, 2, 3)\) in the direction \((2, -1, 1)\). Write it in coordinates. Which of \((5, 0, 5)\) and \((3, 1, 5)\) lie on it?<div class="space short"></div></li>
+<li>Let \(\mathbf{u} = (1, 2, 3)\) and \(\mathbf{v} = (4, 5, 6)\). (a) Compute \(\mathbf{u}\times\mathbf{v}\) and check its dot product with each of \(\mathbf{u}\), \(\mathbf{v}\) is zero. (b) Show \(\mathbf{u}\cdot(\mathbf{u}\times\mathbf{v}) = 0\) for <em>every</em> \(\mathbf{u}\), \(\mathbf{v}\).<div class="space"></div></li>
+<li>Find the plane through \((1, 1, 1)\), \((3, 2, 1)\) and \((1, 2, 3)\), and the distance from \((4, 0, 1)\) to it.<div class="space short"></div></li>
+<li>(a) Why are \(2x - y + 2z = 3\) and \(2x - y + 2z = 9\) parallel? Find the distance between them. (b) Find the point of the plane \(x + 2y + 2z = 9\) closest to the origin. In which direction do you walk from the origin to reach it?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: two lines that miss</h2>
+<p>\(L_1\): \(\mathbf{r} = (1, 2, 0) + t(1, 0, 1)\). \(L_2\): \(\mathbf{r} = (0, 0, 3) + s(0, 1, 1)\). Show they neither meet nor run parallel. The shortest segment joining them is perpendicular to both, so it runs along \(\mathbf{d}_1\times\mathbf{d}_2\). Find the distance between the lines.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(\mathbf{r} = (1, 2, 3) + t(2, -1, 1)\), that is \(x = 1 + 2t\), \(y = 2 - t\), \(z = 3 + t\). \((5, 0, 5)\) is on it: \(t = 2\) fits all three. \((3, 1, 5)\) is not: \(x\) and \(y\) need \(t = 1\), which gives \(z = 4\).</li>
+<li>(a) \(\mathbf{u}\times\mathbf{v} = (12 - 15,\; 12 - 6,\; 5 - 8) = (-3, 6, -3)\). Dots: \(-3 + 12 - 9 = 0\) and \(-12 + 30 - 18 = 0\). (b) \(u_1(u_2 v_3 - u_3 v_2) + u_2(u_3 v_1 - u_1 v_3) + u_3(u_1 v_2 - u_2 v_1)\): the six terms cancel in pairs, for example \(u_1 u_2 v_3\) and \(-u_2 u_1 v_3\).</li>
+<li>Directions \((2, 1, 0)\) and \((0, 1, 2)\); cross product \((2, -4, 2)\), or \((1, -2, 1)\) after dividing by 2. Through \((1, 1, 1)\): \(d = 1 - 2 + 1 = 0\), so \(x - 2y + z = 0\). Distance from \((4, 0, 1)\): \(\lvert 4 - 0 + 1\rvert/\sqrt6 = 5/\sqrt6 \approx 2.04\).</li>
+<li>(a) Same normal \((2, -1, 2)\), so same tilt. Pick a point on the first, say \((0, -3, 0)\), and use the formula with the second: \(\lvert 0 + 3 + 0 - 9\rvert/\sqrt9 = 2\). (b) Walk along the normal: the point is \(t(1, 2, 2)\) with \(t + 4t + 4t = 9\), so \(t = 1\) and the point is \((1, 2, 2)\), at distance \(3\). The formula agrees: \(9/\sqrt9 = 3\).</li>
+</ol>
+<p><b>Stretch.</b> Meeting would need \(1 + t = 0\), \(2 = s\), \(t = 3 + s\): the first two force \(t = -1\), \(s = 2\), and the third fails. The directions are not multiples of each other, so the lines are skew. \(\mathbf{n} = (1, 0, 1)\times(0, 1, 1) = (-1, -1, 1)\). The vector from one line to the other, \((0, 0, 3) - (1, 2, 0) = (-1, -2, 3)\), has shadow on \(\mathbf{n}\) of length \(\lvert 1 + 2 + 3\rvert/\sqrt3 = 6/\sqrt3 = 2\sqrt3 \approx 3.46\). That is the distance: it is the plane formula, applied to a point of \(L_2\) and the plane through \(L_1\) parallel to \(L_2\).</p>
+</section>
+
+<div class="sheet-nav"><a href="a12-taylor.html">← Previous</a><a href="a14-complex-polynomials.html">Next: Conjugate roots and x⁴ + 4 →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Foxes and Rabbits · Infinity Club</title>
+<meta name="description" content="The Lotka–Volterra predator–prey equations, live. Slide the four rates, tap the phase plane to choose a starting population, and watch rabbits and foxes chase each other round a closed loop.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.controls input[type=range] { width: 140px; }
+.controls .val { font-family: var(--mono); min-width: 3.2em; display: inline-block; }
+.two { display: flex; flex-wrap: wrap; gap: 1rem; align-items: flex-start; }
+.two > div { flex: 1 1 300px; min-width: 0; }
+.two h3 { margin: .2rem 0 .4rem; font-size: 1rem; color: var(--muted); }
+#phase { touch-action: none; cursor: crosshair; }
+.legend span { display: inline-block; margin-right: 1rem; font-weight: 700; font-size: .9rem; }
+.legend i { display: inline-block; width: 14px; height: 4px; vertical-align: middle; margin-right: .3rem; border-radius: 2px; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Foxes and rabbits</h1>
+<p class="explain"><b>Tap anywhere on the right-hand picture</b> to choose how many rabbits and foxes you start with, then slide the four rates. The left graph shows both populations against time; the right one plots foxes against rabbits, so time disappears and the whole future is one loop. Try starting right on the grey cross, then just beside it, then far from it. Notice that the loop never spirals in or out, and that the time-averages printed below always land on the cross, wherever you start.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <label>a rabbit births <input type="range" id="a" min="0.1" max="3" step="0.05" value="1"> <span class="val" id="av">1.00</span></label>
+    <label>b predation <input type="range" id="b" min="0.01" max="0.2" step="0.005" value="0.05"> <span class="val" id="bv">0.050</span></label>
+    <label>c fox deaths <input type="range" id="c" min="0.1" max="3" step="0.05" value="0.8"> <span class="val" id="cv">0.80</span></label>
+    <label>d fox births per rabbit <input type="range" id="d" min="0.005" max="0.1" step="0.0025" value="0.02"> <span class="val" id="dv">0.020</span></label>
+    <label>years shown <input type="range" id="T" min="10" max="100" step="5" value="40"> <span class="val" id="Tv">40</span></label>
+    <button id="reset" class="ghost">Reset</button>
+  </div>
+  <div class="two">
+    <div><h3>Populations against time</h3><canvas id="time" width="520" height="340"></canvas>
+      <p class="legend"><span><i style="background:#3f44c9"></i>rabbits R</span><span><i style="background:#b3261e"></i>foxes F</span></p></div>
+    <div><h3>Phase plane: foxes against rabbits (tap to start)</h3><canvas id="phase" width="420" height="340"></canvas>
+      <p class="legend"><span><i style="background:#1d1f3a"></i>orbit</span><span><i style="background:#f5a524"></i>start</span><span><i style="background:#9a9cb3"></i>nullclines and equilibrium</span></p></div>
+  </div>
+  <div class="readout" id="info"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>Rabbits R breed at rate a and are eaten at a rate proportional to how often a rabbit meets a fox, bRF. Foxes F die at rate c and breed in proportion to the rabbits they catch, dRF. That gives the <b>Lotka–Volterra</b> equations dR/dt = aR − bRF and dF/dt = −cF + dRF. There is no formula for R(t) and F(t); the demo steps the equations forward numerically (a fourth-order Runge–Kutta scheme, step 0.005) and draws what comes out.</p>
+<p>Both derivatives vanish at the <b>equilibrium</b> R* = c/d, F* = a/b, the grey cross. Everywhere else the populations move: lots of rabbits feed a fox boom, the boom eats the rabbits down, the foxes then starve, and the rabbits recover. In the phase plane that is a loop running anticlockwise, and the fox peak lags the rabbit peak by about a quarter of a cycle.</p>
+<p>Why a closed loop rather than a spiral? Divide the two equations and separate variables, and you find that V = dR − c ln R + bF − a ln F never changes along a solution. Each loop is a level curve of V, like a contour line on a map. The readout checks how well the numerics keep V constant. Two more facts to test: near the cross the period is close to 2π/√(ac), and the time-average of R over a cycle is exactly c/d, the same for every loop. Cull foxes (raise c) and the average rabbit population does not change at all; the average fox population a/b does not depend on c either, but the loops swing wider.</p>
+<p>Sheet: <a href="../grade-12/sheets/b20-predator-prey.html">Foxes and rabbits</a>. Cousins: <a href="sir.html">an epidemic in a box</a>, another pair of coupled rates, and the <a href="logistic.html">logistic map</a>, where one population alone can go chaotic.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  // dR/dt = aR - bRF, dF/dt = -cF + dRF
+  function deriv(s, k) { var R = s[0], F = s[1]; return [k.a * R - k.b * R * F, -k.c * F + k.d * R * F]; }
+  function rk4Step(s, k, h) {
+    var k1 = deriv(s, k), k2 = deriv([s[0] + h / 2 * k1[0], s[1] + h / 2 * k1[1]], k), k3 = deriv([s[0] + h / 2 * k2[0], s[1] + h / 2 * k2[1]], k), k4 = deriv([s[0] + h * k3[0], s[1] + h * k3[1]], k);
+    return [s[0] + h / 6 * (k1[0] + 2 * k2[0] + 2 * k3[0] + k4[0]), s[1] + h / 6 * (k1[1] + 2 * k2[1] + 2 * k3[1] + k4[1])];
+  }
+  function integrate(R0, F0, k, T, h) {
+    h = h || 0.005; var n = Math.round(T / h), s = [R0, F0], out = { t: [0], R: [R0], F: [F0] }, every = Math.max(1, Math.round(0.02 / h));
+    for (var i = 1; i <= n; i++) { s = rk4Step(s, k, h); if (i % every === 0) { out.t.push(i * h); out.R.push(s[0]); out.F.push(s[1]); } }
+    return out;
+  }
+  // conserved along every solution
+  function firstIntegral(R, F, k) { return k.d * R - k.c * Math.log(R) + k.b * F - k.a * Math.log(F); }
+  function equilibrium(k) { return [k.c / k.d, k.a / k.b]; }
+  function linearPeriod(k) { return 2 * Math.PI / Math.sqrt(k.a * k.c); }
+  // average spacing between successive maxima of a series (null if fewer than two)
+  function measurePeriod(t, x) {
+    var peaks = []; for (var i = 1; i < x.length - 1; i++) if (x[i] > x[i - 1] && x[i] >= x[i + 1]) peaks.push(t[i]);
+    if (peaks.length < 2) return null; return (peaks[peaks.length - 1] - peaks[0]) / (peaks.length - 1);
+  }
+  // time averages over whole cycles (first peak to last peak)
+  function cycleAverages(t, R, F) {
+    var peaks = []; for (var i = 1; i < R.length - 1; i++) if (R[i] > R[i - 1] && R[i] >= R[i + 1]) peaks.push(i);
+    if (peaks.length < 2) return null;
+    var i0 = peaks[0], i1 = peaks[peaks.length - 1], sR = 0, sF = 0, n = 0;
+    for (var j = i0; j < i1; j++) { sR += R[j]; sF += F[j]; n++; }
+    return { R: sR / n, F: sF / n, cycles: peaks.length - 1 };
+  }
+  function fmt(v, d) { d = d === undefined ? 2 : d; var r = Math.round(v * Math.pow(10, d)) / Math.pow(10, d); if (Object.is(r, -0)) r = 0; return r.toString().replace("-", "−"); }
+  /*ENDPURE*/
+
+  var DEF = { a: 1, b: 0.05, c: 0.8, d: 0.02, T: 40, R0: 80, F0: 10 };
+  var S = JSON.parse(JSON.stringify(DEF)), el = {};
+  var cT = document.getElementById("time"), gT = cT.getContext("2d"), cP = document.getElementById("phase"), gP = cP.getContext("2d"), info = document.getElementById("info");
+  ["a", "b", "c", "d", "T"].forEach(function (id) { el[id] = document.getElementById(id); el[id].addEventListener("input", function () { S[id] = parseFloat(el[id].value); draw(); }); });
+  document.getElementById("reset").addEventListener("click", function () { S = JSON.parse(JSON.stringify(DEF)); ["a", "b", "c", "d", "T"].forEach(function (id) { el[id].value = S[id]; }); draw(); });
+
+  function setup(canvas, ctx, aspect) {
+    var dpr = window.devicePixelRatio || 1, W = canvas.clientWidth || 500, H = Math.max(240, Math.round(W * aspect));
+    canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, H); ctx.font = "12px Nunito, sans-serif";
+    return { W: W, H: H };
+  }
+  function niceStep(range, maxTicks) { var mag = Math.pow(10, Math.floor(Math.log10(range / maxTicks))); var c = [1, 2, 5, 10].map(function (m) { return m * mag; }); for (var i = 0; i < c.length; i++) if (range / c[i] <= maxTicks) return c[i]; return c[3]; }
+
+  var PH = {}; // phase plane mapping, kept for taps
+  function draw() {
+    var k = { a: S.a, b: S.b, c: S.c, d: S.d };
+    document.getElementById("av").textContent = fmt(S.a); document.getElementById("bv").textContent = fmt(S.b, 3); document.getElementById("cv").textContent = fmt(S.c); document.getElementById("dv").textContent = fmt(S.d, 3); document.getElementById("Tv").textContent = S.T;
+    var sol = integrate(S.R0, S.F0, k, S.T), eq = equilibrium(k);
+    var Rmax = 0, Fmax = 0; for (var i = 0; i < sol.R.length; i++) { if (sol.R[i] > Rmax) Rmax = sol.R[i]; if (sol.F[i] > Fmax) Fmax = sol.F[i]; }
+    // time series
+    var dT = setup(cT, gT, 0.65), W = dT.W, H = dT.H, L = 44, Rr = W - 12, Tp = 14, B = H - 30, Ymax = Math.max(Rmax, Fmax) * 1.08;
+    function X(t) { return L + (Rr - L) * t / S.T; } function Y(v) { return B - (B - Tp) * v / Ymax; }
+    gT.strokeStyle = "#e4e1d8"; gT.lineWidth = 1; gT.fillStyle = "#5d6079"; gT.textAlign = "right";
+    var ys = niceStep(Ymax, 6); for (var y = 0; y <= Ymax; y += ys) { gT.beginPath(); gT.moveTo(L, Y(y)); gT.lineTo(Rr, Y(y)); gT.stroke(); gT.fillText(fmt(y, 0), L - 5, Y(y) + 4); }
+    gT.textAlign = "center"; var ts = niceStep(S.T, 8); for (var t = 0; t <= S.T; t += ts) gT.fillText(t === 0 ? "year 0" : fmt(t, 0), X(t), B + 16);
+    // equilibrium levels
+    gT.setLineDash([4, 4]); gT.strokeStyle = "#b9bbe6"; gT.beginPath(); gT.moveTo(L, Y(eq[0])); gT.lineTo(Rr, Y(eq[0])); gT.stroke();
+    gT.strokeStyle = "#e3b3b0"; gT.beginPath(); gT.moveTo(L, Y(eq[1])); gT.lineTo(Rr, Y(eq[1])); gT.stroke(); gT.setLineDash([]);
+    function line(arr, col) { gT.strokeStyle = col; gT.lineWidth = 2.5; gT.beginPath(); for (var i = 0; i < arr.length; i++) { var x = X(sol.t[i]), y = Y(arr[i]); if (i === 0) gT.moveTo(x, y); else gT.lineTo(x, y); } gT.stroke(); }
+    line(sol.R, "#3f44c9"); line(sol.F, "#b3261e");
+    // phase plane
+    var dP = setup(cP, gP, 0.8); W = dP.W; H = dP.H; L = 44; Rr = W - 12; Tp = 14; B = H - 30;
+    var RX = Math.max(Rmax * 1.12, eq[0] * 2.2), FY = Math.max(Fmax * 1.12, eq[1] * 2.2);
+    PH = { L: L, R: Rr, T: Tp, B: B, RX: RX, FY: FY };
+    function PX(R) { return L + (Rr - L) * R / RX; } function PY(F) { return B - (B - Tp) * F / FY; }
+    gP.strokeStyle = "#e4e1d8"; gP.lineWidth = 1; gP.fillStyle = "#5d6079"; gP.textAlign = "right";
+    var fs = niceStep(FY, 6); for (var f = 0; f <= FY; f += fs) { gP.beginPath(); gP.moveTo(L, PY(f)); gP.lineTo(Rr, PY(f)); gP.stroke(); gP.fillText(fmt(f, 0), L - 5, PY(f) + 4); }
+    gP.textAlign = "center"; var rs = niceStep(RX, 7); for (var r = 0; r <= RX; r += rs) { gP.beginPath(); gP.moveTo(PX(r), Tp); gP.lineTo(PX(r), B); gP.stroke(); gP.fillText(fmt(r, 0), PX(r), B + 16); }
+    gP.fillStyle = "#3f44c9"; gP.textAlign = "right"; gP.fillText("rabbits →", Rr - 2, B - 6);
+    gP.fillStyle = "#b3261e"; gP.textAlign = "left"; gP.fillText("↑ foxes", L + 4, Tp + 10);
+    // nullclines R = c/d (dF/dt = 0), F = a/b (dR/dt = 0)
+    gP.setLineDash([5, 5]); gP.strokeStyle = "#9a9cb3"; gP.lineWidth = 1.2;
+    gP.beginPath(); gP.moveTo(PX(eq[0]), Tp); gP.lineTo(PX(eq[0]), B); gP.stroke();
+    gP.beginPath(); gP.moveTo(L, PY(eq[1])); gP.lineTo(Rr, PY(eq[1])); gP.stroke(); gP.setLineDash([]);
+    gP.strokeStyle = "#5d6079"; gP.lineWidth = 2; gP.beginPath(); gP.moveTo(PX(eq[0]) - 6, PY(eq[1]) - 6); gP.lineTo(PX(eq[0]) + 6, PY(eq[1]) + 6); gP.moveTo(PX(eq[0]) - 6, PY(eq[1]) + 6); gP.lineTo(PX(eq[0]) + 6, PY(eq[1]) - 6); gP.stroke();
+    // orbit
+    gP.strokeStyle = "#1d1f3a"; gP.lineWidth = 2; gP.beginPath();
+    for (var j = 0; j < sol.R.length; j++) { var px = PX(sol.R[j]), py = PY(sol.F[j]); if (j === 0) gP.moveTo(px, py); else gP.lineTo(px, py); }
+    gP.stroke();
+    // arrowheads showing direction
+    var step = Math.max(1, Math.floor(sol.R.length / 4));
+    for (var m = step; m < sol.R.length - 1; m += step) {
+      var ax = PX(sol.R[m]), ay = PY(sol.F[m]), dx = PX(sol.R[m + 1]) - ax, dy = PY(sol.F[m + 1]) - ay, ln = Math.hypot(dx, dy) || 1; dx /= ln; dy /= ln;
+      gP.fillStyle = "#1d1f3a"; gP.beginPath(); gP.moveTo(ax + dx * 7, ay + dy * 7); gP.lineTo(ax - dy * 5, ay + dx * 5); gP.lineTo(ax + dy * 5, ay - dx * 5); gP.closePath(); gP.fill();
+    }
+    gP.fillStyle = "#f5a524"; gP.beginPath(); gP.arc(PX(S.R0), PY(S.F0), 7, 0, Math.PI * 2); gP.fill(); gP.strokeStyle = "#fff"; gP.lineWidth = 2; gP.stroke();
+    // readout
+    var V0 = firstIntegral(S.R0, S.F0, k), Vmax = -Infinity, Vmin = Infinity;
+    for (var q = 0; q < sol.R.length; q++) { var v = firstIntegral(sol.R[q], sol.F[q], k); if (v > Vmax) Vmax = v; if (v < Vmin) Vmin = v; }
+    var per = measurePeriod(sol.t, sol.R), avg = cycleAverages(sol.t, sol.R, sol.F);
+    var txt = "dR/dt = " + fmt(S.a) + "R − " + fmt(S.b, 3) + "RF,   dF/dt = −" + fmt(S.c) + "F + " + fmt(S.d, 3) + "RF.   start: R = " + fmt(S.R0, 0) + ", F = " + fmt(S.F0, 0) + "\n";
+    txt += "equilibrium R* = c/d = " + fmt(eq[0], 1) + ", F* = a/b = " + fmt(eq[1], 1) + "    peaks on this orbit: " + fmt(Rmax, 0) + " rabbits, " + fmt(Fmax, 0) + " foxes\n";
+    txt += "period: " + (per ? fmt(per, 2) + " years measured" : "more than one cycle needed, lengthen the time shown") + ";  2π/√(ac) = " + fmt(linearPeriod(k), 2) + " (small loops)\n";
+    if (avg) txt += "time-averages over " + avg.cycles + " whole cycle" + (avg.cycles > 1 ? "s" : "") + ": R̄ = " + fmt(avg.R, 1) + ", F̄ = " + fmt(avg.F, 1) + "  (compare R*, F*)\n";
+    txt += "conserved V = dR − c ln R + bF − a ln F = " + fmt(V0, 4) + ";  along the computed orbit it wanders by " + (Math.abs(Vmax - Vmin) / Math.abs(V0) * 100).toExponential(1) + "%";
+    info.textContent = txt;
+  }
+
+  cP.addEventListener("pointerdown", function (ev) {
+    ev.preventDefault();
+    var r = cP.getBoundingClientRect(), x = ev.clientX - r.left, y = ev.clientY - r.top;
+    var R = (x - PH.L) / (PH.R - PH.L) * PH.RX, F = (PH.B - y) / (PH.B - PH.T) * PH.FY;
+    S.R0 = Math.max(1, Math.round(R)); S.F0 = Math.max(1, Math.round(F)); draw();
+  });
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(draw, 120); });
+  draw();
+})();
+</script>
+</body>
+</html>

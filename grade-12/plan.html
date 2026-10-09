@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Start here · Grade 12 · Infinity Club</title>
+<meta name="description" content="A suggested first thirty nights of Infinity Club, and a printable club card to tick off every sheet.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.plan { columns: 2; column-gap: 2rem; padding-left: 0; list-style: none; counter-reset: night; }
+.plan li { break-inside: avoid; margin: 0 0 .45em; padding-left: 2.6em; position: relative; counter-increment: night; }
+.plan li::before { content: counter(night); position: absolute; left: 0; top: .1em; width: 1.6em; text-align: right; color: var(--muted); font-weight: 800; font-size: .85em; }
+.box { display: inline-block; width: .95em; height: .95em; border: 1.5px solid var(--ink); border-radius: 3px; vertical-align: -0.12em; margin-right: .5em; }
+.card-list { list-style: none; padding-left: 0; }
+.card-list li { margin: 0 0 .35em; break-inside: avoid; }
+.three { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem; }
+.three h3 { margin-top: 0; }
+.plan a, .card-list a { text-decoration: none; color: inherit; }
+@media (max-width: 600px) { .plan { columns: 1; } }
+@media print { .three { grid-template-columns: repeat(3, 1fr); font-size: .74em; line-height: 1.3; } .card-list li { margin-bottom: .2em; } h2.club { break-before: page; } .plan { columns: 2; } }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Grade 12</a>
+  <a href="index.html#sheets">Sheets</a>
+  <a href="../demos/index.html">Demos</a>
+  <a href="plan.html">Start here</a>
+  <a href="../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this page</button>
+</nav>
+
+<main class="paper">
+<h1>Start here</h1>
+<p>There are 58 sheets and no required order. If you would rather not choose, here is a first thirty nights that alternates the course with new ideas and keeps the surprises coming. Each is ten to fifteen minutes; the starred problem is extra. Tick each night off.</p>
+
+<h2>The first thirty nights</h2>
+<ol class="plan">
+<li><span class="box"></span><a href="sheets/a1-limits.html">What a limit is</a></li>
+<li><span class="box"></span><a href="sheets/b1-epsilon-delta.html">What "approaches" really means</a></li>
+<li><span class="box"></span><a href="sheets/a2-product-rule.html">The product rule is a picture</a></li>
+<li><span class="box"></span><a href="sheets/b7-eigenvectors.html">The directions a matrix leaves alone</a></li>
+<li><span class="box"></span><a href="sheets/a3-chain-rule.html">The chain rule: gears</a></li>
+<li><span class="box"></span><a href="sheets/c1-escape-velocity.html">Escape velocity</a></li>
+<li><span class="box"></span><a href="sheets/a4-sin-exp-log.html">The derivatives of sin, eˣ and ln x</a></li>
+<li><span class="box"></span><a href="sheets/b9-gradient-descent.html">Gradient descent</a></li>
+<li><span class="box"></span><a href="sheets/a12-taylor.html">Where the power series come from</a></li>
+<li><span class="box"></span><a href="sheets/b2-e-irrational.html">e is irrational</a></li>
+<li><span class="box"></span><a href="sheets/a5-optimisation.html">The cheapest can</a></li>
+<li><span class="box"></span><a href="sheets/b13-poisson.html">The Poisson distribution</a></li>
+<li><span class="box"></span><a href="sheets/a8-substitution.html">Substitution: the chain rule backwards</a></li>
+<li><span class="box"></span><a href="sheets/c3-options.html">What an option is worth</a></li>
+<li><span class="box"></span><a href="sheets/a9-by-parts.html">Integration by parts</a></li>
+<li><span class="box"></span><a href="sheets/b17-winding.html">Why every polynomial has a root</a></li>
+<li><span class="box"></span><a href="sheets/a11-exponential-decay.html">The equation that says "rate ∝ amount"</a></li>
+<li><span class="box"></span><a href="sheets/b15-kelly.html">How much to bet</a></li>
+<li><span class="box"></span><a href="sheets/a16-clt.html">Why averages are normal</a></li>
+<li><span class="box"></span><a href="sheets/b24-derangements.html">Derangements and 1/e</a></li>
+<li><span class="box"></span><a href="sheets/a13-lines-planes.html">Lines and planes in space</a></li>
+<li><span class="box"></span><a href="sheets/b4-crt.html">The Chinese remainder theorem</a></li>
+<li><span class="box"></span><a href="sheets/a10-volumes.html">Volumes by slicing</a></li>
+<li><span class="box"></span><a href="sheets/c10-energy-balance.html">Why the Earth is not frozen</a></li>
+<li><span class="box"></span><a href="sheets/a17-p-values.html">What a p-value is, and is not</a></li>
+<li><span class="box"></span><a href="sheets/b22-halting.html">The program that cannot exist</a></li>
+<li><span class="box"></span><a href="sheets/a20-parametric.html">Curves by parameter</a></li>
+<li><span class="box"></span><a href="sheets/b26-inversion.html">Inversion in a circle</a></li>
+<li><span class="box"></span><a href="sheets/c9-queues.html">Why the queue is longer than you think</a></li>
+<li><span class="box"></span><a href="sheets/b28-lagrange.html">The best point on a curve</a></li>
+</ol>
+<p class="small">After night thirty, pick whatever looks interesting. The Connections sheets are good for tired evenings: more reading, less calculation. The demos are for screens, five minutes each.</p>
+
+<h2 class="club">Club card</h2>
+<p>Every grade 12 sheet. Print this page, stick it somewhere visible, and tick them off. Finish a whole track and tell someone.</p>
+<div class="three">
+<div><h3>Sharpen</h3><ul class="card-list"><li><span class="box"></span><a href="sheets/a1-limits.html">What a limit is</a></li>
+<li><span class="box"></span><a href="sheets/a2-product-rule.html">The product rule is a picture</a></li>
+<li><span class="box"></span><a href="sheets/a3-chain-rule.html">The chain rule: gears</a></li>
+<li><span class="box"></span><a href="sheets/a4-sin-exp-log.html">The derivatives of sin, eˣ and ln x</a></li>
+<li><span class="box"></span><a href="sheets/a5-optimisation.html">The cheapest can</a></li>
+<li><span class="box"></span><a href="sheets/a6-curve-sketching.html">Reading a curve from its derivatives</a></li>
+<li><span class="box"></span><a href="sheets/a7-related-rates.html">Related rates</a></li>
+<li><span class="box"></span><a href="sheets/a8-substitution.html">Substitution: the chain rule backwards</a></li>
+<li><span class="box"></span><a href="sheets/a9-by-parts.html">Integration by parts</a></li>
+<li><span class="box"></span><a href="sheets/a10-volumes.html">Volumes by slicing</a></li>
+<li><span class="box"></span><a href="sheets/a11-exponential-decay.html">The equation that says "rate ∝ amount"</a></li>
+<li><span class="box"></span><a href="sheets/a12-taylor.html">Where the power series come from</a></li>
+<li><span class="box"></span><a href="sheets/a13-lines-planes.html">Lines and planes in space</a></li>
+<li><span class="box"></span><a href="sheets/a14-complex-polynomials.html">Conjugate roots and x⁴ + 4</a></li>
+<li><span class="box"></span><a href="sheets/a15-binomial-distribution.html">The binomial distribution</a></li>
+<li><span class="box"></span><a href="sheets/a16-clt.html">Why averages are normal</a></li>
+<li><span class="box"></span><a href="sheets/a17-p-values.html">What a p-value is, and is not</a></li>
+<li><span class="box"></span><a href="sheets/a18-implicit.html">Implicit differentiation</a></li>
+<li><span class="box"></span><a href="sheets/a19-partial-fractions.html">Partial fractions</a></li>
+<li><span class="box"></span><a href="sheets/a20-parametric.html">Curves by parameter</a></li></ul></div>
+<div><h3>Around the corner</h3><ul class="card-list"><li><span class="box"></span><a href="sheets/b1-epsilon-delta.html">What "approaches" really means</a></li>
+<li><span class="box"></span><a href="sheets/b2-e-irrational.html">e is irrational</a></li>
+<li><span class="box"></span><a href="sheets/b3-prime-counting.html">How many primes are there below x?</a></li>
+<li><span class="box"></span><a href="sheets/b4-crt.html">The Chinese remainder theorem</a></li>
+<li><span class="box"></span><a href="sheets/b5-two-squares.html">Which primes are sums of two squares</a></li>
+<li><span class="box"></span><a href="sheets/b6-generating-functions.html">Counting with polynomials</a></li>
+<li><span class="box"></span><a href="sheets/b7-eigenvectors.html">The directions a matrix leaves alone</a></li>
+<li><span class="box"></span><a href="sheets/b8-least-squares.html">Least squares is a projection</a></li>
+<li><span class="box"></span><a href="sheets/b9-gradient-descent.html">Gradient descent</a></li>
+<li><span class="box"></span><a href="sheets/b10-neuron.html">A neuron is a dot product and a threshold</a></li>
+<li><span class="box"></span><a href="sheets/b11-laplace-succession.html">Will the sun rise tomorrow?</a></li>
+<li><span class="box"></span><a href="sheets/b12-coupon-collector.html">The coupon collector</a></li>
+<li><span class="box"></span><a href="sheets/b13-poisson.html">The Poisson distribution</a></li>
+<li><span class="box"></span><a href="sheets/b14-secretary.html">When to stop looking</a></li>
+<li><span class="box"></span><a href="sheets/b15-kelly.html">How much to bet</a></li>
+<li><span class="box"></span><a href="sheets/b16-fourier-coefficients.html">Fourier coefficients by integration</a></li>
+<li><span class="box"></span><a href="sheets/b17-winding.html">Why every polynomial has a root</a></li>
+<li><span class="box"></span><a href="sheets/b18-catenary.html">The hanging chain</a></li>
+<li><span class="box"></span><a href="sheets/b19-oscillator.html">y″ = −y</a></li>
+<li><span class="box"></span><a href="sheets/b20-predator-prey.html">Foxes and rabbits</a></li>
+<li><span class="box"></span><a href="sheets/b21-fixed-points.html">Stir your coffee: a point stays still</a></li>
+<li><span class="box"></span><a href="sheets/b22-halting.html">The program that cannot exist</a></li>
+<li><span class="box"></span><a href="sheets/b23-hall.html">Hall's marriage theorem</a></li>
+<li><span class="box"></span><a href="sheets/b24-derangements.html">Derangements and 1/e</a></li>
+<li><span class="box"></span><a href="sheets/b25-minus-twelfth.html">1 + 2 + 3 + … = −1/12?</a></li>
+<li><span class="box"></span><a href="sheets/b26-inversion.html">Inversion in a circle</a></li>
+<li><span class="box"></span><a href="sheets/b27-knots.html">Proving a knot is knotted</a></li>
+<li><span class="box"></span><a href="sheets/b28-lagrange.html">The best point on a curve</a></li></ul></div>
+<div><h3>Connections</h3><ul class="card-list"><li><span class="box"></span><a href="sheets/c1-escape-velocity.html">Escape velocity</a></li>
+<li><span class="box"></span><a href="sheets/c2-rocket.html">The rocket equation</a></li>
+<li><span class="box"></span><a href="sheets/c3-options.html">What an option is worth</a></li>
+<li><span class="box"></span><a href="sheets/c4-clinical-trials.html">How many patients does a trial need?</a></li>
+<li><span class="box"></span><a href="sheets/c5-cruise-control.html">Cruise control</a></li>
+<li><span class="box"></span><a href="sheets/c6-hardy-weinberg.html">Why recessive genes do not die out</a></li>
+<li><span class="box"></span><a href="sheets/c7-jpeg.html">How a photo gets ten times smaller</a></li>
+<li><span class="box"></span><a href="sheets/c8-radiocarbon.html">Radiocarbon dating</a></li>
+<li><span class="box"></span><a href="sheets/c9-queues.html">Why the queue is longer than you think</a></li>
+<li><span class="box"></span><a href="sheets/c10-energy-balance.html">Why the Earth is not frozen</a></li></ul></div>
+</div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why recessive genes do not die out · Infinity Club</title>
+<meta name="description" content="Hardy–Weinberg: allele frequencies p and q give genotypes p², 2pq, q², and one generation of random mating makes the mix stable. Why a rare recessive allele hides in carriers, and how slowly selection removes it.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Connections · 6</div>
+  <h1>Why recessive genes do not die out</h1>
+  <p class="teaser">Allele frequencies p and q give genotypes p², 2pq, q². One generation of random mating and the mix is stable. Then a dose of selection.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A gene comes in two versions, the <b>alleles</b> \(A\) and \(a\). Everyone carries two copies, giving three <b>genotypes</b>: \(AA\), \(Aa\), \(aa\). Suppose a fraction \(p\) of all copies in a population are \(A\) and \(q = 1 - p\) are \(a\). If mating is random, a child's two copies are independent draws from the pool, so</p>
+<p class="callout">\(P(AA) = p^2,\quad P(Aa) = 2pq,\quad P(aa) = q^2,\) and \(p^2 + 2pq + q^2 = (p + q)^2 = 1\).</p>
+<figure style="float:right;width:230px;margin:0 0 .5em 1em"><svg viewBox="0 0 230 200" width="230" height="200" role="img" aria-label="A unit square split 0.8 to 0.2 on each side: the large AA corner, two thin Aa strips, and a tiny aa corner" font-family="Nunito, sans-serif" font-size="12">
+<rect x="50" y="30" width="120" height="120" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="170" y="30" width="30" height="120" fill="#fde8c4" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="50" y="150" width="120" height="30" fill="#fde8c4" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="170" y="150" width="30" height="30" fill="none" stroke="#f5a524" stroke-width="2"/>
+<text x="110" y="22" text-anchor="middle">A: p = 0.8</text><text x="185" y="22" text-anchor="middle">a: q</text>
+<text x="42" y="94" text-anchor="end">p</text><text x="42" y="169" text-anchor="end">q</text>
+<text x="110" y="86" text-anchor="middle" fill="#3f44c9" font-weight="700">AA</text><text x="110" y="102" text-anchor="middle" fill="#3f44c9">p² = 0.64</text>
+<text x="185" y="86" text-anchor="middle" fill="#555" font-weight="700">Aa</text><text x="185" y="102" text-anchor="middle" fill="#555">pq</text>
+<text x="110" y="169" text-anchor="middle" fill="#555" font-weight="700">Aa  pq = 0.16</text>
+<text x="185" y="196" text-anchor="middle" fill="#f5a524" font-weight="700">aa  q² = 0.04</text>
+</svg><figcaption>Two draws from the pool with \(p = 0.8\). The \(aa\) corner is 4% of the square; the two \(Aa\) strips are 32%, and hold four times as many \(a\) copies as the corner.</figcaption></figure>
+<p>Now count the \(a\) copies among the children. Each \(aa\) child carries two, each \(Aa\) child one, so the new fraction of \(a\) is</p>
+<p>\[q' = q^2 + \tfrac12(2pq) = q(q + p) = q.\]</p>
+<p>Nothing moved. Whatever mix you start with, one generation of random mating puts the genotypes at \(p^2, 2pq, q^2\), and they stay there: the <b>Hardy–Weinberg equilibrium</b> (Hardy and Weinberg, 1908).</p>
+<p>The consequence that matters concerns a <b>recessive</b> allele, whose effect shows only in \(aa\). The affected fraction is \(q^2\); the <b>carriers</b> \(Aa\), who show nothing, are \(2pq \approx 2q\) when \(q\) is small. Carriers outnumber the affected by \(2p/q\), and almost every \(a\) copy sits in one of them, out of selection's reach. So a harmful recessive allele lingers for thousands of years.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: \(q = 0.01\)</h2>
+<p>A recessive condition with \(q = 0.01\) affects \(q^2 = 0.0001\) of births, one in 10,000. Carriers are \(2pq = 2(0.99)(0.01) = 0.0198\), about one in 50. Carriers outnumber the affected by \(2p/q = 198\) to 1.</p>
+<p>Where are the \(a\) copies? Carriers hold \(pq\) of all copies as \(a\); the affected hold \(q^2\). The share in carriers is \(pq/(pq + q^2) = p = 0.99\). Ninety-nine of every hundred recessive alleles sit in healthy people. Selection against the condition touches one copy in a hundred.</p>
+<p class="small">Random draws from a pool, as in a <a href="../../grade-10/sheets/a15-probability.html">Grade 10 probability sheet</a>, but with the pool refilled every generation.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>\(p = 0.7\), \(q = 0.3\). (a) Give the three genotype fractions and the counts in 1,000 people. (b) Count the \(a\) copies among the 2,000 copies in those people and check that their share is still 0.3.<div class="space short"></div></li>
+<li>Two isolated villages of 1,000 people merge: one is entirely \(AA\), the other entirely \(aa\). Mating is now random. (a) Find \(p\) and \(q\). (b) Give the genotype fractions among the children. (c) Show the grandchildren have the same fractions.<div class="space short"></div></li>
+<li>A recessive condition affects 1 birth in 2,500. (a) Find \(q\). (b) What fraction of people are carriers, as "one in how many"? (c) How many carriers are there per affected person?<div class="space short"></div></li>
+<li>In a sample of 200 people, 120 are \(AA\), 60 are \(Aa\) and 20 are \(aa\). (a) Find \(p\) by counting copies, not people. (b) How many of each genotype would Hardy–Weinberg predict? (c) The sample has too few \(Aa\). Suggest what about the population could cause that.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: a dose of selection</h2>
+<p>Suppose \(aa\) individuals never reproduce. Show that the next generation's frequency is \(q' = q/(1 + q)\), so \(1/q\) rises by exactly 1 each generation. Starting from \(q = 0.01\), how many generations does it take to halve \(q\)? Compare with an allele whose effect is dominant and equally harsh.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(AA\): \(0.49\) (490), \(Aa\): \(2(0.7)(0.3) = 0.42\) (420), \(aa\): \(0.09\) (90). (b) \(a\) copies: \(2 \times 90 + 420 = 600\) out of 2,000, so \(q = 0.3\) again.</li>
+<li>(a) 2,000 \(A\) copies and 2,000 \(a\) copies out of 4,000: \(p = q = \tfrac12\). (b) \(\tfrac14, \tfrac12, \tfrac14\). (c) Among the children, \(q = \tfrac14 + \tfrac12 \cdot \tfrac12 = \tfrac12\), unchanged, so the grandchildren are again \(\tfrac14, \tfrac12, \tfrac14\). The parents were far from equilibrium (no \(Aa\) at all); one generation fixed it.</li>
+<li>(a) \(q^2 = 1/2500\), so \(q = 1/50 = 0.02\). (b) \(2pq = 2(0.98)(0.02) = 0.0392\), about one person in 26. (c) \(2p/q = 98\) carriers per affected person.</li>
+<li>(a) \(A\) copies: \(2 \times 120 + 60 = 300\) of 400, so \(p = 0.75\), \(q = 0.25\). (b) \(200 \times 0.5625 = 112.5\) \(AA\), \(200 \times 0.375 = 75\) \(Aa\), \(200 \times 0.0625 = 12.5\) \(aa\). (c) Observed 120, 60, 20: both homozygotes are over-represented. Mating is not random with respect to this gene: people tend to pair with partners of their own genotype. Relatives marrying does this, and so does a population made of two groups that rarely intermarry, like the villages of question 2 before the merger.</li>
+</ol>
+<p><b>Stretch.</b> Only \(AA\) (fraction \(p^2\)) and \(Aa\) (fraction \(2pq\)) reproduce. Among their copies the share of \(a\) is \(\dfrac{pq}{p^2 + 2pq} = \dfrac{q}{p + 2q} = \dfrac{q}{1 + q}\), using \(p + q = 1\). Then \(1/q' = (1 + q)/q = 1/q + 1\). From \(q = 0.01\), \(1/q\) goes from 100 to 200 in exactly 100 generations, roughly 2,500 years. (Check: \(0.1 \to 0.0909 \to 0.0833 \to 0.0769\), that is \(1/10, 1/11, 1/12, 1/13\).) A dominant allele that stopped its carriers reproducing would vanish in a single generation, because every copy is exposed. Recessive alleles survive by hiding.</p>
+</section>
+
+<div class="sheet-nav"><a href="c5-cruise-control.html">← Previous</a><a href="c7-jpeg.html">Next: How a photo gets ten times smaller →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

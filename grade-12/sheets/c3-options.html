@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What an option is worth · Infinity Club</title>
+<meta name="description" content="Price a stock option in a one-step toy model by building a portfolio of shares and borrowing that copies its payoff. No free lunch fixes the price, and the real probability of the share going up never enters.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Connections · 3</div>
+  <h1>What an option is worth</h1>
+  <p class="teaser">One step up or down, no free lunch. Price a stock option by building a portfolio that copies it, and see why the real probability does not appear.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A <b>call option</b> is the right, not the obligation, to buy one share for a fixed <b>strike price</b> \(K\) on a fixed date. If the share ends at \(S > K\) you exercise and pocket \(S - K\); otherwise it lapses: payoff \(\max(S - K, 0)\).</p>
+<p>A toy model, deliberately too simple: the share is 100 today and in a year will be either 120 or 80. Interest is zero, strike 100, so the option pays 20 up and 0 down.</p>
+<figure><svg viewBox="0 0 320 130" width="320" height="130" role="img" aria-label="A one-step tree: the share goes from 100 to 120 or 80; the option pays 20 or 0; half a share minus 40 borrowed pays the same" font-family="Nunito, sans-serif" font-size="12">
+<line x1="92" y1="65" x2="196" y2="28" stroke="#3f44c9" stroke-width="2"/><line x1="92" y1="65" x2="196" y2="102" stroke="#3f44c9" stroke-width="2"/>
+<circle cx="92" cy="65" r="4" fill="#3f44c9"/><circle cx="196" cy="28" r="4" fill="#3f44c9"/><circle cx="196" cy="102" r="4" fill="#3f44c9"/>
+<text x="84" y="56" text-anchor="end" font-weight="700">Share 100</text>
+<text x="84" y="72" text-anchor="end" fill="#f5a524" font-weight="700">Option ?</text>
+<text x="2" y="88" fill="#555" font-size="11">½ share − 40 = 10</text>
+<text x="204" y="20" font-weight="700">Share 120</text>
+<text x="204" y="34" fill="#f5a524" font-weight="700">Option 20</text>
+<text x="204" y="48" fill="#555" font-size="11">½·120 − 40 = 20</text>
+<text x="204" y="100" font-weight="700">Share 80</text>
+<text x="204" y="114" fill="#f5a524" font-weight="700">Option 0</text>
+<text x="204" y="128" fill="#555" font-size="11">½·80 − 40 = 0</text>
+<text x="140" y="118" fill="#999" font-size="11">one year</text>
+</svg><figcaption>Half a share bought with 40 of borrowed money pays exactly what the option pays, up or down. It costs 10 today.</figcaption></figure>
+<p><b>Replicate</b> it with \(\Delta\) shares and \(B\) in cash (negative \(B\) is borrowing). Up it is worth \(120\Delta + B\), down \(80\Delta + B\); match the option in both states:</p>
+<p>\[120\Delta + B = 20, \qquad 80\Delta + B = 0.\]</p>
+<p>Subtract: \(40\Delta = 20\), so \(\Delta = \tfrac12\) and \(B = -40\). Half a share costs 50; borrowing 40 makes it 10.</p>
+<p class="callout">Two things that pay the same in every state cost the same today: the option is worth 10.</p>
+<p>Otherwise sell the dear, buy the cheap, and pocket the difference risk-free: the <b>no-arbitrage</b> argument. The probability of going up never appeared: the copy matches whether up is 90% likely or 10%. Replication sets the price, not forecasting.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: strike 110 in the same tree</h2>
+<p>Payoff 10 up, 0 down. Match: \(120\Delta + B = 10\), \(80\Delta + B = 0\), so \(\Delta = \tfrac{10}{40} = \tfrac14\), \(B = -20\), price \(25 - 20 = 5\).</p>
+<p>Both prices are averages of the payoffs with weights \(\tfrac12, \tfrac12\): \(\tfrac12(20) = 10\) and \(\tfrac12(10) = 5\). That \(q = \tfrac12\) is the fake probability making the share's expected value equal its price: \(120q + 80(1 - q) = 100\). Price with the fake probability, never the real one. In general \(\Delta = \dfrac{C_{\text{up}} - C_{\text{down}}}{S_{\text{up}} - S_{\text{down}}}\): option change over share change.</p>
+<p class="small">Change the up and down factors, strike and interest in a three-step tree, then move the real probability and watch nothing change: <a href="../../demos/optiontree.html">infinityclub.net/demos/optiontree.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Share 100, going to 130 or 90, strike 100, zero interest. Find \(\Delta\), \(B\) and the option price. Check it with the fake probability \(q\) that solves \(130q + 90(1 - q) = 100\).<div class="space short"></div></li>
+<li>A <b>put</b> is the right to <em>sell</em> at the strike: payoff \(\max(K - S, 0)\). In the 120/80 tree with \(K = 100\), find \(\Delta\), \(B\) and the price. What does a negative \(\Delta\) mean in practice?<div class="space short"></div></li>
+<li>Someone offers the strike-100 call of tonight's idea for 12. List your trades today, your cash today, and your position in each state next year. Repeat if it is offered for 8.<div class="space"></div></li>
+<li>Now interest is 10%: borrowing \(B\) today means repaying \(1.1B\) in a year. (a) Replicate the strike-100 call in the 120/80 tree and price it. (b) In the fake world the share must grow at the interest rate: solve \(120q + 80(1 - q) = 110\) and check that \(\dfrac{20q}{1.1}\) agrees. (c) Why does the price rise with interest?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: two steps</h2>
+<p>The share goes up 20% or down 20% twice: 100, then 120 or 80, then 144, 96 or 64. Strike 100, zero interest. Work backwards: value the option at the two middle nodes first, then at the start. How many shares must you hold at the start, and how does that change after an up move?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Payoffs 30 and 0. \(\Delta = 30/40 = \tfrac34\), \(90 \times \tfrac34 + B = 0\) gives \(B = -67.5\). Price \(75 - 67.5 = 7.5\). Fake probability: \(40q = 10\), \(q = \tfrac14\), and \(\tfrac14 \times 30 = 7.5\).</li>
+<li>Payoffs 0 up, 20 down. \(\Delta = (0 - 20)/40 = -\tfrac12\), \(120 \times (-\tfrac12) + B = 0\) gives \(B = 60\). Price \(-50 + 60 = 10\). Negative \(\Delta\) means selling half a share you do not own (a short sale, borrowing the share and selling it) and lending the 60 you receive plus the 10 the put costs.</li>
+<li>Offered at 12: sell the call for 12, buy half a share for 50, borrow 40. Cash today \(12 - 50 + 40 = +2\). Up: your half share is worth 60, you repay 40, the call you sold costs you 20: net 0. Down: half share 40, repay 40, call lapses: net 0. You kept 2 for free. Offered at 8: buy the call for 8, sell half a share short for 50, lend 40; cash today \(+2\); both states again net to 0.</li>
+<li>(a) \(120\Delta + 1.1B = 20\), \(80\Delta + 1.1B = 0\). Subtract: \(\Delta = \tfrac12\); then \(1.1B = -40\), \(B = -36.36\). Price \(50 - 36.36 = 13.64\). (b) \(40q = 30\), \(q = \tfrac34\); \(\tfrac34 \times 20 / 1.1 = 15/1.1 = 13.64\). (c) The copy still needs half a share but you now borrow less today (36.36 instead of 40) to owe 40 next year, so the copy, and hence the option, costs more.</li>
+</ol>
+<p><b>Stretch.</b> Final payoffs 44, 0, 0. At the 120 node the next step is 144 or 96, so \(q = \tfrac12\) again and the value is \(\tfrac12 \times 44 = 22\); at the 80 node both payoffs are 0, value 0. At the start, \(\tfrac12 \times 22 + \tfrac12 \times 0 = 11\). Shares to hold at the start: \(\Delta = (22 - 0)/(120 - 80) = 0.55\). After an up move, \(\Delta = (44 - 0)/(144 - 96) = 0.917\): the copy must be adjusted at every step. That rebalancing is what option traders spend their days doing. Real shares take many values, so real models use many tiny steps, but the logic is this one, repeated. Compare <a href="../../grade-10/sheets/c4-money.html">grade 10</a>, where a casino bet was priced by expected value: there the odds are known and nothing can be hedged; here hedging replaces the odds.</p>
+</section>
+
+<div class="sheet-nav"><a href="c2-rocket.html">← Previous</a><a href="c4-clinical-trials.html">Next: How many patients does a trial need? →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

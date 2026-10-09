@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stir your coffee: a point stays still · Infinity Club</title>
+<meta name="description" content="A continuous function from [0,1] to itself has a fixed point: a two-line proof from the intermediate value theorem. Brouwer's theorem says the same in two dimensions, and why that is much harder.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Around the corner · 21</div>
+  <h1>Stir your coffee: a point stays still</h1>
+  <p class="teaser">The intermediate value theorem proves a fixed point in one dimension in two lines. Brouwer's theorem says the same in two, and why that is harder.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A <b>fixed point</b> of \(f\) is an input it leaves alone: \(f(x) = x\). On a graph it is where the curve meets the diagonal \(y = x\).</p>
+<p class="callout"><b>Theorem.</b> Every continuous \(f : [0,1] \to [0,1]\) has a fixed point. (Inputs in \([0,1]\), outputs in \([0,1]\), no jumps in the graph.)</p>
+<p><b>Proof.</b> Let \(g(x) = f(x) - x\). Then \(g(0) = f(0) \ge 0\) and \(g(1) = f(1) - 1 \le 0\). A continuous function that is non-negative at one end and non-positive at the other is zero somewhere between: that is the <b>intermediate value theorem</b> (IVT). Where \(g(c) = 0\), \(f(c) = c\).</p>
+<figure><svg viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="The unit square with the diagonal y = x and the graph of cos x, which starts above the diagonal and ends below it, crossing at about 0.739" font-family="Nunito, sans-serif" font-size="12">
+<rect x="20" y="20" width="160" height="160" fill="none" stroke="#000" stroke-width="1"/>
+<line x1="20" y1="180" x2="180" y2="20" stroke="#999" stroke-width="1.2"/>
+<polyline points="20.0,20.0 28.0,20.2 36.0,20.8 44.0,21.8 52.0,23.2 60.0,25.0 68.0,27.1 76.0,29.7 84.0,32.6 92.0,35.9 100.0,39.6 108.0,43.6 116.0,47.9 124.0,52.6 132.0,57.6 140.0,62.9 148.0,68.5 156.0,74.4 164.0,80.5 172.0,86.9 180.0,93.6" fill="none" stroke="#3f44c9" stroke-width="2"/>
+<line x1="138.3" y1="61.7" x2="138.3" y2="180" stroke="#f5a524" stroke-width="1" stroke-dasharray="3 3"/>
+<circle cx="138.3" cy="61.7" r="3.5" fill="#f5a524"/>
+<text x="20" y="194" text-anchor="middle">0</text><text x="180" y="194" text-anchor="middle">1</text><text x="138" y="194" text-anchor="middle" fill="#f5a524">c</text>
+<text x="11" y="24" text-anchor="middle">1</text><text x="11" y="184" text-anchor="middle">0</text>
+<text x="152" y="36" fill="#999">y = x</text>
+<text x="60" y="58" fill="#3f44c9">y = f(x)</text>
+<text x="38" y="74" fill="#555" font-size="11">above</text><text x="144" y="114" fill="#555" font-size="11">below</text>
+</svg><figcaption>The graph starts on or above the diagonal and ends on or below it. It must cross.</figcaption></figure>
+<p>In two dimensions the same is true and far harder. <b>Brouwer's theorem</b>: a continuous map of a disc or square to itself has a fixed point. Stir a coffee gently, without splashing; when it settles, some point of the surface is exactly where it began. Lay a map of the room on the floor; one point of it lies directly over the place it depicts.</p>
+<p>Why not copy the proof? In one dimension \(f(x) - x\) is a number, positive or negative, and the IVT squeezes a zero between the signs. In two it is an arrow, with a direction instead of a sign, and there is no "between". A new idea is needed, such as the winding count of <a href="b17-winding.html">sheet b17</a>.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: \(f(x) = \cos x\) on \([0,1]\)</h2>
+<p>Working in radians, \(\cos\) takes \([0,1]\) into \([\cos 1, 1] \approx [0.54, 1]\), inside \([0,1]\), so the theorem applies. Let \(g(x) = \cos x - x\): \(g(0) = 1\), \(g(1) \approx -0.46\). Halve the interval and keep the half where the sign changes:</p>
+<p>\[g(0.5) = 0.378,\quad g(0.75) = -0.018,\quad g(0.625) = 0.186,\]</p>
+<p>so the fixed point is in \([0.625, 0.75]\). Ten more halvings give \(c \approx 0.7391\). On a calculator, press \(\cos\) repeatedly from any start and the display settles at 0.739085. That convergence is a bonus the theorem does not promise; the theorem only says the point is there.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Check that \(f(x) = 1 - x^2\) satisfies the hypotheses on \([0,1]\), then find its fixed point exactly.<div class="space short"></div></li>
+<li>(a) Find all fixed points of \(f(x) = x^2\) on \([0,1]\). (b) How many does \(f(x) = x^2 + \tfrac14\) have? (c) \(f(x) = x^2 + \tfrac12\) has none. Does this contradict the theorem?<div class="space short"></div></li>
+<li>Every hypothesis matters. Give (a) a continuous \(f : (0,1) \to (0,1)\), on the open interval, with no fixed point; (b) an \(f : [0,1] \to [0,1]\) with one jump and no fixed point.<div class="space"></div></li>
+<li>A hiker walks up a mountain path on Saturday, leaving the bottom at 6 am and reaching the top at 6 pm. On Sunday she walks down the same path, leaving the top at 6 am and reaching the bottom at 6 pm. Prove there is a time of day at which she was at exactly the same height on both days.<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: opposite points, same temperature</h2>
+<p>Temperature along the equator is a continuous function \(T(\theta)\) of longitude. Show there are two diametrically opposite points with the same temperature. Hint: let \(g(\theta) = T(\theta) - T(\theta + 180^\circ)\) and compare \(g(0)\) with \(g(180^\circ)\).</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(1 - x^2\) is continuous and for \(0 \le x \le 1\) lies between 0 and 1. Fixed point: \(x = 1 - x^2\), so \(x^2 + x - 1 = 0\), \(x = \tfrac{\sqrt5 - 1}{2} \approx 0.618\). The other root is negative. This is the golden ratio minus one.</li>
+<li>(a) \(x^2 = x\) gives \(0\) and \(1\): two fixed points, both at the corners. (b) \(x^2 - x + \tfrac14 = (x - \tfrac12)^2 = 0\): exactly one, at \(x = \tfrac12\), where the parabola touches the diagonal. (c) No. \(x^2 + \tfrac12\) equals \(\tfrac32\) at \(x = 1\), so \(f\) does not map \([0,1]\) into \([0,1]\) and the theorem does not apply. Indeed \(x^2 - x + \tfrac12\) has discriminant \(-1\).</li>
+<li>(a) \(f(x) = x/2\) (or \(x^2\)): \(f(x) = x\) only at \(0\), which is not in \((0,1)\). The proof needed the endpoints to exist. (b) \(f(x) = 1\) for \(x \le \tfrac12\) and \(f(x) = 0\) for \(x > \tfrac12\). A fixed point with \(x \le \tfrac12\) would need \(x = 1\); one with \(x > \tfrac12\) would need \(x = 0\). The graph jumps over the diagonal.</li>
+<li>Let \(u(t)\) be Saturday's height and \(d(t)\) Sunday's, both continuous for \(t\) from 6 to 18, and let the summit height be \(H\). Set \(g(t) = u(t) - d(t)\). Then \(g(6) = 0 - H \lt 0\) and \(g(18) = H - 0 > 0\), so by the IVT \(g(t^*) = 0\) for some \(t^*\): same height at the same time of day. The time need not be noon and need not be unique.</li>
+</ol>
+<p><b>Stretch.</b> \(g(180^\circ) = T(180^\circ) - T(360^\circ) = T(180^\circ) - T(0) = -g(0)\). If \(g(0) = 0\) the points at \(0\) and \(180^\circ\) already match. Otherwise \(g(0)\) and \(g(180^\circ)\) have opposite signs, and the IVT gives a \(\theta\) between them with \(g(\theta) = 0\), that is \(T(\theta) = T(\theta + 180^\circ)\).</p>
+</section>
+
+<div class="sheet-nav"><a href="b20-predator-prey.html">← Previous</a><a href="b22-halting.html">Next: The program that cannot exist →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Foxes and rabbits · Infinity Club</title>
+<meta name="description" content="The Lotka–Volterra predator–prey equations read without solving them: the equilibrium (c/d, a/b), the nullclines, the anticlockwise loop in the phase plane, and the average populations over a cycle.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Around the corner · 20</div>
+  <h1>Foxes and rabbits</h1>
+  <p class="teaser">Two coupled equations, no closed form, and a loop in the phase plane. Lotka–Volterra, read qualitatively.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Rabbits \(R(t)\) and foxes \(F(t)\). Alone, rabbits breed: \(R' = aR\). Alone, foxes starve: \(F' = -cF\). Meetings happen at a rate proportional to \(RF\) (twice the rabbits, twice the meetings), and each meeting is bad for rabbits and good for foxes:</p>
+<p class="callout">\(R' = aR - bRF, \qquad F' = -cF + dRF.\)</p>
+<p>These are the <b>Lotka–Volterra equations</b>; \(a, b, c, d\) are positive constants and the prime means \(d/dt\). There is no formula for \(R(t)\), but you can read the equations without solving them.</p>
+<p><b>Equilibrium.</b> Nothing moves when both derivatives vanish: \(R' = R(a - bF)\) and \(F' = F(dR - c)\). Apart from extinction, \((0, 0)\), that needs \(F = a/b\) and \(R = c/d\). Check: at \(R = c/d\), \(F = a/b\), \(R' = \tfrac{c}{d}(a - a) = 0\) and \(F' = \tfrac{a}{b}(c - c) = 0\).</p>
+<p><b>Nullclines.</b> Plot \(F\) against \(R\): the <b>phase plane</b>, where time is not an axis and each solution is a curve. On the vertical line \(R = c/d\) foxes are momentarily steady; on the horizontal line \(F = a/b\) rabbits are. The lines cut the plane into four quadrants. Right of \(R = c/d\) there are enough rabbits for foxes to grow; above \(F = a/b\) there are too many foxes for rabbits. So the motion is anticlockwise: more rabbits, then more foxes, then fewer rabbits, then fewer foxes, and round again.</p>
+<figure><svg viewBox="0 0 340 200" width="340" height="200" role="img" aria-label="Phase plane with rabbits on the horizontal axis and foxes on the vertical. Dashed nullclines R = c/d and F = a/b cross at the equilibrium. Two closed loops circle it anticlockwise; arrows show the direction." font-family="Nunito, sans-serif" font-size="12">
+<line x1="40" y1="180" x2="305" y2="180" stroke="#000" stroke-width="1.2"/><line x1="40" y1="180" x2="40" y2="10" stroke="#000" stroke-width="1.2"/>
+<line x1="148.3" y1="12" x2="148.3" y2="180" stroke="#999" stroke-width="1" stroke-dasharray="4 3"/><line x1="40" y1="97.5" x2="300" y2="97.5" stroke="#999" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="152" y="20" fill="#999" font-size="11">R = c/d</text><text x="298" y="93" fill="#999" font-size="11" text-anchor="end">F = a/b</text>
+<text x="148.3" y="194" text-anchor="middle" fill="#555">50</text><text x="256.7" y="194" text-anchor="middle" fill="#555">100</text><text x="34" y="101" text-anchor="end" fill="#555">50</text><text x="34" y="19" text-anchor="end" fill="#555">100</text>
+<text x="305" y="194" text-anchor="end" fill="#000" font-size="13">rabbits R</text><text x="48" y="38" fill="#000" font-size="13">foxes F</text>
+<polyline fill="none" stroke="#3f44c9" stroke-width="2" points="213.3,130.5 218.9,129.2 224.3,127.9 229.7,126.3 234.9,124.6 239.9,122.8 244.7,120.8 249.1,118.6 253.2,116.2 256.8,113.6 260.0,110.9 262.5,107.9 264.4,104.8 265.7,101.5 266.2,98.0 265.9,94.3 264.8,90.5 262.8,86.6 260.1,82.7 256.5,78.6 252.2,74.6 247.1,70.6 241.4,66.6 235.1,62.8 228.3,59.1 221.1,55.7 213.6,52.5 206.0,49.5 198.2,46.9 190.5,44.6 182.8,42.7 175.3,41.1 168.0,39.9 161.0,39.1 154.3,38.6 148.0,38.5 142.0,38.6 136.3,39.1 131.1,39.9 126.2,40.9 121.6,42.2 117.4,43.6 113.5,45.3 109.9,47.1 106.7,49.0 103.7,51.1 100.9,53.3 98.4,55.5 96.2,57.8 94.1,60.2 92.3,62.6 90.6,65.1 89.1,67.5 87.7,70.0 86.5,72.5 85.5,74.9 84.5,77.3 83.7,79.7 83.0,82.1 82.4,84.5 81.9,86.8 81.6,89.0 81.3,91.3 81.1,93.4 80.9,95.6 80.9,97.6 80.9,99.7 81.1,101.6 81.3,103.5 81.6,105.4 81.9,107.2 82.3,109.0 82.9,110.7 83.4,112.3 84.1,113.9 84.8,115.5 85.7,117.0 86.6,118.4 87.6,119.8 88.6,121.1 89.8,122.4 91.0,123.6 92.4,124.8 93.8,125.9 95.3,126.9 97.0,127.9 98.7,128.9 100.5,129.8 102.5,130.7 104.5,131.5 106.7,132.2 109.0,133.0 111.5,133.6 114.1,134.2 116.8,134.8 119.6,135.3 122.6,135.7 125.7,136.1 129.0,136.5 132.5,136.7 136.0,137.0 139.8,137.1 143.7,137.2 147.8,137.3 152.0,137.2 156.4,137.2 161.0,137.0 165.7,136.7 170.5,136.4 175.5,136.0 180.7,135.5 185.9,135.0 191.3,134.3 196.7,133.5 202.2,132.6 207.7,131.6 213.3,130.5"/>
+<polyline fill="none" stroke="#3f44c9" stroke-width="1.4" points="170.0,114.0 172.1,113.4 174.1,112.8 176.0,112.2 177.9,111.4 179.8,110.7 181.5,109.8 183.2,108.9 184.7,108.0 186.1,107.0 187.4,106.0 188.5,104.9 189.5,103.7 190.3,102.6 191.0,101.3 191.5,100.1 191.7,98.8 191.8,97.5 191.7,96.2 191.4,94.8 190.9,93.4 190.2,92.1 189.4,90.7 188.3,89.4 187.0,88.1 185.6,86.8 184.0,85.5 182.2,84.3 180.4,83.1 178.3,82.0 176.2,80.9 174.0,79.9 171.6,79.0 169.3,78.2 166.8,77.5 164.3,76.8 161.8,76.2 159.3,75.8 156.8,75.4 154.3,75.1 151.8,74.9 149.4,74.8 147.0,74.9 144.7,74.9 142.5,75.1 140.3,75.4 138.2,75.8 136.1,76.2 134.2,76.7 132.3,77.3 130.6,77.9 128.9,78.6 127.3,79.4 125.8,80.2 124.4,81.0 123.1,81.9 121.9,82.8 120.8,83.8 119.8,84.8 118.8,85.8 118.0,86.8 117.2,87.9 116.5,89.0 115.9,90.0 115.4,91.1 115.0,92.2 114.7,93.3 114.4,94.3 114.2,95.4 114.1,96.5 114.1,97.5 114.1,98.6 114.2,99.6 114.4,100.6 114.7,101.6 115.0,102.5 115.4,103.5 115.9,104.4 116.4,105.3 117.0,106.2 117.7,107.0 118.4,107.8 119.3,108.6 120.2,109.3 121.1,110.1 122.1,110.7 123.2,111.4 124.4,112.0 125.6,112.6 126.9,113.2 128.2,113.7 129.6,114.1 131.1,114.6 132.7,115.0 134.3,115.3 135.9,115.6 137.6,115.9 139.4,116.1 141.2,116.3 143.1,116.5 145.0,116.6 147.0,116.6 149.0,116.6 151.0,116.6 153.1,116.5 155.2,116.4 157.3,116.2 159.5,116.0 161.6,115.7 163.7,115.3 165.9,114.9 168.0,114.5 170.0,114.0"/>
+<polygon points="219.2,129.2 211.2,135.0 209.5,127.2" fill="#3f44c9"/><polygon points="184.7,43.0 194.4,41.5 192.3,49.2" fill="#3f44c9"/><polygon points="81.4,87.9 79.9,78.2 87.6,80.3" fill="#3f44c9"/><polygon points="105.9,132.3 96.1,132.2 99.5,124.9" fill="#3f44c9"/>
+<circle cx="148.3" cy="97.5" r="3.5" fill="#000"/>
+<circle cx="213.3" cy="130.5" r="3.5" fill="#f5a524"/><text x="219" y="143" fill="#f5a524" font-size="11">start (80, 30)</text>
+<text x="222" y="77" fill="#3f44c9" font-size="11">both rise</text><text x="100" y="63" fill="#3f44c9" font-size="11" text-anchor="end">rabbits fall</text>
+</svg><figcaption>Dashed nullclines cross at the equilibrium \((50, 50)\); each start traces its own closed loop, anticlockwise.</figcaption></figure>
+</section>
+
+<section class="example">
+<h2>Watch one: \(a = 1\), \(b = 0.02\), \(c = 0.5\), \(d = 0.01\)</h2>
+<p>Equilibrium: \(R = c/d = 50\), \(F = a/b = 50\). Start with 80 rabbits and 30 foxes. Then \(R' = 80 - 0.02 \times 80 \times 30 = 32\) and \(F' = -15 + 0.01 \times 80 \times 30 = 9\): both rising, so the point moves up and right, as the figure's arrow shows. Following the equations numerically (a tiny step in the direction \((R', F')\), repeated) traces the outer loop: rabbits swing between about 19 and 104, foxes between 26 and 86, and the point is back at its start after about 9.3 time units.</p>
+<p class="small">Drag the rates and click a start point: <a href="../../demos/lotka.html">infinityclub.net/demos/lotka.html</a>. The <a href="../../grade-10/sheets/c6-epidemics.html">SIR epidemic</a> is a cousin with three populations and no loop.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<p>Take \(a = 2\), \(b = 0.04\), \(c = 1\), \(d = 0.01\) throughout.</p>
+<ol>
+<li>Find the non-zero equilibrium, and check by substitution that both \(R'\) and \(F'\) are zero there.<div class="space short"></div></li>
+<li>Compute \(R'\) and \(F'\) at \((150, 20)\) and at \((50, 80)\). Which way is each point moving, and in which quadrant of the nullcline picture is it?<div class="space short"></div></li>
+<li>Euler's method: from \((150, 20)\) with step \(h = 0.1\), set \(R_{\text{new}} = R + hR'\) and \(F_{\text{new}} = F + hF'\). Take two steps. (The demo does this with a tiny step.)<div class="space"></div></li>
+<li>Divide the rabbit equation by \(R\): \((\ln R)' = R'/R = a - bF\). Integrate over one loop of period \(T\); the left side returns to its start. Deduce the average number of foxes over a cycle, then of rabbits. Now hunters remove a fraction \(h\) of both species per unit time: \(R' = (a - h)R - bRF\), \(F' = -(c + h)F + dRF\). What happens to the averages?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: why the loops close</h2>
+<p>Let \(V = dR - c\ln R + bF - a\ln F\). Use the chain rule to show that \(dV/dt = 0\) along every solution. Why does that make each orbit a closed loop rather than a spiral?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(R = c/d = 100\), \(F = a/b = 50\). \(R' = 2(100) - 0.04(100)(50) = 200 - 200 = 0\); \(F' = -50 + 0.01(100)(50) = -50 + 50 = 0\).</li>
+<li>At \((150, 20)\): \(R' = 300 - 120 = 180\), \(F' = -20 + 30 = 10\). Both rising: the point moves right and slightly up. It is below \(F = 50\) and right of \(R = 100\), the bottom-right quadrant. At \((50, 80)\): \(R' = 100 - 160 = -60\), \(F' = -80 + 40 = -40\). Both falling: down and to the left, in the top-left quadrant. Together these fix the anticlockwise sense.</li>
+<li>Step 1: \(R = 150 + 0.1 \times 180 = 168\), \(F = 20 + 0.1 \times 10 = 21\). Step 2: \(R' = 336 - 141.12 = 194.88\), \(F' = -21 + 35.28 = 14.28\), so \(R = 187.49\), \(F = 22.43\).</li>
+<li>Integrating \((\ln R)' = a - bF\) from 0 to \(T\): \(0 = aT - b\int_0^T F\,dt\), so the average of \(F\) is \(a/b = 50\). Likewise \((\ln F)' = -c + dR\) gives average \(R = c/d = 100\): the averages are the equilibrium values, whatever the loop. With hunting, replace \(a\) by \(a - h\) and \(c\) by \(c + h\): average foxes fall to \((a - h)/b\) and average rabbits <em>rise</em> to \((c + h)/d\). Culling both species helps the prey. Volterra built the model to explain a version of this puzzle in fishing records.</li>
+</ol>
+<p><b>Stretch.</b> \(\dfrac{dV}{dt} = \left(d - \dfrac{c}{R}\right)R' + \left(b - \dfrac{a}{F}\right)F' = (dR - c)(a - bF) + (bF - a)(dR - c) = 0\). So every solution stays on one level curve of \(V\). \(V\) has a single minimum at \((c/d, a/b)\) and climbs to infinity towards each axis and far away, so its level curves are closed rings around the equilibrium, and the solution runs round its ring forever. The cycles never damp out in this model; real populations, with crowding and chance, do.</p>
+</section>
+
+<div class="sheet-nav"><a href="b19-oscillator.html">← Previous</a><a href="b21-fixed-points.html">Next: Stir your coffee: a point stays still →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

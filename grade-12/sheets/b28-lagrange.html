@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The best point on a curve · Infinity Club</title>
+<meta name="description" content="Maximise f along a constraint g = c. At the optimum a level curve of f touches the constraint, so the gradients are parallel: ∇f = λ∇g. Lagrange multipliers with a picture, then the largest box inside a sphere.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Around the corner · 28</div>
+  <h1>The best point on a curve</h1>
+  <p class="teaser">Maximise f along a constraint: at the optimum the gradients are parallel. Lagrange multipliers with a picture, then the largest box in a sphere.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>You want the largest \(f(x, y)\), but \((x, y)\) must stay on a curve \(g(x, y) = c\), the <b>constraint</b>. Draw the <b>level curves</b> of \(f\), where \(f\) is constant, like contours on a map, and walk along the constraint. Wherever a level curve <em>crosses</em> it you can keep walking to a higher level; you can only be stuck where one just <em>touches</em>.</p>
+<figure><svg viewBox="0 0 350 200" width="350" height="200" role="img" aria-label="Parallel level lines of f = x + y crossing a unit circle; one line touches the circle at a point where the gradient arrows of f and g point the same way" font-family="Nunito, sans-serif" font-size="13">
+<line x1="3.0" y1="23.0" x2="174.5" y2="194.5" stroke="#999" stroke-width="1.2"/><line x1="34.5" y1="5.5" x2="223.5" y2="194.5" stroke="#999" stroke-width="1.2"/><line x1="83.5" y1="5.5" x2="272.5" y2="194.5" stroke="#999" stroke-width="1.2"/><line x1="125.5" y1="5.5" x2="297.0" y2="177.0" stroke="#999" stroke-width="1.2"/><line x1="195.5" y1="5.5" x2="297.0" y2="107.0" stroke="#999" stroke-width="1.2"/><line x1="154.5" y1="5.5" x2="297.0" y2="148.0" stroke="#f5a524" stroke-width="2.2"/>
+<circle cx="150" cy="100" r="70" fill="#dcdcf5" fill-opacity="0.6" stroke="#3f44c9" stroke-width="2"/>
+<line x1="203.0" y1="54.0" x2="239.8" y2="17.2" stroke="#3f44c9" stroke-width="2.5"/><polygon points="244.0,13.0 241.2,21.5 235.5,15.8" fill="#3f44c9"/><line x1="199.5" y1="50.5" x2="219.3" y2="30.7" stroke="#f5a524" stroke-width="2.5"/><polygon points="223.5,26.5 220.7,34.9 215.1,29.3" fill="#f5a524"/>
+<circle cx="199.5" cy="50.5" r="3.5" fill="#000"/>
+<text x="195" y="69" fill="#000" text-anchor="end" font-weight="700">(1/√2, 1/√2)</text>
+<text x="246" y="27" fill="#3f44c9" font-weight="700">∇g</text>
+<text x="205" y="31" fill="#f5a524" font-weight="700" text-anchor="end">∇f</text>
+<text x="14" y="30" fill="#555" font-size="12">k = −1</text><text x="301" y="181" fill="#555" font-size="12">k = 1</text><text x="301" y="152" fill="#f5a524" font-size="12">k = √2</text><text x="301" y="111" fill="#555" font-size="12">k = 2</text>
+<text x="60" y="186" fill="#3f44c9" font-size="12">x² + y² = 1</text>
+</svg><figcaption>Level lines \(x + y = k\) (grey) and the constraint circle. Lines with \(k \lt \sqrt2\) cut it, \(k = 2\) misses it, and at the touching line \(k = \sqrt2\) the gradients \(\nabla f\) and \(\nabla g\) are parallel.</figcaption></figure>
+<p>Touching curves share a tangent, so they share a normal. The normal to a level curve of \(f\) is its <b>gradient</b></p>
+<p>\[\nabla f = \left(\frac{\partial f}{\partial x},\ \frac{\partial f}{\partial y}\right),\]</p>
+<p>where \(\partial f / \partial x\) means: differentiate with respect to \(x\), treating \(y\) as a constant. (A small step \((dx, dy)\) along a level curve changes \(f\) by \(\frac{\partial f}{\partial x}dx + \frac{\partial f}{\partial y}dy = 0\), so the step is perpendicular to \(\nabla f\); see also <a href="b9-gradient-descent.html">gradient descent</a>.) Likewise \(\nabla g\) is normal to the constraint. At the best point the two line up:</p>
+<p class="callout">\(\nabla f = \lambda\, \nabla g\) for some number \(\lambda\), together with \(g(x, y) = c\).</p>
+<p>One equation per coordinate plus the constraint, and as many unknowns. The rule finds candidates, maxima and minima alike; you decide which is which. It works in any number of variables, where it earns its keep.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: the largest \(x + y\) on the unit circle</h2>
+<p>\(f = x + y\), constraint \(g = x^2 + y^2 = 1\). Then \(\nabla f = (1, 1)\) and \(\nabla g = (2x, 2y)\). Parallel means \(1 = 2\lambda x\) and \(1 = 2\lambda y\), so \(x = y\). With \(x^2 + y^2 = 1\) that gives \(x = y = \pm\tfrac{1}{\sqrt2}\). The plus sign is the maximum, \(f = \sqrt2\); the minus sign is the minimum, \(-\sqrt2\). In the figure, \(x + y = \sqrt2\) is the line that touches the circle; smaller \(k\) cuts it, larger \(k\) misses it.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Maximise \(xy\) subject to \(x + y = 10\) with \(x, y > 0\). Write down the three equations, solve them, and keep the value of \(\lambda\) for the stretch. Check by substituting \(y = 10 - x\).<div class="space short"></div></li>
+<li>Find the point on the line \(x + 2y = 5\) closest to the origin by minimising \(x^2 + y^2\). Give the point and the distance, and confirm the distance with the formula for the distance from a point to a line.<div class="space short"></div></li>
+<li>Find the largest and smallest values of \(f = x^2 y\) on the circle \(x^2 + y^2 = 3\). The first gradient equation is \(2xy = 2\lambda x\); do not divide by \(x\) without asking whether \(x\) could be zero.<div class="space"></div></li>
+<li>A box sits inside a sphere of radius \(R\) with its eight corners on the sphere. With corner \((x, y, z)\) in the positive octant, the volume is \(8xyz\) and the constraint is \(x^2 + y^2 + z^2 = R^2\). Find the largest box, its side, and the fraction of the sphere it fills.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: what \(\lambda\) means</h2>
+<p>In exercise 1 you found \(\lambda = 5\). Now solve the same problem with the constraint \(x + y = c\) for general \(c\), call the maximum \(M(c)\), and compute \(\dfrac{dM}{dc}\) at \(c = 10\). What is \(\lambda\) telling you? Economists call it a <b>shadow price</b>.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(\nabla(xy) = (y, x)\) and \(\nabla(x + y) = (1, 1)\), so \(y = \lambda\), \(x = \lambda\), \(x + y = 10\): \(x = y = 5\), \(\lambda = 5\), maximum \(25\). Check: \(x(10 - x) = -(x - 5)^2 + 25\).</li>
+<li>\((2x, 2y) = \lambda(1, 2)\) gives \(y = 2x\); with \(x + 2y = 5\), \(x = 1\), \(y = 2\). Distance \(\sqrt{1 + 4} = \sqrt5\). Formula: \(\dfrac{\lvert 0 + 0 - 5 \rvert}{\sqrt{1^2 + 2^2}} = \sqrt5\).</li>
+<li>Equations: \(2xy = 2\lambda x\), \(x^2 = 2\lambda y\), \(x^2 + y^2 = 3\). If \(x \ne 0\), then \(\lambda = y\), so \(x^2 = 2y^2\) and \(3y^2 = 3\): \(y = \pm 1\), \(x = \pm\sqrt2\), giving \(f = 2\) (when \(y = 1\)) and \(f = -2\) (when \(y = -1\)). If \(x = 0\), then \(y = \pm\sqrt3\) and \(f = 0\). Largest \(2\), smallest \(-2\).</li>
+<li>\(\nabla(8xyz) = (8yz, 8xz, 8xy) = \lambda(2x, 2y, 2z)\). Multiply the three equations by \(x\), \(y\), \(z\) respectively: each left side becomes \(8xyz\), so \(2\lambda x^2 = 2\lambda y^2 = 2\lambda z^2\), and \(\lambda \ne 0\) (else the volume would be zero), so \(x = y = z = R/\sqrt3\). A cube of side \(2R/\sqrt3 \approx 1.155R\), volume \(\dfrac{8R^3}{3\sqrt3} \approx 1.540R^3\). The sphere has volume \(\tfrac43\pi R^3\), so the cube fills \(\dfrac{2}{\pi\sqrt3} \approx 36.8\%\) of it.</li>
+</ol>
+<p><b>Stretch.</b> With \(x + y = c\) the equations give \(x = y = c/2\), so \(M(c) = c^2/4\) and \(M'(c) = c/2\), which is \(5\) at \(c = 10\): equal to \(\lambda\). The multiplier is the rate at which the best achievable value improves per unit of extra constraint. Loosen the budget by a small \(h\) and the optimum rises by about \(\lambda h\).</p>
+</section>
+
+<div class="sheet-nav"><a href="b27-knots.html">← Previous</a><a href="c1-escape-velocity.html">Next: Escape velocity →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

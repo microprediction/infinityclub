@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How many primes are there below x? · Infinity Club</title>
+<meta name="description" content="The prime number theorem: the count of primes below x is about x / ln x, and closer still to the logarithmic integral. Gauss's guess, a table to 10⁶, and what the ratio tending to 1 does and does not say.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Around the corner · 3</div>
+  <h1>How many primes are there below x?</h1>
+  <p class="teaser">About x / ln x. Gauss guessed it as a teenager, it took a century to prove, and you can check it against a table tonight.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Write \(\pi(x)\) for the number of primes up to \(x\). It is just the letter, nothing to do with circles. From the sieve (<a href="../../grade-6/sheets/b1-primes.html">grade 6, b1</a>): \(\pi(10) = 4\), \(\pi(100) = 25\), \(\pi(1000) = 168\). The primes thin out. How fast?</p>
+<p>Gauss, as a teenager with a printed table of primes, counted how many fell in each block of a thousand and noticed that near \(x\) the <b>density</b> was about \(1/\ln x\): roughly one integer in every \(\ln x\) is prime. Adding up that density from \(2\) to \(x\) gives the guess</p>
+<p>\[\pi(x) \approx \operatorname{Li}(x) = \int_2^x \frac{dt}{\ln t}, \qquad \text{and more crudely} \qquad \pi(x) \approx \frac{x}{\ln x}.\]</p>
+<p>Gauss never published it. The statement</p>
+<p class="callout">\(\dfrac{\pi(x)}{x/\ln x} \to 1\) as \(x \to \infty\) &nbsp;(the <b>prime number theorem</b>)</p>
+<p>was proved only in 1896, by Hadamard and de la Vallée Poussin independently, using complex analysis. Read the arrow carefully (<a href="b1-epsilon-delta.html">b1</a>). It says the <em>ratio</em> tends to \(1\), not that the difference shrinks: \(\pi(x) - x/\ln x\) grows without bound. And \(\operatorname{Li}(x)\) is the far better estimate.</p>
+<figure><svg viewBox="0 0 320 170" width="224" height="119" role="img" aria-label="Two ratios plotted against powers of ten from 100 to a million: pi(x) over x/ln x in blue stays above 1 and drifts down slowly from 1.15 to 1.08; pi(x) over Li(x) in orange rises from 0.86 to 0.998 and hugs 1" font-family="Nunito, sans-serif" font-size="12">
+<line x1="50" y1="150" x2="290" y2="150" stroke="#999" stroke-width="1"/>
+<line x1="50" y1="20" x2="50" y2="150" stroke="#999" stroke-width="1"/>
+<line x1="50" y1="85" x2="290" y2="85" stroke="#999" stroke-width="1" stroke-dasharray="4 3"/>
+<polyline points="50,35.8 110,32.8 170,42.1 230,51.1 290,57.5" fill="none" stroke="#3f44c9" stroke-width="2"/>
+<polyline points="50,130.6 110,100.8 170,89.2 230,86.2 290,85.5" fill="none" stroke="#f5a524" stroke-width="2"/>
+<g fill="#3f44c9"><circle cx="50" cy="35.8" r="3"/><circle cx="110" cy="32.8" r="3"/><circle cx="170" cy="42.1" r="3"/><circle cx="230" cy="51.1" r="3"/><circle cx="290" cy="57.5" r="3"/></g>
+<g fill="#f5a524"><circle cx="50" cy="130.6" r="3"/><circle cx="110" cy="100.8" r="3"/><circle cx="170" cy="89.2" r="3"/><circle cx="230" cy="86.2" r="3"/><circle cx="290" cy="85.5" r="3"/></g>
+<text x="46" y="24" text-anchor="end" fill="#555">1.2</text>
+<text x="46" y="89" text-anchor="end">1</text>
+<text x="46" y="154" text-anchor="end" fill="#555">0.8</text>
+<text x="50" y="165" text-anchor="middle">10²</text>
+<text x="110" y="165" text-anchor="middle">10³</text>
+<text x="170" y="165" text-anchor="middle">10⁴</text>
+<text x="230" y="165" text-anchor="middle">10⁵</text>
+<text x="290" y="165" text-anchor="middle">10⁶</text>
+<text x="180" y="30" fill="#3f44c9" font-weight="700">π(x) ÷ (x / ln x)</text>
+<text x="200" y="112" fill="#f5a524" font-weight="700">π(x) ÷ Li(x)</text>
+</svg><figcaption>Both ratios head for \(1\). The crude one gets there slowly, from above; \(\operatorname{Li}\) is within \(0.2\%\) by a million.</figcaption></figure>
+</section>
+
+<section class="example">
+<h2>Watch one: the table</h2>
+<table class="tt">
+<tr><th>\(x\)</th><th>\(\pi(x)\)</th><th>\(x/\ln x\)</th><th>\(\operatorname{Li}(x)\)</th><th>\(\pi(x) \div \frac{x}{\ln x}\)</th><th>\(\pi(x) \div \operatorname{Li}(x)\)</th></tr>
+<tr><td>\(10^2\)</td><td>25</td><td>21.7</td><td>29.1</td><td>1.151</td><td>0.860</td></tr>
+<tr><td>\(10^3\)</td><td>168</td><td>144.8</td><td>176.6</td><td>1.161</td><td>0.951</td></tr>
+<tr><td>\(10^4\)</td><td>1,229</td><td>1,085.7</td><td>1,245.1</td><td>1.132</td><td>0.987</td></tr>
+<tr><td>\(10^5\)</td><td>9,592</td><td>8,685.9</td><td>9,628.8</td><td>1.104</td><td>0.996</td></tr>
+<tr><td>\(10^6\)</td><td>78,498</td><td>72,382.4</td><td>78,626.5</td><td>1.084</td><td>0.998</td></tr>
+</table>
+<p>Counts are exact, estimates to one decimal place. By a million the crude ratio is still \(8\%\) high; the \(\operatorname{Li}\) ratio is within a fifth of a percent. \(\operatorname{Li}(x)\) overestimates in every row; it does not always, but the first failure is astronomically far out.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>List the primes below \(50\) and count them. Compare with \(50/\ln 50\). Is the ratio above \(1\), like every row of the table?<div class="space short"></div></li>
+<li>(a) Using \(\pi(10^4) = 1229\), compute \(\pi(x) \div (x/\ln x)\) and check it against the table. (b) The differences \(\pi(x) - x/\ln x\) down the table are \(3.3\), \(23.2\), \(143.3\), \(906.1\), \(6115.6\): growing. Explain how the ratio can tend to \(1\) while the difference grows without bound.<div class="space short"></div></li>
+<li>Estimate the number of primes between \(10^6\) and \(2 \times 10^6\): (a) as \(\frac{2 \times 10^6}{\ln(2 \times 10^6)} - \frac{10^6}{\ln 10^6}\); (b) by treating the density as the constant \(1/\ln(1.5 \times 10^6)\) across the whole interval. The true count is \(70{,}435\). Which estimate is closer, and why?<div class="space short"></div></li>
+<li>A \(100\)-digit number is picked at random. Using the density \(1/\ln x\) with \(x = 10^{100}\), estimate the chance it is prime. If only odd numbers are picked, how does the chance change? About how many random odd \(100\)-digit numbers must be tested to expect one prime? Why does <a href="../../grade-10/sheets/b6-rsa.html">RSA</a> need this to be a small number?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the \(n\)th prime</h2>
+<p>If \(\pi(x) \approx x/\ln x\), then the \(n\)th prime \(p_n\) is roughly the \(x\) with \(x/\ln x = n\), and a first try is \(p_n \approx n \ln n\). Test it on \(p_{1000} = 7919\). Then try the refinement \(n(\ln n + \ln \ln n)\) on \(p_{1000}\) and on \(p_{10^6} = 15{,}485{,}863\). Which side of the truth does each land on?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47\): fifteen primes. \(50/\ln 50 = 12.78\), ratio \(1.17\), above \(1\) as usual.</li>
+<li>(a) \(10^4/\ln 10^4 = 10^4/9.2103 = 1085.7\), ratio \(1229/1085.7 = 1.132\). (b) The ratio tending to \(1\) means the difference is small <em>compared with</em> \(x/\ln x\): \(\dfrac{\pi(x) - x/\ln x}{x/\ln x} \to 0\). A difference of \(6116\) is \(8\%\) of \(72{,}382\); as \(x\) grows the percentage shrinks even though the absolute gap grows. Compare \(x^2 + x\) and \(x^2\): ratio \(\to 1\), difference \(\to \infty\).</li>
+<li>(a) \(\dfrac{2 \times 10^6}{14.5087} - \dfrac{10^6}{13.8155} = 137{,}848.7 - 72{,}382.4 = 65{,}466\). (b) \(\dfrac{10^6}{\ln(1.5 \times 10^6)} = \dfrac{10^6}{14.2210} = 70{,}318\). The density estimate (b) is far closer (off by \(0.2\%\) against \(7\%\)), because it uses the local density \(1/\ln x\) directly; (a) inherits the systematic error of \(x/\ln x\) at both ends. (b) is a one-rectangle approximation to \(\operatorname{Li}(2 \times 10^6) - \operatorname{Li}(10^6) = 70{,}427\).</li>
+<li>\(\ln 10^{100} = 100 \ln 10 = 230.3\), so about \(1\) in \(230\). Even numbers above \(2\) are never prime, so restricting to odd numbers doubles the chance: about \(1\) in \(115\). Expect to test about \(115\) odd candidates. RSA needs two fresh primes of this size or larger for every key; if primes were rare there, finding them would take too long, and the test for primality would have to run thousands of times. A few hundred trials is fine.</li>
+</ol>
+<p><b>Stretch.</b> \(1000 \ln 1000 = 6908\), low by \(13\%\) against \(7919\). The refinement gives \(1000(6.908 + 1.933) = 8840\), now \(12\%\) high. For \(n = 10^6\): \(n \ln n = 13{,}815{,}511\) (low by \(11\%\)) and \(n(\ln n + \ln\ln n) = 16{,}441{,}302\) (high by \(6\%\)). The truth sits between the two, and the refinement's percentage error shrinks faster. The exact statement is \(p_n / (n \ln n) \to 1\), the prime number theorem read backwards.</p>
+</section>
+
+<div class="sheet-nav"><a href="b2-e-irrational.html">← Previous</a><a href="b4-crt.html">Next: The Chinese remainder theorem →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>y″ = −y · Infinity Club</title>
+<meta name="description" content="The simple harmonic oscillator y″ = −ω²y: why A cos ωt + B sin ωt solves it, where the period 2π/ω comes from, the pendulum's √(g/L), and what resonance does.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Around the corner · 19</div>
+  <h1>y″ = −y</h1>
+  <p class="teaser">The equation of a spring, a pendulum and a tuning fork. Why sin and cos are its solutions, what the frequency is, and what resonance does.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Pull a mass \(m\) on a spring a distance \(y\) from rest and the spring pulls back with force \(-ky\) (Hooke's law). Newton's \(F = ma\) gives \(my'' = -ky\), where \(y''\), the second time derivative, is the acceleration. Divide by \(m\):</p>
+<p class="callout">\(y'' = -\omega^2 y, \qquad \omega = \sqrt{k/m}.\)</p>
+<p>Acceleration is proportional to displacement and points back to the centre. Which functions are a negative multiple of their own second derivative? \((\cos\omega t)'' = -\omega^2\cos\omega t\) and \((\sin\omega t)'' = -\omega^2\sin\omega t\). The equation is <b>linear</b>, so sums and multiples of solutions are solutions:</p>
+<p class="callout">\(y = A\cos\omega t + B\sin\omega t.\)</p>
+<p>Two constants, because a motion needs two starting facts: \(y(0) = A\) and \(y'(0) = \omega B\). Both repeat when \(\omega t\) grows by \(2\pi\), so the <b>period</b> is \(T = 2\pi/\omega\), whatever the amplitude: stiffer spring or lighter mass, faster oscillation.</p>
+<p>A pendulum of length \(L\) at angle \(\theta\) obeys \(\theta'' = -(g/L)\sin\theta\). For small angles \(\sin\theta \approx \theta\), so \(\omega = \sqrt{g/L}\) and \(T = 2\pi\sqrt{L/g}\): no mass, and no amplitude for small swings, which is why pendulum clocks keep time.</p>
+<p><b>Resonance.</b> Drive the system with a periodic force. At its own frequency \(\omega\) every push arrives in step and the swings grow and grow. At any other frequency the pushes drift in and out of step and the response stays bounded.</p>
+<figure><svg viewBox="0 0 520 180" width="520" height="180" role="img" aria-label="Left: y = cos 2t over two periods with the period marked. Right: the resonant response (t/2) sin t, whose swings grow linearly inside a widening envelope." font-family="Nunito, sans-serif" font-size="12">
+<line x1="20" y1="90" x2="245" y2="90" stroke="#999" stroke-width="1"/><line x1="20" y1="30" x2="20" y2="150" stroke="#999" stroke-width="1"/>
+<polyline fill="none" stroke="#3f44c9" stroke-width="2" points="20.0,35.0 22.8,35.7 25.6,37.8 28.4,41.1 31.1,45.8 33.9,51.5 36.7,58.2 39.5,65.7 42.3,73.8 45.1,82.4 47.8,91.1 50.6,99.8 53.4,108.2 56.2,116.2 59.0,123.6 61.8,130.0 64.6,135.5 67.3,139.8 70.1,142.9 72.9,144.6 75.7,145.0 78.5,143.9 81.3,141.5 84.1,137.8 86.8,132.9 89.6,126.9 92.4,120.0 95.2,112.3 98.0,104.1 100.8,95.5 103.5,86.7 106.3,78.1 109.1,69.7 111.9,61.9 114.7,54.7 117.5,48.5 120.3,43.3 123.0,39.3 125.8,36.6 128.6,35.2 131.4,35.2 134.2,36.6 137.0,39.3 139.7,43.3 142.5,48.5 145.3,54.7 148.1,61.9 150.9,69.7 153.7,78.1 156.5,86.7 159.2,95.5 162.0,104.1 164.8,112.3 167.6,120.0 170.4,126.9 173.2,132.9 175.9,137.8 178.7,141.5 181.5,143.9 184.3,145.0 187.1,144.6 189.9,142.9 192.7,139.8 195.4,135.5 198.2,130.0 201.0,123.6 203.8,116.2 206.6,108.2 209.4,99.8 212.2,91.1 214.9,82.4 217.7,73.8 220.5,65.7 223.3,58.2 226.1,51.5 228.9,45.8 231.6,41.1 234.4,37.8 237.2,35.7 240.0,35.0"/>
+<line x1="20" y1="160" x2="130" y2="160" stroke="#f5a524" stroke-width="1.5"/><line x1="20" y1="155" x2="20" y2="165" stroke="#f5a524" stroke-width="1.5"/><line x1="130" y1="155" x2="130" y2="165" stroke="#f5a524" stroke-width="1.5"/>
+<text x="75" y="175" text-anchor="middle" fill="#f5a524">one period T = 2π/ω</text>
+<text x="150" y="28" fill="#3f44c9" font-size="13">y = A cos ωt + B sin ωt</text>
+<text x="248" y="94" fill="#555">t</text>
+<line x1="280" y1="90" x2="505" y2="90" stroke="#999" stroke-width="1"/>
+<line x1="280" y1="90" x2="500" y2="20" stroke="#999" stroke-width="1" stroke-dasharray="4 3"/><line x1="280" y1="90" x2="500" y2="160" stroke="#999" stroke-width="1" stroke-dasharray="4 3"/>
+<polyline fill="none" stroke="#f5a524" stroke-width="2" points="280.0,90.0 282.2,89.8 284.4,89.3 286.6,88.5 288.8,87.6 291.1,86.6 293.3,85.8 295.5,85.2 297.7,84.9 299.9,85.2 302.1,85.9 304.3,87.3 306.5,89.1 308.7,91.3 311.0,93.8 313.2,96.4 315.4,98.8 317.6,100.9 319.8,102.5 322.0,103.3 324.2,103.3 326.4,102.3 328.6,100.3 330.9,97.4 333.1,93.7 335.3,89.4 337.5,84.9 339.7,80.3 341.9,76.0 344.1,72.4 346.3,69.7 348.5,68.2 350.8,68.1 353.0,69.4 355.2,72.2 357.4,76.4 359.6,81.8 361.8,87.9 364.0,94.6 366.2,101.3 368.4,107.7 370.7,113.1 372.9,117.4 375.1,120.0 377.3,120.7 379.5,119.5 381.7,116.3 383.9,111.2 386.1,104.4 388.3,96.5 390.6,87.8 392.8,78.9 395.0,70.3 397.2,62.7 399.4,56.6 401.6,52.5 403.8,50.6 406.0,51.3 408.2,54.4 410.5,60.1 412.7,67.8 414.9,77.3 417.1,87.9 419.3,99.0 421.5,109.9 423.7,119.8 425.9,128.1 428.1,134.2 430.4,137.6 432.6,138.0 434.8,135.3 437.0,129.6 439.2,121.2 441.4,110.5 443.6,98.2 445.8,85.0 448.0,71.8 450.3,59.4 452.5,48.7 454.7,40.3 456.9,35.0 459.1,33.1 461.3,34.8 463.5,40.1 465.7,48.7 467.9,60.2 470.2,74.0 472.4,89.0 474.6,104.5 476.8,119.4 479.0,132.8 481.2,143.7 483.4,151.4 485.6,155.3 487.8,155.0 490.1,150.6 492.3,142.2 494.5,130.3 496.7,115.5 498.9,98.8 500.0,90.0"/>
+<text x="505" y="16" text-anchor="end" fill="#f5a524" font-size="13">pushed in step: (t/2) sin t</text>
+<text x="508" y="94" fill="#555">t</text>
+</svg><figcaption>Left: a free oscillation repeats every \(2\pi/\omega\). Right: driven at its own frequency, the swings grow without limit.</figcaption></figure>
+</section>
+
+<section class="example">
+<h2>Watch one: \(k = 8\) N/m, \(m = 2\) kg</h2>
+<p>\(\omega = \sqrt{8/2} = 2\) rad/s, so the period is \(T = 2\pi/2 = \pi \approx 3.14\) s. Pull the mass 0.1 m and release it from rest: \(y(0) = 0.1\) gives \(A = 0.1\), and \(y'(0) = 0\) gives \(B = 0\), so \(y = 0.1\cos 2t\). Its speed is \(y' = -0.2\sin 2t\), largest, 0.2 m/s, as it passes the centre.</p>
+<p>Instead strike it at rest with speed 0.3 m/s: \(A = 0\) and \(\omega B = 0.3\), so \(B = 0.15\) and \(y = 0.15\sin 2t\). Different start, different amplitude, same period.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Check that \(y = 3\cos 5t - 2\sin 5t\) satisfies \(y'' = -25y\). Find \(y(0)\), \(y'(0)\) and the period. Then write \(y\) as \(R\cos(5t + \phi)\) to find the amplitude, the largest value \(|y|\) reaches.<div class="space"></div></li>
+<li>A pendulum has \(L = 1.00\) m and \(g = 9.8\) m/s². Find \(\omega\) and the period. What length gives a period of exactly 2.00 s?<div class="space short"></div></li>
+<li>With \(y = A\cos\omega t\), compute the kinetic energy \(\tfrac12 my'^2\) and the spring's stored energy \(\tfrac12 ky^2\), and show their sum is constant. What is the constant, and where is the mass when all the energy is kinetic?<div class="space short"></div></li>
+<li>A mass hangs from a spring under gravity. Measuring \(y\) downward from the unstretched length, \(my'' = -ky + mg\). Show that \(u = y - mg/k\) satisfies \(u'' = -\omega^2 u\). What does gravity change about the motion, and what does it leave alone?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: resonance, exactly</h2>
+<p>Push at the natural frequency: \(y'' + y = \cos t\) (so \(\omega = 1\), with a unit push). Show that \(y = \tfrac12 t\sin t\) is a solution. What happens to the amplitude as \(t\) grows, and what stops it in a real spring?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(y'' = -75\cos 5t + 50\sin 5t = -25y\). \(y(0) = 3\), \(y'(0) = -10\), period \(2\pi/5 \approx 1.26\). Expanding \(R\cos(5t + \phi) = R\cos\phi\cos 5t - R\sin\phi\sin 5t\) and matching: \(R\cos\phi = 3\), \(R\sin\phi = 2\), so \(R = \sqrt{13} \approx 3.61\) and \(\tan\phi = \tfrac23\). Amplitude \(\sqrt{13}\).</li>
+<li>\(\omega = \sqrt{9.8} = 3.13\) rad/s, \(T = 2\pi/3.13 = 2.01\) s. For \(T = 2.00\) s: \(L = gT^2/(4\pi^2) = 9.8/\pi^2 = 0.993\) m, the "seconds pendulum".</li>
+<li>\(y' = -A\omega\sin\omega t\), so kinetic \(= \tfrac12 mA^2\omega^2\sin^2\omega t = \tfrac12 kA^2\sin^2\omega t\), using \(m\omega^2 = k\). Stored \(= \tfrac12 kA^2\cos^2\omega t\). Sum \(= \tfrac12 kA^2\), constant. All kinetic when \(\cos\omega t = 0\), that is \(y = 0\): passing the centre at top speed.</li>
+<li>\(u'' = y''\) since \(mg/k\) is constant, and \(-ky + mg = -k(y - mg/k) = -ku\). So \(mu'' = -ku\), \(u'' = -\omega^2u\). Gravity shifts the centre of the oscillation down by \(mg/k\), the stretch at which the spring just holds the weight. The period, \(2\pi\sqrt{m/k}\), is unchanged.</li>
+</ol>
+<p><b>Stretch.</b> \(y' = \tfrac12\sin t + \tfrac12 t\cos t\), and \(y'' = \tfrac12\cos t + \tfrac12\cos t - \tfrac12 t\sin t = \cos t - \tfrac12 t\sin t\). So \(y'' + y = \cos t\). The amplitude is \(\tfrac12 t\): it grows without bound, which is the right-hand panel of the figure. A real spring has friction, which removes energy at a rate that grows with the speed; the swing settles where the push's energy and the friction's losses balance, higher the less friction there is.</p>
+</section>
+
+<div class="sheet-nav"><a href="b18-catenary.html">← Previous</a><a href="b20-predator-prey.html">Next: Foxes and rabbits →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The coupon collector · Infinity Club</title>
+<meta name="description" content="How many packets to complete a set of 50 stickers? About 50 × (1 + 1/2 + … + 1/50) ≈ 225. Geometric waiting times, the harmonic numbers, and why the last few stickers cost the most.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Around the corner · 12</div>
+  <h1>The coupon collector</h1>
+  <p class="teaser">How many packets to complete a set of 50 stickers? About 50 × (1 + 1/2 + … + 1/50) ≈ 225. The harmonic numbers, with a reason.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>An album has 50 stickers. Each packet holds one, equally likely to be any of the 50, independently of the rest. How many packets to fill the album?</p>
+<p>Split the hunt into stages. Holding \(k\) different stickers, a packet is useful with probability \((50 - k)/50\). Open packets until one is useful, then move on.</p>
+<p>How long is a stage? If a trial succeeds with probability \(p\), call the expected number of trials \(T\). The first trial is used whatever happens; with probability \(1 - p\) it failed and you are back at the start, facing \(T\) more on average. So</p>
+<p class="callout">\(T = 1 + (1 - p)\,T\), hence \(T = 1/p\).</p>
+<p>A 1-in-10 chance takes 10 tries on average (a <b>geometric</b> waiting time). Expected values add, so the total is the sum of the stages:</p>
+<p>\[E = \frac{50}{50} + \frac{50}{49} + \cdots + \frac{50}{1} = 50\left(1 + \frac12 + \cdots + \frac{1}{50}\right) = 50\,H_{50},\]</p>
+<p>where \(H_n = 1 + \tfrac12 + \cdots + \tfrac1n\) is the \(n\)th <b>harmonic number</b>. For \(n\) stickers, \(E = n H_n\).</p>
+<figure><svg viewBox="0 0 320 150" width="320" height="150" role="img" aria-label="Dots showing the harmonic numbers H_n for n from 1 to 50 rising from 1 to about 4.5, with a dashed curve ln n plus 0.577 running just beneath them" font-family="Nunito, sans-serif" font-size="12">
+<line x1="30" y1="130" x2="305" y2="130" stroke="#000" stroke-width="1"/>
+<line x1="30" y1="130" x2="30" y2="14" stroke="#000" stroke-width="1"/>
+<g stroke="#999" stroke-width="1"><line x1="27" y1="106" x2="30" y2="106"/><line x1="27" y1="82" x2="30" y2="82"/><line x1="27" y1="58" x2="30" y2="58"/><line x1="27" y1="34" x2="30" y2="34"/><line x1="84" y1="130" x2="84" y2="133"/><line x1="138" y1="130" x2="138" y2="133"/><line x1="192" y1="130" x2="192" y2="133"/><line x1="246" y1="130" x2="246" y2="133"/><line x1="300" y1="130" x2="300" y2="133"/></g>
+<polyline fill="none" stroke="#f5a524" stroke-width="1.5" stroke-dasharray="4 3" points="35.4,116.1 38.1,106.4 40.8,99.5 46.2,89.8 51.6,82.9 57.0,77.5 62.4,73.1 73.2,66.2 84.0,60.9 94.8,56.5 111.0,51.2 138.0,44.2 165.0,38.9 192.0,34.5 219.0,30.8 246.0,27.6 273.0,24.8 300.0,22.3"/>
+<g fill="#3f44c9"><circle cx="35.4" cy="106.0" r="2"/><circle cx="40.8" cy="94.0" r="2"/><circle cx="46.2" cy="86.0" r="2"/><circle cx="51.6" cy="80.0" r="2"/><circle cx="57.0" cy="75.2" r="2"/><circle cx="62.4" cy="71.2" r="2"/><circle cx="67.8" cy="67.8" r="2"/><circle cx="73.2" cy="64.8" r="2"/><circle cx="78.6" cy="62.1" r="2"/><circle cx="84.0" cy="59.7" r="2"/><circle cx="89.4" cy="57.5" r="2"/><circle cx="94.8" cy="55.5" r="2"/><circle cx="100.2" cy="53.7" r="2"/><circle cx="105.6" cy="52.0" r="2"/><circle cx="111.0" cy="50.4" r="2"/><circle cx="116.4" cy="48.9" r="2"/><circle cx="121.8" cy="47.5" r="2"/><circle cx="127.2" cy="46.1" r="2"/><circle cx="132.6" cy="44.9" r="2"/><circle cx="138.0" cy="43.7" r="2"/><circle cx="143.4" cy="42.5" r="2"/><circle cx="148.8" cy="41.4" r="2"/><circle cx="154.2" cy="40.4" r="2"/><circle cx="159.6" cy="39.4" r="2"/><circle cx="165.0" cy="38.4" r="2"/><circle cx="170.4" cy="37.5" r="2"/><circle cx="175.8" cy="36.6" r="2"/><circle cx="181.2" cy="35.7" r="2"/><circle cx="186.6" cy="34.9" r="2"/><circle cx="192.0" cy="34.1" r="2"/><circle cx="197.4" cy="33.3" r="2"/><circle cx="202.8" cy="32.6" r="2"/><circle cx="208.2" cy="31.9" r="2"/><circle cx="213.6" cy="31.2" r="2"/><circle cx="219.0" cy="30.5" r="2"/><circle cx="224.4" cy="29.8" r="2"/><circle cx="229.8" cy="29.2" r="2"/><circle cx="235.2" cy="28.5" r="2"/><circle cx="240.6" cy="27.9" r="2"/><circle cx="246.0" cy="27.3" r="2"/><circle cx="251.4" cy="26.7" r="2"/><circle cx="256.8" cy="26.2" r="2"/><circle cx="262.2" cy="25.6" r="2"/><circle cx="267.6" cy="25.1" r="2"/><circle cx="273.0" cy="24.5" r="2"/><circle cx="278.4" cy="24.0" r="2"/><circle cx="283.8" cy="23.5" r="2"/><circle cx="289.2" cy="23.0" r="2"/><circle cx="294.6" cy="22.5" r="2"/><circle cx="300.0" cy="22.0" r="2"/></g>
+<text x="22" y="110" text-anchor="end" fill="#555">1</text><text x="22" y="86" text-anchor="end" fill="#555">2</text><text x="22" y="62" text-anchor="end" fill="#555">3</text><text x="22" y="38" text-anchor="end" fill="#555">4</text>
+<text x="84" y="145" text-anchor="middle" fill="#555">10</text><text x="138" y="145" text-anchor="middle" fill="#555">20</text><text x="192" y="145" text-anchor="middle" fill="#555">30</text><text x="246" y="145" text-anchor="middle" fill="#555">40</text><text x="300" y="145" text-anchor="middle" fill="#555">50</text>
+<text x="100" y="40" fill="#3f44c9" font-weight="700">Hₙ</text><text x="200" y="60" fill="#f5a524">ln n + 0.577</text>
+</svg><figcaption>\(H_n\) for \(n\) up to 50 (dots) and \(\ln n + 0.577\) (dashed). The gap is about \(1/(2n)\).</figcaption></figure>
+<p>\(H_{50} \approx 4.499\): about 225 packets, 50 of them for the last sticker. \(H_n\) grows like \(\ln n + 0.577\) (see <a href="../../grade-10/sheets/b12-infinite-series.html">infinite series</a>), so the cost grows like \(n \ln n\), and the tail is where the money goes.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: all six faces of a die</h2>
+<p>Roll a die until every face has appeared. Six stickers, one per packet. Stage lengths: the first roll always counts, \(6/6 = 1\). Then a new face has probability \(5/6\), wait \(6/5 = 1.2\). Then \(6/4 = 1.5\), \(6/3 = 2\), \(6/2 = 3\), and finally \(6/1 = 6\) rolls for the last face.</p>
+<p>\[E = 1 + 1.2 + 1.5 + 2 + 3 + 6 = 14.7 = 6 H_6.\]</p>
+<p>The first three faces take only \(1 + 1.2 + 1.5 = 3.7\) rolls; the last face alone takes six. Try it with a real die and a tally: most runs land between 10 and 20.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>An album has 10 stickers. Find the expected number of packets, as an exact fraction and a decimal. How many of those packets, on average, go on the last two stickers?<div class="space short"></div></li>
+<li>For the 50-sticker album, find the expected number of packets to collect the first 25 stickers, and the expected number to collect the remaining 25. (\(H_{25} \approx 3.816\), \(H_{50} \approx 4.499\).)<div class="space short"></div></li>
+<li>Use \(H_n \approx \ln n + 0.5772\) to estimate the cost of the 50-sticker album and compare with \(50 H_{50} = 224.96\). Then estimate the cost of a 500-sticker album.<div class="space short"></div></li>
+<li>A set has just two stickers, but the first appears in 90% of packets and the second in 10%. Find the expected number of packets to complete the set. Compare with \(2 H_2 = 3\) for a fair pair, and say exactly where the derivation of \(n H_n\) breaks.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: after the average, still not done</h2>
+<p>After \(m\) packets, a particular sticker is still missing with probability \((1 - \tfrac1{50})^m\), so the expected number of missing stickers is \(50 \times 0.98^m\). Evaluate this at \(m = 225\). Then find the smallest \(m\) for which the expected number missing is at most \(0.1\). What does this say about the average 225?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(10 H_{10} = 10 \times \tfrac{7381}{2520} = \tfrac{7381}{252} \approx 29.29\) packets. The last two stickers take \(\tfrac{10}{2} + \tfrac{10}{1} = 15\) of them: over half the total for a fifth of the album.</li>
+<li>First 25: \(\tfrac{50}{50} + \cdots + \tfrac{50}{26} = 50(H_{50} - H_{25}) \approx 50 \times 0.683 = 34.2\) packets. Remaining 25: \(50 H_{25} \approx 190.8\) packets. The second half costs more than five times the first.</li>
+<li>\(50(\ln 50 + 0.5772) = 50 \times 4.489 \approx 224.5\), against 224.96; the error is \(50 \times \tfrac{1}{100} = 0.5\), the \(1/(2n)\) gap in the figure. For 500 stickers, \(500(\ln 500 + 0.5772) \approx 3{,}396\) packets, nearly seven times the album size.</li>
+<li>The first packet gives one sticker. With probability \(0.9\) it is the common one, and the rare one then takes \(1/0.1 = 10\) packets on average; with probability \(0.1\) it is the rare one, and the common one takes \(1/0.9\). So \(E = 1 + 0.9 \times 10 + 0.1 \times \tfrac{10}{9} \approx 10.1\) packets, more than three times the fair 3. The derivation used "a new sticker has probability \((n-k)/n\)", which assumes every missing sticker is equally likely; here the stage length depends on <em>which</em> sticker is missing.</li>
+</ol>
+<p><b>Stretch.</b> \(50 \times 0.98^{225} \approx 0.53\): after the "average" number of packets you are missing about half a sticker on average, so a sizeable share of collectors are not finished. For \(50 \times 0.98^m \le 0.1\) you need \(m \ge \ln(0.002)/\ln(0.98) \approx 307.6\), so \(m = 308\). The mean is pulled up by long unlucky tails; the typical collector finishes a little before 225, and the unlucky ones well after.</p>
+</section>
+
+<div class="sheet-nav"><a href="b11-laplace-succession.html">← Previous</a><a href="b13-poisson.html">Next: The Poisson distribution →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

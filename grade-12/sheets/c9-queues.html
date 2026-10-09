@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why the queue is longer than you think · Infinity Club</title>
+<meta name="description" content="Random arrivals, one server. The balance argument gives P(n) = (1 − ρ)ρⁿ, the mean number in the system is ρ/(1 − ρ), and a server at 90% utilisation holds nine times the queue of one at 50%.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Connections · 9</div>
+  <h1>Why the queue is longer than you think</h1>
+  <p class="teaser">Arrivals at random, one server. Utilisation ρ, average queue ρ/(1 − ρ), and why a server at 90% has a queue nine times longer than at 50%.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Customers arrive at one counter at random, \(\lambda\) per hour on average (the Poisson arrivals of <a href="b13-poisson.html">b13</a>). Service takes \(1/\mu\) hours on average, also memoryless. The <b>utilisation</b> \(\rho = \lambda/\mu\) is the fraction of time the server is busy. Below 1, you might expect a short queue. Not so.</p>
+<p>Let \(P(n)\) be the long-run fraction of time \(n\) people are in the system (waiting or being served). Cut between states \(n\) and \(n+1\). The cut is crossed upward at rate \(\lambda P(n)\) (an arrival with \(n\) present) and downward at rate \(\mu P(n+1)\) (a service ending with \(n+1\) present). Each up-crossing is eventually matched by a down-crossing, so the rates match:</p>
+<p>\[\lambda P(n) = \mu P(n+1), \qquad\text{so}\qquad P(n+1) = \rho\,P(n).\]</p>
+<p>So \(P(n) = P(0)\rho^n\), a geometric sequence. The probabilities sum to 1 and \(\sum \rho^n = 1/(1-\rho)\), so \(P(0) = 1 - \rho\): idle a fraction \(1 - \rho\) of the time. The mean number present is</p>
+<p class="callout">\(L = \displaystyle\sum_{n\ge0} n\,(1-\rho)\rho^n = \dfrac{\rho}{1-\rho}.\)</p>
+<figure><svg viewBox="0 0 320 190" width="320" height="190" role="img" aria-label="Mean number in the system against utilisation: flat near zero, about 1 at 50%, then rising steeply to 9 at 90% and heading to infinity at 100%" font-family="Nunito, sans-serif" font-size="12">
+<line x1="40" y1="165" x2="300" y2="165" stroke="#000" stroke-width="1.5"/><line x1="40" y1="15" x2="40" y2="165" stroke="#000" stroke-width="1.5"/>
+<line x1="300" y1="15" x2="300" y2="165" stroke="#999" stroke-width="1" stroke-dasharray="3 3"/>
+<g stroke="#999" stroke-width="1" stroke-dasharray="3 3"><line x1="40" y1="150" x2="170" y2="150"/><line x1="170" y1="150" x2="170" y2="165"/><line x1="40" y1="30" x2="274" y2="30"/><line x1="274" y1="30" x2="274" y2="165"/></g>
+<path d="M40.0,165.0 L53.0,164.2 L66.0,163.3 L79.0,162.4 L92.0,161.2 L105.0,160.0 L118.0,158.6 L131.0,156.9 L144.0,155.0 L157.0,152.7 L170.0,150.0 L183.0,146.7 L196.0,142.5 L209.0,137.1 L222.0,130.0 L235.0,120.0 L240.2,114.8 L245.4,108.6 L250.6,101.1 L255.8,91.8 L261.0,80.0 L263.6,72.9 L266.2,64.6 L268.8,55.0 L271.4,43.6 L274.0,30.0" fill="none" stroke="#3f44c9" stroke-width="2"/>
+<circle cx="170" cy="150" r="3.5" fill="#f5a524"/><circle cx="274" cy="30" r="3.5" fill="#f5a524"/>
+<text x="34" y="154" text-anchor="end">1</text><text x="34" y="94" text-anchor="end">5</text><text x="34" y="34" text-anchor="end">9</text>
+<text x="40" y="180" text-anchor="middle">0</text><text x="170" y="180" text-anchor="middle">0.5</text><text x="274" y="180" text-anchor="middle">0.9</text><text x="300" y="180" text-anchor="middle">1</text>
+<text x="100" y="140" fill="#3f44c9" font-size="13">L = ρ/(1 − ρ)</text>
+<text x="120" y="180" text-anchor="middle" fill="#555">utilisation ρ</text>
+</svg><figcaption>\(L\) against \(\rho\). Flat until about 0.7, then nearly vertical. At 50% the counter holds one person on average; at 90%, nine; at 99%, ninety-nine. At 100% it never settles.</figcaption></figure>
+<p>At \(\rho = 0.5\), \(L = 1\); at \(\rho = 0.9\), \(L = 9\). Randomness is the cause: arrivals bunch, and a nearly always busy server has no slack to clear a bunch. Real queues break the memoryless assumptions; the shape survives.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: 24 customers an hour, 2 minutes each</h2>
+<p>\(\lambda = 24\) per hour and \(\mu = 30\) per hour, so \(\rho = 0.8\). The server is idle \(P(0) = 0.2\) of the time, and \(L = 0.8/0.2 = 4\) people are present on average.</p>
+<p><b>Little's law</b> turns numbers into minutes: \(L = \lambda W\), where \(W\) is the mean time a customer spends in the system. (Those present now arrived in the last \(W\) hours, and there are \(\lambda W\) of them.) So \(W = 4/24\) hours, 10 minutes. Two are service, so the mean wait in the queue is 8 minutes: \(\rho/(1-\rho) = 4\) service times, at a counter idle a fifth of the day.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>A server runs at \(\rho = 0.6\). Find \(P(0)\), \(P(1)\), \(P(2)\) and \(L\). Then find the mean number waiting (not being served), \(L_q = L - \rho\), and explain why that subtraction is right.<div class="space short"></div></li>
+<li>Compare \(\rho = 0.5\) with \(\rho = 0.9\): give \(L\) and the mean queueing wait in service times for each. The 90% server wants to halve its \(L\). What \(\rho\) does it need, and by what factor must service speed up?<div class="space short"></div></li>
+<li>Show that \(P(\text{more than } n \text{ in the system}) = \rho^{n+1}\). For \(\rho = 0.8\), what is the chance that more than 6 are present? How large must \(n\) be before that chance drops below 5%?<div class="space short"></div></li>
+<li>(a) Differentiate \(\sum_{n \ge 0} \rho^n = \dfrac{1}{1-\rho}\) with respect to \(\rho\) to get \(\sum n \rho^{n-1}\), and deduce the formula for \(L\). (b) Both \(\lambda\) and \(\mu\) double: twice the customers, a server twice as fast. What happens to \(L\)? To \(W\)? Why?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the average hides a lot</h2>
+<p>Find \(E[N^2] = \sum n^2 (1-\rho)\rho^n\) by differentiating the series a second time, and hence \(\mathrm{Var}(N) = E[N^2] - L^2\). At \(\rho = 0.9\), what is the standard deviation of the number present? What does that say about "the average queue is 9"?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(P(0) = 0.4\), \(P(1) = 0.24\), \(P(2) = 0.144\), \(L = 0.6/0.4 = 1.5\). \(L_q = 1.5 - 0.6 = 0.9\). The number being served is 1 when the server is busy and 0 otherwise, so its mean is \(\rho\); subtract it from the total to leave the queue.</li>
+<li>\(\rho = 0.5\): \(L = 1\), queueing wait 1 service time. \(\rho = 0.9\): \(L = 9\), wait 9 service times. Halving to \(L = 4.5\) needs \(\rho/(1-\rho) = 4.5\), so \(\rho = 4.5/5.5 = 0.818\): service only 10% faster (\(0.9/0.818 = 1.1\)) halves the queue. Near \(\rho = 1\) small improvements are worth a lot.</li>
+<li>\(P(N > n) = \sum_{m > n}(1-\rho)\rho^m = (1-\rho)\rho^{n+1}/(1-\rho) = \rho^{n+1}\). For \(\rho = 0.8\): \(0.8^7 = 0.21\), a one-in-five chance of more than six people. Need \(0.8^{n+1} \lt 0.05\): \(n + 1 > \ln 0.05 / \ln 0.8 = 13.4\), so \(n = 13\). The system exceeds 13 people 4.4% of the time.</li>
+<li>(a) \(\sum n\rho^{n-1} = \dfrac{1}{(1-\rho)^2}\). Multiply by \(\rho(1-\rho)\): \(L = \sum n(1-\rho)\rho^n = \dfrac{\rho(1-\rho)}{(1-\rho)^2} = \dfrac{\rho}{1-\rho}\). (b) \(\rho\) is unchanged, so \(L\) is unchanged: the same number of people are present. But \(W = L/\lambda\) halves, since the same crowd now flows through twice as fast. Big busy systems feel quicker than small busy ones at the same utilisation.</li>
+</ol>
+<p><b>Stretch.</b> Differentiating again, \(\sum n(n-1)\rho^{n-2} = \dfrac{2}{(1-\rho)^3}\), so \(E[N^2] = \dfrac{2\rho^2}{(1-\rho)^2} + \dfrac{\rho}{1-\rho} = \dfrac{\rho(1+\rho)}{(1-\rho)^2}\) and \(\mathrm{Var}(N) = \dfrac{\rho}{(1-\rho)^2}\). At \(\rho = 0.9\) the variance is 90 and the standard deviation about 9.5, as large as the mean. "Nine on average" means an empty counter one visit and twenty-five people the next; the queue is as erratic as it is long.</p>
+</section>
+
+<div class="sheet-nav"><a href="c8-radiocarbon.html">← Previous</a><a href="c10-energy-balance.html">Next: Why the Earth is not frozen →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

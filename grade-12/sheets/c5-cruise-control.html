@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cruise control · Infinity Club</title>
+<meta name="description" content="Proportional feedback as a differential equation: dv/dt = −k(v − v*) solves to an exponential approach with no overshoot. Then why a lag in the engine turns a high gain into a wobble.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Connections · 5</div>
+  <h1>Cruise control</h1>
+  <p class="teaser">Measure the error, push back in proportion, and the car settles. Feedback as a differential equation, and why too much gain makes it wobble.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Cruise control has one job: hold the speed \(v\) at a target \(v^*\). The simplest design measures the <b>error</b> \(e = v - v^*\) and pushes the throttle against it, in proportion. If the push gives an acceleration proportional to the error,</p>
+<p>\[\frac{dv}{dt} = -k\,(v - v^*).\]</p>
+<p>The constant \(k\) is the <b>gain</b> (per second). Since \(v^*\) is fixed, \(de/dt = dv/dt\), so \(de/dt = -ke\): rate proportional to amount, as in <a href="a11-exponential-decay.html">sheet a11</a>. Separating variables, \(\ln|e| = -kt + C\), so</p>
+<p class="callout">\(e(t) = e_0 e^{-kt}\), that is, \(v(t) = v^* + (v_0 - v^*)\,e^{-kt}\).</p>
+<p>The error shrinks by the same factor every \(1/k\) seconds and never changes sign. A proportional controller cannot overshoot; a bigger \(k\) only arrives sooner.</p>
+<figure><svg viewBox="0 0 520 180" width="520" height="180" role="img" aria-label="Speed against time for three cruise controllers starting at 20 m/s with target 30 m/s: a low gain approaches slowly, a higher gain approaches quickly, both without overshoot; a lagged controller overshoots and wobbles before settling" font-family="Nunito, sans-serif" font-size="12">
+<line x1="42" y1="51.0" x2="505" y2="51.0" stroke="#999" stroke-width="1" stroke-dasharray="4 3"/>
+<line x1="42" y1="150" x2="505" y2="150" stroke="#999" stroke-width="1"/><line x1="42" y1="12" x2="42" y2="150" stroke="#999" stroke-width="1"/>
+<line x1="42.0" y1="150" x2="42.0" y2="154" stroke="#999"/><text x="42.0" y="166" text-anchor="middle" fill="#555">0</text>
+<line x1="157.8" y1="150" x2="157.8" y2="154" stroke="#999"/><text x="157.8" y="166" text-anchor="middle" fill="#555">5</text>
+<line x1="273.5" y1="150" x2="273.5" y2="154" stroke="#999"/><text x="273.5" y="166" text-anchor="middle" fill="#555">10</text>
+<line x1="389.2" y1="150" x2="389.2" y2="154" stroke="#999"/><text x="389.2" y="166" text-anchor="middle" fill="#555">15</text>
+<text x="36" y="137.5" text-anchor="end" fill="#555">20</text>
+<text x="36" y="96.2" text-anchor="end" fill="#555">25</text>
+<text x="36" y="55.0" text-anchor="end" fill="#555">30</text>
+<text x="505" y="166" text-anchor="end" fill="#555">t (s)</text>
+<text x="46" y="16" fill="#555">v (m/s)</text>
+<polyline points="42.0,133.5 44.9,133.2 47.8,132.3 50.7,130.8 53.6,128.8 56.5,126.3 59.4,123.5 62.3,120.2 65.2,116.6 68.0,112.8 70.9,108.7 73.8,104.4 76.7,100.0 79.6,95.4 82.5,90.8 85.4,86.2 88.3,81.6 91.2,77.1 94.1,72.6 97.0,68.2 99.9,64.0 102.8,59.9 105.7,56.0 108.6,52.3 111.5,48.8 114.3,45.6 117.2,42.6 120.1,39.8 123.0,37.3 125.9,35.0 128.8,33.0 131.7,31.3 134.6,29.8 137.5,28.5 140.4,27.5 143.3,26.8 146.2,26.2 149.1,25.9 152.0,25.8 154.9,25.9 157.8,26.2 160.6,26.7 163.5,27.3 166.4,28.0 169.3,28.9 172.2,29.9 175.1,31.0 178.0,32.2 180.9,33.4 183.8,34.7 186.7,36.1 189.6,37.5 192.5,38.9 195.4,40.3 198.3,41.7 201.2,43.1 204.1,44.4 206.9,45.8 209.8,47.0 212.7,48.3 215.6,49.5 218.5,50.6 221.4,51.7 224.3,52.7 227.2,53.6 230.1,54.4 233.0,55.2 235.9,55.9 238.8,56.5 241.7,57.0 244.6,57.5 247.5,57.9 250.3,58.2 253.2,58.4 256.1,58.6 259.0,58.6 261.9,58.7 264.8,58.6 267.7,58.6 270.6,58.4 273.5,58.2 276.4,58.0 279.3,57.7 282.2,57.4 285.1,57.1 288.0,56.7 290.9,56.4 293.8,56.0 296.6,55.6 299.5,55.1 302.4,54.7 305.3,54.3 308.2,53.8 311.1,53.4 314.0,53.0 316.9,52.6 319.8,52.2 322.7,51.8 325.6,51.5 328.5,51.1 331.4,50.8 334.3,50.5 337.2,50.2 340.1,50.0 342.9,49.7 345.8,49.5 348.7,49.3 351.6,49.2 354.5,49.0 357.4,48.9 360.3,48.8 363.2,48.7 366.1,48.7 369.0,48.7 371.9,48.7 374.8,48.7 377.7,48.7 380.6,48.7 383.5,48.8 386.4,48.9 389.2,48.9 392.1,49.0 395.0,49.1 397.9,49.2 400.8,49.4 403.7,49.5 406.6,49.6 409.5,49.7 412.4,49.9 415.3,50.0 418.2,50.1 421.1,50.3 424.0,50.4 426.9,50.5 429.8,50.6 432.7,50.7 435.6,50.9 438.4,51.0 441.3,51.1 444.2,51.2 447.1,51.2 450.0,51.3 452.9,51.4 455.8,51.5 458.7,51.5 461.6,51.6 464.5,51.6 467.4,51.6 470.3,51.7 473.2,51.7 476.1,51.7 479.0,51.7 481.9,51.7 484.7,51.7 487.6,51.7 490.5,51.7 493.4,51.7 496.3,51.7 499.2,51.6 502.1,51.6 505.0,51.6" fill="none" stroke="#f5a524" stroke-width="2"/>
+<polyline points="42.0,133.5 44.9,131.5 47.8,129.5 50.7,127.5 53.6,125.6 56.5,123.8 59.4,122.0 62.3,120.3 65.2,118.5 68.0,116.9 70.9,115.3 73.8,113.7 76.7,112.1 79.6,110.6 82.5,109.1 85.4,107.7 88.3,106.3 91.2,104.9 94.1,103.6 97.0,102.3 99.9,101.0 102.8,99.8 105.7,98.6 108.6,97.4 111.5,96.3 114.3,95.2 117.2,94.1 120.1,93.0 123.0,92.0 125.9,91.0 128.8,90.0 131.7,89.0 134.6,88.1 137.5,87.2 140.4,86.3 143.3,85.4 146.2,84.5 149.1,83.7 152.0,82.9 154.9,82.1 157.8,81.4 160.6,80.6 163.5,79.9 166.4,79.2 169.3,78.5 172.2,77.8 175.1,77.1 178.0,76.5 180.9,75.8 183.8,75.2 186.7,74.6 189.6,74.1 192.5,73.5 195.4,72.9 198.3,72.4 201.2,71.9 204.1,71.3 206.9,70.8 209.8,70.4 212.7,69.9 215.6,69.4 218.5,69.0 221.4,68.5 224.3,68.1 227.2,67.7 230.1,67.2 233.0,66.8 235.9,66.5 238.8,66.1 241.7,65.7 244.6,65.3 247.5,65.0 250.3,64.6 253.2,64.3 256.1,64.0 259.0,63.7 261.9,63.3 264.8,63.0 267.7,62.7 270.6,62.4 273.5,62.2 276.4,61.9 279.3,61.6 282.2,61.4 285.1,61.1 288.0,60.9 290.9,60.6 293.8,60.4 296.6,60.1 299.5,59.9 302.4,59.7 305.3,59.5 308.2,59.3 311.1,59.1 314.0,58.9 316.9,58.7 319.8,58.5 322.7,58.3 325.6,58.1 328.5,57.9 331.4,57.8 334.3,57.6 337.2,57.4 340.1,57.3 342.9,57.1 345.8,57.0 348.7,56.8 351.6,56.7 354.5,56.5 357.4,56.4 360.3,56.3 363.2,56.1 366.1,56.0 369.0,55.9 371.9,55.8 374.8,55.7 377.7,55.5 380.6,55.4 383.5,55.3 386.4,55.2 389.2,55.1 392.1,55.0 395.0,54.9 397.9,54.8 400.8,54.7 403.7,54.6 406.6,54.5 409.5,54.4 412.4,54.4 415.3,54.3 418.2,54.2 421.1,54.1 424.0,54.0 426.9,54.0 429.8,53.9 432.7,53.8 435.6,53.8 438.4,53.7 441.3,53.6 444.2,53.6 447.1,53.5 450.0,53.4 452.9,53.4 455.8,53.3 458.7,53.3 461.6,53.2 464.5,53.1 467.4,53.1 470.3,53.0 473.2,53.0 476.1,52.9 479.0,52.9 481.9,52.8 484.7,52.8 487.6,52.8 490.5,52.7 493.4,52.7 496.3,52.6 499.2,52.6 502.1,52.5 505.0,52.5" fill="none" stroke="#3f44c9" stroke-width="2"/>
+<polyline points="42.0,133.5 44.9,127.5 47.8,122.0 50.7,116.9 53.6,112.1 56.5,107.7 59.4,103.6 62.3,99.8 65.2,96.3 68.0,93.0 70.9,90.0 73.8,87.2 76.7,84.5 79.6,82.1 82.5,79.9 85.4,77.8 88.3,75.8 91.2,74.1 94.1,72.4 97.0,70.8 99.9,69.4 102.8,68.1 105.7,66.8 108.6,65.7 111.5,64.6 114.3,63.7 117.2,62.7 120.1,61.9 123.0,61.1 125.9,60.4 128.8,59.7 131.7,59.1 134.6,58.5 137.5,57.9 140.4,57.4 143.3,57.0 146.2,56.5 149.1,56.1 152.0,55.8 154.9,55.4 157.8,55.1 160.6,54.8 163.5,54.5 166.4,54.3 169.3,54.0 172.2,53.8 175.1,53.6 178.0,53.4 180.9,53.3 183.8,53.1 186.7,52.9 189.6,52.8 192.5,52.7 195.4,52.5 198.3,52.4 201.2,52.3 204.1,52.2 206.9,52.1 209.8,52.1 212.7,52.0 215.6,51.9 218.5,51.9 221.4,51.8 224.3,51.7 227.2,51.7 230.1,51.6 233.0,51.6 235.9,51.5 238.8,51.5 241.7,51.5 244.6,51.4 247.5,51.4 250.3,51.4 253.2,51.3 256.1,51.3 259.0,51.3 261.9,51.3 264.8,51.3 267.7,51.2 270.6,51.2 273.5,51.2 276.4,51.2 279.3,51.2 282.2,51.2 285.1,51.2 288.0,51.1 290.9,51.1 293.8,51.1 296.6,51.1 299.5,51.1 302.4,51.1 305.3,51.1 308.2,51.1 311.1,51.1 314.0,51.1 316.9,51.1 319.8,51.1 322.7,51.1 325.6,51.1 328.5,51.0 331.4,51.0 334.3,51.0 337.2,51.0 340.1,51.0 342.9,51.0 345.8,51.0 348.7,51.0 351.6,51.0 354.5,51.0 357.4,51.0 360.3,51.0 363.2,51.0 366.1,51.0 369.0,51.0 371.9,51.0 374.8,51.0 377.7,51.0 380.6,51.0 383.5,51.0 386.4,51.0 389.2,51.0 392.1,51.0 395.0,51.0 397.9,51.0 400.8,51.0 403.7,51.0 406.6,51.0 409.5,51.0 412.4,51.0 415.3,51.0 418.2,51.0 421.1,51.0 424.0,51.0 426.9,51.0 429.8,51.0 432.7,51.0 435.6,51.0 438.4,51.0 441.3,51.0 444.2,51.0 447.1,51.0 450.0,51.0 452.9,51.0 455.8,51.0 458.7,51.0 461.6,51.0 464.5,51.0 467.4,51.0 470.3,51.0 473.2,51.0 476.1,51.0 479.0,51.0 481.9,51.0 484.7,51.0 487.6,51.0 490.5,51.0 493.4,51.0 496.3,51.0 499.2,51.0 502.1,51.0 505.0,51.0" fill="none" stroke="#3f44c9" stroke-width="2" stroke-dasharray="6 3"/>
+<text x="331.4" y="80.7" fill="#3f44c9" font-weight="700">k = 0.2</text>
+<text x="134.6" y="71.6" fill="#3f44c9" font-weight="700">k = 0.6</text>
+<text x="167.0" y="21.3" fill="#f5a524" font-weight="700">with a 2 s lag</text>
+<text x="503" y="46.0" text-anchor="end" fill="#555">target 30</text>
+</svg><figcaption>From 20 to 30 m/s with gains 0.2 (solid) and 0.6 (dashed): no overshoot. Orange: gain 1 with a 2 s engine lag overshoots to 33 m/s and wobbles.</figcaption></figure>
+<p>So why does a real car surge past the set speed? Nothing responds instantly. The engine takes a second or two to deliver what it is asked for, so the push at time \(t\) answers an earlier error. When the error reaches zero the throttle is still open; the car coasts past, and the controller pulls back, again too late. Small lag, small gain: harmless. Large gain with a lag: a wobble, shaped like the <a href="b19-oscillator.html">oscillator</a> sheet.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: \(k = 0.5\), from 20 to 30 m/s</h2>
+<p>Here \(v^* = 30\), \(v_0 = 20\), so \(v(t) = 30 - 10e^{-0.5t}\). Check it against the equation: the left side is \(dv/dt = 5e^{-0.5t}\); the right side is \(-0.5(v - 30) = -0.5(-10e^{-0.5t}) = 5e^{-0.5t}\). They agree, and \(v(0) = 20\).</p>
+<p>After 2 s, \(v = 30 - 10e^{-1} = 26.3\) m/s. To get within 0.1 m/s of the target, solve \(10e^{-0.5t} = 0.1\): \(t = 2\ln 100 \approx 9.2\) s. Each further 4.6 s cuts the error by another factor of ten.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Now \(k = 0.2\), \(v_0 = 20\) m/s, \(v^* = 30\) m/s. (a) Write \(v(t)\). (b) When is the speed within 1 m/s of the target? (c) Show the error halves every \(\ln 2 / k\) seconds whatever the start, and evaluate it.<div class="space short"></div></li>
+<li>On a hill a constant drag \(d = 0.5\) m/s² acts: \(dv/dt = -k(v - v^*) - d\), with \(k = 0.2\). (a) Find the steady speed \(v_\infty\) from \(dv/dt = 0\). (b) Check that \(v = v_\infty + (v_0 - v_\infty)e^{-kt}\) solves it. (c) What gain would hold the shortfall to 0.5 m/s?<div class="space"></div></li>
+<li>A digital controller samples the error every \(h\) seconds and holds the correction between samples, so \(e_{n+1} = (1 - kh)\,e_n\). (a) With \(k = 0.2\), \(h = 1\), \(e_0 = 10\), list \(e_1, e_2, e_3\). (b) For which \(kh\) does the error shrink without changing sign? Alternate but shrink? Grow? (c) Describe \(k = 3\), \(h = 0.5\).<div class="space"></div></li>
+<li>Model the lag. The controller asks for acceleration \(-ke\), but the actual acceleration \(a\) catches up gradually: \(da/dt = (-ke - a)/\tau\). Using \(e' = a\), show \(\tau e'' + e' + ke = 0\). Try \(e = e^{rt}\) with \(\tau = 1\) s and find \(r\) for \(k = 0.2\), then for \(k = 1\). Which gain wobbles, and why?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the threshold gain</h2>
+<p>In the lag model of question 4, show the roots \(r\) are complex, so the error oscillates, exactly when \(4k\tau \gt 1\). For \(\tau = 2\) s and \(k = 1\), find how fast the wobble dies away and its period.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(v = 30 - 10e^{-0.2t}\). (b) \(10e^{-0.2t} = 1\) gives \(t = 5\ln 10 \approx 11.5\) s. (c) \(e_0 e^{-kt} = e_0/2\) gives \(e^{-kt} = \tfrac12\), so \(t = \ln 2 / k\); \(e_0\) cancels. Here \(\ln 2/0.2 \approx 3.5\) s.</li>
+<li>(a) \(0 = -0.2(v - 30) - 0.5\), so \(v_\infty = 30 - 2.5 = 27.5\) m/s. (b) Since \(k(v^* - v_\infty) = d\), the right side is \(-k(v - v_\infty) - k(v_\infty - v^*) - d = -k(v - v_\infty) = -k(v_0 - v_\infty)e^{-kt}\), which is \(dv/dt\). (c) The shortfall is \(d/k\); \(0.5/k = 0.5\) needs \(k = 1\). Proportional control always droops on a hill, and raising the gain is the obvious fix. That is where the trouble starts.</li>
+<li>(a) \(10, 8, 6.4, 5.12\). (b) The factor is \(1 - kh\): between 0 and 1 for \(0 \lt kh \lt 1\) (shrinks, same sign); between \(-1\) and 0 for \(1 \lt kh \lt 2\) (alternates, shrinks); below \(-1\) for \(kh \gt 2\) (alternates and grows). (c) \(kh = 1.5\), factor \(-0.5\): \(10, -5, 2.5, -1.25, \ldots\). It overshoots every step but halves each time. A sampled controller is a delay, and delay plus high gain is overshoot.</li>
+<li>\(e' = a\), so \(e'' = a' = (-ke - e')/\tau\); rearrange. With \(\tau = 1\): \(r^2 + r + k = 0\). For \(k = 0.2\), \(r = \tfrac{-1 \pm \sqrt{0.2}}{2} \approx -0.28, -0.72\), two decaying exponentials and no sign change. For \(k = 1\), \(r = -\tfrac12 \pm i\tfrac{\sqrt3}{2}\), so \(e = e^{-t/2}(A\cos\tfrac{\sqrt3}{2}t + B\sin\tfrac{\sqrt3}{2}t)\): a wobble of period \(4\pi/\sqrt3 \approx 7.3\) s dying away with half-life \(2\ln 2 \approx 1.4\) s. The gain is large enough that the lag lets the error cross zero before the throttle has eased off.</li>
+</ol>
+<p><b>Stretch.</b> \(\tau r^2 + r + k = 0\) has discriminant \(1 - 4k\tau\), negative exactly when \(k \gt 1/(4\tau)\). With \(\tau = 2\), \(k = 1\): \(2r^2 + r + 1 = 0\), so \(r = \tfrac{-1 \pm i\sqrt7}{4}\). The error is \(e^{-t/4}\) times a sinusoid of angular frequency \(\sqrt7/4\): the amplitude falls by a factor \(e\) every 4 s and one wobble takes \(8\pi/\sqrt7 \approx 9.5\) s. In this model the wobble always dies, because the real part is \(-1/(2\tau)\) whatever \(k\) is. A true dead-time delay, where the controller acts on an error measured \(\tau\) seconds ago, is worse: for \(k\tau\) beyond about 1.57 the wobble grows.</p>
+</section>
+
+<div class="sheet-nav"><a href="c4-clinical-trials.html">← Previous</a><a href="c6-hardy-weinberg.html">Next: Why recessive genes do not die out →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

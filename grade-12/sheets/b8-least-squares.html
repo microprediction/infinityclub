@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Least squares is a projection · Infinity Club</title>
+<meta name="description" content="The best-fit line is the shadow of the data vector on a plane. Derive the normal equations from the error being perpendicular to the fit, and solve a three-point example by hand.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Around the corner · 8</div>
+  <h1>Least squares is a projection</h1>
+  <p class="teaser">The best-fit line is the shadow of the data on a plane. Derive the normal equations from "the error is perpendicular to the fit".</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Three data points \((x_i, y_i)\), and you want the line \(y = a + bx\) that fits them best. <b>Least squares</b> defines best: make the <b>residuals</b> \(r_i = y_i - (a + bx_i)\), the vertical misses, have the smallest possible sum of squares.</p>
+<p>Now stack the \(y\)-values into one vector \(\mathbf y = (y_1, y_2, y_3)\). The fitted values are a vector too: \(\hat{\mathbf y} = a\mathbf 1 + b\mathbf x\), with \(\mathbf 1 = (1, 1, 1)\) and \(\mathbf x = (x_1, x_2, x_3)\). As \(a, b\) vary, \(\hat{\mathbf y}\) sweeps out a plane through the origin, and \(\sum r_i^2 = |\mathbf y - \hat{\mathbf y}|^2\) is the squared distance from \(\mathbf y\) to it.</p>
+<figure><svg viewBox="0 0 300 172" width="262" height="150" role="img" aria-label="A plane drawn as a parallelogram containing the vectors 1 and x; the data vector y rises above it and its foot of perpendicular y-hat lies in the plane; the dashed residual is perpendicular to the plane" font-family="Nunito, sans-serif" font-size="13">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="context-stroke"/></marker></defs>
+<polygon points="20,150 210,150 280,95 90,95" fill="#dcdcf5" fill-opacity="0.7" stroke="#3f44c9" stroke-width="1.2"/>
+<g stroke="#555" stroke-width="1.5" marker-end="url(#ah)"><line x1="70" y1="135" x2="160" y2="135"/><line x1="70" y1="135" x2="140" y2="110"/></g>
+<text x="150" y="148" fill="#555" font-weight="700">1</text><text x="146" y="108" fill="#555" font-weight="700" font-style="italic">x</text>
+<line x1="200" y1="30" x2="200" y2="110" stroke="#f5a524" stroke-width="1.5" stroke-dasharray="4 3"/>
+<polyline points="192.1,111.5 192.1,103.5 200,102" fill="none" stroke="#f5a524" stroke-width="1.2"/>
+<line x1="70" y1="135" x2="200" y2="30" stroke="#3f44c9" stroke-width="2" marker-end="url(#ah)"/>
+<line x1="70" y1="135" x2="200" y2="110" stroke="#f5a524" stroke-width="2" marker-end="url(#ah)"/>
+<circle cx="70" cy="135" r="2.5" fill="#000"/><text x="58" y="147">O</text>
+<text x="206" y="30" fill="#3f44c9" font-weight="700" font-style="italic">y</text>
+<text x="206" y="124" fill="#f5a524" font-weight="700" font-style="italic">ŷ</text>
+<text x="206" y="74" fill="#f5a524" font-weight="700" font-style="italic">r</text>
+<text x="150" y="167" text-anchor="middle" font-size="12" fill="#555">every possible fit a1 + bx lies in this plane</text>
+</svg><figcaption>The best fit \(\hat{\mathbf y}\) is the shadow of \(\mathbf y\) on the plane; the residual \(\mathbf r\) is perpendicular to it.</figcaption></figure>
+<p>The closest point of a plane is the foot of the perpendicular: for any other point \(\mathbf p\) of the plane, Pythagoras gives \(|\mathbf y - \mathbf p|^2 = |\mathbf y - \hat{\mathbf y}|^2 + |\hat{\mathbf y} - \mathbf p|^2\). So the residual \(\mathbf r = \mathbf y - \hat{\mathbf y}\) is perpendicular to \(\mathbf 1\) and to \(\mathbf x\) (<a href="../../grade-10/sheets/b15-vectors-dot.html">dot products</a> zero): \(\mathbf 1 \cdot \mathbf r = 0\), \(\mathbf x \cdot \mathbf r = 0\). Written out, these are the <b>normal equations</b> (normal means perpendicular):</p>
+<p class="callout">\(\sum y_i = na + b\sum x_i, \qquad \sum x_i y_i = a\sum x_i + b\sum x_i^2.\)</p>
+</section>
+
+<section class="example">
+<h2>Watch one: \((1, 1), (2, 2), (3, 2)\)</h2>
+<p>\(n = 3\), \(\sum x = 6\), \(\sum y = 5\), \(\sum xy = 11\), \(\sum x^2 = 14\). The normal equations:</p>
+<p>\[5 = 3a + 6b, \qquad 11 = 6a + 14b.\]</p>
+<p>Double the first and subtract: \(2b = 1\), so \(b = \tfrac12\) and \(a = \tfrac23\). The line is \(y = \tfrac23 + \tfrac12 x\), with residuals \(\mathbf r = (-\tfrac16, \tfrac13, -\tfrac16)\). Check: \(\mathbf 1 \cdot \mathbf r = 0\) and \(\mathbf x \cdot \mathbf r = -\tfrac16 + \tfrac23 - \tfrac12 = 0\). Sum of squares \(\tfrac{1}{36} + \tfrac19 + \tfrac1{36} = \tfrac16\). Any other line does worse: the one through the end points has sum of squares \(\tfrac14\).</p>
+<p class="small">Place points, drag them, and watch the line and residuals move: <a href="../../demos/regression.html">infinityclub.net/demos/regression.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Points \((0, 0), (1, 1), (2, 3)\). Write the two normal equations, solve them, and check that \(\sum r_i = 0\) and \(\sum x_i r_i = 0\).<div class="space short"></div></li>
+<li>(a) Divide the first normal equation by \(n\). Which point must the line pass through? (b) Fit a constant \(y = a\) by least squares (the only direction is \(\mathbf 1\)). Show \(a = \bar y\).<div class="space short"></div></li>
+<li>Points \((1, 2), (2, 3), (3, 5), (4, 6)\). Find the line, the four residuals and the sum of squares. What does the line predict at \(x = 6\)?<div class="space"></div></li>
+<li>A line through the origin, \(y = bx\), has one direction only, \(\mathbf x\). Use \(\mathbf x \cdot \mathbf r = 0\) to find \(b\), and compare with grade 10's projection formula \(\dfrac{\mathbf x \cdot \mathbf y}{\mathbf x \cdot \mathbf x}\,\mathbf x\). Apply it to the example's points and compare the sum of squares with \(\tfrac16\). Why can it not be smaller?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: a parabola is still "linear"</h2>
+<p>\(y = a + bx + cx^2\) is still linear in the unknowns \(a, b, c\), so least squares is still a projection, onto the flat spanned by \(\mathbf 1\), \(\mathbf x\) and \(\mathbf x^2 = (x_1^2, \dots, x_n^2)\). Write the three normal equations. For the example's three points, what are the residuals, and why?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(\sum x = 3\), \(\sum y = 4\), \(\sum xy = 7\), \(\sum x^2 = 5\). \(4 = 3a + 3b\) and \(7 = 3a + 5b\), so \(b = \tfrac32\), \(a = -\tfrac16\): \(y = -\tfrac16 + \tfrac32 x\). Fitted \(-\tfrac16, \tfrac43, \tfrac{17}{6}\); residuals \(\tfrac16, -\tfrac13, \tfrac16\). \(\sum r_i = 0\) and \(\sum x_i r_i = 0 - \tfrac13 + \tfrac13 = 0\). Sum of squares \(\tfrac16\).</li>
+<li>(a) \(\bar y = a + b\bar x\), which says \((\bar x, \bar y)\) is on the line. (b) Only \(\mathbf 1 \cdot \mathbf r = 0\) survives: \(\sum (y_i - a) = 0\), so \(a = \bar y\). The mean is the projection of \(\mathbf y\) onto the line through \(\mathbf 1\).</li>
+<li>\(\sum x = 10\), \(\sum y = 16\), \(\sum xy = 47\), \(\sum x^2 = 30\). \(16 = 4a + 10b\), \(47 = 10a + 30b\), so \(b = 1.4\), \(a = 0.5\). Fitted 1.9, 3.3, 4.7, 6.1; residuals \(0.1, -0.3, 0.3, -0.1\); sum of squares 0.2. At \(x = 6\) the line gives 8.9, a prediction outside the range of the data, so trust it less.</li>
+<li>\(\mathbf x \cdot (\mathbf y - b\mathbf x) = 0\) gives \(b = \dfrac{\sum x_i y_i}{\sum x_i^2} = \dfrac{\mathbf x \cdot \mathbf y}{\mathbf x \cdot \mathbf x}\), exactly the projection coefficient. For the example, \(b = \tfrac{11}{14}\), residuals \(\tfrac{3}{14}, \tfrac{6}{14}, -\tfrac{5}{14}\), sum of squares \(\tfrac{70}{196} = \tfrac{5}{14} \approx 0.357\), larger than \(\tfrac16\). The line through the origin is one of the candidates in the two-direction plane (the case \(a = 0\)), so the best over the whole plane cannot do worse.</li>
+</ol>
+<p><b>Stretch.</b> \(\mathbf r\) is perpendicular to \(\mathbf 1\), \(\mathbf x\) and \(\mathbf x^2\): \(\sum y_i = na + b\sum x_i + c\sum x_i^2\), \(\sum x_i y_i = a\sum x_i + b\sum x_i^2 + c\sum x_i^3\), \(\sum x_i^2 y_i = a\sum x_i^2 + b\sum x_i^3 + c\sum x_i^4\). With three points and three unknowns, the vectors \(\mathbf 1, \mathbf x, \mathbf x^2\) span all of three-dimensional space (the \(x_i\) are distinct), so \(\mathbf y\) already lies in the flat: every residual is zero. The parabola \(y = -1 + \tfrac52 x - \tfrac12 x^2\) passes through all three points. A perfect fit with as many parameters as points has learned nothing.</p>
+</section>
+
+<div class="sheet-nav"><a href="b7-eigenvectors.html">← Previous</a><a href="b9-gradient-descent.html">Next: Gradient descent →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>1 + 2 + 3 + … = −1/12? · Infinity Club</title>
+<meta name="description" content="The series 1 + 2 + 3 + … diverges. What the Riemann zeta function is for s > 1, how it extends to other s, why ζ(−1) = −1/12 is a statement about that extension, and why the viral shifting trick is not a proof.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Around the corner · 25</div>
+  <h1>1 + 2 + 3 + … = −1/12?</h1>
+  <p class="teaser">Not as a sum. What the famous "equation" actually says, what the zeta function is, and why the viral video's trick is not a proof.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Add the first \(n\) positive integers: \(S_n = \tfrac{n(n+1)}{2}\). These <b>partial sums</b> pass every number, so by the definition of an infinite sum (<a href="../../grade-10/sheets/b12-infinite-series.html">Adding up forever</a>), \(1 + 2 + 3 + \cdots\) <b>diverges</b>. It is not \(-\tfrac{1}{12}\). It is not anything.</p>
+<p>The \(-\tfrac{1}{12}\) belongs to a function. For \(s > 1\) the series</p>
+<p>\[\zeta(s) = 1 + \frac{1}{2^s} + \frac{1}{3^s} + \frac{1}{4^s} + \cdots\]</p>
+<p>converges (see the stretch) and defines the <b>Riemann zeta function</b>; \(\zeta(2) = \pi^2/6\). Put \(s = -1\) into the series and you get \(1 + 2 + 3 + \cdots\): the series has nothing to say there.</p>
+<p>The function does. Allow complex \(s\) and exactly one differentiable function agrees with it for \(s > 1\) and is defined for every \(s\) except \(1\): its <b>analytic continuation</b>. The continued function has \(\zeta(0) = -\tfrac12\) and \(\zeta(-1) = -\tfrac{1}{12}\).</p>
+<figure><svg viewBox="0 0 420 200" width="420" height="200" role="img" aria-label="Graph of the zeta function on the real line: solid for s greater than 1 where the series converges, dashed continuation to the left, with the points (0, −1/2) and (−1, −1/12) marked" font-family="Nunito, sans-serif" font-size="13">
+<line x1="40" y1="120" x2="410" y2="120" stroke="#999"/><text x="414" y="124" fill="#555" font-size="12">s</text>
+<line x1="251.2" y1="8" x2="251.2" y2="192" stroke="#999" stroke-dasharray="3 3"/>
+<line x1="40" y1="65" x2="46" y2="65" stroke="#999"/><text x="36" y="69" text-anchor="end" fill="#555" font-size="12">1</text>
+<line x1="40" y1="175" x2="46" y2="175" stroke="#999"/><text x="36" y="179" text-anchor="end" fill="#555" font-size="12">−1</text>
+<line x1="81.2" y1="117" x2="81.2" y2="123" stroke="#999"/><text x="81.2" y="113" text-anchor="middle" fill="#555" font-size="12">−3</text><line x1="123.8" y1="117" x2="123.8" y2="123" stroke="#999"/><text x="123.8" y="113" text-anchor="middle" fill="#555" font-size="12">−2</text><line x1="166.2" y1="117" x2="166.2" y2="123" stroke="#999"/><text x="166.2" y="113" text-anchor="middle" fill="#555" font-size="12">−1</text><line x1="208.8" y1="117" x2="208.8" y2="123" stroke="#999"/><text x="208.8" y="113" text-anchor="middle" fill="#555" font-size="12">0</text><line x1="251.2" y1="117" x2="251.2" y2="123" stroke="#999"/><text x="251.2" y="113" text-anchor="middle" fill="#555" font-size="12">1</text><line x1="293.8" y1="117" x2="293.8" y2="123" stroke="#999"/><text x="293.8" y="113" text-anchor="middle" fill="#555" font-size="12">2</text><line x1="336.2" y1="117" x2="336.2" y2="123" stroke="#999"/><text x="336.2" y="113" text-anchor="middle" fill="#555" font-size="12">3</text><line x1="378.8" y1="117" x2="378.8" y2="123" stroke="#999"/><text x="378.8" y="113" text-anchor="middle" fill="#555" font-size="12">4</text>
+<polyline points="282.3,10.2 283.4,12.7 284.6,15.1 285.7,17.4 286.9,19.4 288.0,21.4 289.1,23.2 290.3,24.9 291.4,26.5 292.6,28.1 293.7,29.5 294.9,30.8 296.0,32.1 297.1,33.3 298.3,34.5 299.4,35.6 300.6,36.6 301.7,37.6 302.9,38.5 304.0,39.4 305.1,40.3 306.3,41.1 307.4,41.8 308.6,42.6 309.7,43.3 310.9,44.0 312.0,44.6 313.1,45.3 314.3,45.9 315.4,46.4 316.6,47.0 317.7,47.5 318.9,48.0 320.0,48.5 321.1,49.0 322.3,49.4 323.4,49.9 324.6,50.3 325.7,50.7 326.9,51.1 328.0,51.5 329.1,51.9 330.3,52.2 331.4,52.6 332.6,52.9 333.7,53.2 334.9,53.5 336.0,53.8 337.1,54.1 338.3,54.4 339.4,54.7 340.6,54.9 341.7,55.2 342.9,55.4 344.0,55.7 345.1,55.9 346.3,56.1 347.4,56.4 348.6,56.6 349.7,56.8 350.9,57.0 352.0,57.2 353.1,57.4 354.3,57.5 355.4,57.7 356.6,57.9 357.7,58.1 358.9,58.2 360.0,58.4 361.1,58.5 362.3,58.7 363.4,58.8 364.6,59.0 365.7,59.1 366.9,59.3 368.0,59.4 369.1,59.5 370.3,59.6 371.4,59.8 372.6,59.9 373.7,60.0 374.9,60.1 376.0,60.2 377.1,60.3 378.3,60.4 379.4,60.5 380.6,60.6 381.7,60.7 382.9,60.8 384.0,60.9 385.1,61.0 386.3,61.1 387.4,61.2 388.6,61.3 389.7,61.3 390.9,61.4 392.0,61.5 393.1,61.6 394.3,61.6 395.4,61.7 396.6,61.8 397.7,61.9 398.9,61.9 400.0,62.0" fill="none" stroke="#3f44c9" stroke-width="2.5"/>
+<polyline points="60.0,119.8 60.8,119.7 61.6,119.7 62.4,119.7 63.2,119.7 64.0,119.7 64.7,119.7 65.5,119.7 66.3,119.7 67.1,119.7 67.9,119.7 68.7,119.7 69.5,119.6 70.3,119.6 71.1,119.6 71.9,119.6 72.7,119.6 73.5,119.6 74.2,119.6 75.0,119.6 75.8,119.6 76.6,119.6 77.4,119.6 78.2,119.6 79.0,119.6 79.8,119.6 80.6,119.5 81.4,119.5 82.2,119.5 82.9,119.5 83.7,119.5 84.5,119.5 85.3,119.5 86.1,119.5 86.9,119.5 87.7,119.5 88.5,119.5 89.3,119.5 90.1,119.5 90.9,119.5 91.7,119.5 92.4,119.5 93.2,119.5 94.0,119.5 94.8,119.5 95.6,119.5 96.4,119.5 97.2,119.5 98.0,119.5 98.8,119.5 99.6,119.5 100.4,119.5 101.1,119.5 101.9,119.5 102.7,119.5 103.5,119.5 104.3,119.5 105.1,119.6 105.9,119.6 106.7,119.6 107.5,119.6 108.3,119.6 109.1,119.6 109.9,119.6 110.6,119.6 111.4,119.6 112.2,119.7 113.0,119.7 113.8,119.7 114.6,119.7 115.4,119.7 116.2,119.8 117.0,119.8 117.8,119.8 118.6,119.8 119.3,119.8 120.1,119.9 120.9,119.9 121.7,119.9 122.5,120.0 123.3,120.0 124.1,120.0 124.9,120.0 125.7,120.1 126.5,120.1 127.3,120.2 128.1,120.2 128.8,120.2 129.6,120.3 130.4,120.3 131.2,120.4 132.0,120.4 132.8,120.4 133.6,120.5 134.4,120.5 135.2,120.6 136.0,120.7 136.8,120.7 137.5,120.8 138.3,120.8 139.1,120.9 139.9,120.9 140.7,121.0 141.5,121.1 142.3,121.1 143.1,121.2 143.9,121.3 144.7,121.4 145.5,121.4 146.3,121.5 147.0,121.6 147.8,121.7 148.6,121.8 149.4,121.9 150.2,122.0 151.0,122.1 151.8,122.2 152.6,122.3 153.4,122.4 154.2,122.5 155.0,122.6 155.7,122.7 156.5,122.8 157.3,122.9 158.1,123.1 158.9,123.2 159.7,123.3 160.5,123.5 161.3,123.6 162.1,123.8 162.9,123.9 163.7,124.1 164.5,124.2 165.2,124.4 166.0,124.5 166.8,124.7 167.6,124.9 168.4,125.1 169.2,125.2 170.0,125.4 170.8,125.6 171.6,125.8 172.4,126.0 173.2,126.3 173.9,126.5 174.7,126.7 175.5,126.9 176.3,127.2 177.1,127.4 177.9,127.7 178.7,127.9 179.5,128.2 180.3,128.5 181.1,128.8 181.9,129.1 182.7,129.4 183.4,129.7 184.2,130.0 185.0,130.3 185.8,130.7 186.6,131.0 187.4,131.4 188.2,131.8 189.0,132.1 189.8,132.5 190.6,133.0 191.4,133.4 192.2,133.8 192.9,134.3 193.7,134.7 194.5,135.2 195.3,135.7 196.1,136.2 196.9,136.8 197.7,137.3 198.5,137.9 199.3,138.5 200.1,139.1 200.9,139.7 201.6,140.4 202.4,141.1 203.2,141.8 204.0,142.5 204.8,143.2 205.6,144.0 206.4,144.9 207.2,145.7 208.0,146.6 208.8,147.5 209.6,148.5 210.4,149.5 211.1,150.5 211.9,151.6 212.7,152.8 213.5,153.9 214.3,155.2 215.1,156.5 215.9,157.9 216.7,159.3 217.5,160.8 218.3,162.4 219.1,164.0 219.8,165.8 220.6,167.6 221.4,169.6 222.2,171.6 223.0,173.8 223.8,176.1 224.6,178.6 225.4,181.2 226.2,183.9 227.0,186.9 227.8,190.1" fill="none" stroke="#3f44c9" stroke-width="2" stroke-dasharray="5 4"/>
+<circle cx="293.8" cy="29.5" r="3.5" fill="#3f44c9"/><text x="301.8" y="30.5" fill="#3f44c9">ζ(2) = π²/6</text>
+<circle cx="208.8" cy="147.5" r="3.5" fill="#f5a524"/><text x="200.8" y="163.5" text-anchor="end" fill="#f5a524">ζ(0) = −½</text>
+<circle cx="166.2" cy="124.6" r="3.5" fill="#f5a524"/><text x="162.2" y="142.6" text-anchor="end" fill="#f5a524">ζ(−1) = −1/12</text>
+<text x="257.2" y="188" fill="#555" font-size="12">s = 1: no value</text>
+<text x="330" y="90" fill="#3f44c9" font-size="12">the series, s &gt; 1</text>
+<text x="62" y="95" fill="#3f44c9" font-size="12">continuation (dashed)</text>
+</svg><figcaption>Solid: the series, \(s > 1\). Dashed: its analytic continuation. The series says nothing left of \(s = 1\).</figcaption></figure>
+<p class="callout">\(\zeta(-1) = -\tfrac{1}{12}\) is a true statement about the extended function. "\(1 + 2 + 3 + \cdots = -\tfrac{1}{12}\)" pretends the series still means something there. It does not.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: a formula that outlives its series</h2>
+<p>For \(\lvert x \rvert \lt 1\), \(1 + x + x^2 + \cdots = \dfrac{1}{1 - x}\). At \(x = 2\) the right side gives \(-1\); nobody concludes \(1 + 2 + 4 + 8 + \cdots = -1\). At \(x = -1\) it gives \(\tfrac12\): the video's \(S = 1 - 1 + 1 - 1 + \cdots = \tfrac12\). Its argument, "\(S = 1 - S\), so \(S = \tfrac12\)", assumes \(S\) is a number. The partial sums are 1, 0, 1, 0, … and never settle, so it is not. Term-by-term shifting and adding is a theorem about convergent series; on a divergent one it proves anything (exercise 3).</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Find the smallest \(n\) with \(S_n = 1 + 2 + \cdots + n\) above one million. Then use the fact that the terms of a convergent series tend to 0 (why?) to dispose of both \(1 - 1 + 1 - \cdots\) and \(1 + 2 + 3 + \cdots\).<div class="space short"></div></li>
+<li>\(\zeta(2) = \pi^2/6 \approx 1.6449\). Add the first ten terms and compare the shortfall with \(\tfrac{1}{10}\). About how many terms would give an error below \(0.001\)?<div class="space short"></div></li>
+<li>The shift trick on \(T = 1 + 2 + 4 + 8 + \cdots\): "\(2T = 2 + 4 + 8 + \cdots = T - 1\), so \(T = -1\)." (a) Which step is unjustified? (b) The same moves on \(G = 1 + \tfrac12 + \tfrac14 + \cdots\) give \(\tfrac12 G = G - 1\), so \(G = 2\). Why is this one valid? (c) What is \(\dfrac{1}{1-x}\) at \(x = 2\)?<div class="space"></div></li>
+<li>Brackets. (a) Show \((1 - 1) + (1 - 1) + \cdots = 0\) but \(1 + (-1 + 1) + (-1 + 1) + \cdots = 1\). (b) If \(a_1 + a_2 + \cdots\) converges to \(S\) and you bracket consecutive terms, why does the bracketed series converge to \(S\) too? (Its partial sums are some of the old ones.) (c) Which hypothesis failed in (a)?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: where the series lives</h2>
+<p>Show that the series for \(\zeta(s)\) diverges for every \(s \le 1\), and for \(s > 1\) converges with \(\zeta(s) \le 1 + \dfrac{1}{s - 1}\). Compare \(\dfrac{1}{n^s}\) with the area under \(y = \dfrac{1}{x^s}\) from \(x = n - 1\) to \(x = n\).</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(S_{1413} = 998{,}991\) and \(S_{1414} = 1{,}000{,}405\), so \(n = 1414\). The terms of \(1 - 1 + 1 - \cdots\) are \(\pm 1\), which do not tend to 0; the terms of \(1 + 2 + 3 + \cdots\) grow. Neither can converge.</li>
+<li>The first ten terms total \(1.5498\), short by \(0.0952\), close to \(\tfrac{1}{10}\). The tail after \(N\) terms is about \(\tfrac{1}{N}\) (it lies between \(\tfrac{1}{N+1}\) and \(\tfrac{1}{N}\), by the area comparison in the stretch), so you need about 1,000 terms for an error below \(0.001\).</li>
+<li>(a) Writing \(2T\) and \(T - 1\) treats \(T\) as a number. \(T\) diverges, so neither expression means anything, and "\(2T = T - 1\)" is an equation between two undefined things. (b) \(G\) converges (geometric, \(r = \tfrac12\)), and halving a convergent series or dropping its first term gives a convergent series whose limit is halved or reduced by 1. The equation is between real numbers, and \(G = 2\) is right. (c) \(\dfrac{1}{1 - 2} = -1\), the same number the trick produced. The trick computes the value of the extended formula, not a sum.</li>
+<li>(a) Every bracket in the first is 0, so the partial sums are all 0. In the second they are \(1, 1, 1, \ldots\). (b) After \(k\) brackets you have added exactly the first \(n_k\) terms of the original, for some increasing sequence \(n_1 \lt n_2 \lt \cdots\); so the bracketed partial sums are \(S_{n_1}, S_{n_2}, \ldots\), a subsequence of a sequence converging to \(S\), and they converge to \(S\) too. (c) Convergence of the original. The partial sums \(1, 0, 1, 0, \ldots\) have one subsequence heading to 1 and another to 0, and a bracketing can pick either.</li>
+</ol>
+<p><b>Stretch.</b> If \(s \le 1\) then \(n^s \le n\), so \(\tfrac{1}{n^s} \ge \tfrac{1}{n}\); the partial sums are at least those of the harmonic series, which pass every number. If \(s > 1\) and \(n \ge 2\): on the interval \([n-1, n]\) the curve \(y = 1/x^s\) is at least \(1/n^s\), so the rectangle of height \(1/n^s\) fits under it: \(\dfrac{1}{n^s} \le \displaystyle\int_{n-1}^{n} \frac{dx}{x^s}\). Summing from \(n = 2\) to \(N\): \(S_N - 1 \le \displaystyle\int_1^N \frac{dx}{x^s} = \frac{1 - N^{1-s}}{s - 1} \lt \frac{1}{s - 1}\). The partial sums increase and stay below \(1 + \tfrac{1}{s-1}\), so they converge, and the limit obeys the same bound. Check: \(\zeta(2) = 1.645 \le 2\).</p>
+</section>
+
+<div class="sheet-nav"><a href="b24-derangements.html">← Previous</a><a href="b26-inversion.html">Next: Inversion in a circle →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

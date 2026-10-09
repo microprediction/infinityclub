@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Taylor Polynomials · Infinity Club</title>
+<meta name="description" content="Pick eˣ, sin x, cos x, ln(1 + x) or 1/(1 − x), slide the degree, and watch the Taylor polynomial hug the curve: where it agrees, where it gives up, and the radius of convergence.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+#plot { cursor: grab; touch-action: none; }
+#plot.drag { cursor: grabbing; }
+.controls input[type=range] { width: 200px; }
+@media (max-width: 420px) { .controls input[type=range] { width: 130px; } }
+.controls .val { font-family: var(--mono); min-width: 2em; display: inline-block; }
+#poly { font-size: 1.05rem; }
+.mission { max-width: 70ch; margin: -.4rem 0 1rem; }
+.mission p { margin: .3rem 0; }
+.mission summary { cursor: pointer; font-weight: 700; }
+.key { font-size: .88rem; color: var(--muted); margin: .2rem 0 .6rem; }
+.key span { display: inline-block; margin-right: 1em; }
+.key i { display: inline-block; width: 1.4em; height: .3em; vertical-align: middle; margin-right: .3em; border-radius: 2px; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Taylor polynomials</h1>
+<p class="explain">Pick a function and slide the degree n. The orange curve is the Taylor polynomial Tₙ(x): the polynomial that matches the function's value and its first n derivatives at x = 0. The shaded band is where Tₙ stays within 0.1 of the function. Drag the black dot along the curve to read off the exact error at any x. For ln(1 + x) and 1/(1 − x), notice the two dashed walls at x = ±1: however many terms you add, the polynomial never gets through them.</p>
+<div class="mission">
+<p class="small"><b>Mission.</b> Pick eˣ and drag the dot to x = 1. Before you move the degree slider, predict the smallest n for which Tₙ(1) is within 0.001 of e ≈ 2.71828. Then slide n and check.</p>
+<details class="small"><summary>Answer</summary><p>n = 6. T₅(1) = 2.71667 misses by 0.0016, and T₆(1) = 2.71806 misses by 0.00023. The error after n terms is roughly the next term, 1/(n + 1)!, and 1/7! = 0.0002 is the first that drops below 0.001. Extension: now drag the dot to x = 3. The next-term estimate becomes 3ⁿ⁺¹/(n + 1)!, which keeps growing until n reaches 3 and only then starts to shrink. Watch the error on the readout do exactly that.</p></details>
+</div>
+<div class="demo-panel">
+  <div class="controls">
+    <label>f(x)
+      <select id="fn">
+        <option value="exp">eˣ</option>
+        <option value="sin">sin x</option>
+        <option value="cos">cos x</option>
+        <option value="ln">ln(1 + x)</option>
+        <option value="geo">1/(1 − x)</option>
+      </select>
+    </label>
+    <label>degree n <input type="range" id="deg" min="0" max="15" step="1" value="3"> <span class="val" id="degv">3</span></label>
+    <button id="reset" class="ghost">Reset</button>
+  </div>
+  <div class="key"><span><i style="background:#1d1f3a"></i>f(x)</span><span><i style="background:#f5a524"></i>Tₙ(x)</span><span><i style="background:#e6e7fb"></i>|f − Tₙ| &lt; 0.1</span><span><i style="background:#e0453a;height:.12em"></i>radius of convergence</span></div>
+  <div class="readout" id="poly"></div>
+  <canvas id="plot" width="900" height="520"></canvas>
+  <div class="readout" id="info"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>A Taylor polynomial is built one derivative at a time. T₀ is the constant f(0). T₁ adds the tangent line. T₂ bends it to match the curvature, and so on. Each coefficient is f⁽ᵏ⁾(0)/k!, so for eˣ, whose derivatives are all 1 at zero, the coefficients are 1, 1, 1/2, 1/6, 1/24, … For sin x the even derivatives vanish and the odd ones alternate in sign, which is why only odd powers appear and the signs flip.</p>
+<p>Near x = 0 every extra term improves the fit, and the shaded band of agreement grows. For eˣ, sin x and cos x it grows without bound: push n to 15 and the band swallows the whole screen. The coefficients shrink like 1/k!, which beats any power of x eventually.</p>
+<p>ln(1 + x) and 1/(1 − x) are different. Their coefficients shrink like 1/k or not at all, so the series only converges for |x| &lt; 1. The dashed red walls mark that <b>radius of convergence</b>. Inside the walls more terms help; outside, the polynomial swings ever more wildly. The function 1/(1 − x) blows up at x = 1, and a power series centred at 0 cannot see past the nearest trouble spot, in any direction. ln(1 + x) blows up at x = −1, and that single bad point on the left also kills the series on the right, at x = 1, where ln 2 is perfectly finite.</p>
+<p>Sheet: <a href="../grade-12/sheets/a12-taylor.html">Where the power series come from</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  var FNS = {
+    exp: { f: Math.exp, name: "eˣ", xmin: -4, xmax: 4, ymin: -3, ymax: 10, radius: Infinity, x0: 1 },
+    sin: { f: Math.sin, name: "sin x", xmin: -7, xmax: 7, ymin: -2.5, ymax: 2.5, radius: Infinity, x0: 2 },
+    cos: { f: Math.cos, name: "cos x", xmin: -7, xmax: 7, ymin: -2.5, ymax: 2.5, radius: Infinity, x0: 2 },
+    ln:  { f: function (x) { return x > -1 ? Math.log(1 + x) : NaN; }, name: "ln(1 + x)", xmin: -2, xmax: 3, ymin: -3, ymax: 3, radius: 1, x0: 0.5 },
+    geo: { f: function (x) { return 1 / (1 - x); }, name: "1/(1 − x)", xmin: -3, xmax: 3, ymin: -4, ymax: 6, radius: 1, x0: 0.5 }
+  };
+  function factorial(k) { var r = 1; for (var i = 2; i <= k; i++) r *= i; return r; }
+  // Taylor coefficients about 0, c[k] multiplies x^k. den is the integer denominator used for display.
+  function taylorTerms(fn, n) {
+    var terms = [];
+    for (var k = 0; k <= n; k++) {
+      var c = 0, den = 1;
+      if (fn === "exp") { den = factorial(k); c = 1 / den; }
+      else if (fn === "sin") { if (k % 2 === 1) { den = factorial(k); c = ((k - 1) / 2) % 2 === 0 ? 1 / den : -1 / den; } }
+      else if (fn === "cos") { if (k % 2 === 0) { den = factorial(k); c = (k / 2) % 2 === 0 ? 1 / den : -1 / den; } }
+      else if (fn === "ln") { if (k >= 1) { den = k; c = (k % 2 === 1 ? 1 : -1) / den; } }
+      else if (fn === "geo") { c = 1; }
+      terms.push({ k: k, c: c, den: den });
+    }
+    return terms;
+  }
+  function coeffs(fn, n) { return taylorTerms(fn, n).map(function (t) { return t.c; }); }
+  function evalPoly(c, x) { var s = 0; for (var k = c.length - 1; k >= 0; k--) s = s * x + c[k]; return s; }
+  // widest interval [lo, hi] containing 0 on which |f - T| < tol, scanning outward in steps of dx
+  function agreeInterval(f, c, tol, xmin, xmax, dx) {
+    var lo = 0, hi = 0, x;
+    for (x = 0; x <= xmax; x += dx) { var e = Math.abs(f(x) - evalPoly(c, x)); if (isNaN(e) || e >= tol) break; hi = x; }
+    for (x = 0; x >= xmin; x -= dx) { var e2 = Math.abs(f(x) - evalPoly(c, x)); if (isNaN(e2) || e2 >= tol) break; lo = x; }
+    return [lo, hi];
+  }
+  var SUP = { "0": "⁰", "1": "¹", "2": "²", "3": "³", "4": "⁴", "5": "⁵", "6": "⁶", "7": "⁷", "8": "⁸", "9": "⁹" };
+  function sup(k) { return String(k).split("").map(function (d) { return SUP[d]; }).join(""); }
+  function polyString(fn, n) {
+    var parts = [], terms = taylorTerms(fn, n);
+    terms.forEach(function (t) {
+      if (t.c === 0) return;
+      var mag = t.k === 0 ? "1" : (t.k === 1 ? "x" : "x" + sup(t.k));
+      if (t.den !== 1) mag += "/" + t.den;
+      parts.push({ neg: t.c < 0, s: mag });
+    });
+    if (parts.length === 0) return "0";
+    var s = (parts[0].neg ? "−" : "") + parts[0].s;
+    for (var i = 1; i < parts.length; i++) s += (parts[i].neg ? " − " : " + ") + parts[i].s;
+    return s;
+  }
+  /*ENDPURE*/
+
+  var canvas = document.getElementById("plot"), ctx = canvas.getContext("2d");
+  var info = document.getElementById("info"), poly = document.getElementById("poly");
+  var fnSel = document.getElementById("fn"), degSl = document.getElementById("deg");
+  var S = { fn: "exp", n: 3, x0: 1 };
+  fnSel.addEventListener("change", function () { S.fn = fnSel.value; S.x0 = FNS[S.fn].x0; draw(); });
+  degSl.addEventListener("input", function () { S.n = parseInt(degSl.value, 10); draw(); });
+  document.getElementById("reset").addEventListener("click", function () { S = { fn: "exp", n: 3, x0: 1 }; fnSel.value = "exp"; degSl.value = 3; draw(); });
+
+  var W, H, XMIN, XMAX, YMIN, YMAX;
+  function X(x) { return (x - XMIN) / (XMAX - XMIN) * W; }
+  function Y(y) { return H - (y - YMIN) / (YMAX - YMIN) * H; }
+  function toMathX(px) { return XMIN + px / W * (XMAX - XMIN); }
+  function fmt(v, d) { if (!isFinite(v)) return "∞"; var s = v.toFixed(d === undefined ? 4 : d); return s.replace("-", "−"); }
+
+  function plotCurve(g, color, width) {
+    ctx.strokeStyle = color; ctx.lineWidth = width; ctx.beginPath();
+    var pen = false;
+    for (var i = 0; i <= W; i++) {
+      var x = toMathX(i), y = g(x);
+      if (isNaN(y) || Math.abs(y) > 1e6) { pen = false; continue; }
+      var py = Y(y); if (py < -2000) py = -2000; if (py > H + 2000) py = H + 2000;
+      if (!pen) { ctx.moveTo(i, py); pen = true; } else ctx.lineTo(i, py);
+    }
+    ctx.stroke();
+  }
+
+  function draw() {
+    var F = FNS[S.fn], c = coeffs(S.fn, S.n);
+    document.getElementById("degv").textContent = S.n;
+    var dpr = window.devicePixelRatio || 1; W = canvas.clientWidth || 900; H = Math.round(W * 0.58);
+    canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    XMIN = F.xmin; XMAX = F.xmax; YMIN = F.ymin; YMAX = F.ymax;
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, H);
+    // agreement band
+    var band = agreeInterval(F.f, c, 0.1, XMIN, XMAX, 0.005);
+    ctx.fillStyle = "#e6e7fb"; ctx.fillRect(X(band[0]), 0, X(band[1]) - X(band[0]), H);
+    // grid and axes
+    ctx.strokeStyle = "#ece9e0"; ctx.lineWidth = 1;
+    for (var gx = Math.ceil(XMIN); gx <= XMAX; gx++) { ctx.beginPath(); ctx.moveTo(X(gx), 0); ctx.lineTo(X(gx), H); ctx.stroke(); }
+    for (var gy = Math.ceil(YMIN); gy <= YMAX; gy++) { ctx.beginPath(); ctx.moveTo(0, Y(gy)); ctx.lineTo(W, Y(gy)); ctx.stroke(); }
+    ctx.strokeStyle = "#8a8ca8"; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(X(0), 0); ctx.lineTo(X(0), H); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(0, Y(0)); ctx.lineTo(W, Y(0)); ctx.stroke();
+    ctx.fillStyle = "#5d6079"; ctx.font = "11px Nunito, sans-serif"; ctx.textAlign = "center";
+    for (var tx = Math.ceil(XMIN); tx <= XMAX; tx++) if (tx !== 0) ctx.fillText(tx, X(tx), Y(0) + 13);
+    ctx.textAlign = "right";
+    for (var ty = Math.ceil(YMIN); ty <= YMAX; ty += (YMAX - YMIN > 8 ? 2 : 1)) if (ty !== 0) ctx.fillText(ty, X(0) - 5, Y(ty) + 4);
+    // radius of convergence walls
+    if (isFinite(F.radius)) {
+      ctx.strokeStyle = "#e0453a"; ctx.lineWidth = 1.5; ctx.setLineDash([6, 5]);
+      [-F.radius, F.radius].forEach(function (r) { ctx.beginPath(); ctx.moveTo(X(r), 0); ctx.lineTo(X(r), H); ctx.stroke(); });
+      ctx.setLineDash([]);
+      ctx.fillStyle = "#e0453a"; ctx.font = "bold 11px Nunito, sans-serif"; ctx.textAlign = "left";
+      ctx.fillText("x = 1", X(F.radius) + 4, 14); ctx.textAlign = "right"; ctx.fillText("x = −1", X(-F.radius) - 4, 14);
+    }
+    // curves
+    plotCurve(function (x) { return evalPoly(c, x); }, "#f5a524", 3);
+    plotCurve(F.f, "#1d1f3a", 2.5);
+    // probe point
+    var x0 = S.x0, fx = F.f(x0), tx0 = evalPoly(c, x0), err = Math.abs(fx - tx0);
+    if (!isNaN(fx)) {
+      ctx.strokeStyle = "#3f44c9"; ctx.lineWidth = 1.2; ctx.setLineDash([3, 4]);
+      ctx.beginPath(); ctx.moveTo(X(x0), Y(fx)); ctx.lineTo(X(x0), Y(tx0)); ctx.stroke(); ctx.setLineDash([]);
+      ctx.fillStyle = "#f5a524"; ctx.beginPath(); ctx.arc(X(x0), Y(tx0), 5.5, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = "#1d1f3a"; ctx.beginPath(); ctx.arc(X(x0), Y(fx), 8, 0, Math.PI * 2); ctx.fill();
+      ctx.strokeStyle = "#fff"; ctx.lineWidth = 2; ctx.stroke();
+      ctx.fillStyle = "#1d1f3a"; ctx.font = "bold 12px Nunito, sans-serif"; ctx.textAlign = "left";
+      ctx.fillText("x = " + fmt(x0, 2) + "  drag me", X(x0) + 12, Math.min(H - 8, Math.max(14, Y(fx) - 10)));
+    }
+    poly.textContent = "T" + subscript(S.n) + "(x) = " + polyString(S.fn, S.n);
+    var bandTxt = band[1] > band[0] ? "[" + fmt(band[0], 2) + ", " + fmt(band[1], 2) + "]" : "only at x = 0";
+    var t = "f(x) = " + F.name + ",  n = " + S.n + "\nagrees to within 0.1 on " + bandTxt + (band[1] >= XMAX && band[0] <= XMIN ? " (the whole window)" : "");
+    t += "\nat x = " + fmt(x0, 2) + ":  f = " + fmt(fx) + ",  T" + subscript(S.n) + " = " + fmt(tx0) + ",  error = " + (isNaN(err) ? "f undefined here" : err.toExponential(2));
+    if (isFinite(F.radius)) t += "\nradius of convergence 1: for |x| > 1 the error grows as n grows" + (Math.abs(x0) > 1 ? "  ← you are outside it" : "");
+    else t += "\nradius of convergence ∞: every x eventually comes right";
+    info.textContent = t;
+  }
+  var SUB = { "0": "₀", "1": "₁", "2": "₂", "3": "₃", "4": "₄", "5": "₅", "6": "₆", "7": "₇", "8": "₈", "9": "₉" };
+  function subscript(k) { return String(k).split("").map(function (d) { return SUB[d]; }).join(""); }
+
+  // drag the probe point (anywhere on the canvas sets x)
+  var dragging = false;
+  canvas.addEventListener("pointerdown", function (ev) {
+    dragging = true; canvas.classList.add("drag"); canvas.setPointerCapture(ev.pointerId); ev.preventDefault(); move(ev);
+  });
+  function move(ev) {
+    var r = canvas.getBoundingClientRect(), x = toMathX(ev.clientX - r.left);
+    S.x0 = Math.round(Math.max(XMIN, Math.min(XMAX, x)) * 20) / 20; draw();
+  }
+  canvas.addEventListener("pointermove", function (ev) { if (dragging) move(ev); });
+  function up() { dragging = false; canvas.classList.remove("drag"); }
+  canvas.addEventListener("pointerup", up); canvas.addEventListener("pointercancel", up);
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(draw, 120); });
+  draw();
+})();
+</script>
+</body>
+</html>

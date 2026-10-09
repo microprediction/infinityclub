@@ -1,11 +1,11 @@
 # Infinity Club
 
-Printable math sheets, one a night, organised by grade. Grade 6 (61 sheets), grade 8 (56 sheets) and grade 10 (59 sheets) are live, each in three tracks; other grades will follow. Shared interactive demos (56) live in `demos/`. Live at [infinityclub.net](https://infinityclub.net).
+Printable math sheets, one a night, organised by grade. Grade 6 (61 sheets), grade 8 (56 sheets), grade 10 (59 sheets) and grade 12 (58 sheets) are live, each in three tracks; other grades will follow. Shared interactive demos (68) live in `demos/`. Live at [infinityclub.net](https://infinityclub.net).
 
 ## Layout
 
 - `index.html`: grade chooser.
-- `grade-6/`, `grade-8/`, `grade-10/`: one folder per grade with `index.html` (the hub, all sheets by track), `plan.html` (first thirty nights and club card) and `sheets/`.
+- `grade-6/`, `grade-8/`, `grade-10/`, `grade-12/`: one folder per grade with `index.html` (the hub, all sheets by track), `plan.html` (first thirty nights and club card) and `sheets/`.
 - `demos/index.html`: gallery of every demo; `demos/*.html` the demos themselves, shared across grades.
 - `sheets/*.html` and `plan.html` are redirect stubs for the original URLs.
 

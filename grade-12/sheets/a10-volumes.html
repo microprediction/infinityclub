@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Volumes by slicing · Infinity Club</title>
+<meta name="description" content="Volumes by slicing: V is the integral of the cross-section area. The sphere's 4/3 pi r cubed from discs, the cone from similar triangles, solids of revolution, and a napkin ring.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Sharpen · 10</div>
+  <h1>Volumes by slicing</h1>
+  <p class="teaser">Stack thin discs and integrate. The sphere's 4/3 πr³ from circles, the cone from similar triangles, and a vase of your own design.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>In grade 10 you found the area under \(y = x^2\) with thin strips, and the sphere's volume by Cavalieri's principle: equal slices, equal volumes. Tonight the slices get integrated.</p>
+<p>Cut a solid by planes perpendicular to an axis. At position \(x\) the slice has cross-section area \(A(x)\); a slab of thickness \(dx\) has volume \(A(x)\,dx\). Add the slabs:</p>
+<p class="callout">\(V = \displaystyle\int_a^b A(x)\,dx\). The whole job is writing down \(A(x)\).</p>
+<p>For a sphere of radius \(r\) centred at the origin, the slice at \(x\) is a disc. Its radius is the height of the circle \(x^2 + y^2 = r^2\) there, \(\sqrt{r^2 - x^2}\), so \(A(x) = \pi(r^2 - x^2)\) and</p>
+<p>\[V = \int_{-r}^{r}\pi(r^2 - x^2)\,dx = \pi\Big[r^2x - \frac{x^3}{3}\Big]_{-r}^{r} = \pi\Big(2r^3 - \frac{2r^3}{3}\Big) = \frac43\pi r^3.\]</p>
+<figure><svg viewBox="0 0 320 190" width="240" height="142" role="img" aria-label="A sphere seen from the side, cut into thin vertical slices. One slab at distance x from the centre is highlighted; the radius r, the offset x and the slab's half-height form a right triangle. To the right the slab is lifted out as a disc of area pi times (r squared minus x squared) and thickness dx." font-family="Nunito, sans-serif" font-size="12">
+<circle cx="100" cy="95" r="75" fill="none" stroke="#000" stroke-width="1.5"/>
+<line x1="40" y1="50" x2="40" y2="140" stroke="#999" stroke-width="1"/><line x1="55" y1="35" x2="55" y2="155" stroke="#999" stroke-width="1"/><line x1="70" y1="26.3" x2="70" y2="163.7" stroke="#999" stroke-width="1"/><line x1="85" y1="21.5" x2="85" y2="168.5" stroke="#999" stroke-width="1"/><line x1="100" y1="20" x2="100" y2="170" stroke="#999" stroke-width="1"/><line x1="115" y1="21.5" x2="115" y2="168.5" stroke="#999" stroke-width="1"/><line x1="130" y1="26.3" x2="130" y2="163.7" stroke="#999" stroke-width="1"/><line x1="160" y1="50" x2="160" y2="140" stroke="#999" stroke-width="1"/>
+<rect x="136" y="31.6" width="8" height="126.9" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/>
+<line x1="20" y1="95" x2="200" y2="95" stroke="#999" stroke-width="1"/>
+<line x1="100" y1="95" x2="140" y2="95" stroke="#000" stroke-width="1.5"/>
+<line x1="100" y1="95" x2="140" y2="31.6" stroke="#000" stroke-width="1.5"/>
+<line x1="140" y1="95" x2="140" y2="31.6" stroke="#3f44c9" stroke-width="2"/>
+<circle cx="100" cy="95" r="2.5" fill="#000"/>
+<text x="109" y="58" font-weight="700">r</text><text x="119" y="109" text-anchor="middle" font-weight="700">x</text>
+<text x="203" y="99" fill="#555">x</text>
+<line x1="178" y1="60" x2="214" y2="60" stroke="#999" stroke-width="1" marker-end="url(#ah)"/>
+<defs><marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#999"/></marker></defs>
+<ellipse cx="238" cy="95" rx="9" ry="63.4" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<line x1="238" y1="95" x2="238" y2="31.6" stroke="#3f44c9" stroke-width="2"/>
+<text x="253" y="68" fill="#3f44c9">√(r² − x²)</text>
+<text x="238" y="22" text-anchor="middle">area π(r² − x²)</text>
+<text x="238" y="178" text-anchor="middle" fill="#555">thickness dx</text>
+</svg><figcaption>Slice the sphere at distance \(x\) from the centre. Pythagoras gives the slice radius \(\sqrt{r^2 - x^2}\); the slab's volume is \(\pi(r^2 - x^2)\,dx\).</figcaption></figure>
+<p>A solid made by spinning a curve \(y = f(x)\) about the \(x\)-axis (a <b>solid of revolution</b>) always has disc slices of radius \(f(x)\), so \(V = \pi\int_a^b f(x)^2\,dx\); the sphere is the case \(f(x) = \sqrt{r^2 - x^2}\). Slices need not be discs: any shape whose area you can write down will do.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: the cone from similar triangles</h2>
+<p>A cone has base radius \(R\) and height \(h\). Put the apex at the origin and measure \(y\) down the axis. The slice at depth \(y\) is a disc whose radius \(\rho\) comes from similar triangles: \(\rho/y = R/h\), so \(\rho = Ry/h\) and</p>
+<p>\[V = \int_0^h \pi\Big(\frac{Ry}{h}\Big)^2 dy = \frac{\pi R^2}{h^2}\cdot\frac{h^3}{3} = \frac13\pi R^2h.\]</p>
+<p>The famous third is \(\int y^2\,dy = y^3/3\), the same integral as the area under a parabola, now stacked into a solid.</p>
+<p class="small">Watch thin strips close in on an exact area, one dimension down: <a href="../../demos/riemann.html">infinityclub.net/demos/riemann.html</a>. The no-integral route to the same formulas is <a href="../../grade-10/sheets/a18-solids.html">grade 10's Cavalieri sheet</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>(a) Rotate \(y = \sqrt{x}\), \(0 \le x \le 4\), about the \(x\)-axis and find the volume. (b) Rotate \(y = 2\), \(0 \le x \le 5\), and check the answer against the cylinder formula.<div class="space short"></div></li>
+<li>A square pyramid has base side \(s\) and height \(h\). Measuring \(y\) from the apex, explain why the slice at depth \(y\) is a square of side \(sy/h\), then integrate to get \(V = \tfrac13 s^2h\).<div class="space short"></div></li>
+<li>A vase is made by rotating \(y = 1 + x^2/4\), \(0 \le x \le 2\) (centimetres), about the \(x\)-axis. Expand the square and find the volume exactly and to one decimal place. Then design your own: choose a profile \(f(x)\) you can square and integrate, and compute its volume.<div class="space short"></div></li>
+<li>A hemispherical bowl of radius 10 cm holds water to a depth of 4 cm. Set up the slicing integral (think about where along the axis the water starts and stops) and find the volume of water.<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the napkin ring</h2>
+<p>Drill a cylindrical hole straight through the centre of a sphere of radius \(r\) so that the ring left behind has height \(h\). Slice the ring at height \(x\): each slice is an annulus. Show that its area does not involve \(r\), and find the ring's volume. The size of the sphere did not matter.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(\pi\int_0^4 x\,dx = \pi\big[x^2/2\big]_0^4 = 8\pi \approx 25.1\). (b) \(\pi\int_0^5 4\,dx = 20\pi\), and \(\pi r^2h = \pi\cdot 4\cdot 5 = 20\pi\).</li>
+<li>Every slice is a scaled copy of the base, scaled by \(y/h\) (similar triangles down any face), so its side is \(sy/h\) and \(A(y) = s^2y^2/h^2\). \(V = \dfrac{s^2}{h^2}\displaystyle\int_0^h y^2\,dy = \dfrac{s^2}{h^2}\cdot\dfrac{h^3}{3} = \tfrac13 s^2h\). Same integral as the cone, different slice shape.</li>
+<li>\((1 + x^2/4)^2 = 1 + x^2/2 + x^4/16\). \(V = \pi\big[x + x^3/6 + x^5/80\big]_0^2 = \pi\big(2 + \tfrac43 + \tfrac25\big) = \tfrac{56}{15}\pi \approx 11.7\) cm³.</li>
+<li>Put the centre of the full sphere at the origin and measure \(x\) downward; the bowl's bottom is at \(x = 10\) and the water surface at \(x = 6\). Slices are discs of radius \(\sqrt{100 - x^2}\): \(V = \pi\displaystyle\int_6^{10}(100 - x^2)\,dx = \pi\big[100x - x^3/3\big]_6^{10} = \pi\big(\tfrac{2000}{3} - 528\big) = \tfrac{416}{3}\pi \approx 436\) cm³. (In general a cap of depth \(d\) has volume \(\tfrac13\pi d^2(3r - d)\).)</li>
+</ol>
+<p><b>Stretch.</b> The hole's radius satisfies \(r_0^2 = r^2 - h^2/4\). At height \(x\) (with \(|x| \le h/2\)) the outer radius squared is \(r^2 - x^2\), so the annulus has area \(\pi(r^2 - x^2) - \pi(r^2 - h^2/4) = \pi(h^2/4 - x^2)\): no \(r\). \(V = \pi\int_{-h/2}^{h/2}(h^2/4 - x^2)\,dx = \pi\big(\tfrac{h^3}{4} - \tfrac{h^3}{12}\big) = \tfrac16\pi h^3\), the volume of a sphere of diameter \(h\). A 2 cm high ring cut from the Earth has the same volume as a 2 cm high ring cut from an orange.</p>
+</section>
+
+<div class="sheet-nav"><a href="a9-by-parts.html">← Previous</a><a href="a11-exponential-decay.html">Next: The equation that says "rate ∝ amount" →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

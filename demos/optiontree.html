@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Binomial Option Tree · Infinity Club</title>
+<meta name="description" content="Price a stock option on a three-step binomial tree. Slide the up and down factors, interest rate and strike, read the replicating portfolio at every node, and check that the real probability of an up move changes nothing.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.controls input[type=range] { width: 130px; }
+.controls .val { font-family: var(--mono); min-width: 3.2em; display: inline-block; }
+.controls select { font: inherit; padding: .25em .4em; border: 1px solid var(--rule); border-radius: 6px; background: #fff; }
+.controls label.p { background: #fdf3e0; border-radius: 8px; padding: .25rem .6rem; }
+.legend span { display: inline-block; margin-right: 1rem; font-weight: 700; font-size: .9rem; }
+.legend i { display: inline-block; width: 12px; height: 12px; vertical-align: middle; margin-right: .3rem; border-radius: 3px; }
+.warn { color: #b3261e; font-weight: 700; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>The binomial option tree</h1>
+<p class="explain">A share costs 100 today. Each step it is multiplied by u (up) or d (down). Slide u, d, the interest rate and the strike, and read the tree: at every node the share price in black, the option's value in blue, and underneath, the <b>replicating portfolio</b> (Δ shares plus a cash amount B) that is worth exactly the option one step later whichever way the share goes. The value today is just Δ × 100 + B. Then slide the <b>real probability p</b> of an up move. Nothing in the tree moves. Try to say why before reading on.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <label>up factor u <input type="range" id="u" min="1.05" max="1.6" step="0.01" value="1.2"> <span class="val" id="uv">1.20</span></label>
+    <label>down factor d <input type="range" id="d" min="0.5" max="0.95" step="0.01" value="0.8"> <span class="val" id="dv">0.80</span></label>
+    <label>interest per step r <input type="range" id="r" min="0" max="0.1" step="0.005" value="0"> <span class="val" id="rv">0.0%</span></label>
+    <label>strike K <input type="range" id="K" min="60" max="140" step="1" value="100"> <span class="val" id="Kv">100</span></label>
+    <label>steps <input type="range" id="n" min="1" max="3" step="1" value="3"> <span class="val" id="nv">3</span></label>
+    <label>option <select id="type"><option value="call">call: max(S − K, 0)</option><option value="put">put: max(K − S, 0)</option></select></label>
+    <label class="p">real probability p <input type="range" id="p" min="0.05" max="0.95" step="0.01" value="0.7"> <span class="val" id="pv">0.70</span></label>
+  </div>
+  <canvas id="tree" width="900" height="520"></canvas>
+  <p class="legend"><span><i style="background:#1d1f3a"></i>share price S</span><span><i style="background:#3f44c9"></i>option value V</span><span><i style="background:#2e8b57"></i>replicating portfolio: Δ shares, B cash</span><span><i style="background:#f5a524"></i>payoff at expiry</span></p>
+  <div class="readout" id="info"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>Work from the right. At expiry the option is worth its payoff, max(S − K, 0) for a call. One step earlier, at a node with share price S, suppose you hold Δ shares and B in cash (negative B means you borrowed). After an up move you have ΔSu + B(1 + r); after a down move, ΔSd + B(1 + r). Choose Δ and B so that these equal the option's two possible values V<sub>u</sub> and V<sub>d</sub>: two equations, two unknowns, giving Δ = (V<sub>u</sub> − V<sub>d</sub>) / (S(u − d)) and B = (V<sub>u</sub> − ΔSu) / (1 + r). This portfolio <i>is</i> the option, in every future, so the option must cost what the portfolio costs: V = ΔS + B. If it cost more, sell the option and buy the portfolio; if less, do the reverse. Either way you pocket the difference with no risk, a <b>free lunch</b>, and markets with free lunches do not stay that way.</p>
+<p>Rearranging V = ΔS + B gives V = [qV<sub>u</sub> + (1 − q)V<sub>d</sub>] / (1 + r), with q = (1 + r − d)/(u − d). It looks like a discounted expected value, and q looks like a probability, but q was built from u, d and r alone. The real probability p that the share goes up never entered: the two equations for Δ and B did not mention it. That is why sliding p changes nothing. People who disagree about whether the share will rise can still agree on the option's price, because the price comes from copying, not from forecasting. The number q is called the <b>risk-neutral probability</b>, and the last line of the readout shows how far the "obvious" answer, the real-world expected payoff, is from the true price.</p>
+<p>Repeat the one-step argument at every node and you have priced a three-step option. Make the steps smaller and more numerous and the tree becomes the Black–Scholes formula. Note what q needs: d &lt; 1 + r &lt; u. If the share were sure to beat the bank (d &gt; 1 + r) or sure to lose to it, there would be a free lunch in the share alone and no sensible price for anything.</p>
+<p>Sheet: <a href="../grade-12/sheets/c3-options.html">What an option is worth</a>. Related demos: <a href="galton.html">Galton board</a> (the same tree, counting paths) and <a href="pascal.html">Pascal's triangle</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  function riskNeutralQ(u, d, r) { return (1 + r - d) / (u - d); }
+  function payoff(S, K, type) { return type === "put" ? Math.max(K - S, 0) : Math.max(S - K, 0); }
+  // nodes[i][j] = node after i steps with j up-moves: { S, V, delta, B }
+  function buildTree(S0, u, d, r, K, n, type) {
+    var q = riskNeutralQ(u, d, r), nodes = [], i, j;
+    for (i = 0; i <= n; i++) { nodes[i] = []; for (j = 0; j <= i; j++) nodes[i][j] = { S: S0 * Math.pow(u, j) * Math.pow(d, i - j) }; }
+    for (j = 0; j <= n; j++) nodes[n][j].V = payoff(nodes[n][j].S, K, type);
+    for (i = n - 1; i >= 0; i--) for (j = 0; j <= i; j++) {
+      var nd = nodes[i][j], Vu = nodes[i + 1][j + 1].V, Vd = nodes[i + 1][j].V;
+      nd.delta = (Vu - Vd) / (nd.S * (u - d));
+      nd.B = (Vu - nd.delta * nd.S * u) / (1 + r);
+      nd.V = nd.delta * nd.S + nd.B; // equals (q Vu + (1-q) Vd)/(1+r)
+    }
+    return { q: q, nodes: nodes, price: nodes[0][0].V, arbitrageFree: d < 1 + r && 1 + r < u };
+  }
+  // the tempting wrong answer: expected payoff under the real probability p, discounted
+  function discountedRealExpectation(S0, u, d, r, K, n, type, p) {
+    var sum = 0, c = 1;
+    for (var j = 0; j <= n; j++) { if (j > 0) c = c * (n - j + 1) / j; sum += c * Math.pow(p, j) * Math.pow(1 - p, n - j) * payoff(S0 * Math.pow(u, j) * Math.pow(d, n - j), K, type); }
+    return sum / Math.pow(1 + r, n);
+  }
+  function fmt(v, d) { d = d === undefined ? 2 : d; var r = Math.round(v * Math.pow(10, d)) / Math.pow(10, d); if (Object.is(r, -0)) r = 0; return r.toFixed(d).replace("-", "−"); }
+  /*ENDPURE*/
+
+  var S0 = 100, canvas = document.getElementById("tree"), ctx = canvas.getContext("2d"), info = document.getElementById("info");
+  var S = { u: 1.2, d: 0.8, r: 0, K: 100, n: 3, type: "call", p: 0.7 }, el = {};
+  ["u", "d", "r", "K", "n", "p"].forEach(function (id) { el[id] = document.getElementById(id); el[id].addEventListener("input", function () { S[id] = id === "n" ? Math.max(1, Math.round(parseFloat(el[id].value))) : parseFloat(el[id].value); draw(); }); });
+  document.getElementById("type").addEventListener("change", function (e) { S.type = e.target.value; draw(); });
+
+  function draw() {
+    var u = S.u, d = S.d, r = S.r, K = S.K, n = S.n, p = S.p;
+    document.getElementById("uv").textContent = fmt(u); document.getElementById("dv").textContent = fmt(d); document.getElementById("rv").textContent = fmt(r * 100, 1) + "%"; document.getElementById("Kv").textContent = K; document.getElementById("nv").textContent = n; document.getElementById("pv").textContent = fmt(p);
+    var T = buildTree(S0, u, d, r, K, n, S.type);
+    var dpr = window.devicePixelRatio || 1, W = canvas.clientWidth || 900, H = Math.max(300, Math.round(W * (n === 1 ? 0.42 : 0.58)));
+    canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, H);
+    var small = W < 520, fs = small ? 10 : 13, boxW = small ? 78 : 118, lineH = fs + 3;
+    var L = boxW / 2 + 8, R = W - boxW / 2 - 8, Tp = 28, B = H - 24;
+    function X(i) { return n === 0 ? W / 2 : L + (R - L) * i / n; }
+    function Y(i, j) { return (Tp + B) / 2 - (B - Tp) / (n + 0.6) * (j - i / 2); }
+    // edges
+    ctx.lineWidth = 1.5;
+    for (var i = 0; i < n; i++) for (var j = 0; j <= i; j++) {
+      ctx.strokeStyle = "#8a8ca8"; ctx.beginPath(); ctx.moveTo(X(i), Y(i, j)); ctx.lineTo(X(i + 1), Y(i + 1, j + 1)); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(X(i), Y(i, j)); ctx.lineTo(X(i + 1), Y(i + 1, j)); ctx.stroke();
+    }
+    // q labels on the first pair of edges
+    ctx.font = "bold " + fs + "px Nunito, sans-serif"; ctx.fillStyle = "#5d6079"; ctx.textAlign = "center";
+    if (T.arbitrageFree) {
+      ctx.fillText("q = " + fmt(T.q, 3), (X(0) + X(1)) / 2, (Y(0, 0) + Y(1, 1)) / 2 - 8);
+      ctx.fillText("1 − q = " + fmt(1 - T.q, 3), (X(0) + X(1)) / 2, (Y(0, 0) + Y(1, 0)) / 2 + fs + 4);
+    }
+    // step labels
+    ctx.font = fs + "px Nunito, sans-serif"; ctx.fillStyle = "#5d6079";
+    for (var s = 0; s <= n; s++) ctx.fillText(s === 0 ? "today" : s === n ? "expiry" : "step " + s, X(s), H - 6);
+    // nodes
+    for (i = 0; i <= n; i++) for (j = 0; j <= i; j++) {
+      var nd = T.nodes[i][j], x = X(i), y = Y(i, j), terminal = i === n, rows = terminal ? 2 : 3, bh = rows * lineH + 10;
+      ctx.fillStyle = "#fff"; ctx.strokeStyle = terminal ? "#f5a524" : "#c9c7bf"; ctx.lineWidth = terminal ? 2 : 1.2;
+      roundRect(x - boxW / 2, y - bh / 2, boxW, bh, 7); ctx.fill(); ctx.stroke();
+      var ty = y - bh / 2 + 5 + fs;
+      ctx.textAlign = "center"; ctx.font = "bold " + fs + "px Nunito, sans-serif"; ctx.fillStyle = "#1d1f3a"; ctx.fillText("S = " + fmt(nd.S), x, ty);
+      ctx.fillStyle = terminal ? "#b07200" : "#3f44c9"; ctx.fillText((terminal ? "pay " : "V = ") + fmt(nd.V), x, ty + lineH);
+      if (!terminal) { ctx.font = fs + "px Nunito, sans-serif"; ctx.fillStyle = "#2e8b57"; ctx.fillText("Δ " + fmt(nd.delta, small ? 2 : 3) + "  B " + fmt(nd.B, small ? 0 : 1), x, ty + 2 * lineH); }
+    }
+    // readout
+    var root = T.nodes[0][0], Vu = T.nodes[1][1].V, Vd = T.nodes[1][0].V, Su = T.nodes[1][1].S, Sd = T.nodes[1][0].S;
+    var txt = "";
+    if (!T.arbitrageFree) txt += "WARNING: you need d < 1 + r < u. With d = " + fmt(d) + ", 1 + r = " + fmt(1 + r, 3) + ", u = " + fmt(u) + " the share " + (d >= 1 + r ? "always beats" : "never beats") + " the bank: a free lunch already, so no price makes sense (q = " + fmt(T.q, 3) + ").\n";
+    txt += (S.type === "call" ? "Call" : "Put") + " on a share at 100, strike K = " + fmt(K, 0) + ", " + n + " step" + (n > 1 ? "s" : "") + ", u = " + fmt(u) + ", d = " + fmt(d) + ", r = " + fmt(r * 100, 1) + "% per step.\n";
+    txt += "price today V = " + fmt(T.price, 4) + "   =   Δ × 100 + B   =   " + fmt(root.delta, 4) + " × 100 + (" + fmt(root.B, 4) + ")\n";
+    txt += "check at the root: up → Δ·" + fmt(Su) + " + B(1+r) = " + fmt(root.delta * Su + root.B * (1 + r), 4) + " = Vu = " + fmt(Vu, 4) + ";   down → Δ·" + fmt(Sd) + " + B(1+r) = " + fmt(root.delta * Sd + root.B * (1 + r), 4) + " = Vd = " + fmt(Vd, 4) + "\n";
+    txt += "risk-neutral q = (1 + r − d)/(u − d) = " + fmt(T.q, 4) + ",  so V = [q·Vu + (1−q)·Vd]/(1+r) = " + fmt((T.q * Vu + (1 - T.q) * Vd) / (1 + r), 4) + "\n";
+    var wrong = discountedRealExpectation(S0, u, d, r, K, n, S.type, p);
+    txt += "real probability p = " + fmt(p) + ": appears nowhere above. Discounted real-world expected payoff = " + fmt(wrong, 4) + (Math.abs(wrong - T.price) < 5e-5 ? " (equal to the price only because p happens to equal q)" : ", which is NOT the price: quote it and someone will take your money");
+    info.textContent = txt;
+  }
+  function roundRect(x, y, w, h, rr) { ctx.beginPath(); ctx.moveTo(x + rr, y); ctx.lineTo(x + w - rr, y); ctx.quadraticCurveTo(x + w, y, x + w, y + rr); ctx.lineTo(x + w, y + h - rr); ctx.quadraticCurveTo(x + w, y + h, x + w - rr, y + h); ctx.lineTo(x + rr, y + h); ctx.quadraticCurveTo(x, y + h, x, y + h - rr); ctx.lineTo(x, y + rr); ctx.quadraticCurveTo(x, y, x + rr, y); ctx.closePath(); }
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(draw, 120); });
+  draw();
+})();
+</script>
+</body>
+</html>

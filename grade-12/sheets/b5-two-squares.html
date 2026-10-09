@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Which primes are sums of two squares · Infinity Club</title>
+<meta name="description" content="5, 13, 17 and 29 are sums of two squares; 3, 7, 11 and 19 are not. The rule is the remainder mod 4: the easy half proved with squares mod 4, the hard half explained through Gaussian integers.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Around the corner · 5</div>
+  <h1>Which primes are sums of two squares</h1>
+  <p class="teaser">5, 13, 17, 29 are; 3, 7, 11, 19 are not. The rule is the remainder mod 4, and the reason runs through Gaussian integers.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Every integer is 0, 1, 2 or 3 mod 4, and squaring those gives 0, 1, 0, 1. So <b>every square is 0 or 1 mod 4</b>. (\(a \equiv b \pmod 4\): same remainder on division by 4.) Two squares add to 0, 1 or 2 mod 4, never 3. So nothing that is 3 mod 4, prime or not, is a sum of two squares. That is the easy half, fully proved.</p>
+<figure><svg viewBox="0 0 200 200" width="200" height="200" role="img" aria-label="A grid of lattice points with the circle x squared plus y squared equals 13 passing through eight of them, and the dashed circle of radius root 11 passing through none" font-family="Nunito, sans-serif" font-size="12">
+<g fill="#999"><circle cx="12" cy="12" r="1.6"/><circle cx="34" cy="12" r="1.6"/><circle cx="56" cy="12" r="1.6"/><circle cx="78" cy="12" r="1.6"/><circle cx="100" cy="12" r="1.6"/><circle cx="122" cy="12" r="1.6"/><circle cx="144" cy="12" r="1.6"/><circle cx="166" cy="12" r="1.6"/><circle cx="188" cy="12" r="1.6"/><circle cx="12" cy="34" r="1.6"/><circle cx="34" cy="34" r="1.6"/><circle cx="56" cy="34" r="1.6"/><circle cx="78" cy="34" r="1.6"/><circle cx="100" cy="34" r="1.6"/><circle cx="122" cy="34" r="1.6"/><circle cx="144" cy="34" r="1.6"/><circle cx="166" cy="34" r="1.6"/><circle cx="188" cy="34" r="1.6"/><circle cx="12" cy="56" r="1.6"/><circle cx="34" cy="56" r="1.6"/><circle cx="78" cy="56" r="1.6"/><circle cx="100" cy="56" r="1.6"/><circle cx="122" cy="56" r="1.6"/><circle cx="166" cy="56" r="1.6"/><circle cx="188" cy="56" r="1.6"/><circle cx="12" cy="78" r="1.6"/><circle cx="34" cy="78" r="1.6"/><circle cx="78" cy="78" r="1.6"/><circle cx="100" cy="78" r="1.6"/><circle cx="122" cy="78" r="1.6"/><circle cx="166" cy="78" r="1.6"/><circle cx="188" cy="78" r="1.6"/><circle cx="12" cy="100" r="1.6"/><circle cx="34" cy="100" r="1.6"/><circle cx="56" cy="100" r="1.6"/><circle cx="78" cy="100" r="1.6"/><circle cx="100" cy="100" r="1.6"/><circle cx="122" cy="100" r="1.6"/><circle cx="144" cy="100" r="1.6"/><circle cx="166" cy="100" r="1.6"/><circle cx="188" cy="100" r="1.6"/><circle cx="12" cy="122" r="1.6"/><circle cx="34" cy="122" r="1.6"/><circle cx="78" cy="122" r="1.6"/><circle cx="100" cy="122" r="1.6"/><circle cx="122" cy="122" r="1.6"/><circle cx="166" cy="122" r="1.6"/><circle cx="188" cy="122" r="1.6"/><circle cx="12" cy="144" r="1.6"/><circle cx="34" cy="144" r="1.6"/><circle cx="78" cy="144" r="1.6"/><circle cx="100" cy="144" r="1.6"/><circle cx="122" cy="144" r="1.6"/><circle cx="166" cy="144" r="1.6"/><circle cx="188" cy="144" r="1.6"/><circle cx="12" cy="166" r="1.6"/><circle cx="34" cy="166" r="1.6"/><circle cx="56" cy="166" r="1.6"/><circle cx="78" cy="166" r="1.6"/><circle cx="100" cy="166" r="1.6"/><circle cx="122" cy="166" r="1.6"/><circle cx="144" cy="166" r="1.6"/><circle cx="166" cy="166" r="1.6"/><circle cx="188" cy="166" r="1.6"/><circle cx="12" cy="188" r="1.6"/><circle cx="34" cy="188" r="1.6"/><circle cx="56" cy="188" r="1.6"/><circle cx="78" cy="188" r="1.6"/><circle cx="100" cy="188" r="1.6"/><circle cx="122" cy="188" r="1.6"/><circle cx="144" cy="188" r="1.6"/><circle cx="166" cy="188" r="1.6"/><circle cx="188" cy="188" r="1.6"/><circle cx="56" cy="56" r="1.6"/><circle cx="144" cy="56" r="1.6"/><circle cx="56" cy="78" r="1.6"/><circle cx="144" cy="78" r="1.6"/><circle cx="56" cy="122" r="1.6"/><circle cx="144" cy="122" r="1.6"/><circle cx="56" cy="144" r="1.6"/><circle cx="144" cy="144" r="1.6"/></g>
+<line x1="4" y1="100" x2="196" y2="100" stroke="#999" stroke-width="1"/><line x1="100" y1="4" x2="100" y2="196" stroke="#999" stroke-width="1"/>
+<circle cx="100" cy="100" r="73" fill="none" stroke="#f5a524" stroke-width="1.5" stroke-dasharray="4 3"/>
+<circle cx="100" cy="100" r="79.3" fill="none" stroke="#3f44c9" stroke-width="1.8"/>
+<g fill="#3f44c9"><circle cx="144" cy="34" r="3.2"/><circle cx="166" cy="56" r="3.2"/><circle cx="166" cy="144" r="3.2"/><circle cx="144" cy="166" r="3.2"/><circle cx="56" cy="166" r="3.2"/><circle cx="34" cy="144" r="3.2"/><circle cx="34" cy="56" r="3.2"/><circle cx="56" cy="34" r="3.2"/></g>
+<text x="150" y="28" fill="#3f44c9" font-weight="700">(2, 3)</text>
+<text x="198" y="49" text-anchor="end" fill="#3f44c9" font-weight="700">(3, 2)</text>
+<text x="108" y="30" fill="#f5a524" font-size="11">r² = 11</text>
+<text x="104" y="190" fill="#3f44c9" font-size="11">r² = 13</text>
+</svg><figcaption>\(x^2 + y^2 = 13\) passes through eight lattice points; \(x^2 + y^2 = 11\) (dashed) through none.</figcaption></figure>
+<p>The hard half is the converse: <b>every prime \(p \equiv 1 \pmod 4\) is a sum of two squares.</b> Fermat stated it; Euler proved it. The reason lives in the <b>Gaussian integers</b> \(a + bi\) (\(a, b\) integers), whose <b>norm</b> \(N(a + bi) = a^2 + b^2\) multiplies: \(N(\alpha\beta) = N(\alpha)N(\beta)\). So \(p = a^2 + b^2\) says exactly that \(p = (a + bi)(a - bi)\) splits.</p>
+<p>Two facts make it split. When \(p \equiv 1 \pmod 4\) there is an \(x\) with \(x^2 \equiv -1 \pmod p\) (the stretch), so \(p\) divides \((x + i)(x - i)\) without dividing either factor. And Gaussian integers have division with remainder, so Euclid's lemma (a prime dividing a product divides a factor) holds for them too. So \(p\) is not a Gaussian prime: \(p = \alpha\beta\), and taking norms, \(N(\alpha) = p\).</p>
+</section>
+
+<section class="example">
+<h2>Watch one: 13 from \(5^2 \equiv -1\)</h2>
+<p>\(5^2 = 25 = 2 \cdot 13 - 1\), so 13 divides \(5^2 + 1 = (5 + i)(5 - i)\). Divide 13 by \(5 + i\) as Gaussian integers:</p>
+<p>\[\frac{13}{5 + i} = \frac{13(5 - i)}{26} = \frac{5 - i}{2} = 2.5 - 0.5i.\]</p>
+<p>Round to a nearest Gaussian integer, say \(2 - i\); the remainder is \(13 - (5 + i)(2 - i) = 13 - (11 - 3i) = 2 + 3i\), of norm \(4 + 9 = 13\). Euclid's algorithm continues with \(5 + i\) and \(2 + 3i\), and stops at once:</p>
+<p>\[\frac{5 + i}{2 + 3i} = \frac{(5 + i)(2 - 3i)}{13} = \frac{13 - 13i}{13} = 1 - i.\]</p>
+<p>So \(2 + 3i\) is a common divisor of 13 and \(5 + i\), and \(13 = (2 + 3i)(2 - 3i) = 2^2 + 3^2\). No searching was needed.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Write 17, 37, 41 and 53 as sums of two squares. Check that each is \(1 \pmod 4\).<div class="space short"></div></li>
+<li>(a) Explain, without searching, why 2023 is not a sum of two squares. (b) \(21 \equiv 1 \pmod 4\). Is 21 a sum of two squares? What does that say about the rule?<div class="space short"></div></li>
+<li>Multiply out \((1 + 2i)(2 + 3i)\) and \((1 + 2i)(2 - 3i)\) and take norms. Hence write \(65 = 5 \times 13\) as a sum of two squares in two ways. Then expand \((a + bi)(c + di)\) and take norms: what identity appears?<div class="space"></div></li>
+<li>\(12^2 = 144 \equiv -1 \pmod{29}\). Divide 29 by \(12 + i\), round to a nearest Gaussian integer, find the remainder and its norm, and read off 29 as a sum of two squares. Why did one step suffice?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the missing fact</h2>
+<p>Wilson's theorem says \((p - 1)! \equiv -1 \pmod p\) for every prime \(p\); take it as given. Pair each \(k \le \tfrac{p-1}{2}\) with \(p - k \equiv -k\) to show that when \(p \equiv 1 \pmod 4\), \(x = \left(\tfrac{p-1}{2}\right)!\) satisfies \(x^2 \equiv -1 \pmod p\). Check \(p = 13\).</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(17 = 16 + 1\), \(37 = 36 + 1\), \(41 = 25 + 16\), \(53 = 49 + 4\). Remainders mod 4: all 1.</li>
+<li>(a) \(2023 = 4 \cdot 505 + 3\), so \(2023 \equiv 3 \pmod 4\) and no sum of two squares can equal it. (b) \(21 - 1\), \(21 - 4\), \(21 - 9\), \(21 - 16\) are 20, 17, 12, 5, none a square, so no. The mod-4 test is a theorem about <em>primes</em>. For composites the full rule is: \(n\) is a sum of two squares exactly when every prime \(\equiv 3 \pmod 4\) in its factorisation appears to an even power. \(21 = 3 \cdot 7\) fails; \(9 = 3^2 = 9 + 0\) and \(45 = 3^2 \cdot 5 = 36 + 9\) pass.</li>
+<li>\((1 + 2i)(2 + 3i) = -4 + 7i\) and \((1 + 2i)(2 - 3i) = 8 + i\). Norms: \(16 + 49 = 65 = 64 + 1\). In general \((a + bi)(c + di) = (ac - bd) + (ad + bc)i\), and taking norms gives \((a^2 + b^2)(c^2 + d^2) = (ac - bd)^2 + (ad + bc)^2\): the right side is visibly a sum of two squares.</li>
+<li>\(\dfrac{29}{12 + i} = \dfrac{29(12 - i)}{145} = \dfrac{12 - i}{5} = 2.4 - 0.2i\), nearest Gaussian integer 2. Remainder \(29 - 2(12 + i) = 5 - 2i\), norm \(25 + 4 = 29\). So \(29 = 5^2 + 2^2\). The remainder already has norm 29, a prime, so it cannot be split further; the algorithm has found the Gaussian prime factor of 29 in one step.</li>
+</ol>
+<p><b>Stretch.</b> Group the factors of \((p-1)!\) in pairs \(k\) and \(p - k\) for \(k = 1, \dots, \tfrac{p-1}{2}\). Since \(p - k \equiv -k\), each pair contributes \(k \cdot (-k) = -k^2\), and \((p - 1)! \equiv (-1)^{(p-1)/2}\left(\tfrac{p-1}{2}\right)!^2\). When \(p \equiv 1 \pmod 4\), \(\tfrac{p-1}{2}\) is even, the sign is \(+\), and Wilson gives \(x^2 \equiv -1\). For \(p = 13\): \(6! = 720 = 55 \cdot 13 + 5\), so \(x \equiv 5\), and \(25 \equiv -1 \pmod{13}\), the very number the example began with.</p>
+</section>
+
+<div class="sheet-nav"><a href="b4-crt.html">← Previous</a><a href="b6-generating-functions.html">Next: Counting with polynomials →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

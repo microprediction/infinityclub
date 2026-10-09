@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The program that cannot exist · Infinity Club</title>
+<meta name="description" content="Suppose a program could decide whether any program halts. Feed it a twisted copy of itself and it contradicts itself. Turing's diagonal argument, laid out as a four-line program, and what it rules out.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Around the corner · 22</div>
+  <h1>The program that cannot exist</h1>
+  <p class="teaser">Suppose a program could decide whether any program halts. Feed it itself, twisted, and it contradicts itself. Turing's diagonal.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A program is a finite text. So is its input. Nothing stops you feeding one program the text of another; compilers do it all day. Some programs halt and some run forever. Could a clever enough program say, for every program \(P\) and input \(x\), whether \(P\) halts on \(x\)?</p>
+<p>Suppose <code>HALTS(P, x)</code> does exactly that: it always finishes, saying "halts" or "loops". Then write this:</p>
+<div class="readout">D(P):
+    if HALTS(P, P) says "halts":
+        loop forever
+    else:
+        stop</div>
+<p>\(D\) asks what \(P\) does on its own text, then does the opposite. Run \(D\) on itself. If \(D(D)\) halts, <code>HALTS(D, D)</code> said "halts", so \(D\) looped. If \(D(D)\) loops, <code>HALTS</code> said "loops", so \(D\) stopped. Both branches contradict the answer <code>HALTS</code> was guaranteed to get right. The only way out: <code>HALTS</code> was never a program. This is the <b>halting problem</b>, proved by Alan Turing in 1936, before any electronic computer existed.</p>
+<p>It is Cantor's diagonal in disguise (<a href="../../grade-10/sheets/b13-cantor.html">grade 10, b13</a>). List every program \(P_1, P_2, \dots\) and record in row \(i\), column \(j\) whether \(P_i\) halts on input \(P_j\). The row for \(D\) is the diagonal, flipped. It differs from row \(i\) in column \(i\), for every \(i\), so \(D\) is not in the table. Yet every program has a row.</p>
+<figure><svg viewBox="0 0 250 150" width="250" height="150" role="img" aria-label="A table of programs against inputs with H and L entries; the diagonal is highlighted and the bottom row D is the diagonal with every entry flipped" font-family="Nunito, sans-serif" font-size="12">
+<text x="88" y="14" text-anchor="middle" fill="#555">input</text>
+<text x="18" y="76" text-anchor="middle" fill="#555" transform="rotate(-90 18 76)">program</text>
+<g text-anchor="middle" fill="#555"><text x="70" y="30">P₁</text><text x="106" y="30">P₂</text><text x="142" y="30">P₃</text><text x="178" y="30">P₄</text></g>
+<g text-anchor="end" fill="#555"><text x="46" y="52">P₁</text><text x="46" y="76">P₂</text><text x="46" y="100">P₃</text><text x="46" y="124">P₄</text></g>
+<g fill="#fde8c4"><rect x="54" y="38" width="32" height="20"/><rect x="90" y="62" width="32" height="20"/><rect x="126" y="86" width="32" height="20"/><rect x="162" y="110" width="32" height="20"/></g>
+<g text-anchor="middle" fill="#000">
+<text x="70" y="53">H</text><text x="106" y="53">L</text><text x="142" y="53">H</text><text x="178" y="53">H</text>
+<text x="70" y="77">L</text><text x="106" y="77">L</text><text x="142" y="77">H</text><text x="178" y="77">L</text>
+<text x="70" y="101">H</text><text x="106" y="101">H</text><text x="142" y="101">L</text><text x="178" y="101">H</text>
+<text x="70" y="125">L</text><text x="106" y="125">H</text><text x="142" y="125">H</text><text x="178" y="125">H</text>
+</g>
+<line x1="54" y1="134" x2="194" y2="134" stroke="#999" stroke-width="1"/>
+<text x="46" y="147" text-anchor="end" fill="#3f44c9" font-weight="700">D</text>
+<g text-anchor="middle" fill="#3f44c9" font-weight="700"><text x="70" y="147">L</text><text x="106" y="147">H</text><text x="142" y="147">H</text><text x="178" y="147">L</text></g>
+<text x="202" y="147" fill="#3f44c9" font-size="11">flipped</text>
+<text x="202" y="124" fill="#f5a524" font-size="11">diagonal</text>
+</svg><figcaption>H: halts, L: loops forever. Row \(D\) disagrees with row \(i\) in column \(i\), so it is no row of the table.</figcaption></figure>
+</section>
+
+<section class="example">
+<h2>Watch one: a conjecture as a halting question</h2>
+<p>Goldbach's conjecture says every even number from 4 up is a sum of two primes. It is unproved (<a href="../../grade-8/sheets/b14-unsolved.html">grade 8, b14</a>). Write a program \(G\): for \(n = 4, 6, 8, \dots\), test whether \(n\) is a sum of two primes; if not, stop. \(G\) halts exactly when Goldbach is false, so one call to <code>HALTS(G)</code> would settle a centuries-old problem. The same works for any conjecture with a checkable counterexample. That one program would settle all of them at once is a hint it cannot exist. The diagonal is the proof.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Trace this program by hand. Does it halt, and after how many steps? <span class="mono">n = 7; while n ≠ 1: if n is even, n = n/2, else n = 3n + 1.</span><div class="space short"></div></li>
+<li>A program is allowed at most \(k\) bits of memory in total, including its place in the code. Show that it either halts within \(2^k\) steps or never halts. Halting is therefore decidable for such programs. Why does this not contradict Turing?<div class="space"></div></li>
+<li>Someone offers a weaker program, <code>LOOPS(P, x)</code>, which prints "loops" whenever \(P\) runs forever on \(x\) and otherwise runs forever itself, saying nothing. Show that <code>LOOPS</code> would let you build <code>HALTS</code>, so <code>LOOPS</code> cannot exist either. Hint: run two things at once, one step each in turn.<div class="space"></div></li>
+<li>Show that no program <code>EQUAL(P, Q)</code> can decide whether two programs behave identically on every input. Hint: compare a suitable program with one that always loops, and make <code>HALTS</code> out of the answer.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the busiest program</h2>
+<p>Among the finitely many programs of exactly \(n\) characters, some halt. Let \(\mathrm{BB}(n)\) be the largest number of steps any of them runs before halting. Show that no program can compute \(\mathrm{BB}(n)\) from \(n\).</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>7, 22, 11, 34, 17, 52, 26, 13, 40, 20, 10, 5, 16, 8, 4, 2, 1: it halts after 16 steps. Whether it halts for every starting value is the Collatz problem, which is open; a halting decider would settle it.</li>
+<li>A <b>state</b> is the entire contents of memory, and there are at most \(2^k\) of them. A run of \(2^k\) steps visits \(2^k + 1\) states, so two coincide (pigeonhole, <a href="../../grade-10/sheets/b3-pigeonhole.html">grade 10, b3</a>). The program is deterministic, so from the repeated state it repeats the same loop forever. To decide, simulate \(2^k\) steps. No contradiction: the decider needs the \(k\) simulated bits plus a counter to \(2^k\), so it uses more than \(k\) bits and is not one of the programs it judges. Turing's argument needs <code>HALTS</code> to be a program of the same kind as \(D\), with no memory limit.</li>
+<li>Given \(P\) and \(x\), run \(P\) on \(x\) and <code>LOOPS(P, x)</code> alternately, one step each. If \(P\) halts, the first run finishes; if \(P\) loops, <code>LOOPS</code> eventually says so. Exactly one of these happens, and reporting it is <code>HALTS</code>. Since <code>HALTS</code> cannot exist, neither can a reliable <code>LOOPS</code>.</li>
+<li>Given \(P\) and \(x\), write a program \(P_x\) that ignores its input and runs \(P\) on \(x\). Let \(\mathrm{LOOP}\) be the program that always runs forever. <code>EQUAL</code>\((P_x, \mathrm{LOOP})\) says "same" exactly when \(P_x\) never produces an output, that is when \(P\) does not halt on \(x\). So <code>EQUAL</code> would give <code>HALTS</code>. The same move kills almost every question about what a program does, as opposed to how it is written.</li>
+</ol>
+<p><b>Stretch.</b> Suppose a program computes \(\mathrm{BB}\). Given \(P\) and \(x\), write them into one program \(Q\) of some length \(m\) that runs \(P\) on \(x\). Compute \(\mathrm{BB}(m)\) and run \(Q\) for that many steps. If it has stopped, answer "halts". If not, it never will, because \(\mathrm{BB}(m)\) is the longest any halting program of length \(m\) runs. That is <code>HALTS</code>, so \(\mathrm{BB}\) is not computable. It grows faster than any function a program can compute.</p>
+</section>
+
+<div class="sheet-nav"><a href="b21-fixed-points.html">← Previous</a><a href="b23-hall.html">Next: Hall's marriage theorem →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Implicit differentiation · Infinity Club</title>
+<meta name="description" content="Differentiate both sides of x² + y² = 25 and the slope of a circle appears. Then the derivative of x^x by taking logs first, and the folium of Descartes.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Sharpen · 18</div>
+  <h1>Implicit differentiation</h1>
+  <p class="teaser">Differentiate both sides of x² + y² = 25 and the slope of a circle appears. Then the derivative of xˣ by taking logs first.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>The circle \(x^2 + y^2 = 25\) is not a function: most \(x\) give two \(y\). But near any point except \((\pm 5, 0)\) it behaves like one; on the upper half, \(y = \sqrt{25 - x^2}\). Rather than solve for \(y\), keep it <b>implicit</b>. Treat \(y\) as a function of \(x\) and differentiate both sides. The chain rule turns \(y^2\) into \(2y \cdot y'\), where \(y'\) means \(dy/dx\):</p>
+<p class="callout">\(2x + 2y\,y' = 0\), so \(y' = -\dfrac{x}{y}\).</p>
+<figure><svg viewBox="0 0 300 200" width="255" height="170" role="img" aria-label="A circle of radius 5 centred at the origin, the radius to the point (3, 4), and the tangent there, perpendicular to the radius, with slope minus three quarters" font-family="Nunito, sans-serif" font-size="13">
+<line x1="20" y1="105" x2="290" y2="105" stroke="#999" stroke-width="1"/>
+<line x1="110" y1="12" x2="110" y2="195" stroke="#999" stroke-width="1"/>
+<circle cx="110" cy="105" r="80" fill="none" stroke="#000" stroke-width="2"/>
+<line x1="110" y1="105" x2="158" y2="41" stroke="#3f44c9" stroke-width="2"/>
+<line x1="110" y1="5" x2="206" y2="77" stroke="#f5a524" stroke-width="2"/>
+<path d="M154.4 45.8 L159.2 49.4 L162.8 44.6" fill="none" stroke="#000" stroke-width="1"/>
+<circle cx="158" cy="41" r="3.5" fill="#000"/>
+<text x="166" y="36" font-weight="700">(3, 4)</text>
+<text x="72" y="66" fill="#3f44c9">slope 4/3</text>
+<text x="212" y="92" fill="#f5a524">slope −3/4</text>
+<text x="100" y="118" text-anchor="end" fill="#555">O</text>
+<text x="196" y="118" fill="#555">5</text>
+</svg><figcaption>The radius to \((3, 4)\) has slope \(\tfrac43\); the tangent is perpendicular, slope \(-\tfrac34\), exactly \(-x/y\).</figcaption></figure>
+<p>Geometry agrees. The radius to \((x, y)\) has slope \(y/x\); the tangent is perpendicular, so its slope is \(-x/y\). At \((3, 4)\): slope \(-\tfrac34\), tangent \(3x + 4y = 25\).</p>
+<p>For any equation in \(x\) and \(y\): differentiate every term, writing \(y'\) whenever you differentiate something containing \(y\), then solve for \(y'\). The answer usually involves both \(x\) and \(y\), so the point matters.</p>
+<p>The same move handles \(x^x\), neither a power (the exponent varies) nor an exponential (the base varies). Take logs: \(\ln y = x \ln x\). Differentiate, chain rule on the left, product rule on the right: \(y'/y = \ln x + 1\). So</p>
+<p class="callout">\(\dfrac{d}{dx}\, x^x = x^x(\ln x + 1)\), zero at \(x = 1/e\), where \(x^x\) is smallest.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: the slope of \(x^3 + y^3 = 6xy\) at \((3, 3)\)</h2>
+<p>First check the point is on the curve: \(27 + 27 = 54 = 6 \cdot 9\). Differentiate every term (the right side needs the product rule), then collect the \(y'\) terms:</p>
+<p>\[3x^2 + 3y^2\,y' = 6y + 6x\,y' \quad\Longrightarrow\quad y' = \frac{2y - x^2}{y^2 - 2x} = \frac{6 - 9}{9 - 6} = -1 \ \text{ at } (3, 3).\]</p>
+<p>The tangent is \(x + y = 6\). Nobody could have started by solving for \(y\): this curve, the folium of Descartes, has no usable formula \(y = f(x)\). Implicit differentiation never asked for one.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>For \(xy = 4\), find \(y'\) implicitly. Then solve for \(y\), differentiate directly, and check the two answers agree.<div class="space short"></div></li>
+<li>Find the slope of \(x^2 - xy + y^2 = 7\) at \((1, 3)\), and the equation of the tangent there.<div class="space short"></div></li>
+<li>(a) Differentiate \(y = x^{1/x}\) by taking logs first. (b) Find where \(y' = 0\). Hence decide which of \(\sqrt2\), \(\sqrt[3]{3}\) and \(e^{1/e}\) is largest, without a calculator.<div class="space"></div></li>
+<li>For the circle \(x^2 + y^2 = 25\), differentiate \(y' = -x/y\) once more (quotient rule, remembering \(y'\) inside) and use the circle's equation to show \(y'' = -25/y^3\). What does the sign of \(y''\) say about the upper half and the lower half?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: where the folium is flat</h2>
+<p>Where is the tangent to \(x^3 + y^3 = 6xy\) horizontal? Set the numerator of \(y'\) to zero, substitute into the curve, and solve. Give exact coordinates. What goes wrong at the origin?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(y + x\,y' = 0\), so \(y' = -y/x\). Directly, \(y = 4/x\) gives \(y' = -4/x^2\), and since \(y = 4/x\) this is \(-y/x\). Same thing.</li>
+<li>\(2x - y - x\,y' + 2y\,y' = 0\), so \(y' = \dfrac{y - 2x}{2y - x} = \dfrac{3 - 2}{6 - 1} = \tfrac15\). Tangent: \(y - 3 = \tfrac15(x - 1)\), or \(x - 5y + 14 = 0\).</li>
+<li>(a) \(\ln y = \dfrac{\ln x}{x}\), so \(\dfrac{y'}{y} = \dfrac{1 - \ln x}{x^2}\) and \(y' = x^{1/x}\,\dfrac{1 - \ln x}{x^2}\). (b) \(y' = 0\) when \(\ln x = 1\), at \(x = e\); the derivative is positive before and negative after, so \(x = e\) is the maximum of \(x^{1/x}\). Hence \(e^{1/e}\) is the largest of the three (about 1.4447, against \(\sqrt2 \approx 1.4142\) and \(\sqrt[3]{3} \approx 1.4422\)).</li>
+<li>\(y'' = -\dfrac{y - x\,y'}{y^2} = -\dfrac{y + x^2/y}{y^2} = -\dfrac{y^2 + x^2}{y^3} = -\dfrac{25}{y^3}\). On the upper half \(y > 0\), so \(y'' \lt 0\): concave down, a cap. On the lower half \(y'' > 0\): concave up, a bowl.</li>
+</ol>
+<p><b>Stretch.</b> \(2y = x^2\), so \(y = x^2/2\). Substituting: \(x^3 + x^6/8 = 3x^3\), so \(x^6 = 16x^3\), giving \(x = 0\) or \(x^3 = 16\). The horizontal tangent is at \(x = \sqrt[3]{16}\), \(y = x^2/2 = \sqrt[3]{32}\), about \((2.52, 3.17)\). At the origin both numerator and denominator of \(y'\) vanish: the formula gives \(0/0\). The curve crosses itself there and has two tangents, the axes, so no single slope exists.</p>
+</section>
+
+<div class="sheet-nav"><a href="a17-p-values.html">← Previous</a><a href="a19-partial-fractions.html">Next: Partial fractions →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

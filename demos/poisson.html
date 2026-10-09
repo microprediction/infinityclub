@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Binomial to Poisson · Infinity Club</title>
+<meta name="description" content="Keep the expected number of hits np fixed, push the number of trials n up and the chance p down, and watch the binomial bars settle onto the Poisson distribution.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+#plot { display: block; width: 100%; height: auto; }
+.controls input[type=range] { width: 180px; }
+.controls .val { font-family: var(--mono); min-width: 3em; display: inline-block; }
+.mission { max-width: 70ch; margin: -.4rem 0 1rem; }
+.mission p { margin: .3rem 0; }
+.mission summary { cursor: pointer; font-weight: 700; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Binomial to Poisson</h1>
+<p class="explain"><b>Fix the mean λ = np, then slide n.</b> The blue bars are the binomial distribution: n trials, each a hit with chance p = λ/n, and the bar at k is the chance of exactly k hits. Every time you raise n the demo lowers p to keep the mean where it was. The orange dots are the Poisson distribution with the same mean, e<sup>−λ</sup>λ<sup>k</sup>/k!, which does not depend on n at all. Slide n up and watch the bars converge onto the dots. The readout tracks the largest gap between them.</p>
+<div class="mission">
+<p class="small"><b>Mission.</b> Set λ = 4. Find the smallest n for which no bar differs from its dot by more than 0.01. Then set λ = 10 and find it again. Which way did it move, and why?</p>
+<details class="small"><summary>Answer</summary><p>For λ = 4 the largest gap drops under 0.01 at about n = 42, where p ≈ 0.1. For λ = 10 you need about n = 70, where p ≈ 0.14. The threshold moves up: a larger mean needs more trials to spread over. What governs the approximation is p = λ/n being small, since the error in each bar is roughly proportional to p, so for a fixed p the fit is about equally good whatever λ is. Extension: look at the variance line in the readout. The binomial variance np(1 − p) = λ(1 − p) is always a little under λ, and the gap is exactly λp.</p></details>
+</div>
+<div class="demo-panel">
+  <div class="controls">
+    <label>mean λ = np <input type="range" id="lam" min="0.5" max="12" step="0.5" value="3"> <span class="val" id="lamv">3</span></label>
+    <label>trials n <input type="range" id="n" min="1" max="300" step="1" value="6"> <span class="val" id="nv">6</span></label>
+    <span>so p = λ/n = <span class="val" id="pv"></span></span>
+    <button id="anim">Animate n</button>
+  </div>
+  <canvas id="plot" width="900" height="440"></canvas>
+  <div class="readout" id="info"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>The binomial chance of k hits is C(n, k) p<sup>k</sup> (1 − p)<sup>n−k</sup>. Put p = λ/n and let n grow. The factor C(n, k)/n<sup>k</sup> tends to 1/k!, because n(n − 1)⋯(n − k + 1) is nearly n<sup>k</sup> when k is small compared with n. The factor (1 − λ/n)<sup>n</sup> tends to e<sup>−λ</sup>, the same limit that defines e. And (1 − λ/n)<sup>−k</sup> tends to 1. What is left is e<sup>−λ</sup>λ<sup>k</sup>/k!, the <b>Poisson distribution</b>.</p>
+<p>So the Poisson is what the binomial becomes when there are many chances for something to happen and each chance is slim: typos per page, calls to a help line per minute, radioactive decays per second, Prussian cavalry officers killed by horse kicks per year (the original 1898 data). You do not need to know n or p separately, only their product, and that is why the Poisson has a single parameter.</p>
+<p>One consequence is visible in the readout: the Poisson has variance equal to its mean. The binomial variance np(1 − p) is slightly smaller, and the slack λp vanishes as p → 0. If you count rare events and the variance of your counts is much bigger than their mean, the events are not independent: something is making them cluster.</p>
+<p>Sheet: <a href="../grade-12/sheets/b13-poisson.html">The Poisson distribution</a>. Related demo: <a href="galton.html">the Galton board</a>, where the binomial becomes normal instead.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  function logChoose(n, k) { var s = 0; for (var i = 1; i <= k; i++) s += Math.log((n - k + i) / i); return s; }
+  function binomPmf(n, k, p) {
+    if (k < 0 || k > n) return 0;
+    if (p === 0) return k === 0 ? 1 : 0;
+    if (p === 1) return k === n ? 1 : 0;
+    return Math.exp(logChoose(n, k) + k * Math.log(p) + (n - k) * Math.log(1 - p));
+  }
+  function logFactorial(k) { var s = 0; for (var i = 2; i <= k; i++) s += Math.log(i); return s; }
+  function poissonPmf(lam, k) { return Math.exp(-lam + k * Math.log(lam) - logFactorial(k)); }
+  // compare Binomial(n, lam/n) with Poisson(lam) for k = 0..kmax
+  function compare(n, lam, kmax) {
+    var p = lam / n, maxGap = 0, kAt = 0, tv = 0, b = [], q = [];
+    for (var k = 0; k <= kmax; k++) {
+      var bk = binomPmf(n, k, p), qk = poissonPmf(lam, k); b.push(bk); q.push(qk);
+      var d = Math.abs(bk - qk); tv += d; if (d > maxGap) { maxGap = d; kAt = k; }
+    }
+    return { p: p, binom: b, poisson: q, maxGap: maxGap, kAt: kAt, tv: tv / 2 };
+  }
+  function fmt(v, d) { return v.toFixed(d === undefined ? 4 : d); }
+  /*ENDPURE*/
+  if (typeof document === "undefined") { module.exports = { binomPmf: binomPmf, poissonPmf: poissonPmf, compare: compare, logChoose: logChoose }; return; }
+
+  var lamS = document.getElementById("lam"), nS = document.getElementById("n"), lamV = document.getElementById("lamv"), nV = document.getElementById("nv"), pV = document.getElementById("pv"), animBtn = document.getElementById("anim");
+  var canvas = document.getElementById("plot"), ctx = canvas.getContext("2d"), info = document.getElementById("info");
+  var lam = 3, n = 6, anim = null;
+
+  function clampN() { var minN = Math.ceil(lam); if (n < minN) { n = minN; nS.value = n; } nS.min = minN; }
+  function draw() {
+    clampN();
+    lamV.textContent = lam; nV.textContent = n; pV.textContent = fmt(lam / n, 4);
+    var kmax = Math.max(8, Math.ceil(lam + 4 * Math.sqrt(lam)) + 1), c = compare(n, lam, kmax);
+    var dpr = window.devicePixelRatio || 1, W = canvas.clientWidth || 900, H = Math.round(W * 0.49);
+    canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, H);
+    var padL = 40, padR = 12, top = 30, base = H - 28, pw = W - padL - padR, slot = pw / (kmax + 1);
+    var ymax = 0; c.binom.concat(c.poisson).forEach(function (v) { ymax = Math.max(ymax, v); }); ymax = Math.ceil(ymax * 1.1 * 20) / 20;
+    function X(k) { return padL + (k + 0.5) * slot; }
+    function Y(v) { return base - v / ymax * (base - top); }
+    ctx.strokeStyle = "#ece9e0"; ctx.lineWidth = 1; ctx.fillStyle = "#5d6079"; ctx.font = "11px Nunito, sans-serif"; ctx.textAlign = "right"; ctx.textBaseline = "middle";
+    var gstep = ymax > 0.4 ? 0.1 : 0.05;
+    for (var v = 0; v <= ymax + 1e-9; v += gstep) { ctx.beginPath(); ctx.moveTo(padL, Y(v)); ctx.lineTo(W - padR, Y(v)); ctx.stroke(); ctx.fillText(v.toFixed(2), padL - 5, Y(v)); }
+    ctx.textBaseline = "alphabetic";
+    ctx.strokeStyle = "#d9d6cc"; ctx.beginPath(); ctx.moveTo(padL, base); ctx.lineTo(W - padR, base); ctx.stroke();
+    ctx.textAlign = "center";
+    var lab = kmax > 20 ? 2 : 1;
+    for (var k = 0; k <= kmax; k++) {
+      var h = base - Y(c.binom[k]);
+      ctx.fillStyle = k === c.kAt ? "#2d319c" : "#8a8ee6"; ctx.fillRect(X(k) - slot * 0.38, base - h, slot * 0.76, h);
+      if (k % lab === 0) { ctx.fillStyle = "#5d6079"; ctx.fillText(k, X(k), base + 14); }
+    }
+    // Poisson: line through the dots then dots
+    ctx.strokeStyle = "#f5a524"; ctx.lineWidth = 2; ctx.beginPath();
+    for (var j = 0; j <= kmax; j++) { if (j === 0) ctx.moveTo(X(j), Y(c.poisson[j])); else ctx.lineTo(X(j), Y(c.poisson[j])); }
+    ctx.stroke();
+    for (var d = 0; d <= kmax; d++) { ctx.fillStyle = "#f5a524"; ctx.beginPath(); ctx.arc(X(d), Y(c.poisson[d]), 5, 0, Math.PI * 2); ctx.fill(); ctx.strokeStyle = "#fff"; ctx.lineWidth = 1.5; ctx.stroke(); }
+    // gap marker
+    ctx.strokeStyle = "#1d1f3a"; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(X(c.kAt) + slot * 0.45, Y(c.binom[c.kAt])); ctx.lineTo(X(c.kAt) + slot * 0.45, Y(c.poisson[c.kAt])); ctx.stroke();
+    ctx.fillStyle = "#1d1f3a"; ctx.font = "bold 12px Nunito, sans-serif"; ctx.textAlign = "left";
+    ctx.fillText("bars: Binomial(n = " + n + ", p = " + fmt(lam / n, 3) + ")   dots: Poisson(λ = " + lam + ")   k hits along the bottom", padL, 16);
+
+    var bvar = lam * (1 - lam / n);
+    info.textContent = "λ = " + lam + ",  n = " + n + ",  p = λ/n = " + fmt(lam / n) + "\n"
+      + "largest gap between a bar and its dot: " + fmt(c.maxGap) + " at k = " + c.kAt + "    total variation distance: " + fmt(c.tv) + "\n"
+      + "P(0 hits): binomial (1 − λ/n)ⁿ = " + fmt(c.binom[0]) + ",  Poisson e^−λ = " + fmt(c.poisson[0]) + "\n"
+      + "variance: binomial np(1 − p) = " + fmt(bvar) + ",  Poisson λ = " + fmt(lam) + "    (gap λp = " + fmt(lam * lam / n) + ")";
+  }
+  lamS.addEventListener("input", function () { lam = parseFloat(lamS.value); draw(); });
+  nS.addEventListener("input", function () { n = parseInt(nS.value, 10); draw(); });
+  function stop() { if (anim) { clearInterval(anim); anim = null; } animBtn.textContent = "Animate n"; }
+  animBtn.addEventListener("click", function () {
+    if (anim) { stop(); return; }
+    if (n >= 300) { n = Math.ceil(lam); }
+    animBtn.textContent = "Stop";
+    anim = setInterval(function () { n += n < 30 ? 1 : n < 100 ? 3 : 10; if (n >= 300) { n = 300; stop(); } nS.value = n; draw(); }, 100);
+  });
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(draw, 120); });
+  draw();
+})();
+</script>
+</body>
+</html>

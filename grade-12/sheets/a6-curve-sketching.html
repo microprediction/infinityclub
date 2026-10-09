@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reading a curve from its derivatives · Infinity Club</title>
+<meta name="description" content="Where f′ is zero, where f″ changes sign, and what happens far away. Sketch x³ − 3x and x e⁻ˣ from their derivatives without plotting a single point.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Sharpen · 6</div>
+  <h1>Reading a curve from its derivatives</h1>
+  <p class="teaser">Where f′ is zero, where f″ changes sign, and what happens far away. Sketch x³ − 3x and x e⁻ˣ without plotting a single point.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Take \(f(x) = x^3 - 3x\). Three questions tell you its shape.</p>
+<p><b>Where is \(f'\) zero?</b> \(f'(x) = 3x^2 - 3 = 3(x-1)(x+1)\), zero at \(x = \pm 1\). For \(|x| > 1\) the slope is positive, between them negative. So the curve rises, flattens at \((-1, 2)\), falls, flattens at \((1, -2)\), rises again. The first flat point is a local maximum, the second a local minimum.</p>
+<figure><svg viewBox="0 0 300 190" width="300" height="190" role="img" aria-label="Graph of y equals x cubed minus 3x. It rises to a local maximum at (minus 1, 2), falls through the origin, reaches a local minimum at (1, minus 2) and rises again. The origin is marked as the inflection point; the curve bends downward to its left and upward to its right." font-family="Nunito, sans-serif" font-size="12">
+<line x1="20" y1="90" x2="285" y2="90" stroke="#999"/><line x1="150" y1="10" x2="150" y2="175" stroke="#999"/>
+<line x1="41.7" y1="87" x2="41.7" y2="93" stroke="#999"/><line x1="258.3" y1="87" x2="258.3" y2="93" stroke="#999"/>
+<line x1="147" y1="31.8" x2="153" y2="31.8" stroke="#999"/><line x1="147" y1="148.2" x2="153" y2="148.2" stroke="#999"/>
+<text x="41.7" y="104" text-anchor="middle" fill="#777">−2</text><text x="258.3" y="104" text-anchor="middle" fill="#777">2</text>
+<text x="140" y="35" text-anchor="end" fill="#777">4</text><text x="140" y="152" text-anchor="end" fill="#777">−4</text>
+<text x="289" y="94" fill="#777">x</text>
+<polyline fill="none" stroke="#3f44c9" stroke-width="2" points="20.0,186.3 22.2,178.2 24.3,170.4 26.5,162.9 28.7,155.7 30.8,148.9 33.0,142.3 35.2,136.1 37.3,130.1 39.5,124.5 41.7,119.1 43.8,114.0 46.0,109.2 48.2,104.6 50.3,100.3 52.5,96.3 54.7,92.5 56.8,89.0 59.0,85.7 61.2,82.6 63.3,79.8 65.5,77.1 67.7,74.8 69.8,72.6 72.0,70.6 74.2,68.8 76.3,67.2 78.5,65.9 80.7,64.6 82.8,63.6 85.0,62.8 87.2,62.1 89.3,61.6 91.5,61.2 93.7,61.0 95.8,60.9 98.0,61.0 100.2,61.2 102.3,61.5 104.5,62.0 106.7,62.5 108.8,63.2 111.0,64.0 113.2,64.9 115.3,65.9 117.5,67.0 119.7,68.1 121.8,69.4 124.0,70.7 126.2,72.0 128.3,73.5 130.5,75.0 132.7,76.5 134.8,78.1 137.0,79.7 139.2,81.4 141.3,83.1 143.5,84.8 145.7,86.5 147.8,88.3 150.0,90.0 152.2,91.7 154.3,93.5 156.5,95.2 158.7,96.9 160.8,98.6 163.0,100.3 165.2,101.9 167.3,103.5 169.5,105.0 171.7,106.5 173.8,108.0 176.0,109.3 178.2,110.6 180.3,111.9 182.5,113.0 184.7,114.1 186.8,115.1 189.0,116.0 191.2,116.8 193.3,117.5 195.5,118.0 197.7,118.5 199.8,118.8 202.0,119.0 204.2,119.1 206.3,119.0 208.5,118.8 210.7,118.4 212.8,117.9 215.0,117.2 217.2,116.4 219.3,115.4 221.5,114.1 223.7,112.8 225.8,111.2 228.0,109.4 230.2,107.4 232.3,105.2 234.5,102.9 236.7,100.2 238.8,97.4 241.0,94.3 243.2,91.0 245.3,87.5 247.5,83.7 249.7,79.7 251.8,75.4 254.0,70.8 256.2,66.0 258.3,60.9 260.5,55.5 262.7,49.9 264.8,43.9 267.0,37.7 269.2,31.1 271.3,24.3 273.5,17.1 275.7,9.6 277.8,1.8"/>
+<line x1="80" y1="60.9" x2="112" y2="60.9" stroke="#f5a524" stroke-width="1.5" stroke-dasharray="4 3"/>
+<line x1="188" y1="119.1" x2="220" y2="119.1" stroke="#f5a524" stroke-width="1.5" stroke-dasharray="4 3"/>
+<circle cx="95.8" cy="60.9" r="3.5" fill="#f5a524"/><circle cx="204.2" cy="119.1" r="3.5" fill="#f5a524"/><circle cx="150" cy="90" r="3.5" fill="#fff" stroke="#f5a524" stroke-width="2"/>
+<text x="95.8" y="50" text-anchor="middle" fill="#f5a524" font-weight="700">(−1, 2)</text>
+<text x="204.2" y="136" text-anchor="middle" fill="#f5a524" font-weight="700">(1, −2)</text>
+<text x="159" y="82" fill="#f5a524" font-weight="700">inflection</text>
+<text x="56.2" y="84" text-anchor="middle" fill="#777" font-size="11">−√3</text><text x="243.8" y="84" text-anchor="middle" fill="#777" font-size="11">√3</text>
+</svg><figcaption>\(y = x^3 - 3x\). Flat at \(x = \pm 1\), changing bend at the origin, roots at \(0\) and \(\pm\sqrt3\).</figcaption></figure>
+<p><b>Where does \(f''\) change sign?</b> \(f''(x) = 6x\). For \(x \lt 0\) the slope is decreasing, so the curve bends downwards (<b>concave down</b>, like a hilltop); for \(x > 0\) it bends upwards (<b>concave up</b>, like a bowl). The switch, at \((0, 0)\), is a <b>point of inflection</b>. This also settles which flat point is which without checking slopes either side: \(f''(-1) = -6 \lt 0\) means hilltop, a maximum; \(f''(1) = 6 > 0\) means bowl, a minimum.</p>
+<p><b>What happens far away?</b> For large \(|x|\), \(x^3\) swamps \(3x\): the curve comes up from the bottom left and leaves at the top right. Roots, if easy, pin it further: \(x(x^2 - 3) = 0\) at \(x = 0, \pm\sqrt3\). Thread a smooth curve through everything you know, and you have the sketch.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: \(f(x) = x\,e^{-x}\)</h2>
+<p>Product rule: \(f'(x) = e^{-x} - x e^{-x} = (1 - x)e^{-x}\). Since \(e^{-x} > 0\) always, the sign is that of \(1 - x\): rising before \(x = 1\), falling after. Maximum at \((1, 1/e) \approx (1, 0.37)\).</p>
+<p>Again: \(f''(x) = -e^{-x} - (1 - x)e^{-x} = (x - 2)e^{-x}\). Sign change at \(x = 2\): inflection at \((2, 2/e^2) \approx (2, 0.27)\), where the fall stops steepening.</p>
+<p>Far away: as \(x \to \infty\), \(e^{-x}\) shrinks faster than \(x\) grows, so \(f \to 0\) from above, hugging the axis. As \(x \to -\infty\), both factors blow up and \(f \to -\infty\). Through the origin. Sketch: up from the bottom left, over a low hump at \(x = 1\), then a long slide down towards the axis.</p>
+<p class="small">Slide a graph up and down with the constant \(k\), the move the stretch relies on: <a href="../../demos/transform.html">infinityclub.net/demos/transform.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>\(f(x) = x^3 - 6x^2 + 9x\). Find the turning points, the inflection point and the roots, and sketch. Which root does the curve touch rather than cross?<div class="space"></div></li>
+<li>\(f(x) = x^4 - 2x^2\). Find all three flat points and classify them with \(f''\). Then find the two inflection points. Sketch, using the symmetry \(f(-x) = f(x)\).<div class="space"></div></li>
+<li>\(f(x) = \dfrac{x}{1 + x^2}\). Show \(f'(x) = \dfrac{1 - x^2}{(1+x^2)^2}\), find the maximum and minimum, and say what happens as \(x \to \pm\infty\). Sketch. (The three inflection points are at \(0\) and \(\pm\sqrt3\); you need not derive them.)<div class="space"></div></li>
+<li>\(f(x) = \dfrac{\ln x}{x}\) for \(x > 0\). Find its one turning point and its behaviour as \(x \to 0^+\) and \(x \to \infty\), and sketch. Then use the sketch to decide, without a calculator, which is larger: \(e^{\pi}\) or \(\pi^{e}\).<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: counting roots from the sketch</h2>
+<p>For which values of \(c\) does \(x^3 - 3x + c = 0\) have three distinct real roots? Use the sketch of \(x^3 - 3x\), not a formula. What happens at the boundary values of \(c\)?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(f' = 3x^2 - 12x + 9 = 3(x-1)(x-3)\): maximum \((1, 4)\), minimum \((3, 0)\). \(f'' = 6x - 12\): inflection \((2, 2)\). \(f = x(x-3)^2\), roots \(0\) and \(3\); the curve touches the axis at \(x = 3\) (the minimum sits on it) and crosses at \(0\). Far away like \(x^3\).</li>
+<li>\(f' = 4x^3 - 4x = 4x(x-1)(x+1)\): flat at \(x = -1, 0, 1\). \(f'' = 12x^2 - 4\): \(f''(\pm1) = 8 > 0\), minima at \((\pm1, -1)\); \(f''(0) = -4 \lt 0\), maximum at \((0, 0)\). Inflections where \(12x^2 = 4\), \(x = \pm 1/\sqrt3\), \(y = -5/9\). A W shape, symmetric, roots \(0, \pm\sqrt2\).</li>
+<li>Quotient rule: \(f' = \dfrac{(1+x^2) - x \cdot 2x}{(1+x^2)^2} = \dfrac{1 - x^2}{(1+x^2)^2}\). Maximum \((1, \tfrac12)\), minimum \((-1, -\tfrac12)\). As \(x \to \pm\infty\), \(f \to 0\) (denominator wins), so the axis is a horizontal asymptote. An odd function: an S through the origin, flattening out both ways.</li>
+<li>\(f' = \dfrac{1 - \ln x}{x^2}\), zero at \(x = e\): maximum \((e, 1/e)\). As \(x \to 0^+\), \(\ln x \to -\infty\) so \(f \to -\infty\); as \(x \to \infty\), \(f \to 0\) (the inflection is at \(x = e^{3/2}\)). The maximum value of \(\ln x / x\) is at \(x = e\), so \(\ln\pi/\pi \lt \ln e/e = 1/e\). Multiply by \(\pi e\): \(e\ln\pi \lt \pi\), so \(\pi^e \lt e^\pi\). (About 22.5 against 23.1.)</li>
+</ol>
+<p><b>Stretch.</b> Adding \(c\) slides the graph up by \(c\). The local maximum moves to \(2 + c\) and the local minimum to \(-2 + c\). Three crossings of the axis need the hump above the axis and the dip below it: \(2 + c > 0\) and \(-2 + c \lt 0\), so \(-2 \lt c \lt 2\). At \(c = 2\) the minimum touches the axis at \(x = 1\): a double root, \(x^3 - 3x + 2 = (x-1)^2(x+2)\). At \(c = -2\) the same at \(x = -1\). Beyond \(\pm2\), one real root.</p>
+</section>
+
+<div class="sheet-nav"><a href="a5-optimisation.html">← Previous</a><a href="a7-related-rates.html">Next: Related rates →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

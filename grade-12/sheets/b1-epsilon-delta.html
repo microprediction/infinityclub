@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What "approaches" really means · Infinity Club</title>
+<meta name="description" content="The epsilon–delta definition of a limit, read as a game. Prove that 2x tends to 6, find a delta for x² near 4, and show that 1/x has no limit at 0.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Around the corner · 1</div>
+  <h1>What "approaches" really means</h1>
+  <p class="teaser">For every ε there is a δ. The definition that made calculus rigorous, used once to prove that 2x → 6, and once to show why 1/x has no limit at 0.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Calculus runs on the phrase "\(f(x)\) approaches \(L\) as \(x\) approaches \(a\)". For over a century nobody could say exactly what it meant. This settled it.</p>
+<p class="callout">\(f(x) \to L\) as \(x \to a\) means: for every \(\varepsilon > 0\) there is a \(\delta > 0\) such that \(0 \lt |x - a| \lt \delta\) implies \(|f(x) - L| \lt \varepsilon\).</p>
+<figure><svg viewBox="0 6 260 180" width="260" height="180" role="img" aria-label="The line y = 2x near the point (3, 6), with a horizontal band of half-width epsilon around 6 and a vertical band of half-width delta around 3; the part of the line inside the delta band stays inside the epsilon band" font-family="Nunito, sans-serif" font-size="12">
+<rect x="30" y="66" width="200" height="48" fill="#fde8c4"/>
+<rect x="100" y="10" width="60" height="160" fill="#dcdcf5" fill-opacity="0.7"/>
+<line x1="30" y1="170" x2="230" y2="170" stroke="#999" stroke-width="1"/>
+<line x1="30" y1="10" x2="30" y2="170" stroke="#999" stroke-width="1"/>
+<line x1="30" y1="170" x2="230" y2="10" stroke="#3f44c9" stroke-width="1.5"/>
+<line x1="100" y1="114" x2="160" y2="66" stroke="#f5a524" stroke-width="3"/>
+<line x1="30" y1="90" x2="130" y2="90" stroke="#999" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="130" y1="90" x2="130" y2="170" stroke="#999" stroke-width="1" stroke-dasharray="3 3"/>
+<circle cx="130" cy="90" r="3.5" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="26" y="70" text-anchor="end" fill="#555">6+ε</text>
+<text x="26" y="94" text-anchor="end">6</text>
+<text x="26" y="118" text-anchor="end" fill="#555">6−ε</text>
+<text x="100" y="182" text-anchor="middle" fill="#555">3−δ</text>
+<text x="130" y="182" text-anchor="middle">3</text>
+<text x="160" y="182" text-anchor="middle" fill="#555">3+δ</text>
+<text x="194" y="24" text-anchor="end" fill="#3f44c9">y = 2x</text>
+</svg><figcaption>Challenge ε, reply δ = ε/2. Inside the blue window the graph never leaves the orange band.</figcaption></figure>
+<p>Read it as a game. Your opponent names a tolerance \(\varepsilon\) (epsilon): how close to \(L\) outputs must be. You answer with a window \(\delta\) (delta) around \(a\). You win if every \(x\) in your window, other than \(a\) itself, sends \(f(x)\) inside the tolerance. The limit exists if you can beat every \(\varepsilon\); your \(\delta\) may depend on it. And \(f(a)\) never appears: \(f\) need not be defined at \(a\), so \(0/0\) is a question, not an answer.</p>
+<p>To show there is <em>no</em> limit, swap roles: for each candidate \(L\), name one \(\varepsilon\) that no \(\delta\) can handle. Suppose \(1/x \to L\) as \(x \to 0\), and take \(\varepsilon = 1\). For any \(\delta\), \(x = \min\!\big(\delta/2,\ 1/(|L| + 2)\big)\) lies in the window, yet \(1/x \ge |L| + 2\), so \(|1/x - L| \ge 2 > 1\). Every \(L\) loses.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: prove that \(2x \to 6\) as \(x \to 3\)</h2>
+<p>Scratch work first. We want \(|2x - 6| \lt \varepsilon\). Since \(|2x - 6| = 2|x - 3|\), that is the same as \(|x - 3| \lt \varepsilon/2\). So the window should have half-width \(\varepsilon/2\).</p>
+<p>Now the proof, written forwards. Let \(\varepsilon > 0\) be given. Choose \(\delta = \varepsilon/2\). If \(0 \lt |x - 3| \lt \delta\), then</p>
+<p>\[|2x - 6| = 2|x - 3| \lt 2\delta = \varepsilon.\]</p>
+<p>That handles every \(\varepsilon\) at once, which is the point. The pattern is always the same: work backwards from \(|f(x) - L| \lt \varepsilon\) to a condition on \(|x - a|\), then write it out forwards. Steeper functions need smaller windows: for \(2x\) the window is half the tolerance.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Prove that \(3x + 1 \to 7\) as \(x \to 2\). State your \(\delta\) in terms of \(\varepsilon\).<div class="space short"></div></li>
+<li>Let \(f(x) = x^2\), \(a = 2\), \(L = 4\) and \(\varepsilon = 0.1\). Find a \(\delta\) that works. Hint: \(x^2 - 4 = (x - 2)(x + 2)\). First insist that \(\delta \le 1\), so that \(|x + 2| \lt 5\).<div class="space short"></div></li>
+<li>Prove that \(x^2 \to 9\) as \(x \to 3\), for every \(\varepsilon\). Your \(\delta\) may be the smaller of two numbers, written \(\min(1, \ldots)\).<div class="space"></div></li>
+<li>Let \(s(x) = 1\) for \(x > 0\) and \(s(x) = -1\) for \(x \lt 0\). Prove that \(s\) has no limit at \(0\): show that for any \(L\), the choice \(\varepsilon = 1\) defeats every \(\delta\). Where does your argument use that \(1\) and \(-1\) are \(2\) apart?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: a denominator that moves</h2>
+<p>Prove that \(1/x \to 1/2\) as \(x \to 2\). The difficulty is that \(\tfrac1x - \tfrac12 = \tfrac{2 - x}{2x}\) has \(x\) in the denominator. Insist first that \(\delta \le 1\), so \(x > 1\), and bound the denominator from below. Then say in one sentence why the same plan fails at \(a = 0\).</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(|(3x + 1) - 7| = 3|x - 2|\). Choose \(\delta = \varepsilon/3\). Then \(0 \lt |x - 2| \lt \delta\) gives \(3|x - 2| \lt 3\delta = \varepsilon\).</li>
+<li>If \(|x - 2| \lt 1\) then \(1 \lt x \lt 3\), so \(|x + 2| \lt 5\) and \(|x^2 - 4| = |x - 2|\,|x + 2| \lt 5|x - 2|\). To make this below \(0.1\) take \(|x - 2| \lt 0.02\). So \(\delta = 0.02\) works (anything smaller does too). Check: on that window \(|x^2 - 4|\) never exceeds about \(0.080\).</li>
+<li>If \(|x - 3| \lt 1\) then \(2 \lt x \lt 4\), so \(|x + 3| \lt 7\) and \(|x^2 - 9| = |x - 3|\,|x + 3| \lt 7|x - 3|\). Choose \(\delta = \min(1, \varepsilon/7)\). Then \(0 \lt |x - 3| \lt \delta\) gives both \(|x - 3| \lt 1\) (so the bound \(7\) applies) and \(7|x - 3| \lt \varepsilon\). So \(|x^2 - 9| \lt \varepsilon\).</li>
+<li>Suppose \(s(x) \to L\) and take \(\varepsilon = 1\). Any window \((-\delta, \delta)\) contains a positive \(x\), where \(s = 1\), and a negative \(x\), where \(s = -1\). Both would need \(|1 - L| \lt 1\) and \(|{-1} - L| \lt 1\). But then \(2 = |1 - (-1)| \le |1 - L| + |L + 1| \lt 2\), a contradiction. The gap of \(2\) is what makes \(\varepsilon = 1\) enough; with a gap of \(g\), any \(\varepsilon \le g/2\) would do.</li>
+</ol>
+<p><b>Stretch.</b> If \(|x - 2| \lt 1\) then \(x > 1\), so \(2x > 2\) and \(\left|\tfrac1x - \tfrac12\right| = \tfrac{|x - 2|}{2x} \lt \tfrac{|x - 2|}{2}\). Choose \(\delta = \min(1, 2\varepsilon)\): then \(\tfrac{|x - 2|}{2} \lt \tfrac{2\varepsilon}{2} = \varepsilon\). At \(a = 0\) the plan fails because no window around \(0\) keeps \(x\) away from \(0\), so the denominator cannot be bounded from below; indeed the idea section showed there is no limit there at all.</p>
+</section>
+
+<div class="sheet-nav"><a href="a20-parametric.html">← Previous</a><a href="b2-e-irrational.html">Next: e is irrational →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

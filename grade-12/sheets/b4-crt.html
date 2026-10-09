@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Chinese remainder theorem · Infinity Club</title>
+<meta name="description" content="A number that leaves remainder 2 mod 3, 3 mod 5 and 2 mod 7. Why there is exactly one answer mod 105, how to build it from switches, and what goes wrong when the moduli share a factor.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Around the corner · 4</div>
+  <h1>The Chinese remainder theorem</h1>
+  <p class="teaser">A number that leaves remainder 2 mod 3, 3 mod 5 and 2 mod 7. Why there is exactly one answer mod 105, and how to find it.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A problem from <em>Sunzi's Mathematical Classic</em>, written in China some sixteen centuries ago: find a number leaving remainder \(2\) when divided by \(3\), \(3\) when divided by \(5\), and \(2\) when divided by \(7\). In the notation of <a href="../../grade-6/sheets/b3-clock-arithmetic.html">clock arithmetic</a>, where \(a \equiv b \pmod m\) means \(m\) divides \(a - b\):</p>
+<p>\[x \equiv 2 \pmod 3, \qquad x \equiv 3 \pmod 5, \qquad x \equiv 2 \pmod 7.\]</p>
+<p class="callout">If the moduli are <b>pairwise coprime</b> (no two share a factor), there is exactly one solution modulo their product, here \(3 \cdot 5 \cdot 7 = 105\).</p>
+<p><b>Why unique.</b> If \(x\) and \(y\) both work, \(x - y\) is divisible by \(3\), by \(5\) and by \(7\). Coprime divisors multiply: \(105\) divides \(x - y\). So any two solutions agree mod \(105\).</p>
+<p><b>Why one exists.</b> Each residue \(0, \ldots, 104\) gives a triple of remainders \((x \bmod 3,\ x \bmod 5,\ x \bmod 7)\). By uniqueness, no two residues give the same triple. There are \(3 \cdot 5 \cdot 7 = 105\) possible triples. So \(105\) residues land on \(105\) triples without repeats: every triple, including \((2, 3, 2)\), is hit exactly once. The figure shows two moduli.</p>
+<figure><svg viewBox="0 0 250 150" width="250" height="150" role="img" aria-label="A 3 by 5 grid: rows are the remainder mod 3, columns the remainder mod 5. The numbers 0 to 14 fill the fifteen cells exactly once; the cell for remainder 2 mod 3 and 3 mod 5 holds 8 and is highlighted" font-family="Nunito, sans-serif" font-size="13">
+<text x="140" y="14" text-anchor="middle" fill="#555" font-size="12">remainder mod 5</text>
+<text x="68" y="48" text-anchor="middle" font-size="12">0</text><text x="104" y="48" text-anchor="middle" font-size="12">1</text><text x="140" y="48" text-anchor="middle" font-size="12">2</text><text x="176" y="48" text-anchor="middle" font-size="12">3</text><text x="212" y="48" text-anchor="middle" font-size="12">4</text>
+<text x="10" y="101" text-anchor="middle" fill="#555" font-size="12" transform="rotate(-90 10 101)">mod 3</text>
+<text x="40" y="76" text-anchor="middle" font-size="12">0</text><text x="40" y="106" text-anchor="middle" font-size="12">1</text><text x="40" y="136" text-anchor="middle" font-size="12">2</text>
+<g transform="translate(50 56)">
+<rect x="0" y="0" width="180" height="90" fill="none" stroke="#999" stroke-width="1"/>
+<line x1="0" y1="30" x2="180" y2="30" stroke="#999" stroke-width="1"/><line x1="0" y1="60" x2="180" y2="60" stroke="#999" stroke-width="1"/>
+<line x1="36" y1="0" x2="36" y2="90" stroke="#999" stroke-width="1"/><line x1="72" y1="0" x2="72" y2="90" stroke="#999" stroke-width="1"/><line x1="108" y1="0" x2="108" y2="90" stroke="#999" stroke-width="1"/><line x1="144" y1="0" x2="144" y2="90" stroke="#999" stroke-width="1"/>
+<rect x="108" y="60" width="36" height="30" fill="#fde8c4" stroke="#f5a524" stroke-width="2"/>
+<g fill="#3f44c9" text-anchor="middle">
+<text x="18" y="20">0</text><text x="54" y="20">6</text><text x="90" y="20">12</text><text x="126" y="20">3</text><text x="162" y="20">9</text>
+<text x="18" y="50">10</text><text x="54" y="50">1</text><text x="90" y="50">7</text><text x="126" y="50">13</text><text x="162" y="50">4</text>
+<text x="18" y="80">5</text><text x="54" y="80">11</text><text x="90" y="80">2</text><text x="162" y="80">14</text>
+</g>
+<text x="126" y="80" text-anchor="middle" fill="#f5a524" font-weight="700">8</text>
+</g>
+</svg><figcaption>Moduli \(3\) and \(5\): the numbers \(0\) to \(14\) fill the \(15\) cells once each. Remainders \((2, 3)\) belong to \(8\) alone.</figcaption></figure>
+<p>Coprimality matters: \(x \equiv 1 \pmod 4\), \(x \equiv 2 \pmod 6\) has no solution, since the first makes \(x\) odd and the second even.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: building the answer from switches</h2>
+<p>For each modulus, multiply the other two: \(35\), \(21\), \(15\). Now \(35\) is \(0\) mod \(5\) and mod \(7\); mod \(3\) it is \(2\), and \(2 \cdot 2 = 4 \equiv 1\), so \(e_1 = 2 \cdot 35 = 70\) has remainders \((1, 0, 0)\). Already \(21 \equiv 1 \pmod 5\) and \(15 \equiv 1 \pmod 7\), so \(e_2 = 21\) gives \((0, 1, 0)\) and \(e_3 = 15\) gives \((0, 0, 1)\). These are switches. Scale by the wanted remainders and add:</p>
+<p>\[x = 2 \cdot 70 + 3 \cdot 21 + 2 \cdot 15 = 233 \equiv 23 \pmod{105}.\]</p>
+<p>Check: \(23 = 7 \cdot 3 + 2 = 4 \cdot 5 + 3 = 3 \cdot 7 + 2\). Every solution is \(23 + 105k\).</p>
+<p class="small">RSA works mod \(pq\); computers use this theorem to work mod \(p\) and mod \(q\) separately, then recombine: <a href="../../demos/rsa.html">infinityclub.net/demos/rsa.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Find every \(x\) with \(x \equiv 1 \pmod 3\) and \(x \equiv 2 \pmod 4\).<div class="space short"></div></li>
+<li>Solve \(x \equiv 1 \pmod 4\), \(x \equiv 2 \pmod 5\), \(x \equiv 3 \pmod 9\) by the switch method. Give the switches and the answer mod \(180\).<div class="space"></div></li>
+<li>\(4\) and \(6\) are not coprime. (a) Show that \(x \equiv 1 \pmod 4\), \(x \equiv 3 \pmod 6\) does have solutions, and find them all. (b) For which pairs of remainders \(a, b\) is \(x \equiv a \pmod 4\), \(x \equiv b \pmod 6\) solvable?<div class="space"></div></li>
+<li>A basket of eggs. Counted in twos, threes, fours, fives or sixes, one is always left over; counted in sevens, none. Smallest possible number of eggs? First collapse the five "one left over" conditions into one congruence.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: square roots of 1</h2>
+<p>Modulo a prime \(p\), \(x^2 \equiv 1\) has exactly two solutions, \(\pm 1\), because \(p\) must divide \((x - 1)(x + 1)\). How many solutions does \(x^2 \equiv 1 \pmod{105}\) have? Count them with the theorem, then list them.</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Numbers that are \(2 \pmod 4\): \(2, 6, 10, \ldots\); the first that is \(1 \pmod 3\) is \(10\). So \(x \equiv 10 \pmod{12}\): \(10, 22, 34, \ldots\)</li>
+<li>\(M = 180\); \(M_1 = 45\), \(M_2 = 36\), \(M_3 = 20\). \(45 \equiv 1 \pmod 4\) so \(e_1 = 45\); \(36 \equiv 1 \pmod 5\) so \(e_2 = 36\); \(20 \equiv 2 \pmod 9\) and \(2 \cdot 5 = 10 \equiv 1\), so \(e_3 = 5 \cdot 20 = 100\). Then \(x = 1 \cdot 45 + 2 \cdot 36 + 3 \cdot 100 = 417 \equiv 57 \pmod{180}\). Check: \(57 = 14 \cdot 4 + 1 = 11 \cdot 5 + 2 = 6 \cdot 9 + 3\).</li>
+<li>(a) \(1 \pmod 4\): \(1, 5, 9, 13, 17, 21, \ldots\); of these, \(9\) and \(21\) are \(3 \pmod 6\). The solutions are \(x \equiv 9 \pmod{12}\): the modulus is the lowest common multiple \(12\), not the product \(24\). (b) Both conditions fix \(x \bmod 2\) (the shared factor \(\gcd(4, 6) = 2\)): \(x \equiv a \pmod 2\) and \(x \equiv b \pmod 2\). Solvable exactly when \(a\) and \(b\) have the same parity, and then there is one solution mod \(12\).</li>
+<li>One left over when counted in \(2, 3, 4, 5, 6\) means \(x - 1\) is divisible by all of them, so by \(\operatorname{lcm} = 60\): \(x \equiv 1 \pmod{60}\). Combine with \(x \equiv 0 \pmod 7\) (coprime to \(60\)). Try \(1, 61, 121, 181, 241, 301\): \(301 = 7 \cdot 43\). Smallest \(301\); in general \(x \equiv 301 \pmod{420}\).</li>
+</ol>
+<p><b>Stretch.</b> \(x^2 \equiv 1 \pmod{105}\) holds exactly when \(x^2 \equiv 1\) mod \(3\), mod \(5\) and mod \(7\) at once. Each gives two choices, \(x \equiv \pm 1\), and by the theorem every one of the \(2 \cdot 2 \cdot 2 = 8\) combinations is a different residue mod \(105\). The eight are \(1, 29, 34, 41, 64, 71, 76, 104\), in four \(\pm\) pairs (\(104 = -1\), \(76 = -29\), \(71 = -34\), \(64 = -41\)). For instance \(29 \equiv (-1, -1, 1)\) mod \((3, 5, 7)\), and \(29^2 = 841 = 8 \cdot 105 + 1\). A composite modulus has more square roots of \(1\) than a prime, which is one way to detect that a number is composite without factoring it.</p>
+</section>
+
+<div class="sheet-nav"><a href="b3-prime-counting.html">← Previous</a><a href="b5-two-squares.html">Next: Which primes are sums of two squares →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

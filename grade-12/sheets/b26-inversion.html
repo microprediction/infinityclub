@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inversion in a circle · Infinity Club</title>
+<meta name="description" content="Inversion sends P to the point P′ on ray OP with OP · OP′ = r². Lines not through O become circles through O (proved with similar triangles), tangency survives, and a problem about touching circles falls apart.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Around the corner · 26</div>
+  <h1>Inversion in a circle</h1>
+  <p class="teaser">Turn the plane inside out: lines become circles through the centre, and tangent circles stay tangent, and a hard problem becomes easy.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p class="callout">Fix a circle with centre \(O\) and radius \(r\). The <b>inverse</b> of a point \(P \ne O\) is the point \(P'\) on the ray from \(O\) through \(P\) with \(OP \cdot OP' = r^2\).<br>A line not through \(O\) inverts to a circle through \(O\), and vice versa. Circles not through \(O\) invert to circles not through \(O\). Lines through \(O\) stay put.</p>
+<p>Inside and outside swap, the circle stays put, inverting twice gives \(P\) back, and \(O\) is sent to infinity.</p>
+<figure><svg viewBox="0 0 300 200" width="210" height="140" role="img" aria-label="A circle of inversion centred O, a vertical line to its right with foot A and a point P, and the image circle through O with diameter OA′ carrying P′" font-family="Nunito, sans-serif" font-size="13" font-weight="700">
+<circle cx="130.0" cy="100.0" r="70.0" fill="none" stroke="#999" stroke-width="1.5" stroke-dasharray="5 4"/>
+<line x1="240.0" y1="12" x2="240.0" y2="188" stroke="#000" stroke-width="2"/>
+<circle cx="152.3" cy="100.0" r="22.3" fill="#dcdcf5" stroke="#3f44c9" stroke-width="2"/>
+<line x1="130.0" y1="100.0" x2="240.0" y2="100.0" stroke="#000" stroke-width="1.2"/>
+<line x1="130.0" y1="100.0" x2="240.0" y2="38.0" stroke="#000" stroke-width="1.2"/>
+<line x1="163.8" y1="80.9" x2="174.5" y2="100.0" stroke="#f5a524" stroke-width="1.5"/>
+<polyline points="157.7,84.4 161.1,90.5 167.2,87.0" fill="none" stroke="#f5a524" stroke-width="1.2"/><polyline points="233.0,100.0 233.0,93.0 240.0,93.0" fill="none" stroke="#000" stroke-width="1.2"/>
+<circle cx="130.0" cy="100.0" r="3" fill="#000"/><text x="116.0" y="114.0" fill="#000">O</text><circle cx="240.0" cy="100.0" r="3" fill="#000"/><text x="246.0" y="116.0" fill="#000">A</text><circle cx="174.5" cy="100.0" r="3" fill="#3f44c9"/><text x="172.5" y="118.0" fill="#3f44c9">A′</text><circle cx="240.0" cy="38.0" r="3" fill="#000"/><text x="246.0" y="34.0" fill="#000">P</text><circle cx="163.8" cy="80.9" r="3" fill="#3f44c9"/><text x="165.8" y="73.9" fill="#3f44c9">P′</text>
+<text x="246.0" y="24" font-style="italic">ℓ</text><text x="106.0" y="50.0" fill="#777" font-weight="400" font-size="12">radius r</text>
+</svg><figcaption>Triangles \(OAP\) and \(OP'A'\) are similar, so the angle at \(P'\) is right.</figcaption></figure>
+<p><b>Proof for the line.</b> Let \(A\) be the foot of the perpendicular from \(O\) to \(\ell\), and \(P\) any other point of \(\ell\). Since \(OA \cdot OA' = OP \cdot OP' = r^2\), we have \(OA/OP = OP'/OA'\). Triangles \(OAP\) and \(OP'A'\) share the angle at \(O\) with the sides around it in proportion, so they are similar (\(A\) matching \(P'\)). Hence \(\angle OP'A' = \angle OAP = 90°\), and by Thales (<a href="../../grade-10/sheets/a12-circles.html">circle theorems</a>) \(P'\) lies on the circle with diameter \(OA'\). \(\square\)</p>
+<p>Inversion is one to one, so curves touching at one point have images touching at one point: tangency survives.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: two touching circles and their common tangent</h2>
+<p>Circles \(\omega_1\), \(\omega_2\) touch at \(T\); a line touches them at \(A\) and \(B\). Claim: \(\angle ATB = 90°\).</p>
+<figure><svg viewBox="0 0 240 145" width="170" height="103" role="img" aria-label="Two circles touching at T with a common tangent line touching them at A and B; TA and TB meet at a right angle" font-family="Nunito, sans-serif" font-size="13" font-weight="700">
+<circle cx="150.0" cy="95.0" r="40.0" fill="none" stroke="#000" stroke-width="2"/><circle cx="90.0" cy="95.0" r="20.0" fill="none" stroke="#000" stroke-width="2"/>
+<line x1="30.0" y1="95.0" x2="212.0" y2="30.7" stroke="#000" stroke-width="2"/>
+<line x1="110.0" y1="95.0" x2="136.7" y2="57.3" stroke="#3f44c9" stroke-width="1.5"/><line x1="110.0" y1="95.0" x2="83.3" y2="76.1" stroke="#3f44c9" stroke-width="1.5"/>
+<polyline points="114.0,89.3 108.3,85.2 104.3,91.0" fill="none" stroke="#f5a524" stroke-width="1.2"/>
+<circle cx="110.0" cy="95.0" r="3" fill="#000"/><text x="115.0" y="112.0" fill="#000">T</text><circle cx="136.7" cy="57.3" r="3" fill="#000"/><text x="142.7" y="53.3" fill="#000">A</text><circle cx="83.3" cy="76.1" r="3" fill="#000"/><text x="67.3" y="72.1" fill="#000">B</text>
+<text x="194" y="97" fill="#555" font-weight="400" font-size="12">ω<tspan dy="3" font-size="9">1</tspan></text><text x="60" y="117" fill="#555" font-weight="400" font-size="12">ω<tspan dy="3" font-size="9">2</tspan></text>
+</svg><figcaption>Before. After inverting about \(T\): two parallel lines with a circle wedged between them.</figcaption></figure>
+<p>Invert in any circle centred \(T\). Both circles pass through \(T\), so they become lines; they met only at \(T\), so their images meet nowhere: parallel lines. The line \(AB\) misses \(T\), so it becomes a circle through \(T\) touching both parallel lines, at \(A'\) and \(B'\), the ends of a diameter; so \(\angle A'TB' = 90°\) by Thales. And \(A'\) lies on ray \(TA\), \(B'\) on ray \(TB\), so \(\angle ATB = 90°\).</p>
+<p class="small">Drag lines and circles and watch their images move: <a href="../../demos/inversion.html">infinityclub.net/demos/inversion.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>The circle of inversion has radius 6. Where do points at distance 2, 3, 6, 9 and 36 from \(O\) go? Which points of the plane are fixed?<div class="space short"></div></li>
+<li>Invert in the unit circle centred at the origin. (a) Explain why the formula is \((x, y) \mapsto \left(\dfrac{x}{x^2 + y^2},\ \dfrac{y}{x^2 + y^2}\right)\). (b) Find the image of the line \(x = 2\) (centre and radius), and check by inverting \((2, 2)\) directly.<div class="space short"></div></li>
+<li>Use the formula from exercise 2 to show that the circle \(x^2 + y^2 = 2x\) (centre \((1, 0)\), radius 1) inverts to the line \(x = \tfrac12\). Why was a line to be expected?<div class="space short"></div></li>
+<li>Circles \(\omega_1\) and \(\omega_2\) touch at \(T\), one inside the other. Invert in a circle centred at \(T\). (a) Why are the images two parallel lines? (b) A third circle touches both \(\omega_1\) and \(\omega_2\). What is its image, and what fixes its size? (c) Deduce that a chain of circles, each touching the next and all touching \(\omega_1\) and \(\omega_2\), inverts to a row of equal coins.<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: Pappus's chain</h2>
+<p>In exercise 4, let \(m\) be the line through \(T\) and the centres, \(C_0\) the chain circle centred on \(m\), \(C_1\) the one touching \(C_0\), \(C_2\) the next, and so on. Show the centre of \(C_n\) sits exactly \(n\) diameters of \(C_n\) above \(m\). Hint: choose the inversion circle so that \(C_n\) is its own image.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(OP' = 36/OP\): distances 2, 3, 6, 9, 36 go to 18, 12, 6, 4, 1. The fixed points are exactly the points on the circle of inversion.</li>
+<li>(a) \(P'\) is on the same ray as \(P\) at distance \(1/OP\), so \(P' = P/OP^2\), and \(OP^2 = x^2 + y^2\). (b) The foot of the perpendicular is \(A = (2, 0)\), so \(A' = (\tfrac12, 0)\). The image is the circle with diameter \(OA'\): centre \((\tfrac14, 0)\), radius \(\tfrac14\). Check: \((2, 2)\) has \(x^2 + y^2 = 8\), so it goes to \((\tfrac14, \tfrac14)\), which is at distance \(\tfrac14\) from \((\tfrac14, 0)\).</li>
+<li>On the circle, \(x^2 + y^2 = 2x\), so the image has \(x' = \dfrac{x}{x^2 + y^2} = \dfrac{x}{2x} = \tfrac12\). The circle passes through \(O\), and circles through \(O\) become lines; the computation only says which line.</li>
+<li>(a) Both pass through \(T\), so both become lines; their only common point was \(T\), which has no image, so the lines have no common point: parallel. (b) It misses \(T\), so it becomes a circle, and it still touches both parallel lines, so its diameter is the width of the strip between them. (c) Every chain circle has the same image diameter, and touching circles have touching images: a row of equal coins across the strip.</li>
+</ol>
+<p><b>Stretch.</b> Draw a line through \(T\) cutting \(C_n\) at \(X\) and \(Y\); the product \(TX \cdot TY\) is the same for every such line (power of a point). Invert in the circle centred \(T\) with \(r^2 = TX \cdot TY\). Then every point \(X\) of \(C_n\) goes to the other point \(Y\) of \(C_n\) on the same line, so \(C_n\) is its own image, and its coin has its own diameter \(d_n\). The line \(m\) passes through \(T\), so it inverts to itself; \(C_0\) is symmetric about \(m\), so its coin is centred on \(m\). The coins stack along the strip, which is perpendicular to \(m\), so the \(k\)th coin is centred \(k\, d_n\) above \(m\). The \(n\)th coin is \(C_n\) itself. \(\square\) (Pappus of Alexandria proved this in the fourth century, without inversion.)</p>
+</section>
+
+<div class="sheet-nav"><a href="b25-minus-twelfth.html">← Previous</a><a href="b27-knots.html">Next: Proving a knot is knotted →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

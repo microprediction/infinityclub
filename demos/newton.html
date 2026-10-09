@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Newton's Method · Infinity Club</title>
+<meta name="description" content="Tap a starting x and watch Newton's method slide down tangent lines to a root. Then switch to the complex plane and see which of the three cube roots of 1 each starting point reaches.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+#plot { cursor: crosshair; touch-action: none; }
+.controls .val { font-family: var(--mono); min-width: 2em; display: inline-block; }
+table.iters { font-family: var(--mono); font-size: .92rem; }
+table.iters th, table.iters td { padding: .25em .8em; border-bottom: 1px solid var(--rule); text-align: right; }
+table.iters th { background: #eeece6; }
+.mission { max-width: 70ch; margin: -.4rem 0 1rem; }
+.mission p { margin: .3rem 0; }
+.mission summary { cursor: pointer; font-weight: 700; }
+.key { font-size: .88rem; color: var(--muted); margin: .2rem 0 .6rem; }
+.key span { display: inline-block; margin-right: 1em; }
+.key i { display: inline-block; width: 1.4em; height: .3em; vertical-align: middle; margin-right: .3em; border-radius: 2px; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Newton's method</h1>
+<p class="explain">Pick a function and tap anywhere on the graph to choose a starting x₀. Newton's method draws the tangent at (x₀, f(x₀)), follows it down to the x-axis, and calls the landing spot x₁. Then it repeats. Watch the steps animate and the table fill in: when it works, the number of correct digits roughly doubles each step. Then switch the view to <b>basins of z³ − 1</b>: the same recipe in the complex plane, with every starting point coloured by which of the three cube roots of 1 it ends up at. Tap a point to see its route.</p>
+<div class="mission">
+<p class="small"><b>Mission.</b> Pick f(x) = x³ − 2x + 2 and start exactly at x₀ = 0 (tap near the y-axis; the start snaps to the nearest 0.1). Before it runs, work out x₁ by hand: f(0) = 2, f′(0) = −2. Then predict x₂.</p>
+<details class="small"><summary>Answer</summary><p>x₁ = 0 − 2/(−2) = 1. At x = 1, f = 1 and f′ = 1, so x₂ = 1 − 1 = 0. Newton is stuck in a loop 0, 1, 0, 1, … and never finds the root near −1.77. Start at 0.1 instead and it escapes, but slowly at first. Extension: pick arctan x and find, by trial, the largest start that still converges to 0. (It is about 1.39. Beyond it each step overshoots to a larger |x| than before.)</p></details>
+</div>
+<div class="demo-panel">
+  <div class="controls">
+    <label>view
+      <select id="view">
+        <option value="real">real line</option>
+        <option value="basins">basins of z³ − 1</option>
+      </select>
+    </label>
+    <label id="fnlab">f(x)
+      <select id="fn">
+        <option value="sq2">x² − 2</option>
+        <option value="cubic">x³ − x − 1</option>
+        <option value="cosx">cos x − x</option>
+        <option value="trap">x³ − 2x + 2</option>
+        <option value="atan">arctan x</option>
+      </select>
+    </label>
+    <button id="replay" class="ghost">Replay</button>
+  </div>
+  <div class="key" id="keyreal"><span><i style="background:#1d1f3a"></i>f(x)</span><span><i style="background:#f5a524"></i>tangent</span><span><i style="background:#3f44c9"></i>x₀, x₁, x₂, …</span></div>
+  <div class="key" id="keybasins" style="display:none"><span><i style="background:#e0453a"></i>reaches 1</span><span><i style="background:#3f44c9"></i>reaches −½ + (√3/2)i</span><span><i style="background:#2a9d5c"></i>reaches −½ − (√3/2)i</span><span>darker = more steps</span></div>
+  <canvas id="plot" width="900" height="520"></canvas>
+  <div class="readout" id="info"></div>
+  <table class="iters" id="tbl"></table>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>The tangent at xₙ is the line y = f(xₙ) + f′(xₙ)(x − xₙ). It crosses the axis where that is zero, so <b>xₙ₊₁ = xₙ − f(xₙ)/f′(xₙ)</b>. Near a simple root the curve looks like its tangent, so the landing spot is far closer to the root than xₙ was. Write the error as eₙ = xₙ − r; a little Taylor expansion gives eₙ₊₁ ≈ (f″/2f′) eₙ², which is why the number of correct digits doubles each step. For x² − 2 starting at 1 the iterates are 1.5, 1.41667, 1.41422, 1.41421356…, and this is how a calculator finds square roots.</p>
+<p>It can also go wrong. If f′(xₙ) is near zero the tangent is nearly flat and sends you far away. x³ − 2x + 2 has a starting point that cycles forever. arctan x has a horizon beyond which every step is worse than the last. Newton's method is fast, not safe.</p>
+<p>In the complex plane the same formula z ↦ z − (z³ − 1)/(3z²) has three roots to choose from. Start near one and you converge to it. But the boundary between the three basins is not a tidy set of lines: zoom in anywhere on it and all three colours are present. Points there end up at a root that has nothing to do with which one they were closest to. This picture is a fractal, and it is the reason "the nearest root" is the wrong way to think about where Newton's method goes.</p>
+<p>Sheets: <a href="../grade-12/sheets/a6-curve-sketching.html">Reading a curve from its derivatives</a> and <a href="../grade-12/sheets/b17-winding.html">Why every polynomial has a root</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  var FNS = {
+    sq2:   { f: function (x) { return x * x - 2; }, d: function (x) { return 2 * x; }, name: "x² − 2", xmin: -3, xmax: 3, ymin: -3, ymax: 6, x0: 2.5 },
+    cubic: { f: function (x) { return x * x * x - x - 1; }, d: function (x) { return 3 * x * x - 1; }, name: "x³ − x − 1", xmin: -2.5, xmax: 2.5, ymin: -4, ymax: 4, x0: 2 },
+    cosx:  { f: function (x) { return Math.cos(x) - x; }, d: function (x) { return -Math.sin(x) - 1; }, name: "cos x − x", xmin: -3, xmax: 3, ymin: -4, ymax: 3, x0: -2 },
+    trap:  { f: function (x) { return x * x * x - 2 * x + 2; }, d: function (x) { return 3 * x * x - 2; }, name: "x³ − 2x + 2", xmin: -3, xmax: 3, ymin: -6, ymax: 8, x0: 0 },
+    atan:  { f: Math.atan, d: function (x) { return 1 / (1 + x * x); }, name: "arctan x", xmin: -6, xmax: 6, ymin: -2, ymax: 2, x0: 1.3 }
+  };
+  function newtonStep(F, x) { return x - F.f(x) / F.d(x); }
+  // iterates x0, x1, ... stopping at convergence, blow-up, or maxN steps
+  function newtonPath(F, x0, maxN, tol) {
+    tol = tol || 1e-12; var xs = [x0], status = "running";
+    for (var i = 0; i < maxN; i++) {
+      var x = xs[xs.length - 1], fx = F.f(x);
+      if (Math.abs(fx) < tol) { status = "converged"; break; }
+      var nx = newtonStep(F, x);
+      if (!isFinite(nx) || Math.abs(nx) > 1e6) { status = "diverged"; break; }
+      xs.push(nx);
+    }
+    if (status === "running" && Math.abs(F.f(xs[xs.length - 1])) < tol) status = "converged";
+    return { xs: xs, status: status };
+  }
+  // complex Newton for z^3 - 1: z <- z - (z^3 - 1)/(3 z^2) = (2z + 1/z^2)/3
+  var ROOTS = [[1, 0], [-0.5, Math.sqrt(3) / 2], [-0.5, -Math.sqrt(3) / 2]];
+  function cubeStep(zr, zi) {
+    var r2 = zr * zr + zi * zi; if (r2 === 0) return [NaN, NaN];
+    // 1/z^2 = conj(z)^2 / |z|^4
+    var cr = (zr * zr - zi * zi) / (r2 * r2), ci = (-2 * zr * zi) / (r2 * r2);
+    return [(2 * zr + cr) / 3, (2 * zi + ci) / 3];
+  }
+  function nearestRoot(zr, zi, tol) {
+    for (var k = 0; k < 3; k++) { var dr = zr - ROOTS[k][0], di = zi - ROOTS[k][1]; if (dr * dr + di * di < tol * tol) return k; }
+    return -1;
+  }
+  // which cube root of 1 does z0 reach, and in how many steps (root -1 if none within maxIter)
+  function cubeBasin(zr, zi, maxIter, keepPath) {
+    var path = keepPath ? [[zr, zi]] : null;
+    for (var n = 0; n < maxIter; n++) {
+      var k = nearestRoot(zr, zi, 1e-6);
+      if (k >= 0) return { root: k, iters: n, path: path };
+      var z = cubeStep(zr, zi); zr = z[0]; zi = z[1];
+      if (isNaN(zr)) return { root: -1, iters: n, path: path };
+      if (path) path.push([zr, zi]);
+    }
+    return { root: nearestRoot(zr, zi, 1e-3), iters: maxIter, path: path };
+  }
+  /*ENDPURE*/
+
+  var canvas = document.getElementById("plot"), ctx = canvas.getContext("2d"), info = document.getElementById("info"), tbl = document.getElementById("tbl");
+  var viewSel = document.getElementById("view"), fnSel = document.getElementById("fn");
+  var S = { view: "real", fn: "sq2", x0: 2.5, shown: 0, z0: null };
+  var timer = null;
+  function stopAnim() { if (timer) { clearTimeout(timer); timer = null; } }
+  viewSel.addEventListener("change", function () { S.view = viewSel.value; stopAnim(); document.getElementById("fnlab").style.display = S.view === "real" ? "" : "none";
+    document.getElementById("keyreal").style.display = S.view === "real" ? "" : "none"; document.getElementById("keybasins").style.display = S.view === "real" ? "none" : ""; basinCache = null; draw(); });
+  fnSel.addEventListener("change", function () { S.fn = fnSel.value; S.x0 = FNS[S.fn].x0; start(); });
+  document.getElementById("replay").addEventListener("click", function () { if (S.view === "real") start(); else { S.z0 = null; draw(); } });
+
+  var W, H, XMIN, XMAX, YMIN, YMAX;
+  function X(x) { return (x - XMIN) / (XMAX - XMIN) * W; }
+  function Y(y) { return H - (y - YMIN) / (YMAX - YMIN) * H; }
+  function fmt(v, d) { if (!isFinite(v)) return "∞"; return v.toFixed(d === undefined ? 6 : d).replace("-", "−"); }
+  function fmtZ(z) { return fmt(z[0], 4) + (z[1] < 0 ? " − " : " + ") + fmt(Math.abs(z[1]), 4) + "i"; }
+
+  function setup() {
+    var dpr = window.devicePixelRatio || 1; W = canvas.clientWidth || 900; H = Math.round(W * 0.58);
+    canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, H);
+  }
+  function axes() {
+    ctx.strokeStyle = "#ece9e0"; ctx.lineWidth = 1;
+    for (var gx = Math.ceil(XMIN); gx <= XMAX; gx++) { ctx.beginPath(); ctx.moveTo(X(gx), 0); ctx.lineTo(X(gx), H); ctx.stroke(); }
+    for (var gy = Math.ceil(YMIN); gy <= YMAX; gy++) { ctx.beginPath(); ctx.moveTo(0, Y(gy)); ctx.lineTo(W, Y(gy)); ctx.stroke(); }
+    ctx.strokeStyle = "#8a8ca8"; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(X(0), 0); ctx.lineTo(X(0), H); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(0, Y(0)); ctx.lineTo(W, Y(0)); ctx.stroke();
+    ctx.fillStyle = "#5d6079"; ctx.font = "11px Nunito, sans-serif"; ctx.textAlign = "center";
+    for (var tx = Math.ceil(XMIN); tx <= XMAX; tx++) if (tx !== 0) ctx.fillText(tx, X(tx), Y(0) + 13);
+    ctx.textAlign = "right";
+    for (var ty = Math.ceil(YMIN); ty <= YMAX; ty++) if (ty !== 0) ctx.fillText(ty, X(0) - 5, Y(ty) + 4);
+  }
+
+  // ---------- real-line view ----------
+  var path = null;
+  function start() {
+    stopAnim(); path = newtonPath(FNS[S.fn], S.x0, 12); S.shown = 0; draw();
+    function tick() { if (S.shown < path.xs.length - 1) { S.shown++; draw(); timer = setTimeout(tick, 750); } else { timer = null; draw(); } }
+    timer = setTimeout(tick, 600);
+  }
+  function drawReal() {
+    var F = FNS[S.fn]; XMIN = F.xmin; XMAX = F.xmax; YMIN = F.ymin; YMAX = F.ymax;
+    setup(); axes();
+    ctx.strokeStyle = "#1d1f3a"; ctx.lineWidth = 2.5; ctx.beginPath();
+    for (var i = 0; i <= W; i++) { var x = XMIN + (XMAX - XMIN) * i / W, y = F.f(x); if (i === 0) ctx.moveTo(i, Y(y)); else ctx.lineTo(i, Y(y)); }
+    ctx.stroke();
+    if (!path) return;
+    var shown = Math.min(S.shown, path.xs.length - 1), finished = S.shown >= path.xs.length - 1 && !timer;
+    for (var n = 0; n <= shown; n++) {
+      var xn = path.xs[n], fx = F.f(xn);
+      // vertical to the curve
+      ctx.strokeStyle = "#8a8ca8"; ctx.lineWidth = 1; ctx.setLineDash([3, 4]);
+      ctx.beginPath(); ctx.moveTo(X(xn), Y(0)); ctx.lineTo(X(xn), Y(fx)); ctx.stroke(); ctx.setLineDash([]);
+      // tangent at every iterate that produced a successor (and at the last one if that step flew off the screen)
+      if (n < shown || (finished && path.status === "diverged" && n === shown)) {
+        var m = F.d(xn), xa = XMIN, xb = XMAX;
+        ctx.strokeStyle = n >= shown - 1 ? "#f5a524" : "#f9d79a"; ctx.lineWidth = n >= shown - 1 ? 2 : 1.2;
+        ctx.beginPath(); ctx.moveTo(X(xa), Y(fx + m * (xa - xn))); ctx.lineTo(X(xb), Y(fx + m * (xb - xn))); ctx.stroke();
+      }
+      ctx.fillStyle = "#1d1f3a"; ctx.beginPath(); ctx.arc(X(xn), Y(fx), 5, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = n === shown ? "#e0453a" : "#3f44c9"; ctx.beginPath(); ctx.arc(X(xn), Y(0), n === shown ? 7 : 5, 0, Math.PI * 2); ctx.fill();
+      if (n <= 2 || n === shown) { ctx.fillStyle = "#3f44c9"; ctx.font = "bold 12px Nunito, sans-serif"; ctx.textAlign = "center"; ctx.fillText("x" + (n < 10 ? "₀₁₂₃₄₅₆₇₈₉"[n] : n), X(xn), Y(0) + (fx > 0 ? 26 : -14)); }
+    }
+    var last = path.xs[shown], done = shown === path.xs.length - 1;
+    var msg = "f(x) = " + F.name + ",  start x₀ = " + fmt(S.x0, 2) + "   (tap the graph to choose another start)";
+    msg += "\nx" + (shown < 10 ? "₀₁₂₃₄₅₆₇₈₉"[shown] : shown) + " = " + fmt(last, 8) + ",  f = " + F.f(last).toExponential(2);
+    if (shown > 0) msg += "\nx" + "ₙ₊₁ = xₙ − f(xₙ)/f′(xₙ):  " + fmt(path.xs[shown - 1], 6) + " − (" + F.f(path.xs[shown - 1]).toExponential(2) + ")/(" + F.d(path.xs[shown - 1]).toFixed(4).replace("-", "−") + ") = " + fmt(last, 6);
+    if (done) msg += "\n" + (path.status === "converged" ? "converged after " + shown + " step" + (shown === 1 ? "" : "s") : path.status === "diverged" ? "diverged: a nearly flat tangent threw the iterate off the screen" : "stopped after 12 steps without settling" + (S.fn === "trap" && Math.abs(S.x0) < 1e-9 ? " (it is cycling 0, 1, 0, 1, …)" : ""));
+    info.textContent = msg;
+    var rows = "<tr><th>n</th><th>xₙ</th><th>f(xₙ)</th></tr>";
+    for (var r = 0; r <= shown; r++) rows += "<tr><td>" + r + "</td><td>" + fmt(path.xs[r], 10) + "</td><td>" + F.f(path.xs[r]).toExponential(3).replace("-", "−") + "</td></tr>";
+    tbl.innerHTML = rows;
+  }
+
+  // ---------- basins view ----------
+  var basinCache = null;
+  function drawBasins() {
+    XMIN = -2; XMAX = 2; setup(); var aspect = H / W; YMIN = -2 * aspect; YMAX = 2 * aspect;
+    var cell = Math.max(2, Math.round(W / 300)), cw = Math.ceil(W / cell), ch = Math.ceil(H / cell);
+    if (!basinCache || basinCache.cw !== cw || basinCache.ch !== ch) {
+      var off = document.createElement("canvas"); off.width = cw; off.height = ch;
+      var octx = off.getContext("2d"), img = octx.createImageData(cw, ch), d = img.data;
+      var COL = [[224, 69, 58], [63, 68, 201], [42, 157, 92]];
+      for (var j = 0; j < ch; j++) for (var i = 0; i < cw; i++) {
+        var zr = XMIN + (i + 0.5) / cw * (XMAX - XMIN), zi = YMAX - (j + 0.5) / ch * (YMAX - YMIN);
+        var b = cubeBasin(zr, zi, 40, false), p = (j * cw + i) * 4;
+        if (b.root < 0) { d[p] = d[p + 1] = d[p + 2] = 30; d[p + 3] = 255; continue; }
+        var shade = Math.max(0.35, 1 - b.iters / 22), c = COL[b.root];
+        d[p] = Math.round(255 - (255 - c[0]) * shade * 1.0); d[p + 1] = Math.round(255 - (255 - c[1]) * shade); d[p + 2] = Math.round(255 - (255 - c[2]) * shade); d[p + 3] = 255;
+      }
+      octx.putImageData(img, 0, 0); basinCache = { cw: cw, ch: ch, off: off };
+    }
+    ctx.imageSmoothingEnabled = true; ctx.drawImage(basinCache.off, 0, 0, W, H);
+    // axes
+    ctx.strokeStyle = "rgba(29,31,58,.45)"; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(X(0), 0); ctx.lineTo(X(0), H); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(0, Y(0)); ctx.lineTo(W, Y(0)); ctx.stroke();
+    ctx.fillStyle = "#1d1f3a"; ctx.font = "11px Nunito, sans-serif"; ctx.textAlign = "center";
+    [-1, 1].forEach(function (t) { ctx.fillText(t, X(t), Y(0) + 13); ctx.fillText(t + "i", X(0) + 12, Y(t) + 4); });
+    // the three roots
+    ROOTS.forEach(function (r) { ctx.fillStyle = "#fff"; ctx.beginPath(); ctx.arc(X(r[0]), Y(r[1]), 6, 0, Math.PI * 2); ctx.fill(); ctx.strokeStyle = "#1d1f3a"; ctx.lineWidth = 2; ctx.stroke(); });
+    var msg = "z ↦ z − (z³ − 1)/(3z²).  Every start is coloured by the root it reaches; darker means more steps.\nTap a point to trace its route.";
+    if (S.z0) {
+      var b2 = cubeBasin(S.z0[0], S.z0[1], 40, true), pth = b2.path;
+      ctx.strokeStyle = "#1d1f3a"; ctx.lineWidth = 2; ctx.beginPath();
+      pth.forEach(function (z, k) { if (k === 0) ctx.moveTo(X(z[0]), Y(z[1])); else ctx.lineTo(X(z[0]), Y(z[1])); }); ctx.stroke();
+      pth.forEach(function (z, k) { ctx.fillStyle = k === 0 ? "#f5a524" : "#1d1f3a"; ctx.beginPath(); ctx.arc(X(z[0]), Y(z[1]), k === 0 ? 7 : 3.5, 0, Math.PI * 2); ctx.fill(); if (k === 0) { ctx.strokeStyle = "#fff"; ctx.lineWidth = 2; ctx.stroke(); } });
+      msg = "z₀ = " + fmtZ(S.z0) + "\n" + (b2.root >= 0 ? "reaches root " + fmtZ(ROOTS[b2.root]) + " after " + b2.iters + " steps" : "has not settled after 40 steps");
+      var nearest = 0, best = Infinity; ROOTS.forEach(function (r, k) { var dd = Math.hypot(S.z0[0] - r[0], S.z0[1] - r[1]); if (dd < best) { best = dd; nearest = k; } });
+      if (b2.root >= 0) msg += b2.root === nearest ? "\n(that is also the nearest root)" : "\n(the nearest root was " + fmtZ(ROOTS[nearest]) + ": Newton did not go to the nearest one!)";
+      var rows = "<tr><th>n</th><th>zₙ</th></tr>";
+      pth.slice(0, 12).forEach(function (z, k) { rows += "<tr><td>" + k + "</td><td>" + fmtZ(z) + "</td></tr>"; });
+      if (pth.length > 12) rows += "<tr><td>…</td><td>" + (pth.length - 12) + " more</td></tr>";
+      tbl.innerHTML = rows;
+    } else tbl.innerHTML = "";
+    info.textContent = msg;
+  }
+
+  function draw() { if (S.view === "real") drawReal(); else drawBasins(); }
+
+  canvas.addEventListener("pointerdown", function (ev) {
+    var r = canvas.getBoundingClientRect(), px = ev.clientX - r.left, py = ev.clientY - r.top; ev.preventDefault();
+    if (S.view === "real") { S.x0 = Math.round((XMIN + px / W * (XMAX - XMIN)) * 10) / 10; start(); }
+    else { S.z0 = [XMIN + px / W * (XMAX - XMIN), YMIN + (H - py) / H * (YMAX - YMIN)]; draw(); }
+  });
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(function () { basinCache = null; draw(); }, 120); });
+  start();
+})();
+</script>
+</body>
+</html>

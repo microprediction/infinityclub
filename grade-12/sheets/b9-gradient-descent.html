@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gradient descent · Infinity Club</title>
+<meta name="description" content="Follow the slope downhill in small steps. How a machine finds the bottom of a bowl it cannot see, why the step size matters, and the exact threshold where it overshoots and diverges.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Around the corner · 9</div>
+  <h1>Gradient descent</h1>
+  <p class="teaser">Follow the slope downhill in small steps. How a machine finds the bottom of a bowl it cannot see, and when it overshoots.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>You are on a hillside in fog. You cannot see the valley floor, but you feel the slope under your feet. Step downhill, feel again, repeat. That is <b>gradient descent</b>, and it is how machine-learning models are trained.</p>
+<p>In one variable the slope is \(f'(x)\) and the step is</p>
+<p class="callout">\(x_{\text{new}} = x - \eta\, f'(x)\).</p>
+<p>The number \(\eta\) (eta) is the <b>step size</b>; the minus sign sends you downhill.</p>
+<p>In two variables the <b>gradient</b> \(\nabla f = (f_x, f_y)\) collects the two partial slopes (\(f_x\) is the derivative in \(x\) with \(y\) held fixed). It points straight uphill, so step against it: \((x, y) \leftarrow (x, y) - \eta \nabla f\).</p>
+<figure><svg viewBox="0 0 400 180" width="400" height="180" role="img" aria-label="Contour ellipses of x squared plus 3 y squared, with a gradient-descent path from (4, 1) that zig-zags across the narrow direction of the valley while shrinking towards the centre" font-family="Nunito, sans-serif" font-size="12">
+<g fill="none" stroke="#999" stroke-width="1">
+<ellipse cx="200" cy="90" rx="24.0" ry="13.9"/>
+<ellipse cx="200" cy="90" rx="48.1" ry="27.8"/>
+<ellipse cx="200" cy="90" rx="76.0" ry="43.9"/>
+<ellipse cx="200" cy="90" rx="107.5" ry="62.1"/>
+<ellipse cx="200" cy="90" rx="148.2" ry="85.6"/>
+</g>
+<polyline points="336.0,56.0 254.4,117.2 221.8,68.2 208.7,107.4 203.5,76.1 201.4,101.1" fill="none" stroke="#f5a524" stroke-width="2"/>
+<g fill="#3f44c9"><circle cx="336.0" cy="56.0" r="3.5"/><circle cx="254.4" cy="117.2" r="3"/><circle cx="221.8" cy="68.2" r="3"/><circle cx="208.7" cy="107.4" r="3"/><circle cx="203.5" cy="76.1" r="3"/></g>
+<circle cx="200" cy="90" r="2.5" fill="#000"/>
+<text x="346" y="52" fill="#3f44c9">(4, 1)</text>
+<text x="262" y="130" fill="#3f44c9">(1.6, −0.8)</text>
+<text x="60" y="22" fill="#999">f = x² + 3y²</text>
+<text x="330" y="170" fill="#f5a524">η = 0.3</text>
+</svg><figcaption>Level curves of \(f = x^2 + 3y^2\) and five steps with \(\eta = 0.3\). The path overshoots the floor in \(y\) every step, zig-zagging, but each zig is smaller.</figcaption></figure>
+<p>The step size decides everything. For \(f = x^2 + 3y^2\), \(\nabla f = (2x, 6y)\), so one step sends \(x\) to \((1 - 2\eta)x\) and \(y\) to \((1 - 6\eta)y\): each coordinate is multiplied by a fixed factor every step. A factor between \(-1\) and \(1\) shrinks it; beyond \(\pm 1\) it blows up. The steeper \(y\)-direction breaks first: once \(\eta > \tfrac13\), \(|1 - 6\eta| > 1\) and the iterates fly off. For \(\tfrac16 \lt \eta \lt \tfrac13\) the factor is negative: \(y\) overshoots the floor and lands on the far side. Shrinking, but zig-zagging.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: \(\eta = 0.3\) from \((4, 1)\)</h2>
+<p>The factors are \(1 - 0.6 = 0.4\) for \(x\) and \(1 - 1.8 = -0.8\) for \(y\). So</p>
+<p>\[(4, 1) \to (1.6, -0.8) \to (0.64, 0.64) \to (0.256, -0.512) \to (0.1024, 0.4096).\]</p>
+<p>The \(x\)-coordinate drops fast; the \(y\)-coordinate flips sign every step and loses only 20%. That is the zig-zag in the figure. Now nudge \(\eta\) to \(0.34\): the \(y\)-factor becomes \(-1.04\) and the \(y\) values run \(1, -1.04, 1.08, -1.12, \dots\), growing without end while \(x\) still converges. The method has diverged, and the only cure is a smaller step.</p>
+<p class="small">Click a start point and drag the step size: <a href="../../demos/gradient.html">infinityclub.net/demos/gradient.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Take \(f(x) = (x - 3)^2\), start at \(x_0 = 0\) and use \(\eta = 0.25\). Compute \(x_1\), \(x_2\), \(x_3\). What fraction of the remaining distance to 3 does each step cover?<div class="space short"></div></li>
+<li>Same \(f\), same start. Compute three steps with \(\eta = 1\), then three with \(\eta = 1.1\). Describe what happens in each case. For which \(\eta\) does the method converge from every start?<div class="space"></div></li>
+<li>For \(f = x^2 + 3y^2\), start at \((4, 1)\) with the small step \(\eta = 0.1\). Compute two steps. Which coordinate is converging faster, and why is that the opposite of the picture above?<div class="space short"></div></li>
+<li>For \(f = x^2 + 3y^2\): (a) find every \(\eta\) for which both coordinates shrink from any start; (b) find the \(\eta\) that makes the slower coordinate shrink fastest. (Hint: the two factors are \(1 - 2\eta\) and \(1 - 6\eta\). Sketch their absolute values against \(\eta\).)<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the long narrow valley</h2>
+<p>Now \(f = x^2 + 100y^2\). Find the best \(\eta\) in the sense of question 4(b), the shrink factor it gives the \(x\)-coordinate, and roughly how many steps are needed to divide \(x\) by 1000. Why do machine-learning people dread valleys like this?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(f'(x) = 2(x - 3)\), so \(x_{\text{new}} = x - 0.5(x - 3)\): \(x_1 = 1.5\), \(x_2 = 2.25\), \(x_3 = 2.625\). Each step covers exactly half the remaining distance: the factor on \(x - 3\) is \(1 - 2\eta = 0.5\).</li>
+<li>With \(\eta = 1\): \(6, 0, 6, \dots\), bouncing forever between 0 and 6 (factor \(-1\)). With \(\eta = 1.1\): \(6.6, -1.32, 8.184\), growing (factor \(-1.2\)). The method converges when \(|1 - 2\eta| \lt 1\), that is \(0 \lt \eta \lt 1\).</li>
+<li>Factors \(0.8\) and \(0.4\): \((4, 1) \to (3.2, 0.4) \to (2.56, 0.16)\). The \(y\)-coordinate converges faster. With a small step the steep direction is a help, because the gradient there is large and each step is long. The zig-zag only appears once \(\eta\) passes \(\tfrac16\), where the step in \(y\) overshoots.</li>
+<li>(a) Need \(|1 - 2\eta| \lt 1\) and \(|1 - 6\eta| \lt 1\), that is \(0 \lt \eta \lt 1\) and \(0 \lt \eta \lt \tfrac13\). Both hold for \(0 \lt \eta \lt \tfrac13\). (b) The slower coordinate has the larger of \(|1 - 2\eta|\) and \(|1 - 6\eta|\). The first falls as \(\eta\) grows, the second rises again after \(\eta = \tfrac16\); the maximum is smallest where they are equal and opposite, \(1 - 2\eta = 6\eta - 1\), so \(\eta = \tfrac14\). Both factors are then \(\pm\tfrac12\): the distance to the bottom halves every step.</li>
+</ol>
+<p><b>Stretch.</b> Factors \(1 - 2\eta\) and \(1 - 200\eta\). Equal and opposite when \(1 - 2\eta = 200\eta - 1\), so \(\eta = \tfrac{1}{101}\). The \(x\)-factor is \(1 - \tfrac{2}{101} = \tfrac{99}{101} \approx 0.980\): \(x\) loses only 2% a step. Dividing by 1000 needs \(n\) with \((0.980)^n = 0.001\), so \(n = \ln 1000 / \ln(101/99) \approx 345\) steps. The steep direction forces a tiny step, and the flat direction then crawls. Real models have millions of directions, and the ratio of steepest to flattest (the condition number) decides how slowly they train.</p>
+</section>
+
+<div class="sheet-nav"><a href="b8-least-squares.html">← Previous</a><a href="b10-neuron.html">Next: A neuron is a dot product and a threshold →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

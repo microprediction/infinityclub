@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Integration by parts · Infinity Club</title>
+<meta name="description" content="Integration by parts derived from the product rule, with a picture. The integral of x e^x, the dv = dx trick for ln x, and the integral of e^x sin x that returns to itself.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Sharpen · 9</div>
+  <h1>Integration by parts</h1>
+  <p class="teaser">The product rule read backwards. ∫ x eˣ, ∫ ln x (the trick is to let dv = dx), and the integral that comes back to itself.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>The product rule says \((uv)' = u'v + uv'\). Integrate both sides: \(uv = \int u'v\,dx + \int uv'\,dx\). Move one integral across and you have a new tool.</p>
+<p class="callout">\(\displaystyle\int u\,v'\,dx = uv - \int u'\,v\,dx\). In the shorthand \(dv = v'\,dx\), \(du = u'\,dx\): \(\int u\,dv = uv - \int v\,du\).</p>
+<p>It is a trade: you hand over \(\int uv'\) and get back a <b>boundary term</b> \(uv\) plus a different integral, \(\int u'v\). It pays when the new integral is easier. For \(\int xe^x\,dx\), take \(u = x\) (its derivative is 1) and \(v' = e^x\) (integrating leaves it alone):</p>
+<p>\[\int xe^x\,dx = xe^x - \int 1\cdot e^x\,dx = xe^x - e^x + C.\]</p>
+<p>Check by differentiating. The figure says the same with areas: the two integrals are the two regions beside the curve; together they make the rectangle, the boundary term.</p>
+<figure><svg viewBox="0 0 240 170" width="240" height="170" role="img" aria-label="Axes u and v with a rising curve from (u1, v1) to (u2, v2). The region under the curve is the integral of v du; the region between the curve and the v-axis is the integral of u dv. Together they fill the rectangle u2 v2 minus the small corner rectangle u1 v1." font-family="Nunito, sans-serif" font-size="12">
+<path d="M 72,150 L 72,118 80.4,117.6 88.8,116.4 97.2,114.5 105.6,111.7 114,108.2 122.4,103.9 130.8,98.8 139.2,93 147.6,86.3 156,78.9 164.4,70.7 172.8,61.7 181.2,51.9 189.6,41.3 198,30 L 198,150 Z" fill="#dcdcf5" stroke="none"/>
+<path d="M 30,118 L 72,118 80.4,117.6 88.8,116.4 97.2,114.5 105.6,111.7 114,108.2 122.4,103.9 130.8,98.8 139.2,93 147.6,86.3 156,78.9 164.4,70.7 172.8,61.7 181.2,51.9 189.6,41.3 198,30 L 30,30 Z" fill="#fde8c4" stroke="none"/>
+<rect x="30" y="118" width="42" height="32" fill="#fff" stroke="#999" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="198" y1="30" x2="198" y2="150" stroke="#999" stroke-dasharray="3 3"/>
+<line x1="30" y1="30" x2="198" y2="30" stroke="#999" stroke-dasharray="3 3"/>
+<polyline points="72,118 80.4,117.6 88.8,116.4 97.2,114.5 105.6,111.7 114,108.2 122.4,103.9 130.8,98.8 139.2,93 147.6,86.3 156,78.9 164.4,70.7 172.8,61.7 181.2,51.9 189.6,41.3 198,30" fill="none" stroke="#3f44c9" stroke-width="2"/>
+<line x1="30" y1="150" x2="222" y2="150" stroke="#000" stroke-width="1.2"/><line x1="30" y1="150" x2="30" y2="14" stroke="#000" stroke-width="1.2"/>
+<circle cx="72" cy="118" r="3" fill="#f5a524"/><circle cx="198" cy="30" r="3" fill="#f5a524"/>
+<text x="150" y="131" text-anchor="middle" fill="#3f44c9" font-weight="700">∫ v du</text>
+<text x="80" y="56" fill="#333" font-weight="700">∫ u dv</text>
+<text x="51" y="138" text-anchor="middle" font-size="11" fill="#555">u₁v₁</text>
+<text x="72" y="164" text-anchor="middle">u₁</text><text x="198" y="164" text-anchor="middle">u₂</text>
+<text x="25" y="122" text-anchor="end">v₁</text><text x="25" y="34" text-anchor="end">v₂</text>
+<text x="227" y="154">u</text><text x="30" y="10" text-anchor="middle">v</text>
+</svg><figcaption>Blue is \(\int v\,du\), orange is \(\int u\,dv\). Together they fill the big rectangle minus the small one: \(u_2v_2 - u_1v_1\), the boundary term.</figcaption></figure>
+<p>Rule of thumb: differentiate the factor that gets simpler (a power of \(x\), a logarithm, an inverse trig function) and integrate the one that does not get worse (\(e^x\), \(\sin x\), \(\cos x\)). Two tricks extend the reach; the example shows both.</p>
+</section>
+
+<section class="example">
+<h2>Watch two: \(\int \ln x\,dx\), and a boomerang</h2>
+<p>There is no product in \(\ln x\). Make one: \(u = \ln x\), \(v' = 1\). Then \(u' = 1/x\) and \(v = x\):</p>
+<p>\[\int \ln x\,dx = x\ln x - \int x\cdot\frac1x\,dx = x\ln x - x + C.\]</p>
+<p>Now \(I = \int e^x\sin x\,dx\). Neither factor simplifies, so go round twice, with \(u\) the trig factor each time:</p>
+<p>\[I = e^x\sin x - \int e^x\cos x\,dx = e^x\sin x - \Big(e^x\cos x + \int e^x\sin x\,dx\Big).\]</p>
+<p>The last integral is \(I\) again. So \(2I = e^x(\sin x - \cos x)\), and \(I = \tfrac12 e^x(\sin x - \cos x) + C\). The integral came back to itself; treat it as an unknown and solve for it.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Find (a) \(\int x\cos x\,dx\) and (b) \(\int xe^{2x}\,dx\). Check each by differentiating.<div class="space short"></div></li>
+<li>Evaluate exactly (a) \(\int_0^1 xe^{-x}\,dx\) and (b) \(\int_1^e \ln x\,dx\). For a definite integral the boundary term \(\big[uv\big]\) is evaluated between the limits too.<div class="space short"></div></li>
+<li>(a) \(\int x^2e^x\,dx\) needs parts twice; each pass knocks one power off \(x^2\). (b) \(\int \arctan x\,dx\): the \(\ln x\) trick again, with \(v' = 1\). You will need \(\frac{d}{dx}\arctan x = \frac{1}{1+x^2}\).<div class="space"></div></li>
+<li>Let \(J = \int e^{-x}\cos x\,dx\). Integrate by parts twice until \(J\) reappears, solve for it, and then evaluate \(\int_0^\infty e^{-x}\cos x\,dx\). (As \(x \to \infty\), \(e^{-x}\) beats any bounded factor.)<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: a formula for \(n!\)</h2>
+<p>Let \(I_n = \int_0^\infty x^ne^{-x}\,dx\). Show that \(I_0 = 1\). Integrate by parts once to show that \(I_n = n\,I_{n-1}\) for \(n \ge 1\). What is \(I_n\)? (With \(n\) not a whole number, this integral is how the factorial is extended beyond whole numbers: the gamma function.)</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(u = x\), \(v' = \cos x\): \(x\sin x - \int\sin x\,dx = x\sin x + \cos x + C\). (b) \(u = x\), \(v = \tfrac12e^{2x}\): \(\tfrac12xe^{2x} - \tfrac14e^{2x} + C\).</li>
+<li>(a) \(u = x\), \(v = -e^{-x}\): \(\big[-xe^{-x}\big]_0^1 + \int_0^1 e^{-x}\,dx = -e^{-1} + (1 - e^{-1}) = 1 - 2/e \approx 0.264\). (b) \(\big[x\ln x - x\big]_1^e = (e - e) - (0 - 1) = 1\).</li>
+<li>(a) \(x^2e^x - 2\int xe^x\,dx = x^2e^x - 2(xe^x - e^x) + C = (x^2 - 2x + 2)e^x + C\). (b) \(u = \arctan x\), \(v = x\): \(x\arctan x - \int\frac{x}{1+x^2}\,dx = x\arctan x - \tfrac12\ln(1 + x^2) + C\), the last integral by the substitution \(w = 1 + x^2\).</li>
+<li>\(u = \cos x\), \(v = -e^{-x}\): \(J = -e^{-x}\cos x - \int e^{-x}\sin x\,dx\). Again, \(u = \sin x\): \(\int e^{-x}\sin x\,dx = -e^{-x}\sin x + J\). So \(J = -e^{-x}\cos x + e^{-x}\sin x - J\), giving \(J = \tfrac12e^{-x}(\sin x - \cos x) + C\). Between 0 and \(\infty\): the value at \(\infty\) is 0, at 0 it is \(\tfrac12(0 - 1) = -\tfrac12\), so the integral is \(0 - (-\tfrac12) = \tfrac12\).</li>
+</ol>
+<p><b>Stretch.</b> \(I_0 = \big[-e^{-x}\big]_0^\infty = 0 - (-1) = 1\). With \(u = x^n\), \(v = -e^{-x}\): \(I_n = \big[-x^ne^{-x}\big]_0^\infty + n\int_0^\infty x^{n-1}e^{-x}\,dx = 0 + nI_{n-1}\), the boundary term vanishing at both ends for \(n \ge 1\). So \(I_n = n(n-1)\cdots 1\cdot I_0 = n!\).</p>
+</section>
+
+<div class="sheet-nav"><a href="a8-substitution.html">← Previous</a><a href="a10-volumes.html">Next: Volumes by slicing →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

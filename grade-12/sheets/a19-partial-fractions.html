@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Partial fractions · Infinity Club</title>
+<meta name="description" content="Split 1/(x² − 1) into two simple pieces, integrate each, and get a logarithm. The same trick collapses telescoping series such as Σ 1/(n(n+1)) = 1.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Sharpen · 19</div>
+  <h1>Partial fractions</h1>
+  <p class="teaser">Split 1/(x² − 1) into two simple pieces, integrate each, and get a logarithm. The same trick sums telescoping series.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Adding fractions is routine: \(\dfrac{1}{x-1} - \dfrac{1}{x+1} = \dfrac{2}{x^2-1}\). Running that backwards, splitting one fraction into simple pieces, is <b>partial fractions</b>. It is what makes \(\int \frac{dx}{x^2 - 1}\) possible: you know how to integrate \(1/(x - 1)\), but not \(1/(x^2 - 1)\) directly.</p>
+<p>Factor the denominator, \(x^2 - 1 = (x-1)(x+1)\), and look for constants \(A\), \(B\) with</p>
+<p>\[\frac{1}{(x-1)(x+1)} = \frac{A}{x-1} + \frac{B}{x+1}, \qquad\text{so}\qquad 1 = A(x+1) + B(x-1).\]</p>
+<p>The second equation must hold for every \(x\), so choose convenient ones. \(x = 1\) kills the \(B\) term: \(1 = 2A\), \(A = \tfrac12\). \(x = -1\) kills \(A\): \(B = -\tfrac12\). (The <b>cover-up</b> shortcut: to find \(A\), cover \((x-1)\) in the original fraction and set \(x = 1\) in what remains.) Then</p>
+<p class="callout">\(\displaystyle\int \frac{dx}{x^2-1} = \frac12\int\frac{dx}{x-1} - \frac12\int\frac{dx}{x+1} = \frac12 \ln\left|\frac{x-1}{x+1}\right| + C.\)</p>
+<p>Each distinct linear factor in the denominator gets one constant, and there are always enough equations to find them, provided the numerator has lower degree than the denominator. If it does not, divide first.</p>
+<p>The same split sums series. Since \(\dfrac{1}{n(n+1)} = \dfrac1n - \dfrac{1}{n+1}\), the sum of the first \(N\) terms collapses:</p>
+<p>\[\Big(1 - \tfrac12\Big) + \Big(\tfrac12 - \tfrac13\Big) + \cdots + \Big(\tfrac1N - \tfrac{1}{N+1}\Big) = 1 - \frac{1}{N+1}.\]</p>
+<p>Every middle term cancels with its neighbour, like a collapsing telescope. As \(N \to \infty\) the sum is exactly 1.</p>
+<figure><svg viewBox="0 0 340 80" width="340" height="80" role="img" aria-label="A unit bar cut into pieces of length one half, one sixth, one twelfth, one twentieth and so on, with partial sums one half, two thirds, three quarters marked underneath; the pieces approach the right end but a gap of 1 over N plus 1 always remains" font-family="Nunito, sans-serif" font-size="12">
+<rect x="20" y="30" width="150" height="22" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1"/>
+<rect x="170" y="30" width="50" height="22" fill="#fde8c4" stroke="#3f44c9" stroke-width="1"/>
+<rect x="220" y="30" width="25" height="22" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1"/>
+<rect x="245" y="30" width="15" height="22" fill="#fde8c4" stroke="#3f44c9" stroke-width="1"/>
+<rect x="260" y="30" width="10" height="22" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1"/>
+<rect x="270" y="30" width="7.1" height="22" fill="#fde8c4" stroke="#3f44c9" stroke-width="1"/>
+<rect x="277.1" y="30" width="5.4" height="22" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1"/>
+<rect x="282.5" y="30" width="4.2" height="22" fill="#fde8c4" stroke="#3f44c9" stroke-width="1"/>
+<rect x="286.7" y="30" width="33.3" height="22" fill="none" stroke="#f5a524" stroke-width="1.5" stroke-dasharray="4 3"/>
+<text x="95" y="23" text-anchor="middle" fill="#3f44c9">1/2</text>
+<text x="195" y="23" text-anchor="middle" fill="#3f44c9">1/6</text>
+<text x="232.5" y="23" text-anchor="middle" fill="#3f44c9">1/12</text>
+<text x="304" y="23" text-anchor="middle" fill="#f5a524">1/(N+1)</text>
+<text x="20" y="68" text-anchor="middle" fill="#555">0</text>
+<text x="170" y="68" text-anchor="middle" fill="#555">1/2</text>
+<text x="220" y="68" text-anchor="middle" fill="#555">2/3</text>
+<text x="247" y="68" text-anchor="middle" fill="#555">3/4</text>
+<text x="320" y="68" text-anchor="middle" fill="#555">1</text>
+</svg><figcaption>The pieces \(\tfrac12, \tfrac16, \tfrac1{12}, \ldots\) fill the unit interval. After \(N\) pieces the gap left is exactly \(\tfrac{1}{N+1}\).</figcaption></figure>
+</section>
+
+<section class="example">
+<h2>Watch one: the integral from 2 to 3</h2>
+<p>Find \(\int_2^3 \frac{dx}{x^2-1}\) using the split above, dropping the absolute values since \(x - 1 > 0\) on \([2, 3]\):</p>
+<p>\[\frac12\Big[\ln(x-1) - \ln(x+1)\Big]_2^3 = \frac12\Big[(\ln 2 - \ln 4) - (\ln 1 - \ln 3)\Big] = \frac12 \ln\frac{3}{2} \approx 0.203.\]</p>
+<p>Sanity check: on \([2, 3]\) the integrand runs from \(\tfrac13\) down to \(\tfrac18\), so the area over a width of 1 should be around 0.2. It is.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Split into partial fractions: (a) \(\dfrac{1}{x(x+2)}\), (b) \(\dfrac{3x+1}{(x-1)(x+2)}\).<div class="space short"></div></li>
+<li>Evaluate \(\int_1^3 \frac{dx}{x(x+2)}\) exactly.<div class="space short"></div></li>
+<li>Show that \(\dfrac{1}{(2n-1)(2n+1)} = \dfrac12\Big(\dfrac{1}{2n-1} - \dfrac{1}{2n+1}\Big)\). Find the sum of the first \(N\) terms, \(\dfrac{1}{1\cdot3} + \dfrac{1}{3\cdot5} + \cdots\), and the sum to infinity.<div class="space"></div></li>
+<li>In \(\int \frac{x^2}{x^2-1}\,dx\) the numerator does not have lower degree. Divide first, then find \(\int_2^3 \frac{x^2}{x^2-1}\,dx\).<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: three factors</h2>
+<p>Find \(\displaystyle\sum_{n=1}^{\infty} \frac{1}{n(n+1)(n+2)}\). Hint: each term is half the difference of two consecutive terms of tonight's series \(\frac{1}{n(n+1)}\). Then the sum telescopes.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(\dfrac12\Big(\dfrac1x - \dfrac{1}{x+2}\Big)\). (b) Cover-up with \(x = 1\) gives \(A = 4/3\), with \(x = -2\) gives \(B = (-5)/(-3) = 5/3\). So \(\dfrac{4/3}{x-1} + \dfrac{5/3}{x+2}\).</li>
+<li>\(\dfrac12\Big[\ln x - \ln(x+2)\Big]_1^3 = \dfrac12\Big[(\ln 3 - \ln 5) - (0 - \ln 3)\Big] = \dfrac12 \ln\dfrac95 \approx 0.294\).</li>
+<li>\(\dfrac12\Big(\dfrac{1}{2n-1} - \dfrac{1}{2n+1}\Big) = \dfrac12 \cdot \dfrac{(2n+1) - (2n-1)}{(2n-1)(2n+1)}\), and the numerator is 2. The sum to \(N\) terms telescopes to \(\dfrac12\Big(1 - \dfrac{1}{2N+1}\Big) = \dfrac{N}{2N+1}\). As \(N \to \infty\) this tends to \(\dfrac12\).</li>
+<li>\(\dfrac{x^2}{x^2-1} = 1 + \dfrac{1}{x^2-1}\). So the integral is \(\Big[x\Big]_2^3 + \dfrac12\ln\dfrac32 = 1 + \dfrac12 \ln\dfrac32 \approx 1.203\): the example's answer plus the width of the interval.</li>
+</ol>
+<p><b>Stretch.</b> \(\dfrac12\Big(\dfrac{1}{n(n+1)} - \dfrac{1}{(n+1)(n+2)}\Big) = \dfrac12\cdot\dfrac{(n+2) - n}{n(n+1)(n+2)} = \dfrac{1}{n(n+1)(n+2)}\). Summing from 1 to \(N\), everything cancels except the first and last: \(\dfrac12\Big(\dfrac{1}{1\cdot2} - \dfrac{1}{(N+1)(N+2)}\Big)\). The sum to infinity is \(\dfrac12 \cdot \dfrac12 = \dfrac14\). The same move handles \(\dfrac{1}{n(n+1)(n+2)(n+3)}\), whose sum is \(\dfrac{1}{18}\).</p>
+</section>
+
+<div class="sheet-nav"><a href="a18-implicit.html">← Previous</a><a href="a20-parametric.html">Next: Curves by parameter →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

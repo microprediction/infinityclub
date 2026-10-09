@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why every polynomial has a root · Infinity Club</title>
+<meta name="description" content="The winding-number argument for the fundamental theorem of algebra: p(z) winds n times round the origin on a huge circle and zero times on a tiny one, so somewhere in between it hit zero. What a full proof still needs.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Around the corner · 17</div>
+  <h1>Why every polynomial has a root</h1>
+  <p class="teaser">Walk round a huge circle and p(z) winds round the origin n times; shrink the circle to a point and it winds zero times. Somewhere in between, it crossed zero.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Take \(p(z) = z^n + a_{n-1}z^{n-1} + \cdots + a_0\) , complex coefficients, \(n \ge 1\). The <b>fundamental theorem of algebra</b> says \(p(z) = 0\) for some \(z\).</p>
+<p>Let \(z\) walk once round the circle \(|z| = R\). The image \(p(z)\) is a closed curve. If it misses the origin, count its turns round the origin: its <b>winding number</b>.</p>
+<p><b>Huge circle.</b> \(z^n\) has size \(R^n\) and winds \(n\) times, its angle being \(n\) times that of \(z\) (<a href="../../grade-10/sheets/b7-complex-rotations.html">De Moivre</a>). The rest is at most \(|a_{n-1}|R^{n-1} + \cdots + |a_0|\), smaller than \(R^n\) for large \(R\). So \(p(z)\) is a dog on a leash shorter than the distance from \(z^n\) to the lamppost 0, and goes round \(n\) times too.</p>
+<p><b>Tiny circle.</b> As \(R \to 0\), \(p(z) \to a_0\). For \(a_0 \ne 0\) the image is a tiny loop near \(a_0\) missing 0: winding number zero. (If \(a_0 = 0\), then 0 is a root.)</p>
+<p class="callout">Now shrink \(R\). The winding number is an integer and changes only when the curve passes through 0. It goes from \(n\) to 0, so some \(z\) has \(p(z) = 0\).</p>
+<p>That is an argument, not a proof. A proof must define the winding number (a continuously chosen angle), prove it is an integer, and prove it survives continuous deformation avoiding 0: all real analysis.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: \(p(z) = z^3 - 1\)</h2>
+<figure><svg viewBox="0 0 520 200" width="520" height="200" role="img" aria-label="Left: circles of radius 1.3 and 0.6 in the z-plane with the three cube roots of unity between them. Right: their images under z cubed minus 1: a large circle round the origin traversed three times, and a small circle near minus 1 that misses the origin." font-family="Nunito, sans-serif" font-size="12">
+<line x1="25" y1="100" x2="175" y2="100" stroke="#999" stroke-width="1"/><line x1="100" y1="25" x2="100" y2="178" stroke="#999" stroke-width="1"/>
+<circle cx="100" cy="100" r="65" fill="none" stroke="#3f44c9" stroke-width="1.5"/>
+<circle cx="100" cy="100" r="30" fill="none" stroke="#f5a524" stroke-width="1.5" stroke-dasharray="4 3"/>
+<circle cx="150" cy="100" r="3" fill="#000"/><circle cx="75" cy="56.7" r="3" fill="#000"/><circle cx="75" cy="143.3" r="3" fill="#000"/>
+<circle cx="165" cy="100" r="3" fill="#3f44c9"/><circle cx="156.3" cy="67.5" r="3" fill="#3f44c9"/><circle cx="132.5" cy="43.7" r="3" fill="#3f44c9"/><circle cx="100" cy="35" r="3" fill="#3f44c9"/>
+<text x="172" y="112" fill="#3f44c9">0°</text><text x="162" y="64" fill="#3f44c9">30°</text><text x="137" y="40" fill="#3f44c9">60°</text><text x="103" y="30" fill="#3f44c9">90°</text>
+<text x="100" y="194" text-anchor="middle" font-size="12">|z| = 1.3 and 0.6, roots in black</text>
+<text x="40" y="92" fill="#3f44c9" font-size="11">R = 1.3</text><text x="78" y="128" fill="#f5a524" font-size="11">0.6</text>
+<path d="M200 100 L245 100" stroke="#000" stroke-width="1.2" fill="none"/><path d="M240 96 L247 100 L240 104" stroke="#000" stroke-width="1.2" fill="none"/><text x="222" y="92" text-anchor="middle" font-size="13">z³ − 1</text>
+<line x1="258" y1="100" x2="410" y2="100" stroke="#999" stroke-width="1"/><line x1="360" y1="25" x2="360" y2="178" stroke="#999" stroke-width="1"/>
+<circle cx="330" cy="100" r="65.9" fill="none" stroke="#3f44c9" stroke-width="1.5"/>
+<circle cx="330" cy="100" r="6.5" fill="none" stroke="#f5a524" stroke-width="1.5" stroke-dasharray="3 2"/>
+<circle cx="360" cy="100" r="3" fill="#000"/><text x="366" y="112" font-size="12">0</text>
+<circle cx="395.9" cy="100" r="3" fill="#3f44c9"/><circle cx="330" cy="34.1" r="3" fill="#3f44c9"/><circle cx="264.1" cy="100" r="3" fill="#3f44c9"/><circle cx="330" cy="165.9" r="3" fill="#3f44c9"/>
+<text x="401" y="92" fill="#3f44c9">0°</text><text x="336" y="32" fill="#3f44c9">90°</text><text x="267" y="92" fill="#3f44c9">180°</text><text x="336" y="176" fill="#3f44c9">270°</text>
+<text x="340" y="194" text-anchor="middle" font-size="13">image: radii 1.3³ = 2.2 and 0.6³ = 0.2</text>
+<text x="455" y="60" text-anchor="middle" font-size="12" fill="#3f44c9">a third of a lap</text><text x="455" y="76" text-anchor="middle" font-size="12" fill="#3f44c9">on the left is a</text><text x="455" y="92" text-anchor="middle" font-size="12" fill="#3f44c9">full lap on the right</text>
+<text x="455" y="124" text-anchor="middle" font-size="12" fill="#f5a524">the small loop</text><text x="455" y="140" text-anchor="middle" font-size="12" fill="#f5a524">misses 0</text>
+</svg><figcaption>The dots at \(0°, 30°, 60°, 90°\) land at \(0°, 90°, 180°, 270°\): the big image winds three times, the dashed one zero times.</figcaption></figure>
+<p>On \(|z| = R\) write \(z = Re^{i\theta}\). Then \(z^3 - 1 = R^3e^{3i\theta} - 1\): a circle of radius \(R^3\) centred at \(-1\), traversed three times. It encloses the origin exactly when \(R^3 > 1\): winding number 3 for \(R > 1\), 0 for \(R \lt 1\). The switch is at \(R = 1\), where the curve passes through 0 and the three roots, the cube roots of unity, sit. A general polynomial's image wiggles, but the count is the same.</p>
+<p class="small">The three roots, and which start Newton's method sends where: <a href="../../demos/newton.html">infinityclub.net/demos/newton.html</a> (basins view).</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>For \(p(z) = z^2 + 1\), describe the image of \(|z| = 2\) and its winding number about 0, then the same for \(|z| = \tfrac12\). For which \(R\) does the image pass through 0, and where?<div class="space short"></div></li>
+<li>Let \(p(z) = z^3 + 2z + 5\). Why is \(|p(z) - z^3| \le 2R + 5\) on \(|z| = R\)? Find the smallest whole number \(R\) with \(2R + 5 \lt R^3\), and say what the argument then tells you.<div class="space short"></div></li>
+<li>\(q(z) = |z|^2 + 1\) is never zero. Which step of the argument fails for it? And why does it say nothing about \(x^2 + 1\) when \(x\) must be real?<div class="space"></div></li>
+<li>(a) Show that \(z^5 + z + 1\) has no root with \(|z| \ge 1.2\), by running question 2's inequality the other way. (b) The argument gives one root \(r\). Use the <a href="../../grade-10/sheets/a7-polynomials.html">factor theorem</a> to explain why a degree-\(n\) polynomial has \(n\) roots, counted with multiplicity.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the winding number counts the roots</h2>
+<p>Angles add when you multiply, so winding numbers add too. Write \(p(z) = (z - r_1)\cdots(z - r_n)\). On \(|z| = R\), what is the winding number of one factor \(z - r_k\) when \(|r_k| \lt R\)? When \(|r_k| > R\)? Deduce what the winding number of \(p\) counts. How many roots of \((z^2 + 1)(z - 3)\) lie inside \(|z| = 2\)?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>With \(z = 2e^{i\theta}\), \(z^2 + 1 = 4e^{2i\theta} + 1\): a circle of radius 4 centred at 1, traversed twice. It encloses 0, so the winding number is 2. For \(R = \tfrac12\) the image is a circle of radius \(\tfrac14\) centred at 1, which misses 0: winding number 0. The image passes through 0 when \(R^2 = 1\), so \(R = 1\), at \(z = \pm i\), the two roots.</li>
+<li>Triangle inequality: \(|2z + 5| \le 2|z| + 5 = 2R + 5\). \(R = 2\) fails (\(9 > 8\)); \(R = 3\) works (\(11 \lt 27\)). So on \(|z| = 3\) the image winds three times, and \(p\) has a root inside \(|z| \lt 3\). (In fact every root is inside, by the reasoning of question 4(a).)</li>
+<li>\(q\) has no leading term that takes over. On \(|z| = R\) it is the constant \(R^2 + 1\): the image is a single point, winding number 0 for every \(R\), so the huge-circle step gives nothing. (\(q\) is not a polynomial in \(z\); it involves \(\bar z\).) For real \(x\), the "circle" \(|x| = R\) is two points, not a loop, and there is nothing to wind. The argument needs the plane: the roots of \(x^2 + 1\) are \(\pm i\), and you only find them by leaving the line.</li>
+<li>(a) If \(|z| = R \ge 1.2\) then \(|z + 1| \le R + 1 \lt R^5 = |z^5|\): true at \(R = 1.2\) (\(2.2 \lt 2.488\)) and \(R^5 - R - 1\) only increases from there. So \(z^5 \ne -(z + 1)\), and \(p(z) \ne 0\). Meanwhile the winding argument puts at least one root inside \(|z| \lt 1.2\). (b) Since \(p(r) = 0\), the factor theorem gives \(p(z) = (z - r)\,q(z)\) with \(q\) of degree \(n - 1\). If \(n - 1 \ge 1\), \(q\) has a root by the same theorem; factor it out and repeat. After \(n\) steps \(p(z) = (z - r_1)\cdots(z - r_n)\). A root that appears \(k\) times in the list has multiplicity \(k\).</li>
+</ol>
+<p><b>Stretch.</b> \(z - r_k\) is the arrow from \(r_k\) to \(z\). If \(|r_k| \lt R\), the circle goes round \(r_k\) and the arrow turns through a full \(360°\): winding number 1. If \(|r_k| > R\), the circle does not enclose \(r_k\); the arrow swings one way and back, winding number 0. Adding up, the winding number of \(p\) on \(|z| = R\) is the number of roots inside the circle, with multiplicity. For \((z^2 + 1)(z - 3)\) the roots are \(\pm i\) and 3; two lie inside \(|z| = 2\), so the winding number is 2.</p>
+</section>
+
+<div class="sheet-nav"><a href="b16-fourier-coefficients.html">← Previous</a><a href="b18-catenary.html">Next: The hanging chain →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

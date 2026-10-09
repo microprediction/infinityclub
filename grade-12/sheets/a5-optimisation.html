@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The cheapest can · Infinity Club</title>
+<meta name="description" content="Fix the volume of a can and minimise the metal. Eliminate a variable with the constraint, set the derivative to zero, find that the best can is as tall as it is wide, and check it really is a minimum.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Sharpen · 5</div>
+  <h1>The cheapest can</h1>
+  <p class="teaser">Fix the volume, minimise the metal. Set the derivative to zero and find that the best can is as tall as it is wide. Then check it is a minimum.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A can must hold a fixed volume \(V\). Which shape uses least metal? With radius \(r\) and height \(h\), the volume is \(V = \pi r^2 h\) and the surface area is \(A = 2\pi r^2 + 2\pi r h\): two discs plus the side, a rectangle \(2\pi r\) by \(h\) when unrolled.</p>
+<figure><svg viewBox="0 0 370 160" width="320" height="138" role="img" aria-label="Left: a cylindrical can with radius r marked across the top and height h marked down the side. Right: a graph of surface area against radius for a 330 ml can. The ends term 2 pi r squared rises, the side term 2V over r falls, and their sum dips to a minimum near r equals 3.7." font-family="Nunito, sans-serif" font-size="13">
+<ellipse cx="80" cy="130" rx="40" ry="12" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="40" y="40" width="80" height="90" fill="#dcdcf5" stroke="none"/>
+<line x1="40" y1="40" x2="40" y2="130" stroke="#3f44c9" stroke-width="1.5"/><line x1="120" y1="40" x2="120" y2="130" stroke="#3f44c9" stroke-width="1.5"/>
+<path d="M40 130 A40 12 0 0 0 120 130" fill="none" stroke="#3f44c9" stroke-width="1.5"/>
+<ellipse cx="80" cy="40" rx="40" ry="12" fill="#fde8c4" stroke="#3f44c9" stroke-width="1.5"/>
+<line x1="80" y1="40" x2="120" y2="40" stroke="#f5a524" stroke-width="1.5"/><circle cx="80" cy="40" r="2" fill="#f5a524"/>
+<text x="100" y="33" text-anchor="middle" fill="#f5a524">r</text>
+<line x1="134" y1="40" x2="134" y2="130" stroke="#999" stroke-width="1"/><line x1="130" y1="40" x2="138" y2="40" stroke="#999"/><line x1="130" y1="130" x2="138" y2="130" stroke="#999"/>
+<text x="146" y="89" fill="#333">h</text>
+<text x="80" y="156" text-anchor="middle" fill="#555" font-size="12">V = πr²h</text>
+<line x1="210" y1="150" x2="355" y2="150" stroke="#999"/><line x1="210" y1="150" x2="210" y2="18" stroke="#999"/>
+<polyline fill="none" stroke="#999" stroke-width="1.2" stroke-dasharray="4 3" points="210.0,148.0 224.0,145.9 238.0,143.1 252.0,139.4 266.0,135.0 280.0,129.9 294.0,124.0 308.0,117.3 322.0,109.9 336.0,101.8 350.0,92.8"/>
+<polyline fill="none" stroke="#999" stroke-width="1.2" stroke-dasharray="4 3" points="210.0,55.7 214.2,66.7 218.4,75.4 222.6,82.4 226.8,88.2 231.0,93.1 238.0,99.8 245.0,105.0 252.0,109.3 259.0,112.8 266.0,115.8 273.0,118.3 280.0,120.5 294.0,124.0 308.0,126.8 322.0,129.1 336.0,130.9 350.0,132.5"/>
+<polyline fill="none" stroke="#3f44c9" stroke-width="2" points="210.0,53.7 212.8,61.0 215.6,67.1 218.4,72.2 221.2,76.6 224.0,80.4 226.8,83.6 229.6,86.4 232.4,88.9 235.2,91.0 238.0,92.8 240.8,94.4 243.6,95.8 246.4,96.9 249.2,97.9 252.0,98.7 254.8,99.4 257.6,99.9 260.4,100.3 263.2,100.6 266.0,100.8 268.8,100.9 271.6,100.9 274.4,100.8 277.2,100.6 280.0,100.4 282.8,100.0 285.6,99.6 288.4,99.2 291.2,98.6 294.0,98.0 296.8,97.4 299.6,96.7 302.4,95.9 305.2,95.1 308.0,94.2 310.8,93.2 313.6,92.3 316.4,91.2 319.2,90.1 322.0,89.0 324.8,87.8 327.6,86.6 330.4,85.4 333.2,84.0 336.0,82.7 338.8,81.3 341.6,79.9 344.4,78.4 347.2,76.9 350.0,75.3"/>
+<line x1="270.1" y1="100.9" x2="270.1" y2="150" stroke="#f5a524" stroke-width="1" stroke-dasharray="3 3"/><circle cx="270.1" cy="100.9" r="3" fill="#f5a524"/>
+<text x="275" y="146" fill="#f5a524" font-size="12">r ≈ 3.7</text>
+<text x="300" y="30" fill="#3f44c9" font-size="12">A(r)</text>
+<text x="330" y="112" fill="#777" font-size="11">2πr²</text>
+<text x="226" y="60" fill="#777" font-size="11">2V/r</text>
+<text x="358" y="154" fill="#555" font-size="12">r</text>
+</svg><figcaption>Left: the two measurements. Right: for \(V = 330\) cm³, the ends term rises, the side term falls, and the total dips once.</figcaption></figure>
+<p>Two variables, one constraint. Use the constraint to eliminate one: \(h = V/(\pi r^2)\), so</p>
+<p>\[A(r) = 2\pi r^2 + \frac{2V}{r}.\]</p>
+<p>The first term grows with \(r\) (metal on the ends), the second shrinks (metal on the side). Between them the slope is zero:</p>
+<p>\[A'(r) = 4\pi r - \frac{2V}{r^2} = 0 \quad\Longrightarrow\quad r^3 = \frac{V}{2\pi}.\]</p>
+<p>Put this back: \(h = V/(\pi r^2) = 2\pi r^3/(\pi r^2) = 2r\). The best can is exactly as tall as it is wide.</p>
+<p>Is it a minimum? \(A''(r) = 4\pi + 4V/r^3 > 0\) for every \(r > 0\), so the curve bends upwards and the flat point is its lowest. The check is part of the answer: a zero slope could equally mark a maximum.</p>
+<p class="callout">Write the quantity in one variable using the constraint. Set the derivative to zero. Confirm with \(A''\), and look at the ends of the allowed range.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: a 330 ml can</h2>
+<p>\(V = 330\) cm³. Then \(r^3 = 330/(2\pi) \approx 52.5\), so \(r \approx 3.74\) cm and \(h = 2r \approx 7.49\) cm. The metal used is</p>
+<p>\[A = 2\pi(3.74)^2 + \frac{660}{3.74} \approx 264 \text{ cm}^2.\]</p>
+<p>Cans in a shop are taller and narrower than this. Our model charges every square centimetre the same, but the ends are stamped from thicker metal than the side. Exercise 4 puts that in.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Two positive numbers multiply to 100. Write their sum as a function of one of them, minimise it, and show your answer is a minimum rather than a maximum. (Compare <a href="../../grade-10/sheets/a17-inequalities.html">AM–GM</a>.)<div class="space short"></div></li>
+<li>An open-topped box has a square base of side \(x\) and must hold 4 m³. Write the area of sheet metal as a function of \(x\), minimise it, and give the dimensions of the box and the metal used.<div class="space short"></div></li>
+<li>A pot has a base but no lid, and must hold a volume \(V\). Show that the least metal is used when \(h = r\), half the proportion of the closed can. Explain in one sentence why dropping the lid makes the best pot wider.<div class="space"></div></li>
+<li>Back to the closed can, but now the two ends cost twice as much per cm² as the side. Minimise the cost, not the area. Show that the cheapest can has \(h = 4r\), twice as tall as it is wide, and say which term in the cost pushed the answer that way.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the end of the range</h2>
+<p>A wire of length \(L\) is cut in two. One piece is bent into a circle, the other into a square. Where should you cut to make the total area as small as possible? Then: where should you cut to make it as large as possible, and why does the derivative miss that answer?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(S(x) = x + 100/x\), \(S'(x) = 1 - 100/x^2 = 0\) at \(x = 10\) (we need \(x > 0\)). \(S''(x) = 200/x^3 > 0\), so a minimum. Both numbers are 10, sum 20.</li>
+<li>Height \(h = 4/x^2\), so \(A = x^2 + 4xh = x^2 + 16/x\). \(A' = 2x - 16/x^2 = 0\) gives \(x^3 = 8\), \(x = 2\) m, \(h = 1\) m. \(A'' = 2 + 32/x^3 > 0\): a minimum. Metal used \(4 + 8 = 12\) m².</li>
+<li>\(A = \pi r^2 + 2V/r\), \(A' = 2\pi r - 2V/r^2 = 0\) gives \(r^3 = V/\pi\), and \(h = V/(\pi r^2) = \pi r^3/(\pi r^2) = r\). \(A'' = 2\pi + 4V/r^3 > 0\). With one disc instead of two, widening the pot costs half as much, so the balance tips towards a wider base.</li>
+<li>Cost \(C = 2(2\pi r^2) + 2\pi r h = 4\pi r^2 + 2V/r\). \(C' = 8\pi r - 2V/r^2 = 0\) gives \(r^3 = V/(4\pi)\), so \(h = V/(\pi r^2) = 4\pi r^3/(\pi r^2) = 4r\). The doubled ends term \(4\pi r^2\) punishes radius harder, so the optimum trades radius for height.</li>
+</ol>
+<p><b>Stretch.</b> Give the circle \(x\) of wire, so its radius is \(x/(2\pi)\) and its area \(x^2/(4\pi)\); the square has side \((L - x)/4\) and area \((L-x)^2/16\). \(A'(x) = x/(2\pi) - (L-x)/8 = 0\) gives \(x = \pi L/(4 + \pi) \approx 0.44L\) to the circle, with \(A'' = 1/(2\pi) + 1/8 > 0\): the minimum. The maximum is at an end of the range, \(x = L\): all of the wire in the circle, area \(L^2/(4\pi) \approx 0.080L^2\), beating the all-square \(L^2/16 = 0.0625L^2\). The derivative only finds flat points inside the range. Endpoints have to be checked by hand.</p>
+</section>
+
+<div class="sheet-nav"><a href="a4-sin-exp-log.html">← Previous</a><a href="a6-curve-sketching.html">Next: Reading a curve from its derivatives →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

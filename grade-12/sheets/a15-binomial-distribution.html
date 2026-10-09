@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The binomial distribution · Infinity Club</title>
+<meta name="description" content="n independent trials with success probability p. The mean np and variance np(1 − p) derived from indicators, and why variances add for independent things while standard deviations do not.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Sharpen · 15</div>
+  <h1>The binomial distribution</h1>
+  <p class="teaser">n trials, probability p. Mean np, variance np(1 − p), and why variances add but standard deviations do not.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Repeat an experiment \(n\) times, independently, succeeding each time with probability \(p\). Let \(X\) count the successes. One particular pattern of \(k\) successes and \(n - k\) failures has probability \(p^k(1-p)^{n-k}\), and there are \(\binom nk\) such patterns, so</p>
+<p>\[P(X = k) = \binom nk p^k (1-p)^{n-k}.\]</p>
+<p>These sum to 1 by the binomial theorem: \(\big(p + (1-p)\big)^n = 1\).</p>
+<figure><svg viewBox="0 0 330 124" width="330" height="124" role="img" aria-label="Bar chart of the binomial distribution with n equals 20 and p equals 0.3, peaking at k equals 6, with the mean marked and a bracket one standard deviation either side" font-family="Nunito, sans-serif" font-size="13">
+<line x1="30" y1="104" x2="310.0" y2="104" stroke="#999" stroke-width="1"/>
+<rect x="31.5" y="103.7" width="15.7" height="0.3" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1"/>
+<text x="39.3" y="119" text-anchor="middle" font-size="12">0</text>
+<rect x="50.2" y="101.3" width="15.7" height="2.7" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1"/>
+<rect x="68.8" y="93.1" width="15.7" height="10.9" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1"/>
+<text x="76.7" y="119" text-anchor="middle" font-size="12">2</text>
+<rect x="87.5" y="76" width="15.7" height="28" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1"/>
+<rect x="106.2" y="53" width="15.7" height="51" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1"/>
+<text x="114" y="119" text-anchor="middle" font-size="12">4</text>
+<rect x="124.8" y="34" width="15.7" height="70" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1"/>
+<rect x="143.5" y="29" width="15.7" height="75" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1"/>
+<text x="151.3" y="119" text-anchor="middle" font-size="12">6</text>
+<rect x="162.2" y="39.7" width="15.7" height="64.3" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1"/>
+<rect x="180.8" y="59.2" width="15.7" height="44.8" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1"/>
+<text x="188.7" y="119" text-anchor="middle" font-size="12">8</text>
+<rect x="199.5" y="78.4" width="15.7" height="25.6" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1"/>
+<rect x="218.2" y="91.9" width="15.7" height="12.1" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1"/>
+<text x="226" y="119" text-anchor="middle" font-size="12">10</text>
+<rect x="236.8" y="99.3" width="15.7" height="4.7" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1"/>
+<rect x="255.5" y="102.5" width="15.7" height="1.5" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1"/>
+<text x="263.3" y="119" text-anchor="middle" font-size="12">12</text>
+<rect x="274.2" y="103.6" width="15.7" height="0.4" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1"/>
+<rect x="292.8" y="103.9" width="15.7" height="0.1" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1"/>
+<text x="300.7" y="119" text-anchor="middle" font-size="12">14</text>
+<line x1="151.3" y1="17" x2="151.3" y2="104" stroke="#f5a524" stroke-width="2"/>
+<line x1="113.1" y1="23" x2="189.6" y2="23" stroke="#f5a524" stroke-width="1.5"/>
+<line x1="113.1" y1="19" x2="113.1" y2="27" stroke="#f5a524" stroke-width="1.5"/><line x1="189.6" y1="19" x2="189.6" y2="27" stroke="#f5a524" stroke-width="1.5"/>
+<text x="151.3" y="13" text-anchor="middle" fill="#f5a524" font-size="12">mean 6, SD 2.05</text>
+<text x="312" y="108" font-size="12" fill="#555">k</text>
+</svg><figcaption>\(P(X = k)\) for \(n = 20\), \(p = 0.3\): peak at \(np = 6\), bracket one SD either side.</figcaption></figure>
+<p>For the mean and variance, leave that formula alone. Write \(X\) as a sum of <b>indicators</b>: \(I_j = 1\) if trial \(j\) succeeds, \(0\) if not, so \(X = I_1 + \dots + I_n\). One indicator has \(E[I] = p\), and since \(0^2 = 0\) and \(1^2 = 1\), also \(E[I^2] = p\). So \(\mathrm{Var}(I) = E[I^2] - E[I]^2 = p - p^2 = p(1-p)\).</p>
+<p>Expectations always add. Variances add when the variables are <em>independent</em>. For \(U\), \(V\) with means \(\mu\), \(\nu\), expand the square in \(\mathrm{Var}(U + V) = E\big[((U-\mu) + (V-\nu))^2\big]\):</p>
+<p>\[\mathrm{Var}(U+V) = \mathrm{Var}(U) + \mathrm{Var}(V) + 2\,E[(U-\mu)(V-\nu)].\]</p>
+<p>Independence lets the last expectation split as \(E[U-\mu]\,E[V-\nu] = 0 \cdot 0\). Adding \(n\) indicators:</p>
+<p class="callout">\(E[X] = np\), \(\quad \mathrm{Var}(X) = np(1-p)\), \(\quad \mathrm{SD}(X) = \sqrt{np(1-p)}\).</p>
+<p>Standard deviations do not add: \(\sqrt{a + b} \neq \sqrt a + \sqrt b\). Double \(n\) and the variance doubles but the SD grows only by \(\sqrt2\), so the spread of a total grows like \(\sqrt n\).</p>
+</section>
+
+<section class="example">
+<h2>Watch one: \(n = 20\), \(p = 0.3\)</h2>
+<p>The mean is \(np = 6\), the variance \(20 \times 0.3 \times 0.7 = 4.2\), the SD \(\sqrt{4.2} \approx 2.05\). The chance of exactly 6 successes:</p>
+<p>\[P(X = 6) = \binom{20}{6}(0.3)^6(0.7)^{14} = 38{,}760 \times 0.000729 \times 0.00678 \approx 0.192.\]</p>
+<p>Adding the terms from \(k = 10\) to \(20\) gives \(P(X \geq 10) \approx 0.048\). Ten successes sit nearly two SDs above the mean, and the grade 10 bell-curve rule puts about 2.5% beyond two SDs in one tail: rough, but the right size.</p>
+<p class="small">Each ball in a Galton board is a binomial with \(p = \tfrac12\): <a href="../../demos/galton.html">infinityclub.net/demos/galton.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>A fair die is rolled 12 times and \(X\) counts the sixes. Find the mean, variance and SD of \(X\), and \(P(X = 2)\).<div class="space short"></div></li>
+<li>Thirty multiple-choice questions, four options each, all guessed. Find the mean and SD of the score. A student gets 15 right: how many SDs above the mean, and roughly how surprising?<div class="space short"></div></li>
+<li>One die has mean \(3.5\) and variance \(\tfrac{35}{12}\). (a) Find the variance and SD of the total of two dice, and compare the SD with twice the SD of one die. (b) Find the variance and SD of the total of 100 dice.<div class="space short"></div></li>
+<li>(a) For fixed \(n\), which \(p\) makes \(\mathrm{Var}(X)\) largest, and how large is it? (b) A poll of \(n = 1{,}000\) reports \(\hat p = X/n\). Using \(\mathrm{Var}(cX) = c^2\,\mathrm{Var}(X)\), show \(\mathrm{SD}(\hat p) = \sqrt{p(1-p)/n} \leq 1/(2\sqrt n)\). Why do polls quote a margin of about ±3 points?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: when variances refuse to add</h2>
+<p>Let \(Y = n - X\) count the failures. Find \(\mathrm{Var}(Y)\) by the indicator method. Then compute \(\mathrm{Var}(X + Y)\) directly. Why is it not \(\mathrm{Var}(X) + \mathrm{Var}(Y)\), and what must the cross term \(2\,E[(X - np)(Y - n(1-p))]\) be?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Mean \(12 \times \tfrac16 = 2\), variance \(12 \times \tfrac16 \times \tfrac56 = \tfrac53\), SD \(\approx 1.29\). \(P(X = 2) = \binom{12}{2}\left(\tfrac16\right)^2\left(\tfrac56\right)^{10} = 66 \times \tfrac{5^{10}}{6^{12}} \approx 0.296\).</li>
+<li>\(n = 30\), \(p = \tfrac14\): mean \(7.5\), variance \(30 \times \tfrac14 \times \tfrac34 = 5.625\), SD \(\approx 2.37\). Fifteen right is \((15 - 7.5)/2.37 \approx 3.2\) SDs above the mean. By the 68–95–99.7 rule, beyond three SDs is well under 1%; the exact binomial tail is \(P(X \geq 15) \approx 0.0027\). Guessing almost never does this.</li>
+<li>(a) Variance \(2 \times \tfrac{35}{12} = \tfrac{35}{6}\), SD \(\approx 2.42\). Twice the SD of one die is \(2 \times 1.71 = 3.42\): bigger, because SDs do not add. (b) Variance \(100 \times \tfrac{35}{12} = \tfrac{875}{3} \approx 291.7\), SD \(\approx 17.1\), which is \(\sqrt{100} = 10\) times the SD of one die, not 100 times.</li>
+<li>(a) \(p(1-p)\) is a downward parabola with vertex at \(p = \tfrac12\), so the largest variance is \(n/4\) at \(p = \tfrac12\). (b) \(\mathrm{Var}(\hat p) = \mathrm{Var}(X)/n^2 = np(1-p)/n^2 = p(1-p)/n\); take the root. Since \(p(1-p) \leq \tfrac14\), \(\mathrm{SD}(\hat p) \leq \tfrac{1}{2\sqrt n}\); for \(n = 1{,}000\) that is \(0.0158\). Two SDs, the 95% band, is about \(0.032\): three points either way, whatever the true \(p\).</li>
+</ol>
+<p><b>Stretch.</b> \(Y\) is a sum of \(n\) indicators \(1 - I_j\), each with probability \(1 - p\) of being 1, so \(\mathrm{Var}(Y) = n(1-p)p\), the same as \(\mathrm{Var}(X)\). But \(X + Y = n\) always, so \(\mathrm{Var}(X + Y) = 0\), not \(2np(1-p)\). The additivity rule needs independence, and \(X\), \(Y\) are perfectly dependent: knowing one fixes the other. The cross term must cancel the two variances exactly: \(2\,E[(X - np)(Y - n(1-p))] = -2np(1-p)\).</p>
+</section>
+
+<div class="sheet-nav"><a href="a14-complex-polynomials.html">← Previous</a><a href="a16-clt.html">Next: Why averages are normal →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

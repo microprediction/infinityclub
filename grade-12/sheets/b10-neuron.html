@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A neuron is a dot product and a threshold · Infinity Club</title>
+<meta name="description" content="Weights, inputs, a sum and a switch. Train a single artificial neuron by hand with the perceptron rule to recognise AND, and see why no single neuron can learn XOR.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Around the corner · 10</div>
+  <h1>A neuron is a dot product and a threshold</h1>
+  <p class="teaser">Weights, inputs, a sum and a switch. Train one by hand to recognise a pattern, and see what a single neuron cannot learn.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>An artificial neuron multiplies each input \(x_i\) by a <b>weight</b> \(w_i\), adds a <b>bias</b> \(b\), and compares with zero:</p>
+<p class="callout">\(s = w_1 x_1 + w_2 x_2 + b\); output \(1\) if \(s > 0\), otherwise \(0\).</p>
+<p>The sum is the <a href="../../grade-10/sheets/b15-vectors-dot.html">dot product</a> \(\mathbf{w} \cdot \mathbf{x}\), so the neuron fires when \(\mathbf{x}\) is on one side of the line \(\mathbf{w} \cdot \mathbf{x} + b = 0\): a neuron <em>is</em> a line with a yes side and a no side.</p>
+<p>Show the neuron an input \(\mathbf{x}\) with correct answer \(t\). If its output \(o\) is wrong, apply the <b>perceptron rule</b>:</p>
+<p class="callout">\(\mathbf{w} \leftarrow \mathbf{w} + (t - o)\,\mathbf{x}\), \(\quad b \leftarrow b + (t - o)\).</p>
+<p>If it should have fired, \(t - o = 1\) and the weights move towards \(\mathbf{x}\), so \(s\) grows; if it fired wrongly, away. Repeat until all are right. If a line separates yes from no, the rule finds one in finitely many updates (the <b>perceptron convergence theorem</b>).</p>
+<figure><svg viewBox="0 0 330 150" width="330" height="150" role="img" aria-label="Two unit squares. Left: the AND inputs, with only (1,1) filled and a line separating it from the other three. Right: the XOR inputs, with (0,1) and (1,0) filled on one diagonal and (0,0), (1,1) open on the other, which no line can separate" font-family="Nunito, sans-serif" font-size="12">
+<g stroke="#999" stroke-width="1" fill="none"><rect x="40" y="40" width="80" height="80"/><rect x="230" y="40" width="80" height="80"/></g>
+<line x1="80" y1="40" x2="120" y2="80" stroke="#3f44c9" stroke-width="2"/>
+<g stroke="#000" stroke-width="1.5"><circle cx="40" cy="120" r="5" fill="#fff"/><circle cx="40" cy="40" r="5" fill="#fff"/><circle cx="120" cy="120" r="5" fill="#fff"/><circle cx="120" cy="40" r="5" fill="#f5a524"/></g>
+<g stroke="#000" stroke-width="1.5"><circle cx="230" cy="120" r="5" fill="#fff"/><circle cx="310" cy="40" r="5" fill="#fff"/><circle cx="230" cy="40" r="5" fill="#f5a524"/><circle cx="310" cy="120" r="5" fill="#f5a524"/></g>
+<text x="40" y="138" text-anchor="middle">(0,0)</text><text x="120" y="138" text-anchor="middle">(1,0)</text><text x="40" y="30" text-anchor="middle">(0,1)</text><text x="120" y="30" text-anchor="middle">(1,1)</text>
+<text x="230" y="138" text-anchor="middle">(0,0)</text><text x="310" y="138" text-anchor="middle">(1,0)</text><text x="230" y="30" text-anchor="middle">(0,1)</text><text x="310" y="30" text-anchor="middle">(1,1)</text>
+<text x="80" y="14" text-anchor="middle" fill="#3f44c9" font-weight="700">AND</text><text x="270" y="14" text-anchor="middle" fill="#3f44c9" font-weight="700">XOR</text>
+<text x="160" y="84" text-anchor="middle" fill="#555">filled = fires</text>
+</svg><figcaption>AND: one line puts \((1,1)\) alone on the yes side. XOR: the yes points sit on one diagonal, the no points on the other. The diagonals cross, so no line parts them.</figcaption></figure>
+<p>One neuron cannot learn XOR (fires when exactly one input is on): its yes and no points sit on crossing diagonals, and no line separates the pairs. Such data are not <b>linearly separable</b>; the rule circles forever.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: learning AND</h2>
+<p>AND fires only for \((1,1)\). Start from \(\mathbf{w} = (0, 1)\), \(b = -1\), presenting the inputs in the order \((0,0), (0,1), (1,0), (1,1)\).</p>
+<p>First pass: sums \(-1, 0, -1, 0\), so it never fires. Only \((1,1)\) is wrong, \(t - o = 1\): \(\mathbf{w} = (1, 2)\), \(b = 0\).</p>
+<p>Second pass: \((0,0)\) gives \(0\), right; \((0,1)\) gives \(2\) and fires wrongly: \(\mathbf{w} = (1, 1)\), \(b = -1\). Then \((1,0)\) gives \(0\) and \((1,1)\) gives \(1\), both right.</p>
+<p>Third pass: sums \(-1, 0, 0, 1\). Only \((1,1)\) fires. Two updates. From \(\mathbf{w} = (0,0)\), \(b = 0\) the rule needs ten updates and ends at \(\mathbf{w} = (2,1)\), \(b = -2\): the theorem promises an answer, not a short road.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>A neuron has \(\mathbf{w} = (2, 1)\), \(b = -2\). Compute \(s\) and the output for all four inputs \((0,0), (0,1), (1,0), (1,1)\). Which logic gate is it?<div class="space short"></div></li>
+<li>Find weights and a bias for (a) NOT, a one-input neuron that fires when \(x = 0\) and not when \(x = 1\); (b) NOR, which fires only for \((0,0)\). Check all cases.<div class="space short"></div></li>
+<li>Train OR (fires unless both inputs are 0) from \(\mathbf{w} = (0,0)\), \(b = 0\), inputs in the order \((0,0), (0,1), (1,0), (1,1)\), repeated. Write down \(\mathbf{w}\) and \(b\) after each update, and the final neuron.<div class="space"></div></li>
+<li>Prove that no neuron computes XOR. Write the two inequalities a yes point must satisfy (\(s > 0\)) and the two a no point must satisfy (\(s \le 0\)), then add them in pairs.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: two layers</h2>
+<p>Let two neurons read the inputs first: \(h_1\) is OR with \(\mathbf{w} = (1,1)\), \(b = -\tfrac12\), and \(h_2\) is AND with \(\mathbf{w} = (1,1)\), \(b = -\tfrac32\). Find weights and a bias for a third neuron, reading \((h_1, h_2)\), that computes XOR. Why does this not contradict question 4?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(s = -2, -1, 0, 1\); outputs \(0, 0, 0, 1\). AND. Note that \((1,0)\) gives \(s = 0\), which does not fire: the line \(2x_1 + x_2 = 2\) passes through that point, and the rule "fire if \(s > 0\)" puts it on the no side.</li>
+<li>(a) \(w = -1\), \(b = \tfrac12\): \(s = \tfrac12\) at \(x = 0\), \(s = -\tfrac12\) at \(x = 1\). (b) \(\mathbf{w} = (-1,-1)\), \(b = \tfrac12\): \(s = \tfrac12, -\tfrac12, -\tfrac12, -\tfrac32\). Many other answers work; any line in the right place does.</li>
+<li>Pass 1: \((0,1)\) should fire, does not: \(\mathbf{w} = (0,1)\), \(b = 1\). Pass 2: \((0,0)\) fires wrongly: \(b = 0\); then \((1,0)\) should fire, does not: \(\mathbf{w} = (1,1)\), \(b = 1\). Pass 3: \((0,0)\) fires wrongly: \(b = 0\). Pass 4: sums \(0, 1, 1, 2\), all correct. Four updates; final \(\mathbf{w} = (1,1)\), \(b = 0\).</li>
+<li>Yes points: \(w_2 + b > 0\) and \(w_1 + b > 0\). No points: \(b \le 0\) and \(w_1 + w_2 + b \le 0\). Adding the yes pair: \(w_1 + w_2 + 2b > 0\). Adding the no pair: \(w_1 + w_2 + 2b \le 0\). The same quantity cannot be both. No choice of \(w_1, w_2, b\) works.</li>
+</ol>
+<p><b>Stretch.</b> The hidden pair \((h_1, h_2)\) is \((0,0)\) for input \((0,0)\), \((1,0)\) for both \((0,1)\) and \((1,0)\), and \((1,1)\) for \((1,1)\). XOR should fire only at \((1,0)\): take weights \((1, -1)\) and \(b = -\tfrac12\), giving \(s = -\tfrac12, \tfrac12, -\tfrac12\). The output neuron is still a line, but it draws it in the hidden layer's coordinates, where the two yes inputs have been folded onto the same point. Stacking layers is the whole idea of a neural network.</p>
+</section>
+
+<div class="sheet-nav"><a href="b9-gradient-descent.html">← Previous</a><a href="b11-laplace-succession.html">Next: Will the sun rise tomorrow? →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

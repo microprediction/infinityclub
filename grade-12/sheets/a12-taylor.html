@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Where the power series come from · Infinity Club</title>
+<meta name="description" content="Taylor series derived by matching derivatives at zero. The series for e^x, sin x and cos x, the error of a Taylor polynomial, and Euler's formula with the series now earned.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Sharpen · 12</div>
+  <h1>Where the power series come from</h1>
+  <p class="teaser">Match derivatives at zero, one at a time. eˣ = 1 + x + x²/2 + …, sin x = x − x³/6 + …, and why your calculator can compute them.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Grade 10 took the series for \(e^x\), \(\sin x\) and \(\cos x\) on trust and built <a href="../../grade-10/sheets/b8-euler-formula.html">Euler's formula</a> from them. Tonight they are derived.</p>
+<p>Suppose a polynomial \(p(x) = a_0 + a_1x + a_2x^2 + a_3x^3 + \cdots\) matches \(f\) at 0: same value, slope, second derivative, and so on. Then \(a_0 = p(0) = f(0)\). Differentiate: \(p'(x) = a_1 + 2a_2x + 3a_3x^2 + \cdots\), and at 0 only \(a_1\) survives: \(a_1 = f'(0)\). Then \(p''(0) = 2a_2\), \(p'''(0) = 3!\,a_3\): each differentiation brings down the power and kills the terms below it, so</p>
+<p class="callout">\(a_n = \dfrac{f^{(n)}(0)}{n!}\), with \(f^{(n)}\) the \(n\)th derivative: the <b>Taylor series</b> of \(f\) at 0.</p>
+<p>For \(e^x\) every derivative is \(e^x\), so every \(f^{(n)}(0) = 1\). For \(\sin x\) the derivatives cycle \(\sin, \cos, -\sin, -\cos\), giving \(0, 1, 0, -1, \ldots\) at 0; for \(\cos x\), \(1, 0, -1, 0, \ldots\):</p>
+<p>\[e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots, \qquad \sin x = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \cdots, \qquad \cos x = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \cdots\]</p>
+<figure><svg viewBox="0 0 320 170" width="320" height="170" role="img" aria-label="The graph of sin x from minus pi to pi with its Taylor polynomials of degree 1, 3 and 5. The degree-1 line y = x hugs the curve only near the origin; degree 3 follows it to about plus or minus 2; degree 5 is close across the whole range shown." font-family="Nunito, sans-serif" font-size="12">
+<line x1="12" y1="85" x2="308" y2="85" stroke="#999" stroke-width="1"/><line x1="160" y1="160" x2="160" y2="10" stroke="#999" stroke-width="1"/>
+<line x1="289.2" y1="81" x2="289.2" y2="89" stroke="#999"/><line x1="30.8" y1="81" x2="30.8" y2="89" stroke="#999"/>
+<line x1="156" y1="52.4" x2="164" y2="52.4" stroke="#999"/><line x1="156" y1="117.6" x2="164" y2="117.6" stroke="#999"/>
+<text x="289.2" y="100" text-anchor="middle" fill="#555">π</text><text x="22" y="100" fill="#555">−π</text><text x="166" y="49.4" fill="#555" font-size="11">1</text>
+<path d="M 53.1,169.8 L 57.2,166.5 L 61.3,163.3 L 65.4,160 L 69.6,156.7 L 73.7,153.5 L 77.8,150.2 L 81.9,147 L 86,143.7 L 90.1,140.4 L 94.2,137.2 L 98.3,133.9 L 102.4,130.7 L 106.6,127.4 L 110.7,124.1 L 114.8,120.9 L 118.9,117.6 L 123,114.3 L 127.1,111.1 L 131.2,107.8 L 135.3,104.6 L 139.4,101.3 L 143.6,98 L 147.7,94.8 L 151.8,91.5 L 155.9,88.3 L 160,85 L 164.1,81.7 L 168.2,78.5 L 172.3,75.2 L 176.4,72 L 180.6,68.7 L 184.7,65.4 L 188.8,62.2 L 192.9,58.9 L 197,55.7 L 201.1,52.4 L 205.2,49.1 L 209.3,45.9 L 213.4,42.6 L 217.6,39.3 L 221.7,36.1 L 225.8,32.8 L 229.9,29.6 L 234,26.3 L 238.1,23 L 242.2,19.8 L 246.3,16.5 L 250.4,13.3 L 254.6,10 L 258.7,6.7 L 262.8,3.5" fill="none" stroke="#999" stroke-width="1.5" stroke-dasharray="5 3"/>
+<path d="M 28.4,11.3 L 32.6,24.2 L 36.7,36.1 L 40.8,47 L 44.9,57 L 49,66.1 L 53.1,74.3 L 57.2,81.6 L 61.3,88.1 L 65.4,93.9 L 69.6,98.9 L 73.7,103.1 L 77.8,106.7 L 81.9,109.7 L 86,112 L 90.1,113.7 L 94.2,114.9 L 98.3,115.6 L 102.4,115.7 L 106.6,115.5 L 110.7,114.7 L 114.8,113.6 L 118.9,112.2 L 123,110.4 L 127.1,108.3 L 131.2,106 L 135.3,103.4 L 139.4,100.6 L 143.6,97.7 L 147.7,94.6 L 151.8,91.5 L 155.9,88.3 L 160,85 L 164.1,81.7 L 168.2,78.5 L 172.3,75.4 L 176.4,72.3 L 180.6,69.4 L 184.7,66.6 L 188.8,64 L 192.9,61.7 L 197,59.6 L 201.1,57.8 L 205.2,56.4 L 209.3,55.3 L 213.4,54.5 L 217.6,54.3 L 221.7,54.4 L 225.8,55.1 L 229.9,56.3 L 234,58 L 238.1,60.3 L 242.2,63.3 L 246.3,66.9 L 250.4,71.1 L 254.6,76.1 L 258.7,81.9 L 262.8,88.4 L 266.9,95.7 L 271,103.9 L 275.1,113 L 279.2,123 L 283.3,133.9 L 287.4,145.8 L 291.6,158.7" fill="none" stroke="#f5a524" stroke-width="2"/>
+<path d="M 12,113.1 L 16.1,108.8 L 20.2,105.7 L 24.3,103.6 L 28.4,102.4 L 32.6,102 L 36.7,102.1 L 40.8,102.8 L 44.9,103.8 L 49,105.1 L 53.1,106.5 L 57.2,108.1 L 61.3,109.8 L 65.4,111.4 L 69.6,112.9 L 73.7,114.2 L 77.8,115.4 L 81.9,116.4 L 86,117.1 L 90.1,117.6 L 94.2,117.8 L 98.3,117.6 L 102.4,117.2 L 106.6,116.5 L 110.7,115.4 L 114.8,114.1 L 118.9,112.4 L 123,110.5 L 127.1,108.4 L 131.2,106 L 135.3,103.4 L 139.4,100.6 L 143.6,97.7 L 147.7,94.6 L 151.8,91.5 L 155.9,88.3 L 160,85 L 164.1,81.7 L 168.2,78.5 L 172.3,75.4 L 176.4,72.3 L 180.6,69.4 L 184.7,66.6 L 188.8,64 L 192.9,61.6 L 197,59.5 L 201.1,57.6 L 205.2,55.9 L 209.3,54.6 L 213.4,53.5 L 217.6,52.8 L 221.7,52.4 L 225.8,52.2 L 229.9,52.4 L 234,52.9 L 238.1,53.6 L 242.2,54.6 L 246.3,55.8 L 250.4,57.1 L 254.6,58.6 L 258.7,60.2 L 262.8,61.9 L 266.9,63.5 L 271,64.9 L 275.1,66.2 L 279.2,67.2 L 283.3,67.9 L 287.4,68 L 291.6,67.6 L 295.7,66.4 L 299.8,64.3 L 303.9,61.2 L 308,56.9" fill="none" stroke="#3f44c9" stroke-width="2"/>
+<path d="M 12,70.6 L 16.1,73.6 L 20.2,76.7 L 24.3,79.9 L 28.4,83.1 L 32.6,86.4 L 36.7,89.6 L 40.8,92.8 L 44.9,95.9 L 49,98.9 L 53.1,101.8 L 57.2,104.5 L 61.3,107 L 65.4,109.3 L 69.6,111.4 L 73.7,113.1 L 77.8,114.7 L 81.9,115.9 L 86,116.8 L 90.1,117.3 L 94.2,117.6 L 98.3,117.5 L 102.4,117.1 L 106.6,116.4 L 110.7,115.4 L 114.8,114.1 L 118.9,112.4 L 123,110.5 L 127.1,108.4 L 131.2,106 L 135.3,103.4 L 139.4,100.6 L 143.6,97.7 L 147.7,94.6 L 151.8,91.5 L 155.9,88.3 L 160,85 L 164.1,81.7 L 168.2,78.5 L 172.3,75.4 L 176.4,72.3 L 180.6,69.4 L 184.7,66.6 L 188.8,64 L 192.9,61.6 L 197,59.5 L 201.1,57.6 L 205.2,55.9 L 209.3,54.6 L 213.4,53.6 L 217.6,52.9 L 221.7,52.5 L 225.8,52.4 L 229.9,52.7 L 234,53.2 L 238.1,54.1 L 242.2,55.3 L 246.3,56.9 L 250.4,58.6 L 254.6,60.7 L 258.7,63 L 262.8,65.5 L 266.9,68.2 L 271,71.1 L 275.1,74.1 L 279.2,77.2 L 283.3,80.4 L 287.4,83.6 L 291.6,86.9 L 295.7,90.1 L 299.8,93.3 L 303.9,96.4 L 308,99.4" fill="none" stroke="#000" stroke-width="2"/>
+<text x="243" y="12" text-anchor="end" fill="#555">degree 1</text>
+<text x="40" y="16" fill="#f5a524" font-weight="700">degree 3</text>
+<text x="300" y="44" text-anchor="end" fill="#3f44c9" font-weight="700">degree 5</text>
+<text x="62" y="131" font-weight="700">sin x</text>
+</svg><figcaption>\(\sin x\) (black) with \(x\), \(x - x^3/6\) and \(x - x^3/6 + x^5/120\). Each extra term widens the stretch where the polynomial and the function agree.</figcaption></figure>
+<p>Stopping after \(x^n\) gives the <b>Taylor polynomial</b> of degree \(n\). For these three the series converges for every \(x\), which is how a computer can find \(\sin 0.3\) by arithmetic alone. And \(x = i\theta\) in the \(e^x\) series now gives \(e^{i\theta} = \cos\theta + i\sin\theta\) with every ingredient earned.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: \(\sin 0.5\) by hand</h2>
+<p>Degree 5:</p>
+<p>\[0.5 - \frac{0.125}{6} + \frac{0.03125}{120} = 0.5 - 0.0208333 + 0.0002604 = 0.4794271.\]</p>
+<p>A calculator gives \(\sin 0.5 = 0.4794255\). The error, \(1.5\times10^{-6}\), is almost exactly the first term left out, \(0.5^7/7! \approx 1.55\times10^{-6}\). That is typical of a series whose terms alternate in sign and shrink: the first omitted term is a good estimate of the error, and the next term would give seven correct decimals.</p>
+<p class="small">Slide the degree up and down, and watch what goes wrong for \(\ln(1 + x)\) beyond \(x = 1\): <a href="../../demos/taylor.html">infinityclub.net/demos/taylor.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Build the degree-4 Taylor polynomial of \(\cos x\) from scratch: list \(f, f', f'', f''', f''''\) at 0 and divide by the factorials. Use it to estimate \(\cos 0.2\) to six decimal places.<div class="space short"></div></li>
+<li>Let \(f(x) = 1/(1 - x)\). (a) Show that \(f^{(n)}(0) = n!\) and write down the Taylor series. (b) You met this series in <a href="../../grade-10/sheets/b12-infinite-series.html">grade 10</a>. For which \(x\) does it actually add up to \(f(x)\)? What goes wrong at \(x = 2\)?<div class="space short"></div></li>
+<li>Replace \(x\) by \(-x^2\) in the series for \(e^x\) to get the series for \(e^{-x^2}\). Integrate it term by term from 0 to 1 and add the first five terms. (No formula built from elementary functions gives this integral; areas under the bell curve are computed this way.)<div class="space"></div></li>
+<li>Derive the series for \(\ln(1 + x)\) by matching derivatives: find \(f', f'', f''', f''''\) at 0, spot the pattern, and write the general term. Then set \(x = 1\) and name the number the series adds up to.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: limits by series</h2>
+<p>Use the series to find \(\displaystyle\lim_{x\to0}\frac{x - \sin x}{x^3}\) and \(\displaystyle\lim_{x\to0}\frac{1 - \cos x}{x^2}\). Then say in one sentence why \(\sin x \approx x\) is a good approximation for small angles, and how big the error is.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Derivatives at 0: \(1, 0, -1, 0, 1\). \(p_4(x) = 1 - \tfrac{x^2}{2} + \tfrac{x^4}{24}\). \(\cos 0.2 \approx 1 - 0.02 + 0.0000667 = 0.980067\); the true value is \(0.9800666\).</li>
+<li>(a) \(f' = (1-x)^{-2}\), \(f'' = 2(1-x)^{-3}\), \(f''' = 6(1-x)^{-4}\), and in general \(f^{(n)} = n!\,(1-x)^{-(n+1)}\), which is \(n!\) at 0. Every coefficient is \(n!/n! = 1\): \(1 + x + x^2 + x^3 + \cdots\), the geometric series. (b) Only for \(|x| \lt 1\). At \(x = 2\) the left side is \(-1\) and the right side is \(1 + 2 + 4 + \cdots\), which grows without bound. Matching derivatives at 0 guarantees agreement near 0, not everywhere.</li>
+<li>\(e^{-x^2} = 1 - x^2 + \tfrac{x^4}{2} - \tfrac{x^6}{6} + \tfrac{x^8}{24} - \cdots\). Integrating term by term: \(1 - \tfrac13 + \tfrac1{10} - \tfrac1{42} + \tfrac1{216} \approx 0.7475\). The true value is \(0.74682\); the next term, \(-\tfrac1{1320}\), brings the sum to \(0.74673\).</li>
+<li>\(f(0) = 0\); \(f' = \tfrac{1}{1+x} \to 1\); \(f'' = -\tfrac{1}{(1+x)^2} \to -1\); \(f''' = \tfrac{2}{(1+x)^3} \to 2\); \(f'''' = -\tfrac{6}{(1+x)^4} \to -6\). Dividing by \(n!\): \(\ln(1 + x) = x - \tfrac{x^2}{2} + \tfrac{x^3}{3} - \tfrac{x^4}{4} + \cdots\), general term \((-1)^{n+1}x^n/n\). At \(x = 1\): \(1 - \tfrac12 + \tfrac13 - \tfrac14 + \cdots = \ln 2\). (It converges there, slowly. At \(x = -1\) it is minus the harmonic series, which diverges, matching \(\ln 0\).)</li>
+</ol>
+<p><b>Stretch.</b> \(x - \sin x = \tfrac{x^3}{6} - \tfrac{x^5}{120} + \cdots\), so \(\dfrac{x - \sin x}{x^3} = \tfrac16 - \tfrac{x^2}{120} + \cdots \to \tfrac16\). Likewise \(\dfrac{1 - \cos x}{x^2} = \tfrac12 - \tfrac{x^2}{24} + \cdots \to \tfrac12\). Since \(\sin x = x - x^3/6 + \cdots\), replacing \(\sin x\) by \(x\) makes an error of about \(x^3/6\): at \(x = 0.1\) radians that is \(0.00017\), which is why a pendulum's swing is treated as simple harmonic motion.</p>
+</section>
+
+<div class="sheet-nav"><a href="a11-exponential-decay.html">← Previous</a><a href="a13-lines-planes.html">Next: Lines and planes in space →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

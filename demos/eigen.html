@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eigenvectors · Infinity Club</title>
+<meta name="description" content="Drag a vector and watch where a 2×2 matrix sends it. Along most directions the image swings away; along the eigen-directions it only stretches. Edit the matrix and read off the eigenvalues.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+#plot { cursor: grab; touch-action: none; }
+#plot.drag { cursor: grabbing; }
+.controls .val { font-family: var(--mono); min-width: 2em; display: inline-block; }
+.matrix { display: inline-grid; grid-template-columns: auto auto; gap: .3rem .4rem; align-items: center; padding: .2rem .5rem; border-left: 2px solid var(--ink); border-right: 2px solid var(--ink); border-radius: 6px; }
+.matrix input { font: inherit; font-family: var(--mono); width: 4.2em; padding: .25em .4em; border: 1px solid var(--rule); border-radius: 6px; }
+.mission { max-width: 70ch; margin: -.4rem 0 1rem; }
+.mission p { margin: .3rem 0; }
+.mission summary { cursor: pointer; font-weight: 700; }
+.key { font-size: .88rem; color: var(--muted); margin: .2rem 0 .6rem; }
+.key span { display: inline-block; margin-right: 1em; }
+.key i { display: inline-block; width: 1.4em; height: .3em; vertical-align: middle; margin-right: .3em; border-radius: 2px; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Eigenvectors</h1>
+<p class="explain">Drag the tip of the blue vector v around the origin. The orange vector is its image Av under the matrix A. For most directions Av points somewhere new. Along the green dashed lines, and only there, Av lies on the same line as v, so the matrix has only stretched it (or squashed it, or flipped it). Those lines are the <b>eigen-directions</b>, the stretch factors are the <b>eigenvalues</b>, and the vector snaps to them when you get close. Edit the four entries, or pick a preset, and watch the green lines move or vanish.</p>
+<div class="mission">
+<p class="small"><b>Mission.</b> With the opening matrix [[2, 1], [1, 2]], drag v to (1, 1) and read off Av. Then drag it to (1, −1). Before you do, predict both images, and predict what happens to the lengths.</p>
+<details class="small"><summary>Answer</summary><p>A(1, 1) = (3, 3): three times longer, same direction, so λ = 3. A(1, −1) = (1, −1): unchanged, so λ = 1. Any other direction is a mix of these two, and the two parts grow by different factors, which is why the image swings off the line. Extension: pick the rotation preset. The green lines disappear and the readout shows complex eigenvalues ±i. A quarter turn leaves no direction alone, and that is exactly what "no real eigenvector" means.</p></details>
+</div>
+<div class="demo-panel">
+  <div class="controls">
+    <label>A =
+      <span class="matrix">
+        <input type="number" id="ma" step="0.5" value="2"><input type="number" id="mb" step="0.5" value="1">
+        <input type="number" id="mc" step="0.5" value="1"><input type="number" id="md" step="0.5" value="2">
+      </span>
+    </label>
+    <label>preset
+      <select id="preset">
+        <option value="2,1,1,2">symmetric [[2,1],[1,2]]</option>
+        <option value="3,0,0,1">stretch x by 3</option>
+        <option value="1,1,0,1">shear</option>
+        <option value="0,-1,1,0">quarter-turn rotation</option>
+        <option value="1,0,0,-1">reflect in the x-axis</option>
+        <option value="1,1,1,0">Fibonacci [[1,1],[1,0]]</option>
+        <option value="1,2,2,-2">[[1,2],[2,−2]]</option>
+        <option value="0.5,1,-1,0.5">spiral (rotate and shrink)</option>
+      </select>
+    </label>
+    <button id="sweep" class="ghost">Sweep v round</button>
+  </div>
+  <div class="key"><span><i style="background:#3f44c9"></i>v (drag the tip)</span><span><i style="background:#f5a524"></i>Av</span><span><i style="background:#2a9d5c"></i>eigen-directions</span><span><i style="background:#d9d6cc"></i>unit circle and its image</span></div>
+  <canvas id="plot" width="900" height="560"></canvas>
+  <div class="readout" id="info"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>A 2×2 matrix sends each vector somewhere, and a good way to see the whole map at once is to watch what it does to the unit circle: the pale ellipse is the image of the pale circle. Most radii of the circle get rotated as well as stretched. An <b>eigenvector</b> is a direction that does not rotate: Av = λv. The scalar λ is its eigenvalue, and λ can be negative (the vector flips) or zero (it is squashed to nothing).</p>
+<p>To find them, Av = λv means (A − λI)v = 0, which has a nonzero solution only when det(A − λI) = 0. For a 2×2 matrix that is λ² − (a + d)λ + (ad − bc) = 0: the <b>characteristic equation</b>, with the trace and the determinant as its coefficients. Two real roots give two eigen-directions. A repeated root may give two (the identity leaves every direction alone) or just one (the shear). Complex roots mean there is no real eigenvector at all: the matrix turns everything, like a rotation does. The readout shows all three cases as you change presets.</p>
+<p>Why care? If you can write a vector as a combination of eigenvectors, then applying A a thousand times is easy: each piece just gets multiplied by λ¹⁰⁰⁰. That is how the Fibonacci matrix [[1,1],[1,0]] gives the closed formula for Fₙ: its eigenvalues are the golden ratio φ ≈ 1.618 and −1/φ, and Fₙ ≈ φⁿ/√5 because the φ-part takes over. Pick the Fibonacci preset and sweep v round: the image leans toward the φ eigen-direction everywhere.</p>
+<p>Sheets: <a href="../grade-12/sheets/b7-eigenvectors.html">The directions a matrix leaves alone</a>. The <a href="pagerank.html">PageRank demo</a> is a second eigenvector in action.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  function apply(M, v) { return [M[0] * v[0] + M[1] * v[1], M[2] * v[0] + M[3] * v[1]]; }
+  function unit(v) { var n = Math.hypot(v[0], v[1]); return n === 0 ? [0, 0] : [v[0] / n, v[1] / n]; }
+  // eigenvector of the 2x2 matrix for a known real eigenvalue lam, from a nonzero row of (A - lam I)
+  function eigvecFor(M, lam) {
+    var a = M[0] - lam, b = M[1], c = M[2], d = M[3] - lam;
+    if (Math.abs(a) > 1e-9 || Math.abs(b) > 1e-9) return unit([b, -a]);     // first row (a b) . v = 0
+    if (Math.abs(c) > 1e-9 || Math.abs(d) > 1e-9) return unit([d, -c]);     // second row
+    return null;                                                             // A - lam I = 0: every vector works
+  }
+  // eigen-data of M = [a, b, c, d]
+  function eig2(M) {
+    var tr = M[0] + M[3], det = M[0] * M[3] - M[1] * M[2], disc = tr * tr - 4 * det;
+    var out = { tr: tr, det: det, disc: disc };
+    if (disc < -1e-12) { out.real = false; out.re = tr / 2; out.im = Math.sqrt(-disc) / 2; out.vals = []; out.vecs = []; return out; }
+    if (disc < 0) disc = 0;
+    var s = Math.sqrt(disc), l1 = (tr + s) / 2, l2 = (tr - s) / 2;
+    out.real = true; out.vals = [l1, l2];
+    var v1 = eigvecFor(M, l1), v2 = eigvecFor(M, l2);
+    if (v1 === null) { out.every = true; out.vecs = [[1, 0], [0, 1]]; return out; }    // scalar matrix
+    out.every = false;
+    if (s < 1e-9) out.vecs = [v1];                                                   // repeated eigenvalue, one direction (defective)
+    else out.vecs = [v1, v2];
+    return out;
+  }
+  // angle in degrees between the line through v and the line through w (0..90)
+  function lineAngle(v, w) {
+    var u1 = unit(v), u2 = unit(w), dot = Math.abs(u1[0] * u2[0] + u1[1] * u2[1]), cross = Math.abs(u1[0] * u2[1] - u1[1] * u2[0]);
+    return Math.atan2(cross, dot) * 180 / Math.PI;
+  }
+  /*ENDPURE*/
+
+  var canvas = document.getElementById("plot"), ctx = canvas.getContext("2d"), info = document.getElementById("info");
+  var inputs = ["ma", "mb", "mc", "md"].map(function (id) { return document.getElementById(id); });
+  var preset = document.getElementById("preset");
+  var S = { M: [2, 1, 1, 2], v: [2, 0.8], snapped: -1 }, sweeping = null;
+  inputs.forEach(function (inp) { inp.addEventListener("input", function () { S.M = inputs.map(function (i) { var x = parseFloat(i.value); return isNaN(x) ? 0 : x; }); draw(); }); });
+  preset.addEventListener("change", function () { S.M = preset.value.split(",").map(Number); inputs.forEach(function (inp, i) { inp.value = S.M[i]; }); draw(); });
+  document.getElementById("sweep").addEventListener("click", function () {
+    if (sweeping) { cancelAnimationFrame(sweeping); sweeping = null; return; }
+    var r = Math.max(1, Math.hypot(S.v[0], S.v[1])), a0 = Math.atan2(S.v[1], S.v[0]), t0 = null;
+    function step(ts) { if (t0 === null) t0 = ts; var t = (ts - t0) / 5000; S.v = [r * Math.cos(a0 + 2 * Math.PI * t), r * Math.sin(a0 + 2 * Math.PI * t)]; draw(); if (t < 1) sweeping = requestAnimationFrame(step); else sweeping = null; }
+    sweeping = requestAnimationFrame(step);
+  });
+
+  var W, H, R = 4, CX, CY, SC;
+  function X(x) { return CX + x * SC; }
+  function Y(y) { return CY - y * SC; }
+  function fmt(v, d) { d = d === undefined ? 3 : d; var r = Math.round(v * Math.pow(10, d)) / Math.pow(10, d); if (Object.is(r, -0)) r = 0; return r.toString().replace("-", "−"); }
+  function vec(v) { return "(" + fmt(v[0]) + ", " + fmt(v[1]) + ")"; }
+  function arrow(from, to, color, width) {
+    var x1 = X(from[0]), y1 = Y(from[1]), x2 = X(to[0]), y2 = Y(to[1]), dx = x2 - x1, dy = y2 - y1, L = Math.hypot(dx, dy);
+    ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineWidth = width; ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
+    if (L < 1) return;
+    var hx = dx / L, hy = dy / L, hl = Math.min(14, L), hw = 6;
+    ctx.beginPath(); ctx.moveTo(x2, y2); ctx.lineTo(x2 - hl * hx + hw * hy, y2 - hl * hy - hw * hx); ctx.lineTo(x2 - hl * hx - hw * hy, y2 - hl * hy + hw * hx); ctx.closePath(); ctx.fill();
+  }
+
+  function draw() {
+    var M = S.M, E = eig2(M);
+    var dpr = window.devicePixelRatio || 1; W = canvas.clientWidth || 900; H = Math.round(W * (W < 600 ? 0.9 : 0.62));
+    canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    CX = W / 2; CY = H / 2; SC = Math.min(W, H) / (2 * R);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, H);
+    ctx.strokeStyle = "#ece9e0"; ctx.lineWidth = 1;
+    for (var g = -12; g <= 12; g++) { ctx.beginPath(); ctx.moveTo(X(g), 0); ctx.lineTo(X(g), H); ctx.stroke(); ctx.beginPath(); ctx.moveTo(0, Y(g)); ctx.lineTo(W, Y(g)); ctx.stroke(); }
+    ctx.strokeStyle = "#8a8ca8"; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(X(0), 0); ctx.lineTo(X(0), H); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(0, Y(0)); ctx.lineTo(W, Y(0)); ctx.stroke();
+    ctx.fillStyle = "#5d6079"; ctx.font = "11px Nunito, sans-serif"; ctx.textAlign = "center";
+    for (var t = -8; t <= 8; t++) if (t !== 0 && X(t) > 0 && X(t) < W) ctx.fillText(t, X(t), Y(0) + 13);
+    ctx.textAlign = "right";
+    for (var t2 = -8; t2 <= 8; t2++) if (t2 !== 0 && Y(t2) > 0 && Y(t2) < H) ctx.fillText(t2, X(0) - 5, Y(t2) + 4);
+    // unit circle and its image
+    ctx.strokeStyle = "#d9d6cc"; ctx.lineWidth = 1.5; ctx.beginPath();
+    for (var i = 0; i <= 120; i++) { var a = i / 120 * 2 * Math.PI, p = [Math.cos(a), Math.sin(a)]; if (i === 0) ctx.moveTo(X(p[0]), Y(p[1])); else ctx.lineTo(X(p[0]), Y(p[1])); } ctx.stroke();
+    ctx.strokeStyle = "#f9d79a"; ctx.lineWidth = 2; ctx.beginPath();
+    for (var j = 0; j <= 120; j++) { var a2 = j / 120 * 2 * Math.PI, q = apply(M, [Math.cos(a2), Math.sin(a2)]); if (j === 0) ctx.moveTo(X(q[0]), Y(q[1])); else ctx.lineTo(X(q[0]), Y(q[1])); } ctx.stroke();
+    // eigen-directions
+    var snapped = -1;
+    if (E.real && !E.every) {
+      E.vecs.forEach(function (u, k) {
+        ctx.strokeStyle = "#2a9d5c"; ctx.lineWidth = 1.6; ctx.setLineDash([7, 6]); ctx.beginPath();
+        ctx.moveTo(X(-20 * u[0]), Y(-20 * u[1])); ctx.lineTo(X(20 * u[0]), Y(20 * u[1])); ctx.stroke(); ctx.setLineDash([]);
+        ctx.fillStyle = "#2a9d5c"; ctx.font = "bold 12px Nunito, sans-serif"; ctx.textAlign = "left";
+        var lx = X(3.2 * u[0] * (u[1] < 0 ? -1 : 1)), ly = Y(3.2 * u[1] * (u[1] < 0 ? -1 : 1));
+        ctx.fillText("λ = " + fmt(E.vals[k], 3), Math.min(W - 60, Math.max(4, lx + 6)), Math.min(H - 6, Math.max(14, ly - 6)));
+        if (lineAngle(S.v, u) < 2.5) snapped = k;
+      });
+    }
+    if (E.real && E.every) snapped = 0;
+    if (snapped >= 0 && !E.every) { // snap v onto the eigen-direction, keeping its length and sense
+      var u0 = E.vecs[snapped], len = Math.hypot(S.v[0], S.v[1]), sgn = S.v[0] * u0[0] + S.v[1] * u0[1] < 0 ? -1 : 1;
+      S.v = [sgn * len * u0[0], sgn * len * u0[1]];
+    }
+    S.snapped = snapped;
+    var v = S.v, Av = apply(M, v);
+    arrow([0, 0], Av, snapped >= 0 ? "#2a9d5c" : "#f5a524", 4);
+    arrow([0, 0], v, "#3f44c9", 3);
+    ctx.fillStyle = "#3f44c9"; ctx.beginPath(); ctx.arc(X(v[0]), Y(v[1]), 9, 0, Math.PI * 2); ctx.fill(); ctx.strokeStyle = "#fff"; ctx.lineWidth = 2; ctx.stroke();
+    ctx.font = "bold 12px Nunito, sans-serif"; ctx.textAlign = "left";
+    ctx.fillStyle = "#3f44c9"; ctx.fillText("v " + vec(v), X(v[0]) + 12, Y(v[1]) + 4);
+    ctx.fillStyle = snapped >= 0 ? "#2a9d5c" : "#f5a524"; ctx.fillText("Av " + vec(Av) + (snapped >= 0 ? "  eigenvector!" : ""), Math.min(W - 150, Math.max(4, X(Av[0]) + 12)), Math.min(H - 6, Math.max(14, Y(Av[1]) - 8)));
+    // readout
+    var msg = "A = [[" + fmt(M[0]) + ", " + fmt(M[1]) + "], [" + fmt(M[2]) + ", " + fmt(M[3]) + "]]    trace = " + fmt(E.tr) + ",  det = " + fmt(E.det);
+    msg += "\ncharacteristic equation  λ² − (" + fmt(E.tr) + ")λ + (" + fmt(E.det) + ") = 0";
+    if (!E.real) msg += "\neigenvalues " + fmt(E.re) + " ± " + fmt(E.im) + "i  (complex): no real eigenvector, every direction gets turned";
+    else if (E.every) msg += "\neigenvalue " + fmt(E.vals[0]) + " (repeated): A = λI, so every vector is an eigenvector";
+    else if (E.vecs.length === 1) msg += "\neigenvalue " + fmt(E.vals[0]) + " (repeated), one eigen-direction " + vec(E.vecs[0]) + ": a shear has only one line it leaves alone";
+    else msg += "\nλ₁ = " + fmt(E.vals[0]) + " along " + vec(E.vecs[0]) + "\nλ₂ = " + fmt(E.vals[1]) + " along " + vec(E.vecs[1]);
+    var lv = Math.hypot(v[0], v[1]), lAv = Math.hypot(Av[0], Av[1]);
+    var ang = lv > 1e-9 && lAv > 1e-9 ? Math.acos(Math.max(-1, Math.min(1, (v[0] * Av[0] + v[1] * Av[1]) / (lv * lAv)))) * 180 / Math.PI : 0;
+    msg += "\nv = " + vec(v) + ",  Av = " + vec(Av) + ",  |Av|/|v| = " + (lv > 1e-9 ? fmt(lAv / lv) : "–") + ",  angle between v and Av = " + fmt(ang, 1) + "°";
+    if (snapped >= 0) msg += "   ← on an eigen-direction: Av = " + fmt(E.vals[E.every ? 0 : snapped]) + " v";
+    info.textContent = msg;
+  }
+
+  var dragging = false;
+  function toMath(ev) { var r = canvas.getBoundingClientRect(); return [(ev.clientX - r.left - CX) / SC, (CY - (ev.clientY - r.top)) / SC]; }
+  canvas.addEventListener("pointerdown", function (ev) {
+    if (sweeping) { cancelAnimationFrame(sweeping); sweeping = null; }
+    dragging = true; canvas.classList.add("drag"); canvas.setPointerCapture(ev.pointerId); ev.preventDefault();
+    S.v = toMath(ev); draw();
+  });
+  canvas.addEventListener("pointermove", function (ev) { if (!dragging) return; var m = toMath(ev); if (Math.hypot(m[0], m[1]) < 0.15) return; S.v = m; draw(); });
+  function up() { dragging = false; canvas.classList.remove("drag"); }
+  canvas.addEventListener("pointerup", up); canvas.addEventListener("pointercancel", up);
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(draw, 120); });
+  draw();
+})();
+</script>
+</body>
+</html>

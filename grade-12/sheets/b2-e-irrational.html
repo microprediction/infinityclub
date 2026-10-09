@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>e is irrational · Infinity Club</title>
+<meta name="description" content="Fourier's proof that e is irrational: suppose e = p/q, multiply the series by q!, and an integer lands strictly between 0 and 1. Check the tail bound by hand for q = 5.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Around the corner · 2</div>
+  <h1>e is irrational</h1>
+  <p class="teaser">Suppose e = p/q, multiply the series by q!, and an integer lands strictly between 0 and 1. Fourier's one-paragraph proof.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>You met \(e\) as a series (<a href="../../grade-10/sheets/b9-e.html">grade 10, b9</a>): \(e = \sum_{n=0}^{\infty} \frac{1}{n!} = 1 + 1 + \tfrac12 + \tfrac16 + \tfrac1{24} + \cdots\). Here is Fourier's <a href="../../grade-10/sheets/b1-contradiction.html">proof by contradiction</a> that \(e\) is not a fraction. Suppose \(e = p/q\) with \(p\) and \(q\) positive integers. Multiply by \(q!\). The left side, \(q!\,e = p \cdot (q-1)!\), is an integer. On the right, cut the series after \(n = q\):</p>
+<p>\[q!\,e = \underbrace{\sum_{n=0}^{q} \frac{q!}{n!}}_{N} \;+\; \underbrace{\sum_{n=q+1}^{\infty} \frac{q!}{n!}}_{T}.\]</p>
+<p>Every term of \(N\) is a whole number, because \(n!\) divides \(q!\) when \(n \le q\). So the tail \(T = q!\,e - N\) is an integer too. But \(T\) is a sum of positive terms, and</p>
+<p class="callout">\(T = \dfrac{1}{q+1} + \dfrac{1}{(q+1)(q+2)} + \cdots \lt \dfrac{1}{q+1} + \dfrac{1}{(q+1)^2} + \cdots = \dfrac{1}{q}.\)</p>
+<figure><svg viewBox="0 0 300 165" width="225" height="124" role="img" aria-label="Five pairs of bars for q = 2: each tail term 2!/n! in blue sits below the matching geometric term (1/3)^k in orange; both shrink fast" font-family="Nunito, sans-serif" font-size="12">
+<line x1="30" y1="140" x2="290" y2="140" stroke="#999" stroke-width="1"/>
+<rect x="40" y="20" width="20" height="120" fill="#fde8c4" stroke="#f5a524" stroke-width="1"/>
+<rect x="40" y="20" width="20" height="120" fill="#3f44c9"/>
+<rect x="92" y="100" width="20" height="40" fill="#fde8c4" stroke="#f5a524" stroke-width="1"/>
+<rect x="92" y="110" width="20" height="30" fill="#3f44c9"/>
+<rect x="144" y="126.7" width="20" height="13.3" fill="#fde8c4" stroke="#f5a524" stroke-width="1"/>
+<rect x="144" y="134" width="20" height="6" fill="#3f44c9"/>
+<rect x="196" y="135.6" width="20" height="4.4" fill="#fde8c4" stroke="#f5a524" stroke-width="1"/>
+<rect x="196" y="139" width="20" height="1" fill="#3f44c9"/>
+<rect x="248" y="138.5" width="20" height="1.5" fill="#fde8c4" stroke="#f5a524" stroke-width="1"/>
+<text x="50" y="155" text-anchor="middle">n = 3</text>
+<text x="102" y="155" text-anchor="middle">4</text>
+<text x="154" y="155" text-anchor="middle">5</text>
+<text x="206" y="155" text-anchor="middle">6</text>
+<text x="258" y="155" text-anchor="middle">7</text>
+<text x="50" y="14" text-anchor="middle" fill="#3f44c9">1/3</text>
+<text x="102" y="94" text-anchor="middle" fill="#f5a524">1/9</text>
+<text x="124" y="110" fill="#3f44c9">1/12</text>
+<text x="200" y="60" fill="#3f44c9" font-weight="700">2!/n!</text>
+<text x="200" y="78" fill="#f5a524" font-weight="700">(1/3)ᵏ</text>
+</svg><figcaption>\(q = 2\). Blue bars are the tail terms \(2!/n!\): \(\tfrac13, \tfrac1{12}, \tfrac1{60}, \ldots\), summing to \(2e - 5 \approx 0.437\). Orange bars are \(\tfrac13, \tfrac19, \tfrac1{27}, \ldots\), summing to \(\tfrac12\).</figcaption></figure>
+<p>The inequality holds term by term: the denominators \((q+1)(q+2)\), \((q+1)(q+2)(q+3)\), … each exceed the matching power of \(q+1\). The geometric series on the right has first term \(\tfrac{1}{q+1}\) and ratio \(\tfrac{1}{q+1}\), so it sums to \(\tfrac{1}{q}\) (<a href="../../grade-10/sheets/b12-infinite-series.html">grade 10, b12</a>). Hence \(0 \lt T \lt 1/q \le 1\). No integer lies strictly between \(0\) and \(1\). The assumption was false: \(e\) is irrational.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: the tail for \(q = 5\)</h2>
+<p>Take \(q = 5\). The front sum is \(N = 5!\left(1 + 1 + \tfrac12 + \tfrac16 + \tfrac1{24} + \tfrac1{120}\right) = 120 + 120 + 60 + 20 + 5 + 1 = 326\), so \(T = 120\,e - 326\). With \(e = 2.718281828\ldots\), \(120\,e = 326.1938\ldots\), giving \(T = 0.1938\ldots\): positive, and below \(1/5 = 0.2\), as the bound promised. The series agrees: \(T = \tfrac16 + \tfrac1{42} + \tfrac1{336} + \tfrac1{3024} + \cdots = 0.1667 + 0.0238 + 0.0030 + 0.0003 + \cdots\).</p>
+<p>The contradiction in miniature: if \(e\) were \(p/5\), then \(120\,e\) would be an integer, so \(T\) would be too. It is \(0.19\). The proof does this for every \(q\) at once.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Compute \(N\) for \(q = 3\), that is \(3!\,(1 + 1 + \tfrac12 + \tfrac16)\). Then compute \(T = 6e - N\) to three decimal places and check it lies between \(0\) and \(1/3\).<div class="space short"></div></li>
+<li>Use the series to show \(2 \lt e \lt 3\). For the upper bound, show \(n! \ge 2^{n-1}\) for \(n \ge 1\) and compare with a geometric series. Why does \(2 \lt e \lt 3\) on its own settle the case \(q = 1\) of the proof?<div class="space short"></div></li>
+<li>The proof needs \(T \lt 1/q\), strictly. Explain exactly where the strictness comes from (which term of \(T\) is strictly smaller than its geometric partner?). What would go wrong for \(q = 1\) if we only knew \(T \le 1\)?<div class="space short"></div></li>
+<li>The number \(\sum_{n=0}^{\infty} 2^{-n} = 2\) is rational, so the same argument must fail for it. Imitate the proof: suppose the sum is \(p/q\), multiply by \(2^q\) instead of \(q!\), and compute the tail \(2^q \sum_{n > q} 2^{-n}\) exactly. Where does the argument break?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: \(1/e\) too</h2>
+<p>Also \(1/e = \sum_{n=0}^{\infty} (-1)^n/n! = 1 - 1 + \tfrac12 - \tfrac16 + \cdots\). Adapt the proof to show \(1/e\) is irrational. The tail now alternates in sign. Show it is not zero and has absolute value less than \(\tfrac{1}{q+1}\): group the terms in pairs.</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(N = 6 + 6 + 3 + 1 = 16\). \(6e = 16.3097\ldots\), so \(T = 0.310\), which is between \(0\) and \(1/3 = 0.333\). (Series check: \(\tfrac14 + \tfrac1{20} + \tfrac1{120} + \cdots = 0.25 + 0.05 + 0.0083 + \cdots\).)</li>
+<li>Lower: the first two terms alone give \(1 + 1 = 2\), and the rest are positive, so \(e > 2\). Upper: \(n! = 1 \cdot 2 \cdot 3 \cdots n \ge 1 \cdot 2 \cdot 2 \cdots 2 = 2^{n-1}\) for \(n \ge 1\), so \(e \le 1 + \left(1 + \tfrac12 + \tfrac14 + \cdots\right) = 1 + 2 = 3\), and the inequality is strict from \(n = 3\) on (\(6 > 4\)), so \(e \lt 3\). If \(q = 1\) then \(e = p\) is an integer; but no integer lies strictly between \(2\) and \(3\).</li>
+<li>The first terms agree: both are \(\tfrac{1}{q+1}\). The second term of \(T\) is \(\tfrac{1}{(q+1)(q+2)}\), strictly less than \(\tfrac{1}{(q+1)^2}\) because \(q + 2 > q + 1\). One strict term makes the whole sum strict. For \(q = 1\) the bound is \(T \lt 1\); with only \(T \le 1\), the value \(T = 1\) would be an integer and there would be no contradiction.</li>
+<li>Suppose \(\sum 2^{-n} = p/q\). Multiply by \(2^q\): the left side need not be an integer (unless \(q\) is a power of \(2\)), which is one break already. Worse, the tail is \(2^q\left(2^{-(q+1)} + 2^{-(q+2)} + \cdots\right) = \tfrac12 + \tfrac14 + \cdots = 1\) exactly: an integer. The factorial proof worked because the tail terms \(q!/n!\) shrink faster than any geometric series, pushing the tail strictly below \(1/q\). Powers of \(2\) shrink only geometrically, and the tail lands exactly on an integer.</li>
+</ol>
+<p><b>Stretch.</b> Suppose \(1/e = p/q\) and multiply by \(q!\). The front sum \(\sum_{n \le q} (-1)^n q!/n!\) is an integer, so the tail \(T = q!\sum_{n > q} (-1)^n/n!\) must be one too. Up to sign, \(T = \tfrac{1}{q+1} - \tfrac{1}{(q+1)(q+2)} + \tfrac{1}{(q+1)(q+2)(q+3)} - \cdots\). The terms strictly decrease in size, so pairing them as \(\left(\tfrac{1}{q+1} - \tfrac{1}{(q+1)(q+2)}\right) + \cdots\) shows \(|T| > 0\), and pairing from the second term shows \(|T| \lt \tfrac{1}{q+1} \le \tfrac12\). An integer with \(0 \lt |T| \lt \tfrac12\) does not exist. For \(q = 2\): \(2/e = 0.7358\), front sum \(2 - 2 + 1 = 1\), tail \(-0.264\), of size below \(1/3\).</p>
+</section>
+
+<div class="sheet-nav"><a href="b1-epsilon-delta.html">← Previous</a><a href="b3-prime-counting.html">Next: How many primes are there below x? →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

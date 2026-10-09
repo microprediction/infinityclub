@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Derangements and 1/e · Infinity Club</title>
+<meta name="description" content="n people, n hats, nobody gets their own. Count the derangements by inclusion–exclusion, watch the probability settle at 1/e, and derive the recurrence D(n) = (n − 1)(D(n − 1) + D(n − 2)).">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Around the corner · 24</div>
+  <h1>Derangements and 1/e</h1>
+  <p class="teaser">n people, n hats, nobody gets their own. The count is n!/e to the nearest whole number, and the probability settles at 0.3679.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>\(n\) people check their hats and get them back in a random order, each of the \(n!\) orders equally likely. A <b>derangement</b> is an order in which nobody gets their own hat. Call the number of them \(D(n)\).</p>
+<p>Count the opposite. Orders where person \(i\) <em>does</em> get their own hat number \((n-1)!\), since the other hats are free. Fix \(k\) chosen people and \((n-k)!\) orders remain, with \(\binom nk\) ways to choose them. Inclusion–exclusion (<a href="../../grade-6/sheets/b26-inclusion.html">grade 6, b26</a>) adds the singles, subtracts the pairs, adds the triples:</p>
+<p>\[D(n) = n! - \binom n1 (n-1)! + \binom n2 (n-2)! - \cdots = n! \sum_{k=0}^{n} \frac{(-1)^k}{k!},\]</p>
+<p>using \(\binom nk (n-k)! = n!/k!\). So the probability of a derangement is</p>
+<p>\[\frac{D(n)}{n!} = 1 - 1 + \frac{1}{2!} - \frac{1}{3!} + \cdots + \frac{(-1)^n}{n!},\]</p>
+<p>the series for \(e^x\) at \(x = -1\) (<a href="a12-taylor.html">sheet a12</a>) stopped at \(k = n\). So \(D(n)/n! \to 1/e \approx 0.3679\). An alternating series with shrinking terms misses its limit by less than the first omitted term, \(1/(n+1)!\). Times \(n!\), that is under \(1/(n+1)\), so \(D(n)\) is \(n!/e\) rounded to the nearest integer.</p>
+<figure><svg viewBox="0 0 250 130" width="250" height="130" role="img" aria-label="Plot of D(n)/n! for n from 1 to 8: 0, 0.5, 0.333, 0.375, then settling on the dashed line at 1/e" font-family="Nunito, sans-serif" font-size="12">
+<line x1="30" y1="110" x2="225" y2="110" stroke="#000" stroke-width="1"/>
+<line x1="30" y1="110" x2="30" y2="12" stroke="#000" stroke-width="1"/>
+<line x1="30" y1="40.1" x2="225" y2="40.1" stroke="#f5a524" stroke-width="1.2" stroke-dasharray="5 3"/>
+<polyline points="30.0,110.0 57.9,15.0 85.7,46.7 113.6,38.8 141.4,40.3 169.3,40.1 197.1,40.1 225.0,40.1" fill="none" stroke="#3f44c9" stroke-width="1.5"/>
+<g fill="#3f44c9"><circle cx="30" cy="110" r="3"/><circle cx="57.9" cy="15" r="3"/><circle cx="85.7" cy="46.7" r="3"/><circle cx="113.6" cy="38.8" r="3"/><circle cx="141.4" cy="40.3" r="3"/><circle cx="169.3" cy="40.1" r="3"/><circle cx="197.1" cy="40.1" r="3"/><circle cx="225" cy="40.1" r="3"/></g>
+<g text-anchor="middle" fill="#555"><text x="30" y="124">1</text><text x="57.9" y="124">2</text><text x="85.7" y="124">3</text><text x="113.6" y="124">4</text><text x="141.4" y="124">5</text><text x="169.3" y="124">6</text><text x="197.1" y="124">7</text><text x="225" y="124">8</text></g>
+<text x="24" y="19" text-anchor="end" fill="#555">0.5</text><text x="24" y="114" text-anchor="end" fill="#555">0</text>
+<text x="229" y="33" fill="#f5a524">1/e</text>
+<text x="92" y="68" fill="#3f44c9">D(n)/n!</text>
+<text x="238" y="124" fill="#555">n</text>
+</svg><figcaption>The chance that nobody gets their own hat, for \(n = 1\) to \(8\). From \(n = 5\) on it is within \(0.002\) of \(1/e\).</figcaption></figure>
+<p>A recurrence avoids the sum. Person 1 receives hat \(j\): \(n - 1\) choices. Either person \(j\) receives hat 1 (a swap; the other \(n - 2\) must be deranged, \(D(n-2)\) ways) or not (then call hat 1 "\(j\)'s own"; \(n - 1\) people and hats must be deranged, \(D(n-1)\) ways).</p>
+<p class="callout">\(D(n) = (n - 1)\big(D(n-1) + D(n-2)\big)\), with \(D(1) = 0\), \(D(2) = 1\).</p>
+</section>
+
+<section class="example">
+<h2>Watch one: four hats</h2>
+<p>There are \(4! = 24\) orders. Orders with at least one own hat: \(4 \cdot 3! - 6 \cdot 2! + 4 \cdot 1! - 1 \cdot 0! = 24 - 12 + 4 - 1 = 15\), so \(D(4) = 9\). Check: \(24/e = 8.83\), which rounds to 9. Recurrence: \(3 \,(D(3) + D(2)) = 3 \,(2 + 1) = 9\). The nine are three double swaps, such as \(1 \leftrightarrow 2\) with \(3 \leftrightarrow 4\), and six 4-cycles. The probability is \(9/24 = 0.375\), already near \(0.368\). The recurrence continues:</p>
+<p>\[D(1), \dots, D(8) = 0,\ 1,\ 2,\ 9,\ 44,\ 265,\ 1854,\ 14833.\]</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Compute \(D(5)\) three ways: by inclusion–exclusion, by the recurrence, and as the nearest integer to \(120/e\).<div class="space short"></div></li>
+<li>(a) Four people: what is the probability that exactly one gets their own hat? (b) Five people: exactly two?<div class="space short"></div></li>
+<li>From the sum formula, prove the shorter recurrence \(D(n) = n\,D(n-1) + (-1)^n\). Check it with \(D(4)\) and \(D(5)\).<div class="space"></div></li>
+<li>(a) Show that the probability exactly \(k\) of \(n\) people get their own hat is \(\dfrac{D(n-k)}{k!\,(n-k)!}\). (b) Show that the expected number of people who get their own hat is exactly 1, for every \(n\), without using (a).<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the limit law</h2>
+<p>Using 4(a), show that as \(n \to \infty\) the probability that exactly \(k\) people get their own hat tends to \(e^{-1}/k!\), and that these limits add up to 1. Which distribution is this?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Inclusion–exclusion: \(120 - 5 \cdot 24 + 10 \cdot 6 - 10 \cdot 2 + 5 \cdot 1 - 1 = 44\). Recurrence: \(4\,(D(4) + D(3)) = 4\,(9 + 2) = 44\). And \(120/e = 44.15\), nearest integer 44.</li>
+<li>(a) Choose the lucky person (4 ways) and derange the other three (\(D(3) = 2\) ways): \(8\) orders, probability \(8/24 = 1/3\). (b) \(\binom52 D(3) = 10 \cdot 2 = 20\) orders, probability \(20/120 = 1/6\).</li>
+<li>Split off the last term of the sum: \(n! \sum_{k=0}^{n} \frac{(-1)^k}{k!} = n \cdot (n-1)! \sum_{k=0}^{n-1} \frac{(-1)^k}{k!} + n! \cdot \frac{(-1)^n}{n!} = n\,D(n-1) + (-1)^n\). Check: \(4 \cdot 2 + 1 = 9\) and \(5 \cdot 9 - 1 = 44\).</li>
+<li>(a) Choose the \(k\) who get their own hats, \(\binom nk\) ways, and derange the other \(n - k\), \(D(n-k)\) ways. Divide by \(n!\) and use \(\binom nk / n! = 1/(k!\,(n-k)!)\). (b) Each person's own hat is equally likely to be any of the \(n\) hats returned, so each gets their own with probability \(1/n\). Expectations add even when the events depend on each other, so the expected count is \(n \cdot \tfrac1n = 1\).</li>
+</ol>
+<p><b>Stretch.</b> By 4(a) the probability is \(\dfrac{1}{k!} \cdot \dfrac{D(n-k)}{(n-k)!}\), and the second factor tends to \(1/e\) as \(n \to \infty\) with \(k\) fixed. So the limit is \(e^{-1}/k!\). Summing over \(k\): \(e^{-1} \sum_{k \ge 0} 1/k! = e^{-1} \cdot e = 1\). This is the Poisson distribution with mean 1 (<a href="b13-poisson.html">sheet b13</a>), and its mean 1 matches 4(b).</p>
+</section>
+
+<div class="sheet-nav"><a href="b23-hall.html">← Previous</a><a href="b25-minus-twelfth.html">Next: 1 + 2 + 3 + … = −1/12? →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kelly Betting · Infinity Club</title>
+<meta name="description" content="A coin that lands heads 60% of the time pays even money. Slide the fraction of your wealth you bet each round, watch 20 gamblers play 1,000 rounds, and see the growth rate peak at the Kelly fraction 2p − 1.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.controls input[type=range] { width: 160px; }
+.controls .val { font-family: var(--mono); min-width: 3em; display: inline-block; }
+.two { display: flex; flex-wrap: wrap; gap: 1rem; align-items: flex-start; }
+.two > div { flex: 1 1 300px; min-width: 0; }
+.two h3 { margin: .2rem 0 .4rem; font-size: 1rem; color: var(--muted); }
+.legend span { display: inline-block; margin-right: 1rem; font-weight: 700; font-size: .9rem; }
+.legend i { display: inline-block; width: 14px; height: 4px; vertical-align: middle; margin-right: .3rem; border-radius: 2px; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Kelly betting</h1>
+<p class="explain">Slide the <b>bet fraction</b> f. Twenty gamblers each start with 1 and bet the fraction f of whatever they have on a coin that comes up heads with probability p = 0.6, paying even money. The left graph shows their wealth over 1,000 rounds on a log scale, with the median gambler in bold. The right graph is the long-run growth rate for every f at once. Find the f that makes the median climb fastest, then push f past 0.5 and watch a favourable game ruin everyone. The same coin flips are reused as you slide, so only your bet size changes.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <label>bet fraction f <input type="range" id="f" min="0" max="0.95" step="0.01" value="0.1"> <span class="val" id="fv">0.10</span></label>
+    <label>P(heads) p <input type="range" id="p" min="0.5" max="0.9" step="0.01" value="0.6"> <span class="val" id="pv">0.60</span></label>
+    <button id="kelly" class="ghost">Set f = 2p − 1</button>
+    <button id="reroll" class="ghost">New coin flips</button>
+  </div>
+  <div class="two">
+    <div><h3>Wealth of 20 gamblers, 1,000 rounds</h3><canvas id="paths" width="520" height="360"></canvas>
+      <p class="legend"><span><i style="background:#b9bbe6"></i>each gambler</span><span><i style="background:#3f44c9"></i>median</span><span><i style="background:#f5a524"></i>theory: e<sup>g(f)·t</sup></span></p></div>
+    <div><h3>Growth rate per round, g(f)</h3><canvas id="growth" width="420" height="360"></canvas>
+      <p class="legend"><span><i style="background:#3f44c9"></i>g(f) = p ln(1+f) + (1−p) ln(1−f)</span><span><i style="background:#f5a524"></i>median gambler's actual rate</span></p></div>
+  </div>
+  <div class="readout" id="info"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>Betting a fixed fraction f means your wealth is multiplied by 1 + f on a win and 1 − f on a loss. After many rounds the order of wins and losses does not matter, only how many of each: wealth = (1 + f)<sup>wins</sup>(1 − f)<sup>losses</sup>. Take logs and divide by the number of rounds, and the law of large numbers hands you the <b>growth rate</b> g(f) = p ln(1 + f) + (1 − p) ln(1 − f). Wealth grows like e<sup>g·t</sup>, so the sign of g decides everything: positive and you get rich, negative and you go broke, no matter how favourable the coin is.</p>
+<p>Differentiate: g′(f) = p/(1 + f) − (1 − p)/(1 − f), which is zero at f* = 2p − 1. For p = 0.6 that is f* = 0.2, the <b>Kelly fraction</b>: bet your edge. Anything above 2f* has g below zero. Betting more than Kelly does not just add risk, it lowers your typical growth, because the logarithm punishes big losses more than it rewards big wins.</p>
+<p>Why the median and not the mean? The <i>expected</i> wealth is largest when you bet everything every time, (1.2)<sup>1000</sup> in the lucky case. But that case has probability 0.6<sup>1000</sup>, and every other gambler is at zero. Expected value is dominated by a miracle nobody will live to see. The median gambler, and in fact almost every gambler, experiences the growth rate g(f) instead. The orange theory line on the left is e<sup>g(f)·t</sup>, and the bold median hugs it.</p>
+<p>Sheet: <a href="../grade-12/sheets/b15-kelly.html">How much to bet</a>. Related demos: <a href="galton.html">Galton board</a> and <a href="growth.html">growth and compounding</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  // long-run growth rate per round when betting fraction f of wealth at even money
+  function growthRate(p, f) { if (f >= 1) return -Infinity; if (f <= 0) return 0; return p * Math.log(1 + f) + (1 - p) * Math.log(1 - f); }
+  function kellyFraction(p) { return Math.max(0, 2 * p - 1); }
+  // small seeded generator so the slider reuses the same flips
+  function mulberry32(seed) { return function () { seed |= 0; seed = seed + 0x6D2B79F5 | 0; var t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+  // n gamblers, each with `rounds` uniform draws; heads when draw < p
+  function makeDraws(n, rounds, seed) { var rnd = mulberry32(seed), out = []; for (var g = 0; g < n; g++) { var row = new Float64Array(rounds); for (var t = 0; t < rounds; t++) row[t] = rnd(); out.push(row); } return out; }
+  // log-wealth paths (natural log), starting from ln 1 = 0
+  function simulate(draws, p, f) {
+    var up = Math.log(1 + f), dn = f >= 1 ? -Infinity : Math.log(1 - f);
+    return draws.map(function (row) { var L = new Float64Array(row.length + 1), w = 0; for (var t = 0; t < row.length; t++) { w += row[t] < p ? up : dn; L[t + 1] = w; } return L; });
+  }
+  function medianPath(paths) {
+    var n = paths.length, T = paths[0].length, med = new Float64Array(T), tmp = new Array(n);
+    for (var t = 0; t < T; t++) { for (var g = 0; g < n; g++) tmp[g] = paths[g][t]; tmp.sort(function (a, b) { return a - b; }); med[t] = n % 2 ? tmp[(n - 1) / 2] : 0.5 * (tmp[n / 2 - 1] + tmp[n / 2]); }
+    return med;
+  }
+  function fmt(v, d) { d = d === undefined ? 2 : d; var r = Math.round(v * Math.pow(10, d)) / Math.pow(10, d); if (Object.is(r, -0)) r = 0; return r.toString().replace("-", "−"); }
+  function sup(n) { var m = { "-": "⁻", "−": "⁻", "0": "⁰", "1": "¹", "2": "²", "3": "³", "4": "⁴", "5": "⁵", "6": "⁶", "7": "⁷", "8": "⁸", "9": "⁹" }; return String(n).split("").map(function (c) { return m[c] || c; }).join(""); }
+  function pow10txt(k) { return "10" + sup(k); }
+  /*ENDPURE*/
+
+  var N = 20, ROUNDS = 1000, seed = 12345;
+  var cP = document.getElementById("paths"), gP = cP.getContext("2d"), cG = document.getElementById("growth"), gG = cG.getContext("2d"), info = document.getElementById("info");
+  var fS = document.getElementById("f"), pS = document.getElementById("p");
+  var S = { f: 0.1, p: 0.6 }, draws = makeDraws(N, ROUNDS, seed);
+  fS.addEventListener("input", function () { S.f = parseFloat(fS.value); draw(); });
+  pS.addEventListener("input", function () { S.p = parseFloat(pS.value); draw(); });
+  document.getElementById("kelly").addEventListener("click", function () { S.f = Math.round(kellyFraction(S.p) * 100) / 100; fS.value = S.f; draw(); });
+  document.getElementById("reroll").addEventListener("click", function () { seed = (seed * 1103515245 + 12345) % 2147483647; draws = makeDraws(N, ROUNDS, seed); draw(); });
+
+  function setup(canvas, ctx, aspect) {
+    var dpr = window.devicePixelRatio || 1, W = canvas.clientWidth || 500, H = Math.max(240, Math.round(W * aspect));
+    canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, H); ctx.font = "12px Nunito, sans-serif";
+    return { W: W, H: H };
+  }
+  function niceStep(range, maxTicks) { var cands = [1, 2, 5, 10, 20, 50, 100, 200, 500]; for (var i = 0; i < cands.length; i++) if (range / cands[i] <= maxTicks) return cands[i]; return 1000; }
+
+  function drawPaths(paths, med, g) {
+    var d = setup(cP, gP, 0.7), W = d.W, H = d.H, L = 48, Rr = W - 12, T = 12, B = H - 30;
+    var LN10 = Math.log(10), lo = 0, hi = 0;
+    paths.forEach(function (P) { for (var t = 0; t < P.length; t += 10) { var v = P[t] / LN10; if (v < lo) lo = v; if (v > hi) hi = v; } });
+    var th = g * ROUNDS / LN10; if (th < lo) lo = th; if (th > hi) hi = th;
+    lo = Math.max(lo, -60); hi = Math.min(hi, 120); lo = Math.floor(lo) - 1; hi = Math.ceil(hi) + 1;
+    function X(t) { return L + (Rr - L) * t / ROUNDS; } function Y(v) { return B - (B - T) * (Math.max(lo, Math.min(hi, v)) - lo) / (hi - lo); }
+    var step = niceStep(hi - lo, 8); gP.strokeStyle = "#e4e1d8"; gP.lineWidth = 1; gP.fillStyle = "#5d6079"; gP.textAlign = "right";
+    for (var k = Math.ceil(lo / step) * step; k <= hi; k += step) { gP.beginPath(); gP.moveTo(L, Y(k)); gP.lineTo(Rr, Y(k)); gP.stroke(); gP.fillText(pow10txt(k), L - 5, Y(k) + 4); }
+    gP.textAlign = "center"; for (var t = 0; t <= ROUNDS; t += 200) gP.fillText(t === 0 ? "round 0" : t, X(t), B + 16);
+    gP.strokeStyle = "#1d1f3a"; gP.lineWidth = 1; gP.beginPath(); gP.moveTo(L, Y(0)); gP.lineTo(Rr, Y(0)); gP.stroke();
+    function line(P, col, w) { gP.strokeStyle = col; gP.lineWidth = w; gP.beginPath(); for (var t = 0; t < P.length; t += 2) { var x = X(t), y = Y(P[t] / LN10); if (t === 0) gP.moveTo(x, y); else gP.lineTo(x, y); } gP.stroke(); }
+    paths.forEach(function (P) { line(P, "#b9bbe6", 1); });
+    // theory: ln W = g t
+    gP.strokeStyle = "#f5a524"; gP.lineWidth = 2; gP.setLineDash([6, 5]); gP.beginPath(); gP.moveTo(X(0), Y(0)); gP.lineTo(X(ROUNDS), Y(g * ROUNDS / LN10)); gP.stroke(); gP.setLineDash([]);
+    line(med, "#3f44c9", 2.5);
+    gP.fillStyle = "#5d6079"; gP.textAlign = "left"; gP.fillText("wealth (log scale)", L + 4, T + 10);
+  }
+
+  function drawGrowth(p, f, empirical) {
+    var d = setup(cG, gG, 0.86), W = d.W, H = d.H, L = 50, Rr = W - 12, T = 14, B = H - 30;
+    var fk = kellyFraction(p), gmax = growthRate(p, fk), ymax = Math.max(0.03, gmax * 1.35), ymin = -Math.max(0.12, gmax * 2.5);
+    function X(x) { return L + (Rr - L) * x; } function Y(y) { return B - (B - T) * (Math.max(ymin, Math.min(ymax, y)) - ymin) / (ymax - ymin); }
+    gG.strokeStyle = "#e4e1d8"; gG.lineWidth = 1; gG.fillStyle = "#5d6079"; gG.textAlign = "right";
+    var ys = (ymax - ymin) / 6, mag = Math.pow(10, Math.floor(Math.log10(ys))), ystep = [1, 2, 5, 10].map(function (m) { return m * mag; }).filter(function (s) { return (ymax - ymin) / s <= 8; })[0];
+    for (var y = Math.ceil(ymin / ystep) * ystep; y <= ymax; y += ystep) { gG.beginPath(); gG.moveTo(L, Y(y)); gG.lineTo(Rr, Y(y)); gG.stroke(); gG.fillText(fmt(y, 3), L - 5, Y(y) + 4); }
+    gG.textAlign = "center"; for (var x = 0; x <= 1; x += 0.2) { gG.beginPath(); gG.moveTo(X(x), T); gG.lineTo(X(x), B); gG.stroke(); gG.fillText(x === 0 ? "f = 0" : fmt(x, 1), X(x), B + 16); }
+    gG.strokeStyle = "#1d1f3a"; gG.lineWidth = 1; gG.beginPath(); gG.moveTo(L, Y(0)); gG.lineTo(Rr, Y(0)); gG.stroke();
+    // Kelly line
+    gG.strokeStyle = "#f5a524"; gG.setLineDash([6, 5]); gG.lineWidth = 1.5; gG.beginPath(); gG.moveTo(X(fk), T); gG.lineTo(X(fk), B); gG.stroke(); gG.setLineDash([]);
+    gG.fillStyle = "#b07200"; gG.textAlign = "left"; gG.fillText("f* = 2p − 1 = " + fmt(fk), X(fk) + 5, B - 8);
+    // curve
+    gG.strokeStyle = "#3f44c9"; gG.lineWidth = 3; gG.beginPath();
+    for (var i = 0; i <= 400; i++) { var x = i / 400 * 0.995, y = growthRate(p, x); if (i === 0) gG.moveTo(X(x), Y(y)); else gG.lineTo(X(x), Y(y)); }
+    gG.stroke();
+    // current f
+    gG.fillStyle = "#3f44c9"; gG.beginPath(); gG.arc(X(f), Y(growthRate(p, f)), 6, 0, Math.PI * 2); gG.fill();
+    gG.fillStyle = "#f5a524"; gG.beginPath(); gG.arc(X(f), Y(empirical), 5, 0, Math.PI * 2); gG.fill(); gG.strokeStyle = "#fff"; gG.lineWidth = 1.5; gG.stroke();
+    gG.fillStyle = "#5d6079"; gG.textAlign = "left"; gG.fillText("g(f) per round", L + 4, Y(ymax) + 10);
+  }
+
+  function draw() {
+    var p = S.p, f = S.f;
+    document.getElementById("fv").textContent = fmt(f); document.getElementById("pv").textContent = fmt(p);
+    var paths = simulate(draws, p, f), med = medianPath(paths), g = growthRate(p, f), fk = kellyFraction(p), gk = growthRate(p, fk);
+    var empirical = med[ROUNDS] / ROUNDS, broke = paths.filter(function (P) { return P[ROUNDS] < 0; }).length;
+    drawPaths(paths, med, g); drawGrowth(p, f, empirical);
+    var LN10 = Math.log(10);
+    var txt = "p = " + fmt(p) + ", bet fraction f = " + fmt(f) + ".   Kelly fraction f* = 2p − 1 = " + fmt(fk) + ", with growth g(f*) = " + fmt(gk, 4) + " per round.\n";
+    txt += "g(f) = p ln(1+f) + (1−p) ln(1−f) = " + fmt(g, 4) + " per round  →  wealth × " + fmt(Math.exp(g), 4) + " per round, × " + pow10txt(Math.round(g * ROUNDS / LN10)) + " over 1,000 rounds (typical gambler)\n";
+    txt += "simulation: median gambler finished at " + pow10txt(Math.round(med[ROUNDS] / LN10)) + " (actual rate " + fmt(empirical, 4) + " per round); " + broke + " of 20 finished below where they started.";
+    if (f === 0) txt += "\nf = 0: no bet, no growth, no risk.";
+    else if (f > 2 * fk + 1e-9) txt += "\nf > 2f*: the growth rate is negative. The coin is in your favour and you still go broke.";
+    else if (f > fk + 1e-9) txt += "\nf* < f < 2f*: still growing, but slower than Kelly and with wilder swings.";
+    else if (Math.abs(f - fk) < 1e-9) txt += "\nf = f*: the top of the curve. Nothing grows faster in the long run.";
+    info.textContent = txt;
+  }
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(draw, 120); });
+  draw();
+})();
+</script>
+</body>
+</html>

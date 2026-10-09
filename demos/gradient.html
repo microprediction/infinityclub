@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gradient Descent · Infinity Club</title>
+<meta name="description" content="Tap a start point on a contour map and watch gradient descent walk downhill. Slide the step size: too small crawls, too big zig-zags, and past a sharp threshold it flies off to infinity.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+#plot { cursor: crosshair; touch-action: none; }
+.controls input[type=range] { width: 170px; }
+@media (max-width: 420px) { .controls input[type=range] { width: 130px; } }
+.controls .val { font-family: var(--mono); min-width: 4em; display: inline-block; }
+.mission { max-width: 70ch; margin: -.4rem 0 1rem; }
+.mission p { margin: .3rem 0; }
+.mission summary { cursor: pointer; font-weight: 700; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Gradient descent</h1>
+<p class="explain">The map shows the height f(x, y) of a landscape as coloured bands, like contour lines: pale is low, dark is high, and the star marks the bottom. Tap anywhere to drop a ball, and watch it take steps of the form <b>(x, y) ← (x, y) − η ∇f</b>: each step goes straight downhill, with a length set by the step size η. Slide η. Small steps crawl. Larger steps get there faster, until the path starts to zig-zag across the valley, and a little larger still it leaves the map entirely.</p>
+<div class="mission">
+<p class="small"><b>Mission.</b> On the bowl f = x² + 3y², set η = 0.30 and tap a start. It zig-zags but gets there. Now try η = 0.34. Before you do, predict: where exactly is the dividing line between settling and blowing up, and why?</p>
+<details class="small"><summary>Answer</summary><p>η = 1/3. The y-gradient is 6y, so each step replaces y by y − 6ηy = (1 − 6η)y. That factor has size below 1 only when η &lt; 1/3; at η = 1/3 it is exactly −1 and y bounces for ever between two values; beyond it |y| grows every step. The x-direction is gentler (factor 1 − 2η) and is still fine at η = 0.34, so the ball runs away up and down, not sideways. The zig-zag begins when 1 − 6η turns negative, at η = 1/6. Extension: the steep bowl x² + 20y² has gradient 40y in y. Predict its threshold (1/20) and test it.</p></details>
+</div>
+<div class="demo-panel">
+  <div class="controls">
+    <label>f(x, y)
+      <select id="fn">
+        <option value="bowl">bowl: x² + 3y²</option>
+        <option value="steep">steep bowl: x² + 20y²</option>
+        <option value="banana">banana: (1 − x)² + 10(y − x²)²</option>
+      </select>
+    </label>
+    <label>step size η <input type="range" id="eta" min="-3" max="0" step="0.01" value="-1"> <span class="val" id="etav">0.100</span></label>
+    <label>max steps <input type="range" id="steps" min="0" max="3.5" step="0.05" value="1.7"> <span class="val" id="stepsv">50</span></label>
+    <button id="replay" class="ghost">Replay</button>
+  </div>
+  <canvas id="plot" width="900" height="560"></canvas>
+  <div class="readout" id="info"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>The gradient ∇f = (∂f/∂x, ∂f/∂y) points in the direction of steepest ascent, and it is perpendicular to the contour through the point. So walking against the gradient is walking straight downhill, at right angles to the bands. On a round bowl that aims directly at the bottom. On a stretched bowl like x² + 3y² it does not: the steep y-direction dominates the gradient, so the step is mostly vertical even when the bottom is mostly to the side. The path overshoots the valley floor and has to come back, which is the zig-zag.</p>
+<p>How large a step is safe depends on the steepest curvature. Along y the bowl x² + 3y² curves like 6 (the second derivative), and a step of size η multiplies the y-error by 1 − 6η. Convergence needs |1 − 6η| &lt; 1, so η &lt; 1/3, a hard wall. The gentle x-direction would happily take η up to 1. The best single η has to respect the steep direction and so crawls along the gentle one. The ratio of steepest to gentlest curvature, 6/2 = 3 here, is called the condition number, and the larger it is the worse plain gradient descent does.</p>
+<p>The banana valley is where this bites. Along the floor of the curved valley the landscape is nearly flat (curvature about 0.4 at the minimum), while across it the walls are steep (curvature about 100). Any η that survives the walls, below about 0.02, takes hundreds of steps to creep along the floor to (1, 1). Set max steps to its limit and watch it inch forward. This is the picture to have in mind whenever someone says a machine "learns" by gradient descent: it is this ball, in millions of dimensions, with the same two failure modes.</p>
+<p>Sheet: <a href="../grade-12/sheets/b9-gradient-descent.html">Gradient descent</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  var FNS = {
+    bowl:   { f: function (x, y) { return x * x + 3 * y * y; }, grad: function (x, y) { return [2 * x, 6 * y]; }, min: [0, 0], xmin: -3, xmax: 3, ymin: -2, ymax: 2, name: "x² + 3y²", lmax: 6, start: [-2.4, 1.3] },
+    steep:  { f: function (x, y) { return x * x + 20 * y * y; }, grad: function (x, y) { return [2 * x, 40 * y]; }, min: [0, 0], xmin: -3, xmax: 3, ymin: -2, ymax: 2, name: "x² + 20y²", lmax: 40, start: [-2.4, 1.3] },
+    banana: { f: function (x, y) { var t = y - x * x; return (1 - x) * (1 - x) + 10 * t * t; }, grad: function (x, y) { var t = y - x * x; return [-2 * (1 - x) - 40 * x * t, 20 * t]; }, min: [1, 1], xmin: -2, xmax: 2, ymin: -1, ymax: 3, name: "(1 − x)² + 10(y − x²)²", lmax: 101.6, start: [-1.2, 1.5] }
+  };
+  function gdStep(F, p, eta) { var g = F.grad(p[0], p[1]); return [p[0] - eta * g[0], p[1] - eta * g[1]]; }
+  // run at most n steps; stop early on convergence (tiny gradient) or divergence (far outside the map)
+  function gdPath(F, p0, eta, n) {
+    var pts = [p0], status = "running";
+    for (var i = 0; i < n; i++) {
+      var p = pts[pts.length - 1], g = F.grad(p[0], p[1]);
+      if (Math.hypot(g[0], g[1]) < 1e-7) { status = "converged"; break; }
+      var q = gdStep(F, p, eta);
+      pts.push(q);
+      if (!isFinite(q[0]) || !isFinite(q[1]) || Math.abs(q[0]) > 1e4 || Math.abs(q[1]) > 1e4) { status = "diverged"; break; }
+    }
+    if (status === "running") { var gl = F.grad(pts[pts.length - 1][0], pts[pts.length - 1][1]); if (Math.hypot(gl[0], gl[1]) < 1e-7) status = "converged"; }
+    // bouncing between the walls: the best height seen in the last 100 steps is no better than the 100 before
+    if (status === "running" && pts.length > 200) {
+      var best = function (from, to) { var m = Infinity; for (var k = from; k < to; k++) m = Math.min(m, F.f(pts[k][0], pts[k][1])); return m; };
+      if (best(pts.length - 100, pts.length) > 0.999 * best(pts.length - 200, pts.length - 100)) status = "stuck";
+    }
+    return { pts: pts, status: status };
+  }
+  // for a quadratic bowl ax^2 + by^2 the iteration diverges once eta exceeds 2 / (largest second derivative)
+  function divergenceThreshold(F) { return 2 / F.lmax; }
+  function etaFromSlider(s) { return Math.pow(10, s); }
+  function stepsFromSlider(s) { return Math.max(1, Math.round(Math.pow(10, s))); }
+  /*ENDPURE*/
+
+  var canvas = document.getElementById("plot"), ctx = canvas.getContext("2d"), info = document.getElementById("info");
+  var fnSel = document.getElementById("fn"), etaSl = document.getElementById("eta"), stepsSl = document.getElementById("steps");
+  var S = { fn: "bowl", eta: 0.1, n: 50, p0: FNS.bowl.start }, run = null, shown = 0, raf = null, mapCache = null;
+  fnSel.addEventListener("change", function () { S.fn = fnSel.value; S.p0 = FNS[S.fn].start; mapCache = null; if (S.fn === "banana" && S.eta > 0.02) { etaSl.value = -2; S.eta = 0.01; } startRun(); });
+  etaSl.addEventListener("input", function () { S.eta = etaFromSlider(parseFloat(etaSl.value)); startRun(); });
+  stepsSl.addEventListener("input", function () { S.n = stepsFromSlider(parseFloat(stepsSl.value)); startRun(); });
+  document.getElementById("replay").addEventListener("click", startRun);
+
+  var W, H, XMIN, XMAX, YMIN, YMAX;
+  function X(x) { return (x - XMIN) / (XMAX - XMIN) * W; }
+  function Y(y) { return H - (y - YMIN) / (YMAX - YMIN) * H; }
+  function fmt(v, d) { if (!isFinite(v)) return "∞"; return v.toFixed(d === undefined ? 3 : d).replace("-", "−"); }
+
+  function startRun() {
+    if (raf) cancelAnimationFrame(raf); raf = null;
+    run = gdPath(FNS[S.fn], S.p0, S.eta, S.n); shown = 0;
+    var total = run.pts.length - 1, perFrame = Math.max(1, Math.ceil(total / 90));
+    function frame() { shown = Math.min(total, shown + perFrame); draw(); if (shown < total) raf = requestAnimationFrame(frame); else raf = null; }
+    draw(); if (total > 0) raf = requestAnimationFrame(frame);
+  }
+
+  function heightMap(F) {
+    var cell = Math.max(2, Math.round(W / 220)), cw = Math.ceil(W / cell), ch = Math.ceil(H / cell);
+    var off = document.createElement("canvas"); off.width = cw; off.height = ch;
+    var octx = off.getContext("2d"), img = octx.createImageData(cw, ch), d = img.data;
+    var fmax = 0, corners = [[XMIN, YMIN], [XMIN, YMAX], [XMAX, YMIN], [XMAX, YMAX]];
+    corners.forEach(function (c) { fmax = Math.max(fmax, F.f(c[0], c[1])); });
+    var BANDS = 14, LO = [255, 255, 255], HI = [63, 68, 201];
+    for (var j = 0; j < ch; j++) for (var i = 0; i < cw; i++) {
+      var x = XMIN + (i + 0.5) / cw * (XMAX - XMIN), y = YMAX - (j + 0.5) / ch * (YMAX - YMIN);
+      var t = Math.log(1 + F.f(x, y)) / Math.log(1 + fmax), b = Math.min(BANDS - 1, Math.floor(t * BANDS)), s = b / (BANDS - 1);
+      s = 0.08 + 0.72 * s; if (b % 2 === 1) s += 0.04; // alternate bands slightly so the edges read as contours
+      var p = (j * cw + i) * 4;
+      d[p] = Math.round(LO[0] + (HI[0] - LO[0]) * s); d[p + 1] = Math.round(LO[1] + (HI[1] - LO[1]) * s); d[p + 2] = Math.round(LO[2] + (HI[2] - LO[2]) * s); d[p + 3] = 255;
+    }
+    octx.putImageData(img, 0, 0); return { cw: cw, ch: ch, off: off };
+  }
+
+  function draw() {
+    var F = FNS[S.fn];
+    document.getElementById("etav").textContent = S.eta.toFixed(3); document.getElementById("stepsv").textContent = S.n;
+    var dpr = window.devicePixelRatio || 1; W = canvas.clientWidth || 900; H = Math.round(W * 0.62);
+    canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    XMIN = F.xmin; XMAX = F.xmax; YMIN = F.ymin; YMAX = F.ymax;
+    if (!mapCache || mapCache.W !== W) { mapCache = heightMap(F); mapCache.W = W; }
+    ctx.imageSmoothingEnabled = true; ctx.drawImage(mapCache.off, 0, 0, W, H);
+    // axes and ticks
+    ctx.strokeStyle = "rgba(29,31,58,.35)"; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(X(0), 0); ctx.lineTo(X(0), H); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(0, Y(0)); ctx.lineTo(W, Y(0)); ctx.stroke();
+    ctx.fillStyle = "#1d1f3a"; ctx.font = "11px Nunito, sans-serif"; ctx.textAlign = "center";
+    for (var tx = Math.ceil(XMIN); tx <= XMAX; tx++) if (tx !== 0) ctx.fillText(tx, X(tx), Y(0) + 13);
+    ctx.textAlign = "right";
+    for (var ty = Math.ceil(YMIN); ty <= YMAX; ty++) if (ty !== 0) ctx.fillText(ty, X(0) - 5, Y(ty) + 4);
+    // minimum
+    star(X(F.min[0]), Y(F.min[1]), 9);
+    if (!run) return;
+    var pts = run.pts, k = Math.min(shown, pts.length - 1);
+    ctx.strokeStyle = "#e0453a"; ctx.lineWidth = 2; ctx.beginPath();
+    for (var i = 0; i <= k; i++) { var px = X(pts[i][0]), py = Y(pts[i][1]); px = Math.max(-50, Math.min(W + 50, px)); py = Math.max(-50, Math.min(H + 50, py)); if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py); }
+    ctx.stroke();
+    var dotEvery = k > 300 ? Math.ceil(k / 300) : 1;
+    for (var m = 0; m <= k; m += dotEvery) { ctx.fillStyle = m === 0 ? "#f5a524" : "#e0453a"; ctx.beginPath(); ctx.arc(X(pts[m][0]), Y(pts[m][1]), m === 0 ? 7 : 3, 0, Math.PI * 2); ctx.fill(); if (m === 0) { ctx.strokeStyle = "#fff"; ctx.lineWidth = 2; ctx.stroke(); } }
+    var last = pts[k];
+    if (Math.abs(last[0]) < 1e4 && Math.abs(last[1]) < 1e4) { ctx.fillStyle = "#1d1f3a"; ctx.beginPath(); ctx.arc(X(last[0]), Y(last[1]), 6, 0, Math.PI * 2); ctx.fill(); ctx.strokeStyle = "#fff"; ctx.lineWidth = 2; ctx.stroke(); }
+    // readout
+    var g = F.grad(last[0], last[1]), gn = Math.hypot(g[0], g[1]), dist = Math.hypot(last[0] - F.min[0], last[1] - F.min[1]);
+    var msg = "f = " + F.name + ",  η = " + S.eta.toFixed(3) + ",  start (" + fmt(S.p0[0], 2) + ", " + fmt(S.p0[1], 2) + ")   (tap the map to move the start)";
+    msg += "\nafter " + k + " step" + (k === 1 ? "" : "s") + ":  (x, y) = (" + fmt(last[0], 4) + ", " + fmt(last[1], 4) + "),  f = " + (isFinite(F.f(last[0], last[1])) ? F.f(last[0], last[1]).toExponential(3).replace("-", "−") : "∞") + ",  |∇f| = " + (isFinite(gn) ? gn.toExponential(2) : "∞") + ",  distance to bottom = " + (isFinite(dist) ? dist.toExponential(2) : "∞");
+    if (k === pts.length - 1) msg += "\n" + (run.status === "converged" ? "converged (gradient below 10⁻⁷)" : run.status === "diverged" ? "DIVERGED: each step overshoots further than the last" : run.status === "stuck" ? "STUCK: bouncing between the valley walls without getting lower. η is too big for the walls; lower it" : "still going after " + k + " steps; raise max steps, or η");
+    var thr = divergenceThreshold(F);
+    if (S.fn !== "banana") msg += "\nsafe range: η < 2/" + F.lmax + " = " + fmt(thr, 4) + ".  zig-zag begins at η > 1/" + F.lmax + " = " + fmt(thr / 2, 4) + (S.eta > thr ? "   ← η is past the wall" : S.eta > thr / 2 ? "   ← expect zig-zag" : "");
+    else msg += "\nnear (1, 1) the walls curve like 100 and the floor like 0.4: η must stay below about " + fmt(thr, 3) + ", and then the floor is slow";
+    info.textContent = msg;
+  }
+  function star(cx, cy, r) {
+    ctx.fillStyle = "#f5a524"; ctx.strokeStyle = "#1d1f3a"; ctx.lineWidth = 1.5; ctx.beginPath();
+    for (var i = 0; i < 10; i++) { var a = -Math.PI / 2 + i * Math.PI / 5, rr = i % 2 === 0 ? r : r * 0.45; ctx.lineTo(cx + rr * Math.cos(a), cy + rr * Math.sin(a)); }
+    ctx.closePath(); ctx.fill(); ctx.stroke();
+  }
+
+  canvas.addEventListener("pointerdown", function (ev) {
+    var r = canvas.getBoundingClientRect(), px = ev.clientX - r.left, py = ev.clientY - r.top; ev.preventDefault();
+    S.p0 = [Math.round((XMIN + px / W * (XMAX - XMIN)) * 100) / 100, Math.round((YMIN + (H - py) / H * (YMAX - YMIN)) * 100) / 100];
+    startRun();
+  });
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(function () { mapCache = null; draw(); }, 120); });
+  startRun();
+})();
+</script>
+</body>
+</html>

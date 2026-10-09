@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hall's marriage theorem · Infinity Club</title>
+<meta name="description" content="When can every job be filled by a different qualified person? Exactly when every k jobs have at least k qualified people between them. Hall's condition, a failing example, the easy direction proved and the hard one stated.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Around the corner · 23</div>
+  <h1>Hall's marriage theorem</h1>
+  <p class="teaser">When can every job be filled by a qualified person? Exactly when every k jobs have at least k qualified people between them.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Four jobs, four people, and a list of who is qualified for what. Can every job be filled by a different qualified person? Draw jobs on the left, people on the right, and an edge for each qualification: a <b>bipartite graph</b>. A <b>perfect matching</b> picks one edge per job with no person used twice.</p>
+<p>Here is an obstacle. Take any set \(S\) of jobs and let \(N(S)\) be the people qualified for at least one of them, the <b>neighbourhood</b> of \(S\). If \(N(S)\) is smaller than \(S\), you are stuck: those jobs need \(|S|\) different people (the bars mean "the number of elements of") and there are not enough. So a matching requires</p>
+<p class="callout"><b>Hall's condition.</b> For every set \(S\) of jobs, \(|N(S)| \ge |S|\).</p>
+<p><b>Hall's theorem</b> (1935): the condition is also <em>enough</em>. If every \(k\) jobs have at least \(k\) qualified people between them, a perfect matching exists.</p>
+<p>The easy direction is the obstacle, made precise: a matching pairs the jobs in \(S\) with \(|S|\) distinct qualified people, so \(|N(S)| \ge |S|\). The hard direction, that the condition forces a matching into existence, goes by induction on the number of jobs; we state it and use it. Checking all \(2^n\) sets is slow, but fast algorithms either build the matching or hand back a failing \(S\).</p>
+<figure><svg viewBox="0 0 240 190" width="240" height="190" role="img" aria-label="Bipartite graph: jobs 1 to 4 on the left, people A to D on the right. Jobs 1, 2 and 3 connect only to A and B, which are highlighted; job 4 connects to C and D; a dashed edge from job 3 to C shows the fix" font-family="Nunito, sans-serif" font-size="13">
+<g stroke="#3f44c9" stroke-width="1.5">
+<line x1="60" y1="30" x2="180" y2="30"/><line x1="60" y1="30" x2="180" y2="72"/>
+<line x1="60" y1="72" x2="180" y2="30"/><line x1="60" y1="72" x2="180" y2="72"/>
+<line x1="60" y1="114" x2="180" y2="30"/><line x1="60" y1="114" x2="180" y2="72"/>
+<line x1="60" y1="156" x2="180" y2="114"/><line x1="60" y1="156" x2="180" y2="156"/>
+</g>
+<line x1="60" y1="114" x2="180" y2="114" stroke="#f5a524" stroke-width="1.5" stroke-dasharray="5 3"/>
+<g stroke="#000" stroke-width="1.2">
+<circle cx="60" cy="30" r="8" fill="#fde8c4"/><circle cx="60" cy="72" r="8" fill="#fde8c4"/><circle cx="60" cy="114" r="8" fill="#fde8c4"/><circle cx="60" cy="156" r="8" fill="#dcdcf5"/>
+<circle cx="180" cy="30" r="8" fill="#fde8c4"/><circle cx="180" cy="72" r="8" fill="#fde8c4"/><circle cx="180" cy="114" r="8" fill="#dcdcf5"/><circle cx="180" cy="156" r="8" fill="#dcdcf5"/>
+</g>
+<g text-anchor="middle">
+<text x="60" y="34.5">1</text><text x="60" y="76.5">2</text><text x="60" y="118.5">3</text><text x="60" y="160.5">4</text>
+<text x="180" y="34.5">A</text><text x="180" y="76.5">B</text><text x="180" y="118.5">C</text><text x="180" y="160.5">D</text>
+</g>
+<text x="60" y="184" text-anchor="middle" fill="#555" font-size="12">jobs</text><text x="180" y="184" text-anchor="middle" fill="#555" font-size="12">people</text>
+<text x="34" y="76" text-anchor="end" fill="#f5a524" font-size="12">S</text>
+<text x="206" y="55" fill="#f5a524" font-size="12">N(S)</text>
+</svg><figcaption>Three jobs, two qualified people between them: \(|N(S)| = 2 \lt 3 = |S|\). The dashed edge repairs it.</figcaption></figure>
+</section>
+
+<section class="example">
+<h2>Watch one: four jobs</h2>
+<p>Job 1: A or B. Job 2: A or B. Job 3: A or B. Job 4: C or D. Every job has two candidates, which looks healthy. But \(S = \{1, 2, 3\}\) has \(N(S) = \{A, B\}\): three jobs, two people. Hall's condition fails and no cleverness helps. Now certify C for job 3, the dashed edge. Checking all 15 non-empty sets is tedious. Instead, exhibit the matching 1–A, 2–B, 3–C, 4–D: it is itself the proof that every set now passes, because the easy direction says a matching implies the condition.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Three jobs: job 1 can go to A only, job 2 to A or B, job 3 to B only. Find a perfect matching or a failing set \(S\). Check the sets of size 2 as well.<div class="space short"></div></li>
+<li>Four jobs and four people. Every job has exactly two qualified people and every person is qualified for exactly two jobs. Show that a perfect matching always exists. Hint: count edges out of any \(k\) jobs.<div class="space"></div></li>
+<li>Five jobs. Job 1: A, C. Job 2: B, D. Job 3: A, C. Job 4: A, C. Job 5: A, B, C, D, E. Find a failing set. Then add one qualification that repairs it and write down a perfect matching.<div class="space"></div></li>
+<li>A standard 52-card deck is dealt into 13 piles of 4 cards, any way at all. Prove that you can pick one card from each pile so that the 13 chosen cards have all 13 ranks (ace, 2, …, king).<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: finishing a Latin rectangle</h2>
+<p>An \(r \times n\) array with \(r \lt n\) is filled from the symbols \(1, \dots, n\) with no symbol repeated in any row or column. Show that a new row can always be added keeping the rule. Hint: jobs are columns, people are symbols, and a column is "qualified" for the symbols it lacks.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Each single job passes and so does each pair: \(N(\{1,2\}) = N(\{1,3\}) = N(\{2,3\}) = \{A, B\}\), two people for two jobs. The whole set fails: \(N(\{1,2,3\}) = \{A, B\}\). No matching. The obstruction only shows at size 3, which is why every size must be checked.</li>
+<li>Take any \(k\) jobs. Between them they have \(2k\) edges. Each person is on at most 2 edges, so the edges reach at least \(2k / 2 = k\) people: \(|N(S)| \ge |S|\) for every \(S\). By Hall's theorem a perfect matching exists. The same argument works whenever every job and every person has the same number of edges.</li>
+<li>\(S = \{1, 3, 4\}\) has \(N(S) = \{A, C\}\): three jobs, two people. Add E to job 4. Then 1–A, 2–B, 3–C, 4–E, 5–D is a perfect matching, so every set passes. (Adding B or D to job 4 also works; the matching you write down is the check.)</li>
+<li>Jobs are the piles, people are the ranks, and a pile is qualified for a rank if it holds a card of that rank. Any \(k\) piles contain \(4k\) cards. Each rank is on exactly 4 cards in the deck, so \(4k\) cards carry at least \(4k / 4 = k\) different ranks. Hall's condition holds, and the matching tells you which card to take from each pile. The same proof works for 4 piles of 13 and the four suits.</li>
+</ol>
+<p><b>Stretch.</b> A column holds \(r\) distinct symbols, so it lacks \(n - r\). Each symbol appears once in every row, hence in exactly \(r\) columns, and is missing from exactly \(n - r\) columns. Any \(k\) columns have \(k(n - r)\) "lacks" edges, and each symbol absorbs at most \(n - r\) of them, so at least \(k\) symbols are reached. Hall gives each column a different symbol it lacks: that is the new row. Repeating, every Latin rectangle completes to a Latin square.</p>
+</section>
+
+<div class="sheet-nav"><a href="b22-halting.html">← Previous</a><a href="b24-derangements.html">Next: Derangements and 1/e →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

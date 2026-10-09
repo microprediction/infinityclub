@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Poisson distribution · Infinity Club</title>
+<meta name="description" content="Rare events with many chances: the binomial becomes the Poisson distribution when n grows and p shrinks. The limit derived, mean equals variance, and the horse-kick data that made it famous.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+<style>
+table.tt { border-collapse: collapse; margin: .6em auto; }
+table.tt th, table.tt td { border: 1px solid var(--rule); padding: .25em .7em; text-align: center; }
+table.tt th { background: var(--accent-soft); }
+@media print { table.tt th { background: #eee; -webkit-print-color-adjust: exact; print-color-adjust: exact; } table.tt th, table.tt td { border-color: #000; } }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Around the corner · 13</div>
+  <h1>The Poisson distribution</h1>
+  <p class="teaser">Rare events, many chances: the binomial collapses to one formula with one parameter. Horse kicks, typos, and why the mean equals the variance.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Misprints on a page, calls to a switchboard in a minute, atoms decaying in a second. Each is a <a href="a15-binomial-distribution.html">binomial</a> count: \(n\) chances, each with a small probability \(p\), and a mean \(\lambda = np\) (lambda) of ordinary size. Fix \(\lambda\), let \(n\) grow, so \(p = \lambda/n\) shrinks. The chance of exactly \(k\) events is</p>
+<p>\[\binom{n}{k}\Big(\frac{\lambda}{n}\Big)^{k}\Big(1-\frac{\lambda}{n}\Big)^{n-k} = \underbrace{\frac{n(n-1)\cdots(n-k+1)}{n^k}}_{\to\,1}\cdot\frac{\lambda^k}{k!}\cdot\underbrace{\Big(1-\frac{\lambda}{n}\Big)^{n}}_{\to\,e^{-\lambda}}\cdot\underbrace{\Big(1-\frac{\lambda}{n}\Big)^{-k}}_{\to\,1}.\]</p>
+<p>Keep \(k\) fixed and send \(n \to \infty\). The first factor is \(k\) fractions each tending to 1; so does the last. The middle one is the compound-interest limit from the <a href="../../grade-10/sheets/b9-e.html">\(e\) sheet</a>, with \(-\lambda\) for 1. What survives is</p>
+<p class="callout">\(P(k) = \dfrac{e^{-\lambda}\lambda^k}{k!}, \qquad k = 0, 1, 2, \ldots\)</p>
+<p>the <b>Poisson distribution</b>. Two parameters have become one: only the product \(np\) matters, so you never need to know how many "trials" a page of print contains.</p>
+<p>The mean is \(np = \lambda\). The binomial variance \(np(1-p) = \lambda(1 - \lambda/n)\) tends to \(\lambda\) too. So <b>mean = variance</b>: a quick test of whether a count is Poisson.</p>
+<figure><svg viewBox="0 0 360 150" width="280" height="117" role="img" aria-label="Bars for the binomial distribution with n = 10 and p = 0.2, and orange dots for the Poisson distribution with lambda = 2, at k = 0 to 7. The dots sit close to the tops of the bars." font-family="Nunito, sans-serif" font-size="12">
+<line x1="40" y1="118" x2="330" y2="118" stroke="#999" stroke-width="1"/>
+<line x1="40" y1="118" x2="40" y2="18" stroke="#999" stroke-width="1"/>
+<line x1="37" y1="86.8" x2="40" y2="86.8" stroke="#999"/><text x="34" y="90.8" text-anchor="end" fill="#555" font-size="11">0.1</text>
+<line x1="37" y1="55.5" x2="40" y2="55.5" stroke="#999"/><text x="34" y="59.5" text-anchor="end" fill="#555" font-size="11">0.2</text>
+<line x1="37" y1="24.2" x2="40" y2="24.2" stroke="#999"/><text x="34" y="28.2" text-anchor="end" fill="#555" font-size="11">0.3</text>
+<rect x="47.1" y="84.4" width="22" height="33.6" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.2"/>
+<text x="58.1" y="132" text-anchor="middle" fill="#555">0</text>
+<rect x="83.4" y="34.1" width="22" height="83.9" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.2"/>
+<text x="94.4" y="132" text-anchor="middle" fill="#555">1</text>
+<rect x="119.6" y="23.6" width="22" height="94.4" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.2"/>
+<text x="130.6" y="132" text-anchor="middle" fill="#555">2</text>
+<rect x="155.9" y="55.1" width="22" height="62.9" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.2"/>
+<text x="166.9" y="132" text-anchor="middle" fill="#555">3</text>
+<rect x="192.1" y="90.5" width="22" height="27.5" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.2"/>
+<text x="203.1" y="132" text-anchor="middle" fill="#555">4</text>
+<rect x="228.4" y="109.7" width="22" height="8.3" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.2"/>
+<text x="239.4" y="132" text-anchor="middle" fill="#555">5</text>
+<rect x="264.6" y="116.3" width="22" height="1.7" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.2"/>
+<text x="275.6" y="132" text-anchor="middle" fill="#555">6</text>
+<rect x="300.9" y="117.8" width="22" height="0.2" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.2"/>
+<text x="311.9" y="132" text-anchor="middle" fill="#555">7</text>
+<circle cx="58.1" cy="75.7" r="3.5" fill="#f5a524" stroke="#000" stroke-width="0.8"/>
+<circle cx="94.4" cy="33.4" r="3.5" fill="#f5a524" stroke="#000" stroke-width="0.8"/>
+<circle cx="130.6" cy="33.4" r="3.5" fill="#f5a524" stroke="#000" stroke-width="0.8"/>
+<circle cx="166.9" cy="61.6" r="3.5" fill="#f5a524" stroke="#000" stroke-width="0.8"/>
+<circle cx="203.1" cy="89.8" r="3.5" fill="#f5a524" stroke="#000" stroke-width="0.8"/>
+<circle cx="239.4" cy="106.7" r="3.5" fill="#f5a524" stroke="#000" stroke-width="0.8"/>
+<circle cx="275.6" cy="114.2" r="3.5" fill="#f5a524" stroke="#000" stroke-width="0.8"/>
+<circle cx="311.9" cy="116.9" r="3.5" fill="#f5a524" stroke="#000" stroke-width="0.8"/>
+<text x="330" y="132" text-anchor="end" fill="#555">k</text>
+<rect x="200" y="22" width="12" height="10" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.2"/><text x="217" y="31" fill="#3f44c9" font-size="11">binomial, n = 10, p = 0.2</text>
+<circle cx="206" cy="46" r="3.5" fill="#f5a524" stroke="#000" stroke-width="0.8"/><text x="217" y="50" fill="#b86e00">Poisson, λ = 2</text>
+</svg><figcaption>Binomial \(n = 10\), \(p = 0.2\) (bars) against Poisson \(\lambda = 2\) (dots): already close.</figcaption></figure>
+</section>
+
+<section class="example">
+<h2>Watch one: horse kicks</h2>
+<p>The classic data set is a count of Prussian cavalrymen killed by horse kicks, published by Ladislaus Bortkiewicz in 1898: 200 corps-years, 122 deaths, so \(\lambda = 0.61\) per corps per year. Poisson predicts \(200\, e^{-0.61}\, 0.61^k/k!\) corps-years with \(k\) deaths:</p>
+<table class="tt">
+<tr><th>deaths \(k\)</th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+<tr><th>observed</th><td>109</td><td>65</td><td>22</td><td>3</td><td>1</td></tr>
+<tr><th>Poisson</th><td>108.7</td><td>66.3</td><td>20.2</td><td>4.1</td><td>0.6</td></tr>
+</table>
+<p>Thousands of soldiers at tiny risk, no record of how many: only \(\lambda\) matters.</p>
+<p class="small">Slide \(n\) up with \(np\) fixed and watch the binomial bars settle onto the Poisson curve: <a href="../../demos/poisson.html">infinityclub.net/demos/poisson.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>For \(\lambda = 2\), find \(P(0)\), \(P(1)\), \(P(2)\) and \(P(3 \text{ or more})\) to three decimal places. Why are \(P(1)\) and \(P(2)\) equal?<div class="space short"></div></li>
+<li>A typesetter averages 0.5 misprints per page. (a) What is the probability a page has at least one? (b) In a 300-page book, how many clean pages do you expect? (c) What fraction of pages have two or more?<div class="space short"></div></li>
+<li>Prove mean = variance from the formula, not from the binomial. (a) Show \(\sum_{k \ge 0} k\,P(k) = \lambda\) by cancelling \(k\) into \(k!\) and taking out a factor \(\lambda\). (b) In the same way show \(\sum k(k-1)P(k) = \lambda^2\). (c) Deduce the variance, \(E[X^2] - \lambda^2\), is \(\lambda\).<div class="space short"></div></li>
+<li>A baker stirs raisins into dough for 100 cookies; each raisin lands in a cookie at random. (a) What are \(n\), \(p\) and \(\lambda\) for the number of raisins in one cookie? (b) How many raisins are needed so that at most one cookie in a hundred has none? (c) With that many, what fraction of cookies have exactly one raisin?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the birthday problem, Poisson style</h2>
+<p>Among 23 people there are \(\binom{23}{2} = 253\) pairs, each sharing a birthday with probability \(1/365\). Treat the number of matching pairs as Poisson. What is \(\lambda\)? Estimate the chance of no shared birthday, and compare with the exact \(0.4927\) from <a href="../../grade-8/sheets/b9-birthday.html">the grade 8 birthday sheet</a>. Why does \(\ln 2\) appear?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(e^{-2} = 0.135\); \(2e^{-2} = 0.271\); \(2e^{-2} = 0.271\); \(1 - 5e^{-2} = 0.323\). \(P(2) = P(1) \cdot \lambda/2\), and \(\lambda/2 = 1\).</li>
+<li>(a) \(1 - e^{-0.5} = 0.393\). (b) \(300\,e^{-0.5} = 182\) clean pages. (c) \(1 - e^{-0.5}(1 + 0.5) = 0.090\), about one page in eleven.</li>
+<li>(a) \(\sum_{k\ge1} \dfrac{e^{-\lambda}\lambda^k}{(k-1)!} = \lambda e^{-\lambda}\sum_{j \ge 0}\dfrac{\lambda^j}{j!} = \lambda e^{-\lambda}e^{\lambda} = \lambda\). (b) The \(k = 0, 1\) terms vanish; cancel \(k(k-1)\) into \(k!\) and take out \(\lambda^2\): \(\lambda^2 e^{-\lambda}e^{\lambda} = \lambda^2\). (c) \(E[X^2] = E[X(X-1)] + E[X] = \lambda^2 + \lambda\), so the variance is \(\lambda^2 + \lambda - \lambda^2 = \lambda\).</li>
+<li>(a) \(n\) = number of raisins, \(p = 1/100\), \(\lambda = n/100\). (b) Need \(e^{-\lambda} \le 0.01\), so \(\lambda \ge \ln 100 = 4.605\): about 461 raisins. (c) \(\lambda e^{-\lambda} = 4.605 \times 0.01 = 0.046\), under 5%. Most cookies get 3 to 6.</li>
+</ol>
+<p><b>Stretch.</b> \(\lambda = 253/365 = 0.6932\), so \(P(\text{no match}) \approx e^{-0.6932} = 0.500\). The exact answer is 0.4927; the approximation is slightly off because the pairs are not quite independent (if A matches B and B matches C, then A matches C). The number of pairs that makes the chance one half is the one with \(\lambda = \ln 2 = 0.6931\), that is \(365 \ln 2 = 253\) pairs, and 23 people give exactly 253. That is why 23 is the famous answer.</p>
+</section>
+
+<div class="sheet-nav"><a href="b12-coupon-collector.html">← Previous</a><a href="b14-secretary.html">Next: When to stop looking →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

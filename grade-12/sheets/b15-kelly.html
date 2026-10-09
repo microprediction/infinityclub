@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How much to bet · Infinity Club</title>
+<meta name="description" content="A favourable coin, repeated. Why the logarithm of wealth is the thing to maximise, the growth rate g(f) = p ln(1 + f) + (1 − p) ln(1 − f), and the Kelly fraction f = 2p − 1.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Around the corner · 15</div>
+  <h1>How much to bet</h1>
+  <p class="teaser">A favourable coin, repeated. Bet too much and you go broke; bet the Kelly fraction and your wealth grows fastest. The logarithm decides.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A coin lands heads with probability \(p > \tfrac12\) and pays even money: stake something, get it back doubled on heads, lose it on tails. What fraction \(f\) of your wealth should you stake each time?</p>
+<p>Staking everything is fatal: one tail and you are out, and tails come. Staking nothing earns nothing. In between, after \(H\) heads and \(T\) tails your wealth is \(W_0(1+f)^H(1-f)^T\). Wealth multiplies, so take logs and it adds:</p>
+<p>\[\ln\frac{W_N}{W_0} = H\ln(1+f) + T\ln(1-f).\]</p>
+<p>Over many rounds \(H/N \to p\) and \(T/N \to 1-p\), so the log of your wealth grows at a steady rate per round,</p>
+<p class="callout">\(g(f) = p\ln(1+f) + (1-p)\ln(1-f).\)</p>
+<p>That is the thing to maximise. Differentiate and set to zero:</p>
+<p>\[g'(f) = \frac{p}{1+f} - \frac{1-p}{1-f} = 0 \iff p(1-f) = (1-p)(1+f) \iff f = 2p - 1.\]</p>
+<p>\(g''(f) = -\dfrac{p}{(1+f)^2} - \dfrac{1-p}{(1-f)^2} \lt 0\), so this is the maximum. \(f^* = 2p-1\) is the <b>Kelly fraction</b>: your edge, \(p - (1-p)\). For \(p = 0.6\), stake 20%. Stake more and \(g\) falls; past a point it turns negative, and a gambler with a real edge goes broke.</p>
+<figure><svg viewBox="0 0 360 160" width="320" height="142" role="img" aria-label="The growth rate g(f) for p = 0.6 plotted against the bet fraction f from 0 to 0.45. It rises from 0 to a maximum of about 0.020 at f = 0.2, marked in orange, falls back through zero near f = 0.39 and turns negative." font-family="Nunito, sans-serif" font-size="12">
+<line x1="40" y1="81.7" x2="330" y2="81.7" stroke="#999" stroke-width="1"/>
+<line x1="40" y1="135" x2="40" y2="15" stroke="#999" stroke-width="1"/>
+<polyline points="40.0,81.7 41.6,80.3 43.2,79.0 44.8,77.7 46.4,76.5 48.1,75.2 49.7,74.0 51.3,72.7 52.9,71.5 54.5,70.3 56.1,69.2 57.7,68.0 59.3,66.9 60.9,65.7 62.6,64.6 64.2,63.5 65.8,62.5 67.4,61.4 69.0,60.4 70.6,59.3 72.2,58.3 73.8,57.3 75.4,56.3 77.1,55.4 78.7,54.4 80.3,53.5 81.9,52.6 83.5,51.7 85.1,50.8 86.7,50.0 88.3,49.1 89.9,48.3 91.6,47.5 93.2,46.7 94.8,45.9 96.4,45.1 98.0,44.4 99.6,43.6 101.2,42.9 102.8,42.2 104.4,41.6 106.1,40.9 107.7,40.2 109.3,39.6 110.9,39.0 112.5,38.4 114.1,37.8 115.7,37.2 117.3,36.7 118.9,36.2 120.6,35.6 122.2,35.1 123.8,34.7 125.4,34.2 127.0,33.7 128.6,33.3 130.2,32.9 131.8,32.5 133.4,32.1 135.1,31.8 136.7,31.4 138.3,31.1 139.9,30.8 141.5,30.5 143.1,30.2 144.7,29.9 146.3,29.7 147.9,29.4 149.6,29.2 151.2,29.0 152.8,28.8 154.4,28.7 156.0,28.5 157.6,28.4 159.2,28.3 160.8,28.2 162.4,28.1 164.1,28.0 165.7,28.0 167.3,28.0 168.9,28.0 170.5,28.0 172.1,28.0 173.7,28.1 175.3,28.1 176.9,28.2 178.6,28.3 180.2,28.4 181.8,28.5 183.4,28.7 185.0,28.8 186.6,29.0 188.2,29.2 189.8,29.5 191.4,29.7 193.1,29.9 194.7,30.2 196.3,30.5 197.9,30.8 199.5,31.2 201.1,31.5 202.7,31.9 204.3,32.2 205.9,32.6 207.6,33.1 209.2,33.5 210.8,34.0 212.4,34.4 214.0,34.9 215.6,35.4 217.2,36.0 218.8,36.5 220.4,37.1 222.1,37.7 223.7,38.3 225.3,38.9 226.9,39.6 228.5,40.2 230.1,40.9 231.7,41.6 233.3,42.3 234.9,43.1 236.6,43.8 238.2,44.6 239.8,45.4 241.4,46.2 243.0,47.1 244.6,47.9 246.2,48.8 247.8,49.7 249.4,50.7 251.1,51.6 252.7,52.6 254.3,53.5 255.9,54.5 257.5,55.6 259.1,56.6 260.7,57.7 262.3,58.8 263.9,59.9 265.6,61.0 267.2,62.2 268.8,63.3 270.4,64.5 272.0,65.7 273.6,67.0 275.2,68.2 276.8,69.5 278.4,70.8 280.1,72.1 281.7,73.5 283.3,74.8 284.9,76.2 286.5,77.7 288.1,79.1 289.7,80.5 291.3,82.0 292.9,83.5 294.6,85.1 296.2,86.6 297.8,88.2 299.4,89.8 301.0,91.4 302.6,93.1 304.2,94.7 305.8,96.4 307.4,98.1 309.1,99.9 310.7,101.7 312.3,103.5 313.9,105.3 315.5,107.1 317.1,109.0 318.7,110.9 320.3,112.8 321.9,114.7 323.6,116.7 325.2,118.7 326.8,120.7 328.4,122.8 330.0,124.9" fill="none" stroke="#3f44c9" stroke-width="2"/>
+<line x1="168.9" y1="81.7" x2="168.9" y2="28.0" stroke="#f5a524" stroke-dasharray="3 3"/>
+<circle cx="168.9" cy="28.0" r="3.5" fill="#f5a524" stroke="#000" stroke-width="0.8"/>
+<circle cx="290.9" cy="81.7" r="3" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="104.4" y="95.7" text-anchor="middle" fill="#555">0.1</text>
+<text x="168.9" y="95.7" text-anchor="middle" fill="#b86e00">0.2</text>
+<text x="233.3" y="95.7" text-anchor="middle" fill="#555">0.3</text>
+<text x="297.8" y="95.7" text-anchor="middle" fill="#555">0.4</text>
+<text x="330" y="95.7" text-anchor="end" fill="#555">f</text>
+<line x1="37" y1="28.3" x2="40" y2="28.3" stroke="#999"/><text x="34" y="32.3" text-anchor="end" fill="#555" font-size="11">0.02</text>
+<line x1="37" y1="81.7" x2="40" y2="81.7" stroke="#999"/><text x="34" y="85.7" text-anchor="end" fill="#555" font-size="11">0</text>
+<line x1="37" y1="135.0" x2="40" y2="135.0" stroke="#999"/><text x="34" y="139.0" text-anchor="end" fill="#555" font-size="11">−0.02</text>
+<text x="168.9" y="20.0" text-anchor="middle" fill="#b86e00">Kelly: f = 2p − 1 = 0.2</text>
+<text x="282.9" y="109.7" text-anchor="end" fill="#3f44c9" font-size="11">g = 0 near f = 0.39</text>
+<text x="46" y="125" fill="#3f44c9">g(f), p = 0.6</text>
+</svg><figcaption>The growth rate for \(p = 0.6\). Maximum at \(f = 0.2\); negative beyond about \(0.39\).</figcaption></figure>
+</section>
+
+<section class="example">
+<h2>Watch one: \(p = 0.6\), one hundred rounds</h2>
+<p>Expect 60 heads and 40 tails. Multiply the factors. \(f = 0.2\): \(1.2^{60}\times 0.8^{40} = 7.5\). \(f = 0.1\): \(1.1^{60}\times 0.9^{40} = 4.5\). \(f = 0.5\): \(1.5^{60}\times 0.5^{40} = 0.033\).</p>
+<p>Kelly turns 1 into 7.5; half Kelly manages 4.5; betting half your stack each time, with a 60% coin, loses 97% of it. The rate \(g(0.2) = 0.6\ln 1.2 + 0.4\ln 0.8 = 0.0201\) per round, and \(e^{100 \times 0.0201} = 7.5\): the formula and the brute-force product agree.</p>
+<p class="small">Twenty gamblers, a thousand rounds, and a slider for \(f\): <a href="../../demos/kelly.html">infinityclub.net/demos/kelly.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>\(p = 0.55\). Find the Kelly fraction and \(g\) at it, to four decimal places. Then compute \(g(0.2)\), double Kelly, and say what happens to that gambler in the long run.<div class="space short"></div></li>
+<li>For \(p = 0.6\) compute \(g(0.1)\), \(g(0.3)\) and \(g(0.4)\). Between which two of \(0.3\), \(0.4\), \(0.5\) does the growth rate cross zero? What do you notice about \(g(0.1)\) and \(g(0.3)\)?<div class="space short"></div></li>
+<li>Now the bet pays odds \(b\): win \(b\) per unit staked, or lose the stake. Write down \(g(f)\), show the best fraction is \(f^* = p - \dfrac{1-p}{b}\), check it gives \(2p-1\) when \(b = 1\), and evaluate it for a fair coin paying 3 to 1.<div class="space short"></div></li>
+<li>Expected wealth after one round is \(W_0\big(p(1+f) + (1-p)(1-f)\big)\). (a) Simplify, and show it is largest at \(f = 1\). (b) For \(p = 0.6\) and \(N = 10\) rounds at \(f = 1\), find the expected wealth factor and the probability of not being broke. (c) Reconcile (b) with \(g(1) = -\infty\): what is the mean measuring that a typical gambler never sees?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: half Kelly</h2>
+<p>Use \(\ln(1+u) \approx u - u^2/2\) to show \(g(f) \approx (2p-1)f - f^2/2\). Find the maximum value, then show that betting half the Kelly fraction keeps three quarters of the growth rate. Check against the exact \(g(0.1)/g(0.2)\) for \(p = 0.6\).</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(f^* = 0.1\); \(g(0.1) = 0.55\ln 1.1 + 0.45\ln 0.9 = 0.0050\) per round. \(g(0.2) = -0.0001\): slightly negative, so the double-Kelly gambler drifts to ruin despite the edge. For a small edge, double Kelly is roughly break-even.</li>
+<li>\(g(0.1) = 0.0150\), \(g(0.3) = 0.0147\), \(g(0.4) = -0.0024\). Zero lies between \(0.3\) and \(0.4\) (at \(f \approx 0.39\)). \(g(0.1)\) and \(g(0.3)\) are nearly equal: the curve is close to symmetric about \(0.2\), a parabola near its top.</li>
+<li>\(g(f) = p\ln(1+bf) + (1-p)\ln(1-f)\). \(g' = \dfrac{bp}{1+bf} - \dfrac{1-p}{1-f} = 0\) gives \(bp(1-f) = (1-p)(1+bf)\), so \(f(bp + b(1-p)) = bp - (1-p)\) and \(f^* = p - \dfrac{1-p}{b}\). With \(b = 1\): \(2p - 1\). Fair coin, \(b = 3\): \(f^* = \tfrac12 - \tfrac{1}{6} = \tfrac13\).</li>
+<li>(a) \(W_0\big(1 + (2p-1)f\big)\), increasing in \(f\) when \(p > \tfrac12\), so largest at \(f = 1\). (b) \(1.2^{10} = 6.19\); survive with probability \(0.6^{10} = 0.006\). (c) The mean is 6.19 because one path in 165 reaches \(2^{10} = 1024\) and the rest are at zero. The mean is pulled up by a path almost nobody is on. \(g\) measures the growth of the typical path, which is what one gambler, playing once through, experiences.</li>
+</ol>
+<p><b>Stretch.</b> \(g(f) \approx p\big(f - \tfrac{f^2}{2}\big) + (1-p)\big(-f - \tfrac{f^2}{2}\big) = (2p-1)f - \tfrac{f^2}{2}\). Maximum at \(f^* = 2p-1\), value \(\tfrac{(2p-1)^2}{2}\). At \(f^*/2\): \(\tfrac{(2p-1)^2}{2} - \tfrac{(2p-1)^2}{8} = \tfrac34 \cdot \tfrac{(2p-1)^2}{2}\). Half the stake, three quarters of the growth, and far smaller swings. Exact, \(p = 0.6\): \(0.0150/0.0201 = 0.747\).</p>
+</section>
+
+<div class="sheet-nav"><a href="b14-secretary.html">← Previous</a><a href="b16-fourier-coefficients.html">Next: Fourier coefficients by integration →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

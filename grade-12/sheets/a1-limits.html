@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What a limit is · Infinity Club</title>
+<meta name="description" content="sin x over x tends to 1, proved by squeezing a sector between two triangles. Limits are about what happens nearby, never at the point, which is why 0/0 is not an answer.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Sharpen · 1</div>
+  <h1>What a limit is</h1>
+  <p class="teaser">sin x / x → 1, by squeezing it between two areas. Limits are about what happens nearby, never at the point, and that is why 0/0 is not an answer.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Put \(x = 0\) into \(\dfrac{\sin x}{x}\) and you get \(\dfrac{0}{0}\), which means nothing. But \(x = 0.1\) gives 0.99833 and \(x = 0.01\) gives 0.99998. No value at 0, yet a clear target. We write \(\lim_{x \to 0} \dfrac{\sin x}{x} = 1\) (read: the limit as \(x\) tends to 0). A limit asks where the outputs settle as the inputs crowd in, and never looks at the point itself.</p>
+<p>Why 1? Take an angle \(x\) in radians, \(0 \lt x \lt \pi/2\), in a unit circle:</p>
+<figure><svg viewBox="0 0 260 200" width="234" height="180" role="img" aria-label="A sector of a unit circle with angle x, squeezed between a small triangle inside it and a larger right triangle outside it" font-family="Nunito, sans-serif" font-size="13">
+<polygon points="20,185 170,185 170,35" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/>
+<path d="M20,185 L170,185 A150,150 0 0,0 126.1,78.9 Z" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<polygon points="20,185 170,185 126.1,78.9" fill="none" stroke="#3f44c9" stroke-width="1.5"/>
+<line x1="126.1" y1="78.9" x2="126.1" y2="185" stroke="#999" stroke-width="1" stroke-dasharray="4 3"/>
+<circle cx="20" cy="185" r="2.5"/><circle cx="170" cy="185" r="2.5"/><circle cx="126.1" cy="78.9" r="2.5"/><circle cx="170" cy="35" r="2.5"/>
+<text x="12" y="197">O</text><text x="174" y="197">A</text><text x="114" y="72">P</text><text x="176" y="38">T</text>
+<text x="53" y="176" fill="#3f44c9">x</text>
+<text x="95" y="198" text-anchor="middle" fill="#555">1</text>
+<text x="122" y="140" text-anchor="end" fill="#555" font-size="12">sin x</text>
+<text x="176" y="115" fill="#f5a524" font-size="12">tan x</text>
+</svg><figcaption>Triangle \(OAP\) inside the sector \(OAP\) inside triangle \(OAT\). Areas \(\tfrac12 \sin x \le \tfrac12 x \le \tfrac12 \tan x\).</figcaption></figure>
+<p>Triangle \(OAP\) has base 1 and height \(\sin x\); triangle \(OAT\) has height \(\tan x\). The sector is the fraction \(x/2\pi\) of a circle of area \(\pi\), so its area is \(x/2\). Multiply the caption's inequality by \(2/\sin x\) and flip:</p>
+<p class="callout">\(\cos x \;\le\; \dfrac{\sin x}{x} \;\le\; 1\) for \(0 \lt x \lt \pi/2\), and also for negative \(x\), since both sides are even.</p>
+<p>As \(x \to 0\), \(\cos x \to 1\). Pinned between two things that both go to 1, \(\sin x / x\) has no choice. That is the <b>squeeze</b>.</p>
+<p>The \(0/0\) was a warning, not an answer: \(\dfrac{x^2}{x}\) and \(\dfrac{x}{x^2}\) also give \(0/0\) at zero, with limits 0 and nothing at all. Look at how the top and bottom shrink, by simplifying or by squeezing.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: \(\displaystyle\lim_{x \to 0} \frac{\sin 5x}{\sin 2x}\)</h2>
+<p>Again \(0/0\). Build the limit we know out of the pieces we have. Make each piece look like \(\sin(\text{thing})/\text{thing}\):</p>
+<p>\[\frac{\sin 5x}{\sin 2x} = \frac{5}{2} \cdot \frac{\sin 5x}{5x} \cdot \frac{2x}{\sin 2x} \;\to\; \frac52 \cdot 1 \cdot 1 = \frac52.\]</p>
+<p>As \(x \to 0\), so do \(5x\) and \(2x\), so both fractions tend to 1. The limit is also a derivative in disguise: \(\dfrac{\sin x}{x} = \dfrac{\sin x - \sin 0}{x - 0}\) is a secant slope, so \(\sin x / x \to 1\) says the slope of \(\sin x\) at 0 is exactly 1. Sheet 4 uses that.</p>
+<p class="small">Watch a secant slope settle onto a tangent slope as \(h \to 0\): <a href="../../demos/tangent.html">infinityclub.net/demos/tangent.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Simplify first, then take the limit: (a) \(\lim_{x \to 2} \frac{x^2 - 4}{x - 2}\); (b) \(\lim_{h \to 0} \frac{(3 + h)^2 - 9}{h}\). What is (b) the slope of?<div class="space short"></div></li>
+<li>Use \(\sin x / x \to 1\) to find (a) \(\lim_{x \to 0} \frac{\sin 3x}{x}\) and (b) \(\lim_{x \to 0} \frac{\tan x}{x}\). For (b), write \(\tan x\) as \(\sin x / \cos x\).<div class="space short"></div></li>
+<li>Find \(\lim_{x \to 0} \frac{1 - \cos x}{x^2}\). Multiply top and bottom by \(1 + \cos x\), then use \(\sin^2 x + \cos^2 x = 1\). Deduce the value of \(\lim_{x \to 0} \frac{1 - \cos x}{x}\).<div class="space short"></div></li>
+<li>(a) Explain why \(\lim_{x \to 0} \sin(1/x)\) does not exist. Consider \(x = 1/(2\pi n)\) and \(x = 1/(2\pi n + \pi/2)\) for large \(n\). (b) Show that \(\lim_{x \to 0} x \sin(1/x)\) does exist, by squeezing it between two things you can see.<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the polygon that becomes a circle</h2>
+<p>A regular \(n\)-gon is drawn inside a unit circle. Cut it into \(n\) triangles from the centre and show its area is \(\dfrac{n}{2}\sin\dfrac{2\pi}{n}\). Then use tonight's limit to find what the area tends to as \(n \to \infty\). Is that a new proof that the circle's area is \(\pi\)?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(\dfrac{(x-2)(x+2)}{x-2} = x + 2 \to 4\). (b) \(\dfrac{6h + h^2}{h} = 6 + h \to 6\), the slope of \(y = x^2\) at \(x = 3\).</li>
+<li>(a) \(\dfrac{\sin 3x}{x} = 3 \cdot \dfrac{\sin 3x}{3x} \to 3\). (b) \(\dfrac{\tan x}{x} = \dfrac{\sin x}{x} \cdot \dfrac{1}{\cos x} \to 1 \cdot 1 = 1\).</li>
+<li>\(\dfrac{(1 - \cos x)(1 + \cos x)}{x^2 (1 + \cos x)} = \dfrac{\sin^2 x}{x^2} \cdot \dfrac{1}{1 + \cos x} \to 1 \cdot \dfrac12 = \dfrac12\). Then \(\dfrac{1 - \cos x}{x} = x \cdot \dfrac{1 - \cos x}{x^2} \to 0 \cdot \dfrac12 = 0\).</li>
+<li>(a) At \(x = 1/(2\pi n)\) the value is \(\sin 2\pi n = 0\); at \(x = 1/(2\pi n + \pi/2)\) it is 1. Both sequences of inputs tend to 0, but the outputs never settle: the function oscillates faster and faster, so there is no single target. (b) Since \(-1 \le \sin(1/x) \le 1\), we have \(-|x| \le x \sin(1/x) \le |x|\). Both \(-|x|\) and \(|x|\) tend to 0, so the squeeze gives a limit of 0. The wild factor is tamed by the small one.</li>
+</ol>
+<p><b>Stretch.</b> Each of the \(n\) triangles has two sides of length 1 meeting at angle \(2\pi/n\), so its area is \(\tfrac12 \sin(2\pi/n)\); the polygon has area \(\tfrac{n}{2}\sin\tfrac{2\pi}{n}\). Write \(t = 2\pi/n\), which tends to 0 as \(n\) grows. Then \(\tfrac{n}{2}\sin\tfrac{2\pi}{n} = \pi \cdot \dfrac{\sin t}{t} \to \pi\). Not a new proof: the squeeze used the circle's area to get the sector's \(x/2\). It is a consistency check. For \(n = 1000\) the polygon's area is 3.14157.</p>
+</section>
+
+<div class="sheet-nav"><a href="../index.html#sheets">← All sheets</a><a href="a2-product-rule.html">Next: The product rule is a picture →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

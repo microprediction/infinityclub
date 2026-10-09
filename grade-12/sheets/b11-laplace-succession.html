@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Will the sun rise tomorrow? · Infinity Club</title>
+<meta name="description" content="Laplace's rule of succession: after n successes and no failures, bet (n + 1)/(n + 2). Where it comes from, by integrating over every possible probability, and what the uniform prior quietly assumes.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Around the corner · 11</div>
+  <h1>Will the sun rise tomorrow?</h1>
+  <p class="teaser">Laplace's rule: after n successes and no failures, bet (n + 1)/(n + 2). Where it comes from, by integrating over every possible probability.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>You have seen the sun rise \(n\) days running. How sure should you be about tomorrow? "Certain" overreaches, and the frequency \(n/n = 1\) is what you would say after one morning too. Laplace's answer: \((n+1)/(n+2)\).</p>
+<p>Suppose the sun rises each day with a fixed, unknown probability \(p\). Treat every \(p\) from 0 to 1 as equally likely beforehand: a <b>uniform prior</b>. For a given \(p\), \(n\) rises in a row has probability \(p^n\), so by <a href="../../grade-10/sheets/b21-bayes.html">Bayes' theorem</a> the credibility of each \(p\) after the data is proportional to \(p^n\). This is the <b>posterior</b>.</p>
+<figure><svg viewBox="0 0 300 140" width="300" height="140" role="img" aria-label="Three curves on the interval from 0 to 1: a flat line for n equals 0, a parabola p squared for n equals 2, and p to the tenth which hugs zero then shoots up near 1. Dots mark the posterior means at one half, three quarters and eleven twelfths" font-family="Nunito, sans-serif" font-size="12">
+<line x1="20" y1="120" x2="280" y2="120" stroke="#000" stroke-width="1"/>
+<line x1="20" y1="120" x2="20" y2="14" stroke="#999" stroke-width="1"/>
+<line x1="280" y1="120" x2="280" y2="14" stroke="#999" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="20" y1="20" x2="280" y2="20" stroke="#3f44c9" stroke-width="1.5"/>
+<polyline fill="none" stroke="#3f44c9" stroke-width="1.5" points="20.0,120.0 33.0,119.8 46.0,119.0 59.0,117.8 72.0,116.0 85.0,113.8 98.0,111.0 111.0,107.8 124.0,104.0 137.0,99.8 150.0,95.0 163.0,89.8 176.0,84.0 189.0,77.8 202.0,71.0 215.0,63.8 228.0,56.0 241.0,47.8 254.0,39.0 267.0,29.8 280.0,20.0"/>
+<polyline fill="none" stroke="#3f44c9" stroke-width="1.5" points="20.0,120.0 150.0,119.9 176.0,119.4 189.0,118.7 202.0,117.2 208.5,116.0 215.0,114.4 221.5,112.2 228.0,109.3 234.5,105.4 241.0,100.3 247.5,93.7 254.0,85.1 260.5,74.1 267.0,60.1 273.5,42.4 280.0,20.0"/>
+<g fill="#f5a524"><circle cx="150" cy="120" r="3.5"/><circle cx="215" cy="120" r="3.5"/><circle cx="258.3" cy="120" r="3.5"/></g>
+<text x="20" y="134" text-anchor="middle">0</text><text x="280" y="134" text-anchor="middle">1</text><text x="150" y="134" text-anchor="middle" fill="#f5a524">½</text><text x="215" y="134" text-anchor="middle" fill="#f5a524">¾</text><text x="258" y="134" text-anchor="middle" fill="#f5a524">11⁄12</text>
+<text x="60" y="34" fill="#3f44c9">n = 0</text><text x="196" y="52" fill="#3f44c9">n = 2</text><text x="232" y="100" text-anchor="end" fill="#3f44c9">n = 10</text>
+<text x="8" y="26" font-size="11" fill="#555">pⁿ</text>
+</svg><figcaption>Posteriors \(p^n\) for \(n = 0, 2, 10\), each drawn to the same height. The dots mark the posterior mean \((n+1)/(n+2)\), the probability of one more rise.</figcaption></figure>
+<p>Tomorrow's rise has probability \(p\) for each candidate, averaged with the posterior weights:</p>
+<p class="callout">\(\displaystyle P(\text{rise}) = \frac{\int_0^1 p \cdot p^n\, dp}{\int_0^1 p^n\, dp} = \frac{1/(n+2)}{1/(n+1)} = \frac{n+1}{n+2}.\)</p>
+<p>That is the <b>rule of succession</b>.</p>
+<p>The quiet assumption: the uniform prior says that before any data, \(p = 0.01\) and \(p = 0.99\) were equally credible. Hence \(\tfrac12\) at \(n = 0\) and \(\tfrac23\) after one success: the rule acts as if you had already seen one success and one failure. Laplace added that anyone who knows why the sun rises should be far more confident than any tally.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: three heads from a strange coin</h2>
+<p>A coin from a magic shop lands heads three times out of three. Frequency says the chance of a fourth head is 1. Laplace says</p>
+<p>\[\frac{\int_0^1 p^4\, dp}{\int_0^1 p^3\, dp} = \frac{1/5}{1/4} = \frac45.\]</p>
+<p>The data have pushed you from \(\tfrac12\) to \(\tfrac45\), but three tosses cannot rule out a fair coin, which would produce three heads one time in eight. The posterior \(p^3\) still gives \(p = 0.5\) a weight of \(0.125\) against \(1\) for \(p = 1\), and that is where the missing \(\tfrac15\) lives.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Write the rule's answer for \(n = 0, 1, 10\) and \(100\), as fractions, and the last also as a decimal.<div class="space short"></div></li>
+<li>With \(s\) successes and \(f\) failures the posterior is proportional to \(p^s(1-p)^f\). For \(s = 3\), \(f = 1\), compute \(\int_0^1 p^4(1-p)\,dp\) and \(\int_0^1 p^3(1-p)\,dp\) and show the probability of another success is \(\tfrac23\). Guess the general formula in \(s\) and \(f\), and check it against the rule.<div class="space"></div></li>
+<li>Take recorded history as 5,000 years, about 1.83 million days of sunrises. What probability does the rule give that the sun fails tomorrow? Give one reason the true figure should be far smaller, and one reason the coin model is the wrong model for this question at all.<div class="space short"></div></li>
+<li>After \(n\) successes, find the probability that the next <em>two</em> trials both succeed, as one integral ratio. For \(n = 3\) compare it with \(\left(\tfrac45\right)^2\). Why are they different, and how is your answer related to \(\tfrac{n+1}{n+2}\) and \(\tfrac{n+2}{n+3}\)?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: a different prior</h2>
+<p>Replace the uniform prior with one proportional to \(p(1-p)\), a hump centred at \(\tfrac12\) that says extreme values are unlikely. Repeat the calculation for \(n\) successes and no failures. What rule replaces \((n+1)/(n+2)\), and how many imaginary successes and failures does this prior amount to?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(\tfrac12, \tfrac23, \tfrac{11}{12}, \tfrac{101}{102} \approx 0.990\). A hundred clean trials still leave about a 1% chance of a failure next time.</li>
+<li>\(\int_0^1 (p^4 - p^5)\,dp = \tfrac15 - \tfrac16 = \tfrac1{30}\) and \(\int_0^1 (p^3 - p^4)\,dp = \tfrac14 - \tfrac15 = \tfrac1{20}\). Ratio \(\tfrac{20}{30} = \tfrac23\). General formula \(\dfrac{s+1}{s+f+2}\): with \(f = 0\) it is \(\dfrac{n+1}{n+2}\). The prior adds one imaginary success and one imaginary failure to the count.</li>
+<li>\(n \approx 1{,}826{,}000\), so the chance of failure is \(\dfrac{1}{n+2} \approx 5.5 \times 10^{-7}\), about one in 1.83 million. It should be far smaller because we know the mechanism, not just the record: the Earth's rotation does not reset each night. And the coin model assumes each morning is an independent draw with a fixed unknown \(p\); sunrises are not draws from anything.</li>
+<li>\(\dfrac{\int_0^1 p^{n+2}\,dp}{\int_0^1 p^n\,dp} = \dfrac{n+1}{n+3}\). For \(n = 3\): \(\tfrac46 = 0.667\) against \(\left(\tfrac45\right)^2 = 0.64\). The two trials are not independent once \(p\) is unknown: a fourth success raises your estimate of \(p\), so the fifth is more likely than before. Indeed \(\tfrac{n+1}{n+2} \cdot \tfrac{n+2}{n+3} = \tfrac{n+1}{n+3}\): the rule applied twice, updating in between.</li>
+</ol>
+<p><b>Stretch.</b> The posterior is proportional to \(p^{n+1}(1-p)\). Then \(\int_0^1 p^{n+2}(1-p)\,dp = \tfrac{1}{n+3} - \tfrac{1}{n+4} = \tfrac{1}{(n+3)(n+4)}\) and \(\int_0^1 p^{n+1}(1-p)\,dp = \tfrac{1}{(n+2)(n+3)}\). The ratio is \(\dfrac{n+2}{n+4}\). This prior behaves like two imaginary successes and two imaginary failures; the uniform prior was one of each. The data eventually swamp either, but a stronger prior takes longer to overrule.</p>
+</section>
+
+<div class="sheet-nav"><a href="b10-neuron.html">← Previous</a><a href="b12-coupon-collector.html">Next: The coupon collector →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

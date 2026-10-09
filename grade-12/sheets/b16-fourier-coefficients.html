@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fourier coefficients by integration · Infinity Club</title>
+<meta name="description" content="Multiply a square wave by sin kx and integrate: orthogonality kills every harmonic but one. The coefficient formula derived, 4/(kπ) for odd k computed, and the Gibbs overshoot that never dies.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Around the corner · 16</div>
+  <h1>Fourier coefficients by integration</h1>
+  <p class="teaser">Multiply a square wave by sin kx and integrate: every harmonic except the odd ones vanishes. The formula, the computation, and the overshoot that never dies.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>The <a href="../../grade-10/sheets/c1-harmonics.html">harmonics sheet</a> said a repeating signal is a sum of sines and cosines. Tonight we compute the amounts. Take the <b>square wave</b> of period \(2\pi\): \(f(x) = 1\) for \(0 \lt x \lt \pi\) and \(-1\) for \(-\pi \lt x \lt 0\). It is odd, so only sines can appear. Suppose \(f(x) = \sum_{k \ge 1} b_k \sin kx\), where \(b_k\) is the amplitude of the \(k\)-th harmonic.</p>
+<p>The key is <b>orthogonality</b>. From \(\sin A\sin B = \tfrac12[\cos(A-B) - \cos(A+B)]\), for whole numbers \(m \ne k\),</p>
+<p>\[\int_{-\pi}^{\pi}\sin mx\,\sin kx\,dx = 0, \qquad \int_{-\pi}^{\pi}\sin^2 kx\,dx = \pi.\]</p>
+<p>Multiply the series by \(\sin kx\) and integrate over one period. Every term dies except the \(k\)-th, which leaves \(\pi b_k\), so</p>
+<p class="callout">\(b_k = \dfrac1\pi\displaystyle\int_{-\pi}^{\pi} f(x)\sin kx\,dx.\)</p>
+<p>Each coefficient is fished out by its own sine. For the square wave, \(f(x)\sin kx\) is even, so</p>
+<p>\[b_k = \frac2\pi\int_0^{\pi}\sin kx\,dx = \frac2\pi\Big[-\frac{\cos kx}{k}\Big]_0^{\pi} = \frac{2(1 - \cos k\pi)}{k\pi},\]</p>
+<p>which is \(4/(k\pi)\) for odd \(k\) and \(0\) for even \(k\). Only odd harmonics, decaying like \(1/k\): the clarinet's hollow sound from the harmonics sheet.</p>
+<figure><svg viewBox="0 0 460 150" width="340" height="111" role="img" aria-label="A square wave of height plus and minus 1 drawn in grey from minus pi to pi, and over it the partial Fourier sum of its first five odd harmonics in blue, which ripples about the flat parts and overshoots to about 1.18 beside each jump. An orange dotted line marks the height 1.18." font-family="Nunito, sans-serif" font-size="12">
+<line x1="20" y1="75" x2="440" y2="75" stroke="#999" stroke-width="1"/>
+<polyline points="20.0,123.0 230.0,123.0 230.0,27.0 440.0,27.0" fill="none" stroke="#000" stroke-width="1.5" stroke-dasharray="5 3"/>
+<polyline points="20.0,75.0 21.0,79.6 22.0,84.1 23.0,88.6 24.0,92.9 25.0,97.2 26.0,101.2 27.0,105.1 28.0,108.8 29.0,112.3 30.0,115.4 31.0,118.4 32.0,121.0 33.0,123.4 34.0,125.4 35.0,127.2 36.0,128.6 37.0,129.8 38.0,130.7 39.0,131.3 40.0,131.6 41.0,131.8 42.0,131.6 43.0,131.3 44.0,130.9 45.0,130.2 46.0,129.5 47.0,128.6 48.0,127.6 49.0,126.6 50.0,125.6 51.0,124.6 52.0,123.6 53.0,122.6 54.0,121.7 55.0,120.9 56.0,120.1 57.0,119.5 58.0,119.0 59.0,118.5 60.0,118.2 61.0,118.1 62.0,118.0 63.0,118.1 64.0,118.2 65.0,118.5 66.0,118.9 67.0,119.3 68.0,119.8 69.0,120.4 70.0,121.0 71.0,121.6 72.0,122.3 73.0,122.9 74.0,123.6 75.0,124.2 76.0,124.7 77.0,125.2 78.0,125.7 79.0,126.0 80.0,126.3 81.0,126.5 82.0,126.7 83.0,126.7 84.0,126.7 85.0,126.5 86.0,126.3 87.0,126.1 88.0,125.7 89.0,125.3 90.0,124.9 91.0,124.4 92.0,123.9 93.0,123.4 94.0,122.9 95.0,122.4 96.0,121.9 97.0,121.5 98.0,121.1 99.0,120.7 100.0,120.4 101.0,120.1 102.0,120.0 103.0,119.9 104.0,119.8 105.0,119.9 106.0,120.0 107.0,120.1 108.0,120.4 109.0,120.7 110.0,121.0 111.0,121.4 112.0,121.8 113.0,122.3 114.0,122.7 115.0,123.2 116.0,123.6 117.0,124.1 118.0,124.5 119.0,124.9 120.0,125.2 121.0,125.5 122.0,125.7 123.0,125.9 124.0,126.0 125.0,126.0 126.0,126.0 127.0,125.9 128.0,125.7 129.0,125.5 130.0,125.2 131.0,124.9 132.0,124.5 133.0,124.1 134.0,123.6 135.0,123.2 136.0,122.7 137.0,122.3 138.0,121.8 139.0,121.4 140.0,121.0 141.0,120.7 142.0,120.4 143.0,120.1 144.0,120.0 145.0,119.9 146.0,119.8 147.0,119.9 148.0,120.0 149.0,120.1 150.0,120.4 151.0,120.7 152.0,121.1 153.0,121.5 154.0,121.9 155.0,122.4 156.0,122.9 157.0,123.4 158.0,123.9 159.0,124.4 160.0,124.9 161.0,125.3 162.0,125.7 163.0,126.1 164.0,126.3 165.0,126.5 166.0,126.7 167.0,126.7 168.0,126.7 169.0,126.5 170.0,126.3 171.0,126.0 172.0,125.7 173.0,125.2 174.0,124.7 175.0,124.2 176.0,123.6 177.0,122.9 178.0,122.3 179.0,121.6 180.0,121.0 181.0,120.4 182.0,119.8 183.0,119.3 184.0,118.9 185.0,118.5 186.0,118.2 187.0,118.1 188.0,118.0 189.0,118.1 190.0,118.2 191.0,118.5 192.0,119.0 193.0,119.5 194.0,120.1 195.0,120.9 196.0,121.7 197.0,122.6 198.0,123.6 199.0,124.6 200.0,125.6 201.0,126.6 202.0,127.6 203.0,128.6 204.0,129.5 205.0,130.2 206.0,130.9 207.0,131.3 208.0,131.6 209.0,131.8 210.0,131.6 211.0,131.3 212.0,130.7 213.0,129.8 214.0,128.6 215.0,127.2 216.0,125.4 217.0,123.4 218.0,121.0 219.0,118.4 220.0,115.4 221.0,112.3 222.0,108.8 223.0,105.1 224.0,101.2 225.0,97.2 226.0,92.9 227.0,88.6 228.0,84.1 229.0,79.6 230.0,75.0 231.0,70.4 232.0,65.9 233.0,61.4 234.0,57.1 235.0,52.8 236.0,48.8 237.0,44.9 238.0,41.2 239.0,37.7 240.0,34.6 241.0,31.6 242.0,29.0 243.0,26.6 244.0,24.6 245.0,22.8 246.0,21.4 247.0,20.2 248.0,19.3 249.0,18.7 250.0,18.4 251.0,18.2 252.0,18.4 253.0,18.7 254.0,19.1 255.0,19.8 256.0,20.5 257.0,21.4 258.0,22.4 259.0,23.4 260.0,24.4 261.0,25.4 262.0,26.4 263.0,27.4 264.0,28.3 265.0,29.1 266.0,29.9 267.0,30.5 268.0,31.0 269.0,31.5 270.0,31.8 271.0,31.9 272.0,32.0 273.0,31.9 274.0,31.8 275.0,31.5 276.0,31.1 277.0,30.7 278.0,30.2 279.0,29.6 280.0,29.0 281.0,28.4 282.0,27.7 283.0,27.1 284.0,26.4 285.0,25.8 286.0,25.3 287.0,24.8 288.0,24.3 289.0,24.0 290.0,23.7 291.0,23.5 292.0,23.3 293.0,23.3 294.0,23.3 295.0,23.5 296.0,23.7 297.0,23.9 298.0,24.3 299.0,24.7 300.0,25.1 301.0,25.6 302.0,26.1 303.0,26.6 304.0,27.1 305.0,27.6 306.0,28.1 307.0,28.5 308.0,28.9 309.0,29.3 310.0,29.6 311.0,29.9 312.0,30.0 313.0,30.1 314.0,30.2 315.0,30.1 316.0,30.0 317.0,29.9 318.0,29.6 319.0,29.3 320.0,29.0 321.0,28.6 322.0,28.2 323.0,27.7 324.0,27.3 325.0,26.8 326.0,26.4 327.0,25.9 328.0,25.5 329.0,25.1 330.0,24.8 331.0,24.5 332.0,24.3 333.0,24.1 334.0,24.0 335.0,24.0 336.0,24.0 337.0,24.1 338.0,24.3 339.0,24.5 340.0,24.8 341.0,25.1 342.0,25.5 343.0,25.9 344.0,26.4 345.0,26.8 346.0,27.3 347.0,27.7 348.0,28.2 349.0,28.6 350.0,29.0 351.0,29.3 352.0,29.6 353.0,29.9 354.0,30.0 355.0,30.1 356.0,30.2 357.0,30.1 358.0,30.0 359.0,29.9 360.0,29.6 361.0,29.3 362.0,28.9 363.0,28.5 364.0,28.1 365.0,27.6 366.0,27.1 367.0,26.6 368.0,26.1 369.0,25.6 370.0,25.1 371.0,24.7 372.0,24.3 373.0,23.9 374.0,23.7 375.0,23.5 376.0,23.3 377.0,23.3 378.0,23.3 379.0,23.5 380.0,23.7 381.0,24.0 382.0,24.3 383.0,24.8 384.0,25.3 385.0,25.8 386.0,26.4 387.0,27.1 388.0,27.7 389.0,28.4 390.0,29.0 391.0,29.6 392.0,30.2 393.0,30.7 394.0,31.1 395.0,31.5 396.0,31.8 397.0,31.9 398.0,32.0 399.0,31.9 400.0,31.8 401.0,31.5 402.0,31.0 403.0,30.5 404.0,29.9 405.0,29.1 406.0,28.3 407.0,27.4 408.0,26.4 409.0,25.4 410.0,24.4 411.0,23.4 412.0,22.4 413.0,21.4 414.0,20.5 415.0,19.8 416.0,19.1 417.0,18.7 418.0,18.4 419.0,18.2 420.0,18.4 421.0,18.7 422.0,19.3 423.0,20.2 424.0,21.4 425.0,22.8 426.0,24.6 427.0,26.6 428.0,29.0 429.0,31.6 430.0,34.6 431.0,37.7 432.0,41.2 433.0,44.9 434.0,48.8 435.0,52.8 436.0,57.1 437.0,61.4 438.0,65.9 439.0,70.4 440.0,75.0" fill="none" stroke="#3f44c9" stroke-width="2"/>
+<line x1="230.0" y1="18.4" x2="440" y2="18.4" stroke="#f5a524" stroke-width="1.2" stroke-dasharray="2 3"/>
+<text x="440" y="14.4" text-anchor="end" fill="#b86e00">1.18</text>
+<text x="335.0" y="13.0" text-anchor="middle" fill="#555">1</text>
+<text x="125.0" y="139.0" text-anchor="middle" fill="#555">−1</text>
+<text x="20.0" y="89" text-anchor="middle" fill="#555">−π</text>
+<text x="236.0" y="89" fill="#555">0</text>
+<text x="440.0" y="89" text-anchor="middle" fill="#555">π</text>
+<text x="28" y="17.0" fill="#3f44c9">five odd harmonics:</text>
+<text x="28" y="32.0" fill="#3f44c9" font-size="11">(4/π)(sin x + … + sin 9x/9)</text>
+</svg><figcaption>\(f(x) = \tfrac4\pi\big(\sin x + \tfrac{\sin 3x}{3} + \tfrac{\sin 5x}{5} + \cdots\big)\): five terms (blue) against the square wave (dashed). The ripple peaks near 1.18.</figcaption></figure>
+</section>
+
+<section class="example">
+<h2>Watch one: \(x = \pi/2\), and the overshoot</h2>
+<p>At \(x = \pi/2\) every sine is \(\pm 1\), so \(1 = \tfrac4\pi\big(1 - \tfrac13 + \tfrac15 - \cdots\big)\): Leibniz's series for \(\pi/4\), for free. Three terms give \(1.1035\), not yet close.</p>
+<p>Near the jump something odder happens. However many terms you take, the first ripple beside \(x = 0\) peaks at about \(1.18\): an overshoot of \(0.18\), about 9% of the jump of 2. It gets narrower but never shorter: the <b>Gibbs phenomenon</b>.</p>
+<p class="small">Slide the number of harmonics and watch the ripple squeeze toward the jump: <a href="../../demos/squarewave.html">infinityclub.net/demos/squarewave.html</a>. Hear the harmonics at <a href="../../demos/fourier.html">infinityclub.net/demos/fourier.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Compute \(\int_0^{\pi}\sin 2x\,dx\) and \(\int_0^{\pi}\sin 3x\,dx\) directly, and confirm \(b_2 = 0\) and \(b_3 = 4/(3\pi)\).<div class="space short"></div></li>
+<li>(a) Use the product-to-sum identity to compute \(\int_{-\pi}^{\pi}\sin x\sin 2x\,dx\). (b) Explain in one sentence why \(\int_{-\pi}^{\pi} f(x)\cos kx\,dx = 0\) for the square wave, so that no cosines appear.<div class="space short"></div></li>
+<li>The sawtooth: \(f(x) = x\) on \(-\pi \lt x \lt \pi\), repeated. Use integration by parts to find \(b_k\), and write out the first three terms of the series.<div class="space short"></div></li>
+<li>Square both sides of the square-wave series and integrate from \(-\pi\) to \(\pi\). (a) Explain why the cross terms vanish, and deduce \(\dfrac1\pi\displaystyle\int_{-\pi}^{\pi} f(x)^2\,dx = \sum b_k^2\). (b) Evaluate both sides to show \(1 + \tfrac19 + \tfrac1{25} + \cdots = \tfrac{\pi^2}{8}\). (c) Deduce \(\sum_{k\ge1} 1/k^2 = \pi^2/6\).<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: where 1.18 comes from</h2>
+<p>Let \(S_m(x)\) be the sum of the first \(m\) odd harmonics. Given \(\sum_{j=0}^{m-1}\cos(2j+1)x = \frac{\sin 2mx}{2\sin x}\), find \(S_m'(x)\), locate the first peak, and show that as \(m \to \infty\) its height tends to \(\frac2\pi\int_0^{\pi}\frac{\sin u}{u}\,du \approx 1.179\).</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(\big[-\tfrac{\cos 2x}{2}\big]_0^{\pi} = -\tfrac12 + \tfrac12 = 0\), so \(b_2 = 0\). \(\big[-\tfrac{\cos 3x}{3}\big]_0^{\pi} = \tfrac13 + \tfrac13 = \tfrac23\), so \(b_3 = \tfrac2\pi \cdot \tfrac23 = \tfrac{4}{3\pi}\).</li>
+<li>(a) \(\sin x\sin 2x = \tfrac12(\cos x - \cos 3x)\), and \(\int_{-\pi}^{\pi}\cos x\,dx = \int_{-\pi}^{\pi}\cos 3x\,dx = 0\), so the integral is 0. (b) \(f\) is odd and \(\cos kx\) is even, so the product is odd and its integral over a symmetric interval is zero.</li>
+<li>\(b_k = \tfrac1\pi\int_{-\pi}^{\pi} x\sin kx\,dx\). Parts with \(u = x\), \(dv = \sin kx\,dx\): \(\Big[-\tfrac{x\cos kx}{k}\Big]_{-\pi}^{\pi} + \tfrac1k\int_{-\pi}^{\pi}\cos kx\,dx = -\tfrac{2\pi\cos k\pi}{k} + 0\). So \(b_k = \tfrac{2(-1)^{k+1}}{k}\): \(f(x) = 2\sin x - \sin 2x + \tfrac23\sin 3x - \cdots\). All harmonics this time, decaying like \(1/k\) again because of the jump at \(\pm\pi\).</li>
+<li>(a) Squaring gives \(\sum b_k^2\sin^2 kx\) plus cross terms \(b_m b_k \sin mx\sin kx\) with \(m \ne k\), which integrate to zero by orthogonality; each \(\sin^2 kx\) integrates to \(\pi\). (b) \(f^2 = 1\), so the left side is \(2\). The right side is \(\tfrac{16}{\pi^2}\big(1 + \tfrac19 + \tfrac1{25} + \cdots\big)\), hence the odd sum is \(\tfrac{2\pi^2}{16} = \tfrac{\pi^2}{8}\). (c) Let \(S = \sum 1/k^2\). The even terms are \(\sum 1/(2j)^2 = S/4\), so \(S - S/4 = \pi^2/8\) and \(S = \pi^2/6\): the <a href="../../grade-10/sheets/b12-infinite-series.html">Basel sum</a>.</li>
+</ol>
+<p><b>Stretch.</b> \(S_m'(x) = \tfrac4\pi\sum\cos(2j+1)x = \tfrac2\pi\,\dfrac{\sin 2mx}{\sin x}\), first zero at \(x = \pi/(2m)\), the first peak. Its height is \(\int_0^{\pi/2m} S_m'\,dx\). Substitute \(u = 2mx\); for large \(m\), \(x\) is tiny and \(\sin x \approx x = u/2m\), so the integral becomes \(\tfrac2\pi\int_0^{\pi}\tfrac{\sin u}{u}\,du = 1.179\). The peak slides toward the jump as \(1/m\) but its height does not move.</p>
+</section>
+
+<div class="sheet-nav"><a href="b15-kelly.html">← Previous</a><a href="b17-winding.html">Next: Why every polynomial has a root →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

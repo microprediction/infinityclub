@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why averages are normal · Infinity Club</title>
+<meta name="description" content="Add enough independent anythings and the sum is bell-shaped. The central limit theorem by picture, with dice, and the standard error σ/√n.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Sharpen · 16</div>
+  <h1>Why averages are normal</h1>
+  <p class="teaser">Add enough independent anythings and the sum is bell-shaped. The central limit theorem by picture, and the standard error σ/√n.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>One die is a flat distribution: mean \(\mu = 3.5\), standard deviation \(\sigma = \sqrt{35/12} \approx 1.71\). Average two dice: the means \(1, 1.5, \dots, 6\) have probabilities \(\tfrac{1}{36}, \tfrac{2}{36}, \dots, \tfrac{6}{36}, \dots, \tfrac{1}{36}\), a triangle. Four dice give a rounded hump; sixteen, a narrow bell centred on \(3.5\).</p>
+<figure><svg viewBox="0 0 520 150" width="520" height="150" role="img" aria-label="Four small bar charts showing the distribution of the mean of 1, 2, 4 and 16 dice: flat, then a triangle, then a rounded hump, then a narrow bell centred at 3.5" font-family="Nunito, sans-serif" font-size="13">
+<line x1="10" y1="118" x2="128" y2="118" stroke="#999" stroke-width="1"/>
+<rect x="4.80" y="33.0" width="20.40" height="85.0" fill="#dcdcf5" stroke="#3f44c9" stroke-width="0.8"/>
+<rect x="26.40" y="33.0" width="20.40" height="85.0" fill="#dcdcf5" stroke="#3f44c9" stroke-width="0.8"/>
+<rect x="48.00" y="33.0" width="20.40" height="85.0" fill="#dcdcf5" stroke="#3f44c9" stroke-width="0.8"/>
+<rect x="69.60" y="33.0" width="20.40" height="85.0" fill="#dcdcf5" stroke="#3f44c9" stroke-width="0.8"/>
+<rect x="91.20" y="33.0" width="20.40" height="85.0" fill="#dcdcf5" stroke="#3f44c9" stroke-width="0.8"/>
+<rect x="112.80" y="33.0" width="20.40" height="85.0" fill="#dcdcf5" stroke="#3f44c9" stroke-width="0.8"/>
+<text x="15.0" y="131" text-anchor="middle" font-size="11" fill="#555">1</text>
+<text x="69.0" y="131" text-anchor="middle" font-size="11" fill="#555">3.5</text>
+<text x="123.0" y="131" text-anchor="middle" font-size="11" fill="#555">6</text>
+<text x="69.0" y="14" text-anchor="middle" font-weight="700">mean of 1 die</text>
+<text x="69.0" y="146" text-anchor="middle" font-size="12" fill="#f5a524">SD 1.71</text>
+<line x1="140" y1="118" x2="258" y2="118" stroke="#999" stroke-width="1"/>
+<rect x="140.20" y="103.8" width="9.60" height="14.2" fill="#dcdcf5" stroke="#3f44c9" stroke-width="0.8"/>
+<rect x="151.00" y="89.7" width="9.60" height="28.3" fill="#dcdcf5" stroke="#3f44c9" stroke-width="0.8"/>
+<rect x="161.80" y="75.5" width="9.60" height="42.5" fill="#dcdcf5" stroke="#3f44c9" stroke-width="0.8"/>
+<rect x="172.60" y="61.3" width="9.60" height="56.7" fill="#dcdcf5" stroke="#3f44c9" stroke-width="0.8"/>
+<rect x="183.40" y="47.2" width="9.60" height="70.8" fill="#dcdcf5" stroke="#3f44c9" stroke-width="0.8"/>
+<rect x="194.20" y="33.0" width="9.60" height="85.0" fill="#dcdcf5" stroke="#3f44c9" stroke-width="0.8"/>
+<rect x="205.00" y="47.2" width="9.60" height="70.8" fill="#dcdcf5" stroke="#3f44c9" stroke-width="0.8"/>
+<rect x="215.80" y="61.3" width="9.60" height="56.7" fill="#dcdcf5" stroke="#3f44c9" stroke-width="0.8"/>
+<rect x="226.60" y="75.5" width="9.60" height="42.5" fill="#dcdcf5" stroke="#3f44c9" stroke-width="0.8"/>
+<rect x="237.40" y="89.7" width="9.60" height="28.3" fill="#dcdcf5" stroke="#3f44c9" stroke-width="0.8"/>
+<rect x="248.20" y="103.8" width="9.60" height="14.2" fill="#dcdcf5" stroke="#3f44c9" stroke-width="0.8"/>
+<text x="145.0" y="131" text-anchor="middle" font-size="11" fill="#555">1</text>
+<text x="199.0" y="131" text-anchor="middle" font-size="11" fill="#555">3.5</text>
+<text x="253.0" y="131" text-anchor="middle" font-size="11" fill="#555">6</text>
+<text x="199.0" y="14" text-anchor="middle" font-weight="700">mean of 2 dice</text>
+<text x="199.0" y="146" text-anchor="middle" font-size="12" fill="#f5a524">SD 1.21</text>
+<line x1="270" y1="118" x2="388" y2="118" stroke="#999" stroke-width="1"/>
+<rect x="272.90" y="117.4" width="4.20" height="0.6" fill="#dcdcf5" stroke="#3f44c9" stroke-width="0.8"/>
+<rect x="278.30" y="115.7" width="4.20" height="2.3" fill="#dcdcf5" stroke="#3f44c9" stroke-width="0.8"/>
+<rect x="283.70" y="112.2" width="4.20" height="5.8" fill="#dcdcf5" stroke="#3f44c9" stroke-width="0.8"/>
+<rect x="289.10" y="106.4" width="4.20" height="11.6" fill="#dcdcf5" stroke="#3f44c9" stroke-width="0.8"/>
+<rect x="294.50" y="97.6" width="4.20" height="20.4" fill="#dcdcf5" stroke="#3f44c9" stroke-width="0.8"/>
+<rect x="299.90" y="85.4" width="4.20" height="32.6" fill="#dcdcf5" stroke="#3f44c9" stroke-width="0.8"/>
+<rect x="305.30" y="71.4" width="4.20" height="46.6" fill="#dcdcf5" stroke="#3f44c9" stroke-width="0.8"/>
+<rect x="310.70" y="57.5" width="4.20" height="60.5" fill="#dcdcf5" stroke="#3f44c9" stroke-width="0.8"/>
+<rect x="316.10" y="45.2" width="4.20" height="72.8" fill="#dcdcf5" stroke="#3f44c9" stroke-width="0.8"/>
+<rect x="321.50" y="36.5" width="4.20" height="81.5" fill="#dcdcf5" stroke="#3f44c9" stroke-width="0.8"/>
+<rect x="326.90" y="33.0" width="4.20" height="85.0" fill="#dcdcf5" stroke="#3f44c9" stroke-width="0.8"/>
+<rect x="332.30" y="36.5" width="4.20" height="81.5" fill="#dcdcf5" stroke="#3f44c9" stroke-width="0.8"/>
+<rect x="337.70" y="45.2" width="4.20" height="72.8" fill="#dcdcf5" stroke="#3f44c9" stroke-width="0.8"/>
+<rect x="343.10" y="57.5" width="4.20" height="60.5" fill="#dcdcf5" stroke="#3f44c9" stroke-width="0.8"/>
+<rect x="348.50" y="71.4" width="4.20" height="46.6" fill="#dcdcf5" stroke="#3f44c9" stroke-width="0.8"/>
+<rect x="353.90" y="85.4" width="4.20" height="32.6" fill="#dcdcf5" stroke="#3f44c9" stroke-width="0.8"/>
+<rect x="359.30" y="97.6" width="4.20" height="20.4" fill="#dcdcf5" stroke="#3f44c9" stroke-width="0.8"/>
+<rect x="364.70" y="106.4" width="4.20" height="11.6" fill="#dcdcf5" stroke="#3f44c9" stroke-width="0.8"/>
+<rect x="370.10" y="112.2" width="4.20" height="5.8" fill="#dcdcf5" stroke="#3f44c9" stroke-width="0.8"/>
+<rect x="375.50" y="115.7" width="4.20" height="2.3" fill="#dcdcf5" stroke="#3f44c9" stroke-width="0.8"/>
+<rect x="380.90" y="117.4" width="4.20" height="0.6" fill="#dcdcf5" stroke="#3f44c9" stroke-width="0.8"/>
+<text x="275.0" y="131" text-anchor="middle" font-size="11" fill="#555">1</text>
+<text x="329.0" y="131" text-anchor="middle" font-size="11" fill="#555">3.5</text>
+<text x="383.0" y="131" text-anchor="middle" font-size="11" fill="#555">6</text>
+<text x="329.0" y="14" text-anchor="middle" font-weight="700">mean of 4 dice</text>
+<text x="329.0" y="146" text-anchor="middle" font-size="12" fill="#f5a524">SD 0.85</text>
+<line x1="400" y1="118" x2="518" y2="118" stroke="#999" stroke-width="1"/>
+<rect x="404.32" y="118.0" width="1.35" height="0.0" fill="#3f44c9"/>
+<rect x="405.68" y="118.0" width="1.35" height="0.0" fill="#3f44c9"/>
+<rect x="407.02" y="118.0" width="1.35" height="0.0" fill="#3f44c9"/>
+<rect x="408.38" y="118.0" width="1.35" height="0.0" fill="#3f44c9"/>
+<rect x="409.72" y="118.0" width="1.35" height="0.0" fill="#3f44c9"/>
+<rect x="411.07" y="118.0" width="1.35" height="0.0" fill="#3f44c9"/>
+<rect x="412.43" y="118.0" width="1.35" height="0.0" fill="#3f44c9"/>
+<rect x="413.77" y="118.0" width="1.35" height="0.0" fill="#3f44c9"/>
+<rect x="415.12" y="118.0" width="1.35" height="0.0" fill="#3f44c9"/>
+<rect x="416.47" y="118.0" width="1.35" height="0.0" fill="#3f44c9"/>
+<rect x="417.82" y="118.0" width="1.35" height="0.0" fill="#3f44c9"/>
+<rect x="419.18" y="118.0" width="1.35" height="0.0" fill="#3f44c9"/>
+<rect x="420.52" y="118.0" width="1.35" height="0.0" fill="#3f44c9"/>
+<rect x="421.88" y="118.0" width="1.35" height="0.0" fill="#3f44c9"/>
+<rect x="423.22" y="118.0" width="1.35" height="0.0" fill="#3f44c9"/>
+<rect x="424.57" y="117.9" width="1.35" height="0.1" fill="#3f44c9"/>
+<rect x="425.93" y="117.9" width="1.35" height="0.1" fill="#3f44c9"/>
+<rect x="427.27" y="117.8" width="1.35" height="0.2" fill="#3f44c9"/>
+<rect x="428.62" y="117.6" width="1.35" height="0.4" fill="#3f44c9"/>
+<rect x="429.97" y="117.3" width="1.35" height="0.7" fill="#3f44c9"/>
+<rect x="431.32" y="116.9" width="1.35" height="1.1" fill="#3f44c9"/>
+<rect x="432.68" y="116.3" width="1.35" height="1.7" fill="#3f44c9"/>
+<rect x="434.02" y="115.4" width="1.35" height="2.6" fill="#3f44c9"/>
+<rect x="435.38" y="114.2" width="1.35" height="3.8" fill="#3f44c9"/>
+<rect x="436.72" y="112.5" width="1.35" height="5.5" fill="#3f44c9"/>
+<rect x="438.07" y="110.2" width="1.35" height="7.8" fill="#3f44c9"/>
+<rect x="439.43" y="107.3" width="1.35" height="10.7" fill="#3f44c9"/>
+<rect x="440.77" y="103.7" width="1.35" height="14.3" fill="#3f44c9"/>
+<rect x="442.12" y="99.3" width="1.35" height="18.7" fill="#3f44c9"/>
+<rect x="443.47" y="94.1" width="1.35" height="23.9" fill="#3f44c9"/>
+<rect x="444.82" y="88.1" width="1.35" height="29.9" fill="#3f44c9"/>
+<rect x="446.18" y="81.4" width="1.35" height="36.6" fill="#3f44c9"/>
+<rect x="447.52" y="74.3" width="1.35" height="43.7" fill="#3f44c9"/>
+<rect x="448.88" y="66.8" width="1.35" height="51.2" fill="#3f44c9"/>
+<rect x="450.22" y="59.4" width="1.35" height="58.6" fill="#3f44c9"/>
+<rect x="451.57" y="52.3" width="1.35" height="65.7" fill="#3f44c9"/>
+<rect x="452.93" y="45.9" width="1.35" height="72.1" fill="#3f44c9"/>
+<rect x="454.27" y="40.5" width="1.35" height="77.5" fill="#3f44c9"/>
+<rect x="455.62" y="36.4" width="1.35" height="81.6" fill="#3f44c9"/>
+<rect x="456.97" y="33.9" width="1.35" height="84.1" fill="#3f44c9"/>
+<rect x="458.32" y="33.0" width="1.35" height="85.0" fill="#3f44c9"/>
+<rect x="459.68" y="33.9" width="1.35" height="84.1" fill="#3f44c9"/>
+<rect x="461.02" y="36.4" width="1.35" height="81.6" fill="#3f44c9"/>
+<rect x="462.38" y="40.5" width="1.35" height="77.5" fill="#3f44c9"/>
+<rect x="463.72" y="45.9" width="1.35" height="72.1" fill="#3f44c9"/>
+<rect x="465.07" y="52.3" width="1.35" height="65.7" fill="#3f44c9"/>
+<rect x="466.43" y="59.4" width="1.35" height="58.6" fill="#3f44c9"/>
+<rect x="467.77" y="66.8" width="1.35" height="51.2" fill="#3f44c9"/>
+<rect x="469.12" y="74.3" width="1.35" height="43.7" fill="#3f44c9"/>
+<rect x="470.47" y="81.4" width="1.35" height="36.6" fill="#3f44c9"/>
+<rect x="471.82" y="88.1" width="1.35" height="29.9" fill="#3f44c9"/>
+<rect x="473.18" y="94.1" width="1.35" height="23.9" fill="#3f44c9"/>
+<rect x="474.52" y="99.3" width="1.35" height="18.7" fill="#3f44c9"/>
+<rect x="475.88" y="103.7" width="1.35" height="14.3" fill="#3f44c9"/>
+<rect x="477.22" y="107.3" width="1.35" height="10.7" fill="#3f44c9"/>
+<rect x="478.57" y="110.2" width="1.35" height="7.8" fill="#3f44c9"/>
+<rect x="479.93" y="112.5" width="1.35" height="5.5" fill="#3f44c9"/>
+<rect x="481.27" y="114.2" width="1.35" height="3.8" fill="#3f44c9"/>
+<rect x="482.62" y="115.4" width="1.35" height="2.6" fill="#3f44c9"/>
+<rect x="483.97" y="116.3" width="1.35" height="1.7" fill="#3f44c9"/>
+<rect x="485.32" y="116.9" width="1.35" height="1.1" fill="#3f44c9"/>
+<rect x="486.68" y="117.3" width="1.35" height="0.7" fill="#3f44c9"/>
+<rect x="488.02" y="117.6" width="1.35" height="0.4" fill="#3f44c9"/>
+<rect x="489.38" y="117.8" width="1.35" height="0.2" fill="#3f44c9"/>
+<rect x="490.72" y="117.9" width="1.35" height="0.1" fill="#3f44c9"/>
+<rect x="492.07" y="117.9" width="1.35" height="0.1" fill="#3f44c9"/>
+<rect x="493.43" y="118.0" width="1.35" height="0.0" fill="#3f44c9"/>
+<rect x="494.77" y="118.0" width="1.35" height="0.0" fill="#3f44c9"/>
+<rect x="496.12" y="118.0" width="1.35" height="0.0" fill="#3f44c9"/>
+<rect x="497.47" y="118.0" width="1.35" height="0.0" fill="#3f44c9"/>
+<rect x="498.82" y="118.0" width="1.35" height="0.0" fill="#3f44c9"/>
+<rect x="500.18" y="118.0" width="1.35" height="0.0" fill="#3f44c9"/>
+<rect x="501.52" y="118.0" width="1.35" height="0.0" fill="#3f44c9"/>
+<rect x="502.88" y="118.0" width="1.35" height="0.0" fill="#3f44c9"/>
+<rect x="504.22" y="118.0" width="1.35" height="0.0" fill="#3f44c9"/>
+<rect x="505.57" y="118.0" width="1.35" height="0.0" fill="#3f44c9"/>
+<rect x="506.93" y="118.0" width="1.35" height="0.0" fill="#3f44c9"/>
+<rect x="508.27" y="118.0" width="1.35" height="0.0" fill="#3f44c9"/>
+<rect x="509.62" y="118.0" width="1.35" height="0.0" fill="#3f44c9"/>
+<rect x="510.97" y="118.0" width="1.35" height="0.0" fill="#3f44c9"/>
+<rect x="512.33" y="118.0" width="1.35" height="0.0" fill="#3f44c9"/>
+<text x="405.0" y="131" text-anchor="middle" font-size="11" fill="#555">1</text>
+<text x="459.0" y="131" text-anchor="middle" font-size="11" fill="#555">3.5</text>
+<text x="513.0" y="131" text-anchor="middle" font-size="11" fill="#555">6</text>
+<text x="459.0" y="14" text-anchor="middle" font-weight="700">mean of 16 dice</text>
+<text x="459.0" y="146" text-anchor="middle" font-size="12" fill="#f5a524">SD 0.43</text>
+</svg><figcaption>The exact distribution of the mean of \(n\) dice, each panel scaled to its own peak. The shape heads for a bell and the spread shrinks like \(1/\sqrt n\): \(1.71\), \(1.21\), \(0.85\), \(0.43\).</figcaption></figure>
+<p>The centre stays put: expectations add, so the average has mean \(\mu\). The spread shrinks: <a href="a15-binomial-distribution.html">variances add</a> for independent variables, so the sum has variance \(n\sigma^2\) and SD \(\sigma\sqrt n\), and dividing by \(n\) leaves \(\sigma\sqrt n/n\):</p>
+<p class="callout">The SD of the mean of \(n\) independent copies is \(\dfrac{\sigma}{\sqrt n}\), the <b>standard error</b>. Halving it needs four times the data.</p>
+<p>The shape is the surprise. The <b>central limit theorem</b> says the sum of many independent copies of any random quantity with finite variance is close to normal, whatever the parent looked like. With \(\bar X\) the sample mean and \(N(0,1)\) the standard normal,</p>
+<p>\[\frac{\bar X - \mu}{\sigma/\sqrt n} \approx N(0, 1),\]</p>
+<p>so the grade 10 z-score rules apply to averages of anything. Why a bell? Each added variable smooths the distribution, as the triangle is smoother than the die; the proof needs next year's tools.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: the mean of 16 dice is at least 4</h2>
+<p>Standard error: \(1.71/\sqrt{16} = 0.427\). Four is \(0.5\) above the mean, which is \(z = 0.5/0.427 = 1.17\) standard errors. From a normal table, \(P(Z \geq 1.17) \approx 0.12\).</p>
+<p>The exact answer, counting all \(6^{16}\) outcomes with total at least 64, is \(0.137\). The gap is discreteness: the mean moves in steps of \(1/16\), and reading "at least 4" as "above \(3.97\)", half a step down, gives \(z = 1.10\) and \(0.136\).</p>
+<p class="small">Pick a parent distribution, slide \(n\), and watch 10,000 sample means pile into a bell: <a href="../../demos/clt.html">infinityclub.net/demos/clt.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>List the eleven totals of two dice with their probabilities; check they sum to 1. Using the variance \(\tfrac{35}{12}\) of one die, find the SD of the total and the SD of the mean of the two.<div class="space short"></div></li>
+<li>Adult heights in a population have mean 170 cm and SD 10 cm. A random sample of 100 is averaged. (a) What is the standard error? (b) Estimate the chance the sample mean exceeds 172 cm. (c) Between what two values does the sample mean fall 95% of the time?<div class="space short"></div></li>
+<li>In the same population, how large a sample makes the standard error 0.5 cm? And 0.25 cm?<div class="space short"></div></li>
+<li>A quantity is \(0\) with probability \(0.9\) and \(10\) with probability \(0.1\): nothing like a bell. (a) Show its mean is \(1\) and its SD is \(3\). (b) For the average of \(900\) independent copies, find the standard error and estimate the chance the average exceeds \(1.2\). (c) Why is the normal curve allowed here, when the parent is so lopsided?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: two random decimals</h2>
+<p>\(X\) and \(Y\) are independent and uniform on \([0, 1]\). Show \(\mathrm{Var}(X) = \int_0^1 (x - \tfrac12)^2\,dx = \tfrac{1}{12}\). Find \(P\big(\tfrac{X+Y}{2} > 0.9\big)\) exactly, by drawing the unit square, and compare with the normal approximation at \(n = 2\).</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Totals 2 to 12 with probabilities \(\tfrac{1}{36}, \tfrac{2}{36}, \tfrac{3}{36}, \tfrac{4}{36}, \tfrac{5}{36}, \tfrac{6}{36}, \tfrac{5}{36}, \tfrac{4}{36}, \tfrac{3}{36}, \tfrac{2}{36}, \tfrac{1}{36}\), summing to \(36/36\). Variance of the total \(2 \times \tfrac{35}{12} = \tfrac{35}{6}\), SD \(\approx 2.42\). The mean is the total divided by 2, so its SD is \(1.21 = 1.71/\sqrt2\).</li>
+<li>(a) \(10/\sqrt{100} = 1\) cm. (b) 172 is two standard errors above 170, so about \(2.5\%\) (more exactly \(2.3\%\)). (c) Within two standard errors: between 168 and 172 cm.</li>
+<li>\(10/\sqrt n = 0.5\) gives \(n = 400\); \(0.25\) needs \(n = 1{,}600\). Each halving of the error quadruples the sample.</li>
+<li>(a) Mean \(0.9 \times 0 + 0.1 \times 10 = 1\). \(E[X^2] = 0.1 \times 100 = 10\), so variance \(10 - 1^2 = 9\) and SD \(3\). (b) Standard error \(3/\sqrt{900} = 0.1\). \(1.2\) is two standard errors above the mean: about \(2.3\%\). (The exact value, a binomial tail, is \(2.2\%\).) (c) The central limit theorem: with 900 copies, the shape of the parent has been averaged away.</li>
+</ol>
+<p><b>Stretch.</b> \(\int_0^1 (x - \tfrac12)^2\,dx = \big[\tfrac13(x - \tfrac12)^3\big]_0^1 = \tfrac13\big(\tfrac18 + \tfrac18\big) = \tfrac{1}{12}\). The mean exceeds \(0.9\) when \(X + Y > 1.8\), the corner triangle of the unit square with legs \(0.2\): area \(\tfrac12 \times 0.2^2 = 0.02\). Normal approximation: \(\mu = 0.5\), \(\sigma = \sqrt{1/12} = 0.289\), standard error \(0.289/\sqrt2 = 0.204\), so \(z = 0.4/0.204 = 1.96\) and \(P \approx 0.025\). Two uniforms already give a triangle that the bell fits to within half a percentage point.</p>
+</section>
+
+<div class="sheet-nav"><a href="a15-binomial-distribution.html">← Previous</a><a href="a17-p-values.html">Next: What a p-value is, and is not →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

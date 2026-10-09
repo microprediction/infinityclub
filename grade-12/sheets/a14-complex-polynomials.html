@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conjugate roots and x⁴ + 4 · Infinity Club</title>
+<meta name="description" content="Why the non-real roots of a real polynomial come in conjugate pairs, how that factors x⁴ + 4 over the reals, and what the fundamental theorem of algebra says.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Sharpen · 14</div>
+  <h1>Conjugate roots and x⁴ + 4</h1>
+  <p class="teaser">Why non-real roots of real polynomials come in pairs, how to factor x⁴ + 4 over the reals, and the fundamental theorem of algebra stated.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>The <b>conjugate</b> of \(z = a + bi\) is \(\bar z = a - bi\), its mirror image in the real axis. Two facts make it useful. Conjugation respects addition and multiplication: \(\overline{z + w} = \bar z + \bar w\) and \(\overline{zw} = \bar z\,\bar w\) (multiply out to check). And a real number is its own conjugate.</p>
+<p>Take a polynomial \(p(x) = a_n x^n + \dots + a_1 x + a_0\) with <em>real</em> coefficients and conjugate \(p(z)\). Each power \(z^k\) becomes \(\bar z^k\), and each coefficient stays put. So \(\overline{p(z)} = p(\bar z)\). If \(p(z) = 0\), then \(p(\bar z) = \bar 0 = 0\).</p>
+<p class="callout">Non-real roots of a real polynomial come in conjugate pairs, and each pair gives a real quadratic factor: \((x - z)(x - \bar z) = x^2 - 2\,\mathrm{Re}(z)\,x + \lvert z\rvert^2\).</p>
+<p>The quadratic is real because \(z + \bar z = 2a\) and \(z\bar z = a^2 + b^2\) are real.</p>
+<figure><svg viewBox="0 0 220 200" width="220" height="200" role="img" aria-label="The complex plane with a circle of radius root 2 and the four roots of x to the fourth plus 4 at 45, 135, 225 and 315 degrees; dashed orange lines join each conjugate pair" font-family="Nunito, sans-serif" font-size="13">
+<line x1="10" y1="100" x2="210" y2="100" stroke="#999" stroke-width="1"/><line x1="110" y1="10" x2="110" y2="190" stroke="#999" stroke-width="1"/>
+<circle cx="110" cy="100" r="70.7" fill="none" stroke="#000" stroke-width="1.5"/>
+<line x1="110" y1="100" x2="160" y2="50" stroke="#999" stroke-width="1" stroke-dasharray="3 3"/>
+<circle cx="160" cy="50" r="4" fill="#3f44c9"/>
+<text x="164" y="42" text-anchor="start" fill="#3f44c9">1 + i</text>
+<line x1="110" y1="100" x2="60" y2="50" stroke="#999" stroke-width="1" stroke-dasharray="3 3"/>
+<circle cx="60" cy="50" r="4" fill="#3f44c9"/>
+<text x="56" y="42" text-anchor="end" fill="#3f44c9">−1 + i</text>
+<line x1="110" y1="100" x2="60" y2="150" stroke="#999" stroke-width="1" stroke-dasharray="3 3"/>
+<circle cx="60" cy="150" r="4" fill="#3f44c9"/>
+<text x="56" y="168" text-anchor="end" fill="#3f44c9">−1 − i</text>
+<line x1="110" y1="100" x2="160" y2="150" stroke="#999" stroke-width="1" stroke-dasharray="3 3"/>
+<circle cx="160" cy="150" r="4" fill="#3f44c9"/>
+<text x="164" y="168" text-anchor="start" fill="#3f44c9">1 − i</text>
+<line x1="160" y1="56" x2="160" y2="144" stroke="#f5a524" stroke-width="1.5" stroke-dasharray="4 3"/>
+<line x1="60" y1="56" x2="60" y2="144" stroke="#f5a524" stroke-width="1.5" stroke-dasharray="4 3"/>
+<text x="204" y="114" fill="#555" font-size="12">Re</text><text x="115" y="20" fill="#555" font-size="12">Im</text>
+<text x="140" y="88" fill="#555" font-size="12">√2</text>
+</svg><figcaption>The four roots of \(x^4 + 4\) sit on the circle \(\lvert x \rvert = \sqrt2\), at \(45°\), \(135°\), \(225°\), \(315°\). Each orange line joins a conjugate pair; each pair makes a real quadratic.</figcaption></figure>
+<p>The <b>fundamental theorem of algebra</b> says every polynomial of degree \(n \geq 1\) has exactly \(n\) complex roots, counted with multiplicity. You met it for \(x^n = 1\) in <a href="../../grade-10/sheets/b7-complex-rotations.html">grade 10</a>; the general proof is <a href="b17-winding.html">sheet b17</a>. Together with the pairing: every real polynomial factors over the reals into linear factors (one per real root) and quadratics (one per conjugate pair). In particular, a real polynomial of odd degree has at least one real root.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: \(x^4 + 4\)</h2>
+<p>The roots solve \(x^4 = -4\). In polar form \(-4\) has modulus 4 and angle \(180°\), so a fourth root has modulus \(\sqrt[4]{4} = \sqrt2\) and angle \(45°\), or \(45°\) plus a multiple of \(90°\). The four roots are \(1 + i\), \(-1 + i\), \(-1 - i\), \(1 - i\) (figure). Pair each with its conjugate:</p>
+<p>\[(x - (1+i))(x - (1-i)) = x^2 - 2x + 2, \qquad (x - (-1+i))(x - (-1-i)) = x^2 + 2x + 2.\]</p>
+<p>So \(x^4 + 4 = (x^2 - 2x + 2)(x^2 + 2x + 2)\). Check by writing \(x^4 + 4 = (x^2 + 2)^2 - (2x)^2\), a difference of squares: that is the same factorisation, reached without seeing a single root.</p>
+<p class="small">Multiply and conjugate points by hand: <a href="../../demos/complex.html">infinityclub.net/demos/complex.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Solve \(x^2 - 6x + 13 = 0\). Check the roots are conjugates, and that their sum and product are the \(6\) and \(13\) Vieta predicts.<div class="space short"></div></li>
+<li>(a) Find a monic real quadratic with \(1 - 3i\) as a root. (b) Find a monic real cubic with roots \(1 - 3i\) and \(2\).<div class="space short"></div></li>
+<li>\(2 + i\) is a root of \(x^3 - x^2 - 7x + 15\). Find the other two roots. (Build the quadratic factor first, then divide.)<div class="space"></div></li>
+<li>Plot the six roots of \(x^6 + 1\) on the unit circle. Pair them off and write \(x^6 + 1\) as a product of three real quadratics. Multiply back to check.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: a prime that never is</h2>
+<p>Show that \(n^4 + 4\) is never prime for an integer \(n > 1\). (Tonight's factorisation works for integers too.) Why does the argument fail at \(n = 1\)?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(x = 3 \pm 2i\), conjugates. Sum \(6\), product \(9 - (2i)^2 = 9 + 4 = 13\).</li>
+<li>(a) The partner root is \(1 + 3i\): \(x^2 - 2x + 10\). (b) \((x^2 - 2x + 10)(x - 2) = x^3 - 4x^2 + 14x - 20\).</li>
+<li>\(2 - i\) is also a root, so \((x - 2 - i)(x - 2 + i) = x^2 - 4x + 5\) is a factor. Dividing, \(x^3 - x^2 - 7x + 15 = (x^2 - 4x + 5)(x + 3)\). The roots are \(2 + i\), \(2 - i\), \(-3\).</li>
+<li>\(x^6 = -1\) has roots of modulus 1 at \(30°, 90°, 150°, 210°, 270°, 330°\). The pair at \(\pm 90°\) is \(\pm i\), giving \(x^2 + 1\). The pair at \(\pm 30°\) has real part \(\cos 30° = \tfrac{\sqrt3}{2}\) and modulus 1, giving \(x^2 - \sqrt3\,x + 1\); the pair at \(\pm 150°\) gives \(x^2 + \sqrt3\,x + 1\). So \(x^6 + 1 = (x^2 + 1)(x^2 - \sqrt3\,x + 1)(x^2 + \sqrt3\,x + 1)\). The last two multiply to \((x^2 + 1)^2 - 3x^2 = x^4 - x^2 + 1\), and \((x^2 + 1)(x^4 - x^2 + 1) = x^6 + 1\).</li>
+</ol>
+<p><b>Stretch.</b> \(n^4 + 4 = (n^2 - 2n + 2)(n^2 + 2n + 2) = \big((n-1)^2 + 1\big)\big((n+1)^2 + 1\big)\). For \(n \geq 2\) the smaller factor is at least \(2\) and the larger is bigger still, so \(n^4 + 4\) is a product of two integers greater than 1: composite. For example \(3^4 + 4 = 85 = 5 \times 17\) and \(5^4 + 4 = 629 = 17 \times 37\). At \(n = 1\) the smaller factor is \((1-1)^2 + 1 = 1\), which proves nothing, and indeed \(1 + 4 = 5\) is prime.</p>
+</section>
+
+<div class="sheet-nav"><a href="a13-lines-planes.html">← Previous</a><a href="a15-binomial-distribution.html">Next: The binomial distribution →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

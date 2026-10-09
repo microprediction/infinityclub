@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What a p-value is, and is not · Infinity Club</title>
+<meta name="description" content="The chance of data this extreme if nothing is going on. Compute a p-value exactly for a coin with binomial tails, see why 0.05 is a convention, and learn what a test cannot tell you.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Sharpen · 17</div>
+  <h1>What a p-value is, and is not</h1>
+  <p class="teaser">The chance of data this extreme if nothing is going on. Compute one for a coin, see why 0.05 is a convention, and what a test cannot tell you.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A friend says her coin favours heads. Ten flips give eight heads. Suspicious. But a fair coin can do that.</p>
+<p>Assume nothing is going on: the coin is fair. That is the <b>null hypothesis</b>, \(H_0\). Ask: if \(H_0\) is true, how likely is a result at least as extreme as ours? That probability is the <b>p-value</b>. Since the claim was about heads, "at least as extreme" means eight or more (a <b>one-sided</b> test). All \(2^{10} = 1024\) sequences are equally likely, so</p>
+<p>\[p = \frac{\binom{10}{8} + \binom{10}{9} + \binom{10}{10}}{1024} = \frac{45 + 10 + 1}{1024} = \frac{56}{1024} \approx 0.055.\]</p>
+<figure><svg viewBox="0 0 320 150" width="320" height="150" role="img" aria-label="Bar chart of the number of heads in ten fair flips; the bars for 8, 9 and 10 heads are highlighted and together make 56 out of 1024" font-family="Nunito, sans-serif" font-size="12">
+<line x1="24" y1="120" x2="316" y2="120" stroke="#999" stroke-width="1"/>
+<rect x="29.0" y="119.6" width="22" height="0.4" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1"/><text x="40.0" y="134" text-anchor="middle">0</text>
+<rect x="55.0" y="116.2" width="22" height="3.8" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1"/><text x="66.0" y="134" text-anchor="middle">1</text>
+<rect x="81.0" y="103.0" width="22" height="17.0" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1"/><text x="92.0" y="134" text-anchor="middle">2</text>
+<rect x="107.0" y="74.8" width="22" height="45.2" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1"/><text x="118.0" y="134" text-anchor="middle">3</text>
+<rect x="133.0" y="40.8" width="22" height="79.2" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1"/><text x="144.0" y="134" text-anchor="middle">4</text>
+<rect x="159.0" y="25.0" width="22" height="95.0" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1"/><text x="170.0" y="134" text-anchor="middle">5</text>
+<rect x="185.0" y="40.8" width="22" height="79.2" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1"/><text x="196.0" y="134" text-anchor="middle">6</text>
+<rect x="211.0" y="74.8" width="22" height="45.2" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1"/><text x="222.0" y="134" text-anchor="middle">7</text>
+<rect x="237.0" y="103.0" width="22" height="17.0" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/><text x="248.0" y="134" text-anchor="middle">8</text>
+<rect x="263.0" y="116.2" width="22" height="3.8" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/><text x="274.0" y="134" text-anchor="middle">9</text>
+<rect x="289.0" y="119.6" width="22" height="0.4" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/><text x="300.0" y="134" text-anchor="middle">10</text>
+<text x="274" y="78" text-anchor="middle" fill="#f5a524" font-weight="700">8 or more</text>
+<text x="274" y="93" text-anchor="middle" fill="#f5a524">56 / 1024</text>
+<text x="170" y="16" text-anchor="middle" fill="#3f44c9">252 / 1024</text>
+<text x="170" y="146" text-anchor="middle" fill="#555">heads in 10 fair flips</text>
+</svg><figcaption>The 1024 sequences sorted by number of heads. The p-value is the highlighted tail.</figcaption></figure>
+<p>A fair coin does this about one time in eighteen. Convention calls a result <b>significant</b> when \(p \lt 0.05\). Ours just misses; one more head gives \(p = 11/1024 \approx 0.011\). Nothing changes at 0.05; Fisher suggested it in 1925 and it stuck.</p>
+<p>The p-value is \(P(\text{data} \mid H_0)\), the chance of the data given a fair coin. It is <em>not</em> \(P(H_0 \mid \text{data})\), the chance the coin is fair given the data. Swapping them is the <a href="../../grade-10/sheets/c5-medical-tests.html">medical-test mistake</a>: the second needs to know how common biased coins are. Nor does it measure how biased the coin is; a large p-value does not prove fairness.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: 60 heads in 100 flips</h2>
+<p>The exact one-sided p-value is the binomial tail</p>
+<p>\[p = \sum_{k=60}^{100} \binom{100}{k} \Big/ 2^{100} \approx 0.0284.\]</p>
+<p>The <a href="../../grade-10/sheets/a16-statistics.html">bell curve</a> gets close without the sum: the count of heads has mean 50 and SD 5, so 60 is two SDs up, and about 0.023 lies beyond. (Starting the tail at 59.5, because counts are whole numbers, gives 0.029.) One-sided, this is significant. But if the claim had only been "unfair", with no direction, 40 or fewer heads would count as extreme too, and the <b>two-sided</b> p-value is \(2 \times 0.0284 = 0.057\). Not significant. Same data, different question, different verdict.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Ten flips of a coin claimed to favour heads. Find the one-sided p-value for (a) nine heads, (b) ten heads.<div class="space short"></div></li>
+<li>Sixteen flips give twelve heads. Compute the one-sided and two-sided p-values exactly (you will need \(\binom{16}{12}\) up to \(\binom{16}{16}\)). What is the verdict at 0.05 in each case?<div class="space short"></div></li>
+<li>In a bag of coins, one in fifty is weighted so that heads comes up with probability 0.8; the rest are fair. You draw one at random, flip it ten times, and get eight heads. (a) Show that \(P(\text{8 or more} \mid \text{weighted}) \approx 0.678\). (b) Use <a href="../../grade-10/sheets/b21-bayes.html">Bayes' theorem</a> to find \(P(\text{weighted} \mid \text{8 or more})\). Compare with the tempting "the coin is 94.5% likely to be biased".<div class="space"></div></li>
+<li>Suppose the coin really does give heads with probability 0.6. You use the rule "ten flips; declare it biased if 8 or more are heads". What is the chance the rule catches the bias? What, then, does a non-significant result tell you?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the smallest experiment</h2>
+<p>All heads in \(n\) flips has one-sided p-value \(1/2^n\). What is the smallest \(n\) for which all heads is significant at 0.05? And two-sided? Now suppose a coin's true probability of heads is 0.7. How often does the smallest one-sided experiment reach significance?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \((10 + 1)/1024 = 11/1024 \approx 0.0107\). (b) \(1/1024 \approx 0.001\).</li>
+<li>\(\binom{16}{12} + \cdots + \binom{16}{16} = 1820 + 560 + 120 + 16 + 1 = 2517\), and \(2^{16} = 65536\). One-sided \(p = 2517/65536 \approx 0.038\), significant. Two-sided \(p \approx 0.077\), not significant.</li>
+<li>(a) \(\binom{10}{8}(0.8)^8(0.2)^2 + \binom{10}{9}(0.8)^9(0.2) + (0.8)^{10} = 0.302 + 0.268 + 0.107 = 0.678\). (b) \(P(\text{weighted} \mid 8+) = \dfrac{0.02 \times 0.678}{0.02 \times 0.678 + 0.98 \times 0.0547} = \dfrac{0.01356}{0.01356 + 0.05359} \approx 0.20\). Eight heads leaves an 80% chance the coin is fair. The "94.5%" is \(1 - p\), which is the chance a fair coin gives <em>fewer</em> than eight heads; it says nothing about this coin until you know how many coins are weighted.</li>
+<li>\(P(8+ \mid 0.6) = 45(0.6)^8(0.4)^2 + 10(0.6)^9(0.4) + (0.6)^{10} = 0.121 + 0.040 + 0.006 = 0.167\). The rule misses a genuine 60/40 coin five times out of six. A non-significant result means the data are consistent with fairness, not that fairness is established. Ten flips are far too few to see a bias this size; this chance of detection is called the <b>power</b> of the test.</li>
+</ol>
+<p><b>Stretch.</b> \(1/2^4 = 0.0625\) fails and \(1/2^5 = 0.03125\) passes, so \(n = 5\). Two-sided the p-value is \(2/2^n\): \(2/32 = 0.0625\) fails, \(2/64 = 0.03125\) passes, so \(n = 6\). With a 0.7 coin, five heads in five flips happens with probability \(0.7^5 \approx 0.168\): the smallest experiment detects even a strongly biased coin only one time in six.</p>
+<p class="small">How evidence from many small studies is weighed, and why p-values alone are not enough, is the subject of our <a href="../../research.html">research page</a>.</p>
+</section>
+
+<div class="sheet-nav"><a href="a16-clt.html">← Previous</a><a href="a18-implicit.html">Next: Implicit differentiation →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

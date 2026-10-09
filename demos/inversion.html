@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inversion in a Circle · Infinity Club</title>
+<meta name="description" content="Drag points, lines and circles around a fixed circle and watch their images under inversion update live. Lines become circles through the centre, circles through the centre become lines, and tangency survives.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+#plane { touch-action: none; cursor: grab; display: block; width: 100%; max-width: 620px; margin: 0 auto; }
+#plane.drag { cursor: grabbing; }
+.controls input[type=range] { width: 140px; }
+.controls .val { font-family: var(--mono); min-width: 2.5em; display: inline-block; }
+.key { display: flex; flex-wrap: wrap; gap: .4rem 1.2rem; font-size: .9rem; color: var(--muted); margin: .4rem 0 .6rem; }
+.key span::before { content: ""; display: inline-block; width: 14px; height: 14px; border-radius: 3px; vertical-align: -2px; margin-right: .35rem; }
+.key .k::before { background: #1d1f3a; }
+.key .obj::before { background: #3f44c9; }
+.key .img::before { background: #f5a524; }
+.key .ray::before { background: #c9c7bf; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Inversion in a circle</h1>
+<p class="explain"><b>Drag any blue handle.</b> The black circle, centre O and radius k, is the mirror. Every blue object is reflected in it: a point P goes to the point P′ on the ray OP with OP · OP′ = k². The orange shapes are the images, redrawn as you drag. Slide the line so it passes through O and watch its image straighten out; slide the circle until it passes through O and watch its image become a line; push anything inside the mirror and watch its image fly outside. Add more objects with the buttons, and try making a line touch a circle: the images touch too.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <button id="addPoint">Add point</button>
+    <button id="addLine">Add line</button>
+    <button id="addCircle">Add circle</button>
+    <button id="undo" class="ghost">Remove last</button>
+    <button id="reset" class="ghost">Reset</button>
+    <label>k <input type="range" id="k" min="0.5" max="2" step="0.05" value="1"> <span class="val" id="kv">1.00</span></label>
+    <label><input type="checkbox" id="rays" checked> show rays O → P → P′</label>
+  </div>
+  <div class="key"><span class="k">circle of inversion</span><span class="obj">objects (drag the handles)</span><span class="img">images</span><span class="ray">rays from O</span></div>
+  <canvas id="plane" width="620" height="620"></canvas>
+  <div class="readout" id="info"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p><b>Inversion</b> in a circle of radius k centred at O sends each point P ≠ O to the point P′ on the ray from O through P with OP · OP′ = k². Points on the circle stay put, points inside go outside and points outside come inside, and O itself has nowhere to go (think of it as being sent to infinity). Doing it twice gets you back where you started, just like a reflection.</p>
+<p>The surprise is what happens to shapes. A line through O maps to itself. A line <i>not</i> through O maps to a circle through O: if F is the foot of the perpendicular from O to the line, the image is the circle with diameter OF′. A circle through O maps to a line, and a circle not through O maps to another circle (though not centre to centre: the image of the centre is not the centre of the image). Lines are just circles that happen to pass through infinity, and inversion shuffles the whole family of "lines and circles" among itself.</p>
+<p>Two things survive inversion exactly: angles between curves, and tangency, because tangency is an angle of zero. That is why it solves problems. A tangle of circles touching one another near O becomes a tangle of lines after inversion, where the problem is easy. The rays in the picture also show the one-dimensional formula at work: drag a point along a ray and its image moves the other way along the same ray, with the product of the two distances pinned to k².</p>
+<p>Sheet: <a href="../grade-12/sheets/b26-inversion.html">Inversion in a circle</a>. Related demos: <a href="complex.html">complex numbers</a> (inversion is z ↦ k²/z̄) and <a href="transform.html">transformations</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  var EPS = 1e-4;
+  function hyp(x, y) { return Math.sqrt(x * x + y * y); }
+  // P' = O + k^2 (P - O)/|P - O|^2, with O at the origin
+  function invertPoint(P, k) { var r2 = P[0] * P[0] + P[1] * P[1]; if (r2 < EPS * EPS) return null; var s = k * k / r2; return [P[0] * s, P[1] * s]; }
+  // image of the line through A and B
+  function invertLine(A, B, k) {
+    var dx = B[0] - A[0], dy = B[1] - A[1], L2 = dx * dx + dy * dy; if (L2 < EPS * EPS) return null;
+    var t = -(A[0] * dx + A[1] * dy) / L2, F = [A[0] + t * dx, A[1] + t * dy], dist = hyp(F[0], F[1]);
+    if (dist < EPS) return { type: "line", A: A, B: B, throughO: true };
+    var Fp = invertPoint(F, k);
+    return { type: "circle", C: [Fp[0] / 2, Fp[1] / 2], r: hyp(Fp[0], Fp[1]) / 2, throughO: true, dist: dist };
+  }
+  // image of the circle with centre C and radius r
+  function invertCircle(C, r, k) {
+    var dC = hyp(C[0], C[1]);
+    if (dC < EPS) return { type: "circle", C: [0, 0], r: k * k / r, concentric: true };
+    var u = [C[0] / dC, C[1] / dC], far = [C[0] + u[0] * r, C[1] + u[1] * r], near = [C[0] - u[0] * r, C[1] - u[1] * r];
+    if (Math.abs(dC - r) < EPS) { var Q = invertPoint(far, k); return { type: "line", A: Q, B: [Q[0] - u[1], Q[1] + u[0]], fromCircleThroughO: true }; }
+    var P1 = invertPoint(far, k), P2 = invertPoint(near, k);
+    return { type: "circle", C: [(P1[0] + P2[0]) / 2, (P1[1] + P2[1]) / 2], r: hyp(P1[0] - P2[0], P1[1] - P2[1]) / 2, insideO: dC < r };
+  }
+  function fmt(v, d) { d = d === undefined ? 2 : d; var r = Math.round(v * Math.pow(10, d)) / Math.pow(10, d); if (Object.is(r, -0)) r = 0; return r.toString().replace("-", "−"); }
+  /*ENDPURE*/
+
+  var VIEW = 3.2; // plane shows -VIEW..VIEW in both directions, O at the centre
+  var canvas = document.getElementById("plane"), ctx = canvas.getContext("2d"), info = document.getElementById("info");
+  var S, W, scale;
+  function defaults() {
+    return { k: 1, rays: true, objs: [
+      { type: "point", h: [[1.8, 0.6]] },
+      { type: "line", h: [[-2.6, -1.3], [1.4, -2.3]] },
+      { type: "circle", h: [[1.5, 1.5], [2.2, 1.5]] }
+    ] };
+  }
+  S = defaults();
+  function px(x) { return W / 2 + x * scale; } function py(y) { return W / 2 - y * scale; }
+  function toMath(cx, cy) { var r = canvas.getBoundingClientRect(), sx = W / r.width; return [((cx - r.left) * sx - W / 2) / scale, (W / 2 - (cy - r.top) * sx) / scale]; }
+
+  function drawLine(A, B, col, w) {
+    var dx = B[0] - A[0], dy = B[1] - A[1], L = hyp(dx, dy); if (L < 1e-9) return; dx /= L; dy /= L;
+    var far = VIEW * 4;
+    ctx.strokeStyle = col; ctx.lineWidth = w; ctx.beginPath(); ctx.moveTo(px(A[0] - dx * far), py(A[1] - dy * far)); ctx.lineTo(px(A[0] + dx * far), py(A[1] + dy * far)); ctx.stroke();
+  }
+  function drawCircle(C, r, col, w) { if (!(r > 0) || r * scale > 1e6) return; ctx.strokeStyle = col; ctx.lineWidth = w; ctx.beginPath(); ctx.arc(px(C[0]), py(C[1]), r * scale, 0, Math.PI * 2); ctx.stroke(); }
+  function dot(P, rad, col) { ctx.fillStyle = col; ctx.beginPath(); ctx.arc(px(P[0]), py(P[1]), rad, 0, Math.PI * 2); ctx.fill(); }
+  function imageOf(o, k) {
+    if (o.type === "point") return { type: "point", P: invertPoint(o.h[0], k) };
+    if (o.type === "line") return invertLine(o.h[0], o.h[1], k);
+    var r = hyp(o.h[1][0] - o.h[0][0], o.h[1][1] - o.h[0][1]); return invertCircle(o.h[0], r, k);
+  }
+
+  function draw() {
+    var dpr = window.devicePixelRatio || 1; W = canvas.clientWidth || 620; scale = W / (2 * VIEW);
+    canvas.width = W * dpr; canvas.height = W * dpr; canvas.style.height = W + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, W);
+    var k = S.k; document.getElementById("kv").textContent = fmt(k);
+    // faint grid
+    ctx.strokeStyle = "#f0eee8"; ctx.lineWidth = 1;
+    for (var g = -3; g <= 3; g++) { ctx.beginPath(); ctx.moveTo(px(g), 0); ctx.lineTo(px(g), W); ctx.stroke(); ctx.beginPath(); ctx.moveTo(0, py(g)); ctx.lineTo(W, py(g)); ctx.stroke(); }
+    // circle of inversion
+    ctx.strokeStyle = "#1d1f3a"; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.arc(px(0), py(0), k * scale, 0, Math.PI * 2); ctx.stroke();
+    dot([0, 0], 4.5, "#1d1f3a");
+    ctx.fillStyle = "#1d1f3a"; ctx.font = "bold 13px Nunito, sans-serif"; ctx.textAlign = "left"; ctx.fillText("O", px(0) + 7, py(0) - 7);
+    ctx.font = "12px Nunito, sans-serif"; ctx.fillStyle = "#5d6079"; ctx.fillText("k = " + fmt(k), px(k * 0.72) + 4, py(k * 0.72) - 4);
+    var lines = [];
+    S.objs.forEach(function (o, idx) {
+      var img = imageOf(o, k), label = ["P", "Q", "R", "S", "T", "U", "V", "W"][idx % 8];
+      // rays: O through each handle to its image
+      if (S.rays) o.h.forEach(function (h) {
+        var hp = invertPoint(h, k); if (!hp) return;
+        var far = Math.max(hyp(h[0], h[1]), hyp(hp[0], hp[1])), d = hyp(h[0], h[1]) || 1;
+        ctx.strokeStyle = "#c9c7bf"; ctx.lineWidth = 1; ctx.setLineDash([3, 4]); ctx.beginPath(); ctx.moveTo(px(0), py(0)); ctx.lineTo(px(h[0] / d * far), py(h[1] / d * far)); ctx.stroke(); ctx.setLineDash([]);
+        dot(hp, 4, "#f5a524");
+      });
+      // images
+      if (img) {
+        if (img.type === "point" && img.P) { dot(img.P, 6, "#f5a524"); ctx.fillStyle = "#b07200"; ctx.font = "bold 13px Nunito, sans-serif"; ctx.fillText(label + "′", px(img.P[0]) + 8, py(img.P[1]) - 6); }
+        else if (img.type === "line") drawLine(img.A, img.B, "#f5a524", 2.5);
+        else if (img.type === "circle") drawCircle(img.C, img.r, "#f5a524", 2.5);
+      }
+      // objects
+      if (o.type === "line") drawLine(o.h[0], o.h[1], "#3f44c9", 2.5);
+      else if (o.type === "circle") { var r = hyp(o.h[1][0] - o.h[0][0], o.h[1][1] - o.h[0][1]); drawCircle(o.h[0], r, "#3f44c9", 2.5); }
+      o.h.forEach(function (h, j) {
+        dot(h, 8, "#3f44c9"); ctx.strokeStyle = "#fff"; ctx.lineWidth = 2; ctx.stroke();
+        if (o.type === "point") { ctx.fillStyle = "#1d1f3a"; ctx.font = "bold 13px Nunito, sans-serif"; ctx.fillText(label, px(h[0]) + 9, py(h[1]) - 6); }
+      });
+      // readout line
+      if (o.type === "point") {
+        var P = o.h[0], d1 = hyp(P[0], P[1]), Pp = img.P;
+        lines.push(Pp ? "point " + label + " = (" + fmt(P[0]) + ", " + fmt(P[1]) + "):  O" + label + " = " + fmt(d1, 3) + ",  O" + label + "′ = " + fmt(hyp(Pp[0], Pp[1]), 3) + ",  product = " + fmt(d1 * hyp(Pp[0], Pp[1]), 3) + " = k² = " + fmt(k * k, 3) : "point " + label + " is at O: its image is at infinity");
+      } else if (o.type === "line") {
+        if (!img) lines.push("line " + label + ": drag the two handles apart");
+        else if (img.type === "line") lines.push("line " + label + " passes through O  →  its image is itself");
+        else lines.push("line " + label + " at distance " + fmt(img.dist, 3) + " from O  →  a circle through O, centre (" + fmt(img.C[0]) + ", " + fmt(img.C[1]) + "), radius " + fmt(img.r, 3) + " = k²/(2 × " + fmt(img.dist, 3) + ")");
+      } else {
+        var rr = hyp(o.h[1][0] - o.h[0][0], o.h[1][1] - o.h[0][1]), dC = hyp(o.h[0][0], o.h[0][1]);
+        if (!img) lines.push("circle " + label + ": drag the rim handle away from the centre");
+        else if (img.type === "line") lines.push("circle " + label + " passes through O  →  its image is a straight line");
+        else if (img.concentric) lines.push("circle " + label + " centred at O, radius " + fmt(rr, 3) + "  →  the circle of radius k²/r = " + fmt(img.r, 3));
+        else lines.push("circle " + label + ", centre (" + fmt(o.h[0][0]) + ", " + fmt(o.h[0][1]) + "), radius " + fmt(rr, 3) + (img.insideO ? ", surrounds O" : "") + "  →  a circle, centre (" + fmt(img.C[0]) + ", " + fmt(img.C[1]) + "), radius " + fmt(img.r, 3) + (img.insideO ? ", also surrounding O" : "") + (Math.abs(dC) > EPS ? "  (the image of the centre is not the centre of the image)" : ""));
+      }
+    });
+    if (!S.objs.length) lines.push("Add a point, a line or a circle.");
+    info.textContent = lines.join("\n");
+  }
+
+  // dragging
+  var drag = null;
+  canvas.addEventListener("pointerdown", function (ev) {
+    var m = toMath(ev.clientX, ev.clientY), best = null, bestD = (22 / scale) * (22 / scale);
+    S.objs.forEach(function (o, i) { o.h.forEach(function (h, j) { var d = (h[0] - m[0]) * (h[0] - m[0]) + (h[1] - m[1]) * (h[1] - m[1]); if (d < bestD) { bestD = d; best = { i: i, j: j }; } }); });
+    if (!best) return;
+    drag = best; canvas.classList.add("drag"); canvas.setPointerCapture(ev.pointerId); ev.preventDefault();
+  });
+  canvas.addEventListener("pointermove", function (ev) {
+    if (!drag) return;
+    var m = toMath(ev.clientX, ev.clientY), o = S.objs[drag.i], h = o.h[drag.j];
+    var nx = Math.max(-VIEW, Math.min(VIEW, m[0])), ny = Math.max(-VIEW, Math.min(VIEW, m[1]));
+    if (o.type === "circle" && drag.j === 0) { var dx = nx - h[0], dy = ny - h[1]; o.h[1] = [o.h[1][0] + dx, o.h[1][1] + dy]; } // move the whole circle
+    o.h[drag.j] = [nx, ny]; draw();
+  });
+  function up() { drag = null; canvas.classList.remove("drag"); }
+  canvas.addEventListener("pointerup", up); canvas.addEventListener("pointercancel", up);
+
+  function spot() { var a = Math.random() * Math.PI * 2, r = 1.3 + Math.random() * 1.2; return [r * Math.cos(a), r * Math.sin(a)]; }
+  document.getElementById("addPoint").addEventListener("click", function () { S.objs.push({ type: "point", h: [spot()] }); draw(); });
+  document.getElementById("addLine").addEventListener("click", function () { var p = spot(), a = Math.random() * Math.PI; S.objs.push({ type: "line", h: [[p[0] - Math.cos(a), p[1] - Math.sin(a)], [p[0] + Math.cos(a), p[1] + Math.sin(a)]] }); draw(); });
+  document.getElementById("addCircle").addEventListener("click", function () { var c = spot(); S.objs.push({ type: "circle", h: [c, [c[0] + 0.6, c[1]]] }); draw(); });
+  document.getElementById("undo").addEventListener("click", function () { S.objs.pop(); draw(); });
+  document.getElementById("reset").addEventListener("click", function () { var k = S.k, rays = S.rays; S = defaults(); S.k = k; S.rays = rays; draw(); });
+  var kS = document.getElementById("k"); kS.addEventListener("input", function () { S.k = parseFloat(kS.value); draw(); });
+  document.getElementById("rays").addEventListener("change", function (e) { S.rays = e.target.checked; draw(); });
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(draw, 120); });
+  draw();
+})();
+</script>
+</body>
+</html>

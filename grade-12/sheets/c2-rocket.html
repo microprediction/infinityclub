@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The rocket equation · Infinity Club</title>
+<meta name="description" content="Conserve momentum for a rocket that throws fuel out of the back, and a differential equation appears whose answer is a logarithm. Tsiolkovsky's equation, checked with real exhaust speeds, and why reaching orbit needs staging.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Connections · 2</div>
+  <h1>The rocket equation</h1>
+  <p class="teaser">Burn fuel, lose mass, gain speed. A differential equation whose answer is a logarithm, and why getting to orbit is so hard.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A rocket is a machine for throwing mass backwards. At some instant it has mass \(m\) and speed \(v\). In a short time it burns a small mass \(dm\) of fuel and throws it out of the back at speed \(v_e\) relative to the rocket (the <b>exhaust speed</b>). Ignore gravity and air for now. Nothing pushes from outside, so momentum is conserved. Before: \(mv\). After: a lighter, faster rocket plus exhaust moving at \(v - v_e\):</p>
+<p>\[mv = (m - dm)(v + dv) + dm\,(v - v_e).\]</p>
+<p>Expand the right side: \(mv + m\,dv - v\,dm - dm\,dv + v\,dm - v_e\,dm\). The \(mv\) and \(v\,dm\) terms cancel, and \(dm\,dv\), two small things multiplied, is negligible. What survives is</p>
+<p class="callout">\(m\,dv = v_e\,dm\), so \(dv = v_e\,\dfrac{dm}{m}\).</p>
+<p>Each gram of fuel gives the same push, shared by whatever mass remains, and that mass keeps shrinking. Add up the pushes as the mass falls from \(m_0\) (full) to \(m_1\) (empty):</p>
+<p>\[\Delta v = v_e \int_{m_1}^{m_0} \frac{dm}{m} = v_e \ln\frac{m_0}{m_1}.\]</p>
+<p>This is the <b>Tsiolkovsky rocket equation</b>, written down in 1903, before any rocket had flown. The logarithm is the cruel part: to double \(\Delta v\) you must square the mass ratio.</p>
+<figure><svg viewBox="0 0 320 160" width="240" height="120" role="img" aria-label="Delta v against mass ratio for an exhaust speed of 3 km/s, a logarithmic curve, with horizontal lines at the speeds needed for orbit" font-family="Nunito, sans-serif" font-size="12">
+<line x1="40" y1="130" x2="310" y2="130" stroke="#999"/><line x1="40" y1="130" x2="40" y2="10" stroke="#999"/>
+<line x1="40" y1="40.3" x2="310" y2="40.3" stroke="#f5a524" stroke-width="1.5" stroke-dasharray="4 3"/>
+<line x1="40" y1="21.9" x2="310" y2="21.9" stroke="#f5a524" stroke-width="1.5" stroke-dasharray="4 3"/>
+<path d="M40.0 130.0 45.4 116.0 50.8 106.1 56.2 98.4 61.7 92.1 67.1 86.8 72.5 82.2 77.9 78.1 83.3 74.5 88.8 71.2 94.2 68.2 99.6 65.4 105.0 62.9 110.4 60.5 115.8 58.3 121.2 56.2 126.7 54.2 132.1 52.3 137.5 50.6 142.9 48.9 148.3 47.3 153.8 45.7 159.2 44.3 164.6 42.9 170.0 41.5 175.4 40.2 180.8 39.0 186.2 37.7 191.7 36.6 197.1 35.4 202.5 34.3 207.9 33.3 213.3 32.3 218.8 31.3 224.2 30.3 229.6 29.3 235.0 28.4 240.4 27.5 245.8 26.6 251.2 25.8 256.7 25.0 262.1 24.2 267.5 23.4 272.9 22.6 278.3 21.8 283.8 21.1 289.2 20.4 294.6 19.6 300.0 18.9" fill="none" stroke="#3f44c9" stroke-width="2"/>
+<circle cx="137.5" cy="50.6" r="3.5" fill="#3f44c9"/>
+<text x="137.5" y="146" text-anchor="middle">10</text><text x="83.3" y="146" text-anchor="middle" fill="#555">5</text><text x="191.7" y="146" text-anchor="middle" fill="#555">15</text><text x="245.8" y="146" text-anchor="middle" fill="#555">20</text><text x="300" y="146" text-anchor="middle" fill="#555">25</text><text x="40" y="146" text-anchor="middle" fill="#555">1</text>
+<text x="36" y="65" text-anchor="end" fill="#555">6</text><text x="36" y="88" text-anchor="end" fill="#555">4</text><text x="36" y="111" text-anchor="end" fill="#555">2</text><text x="36" y="19" text-anchor="end" fill="#555">10</text>
+<text x="146" y="68" fill="#3f44c9" font-weight="700">ratio 10: 6.9 km/s</text>
+<text x="308" y="52" text-anchor="end" fill="#f5a524" font-weight="700">orbit 7.8</text>
+<text x="308" y="33" text-anchor="end" fill="#f5a524" font-weight="700">orbit + losses 9.4</text>
+<text x="48" y="12" fill="#555">Δv (km/s), vₑ = 3 km/s</text>
+<text x="200" y="128" text-anchor="middle" fill="#555" font-size="11">mass ratio m₀/m₁</text>
+</svg><figcaption>\(\Delta v = 3\ln(m_0/m_1)\). The curve flattens: each extra km/s costs a bigger multiple of fuel than the last.</figcaption></figure>
+</section>
+
+<section class="example">
+<h2>Watch one: \(v_e = 3\) km/s, mass ratio 10</h2>
+<p>Kerosene burning in oxygen gives roughly 3 km/s. Build a rocket that is 90% fuel by mass, so \(m_0/m_1 = 10\):</p>
+<p>\[\Delta v = 3 \ln 10 = 3 \times 2.303 = 6.9 \text{ km/s}.\]</p>
+<p>Low orbit needs 7.8 km/s, and fighting gravity and air on the way up costs about another 1.5, so call it 9.4 km/s. The ratio required is \(e^{9.4/3} = e^{3.13} \approx 23\): fuel must be \(1 - 1/23 = 95.6\%\) of the launch mass. The remaining 4.4% must be tanks, engines, guidance <em>and</em> payload, and tanks and engines alone typically weigh more than that. Exercise 4 shows the way out.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>A rocket has \(v_e = 2.5\) km/s and launch mass four times its empty mass. Find \(\Delta v\). What fraction of the launch mass was fuel?<div class="space short"></div></li>
+<li>What mass ratio gives \(\Delta v = v_e\)? What fraction of the launch mass is fuel? Repeat for \(\Delta v = 2v_e\). Twice the speed needs how many times the fuel fraction?<div class="space short"></div></li>
+<li>Hydrogen burning in oxygen gives \(v_e \approx 4.4\) km/s. What mass ratio delivers the 9.4 km/s of the example, and what fuel fraction? Compare with kerosene's 95.6%. Why do engineers care so much about exhaust speed?<div class="space short"></div></li>
+<li><b>Staging.</b> A 100 t rocket with \(v_e = 3\) km/s burns 60 t of fuel, drops its 10 t empty first stage, then the 30 t second stage burns 20 t more, leaving 10 t in orbit. (a) Find \(\Delta v\) by adding the two burns. (b) A single-stage rocket with the same 80 t of fuel must carry all 10 t of structure to the end: 100 t down to 20 t. Find its \(\Delta v\). (c) Where did the difference come from?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: gravity bites during the burn</h2>
+<p>Burning straight up, gravity subtracts \(g\,dt\) from each \(dv\), so \(\Delta v = v_e\ln(m_0/m_1) - gT\) for a burn lasting \(T\) seconds. The example rocket (ratio 10, \(v_e = 3\)) burns for 150 s. How much is lost? Why do rockets tip towards the horizontal soon after launch, and why do engines burn as hard as the structure allows?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(\Delta v = 2.5 \ln 4 = 2.5 \times 1.386 = 3.5\) km/s. Empty mass is a quarter of launch mass, so fuel was three quarters: 75%.</li>
+<li>\(\ln(m_0/m_1) = 1\) means \(m_0/m_1 = e = 2.72\), fuel fraction \(1 - 1/e = 63\%\). For \(2v_e\): ratio \(e^2 = 7.39\), fuel fraction \(1 - e^{-2} = 86\%\). Twice the speed needs only 1.37 times the fuel <em>fraction</em>, but the fraction cannot pass 100%, so the empty rocket is squeezed from 37% of launch mass down to 14%. The squeeze on what is left is the real cost.</li>
+<li>\(e^{9.4/4.4} = e^{2.14} = 8.5\), fuel fraction \(1 - 1/8.5 = 88\%\). That leaves 12% for structure and payload instead of 4.4%, nearly three times as much. Exhaust speed sits inside the exponent, so a 47% gain in \(v_e\) cuts the required ratio from 23 to 8.5. (Hydrogen's drawback is that it is so light it needs huge tanks.)</li>
+<li>(a) First burn \(3\ln(100/40) = 3 \times 0.916 = 2.75\) km/s; second \(3\ln(30/10) = 3 \times 1.099 = 3.30\) km/s; total 6.04 km/s. (b) \(3\ln(100/20) = 3\ln 5 = 4.83\) km/s. (c) Staging gained 1.2 km/s from the same fuel because the second burn did not have to accelerate 10 t of empty tank. Fuel spent moving dead weight is fuel wasted; dropping the weight early is the only escape from the logarithm.</li>
+</ol>
+<p><b>Stretch.</b> \(gT = 9.81 \times 150 = 1{,}470\) m/s, about 1.5 km/s, so \(\Delta v = 6.9 - 1.5 = 5.4\) km/s. The loss is \(gT\), proportional to burn time and nothing else, which is why the thrust is as high as the structure allows: finish the burn fast. Once the rocket is moving horizontally, gravity pulls sideways to its motion and no longer subtracts from its speed, so rockets pitch over as soon as they are clear of the thickest air.</p>
+</section>
+
+<div class="sheet-nav"><a href="c1-escape-velocity.html">← Previous</a><a href="c3-options.html">Next: What an option is worth →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

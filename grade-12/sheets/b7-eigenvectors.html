@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The directions a matrix leaves alone · Infinity Club</title>
+<meta name="description" content="Most vectors get turned by a matrix; eigenvectors only get stretched. Find them for a 2×2 matrix from det(A − λI) = 0, then use the Fibonacci matrix to derive Binet's closed formula.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Around the corner · 7</div>
+  <h1>The directions a matrix leaves alone</h1>
+  <p class="teaser">Most vectors get turned; eigenvectors only get stretched. Find them for a 2×2 matrix, and use them to write Fibonacci in closed form.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A \(2 \times 2\) matrix \(A\) moves every vector \(\mathbf v\) to \(A\mathbf v\) (<a href="../../grade-10/sheets/b14-matrices-transformations.html">grade 10</a>). A few directions do not turn: \(A\mathbf v = \lambda \mathbf v\) for some number \(\lambda\) (lambda). Such a \(\mathbf v \ne \mathbf 0\) is an <b>eigenvector</b> and \(\lambda\) its <b>eigenvalue</b> (<em>eigen</em>: German for "own"). Along that line the matrix is just a number.</p>
+<figure><svg viewBox="0 0 200 200" width="170" height="170" role="img" aria-label="A unit circle and its image under the matrix 2 1 1 2, an ellipse; the eigen-directions along the diagonals are highlighted, and a generic vector is shown turning" font-family="Nunito, sans-serif" font-size="12">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="context-stroke"/></marker></defs>
+<line x1="6" y1="100" x2="194" y2="100" stroke="#999" stroke-width="1"/><line x1="100" y1="6" x2="100" y2="194" stroke="#999" stroke-width="1"/>
+<circle cx="100" cy="100" r="28" fill="none" stroke="#999" stroke-width="1.2" stroke-dasharray="4 3"/>
+<polygon fill="#dcdcf5" fill-opacity="0.6" stroke="#3f44c9" stroke-width="1.6" points="156.0,72.0 158.6,66.3 160.6,61.0 161.9,56.1 162.5,51.6 162.5,47.8 161.8,44.4 160.4,41.7 158.3,39.6 155.6,38.2 152.2,37.5 148.4,37.5 143.9,38.1 139.0,39.4 133.7,41.4 128.0,44.0 122.0,47.2 115.7,51.0 109.3,55.4 102.8,60.2 96.2,65.5 89.7,71.2 83.3,77.1 77.1,83.3 71.2,89.7 65.5,96.2 60.2,102.8 55.4,109.3 51.0,115.7 47.2,122.0 44.0,128.0 41.4,133.7 39.4,139.0 38.1,143.9 37.5,148.4 37.5,152.2 38.2,155.6 39.6,158.3 41.7,160.4 44.4,161.8 47.8,162.5 51.6,162.5 56.1,161.9 61.0,160.6 66.3,158.6 72.0,156.0 78.0,152.8 84.3,149.0 90.7,144.6 97.2,139.8 103.8,134.5 110.3,128.8 116.7,122.9 122.9,116.7 128.8,110.3 134.5,103.8 139.8,97.2 144.6,90.7 149.0,84.3 152.8,78.0"/>
+<g stroke="#f5a524" stroke-width="2" marker-end="url(#ah)"><line x1="100" y1="100" x2="157" y2="43"/><line x1="100" y1="100" x2="118" y2="118"/></g>
+<g stroke="#3f44c9" stroke-width="1.8" marker-end="url(#ah)"><line x1="100" y1="100" x2="125" y2="100"/><line x1="100" y1="100" x2="153" y2="74"/></g>
+<text x="166" y="38" fill="#f5a524" font-weight="700">×3</text><text x="122" y="132" fill="#f5a524" font-weight="700">×1</text>
+<text x="112" y="113" fill="#3f44c9" font-size="12" font-style="italic">v</text><text x="140" y="62" fill="#3f44c9" font-size="12" font-style="italic">Bv</text>
+</svg><figcaption>\(B = \begin{pmatrix} 2 &amp; 1 \\ 1 &amp; 2 \end{pmatrix}\) stretches \((1, 1)\) by 3 and \((1, -1)\) by 1; \(\mathbf v = (1, 0)\) is turned.</figcaption></figure>
+<p>To find them: \(A\mathbf v = \lambda\mathbf v\) means \((A - \lambda I)\mathbf v = \mathbf 0\), where \(I\) is the identity matrix. A nonzero vector sent to zero means \(A - \lambda I\) squashes the plane flat, so its determinant, the area factor, is zero:</p>
+<p class="callout">\(\det(A - \lambda I) = (a - \lambda)(d - \lambda) - bc = 0 \quad\text{for } A = \begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix},\)</p>
+<p>a quadratic in \(\lambda\): the <b>characteristic equation</b>. Solve it for \(\lambda\), then solve \((A - \lambda I)\mathbf v = \mathbf 0\) for \(\mathbf v\). For \(B\) in the figure, \((2 - \lambda)^2 - 1 = 0\) gives \(\lambda = 3, 1\).</p>
+<p>Why care: \(A^n\mathbf v = \lambda^n\mathbf v\). Split a vector into eigenvectors and powers of \(A\) become powers of numbers.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: Fibonacci in closed form</h2>
+<p>The Fibonacci rule \(F_{n+1} = F_n + F_{n-1}\) is a matrix step:</p>
+<p>\[\binom{F_{n+1}}{F_n} = M\binom{F_n}{F_{n-1}}, \quad M = \begin{pmatrix} 1 &amp; 1 \\ 1 &amp; 0 \end{pmatrix}, \qquad\text{so}\qquad \binom{F_{n+1}}{F_n} = M^n\binom{1}{0}.\]</p>
+<p>The characteristic equation \(\lambda^2 - \lambda - 1 = 0\) has roots \(\varphi = \tfrac{1 + \sqrt5}{2} \approx 1.618\) and \(\psi = \tfrac{1 - \sqrt5}{2} = -1/\varphi\). Since \(\varphi^2 = \varphi + 1\), \(M(\varphi, 1) = (\varphi + 1, \varphi) = \varphi(\varphi, 1)\): an eigenvector, and likewise \((\psi, 1)\). As \(\varphi - \psi = \sqrt5\), \((1, 0) = \frac{1}{\sqrt5}\big[(\varphi, 1) - (\psi, 1)\big]\), so \(M^n(1, 0) = \frac{1}{\sqrt5}\big[\varphi^n(\varphi, 1) - \psi^n(\psi, 1)\big]\). The second entry is \(F_n\):</p>
+<p class="callout">\(F_n = \dfrac{\varphi^n - \psi^n}{\sqrt5}\) (Binet's formula). Check \(n = 10\): \((122.992 - 0.008)/\sqrt5 = 55\).</p>
+<p class="small">Drag a vector and watch where its image lines up with it: <a href="../../demos/eigen.html">infinityclub.net/demos/eigen.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>\(A = \begin{pmatrix} 3 &amp; 1 \\ 0 &amp; 2 \end{pmatrix}\). Find both eigenvalues and an eigenvector for each.<div class="space short"></div></li>
+<li>Show that the quarter turn \(R = \begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix}\) has no real eigenvalue. Why must it not? What would you expect for a reflection?<div class="space short"></div></li>
+<li>Expand the characteristic equation in the callout to \(\lambda^2 - (a + d)\lambda + (ad - bc) = 0\). Deduce (Vieta, <a href="../../grade-10/sheets/a2-discriminant-vieta.html">grade 10</a>) that the eigenvalues multiply to \(\det A\) and add to \(a + d\). Check for \(M\) and \(B\).<div class="space short"></div></li>
+<li>The sequence \(a_0 = 0\), \(a_1 = 1\), \(a_{n+1} = a_n + 2a_{n-1}\) runs 0, 1, 1, 3, 5, 11, 21, … Write the rule as a matrix \(J\), find its eigenvalues and eigenvectors, write \((1, 0)\) in terms of them, and hence find a closed formula for \(a_n\). Check \(n = 5\).<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the eigenvector that runs the web</h2>
+<p>Each column of \(P = \begin{pmatrix} 0.9 &amp; 0.5 \\ 0.1 &amp; 0.5 \end{pmatrix}\) sums to 1: it shifts probability between two states. Show \(\lambda = 1\) is an eigenvalue, find its eigenvector with entries summing to 1, and find the other eigenvalue. Why is that eigenvector the long-run distribution, whatever the start?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\((3 - \lambda)(2 - \lambda) = 0\): \(\lambda = 3\) and \(\lambda = 2\). For \(\lambda = 3\), \(A - 3I = \begin{pmatrix} 0 &amp; 1 \\ 0 &amp; -1 \end{pmatrix}\) kills \((1, 0)\). For \(\lambda = 2\), \(A - 2I = \begin{pmatrix} 1 &amp; 1 \\ 0 &amp; 0 \end{pmatrix}\) kills \((1, -1)\). A triangular matrix has its eigenvalues on the diagonal.</li>
+<li>\(\lambda^2 + 1 = 0\), no real root. A quarter turn moves every direction, so no real eigenvector can exist. (The roots are \(\pm i\): complex numbers as rotations again, <a href="../../grade-10/sheets/b7-complex-rotations.html">grade 10</a>.) A reflection leaves its mirror line alone (\(\lambda = 1\)) and reverses the perpendicular direction (\(\lambda = -1\)); for the reflection in \(y = x\), \(\begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{pmatrix}\), the eigenvectors are \((1, 1)\) and \((1, -1)\).</li>
+<li>\((a - \lambda)(d - \lambda) - bc = \lambda^2 - (a + d)\lambda + (ad - bc)\). By Vieta, the roots multiply to the constant term \(ad - bc = \det A\) and add to \(a + d\) (the <b>trace</b>). \(M\): \(\varphi\psi = -1 = \det M\), \(\varphi + \psi = 1\). \(B\): \(3 \cdot 1 = 4 - 1\), \(3 + 1 = 4\). Since \(\varphi\psi = -1\), \(|\psi| = 1/\varphi \lt 1\), which is why \(\psi^n/\sqrt5\) fades and \(F_n\) is the nearest integer to \(\varphi^n/\sqrt5\).</li>
+<li>\(J = \begin{pmatrix} 1 &amp; 2 \\ 1 &amp; 0 \end{pmatrix}\), \(\lambda^2 - \lambda - 2 = 0\), \(\lambda = 2\) and \(-1\), eigenvectors \((2, 1)\) and \((1, -1)\). \((1, 0) = \tfrac13(2, 1) + \tfrac13(1, -1)\), so \(J^n(1, 0) = \tfrac13\big[2^n(2, 1) + (-1)^n(1, -1)\big]\) and the second entry gives \(a_n = \dfrac{2^n - (-1)^n}{3}\). \(n = 5\): \((32 + 1)/3 = 11\).</li>
+</ol>
+<p><b>Stretch.</b> \(\det(P - I) = (-0.1)(-0.5) - (0.5)(0.1) = 0\), so \(\lambda = 1\) works. \((P - I)\mathbf v = \mathbf 0\) gives \(-0.1v_1 + 0.5v_2 = 0\), \(v_1 = 5v_2\): the eigenvector is \((\tfrac56, \tfrac16)\). The eigenvalues add to the trace 1.4, so the other is 0.4, with eigenvector \((1, -1)\). Any starting distribution is \((\tfrac56, \tfrac16) + c(1, -1)\) for some \(c\), and each step multiplies the second part by 0.4, so it dies away. This is the steady state of a Markov chain (<a href="../../grade-10/sheets/b22-markov-pagerank.html">grade 10</a>) and PageRank is exactly this eigenvector for the matrix of web links: <a href="../../demos/pagerank.html">infinityclub.net/demos/pagerank.html</a>.</p>
+</section>
+
+<div class="sheet-nav"><a href="b6-generating-functions.html">← Previous</a><a href="b8-least-squares.html">Next: Least squares is a projection →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

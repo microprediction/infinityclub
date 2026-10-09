@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why the Earth is not frozen · Infinity Club</title>
+<meta name="description" content="Sunlight in on a disc, heat radiated out from a sphere as σT⁴. Balance them and the Earth should be 255 K, −18 °C. The measured 288 K makes the 33-degree difference the greenhouse effect.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Connections · 10</div>
+  <h1>Why the Earth is not frozen</h1>
+  <p class="teaser">Sunlight in, heat radiated out as T⁴. Balance them and the planet should be −18 °C. The greenhouse effect is the 33 degrees of difference.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>At Earth's distance, sunlight carries \(S = 1{,}361\) watts per square metre facing the Sun (the <b>solar constant</b>). The Earth catches it with its shadow, a disc of area \(\pi R^2\). A fraction \(A \approx 0.30\), the <b>albedo</b>, bounces back off clouds, ice and bright ground. Absorbed: \(S(1 - A)\pi R^2\).</p>
+<p>Anything warm radiates. The <b>Stefan–Boltzmann law</b>: a surface at \(T\) kelvin emits \(\sigma T^4\) watts per square metre, with \(\sigma = 5.67 \times 10^{-8}\ \mathrm{W\,m^{-2}\,K^{-4}}\). The Earth radiates from its whole surface, \(4\pi R^2\), night side included. If the planet is neither warming nor cooling, in equals out:</p>
+<p>\[S(1 - A)\,\pi R^2 = 4\pi R^2\,\sigma T^4.\]</p>
+<figure><svg viewBox="0 0 490 200" width="490" height="200" role="img" aria-label="Parallel rays of sunlight arrive from the left and are caught on the Earth's shadow disc; one ray is reflected; infrared arrows leave the sphere in every direction" font-family="Nunito, sans-serif" font-size="12">
+<defs><marker id="arrS" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#f5a524"/></marker><marker id="arrI" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3f44c9"/></marker></defs>
+<g stroke="#f5a524" stroke-width="1.8" marker-end="url(#arrS)">
+<line x1="40" y1="52" x2="295" y2="52"/><line x1="40" y1="74" x2="278" y2="74"/><line x1="40" y1="96" x2="273" y2="96"/><line x1="40" y1="118" x2="278" y2="118"/><line x1="40" y1="140" x2="295" y2="140"/>
+</g>
+<line x1="297" y1="56" x2="257" y2="24" stroke="#f5a524" stroke-width="1.8" stroke-dasharray="5 3" marker-end="url(#arrS)"/>
+<line x1="250" y1="41" x2="250" y2="151" stroke="#999" stroke-width="2" stroke-dasharray="4 3"/>
+<circle cx="330" cy="96" r="55" fill="#dcdcf5" stroke="#3f44c9" stroke-width="2"/>
+<text x="330" y="101" text-anchor="middle" fill="#3f44c9" font-size="14" font-weight="700">T</text>
+<g stroke="#3f44c9" stroke-width="1.8" marker-end="url(#arrI)">
+<line x1="391" y1="96" x2="413" y2="96"/><line x1="373.1" y1="139.1" x2="388.7" y2="154.7"/><line x1="330" y1="157" x2="330" y2="179"/><line x1="330" y1="35" x2="330" y2="13"/><line x1="373.1" y1="52.9" x2="388.7" y2="37.3"/>
+</g>
+<text x="42" y="44" fill="#f5a524" font-weight="700">S = 1,361 W/m²</text>
+<text x="252" y="20" text-anchor="end" fill="#f5a524">30% reflected</text>
+<text x="250" y="168" text-anchor="middle" fill="#555">disc πR²</text>
+<text x="418" y="100" fill="#3f44c9" font-weight="700">σT⁴</text><text x="418" y="115" fill="#3f44c9" font-size="11">from 4πR²</text>
+<text x="100" y="168" fill="#555">70% absorbed</text>
+</svg><figcaption>Caught on a disc of area \(\pi R^2\), radiated from a sphere of area \(4\pi R^2\). Hence the 4, and the fourth root.</figcaption></figure>
+<p>\(R\) cancels: size does not matter. Solve for \(T\):</p>
+<p class="callout">\(T = \left[\dfrac{S(1 - A)}{4\sigma}\right]^{1/4}.\)</p>
+<p>The 4 is sphere over disc: one disc of light spread over four. The formula gives \(T = 255\) K, \(-18\) °C: a frozen planet. The measured mean is about 288 K, 15 °C. The 33 K gap is the <b>greenhouse effect</b>. Air lets sunlight through but absorbs the infrared the ground emits, sending some back down. The planet still radiates what it absorbs to space, but from high, cold air; the surface beneath must be warmer.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: the Earth</h2>
+<p>Absorbed, per square metre of the whole surface: \(1{,}361 \times 0.70 / 4 = 238\) W/m². Set \(\sigma T^4 = 238\): then \(T^4 = 238 / (5.67 \times 10^{-8}) = 4.20 \times 10^9\), and the fourth root is \(T = 255\) K.</p>
+<p>Check: \(5.67 \times 10^{-8} \times 255^4 = 240\) W/m². In Celsius, \(255 - 273 = -18\) °C. Now try the measured 288 K: a surface that warm radiates \(\sigma \times 288^4 = 390\) W/m², far more than the 238 arriving. It can, because most of that 390 is absorbed by the air above and never reaches space.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>(a) Explain in a sentence each why sunlight is caught on \(\pi R^2\) but radiated from \(4\pi R^2\), and why \(R\) cancels. (b) If the Earth reflected nothing (\(A = 0\)), what would \(T\) be?<div class="space short"></div></li>
+<li>Mars is 1.52 times as far from the Sun, so (inverse square) it receives \(S/1.52^2\) per square metre. Its albedo is about 0.25. Find its effective temperature. Its measured mean surface temperature is about 210 K. What does that say about its atmosphere?<div class="space short"></div></li>
+<li>Melting ice darkens a planet. If \(A\) fell from 0.30 to 0.29, by how much would \(T\) rise? Do it exactly with the formula, then with small changes: \(T \propto (1-A)^{1/4}\), so \(\Delta T / T \approx -\Delta A / (4(1-A))\).<div class="space short"></div></li>
+<li><b>A one-layer greenhouse.</b> Put one thin layer of air above the surface: transparent to sunlight, absorbing all infrared, and at temperature \(T_a\) radiating \(\sigma T_a^4\) upward and the same downward. (a) Balance at the top: only the layer radiates to space. Find \(T_a\). (b) Balance at the surface: it receives 238 W/m² of sunlight plus \(\sigma T_a^4\) from the layer, and emits \(\sigma T_s^4\). Find \(T_s\). (c) The real surface is 288 K. Why is your answer too high?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: Venus</h2>
+<p>Venus orbits at 0.723 of Earth's distance and has albedo about 0.77. Find its effective temperature and compare it with Earth's. Its surface is about 735 K. With \(n\) layers of the kind in exercise 4, \(T_s = T\,(n+1)^{1/4}\). How many layers would Venus need?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) The Sun's parallel rays see the Earth as its shadow, a disc; radiation leaves from every square metre of the curved surface, the sphere. Both sides of the balance are proportional to \(R^2\), so the area cancels and only the per-square-metre fluxes matter. (b) \(T = (1{,}361 / (4 \times 5.67 \times 10^{-8}))^{1/4} = 278\) K, about 5 °C. Reflection alone costs the planet 23 degrees.</li>
+<li>\(S_{\text{Mars}} = 1{,}361/2.31 = 589\) W/m². \(T = (589 \times 0.75 / (4\sigma))^{1/4} = 210\) K. The effective temperature matches the measured one, so Mars has almost no greenhouse effect: its atmosphere is far too thin to trap much infrared.</li>
+<li>Exactly: \(T = (1{,}361 \times 0.71 / (4\sigma))^{1/4} = 255.5\) K against 254.6 K, a rise of 0.90 K. Small changes: \(\Delta T \approx 254.6 \times 0.01 / (4 \times 0.70) = 0.91\) K. One percentage point of albedo is worth almost a degree.</li>
+<li>(a) At the top, out equals in: \(\sigma T_a^4 = 238\), so \(T_a = 255\) K; the layer sits at the old effective temperature. (b) \(\sigma T_s^4 = 238 + 238 = 476\), so \(T_s^4 = 2 T_a^4\) and \(T_s = 255 \times 2^{1/4} = 303\) K, 30 °C. (c) The real atmosphere is only partly opaque to infrared, so some surface radiation escapes to space directly, and heat also leaves the ground by convection and by evaporating water, not just by radiation. The truth, 288 K, lies between the bare planet (255 K) and the sealed one (303 K).</li>
+</ol>
+<p><b>Stretch.</b> \(S_{\text{Venus}} = 1{,}361/0.723^2 = 2{,}600\) W/m², but only 23% is absorbed: \(T = (2{,}600 \times 0.23 / (4\sigma))^{1/4} = 227\) K, colder than Earth's 255 K despite being nearer the Sun. Yet the surface is 735 K. Solving \((n+1)^{1/4} = 735/227\) gives \(n + 1 = 3.24^4 \approx 110\): about a hundred and ten opaque layers. Venus's thick carbon-dioxide atmosphere is a greenhouse of 500 degrees.</p>
+</section>
+
+<div class="sheet-nav"><a href="c9-queues.html">← Previous</a><a href="../index.html#sheets">← All sheets</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

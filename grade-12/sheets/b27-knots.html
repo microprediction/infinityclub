@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Proving a knot is knotted · Infinity Club</title>
+<meta name="description" content="Colour the arcs of the trefoil with three colours so that every crossing sees one colour or all three. The colouring survives Reidemeister's three moves, the unknot has no such colouring, so the trefoil cannot be undone.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Around the corner · 27</div>
+  <h1>Proving a knot is knotted</h1>
+  <p class="teaser">The trefoil cannot be undone. Colour its arcs with three colours and watch the colouring survive every move. An invariant in one evening.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A <b>knot</b> is a closed loop of string; two knots are the same if one can be moved into the other without cutting. The <b>trefoil</b> (figure) looks knotted. To prove that no sequence of moves turns it into a plain circle, the <b>unknot</b>, you cannot try every sequence. You need a property no move can change, an <b>invariant</b>, which the trefoil has and the circle lacks.</p>
+<figure><svg viewBox="0 0 200 195" width="150" height="146" role="img" aria-label="The trefoil knot drawn with its three arcs in three colours, labelled a, b and c; at each of the three crossings all three colours meet" font-family="Nunito, sans-serif" font-size="13">
+<polyline points="143.6,116.2 145.8,114.9 148.0,113.6 150.1,112.2 152.1,110.7 154.1,109.2 155.9,107.7 157.7,106.1 159.4,104.5 161.1,102.8 162.6,101.1 164.0,99.3 165.4,97.5 166.6,95.8 167.8,93.9 168.9,92.1 169.8,90.2 170.7,88.4 171.4,86.5 172.1,84.6 172.6,82.8 173.1,80.9 173.4,79.1 173.7,77.2 173.8,75.4 173.9,73.6 173.8,71.8 173.6,70.0 173.4,68.3 173.0,66.6 172.5,64.9 172.0,63.3 171.3,61.8 170.6,60.2 169.7,58.8 168.8,57.4 167.7,56.0 166.6,54.7 165.4,53.5 164.1,52.3 162.8,51.2 161.3,50.2 159.8,49.2 158.2,48.4 156.6,47.6 154.9,46.9 153.1,46.2 151.2,45.7 149.3,45.2 147.4,44.9 145.4,44.6 143.4,44.4 141.3,44.3 139.2,44.3 137.0,44.4 134.8,44.6 132.6,44.9 130.4,45.3 128.1,45.7 125.9,46.3 123.6,47.0 121.3,47.7 119.0,48.6 116.8,49.5 114.5,50.5 112.2,51.7 110.0,52.9 107.8,54.2 105.5,55.6 103.4,57.0 101.2,58.6 99.1,60.2 97.0,61.9 94.9,63.7 92.9,65.6 91.0,67.5 89.1,69.5 87.2,71.6 85.4,73.8 83.7,76.0 82.0,78.2 80.4,80.5 78.8,82.9 77.3,85.3 75.9,87.7 74.6,90.2 73.3,92.7 72.1,95.3 71.0,97.9 70.0,100.5 69.0,103.1 68.2,105.8 67.4,108.4 66.7,111.1" fill="none" stroke="#3f44c9" stroke-width="4" stroke-linecap="round"/><text x="160.8" y="39.0" text-anchor="middle" fill="#3f44c9" font-weight="700">a</text>
+<polyline points="64.2,129.6 64.2,132.2 64.2,134.8 64.4,137.3 64.6,139.8 65.0,142.2 65.4,144.6 65.9,147.0 66.4,149.3 67.1,151.5 67.8,153.7 68.6,155.8 69.4,157.9 70.4,159.8 71.4,161.7 72.4,163.6 73.5,165.3 74.7,167.0 76.0,168.6 77.3,170.1 78.6,171.5 80.0,172.8 81.4,174.1 82.9,175.2 84.4,176.2 86.0,177.2 87.5,178.0 89.1,178.8 90.8,179.4 92.4,179.9 94.1,180.3 95.8,180.7 97.5,180.9 99.2,181.0 100.8,181.0 102.5,180.9 104.2,180.7 105.9,180.3 107.6,179.9 109.2,179.4 110.9,178.8 112.5,178.0 114.0,177.2 115.6,176.2 117.1,175.2 118.6,174.1 120.0,172.8 121.4,171.5 122.7,170.1 124.0,168.6 125.3,167.0 126.5,165.3 127.6,163.6 128.6,161.7 129.6,159.8 130.6,157.9 131.4,155.8 132.2,153.7 132.9,151.5 133.6,149.3 134.1,147.0 134.6,144.6 135.0,142.2 135.4,139.8 135.6,137.3 135.8,134.8 135.8,132.2 135.8,129.6 135.7,127.0 135.5,124.4 135.3,121.7 134.9,119.1 134.5,116.4 133.9,113.8 133.3,111.1 132.6,108.4 131.8,105.8 131.0,103.1 130.0,100.5 129.0,97.9 127.9,95.3 126.7,92.7 125.4,90.2 124.1,87.7 122.7,85.3 121.2,82.9 119.6,80.5 118.0,78.2 116.3,76.0 114.6,73.8 112.8,71.6 110.9,69.5 109.0,67.5 107.1,65.6" fill="none" stroke="#f5a524" stroke-width="4" stroke-linecap="round"/><text x="125.3" y="189.4" text-anchor="middle" fill="#f5a524" font-weight="700">b</text>
+<polyline points="92.2,54.2 90.0,52.9 87.8,51.7 85.5,50.5 83.2,49.5 81.0,48.6 78.7,47.7 76.4,47.0 74.1,46.3 71.9,45.7 69.6,45.3 67.4,44.9 65.2,44.6 63.0,44.4 60.8,44.3 58.7,44.3 56.6,44.4 54.6,44.6 52.6,44.9 50.7,45.2 48.8,45.7 46.9,46.2 45.1,46.9 43.4,47.6 41.8,48.4 40.2,49.2 38.7,50.2 37.2,51.2 35.9,52.3 34.6,53.5 33.4,54.7 32.3,56.0 31.2,57.4 30.3,58.8 29.4,60.2 28.7,61.8 28.0,63.3 27.5,64.9 27.0,66.6 26.6,68.3 26.4,70.0 26.2,71.8 26.1,73.6 26.2,75.4 26.3,77.2 26.6,79.1 26.9,80.9 27.4,82.8 27.9,84.6 28.6,86.5 29.3,88.4 30.2,90.2 31.1,92.1 32.2,93.9 33.4,95.8 34.6,97.5 36.0,99.3 37.4,101.1 38.9,102.8 40.6,104.5 42.3,106.1 44.1,107.7 45.9,109.2 47.9,110.7 49.9,112.2 52.0,113.6 54.2,114.9 56.4,116.2 58.7,117.4 61.1,118.6 63.5,119.7 66.0,120.7 68.5,121.6 71.1,122.5 73.7,123.3 76.4,124.0 79.1,124.7 81.8,125.3 84.6,125.8 87.3,126.2 90.1,126.5 92.9,126.7 95.8,126.9 98.6,127.0 101.4,127.0 104.2,126.9 107.1,126.7 109.9,126.5 112.7,126.2 115.4,125.8 118.2,125.3 120.9,124.7 123.6,124.0 126.3,123.3" fill="none" stroke="#000" stroke-width="4" stroke-linecap="round"/><text x="14.2" y="80.5" text-anchor="middle" fill="#000" font-weight="700">c</text>
+</svg><figcaption>The trefoil: three crossings, three arcs. Give each arc its own colour and every crossing sees all three.</figcaption></figure>
+<p>Draw the knot flat, breaking the lower strand at each crossing: a <b>diagram</b>. An <b>arc</b> runs from one undercrossing to the next. A <b>tricolouring</b> gives each arc one of three colours so that at every crossing the three arcs meeting there are all the same or all different, and at least two colours appear. The trefoil's three arcs all meet at each crossing: colour them differently and it is tricolourable. The unknot's diagram is one arc, one colour: not tricolourable.</p>
+<p class="callout">Reidemeister proved in the 1920s that two diagrams of the same knot are always connected by a chain of the three moves below. A property all three preserve is an invariant of the knot itself.</p>
+<figure><svg viewBox="0 0 520 112" width="390" height="84" role="img" aria-label="The three Reidemeister moves: I, a kink twisted in or out; II, one strand poked over another or pulled back; III, a strand slid across a crossing" font-family="Nunito, sans-serif" font-size="13">
+<polyline points="21.6,75.0 23.4,74.3 25.2,73.5 26.9,72.7 28.5,71.8 30.1,70.8 31.6,69.8 33.1,68.7 34.4,67.6 35.7,66.5" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round"/><polyline points="43.1,57.0 43.7,55.7 44.2,54.4 44.6,53.1 45.0,51.9 45.3,50.7 45.5,49.5 45.6,48.4 45.7,47.3 45.6,46.2 45.6,45.2 45.4,44.2 45.2,43.3 44.9,42.5 44.6,41.7 44.2,41.0 43.8,40.4 43.4,39.8 42.9,39.4 42.4,39.0 41.9,38.7 41.3,38.4 40.7,38.3 40.2,38.2 39.6,38.2 39.0,38.3 38.5,38.5 37.9,38.8 37.4,39.1 36.9,39.6 36.4,40.1 36.0,40.6 35.6,41.3 35.3,42.0 35.0,42.8 34.7,43.7 34.5,44.6 34.4,45.6 34.3,46.6 34.4,47.7 34.4,48.8 34.6,50.0 34.8,51.2 35.1,52.4 35.5,53.6 36.0,54.9 36.6,56.2 37.2,57.5 37.9,58.8 38.7,60.1 39.6,61.3 40.6,62.6 41.7,63.8 42.8,65.1 44.0,66.2 45.3,67.4 46.7,68.5 48.1,69.6 49.6,70.6 51.2,71.6 52.8,72.5 54.5,73.3 56.2,74.1 58.0,74.8" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round"/><polyline points="111.6,75.0 148.4,75.0" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round"/><polyline points="196.0,20.0 198.2,23.5 200.4,27.1" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round"/><polyline points="206.6,39.1 207.9,42.6 208.9,46.2 209.6,49.7 210.0,53.2 210.0,56.8 209.6,60.3 208.9,63.8 207.9,67.4 206.6,70.9" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round"/><polyline points="201.2,81.5 199.1,85.1 196.9,88.6" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round"/><polyline points="212.0,20.0 209.8,23.5 207.6,27.1 205.6,30.6 203.7,34.1 202.0,37.7 200.6,41.2 199.5,44.7 198.6,48.3 198.1,51.8 198.0,55.4 198.2,58.9 198.8,62.4 199.7,66.0 200.9,69.5 202.3,73.0 204.1,76.6 206.0,80.1 208.1,83.6 210.2,87.2" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round"/><polyline points="286.0,20.0 286.0,90.0" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round"/><polyline points="302.0,20.0 302.0,90.0" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round"/><polyline points="348.0,30.0 360.9,30.0 373.9,30.0 386.8,30.0 399.7,30.0" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round"/><polyline points="350.0,85.0 393.0,34.8" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round"/><polyline points="400.9,25.6 410.0,15.0" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round"/><polyline points="350.0,15.0 359.1,25.6" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round"/><polyline points="367.0,34.8 376.1,45.4" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round"/><polyline points="383.9,54.6 410.0,85.0" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round"/><polyline points="438.0,70.0 450.9,70.0 463.9,70.0 476.8,70.0 489.7,70.0" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round"/><polyline points="440.0,85.0 449.1,74.4" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round"/><polyline points="457.0,65.2 500.0,15.0" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round"/><polyline points="440.0,15.0 466.1,45.4" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round"/><polyline points="473.9,54.6 483.0,65.2" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round"/><polyline points="490.9,74.4 500.0,85.0" fill="none" stroke="#000" stroke-width="2.5" stroke-linecap="round"/>
+<text x="84" y="62" text-anchor="middle" fill="#3f44c9" font-size="16" font-weight="700">↔</text><text x="254" y="60" text-anchor="middle" fill="#3f44c9" font-size="16" font-weight="700">↔</text><text x="424" y="55" text-anchor="middle" fill="#3f44c9" font-size="16" font-weight="700">↔</text>
+<text x="84" y="108" text-anchor="middle" fill="#555" font-size="12">I: twist</text><text x="254" y="108" text-anchor="middle" fill="#555" font-size="12">II: poke</text><text x="424" y="108" text-anchor="middle" fill="#555" font-size="12">III: slide</text>
+</svg><figcaption>Reidemeister's moves I, II and III. Bending the string without changing any crossing is allowed too.</figcaption></figure>
+<p>Move I is checked in the example, move II in exercise 3; move III is a longer case check. Granting it, the trefoil is knotted.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: move I keeps the colouring</h2>
+<p>Take a tricoloured diagram and twist a kink into an arc of colour \(a\). The kink adds one crossing, where the arc passes under itself. The three arcs meeting there are the original arc (twice: it is also the over-strand) and the new short arc inside the kink. Two of the three are equal, so the rule forces the new arc to be \(a\) too. The colouring extends in exactly one way, and nothing outside the kink changes. Undo the kink and the old colouring is still valid. Move I preserves tricolourability both ways.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>How many tricolourings does the trefoil diagram have, counting the three one-colour ones, and how many use at least two colours?<div class="space short"></div></li>
+<li>Twist a kink into arc \(a\) of the trefoil, giving four crossings. How many arcs now? Which colourings are allowed, how many use at least two colours, and does that agree with exercise 1?<div class="space short"></div></li>
+<li>Move II pokes a strand of colour \(a\) over a strand of colour \(b\), splitting the lower strand into three arcs: \(b\), a middle arc, and a final arc. (a) Show the rule forces the middle arc's colour; what is it when \(a = b\), and when \(a \ne b\)? (b) Show the final arc must be \(b\) again. (c) Why does this prove move II preserves tricolourability both ways?<div class="space short"></div></li>
+<li>(a) Label the colours \(0, 1, 2\). Show "all the same or all different" is the same as "the three labels add to a multiple of 3". (b) The mirror image of the trefoil flips every crossing. Is it tricolourable? (c) Can tricolourability tell the trefoil from its mirror image? What can an invariant prove, and what can it not?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: why three?</h2>
+<p>Replace 3 by 5: label arcs \(0\) to \(4\) so that at every crossing \(2 \times (\text{over}) \equiv u_1 + u_2 \pmod 5\), \(u_1, u_2\) being the under-arcs. Show the trefoil has no such colouring with more than one colour (subtract two crossing equations). Why does the same subtraction force nothing mod 3?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>All three arcs meet at every crossing, so the arcs are either all one colour (3 ways) or all different (\(3! = 6\) ways): 9 in total, 6 using at least two colours.</li>
+<li>Four arcs: the kink cuts arc \(a\) into two pieces, the longer of which is also the over-strand at the new crossing. As in the example, the short arc is forced to match. So the colourings are exactly those of the original three arcs, with the fourth copying \(a\): 9 in total, 6 proper. It agrees, as an invariant must.</li>
+<li>(a) At the first crossing the over-strand \(a\) meets \(b\) and the middle arc \(c\). If \(a = b\) the rule forces \(c = a\); if \(a \ne b\) it forces \(c\) to be the third colour. Either way \(c\) is determined. (b) At the second crossing \(a\) meets \(c\) and the final arc. Apply the same rule: if \(a = b\) then \(c = a\) and the final arc is \(a = b\); if \(a \ne b\) then \(c\) is the third colour and the final arc must be the remaining one, \(b\). (c) Poking in: a valid colouring extends uniquely without touching the rest of the diagram. Pulling out: delete the two inner arcs and the outside colouring is unchanged and still valid. Whether two colours appear is unchanged: the middle arc brings a new colour only when \(a \ne b\) already.</li>
+<li>(a) Three equal labels add to \(3a\). Three different labels add to \(0 + 1 + 2 = 3\). Conversely, if the sum is a multiple of 3 and two labels are equal, say \(a, a, c\), then \(c \equiv -2a \equiv a\); and if two labels differ, say \(a, b\), then \(c \equiv -(a + b)\) is the third value. (b) Yes. Flipping every crossing gives the trefoil diagram seen in a mirror: again three arcs, all meeting at each crossing, so three different colours work. (c) No. An invariant that differs proves two knots are different. An invariant that agrees proves nothing. (The two trefoils are in fact different knots, but it takes a finer invariant to show it.)</li>
+</ol>
+<p><b>Stretch.</b> With arcs \(a, b, c\), the three crossings give \(2a \equiv b + c\), \(2b \equiv a + c\), \(2c \equiv a + b \pmod 5\). Subtracting the first two: \(2a - 2b \equiv b - a\), so \(3a \equiv 3b\). Since \(3 \times 2 = 6 \equiv 1 \pmod 5\), multiply by 2: \(a \equiv b\). Likewise \(b \equiv c\). Only one-colour colourings exist. Mod 3 the same step gives \(3a \equiv 3b\), which is \(0 \equiv 0\): no constraint at all. That is exactly why three colours suit the trefoil. (The figure-eight knot, with four crossings, goes the other way: 5-colourable but not tricolourable.)</p>
+</section>
+
+<div class="sheet-nav"><a href="b26-inversion.html">← Previous</a><a href="b28-lagrange.html">Next: The best point on a curve →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>
