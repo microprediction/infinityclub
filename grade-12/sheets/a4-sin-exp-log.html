@@ -82,8 +82,8 @@
 </section>
 
 <section class="stretch">
-<h2>Stretch: which is bigger, \(e^\pi\) or \(\pi^e\)?</h2>
-<p>Let \(f(x) = \dfrac{\ln x}{x} = \ln x \cdot \dfrac1x\). Find \(f'(x)\) and where it is zero. Argue that \(f\) is largest there. Then compare \(f(\pi)\) with \(f(e)\) and decide which is bigger, \(e^\pi\) or \(\pi^e\), without a calculator.</p>
+<h2>Stretch: the tangent that stays below</h2>
+<p>Let \(f(x) = e^x - 1 - x\). Find \(f'(x)\) and where it is zero, and argue that \(f\) is smallest there. Conclude that \(e^x \ge 1 + x\) for every \(x\). Then put \(x = 1/n\) and show \(\left(1 + \tfrac1n\right)^n \lt e\) for every whole number \(n \ge 1\).</p>
 <div class="space short"></div>
 </section>
 
@@ -95,7 +95,7 @@
 <li>\((e^{x\ln 2})' = e^{x \ln 2} \cdot \ln 2 = 2^x \ln 2\). At \(x = 0\) the slope is \(\ln 2 \approx 0.693\), the number quoted in the grade 10 sheet on \(e\). In general \((a^x)' = a^x \ln a\), which is why \(e\) is the convenient base: \(\ln e = 1\).</li>
 <li>(a) Outer \(\sin u\), inner \(u = \tfrac{\pi}{2} - x\) with \(u' = -1\): \((\cos x)' = \cos\!\left(\tfrac{\pi}{2} - x\right)\cdot(-1) = -\sin x\). (b) \((\sin x)'' = (\cos x)' = -\sin x\); \((\cos x)'' = (-\sin x)' = -\cos x\). Each graph curves downwards exactly where it is positive and upwards where it is negative: always bending back towards the axis, which is why it oscillates.</li>
 </ol>
-<p><b>Stretch.</b> \(f'(x) = \dfrac1x \cdot \dfrac1x + \ln x \cdot \left(-\dfrac{1}{x^2}\right) = \dfrac{1 - \ln x}{x^2}\), zero only at \(x = e\). For \(x \lt e\), \(\ln x \lt 1\) so \(f' > 0\): \(f\) is rising. For \(x > e\), \(f' \lt 0\): falling. So \(f(e) = 1/e\) is the largest value, and \(f(\pi) \lt f(e)\) since \(\pi \ne e\). That is \(\dfrac{\ln\pi}{\pi} \lt \dfrac1e\), so \(e\ln\pi \lt \pi\), so \(\pi^e \lt e^\pi\). (Numerically, 22.46 against 23.14.)</p>
+<p><b>Stretch.</b> \(f'(x) = e^x - 1\), zero only at \(x = 0\). For \(x \lt 0\), \(e^x \lt 1\) so \(f' \lt 0\): falling. For \(x > 0\), \(f' > 0\): rising. So \(f(0) = 0\) is the smallest value, and \(e^x \ge 1 + x\) with equality only at 0: the curve sits above its tangent at 0. With \(x = 1/n > 0\): \(e^{1/n} > 1 + \tfrac1n\). Both sides are positive, so raise to the power \(n\): \(e > \left(1 + \tfrac1n\right)^n\).</p>
 </section>
 
 <div class="sheet-nav"><a href="a3-chain-rule.html">← Previous</a><a href="a5-optimisation.html">Next: The cheapest can →</a></div>
