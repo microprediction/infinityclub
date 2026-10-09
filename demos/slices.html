@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Slicing a cube · Infinity Club</title>
+<meta name="description" content="Cut a cube with a flat knife. Tilt, turn and move the cut and see the shape of the slice face-on: a triangle, a square, a pentagon, even a hexagon, but never seven sides.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.views { display: flex; flex-wrap: wrap; gap: .8rem; }
+.views figure { flex: 1 1 260px; margin: 0; min-width: 0; }
+.views canvas { width: 100%; display: block; border: 1px solid var(--rule); border-radius: 10px; background: #fff; }
+.views figcaption { font-weight: 700; text-align: center; margin-top: .3rem; }
+.sliders label { flex: 1 1 240px; }
+.sliders input[type=range] { flex: 1; width: auto; min-width: 120px; height: 40px; }
+.sliders .val { font-family: var(--mono); min-width: 3.2em; text-align: right; }
+.controls.big button { font-size: 1.05rem; padding: .65rem 1rem; min-height: 48px; }
+.found { display: flex; flex-wrap: wrap; gap: .5rem; margin: .6rem 0; padding: 0; list-style: none; }
+.found li { border: 2px solid var(--rule); border-radius: 999px; padding: .25rem .8rem; font-weight: 700; color: var(--muted); background: #fff; }
+.found li.got { border-color: var(--warm); background: var(--warm-soft); color: var(--ink); }
+details.show summary { cursor: pointer; font-weight: 700; padding: .5rem 0; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Slicing a cube</h1>
+<p class="explain"><b>Move the three sliders to cut the cube with a flat knife.</b> The left picture shows the cut. The right picture shows the slice from straight in front, with its number of sides. Can you find a slice with 3 sides, 4 sides, 5 sides and 6 sides?</p>
+<div class="demo-panel">
+  <div class="views">
+    <figure><canvas id="cube" width="420" height="380"></canvas><figcaption>The cut</figcaption></figure>
+    <figure><canvas id="flat" width="420" height="380"></canvas><figcaption id="name">The slice</figcaption></figure>
+  </div>
+  <div class="controls sliders">
+    <label>Tilt <input type="range" id="tilt" min="0" max="90" step="any" value="0"> <span class="val" id="tiltv"></span></label>
+    <label>Turn <input type="range" id="turn" min="0" max="90" step="1" value="0"> <span class="val" id="turnv"></span></label>
+    <label>Move <input type="range" id="move" min="-100" max="100" step="1" value="0"> <span class="val" id="movev"></span></label>
+    <label>Look from <input type="range" id="view" min="-80" max="80" step="1" value="-28"> <span class="val" id="viewv"></span></label>
+  </div>
+  <div class="readout" id="info"></div>
+  <ul class="found" id="found" aria-label="Shapes found so far">
+    <li data-n="3">3 sides</li><li data-n="4">4 sides</li><li data-n="5">5 sides</li><li data-n="6">6 sides</li>
+  </ul>
+  <details class="show">
+    <summary>Stuck? Show me one (this gives the game away)</summary>
+    <div class="controls big">
+      <button data-set="54.7356,45,70">Triangle</button>
+      <button data-set="0,0,0">Square</button>
+      <button data-set="45,0,0">Rectangle</button>
+      <button data-set="40,45,15">Pentagon</button>
+      <button data-set="54.7356,45,0" class="alt">Hexagon</button>
+    </div>
+  </details>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>The flat face you see when you cut straight through a solid is called a <b>cross-section</b>. Cut a cube level and the cross-section is a square. Tilt the knife and the shape changes.</p>
+<p>Every side of the slice is where the knife crosses one <b>face</b> of the cube. A flat knife crosses a flat face in one straight line, so each face gives at most one side. A cube has six faces. That is why you can get 3, 4, 5 or 6 sides, and why <b>no slice of a cube has 7 sides</b>.</p>
+<p>A triangle comes from slicing off a corner: the knife crosses the three faces that meet there. For a hexagon the knife must cross all six faces at once. Tilt it so it leans the same way to all three directions and push it through the middle of the cube. Get the tilt exactly right and all six sides are equal.</p>
+<p>Sheet: <a href="../grade-7/sheets/a13-cross-sections.html">Slicing solids</a>. Related demo: <a href="cubenets.html">Will it fold?</a></p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  var EPS = 1e-9;
+  // the cube has corners at (±1, ±1, ±1); z points up
+  var CORNERS = [], EDGES = [];
+  (function () {
+    var i, j;
+    for (i = 0; i < 8; i++) CORNERS.push([i & 1 ? 1 : -1, i & 2 ? 1 : -1, i & 4 ? 1 : -1]);
+    for (i = 0; i < 8; i++) for (j = i + 1; j < 8; j++) { var d = i ^ j; if (d === 1 || d === 2 || d === 4) EDGES.push([i, j]); }
+  })();
+  function dot(a, b) { return a[0] * b[0] + a[1] * b[1] + a[2] * b[2]; }
+  function cross(a, b) { return [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]]; }
+  function unit(a) { var l = Math.sqrt(dot(a, a)); return [a[0] / l, a[1] / l, a[2] / l]; }
+  // The knife is the plane n · p = d. Tilt 0 is a level cut; turn spins the tilted knife about the upright line.
+  function planeNormal(tiltDeg, turnDeg) {
+    var t = tiltDeg * Math.PI / 180, r = turnDeg * Math.PI / 180;
+    return [Math.sin(t) * Math.cos(r), Math.sin(t) * Math.sin(r), Math.cos(t)];
+  }
+  // how far the knife can move before it leaves the cube
+  function reach(n) { return Math.abs(n[0]) + Math.abs(n[1]) + Math.abs(n[2]); }
+  // two directions lying in the knife: u is level, v runs up the slope
+  function planeBasis(n) {
+    var u = Math.abs(n[2]) > 1 - 1e-12 ? [1, 0, 0] : unit(cross([0, 0, 1], n));
+    return { u: u, v: cross(n, u) };
+  }
+  // The corners of the slice, in order round the shape. Each is where the knife crosses an edge of the cube.
+  function sliceCube(n, d) {
+    var pts = [], b = planeBasis(n);
+    function add(p) {
+      for (var i = 0; i < pts.length; i++) if (Math.abs(pts[i][0] - p[0]) + Math.abs(pts[i][1] - p[1]) + Math.abs(pts[i][2] - p[2]) < 1e-7) return;
+      pts.push(p);
+    }
+    EDGES.forEach(function (e) {
+      var A = CORNERS[e[0]], B = CORNERS[e[1]], sa = dot(n, A) - d, sb = dot(n, B) - d;
+      if (Math.abs(sa) < EPS) add(A.slice());
+      if (Math.abs(sb) < EPS) add(B.slice());
+      if ((sa > EPS && sb < -EPS) || (sa < -EPS && sb > EPS)) {
+        var t = sa / (sa - sb);
+        add([A[0] + t * (B[0] - A[0]), A[1] + t * (B[1] - A[1]), A[2] + t * (B[2] - A[2])]);
+      }
+    });
+    if (pts.length < 3) return [];
+    var c = [0, 0, 0];
+    pts.forEach(function (p) { c[0] += p[0] / pts.length; c[1] += p[1] / pts.length; c[2] += p[2] / pts.length; });
+    pts.sort(function (p, q) {
+      return Math.atan2(dot(b.v, [p[0] - c[0], p[1] - c[1], p[2] - c[2]]), dot(b.u, [p[0] - c[0], p[1] - c[1], p[2] - c[2]])) -
+             Math.atan2(dot(b.v, [q[0] - c[0], q[1] - c[1], q[2] - c[2]]), dot(b.u, [q[0] - c[0], q[1] - c[1], q[2] - c[2]]));
+    });
+    // drop any point that sits in the middle of a straight side
+    var out = pts.filter(function (p, i) {
+      var a = pts[(i + pts.length - 1) % pts.length], q = pts[(i + 1) % pts.length];
+      var k = cross([p[0] - a[0], p[1] - a[1], p[2] - a[2]], [q[0] - p[0], q[1] - p[1], q[2] - p[2]]);
+      return Math.sqrt(dot(k, k)) > 1e-7;
+    });
+    return out.length >= 3 ? out : [];
+  }
+  // the slice laid flat: 2D points measured along u and v
+  function flatten(pts, n) { var b = planeBasis(n); return pts.map(function (p) { return [dot(b.u, p), dot(b.v, p)]; }); }
+  function sideLengths(flat) {
+    return flat.map(function (p, i) { var q = flat[(i + 1) % flat.length]; return Math.sqrt(Math.pow(q[0] - p[0], 2) + Math.pow(q[1] - p[1], 2)); });
+  }
+  function shapeName(flat) {
+    var k = flat.length, len = sideLengths(flat), same, square = true, i;
+    if (k < 3) return "";
+    same = len.every(function (l) { return Math.abs(l - len[0]) < 1e-6; });
+    if (k === 3) return same ? "Triangle (all sides equal)" : "Triangle";
+    if (k === 5) return "Pentagon";
+    if (k === 6) return same ? "Hexagon (all sides equal)" : "Hexagon";
+    for (i = 0; i < 4; i++) {
+      var a = flat[i], b = flat[(i + 1) % 4], c = flat[(i + 2) % 4];
+      if (Math.abs((b[0] - a[0]) * (c[0] - b[0]) + (b[1] - a[1]) * (c[1] - b[1])) > 1e-6) square = false;
+    }
+    if (square) return same ? "Square" : "Rectangle";
+    return "Four-sided shape";
+  }
+  /*ENDPURE*/
+  if (typeof document === "undefined") return;
+
+  var cube = document.getElementById("cube"), flat = document.getElementById("flat");
+  var els = { tilt: document.getElementById("tilt"), turn: document.getElementById("turn"), move: document.getElementById("move"), view: document.getElementById("view") };
+  var info = document.getElementById("info"), nameEl = document.getElementById("name"), got = {};
+
+  function prep(canvas) {
+    var dpr = window.devicePixelRatio || 1, W = canvas.clientWidth || 420, H = Math.round(W * 0.9), c = canvas.getContext("2d");
+    canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr); canvas.style.height = H + "px";
+    c.setTransform(dpr, 0, 0, dpr, 0, 0); c.clearRect(0, 0, W, H);
+    return { c: c, W: W, H: H };
+  }
+  function path(c, pts) { c.beginPath(); pts.forEach(function (p, i) { if (i) c.lineTo(p[0], p[1]); else c.moveTo(p[0], p[1]); }); c.closePath(); }
+  function draw() {
+    var tilt = +els.tilt.value, turn = +els.turn.value, mv = +els.move.value, yaw = +els.view.value * Math.PI / 180, pitch = 0.42;
+    var n = planeNormal(tilt, turn), d = mv / 100 * reach(n), pts = sliceCube(n, d), f = flatten(pts, n);
+    document.getElementById("tiltv").textContent = Math.round(tilt) + "°"; document.getElementById("turnv").textContent = turn + "°";
+    document.getElementById("movev").textContent = mv; document.getElementById("viewv").textContent = els.view.value + "°";
+
+    // left: the cube and the cut
+    var g = prep(cube), c = g.c, s = Math.min(g.W, g.H) / 3.8, cy = Math.cos(yaw), sy = Math.sin(yaw), cp = Math.cos(pitch), sp = Math.sin(pitch);
+    function proj(p) {
+      var xr = p[0] * cy - p[1] * sy, yr = p[0] * sy + p[1] * cy;
+      return [g.W / 2 + s * xr, g.H / 2 - s * (p[2] * cp + yr * sp), p[2] * sp - yr * cp];
+    }
+    var P = CORNERS.map(proj), far = 0;
+    P.forEach(function (p, i) { if (p[2] < P[far][2]) far = i; });
+    function edges(hidden) {
+      c.beginPath();
+      EDGES.forEach(function (e) {
+        if ((e[0] === far || e[1] === far) !== hidden) return;
+        c.moveTo(P[e[0]][0], P[e[0]][1]); c.lineTo(P[e[1]][0], P[e[1]][1]);
+      });
+      c.stroke();
+    }
+    c.lineJoin = "round"; c.lineCap = "round";
+    c.strokeStyle = "#999"; c.lineWidth = 1.5; c.setLineDash([5, 5]); edges(true); c.setLineDash([]);
+    if (pts.length) {
+      path(c, pts.map(proj)); c.fillStyle = "rgba(245, 165, 36, .55)"; c.fill();
+      c.strokeStyle = "#c77d00"; c.lineWidth = 3; c.stroke();
+    }
+    c.strokeStyle = "#3f44c9"; c.lineWidth = 2.5; edges(false);
+    if (pts.length) { c.fillStyle = "#1d1f3a"; pts.map(proj).forEach(function (p) { c.beginPath(); c.arc(p[0], p[1], 3.5, 0, Math.PI * 2); c.fill(); }); }
+
+    // right: the slice seen face-on, always at the same scale so you can compare sizes
+    g = prep(flat); c = g.c; s = Math.min(g.W, g.H) / 3.5;
+    if (f.length) {
+      var xs = f.map(function (p) { return p[0]; }), ys = f.map(function (p) { return p[1]; });
+      var mx = (Math.min.apply(null, xs) + Math.max.apply(null, xs)) / 2, my = (Math.min.apply(null, ys) + Math.max.apply(null, ys)) / 2;
+      var scr = f.map(function (p) { return [g.W / 2 + s * (p[0] - mx), g.H / 2 - s * (p[1] - my)]; });
+      path(c, scr); c.fillStyle = "#fde8c4"; c.fill(); c.strokeStyle = "#c77d00"; c.lineWidth = 3; c.lineJoin = "round"; c.stroke();
+      c.fillStyle = "#1d1f3a"; scr.forEach(function (p) { c.beginPath(); c.arc(p[0], p[1], 4, 0, Math.PI * 2); c.fill(); });
+      c.font = "800 " + Math.round(g.W / 9) + "px Nunito, sans-serif"; c.textAlign = "center"; c.textBaseline = "middle";
+      c.fillStyle = "#3f44c9"; c.fillText(f.length, g.W / 2, g.H / 2);
+    }
+    var nm = shapeName(f);
+    nameEl.textContent = nm ? nm + ": " + f.length + " sides" : "No slice";
+    if (nm) {
+      var len = sideLengths(f).map(function (l) { return (l / 2).toFixed(2); });
+      info.textContent = "Sides: " + f.length + "\nSide lengths (the cube's edge is 1): " + len.join(", ");
+      if (!got[f.length]) { got[f.length] = 1; var li = document.querySelector('#found li[data-n="' + f.length + '"]'); li.className = "got"; li.textContent = f.length + " sides ✓"; }
+    } else info.textContent = "The knife only touches the edge of the cube here. Move it back towards the middle.";
+  }
+  Object.keys(els).forEach(function (k) { els[k].addEventListener("input", draw); });
+  Array.prototype.forEach.call(document.querySelectorAll("[data-set]"), function (b) {
+    b.addEventListener("click", function () {
+      var v = b.dataset.set.split(","); els.tilt.value = v[0]; els.turn.value = v[1]; els.move.value = v[2]; draw();
+    });
+  });
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(draw, 120); });
+  draw();
+})();
+</script>
+</body>
+</html>

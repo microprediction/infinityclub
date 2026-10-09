@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Roll a wheel once · Infinity Club</title>
+<meta name="description" content="Roll a wheel one full turn along a ruler, change its size, and see that the distance rolled divided by the diameter is always 3.14… A demo for curious kids.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.controls button { min-height: 48px; font-size: 1.05rem; }
+.controls label { flex: 1 1 260px; max-width: 460px; }
+.controls input[type=range] { flex: 1 1 auto; width: auto; min-width: 0; height: 44px; }
+.controls .val { font-family: var(--mono); min-width: 4.5em; display: inline-block; white-space: nowrap; }
+#track { width: 100%; }
+#tried { border-collapse: collapse; margin: .6rem 0; font-family: var(--mono); }
+#tried td { white-space: nowrap; }
+#tried th, #tried td { padding: .25rem .5rem; text-align: right; border-bottom: 1px solid var(--rule); }
+#tried th { font-family: var(--sans); font-size: .9rem; }
+#tried td:last-child { font-weight: 700; color: var(--accent); }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Roll a wheel once</h1>
+<p class="explain">Press <b>Roll one turn</b>. The wheel's orange rim unrolls onto the ground as it goes, and the dot shows when one full turn is done. Then change the size of the wheel and roll again. Each roll adds a row to the table. Look down the last column.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <label>Diameter <input type="range" id="d" min="2" max="8" step="0.5" value="4"> <span class="val" id="dv"></span></label>
+    <button id="roll">Roll one turn</button>
+    <button id="reset" class="ghost">Back to the start</button>
+  </div>
+  <div class="controls">
+    <label><span style="white-space:nowrap">Or roll it by hand</span> <input type="range" id="t" min="0" max="1" step="0.005" value="0"></label>
+  </div>
+  <canvas id="track" width="900" height="300"></canvas>
+  <div class="readout" id="info"></div>
+  <table id="tried">
+    <thead><tr><th>diameter</th><th>rolled in one turn</th><th>rolled ÷ diameter</th></tr></thead>
+    <tbody id="rowsT"></tbody>
+  </table>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>In one turn, every bit of the rim touches the ground once. So the distance rolled is exactly the distance round the wheel, which is called the <b>circumference</b>.</p>
+<p>The blue blocks under the ruler are each one <b>diameter</b> long (the diameter is the distance straight across the wheel). Three of them never quite reach the end of the orange strip. There is always a little bit left over, and it is the same share of a diameter every time.</p>
+<p>A bigger wheel rolls farther, but the distance divided by the diameter does not change. It is 3.14159… for a coin, a bike wheel and the Earth. That number is called <b>π</b> (say "pie"), so circumference = π × diameter.</p>
+<p>Sheet: <a href="../grade-7/sheets/a9-circumference.html">Roll a wheel once</a></p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  // Distance a wheel of diameter d rolls in the given number of turns.
+  function rolled(d, turns) { return Math.PI * d * turns; }
+  // Where the rim mark is after rolling a distance s. It starts on the ground at 0.
+  // x is along the ruler, y is height above the ground. angle is how far the wheel has turned (radians).
+  function markAt(d, s) {
+    var r = d / 2, a = s / r;
+    return { x: s - r * Math.sin(a), y: r - r * Math.cos(a), angle: a, cx: s, cy: r };
+  }
+  // Whole diameters that fit into a distance, and the bit left over (as a share of one diameter).
+  function diametersIn(d, s) { var q = s / d, whole = Math.floor(q + 1e-9); return { whole: whole, rest: Math.max(0, q - whole) }; }
+  function fmt(v, dp) { dp = dp === undefined ? 2 : dp; return v.toFixed(dp); }
+  /*ENDPURE*/
+
+  var DMAX = 8, UNITS = Math.PI * DMAX + DMAX + 1;   // room for the biggest wheel at both ends
+  var canvas = document.getElementById("track"), ctx = canvas.getContext("2d");
+  var dIn = document.getElementById("d"), tIn = document.getElementById("t"), info = document.getElementById("info"), rowsT = document.getElementById("rowsT");
+  var d = 4, t = 0, raf = 0, tried = [];
+
+  function draw() {
+    var dpr = window.devicePixelRatio || 1, W = canvas.clientWidth || 900, u = W / UNITS;
+    var gy = Math.round(DMAX * u + 16), H = gy + 66, x0 = (DMAX / 2 + 0.5) * u;
+    canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, H);
+    var s = rolled(d, t), m = markAt(d, s), r = d / 2;
+    function X(x) { return x0 + x * u; }
+    function Y(y) { return gy - y * u; }
+    // ground and ruler
+    ctx.strokeStyle = "#1d1f3a"; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(0, gy); ctx.lineTo(W, gy); ctx.stroke();
+    ctx.fillStyle = "#5d6079"; ctx.font = "11px Nunito, sans-serif"; ctx.textAlign = "center"; ctx.strokeStyle = "#8a8ca8"; ctx.lineWidth = 1;
+    var every = u < 14 ? 5 : u < 22 ? 2 : 1;
+    for (var k = 0; X(k) < W - 4; k++) {
+      var big = k % 5 === 0; ctx.beginPath(); ctx.moveTo(X(k), gy + 5); ctx.lineTo(X(k), gy + (big ? 14 : 10)); ctx.stroke();
+      if (k % every === 0) ctx.fillText(k, X(k), gy + 26);
+    }
+    // one-diameter blocks, shown as far as the wheel has rolled
+    var by = gy + 36, n = diametersIn(d, s), count = n.whole + (n.rest > 1e-9 ? 1 : 0);
+    for (var i = 0; i < count; i++) {
+      var a = i * d, b = Math.min((i + 1) * d, s), full = b - a > d - 1e-9;
+      ctx.fillStyle = i % 2 ? "#dcdcf5" : "#3f44c9"; ctx.fillRect(X(a), by, (b - a) * u, 18);
+      ctx.strokeStyle = "#1d1f3a"; ctx.lineWidth = 1; ctx.strokeRect(X(a), by, (b - a) * u, 18);
+      if (full && d * u > 14) { ctx.fillStyle = i % 2 ? "#1d1f3a" : "#fff"; ctx.font = "bold 12px Nunito, sans-serif"; ctx.fillText(i + 1, X(a + d / 2), by + 13); }
+    }
+    if (t >= 1) { ctx.fillStyle = "#1d1f3a"; ctx.font = "bold 12px Nunito, sans-serif"; ctx.textAlign = "left"; ctx.fillText("+ a bit", X(s) + 5, by + 13); ctx.textAlign = "center"; }
+    // path of the dot
+    if (s > 0) {
+      ctx.strokeStyle = "#f5a524"; ctx.lineWidth = 1.2; ctx.setLineDash([3, 4]); ctx.beginPath();
+      var N = Math.max(2, Math.round(120 * t));
+      for (var j = 0; j <= N; j++) { var p = markAt(d, s * j / N); if (j === 0) ctx.moveTo(X(p.x), Y(p.y)); else ctx.lineTo(X(p.x), Y(p.y)); }
+      ctx.stroke(); ctx.setLineDash([]);
+      // rim already unrolled onto the ground
+      ctx.strokeStyle = "#f5a524"; ctx.lineWidth = 5; ctx.lineCap = "butt"; ctx.beginPath(); ctx.moveTo(X(0), gy); ctx.lineTo(X(s), gy); ctx.stroke();
+    }
+    // wheel: the rim that has not touched the ground yet is still orange
+    var cx = X(m.cx), cy = Y(m.cy), R = r * u;
+    ctx.fillStyle = "rgba(220,220,245,.75)"; ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = "#3f44c9"; ctx.lineWidth = 2; ctx.stroke();
+    if (t < 1) { ctx.strokeStyle = "#f5a524"; ctx.lineWidth = 5; ctx.beginPath(); ctx.arc(cx, cy, R, Math.PI / 2 + m.angle, Math.PI / 2 + Math.PI * 2); ctx.stroke(); }
+    var mx = X(m.x), my = Y(m.y);
+    ctx.strokeStyle = "#3f44c9"; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(mx, my); ctx.lineTo(2 * cx - mx, 2 * cy - my); ctx.stroke();
+    ctx.fillStyle = "#3f44c9"; ctx.beginPath(); ctx.arc(cx, cy, 3, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = "#1d1f3a"; ctx.beginPath(); ctx.arc(mx, my, 6, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = "#fff"; ctx.lineWidth = 2; ctx.stroke();
+
+    document.getElementById("dv").textContent = fmt(d, 1) + " cm";
+    var txt = "diameter      " + fmt(d, 1) + " cm\nrolled so far " + fmt(s) + " cm   (" + Math.round(t * 100) + "% of a turn)";
+    if (t >= 1) txt += "\none full turn: " + fmt(s) + " ÷ " + fmt(d, 1) + " = " + fmt(s / d) + "\nThat is 3 diameters and a bit, whatever the size.";
+    else if (t === 0) txt += "\nThe dot is on the ground at 0. Press Roll one turn.";
+    info.textContent = txt;
+  }
+  function record() {
+    tried = tried.filter(function (e) { return e !== d; }); tried.push(d); if (tried.length > 6) tried.shift();
+    rowsT.innerHTML = tried.map(function (e) { var c = rolled(e, 1); return "<tr><td>" + fmt(e, 1) + " cm</td><td>" + fmt(c) + " cm</td><td>" + fmt(c / e) + "</td></tr>"; }).join("");
+  }
+  function setT(v) { var was = t; t = Math.max(0, Math.min(1, v)); tIn.value = t; if (t >= 1 && was < 1) record(); draw(); }
+  function stop() { cancelAnimationFrame(raf); raf = 0; }
+  document.getElementById("roll").addEventListener("click", function () {
+    stop(); t = 0; var t0 = null, dur = 3200;
+    (function step(now) {
+      if (now === undefined) { raf = requestAnimationFrame(step); return; }
+      if (t0 === null) t0 = now;
+      var f = Math.min(1, (now - t0) / dur);
+      setT(f < 1 ? f * f * (3 - 2 * f) : 1);
+      if (f < 1) raf = requestAnimationFrame(step); else raf = 0;
+    })();
+  });
+  document.getElementById("reset").addEventListener("click", function () { stop(); setT(0); });
+  tIn.addEventListener("input", function () { stop(); setT(parseFloat(tIn.value)); });
+  dIn.addEventListener("input", function () { stop(); d = parseFloat(dIn.value); t = 0; tIn.value = 0; draw(); });
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(draw, 120); });
+  draw();
+})();
+</script>
+</body>
+</html>

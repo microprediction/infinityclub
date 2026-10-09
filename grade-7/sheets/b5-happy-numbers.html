@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Happy numbers · Infinity Club</title>
+<meta name="description" content="Square the digits of a number and add, then repeat. Every number either reaches 1 or falls into the same loop of eight numbers.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 7</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 7 · Around the corner · 5</div>
+  <h1>Happy numbers</h1>
+  <p class="teaser">Square the digits and add. Keep going. Some numbers arrive at 1 and stay; the rest fall into the same loop of eight.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Pick a whole number. Square each digit and add the squares. Do the same to the answer, and keep going. From 7 you get \(7^2 = 49\), then \(4^2 + 9^2 = 97\), then \(81 + 49 = 130\), then \(1 + 9 + 0 = 10\), then \(1\). After that nothing changes, because \(1^2 = 1\). A number whose chain reaches 1 is called <b>happy</b>.</p>
+<figure><svg viewBox="0 0 500 150" width="500" height="150" role="img" aria-label="On the left the chain 7, 49, 97, 130, 10, 1, which stops at 1. On the right a ring of eight numbers, 4, 16, 37, 58, 89, 145, 42, 20, each pointing to the next, with 2 feeding into 4" font-family="Nunito, sans-serif" font-size="14">
+<text x="22" y="45" text-anchor="middle" fill="#3f44c9" font-weight="700">7</text>
+<line x1="31" y1="40" x2="44" y2="40" stroke="#3f44c9" stroke-width="1.5"/><polygon points="49,40 44,42.5 44,37.5" fill="#3f44c9"/>
+<text x="62" y="45" text-anchor="middle" fill="#3f44c9" font-weight="700">49</text>
+<line x1="75" y1="40" x2="86" y2="40" stroke="#3f44c9" stroke-width="1.5"/><polygon points="91,40 86,42.5 86,37.5" fill="#3f44c9"/>
+<text x="104" y="45" text-anchor="middle" fill="#3f44c9" font-weight="700">97</text>
+<line x1="117" y1="40" x2="126" y2="40" stroke="#3f44c9" stroke-width="1.5"/><polygon points="131,40 126,42.5 126,37.5" fill="#3f44c9"/>
+<text x="148" y="45" text-anchor="middle" fill="#3f44c9" font-weight="700">130</text>
+<line x1="165" y1="40" x2="174" y2="40" stroke="#3f44c9" stroke-width="1.5"/><polygon points="179,40 174,42.5 174,37.5" fill="#3f44c9"/>
+<text x="192" y="45" text-anchor="middle" fill="#3f44c9" font-weight="700">10</text>
+<line x1="205" y1="40" x2="216" y2="40" stroke="#3f44c9" stroke-width="1.5"/><polygon points="221,40 216,42.5 216,37.5" fill="#3f44c9"/>
+<text x="230" y="45" text-anchor="middle" fill="#3f44c9" font-weight="700">1</text>
+<path d="M 226 30 C 218 8, 242 8, 234 26" fill="none" stroke="#3f44c9" stroke-width="1.5"/><polygon points="233,31 231,24 237.5,25.5" fill="#3f44c9"/>
+<text x="126" y="72" text-anchor="middle" fill="#3f44c9" font-size="12">happy: it reaches 1 and stays</text>
+<text x="275" y="83" text-anchor="middle" fill="#000" font-weight="700">4</text>
+<line x1="285" y1="65.5" x2="291.2" y2="57.7" stroke="#f5a524" stroke-width="1.5"/><polygon points="294.3,53.7 293.2,59.2 289.2,56.1" fill="#f5a524"/>
+<text x="304.3" y="46.2" text-anchor="middle" fill="#000" font-weight="700">16</text>
+<line x1="319.9" y1="37.9" x2="354.5" y2="30.4" stroke="#f5a524" stroke-width="1.5"/><polygon points="359.4,29.4 355,32.9 353.9,28" fill="#f5a524"/>
+<text x="375" y="31" text-anchor="middle" fill="#000" font-weight="700">37</text>
+<line x1="390.6" y1="29.4" x2="425.2" y2="36.8" stroke="#f5a524" stroke-width="1.5"/><polygon points="430.1,37.9 424.7,39.3 425.7,34.4" fill="#f5a524"/>
+<text x="445.7" y="46.2" text-anchor="middle" fill="#000" font-weight="700">58</text>
+<line x1="455.7" y1="53.7" x2="461.9" y2="61.6" stroke="#f5a524" stroke-width="1.5"/><polygon points="465,65.5 460,63.1 463.9,60" fill="#f5a524"/>
+<text x="475" y="83" text-anchor="middle" fill="#000" font-weight="700">89</text>
+<line x1="465" y1="90.5" x2="458.8" y2="98.3" stroke="#f5a524" stroke-width="1.5"/><polygon points="455.7,102.3 456.8,96.8 460.8,99.9" fill="#f5a524"/>
+<text x="445.7" y="119.8" text-anchor="middle" fill="#000" font-weight="700">145</text>
+<line x1="430.1" y1="118.1" x2="395.5" y2="125.6" stroke="#f5a524" stroke-width="1.5"/><polygon points="390.6,126.6 395,123.1 396.1,128" fill="#f5a524"/>
+<text x="375" y="135" text-anchor="middle" fill="#000" font-weight="700">42</text>
+<line x1="359.4" y1="126.6" x2="324.8" y2="119.2" stroke="#f5a524" stroke-width="1.5"/><polygon points="319.9,118.1 325.3,116.7 324.3,121.6" fill="#f5a524"/>
+<text x="304.3" y="119.8" text-anchor="middle" fill="#000" font-weight="700">20</text>
+<line x1="294.3" y1="102.3" x2="288.1" y2="94.4" stroke="#f5a524" stroke-width="1.5"/><polygon points="285,90.5 290,92.9 286.1,96" fill="#f5a524"/>
+<text x="375" y="82" text-anchor="middle" fill="#f5a524" font-size="12">the loop of eight</text>
+<text x="232" y="83" text-anchor="middle" fill="#000" font-weight="700">2</text><line x1="241" y1="78" x2="260" y2="78" stroke="#f5a524" stroke-width="1.5"/><polygon points="265,78 260,80.5 260,75.5" fill="#f5a524"/>
+<text x="126" y="118" text-anchor="middle" fill="#999" font-size="12">not happy: it falls into the loop</text>
+</svg><figcaption>Two endings. 7 reaches 1. 2 steps onto 4 and goes round the loop for ever.</figcaption></figure>
+<p>Now try 2. It goes to 4, then 16, 37, 58, 89, 145, 42, 20, and back to 4. It is caught in a loop of eight numbers. It never reaches 1, so 2 is not happy.</p>
+<p>Here is the surprise. Those are the only two endings. Every whole number from 1 up either arrives at 1 or falls into this same loop. Big numbers shrink fast (999 drops to 243 in one step), so only small ones need testing, and a computer can test them all.</p>
+<p class="callout">Reach 1: happy. Reach any number in the loop: not happy.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: is 19 happy? Is 5?</h2>
+<p><b>19.</b> \(1 + 81 = 82\). Then \(64 + 4 = 68\), then \(36 + 64 = 100\), then \(1 + 0 + 0 = 1\). Happy, in four steps.</p>
+<p><b>5.</b> \(25\), then \(4 + 25 = 29\), then \(4 + 81 = 85\), then \(64 + 25 = 89\). Stop there: 89 is in the loop, so the chain will circle for ever. 5 is not happy.</p>
+<p>You can stop as soon as you meet a number whose ending you already know.</p>
+<p class="small">A cousin of this game, whose ending nobody has managed to prove: <a href="../../demos/collatz.html">infinityclub.net/demos/collatz.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Follow the chain for (a) 23 and (b) 3. Say whether each number is happy.<div class="space short"></div></li>
+<li>13 is happy: it goes 13, 10, 1. Without squaring anything else, explain why 31, 103 and 1,300 must be happy too.<div class="space short"></div></li>
+<li>Test (a) 44, (b) 28 and (c) 15. Stop each chain as soon as you reach a number you have met on this sheet.<div class="space short"></div></li>
+<li>(a) What does 999 go to in one step? (b) Why can no three-digit number go to anything bigger? (c) So a chain that is below 1,000 stays below 1,000. Explain why it must then come back to a number it has already visited.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: happy neighbours</h2>
+<p>The happy numbers up to 30 are 1, 7, 10, 13, 19, 23 and 28. No two of them are next to each other. Find the first pair of happy numbers that are next-door neighbours, like 5 and 6 would be. Question 2 gives you one of the pair for free.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(4 + 9 = 13\), then \(1 + 9 = 10\), then 1. Happy. (b) \(9\), then \(81\), then \(64 + 1 = 65\), then \(36 + 25 = 61\), then \(36 + 1 = 37\), which is in the loop. Not happy.</li>
+<li>The order of the digits does not matter when you add their squares, and a 0 adds nothing because \(0^2 = 0\). So 31, 103 and 1,300 all give \(1 + 9 = 10\) on the first step, just as 13 does, and then 1.</li>
+<li>(a) \(16 + 16 = 32\), then \(9 + 4 = 13\), which is happy. So 44 is happy. (b) \(4 + 64 = 68\), which was in the chain for 19 and leads to 100 and 1. Happy. (c) \(1 + 25 = 26\), then \(4 + 36 = 40\), then \(16\), which is in the loop. Not happy.</li>
+<li>(a) \(81 + 81 + 81 = 243\). (b) No digit is bigger than 9, so no square is bigger than 81, and three of them make at most 243. (c) There are only 999 whole numbers below 1,000. A chain that never repeated would need a new one at every step, and it would run out. Once a number comes up a second time, everything after it repeats too. That is why every chain ends in a loop. (1 on its own counts as a loop of one.)</li>
+</ol>
+<p><b>Stretch.</b> 31 and 32. 31 has the same digits as 13, so it is happy. 32 gives \(9 + 4 = 13\), so it is happy as well. Checking 29 and 30 shows neither is happy (29 leads to 85 and 89; 30 leads to 9, like 3), so there is no earlier pair.</p>
+</section>
+
+<div class="sheet-nav"><a href="b4-peasant-multiplication.html">← Previous</a><a href="b6-pentominoes.html">Next: The twelve pentominoes →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

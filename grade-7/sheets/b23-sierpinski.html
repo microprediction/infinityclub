@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The triangle with no area · Infinity Club</title>
+<meta name="description" content="Remove the middle of a triangle, then the middle of each piece, for ever. The area shrinks by three quarters each step and the edge grows by half.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 7</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 7 · Around the corner · 23</div>
+  <h1>The triangle with no area</h1>
+  <p class="teaser">Remove the middle of a triangle, then the middle of each piece, for ever. What is left has no area and an endless edge.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Start with a solid triangle. Mark the middle of each side and join the three marks. That makes four equal smaller triangles. Remove the middle one.</p>
+<p>Three triangles are left. Do the same to each of them, then to each of the nine that leaves, and never stop. The shape you are heading for is the <b>Sierpinski triangle</b>.</p>
+<figure><svg viewBox="0 0 500 132" width="500" height="132" role="img" aria-label="Four triangles in a row. The first is solid. In the second the middle quarter is removed, leaving 3 small triangles. In the third 9 smaller triangles are left, and in the fourth 27." font-family="Nunito, sans-serif" font-size="12">
+<g fill="#dcdcf5" stroke="#3f44c9" stroke-width="1"><polygon points="16.8,96.1 120.8,96.1 68.8,6"/></g>
+<text x="68.8" y="114.1" text-anchor="middle">Start: area 1</text>
+<g fill="#dcdcf5" stroke="#3f44c9" stroke-width="1"><polygon points="137.6,96.1 189.6,96.1 163.6,51"/><polygon points="189.6,96.1 241.6,96.1 215.6,51"/><polygon points="163.6,51 215.6,51 189.6,6"/></g>
+<text x="189.6" y="114.1" text-anchor="middle">Step 1: area 3/4</text>
+<g fill="#dcdcf5" stroke="#3f44c9" stroke-width="1"><polygon points="258.4,96.1 284.4,96.1 271.4,73.5"/><polygon points="284.4,96.1 310.4,96.1 297.4,73.5"/><polygon points="271.4,73.5 297.4,73.5 284.4,51"/><polygon points="310.4,96.1 336.4,96.1 323.4,73.5"/><polygon points="336.4,96.1 362.4,96.1 349.4,73.5"/><polygon points="323.4,73.5 349.4,73.5 336.4,51"/><polygon points="284.4,51 310.4,51 297.4,28.5"/><polygon points="310.4,51 336.4,51 323.4,28.5"/><polygon points="297.4,28.5 323.4,28.5 310.4,6"/></g>
+<text x="310.4" y="114.1" text-anchor="middle">Step 2: area 9/16</text>
+<g fill="#dcdcf5" stroke="#3f44c9" stroke-width="1"><polygon points="379.2,96.1 392.2,96.1 385.7,84.8"/><polygon points="392.2,96.1 405.2,96.1 398.7,84.8"/><polygon points="385.7,84.8 398.7,84.8 392.2,73.5"/><polygon points="405.2,96.1 418.2,96.1 411.7,84.8"/><polygon points="418.2,96.1 431.2,96.1 424.7,84.8"/><polygon points="411.7,84.8 424.7,84.8 418.2,73.5"/><polygon points="392.2,73.5 405.2,73.5 398.7,62.3"/><polygon points="405.2,73.5 418.2,73.5 411.7,62.3"/><polygon points="398.7,62.3 411.7,62.3 405.2,51"/><polygon points="431.2,96.1 444.2,96.1 437.7,84.8"/><polygon points="444.2,96.1 457.2,96.1 450.7,84.8"/><polygon points="437.7,84.8 450.7,84.8 444.2,73.5"/><polygon points="457.2,96.1 470.2,96.1 463.7,84.8"/><polygon points="470.2,96.1 483.2,96.1 476.7,84.8"/><polygon points="463.7,84.8 476.7,84.8 470.2,73.5"/><polygon points="444.2,73.5 457.2,73.5 450.7,62.3"/><polygon points="457.2,73.5 470.2,73.5 463.7,62.3"/><polygon points="450.7,62.3 463.7,62.3 457.2,51"/><polygon points="405.2,51 418.2,51 411.7,39.8"/><polygon points="418.2,51 431.2,51 424.7,39.8"/><polygon points="411.7,39.8 424.7,39.8 418.2,28.5"/><polygon points="431.2,51 444.2,51 437.7,39.8"/><polygon points="444.2,51 457.2,51 450.7,39.8"/><polygon points="437.7,39.8 450.7,39.8 444.2,28.5"/><polygon points="418.2,28.5 431.2,28.5 424.7,17.3"/><polygon points="431.2,28.5 444.2,28.5 437.7,17.3"/><polygon points="424.7,17.3 437.7,17.3 431.2,6"/></g>
+<text x="431.2" y="114.1" text-anchor="middle">Step 3: area 27/64</text>
+</svg><figcaption>Each step removes the middle quarter of every triangle. White is what has gone.</figcaption></figure>
+<p><b>Area.</b> Each step removes one quarter of every triangle and keeps three quarters. So the area is multiplied by \(\tfrac34\) at every step. Keep going and it drops below any positive number you name. In the end, no area is left.</p>
+<p><b>Edge.</b> Add up the sides of all the triangles that remain. Each step makes three times as many triangles, with sides half as long. So the total edge is multiplied by \(3 \times \tfrac12 = \tfrac32\) at every step. It grows for ever.</p>
+<p class="callout">Each step: area \(\times\, \tfrac34\), total edge \(\times\, \tfrac32\).</p>
+</section>
+
+<section class="example">
+<h2>Watch one: a triangle with 16 cm sides</h2>
+<p>Call the starting area 1. The starting edge is \(3 \times 16 = 48\) cm.</p>
+<table>
+<tr><th>Step</th><td>0</td><td>1</td><td>2</td><td>3</td></tr>
+<tr><th>Triangles</th><td>1</td><td>3</td><td>9</td><td>27</td></tr>
+<tr><th>Side of each (cm)</th><td>16</td><td>8</td><td>4</td><td>2</td></tr>
+<tr><th>Area left</th><td>1</td><td>\(\tfrac34\)</td><td>\(\tfrac{9}{16}\)</td><td>\(\tfrac{27}{64}\)</td></tr>
+<tr><th>Total edge (cm)</th><td>48</td><td>72</td><td>108</td><td>162</td></tr>
+</table>
+<p>Check step 2 directly: 9 triangles, each with three 4 cm sides, is \(9 \times 12 = 108\) cm. After three steps less than half the area is left, yet the edge has more than tripled.</p>
+<p class="small">A cousin with the same habit, an edge that grows without end around a shape that stays small: <a href="../../demos/koch.html">infinityclub.net/demos/koch.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Add a step 4 column to the table: the number of triangles, the side of each, the area left and the total edge.<div class="space short"></div></li>
+<li>After which step is less than a quarter of the area left for the first time? Use decimals: \(\tfrac34 = 0.75\).<div class="space short"></div></li>
+<li>Go to step 6 of the 16 cm triangle. (a) How many triangles are there? (b) How long is each side? (c) What is the total edge, in metres?<div class="space short"></div></li>
+<li>Try it with a square. Cut the square into 9 equal small squares, 3 by 3, and remove the middle one. Repeat on each of the 8 that are left. (a) What is the area multiplied by at each step? (b) What fraction is left after 3 steps? (c) Does the area still head for zero? Say why.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: hiding in Pascal's triangle</h2>
+<p>Write out the first 8 rows of <a href="../../grade-6/sheets/b4-pascal.html">Pascal's triangle</a>, down to the row 1, 7, 21, 35, 35, 21, 7, 1. Shade every odd number. What picture appears? How many of the 36 numbers are shaded?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>81 triangles, each with 1 cm sides. Area left \(\tfrac{81}{256}\). Total edge \(162 \times \tfrac32 = 243\) cm, which is also \(81 \times 3\).</li>
+<li>Step 5. The area goes 0.75, 0.5625, 0.42, 0.32, 0.24 (rounded). Step 4 leaves about 0.32, still more than a quarter. Step 5 leaves about 0.24.</li>
+<li>(a) \(3^6 = 729\). (b) Halve 16 six times: 0.25 cm. (c) \(729 \times 3 \times 0.25 = 546.75\) cm, about 5.47 m. All of it fits inside a triangle you could cover with your hand.</li>
+<li>(a) 8 of every 9 small squares are kept, so \(\tfrac89\). (b) \(\tfrac89 \times \tfrac89 \times \tfrac89 = \tfrac{512}{729}\), about 0.70. (c) Yes. Every step keeps only \(\tfrac89\) of what was there, so the area keeps shrinking and never settles above zero. It is just slower: after 20 steps about 0.09 is left. This shape is called the Sierpinski carpet.</li>
+</ol>
+<p><b>Stretch.</b> The odd numbers form step 2 of the Sierpinski triangle, with the even numbers as the holes. The rows contain 1, 2, 2, 4, 2, 4, 4 and 8 odd numbers, so 27 of the 36 are shaded. That is \(3 \times 3 \times 3\): nine little triangles of three odd numbers each.</p>
+</section>
+
+<div class="sheet-nav"><a href="b22-four-fours.html">← Previous</a><a href="b24-clock-hands.html">Next: When do the clock hands meet? →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

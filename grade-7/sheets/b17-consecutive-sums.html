@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sums of numbers in a row · Infinity Club</title>
+<meta name="description" content="Some numbers are sums of whole numbers in a row, like 9 = 4 + 5. The ones that never are turn out to be exactly the powers of 2, and an odd factor is the reason.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 7</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 7 · Around the corner · 17</div>
+  <h1>Sums of numbers in a row</h1>
+  <p class="teaser">9 is 4 + 5 and also 2 + 3 + 4. Some numbers can never be written this way, and they are exactly the powers of 2.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>\(9 = 4 + 5\), and also \(9 = 2 + 3 + 4\). Call such a sum a <b>run</b>: two or more whole numbers in a row, starting at 1 or higher.</p>
+<p>Most numbers have one: \(3 = 1 + 2\), \(6 = 1 + 2 + 3\), \(7 = 3 + 4\). A computer check up to 200 finds only these failures: 1, 2, 4, 8, 16, 32, 64, 128. Start at 1 and keep doubling. These are the <b>powers of 2</b>.</p>
+<figure><svg viewBox="0 0 330 152" width="330" height="152" role="img" aria-label="Three columns of 4, 5 and 6 squares. Moving the top square of the 6 column onto the 4 column gives three columns of 5." font-family="Nunito, sans-serif" font-size="13">
+<rect x="40" y="96" width="16" height="16" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="40" y="80" width="16" height="16" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="40" y="64" width="16" height="16" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="40" y="48" width="16" height="16" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="62" y="96" width="16" height="16" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="62" y="80" width="16" height="16" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="62" y="64" width="16" height="16" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="62" y="48" width="16" height="16" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="62" y="32" width="16" height="16" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="84" y="96" width="16" height="16" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="84" y="80" width="16" height="16" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="84" y="64" width="16" height="16" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="84" y="48" width="16" height="16" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="84" y="32" width="16" height="16" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="84" y="16" width="16" height="16" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/>
+<rect x="230" y="96" width="16" height="16" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="230" y="80" width="16" height="16" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="230" y="64" width="16" height="16" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="230" y="48" width="16" height="16" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="230" y="32" width="16" height="16" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/>
+<rect x="252" y="96" width="16" height="16" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="252" y="80" width="16" height="16" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="252" y="64" width="16" height="16" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="252" y="48" width="16" height="16" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="252" y="32" width="16" height="16" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="274" y="96" width="16" height="16" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="274" y="80" width="16" height="16" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="274" y="64" width="16" height="16" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="274" y="48" width="16" height="16" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="274" y="32" width="16" height="16" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="48" y="128" text-anchor="middle">4</text>
+<text x="70" y="128" text-anchor="middle">5</text>
+<text x="92" y="128" text-anchor="middle">6</text>
+<text x="238" y="128" text-anchor="middle">5</text>
+<text x="260" y="128" text-anchor="middle">5</text>
+<text x="282" y="128" text-anchor="middle">5</text>
+<line x1="125" y1="70" x2="205" y2="70" stroke="#999" stroke-width="1.5"/><polygon points="205,65 215,70 205,75" fill="#999"/>
+<text x="168" y="60" text-anchor="middle" fill="#999">move one</text>
+<text x="70" y="146" text-anchor="middle" fill="#3f44c9">4 + 5 + 6</text><text x="260" y="146" text-anchor="middle" fill="#3f44c9">3 × 5</text>
+</svg><figcaption>A run with a middle levels out. The sum is 3 lots of the middle number.</figcaption></figure>
+<p>Why? A run with an odd number of terms has a middle. Move one from the top to the bottom and it levels out, so the sum is (how many terms) × (the middle).</p>
+<p>Turn that around. \(15 = 3 \times 5\) has the odd factor 3, so use three numbers with 5 in the middle: \(4 + 5 + 6\). An odd factor gives the run a centre.</p>
+<p class="callout">Powers of 2 have no odd factor bigger than 1. No odd factor, no centre, no run.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: every run for 30</h2>
+<p>The odd factors of 30 bigger than 1 are 3, 5 and 15.</p>
+<p><b>3:</b> centre \(30 \div 3 = 10\). Run: \(9 + 10 + 11\).</p>
+<p><b>5:</b> centre \(30 \div 5 = 6\). Run: \(4 + 5 + 6 + 7 + 8\).</p>
+<p><b>15:</b> centre \(30 \div 15 = 2\). Fifteen numbers centred on 2 go from \(-5\) to 9. But \(-5\) cancels 5, \(-4\) cancels 4, and so on: everything from \(-5\) to 5 adds to zero, leaving \(6 + 7 + 8 + 9\).</p>
+<p>Each odd factor bigger than 1 gives one run, and there are no others.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Write each number as a run: (a) 21 using three numbers; (b) 35 using five numbers; (c) 49 using seven numbers.<div class="space short"></div></li>
+<li>18 has two odd factors bigger than 1. Find them, and find both runs for 18.<div class="space short"></div></li>
+<li>(a) \(22 = 11 \times 2\). Write out the eleven numbers centred on 2, cancel what you can, and give the run that is left. (b) Do the same for \(26 = 13 \times 2\).<div class="space"></div></li>
+<li>(a) Exactly one number from 60 to 70 has no run. Which one, and how do you know without trying? (b) 17 is prime. Explain why it has exactly one run, and find it.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: runs with no middle</h2>
+<p>A run with an even number of terms, like \(3 + 4 + 5 + 6\), has no middle number. Pair the first term with the last, the second with the second-last, and so on. Explain why the sum must still have an odd factor bigger than 1. What does that prove about powers of 2?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(21 \div 3 = 7\): \(6 + 7 + 8\). (b) \(35 \div 5 = 7\): \(5 + 6 + 7 + 8 + 9\). (c) \(49 \div 7 = 7\): \(4 + 5 + 6 + 7 + 8 + 9 + 10\).</li>
+<li>The odd factors are 3 and 9. With 3: centre 6, so \(5 + 6 + 7\). With 9: centre 2, nine numbers from \(-2\) to 6. Cancel \(-2\) to 2 and \(3 + 4 + 5 + 6\) is left. Both add to 18.</li>
+<li>(a) \(-3, -2, \dots, 7\). Cancel \(-3\) to 3, leaving \(4 + 5 + 6 + 7 = 22\). (b) \(-4, -3, \dots, 8\). Cancel \(-4\) to 4, leaving \(5 + 6 + 7 + 8 = 26\).</li>
+<li>(a) 64. It is a power of 2 (\(2 \times 2 \times 2 \times 2 \times 2 \times 2\)), so it has no odd factor bigger than 1. Every other number from 60 to 70 has one. (b) The only odd factor of 17 bigger than 1 is 17 itself, so there is one run. Centre \(17 \div 17 = 1\): seventeen numbers from \(-7\) to 9. Cancel \(-7\) to 7, leaving \(8 + 9\).</li>
+</ol>
+<p><b>Stretch.</b> In a run of even length the first and last terms are one odd and one even, so they add to an odd number, at least \(1 + 2 = 3\). Every pair adds to that same odd number. So the sum is (number of pairs) × (an odd number bigger than 1). With an odd number of terms, the sum is (number of terms) × (middle), and the number of terms is odd and at least 3. Either way a run has an odd factor bigger than 1. A power of 2 has none, so it can never be a run.</p>
+</section>
+
+<div class="sheet-nav"><a href="b16-look-and-say.html">← Previous</a><a href="b18-calendar-magic.html">Next: Calendar magic →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How many boxes to collect all six? · Infinity Club</title>
+<meta name="description" content="Six toys, one hidden in each box at random. Simulate the hunt with a die and add up six waiting times to find the average: 14.7 boxes.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 7</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 7 · Around the corner · 14</div>
+  <h1>How many boxes to collect all six?</h1>
+  <p class="teaser">Six toys, one per box, at random. Roll a die to simulate it, and find the answer nobody guesses: about fifteen.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Each cereal box hides one of six toys, picked at random. How many boxes must you buy to get all six? Nobody can say for sure. But we can find the <em>average</em>.</p>
+<p>Split the hunt into six waits, one for each new toy.</p>
+<p>The first box always holds a new toy. Wait: 1 box.</p>
+<p>Now jump ahead. You own four toys and two are missing. Two toys in six are new to you, so in the long run one box in three helps. Then you wait 3 boxes, on average, for a box that does.</p>
+<p class="callout">If \(m\) of the 6 toys are still missing, the average wait for the next new toy is \(6 \div m\) boxes.</p>
+<figure><svg viewBox="0 0 440 172" width="440" height="172" role="img" aria-label="Bar chart of the average wait for each new toy: 1 box for the first, then 1.2, 1.5, 2, 3, and 6 boxes for the sixth toy." font-family="Nunito, sans-serif" font-size="12">
+<line x1="44" y1="132" x2="430" y2="132" stroke="#999" stroke-width="1"/>
+<rect x="60" y="114.0" width="40" height="18.0" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><text x="80" y="109.0" text-anchor="middle" font-weight="700">1</text><text x="80" y="148" text-anchor="middle" fill="#3f44c9">1st</text>
+<rect x="122" y="110.4" width="40" height="21.6" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><text x="142" y="105.4" text-anchor="middle" font-weight="700">1.2</text><text x="142" y="148" text-anchor="middle" fill="#3f44c9">2nd</text>
+<rect x="184" y="105.0" width="40" height="27.0" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><text x="204" y="100.0" text-anchor="middle" font-weight="700">1.5</text><text x="204" y="148" text-anchor="middle" fill="#3f44c9">3rd</text>
+<rect x="246" y="96.0" width="40" height="36.0" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><text x="266" y="91.0" text-anchor="middle" font-weight="700">2</text><text x="266" y="148" text-anchor="middle" fill="#3f44c9">4th</text>
+<rect x="308" y="78.0" width="40" height="54.0" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><text x="328" y="73.0" text-anchor="middle" font-weight="700">3</text><text x="328" y="148" text-anchor="middle" fill="#3f44c9">5th</text>
+<rect x="370" y="24.0" width="40" height="108.0" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/><text x="390" y="19.0" text-anchor="middle" font-weight="700">6</text><text x="390" y="148" text-anchor="middle" fill="#3f44c9">6th</text>
+<text x="237" y="167" text-anchor="middle" fill="#999">new toy</text>
+<text x="48" y="16" fill="#999">average wait, in boxes</text>
+</svg><figcaption>The six waits. Each new toy is harder to find than the one before.</figcaption></figure>
+<p>So the six waits are \(\tfrac66, \tfrac65, \tfrac64, \tfrac63, \tfrac62, \tfrac61\). Add them:</p>
+\[1 + 1.2 + 1.5 + 2 + 3 + 6 = 14.7\]
+<p>About fifteen boxes. The last toy alone takes 6 of them.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: let a die do the shopping</h2>
+<p>Number the toys 1 to 6. One roll of a die is one box. Roll until every face has turned up. One run, new toys in bold:</p>
+<p style="text-align:center"><b>4</b>, <b>2</b>, 4, <b>6</b>, <b>1</b>, 2, 2, <b>5</b>, 6, 1, 4, 5, <b>3</b></p>
+<p>The new toys came at rolls 1, 2, 4, 5, 8 and 13, so this set took 13 boxes. The waits were 1, 1, 2, 1, 3 and 5: quick at first, slow at the end. One run is luck. Average a great many runs and you get close to 14.7.</p>
+<p class="small">Watch luck settle into a pattern over thousands of rolls: <a href="../../demos/dice.html">infinityclub.net/demos/dice.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Another run: 3, 5, 3, 1, 6, 6, 2, 5, 1, 3, 2, 6, 5, 1, 4. (a) Circle each new toy. (b) How many boxes did this set take? (c) How long was the wait for the last toy? If you have a die, roll a run of your own as well.<div class="space short"></div></li>
+<li>You own three of the six toys. (a) What fraction of boxes hold a toy that is new to you? (b) What is the average wait for your fourth toy? (c) Check your answer against the figure.<div class="space short"></div></li>
+<li>A smaller set has only 4 toys. Find the four average waits and add them. Give the total as a mixed number.<div class="space short"></div></li>
+<li>A big set has 12 toys. (a) What is the average wait for the very last toy? (b) Think about the last six toys only. Each of those waits is double the matching wait in the six-toy set. Why? What do those six waits add up to? (c) Is the average for the whole set of 12 more or less than double 14.7? Explain.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the luckiest shopper</h2>
+<p>The luckiest shopper gets all six toys in the first six boxes. The second box must be new: chance \(\tfrac56\). Then the third must be new: chance \(\tfrac46\). Carry on, and multiply the five fractions. Roughly one shopper in how many is this lucky?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) The new toys are at rolls 1, 2, 4, 5, 7 and 15: the faces 3, 5, 1, 6, 2, 4. (b) 15 boxes. (c) 8 boxes: the fifth toy came at roll 7 and the sixth at roll 15. Your own run will differ. About half of all runs finish within 13 boxes, and about one run in sixteen takes more than 25.</li>
+<li>(a) \(\tfrac36 = \tfrac12\). (b) \(6 \div 3 = 2\) boxes. (c) The bar for the 4th toy shows 2.</li>
+<li>With 4, 3, 2, 1 toys missing the waits are \(\tfrac44, \tfrac43, \tfrac42, \tfrac41\). Total \(1 + 1\tfrac13 + 2 + 4 = 8\tfrac13\) boxes.</li>
+<li>(a) 1 toy in 12 is new, so 12 boxes. (b) With \(m\) toys missing the wait is \(12 \div m\) in place of \(6 \div m\): the same number of toys are missing, but out of 12 kinds, not 6, so a helpful box turns up half as often. The six waits add to \(2 \times 14.7 = 29.4\). (c) More. Double 14.7 is 29.4, and that is used up by the last six toys alone. The first six toys still need \(\tfrac{12}{12} + \tfrac{12}{11} + \cdots + \tfrac{12}{7}\), about 7.8 more boxes, for a total of about 37.2.</li>
+</ol>
+<p><b>Stretch.</b> \(\tfrac56 \times \tfrac46 \times \tfrac36 \times \tfrac26 \times \tfrac16 = \tfrac{120}{7776} = \tfrac{5}{324}\). That is about 1.5%, or roughly one shopper in 65.</p>
+</section>
+
+<div class="sheet-nav"><a href="b13-fair-division.html">← Previous</a><a href="b15-barber.html">Next: The barber who shaves everyone →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

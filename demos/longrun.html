@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The long run · Infinity Club</title>
+<meta name="description" content="Roll a die 10, 100, 1,000 or 10,000 times and watch the fraction of sixes close in on one in six. See how far off it is, counted in sixes and in percent.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+#plot { width: 100%; display: block; }
+.controls.big button { font-size: 1.1rem; padding: .7rem 1.1rem; min-height: 50px; }
+.dice { display: flex; flex-wrap: wrap; gap: .35rem; align-items: center; min-height: 44px; margin: .4rem 0; }
+.dice b { font-weight: 700; margin-right: .3rem; }
+.dice span { width: 36px; height: 36px; border: 2px solid var(--ink); border-radius: 8px; background: #fff; display: inline-flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.1rem; }
+.dice span.six { background: var(--warm); }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>The long run</h1>
+<p class="explain"><b>Tap a button to roll a fair die.</b> Start with 10 rolls, then add more. The graph shows what fraction of all your rolls so far were sixes. The dashed orange line is one in six. Watch the blue line: does it get closer?</p>
+<div class="demo-panel">
+  <div class="controls big">
+    <span style="font-weight:700">Roll</span>
+    <button data-n="10">10 more</button>
+    <button data-n="100">100 more</button>
+    <button data-n="1000">1,000 more</button>
+    <button data-n="10000" class="alt">10,000 more</button>
+    <button id="reset" class="ghost">Start again</button>
+  </div>
+  <div class="dice" id="dice" aria-live="off"></div>
+  <canvas id="plot" width="900" height="460"></canvas>
+  <div class="readout" id="info"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>A fair die has six faces, so the chance of a six is 1 in 6. That is about 16.7%. But chance does not promise one six in every six rolls. In 10 rolls you might get none, or four.</p>
+<p>What chance does promise is about the <b>long run</b>. The more times you roll, the closer the <b>fraction</b> of sixes gets to one in six. After 10 rolls it can be far off. After 10,000 rolls it is almost never more than one percentage point away.</p>
+<p>Now look at the other number in the box: how many sixes you are off by. That number does <b>not</b> shrink. After 10,000 rolls you may well be 30 sixes away from a perfect one in six. But 30 out of 10,000 is tiny, and that is why the percentage still closes in. The die never "catches up". The early luck just gets swamped by all the rolls that come after.</p>
+<p>Sheet: <a href="../grade-7/sheets/a14-long-run.html">What "one in six" really promises</a>. Related demo: <a href="dice.html">two dice, many rolls</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  // a random number maker you can restart from the same seed (used for testing)
+  function seeded(seed) {
+    var a = seed >>> 0;
+    return function () {
+      a = (a + 0x6D2B79F5) >>> 0; var t = a;
+      t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+  function rollDie(rng) { return 1 + Math.floor(rng() * 6); }
+  // add n more rolls: run[i] is the number of sixes in the first i + 1 rolls
+  function rollMore(run, n, rng, last) {
+    var sixes = run.length ? run[run.length - 1] : 0, i, r;
+    for (i = 0; i < n; i++) { r = rollDie(rng); if (r === 6) sixes++; run.push(sixes); if (last) last.push(r); }
+    return run;
+  }
+  function fractionAt(run, i) { return run[i] / (i + 1); }
+  // how far from a perfect one in six, counted in sixes and in percentage points
+  function summary(rolls, sixes) {
+    var expected = rolls / 6, fraction = rolls ? sixes / rolls : NaN;
+    return { rolls: rolls, sixes: sixes, fraction: fraction, expected: expected, offCount: sixes - expected, offPoints: 100 * (fraction - 1 / 6) };
+  }
+  /*ENDPURE*/
+  if (typeof document === "undefined") return;
+
+  var MAX = 200000, run = [], last = [];
+  var canvas = document.getElementById("plot"), ctx = canvas.getContext("2d"), info = document.getElementById("info"), dice = document.getElementById("dice");
+  function fmt(n) { return n.toLocaleString("en-US"); }
+  function draw() {
+    var dpr = window.devicePixelRatio || 1, W = canvas.clientWidth || 900, H = Math.round(Math.max(240, Math.min(460, W * 0.6)));
+    canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr); canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, H);
+    var L = 44, R = 12, T = 14, B = 30, pw = W - L - R, ph = H - T - B, top = 0.4, N = Math.max(10, run.length);
+    function X(i) { return L + pw * i / N; }               // i = number of rolls so far
+    function Y(f) { return T + ph * (1 - Math.min(f, top) / top); }
+    ctx.font = "13px Nunito, sans-serif"; ctx.textBaseline = "middle";
+    [0, 0.1, 0.2, 0.3, 0.4].forEach(function (f) {
+      ctx.strokeStyle = "#e6e3da"; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(L, Y(f)); ctx.lineTo(W - R, Y(f)); ctx.stroke();
+      ctx.fillStyle = "#5d6079"; ctx.textAlign = "right"; ctx.fillText(Math.round(f * 100) + "%", L - 6, Y(f));
+    });
+    ctx.textAlign = "center"; ctx.textBaseline = "top";
+    [0, 0.25, 0.5, 0.75, 1].forEach(function (q, k) {
+      if (W < 480 && k % 2) return;
+      ctx.textAlign = k === 4 ? "right" : k === 0 ? "left" : "center";
+      ctx.fillText(fmt(Math.round(N * q)) + (k === 4 ? " rolls" : ""), X(N * q), H - B + 8);
+    });
+    ctx.strokeStyle = "#f5a524"; ctx.lineWidth = 2.5; ctx.setLineDash([8, 6]);
+    ctx.beginPath(); ctx.moveTo(L, Y(1 / 6)); ctx.lineTo(W - R, Y(1 / 6)); ctx.stroke(); ctx.setLineDash([]);
+    ctx.fillStyle = "#a86a00"; ctx.textAlign = "right"; ctx.textBaseline = "bottom"; ctx.fillText("one in six", W - R - 4, Y(1 / 6) - 4);
+    if (run.length) {
+      // one point per roll when there is room; otherwise the highest and lowest value in each pixel column
+      ctx.strokeStyle = "#3f44c9"; ctx.lineWidth = 2; ctx.lineJoin = "round"; ctx.beginPath();
+      var step = Math.max(1, Math.floor(run.length / (pw * 2))), i, j, lo, hi, f;
+      for (i = 0; i < run.length; i += step) {
+        lo = 2; hi = -1;
+        for (j = i; j < Math.min(run.length, i + step); j++) { f = fractionAt(run, j); if (f < lo) lo = f; if (f > hi) hi = f; }
+        if (i === 0) ctx.moveTo(X(1), Y(fractionAt(run, 0)));
+        ctx.lineTo(X(i + 1), Y(hi)); if (step > 1) ctx.lineTo(X(Math.min(run.length, i + step)), Y(lo));
+      }
+      ctx.lineTo(X(run.length), Y(fractionAt(run, run.length - 1)));
+      ctx.stroke();
+      ctx.fillStyle = "#3f44c9"; ctx.beginPath(); ctx.arc(X(run.length), Y(fractionAt(run, run.length - 1)), 4.5, 0, Math.PI * 2); ctx.fill();
+    }
+    ctx.strokeStyle = "#1d1f3a"; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(L, T); ctx.lineTo(L, H - B); ctx.lineTo(W - R, H - B); ctx.stroke();
+  }
+  function describe() {
+    dice.innerHTML = "";
+    if (!run.length) { info.textContent = "No rolls yet. Tap \"10 more\" to start."; return; }
+    var lab = document.createElement("b"); lab.textContent = "Last rolls:"; dice.appendChild(lab);
+    last.slice(-10).forEach(function (r) { var s = document.createElement("span"); s.textContent = r; if (r === 6) s.className = "six"; dice.appendChild(s); });
+    var s = summary(run.length, run[run.length - 1]), off = Math.abs(s.offCount), pts = Math.abs(s.offPoints);
+    info.textContent = "Rolls: " + fmt(s.rolls) + "    Sixes: " + fmt(s.sixes) + "    That is " + (100 * s.fraction).toFixed(1) + "% of the rolls." +
+      "\nA perfect one in six would be " + s.expected.toFixed(1) + " sixes (16.7%)." +
+      "\nOff by " + off.toFixed(1) + " sixes " + (off < 0.05 ? "(spot on)" : s.offCount > 0 ? "(too many)" : "(too few)") + ".    Off by " + pts.toFixed(1) + " percentage points.";
+  }
+  Array.prototype.forEach.call(document.querySelectorAll("[data-n]"), function (b) {
+    b.addEventListener("click", function () {
+      var n = Math.min(+b.dataset.n, MAX - run.length);
+      if (n <= 0) { info.textContent = "That is " + fmt(MAX) + " rolls, which is plenty. Tap \"Start again\" for a fresh run."; return; }
+      rollMore(run, n, Math.random, last); if (last.length > 10) last = last.slice(-10);
+      draw(); describe();
+    });
+  });
+  document.getElementById("reset").addEventListener("click", function () { run = []; last = []; draw(); describe(); });
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(draw, 120); });
+  draw(); describe();
+})();
+</script>
+</body>
+</html>

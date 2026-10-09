@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pentominoes · Infinity Club</title>
+<meta name="description" content="Fit the twelve pentominoes into a 6 by 10 rectangle. Tap a piece, turn it or flip it, then tap the board. Also 5 by 12 and 3 by 20, with a hint button.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+#boardwrap { width: 100%; }
+#board { display: block; margin: 0 auto; touch-action: none; cursor: pointer; }
+.controls.big button { font-size: 1.1rem; padding: .7rem 1.1rem; min-height: 50px; }
+.controls button:disabled { opacity: .4; cursor: default; }
+.controls button.on { background: var(--warm); color: var(--ink); }
+.tray { display: grid; grid-template-columns: repeat(auto-fill, minmax(68px, 1fr)); gap: .5rem; margin: .8rem 0; }
+.tray button { background: #fff; border: 2px solid var(--rule); border-radius: 10px; padding: .35rem; cursor: pointer; min-height: 68px; display: flex; align-items: center; justify-content: center; }
+.tray button.on { border-color: var(--warm); background: var(--warm-soft); box-shadow: 0 0 0 2px var(--warm); }
+.tray button.used { opacity: .3; }
+.tray svg { width: 100%; height: auto; max-width: 64px; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Pentominoes</h1>
+<p class="explain"><b>Tap a piece, then tap the board to put it down.</b> Use Turn and Flip to change the way it faces. Tap a piece on the board to pick it up again. The goal: fit all twelve pieces into the rectangle with no gaps and no overlaps.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <span style="font-weight:700">Board</span>
+    <button data-board="0" class="on">6 × 10</button>
+    <button data-board="1">5 × 12</button>
+    <button data-board="2">3 × 20</button>
+  </div>
+  <div id="boardwrap"><canvas id="board" width="600" height="360"></canvas></div>
+  <div class="readout" id="status"></div>
+  <div class="controls big">
+    <button id="turn" disabled>Turn</button>
+    <button id="flip" disabled>Flip</button>
+    <button id="hint" class="alt">Hint</button>
+    <button id="clear" class="ghost">Clear board</button>
+  </div>
+  <div class="tray" id="tray"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>A <b>pentomino</b> is a shape made of five squares joined edge to edge. If a shape turned round or flipped over counts as the same shape, there are exactly <b>twelve</b> of them. People name them after the letters they look like: F, I, L, N, P, T, U, V, W, X, Y and Z.</p>
+<p>Twelve pieces of five squares cover 12 × 5 = 60 squares. So they might fill any rectangle with area 60: 6 by 10, 5 by 12, 4 by 15 or 3 by 20. They can fill all four, but it is hard. The 6 by 10 board has 2,339 different answers and the 3 by 20 board has only 2.</p>
+<p>A tip: place the awkward pieces first. The X needs room on all four sides, and the I, W and F leave odd gaps. Save the P for last, because it fits almost anywhere. And watch for a gap of one, two, three or four squares that is walled in. No piece is that small, so a gap like that means something has to move.</p>
+<p>The Hint button puts one piece where it belongs in an answer the demo knows. It may move pieces that are in its way.</p>
+<p>Sheet: <a href="../grade-7/sheets/b6-pentominoes.html">The twelve pentominoes</a>. Related demo: <a href="cubenets.html">Will it fold?</a></p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  var BASE = {
+    F: [[1, 0], [2, 0], [0, 1], [1, 1], [1, 2]], I: [[0, 0], [0, 1], [0, 2], [0, 3], [0, 4]], L: [[0, 0], [0, 1], [0, 2], [0, 3], [1, 3]],
+    N: [[1, 0], [1, 1], [0, 2], [1, 2], [0, 3]], P: [[0, 0], [1, 0], [0, 1], [1, 1], [0, 2]], T: [[0, 0], [1, 0], [2, 0], [1, 1], [1, 2]],
+    U: [[0, 0], [2, 0], [0, 1], [1, 1], [2, 1]], V: [[0, 0], [0, 1], [0, 2], [1, 2], [2, 2]], W: [[0, 0], [0, 1], [1, 1], [1, 2], [2, 2]],
+    X: [[1, 0], [0, 1], [1, 1], [2, 1], [1, 2]], Y: [[1, 0], [0, 1], [1, 1], [1, 2], [1, 3]], Z: [[0, 0], [1, 0], [1, 1], [1, 2], [2, 2]]
+  };
+  var NAMES = ["F", "I", "L", "N", "P", "T", "U", "V", "W", "X", "Y", "Z"];
+  // one known answer for each board, written as rows of piece letters (the long side lies across)
+  var SOLUTIONS = [
+    ["IIIIIXTTTP", "UUFFXXXTPP", "UFFWWXZTPP", "UUFYWWZZZV", "LYYYYWNNZV", "LLLLNNNVVV"],
+    ["IIIIIXVVVPPP", "UUFFXXXWVPPT", "UFFZZXWWVTTT", "UUFLZWWYNNNT", "LLLLZZYYYYNN"],
+    ["UUXIIIIINNNFTWYYYYZV", "UXXXPPLNNFFFTWWYZZZV", "UUXPPPLLLLFTTTWWZVVV"]
+  ];
+  // slide a shape so its top-left is at (0,0), cells in reading order
+  function norm(cells) {
+    var mx = Infinity, my = Infinity;
+    cells.forEach(function (c) { if (c[0] < mx) mx = c[0]; if (c[1] < my) my = c[1]; });
+    return cells.map(function (c) { return [c[0] - mx, c[1] - my]; }).sort(function (a, b) { return a[1] - b[1] || a[0] - b[0]; });
+  }
+  function key(cells) { return cells.map(function (c) { return c[0] + "," + c[1]; }).join(" "); }
+  // a shape flipped (or not), then given rot quarter turns clockwise
+  function orient(cells, rot, flip) {
+    var cur = flip ? cells.map(function (c) { return [-c[0], c[1]]; }) : cells, r;
+    for (r = 0; r < rot; r++) cur = cur.map(function (c) { return [-c[1], c[0]]; });
+    return norm(cur);
+  }
+  // every different way a shape can face (between 1 and 8 of them)
+  function allOrients(cells) {
+    var seen = {}, out = [], f, r;
+    for (f = 0; f < 2; f++) for (r = 0; r < 4; r++) {
+      var o = orient(cells, r, f), k = key(o);
+      if (!seen[k]) { seen[k] = 1; out.push({ rot: r, flip: f, cells: o }); }
+    }
+    return out;
+  }
+  // which turn and flip of the shape matches these cells (or null if none does)
+  function findOrient(cells, target) {
+    var k = key(norm(target)), all = allOrients(cells), i;
+    for (i = 0; i < all.length; i++) if (key(all[i].cells) === k) return { rot: all[i].rot, flip: all[i].flip };
+    return null;
+  }
+  function emptyGrid(W, H) {
+    var g = [], x, y;
+    for (y = 0; y < H; y++) { g.push([]); for (x = 0; x < W; x++) g[y].push(null); }
+    return g;
+  }
+  // a piece may go down only if every square is on the board and empty
+  function canPlace(grid, cells, ox, oy) {
+    var H = grid.length, W = grid[0].length, i, x, y;
+    for (i = 0; i < cells.length; i++) {
+      x = ox + cells[i][0]; y = oy + cells[i][1];
+      if (x < 0 || y < 0 || x >= W || y >= H || grid[y][x]) return false;
+    }
+    return true;
+  }
+  // Snap: the piece must cover the square that was tapped. Of the ways that fit, take the one centred nearest the tap.
+  function bestPlacement(grid, cells, fx, fy) {
+    var cx = Math.floor(fx), cy = Math.floor(fy), mx = 0, my = 0, best = null;
+    cells.forEach(function (c) { mx += c[0] + 0.5; my += c[1] + 0.5; });
+    mx /= cells.length; my /= cells.length;
+    cells.forEach(function (c) {
+      var ox = cx - c[0], oy = cy - c[1];
+      if (!canPlace(grid, cells, ox, oy)) return;
+      var d = Math.pow(ox + mx - fx, 2) + Math.pow(oy + my - fy, 2);
+      if (best === null || d < best.d) best = { ox: ox, oy: oy, d: d };
+    });
+    return best;
+  }
+  function transposeRows(rows) {
+    var out = [], x, y;
+    for (x = 0; x < rows[0].length; x++) { var s = ""; for (y = 0; y < rows.length; y++) s += rows[y].charAt(x); out.push(s); }
+    return out;
+  }
+  // rows of letters -> { letter: [[x, y], ...] }
+  function parseSolution(rows) {
+    var out = {};
+    rows.forEach(function (row, y) { row.split("").forEach(function (ch, x) { (out[ch] = out[ch] || []).push([x, y]); }); });
+    return out;
+  }
+  // true when the rows use each of the twelve pieces exactly once and cover every square
+  function isExactCover(rows) {
+    var parts = parseSolution(rows), letters = Object.keys(parts).sort(), W = rows[0].length;
+    if (letters.join("") !== NAMES.join("")) return false;
+    if (!rows.every(function (r) { return r.length === W; }) || W * rows.length !== 60) return false;
+    return letters.every(function (L) { return parts[L].length === 5 && findOrient(BASE[L], parts[L]) !== null; });
+  }
+  /*ENDPURE*/
+  if (typeof document === "undefined") return;
+
+  var FILL = { F: "#f7b267", I: "#8ecae6", L: "#b8e0a8", N: "#f4a3a3", P: "#c9b6f2", T: "#ffd66b", U: "#9fd8cb", V: "#f6bfd7", W: "#a9b8f5", X: "#e8a87c", Y: "#d3e58a", Z: "#c8c8d4" };
+  var canvas = document.getElementById("board"), ctx = canvas.getContext("2d"), wrap = document.getElementById("boardwrap");
+  var statusEl = document.getElementById("status"), tray = document.getElementById("tray");
+  var turnB = document.getElementById("turn"), flipB = document.getElementById("flip");
+  var NS = "http://www.w3.org/2000/svg";
+  var boardNo = 0, W, H, grid, placed, facing, hand = null, ghost = null, target, cell = 40, down = false, note = "";
+
+  function setBoard(n) {
+    var rows = SOLUTIONS[n], tall = window.innerWidth < 560;
+    if (tall) rows = transposeRows(rows); // on a phone the long side runs down the screen
+    boardNo = n; W = rows[0].length; H = rows.length; target = parseSolution(rows);
+    grid = emptyGrid(W, H); placed = {}; hand = null; ghost = null; note = "";
+    facing = {}; NAMES.forEach(function (L) { facing[L] = { rot: 0, flip: 0 }; });
+    Array.prototype.forEach.call(document.querySelectorAll("[data-board]"), function (b) { b.classList.toggle("on", +b.dataset.board === n); });
+    refresh();
+  }
+  function shape(L) { return orient(BASE[L], facing[L].rot, facing[L].flip); }
+  function lift(L) {
+    if (!placed[L]) return;
+    placed[L].forEach(function (c) { grid[c[1]][c[0]] = null; });
+    delete placed[L];
+  }
+  function put(L, cells) {
+    cells.forEach(function (c) { grid[c[1]][c[0]] = L; });
+    placed[L] = cells;
+  }
+  function count() { return Object.keys(placed).length; }
+  function refresh() {
+    turnB.disabled = flipB.disabled = !hand;
+    var n = count(), msg;
+    if (n === 12) msg = "Solved! All twelve pieces fit, with no gaps.";
+    else if (hand) msg = "Now tap the board where the piece should go. Turn or Flip it first if you need to.";
+    else if (n === 0) msg = "Tap a piece below to pick it up.";
+    else msg = "Pieces on the board: " + n + " of 12. Tap another piece.";
+    statusEl.textContent = (note ? note + "\n" : "") + msg;
+    drawTray(); draw();
+  }
+  function drawTray() {
+    tray.innerHTML = "";
+    NAMES.forEach(function (L) {
+      var b = document.createElement("button"), svg = document.createElementNS(NS, "svg"), cells = shape(L), w = 0, h = 0;
+      cells.forEach(function (c) { if (c[0] + 1 > w) w = c[0] + 1; if (c[1] + 1 > h) h = c[1] + 1; });
+      svg.setAttribute("viewBox", "-1 -1 52 52"); svg.setAttribute("aria-hidden", "true");
+      cells.forEach(function (c) {
+        var r = document.createElementNS(NS, "rect");
+        r.setAttribute("x", (5 - w) * 5 + c[0] * 10); r.setAttribute("y", (5 - h) * 5 + c[1] * 10);
+        r.setAttribute("width", 10); r.setAttribute("height", 10);
+        r.setAttribute("fill", FILL[L]); r.setAttribute("stroke", "#1d1f3a"); r.setAttribute("stroke-width", 1); svg.appendChild(r);
+      });
+      b.appendChild(svg);
+      b.setAttribute("aria-label", "Piece " + L + (placed[L] ? ", on the board" : hand === L ? ", picked up" : ""));
+      if (hand === L) b.className = "on"; else if (placed[L]) b.className = "used";
+      b.addEventListener("click", function () { pickUp(L); });
+      tray.appendChild(b);
+    });
+  }
+  function pickUp(L) {
+    note = "";
+    if (hand === L) { hand = null; refresh(); return; } // tap it again to put it back
+    if (placed[L]) lift(L);
+    hand = L; ghost = null; refresh();
+  }
+  function size() {
+    var avail = wrap.clientWidth || 600;
+    cell = Math.max(12, Math.floor(Math.min((avail - 4) / W, 440 / H, 56)));
+    var dpr = window.devicePixelRatio || 1, cw = W * cell + 4, ch = H * cell + 4;
+    canvas.style.width = cw + "px"; canvas.style.height = ch + "px";
+    canvas.width = Math.round(cw * dpr); canvas.height = Math.round(ch * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.translate(2, 2);
+  }
+  function draw() {
+    size();
+    var x, y;
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W * cell, H * cell);
+    for (y = 0; y < H; y++) for (x = 0; x < W; x++) if (grid[y][x]) { ctx.fillStyle = FILL[grid[y][x]]; ctx.fillRect(x * cell, y * cell, cell, cell); }
+    if (ghost && hand) {
+      ctx.globalAlpha = 0.55; ctx.fillStyle = FILL[hand];
+      shape(hand).forEach(function (c) { ctx.fillRect((ghost.ox + c[0]) * cell, (ghost.oy + c[1]) * cell, cell, cell); });
+      ctx.globalAlpha = 1;
+    }
+    ctx.strokeStyle = "#d9d6cc"; ctx.lineWidth = 1; ctx.beginPath();
+    for (x = 1; x < W; x++) { ctx.moveTo(x * cell + 0.5, 0); ctx.lineTo(x * cell + 0.5, H * cell); }
+    for (y = 1; y < H; y++) { ctx.moveTo(0, y * cell + 0.5); ctx.lineTo(W * cell, y * cell + 0.5); }
+    ctx.stroke();
+    // dark lines wherever two different pieces (or a piece and a gap) meet
+    ctx.strokeStyle = "#1d1f3a"; ctx.lineWidth = 2; ctx.lineCap = "round"; ctx.beginPath();
+    for (y = 0; y < H; y++) for (x = 0; x < W; x++) {
+      if (x + 1 < W && grid[y][x] !== grid[y][x + 1]) { ctx.moveTo((x + 1) * cell, y * cell); ctx.lineTo((x + 1) * cell, (y + 1) * cell); }
+      if (y + 1 < H && grid[y][x] !== grid[y + 1][x]) { ctx.moveTo(x * cell, (y + 1) * cell); ctx.lineTo((x + 1) * cell, (y + 1) * cell); }
+    }
+    ctx.stroke();
+    ctx.lineWidth = 3; ctx.strokeRect(0, 0, W * cell, H * cell);
+  }
+  function where(e) {
+    var r = canvas.getBoundingClientRect();
+    return { x: (e.clientX - r.left - 2) / cell, y: (e.clientY - r.top - 2) / cell };
+  }
+  function onBoard(p) { return p.x >= 0 && p.y >= 0 && p.x < W && p.y < H; }
+  function aim(e) {
+    var p = where(e);
+    ghost = hand && onBoard(p) ? bestPlacement(grid, shape(hand), p.x, p.y) : null;
+    draw();
+  }
+  canvas.addEventListener("pointerdown", function (e) {
+    down = true; if (canvas.setPointerCapture) { try { canvas.setPointerCapture(e.pointerId); } catch (err) {} }
+    if (hand) aim(e);
+    e.preventDefault();
+  });
+  canvas.addEventListener("pointermove", function (e) { if (hand && (down || e.pointerType === "mouse")) aim(e); });
+  canvas.addEventListener("pointerleave", function () { if (!down && ghost) { ghost = null; draw(); } });
+  canvas.addEventListener("pointercancel", function () { down = false; ghost = null; draw(); });
+  canvas.addEventListener("pointerup", function (e) {
+    if (!down) return;
+    down = false; note = "";
+    var p = where(e);
+    if (!onBoard(p)) { ghost = null; draw(); return; }
+    var under = grid[Math.floor(p.y)][Math.floor(p.x)];
+    if (hand) {
+      var cells = shape(hand), spot = bestPlacement(grid, cells, p.x, p.y);
+      if (spot) {
+        put(hand, cells.map(function (c) { return [spot.ox + c[0], spot.oy + c[1]]; }));
+        hand = null;
+      } else if (under) { lift(under); hand = under; }
+      else note = "It does not fit there. Try another square, or Turn or Flip the piece.";
+    } else if (under) { lift(under); hand = under; }
+    ghost = null; refresh();
+  });
+  turnB.addEventListener("click", function () { if (!hand) return; facing[hand].rot = (facing[hand].rot + 1) % 4; note = ""; refresh(); });
+  flipB.addEventListener("click", function () {
+    if (!hand) return;
+    var f = facing[hand]; f.flip = f.flip ? 0 : 1; f.rot = (4 - f.rot) % 4; // mirror the piece as you see it
+    note = ""; refresh();
+  });
+  document.getElementById("clear").addEventListener("click", function () { setBoard(boardNo); });
+  document.getElementById("hint").addEventListener("click", function () {
+    function right(L) { return placed[L] && key(placed[L].slice().sort(byCell)) === key(target[L].slice().sort(byCell)); }
+    function byCell(a, b) { return a[1] - b[1] || a[0] - b[0]; }
+    function free(L) { return target[L].every(function (c) { var g = grid[c[1]][c[0]]; return !g || g === L; }); }
+    var todo = NAMES.filter(function (L) { return !right(L); });
+    if (!todo.length) { note = "Every piece is already in place."; refresh(); return; }
+    var L = hand && todo.indexOf(hand) >= 0 ? hand : (todo.filter(free)[0] || todo[0]), moved = 0;
+    lift(L);
+    target[L].forEach(function (c) { var g = grid[c[1]][c[0]]; if (g) { lift(g); moved++; } });
+    put(L, target[L].map(function (c) { return [c[0], c[1]]; }));
+    facing[L] = findOrient(BASE[L], target[L]);
+    hand = null; ghost = null;
+    note = "Hint: the " + L + " piece goes here." + (moved ? " " + moved + (moved === 1 ? " piece was" : " pieces were") + " in its way and went back to the tray." : "");
+    refresh();
+  });
+  Array.prototype.forEach.call(document.querySelectorAll("[data-board]"), function (b) { b.addEventListener("click", function () { setBoard(+b.dataset.board); }); });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "r" || e.key === "R") turnB.click();
+    if (e.key === "f" || e.key === "F") flipB.click();
+  });
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(draw, 120); });
+  setBoard(0);
+})();
+</script>
+</body>
+</html>

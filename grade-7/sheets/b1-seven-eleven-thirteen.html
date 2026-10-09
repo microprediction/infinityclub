@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The 1001 trick · Infinity Club</title>
+<meta name="description" content="Type any three digits twice and the number divides by 7, 11 and 13. Place value and one multiplication, 7 × 11 × 13 = 1001, explain why.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 7</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 7 · Around the corner · 1</div>
+  <h1>The 1001 trick</h1>
+  <p class="teaser">Type any three digits twice, like 482482. It always divides by 7, by 11 and by 13. One multiplication explains all three.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Pick any three digits, say 482. Type them twice: 482482. Divide by 7 and it goes exactly. So does 11. So does 13. Try three other digits and the same thing happens.</p>
+<p>The reason is place value. The first 482 sits in the thousands, so it is worth \(482 \times 1000\). The second is worth \(482 \times 1\).</p>
+<figure><svg viewBox="0 0 430 88" width="430" height="88" role="img" aria-label="The number 482482 drawn as six digit boxes. The first three are worth 482 thousands and the last three are worth 482 ones, which together make 482 times 1001" font-family="Nunito, sans-serif" font-size="13">
+<rect x="20" y="14" width="30" height="34" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="35" y="37" text-anchor="middle" font-size="14" font-weight="700">4</text>
+<rect x="50" y="14" width="30" height="34" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="65" y="37" text-anchor="middle" font-size="14" font-weight="700">8</text>
+<rect x="80" y="14" width="30" height="34" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="95" y="37" text-anchor="middle" font-size="14" font-weight="700">2</text>
+<rect x="110" y="14" width="30" height="34" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/>
+<text x="125" y="37" text-anchor="middle" font-size="14" font-weight="700">4</text>
+<rect x="140" y="14" width="30" height="34" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/>
+<text x="155" y="37" text-anchor="middle" font-size="14" font-weight="700">8</text>
+<rect x="170" y="14" width="30" height="34" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/>
+<text x="185" y="37" text-anchor="middle" font-size="14" font-weight="700">2</text>
+<line x1="22" y1="56" x2="108" y2="56" stroke="#3f44c9" stroke-width="1.5"/>
+<line x1="112" y1="56" x2="198" y2="56" stroke="#f5a524" stroke-width="1.5"/>
+<text x="65" y="74" text-anchor="middle" fill="#3f44c9">482 thousands</text>
+<text x="155" y="74" text-anchor="middle" fill="#f5a524">482 ones</text>
+<text x="222" y="37" fill="#999" font-size="14">=</text>
+<text x="244" y="37" font-size="14"><tspan fill="#3f44c9">482 × 1000</tspan> + <tspan fill="#f5a524">482 × 1</tspan></text>
+<text x="222" y="74" fill="#999" font-size="14">=</text>
+<text x="244" y="74" font-size="14" font-weight="700">482 × 1001</text>
+</svg><figcaption>The left 482 is worth a thousand times the right 482.</figcaption></figure>
+<p>So typing three digits twice is the same as multiplying them by 1001. And 1001 hides a surprise:</p>
+<p class="callout">\(7 \times 11 \times 13 = 1001\). Check: \(7 \times 11 = 77\), and \(77 \times 13 = 770 + 231 = 1001\).</p>
+<p>That means \(482482 = 482 \times 7 \times 11 \times 13\). A number made by multiplying by 7 must divide by 7. The same goes for 11 and for 13. Nothing special about 482 was used, so the trick works for every three digits you choose.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: take 482482 apart</h2>
+<p>Divide 482482 by 7, then the answer by 11, then that answer by 13.</p>
+\[482482 \div 7 = 68926 \qquad 68926 \div 11 = 6266 \qquad 6266 \div 13 = 482\]
+<p>You are back at your three digits. Dividing by 7, 11 and 13 in turn is the same as dividing by 1001, and that undoes the typing twice.</p>
+<p>It also gives shortcuts. To find \(482482 \div 13\), leave out the 13: \(482 \times 7 \times 11 = 482 \times 77 = 37114\).</p>
+<p class="small">7, 11 and 13 are three primes in a row. Find the primes around them with the sieve: <a href="../../demos/sieve.html">infinityclub.net/demos/sieve.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>No calculator. (a) \(739 \times 1001\). (b) \(905905 \div 1001\). (c) \(64 \times 1001\). Is your answer to (c) a multiple of 7?<div class="space short"></div></li>
+<li>Divide 739739 by 7 using long division. Divide your answer by 11, and that answer by 13. What do you get, and why?<div class="space"></div></li>
+<li>(a) Work out \(7 \times 13\) and \(11 \times 13\). (b) Find \(258258 \div 91\) without long division. (c) Find \(258258 \div 143\) the same way.<div class="space short"></div></li>
+<li>Now type a <em>two</em>-digit number twice, like 4747. (a) What number have you multiplied 47 by? (b) That number is prime. Is 4747 sure to divide by 7? Test it. (c) Type 47 three times: \(474747 = 47 \times 10101\). Divide 10101 by 3, then 7, then 13. Which four primes divide every number made this way?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: a test for any six digits</h2>
+<p>\(365638 = 365 \times 1000 + 638 = 365 \times 1001 + (638 - 365)\). The part with 1001 divides by 7, 11 and 13. So everything depends on the small number \(638 - 365\). Use it to decide whether 365638 divides by 7, by 11 and by 13.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) 739739. (b) 905. (c) 64064, which is 064 typed twice. Yes: \(64064 = 64 \times 7 \times 11 \times 13\), and \(64064 \div 7 = 9152\).</li>
+<li>\(739739 \div 7 = 105677\), then \(105677 \div 11 = 9607\), then \(9607 \div 13 = 739\). You get the three digits back, because \(739739 = 739 \times 7 \times 11 \times 13\) and you have divided out the 7, the 11 and the 13.</li>
+<li>(a) 91 and 143. (b) \(91 = 7 \times 13\), so dividing by 91 leaves \(258 \times 11 = 2838\). (c) \(143 = 11 \times 13\), so the answer is \(258 \times 7 = 1806\).</li>
+<li>(a) 101, since \(4747 = 47 \times 100 + 47\). (b) No. \(4747 \div 7 = 678\) remainder 1. With 101 prime, there is no 7 hiding in it. (c) \(10101 \div 3 = 3367\), \(3367 \div 7 = 481\), \(481 \div 13 = 37\). So \(10101 = 3 \times 7 \times 13 \times 37\), and 3, 7, 13 and 37 divide every two-digit number typed three times.</li>
+</ol>
+<p><b>Stretch.</b> \(638 - 365 = 273\). \(273 = 7 \times 39\), so 7 divides 365638. \(273 = 13 \times 21\), so 13 does too. \(273 = 11 \times 24 + 9\), so 11 does not. Check: \(365638 \div 7 = 52234\) and \(365638 \div 13 = 28126\).</p>
+</section>
+
+<div class="sheet-nav"><a href="a16-two-groups.html">← Previous</a><a href="b2-square-endings.html">Next: No square number ends in 7 →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

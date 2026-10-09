@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Undo it backwards · Infinity Club</title>
+<meta name="description" content="Solve a two-step equation on a balance. Take the same from both sides, then share both sides out, and see what a wrong move does. A demo for curious kids.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.controls button { min-height: 48px; font-size: 1.05rem; text-align: left; }
+.controls button:disabled { opacity: .35; cursor: default; }
+.moves { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: .6rem; margin: .6rem 0; }
+#scale { max-width: 560px; margin: 0 auto; }
+#scale svg { display: block; width: 100%; height: auto; }
+#eq { font-size: 1.5rem; font-weight: 800; text-align: center; margin: .2rem 0 .4rem; }
+#msg { font-family: var(--sans); font-size: 1.05rem; font-weight: 700; min-height: 3.2em; }
+#log { font-size: 1.05rem; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Undo it backwards</h1>
+<p class="explain">Find out how many weights are hidden in one bag. Every bag holds the same number, called <b>x</b>, and right now the balance is level. Press a move. A fair move keeps the balance level. An unfair move tips it, and you have to put things back.</p>
+<div class="demo-panel">
+  <div id="eq"></div>
+  <div id="scale"></div>
+  <div class="readout" id="msg"></div>
+  <div class="controls moves">
+    <button id="m0"></button>
+    <button id="m1"></button>
+    <button id="m2" class="ghost"></button>
+    <button id="m3" class="ghost"></button>
+  </div>
+  <div class="controls">
+    <button id="back" class="alt">Put it back</button>
+    <button id="again" class="ghost">Start this one again</button>
+    <button id="new" class="ghost">New puzzle</button>
+  </div>
+  <div class="readout" id="log"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>The balance is a picture of an equation. The left pan is one side, the right pan is the other, and "level" means "equal". The equation 3x + 4 = 19 says: three bags and 4 loose weights weigh the same as 19 weights.</p>
+<p>Somebody made the left side in two steps. They took x, <b>multiplied</b> it by 3, then <b>added</b> 4. To get back to x, undo those steps in the opposite order, the way you take off shoes before socks. First undo the adding: take 4 from <b>both</b> sides. Then undo the multiplying: share both sides into 3 equal groups and keep one.</p>
+<p>The one rule is to be fair. Whatever you do to one pan, do to the other. Try the two unfair buttons on purpose and see which way the balance tips.</p>
+<p>Sheet: <a href="../grade-7/sheets/a6-undo-backwards.html">Undo it backwards</a></p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  // A balance state: p bags and q loose weights on the left, r weights on the right. Each bag secretly holds x.
+  function makeEquation(a, x, b) { return { p: a, q: b, r: a * x + b, x: x }; }
+  function solve(a, b, c) { return (c - b) / a; }           // the solution of ax + b = c
+  function weigh(s) { return { left: s.p * s.x + s.q, right: s.r }; }
+  // +1 left pan heavier (it drops), -1 right pan heavier, 0 level
+  function tilt(s) { var w = weigh(s); return w.left > w.right ? 1 : w.left < w.right ? -1 : 0; }
+  function solved(s) { return s.p === 1 && s.q === 0 && tilt(s) === 0; }
+  // Moves: "takeBoth", "takeLeft", "splitBoth", "keepOneBag".
+  // Returns { state, applied, fair, why }. A refused move leaves the state alone (applied false).
+  function applyMove(s, move) {
+    var n = { p: s.p, q: s.q, r: s.r, x: s.x };
+    if (move === "takeBoth") {
+      if (s.q === 0) return { state: s, applied: false, fair: true, why: "nothing" };
+      if (s.r < s.q) return { state: s, applied: false, fair: true, why: "short" };
+      n.q = 0; n.r = s.r - s.q; return { state: n, applied: true, fair: true, why: "took" };
+    }
+    if (move === "takeLeft") {
+      if (s.q === 0) return { state: s, applied: false, fair: false, why: "nothing" };
+      n.q = 0; return { state: n, applied: true, fair: false, why: "oneSide" };
+    }
+    if (move === "splitBoth") {
+      if (s.p === 1) return { state: s, applied: false, fair: true, why: "nothing" };
+      if (s.q % s.p !== 0 || s.r % s.p !== 0) return { state: s, applied: false, fair: true, why: "uneven" };
+      n.q = s.q / s.p; n.r = s.r / s.p; n.p = 1; return { state: n, applied: true, fair: true, why: s.q === 0 ? "split" : "splitEarly" };
+    }
+    if (move === "keepOneBag") {
+      if (s.p === 1) return { state: s, applied: false, fair: false, why: "nothing" };
+      n.p = 1; return { state: n, applied: true, fair: false, why: "oneSide" };
+    }
+    return { state: s, applied: false, fair: false, why: "unknown" };
+  }
+  function eqText(s) {
+    var left = (s.p === 1 ? "x" : s.p + "x") + (s.q ? " + " + s.q : "");
+    var t = tilt(s);
+    return left + (t === 0 ? " = " : t > 0 ? " > " : " < ") + s.r;
+  }
+  /*ENDPURE*/
+
+  var box = document.getElementById("scale"), eq = document.getElementById("eq"), msg = document.getElementById("msg"), log = document.getElementById("log");
+  var btn = [0, 1, 2, 3].map(function (i) { return document.getElementById("m" + i); });
+  var back = document.getElementById("back");
+  var MOVES = ["takeBoth", "splitBoth", "takeLeft", "keepOneBag"];
+  var start, S, prev = null, lines = [], angle = 0, raf = 0;
+
+  function bag(x, y) { // x centre, y bottom
+    return '<path d="M' + (x - 11) + " " + y + "h22q4 -12 -5 -22h-12q-9 10 -5 22z" + '" fill="#dcdcf5" stroke="#3f44c9" stroke-width="2"/>'
+      + '<path d="M' + (x - 6) + " " + (y - 22) + "l2 -6h8l2 6z" + '" fill="#3f44c9"/>'
+      + '<text x="' + x + '" y="' + (y - 6) + '" text-anchor="middle" font-size="13" font-weight="800" fill="#3f44c9">x</text>';
+  }
+  function weightsAt(cx, bottom, n) { // rows of 10, built upwards
+    var s = "", per = 10, pitch = 11, rows = Math.ceil(n / per);
+    for (var i = 0; i < n; i++) {
+      var row = Math.floor(i / per), inRow = row === rows - 1 ? n - row * per : per, col = i % per;
+      var x = cx - inRow * pitch / 2 + col * pitch + 1, y = bottom - (row + 1) * pitch;
+      s += '<rect x="' + x.toFixed(1) + '" y="' + y.toFixed(1) + '" width="9" height="9" rx="1.5" fill="#f5a524" stroke="#1d1f3a" stroke-width="1"/>';
+    }
+    return s;
+  }
+  function pan(ex, ey, bags, w, label) {
+    var py = ey + 108, s = "";
+    s += '<path d="M' + ex.toFixed(1) + " " + ey.toFixed(1) + "L" + (ex - 66).toFixed(1) + " " + py.toFixed(1) + "M" + ex.toFixed(1) + " " + ey.toFixed(1) + "L" + (ex + 66).toFixed(1) + " " + py.toFixed(1) + '" stroke="#999" stroke-width="1.5" fill="none"/>';
+    s += '<rect x="' + (ex - 70).toFixed(1) + '" y="' + py.toFixed(1) + '" width="140" height="6" rx="3" fill="#1d1f3a"/>';
+    var g = "";
+    for (var i = 0; i < bags; i++) g += bag(-(bags - 1) * 15 + i * 30, 0);
+    g += weightsAt(0, bags ? -32 : 0, w);
+    s += '<g transform="translate(' + ex.toFixed(1) + " " + py.toFixed(1) + ')">' + g + "</g>";
+    s += '<text x="' + ex.toFixed(1) + '" y="' + (py + 24).toFixed(1) + '" text-anchor="middle" font-size="15" font-weight="800">' + label + "</text>";
+    return s;
+  }
+  function render() {
+    var a = angle * Math.PI / 180, cx = 170, cy = 34, arm = 96;
+    var lx = cx - arm * Math.cos(a), ly = cy + arm * Math.sin(a), rx = cx + arm * Math.cos(a), ry = cy - arm * Math.sin(a);
+    var s = '<svg viewBox="0 0 340 214" role="img" aria-label="A balance. Left pan: ' + S.p + " bags and " + S.q + " weights. Right pan: " + S.r + ' weights." font-family="Nunito, sans-serif" fill="#1d1f3a">';
+    s += '<path d="M170 34L156 196h28z" fill="#d9d6cc"/><rect x="120" y="194" width="100" height="7" rx="3" fill="#8a8ca8"/>';
+    s += pan(lx, ly, S.p, S.q, (S.p === 1 ? "1 bag" : S.p + " bags") + (S.q ? " + " + S.q : ""));
+    s += pan(rx, ry, 0, S.r, S.r);
+    s += '<path d="M' + lx.toFixed(1) + " " + ly.toFixed(1) + "L" + rx.toFixed(1) + " " + ry.toFixed(1) + '" stroke="#1d1f3a" stroke-width="6" stroke-linecap="round"/>';
+    s += '<circle cx="170" cy="34" r="6" fill="#f5a524" stroke="#1d1f3a" stroke-width="2"/>';
+    box.innerHTML = s + "</svg>";
+  }
+  function swing() {
+    cancelAnimationFrame(raf);
+    var target = tilt(S) * 9;
+    (function step() {
+      var d = target - angle;
+      if (Math.abs(d) < 0.2) { angle = target; render(); return; }
+      angle += d * 0.18; render(); raf = requestAnimationFrame(step);
+    })();
+  }
+  function refresh(text) {
+    var tipped = prev !== null, done = solved(S);
+    eq.textContent = eqText(S);
+    btn[0].textContent = "Take " + (S.q || "the loose weights") + " from both sides";
+    btn[1].textContent = "Share both sides into " + (S.p > 1 ? S.p + " " : "") + "equal groups, keep one";
+    btn[2].textContent = "Unfair: take " + (S.q || "the loose weights") + " from the left side only";
+    btn[3].textContent = "Unfair: keep one bag, leave the right side alone";
+    btn[0].disabled = btn[2].disabled = tipped || done || S.q === 0;
+    btn[1].disabled = btn[3].disabled = tipped || done || S.p === 1;
+    back.disabled = !tipped;
+    msg.textContent = text;
+    log.textContent = "Your working\n" + lines.join("\n");
+    swing();
+  }
+  function play(i) {
+    var before = S, res = applyMove(S, MOVES[i]);
+    if (!res.applied) {
+      refresh(res.why === "uneven" ? "The " + S.q + " loose weights will not share out into " + S.p + " equal groups. Undo the adding first: take them off both sides."
+        : "That move does nothing here.");
+      return;
+    }
+    S = res.state;
+    if (!res.fair) {
+      prev = before;
+      refresh("It tipped! You changed one side and not the other, so the sides are no longer equal. Put it back.");
+      return;
+    }
+    lines.push(eqText(S) + (res.why === "took" ? "      took " + before.q + " from both sides" : "      shared both sides into " + before.p));
+    if (solved(S)) refresh("Solved. One bag holds " + S.r + " weights, so x = " + S.r + ".\nCheck: " + start.p + " × " + S.r + " + " + start.q + " = " + start.r + ".");
+    else if (res.why === "splitEarly") refresh("Still level. That worked because every pile shared out evenly. Now take the loose weights from both sides.");
+    else refresh("Still level. The same was taken from both sides. Now share out.");
+  }
+  btn.forEach(function (b, i) { b.addEventListener("click", function () { play(i); }); });
+  back.addEventListener("click", function () { if (prev) { S = prev; prev = null; refresh("Level again. Now try a move that treats both sides the same."); } });
+  function begin(s) {
+    start = s; S = { p: s.p, q: s.q, r: s.r, x: s.x }; prev = null; lines = [eqText(S)];
+    refresh("The balance is level. Which step was done last: the multiplying or the adding? Undo that one first.");
+  }
+  document.getElementById("again").addEventListener("click", function () { begin(start); });
+  document.getElementById("new").addEventListener("click", function () {
+    var s; do { s = makeEquation(2 + Math.floor(Math.random() * 3), 1 + Math.floor(Math.random() * 6), 1 + Math.floor(Math.random() * 6)); } while (s.p === start.p && s.q === start.q && s.r === start.r);
+    begin(s);
+  });
+  begin(makeEquation(3, 5, 4));
+})();
+</script>
+</body>
+</html>

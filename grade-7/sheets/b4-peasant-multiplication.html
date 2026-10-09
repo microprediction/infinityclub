@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Multiplying by halving and doubling · Infinity Club</title>
+<meta name="description" content="Halve one number, double the other, cross out the evens and add what is left. A picture of dots shows why it always works, and binary says which rows survive.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 7</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 7 · Around the corner · 4</div>
+  <h1>Multiplying by halving and doubling</h1>
+  <p class="teaser">Halve one number, double the other, cross out the evens, add what is left. It always works, and binary is the reason.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p><a href="../../grade-6/sheets/a13-multiplication.html">Grade 6</a> showed you this method. Halve the top number, dropping any half. Double the bottom number. Cross out columns where the top number is even. Add what is left on the bottom. Here is \(19 \times 12\).</p>
+<table style="margin:.4em auto; font-size:.92em">
+<tr><th>halve</th><td>19</td><td>9</td><td><s>4</s></td><td><s>2</s></td><td>1</td></tr>
+<tr><th>double</th><td>12</td><td>24</td><td><s>48</s></td><td><s>96</s></td><td>192</td></tr>
+</table>
+<p>\(12 + 24 + 192 = 228\), which is \(19 \times 12\). Why is each step safe? Picture 19 rows of 12 dots.</p>
+<figure><svg viewBox="0 0 510 90" width="510" height="90" role="img" aria-label="Two dot pictures. On the left, 4 rows of 6 dots are cut in half and laid side by side as 2 rows of 12. On the right, 5 rows of 6 dots have one row set aside before the other 4 rows are rearranged as 2 rows of 12" font-family="Nunito, sans-serif" font-size="13">
+<text x="10" y="16" font-weight="700" fill="#3f44c9">Even: 4 rows of 6</text>
+<circle cx="16.0" cy="30.0" r="3.2" fill="#3f44c9"/><circle cx="26.0" cy="30.0" r="3.2" fill="#3f44c9"/><circle cx="36.0" cy="30.0" r="3.2" fill="#3f44c9"/><circle cx="46.0" cy="30.0" r="3.2" fill="#3f44c9"/><circle cx="56.0" cy="30.0" r="3.2" fill="#3f44c9"/><circle cx="66.0" cy="30.0" r="3.2" fill="#3f44c9"/><circle cx="16.0" cy="40.0" r="3.2" fill="#3f44c9"/><circle cx="26.0" cy="40.0" r="3.2" fill="#3f44c9"/><circle cx="36.0" cy="40.0" r="3.2" fill="#3f44c9"/><circle cx="46.0" cy="40.0" r="3.2" fill="#3f44c9"/><circle cx="56.0" cy="40.0" r="3.2" fill="#3f44c9"/><circle cx="66.0" cy="40.0" r="3.2" fill="#3f44c9"/>
+<circle cx="16.0" cy="50.0" r="3.2" fill="#9a9de0"/><circle cx="26.0" cy="50.0" r="3.2" fill="#9a9de0"/><circle cx="36.0" cy="50.0" r="3.2" fill="#9a9de0"/><circle cx="46.0" cy="50.0" r="3.2" fill="#9a9de0"/><circle cx="56.0" cy="50.0" r="3.2" fill="#9a9de0"/><circle cx="66.0" cy="50.0" r="3.2" fill="#9a9de0"/><circle cx="16.0" cy="60.0" r="3.2" fill="#9a9de0"/><circle cx="26.0" cy="60.0" r="3.2" fill="#9a9de0"/><circle cx="36.0" cy="60.0" r="3.2" fill="#9a9de0"/><circle cx="46.0" cy="60.0" r="3.2" fill="#9a9de0"/><circle cx="56.0" cy="60.0" r="3.2" fill="#9a9de0"/><circle cx="66.0" cy="60.0" r="3.2" fill="#9a9de0"/>
+<line x1="6" y1="45.0" x2="76.0" y2="45.0" stroke="#999" stroke-width="1" stroke-dasharray="3 2"/>
+<text x="88" y="50.0" fill="#999" font-size="16">→</text>
+<circle cx="116.0" cy="40.0" r="3.2" fill="#3f44c9"/><circle cx="126.0" cy="40.0" r="3.2" fill="#3f44c9"/><circle cx="136.0" cy="40.0" r="3.2" fill="#3f44c9"/><circle cx="146.0" cy="40.0" r="3.2" fill="#3f44c9"/><circle cx="156.0" cy="40.0" r="3.2" fill="#3f44c9"/><circle cx="166.0" cy="40.0" r="3.2" fill="#3f44c9"/><circle cx="116.0" cy="50.0" r="3.2" fill="#3f44c9"/><circle cx="126.0" cy="50.0" r="3.2" fill="#3f44c9"/><circle cx="136.0" cy="50.0" r="3.2" fill="#3f44c9"/><circle cx="146.0" cy="50.0" r="3.2" fill="#3f44c9"/><circle cx="156.0" cy="50.0" r="3.2" fill="#3f44c9"/><circle cx="166.0" cy="50.0" r="3.2" fill="#3f44c9"/>
+<circle cx="176.0" cy="40.0" r="3.2" fill="#9a9de0"/><circle cx="186.0" cy="40.0" r="3.2" fill="#9a9de0"/><circle cx="196.0" cy="40.0" r="3.2" fill="#9a9de0"/><circle cx="206.0" cy="40.0" r="3.2" fill="#9a9de0"/><circle cx="216.0" cy="40.0" r="3.2" fill="#9a9de0"/><circle cx="226.0" cy="40.0" r="3.2" fill="#9a9de0"/><circle cx="176.0" cy="50.0" r="3.2" fill="#9a9de0"/><circle cx="186.0" cy="50.0" r="3.2" fill="#9a9de0"/><circle cx="196.0" cy="50.0" r="3.2" fill="#9a9de0"/><circle cx="206.0" cy="50.0" r="3.2" fill="#9a9de0"/><circle cx="216.0" cy="50.0" r="3.2" fill="#9a9de0"/><circle cx="226.0" cy="50.0" r="3.2" fill="#9a9de0"/>
+<text x="171.0" y="82.0" text-anchor="middle" fill="#3f44c9">2 rows of 12: same dots</text>
+<text x="270" y="16" font-weight="700" fill="#f5a524">Odd: 5 rows of 6</text>
+<circle cx="276.0" cy="24.0" r="3.2" fill="#f5a524"/><circle cx="286.0" cy="24.0" r="3.2" fill="#f5a524"/><circle cx="296.0" cy="24.0" r="3.2" fill="#f5a524"/><circle cx="306.0" cy="24.0" r="3.2" fill="#f5a524"/><circle cx="316.0" cy="24.0" r="3.2" fill="#f5a524"/><circle cx="326.0" cy="24.0" r="3.2" fill="#f5a524"/>
+<circle cx="276.0" cy="34.0" r="3.2" fill="#3f44c9"/><circle cx="286.0" cy="34.0" r="3.2" fill="#3f44c9"/><circle cx="296.0" cy="34.0" r="3.2" fill="#3f44c9"/><circle cx="306.0" cy="34.0" r="3.2" fill="#3f44c9"/><circle cx="316.0" cy="34.0" r="3.2" fill="#3f44c9"/><circle cx="326.0" cy="34.0" r="3.2" fill="#3f44c9"/><circle cx="276.0" cy="44.0" r="3.2" fill="#3f44c9"/><circle cx="286.0" cy="44.0" r="3.2" fill="#3f44c9"/><circle cx="296.0" cy="44.0" r="3.2" fill="#3f44c9"/><circle cx="306.0" cy="44.0" r="3.2" fill="#3f44c9"/><circle cx="316.0" cy="44.0" r="3.2" fill="#3f44c9"/><circle cx="326.0" cy="44.0" r="3.2" fill="#3f44c9"/>
+<circle cx="276.0" cy="54.0" r="3.2" fill="#9a9de0"/><circle cx="286.0" cy="54.0" r="3.2" fill="#9a9de0"/><circle cx="296.0" cy="54.0" r="3.2" fill="#9a9de0"/><circle cx="306.0" cy="54.0" r="3.2" fill="#9a9de0"/><circle cx="316.0" cy="54.0" r="3.2" fill="#9a9de0"/><circle cx="326.0" cy="54.0" r="3.2" fill="#9a9de0"/><circle cx="276.0" cy="64.0" r="3.2" fill="#9a9de0"/><circle cx="286.0" cy="64.0" r="3.2" fill="#9a9de0"/><circle cx="296.0" cy="64.0" r="3.2" fill="#9a9de0"/><circle cx="306.0" cy="64.0" r="3.2" fill="#9a9de0"/><circle cx="316.0" cy="64.0" r="3.2" fill="#9a9de0"/><circle cx="326.0" cy="64.0" r="3.2" fill="#9a9de0"/>
+<text x="348" y="50.0" fill="#999" font-size="16">→</text>
+<circle cx="376.0" cy="24.0" r="3.2" fill="#f5a524"/><circle cx="386.0" cy="24.0" r="3.2" fill="#f5a524"/><circle cx="396.0" cy="24.0" r="3.2" fill="#f5a524"/><circle cx="406.0" cy="24.0" r="3.2" fill="#f5a524"/><circle cx="416.0" cy="24.0" r="3.2" fill="#f5a524"/><circle cx="426.0" cy="24.0" r="3.2" fill="#f5a524"/>
+<text x="438" y="28.0" fill="#f5a524">6 set aside</text>
+<circle cx="376.0" cy="44.0" r="3.2" fill="#3f44c9"/><circle cx="386.0" cy="44.0" r="3.2" fill="#3f44c9"/><circle cx="396.0" cy="44.0" r="3.2" fill="#3f44c9"/><circle cx="406.0" cy="44.0" r="3.2" fill="#3f44c9"/><circle cx="416.0" cy="44.0" r="3.2" fill="#3f44c9"/><circle cx="426.0" cy="44.0" r="3.2" fill="#3f44c9"/><circle cx="376.0" cy="54.0" r="3.2" fill="#3f44c9"/><circle cx="386.0" cy="54.0" r="3.2" fill="#3f44c9"/><circle cx="396.0" cy="54.0" r="3.2" fill="#3f44c9"/><circle cx="406.0" cy="54.0" r="3.2" fill="#3f44c9"/><circle cx="416.0" cy="54.0" r="3.2" fill="#3f44c9"/><circle cx="426.0" cy="54.0" r="3.2" fill="#3f44c9"/>
+<circle cx="436.0" cy="44.0" r="3.2" fill="#9a9de0"/><circle cx="446.0" cy="44.0" r="3.2" fill="#9a9de0"/><circle cx="456.0" cy="44.0" r="3.2" fill="#9a9de0"/><circle cx="466.0" cy="44.0" r="3.2" fill="#9a9de0"/><circle cx="476.0" cy="44.0" r="3.2" fill="#9a9de0"/><circle cx="486.0" cy="44.0" r="3.2" fill="#9a9de0"/><circle cx="436.0" cy="54.0" r="3.2" fill="#9a9de0"/><circle cx="446.0" cy="54.0" r="3.2" fill="#9a9de0"/><circle cx="456.0" cy="54.0" r="3.2" fill="#9a9de0"/><circle cx="466.0" cy="54.0" r="3.2" fill="#9a9de0"/><circle cx="476.0" cy="54.0" r="3.2" fill="#9a9de0"/><circle cx="486.0" cy="54.0" r="3.2" fill="#9a9de0"/>
+<text x="431.0" y="82.0" text-anchor="middle" fill="#3f44c9">2 rows of 12</text>
+</svg><figcaption>Half the rows, twice as long. An odd number of rows gives one up first.</figcaption></figure>
+<p><b>Even number of rows.</b> Cut the block in half and lay the halves side by side. Half as many rows, each twice as long, the same dots. Nothing to record, so cross it out.</p>
+<p><b>Odd number of rows.</b> Set one row aside first. It holds the bottom number of dots, so you keep that number.</p>
+<p>Which columns are odd? Write 1 for odd and 0 for even, last column first: 10011. That is 19 in <b>binary</b>, the system that uses only 0 and 1 (<a href="../../grade-6/sheets/b2-binary.html">Counting to 31 on one hand</a>). The kept numbers are 12 times 1, 2 and 16, and \(1 + 2 + 16 = 19\).</p>
+</section>
+
+<section class="example">
+<h2>Watch one: \(22 \times 15\)</h2>
+<table style="margin:.4em auto; font-size:.92em">
+<tr><th>halve</th><td><s>22</s></td><td>11</td><td>5</td><td><s>2</s></td><td>1</td></tr>
+<tr><th>double</th><td><s>15</s></td><td>30</td><td>60</td><td><s>120</s></td><td>240</td></tr>
+</table>
+<p>Half of 11 is 5½, so write 5. Half of 5 is 2½, so write 2. The even numbers on top are 22 and 2, so those columns go. What is left: \(30 + 60 + 240 = 330\).</p>
+<p>Check with binary. Last column first, odd and even give 10110, which is \(16 + 4 + 2 = 22\). The kept numbers are 15 times 2, 4 and 16.</p>
+<p class="small">See any number up to 255 in binary, one switch for each place: <a href="../../demos/binary.html">infinityclub.net/demos/binary.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Use the method to find \(14 \times 23\). Check it another way.<div class="space"></div></li>
+<li>Find \(37 \times 12\) with 37 as the number you halve. Then do it again halving the 12. Same answer? Which way is less work, and why?<div class="space"></div></li>
+<li>(a) Use your first table from exercise 2 to write 37 in binary. Check by adding place values. (b) 12 in binary is 1100. Without looking back, say which columns of your second table were kept.<div class="space short"></div></li>
+<li>Look at the \(22 \times 15\) table. For each column, multiply the top number by the bottom number, then add every kept bottom number to its left. (For the column 5, 60 that is \(5 \times 60 + 30\).) What do you notice? Use the dots to explain it.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: thirds and triples</h2>
+<p>Invent the same kind of method with 3 in place of 2. Divide the top number by 3, dropping the remainder, and triple the bottom number. A remainder can now be 1 or 2. What should you do with a column in each case? Test your rule on \(14 \times 5\).</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Top: 14, 7, 3, 1. Bottom: 23, 46, 92, 184. Cross out the 14 column. \(46 + 92 + 184 = 322\). Check: \(14 \times 23 = 230 + 92 = 322\).</li>
+<li>Halving 37: top 37, 18, 9, 4, 2, 1; bottom 12, 24, 48, 96, 192, 384. Keep \(12 + 48 + 384 = 444\). Halving 12: top 12, 6, 3, 1; bottom 37, 74, 148, 296. Keep \(148 + 296 = 444\). The same. Halving the smaller number is less work: it reaches 1 in fewer steps, so there are fewer columns.</li>
+<li>(a) Odd, even, odd, even, even, odd. Last first: 100101, which is \(32 + 4 + 1 = 37\). (b) The 1s in 1100 are the 8 and the 4, so the last two columns were kept: \(4 \times 37 = 148\) and \(8 \times 37 = 296\).</li>
+<li>\(22 \times 15 = 330\). \(11 \times 30 = 330\). \(5 \times 60 + 30 = 330\). \(2 \times 120 + 30 + 60 = 330\). \(1 \times 240 + 30 + 60 = 330\). Always 330. The dots still in the block, plus the dots set aside so far, are all the dots you started with. No step loses any.</li>
+</ol>
+<p><b>Stretch.</b> A remainder of 1 means one row of dots set aside: add the bottom number once. A remainder of 2 means two rows: add it twice. A remainder of 0 means cross it out. For \(14 \times 5\): top 14, 4, 1; bottom 5, 15, 45; remainders 2, 1, 1. So \(2 \times 5 + 15 + 45 = 70\).</p>
+</section>
+
+<div class="sheet-nav"><a href="b3-cryptarithms.html">← Previous</a><a href="b5-happy-numbers.html">Next: Happy numbers →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

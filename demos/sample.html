@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ask a sample · Infinity Club</title>
+<meta name="description" content="A town of 5,000 people. Ask a random sample and compare its percentage with the truth, repeat 200 times to see the spread, then try a lopsided sample.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+#town, #hist { width: 100%; display: block; }
+#hist { margin-top: .8rem; }
+.controls.big button { font-size: 1.1rem; padding: .7rem 1.1rem; min-height: 50px; }
+.controls button.size { min-width: 3.6rem; min-height: 46px; background: #fff; color: var(--accent); border: 2px solid var(--accent); }
+.controls button.size.on { background: var(--accent); color: #fff; }
+.controls label.switch { min-height: 46px; cursor: pointer; }
+.controls label.switch input { width: 24px; height: 24px; }
+.cap { font-weight: 700; margin: .6rem 0 .2rem; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Ask a sample</h1>
+<p class="explain"><b>Pick how many people to ask, then tap "Ask one sample".</b> Each dot is one of the 5,000 people in a town. Orange dots would say yes to a question and blue dots would say no. You cannot ask everyone, so you ask a few, picked at random. How close does your sample get to the truth?</p>
+<div class="demo-panel">
+  <div class="controls">
+    <span style="font-weight:700">People to ask</span>
+    <button class="size" data-size="10">10</button>
+    <button class="size on" data-size="50">50</button>
+    <button class="size" data-size="200">200</button>
+    <button class="size" data-size="1000">1,000</button>
+  </div>
+  <div class="controls big">
+    <button id="one">Ask one sample</button>
+    <button id="many" class="alt">Ask 200 samples</button>
+    <button id="reset" class="ghost">Start again</button>
+    <label class="switch"><input type="checkbox" id="lop"> Lopsided sample (only ask the east side)</label>
+  </div>
+  <p class="cap">The town. Big dots are the people you asked.</p>
+  <canvas id="town" width="900" height="450"></canvas>
+  <div class="readout" id="info"></div>
+  <p class="cap">Every sample so far. Each block is one sample, placed at its percentage of yes.</p>
+  <canvas id="hist" width="900" height="300"></canvas>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>In this town 1,800 of the 5,000 people would say yes. That is 36%, and it is the truth you are trying to find. A <b>sample</b> is the small group you actually ask. In a <b>fair</b> sample, every person in town has the same chance of being picked.</p>
+<p>A fair sample is rarely exactly right, but it is right on average, and the misses are as likely to be too high as too low. Ask 200 samples of 50 and the pile sits around 36%, with most samples within about 10 points. Now choose 1,000 people: most samples land within about 3 points. Bigger samples make a narrower pile. To halve the width of the pile you need about four times as many people.</p>
+<p>Now tick the lopsided switch. More people on the east side of this town say yes, and the lopsided sample only asks there. The whole pile slides away from the truth. Asking more people does not help: the pile gets narrower, but it is narrow around the wrong number. <b>Who you ask matters more than how many you ask.</b></p>
+<p>Sheets: <a href="../grade-7/sheets/a15-sampling.html">Ask 50 people, learn about 5,000</a> and <a href="../grade-7/sheets/c5-polls.html">How can 1,000 people speak for a country?</a></p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  var COLS = 100, ROWS = 50, PEOPLE = COLS * ROWS, YES = 1800, EAST_FROM = 75;
+  // a random number maker you can restart from the same seed (used for testing)
+  function seeded(seed) {
+    var a = seed >>> 0;
+    return function () {
+      a = (a + 0x6D2B79F5) >>> 0; var t = a;
+      t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+  // The town: person i lives in column i % COLS. Yes is rarer in the west and commoner in the east,
+  // and exactly YES people say yes.
+  function makeTown(rng) {
+    var town = [], count = 0, i, j;
+    for (i = 0; i < PEOPLE; i++) { town.push(rng() < 0.12 + 0.48 * (i % COLS) / (COLS - 1) ? 1 : 0); count += town[i]; }
+    while (count !== YES) {
+      j = Math.floor(rng() * PEOPLE);
+      if (count > YES && town[j]) { town[j] = 0; count--; }
+      else if (count < YES && !town[j]) { town[j] = 1; count++; }
+    }
+    return town;
+  }
+  // who can be picked: everyone, or (lopsided) only the columns on the east side
+  function pool(lopsided) {
+    var out = [], i;
+    for (i = 0; i < PEOPLE; i++) if (!lopsided || i % COLS >= EAST_FROM) out.push(i);
+    return out;
+  }
+  // n different people from the pool, every one equally likely
+  function drawSample(from, n, rng) {
+    var a = from.slice(), i, j, t;
+    n = Math.min(n, a.length);
+    for (i = 0; i < n; i++) { j = i + Math.floor(rng() * (a.length - i)); t = a[i]; a[i] = a[j]; a[j] = t; }
+    return a.slice(0, n);
+  }
+  function countYes(town, who) { var c = 0; who.forEach(function (i) { c += town[i]; }); return c; }
+  function percentYes(town, who) { return 100 * countYes(town, who) / who.length; }
+  // lowest, highest, average, and the range that holds the middle 9 in 10
+  function spread(list) {
+    var s = list.slice().sort(function (a, b) { return a - b; }), n = s.length, sum = 0;
+    s.forEach(function (v) { sum += v; });
+    return { n: n, min: s[0], max: s[n - 1], mean: sum / n, lo: s[Math.floor(0.05 * (n - 1))], hi: s[Math.ceil(0.95 * (n - 1))] };
+  }
+  // how many percentages fall in each bin of the given width (0 to 100)
+  function bins(list, width) {
+    var out = [], k, n = Math.ceil(100 / width) + 1;
+    for (k = 0; k < n; k++) out.push(0);
+    list.forEach(function (v) { out[Math.min(n - 1, Math.floor((v + 1e-9) / width))]++; });
+    return out;
+  }
+  /*ENDPURE*/
+  if (typeof document === "undefined") return;
+
+  var TRUTH = 100 * YES / PEOPLE, BIN = 2;
+  var town = makeTown(Math.random), size = 50, who = [], results = [], latest = null;
+  var tc = document.getElementById("town"), hc = document.getElementById("hist"), info = document.getElementById("info"), lop = document.getElementById("lop");
+  function prep(canvas, ratio, minH) {
+    var dpr = window.devicePixelRatio || 1, W = canvas.clientWidth || 900, H = Math.max(minH, Math.round(W * ratio)), c = canvas.getContext("2d");
+    canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr); canvas.style.height = H + "px";
+    c.setTransform(dpr, 0, 0, dpr, 0, 0); c.fillStyle = "#fff"; c.fillRect(0, 0, W, H);
+    return { c: c, W: W, H: H };
+  }
+  function drawTown() {
+    var g = prep(tc, 0.5, 0), c = g.c, u = g.W / COLS, asked = {}, i, x, y, r = Math.max(1, u * 0.36), big = Math.max(2.4, u * 0.62);
+    who.forEach(function (k) { asked[k] = 1; });
+    if (lop.checked) { c.fillStyle = "#f1efe8"; c.fillRect(EAST_FROM * u, 0, g.W - EAST_FROM * u, g.H); }
+    for (i = 0; i < PEOPLE; i++) {
+      if (asked[i]) continue;
+      x = (i % COLS + 0.5) * u; y = (Math.floor(i / COLS) + 0.5) * u;
+      c.fillStyle = who.length ? (town[i] ? "#f3c06a" : "#a9acea") : (town[i] ? "#f5a524" : "#8a8ee6");
+      c.beginPath(); c.arc(x, y, r, 0, Math.PI * 2); c.fill();
+    }
+    who.forEach(function (k) {
+      x = (k % COLS + 0.5) * u; y = (Math.floor(k / COLS) + 0.5) * u;
+      c.fillStyle = town[k] ? "#f5a524" : "#3f44c9"; c.strokeStyle = "#1d1f3a"; c.lineWidth = 1;
+      c.beginPath(); c.arc(x, y, big, 0, Math.PI * 2); c.fill(); c.stroke();
+    });
+    if (lop.checked) {
+      c.strokeStyle = "#1d1f3a"; c.lineWidth = 2; c.setLineDash([6, 5]); c.strokeRect(EAST_FROM * u, 1, g.W - EAST_FROM * u - 1, g.H - 2); c.setLineDash([]);
+    }
+  }
+  function drawHist() {
+    var g = prep(hc, 0.3, 190), c = g.c, L = 12, R = 12, T = 22, B = 30, pw = g.W - L - R, ph = g.H - T - B;
+    var b = bins(results.map(function (v) { return v + BIN / 2; }), BIN), top = 4, k;   // shifted by half a bin so each bar is centred on its percentages
+    b.forEach(function (v) { if (v > top) top = v; });
+    function X(p) { return L + pw * p / 100; }
+    function BX(i) { return X(i * BIN - BIN / 2); }       // left edge of bar i
+    c.font = "13px Nunito, sans-serif"; c.textBaseline = "top"; c.fillStyle = "#5d6079";
+    [0, 20, 40, 60, 80, 100].forEach(function (p) {
+      c.textAlign = p === 0 ? "left" : p === 100 ? "right" : "center"; c.fillText(p + "%", X(p), g.H - B + 8);
+      c.strokeStyle = "#1d1f3a"; c.lineWidth = 1; c.beginPath(); c.moveTo(X(p), g.H - B); c.lineTo(X(p), g.H - B + 5); c.stroke();
+    });
+    var bw = pw * BIN / 100, hgt = ph / top;
+    b.forEach(function (v, i) {
+      if (!v) return;
+      c.fillStyle = "#3f44c9"; c.fillRect(BX(i) + 0.5, g.H - B - v * hgt, Math.max(1, bw - 1), v * hgt);
+      if (hgt >= 4) { // show the separate blocks while they are big enough to see
+        c.strokeStyle = "#fff"; c.lineWidth = 1; c.beginPath();
+        for (k = 1; k < v; k++) { c.moveTo(BX(i), g.H - B - k * hgt); c.lineTo(BX(i) + bw, g.H - B - k * hgt); }
+        c.stroke();
+      }
+    });
+    c.strokeStyle = "#1d1f3a"; c.lineWidth = 1.5; c.beginPath(); c.moveTo(L, g.H - B); c.lineTo(g.W - R, g.H - B); c.stroke();
+    c.strokeStyle = "#f5a524"; c.lineWidth = 3; c.setLineDash([7, 5]); c.beginPath(); c.moveTo(X(TRUTH), T - 4); c.lineTo(X(TRUTH), g.H - B); c.stroke(); c.setLineDash([]);
+    c.fillStyle = "#a86a00"; c.textBaseline = "bottom"; c.textAlign = "left"; c.font = "700 13px Nunito, sans-serif"; c.fillText("truth: 36%", X(TRUTH) + 6, T + 4);
+    if (latest !== null) { // the newest sample: a black marker under the axis
+      c.fillStyle = "#1d1f3a"; c.beginPath(); c.moveTo(X(latest), g.H - B + 1); c.lineTo(X(latest) - 6, g.H - B + 11); c.lineTo(X(latest) + 6, g.H - B + 11); c.closePath(); c.fill();
+    }
+  }
+  function pc(v) { return (Math.round(v * 10) / 10).toString() + "%"; }
+  function describe() {
+    if (!results.length) { info.textContent = "No samples yet. The truth for the whole town is 36% yes."; return; }
+    var yes = countYes(town, who), off = Math.abs(latest - TRUTH), s = spread(results);
+    var lines = ["Latest sample: asked " + who.length.toLocaleString("en-US") + (lop.checked ? " on the east side" : "") + ", " + yes + " said yes. That is " + pc(latest) + ".",
+      "The truth is 36%. This sample is off by " + (Math.round(off * 10) / 10) + " points" + (off < 0.05 ? "." : latest > TRUTH ? " (too high)." : " (too low).")];
+    if (s.n > 1) lines.push("Samples so far: " + s.n.toLocaleString("en-US") + ".  Lowest " + pc(s.min) + ", highest " + pc(s.max) + ", average " + pc(s.mean) + ".");
+    if (s.n >= 20) lines.push("About 9 in 10 of them landed between " + pc(s.lo) + " and " + pc(s.hi) + ".");
+    info.textContent = lines.join("\n");
+  }
+  function ask(times) {
+    var from = pool(lop.checked), i;
+    for (i = 0; i < times; i++) { who = drawSample(from, size, Math.random); latest = percentYes(town, who); results.push(latest); }
+    if (results.length > 20000) results = results.slice(-20000);
+    drawTown(); drawHist(); describe();
+  }
+  function clear() { who = []; results = []; latest = null; drawTown(); drawHist(); describe(); }
+  document.getElementById("one").addEventListener("click", function () { ask(1); });
+  document.getElementById("many").addEventListener("click", function () { ask(200); });
+  document.getElementById("reset").addEventListener("click", function () { town = makeTown(Math.random); clear(); });
+  lop.addEventListener("change", clear);
+  Array.prototype.forEach.call(document.querySelectorAll("[data-size]"), function (b) {
+    b.addEventListener("click", function () {
+      size = +b.dataset.size;
+      Array.prototype.forEach.call(document.querySelectorAll("[data-size]"), function (o) { o.classList.toggle("on", o === b); });
+      clear();
+    });
+  });
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(function () { drawTown(); drawHist(); }, 120); });
+  clear();
+})();
+</script>
+</body>
+</html>

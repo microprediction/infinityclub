@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Is it proportional? · Infinity Club</title>
+<meta name="description" content="Type a table of x and y values, see the points plotted, and test whether they all sit on one straight line through zero. A demo for curious kids.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.controls button { min-height: 48px; font-size: 1.05rem; }
+.split { display: flex; flex-wrap: wrap; gap: 1rem 2rem; align-items: flex-start; }
+#tbl { border-collapse: collapse; flex: 0 1 auto; }
+#tbl th, #tbl td { padding: .2rem .3rem; text-align: center; }
+#tbl th { font-size: .95rem; }
+#tbl td.n { color: var(--muted); font-weight: 700; }
+#tbl input { font: inherit; font-size: 1.15rem; font-weight: 700; width: 3.6em; min-height: 44px; padding: .2em .3em; text-align: center; border: 1px solid var(--rule); border-radius: 6px; }
+#tbl td.r { font-family: var(--mono); min-width: 5.2em; text-align: left; font-weight: 700; }
+#tbl td.r.on { color: var(--accent); }
+#tbl td.r.off { color: #b45309; }
+#plotbox { flex: 1 1 260px; max-width: 560px; min-width: 0; }
+#plot { width: 100%; }
+#verdict { font-family: var(--sans); font-size: 1.1rem; font-weight: 700; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Is it proportional?</h1>
+<p class="explain">Type numbers into the table. Each row is one point on the graph. The blue line goes through zero and the point from <b>row 1</b>. If every other point sits on that line, the table is <b>proportional</b>. The last column shows y ÷ x for each row, so you can see why.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <button id="ex1">Example: yes</button>
+    <button id="ex2" class="alt">Example: no</button>
+    <button id="add" class="ghost">Add a row</button>
+    <button id="del" class="ghost">Remove a row</button>
+  </div>
+  <div class="split">
+    <table id="tbl">
+      <thead><tr><th></th><th>x</th><th>y</th><th>y ÷ x</th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+    <div id="plotbox"><canvas id="plot" width="560" height="450"></canvas></div>
+  </div>
+  <div class="readout" id="verdict"></div>
+  <p class="small">Use numbers that are 0 or more. Decimals such as 2.5 are fine.</p>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>Two amounts are <b>proportional</b> when doubling one doubles the other, tripling one triples the other, and so on. That happens exactly when y ÷ x gives the <b>same number in every row</b>. That one number ties the whole table together: y is always that number times x.</p>
+<p>On a graph, a proportional table makes a straight line that passes <b>through zero</b>. Both parts matter. Press "Example: no" to see points in a perfectly straight line that still fail the test, because the line misses zero. Zero of one thing must mean zero of the other.</p>
+<p>Try it: make a table for "3 pens cost 4 dollars". Then change one y by a tiny amount and watch that point step off the line.</p>
+<p>Sheet: <a href="../grade-7/sheets/a2-proportional.html">Is it proportional?</a></p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  // Text from a table cell -> a number that is 0 or more, or null if blank or unusable.
+  function parseNum(s) { s = String(s).trim(); if (s === "") return null; var v = Number(s); return isFinite(v) && v >= 0 ? v : null; }
+  function ratio(x, y) { return x === 0 ? null : y / x; }
+  // Is (x, y) on the line through (0, 0) and (x0, y0)? Cross-multiplying avoids dividing by zero.
+  function onLine(x0, y0, x, y) {
+    var p = y * x0, q = x * y0;
+    return Math.abs(p - q) <= 1e-9 * Math.max(1, Math.abs(p), Math.abs(q));
+  }
+  // rows: array of [x, y] with numbers or nulls. Row 1 sets the line.
+  function analyse(rows) {
+    var out = { rows: [], k: null, filled: 0, firstOff: -1, status: "" };
+    var f = rows[0], haveLine = !!f && f[0] !== null && f[1] !== null && f[0] !== 0;
+    if (haveLine) out.k = f[1] / f[0];
+    rows.forEach(function (r, i) {
+      var ok = r[0] !== null && r[1] !== null, e = { x: r[0], y: r[1], ok: ok, ratio: null, on: null };
+      if (ok) {
+        out.filled++; e.ratio = ratio(r[0], r[1]);
+        if (haveLine) { e.on = onLine(f[0], f[1], r[0], r[1]); if (!e.on && out.firstOff < 0) out.firstOff = i; }
+      }
+      out.rows.push(e);
+    });
+    if (!haveLine) out.status = "noline";
+    else if (out.filled < 2) out.status = "few";
+    else out.status = out.firstOff < 0 ? "yes" : "no";
+    return out;
+  }
+  function niceStep(max) {
+    if (!(max > 0)) return 1;
+    var raw = max / 5, p = Math.pow(10, Math.floor(Math.log(raw) / Math.LN10 + 1e-12)), m = raw / p;
+    return (m <= 1 ? 1 : m <= 2 ? 2 : m <= 5 ? 5 : 10) * p;
+  }
+  function fmt(v, d) { d = d === undefined ? 3 : d; var r = Math.round(v * Math.pow(10, d)) / Math.pow(10, d); if (Object.is(r, -0)) r = 0; return r.toString().replace("-", "−"); }
+  /*ENDPURE*/
+
+  var YES = [["2", "5"], ["4", "10"], ["6", "15"], ["8", "20"]], NO = [["1", "3"], ["2", "5"], ["3", "7"], ["4", "9"]];
+  var data = YES.map(function (r) { return r.slice(); });
+  var body = document.getElementById("rows"), verdict = document.getElementById("verdict");
+  var canvas = document.getElementById("plot"), ctx = canvas.getContext("2d");
+
+  function build() {
+    body.innerHTML = "";
+    data.forEach(function (r, i) {
+      var tr = document.createElement("tr");
+      tr.innerHTML = '<td class="n">' + (i + 1) + '</td><td></td><td></td><td class="r"></td>';
+      [0, 1].forEach(function (j) {
+        var inp = document.createElement("input");
+        inp.type = "number"; inp.min = "0"; inp.step = "any"; inp.inputMode = "decimal"; inp.value = r[j];
+        inp.setAttribute("aria-label", (j ? "y" : "x") + " in row " + (i + 1));
+        inp.addEventListener("input", function () { data[i][j] = inp.value; update(); });
+        tr.children[j + 1].appendChild(inp);
+      });
+      body.appendChild(tr);
+    });
+    update();
+  }
+  function numbers() { return data.map(function (r) { return [parseNum(r[0]), parseNum(r[1])]; }); }
+
+  function update() {
+    var A = analyse(numbers());
+    A.rows.forEach(function (e, i) {
+      var td = body.children[i].lastChild; td.className = "r";
+      if (!e.ok) { td.textContent = "?"; return; }
+      var t = e.ratio === null ? "no answer" : fmt(e.ratio);
+      if (e.on === true) { td.textContent = t + " ✓"; td.classList.add("on"); }
+      else if (e.on === false) { td.textContent = t + " ✗"; td.classList.add("off"); }
+      else td.textContent = t;
+    });
+    if (A.status === "noline") verdict.textContent = "Row 1 sets the line. Give it an x that is not 0, and a y.";
+    else if (A.status === "few") verdict.textContent = "Fill in at least two rows.";
+    else if (A.status === "yes") verdict.textContent = A.k === 0 ? "Every point is on the line, but y is always 0. Not much of a pattern!"
+      : "Yes, proportional. Every y ÷ x is " + fmt(A.k) + ", so y = " + fmt(A.k) + " × x.";
+    else {
+      var e = A.rows[A.firstOff];
+      verdict.textContent = "Not proportional. Row " + (A.firstOff + 1) + " is off the line: its y ÷ x is "
+        + (e.ratio === null ? "impossible (x is 0 but y is not)" : fmt(e.ratio)) + ", not " + fmt(A.k) + ".";
+    }
+    draw(A);
+  }
+
+  function draw(A) {
+    var dpr = window.devicePixelRatio || 1, W = canvas.clientWidth || 560, H = Math.round(W * 0.8);
+    canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, H);
+    var mx = 1, my = 1;
+    A.rows.forEach(function (e) { if (e.ok) { mx = Math.max(mx, e.x); my = Math.max(my, e.y); } });
+    var sx = niceStep(mx), sy = niceStep(my), XM = Math.ceil(mx / sx - 1e-9) * sx, YM = Math.ceil(my / sy - 1e-9) * sy;
+    var L = 40, R = 14, T = 14, B = 30;
+    function X(x) { return L + x / XM * (W - L - R); }
+    function Y(y) { return H - B - y / YM * (H - T - B); }
+    ctx.font = "12px Nunito, sans-serif"; ctx.lineWidth = 1;
+    for (var gx = 0; gx <= XM + sx / 2; gx += sx) {
+      ctx.strokeStyle = "#ece9e0"; ctx.beginPath(); ctx.moveTo(X(gx), Y(0)); ctx.lineTo(X(gx), Y(YM)); ctx.stroke();
+      ctx.fillStyle = "#5d6079"; ctx.textAlign = "center"; ctx.fillText(fmt(gx), X(gx), H - B + 15);
+    }
+    for (var gy = 0; gy <= YM + sy / 2; gy += sy) {
+      ctx.strokeStyle = "#ece9e0"; ctx.beginPath(); ctx.moveTo(X(0), Y(gy)); ctx.lineTo(X(XM), Y(gy)); ctx.stroke();
+      if (gy > 0) { ctx.fillStyle = "#5d6079"; ctx.textAlign = "right"; ctx.fillText(fmt(gy), L - 5, Y(gy) + 4); }
+    }
+    ctx.strokeStyle = "#8a8ca8"; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(X(0), Y(YM)); ctx.lineTo(X(0), Y(0)); ctx.lineTo(X(XM), Y(0)); ctx.stroke();
+    ctx.fillStyle = "#1d1f3a"; ctx.font = "bold 13px Nunito, sans-serif";
+    ctx.textAlign = "right"; ctx.fillText("x", W - R, H - 4); ctx.textAlign = "left"; ctx.fillText("y", 6, T + 6);
+    // the line through zero and row 1
+    if (A.k !== null) {
+      var ex = A.k * XM <= YM ? XM : YM / A.k;
+      ctx.strokeStyle = "#3f44c9"; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.moveTo(X(0), Y(0)); ctx.lineTo(X(ex), Y(A.k * ex)); ctx.stroke();
+      // how far each stray point is from the line
+      ctx.strokeStyle = "#f5a524"; ctx.lineWidth = 2; ctx.setLineDash([4, 4]);
+      A.rows.forEach(function (e) {
+        if (e.on === false && A.k * e.x <= YM) { ctx.beginPath(); ctx.moveTo(X(e.x), Y(e.y)); ctx.lineTo(X(e.x), Y(A.k * e.x)); ctx.stroke(); }
+      });
+      ctx.setLineDash([]);
+    }
+    ctx.fillStyle = "#1d1f3a"; ctx.beginPath(); ctx.arc(X(0), Y(0), 3.5, 0, Math.PI * 2); ctx.fill();
+    A.rows.forEach(function (e, i) {
+      if (!e.ok) return;
+      ctx.fillStyle = e.on === false ? "#f5a524" : "#3f44c9";
+      ctx.beginPath(); ctx.arc(X(e.x), Y(e.y), 7, 0, Math.PI * 2); ctx.fill();
+      ctx.strokeStyle = "#fff"; ctx.lineWidth = 2; ctx.stroke();
+      ctx.fillStyle = "#1d1f3a"; ctx.font = "bold 12px Nunito, sans-serif";
+      var right = X(e.x) > W - 30; ctx.textAlign = right ? "right" : "left";
+      ctx.fillText(i + 1, X(e.x) + (right ? -10 : 10), Math.max(12, Y(e.y) - 8));
+    });
+  }
+
+  function load(t) { data = t.map(function (r) { return r.slice(); }); build(); }
+  document.getElementById("ex1").addEventListener("click", function () { load(YES); });
+  document.getElementById("ex2").addEventListener("click", function () { load(NO); });
+  document.getElementById("add").addEventListener("click", function () { if (data.length < 8) { data.push(["", ""]); build(); } });
+  document.getElementById("del").addEventListener("click", function () { if (data.length > 2) { data.pop(); build(); } });
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(update, 120); });
+  build();
+})();
+</script>
+</body>
+</html>

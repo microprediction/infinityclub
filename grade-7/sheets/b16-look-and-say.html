@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Look and say · Infinity Club</title>
+<meta name="description" content="1, 11, 21, 1211, 111221: read each line aloud to get the next. The lines grow for ever, yet no digit bigger than 3 ever appears, and a short argument proves it.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 7</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 7 · Around the corner · 16</div>
+  <h1>Look and say</h1>
+  <p class="teaser">1, 11, 21, 1211, 111221. Read each line aloud to get the next. No digit bigger than 3 ever appears, and you can prove it.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Start with 1. To make each new line, read the line above aloud, saying how many of each digit you see in a row. Then write down what you said.</p>
+<p style="text-align:center">1 &nbsp;→&nbsp; "one 1" &nbsp;→&nbsp; 11 &nbsp;→&nbsp; "two 1s" &nbsp;→&nbsp; 21 &nbsp;→&nbsp; "one 2, one 1" &nbsp;→&nbsp; 1211</p>
+<figure><svg viewBox="0 0 380 150" width="380" height="150" role="img" aria-label="The line 1211 split into three runs: a single 1, a single 2, and two 1s. Arrows lead down to the pairs 11, 12 and 21, which join to make the next line, 111221." font-family="Nunito, sans-serif" font-size="13">
+<defs><marker id="ar" markerWidth="8" markerHeight="8" refX="4" refY="7" orient="auto"><path d="M0,0 L8,0 L4,8 z" fill="#999"/></marker></defs>
+<g fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"><rect x="75" y="10" width="40" height="34" rx="6"/><rect x="170" y="10" width="40" height="34" rx="6"/><rect x="255" y="10" width="70" height="34" rx="6"/></g>
+<g font-size="20" font-weight="700" text-anchor="middle" fill="#3f44c9"><text x="95" y="34">1</text><text x="190" y="34">2</text><text x="275" y="34">1</text><text x="305" y="34">1</text></g>
+<g stroke="#999" stroke-width="1.5" marker-end="url(#ar)"><line x1="95" y1="48" x2="95" y2="84"/><line x1="190" y1="48" x2="190" y2="84"/><line x1="290" y1="48" x2="290" y2="84"/></g>
+<g text-anchor="middle" fill="#999" font-size="12"><text x="126" y="70">one 1</text><text x="221" y="70">one 2</text><text x="323" y="70">two 1s</text></g>
+<g fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"><rect x="70" y="90" width="50" height="34" rx="6"/><rect x="165" y="90" width="50" height="34" rx="6"/><rect x="265" y="90" width="50" height="34" rx="6"/></g>
+<g font-size="20" font-weight="700" text-anchor="middle"><text x="84" y="114" fill="#f5a524">1</text><text x="106" y="114" fill="#3f44c9">1</text><text x="179" y="114" fill="#f5a524">1</text><text x="201" y="114" fill="#3f44c9">2</text><text x="279" y="114" fill="#f5a524">2</text><text x="301" y="114" fill="#3f44c9">1</text></g>
+<text x="190" y="144" text-anchor="middle">next line: 111221</text>
+</svg><figcaption>Each run of equal digits becomes a pair: the count (orange), then the digit (blue).</figcaption></figure>
+<p>So every line after the first is a string of <b>pairs</b>: a count, then the digit counted. Only 1, 2 and 3 ever appear. Here is why.</p>
+<p>Look at the first line where a 4 shows up. The line above has no 4, so this 4 is a count: "four of something". The line above must hold four equal digits in a row, such as 1111. Cut that line into its own pairs. The four 1s fall as (11)(11), or as (<i>x</i>1)(11)(1<i>y</i>). Either way two neighbouring pairs both count 1s, like "one 1, then one 1". Nobody reads like that: they say "two 1s". So four in a row never happens, and no 4 is ever written.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: forwards and backwards</h2>
+<p><b>Forwards.</b> Read 111221: three 1s, two 2s, one 1. Write 31, 22, 11. The next line is 312211.</p>
+<p><b>Backwards.</b> Which line reads to 1321? Cut it into pairs: 13, 21. That says "one 3, two 1s", so the line was 311.</p>
+<p><b>Stuck.</b> Try 2111. The pairs 21, 11 say "two 1s, one 1", which would be 111. But 111 is read "three 1s", giving 31. So no line reads to 2111.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Write the next two lines after 312211.<div class="space short"></div></li>
+<li>Start with 3 in place of 1. (a) Write the next four lines. (b) What is the last digit of every line? Explain why it can never change.<div class="space"></div></li>
+<li>Go backwards. Which line reads to (a) 3112? (b) 1221? (c) 211322?<div class="space short"></div></li>
+<li>Which of these can be what you get from reading some line aloud? Give a reason each time. (a) 112 &nbsp; (b) 2211 &nbsp; (c) 3323<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: a line that reads itself</h2>
+<p>Find a two-digit line that does not change when you read it aloud. Then show it is the only two-digit line like that. Hint: the two digits are either equal or different.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>312211 is one 3, one 1, two 2s, two 1s: 13112221. That is one 1, one 3, two 1s, three 2s, one 1: 1113213211.</li>
+<li>(a) 13, 1113, 3113, 132113. (b) Always 3. The last pair of a line counts the last run of the line above, so it ends in the last digit of the line above. The last digit is copied down for ever. Starting from 1, every line ends in 1.</li>
+<li>(a) 31, 12: three 1s, one 2. The line was 1112. (b) 12, 21: one 2, two 1s. The line was 211. (c) 21, 13, 22: two 1s, one 3, two 2s. The line was 11322.</li>
+<li>(a) No. Every spoken line is made of pairs, so it has an even number of digits, and 112 has three. (b) Yes. 22, 11 says two 2s, one 1: the line 221, which does read "two 2s, one 1". (c) No. 33, 23 says "three 3s, two 3s". That would be 33333, which is read "five 3s": 53.</li>
+</ol>
+<p><b>Stretch.</b> 22 is read "two 2s", which is 22 again. It is the only one. If the two digits are different, the line has two runs and reads to four digits, so it changes. If they are equal, say \(aa\), it reads "two \(a\)s", written \(2a\). That matches \(aa\) only when \(a = 2\).</p>
+</section>
+
+<div class="sheet-nav"><a href="b15-barber.html">← Previous</a><a href="b17-consecutive-sums.html">Next: Sums of numbers in a row →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

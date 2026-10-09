@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>No square number ends in 7 · Infinity Club</title>
+<meta name="description" content="Square numbers end only in 0, 1, 4, 5, 6 or 9. Ten cases prove it, and the proof lets you spot a fake square at a glance.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 7</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 7 · Around the corner · 2</div>
+  <h1>No square number ends in 7</h1>
+  <p class="teaser">Squares end only in 0, 1, 4, 5, 6 or 9. Ten cases prove it, and that is enough to spot a fake square at a glance.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A <b>square number</b> is a whole number times itself: 1, 4, 9, 16, 25, 36 and so on. Look at the last digits. You never see 2, 3, 7 or 8. Here is why.</p>
+<p>Take 37, which is \(30 + 7\). A square with side 37 splits into four pieces.</p>
+<figure><svg viewBox="0 0 400 154" width="400" height="154" role="img" aria-label="A square with side 37 cut into four pieces: 30 by 30, 30 by 7, 7 by 30 and 7 by 7. Three of the pieces end in zero, and only the 7 by 7 piece affects the last digit" font-family="Nunito, sans-serif" font-size="13">
+<rect x="44.0" y="24.0" width="97.3" height="97.3" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="141.3" y="24.0" width="22.7" height="97.3" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="44.0" y="121.3" width="97.3" height="22.7" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="141.3" y="121.3" width="22.7" height="22.7" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/>
+<text x="92.6" y="76.6" text-anchor="middle" fill="#3f44c9">30 × 30</text>
+<text x="92.6" y="17.0" text-anchor="middle">30</text>
+<text x="152.6" y="17.0" text-anchor="middle">7</text>
+<text x="37.0" y="76.6" text-anchor="end">30</text>
+<text x="37.0" y="136.6" text-anchor="end">7</text>
+<text x="198.0" y="46.0" fill="#3f44c9">30 × 30 = 900</text>
+<text x="308.0" y="46.0" fill="#3f44c9" font-weight="700">ends in 0</text>
+<text x="198.0" y="72.0" fill="#3f44c9">30 × 7 = 210</text>
+<text x="308.0" y="72.0" fill="#3f44c9" font-weight="700">ends in 0</text>
+<text x="198.0" y="98.0" fill="#3f44c9">7 × 30 = 210</text>
+<text x="308.0" y="98.0" fill="#3f44c9" font-weight="700">ends in 0</text>
+<text x="198.0" y="136.6" fill="#f5a524">7 × 7 = 49</text>
+<text x="308.0" y="136.6" fill="#f5a524" font-weight="700">ends in 9</text>
+<line x1="167.0" y1="132.6" x2="193.0" y2="132.6" stroke="#f5a524" stroke-width="1"/>
+</svg><figcaption>\(37 \times 37\) as four pieces. Only the small corner piece can change the last digit.</figcaption></figure>
+<p>Three of the pieces contain a 30, so they end in 0. Only \(7 \times 7 = 49\) can touch the last digit. So \(37^2\) ends in 9, the same as \(7^2\). (It is 1369.) The last digit of any square depends only on the last digit of the number you squared.</p>
+<p>That leaves just ten cases to check:</p>
+<table style="margin:.4em auto; font-size:.92em">
+<tr><th>number ends in</th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr>
+<tr><th>its square ends in</th><td>0</td><td>1</td><td>4</td><td>9</td><td>6</td><td>5</td><td>6</td><td>9</td><td>4</td><td>1</td></tr>
+</table>
+<p>The bottom row holds only 0, 1, 4, 5, 6 and 9. Every whole number ends in one of the ten digits on top, so nothing has been missed. That is a proof: no square number ends in 2, 3, 7 or 8.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: spot the fake</h2>
+<p>Is 4,356,787 a square number? It ends in 7, so no. No calculator needed.</p>
+<p>Is 2,209 a square number? It ends in 9, so it might be. The test can only rule numbers out. If it is a square, the table says the number that was squared (its <b>square root</b>) ends in 3 or 7. Now \(40^2 = 1600\) and \(50^2 = 2500\), so try 43 and 47.</p>
+\[43^2 = 1849 \qquad 47^2 = 2209\]
+<p>Yes: 2,209 is \(47^2\).</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Which of these cannot be square numbers? Say how you know. &nbsp; 1,443 &nbsp;·&nbsp; 5,776 &nbsp;·&nbsp; 9,218 &nbsp;·&nbsp; 7,225 &nbsp;·&nbsp; 3,002 &nbsp;·&nbsp; 6,889<div class="space short"></div></li>
+<li>1,936 is a square number. (a) Which two digits could its square root end in? (b) Which two multiples of ten does the root lie between? (c) Find the root.<div class="space short"></div></li>
+<li>Square 5, 15, 25 and 35. What are the last <em>two</em> digits every time? Split 35 into \(30 + 5\) and use the four pieces to explain why.<div class="space"></div></li>
+<li>A <b>cube</b> is a number times itself times itself, like \(2 \times 2 \times 2 = 8\). (a) Make the ten-case table for cubes. (b) Can you spot a fake cube from its last digit? (c) 2,197 is a cube. What digit does the number that was cubed end in? Find it.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the digit next door</h2>
+<p>The odd squares begin 1, 9, 25, 49, 81, 121, 169, 225. Write the first two as 01 and 09. The tens digit is even every time. Use the four pieces to show it always will be. Then decide, without a calculator: is 3,571,931 a square number?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>1,443, 9,218 and 3,002 cannot: they end in 3, 8 and 2. The others pass the test, and in fact \(5776 = 76^2\), \(7225 = 85^2\) and \(6889 = 83^2\).</li>
+<li>(a) 4 or 6. (b) Between 40 and 50, since \(40^2 = 1600\) and \(50^2 = 2500\). (c) \(44^2 = 1936\). (The other candidate gives \(46^2 = 2116\).)</li>
+<li>25, 225, 625, 1225: always 25. The pieces of \(35^2\) are \(30 \times 30 = 900\), then \(30 \times 5\) twice, which is \(30 \times 10 = 300\), then \(5 \times 5 = 25\). The first three together end in 00 whatever the tens digit is, so only the 25 shows.</li>
+<li>(a) Numbers ending in 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 have cubes ending in 0, 1, 8, 7, 4, 5, 6, 3, 2, 9. (b) No. Every digit appears in the bottom row, so the last digit rules nothing out. (c) Only a number ending in 3 has a cube ending in 7. \(10^3 = 1000\) and \(20^3 = 8000\), so it is 13: \(13^3 = 2197\).</li>
+</ol>
+<p><b>Stretch.</b> Split an odd number into tens and a last digit, say \(30 + 7\). The big piece ends in 00. The two middle pieces are equal, so together they are an even number of tens. The corner piece is 01, 09, 25, 49 or 81, with an even tens digit. Even plus even is even, so the tens digit of an odd square is even. 3,571,931 is odd with tens digit 3, so it is not a square.</p>
+</section>
+
+<div class="sheet-nav"><a href="b1-seven-eleven-thirteen.html">← Previous</a><a href="b3-cryptarithms.html">Next: SEND + MORE = MONEY →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>
