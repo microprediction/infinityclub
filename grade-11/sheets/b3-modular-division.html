@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dividing in clock arithmetic · Infinity Club</title>
+<meta name="description" content="You can divide by 3 on a 7-hour clock but not by 2 on a 6-hour one. When an inverse exists, how to find it with Euclid's algorithm, and why primes make everything work.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 11</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 11 · Around the corner · 3</div>
+  <h1>Dividing in clock arithmetic</h1>
+  <p class="teaser">You can divide by 3 on a 7-hour clock but not by 2 on a 6-hour one. When an inverse exists, how to find it, and why primes make everything work.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>On a clock with \(m\) hours you keep only the remainder after dividing by \(m\). We write \(x \equiv y \pmod m\) when \(x\) and \(y\) leave the same remainder. Adding and multiplying are easy. Division is the odd one out.</p>
+<p>To divide by \(a\) is to multiply by its <b>inverse</b>: a number \(x\) with \(ax \equiv 1 \pmod m\). On the 7-hour clock \(3 \times 5 = 15 \equiv 1\), so 5 does the job of \(\tfrac13\). On the 6-hour clock \(2x\) only ever lands on 0, 2 or 4. It never reaches 1, so 2 has no inverse.</p>
+<figure><svg viewBox="0 0 440 196" width="440" height="196" role="img" aria-label="Two clock faces. On the 7-hour clock, steps of 3 from 0 visit every hour. On the 6-hour clock, steps of 2 visit only 0, 2 and 4." font-family="Nunito, sans-serif" font-size="13">
+<circle cx="110" cy="92" r="62" fill="none" stroke="#999" stroke-width="1"/>
+<polygon points="110.0,30.0 136.9,147.9 61.5,53.3 170.4,105.8 49.6,105.8 158.5,53.3 83.1,147.9" fill="#dcdcf5" fill-opacity="0.5" stroke="#3f44c9" stroke-width="1.8"/>
+<circle cx="110.0" cy="30.0" r="4.5" fill="#3f44c9" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="110.0" y="20.5" text-anchor="middle">0</text>
+<circle cx="158.5" cy="53.3" r="4.5" fill="#3f44c9" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="169.4" y="49.1" text-anchor="middle">1</text>
+<circle cx="170.4" cy="105.8" r="4.5" fill="#3f44c9" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="184.1" y="113.4" text-anchor="middle">2</text>
+<circle cx="136.9" cy="147.9" r="4.5" fill="#3f44c9" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="143.0" y="165.0" text-anchor="middle">3</text>
+<circle cx="83.1" cy="147.9" r="4.5" fill="#3f44c9" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="77.0" y="165.0" text-anchor="middle">4</text>
+<circle cx="49.6" cy="105.8" r="4.5" fill="#3f44c9" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="35.9" y="113.4" text-anchor="middle">5</text>
+<circle cx="61.5" cy="53.3" r="4.5" fill="#3f44c9" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="50.6" y="49.1" text-anchor="middle">6</text>
+<circle cx="330" cy="92" r="62" fill="none" stroke="#999" stroke-width="1"/>
+<polygon points="330.0,30.0 383.7,123.0 276.3,123.0" fill="#fde8c4" fill-opacity="0.5" stroke="#f5a524" stroke-width="1.8"/>
+<circle cx="330.0" cy="30.0" r="4.5" fill="#f5a524" stroke="#f5a524" stroke-width="1.5"/>
+<text x="330.0" y="20.5" text-anchor="middle">0</text>
+<circle cx="383.7" cy="61.0" r="4.5" fill="#fff" stroke="#999" stroke-width="1.5"/>
+<text x="395.8" y="58.5" text-anchor="middle" fill="#999">1</text>
+<circle cx="383.7" cy="123.0" r="4.5" fill="#f5a524" stroke="#f5a524" stroke-width="1.5"/>
+<text x="395.8" y="134.5" text-anchor="middle">2</text>
+<circle cx="330.0" cy="154.0" r="4.5" fill="#fff" stroke="#999" stroke-width="1.5"/>
+<text x="330.0" y="172.5" text-anchor="middle" fill="#999">3</text>
+<circle cx="276.3" cy="123.0" r="4.5" fill="#f5a524" stroke="#f5a524" stroke-width="1.5"/>
+<text x="264.2" y="134.5" text-anchor="middle">4</text>
+<circle cx="276.3" cy="61.0" r="4.5" fill="#fff" stroke="#999" stroke-width="1.5"/>
+<text x="264.2" y="58.5" text-anchor="middle" fill="#999">5</text>
+<text x="110" y="190" text-anchor="middle" fill="#3f44c9" font-weight="700">steps of 3, mod 7</text>
+<text x="330" y="190" text-anchor="middle" fill="#b87400" font-weight="700">steps of 2, mod 6</text>
+</svg><figcaption>Multiples of 3 visit every hour of the 7-clock, including 1. Multiples of 2 miss half of the 6-clock.</figcaption></figure>
+<p class="callout">\(a\) has an inverse mod \(m\) exactly when \(a\) and \(m\) share no factor bigger than 1.</p>
+<p><b>Why.</b> If \(d > 1\) divides both \(a\) and \(m\), it divides \(ax - km\) for every \(x\) and \(k\), so that number is never 1. If they share no factor, <a href="../../grade-8/sheets/b1-euclid.html">Euclid's algorithm</a> ends at 1, and running it backwards writes \(1 = ax + my\) for some whole numbers \(x, y\). Read that mod \(m\): \(ax \equiv 1\).</p>
+<p>If \(m\) is a prime \(p\), none of \(1, 2, \dots, p - 1\) shares a factor with it. So everything except 0 has an inverse, and every division works.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: \(\tfrac17\) on a 40-hour clock</h2>
+<p>Run Euclid's algorithm on 40 and 7, keeping every line:</p>
+<p>\[40 = 5 \times 7 + 5, \qquad 7 = 1 \times 5 + 2, \qquad 5 = 2 \times 2 + 1.\]</p>
+<p>It ends at 1, so an inverse exists. Now climb back up, replacing each remainder by the line that made it:</p>
+<p>\[1 = 5 - 2 \times 2 = 5 - 2(7 - 5) = 3 \times 5 - 2 \times 7 = 3(40 - 5 \times 7) - 2 \times 7 = 3 \times 40 - 17 \times 7.\]</p>
+<p>So \(7 \times (-17) \equiv 1 \pmod{40}\), and \(-17 \equiv 23\). Check: \(7 \times 23 = 161 = 4 \times 40 + 1\). To solve \(7x \equiv 3\), multiply both sides by 23: \(x \equiv 69 \equiv 29\).</p>
+<p class="small">An RSA private key is found exactly this way: \(d\) is the inverse of \(e\). Pick two primes and watch Euclid find it at <a href="../../demos/rsa.html">infinityclub.net/demos/rsa.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Find the inverse of each of 1, 2, 3, 4, 5, 6 on the 7-hour clock. Then work out \(4 \div 3 \pmod 7\).<div class="space short"></div></li>
+<li>Which of \(1, 2, \dots, 11\) have an inverse mod 12? Find each inverse. What do you notice?<div class="space short"></div></li>
+<li>Use Euclid's algorithm to find the inverse of 11 mod 26. Then solve \(11x \equiv 5 \pmod{26}\).<div class="space"></div></li>
+<li>Among \(0, 1, \dots, 5\), find every solution of \(2x \equiv 4 \pmod 6\), and of \(2x \equiv 3 \pmod 6\). "Divide both sides by 2" gives \(x \equiv 2 \pmod 6\) for the first. What did it miss, and what is the correct statement?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: Wilson's theorem</h2>
+<p>On the 11-hour clock, pair each of \(2, 3, \dots, 9\) with its inverse. Use the pairs to find the remainder of \(10! = 10 \times 9 \times \dots \times 1\) on division by 11 without multiplying it out. What should \((p - 1)!\) leave for any prime \(p\)?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(1 \to 1\), \(2 \to 4\), \(3 \to 5\), \(4 \to 2\), \(5 \to 3\), \(6 \to 6\). Then \(4 \div 3 \equiv 4 \times 5 = 20 \equiv 6\). Check: \(3 \times 6 = 18 \equiv 4\).</li>
+<li>Only 1, 5, 7 and 11, the numbers sharing no factor with 12. Each is its own inverse: \(5 \times 5 = 25\), \(7 \times 7 = 49\) and \(11 \times 11 = 121\) all leave remainder 1.</li>
+<li>\(26 = 2 \times 11 + 4\), \(11 = 2 \times 4 + 3\), \(4 = 1 \times 3 + 1\). Back up: \(1 = 4 - 3 = 4 - (11 - 2 \times 4) = 3 \times 4 - 11 = 3(26 - 2 \times 11) - 11 = 3 \times 26 - 7 \times 11\). So the inverse is \(-7 \equiv 19\); check \(11 \times 19 = 209 = 8 \times 26 + 1\). Then \(x \equiv 19 \times 5 = 95 \equiv 17\); check \(11 \times 17 = 187 = 7 \times 26 + 5\).</li>
+<li>\(2x \equiv 4\): \(x = 2\) and \(x = 5\). \(2x \equiv 3\): no solution, since \(2x\) is 0, 2 or 4. Dividing by 2 missed \(x = 5\). The 2 has no inverse mod 6, so it cannot be cancelled. Correctly: \(2x - 4 = 6k\) means \(x - 2 = 3k\), so \(x \equiv 2 \pmod 3\). The modulus must be divided too.</li>
+</ol>
+<p><b>Stretch.</b> The pairs are \((2, 6)\), \((3, 4)\), \((5, 9)\), \((7, 8)\): each product is \(\equiv 1\). That leaves 1 and 10, so \(10! \equiv 1 \times 10 \equiv 10 \equiv -1 \pmod{11}\). For any prime \(p\): a number is its own inverse when \(x^2 \equiv 1\), so \(p\) divides \((x - 1)(x + 1)\), so \(x \equiv 1\) or \(x \equiv p - 1\). Everything else pairs off, and \((p - 1)! \equiv p - 1 \equiv -1 \pmod p\). This is Wilson's theorem.</p>
+</section>
+
+<div class="sheet-nav"><a href="b2-rearrangement.html">← Previous</a><a href="b4-decimal-periods.html">Next: Why 1/7 repeats after six digits and 1/13 after six too →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

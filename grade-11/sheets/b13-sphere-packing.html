@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How many errors can a code fix? · Infinity Club</title>
+<meta name="description" content="Codewords must be far apart so that a damaged one is still closest to the truth. Counting how many fit gives the sphere-packing bound, and a few codes meet it exactly.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 11</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 11 · Around the corner · 13</div>
+  <h1>How many errors can a code fix?</h1>
+  <p class="teaser">Codewords must be far apart so that a damaged one is still closest to the truth. Counting how many fit gives a hard limit, and a few codes meet it exactly.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Noise can flip a bit on its way to you. So agree on a short list of allowed strings, the <b>codewords</b>, and send only those. The receiver picks the codeword closest to what arrived.</p>
+<figure style="float:right;width:270px;max-width:48%;margin:0 0 .3em 1em"><svg viewBox="0 0 340 190" width="270" height="151" role="img" aria-label="A cube whose eight corners are the strings of three bits. The corners 000 and 111 are codewords; each is joined to its three neighbours, and the two groups of four do not overlap" font-family="Nunito, sans-serif" font-size="15">
+<line x1="70" y1="158" x2="132" y2="122" stroke="#3f44c9" stroke-width="2.5"/>
+<line x1="70" y1="158" x2="70" y2="66" stroke="#3f44c9" stroke-width="2.5"/>
+<line x1="70" y1="158" x2="190" y2="158" stroke="#3f44c9" stroke-width="2.5"/>
+<line x1="132" y1="122" x2="132" y2="30" stroke="#999" stroke-width="1.2" stroke-dasharray="4 3"/>
+<line x1="132" y1="122" x2="252" y2="122" stroke="#999" stroke-width="1.2" stroke-dasharray="4 3"/>
+<line x1="70" y1="66" x2="132" y2="30" stroke="#999" stroke-width="1.2" stroke-dasharray="4 3"/>
+<line x1="70" y1="66" x2="190" y2="66" stroke="#999" stroke-width="1.2" stroke-dasharray="4 3"/>
+<line x1="132" y1="30" x2="252" y2="30" stroke="#f5a524" stroke-width="2.5"/>
+<line x1="190" y1="158" x2="252" y2="122" stroke="#999" stroke-width="1.2" stroke-dasharray="4 3"/>
+<line x1="190" y1="158" x2="190" y2="66" stroke="#999" stroke-width="1.2" stroke-dasharray="4 3"/>
+<line x1="252" y1="122" x2="252" y2="30" stroke="#f5a524" stroke-width="2.5"/>
+<line x1="190" y1="66" x2="252" y2="30" stroke="#f5a524" stroke-width="2.5"/>
+<circle cx="70" cy="158" r="7" fill="#3f44c9" stroke="#3f44c9" stroke-width="1.5"/><text x="62" y="174" text-anchor="end" font-weight="800">000</text>
+<circle cx="132" cy="122" r="6" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><text x="142" y="136" text-anchor="start">001</text>
+<circle cx="70" cy="66" r="6" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><text x="60" y="70" text-anchor="end">010</text>
+<circle cx="132" cy="30" r="6" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/><text x="122" y="34" text-anchor="end">011</text>
+<circle cx="190" cy="158" r="6" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><text x="198" y="174" text-anchor="start">100</text>
+<circle cx="252" cy="122" r="6" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/><text x="262" y="126" text-anchor="start">101</text>
+<circle cx="190" cy="66" r="6" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/><text x="199" y="85" text-anchor="start">110</text>
+<circle cx="252" cy="30" r="7" fill="#f5a524" stroke="#f5a524" stroke-width="1.5"/><text x="262" y="34" text-anchor="start" font-weight="800">111</text>
+</svg><figcaption>Length 3. The ball around 000 (blue) and the ball around 111 (orange) hold four strings each and use up all eight.</figcaption></figure>
+<p>The <b>Hamming distance</b> between two strings is the number of places where they differ: 10110 and 11100 are at distance 2.</p>
+<p>Around each codeword draw its <b>ball</b>: the codeword and every string at distance 1 from it, \(1 + n\) strings for length \(n\). One flipped bit leaves a codeword inside its own ball. So a single error can always be fixed when no two balls overlap, which means every two codewords are at distance 3 or more.</p>
+<p>Now count. There are \(2^n\) strings, and \(M\) separate balls use \(M(1 + n)\) of them.</p>
+<p class="callout">\(M \le \dfrac{2^n}{1 + n}\): the <b>sphere-packing bound</b> for fixing one error.</p>
+<p>For \(n = 3\) the bound is \(8/4 = 2\), and 000, 111 reach it. For \(n = 7\) it is \(128/8 = 16\), and the seven cards of <a href="../../grade-6/sheets/b31-mind-reader.html">The mind reader who survives a lie</a> are a code with exactly 16 codewords. Such codes, with no string left over, are called <b>perfect</b>.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: length 5</h2>
+<p>The bound is \(32/6 = 5.33\ldots\), so at most 5 codewords. Try four:</p>
+<p>\[00000, \quad 11100, \quad 00111, \quad 11011.\]</p>
+<p>The six distances are 3, 3, 4, 4, 3, 3, so any single error can be fixed. If 10100 arrives, its distances to the four are 2, 1, 3, 4, and it is decoded as 11100.</p>
+<p>Can a fifth be added? A computer search says no. Four balls hold 24 of the 32 strings and the other 8 go to waste. The bound is a ceiling, not a promise.</p>
+<p class="small">Play the length-7 code, and try to fool it with two lies: <a href="../../demos/hamming.html">infinityclub.net/demos/hamming.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Find the Hamming distance between 0110101 and 1010110. How many strings of length 7 are in the ball around 0110101?<div class="space short"></div></li>
+<li>Work out the bound for \(n = 4\), \(n = 6\) and \(n = 15\), rounding down when it is not whole. For which lengths \(n\) is \(2^n/(1 + n)\) a whole number?<div class="space short"></div></li>
+<li>A code contains 0000 and 0011, which are at distance 2. Find a string that could arrive after one error and that the receiver cannot decode. Then explain why this can never happen when the two codewords are at distance 3.<div class="space"></div></li>
+<li>The length-7 code has 16 codewords, every two at distance 3 or more. (a) Explain why each of the 128 strings lies in exactly one ball. (b) Two bits are flipped on the way. Explain why the receiver decodes to the wrong codeword and gets no warning.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: bigger balls</h2>
+<p>To fix two errors the balls have radius 2 and hold \(1 + n + \tfrac{n(n-1)}{2}\) strings. Show that 00000, 11111 meets the new bound for \(n = 5\). For three errors and \(n = 23\), a ball also holds the \(1771\) strings at distance 3. Count the ball and find the bound.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>They differ in places 1, 2, 6 and 7, so the distance is 4. The ball holds the string itself and the 7 strings one flip away: 8.</li>
+<li>\(16/5 = 3.2\), so at most 3. \(64/7 = 9.14\ldots\), so at most 9. \(32768/16 = 2048\) exactly. The bound is whole when \(1 + n\) divides \(2^n\), so \(1 + n\) must be a power of 2: \(n = 1, 3, 7, 15, 31, \ldots\) These are the lengths of the perfect Hamming codes (\(n = 1\) is the trivial code with one codeword).</li>
+<li>0001 (or 0010). It is one flip from 0000 and one flip from 0011, so the receiver cannot tell which was sent. If a string were within one flip of two codewords, you could get from one codeword to the other in two flips, so their distance would be at most 2. At distance 3 that is impossible.</li>
+<li>(a) No two balls overlap, because the codewords are at distance 3 or more. Each ball holds 8 strings, and \(16 \times 8 = 128\), which is every string there is. So each string is in one ball and only one. (b) After two flips the string is at distance 2 from the true codeword, so it is outside that ball. By (a) it is inside some other ball, at distance 0 or 1 from a wrong codeword. (Distance 0 is impossible, since codewords are 3 apart.) The receiver sees what looks like a single error, fixes it, and is wrong. A perfect code has no spare strings to act as a warning.</li>
+</ol>
+<p><b>Stretch.</b> For \(n = 5\) a ball holds \(1 + 5 + 10 = 16\) strings, so \(M \le 32/16 = 2\). The codewords 00000 and 11111 are at distance 5, so two errors still leave a string closer to the right one: the bound is met. For \(n = 23\): \(1 + 23 + 253 + 1771 = 2048 = 2^{11}\), so \(M \le 2^{23}/2^{11} = 2^{12} = 4096\). A code that reaches this exists. It is called the Golay code.</p>
+</section>
+
+<div class="sheet-nav"><a href="b12-buffon.html">← Previous</a><a href="b14-cayley.html">Next: Counting trees →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

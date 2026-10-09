@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sketching a polynomial at sight · Infinity Club</title>
+<meta name="description" content="The leading term decides the ends of a polynomial graph, the roots decide where it meets the axis, and a repeated root touches without crossing.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 11</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 11 · Sharpen · 8</div>
+  <h1>Sketching a polynomial at sight</h1>
+  <p class="teaser">The leading term decides the ends, the roots decide the crossings, and a repeated root touches without crossing.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>You can sketch a factorised polynomial without plotting a table of points. Three facts do it.</p>
+<p><b>The ends.</b> Far from zero, the highest power swamps the rest: at \(x = 1000\), \(x^3\) is a billion and \(100x^2\) is only a tenth of that. So the ends of the graph copy the leading term \(ax^n\). Even \(n\): both ends go the same way, up if \(a > 0\). Odd \(n\): opposite ways, down on the left and up on the right if \(a > 0\). A negative \(a\) flips both.</p>
+<p><b>The roots.</b> Each factor \((x - r)\) is zero at \(x = r\), so the graph meets the \(x\)-axis there (the <a href="../../grade-10/sheets/a7-polynomials.html">factor theorem</a>).</p>
+<p><b>Cross or touch.</b> Close to \(x = r\) the other factors keep their sign, so \((x - r)^m\) decides. If \(m\) is odd it changes sign as \(x\) passes \(r\), and the graph <b>crosses</b>. If \(m\) is even it is positive on both sides, and the graph <b>touches</b> the axis and turns back. The number \(m\) is the <b>multiplicity</b> of the root.</p>
+<p>Last, put \(x = 0\) to get the \(y\)-intercept.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: \(y = (x + 2)(x - 1)^2\)</h2>
+<p>Multiplied out it would start with \(x^3\): odd degree, positive coefficient, so down on the left and up on the right. The root \(-2\) comes from a single factor, so the graph crosses there. The root 1 comes from a squared factor, so it touches. The intercept is \(2 \cdot (-1)^2 = 2\).</p>
+<figure><svg viewBox="0 0 330 220" width="330" height="220" role="img" aria-label="Graph of y equals (x plus 2) times (x minus 1) squared. It comes up from the bottom left, crosses the x-axis at minus 2, rises to a peak, comes down to touch the axis at 1, and rises again to the top right." font-family="Nunito, sans-serif" font-size="13">
+<line x1="14" y1="120" x2="290" y2="120" stroke="#000"/><line x1="150" y1="10" x2="150" y2="214" stroke="#000"/>
+<path d="M23.3 213.3 L24.2 209.4 L25.2 205.5 L26.2 201.8 L27.1 198.1 L28.1 194.4 L29.0 190.9 L30.0 187.4 L31.0 183.9 L31.9 180.6 L32.9 177.3 L33.8 174.0 L34.8 170.9 L35.8 167.8 L36.7 164.7 L37.7 161.7 L38.6 158.8 L39.6 155.9 L40.6 153.1 L41.5 150.4 L42.5 147.7 L43.4 145.1 L44.4 142.5 L45.4 140.0 L46.3 137.6 L47.3 135.2 L48.2 132.8 L49.2 130.6 L50.2 128.3 L51.1 126.2 L52.1 124.1 L53.0 122.0 L54.0 120.0 L55.0 118.0 L55.9 116.1 L56.9 114.3 L57.8 112.5 L58.8 110.7 L59.8 109.1 L60.7 107.4 L61.7 105.8 L62.6 104.3 L63.6 102.8 L64.6 101.3 L65.5 99.9 L66.5 98.5 L67.4 97.2 L68.4 95.9 L69.4 94.7 L70.3 93.5 L71.3 92.4 L72.2 91.3 L73.2 90.3 L74.2 89.2 L75.1 88.3 L76.1 87.4 L77.0 86.5 L78.0 85.6 L79.0 84.8 L79.9 84.1 L80.9 83.3 L81.8 82.6 L82.8 82.0 L83.8 81.4 L84.7 80.8 L85.7 80.2 L86.6 79.7 L87.6 79.3 L88.6 78.8 L89.5 78.4 L90.5 78.1 L91.4 77.7 L92.4 77.4 L93.4 77.1 L94.3 76.9 L95.3 76.7 L96.2 76.5 L97.2 76.3 L98.2 76.2 L99.1 76.1 L100.1 76.1 L101.0 76.0 L102.0 76.0 L103.0 76.0 L103.9 76.1 L104.9 76.1 L105.8 76.2 L106.8 76.3 L107.8 76.5 L108.7 76.6 L109.7 76.8 L110.6 77.0 L111.6 77.2 L112.6 77.5 L113.5 77.7 L114.5 78.0 L115.4 78.3 L116.4 78.7 L117.4 79.0 L118.3 79.4 L119.3 79.8 L120.2 80.2 L121.2 80.6 L122.2 81.0 L123.1 81.5 L124.1 81.9 L125.0 82.4 L126.0 82.9 L127.0 83.4 L127.9 83.9 L128.9 84.4 L129.8 85.0 L130.8 85.5 L131.8 86.1 L132.7 86.6 L133.7 87.2 L134.6 87.8 L135.6 88.4 L136.6 89.0 L137.5 89.6 L138.5 90.2 L139.4 90.9 L140.4 91.5 L141.4 92.1 L142.3 92.8 L143.3 93.4 L144.2 94.1 L145.2 94.7 L146.2 95.4 L147.1 96.0 L148.1 96.7 L149.0 97.3 L150.0 98.0 L151.0 98.7 L151.9 99.3 L152.9 100.0 L153.8 100.6 L154.8 101.3 L155.8 101.9 L156.7 102.6 L157.7 103.2 L158.6 103.9 L159.6 104.5 L160.6 105.1 L161.5 105.8 L162.5 106.4 L163.4 107.0 L164.4 107.6 L165.4 108.2 L166.3 108.8 L167.3 109.4 L168.2 109.9 L169.2 110.5 L170.2 111.0 L171.1 111.6 L172.1 112.1 L173.0 112.6 L174.0 113.1 L175.0 113.6 L175.9 114.1 L176.9 114.5 L177.8 115.0 L178.8 115.4 L179.8 115.8 L180.7 116.2 L181.7 116.6 L182.6 117.0 L183.6 117.3 L184.6 117.7 L185.5 118.0 L186.5 118.3 L187.4 118.5 L188.4 118.8 L189.4 119.0 L190.3 119.2 L191.3 119.4 L192.2 119.5 L193.2 119.7 L194.2 119.8 L195.1 119.9 L196.1 119.9 L197.0 120.0 L198.0 120.0 L199.0 120.0 L199.9 119.9 L200.9 119.9 L201.8 119.8 L202.8 119.7 L203.8 119.5 L204.7 119.3 L205.7 119.1 L206.6 118.9 L207.6 118.6 L208.6 118.3 L209.5 117.9 L210.5 117.6 L211.4 117.2 L212.4 116.7 L213.4 116.3 L214.3 115.8 L215.3 115.2 L216.2 114.6 L217.2 114.0 L218.2 113.4 L219.1 112.7 L220.1 111.9 L221.0 111.2 L222.0 110.4 L223.0 109.5 L223.9 108.6 L224.9 107.7 L225.8 106.8 L226.8 105.7 L227.8 104.7 L228.7 103.6 L229.7 102.5 L230.6 101.3 L231.6 100.1 L232.6 98.8 L233.5 97.5 L234.5 96.1 L235.4 94.7 L236.4 93.2 L237.4 91.7 L238.3 90.2 L239.3 88.6 L240.2 86.9 L241.2 85.3 L242.2 83.5 L243.1 81.7 L244.1 79.9 L245.0 78.0 L246.0 76.0 L247.0 74.0 L247.9 71.9 L248.9 69.8 L249.8 67.7 L250.8 65.4 L251.8 63.2 L252.7 60.8 L253.7 58.4 L254.6 56.0 L255.6 53.5 L256.6 50.9 L257.5 48.3 L258.5 45.6 L259.4 42.9 L260.4 40.1 L261.4 37.2 L262.3 34.3 L263.3 31.3 L264.2 28.2 L265.2 25.1 L266.2 22.0 L267.1 18.7 L268.1 15.4" fill="none" stroke="#3f44c9" stroke-width="2"/>
+<circle cx="54.0" cy="120.0" r="3.5" fill="#f5a524"/><circle cx="198.0" cy="120.0" r="3.5" fill="#f5a524"/><circle cx="150.0" cy="98.0" r="3.5" fill="#000"/>
+<text x="62" y="136" font-size="13">−2</text><text x="198" y="137" text-anchor="middle">1</text><text x="159" y="93">2</text>
+<text x="46" y="110" text-anchor="end" fill="#b87400" font-size="13">crosses</text><text x="200" y="153" text-anchor="middle" fill="#b87400" font-size="13">touches</text>
+<text x="58" y="208" font-size="13" fill="#555">end: down</text><text x="276" y="22" font-size="13" fill="#555">end: up</text>
+</svg><figcaption>Up through \(-2\), over the top, down to touch at 1, then away.</figcaption></figure>
+<p>The three facts do not say exactly where the peak is. That takes a derivative, <a href="../../grade-12/sheets/a6-curve-sketching.html">next year</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Say which way each end points: (a) \(y = -2x^4 + 5x\), (b) \(y = x^5 - 9x^3\), (c) \(y = (3 - x)(x + 1)^2\).<div class="space short"></div></li>
+<li>Sketch \(y = x(x - 3)(x + 2)\). Mark the roots and show the ends. For which \(x\) is \(y > 0\)?<div class="space"></div></li>
+<li>Sketch \(y = -x^2(x - 4)(x + 3)\). Say where it crosses, where it touches, and where \(y > 0\).<div class="space"></div></li>
+<li>A polynomial of degree 4 touches the \(x\)-axis at \(-1\), crosses it at 1 and at 3, and meets the \(y\)-axis at \(-6\). Find its formula in factorised form. Which way do its ends point?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: counting crossings</h2>
+<p>Why must every polynomial of odd degree have at least one real root? Then decide: can a polynomial of degree 4 cross the \(x\)-axis at exactly three points and touch it nowhere? Think about where the two ends are.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) Leading term \(-2x^4\): both ends down. (b) Leading term \(x^5\): down on the left, up on the right. (c) Multiplied out, the leading term is \(-x^3\): up on the left, down on the right.</li>
+<li>Degree 3, positive: down left, up right. It crosses at \(-2\), 0 and 3 (all single roots), passing through the origin. \(y > 0\) for \(-2 \lt x \lt 0\) and for \(x > 3\). Check: at \(x = -1\), \(y = (-1)(-4)(1) = 4\).</li>
+<li>Leading term \(-x^4\): both ends down. Crosses at \(-3\) and at 4, touches at 0 (double root) from above. \(y > 0\) for \(-3 \lt x \lt 0\) and \(0 \lt x \lt 4\), and \(y = 0\) at \(x = 0\) in between. Check: \(y = 10\) at \(x = -1\) and \(y = 12\) at \(x = 1\).</li>
+<li>Touching at \(-1\) needs \((x + 1)^2\); the crossings give \((x - 1)\) and \((x - 3)\). That is already degree 4, so \(y = a(x + 1)^2(x - 1)(x - 3)\). At \(x = 0\): \(a \cdot 1 \cdot (-1)(-3) = 3a = -6\), so \(a = -2\) and \(y = -2(x + 1)^2(x - 1)(x - 3)\). The leading term is \(-2x^4\): both ends point down.</li>
+</ol>
+<p><b>Stretch.</b> With odd degree, one end goes down and the other up. The graph has no breaks, so somewhere it must pass through \(y = 0\). For degree 4, both ends are on the same side of the axis. Each crossing changes the side, so to finish on the side it started the graph must cross an even number of times. Three crossings are impossible: with three, one of the meetings must be a touch (as in question 4) or there is a fourth crossing.</p>
+</section>
+
+<div class="sheet-nav"><a href="a7-log-scales.html">← Previous</a><a href="a9-piecewise.html">Next: Functions in pieces →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

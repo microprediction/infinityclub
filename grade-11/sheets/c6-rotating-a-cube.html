@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How a screen turns a cube · Infinity Club</title>
+<meta name="description" content="A 3D model is a list of points. Multiply each by a 3 by 3 rotation matrix, drop one coordinate, and you have the picture on the screen.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 11</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 11 · Connections · 6</div>
+  <h1>How a screen turns a cube</h1>
+  <p class="teaser">A 3D model is a list of points. Multiply by a rotation matrix, drop one coordinate, and you have the picture. Every game does this millions of times a second.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A 3D model is a list of points. Take the cube with corners \((\pm 1, \pm 1, \pm 1)\): eight points. To turn it, multiply every point by a <b>rotation matrix</b>. In <a href="../../grade-10/sheets/b14-matrices-transformations.html">Matrices that move the plane</a> a 2 × 2 matrix turned the plane through \(\theta\). Turning space about the \(z\)-axis does the same to \(x\) and \(y\) and leaves \(z\) alone:</p>
+<p>\[R_z(\theta) = \begin{pmatrix}\cos\theta & -\sin\theta & 0\\ \sin\theta & \cos\theta & 0\\ 0 & 0 & 1\end{pmatrix}, \qquad R_z(\theta)\begin{pmatrix}x\\y\\z\end{pmatrix} = \begin{pmatrix}x\cos\theta - y\sin\theta\\ x\sin\theta + y\cos\theta\\ z\end{pmatrix}.\]</p>
+<p>A screen is flat, so one coordinate has to go. The simplest way is <b>orthographic projection</b>: drop \(z\) and plot \((x, y)\). It is the view from far away along the \(z\)-axis.</p>
+<p class="callout">Points → multiply by a rotation matrix → drop \(z\) → join the dots.</p>
+<p>Turn about \(z\) and look along \(z\), and you see only a turning square: each top corner hides the one below. To see depth, tilt about \(x\) as well, which mixes \(y\) and \(z\):</p>
+<p>\[R_x(\theta) = \begin{pmatrix}1 & 0 & 0\\ 0 & \cos\theta & -\sin\theta\\ 0 & \sin\theta & \cos\theta\end{pmatrix}.\]</p>
+<figure><svg viewBox="0 0 520 190" width="400" height="146" role="img" aria-label="Left: the cube turned 30 degrees about the z-axis and projected by dropping z looks like a tilted square, each dot hiding two corners. Right: after a further tilt about the x-axis all eight corners and twelve edges are visible" font-family="Nunito, sans-serif" font-size="13">
+<line x1="50" y1="88" x2="190" y2="88" stroke="#999" stroke-width="0.8"/><line x1="120" y1="22" x2="120" y2="154" stroke="#999" stroke-width="0.8"/>
+<text x="194" y="92" font-size="12" fill="#555">x</text><text x="120" y="18" font-size="12" fill="#555" text-anchor="middle">y</text>
+<line x1="133.2" y1="38.8" x2="70.8" y2="74.8" stroke="#3f44c9" stroke-width="2"/>
+<line x1="70.8" y1="74.8" x2="106.8" y2="137.2" stroke="#3f44c9" stroke-width="2"/>
+<line x1="106.8" y1="137.2" x2="169.2" y2="101.2" stroke="#3f44c9" stroke-width="2"/>
+<line x1="169.2" y1="101.2" x2="133.2" y2="38.8" stroke="#3f44c9" stroke-width="2"/>
+<circle cx="133.2" cy="38.8" r="3.5" fill="#000"/><circle cx="70.8" cy="74.8" r="3.5" fill="#000"/><circle cx="106.8" cy="137.2" r="3.5" fill="#000"/><circle cx="169.2" cy="101.2" r="3.5" fill="#000"/>
+<text x="140.2" y="35.8" font-size="12">(0.37, 1.37)</text>
+<text x="120" y="180" text-anchor="middle" font-size="12">turn 30° about z, drop z</text>
+<text x="262" y="92" text-anchor="middle" font-size="20" fill="#999">→</text>
+<line x1="403.2" y1="94.6" x2="340.8" y2="112.6" stroke="#f5a524" stroke-width="2"/>
+<line x1="340.8" y1="112.6" x2="376.8" y2="143.8" stroke="#f5a524" stroke-width="2"/>
+<line x1="376.8" y1="143.8" x2="439.2" y2="125.8" stroke="#f5a524" stroke-width="2"/>
+<line x1="439.2" y1="125.8" x2="403.2" y2="94.6" stroke="#f5a524" stroke-width="2"/>
+<line x1="403.2" y1="32.2" x2="340.8" y2="50.2" stroke="#3f44c9" stroke-width="2"/>
+<line x1="340.8" y1="50.2" x2="376.8" y2="81.4" stroke="#3f44c9" stroke-width="2"/>
+<line x1="376.8" y1="81.4" x2="439.2" y2="63.4" stroke="#3f44c9" stroke-width="2"/>
+<line x1="439.2" y1="63.4" x2="403.2" y2="32.2" stroke="#3f44c9" stroke-width="2"/>
+<line x1="403.2" y1="94.6" x2="403.2" y2="32.2" stroke="#000" stroke-width="1.3"/>
+<line x1="340.8" y1="112.6" x2="340.8" y2="50.2" stroke="#000" stroke-width="1.3"/>
+<line x1="376.8" y1="143.8" x2="376.8" y2="81.4" stroke="#000" stroke-width="1.3"/>
+<line x1="439.2" y1="125.8" x2="439.2" y2="63.4" stroke="#000" stroke-width="1.3"/>
+<circle cx="403.2" cy="94.6" r="3" fill="#000"/><circle cx="340.8" cy="112.6" r="3" fill="#000"/><circle cx="376.8" cy="143.8" r="3" fill="#000"/><circle cx="439.2" cy="125.8" r="3" fill="#000"/><circle cx="403.2" cy="32.2" r="3" fill="#000"/><circle cx="340.8" cy="50.2" r="3" fill="#000"/><circle cx="376.8" cy="81.4" r="3" fill="#000"/><circle cx="439.2" cy="63.4" r="3" fill="#000"/>
+<text x="390" y="180" text-anchor="middle" font-size="12">then tilt 60° about x, drop z</text>
+</svg><figcaption>Left: turned 30° about \(z\), each dot is two corners. Right: tilted 60° about \(x\) as well; the top face \(z = 1\) is orange, the bottom blue.</figcaption></figure>
+</section>
+
+<section class="example">
+<h2>Watch one: turn the cube 30° about \(z\)</h2>
+<p>Here \(\cos 30° \approx 0.866\) and \(\sin 30° = 0.5\). The corner \((1, 1, 1)\) goes to</p>
+<p>\[(0.866 - 0.5,\; 0.5 + 0.866,\; 1) = (0.37,\; 1.37,\; 1).\]</p>
+<p>Drop \(z\): it is drawn at \((0.37, 1.37)\). The corner below it, \((1, 1, -1)\), is drawn at the same place. The other top corners \((-1, 1, 1)\), \((-1, -1, 1)\), \((1, -1, 1)\) land at \((-1.37, 0.37)\), \((-0.37, -1.37)\), \((1.37, -0.37)\). Join them and you have the left-hand picture: a square turned through 30°.</p>
+<p class="small">Drag a cube around and watch its matrix change: <a href="../../demos/cube3d.html">infinityclub.net/demos/cube3d.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Write out \(R_z(90°)\). Apply it to \((1, 1, 1)\) and to \((1, -1, -1)\). Where is each drawn on the screen?<div class="space short"></div></li>
+<li>Apply \(R_z(45°)\) to the four top corners \((1,1,1)\), \((-1,1,1)\), \((-1,-1,1)\), \((1,-1,1)\). Give exact screen coordinates and describe the picture.<div class="space short"></div></li>
+<li>A rotation must not stretch the model. Show that \((x\cos\theta - y\sin\theta)^2 + (x\sin\theta + y\cos\theta)^2 = x^2 + y^2\), and say why this means \(R_z\) keeps every point at the same distance from the origin.<div class="space"></div></li>
+<li>After \(R_z(45°)\), the corners \((1,1,1)\) and \((1,1,-1)\) are at \((0, \sqrt2, 1)\) and \((0, \sqrt2, -1)\), and are drawn on top of each other. Apply \(R_x(60°)\) to both, then drop \(z\). Where are they drawn now? The edge joining them has length 2. How long does it look on the screen, and why?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: order matters</h2>
+<p>Take the point \((1, 0, 0)\). Turn it 90° about \(z\), then 90° about \(x\). Start again and do the \(x\) turn first, then the \(z\) turn. Where does the point finish each time? What does this say about \(R_xR_z\) and \(R_zR_x\)?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(R_z(90°) = \begin{pmatrix}0 & -1 & 0\\ 1 & 0 & 0\\ 0 & 0 & 1\end{pmatrix}\), which sends \((x, y, z)\) to \((-y, x, z)\). So \((1,1,1) \to (-1,1,1)\), drawn at \((-1, 1)\), and \((1,-1,-1) \to (1,1,-1)\), drawn at \((1, 1)\).</li>
+<li>With \(\cos 45° = \sin 45° = \tfrac{\sqrt2}{2}\): \((1,1,1) \to (0, \sqrt2)\), \((-1,1,1) \to (-\sqrt2, 0)\), \((-1,-1,1) \to (0, -\sqrt2)\), \((1,-1,1) \to (\sqrt2, 0)\). A square standing on a corner, with its corners on the axes. Its side is still 2.</li>
+<li>Expanding gives \(x^2\cos^2\theta - 2xy\sin\theta\cos\theta + y^2\sin^2\theta + x^2\sin^2\theta + 2xy\sin\theta\cos\theta + y^2\cos^2\theta\). The middle terms cancel and \(\cos^2\theta + \sin^2\theta = 1\), leaving \(x^2 + y^2\). Since \(z\) is unchanged, \(x^2 + y^2 + z^2\) is unchanged, and that is the squared distance from the origin.</li>
+<li>\(R_x(60°)\) sends \((x, y, z)\) to \((x,\; 0.5y - 0.866z,\; 0.866y + 0.5z)\). So \((0, \sqrt2, 1) \to (0, -0.16, 1.72)\), drawn at \((0, -0.16)\), and \((0, \sqrt2, -1) \to (0, 1.57, 0.72)\), drawn at \((0, 1.57)\). The edge looks \(1.57 + 0.16 = 1.73 = 2\sin 60°\) long. It has tipped 60° out of the line of sight, so you see it foreshortened: only the part of it across your view shows.</li>
+</ol>
+<p><b>Stretch.</b> \(z\) first: \((1,0,0) \to (0,1,0)\), then the \(x\) turn sends it to \((0,0,1)\). \(x\) first: \((1,0,0)\) lies on the \(x\)-axis so it stays put, then the \(z\) turn sends it to \((0,1,0)\). Different finishes, so \(R_xR_z \ne R_zR_x\). Rotations in space do not commute, unlike rotations of the plane.</p>
+</section>
+
+<div class="sheet-nav"><a href="c5-insurance.html">← Previous</a><a href="c7-rainbows.html">Next: Why the rainbow is at 42 degrees →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

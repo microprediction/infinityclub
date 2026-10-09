@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>All the solutions · Infinity Club</title>
+<meta name="description" content="sin x = 0.5 has infinitely many solutions. Find the two in one turn from the unit circle, add whole turns, and keep the ones the question asks for.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 11</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 11 · Sharpen · 6</div>
+  <h1>All the solutions</h1>
+  <p class="teaser">sin x = 0.5 has infinitely many answers. Find the two in one turn from the unit circle, then add whole turns, and never lose a solution again.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>On the unit circle, \(\sin x\) is the height of the point you reach after turning through \(x\) (<a href="../../grade-10/sheets/a11-trig.html">where you met this</a>). So \(\sin x = 0.5\) asks: where is the circle at height \(\tfrac12\)? A horizontal line cuts a circle twice.</p>
+<figure><svg viewBox="0 0 250 190" width="250" height="190" role="img" aria-label="Unit circle with a dashed horizontal line at height one half. The line meets the circle at two points, at angles of 30 and 150 degrees." font-family="Nunito, sans-serif" font-size="13">
+<line x1="30" y1="100" x2="215" y2="100" stroke="#000" stroke-width="1"/><line x1="120" y1="14" x2="120" y2="184" stroke="#000" stroke-width="1"/>
+<circle cx="120" cy="100" r="72" fill="none" stroke="#3f44c9" stroke-width="1.5"/>
+<line x1="30" y1="64.0" x2="215" y2="64.0" stroke="#f5a524" stroke-width="1.5" stroke-dasharray="5 3"/>
+<line x1="120" y1="100" x2="182.4" y2="64.0" stroke="#000" stroke-width="1.5"/><circle cx="182.4" cy="64.0" r="3.5" fill="#000"/><line x1="120" y1="100" x2="57.6" y2="64.0" stroke="#000" stroke-width="1.5"/><circle cx="57.6" cy="64.0" r="3.5" fill="#000"/>
+<path d="M146 100 A26 26 0 0 0 142.5 87.0" fill="none" stroke="#999" stroke-width="1"/><path d="M134 100 A14 14 0 0 0 107.9 93.0" fill="none" stroke="#999" stroke-width="1"/>
+<text x="152" y="94" font-size="12">30°</text><text x="86" y="78" font-size="12">150°</text>
+<text x="218" y="68.0" font-size="12" fill="#b87400">y = ½</text><text x="197" y="115" font-size="12">1</text>
+</svg><figcaption>Two points at height \(\tfrac12\): one at \(30°\), its mirror image at \(180° - 30° = 150°\).</figcaption></figure>
+<p>A whole turn brings you back to the same point, so there are infinitely many solutions:</p>
+<p class="callout">\(x = 30° + 360°n\) &nbsp;or&nbsp; \(x = 150° + 360°n\), where \(n\) is any whole number: positive, negative or zero.</p>
+<p>The same three steps solve every equation of this kind.</p>
+<p><b>1. One answer.</b> Get one angle \(\alpha\) from the exact values or the calculator's inverse key.<br>
+<b>2. Its partner.</b> For sine, \(180° - \alpha\) (same height). For cosine, \(-\alpha\) (same \(x\)-coordinate). Tangent repeats every half turn, so all its solutions are \(\alpha + 180°n\).<br>
+<b>3. Whole turns.</b> Add \(360°n\) to both, then keep the solutions in the interval the question asks for.</p>
+<p>In radians a whole turn is \(2\pi\), so the callout reads \(x = \tfrac{\pi}{6} + 2\pi n\) or \(\tfrac{5\pi}{6} + 2\pi n\).</p>
+</section>
+
+<section class="example">
+<h2>Watch one: \(\sin 2x = \tfrac{\sqrt3}{2}\) for \(0° \le x \lt 360°\)</h2>
+<p>Solve for the whole angle \(2x\) first. One answer is \(60°\). Its partner is \(120°\). Add whole turns:</p>
+<p>\[2x = 60° + 360°n \quad\text{or}\quad 2x = 120° + 360°n.\]</p>
+<p>Only now divide by 2: \(x = 30° + 180°n\) or \(x = 60° + 180°n\). In the interval, \(n = 0\) and \(n = 1\) give</p>
+<p>\[x = 30°,\; 60°,\; 210°,\; 240°.\]</p>
+<p>Four solutions, because \(2x\) goes round twice while \(x\) goes round once. Halving \(60°\) and \(120°\) before adding the turns would have lost two of them.</p>
+<p class="small">Drag the point round and watch its height: <a href="../../demos/unitcircle.html">infinityclub.net/demos/unitcircle.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Find every solution with \(0° \le x \lt 360°\), without a calculator: (a) \(\sin x = -\tfrac{\sqrt3}{2}\), (b) \(\tan x = \sqrt3\).<div class="space short"></div></li>
+<li>Use a calculator. Write down all the solutions of \(\cos x = 0.3\), to one decimal place in degrees. Then list the ones between \(-360°\) and \(360°\).<div class="space short"></div></li>
+<li>Solve \(2\sin^2 x - \sin x - 1 = 0\) for \(0 \le x \lt 2\pi\), in radians. Treat it as a quadratic in \(\sin x\) first.<div class="space"></div></li>
+<li>To solve \(\tan x = 2\sin x\) for \(0° \le x \lt 360°\), a student writes \(\tan x\) as \(\tfrac{\sin x}{\cos x}\), divides both sides by \(\sin x\), and gets \(\cos x = \tfrac12\), so \(x = 60°\) or \(300°\). Two solutions are missing. Find them, and say which step lost them.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: a wave and a line</h2>
+<p>Work in radians. How many solutions does \(\sin x = \dfrac{x}{10}\) have? Sketch the wave and the line on the same axes and count the crossings. You do not need to find them. (Useful: \(3\pi \approx 9.42\).)</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(\sin 60° = \tfrac{\sqrt3}{2}\), and sine is negative in quadrants III and IV: \(x = 240°\) or \(300°\). (b) \(\tan 60° = \sqrt3\), and tangent repeats every \(180°\): \(x = 60°\) or \(240°\).</li>
+<li>\(\alpha = \arccos 0.3 \approx 72.5°\), partner \(-72.5°\). All solutions: \(x \approx \pm 72.5° + 360°n\). Between \(-360°\) and \(360°\): \(-287.5°,\; -72.5°,\; 72.5°,\; 287.5°\).</li>
+<li>\((2\sin x + 1)(\sin x - 1) = 0\), so \(\sin x = 1\) or \(\sin x = -\tfrac12\). The first gives \(x = \tfrac{\pi}{2}\). The second gives \(x = \tfrac{7\pi}{6}\) or \(\tfrac{11\pi}{6}\). Three solutions.</li>
+<li>Dividing by \(\sin x\) is only allowed when \(\sin x \neq 0\). When \(\sin x = 0\), both sides of the original equation are 0, so \(x = 0°\) and \(x = 180°\) are solutions too. Safer: move everything to one side and factorise, \(\sin x\left(\tfrac{1}{\cos x} - 2\right) = 0\). All four: \(0°, 60°, 180°, 300°\).</li>
+</ol>
+<p><b>Stretch.</b> Seven. The line leaves the range of sine when \(|x| > 10\), so only \(-10 \le x \le 10\) matters. \(x = 0\) is one solution. For \(x > 0\) the sine curve has humps above the axis on \((0, \pi)\) and \((2\pi, 3\pi)\). At 0 the wave is steeper than the line, so it starts above it and crosses back once before \(\pi\). On the second hump the line sits at about 0.63 to 0.94, below the peak of 1, so it cuts the hump twice. That is 3 positive solutions. Replacing \(x\) by \(-x\) changes the sign of both sides, so each positive solution has a negative twin: \(3 + 3 + 1 = 7\).</p>
+</section>
+
+<div class="sheet-nav"><a href="a5-inverse-functions.html">← Previous</a><a href="a7-log-scales.html">Next: Straight lines hiding in curved data →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How many different necklaces? · Infinity Club</title>
+<meta name="description" content="Six beads, two colours, and rotations do not count as different. Average the number of colourings each rotation leaves alone (Burnside's lemma) and the answer is exact: 14.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 11</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 11 · Around the corner · 10</div>
+  <h1>How many different necklaces?</h1>
+  <p class="teaser">Six beads, two colours, and rotations do not count as different. Average the number of colourings each rotation leaves alone, and the answer is exact.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Thread four beads on a loop, each dark or light. With numbered positions there are \(2^4 = 16\) colourings. But a necklace can be turned, so colourings that are rotations of each other are one necklace. There are only 6.</p>
+<figure><svg viewBox="0 0 480 96" width="480" height="96" role="img" aria-label="The six different necklaces of four beads in two colours, with the number of colourings each one stands for: 1, 4, 4, 2, 4, 1." font-family="Nunito, sans-serif" font-size="13">
+<circle cx="40" cy="36" r="22" fill="none" stroke="#999" stroke-width="1.5"/>
+<circle cx="40" cy="14" r="8" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/>
+<circle cx="62" cy="36" r="8" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/>
+<circle cx="40" cy="58" r="8" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/>
+<circle cx="18" cy="36" r="8" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="40" y="88" text-anchor="middle">1</text>
+<circle cx="120" cy="36" r="22" fill="none" stroke="#999" stroke-width="1.5"/>
+<circle cx="120" cy="14" r="8" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/>
+<circle cx="142" cy="36" r="8" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/>
+<circle cx="120" cy="58" r="8" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/>
+<circle cx="98" cy="36" r="8" fill="#3f44c9" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="120" y="88" text-anchor="middle">4</text>
+<circle cx="200" cy="36" r="22" fill="none" stroke="#999" stroke-width="1.5"/>
+<circle cx="200" cy="14" r="8" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/>
+<circle cx="222" cy="36" r="8" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/>
+<circle cx="200" cy="58" r="8" fill="#3f44c9" stroke="#3f44c9" stroke-width="1.5"/>
+<circle cx="178" cy="36" r="8" fill="#3f44c9" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="200" y="88" text-anchor="middle">4</text>
+<circle cx="280" cy="36" r="22" fill="none" stroke="#999" stroke-width="1.5"/>
+<circle cx="280" cy="14" r="8" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/>
+<circle cx="302" cy="36" r="8" fill="#3f44c9" stroke="#3f44c9" stroke-width="1.5"/>
+<circle cx="280" cy="58" r="8" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/>
+<circle cx="258" cy="36" r="8" fill="#3f44c9" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="280" y="88" text-anchor="middle">2</text>
+<circle cx="360" cy="36" r="22" fill="none" stroke="#999" stroke-width="1.5"/>
+<circle cx="360" cy="14" r="8" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/>
+<circle cx="382" cy="36" r="8" fill="#3f44c9" stroke="#3f44c9" stroke-width="1.5"/>
+<circle cx="360" cy="58" r="8" fill="#3f44c9" stroke="#3f44c9" stroke-width="1.5"/>
+<circle cx="338" cy="36" r="8" fill="#3f44c9" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="360" y="88" text-anchor="middle">4</text>
+<circle cx="440" cy="36" r="22" fill="none" stroke="#999" stroke-width="1.5"/>
+<circle cx="440" cy="14" r="8" fill="#3f44c9" stroke="#3f44c9" stroke-width="1.5"/>
+<circle cx="462" cy="36" r="8" fill="#3f44c9" stroke="#3f44c9" stroke-width="1.5"/>
+<circle cx="440" cy="58" r="8" fill="#3f44c9" stroke="#3f44c9" stroke-width="1.5"/>
+<circle cx="418" cy="36" r="8" fill="#3f44c9" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="440" y="88" text-anchor="middle">1</text>
+</svg><figcaption>The six necklaces. Under each: how many of the 16 colourings it accounts for.</figcaption></figure>
+<p>For longer necklaces, do not list. For each rotation, count the colourings it <b>fixes</b>: those that look exactly the same afterwards.</p>
+<p>Turn by 0 places: all 16. By 1 or 3 places: every bead must match its neighbour, so 2. By 2 places: opposite beads must match, so \(2^2 = 4\).</p>
+<p class="callout">Number of necklaces = the average number of colourings fixed by a rotation. Here \(\dfrac{16 + 2 + 4 + 2}{4} = 6\).</p>
+<p>Why? <a href="b9-count-it-twice.html">Count twice</a> the pairs (rotation, colouring it fixes). By rotation: 24. By necklace: one with 4 versions has each fixed by 1 rotation; the striped one has 2 versions, each fixed by 2; a plain one has 1, fixed by all 4. Always 4 pairs. So \(24 = 4 \times\) (number of necklaces). This is <b>Burnside's lemma</b>.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: six beads, two colours</h2>
+<p>Turn by 2 places. Bead 1 moves to position 3, 3 to 5, and 5 to 1, so those three must share a colour. So must beads 2, 4, 6. Two groups, each free: \(2^2 = 4\) fixed colourings. A turn by \(r\) places makes \(\gcd(r, 6)\) groups.</p>
+<table class="tt">
+<tr><th>Turn by</th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
+<tr><th>Groups</th><td>6</td><td>1</td><td>2</td><td>3</td><td>2</td><td>1</td></tr>
+<tr><th>Fixed colourings</th><td>64</td><td>2</td><td>4</td><td>8</td><td>4</td><td>2</td></tr>
+</table>
+<p>The total is 84, and \(84 \div 6 = 14\) necklaces.</p>
+<p class="small">See all 14: <a href="../../demos/necklaces.html">infinityclub.net/demos/necklaces.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Three beads, three colours. Count the colourings fixed by each of the three rotations and find the number of necklaces.<div class="space short"></div></li>
+<li>Five beads, two colours. Explain why a turn by 1, 2, 3 or 4 places fixes only 2 colourings. How many necklaces are there?<div class="space short"></div></li>
+<li>Six beads, three colours. Redo the table from the example and find the number of necklaces.<div class="space"></div></li>
+<li>Now \(p\) beads, where \(p\) is prime, and \(c\) colours. Write a formula for the number of necklaces. The answer must be a whole number. What does that prove about \(c^p - c\)? Which theorem have you just proved?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: bracelets</h2>
+<p>A bracelet can also be flipped over, so there are 12 symmetries: the 6 rotations and 6 flips. Three flips have a mirror line through two opposite beads; three have it between beads. For six beads in two colours, count the colourings each flip fixes and average over all 12. Which two necklaces became one bracelet?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Turn by 0: \(3^3 = 27\). By 1 or 2: all three beads must match, 3 each. \((27 + 3 + 3)/3 = 11\) necklaces.</li>
+<li>Because 5 is prime, repeating any of these turns carries bead 1 to every position, so all five beads must match: 2 colourings. \((32 + 2 + 2 + 2 + 2)/5 = 40/5 = 8\) necklaces.</li>
+<li>The groups are the same: 6, 1, 2, 3, 2, 1. Fixed colourings: \(3^6 = 729\), 3, 9, 27, 9, 3. Total 780, and \(780/6 = 130\) necklaces.</li>
+<li>Turn by 0 fixes \(c^p\). Each of the other \(p - 1\) turns fixes only the \(c\) one-colour necklaces, as in question 2. So there are \(\dfrac{c^p + (p-1)c}{p} = c + \dfrac{c^p - c}{p}\) necklaces. This is a whole number, so \(p\) divides \(c^p - c\). That is <a href="../../grade-10/sheets/b5-fermat-little.html">Fermat's little theorem</a>.</li>
+</ol>
+<p><b>Stretch.</b> Mirror through two beads: those two are free and the other four form 2 mirror pairs, so \(2^4 = 16\). Mirror between beads: 3 mirror pairs, \(2^3 = 8\). Total \(84 + 3 \times 16 + 3 \times 8 = 156\), and \(156/12 = 13\) bracelets. Going round, dark-dark-light-dark-light-light and dark-dark-light-light-dark-light are different necklaces, but each is the other flipped over.</p>
+</section>
+
+<div class="sheet-nav"><a href="b9-count-it-twice.html">← Previous</a><a href="b11-linearity.html">Next: Expectation adds, even when nothing is independent →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

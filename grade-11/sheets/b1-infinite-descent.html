@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Proof by infinite descent · Infinity Club</title>
+<meta name="description" content="If a solution exists, a smaller one does too, and whole numbers cannot shrink for ever. Infinite descent, used on the square root of 2 and on a² + b² = 3c².">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 11</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 11 · Around the corner · 1</div>
+  <h1>Proof by infinite descent</h1>
+  <p class="teaser">If a solution exists, a smaller one does too, and whole numbers cannot shrink for ever. Fermat's favourite weapon, used on \(\sqrt2\) and on \(a^2 + b^2 = 3c^2\).</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A list of positive whole numbers cannot keep getting smaller for ever. Start at 50 and you have at most 49 steps down. That plain fact is a method of proof.</p>
+<p class="callout"><b>Infinite descent.</b> Suppose a solution in positive whole numbers exists. Show how to build a strictly smaller one. The same recipe then gives a smaller one again, without end. That cannot happen, so there was no solution.</p>
+<p>Pierre de Fermat named the method. Try it on \(\sqrt2\). If \(\sqrt2\) were a fraction \(a/b\), then \(a^2 = 2b^2\) with \(a\), \(b\) positive whole numbers. The right side is even, so \(a\) is even (an odd number has an odd square). Write \(a = 2k\). Then \(4k^2 = 2b^2\), so</p>
+<p>\[b^2 = 2k^2.\]</p>
+<p>So \((b, k)\) solves the same equation as \((a, b)\). And \(b \lt a\), because \(a^2 = 2b^2 > b^2\). From any solution we have made a smaller one, so we get \(a > b > k > \dots\), an endless falling list of positive whole numbers. No such list exists. So \(a^2 = 2b^2\) has no solution, and \(\sqrt2\) is not a fraction.</p>
+<p class="small">Grade 10's <a href="../../grade-10/sheets/b1-contradiction.html">Proof by contradiction</a> proved this by assuming lowest terms. Descent needs no such assumption.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: \(a^2 + b^2 = 3c^2\)</h2>
+<p>Claim: the only whole-number solution is \(a = b = c = 0\). The tool is exercise 1: a square leaves remainder 0 or 1 on division by 3, and remainder 0 only if the number itself is a multiple of 3.</p>
+<p>Suppose there is a solution that is not all zeros. Squaring hides signs, so take \(a, b, c \ge 0\). Then \(c \ge 1\), since \(c = 0\) would force \(a^2 + b^2 = 0\) and so \(a = b = 0\).</p>
+<p>Now \(a^2 + b^2\) is a multiple of 3. The two remainders are each 0 or 1, and \(0 + 1\) and \(1 + 1\) are not multiples of 3. So both are 0: \(a = 3A\) and \(b = 3B\). Substitute:</p>
+<p>\[9A^2 + 9B^2 = 3c^2 \quad\Longrightarrow\quad c^2 = 3(A^2 + B^2).\]</p>
+<p>So \(c^2\) is a multiple of 3, hence \(c = 3C\). Divide by 9: \(A^2 + B^2 = 3C^2\). A new solution, with \(C = c/3\) a whole number and \(1 \le C \lt c\). Repeat, and \(c\) falls for ever.</p>
+<figure><svg viewBox="0 0 380 128" width="380" height="128" role="img" aria-label="Four bars of heights c, c over 3, c over 9 and c over 27. The last bar falls below a dashed line marking 1, the smallest positive whole number." font-family="Nunito, sans-serif" font-size="13">
+<line x1="20" y1="106" x2="370" y2="106" stroke="#000" stroke-width="1.2"/>
+<rect x="40" y="16" width="34" height="90" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><text x="57" y="122" text-anchor="middle">c</text>
+<text x="88" y="65" text-anchor="middle" fill="#3f44c9" font-size="12">÷3</text>
+<rect x="102" y="76" width="34" height="30" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><text x="119" y="122" text-anchor="middle">c/3</text>
+<text x="150" y="92" text-anchor="middle" fill="#3f44c9" font-size="12">÷3</text>
+<rect x="164" y="96" width="34" height="10" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><text x="181" y="122" text-anchor="middle">c/9</text>
+<text x="212" y="92" text-anchor="middle" fill="#3f44c9" font-size="12">÷3</text>
+<rect x="226" y="102.7" width="34" height="3.3" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/><text x="243" y="122" text-anchor="middle" fill="#b87400">c/27</text>
+<line x1="20" y1="98" x2="370" y2="98" stroke="#999" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="368" y="56" text-anchor="end" font-size="12" fill="#555">dashed line: height 1</text>
+<text x="368" y="71" text-anchor="end" font-size="12" fill="#555">no positive whole number is below it</text>
+<text x="300" y="122" text-anchor="middle">…</text>
+</svg><figcaption>Each round divides \(c\) by 3, yet every round must give a positive whole number.</figcaption></figure>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Every whole number is \(3k\), \(3k + 1\) or \(3k - 1\). Square each. Show that the remainder on division by 3 is 0 or 1, and is 0 only for \(3k\).<div class="space short"></div></li>
+<li>Show that \(a^3 = 2b^3\) has no solution in positive whole numbers. (Show \(a = 2k\), then \(b = 2m\), and find a smaller solution.) What does this say about \(\sqrt[3]{2}\)?<div class="space"></div></li>
+<li>Show that the only whole-number solution of \(x^3 + 2y^3 = 4z^3\) is \(x = y = z = 0\). Start by showing \(x\) is even.<div class="space"></div></li>
+<li>Find positive whole numbers with \(a^2 + b^2 = 5c^2\). So descent must fail here. Which step of the proof for \(3c^2\) breaks when 3 becomes 5?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: descent without odd and even</h2>
+<p>Suppose \(a^2 = 2b^2\) with \(a\), \(b\) positive whole numbers. Show that \((2b - a)^2 = 2(a - b)^2\), and that \(0 \lt a - b \lt b\). Why does that prove \(\sqrt2\) is irrational?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\((3k)^2 = 9k^2\), remainder 0. \((3k \pm 1)^2 = 9k^2 \pm 6k + 1 = 3(3k^2 \pm 2k) + 1\), remainder 1. So remainder 0 happens only for multiples of 3, and remainder 2 never happens.</li>
+<li>\(2b^3\) is even, so \(a^3\) is even, so \(a\) is even (an odd number has an odd cube): \(a = 2k\). Then \(8k^3 = 2b^3\), so \(b^3 = 4k^3\), so \(b\) is even: \(b = 2m\). Then \(8m^3 = 4k^3\), so \(k^3 = 2m^3\). So \((k, m)\) is a solution in positive whole numbers with \(k = a/2 \lt a\). Descent: no solution exists. So \(\sqrt[3]{2}\) is not a fraction \(a/b\); it is irrational.</li>
+<li>\(x^3 = 4z^3 - 2y^3\) is even, so \(x = 2X\). Then \(8X^3 + 2y^3 = 4z^3\), so \(y^3 = 2z^3 - 4X^3\) is even and \(y = 2Y\). Then \(8X^3 + 16Y^3 = 4z^3\), so \(z^3 = 2X^3 + 4Y^3\) is even and \(z = 2Z\). Divide \(8X^3 + 16Y^3 = 32Z^3\) by 8: \(X^3 + 2Y^3 = 4Z^3\). So halving a solution gives a solution in whole numbers. If the solution were not all zeros, \(|x| + |y| + |z|\) would be a positive whole number that halves every round, for ever. Impossible, so \(x = y = z = 0\).</li>
+<li>\(1^2 + 2^2 = 5 \times 1^2\). On division by 5 a square leaves remainder 0, 1 or 4, and \(1 + 4 = 5\). So \(a^2 + b^2\) can be a multiple of 5 without \(a\) and \(b\) being multiples of 5. The step "both remainders are 0" fails, and nothing can be divided out.</li>
+</ol>
+<p><b>Stretch.</b> \((2b - a)^2 = 4b^2 - 4ab + a^2 = 6b^2 - 4ab\), using \(a^2 = 2b^2\). And \(2(a - b)^2 = 2a^2 - 4ab + 2b^2 = 6b^2 - 4ab\). Equal. Since \(b^2 \lt a^2 = 2b^2 \lt 4b^2\), we have \(b \lt a \lt 2b\), so \(0 \lt a - b \lt b\) and \(2b - a > 0\). So \((2b - a,\ a - b)\) is a solution in positive whole numbers with a smaller second number. Descent again: no solution can exist.</p>
+</section>
+
+<div class="sheet-nav"><a href="a16-margin-of-error.html">← Previous</a><a href="b2-rearrangement.html">Next: Big with big, small with small →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

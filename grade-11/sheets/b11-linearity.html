@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Expectation adds, even when nothing is independent · Infinity Club</title>
+<meta name="description" content="The expected number of people who get their own hat back is exactly 1, for any number of people. Indicator variables and the fact that expectation adds replace pages of counting.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 11</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 11 · Around the corner · 11</div>
+  <h1>Expectation adds, even when nothing is independent</h1>
+  <p class="teaser">The expected number of people who get their own hat back is exactly 1, for any number of people. One line of reasoning replaces pages of counting.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>\(n\) people hand in their hats, which come back in a random order. On average, how many people get their own? Counting the orders is hard work. There is a one-line route.</p>
+<p>The <b>expected value</b> \(E(X)\) is the long-run average of a random number \(X\) (<a href="a14-random-variables.html">sheet a14</a>). The key fact:</p>
+<p class="callout">\(E(X + Y) = E(X) + E(Y)\), always, independent or not.</p>
+<p>Why? Average \(X + Y\) over many runs. That is one long sum, and you may add the \(X\)s first and the \(Y\)s second. How they affect each other never comes into it.</p>
+<p>To count, use <b>indicators</b>. Let \(X_i\) be 1 if person \(i\) gets their own hat, 0 if not. Its average is the chance of a 1, which is \(\tfrac1n\). The number of matches is \(X_1 + \cdots + X_n\), so</p>
+<p>\[E(\text{matches}) = n \times \tfrac1n = 1.\]</p>
+<p>One, for 3 people or 3 million. The \(X_i\) are not independent: if everyone else has their own hat, so do you. It did not matter.</p>
+<figure><svg viewBox="0 0 480 112" width="480" height="112" role="img" aria-label="The six ways to return three hats to people A, B and C. The numbers of people with their own hat are 3, 1, 1, 0, 0, 1." font-family="Nunito, sans-serif" font-size="13">
+<rect x="8" y="6" width="68" height="74" rx="6" fill="none" stroke="#999" stroke-width="1"/>
+<text x="18" y="26" text-anchor="middle">A</text>
+<circle cx="18" cy="54" r="10" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/>
+<text x="18" y="58.5" text-anchor="middle" font-size="12" font-weight="700">a</text>
+<text x="42" y="26" text-anchor="middle">B</text>
+<circle cx="42" cy="54" r="10" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/>
+<text x="42" y="58.5" text-anchor="middle" font-size="12" font-weight="700">b</text>
+<text x="66" y="26" text-anchor="middle">C</text>
+<circle cx="66" cy="54" r="10" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/>
+<text x="66" y="58.5" text-anchor="middle" font-size="12" font-weight="700">c</text>
+<text x="42" y="100" text-anchor="middle" font-weight="700" fill="#f5a524">3</text>
+<rect x="86" y="6" width="68" height="74" rx="6" fill="none" stroke="#999" stroke-width="1"/>
+<text x="96" y="26" text-anchor="middle">A</text>
+<circle cx="96" cy="54" r="10" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/>
+<text x="96" y="58.5" text-anchor="middle" font-size="12" font-weight="700">a</text>
+<text x="120" y="26" text-anchor="middle">B</text>
+<circle cx="120" cy="54" r="10" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="120" y="58.5" text-anchor="middle" font-size="12">c</text>
+<text x="144" y="26" text-anchor="middle">C</text>
+<circle cx="144" cy="54" r="10" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="144" y="58.5" text-anchor="middle" font-size="12">b</text>
+<text x="120" y="100" text-anchor="middle" font-weight="700" fill="#f5a524">1</text>
+<rect x="164" y="6" width="68" height="74" rx="6" fill="none" stroke="#999" stroke-width="1"/>
+<text x="174" y="26" text-anchor="middle">A</text>
+<circle cx="174" cy="54" r="10" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="174" y="58.5" text-anchor="middle" font-size="12">b</text>
+<text x="198" y="26" text-anchor="middle">B</text>
+<circle cx="198" cy="54" r="10" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="198" y="58.5" text-anchor="middle" font-size="12">a</text>
+<text x="222" y="26" text-anchor="middle">C</text>
+<circle cx="222" cy="54" r="10" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/>
+<text x="222" y="58.5" text-anchor="middle" font-size="12" font-weight="700">c</text>
+<text x="198" y="100" text-anchor="middle" font-weight="700" fill="#f5a524">1</text>
+<rect x="242" y="6" width="68" height="74" rx="6" fill="none" stroke="#999" stroke-width="1"/>
+<text x="252" y="26" text-anchor="middle">A</text>
+<circle cx="252" cy="54" r="10" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="252" y="58.5" text-anchor="middle" font-size="12">b</text>
+<text x="276" y="26" text-anchor="middle">B</text>
+<circle cx="276" cy="54" r="10" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="276" y="58.5" text-anchor="middle" font-size="12">c</text>
+<text x="300" y="26" text-anchor="middle">C</text>
+<circle cx="300" cy="54" r="10" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="300" y="58.5" text-anchor="middle" font-size="12">a</text>
+<text x="276" y="100" text-anchor="middle" font-weight="700" fill="#555">0</text>
+<rect x="320" y="6" width="68" height="74" rx="6" fill="none" stroke="#999" stroke-width="1"/>
+<text x="330" y="26" text-anchor="middle">A</text>
+<circle cx="330" cy="54" r="10" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="330" y="58.5" text-anchor="middle" font-size="12">c</text>
+<text x="354" y="26" text-anchor="middle">B</text>
+<circle cx="354" cy="54" r="10" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="354" y="58.5" text-anchor="middle" font-size="12">a</text>
+<text x="378" y="26" text-anchor="middle">C</text>
+<circle cx="378" cy="54" r="10" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="378" y="58.5" text-anchor="middle" font-size="12">b</text>
+<text x="354" y="100" text-anchor="middle" font-weight="700" fill="#555">0</text>
+<rect x="398" y="6" width="68" height="74" rx="6" fill="none" stroke="#999" stroke-width="1"/>
+<text x="408" y="26" text-anchor="middle">A</text>
+<circle cx="408" cy="54" r="10" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="408" y="58.5" text-anchor="middle" font-size="12">c</text>
+<text x="432" y="26" text-anchor="middle">B</text>
+<circle cx="432" cy="54" r="10" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/>
+<text x="432" y="58.5" text-anchor="middle" font-size="12" font-weight="700">b</text>
+<text x="456" y="26" text-anchor="middle">C</text>
+<circle cx="456" cy="54" r="10" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="456" y="58.5" text-anchor="middle" font-size="12">a</text>
+<text x="432" y="100" text-anchor="middle" font-weight="700" fill="#f5a524">1</text>
+</svg><figcaption>All six ways to return hats a, b, c to A, B, C. Matches: \(3 + 1 + 1 + 0 + 0 + 1 = 6\), an average of 1.</figcaption></figure>
+</section>
+
+<section class="example">
+<h2>Watch one: heads twice in a row</h2>
+<p>Flip a coin 20 times. Count the places where a head is followed at once by another head, so HHH counts twice. What is the expected count?</p>
+<p>There are 19 neighbouring pairs of flips. Give each an indicator: 1 if it is HH, with chance \(\tfrac14\). Add them up:</p>
+<p>\[E = 19 \times \tfrac14 = 4.75.\]</p>
+<p>Neighbouring pairs share a flip, so they are far from independent. The sum did not care. Check with 3 flips: of the 8 sequences, HHH scores 2, HHT and THH score 1, a total of 4. The average is \(\tfrac48 = 2 \times \tfrac14\).</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>(a) Thirty students each roll a die. What is the expected number of sixes? (b) What is the expected total when you roll ten dice?<div class="space short"></div></li>
+<li>Shuffle a 52-card deck (26 red, 26 black) and deal it in a row. Find the expected number of neighbouring pairs in which both cards are red.<div class="space short"></div></li>
+<li>Thirty people are in a room. Assume 365 equally likely birthdays. Find the expected number of pairs of people who share a birthday. (Give each pair an indicator.)<div class="space"></div></li>
+<li>Ten people enter a lift on the ground floor. There are 5 floors above, and each person picks one at random, independently. Find the expected number of floors at which the lift stops. Choose your indicators with care.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: records</h2>
+<p>Ten different numbers are read out in a random order. A number is a <b>record</b> if it is bigger than every number before it, so the first is always a record. Find the expected number of records.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) Thirty indicators, each with chance \(\tfrac16\): \(30 \times \tfrac16 = 5\). (b) One die averages \((1 + 2 + \cdots + 6)/6 = 3.5\), so ten average \(35\).</li>
+<li>There are 51 neighbouring pairs. A given pair is red-red with chance \(\tfrac{26}{52} \times \tfrac{25}{51}\). So \(E = 51 \times \tfrac{26}{52} \times \tfrac{25}{51} = 12.5\).</li>
+<li>There are \(\binom{30}{2} = 435\) pairs, and each shares a birthday with chance \(\tfrac1{365}\). \(E = 435/365 \approx 1.19\). More than one shared pair is expected, which is why a shared birthday in a class is no surprise (<a href="../../grade-8/sheets/b9-birthday.html">the birthday paradox</a>).</li>
+<li>Use one indicator per floor, not per person. A floor is missed if all ten people choose another floor: chance \(\left(\tfrac45\right)^{10} \approx 0.107\). So the lift stops there with chance \(0.893\), and \(E = 5 \times \left(1 - 0.8^{10}\right) \approx 4.46\) stops.</li>
+</ol>
+<p><b>Stretch.</b> The \(i\)th number is a record when it is the largest of the first \(i\). Each of those \(i\) is equally likely to be the largest, so the chance is \(\tfrac1i\). \(E = 1 + \tfrac12 + \tfrac13 + \cdots + \tfrac1{10} = \tfrac{7381}{2520} \approx 2.93\). Fewer than three records on average.</p>
+</section>
+
+<div class="sheet-nav"><a href="b10-necklaces.html">← Previous</a><a href="b12-buffon.html">Next: Dropping needles to find π →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

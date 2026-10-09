@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sine Wave Explorer · Infinity Club</title>
+<meta name="description" content="Slide a, b, c and d in y = a sin(b(x − c)) + d and read the amplitude, period, phase shift and midline off the wave. Then match a mystery wave.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+#plot { width: 100%; }
+.controls input[type=range] { width: 150px; }
+.controls .val { font-family: var(--mono); min-width: 3.6em; display: inline-block; }
+#formula { font-size: 1.1rem; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Sine wave explorer</h1>
+<p class="explain">Move one slider at a time and watch the blue wave y = a sin(b(x − c)) + d. The grey wave is plain y = sin x, for comparison. Each letter does one job: a sets the height, b the speed, c the slide, d the lift. When you know the four jobs, press <b>New wave to match</b> and copy the orange wave.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <label>a <input type="range" id="a" min="-3" max="3" step="0.25" value="1"> <span class="val" id="av">1</span></label>
+    <label>b <input type="range" id="b" min="0.25" max="4" step="0.25" value="1"> <span class="val" id="bv">1</span></label>
+    <label>c <input type="range" id="c" min="-12" max="12" step="1" value="0"> <span class="val" id="cv">0</span></label>
+    <label>d <input type="range" id="d" min="-3" max="3" step="0.25" value="0"> <span class="val" id="dv">0</span></label>
+  </div>
+  <div class="controls">
+    <button id="challenge">New wave to match</button>
+    <button id="answer" class="ghost" hidden>Show its equation</button>
+    <button id="reset" class="ghost">Reset</button>
+  </div>
+  <div class="readout" id="formula"></div>
+  <canvas id="plot" width="900" height="560"></canvas>
+  <div class="readout" id="info"></div>
+  <div class="readout" id="game" hidden></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p><b>Amplitude</b> is |a|: how far the wave rises above its middle. A negative a turns the wave upside down but the amplitude is still positive. <b>Midline</b> is y = d: the horizontal line the wave is centred on. So the highest value is d + |a| and the lowest is d − |a|.</p>
+<p><b>Period</b> is 2π/b: the length of one full wave. Plain sin x takes 2π to repeat. A bigger b runs through the cycle faster, so the wave is squashed and the period is shorter. <b>Phase shift</b> is c: the wave slides right by c (left if c is negative). The orange dot marks where a cycle starts: on the midline at x = c.</p>
+<p>To read an equation off a graph, work in this order. Midline: halfway between the top and the bottom. Amplitude: from the midline to the top. Period: from one peak to the next, then b = 2π ÷ period. Shift: find a place where the wave crosses the midline going up, and that x is c.</p>
+<p>One wave has many equations. Sliding by a whole period changes nothing, and flipping (a → −a) is the same as sliding half a period. The match challenge accepts any of them.</p>
+<p>Sheets: <a href="../grade-11/sheets/a2-sine-waves.html">Reading a sine wave</a> and <a href="../grade-11/sheets/c1-tides.html">Predicting the tide</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  var PI = Math.PI;
+  function gcd(p, q) { p = Math.abs(p); q = Math.abs(q); while (q) { var t = p % q; p = q; q = t; } return p || 1; }
+  function fmt(v, d) { d = d === undefined ? 2 : d; var r = Math.round(v * Math.pow(10, d)) / Math.pow(10, d); if (Object.is(r, -0)) r = 0; return r.toString().replace("-", "−"); }
+  // n·π/den as text, e.g. piFrac(-3, 4) = "−3π/4"
+  function piFrac(n, den) {
+    if (n === 0) return "0";
+    var g = gcd(n, den); n = n / g; den = den / g;
+    var s = n < 0 ? "−" : "", m = Math.abs(n);
+    return s + (m === 1 ? "" : m) + "π" + (den === 1 ? "" : "/" + den);
+  }
+  // the wave itself; cn counts twelfths of π, so c = cn·π/12
+  function wave(a, b, cn, d) { var c = cn * PI / 12; return function (x) { return a * Math.sin(b * (x - c)) + d; }; }
+  function waveInfo(a, b, cn, d) {
+    var amp = Math.abs(a);
+    return { amplitude: amp, period: 2 * PI / Math.abs(b), phase: cn * PI / 12, midline: d, max: d + amp, min: d - amp, flipped: a < 0 };
+  }
+  // period 2π/b as an exact multiple of π when b is a multiple of 1/4
+  function periodText(b) { return piFrac(8, Math.round(b * 4)); }
+  function equation(a, b, cn, d) {
+    var ds = d === 0 ? "" : (d > 0 ? " + " : " − ") + fmt(Math.abs(d));
+    if (a === 0) return "y = " + fmt(d);
+    var as = a === 1 ? "" : a === -1 ? "−" : fmt(a) + " ";
+    var xs = cn === 0 ? "x" : "x " + (cn > 0 ? "− " : "+ ") + piFrac(Math.abs(cn), 12);
+    var inner = b === 1 ? xs : cn === 0 ? fmt(b) + "x" : fmt(b) + "(" + xs + ")";
+    return "y = " + as + "sin(" + inner + ")" + ds;
+  }
+  // biggest vertical gap between two waves, sampled over a long stretch
+  function maxGap(p, q) {
+    var f = wave(p.a, p.b, p.cn, p.d), g = wave(q.a, q.b, q.cn, q.d), m = 0;
+    for (var i = 0; i <= 2000; i++) { var x = -8 * PI + 16 * PI * i / 2000; m = Math.max(m, Math.abs(f(x) - g(x))); }
+    return m;
+  }
+  function compare(p, q) {
+    var eq = function (u, v) { return Math.abs(u - v) < 1e-9; };
+    return { amplitude: eq(Math.abs(p.a), Math.abs(q.a)), period: eq(p.b, q.b), midline: eq(p.d, q.d), match: maxGap(p, q) < 0.02 };
+  }
+  function newTarget(rand) {
+    function pick(list) { return list[Math.floor(rand() * list.length)]; }
+    return { a: pick([-3, -2, -1.5, -1, -0.5, 0.5, 1, 1.5, 2, 2.5, 3]), b: pick([0.5, 1, 1.5, 2, 3]), cn: pick([-6, -4, -3, -2, 0, 2, 3, 4, 6]), d: pick([-2, -1, -0.5, 0, 0.5, 1, 2]) };
+  }
+  /*ENDPURE*/
+
+  var canvas = document.getElementById("plot"), ctx = canvas.getContext("2d");
+  var info = document.getElementById("info"), form = document.getElementById("formula"), game = document.getElementById("game");
+  var answerBtn = document.getElementById("answer");
+  var START = { a: 1, b: 1, cn: 0, d: 0 };
+  var S = { a: 1, b: 1, cn: 0, d: 0 }, target = null, shown = false, sl = {};
+  var IDS = { a: "a", b: "b", cn: "c", d: "d" };
+  Object.keys(IDS).forEach(function (key) {
+    sl[key] = document.getElementById(IDS[key]);
+    sl[key].addEventListener("input", function () { S[key] = parseFloat(sl[key].value); draw(); });
+  });
+  function sync() { Object.keys(IDS).forEach(function (key) { sl[key].value = S[key]; }); }
+  document.getElementById("reset").addEventListener("click", function () { S = { a: START.a, b: START.b, cn: START.cn, d: START.d }; sync(); draw(); });
+  document.getElementById("challenge").addEventListener("click", function () {
+    do { target = newTarget(Math.random); } while (compare(S, target).match);
+    shown = false; answerBtn.hidden = false; game.hidden = false; draw();
+  });
+  answerBtn.addEventListener("click", function () { shown = true; draw(); });
+
+  var XMIN = -2 * PI, XMAX = 2 * PI, YMIN = -6.5, YMAX = 6.5;
+  function draw() {
+    var a = S.a, b = S.b, cn = S.cn, d = S.d, q = waveInfo(a, b, cn, d);
+    document.getElementById("av").textContent = fmt(a); document.getElementById("bv").textContent = fmt(b);
+    document.getElementById("cv").textContent = piFrac(cn, 12); document.getElementById("dv").textContent = fmt(d);
+    var dpr = window.devicePixelRatio || 1, W = canvas.clientWidth || 900, H = Math.max(230, Math.round(W * 0.58));
+    canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, H);
+    function X(x) { return (x - XMIN) / (XMAX - XMIN) * W; }
+    function Y(y) { return H - (y - YMIN) / (YMAX - YMIN) * H; }
+    // grid: every π/2 across, every 1 up
+    ctx.strokeStyle = "#ece9e0"; ctx.lineWidth = 1;
+    for (var i = -4; i <= 4; i++) { ctx.beginPath(); ctx.moveTo(X(i * PI / 2), 0); ctx.lineTo(X(i * PI / 2), H); ctx.stroke(); }
+    for (var gy = -6; gy <= 6; gy++) { ctx.beginPath(); ctx.moveTo(0, Y(gy)); ctx.lineTo(W, Y(gy)); ctx.stroke(); }
+    ctx.strokeStyle = "#8a8ca8"; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(X(0), 0); ctx.lineTo(X(0), H); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(0, Y(0)); ctx.lineTo(W, Y(0)); ctx.stroke();
+    ctx.fillStyle = "#5d6079"; ctx.font = "11px Nunito, sans-serif"; ctx.textAlign = "center";
+    var stepT = W < 480 ? 2 : 1;
+    for (var t = -3; t <= 3; t++) if (t !== 0 && t % stepT === 0) ctx.fillText(piFrac(t, 2), X(t * PI / 2), Y(0) + 13);
+    ctx.textAlign = "right";
+    for (var ty = -6; ty <= 6; ty += 2) if (ty !== 0) ctx.fillText(fmt(ty), X(0) - 5, Y(ty) + 4);
+
+    function curve(fn, color, width, dash) {
+      ctx.strokeStyle = color; ctx.lineWidth = width; ctx.setLineDash(dash || []); ctx.beginPath();
+      var N = Math.round(W * 2);
+      for (var k = 0; k <= N; k++) { var x = XMIN + (XMAX - XMIN) * k / N, y = fn(x); if (k === 0) ctx.moveTo(X(x), Y(y)); else ctx.lineTo(X(x), Y(y)); }
+      ctx.stroke(); ctx.setLineDash([]);
+    }
+    curve(Math.sin, "#c9c6bb", 2.5);
+    if (target) curve(wave(target.a, target.b, target.cn, target.d), "#f5a524", 3, [9, 6]);
+    // midline
+    ctx.strokeStyle = "#3f44c9"; ctx.globalAlpha = 0.45; ctx.setLineDash([5, 5]); ctx.lineWidth = 1.3;
+    ctx.beginPath(); ctx.moveTo(0, Y(d)); ctx.lineTo(W, Y(d)); ctx.stroke(); ctx.setLineDash([]); ctx.globalAlpha = 1;
+    curve(wave(a, b, cn, d), "#3f44c9", 3);
+
+    // one period, marked along the midline, and the amplitude at the first quarter
+    var s = q.phase;
+    while (s + q.period > XMAX && s - q.period >= XMIN) s -= q.period;
+    while (s < XMIN && s + q.period <= XMAX) s += q.period;
+    var e = Math.min(s + q.period, XMAX);
+    ctx.strokeStyle = "#1d1f3a"; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(X(s), Y(d)); ctx.lineTo(X(e), Y(d)); ctx.moveTo(X(s), Y(d) - 6); ctx.lineTo(X(s), Y(d) + 6);
+    if (s + q.period <= XMAX + 1e-9) { ctx.moveTo(X(e), Y(d) - 6); ctx.lineTo(X(e), Y(d) + 6); }
+    ctx.stroke();
+    ctx.fillStyle = "#1d1f3a"; ctx.font = "bold 12px Nunito, sans-serif"; ctx.textAlign = "center";
+    // label three quarters of the way along, on the side of the midline the wave has left empty
+    var xl = s + 0.75 * q.period; if (X(xl) > W - 36) xl = (s + e) / 2;
+    ctx.fillText("one period", X(xl), Y(d) + (a >= 0 ? -8 : 16));
+    if (a !== 0) {
+      var xp = s + q.period / 4;
+      if (xp <= XMAX) {
+        ctx.strokeStyle = "#f5a524"; ctx.lineWidth = 2.5;
+        ctx.beginPath(); ctx.moveTo(X(xp), Y(d)); ctx.lineTo(X(xp), Y(d + a)); ctx.stroke();
+        // label beyond the tip of the bar (above a peak, below a trough), where the wave leaves room
+        ctx.fillStyle = "#1d1f3a"; ctx.textAlign = "center";
+        if (!target) ctx.fillText("amplitude", Math.max(32, Math.min(W - 32, X(xp))), Math.max(11, Math.min(H - 4, Y(d + a) + (a > 0 ? -7 : 15))));
+      }
+    }
+    ctx.fillStyle = "#f5a524"; ctx.beginPath(); ctx.arc(X(q.phase), Y(d), 6, 0, PI * 2); ctx.fill();
+    ctx.strokeStyle = "#fff"; ctx.lineWidth = 2; ctx.stroke();
+
+    form.textContent = equation(a, b, cn, d);
+    info.textContent = "amplitude  |a| = " + fmt(q.amplitude) + (q.flipped ? "   (a is negative: upside down)" : "")
+      + "\nperiod     2π/b = " + periodText(b) + " ≈ " + fmt(q.period)
+      + "\nphase shift  c = " + piFrac(cn, 12) + (cn === 0 ? "" : " ≈ " + fmt(q.phase) + (cn > 0 ? "   (slid right)" : "   (slid left)"))
+      + "\nmidline    y = " + fmt(d) + "    highest " + fmt(q.max) + ", lowest " + fmt(q.min);
+    if (target) {
+      var r = compare(S, target), yn = function (ok) { return ok ? "yes" : "not yet"; };
+      game.textContent = (r.match ? "Matched. Your blue wave sits exactly on the orange one."
+        : "Match the orange dashed wave.\nmidline right? " + yn(r.midline) + "    amplitude right? " + yn(r.amplitude) + "    period right? " + yn(r.period)
+          + (r.midline && r.amplitude && r.period ? "\nOnly the slide is left: move c (or flip the sign of a)." : ""))
+        + (shown || r.match ? "\nOne equation for the orange wave: " + equation(target.a, target.b, target.cn, target.d) : "");
+    }
+  }
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(draw, 120); });
+  draw();
+})();
+</script>
+</body>
+</html>

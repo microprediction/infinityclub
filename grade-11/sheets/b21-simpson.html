@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Areas from a table of values · Infinity Club</title>
+<meta name="description" content="Estimate the area under a curve from a table of values. Straight lines give the trapezium rule; parabolas give Simpson's rule, whose error shrinks sixteen times when the step is halved.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 11</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 11 · Around the corner · 21</div>
+  <h1>Areas from a table of values</h1>
+  <p class="teaser">Join the points with straight lines and you get the trapezium rule. Join them with parabolas and the error shrinks sixteen times faster.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Often you know a function only at a few points: a speed every two seconds, a river's depth every metre. The area under the graph still matters: it is the distance travelled, or the river's cross-section.</p>
+<p>Take equally spaced values \(y_0, y_1, \ldots, y_n\), a step \(h\) apart. Join neighbours with straight lines. Each strip is a trapezium of area \(\tfrac{h}{2}(y_k + y_{k+1})\). Add the strips:</p>
+<p class="callout"><b>Trapezium rule.</b> Area \(\approx \dfrac{h}{2}\big(y_0 + 2y_1 + 2y_2 + \cdots + 2y_{n-1} + y_n\big)\).</p>
+<p>Straight lines cut the corners of a curved graph. A parabola can bend, so put one through each three neighbouring points. The area under it, across two strips, is \(\tfrac{h}{3}(y_0 + 4y_1 + y_2)\). Add these two strips at a time (so \(n\) must be even):</p>
+<p class="callout"><b>Simpson's rule.</b> Area \(\approx \dfrac{h}{3}\big(y_0 + 4y_1 + 2y_2 + 4y_3 + \cdots + 4y_{n-1} + y_n\big)\).</p>
+<figure><svg viewBox="0 0 500 194" width="350" height="136" role="img" aria-label="The same curve through three points twice: on the left two trapezia with straight tops fall short of the curve, on the right a parabola through the three points follows it closely" font-family="Nunito, sans-serif" font-size="13">
+<polygon points="35,150 35,118.8 130,40.8 130,150" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<polygon points="130,150 130,40.8 225,48 225,150" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<polyline points="27.4,126.4 30.8,123 34.2,119.5 37.7,116.1 41.1,112.6 44.5,109.1 47.9,105.7 51.3,102.3 54.8,98.9 58.2,95.5 61.6,92.2 65,88.9 68.4,85.7 71.9,82.5 75.3,79.4 78.7,76.3 82.1,73.3 85.5,70.4 89,67.6 92.4,64.8 95.8,62.1 99.2,59.5 102.6,57 106.1,54.6 109.5,52.3 112.9,50.1 116.3,48 119.7,46 123.2,44.2 126.6,42.4 130,40.8 133.4,39.3 136.8,37.9 140.3,36.6 143.7,35.5 147.1,34.5 150.5,33.6 153.9,32.9 157.4,32.3 160.8,31.8 164.2,31.5 167.6,31.3 171,31.3 174.5,31.3 177.9,31.6 181.3,31.9 184.7,32.4 188.1,33 191.6,33.8 195,34.7 198.4,35.7 201.8,36.9 205.2,38.2 208.7,39.6 212.1,41.1 215.5,42.8 218.9,44.6 222.3,46.5 225.8,48.5 229.2,50.6 232.6,52.8" fill="none" stroke="#000" stroke-width="2"/>
+<line x1="23.6" y1="150" x2="236.4" y2="150" stroke="#999" stroke-width="1"/>
+<circle cx="35" cy="118.8" r="3.5" fill="#000"/><text x="25" y="109.8" text-anchor="middle">y₀</text>
+<circle cx="130" cy="40.8" r="3.5" fill="#000"/><text x="130" y="31.8" text-anchor="middle">y₁</text>
+<circle cx="225" cy="48" r="3.5" fill="#000"/><text x="225" y="39" text-anchor="middle">y₂</text>
+<text x="82.5" y="168" text-anchor="middle" fill="#555">h</text><text x="177.5" y="168" text-anchor="middle" fill="#555">h</text>
+<text x="130" y="186" text-anchor="middle" font-weight="700" fill="#3f44c9">straight lines</text>
+<path d="M280,150 L280,118.8 L284.8,112.8 L289.5,107.1 L294.2,101.6 L299,96.3 L303.8,91.3 L308.5,86.4 L313.2,81.8 L318,77.3 L322.8,73.1 L327.5,69.1 L332.2,65.3 L337,61.7 L341.8,58.4 L346.5,55.2 L351.2,52.3 L356,49.5 L360.8,47 L365.5,44.7 L370.2,42.6 L375,40.8 L379.8,39.1 L384.5,37.7 L389.2,36.4 L394,35.4 L398.8,34.6 L403.5,34 L408.2,33.6 L413,33.4 L417.8,33.5 L422.5,33.7 L427.2,34.2 L432,34.9 L436.8,35.8 L441.5,36.9 L446.2,38.2 L451,39.7 L455.8,41.5 L460.5,43.4 L465.2,45.6 L470,48 L470,150 Z" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/>
+<line x1="375" y1="150" x2="375" y2="40.8" stroke="#f5a524" stroke-width="1" stroke-dasharray="4 3"/>
+<polyline points="272.4,126.4 275.8,123 279.2,119.5 282.7,116.1 286.1,112.6 289.5,109.1 292.9,105.7 296.3,102.3 299.8,98.9 303.2,95.5 306.6,92.2 310,88.9 313.4,85.7 316.9,82.5 320.3,79.4 323.7,76.3 327.1,73.3 330.5,70.4 334,67.6 337.4,64.8 340.8,62.1 344.2,59.5 347.6,57 351.1,54.6 354.5,52.3 357.9,50.1 361.3,48 364.7,46 368.2,44.2 371.6,42.4 375,40.8 378.4,39.3 381.8,37.9 385.3,36.6 388.7,35.5 392.1,34.5 395.5,33.6 398.9,32.9 402.4,32.3 405.8,31.8 409.2,31.5 412.6,31.3 416,31.3 419.5,31.3 422.9,31.6 426.3,31.9 429.7,32.4 433.1,33 436.6,33.8 440,34.7 443.4,35.7 446.8,36.9 450.2,38.2 453.7,39.6 457.1,41.1 460.5,42.8 463.9,44.6 467.3,46.5 470.8,48.5 474.2,50.6 477.6,52.8" fill="none" stroke="#000" stroke-width="2"/>
+<line x1="268.6" y1="150" x2="481.4" y2="150" stroke="#999" stroke-width="1"/>
+<circle cx="280" cy="118.8" r="3.5" fill="#000"/><text x="270" y="109.8" text-anchor="middle">y₀</text>
+<circle cx="375" cy="40.8" r="3.5" fill="#000"/><text x="375" y="31.8" text-anchor="middle">y₁</text>
+<circle cx="470" cy="48" r="3.5" fill="#000"/><text x="470" y="39" text-anchor="middle">y₂</text>
+<text x="327.5" y="168" text-anchor="middle" fill="#555">h</text><text x="422.5" y="168" text-anchor="middle" fill="#555">h</text>
+<text x="375" y="186" text-anchor="middle" font-weight="700" fill="#b87400">one parabola</text>
+</svg><figcaption>Two strips of width \(h\). Straight lines cut the corner. A parabola through the same three points follows the curve.</figcaption></figure>
+<p>The weights run 1, 4, 2, 4, …, 2, 4, 1. Halve the step and the trapezium error divides by about 4. Simpson's divides by about 16.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: the area under \(y = x^4\) from 0 to 1</h2>
+<p>The exact area is \(\tfrac15 = 0.2\), so we can see the errors. Use \(h = 0.25\).</p>
+<table>
+<tr><th>\(x\)</th><td>0</td><td>0.25</td><td>0.5</td><td>0.75</td><td>1</td></tr>
+<tr><th>\(y = x^4\)</th><td>0</td><td>0.0039</td><td>0.0625</td><td>0.3164</td><td>1</td></tr>
+</table>
+<p>Trapezium: \(\tfrac{0.25}{2}\big(0 + 2(0.0039 + 0.0625 + 0.3164) + 1\big) = 0.2207\). Error \(0.0207\).</p>
+<p>Simpson: \(\tfrac{0.25}{3}\big(0 + 4(0.0039) + 2(0.0625) + 4(0.3164) + 1\big) = 0.2005\). Error \(0.0005\): the same five numbers, forty times closer.</p>
+<p class="small">The demo at <a href="../../demos/riemann.html">infinityclub.net/demos/riemann.html</a> uses rectangles, not trapezia: left, right and midpoint sums, with a table as \(n\) doubles. The trapezium rule is the average of its left and right columns.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>A car's speed is read every 2 seconds. Use the trapezium rule to estimate how far it travels in the 8 seconds.
+<table>
+<tr><th>time (s)</th><td>0</td><td>2</td><td>4</td><td>6</td><td>8</td></tr>
+<tr><th>speed (m/s)</th><td>0</td><td>7</td><td>10</td><td>12</td><td>12</td></tr>
+</table><div class="space short"></div></li>
+<li>Estimate the same distance with Simpson's rule. Which estimate is larger, and why would you expect that for a graph that bends this way?<div class="space short"></div></li>
+<li>Go back to \(y = x^4\) from 0 to 1, but with \(h = 0.5\): just the values \(0,\ 0.0625,\ 1\). Find both estimates and both errors. Compare with the errors for \(h = 0.25\) above. By what factor did each error shrink?<div class="space short"></div></li>
+<li>Use Simpson's rule with \(h = 1\) on \(y = x^3\) from 0 to 2. The exact area is 4. The parabola through the three points is \(y = 3x^2 - 2x\), which is not the cubic. Factorise \(x^3 - (3x^2 - 2x)\) and explain why Simpson's rule is still exactly right.<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: Simpson from two trapezium estimates</h2>
+<p>Suppose the trapezium estimate with step \(h\) is off by \(E\). Then with step \(2h\) it is off by about \(4E\). Which combination of the two estimates cancels the error? Show that for three values \(y_0, y_1, y_2\) your combination is exactly Simpson's rule.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(\tfrac{2}{2}\big(0 + 2(7 + 10 + 12) + 12\big) = 70\) m.</li>
+<li>\(\tfrac{2}{3}\big(0 + 4(7) + 2(10) + 4(12) + 12\big) = \tfrac23 \times 108 = 72\) m. Simpson's is larger. The graph bends downwards, so it lies above the straight lines joining its points, and the trapezium rule falls short.</li>
+<li>Trapezium: \(\tfrac{0.5}{2}(0 + 2(0.0625) + 1) = 0.2813\), error \(0.0813\). Simpson: \(\tfrac{0.5}{3}(0 + 4(0.0625) + 1) = 0.2083\), error \(0.0083\). Halving the step took the trapezium error from \(0.0813\) to \(0.0207\), a factor of about 3.9, and Simpson's from \(0.0083\) to \(0.0005\), a factor of 16.</li>
+<li>\(\tfrac13\big(0 + 4(1) + 8\big) = 4\), exactly right. The gap between the curves is \(x^3 - 3x^2 + 2x = x(x - 1)(x - 2)\). It is positive between 0 and 1 and negative between 1 and 2, and the two pieces are mirror images: put \(x = 1 + t\) and it becomes \(t^3 - t\), which changes sign when \(t\) does. So the cubic's extra area on the left is cancelled exactly on the right. The same happens for every cubic, so Simpson's rule is exact for cubics.</li>
+</ol>
+<p><b>Stretch.</b> Write \(T_h\) and \(T_{2h}\) for the two estimates. Then \(4T_h - T_{2h}\) has error about \(4E - 4E = 0\) and counts the area three times, so use \(\tfrac13(4T_h - T_{2h})\). For three values, \(T_h = \tfrac h2(y_0 + 2y_1 + y_2)\) and \(T_{2h} = h(y_0 + y_2)\), so \(\tfrac13(4T_h - T_{2h}) = \tfrac h3(2y_0 + 4y_1 + 2y_2 - y_0 - y_2) = \tfrac h3(y_0 + 4y_1 + y_2)\).</p>
+</section>
+
+<div class="sheet-nav"><a href="b20-newton.html">← Previous</a><a href="b22-overhang.html">Next: How far can a stack of books lean? →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

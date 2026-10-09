@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The average outcome and how far it strays · Infinity Club</title>
+<meta name="description" content="Expected value, variance and standard deviation of a random variable, computed from a table. Two bets can have the same average and very different risk.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 11</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 11 · Sharpen · 14</div>
+  <h1>The average outcome and how far it strays</h1>
+  <p class="teaser">Expected value and variance of a random number, computed from a table. Why a fair bet can still be a bad idea.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A <b>random variable</b> \(X\) is a number decided by chance: the score on a die, the profit from a bet. A table lists each value \(x\) with its probability \(P(x)\).</p>
+<figure style="float:right;width:300px;max-width:50%;margin:0 0 .3em 1em"><svg viewBox="0 0 380 166" width="300" height="131" role="img" aria-label="Bar chart of the scratch card: a tall bar of height 0.7 at minus 2, a bar of 0.2 at 1 and a short bar of 0.1 at 8. A triangle under the axis marks the mean at minus 0.4 and a bracket shows one standard deviation, 3.04, either side of it." font-family="Nunito, sans-serif" font-size="12">
+<line x1="30" y1="112" x2="360" y2="112" stroke="#999"/>
+<line x1="30" y1="112" x2="30" y2="116" stroke="#999"/><text x="30" y="140" text-anchor="middle" fill="#555">−4</text>
+<line x1="77.1" y1="112" x2="77.1" y2="116" stroke="#999"/><text x="77.1" y="140" text-anchor="middle" fill="#555">−2</text>
+<line x1="124.3" y1="112" x2="124.3" y2="116" stroke="#999"/><text x="124.3" y="140" text-anchor="middle" fill="#555">0</text>
+<line x1="171.4" y1="112" x2="171.4" y2="116" stroke="#999"/><text x="171.4" y="140" text-anchor="middle" fill="#555">2</text>
+<line x1="218.6" y1="112" x2="218.6" y2="116" stroke="#999"/><text x="218.6" y="140" text-anchor="middle" fill="#555">4</text>
+<line x1="265.7" y1="112" x2="265.7" y2="116" stroke="#999"/><text x="265.7" y="140" text-anchor="middle" fill="#555">6</text>
+<line x1="312.9" y1="112" x2="312.9" y2="116" stroke="#999"/><text x="312.9" y="140" text-anchor="middle" fill="#555">8</text>
+<line x1="360" y1="112" x2="360" y2="116" stroke="#999"/><text x="360" y="140" text-anchor="middle" fill="#555">10</text>
+<rect x="68.1" y="35" width="18" height="77" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><text x="77.1" y="30" text-anchor="middle" fill="#3f44c9">0.7</text>
+<rect x="138.9" y="90" width="18" height="22" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><text x="147.9" y="85" text-anchor="middle" fill="#3f44c9">0.2</text>
+<rect x="303.9" y="101" width="18" height="11" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><text x="312.9" y="96" text-anchor="middle" fill="#3f44c9">0.1</text>
+<polygon points="114.9,113 108.9,124 120.9,124" fill="#f5a524"/>
+<line x1="43.2" y1="154" x2="186.5" y2="154" stroke="#f5a524" stroke-width="2"/><line x1="43.2" y1="150" x2="43.2" y2="158" stroke="#f5a524" stroke-width="2"/><line x1="186.5" y1="150" x2="186.5" y2="158" stroke="#f5a524" stroke-width="2"/>
+<text x="194.5" y="158" fill="#b06f00">μ = −0.4, give or take σ = 3.04</text>
+<text x="360" y="42" text-anchor="end" fill="#555">bar height = probability</text>
+</svg><figcaption>The scratch card below. The mean (triangle) is where the bars would balance. The bracket reaches one \(\sigma\) each side.</figcaption></figure>
+<p>The <b>expected value</b> \(\mu\) is the average you would see over a great many repeats. Weight each value by how often it turns up. The <b>variance</b> is the expected <em>squared</em> distance from \(\mu\).</p>
+<p class="callout">\(\mu = E(X) = \sum x\,P(x)\) and \(\operatorname{Var}(X) = \sum (x - \mu)^2 P(x)\). The sign \(\sum\) means: add over every row of the table.</p>
+<p>Squaring stops misses above and below \(\mu\) from cancelling. The square root of the variance is the <b>standard deviation</b> \(\sigma\). It is in the units of \(X\): a typical distance from the average. You met it for data in <a href="../../grade-10/sheets/a16-statistics.html">grade 10</a>.</p>
+<p>Why keep both numbers? Bet A is a coin flip for $1. Bet B is a coin flip for $1,000. Both have \(\mu = 0\), so both are "fair". But \(\sigma\) is 1 for A and 1,000 for B. Expected value describes the long run, and you only reach the long run if you survive the short one. If that $1,000 is your rent, bet B is a bad idea.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: a $2 scratch card</h2>
+<p>Seven cards in ten pay nothing, two pay $3 and one pays $10. Let \(X\) be your profit after the $2 cost. First find \(\mu\) from the third column, then fill in the fourth.</p>
+<table class="tt" style="break-inside:avoid">
+<tr><th>\(x\)</th><th>\(P(x)\)</th><th>\(x\,P(x)\)</th><th>\((x - \mu)^2 P(x)\)</th></tr>
+<tr><td>\(-2\)</td><td>0.7</td><td>\(-1.4\)</td><td>\(1.6^2 \times 0.7 = 1.792\)</td></tr>
+<tr><td>1</td><td>0.2</td><td>0.2</td><td>\(1.4^2 \times 0.2 = 0.392\)</td></tr>
+<tr><td>8</td><td>0.1</td><td>0.8</td><td>\(8.4^2 \times 0.1 = 7.056\)</td></tr>
+<tr><th>Sum</th><td>1</td><td>\(\mu = -0.4\)</td><td>\(\operatorname{Var} = 9.24\)</td></tr>
+</table>
+<p>So \(\sigma = \sqrt{9.24} \approx 3.04\). On average a card loses you 40 cents. Any one card typically lands about $3 away from that.</p>
+<p class="small">On the Galton board, the bin a ball lands in is a random variable with \(\mu = 6\) and \(\sigma = \sqrt3 \approx 1.73\). Drop a thousand balls and see both: <a href="../../demos/galton.html">infinityclub.net/demos/galton.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>\(X\) is the score on a fair die. Find \(E(X)\), \(\operatorname{Var}(X)\) and \(\sigma\).<div class="space short"></div></li>
+<li>Job A pays 50 (thousand dollars a year) for certain. Job B pays 30 with probability 0.5, 60 with probability 0.3 and 100 with probability 0.2. Find \(\mu\) and \(\sigma\) for each job. Which has the higher expected pay, and what does \(\sigma\) add?<div class="space short"></div></li>
+<li>Double the die score and add 3: \(Y = 2X + 3\). Predict \(E(Y)\) and the standard deviation of \(Y\) from your answers to question 1, then check \(E(Y)\) from a table. What does the "+ 3" do to the spread?<div class="space short"></div></li>
+<li>A game costs $1 and pays a prize with probability \(\tfrac1{10}\). How big must the prize be for the game to be fair? Find \(\sigma\) of your profit. Repeat for a fair $1 game that pays with probability \(\tfrac1{1000}\). What changed and what did not?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: a shortcut for the variance</h2>
+<p>Expand \((x - \mu)^2\) inside the sum and use \(\sum P(x) = 1\) to show that \(\operatorname{Var}(X) = E(X^2) - \mu^2\), where \(E(X^2) = \sum x^2 P(x)\). Check it on the fair die.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(E(X) = \tfrac16(1 + 2 + 3 + 4 + 5 + 6) = 3.5\). The squared distances are 6.25, 2.25, 0.25, 0.25, 2.25, 6.25, which sum to 17.5, so \(\operatorname{Var}(X) = \tfrac{17.5}{6} = \tfrac{35}{12} \approx 2.92\) and \(\sigma \approx 1.71\).</li>
+<li>Job A: \(\mu = 50\), \(\sigma = 0\). Job B: \(\mu = 15 + 18 + 20 = 53\). \(\operatorname{Var} = 23^2(0.5) + 7^2(0.3) + 47^2(0.2) = 264.5 + 14.7 + 441.8 = 721\), so \(\sigma \approx 26.9\). B pays 3 more on average, but a typical year is about 27 away from that, and half the time it pays 30. Whether 3 extra is worth that risk depends on what a bad year would cost you. The expected value alone cannot say.</li>
+<li>\(E(Y) = 2(3.5) + 3 = 10\) and the standard deviation is \(2 \times 1.71 = 3.42\). Check: \(Y\) takes the values 5, 7, 9, 11, 13, 15, with mean \(\tfrac{60}{6} = 10\). Adding 3 slides every value and the mean together, so the distances from the mean, and the spread, do not change. Doubling doubles every distance.</li>
+<li>Fair means \(E = 0\): \(\tfrac1{10}(\text{prize}) = 1\), so the prize is $10. Profit is 9 with probability 0.1 and \(-1\) with probability 0.9: \(\operatorname{Var} = 81(0.1) + 1(0.9) = 9\), \(\sigma = 3\). With probability \(\tfrac1{1000}\) the prize is $1,000: \(\operatorname{Var} = 999^2(0.001) + 1(0.999) = 999\), \(\sigma \approx 31.6\). The expected value is 0 both times. The spread is about ten times bigger: the second game is a lottery, where almost everyone loses and one player wins a lot.</li>
+</ol>
+<p><b>Stretch.</b> \(\sum (x - \mu)^2 P(x) = \sum x^2 P(x) - 2\mu \sum x\,P(x) + \mu^2 \sum P(x) = E(X^2) - 2\mu \cdot \mu + \mu^2 = E(X^2) - \mu^2\). For the die, \(E(X^2) = \tfrac16(1 + 4 + 9 + 16 + 25 + 36) = \tfrac{91}{6}\), and \(\tfrac{91}{6} - 3.5^2 = \tfrac{35}{12}\), as before.</p>
+</section>
+
+<div class="sheet-nav"><a href="a13-recursive-sequences.html">← Sequences that feed on themselves</a><a href="a15-best-fit-computed.html">Next: The line of best fit, computed →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

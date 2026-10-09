@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The bottleneck theorem · Infinity Club</title>
+<meta name="description" content="The most traffic a network can carry equals the capacity of its narrowest cut. Push flow along paths until no path is left, and the cut reveals itself: max flow equals min cut.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 11</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 11 · Around the corner · 15</div>
+  <h1>The bottleneck theorem</h1>
+  <p class="teaser">The most traffic a network can carry equals the capacity of its narrowest cut. Push flow along paths until no path is left, and the cut reveals itself.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Water runs through one-way pipes from a source \(s\) to a sink \(t\). Each pipe has a <b>capacity</b>. A <b>flow</b> gives each pipe an amount, at most its capacity, with nothing lost at a junction: what goes in comes out. How much can reach \(t\)?</p>
+<p>A <b>cut</b> gives a limit. Put the junctions on two sides, \(s\) on one and \(t\) on the other. The cut's capacity is the total capacity of the pipes leading from the \(s\) side to the \(t\) side. Everything that reaches \(t\) has to cross, so</p>
+<p class="callout">every flow \(\le\) every cut. If a flow and a cut have the same size, that flow is the largest possible and that cut is the smallest.</p>
+<p>Ford and Fulkerson proved that this always happens: <b>max flow = min cut</b>.</p>
+<figure><svg viewBox="0 0 470 200" width="470" height="200" role="img" aria-label="A network from s to t through junctions A, B, C and D. Each pipe is labelled with its flow and its capacity. A dashed curve separates s, A, B and D from C and t, crossing the two full pipes A to C and D to t" font-family="Nunito, sans-serif" font-size="13">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3f44c9"/></marker><marker id="ao" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#f5a524"/></marker></defs>
+<line x1="46.6" y1="94.0" x2="145.6" y2="46.9" stroke="#3f44c9" stroke-width="1.8" marker-end="url(#ah)"/><text x="85" y="62" text-anchor="middle">7 / 8</text>
+<line x1="46.6" y1="106.0" x2="145.6" y2="153.1" stroke="#3f44c9" stroke-width="1.8" marker-end="url(#ah)"/><text x="85" y="148" text-anchor="middle">2 / 6</text>
+<line x1="174.0" y1="40.0" x2="294.0" y2="40.0" stroke="#f5a524" stroke-width="2.5" marker-end="url(#ao)"/><text x="211" y="31" text-anchor="middle" font-weight="800">4 / 4</text>
+<line x1="170.9" y1="48.7" x2="297.5" y2="150.0" stroke="#f5a524" stroke-width="2.5" marker-end="url(#ao)"/><text x="251" y="92" text-anchor="middle" font-weight="800">3 / 3</text>
+<line x1="174.0" y1="160.0" x2="294.0" y2="160.0" stroke="#3f44c9" stroke-width="1.8" marker-end="url(#ah)"/><text x="235" y="178" text-anchor="middle">2 / 5</text>
+<line x1="322.6" y1="46.0" x2="421.6" y2="93.1" stroke="#3f44c9" stroke-width="1.8" marker-end="url(#ah)"/><text x="387" y="62" text-anchor="middle">4 / 6</text>
+<line x1="322.6" y1="154.0" x2="421.6" y2="106.9" stroke="#f5a524" stroke-width="2.5" marker-end="url(#ao)"/><text x="387" y="148" text-anchor="middle" font-weight="800">5 / 5</text>
+<path d="M232,8 C232,60 262,96 318,104 S372,150 384,194" fill="none" stroke="#999" stroke-width="1.6" stroke-dasharray="6 4"/>
+<text x="392" y="192" fill="#555" font-size="13">cut</text>
+<circle cx="34" cy="100" r="14" fill="#dcdcf5" stroke="#000" stroke-width="1.5"/><text x="34" y="105" text-anchor="middle" font-weight="700">s</text>
+<circle cx="160" cy="40" r="14" fill="#dcdcf5" stroke="#000" stroke-width="1.5"/><text x="160" y="45" text-anchor="middle" font-weight="700">A</text>
+<circle cx="160" cy="160" r="14" fill="#dcdcf5" stroke="#000" stroke-width="1.5"/><text x="160" y="165" text-anchor="middle" font-weight="700">B</text>
+<circle cx="310" cy="40" r="14" fill="#fff" stroke="#000" stroke-width="1.5"/><text x="310" y="45" text-anchor="middle" font-weight="700">C</text>
+<circle cx="310" cy="160" r="14" fill="#dcdcf5" stroke="#000" stroke-width="1.5"/><text x="310" y="165" text-anchor="middle" font-weight="700">D</text>
+<circle cx="436" cy="100" r="14" fill="#fff" stroke="#000" stroke-width="1.5"/><text x="436" y="105" text-anchor="middle" font-weight="700">t</text>
+</svg><figcaption>Each pipe shows flow / capacity for the flow found in the example. Full pipes are orange. The dashed cut has \(s\), \(A\), \(B\), \(D\) on the source side.</figcaption></figure>
+<p>To find both, push flow along any path from \(s\) to \(t\) with spare capacity in every pipe, and repeat until none is left. Then mark every junction still reachable from \(s\) through pipes with spare capacity. They form the \(s\) side of a cut whose pipes are all full. (Sometimes a path must also undo earlier flow: see the stretch.)</p>
+</section>
+
+<section class="example">
+<h2>Watch one: the network in the figure</h2>
+<p>Push 4 along \(s \to A \to C \to t\), 3 along \(s \to A \to D \to t\) and 2 along \(s \to B \to D \to t\). The flow is 9, and \(A \to C\), \(A \to D\), \(D \to t\) are full.</p>
+<p>Now every path is blocked. From \(s\) you can still reach \(A\) and \(B\), and from \(B\) you reach \(D\). You cannot reach \(C\) or \(t\). So the cut has \(s, A, B, D\) on one side, and the pipes crossing it are \(A \to C\) and \(D \to t\): \(4 + 5 = 9\).</p>
+<p>Flow 9, cut 9. Neither can be improved.</p>
+<p class="small">Push the flow yourself and watch the cut appear: <a href="../../demos/maxflow.html">infinityclub.net/demos/maxflow.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>In the figure, find the capacity of the cut whose \(s\) side is (a) \(s\) alone, (b) \(s, A, B\), (c) everything except \(t\). Check that none is below 9.<div class="space short"></div></li>
+<li>You may widen one pipe in the figure by 1. Which pipes raise the max flow to 10? Why does widening \(s \to A\) do nothing?<div class="space short"></div></li>
+<li>Replace \(D \to t\) by a pipe of capacity 9. Find the new max flow, and a cut that proves it is the max.<div class="space"></div></li>
+<li>Draw this network: \(s \to A\) 5, \(s \to B\) 7, \(A \to B\) 3, \(A \to t\) 4, \(B \to t\) 6. (a) Find the capacity of the cut with \(s\) and \(B\) on the source side. One pipe crosses between the two sides and still does not count. Which, and why? (b) Find the max flow and a min cut.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: a wrong turn</h2>
+<p>Pipes \(s \to A\), \(s \to B\), \(A \to B\), \(A \to t\), \(B \to t\) all have capacity 1. Push 1 along \(s \to A \to B \to t\). Show that no path with spare capacity is left, yet the max flow is 2. What extra move must the method allow?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(s \to A\) and \(s \to B\): \(8 + 6 = 14\). (b) \(A \to C\), \(A \to D\), \(B \to D\): \(4 + 3 + 5 = 12\). (c) \(C \to t\) and \(D \to t\): \(6 + 5 = 11\). All are at least 9, as they must be.</li>
+<li>\(A \to C\) or \(D \to t\), the two pipes in the min cut. Either one raises that cut to 10, every other cut is already 11 or more, and one more unit fits: along \(s \to A \to C \to t\), or along \(s \to B \to D \to t\). Widening \(s \to A\) leaves the cut \(A \to C\), \(D \to t\) at 9, so the flow cannot pass 9. A pipe outside the bottleneck is not the problem.</li>
+<li>12. One flow: \(s \to A\) 7, \(s \to B\) 5, \(A \to C\) 4, \(A \to D\) 3, \(B \to D\) 5, \(C \to t\) 4, \(D \to t\) 8. The cut with \(s, A, B\) on the source side has capacity \(4 + 3 + 5 = 12\), so no flow can beat 12. The bottleneck has moved.</li>
+<li>(a) The pipes leaving the source side are \(s \to A\) and \(B \to t\): \(5 + 6 = 11\). The pipe \(A \to B\) runs from the sink side back to the source side. It carries nothing across towards \(t\), so it does not count. (b) Push 4 along \(s \to A \to t\) and 6 along \(s \to B \to t\): flow 10. The cut with \(s, A, B\) on the source side is \(A \to t\) and \(B \to t\): \(4 + 6 = 10\). So the max flow is 10.</li>
+</ol>
+<p><b>Stretch.</b> After the push, \(s \to A\) and \(B \to t\) are full. The only pipe out of \(s\) with spare capacity is \(s \to B\), and from \(B\) the only way on is the full pipe \(B \to t\). So the method is stuck at 1. But \(s \to A \to t\) and \(s \to B \to t\) together carry 2, and the cut around \(s\) is 2, so 2 is the max. The fix: a path may also cancel flow in a pipe by going against it. Here \(s \to B\), back along \(A \to B\) (cancelling its 1), then \(A \to t\). With that move allowed, being stuck always gives a min cut.</p>
+</section>
+
+<div class="sheet-nav"><a href="b14-cayley.html">← Previous</a><a href="b16-mixed-strategies.html">Next: Where should the penalty taker aim? →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

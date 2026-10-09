@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why bubbles are round · Infinity Club</title>
+<meta name="description" content="Of all shapes with the same perimeter, the circle encloses the most area. Compare regular polygons, follow Steiner's improving moves, and see exactly what that argument does and does not prove.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 11</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 11 · Around the corner · 19</div>
+  <h1>Why bubbles are round</h1>
+  <p class="teaser">Of all shapes with the same perimeter, the circle encloses the most. Compare regular polygons, then follow an argument that any dent or lopsidedness can be improved.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A soap film shrinks as far as it can, so a bubble wraps its air in the least possible surface: a sphere. The flat version: a loop of string 12 units long should enclose as much area as possible. Try regular polygons. More sides, more area, and the circle is the ceiling.</p>
+<table>
+<thead><tr><th>sides</th><th>3</th><th>4</th><th>6</th><th>12</th><th>100</th><th>circle</th></tr></thead>
+<tbody><tr><td>area</td><td>6.928</td><td>9</td><td>10.392</td><td>11.196</td><td>11.455</td><td>11.459</td></tr></tbody>
+</table>
+<p class="callout"><b>Isoperimetric theorem.</b> Of all shapes with the same perimeter, the circle encloses the most area.</p>
+<figure style="float:right;width:260px;max-width:48%;margin:0 0 .3em 1em"><svg viewBox="10 22 450 158" width="260" height="91" role="img" aria-label="Left: a rounded shape with a dent; reflecting the dent across the straight line joining its ends pushes it outwards and adds area. Right: a shape cut by a line that halves its perimeter, a pointed half above and a round half below; the mirror image of the round half is drawn dashed above the line" font-family="Nunito, sans-serif" font-size="13" font-weight="700">
+<path d="M 161.3 143.7 A 62 62 0 0 1 161.3 56.3 A 62 62 0 0 1 161.3 143.7 Z" fill="#fde8c4"/>
+<path d="M 161.3 56.3 A 80 68 0 1 0 161.3 143.7 A 62 62 0 0 1 161.3 56.3 Z" fill="#dcdcf5" stroke="#3f44c9" stroke-width="2"/>
+<path d="M 161.3 56.3 A 62 62 0 0 1 161.3 143.7" fill="none" stroke="#f5a524" stroke-width="2.5" stroke-dasharray="6 3"/>
+<line x1="161.3" y1="42.3" x2="161.3" y2="157.7" stroke="#999" stroke-width="1.2" stroke-dasharray="4 3"/>
+<circle cx="161.3" cy="56.3" r="3" fill="#000"/>
+<circle cx="161.3" cy="143.7" r="3" fill="#000"/>
+<path d="M 283 104 A 62 62 0 0 0 407 104 L 345 28.9 Z" fill="#dcdcf5" stroke="#3f44c9" stroke-width="2"/>
+<path d="M 283 104 A 62 62 0 0 1 407 104" fill="#fde8c4" fill-opacity="0.6" stroke="#f5a524" stroke-width="2.5" stroke-dasharray="6 3"/>
+<path d="M 283 104 L 345 28.9 L 407 104" fill="none" stroke="#3f44c9" stroke-width="2"/>
+<line x1="255.0" y1="104.0" x2="435.0" y2="104.0" stroke="#999" stroke-width="1.2" stroke-dasharray="4 3"/>
+<circle cx="283.0" cy="104.0" r="3" fill="#000"/>
+<circle cx="407.0" cy="104.0" r="3" fill="#000"/>
+</svg><figcaption>Left: flipping the dent adds the orange area. Right: the dashed line halves the perimeter. The round half holds more, so mirror it.</figcaption></figure>
+<p>Jakob Steiner found moves that improve any shape that is not a circle. Two of them:</p>
+<ul>
+<li><b>A dent.</b> Join its ends with a straight line and flip the dent across it. Same perimeter, more area.</li>
+<li><b>Lopsided.</b> Cut the shape with a line that halves its perimeter. Keep the half with more area and replace the other by its mirror image. Same perimeter, more area.</li>
+</ul>
+<p style="clear:both">A third move (the stretch) handles the rest. So no shape except the circle can be best. But be careful. This does not by itself prove that a best shape exists. Perhaps shapes can be improved for ever and none is best. That gap was closed later, by other methods.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: where the table comes from</h2>
+<p>Cut a regular polygon with \(n\) sides and perimeter 12 into \(n\) triangles from its centre. Each has base \(\tfrac{12}{n}\) and height \(h\), the distance from the centre to the middle of a side. The total area is</p>
+<p>\[n \times \tfrac12 \times \tfrac{12}{n} \times h = 6h.\]</p>
+<p>That is half the perimeter times \(h\). Halve one triangle: you get a right triangle with angle \(\tfrac{180°}{n}\) at the centre and opposite side \(\tfrac{6}{n}\). So \(h = \dfrac{6/n}{\tan(180°/n)}\).</p>
+<p>Hexagon: \(h = \dfrac{1}{\tan 30°} = \sqrt3\), area \(6\sqrt3 \approx 10.392\). Circle: \(h\) is the radius \(\tfrac{12}{2\pi}\), area \(\tfrac{36}{\pi} \approx 11.459\).</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>A rectangle with perimeter 12 has sides \(x\) and \(6 - x\). Write its area as 9 minus a square. Which rectangle is best, and what is its area?<div class="space short"></div></li>
+<li>Find \(h\) and the area for a regular octagon with perimeter 12, to three decimal places. What percentage of the circle's area is that?<div class="space short"></div></li>
+<li>Turn the question round. A square and a circle each have area 100. Find both perimeters. Which shape needs less fence?<div class="space short"></div></li>
+<li>"Every whole number bigger than 1 is smaller than its own square, so it can be improved. So no whole number except 1 can be the largest. Therefore 1 is the largest whole number." Which step fails? What does this say about Steiner's argument?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: Steiner's third move</h2>
+<p>Half a shape sits on a line, with ends \(A\) and \(B\). Pick \(C\) on its curve and put a hinge there. The two caps outside triangle \(ACB\) stay rigid. The triangle has area \(\tfrac12 \cdot CA \cdot CB \cdot \sin C\). Which angle \(C\) is best? Which curve has that angle at every point?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(x(6 - x) = 6x - x^2 = 9 - (x - 3)^2\). The square is never negative, so the area is at most 9, when \(x = 3\). The best rectangle is the 3 by 3 square.</li>
+<li>\(h = \dfrac{6/8}{\tan 22.5°} = \dfrac{0.75}{0.41421} \approx 1.811\), and the area is \(6h \approx 10.864\). The circle has 11.459, so the octagon reaches about 94.8% of it.</li>
+<li>The square has side 10 and perimeter 40. The circle has \(\pi r^2 = 100\), so \(r = \sqrt{100/\pi} \approx 5.642\) and perimeter \(2\pi r \approx 35.45\). The circle needs less fence. Most area for a given perimeter and least perimeter for a given area are the same fact.</li>
+<li>The first two sentences are true. The last step fails: it quietly assumes that a largest whole number exists. All the argument shows is that <em>if</em> there is a largest, it is 1, and there is none. Steiner's moves show in the same way that if a best shape exists, it must be the circle. That a best shape exists needs a separate proof.</li>
+</ol>
+<p><b>Stretch.</b> Opening or closing the hinge keeps the lengths \(CA\) and \(CB\), the two caps, and the length of the curve. Only \(\sin C\) changes, and it is largest when \(C = 90°\). So a best half-shape has a right angle at every point \(C\) of its curve. By the converse of Thales' theorem, each such \(C\) lies on the circle with diameter \(AB\). The half is a semicircle, and with its mirror image the whole shape is a circle.</p>
+</section>
+
+<div class="sheet-nav"><a href="b18-complex-geometry.html">← Previous</a><a href="b20-newton.html">Next: Newton's method →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

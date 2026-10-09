@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Geometry by multiplication · Infinity Club</title>
+<meta name="description" content="Multiplying by a complex number rotates and scales. Rotate about any point with one formula, test for an equilateral triangle with a cube root of 1, and prove Napoleon's theorem in three lines.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 11</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 11 · Around the corner · 18</div>
+  <h1>Geometry by multiplication</h1>
+  <p class="teaser">Multiplying by a complex number rotates and scales. Use it to rotate about any point, and to prove that equilateral triangles built on a triangle's sides have centres forming another.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Treat each point of the plane as a complex number. In <a href="../../grade-10/sheets/b7-complex-rotations.html">Multiplying is rotating</a> you saw that multiplying by a number \(w\) of length 1 turns every point about 0. To turn about some other point \(c\): slide \(c\) to 0, turn, slide back.</p>
+<p class="callout"><b>Rotation about \(c\).</b> \(z \mapsto c + w(z - c)\). The arrow \(\mapsto\) means "is sent to".</p>
+<p>Use \(w = i\) for a quarter turn anticlockwise. For a third of a turn (120°) use \(\omega = -\tfrac12 + \tfrac{\sqrt3}{2}\,i\). Three thirds make a full turn, so \(\omega^3 = 1\). And \(1, \omega, \omega^2\) are three arrows of length 1 set 120° apart, which cancel: \(1 + \omega + \omega^2 = 0\).</p>
+<p><b>Equilateral test.</b> A triangle with corners \(p, q, r\), named anticlockwise, is equilateral exactly when \(p + \omega q + \omega^2 r = 0\).</p>
+<p>Why: write the \(p\) as \((-\omega - \omega^2)p\) and divide by \(\omega\). The equation becomes \(q - p = -\omega\,(r - p)\). Multiplying by \(-\omega\) is a turn of 60° clockwise. So side \(pq\) is side \(pr\) turned through 60°: two equal sides with 60° between them.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: Napoleon's theorem</h2>
+<figure style="float:right;width:170px;margin:0 0 .3em .8em"><svg viewBox="0 0 217 201" width="170" height="157" role="img" aria-label="A right triangle a, b, c with an equilateral triangle built outwards on each side. The centres p, q, r of the three equilateral triangles are joined, and form an equilateral triangle" font-family="Nunito, sans-serif" font-size="16" font-weight="700">
+<polygon points="88.6,120.2 167.8,120.2 128.2,188.8" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.2"/>
+<polygon points="167.8,120.2 88.6,41.0 196.8,12.1" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.2"/>
+<polygon points="88.6,41.0 88.6,120.2 20.1,80.6" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.2"/>
+<polygon points="88.6,120.2 167.8,120.2 88.6,41.0" fill="#fff" stroke="#000" stroke-width="2"/>
+<polygon points="128.2,143.1 151.1,57.8 65.8,80.6" fill="#fde8c4" fill-opacity="0.75" stroke="#f5a524" stroke-width="2.5"/>
+<circle cx="88.6" cy="120.2" r="3" fill="#000"/>
+<circle cx="167.8" cy="120.2" r="3" fill="#000"/>
+<circle cx="88.6" cy="41.0" r="3" fill="#000"/>
+<circle cx="128.2" cy="143.1" r="3.5" fill="#f5a524"/>
+<circle cx="151.1" cy="57.8" r="3.5" fill="#f5a524"/>
+<circle cx="65.8" cy="80.6" r="3.5" fill="#f5a524"/>
+<text x="75.6" y="134.2">a</text>
+<text x="171.8" y="135.2">b</text>
+<text x="84.6" y="34.0">c</text>
+<text x="125.2" y="160.1">p</text>
+<text x="158.1" y="60.8">q</text>
+<text x="51.8" y="83.6">r</text>
+</svg><figcaption>\(a = 0\), \(b = 6\), \(c = 6i\). Each side of \(pqr\) is about 6.69.</figcaption></figure>
+<p>Take any triangle \(a, b, c\), named anticlockwise. On each side build an equilateral triangle pointing outwards. Call their centres \(p, q, r\). Claim: \(pqr\) is equilateral.</p>
+<p>A third of a turn about \(p\) carries \(b\) to \(a\). So \(a = p + \omega(b - p)\), which rearranges to \((1 - \omega)p = a - \omega b\). The other sides give \((1 - \omega)q = b - \omega c\) and \((1 - \omega)r = c - \omega a\). Feed the test:</p>
+<p style="clear:both">\[(1 - \omega)(p + \omega q + \omega^2 r) = a - \omega b + \omega b - \omega^2 c + \omega^2 c - \omega^3 a = a - \omega^3 a = 0.\]</p>
+<p>Everything cancels because \(\omega^3 = 1\). Since \(1 - \omega \neq 0\), the test passes. \(\square\)</p>
+<p class="small">Drag \(z\) and watch \(iz\), its quarter turn about 0: <a href="../../demos/complex.html">infinityclub.net/demos/complex.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Rotate \(z = 5 + 2i\) a quarter turn anticlockwise about \(c = 1 + i\). (Use \(w = i\).)<div class="space short"></div></li>
+<li>A square has corners \(a, b, c, d\) in anticlockwise order, with \(a = 1 + i\) and \(b = 4 + 2i\). Find \(c\) and \(d\). Hint: side \(bc\) is side \(ab\) turned a quarter turn.<div class="space short"></div></li>
+<li>Multiply out \(\omega^2\) and check that \(1 + \omega + \omega^2 = 0\). Then use the equilateral test on \(p = 0\), \(q = 2\), \(r = 1 + \sqrt3\,i\).<div class="space short"></div></li>
+<li>A treasure map says: walk from the gallows to the oak, turn right 90°, walk the same distance again and drive in a stake. Go back to the gallows, walk to the pine, turn left 90°, walk the same distance again and drive in a second stake. Dig halfway between the stakes. The gallows has rotted away. Put the oak at 0, the pine at 10 and the gallows at an unknown \(g\). Where is the treasure?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: a shared centre</h2>
+<p>The centroid of a triangle is the average of its three corners. Add the three equations for \(p\), \(q\) and \(r\) in the proof of Napoleon's theorem. What does the sum tell you about the centroids of \(abc\) and \(pqr\)?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(c + i(z - c) = 1 + i + i(4 + i) = 1 + i + 4i - 1 = 5i\).</li>
+<li>\(b - a = 3 + i\), and a quarter turn of that is \(i(3 + i) = -1 + 3i\). So \(c = b + (-1 + 3i) = 3 + 5i\) and \(d = a + (-1 + 3i) = 4i\).</li>
+<li>\(\omega^2 = \tfrac14 - \tfrac34 - 2 \cdot \tfrac12 \cdot \tfrac{\sqrt3}{2}\,i = -\tfrac12 - \tfrac{\sqrt3}{2}\,i\). Adding, \(1 + \omega + \omega^2 = 1 - \tfrac12 - \tfrac12 + 0i = 0\). Test: \(\omega q = -1 + \sqrt3\,i\) and \(\omega^2 r = \left(-\tfrac12 - \tfrac{\sqrt3}{2}i\right)(1 + \sqrt3\,i) = 1 - \sqrt3\,i\). So \(p + \omega q + \omega^2 r = 0 - 1 + \sqrt3\,i + 1 - \sqrt3\,i = 0\). Equilateral, with side 2.</li>
+<li>Turning right multiplies your direction by \(-i\), turning left by \(i\). First stake: \(0 + (-i)(0 - g) = ig\). Second stake: \(10 + i(10 - g) = 10 + 10i - ig\). Halfway: \(\tfrac12(ig + 10 + 10i - ig) = 5 + 5i\). The \(g\) cancels, so the gallows is not needed. Stand at the middle of the line from oak to pine, face the pine, and the treasure is 5 units to your left.</li>
+</ol>
+<p><b>Stretch.</b> Adding gives \((1 - \omega)(p + q + r) = (a + b + c) - \omega(a + b + c) = (1 - \omega)(a + b + c)\). Divide by \(1 - \omega\): \(p + q + r = a + b + c\). Divide by 3 and the two centroids are the same point. In the figure \(p = 3 - \sqrt3\,i\), \(q = (3 + \sqrt3)(1 + i)\) and \(r = -\sqrt3 + 3i\), each side of \(pqr\) is \(\sqrt{24 + 12\sqrt3} \approx 6.69\), and both centroids are \(2 + 2i\).</p>
+</section>
+
+<div class="sheet-nav"><a href="b17-power-of-a-point.html">← Previous</a><a href="b19-isoperimetric.html">Next: Why bubbles are round →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

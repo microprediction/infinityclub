@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>sin(A + B), from a picture · Infinity Club</title>
+<meta name="description" content="sin(A + B) is not sin A + sin B. One diagram of two stacked right triangles gives the true formula, and the double-angle formulas drop out.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 11</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 11 · Sharpen · 3</div>
+  <h1>sin(A + B), from a picture</h1>
+  <p class="teaser">It is not \(\sin A + \sin B\). One diagram of two stacked right triangles gives the true formula, and the double-angle formulas drop out.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Sine does not split over a sum: \(\sin 30^\circ + \sin 60^\circ \approx 1.37\), yet \(\sin 90^\circ = 1\). The true rule comes from one picture.</p>
+<figure><svg viewBox="0 0 290 196" width="290" height="196" role="img" aria-label="A rectangle with corner O at the bottom left. A right triangle with angle A at O lies along the bottom, with hypotenuse OR of length cos B. A second right triangle with angle B at O is stacked on that hypotenuse; its own hypotenuse OQ has length 1 and Q lies on the top edge. The right side of the rectangle is split at R into sin A cos B below and cos A sin B above. The top edge is split at Q into cos(A + B) and sin A sin B." font-family="Nunito, sans-serif" font-size="12">
+<polygon points="70,172 187.1,172 187.1,104.4" fill="#fde8c4"/>
+<polygon points="187.1,104.4 187.1,22.5 139.7,22.5" fill="#fde8c4"/>
+<polygon points="70,172 187.1,104.4 139.7,22.5" fill="#dcdcf5"/>
+<rect x="70" y="22.5" width="117.1" height="149.5" fill="none" stroke="#000" stroke-width="1.5"/>
+<g stroke="#3f44c9" stroke-width="2" fill="none"><line x1="70" y1="172" x2="187.1" y2="104.4"/><line x1="187.1" y1="104.4" x2="139.7" y2="22.5"/><line x1="70" y1="172" x2="139.7" y2="22.5"/></g>
+<g stroke="#000" stroke-width="1" fill="none"><polyline points="180.2,108.4 176.2,101.5 183.1,97.5"/><polyline points="179.1,172 179.1,164 187.1,164"/><polyline points="179.1,22.5 179.1,30.5 187.1,30.5"/><polyline points="70,30.5 78,30.5 78,22.5"/></g>
+<g stroke="#000" stroke-width="1" fill="none"><path d="M 100 172 A 30 30 0 0 0 96.0 157.0"/><path d="M 108.1 150.0 A 44 44 0 0 0 88.6 132.1"/><path d="M 187.1 82.4 A 22 22 0 0 0 176.1 85.4"/></g>
+<circle cx="139.7" cy="22.5" r="3" fill="#3f44c9"/><circle cx="187.1" cy="104.4" r="3" fill="#3f44c9"/>
+<text x="62" y="186" text-anchor="end">O</text><text x="139.7" y="14" text-anchor="middle" fill="#3f44c9">Q</text><text x="193" y="108" fill="#3f44c9">R</text>
+<text x="106" y="168" font-size="12">A</text><text x="104" y="141" font-size="12">B</text><text x="176" y="76" font-size="12">A</text>
+<text x="98" y="92" text-anchor="end" fill="#3f44c9">1</text>
+<text x="136" y="150" fill="#3f44c9" transform="rotate(-30 136 150)" text-anchor="middle">cos B</text>
+<text x="154" y="70" fill="#3f44c9" transform="rotate(60 154 70)" text-anchor="middle">sin B</text>
+<text x="128.5" y="188" text-anchor="middle">cos A cos B</text>
+<text x="193" y="146">sin A cos B</text><text x="193" y="60">cos A sin B</text>
+<text x="131" y="14" text-anchor="end">cos(A + B)</text><text x="150" y="14">sin A sin B</text>
+<text x="64" y="100" text-anchor="end">sin(A + B)</text>
+</svg><figcaption>Two right triangles stacked, inside a rectangle. Opposite sides of the rectangle are equal.</figcaption></figure>
+<p>The blue triangle has hypotenuse \(OQ = 1\) and angle \(B\) at \(O\), so \(OR = \cos B\) and \(RQ = \sin B\). It is tilted up by an angle \(A\) and boxed in.</p>
+<p>The bottom triangle has hypotenuse \(\cos B\) and angle \(A\), so its sides are \(\cos A\cos B\) and \(\sin A\cos B\).</p>
+<p>The top-right triangle has hypotenuse \(\sin B\). Its angle at \(R\) is also \(A\): the angles along the straight side at \(R\) are \(90^\circ - A\), a right angle, and what is left, and the three make \(180^\circ\). Its sides are \(\cos A\sin B\) and \(\sin A\sin B\).</p>
+<p>\(OQ\) makes the angle \(A + B\) with the base, so \(Q\) is \(\sin(A + B)\) up and \(\cos(A + B)\) across. Compare opposite sides of the rectangle:</p>
+<p class="callout">\(\sin(A + B) = \sin A\cos B + \cos A\sin B\)<br>\(\cos(A + B) = \cos A\cos B - \sin A\sin B\)</p>
+<p>Put \(B = A\) for the <b>double-angle formulas</b>: \(\sin 2A = 2\sin A\cos A\) and \(\cos 2A = \cos^2 A - \sin^2 A\).</p>
+</section>
+
+<section class="example">
+<h2>Watch one: \(\sin 75^\circ\) exactly</h2>
+<p>75° is not one of the <a href="../../grade-10/sheets/a11-trig.html">exact-value angles</a>, but it is \(45^\circ + 30^\circ\), and both of those are.</p>
+<p>\[\sin 75^\circ = \sin 45^\circ\cos 30^\circ + \cos 45^\circ\sin 30^\circ = \frac{\sqrt2}{2}\cdot\frac{\sqrt3}{2} + \frac{\sqrt2}{2}\cdot\frac12 = \frac{\sqrt6 + \sqrt2}{4}.\]</p>
+<p>That is about 0.966, and a calculator agrees. The tempting wrong answer, \(\sin 45^\circ + \sin 30^\circ \approx 1.21\), is bigger than 1. No sine can be.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Use the formula to work out \(\sin(30^\circ + 60^\circ)\) from exact values. Do you get \(\sin 90^\circ\)?<div class="space short"></div></li>
+<li>Find \(\cos 75^\circ\) exactly.<div class="space short"></div></li>
+<li>\(A\) is an acute angle with \(\sin A = \tfrac35\). Find \(\cos A\), then \(\sin 2A\) and \(\cos 2A\). Is \(2A\) more or less than \(90^\circ\)?<div class="space short"></div></li>
+<li>The formulas hold for every angle, including negative ones. Replace \(B\) by \(-B\), using \(\cos(-B) = \cos B\) and \(\sin(-B) = -\sin B\), to get a formula for \(\sin(A - B)\). Use it to find \(\sin 15^\circ\) exactly. Which earlier answer does it match, and why?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: triple angle</h2>
+<p>Write \(3A = 2A + A\) and use the formulas to express \(\sin 3A\) using only \(\sin A\). You will need \(\cos^2 A = 1 - \sin^2 A\). Check your answer at \(A = 30^\circ\).</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(\sin 30^\circ\cos 60^\circ + \cos 30^\circ\sin 60^\circ = \tfrac12\cdot\tfrac12 + \tfrac{\sqrt3}{2}\cdot\tfrac{\sqrt3}{2} = \tfrac14 + \tfrac34 = 1\). Yes: \(\sin 90^\circ = 1\).</li>
+<li>\(\cos 75^\circ = \cos 45^\circ\cos 30^\circ - \sin 45^\circ\sin 30^\circ = \dfrac{\sqrt6 - \sqrt2}{4}\), about 0.259.</li>
+<li>\(\cos A = \tfrac45\) (a 3-4-5 triangle). \(\sin 2A = 2\cdot\tfrac35\cdot\tfrac45 = \tfrac{24}{25}\). \(\cos 2A = \tfrac{16}{25} - \tfrac{9}{25} = \tfrac{7}{25}\). The cosine is positive, so \(2A\) is less than \(90^\circ\) (it is about \(73.7^\circ\)).</li>
+<li>\(\sin(A - B) = \sin A\cos B - \cos A\sin B\). Then \(\sin 15^\circ = \sin(45^\circ - 30^\circ) = \tfrac{\sqrt2}{2}\cdot\tfrac{\sqrt3}{2} - \tfrac{\sqrt2}{2}\cdot\tfrac12 = \dfrac{\sqrt6 - \sqrt2}{4}\). It matches \(\cos 75^\circ\): 15° and 75° are the two acute angles of one right triangle, so the sine of one is the cosine of the other.</li>
+</ol>
+<p><b>Stretch.</b> \(\sin 3A = \sin 2A\cos A + \cos 2A\sin A = 2\sin A\cos^2 A + (\cos^2 A - \sin^2 A)\sin A = 3\sin A\cos^2 A - \sin^3 A\). Replace \(\cos^2 A\) by \(1 - \sin^2 A\): \(\sin 3A = 3\sin A - 4\sin^3 A\). At \(A = 30^\circ\): \(3\cdot\tfrac12 - 4\cdot\tfrac18 = 1 = \sin 90^\circ\).</p>
+</section>
+
+<div class="sheet-nav"><a href="a2-sine-waves.html">← Previous</a><a href="a4-sine-and-cosine-rules.html">Next: Triangles without a right angle →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

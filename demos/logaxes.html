@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Log Axes · Infinity Club</title>
+<meta name="description" content="Pick a data set and switch each axis between linear and log. When the points fall on a straight line, the slope tells you the growth rate or the power.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+#plot { width: 100%; }
+.controls select { font: inherit; padding: .25em .4em; border: 1px solid var(--rule); border-radius: 6px; background: #fff; max-width: calc(100% - 3.2em); min-width: 0; }
+.controls label { max-width: 100%; }
+.controls button.on { background: var(--warm); color: var(--ink); }
+#info { font-size: .95rem; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Log axes</h1>
+<p class="explain">Pick a data set, then press the two buttons to switch each axis between an ordinary (linear) scale and a log scale. Your job is to find the pair of axes that makes the points fall on a straight line. When they do, a line is fitted and its slope is explained. Before you press anything, guess: which axes will straighten this one?</p>
+<div class="demo-panel">
+  <div class="controls">
+    <label>Data
+      <select id="data">
+        <option value="bacteria">Bacteria in a dish</option>
+        <option value="planets">Planets: distance and year length</option>
+        <option value="tank">Filling a tank</option>
+        <option value="chips">Transistors on a chip</option>
+      </select>
+    </label>
+  </div>
+  <div class="controls">
+    <button id="bx">x-axis: linear</button>
+    <button id="by">y-axis: linear</button>
+  </div>
+  <canvas id="plot" width="900" height="560"></canvas>
+  <div class="readout" id="info"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>On a log axis, equal steps mean equal <em>multiples</em>: 1, 10, 100, 1000 are evenly spaced. Plotting on a log axis is the same as plotting the logarithm of the number.</p>
+<p><b>Log on y only.</b> If y = A × gˣ (multiply by g at every step), then log y = log A + x log g. That is a straight line in x, with slope log g. So exponential growth is straight on a log y-axis, and the slope gives the growth factor: g = 10 to the power of the slope.</p>
+<p><b>Log on both.</b> If y = A × xᵖ (a power law), then log y = log A + p log x. That is a straight line in log x, and the slope is the power p itself.</p>
+<p><b>Neither.</b> If the points are already straight on ordinary axes, the rule is y = mx + c and nothing needs a logarithm.</p>
+<p>The number r² measures how close the points are to a line: 1 means exactly on it. Here the line is drawn once r² reaches 0.99. A warning: over a short range almost any curve looks straight, so data that covers many multiples is what makes a log plot convincing.</p>
+<p>Sheets: <a href="../grade-11/sheets/a7-log-scales.html">Straight lines hiding in curved data</a>, <a href="../grade-11/sheets/c4-moores-law.html">Fifty years of doubling</a> and <a href="../grade-11/sheets/c8-power-laws.html">The few that are huge</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  function log10(v) { return Math.log(v) / Math.LN10; }
+  function sig(v, n) { n = n || 3; if (v === 0) return "0"; var s = Number(v.toPrecision(n)).toString(); return s.replace("-", "−"); }
+  var NOISE = [1.04, 0.95, 1.07, 0.98, 0.93, 1.05, 1.02, 0.96, 1.06, 0.97, 1.03, 0.94];
+  var DATA = {
+    bacteria: {
+      xName: "hours", yName: "bacteria", xUnit: "hour",
+      pts: NOISE.map(function (e, i) { return [i + 1, Math.round(40 * Math.pow(1.4, i + 1) * e)]; }),
+      about: "A made-up count of bacteria, taken every hour."
+    },
+    planets: {
+      xName: "distance from the Sun (AU)", yName: "year length (Earth years)", xUnit: "AU",
+      pts: [[0.387, 0.241], [0.723, 0.615], [1, 1], [1.524, 1.881], [5.203, 11.86], [9.537, 29.45], [19.19, 84.02], [30.07, 164.8]],
+      about: "The eight planets, Mercury to Neptune. 1 AU is the Earth's distance from the Sun."
+    },
+    tank: {
+      xName: "minutes", yName: "litres in the tank", xUnit: "minute",
+      pts: [[1, 44], [2, 45], [4, 53], [6, 57], [10, 71], [15, 84], [20, 101], [25, 114], [30, 131], [35, 144], [40, 161]],
+      about: "A made-up tank that starts with about 40 litres and fills at a steady rate."
+    },
+    chips: {
+      xName: "years since 1970", yName: "transistors", xUnit: "year",
+      pts: [[1, 2300], [4, 4500], [8, 29000], [12, 134000], [15, 275000], [19, 1200000], [23, 3100000], [27, 7500000], [29, 9500000], [30, 42000000], [36, 291000000], [38, 731000000], [43, 1000000000], [50, 16000000000]],
+      about: "Approximate transistor counts of well-known processors, from the Intel 4004 (1971) to the Apple M1 (2020)."
+    }
+  };
+  function transform(pts, lx, ly) { return pts.map(function (p) { return [lx ? log10(p[0]) : p[0], ly ? log10(p[1]) : p[1]]; }); }
+  // least-squares line v = m·u + c through the points [u, v], with r²
+  function fitLine(uv) {
+    var n = uv.length, mu = 0, mv = 0, suu = 0, suv = 0, svv = 0;
+    uv.forEach(function (p) { mu += p[0] / n; mv += p[1] / n; });
+    uv.forEach(function (p) { suu += (p[0] - mu) * (p[0] - mu); suv += (p[0] - mu) * (p[1] - mv); svv += (p[1] - mv) * (p[1] - mv); });
+    var m = suv / suu;
+    return { m: m, c: mv - m * mu, r2: svv === 0 ? 1 : suv * suv / (suu * svv) };
+  }
+  var STRAIGHT = 0.99;
+  function fitData(pts, lx, ly) { var f = fitLine(transform(pts, lx, ly)); f.straight = f.r2 >= STRAIGHT; return f; }
+  // what the fitted slope means on each kind of axes
+  function interpret(lx, ly, f, ds) {
+    var L = [], m = f.m;
+    if (!lx && !ly) {
+      L.push("Straight on ordinary axes: y = " + sig(m) + "x " + (f.c < 0 ? "− " : "+ ") + sig(Math.abs(f.c)));
+      L.push("Slope " + sig(m) + ": each extra " + ds.xUnit + " ADDS " + sig(m) + " to y. Steady (linear) change.");
+    } else if (!lx && ly) {
+      var g = Math.pow(10, m);
+      L.push("Straight with log on y only: log y = " + sig(m) + "x " + (f.c < 0 ? "− " : "+ ") + sig(Math.abs(f.c)));
+      L.push("So y ≈ " + sig(Math.pow(10, f.c)) + " × " + sig(g) + "^x. Exponential.");
+      L.push("Slope " + sig(m) + ": each extra " + ds.xUnit + " MULTIPLIES y by 10^" + sig(m) + " = " + sig(g) + ".");
+      if (m > 0) L.push("Doubling time = log 2 ÷ slope = " + sig(log10(2) / m) + " " + ds.xUnit + "s.");
+      else if (m < 0) L.push("Halving time = log 2 ÷ |slope| = " + sig(log10(2) / -m) + " " + ds.xUnit + "s.");
+    } else if (lx && ly) {
+      L.push("Straight with log on both: log y = " + sig(m) + " log x " + (f.c < 0 ? "− " : "+ ") + sig(Math.abs(f.c)));
+      L.push("So y ≈ " + sig(Math.pow(10, f.c)) + " × x^" + sig(m) + ". A power law.");
+      L.push("Slope " + sig(m) + " IS the power: doubling x multiplies y by 2^" + sig(m) + " = " + sig(Math.pow(2, m)) + ".");
+    } else {
+      L.push("Straight with log on x only: y = " + sig(m) + " log x " + (f.c < 0 ? "− " : "+ ") + sig(Math.abs(f.c)));
+      L.push("Slope " + sig(m) + ": each time x is multiplied by 10, y goes up by " + sig(m) + ".");
+    }
+    return L;
+  }
+  // round-number tick positions for a linear axis
+  function linTicks(lo, hi, want) {
+    var raw = (hi - lo) / (want || 5), p = Math.pow(10, Math.floor(log10(raw))), r = raw / p;
+    var step = (r < 1.5 ? 1 : r < 3.5 ? 2 : r < 7.5 ? 5 : 10) * p, out = [];
+    for (var k = Math.ceil(lo / step - 1e-9); k * step <= hi + step * 1e-9; k++) out.push(k * step + 0);
+    return out;
+  }
+  // tick values (not logs) for a log axis running from 10^lo to 10^hi
+  function logTicks(lo, hi) {
+    var out = [], mult = hi - lo < 2.3 ? [1, 2, 5] : [1], skip = Math.max(1, Math.ceil((hi - lo) / 7));
+    for (var k = Math.floor(lo); k <= Math.ceil(hi); k++) {
+      if (mult.length === 1 && ((k % skip) + skip) % skip !== 0) continue;
+      mult.forEach(function (mm) { var v = mm * Math.pow(10, k), lv = log10(v); if (lv >= lo - 1e-9 && lv <= hi + 1e-9) out.push(v); });
+    }
+    return out;
+  }
+  var SUP = "⁰¹²³⁴⁵⁶⁷⁸⁹";
+  function powLabel(v) { // 100000 -> "10⁵"
+    var k = Math.round(log10(v));
+    if (Math.abs(log10(v) - k) > 1e-9 || (k >= -2 && k <= 3)) return compact(v);
+    return "10" + (k < 0 ? "⁻" : "") + String(Math.abs(k)).split("").map(function (ch) { return SUP[+ch]; }).join("");
+  }
+  function compact(v) {
+    var a = Math.abs(v);
+    if (a >= 1e9) return sig(v / 1e9, 3) + " bn";
+    if (a >= 1e6) return sig(v / 1e6, 3) + " M";
+    if (a >= 1e4) return sig(v / 1e3, 3) + "k";
+    return sig(v, 4);
+  }
+  /*ENDPURE*/
+
+  var canvas = document.getElementById("plot"), ctx = canvas.getContext("2d");
+  var info = document.getElementById("info"), dataSel = document.getElementById("data");
+  var bx = document.getElementById("bx"), by = document.getElementById("by");
+  var S = { lx: false, ly: false };
+  bx.addEventListener("click", function () { S.lx = !S.lx; draw(); });
+  by.addEventListener("click", function () { S.ly = !S.ly; draw(); });
+  dataSel.addEventListener("change", function () { S.lx = false; S.ly = false; draw(); });
+
+  function axis(vals, isLog, want) {
+    var lo = Math.min.apply(null, vals), hi = Math.max.apply(null, vals), pad = (hi - lo) * 0.07 || 1;
+    lo -= pad; hi += pad;
+    var ticks = isLog ? logTicks(lo, hi).map(function (v) { return { at: log10(v), text: powLabel(v) }; })
+      : linTicks(lo, hi, want).map(function (v) { return { at: v, text: compact(v) }; });
+    return { lo: lo, hi: hi, ticks: ticks };
+  }
+  function draw() {
+    var ds = DATA[dataSel.value], uv = transform(ds.pts, S.lx, S.ly), f = fitData(ds.pts, S.lx, S.ly);
+    bx.textContent = "x-axis: " + (S.lx ? "log" : "linear"); by.textContent = "y-axis: " + (S.ly ? "log" : "linear");
+    bx.className = S.lx ? "on" : ""; by.className = S.ly ? "on" : "";
+    var dpr = window.devicePixelRatio || 1, W = canvas.clientWidth || 900, H = Math.max(250, Math.round(W * 0.62));
+    canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, H);
+    var ML = 50, MR = 14, MT = 22, MB = 40;
+    var ax = axis(uv.map(function (p) { return p[0]; }), S.lx, W < 480 ? 4 : 7), ay = axis(uv.map(function (p) { return p[1]; }), S.ly, 5);
+    function X(u) { return ML + (u - ax.lo) / (ax.hi - ax.lo) * (W - ML - MR); }
+    function Y(v) { return H - MB - (v - ay.lo) / (ay.hi - ay.lo) * (H - MT - MB); }
+    ctx.font = "11px Nunito, sans-serif"; ctx.lineWidth = 1;
+    ax.ticks.forEach(function (t) {
+      ctx.strokeStyle = "#ece9e0"; ctx.beginPath(); ctx.moveTo(X(t.at), MT); ctx.lineTo(X(t.at), H - MB); ctx.stroke();
+      ctx.fillStyle = "#5d6079"; ctx.textAlign = "center"; ctx.fillText(t.text, X(t.at), H - MB + 14);
+    });
+    ay.ticks.forEach(function (t) {
+      ctx.strokeStyle = "#ece9e0"; ctx.beginPath(); ctx.moveTo(ML, Y(t.at)); ctx.lineTo(W - MR, Y(t.at)); ctx.stroke();
+      ctx.fillStyle = "#5d6079"; ctx.textAlign = "right"; ctx.fillText(t.text, ML - 5, Y(t.at) + 4);
+    });
+    ctx.strokeStyle = "#8a8ca8"; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(ML, MT); ctx.lineTo(ML, H - MB); ctx.lineTo(W - MR, H - MB); ctx.stroke();
+    ctx.fillStyle = "#1d1f3a"; ctx.font = "bold 12px Nunito, sans-serif"; ctx.textAlign = "center";
+    ctx.fillText(ds.xName + (S.lx ? "  (log scale)" : ""), ML + (W - ML - MR) / 2, H - 8);
+    ctx.textAlign = "left"; ctx.fillText(ds.yName + (S.ly ? "  (log scale)" : ""), 6, 14);
+    if (f.straight) {
+      ctx.save(); ctx.beginPath(); ctx.rect(ML, MT, W - ML - MR, H - MT - MB); ctx.clip();
+      ctx.strokeStyle = "#f5a524"; ctx.lineWidth = 3; ctx.beginPath();
+      ctx.moveTo(X(ax.lo), Y(f.m * ax.lo + f.c)); ctx.lineTo(X(ax.hi), Y(f.m * ax.hi + f.c)); ctx.stroke(); ctx.restore();
+    }
+    uv.forEach(function (p) {
+      ctx.fillStyle = "#3f44c9"; ctx.beginPath(); ctx.arc(X(p[0]), Y(p[1]), 5, 0, Math.PI * 2); ctx.fill();
+      ctx.strokeStyle = "#fff"; ctx.lineWidth = 1.5; ctx.stroke();
+    });
+    var lines = [ds.about, "r² = " + f.r2.toFixed(3) + (f.straight ? "   The points are straight on these axes." : "   Not straight on these axes. Try a different pair.")];
+    if (f.straight) lines = lines.concat(interpret(S.lx, S.ly, f, ds));
+    info.textContent = lines.join("\n");
+  }
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(draw, 120); });
+  draw();
+})();
+</script>
+</body>
+</html>

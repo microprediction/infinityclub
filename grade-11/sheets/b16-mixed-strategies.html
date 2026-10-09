@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Where should the penalty taker aim? · Infinity Club</title>
+<meta name="description" content="If you always shoot left the keeper always dives left. The best plan in a two-by-two zero-sum game is a fixed set of odds, found where two lines cross.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 11</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 11 · Around the corner · 16</div>
+  <h1>Where should the penalty taker aim?</h1>
+  <p class="teaser">If you always shoot left the keeper always dives left. The best plan is a fixed set of odds, found where two lines cross.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A penalty taker shoots left or right. The keeper must dive as the ball is struck, so she is choosing too. Suppose the chance of a goal is (invented numbers; left and right as the kicker sees them):</p>
+<table>
+<tr><th></th><th>Keeper dives left</th><th>Keeper dives right</th></tr>
+<tr><th>Kick left</th><td>50%</td><td>90%</td></tr>
+<tr><th>Kick right</th><td>80%</td><td>60%</td></tr>
+</table>
+<p>No single choice is safe. Always shoot left and she always dives left: 50%. Always right, and she dives right: 60%. So the kicker shoots left at random, with probability \(p\): a <b>mixed strategy</b>, as in matching pennies in <a href="../../grade-10/sheets/b20-game-theory.html">grade 10</a>.</p>
+<figure style="float:right;width:310px;max-width:50%;margin:0 0 .3em 1em"><svg viewBox="0 0 400 200" width="310" height="155" role="img" aria-label="Two straight lines plotted against p, the chance of shooting left. The line for a left dive falls from 80 to 50, the line for a right dive rises from 60 to 90. They cross at p equal to one third, at 70 percent, which is the highest point of the lower edge" font-family="Nunito, sans-serif" font-size="15">
+<line x1="52" y1="148.0" x2="292" y2="148.0" stroke="#ddd" stroke-width="1"/><text x="44" y="152.0" text-anchor="end" font-size="14">50%</text>
+<line x1="52" y1="120.0" x2="292" y2="120.0" stroke="#ddd" stroke-width="1"/><text x="44" y="124.0" text-anchor="end" font-size="14">60%</text>
+<line x1="52" y1="92.0" x2="292" y2="92.0" stroke="#ddd" stroke-width="1"/><text x="44" y="96.0" text-anchor="end" font-size="14">70%</text>
+<line x1="52" y1="64.0" x2="292" y2="64.0" stroke="#ddd" stroke-width="1"/><text x="44" y="68.0" text-anchor="end" font-size="14">80%</text>
+<line x1="52" y1="36.0" x2="292" y2="36.0" stroke="#ddd" stroke-width="1"/><text x="44" y="40.0" text-anchor="end" font-size="14">90%</text>
+<line x1="52" y1="176.0" x2="292" y2="176.0" stroke="#000" stroke-width="1.5"/><line x1="52" y1="176.0" x2="52" y2="22.0" stroke="#000" stroke-width="1.5"/><line x1="292" y1="176.0" x2="292" y2="22.0" stroke="#999" stroke-width="1"/>
+<line x1="52" y1="64.0" x2="292" y2="148.0" stroke="#3f44c9" stroke-width="1.8"/><line x1="52" y1="120.0" x2="292" y2="36.0" stroke="#3f44c9" stroke-width="1.8"/>
+<polyline points="52,120.0 132.0,92.0 292,148.0" fill="none" stroke="#f5a524" stroke-width="4" stroke-linejoin="round" opacity="0.85"/>
+<line x1="132.0" y1="92.0" x2="132.0" y2="176.0" stroke="#999" stroke-width="1.2" stroke-dasharray="4 3"/><line x1="132.0" y1="92.0" x2="132.0" y2="47.2" stroke="#999" stroke-width="1.2" stroke-dasharray="4 3"/><circle cx="132.0" cy="92.0" r="4.5" fill="#000"/>
+<text x="52" y="193.0" text-anchor="middle" font-size="14">0</text><text x="132.0" y="193.0" text-anchor="middle" font-size="14">⅓</text><text x="292" y="193.0" text-anchor="middle" font-size="14">1</text><text x="213" y="193.0" text-anchor="middle" font-size="14">p = chance of left</text>
+<text x="300" y="40.0" fill="#3f44c9">dive right</text><text x="300" y="152.0" fill="#3f44c9">dive left</text><text x="132.0" y="41.6" text-anchor="middle" font-weight="700">p = ⅓, 70%</text>
+</svg><figcaption>Goal chance against each dive. The keeper holds the kicker to the lower line (orange).</figcaption></figure>
+<p>If she dives left, the goal chance is \(50p + 80(1 - p) = 80 - 30p\). If she dives right, it is \(90p + 60(1 - p) = 60 + 30p\): two straight lines in \(p\). A keeper who knows \(p\) picks the lower one, so the kicker wants the lower line as high as possible. That is where the lines cross:</p>
+<p>\[80 - 30p = 60 + 30p, \qquad p = \tfrac13, \qquad \text{goal chance } 70\%.\]</p>
+<p class="callout">Shoot left one time in three, at random, and you score 70% whatever the keeper does. This <b>equalising mix</b> makes her choice not matter.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: the keeper's side</h2>
+<p>The keeper dives left with probability \(q\). Against a kick left the goal chance is \(50q + 90(1 - q) = 90 - 40q\). Against a kick right it is \(80q + 60(1 - q) = 60 + 20q\).</p>
+<p>The kicker picks the higher line, so she wants it as low as possible: the crossing again.</p>
+<p>\[90 - 40q = 60 + 20q, \qquad q = \tfrac12, \qquad \text{goal chance } 70\%.\]</p>
+<p>The same 70%, the <b>value</b> of the game. He can guarantee at least 70 and she can hold him to at most 70, so neither gains by changing plan alone: a Nash equilibrium. Von Neumann proved the two numbers agree in every <b>zero-sum</b> game, where one side's gain is the other's loss.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>The kicker ignores the advice and shoots left half the time. Find the goal chance against each dive. Which way does the keeper dive, and how much has the kicker given away?<div class="space short"></div></li>
+<li>A different kicker (numbers invented again): kick left scores 20% against a left dive and 80% against a right dive; kick right scores 90% and 50%. Find his \(p\), the keeper's \(q\), and the value.<div class="space"></div></li>
+<li>Back to the first table. The kicker trains until his left shot scores 60% against a left dive, not 50%. Find the new \(p\), \(q\) and value. The keeper is no better or worse than before. Why does her mix change?<div class="space"></div></li>
+<li>A third kicker: kick left scores 70% and 90%; kick right scores 50% and 60%. Write the two lines in \(p\). Where do they cross? What should each player do, and what is the value?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: one formula</h2>
+<p>Call the table \(a, b\) on the top row and \(c, d\) on the bottom. Assuming the lines cross between 0 and 1, show that \(p = \dfrac{d - c}{a - b - c + d}\) and that the value is \(\dfrac{ad - bc}{a - b - c + d}\). Check both on the first table.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Left dive: \(80 - 30 \times \tfrac12 = 65\%\). Right dive: \(60 + 30 \times \tfrac12 = 75\%\). The keeper dives left every time and the kicker scores 65%, giving away 5 points out of 70.</li>
+<li>Left dive: \(20p + 90(1 - p) = 90 - 70p\). Right dive: \(80p + 50(1 - p) = 50 + 30p\). Equal when \(p = 0.4\), value \(62\%\). Keeper: kick left \(20q + 80(1 - q) = 80 - 60q\), kick right \(90q + 50(1 - q) = 50 + 40q\). Equal when \(q = 0.3\), value \(62\%\) again.</li>
+<li>Left dive: \(60p + 80(1 - p) = 80 - 20p\). Right dive: \(60 + 30p\) as before. So \(p = 0.4\) and the value is \(72\%\). Keeper: \(60q + 90(1 - q) = 90 - 30q\) and \(60 + 20q\), so \(q = 0.6\). Her mix is chosen to make the <em>kicker's</em> two shots equally good, and his numbers changed. If she stayed at \(q = \tfrac12\), a kick left would score 75% and a kick right 70%, so he would shoot left every time.</li>
+<li>Left dive: \(70p + 50(1 - p) = 50 + 20p\). Right dive: \(90p + 60(1 - p) = 60 + 30p\). They cross at \(p = -1\), which is not a probability. Between 0 and 1 the left-dive line is always the lower one, and it is highest at \(p = 1\). So the kicker always shoots left, the keeper always dives left, and the value is 70%. Kicking left beats kicking right against either dive (70 against 50, 90 against 60), so there is nothing to mix.</li>
+</ol>
+<p><b>Stretch.</b> Left dive: \(ap + c(1 - p)\). Right dive: \(bp + d(1 - p)\). Setting them equal, \(p(a - c - b + d) = d - c\), so \(p = \dfrac{d - c}{a - b - c + d}\). Then \(1 - p = \dfrac{a - b}{a - b - c + d}\), and the value is \(ap + c(1 - p) = \dfrac{a(d - c) + c(a - b)}{a - b - c + d} = \dfrac{ad - bc}{a - b - c + d}\). First table: \(p = \dfrac{60 - 80}{50 - 90 - 80 + 60} = \dfrac{-20}{-60} = \tfrac13\), and the value is \(\dfrac{3000 - 7200}{-60} = 70\).</p>
+</section>
+
+<div class="sheet-nav"><a href="b15-max-flow.html">← Previous</a><a href="b17-power-of-a-point.html">Next: The power of a point →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

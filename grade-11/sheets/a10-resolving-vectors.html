@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Splitting an arrow in two · Infinity Club</title>
+<meta name="description" content="Any force is the sum of a horizontal part and a vertical part. Resolve each arrow into components, add the parts, and recombine with Pythagoras and inverse tangent.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 11</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 11 · Sharpen · 10</div>
+  <h1>Splitting an arrow in two</h1>
+  <p class="teaser">Any force is the sum of a horizontal part and a vertical part. Resolve, add the parts, and recombine: that is how every bridge and aeroplane is analysed.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A <b>vector</b> is an arrow: a size and a direction (you met them in <a href="../../grade-10/sheets/b15-vectors-dot.html">grade 10</a>). A pull of 10 newtons (N, the unit of force) at 30° above the horizontal is a vector.</p>
+<p>Any arrow is the sum of a horizontal arrow and a vertical arrow. Finding them is called <b>resolving</b>, and the two parts are the <b>components</b>. For an arrow of size \(F\) at angle \(\theta\), measured anticlockwise from the positive \(x\)-direction:</p>
+<p class="callout">horizontal part \(= F\cos\theta\), &nbsp; vertical part \(= F\sin\theta\).</p>
+<figure><svg viewBox="0 0 300 178" width="270" height="160" role="img" aria-label="An arrow of size F at angle theta above the horizontal, with its horizontal component F cos theta drawn along the x-axis and its vertical component F sin theta drawn up the y-axis, joined to the arrow tip by dashed lines" font-family="Nunito, sans-serif" font-size="13">
+<line x1="60" y1="150" x2="285" y2="150" stroke="#999"/><line x1="90" y1="170" x2="90" y2="14" stroke="#999"/>
+<g stroke="#999" stroke-dasharray="4 3"><line x1="237.4" y1="46.8" x2="237.4" y2="150"/><line x1="237.4" y1="46.8" x2="90" y2="46.8"/></g>
+<g stroke="#f5a524" stroke-width="3"><line x1="90" y1="150" x2="228" y2="150"/><line x1="90" y1="150" x2="90" y2="56"/></g>
+<g fill="#f5a524"><polygon points="237.4,150 226.4,145.5 226.4,154.5"/><polygon points="90,46.8 85.5,57.8 94.5,57.8"/></g>
+<line x1="90" y1="150" x2="230" y2="52" stroke="#3f44c9" stroke-width="2.5"/><polygon points="237.4,46.8 231.0,56.8 225.8,49.4" fill="#3f44c9"/>
+<path d="M 120 150 A 30 30 0 0 0 114.6 132.8" fill="none" stroke="#000" stroke-width="1.3"/>
+<text x="127" y="142">θ</text>
+<text x="150" y="90" fill="#3f44c9" font-weight="700">F</text>
+<g fill="#b87400" font-weight="700"><text x="164" y="168" text-anchor="middle">F cos θ</text><text x="82" y="102" text-anchor="end">F sin θ</text></g>
+</svg><figcaption>The blue arrow is the sum of the two orange ones. Each orange arrow is the blue arrow's shadow on an axis.</figcaption></figure>
+<p>This is the unit circle scaled by \(F\), so it works for every angle. At 120° the horizontal part is negative: it points left.</p>
+<p>Why bother? Arrows in different directions are awkward to add. Components are just numbers: horizontal parts add, vertical parts add, and the two never mix. So <b>resolve</b> each one, <b>add</b> the parts, then <b>recombine</b>: for total parts \(x\) and \(y\), the size is \(\sqrt{x^2 + y^2}\) and the angle satisfies \(\tan\theta = y/x\). Sketch the result to pick the right quadrant.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: two pulls on one ring</h2>
+<p>A ring is pulled by 10 N at 30° and by 6 N at 120°. Resolve both:</p>
+<p>\[10\cos 30° = 8.66,\quad 10\sin 30° = 5.00; \qquad 6\cos 120° = -3.00,\quad 6\sin 120° = 5.20.\]</p>
+<p>Add: horizontal \(8.66 - 3.00 = 5.66\), vertical \(5.00 + 5.20 = 10.20\). Recombine: size \(\sqrt{5.66^2 + 10.20^2} = 11.66\) N, at angle \(\tan^{-1}(10.20/5.66) = 61.0°\).</p>
+<p>A check: 30° and 120° are at right angles, so Pythagoras gives the size directly, \(\sqrt{10^2 + 6^2} = \sqrt{136} = 11.66\). The two methods agree.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>A rope pulls a sledge with 20 N at 35° above the horizontal. Find the horizontal and vertical components, to 2 decimal places. Which part actually moves the sledge forward?<div class="space short"></div></li>
+<li>A vector has horizontal part \(-5\) and vertical part \(12\). Find its size and its angle, measured anticlockwise from the positive \(x\)-direction. (Sketch it first.)<div class="space short"></div></li>
+<li>A boat steers at 12 km/h in the direction 60° (anticlockwise from east). A current pushes it due east at 5 km/h. Find the boat's actual speed and direction.<div class="space"></div></li>
+<li><svg viewBox="0 0 170 92" width="150" height="81" style="float:right;margin:0 0 4px 12px" role="img" aria-label="A lamp hanging from two wires that each make 30 degrees with the ceiling" font-family="Nunito, sans-serif" font-size="12"><line x1="6" y1="10" x2="164" y2="10" stroke="#000" stroke-width="2"/><g stroke="#3f44c9" stroke-width="2"><line x1="16" y1="10" x2="85" y2="50"/><line x1="154" y1="10" x2="85" y2="50"/></g><line x1="85" y1="50" x2="85" y2="62" stroke="#000" stroke-width="1.5"/><circle cx="85" cy="70" r="8" fill="#fde8c4" stroke="#f5a524" stroke-width="2"/><text x="42" y="21" font-size="11">30°</text><text x="128" y="21" font-size="11" text-anchor="end">30°</text><text x="50" y="46" fill="#3f44c9" font-weight="700" text-anchor="end">T</text><text x="121" y="46" fill="#3f44c9" font-weight="700">T</text><text x="98" y="88">40 N</text></svg>A lamp weighing 40 N hangs at rest from two wires, each at 30° to the ceiling. At rest, all the forces add to zero. Each wire pulls with the same force \(T\). Find \(T\). Then find \(T\) if the wires are pulled almost flat, at 5° to the ceiling.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: tilt the axes</h2>
+<p>Components need two perpendicular directions, not necessarily horizontal and vertical. A 500 N crate sits on a ramp tilted at 20°. Resolve its weight, which points straight down, into a part along the ramp and a part pressing into the ramp. What force along the ramp holds the crate still, if there is no friction?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Horizontal \(20\cos 35° = 16.38\) N, vertical \(20\sin 35° = 11.47\) N. Only the horizontal part moves the sledge forward; the vertical part lifts it slightly.</li>
+<li>Size \(\sqrt{25 + 144} = 13\). The arrow points left and up, in the second quadrant. \(\tan^{-1}(12/5) = 67.4°\), so the angle is \(180° - 67.4° = 112.6°\). (A calculator fed \(12/(-5)\) says \(-67.4°\), which is the opposite arrow.)</li>
+<li>Boat: \(12\cos 60° = 6\) east, \(12\sin 60° = 10.39\) north. Current: 5 east, 0 north. Total: 11 east, 10.39 north. Speed \(\sqrt{11^2 + 10.39^2} = 15.13\) km/h, direction \(\tan^{-1}(10.39/11) = 43.4°\) anticlockwise from east.</li>
+<li>The horizontal parts of the two tensions are equal and opposite, so they cancel. The vertical parts must hold up the weight: \(2T\sin 30° = 40\), so \(T = 40\) N. At 5°: \(T = 20/\sin 5° = 229.5\) N. A nearly flat wire has almost no vertical part, so it must pull very hard. This is why a washing line can never be pulled perfectly straight.</li>
+</ol>
+<p><b>Stretch.</b> The weight makes an angle of 20° with the direction straight into the ramp. So the part pressing into the ramp is \(500\cos 20° = 469.8\) N and the part along the ramp is \(500\sin 20° = 171.0\) N, pointing downhill. A force of 171.0 N up the ramp holds the crate. Check: \(469.8^2 + 171.0^2 = 500^2\).</p>
+</section>
+
+<div class="sheet-nav"><a href="a9-piecewise.html">← Previous</a><a href="a11-three-unknowns.html">Next: Three equations, three unknowns →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

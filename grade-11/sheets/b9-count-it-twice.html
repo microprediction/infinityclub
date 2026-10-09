@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Count it twice · Infinity Club</title>
+<meta name="description" content="Count the same collection in two ways and you have proved an identity. Committees with a chair, the hockey stick in Pascal's triangle, and Vandermonde's sum.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 11</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 11 · Around the corner · 9</div>
+  <h1>Count it twice</h1>
+  <p class="teaser">Count the same thing in two ways and you have proved an identity. Committees with a chair, the hockey stick in Pascal's triangle, and Vandermonde's sum.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Here is a way to prove an identity with no algebra. Count one collection of things in two different ways. Both counts are correct, so they must be equal.</p>
+<p>Recall \(\binom nk\), read "\(n\) choose \(k\)": the number of ways to choose \(k\) things from \(n\) (<a href="../../grade-10/sheets/b4-counting.html">where you met this</a>).</p>
+<p>From \(n\) people, pick a committee of \(k\) and make one member the chair. How many outcomes are there?</p>
+<p><b>Committee first.</b> There are \(\binom nk\) committees, then \(k\) choices of chair.</p>
+<p><b>Chair first.</b> There are \(n\) choices of chair, then \(\binom{n-1}{k-1}\) ways to pick the other \(k - 1\) members from the \(n - 1\) people left.</p>
+<p class="callout">\(k\dbinom nk = n\dbinom{n-1}{k-1}\).</p>
+<p>No factorials were needed, and you can see why it is true. The recipe is always the same. Find a collection that one side of the identity counts. Then find a second way to organise the count. Often the second way sorts the collection into cases, and the cases turn into a sum.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: the hockey stick</h2>
+<figure style="float:right;width:250px;margin:0 0 .4em 1em"><svg viewBox="0 0 300 182" width="250" height="152" role="img" aria-label="Pascal's triangle, rows 0 to 6. The diagonal 1, 3, 6, 10 is shaded and the 20 below its end is circled." font-family="Nunito, sans-serif" font-size="13">
+<text x="150" y="18" text-anchor="middle">1</text>
+<text x="131" y="42" text-anchor="middle">1</text>
+<text x="169" y="42" text-anchor="middle">1</text>
+<text x="112" y="66" text-anchor="middle">1</text>
+<text x="150" y="66" text-anchor="middle">2</text>
+<circle cx="188" cy="61.5" r="11" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="188" y="66" text-anchor="middle" font-weight="700">1</text>
+<text x="93" y="90" text-anchor="middle">1</text>
+<text x="131" y="90" text-anchor="middle">3</text>
+<circle cx="169" cy="85.5" r="11" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="169" y="90" text-anchor="middle" font-weight="700">3</text>
+<text x="207" y="90" text-anchor="middle">1</text>
+<text x="74" y="114" text-anchor="middle">1</text>
+<text x="112" y="114" text-anchor="middle">4</text>
+<circle cx="150" cy="109.5" r="11" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="150" y="114" text-anchor="middle" font-weight="700">6</text>
+<text x="188" y="114" text-anchor="middle">4</text>
+<text x="226" y="114" text-anchor="middle">1</text>
+<text x="55" y="138" text-anchor="middle">1</text>
+<text x="93" y="138" text-anchor="middle">5</text>
+<circle cx="131" cy="133.5" r="11" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="131" y="138" text-anchor="middle" font-weight="700">10</text>
+<text x="169" y="138" text-anchor="middle">10</text>
+<text x="207" y="138" text-anchor="middle">5</text>
+<text x="245" y="138" text-anchor="middle">1</text>
+<text x="36" y="162" text-anchor="middle">1</text>
+<text x="74" y="162" text-anchor="middle">6</text>
+<text x="112" y="162" text-anchor="middle">15</text>
+<circle cx="150" cy="157.5" r="11" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/>
+<text x="150" y="162" text-anchor="middle" font-weight="700">20</text>
+<text x="188" y="162" text-anchor="middle">15</text>
+<text x="226" y="162" text-anchor="middle">6</text>
+<text x="264" y="162" text-anchor="middle">1</text>
+</svg><figcaption>\(1 + 3 + 6 + 10 = 20\).</figcaption></figure>
+<p>In Pascal's triangle, add down a diagonal from the edge and the total sits just below the last number. Why?</p>
+<p>Count teams of 3 from people numbered 1 to 6: \(\binom63 = 20\). Now sort the teams by their highest number. Highest 3: the other two come from \(\{1, 2\}\), so \(\binom22 = 1\) team. Highest 4: \(\binom32 = 3\). Highest 5: \(\binom42 = 6\). Highest 6: \(\binom52 = 10\). Every team is in exactly one case, so</p>
+<p>\[\binom22 + \binom32 + \binom42 + \binom52 = \binom63.\]</p>
+<p>The same sorting proves \(\binom rr + \binom{r+1}r + \cdots + \binom nr = \binom{n+1}{r+1}\).</p>
+<p class="small">More patterns: <a href="../../demos/pascal.html">infinityclub.net/demos/pascal.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>(a) Check the committee identity with numbers for \(n = 6\), \(k = 3\). (b) Use the hockey stick to find \(1 + 4 + 10 + 20 + 35\) without adding.<div class="space short"></div></li>
+<li>Now the committee can be any size from 1 to \(n\), and it still has a chair. Count the outcomes chair first. Then count them committee first, sorted by size \(k\). Write down the identity you have proved, and check it for \(n = 4\).<div class="space"></div></li>
+<li>A club has 5 seniors and 4 juniors. Count the teams of 3 directly. Then count them sorted by the number of seniors, and check the totals agree. Write the identity for \(m\) seniors, \(n\) juniors and a team of \(r\). (It is called Vandermonde's identity.)<div class="space"></div></li>
+<li>Prove that \(\binom n0^2 + \binom n1^2 + \cdots + \binom nn^2 = \binom{2n}{n}\) by counting something twice. You may use \(\binom nk = \binom n{n-k}\). Check it for \(n = 3\).<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: a chair and a secretary</h2>
+<p>From \(n\) people choose a committee of any size, a chair, and a secretary. One person may hold both jobs. Count the outcomes in two ways to find a short formula for \(\displaystyle\sum_{k=0}^{n} k^2\binom nk\). Check it for \(n = 4\).</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(3\binom63 = 3 \times 20 = 60\) and \(6\binom52 = 6 \times 10 = 60\). (b) These are \(\binom33, \binom43, \binom53, \binom63, \binom73\), so the sum is \(\binom84 = 70\).</li>
+<li>Chair first: \(n\) choices, then each of the other \(n - 1\) people is in or out, \(2^{n-1}\) ways. Committee first: \(\binom nk\) committees of size \(k\), each with \(k\) possible chairs. So \(\displaystyle\sum_{k=1}^{n} k\binom nk = n\,2^{n-1}\). For \(n = 4\): \(4 + 12 + 12 + 4 = 32 = 4 \times 8\).</li>
+<li>Directly: \(\binom93 = 84\). By seniors (0, 1, 2, 3): \(\binom50\binom43 + \binom51\binom42 + \binom52\binom41 + \binom53\binom40 = 4 + 30 + 40 + 10 = 84\). In general \(\displaystyle\sum_{k=0}^{r} \binom mk\binom n{r-k} = \binom{m+n}{r}\), where \(\binom ab\) counts as 0 when \(b > a\).</li>
+<li>Take \(n\) seniors and \(n\) juniors and choose a team of \(n\): \(\binom{2n}{n}\) ways. Sorted by the number \(k\) of seniors: \(\binom nk\) ways to pick the seniors and \(\binom n{n-k} = \binom nk\) ways to pick the juniors, so \(\binom nk^2\) teams. Add over \(k\). (This is question 3 with \(m = n = r\).) For \(n = 3\): \(1 + 9 + 9 + 1 = 20 = \binom63\).</li>
+</ol>
+<p><b>Stretch.</b> Committee first: a committee of size \(k\) has \(k\) choices of chair and \(k\) of secretary, so the count is \(\sum k^2\binom nk\). Jobs first: if one person holds both, \(n\) choices and the rest are in or out, \(n\,2^{n-1}\). If two people hold them, \(n(n-1)\) choices and the other \(n - 2\) are in or out, \(n(n-1)2^{n-2}\). Total \(n\,2^{n-2}\,(2 + n - 1) = n(n+1)2^{n-2}\). For \(n = 4\): \(4 + 24 + 36 + 16 = 80 = 4 \times 5 \times 4\).</p>
+</section>
+
+<div class="sheet-nav"><a href="b8-sums-of-powers.html">← Previous</a><a href="b10-necklaces.html">Next: How many different necklaces? →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

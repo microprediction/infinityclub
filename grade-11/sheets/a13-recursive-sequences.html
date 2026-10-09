@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sequences that feed on themselves · Infinity Club</title>
+<meta name="description" content="A recursive sequence makes each term from the one before. Predict its limit by solving L = f(L), and learn when that prediction can be trusted.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 11</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 11 · Sharpen · 13</div>
+  <h1>Sequences that feed on themselves</h1>
+  <p class="teaser">Each term is made from the one before. Some settle down, some run away, some cycle, and you can often predict the limit before computing a single term.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A <b>recursive</b> sequence gives a starting term and a rule that makes each term from the one before: \(x_{n+1} = f(x_n)\). Take \(x_0 = 0\) and \(x_{n+1} = 0.5x_n + 3\). The terms run 0, 3, 4.5, 5.25, 5.625. They close in on 6.</p>
+<p>You can predict the 6 without computing a term. Suppose the terms settle on a <b>limit</b> \(L\). Then \(x_n\) and \(x_{n+1}\) both end up as close to \(L\) as you like, so a rule with no jumps forces</p>
+<p class="callout">\(L = f(L)\). Here \(L = 0.5L + 3\), so \(L = 6\).</p>
+<p>The catch is the word "suppose". The equation says where a limit must be <em>if there is one</em>. The rule \(x_{n+1} = 2x_n - 6\) also gives \(L = 6\), but from \(x_0 = 7\) the terms run 7, 8, 10, 14, 22.</p>
+<p>To tell which happens, subtract \(L\) from both sides. For \(x_{n+1} = ax_n + b\) this leaves \(x_{n+1} - L = a(x_n - L)\): every step multiplies the gap by \(a\). If \(|a| \lt 1\) the gap shrinks to zero and the sequence settles. If \(|a| \gt 1\) the gap grows. If \(a = -1\) the gap only changes sign, and the terms cycle between two values.</p>
+<figure><svg viewBox="0 0 480 150" width="480" height="150" role="img" aria-label="Three small plots of terms against step number. First: terms 0, 3, 4.5, 5.25 climbing towards a dashed line at 6. Second: terms alternating 3, 7, 3, 7 either side of a dashed line at 5. Third: terms 7, 8, 10, 14, 22 climbing away from a dashed line at 6." font-family="Nunito, sans-serif" font-size="12">
+<text x="86" y="14" text-anchor="middle" font-weight="700">a = 0.5: settles</text>
+<line x1="22" y1="128" x2="150" y2="128" stroke="#999"/><line x1="22" y1="128" x2="22" y2="22" stroke="#999"/>
+<line x1="22" y1="53" x2="150" y2="53" stroke="#f5a524" stroke-width="1.5" stroke-dasharray="4 3"/>
+<polyline points="30,128 46,90.5 62,71.8 78,62.4 94,57.7 110,55.3 126,54.2 142,53.6" fill="none" stroke="#3f44c9" stroke-width="1" opacity="0.45"/>
+<circle cx="30" cy="128" r="3" fill="#3f44c9"/>
+<circle cx="46" cy="90.5" r="3" fill="#3f44c9"/>
+<circle cx="62" cy="71.8" r="3" fill="#3f44c9"/>
+<circle cx="78" cy="62.4" r="3" fill="#3f44c9"/>
+<circle cx="94" cy="57.7" r="3" fill="#3f44c9"/>
+<circle cx="110" cy="55.3" r="3" fill="#3f44c9"/>
+<circle cx="126" cy="54.2" r="3" fill="#3f44c9"/>
+<circle cx="142" cy="53.6" r="3" fill="#3f44c9"/>
+<text x="150" y="48" text-anchor="end" fill="#b06f00">L = 6</text>
+<text x="86" y="143" text-anchor="middle" fill="#555">step n</text>
+<text x="17" y="132" text-anchor="end" fill="#555">0</text>
+<text x="246" y="14" text-anchor="middle" font-weight="700">a = −1: cycles</text>
+<line x1="182" y1="128" x2="310" y2="128" stroke="#999"/><line x1="182" y1="128" x2="182" y2="22" stroke="#999"/>
+<line x1="182" y1="65.5" x2="310" y2="65.5" stroke="#f5a524" stroke-width="1.5" stroke-dasharray="4 3"/>
+<polyline points="190,90.5 206,40.5 222,90.5 238,40.5 254,90.5 270,40.5 286,90.5 302,40.5" fill="none" stroke="#3f44c9" stroke-width="1" opacity="0.45"/>
+<circle cx="190" cy="90.5" r="3" fill="#3f44c9"/>
+<circle cx="206" cy="40.5" r="3" fill="#3f44c9"/>
+<circle cx="222" cy="90.5" r="3" fill="#3f44c9"/>
+<circle cx="238" cy="40.5" r="3" fill="#3f44c9"/>
+<circle cx="254" cy="90.5" r="3" fill="#3f44c9"/>
+<circle cx="270" cy="40.5" r="3" fill="#3f44c9"/>
+<circle cx="286" cy="90.5" r="3" fill="#3f44c9"/>
+<circle cx="302" cy="40.5" r="3" fill="#3f44c9"/>
+<text x="310" y="60.5" text-anchor="end" fill="#b06f00">L = 5</text>
+<text x="246" y="143" text-anchor="middle" fill="#555">step n</text>
+<text x="177" y="94.5" text-anchor="end" fill="#555">3</text>
+<text x="406" y="14" text-anchor="middle" font-weight="700">a = 2: runs away</text>
+<line x1="342" y1="128" x2="470" y2="128" stroke="#999"/><line x1="342" y1="128" x2="342" y2="22" stroke="#999"/>
+<line x1="342" y1="103" x2="470" y2="103" stroke="#f5a524" stroke-width="1.5" stroke-dasharray="4 3"/>
+<polyline points="350,98.8 378,94.7 406,86.3 434,69.7 462,36.3" fill="none" stroke="#3f44c9" stroke-width="1" opacity="0.45"/>
+<circle cx="350" cy="98.8" r="3" fill="#3f44c9"/>
+<circle cx="378" cy="94.7" r="3" fill="#3f44c9"/>
+<circle cx="406" cy="86.3" r="3" fill="#3f44c9"/>
+<circle cx="434" cy="69.7" r="3" fill="#3f44c9"/>
+<circle cx="462" cy="36.3" r="3" fill="#3f44c9"/>
+<text x="470" y="117" text-anchor="end" fill="#b06f00">L = 6</text>
+<text x="406" y="143" text-anchor="middle" fill="#555">step n</text>
+<text x="337" y="102.8" text-anchor="end" fill="#555">7</text>
+</svg><figcaption>Three rules \(x_{n+1} = ax_n + b\). Each dot is a term. The dashed line is the solution of \(L = aL + b\).</figcaption></figure>
+</section>
+
+<section class="example">
+<h2>Watch one: \(x_{n+1} = \sqrt{2 + x_n}\), starting at \(x_0 = 0\)</h2>
+<p>The terms run 0, 1.414, 1.848, 1.962, 1.990. If they settle, \(L = \sqrt{2 + L}\), so \(L^2 - L - 2 = 0\) and \(L = 2\) or \(-1\). No term is negative, so \(L = 2\).</p>
+<p>Is "if they settle" justified? Whenever \(0 \le x \lt 2\), the next term \(\sqrt{2 + x}\) is bigger than \(x\) and still below \(\sqrt4 = 2\). So the terms climb for ever under a ceiling of 2. Such a sequence must settle; take that as a fact for now.</p>
+<p class="small">The demo runs a curved rule, \(x_{n+1} = r\,x_n(1 - x_n)\), met in <a href="../../grade-10/sheets/b24-chaos.html">grade 10</a>. Press 2.8 and it settles. Press 3.2 and it flips between two values. Press 4 and it never settles: <a href="../../demos/logistic.html">infinityclub.net/demos/logistic.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Let \(x_0 = 10\) and \(x_{n+1} = 0.8x_n + 1\). Find \(x_1\), \(x_2\) and \(x_3\). Then find the limit by solving \(L = f(L)\), and say why the sequence does settle.<div class="space short"></div></li>
+<li>Each rule starts from \(x_0 = 1\). Solve \(L = f(L)\), then decide whether the sequence settles, runs away or cycles: (a) \(x_{n+1} = -0.5x_n + 9\); (b) \(x_{n+1} = 3x_n - 4\); (c) \(x_{n+1} = -x_n + 10\).<div class="space"></div></li>
+<li>Let \(x_0 = 3\) and \(x_{n+1} = \tfrac12\left(x_n + \dfrac{10}{x_n}\right)\). Find \(x_1\) and \(x_2\) to four decimal places. Assuming the terms settle, find \(L\) exactly. What is this rule computing?<div class="space"></div></li>
+<li>Each year 30% of the pollutant in a lake is flushed out, and then a factory adds 6 tonnes. The lake holds 50 tonnes now. Write the rule and find the long-run level. After how many years is the level within 1 tonne of it? The owners want a long-run level of 12 tonnes: how much may they add each year?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: a limit almost nobody reaches</h2>
+<p>For the rule \(x_{n+1} = x_n^2\), the equation \(L = L^2\) gives \(L = 0\) or \(L = 1\). For which starting values \(x_0\) does the sequence settle on 0? On 1? What happens for every other start?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(x_1 = 9\), \(x_2 = 8.2\), \(x_3 = 7.56\). \(L = 0.8L + 1\) gives \(L = 5\). It settles because each step multiplies the gap from 5 by 0.8: the gaps are 5, 4, 3.2, 2.56, shrinking to zero.</li>
+<li>(a) \(L = 6\); \(a = -0.5\), so the gap halves and changes sign each step. It settles on 6, hopping from side to side: 1, 8.5, 4.75, 6.625. (b) \(L = 2\), but \(a = 3\), so the gap triples: 1, \(-1\), \(-7\), \(-25\). It runs away. (c) \(L = 5\), but \(a = -1\): 1, 9, 1, 9. It cycles and never reaches 5.</li>
+<li>\(x_1 = \tfrac{19}{6} \approx 3.1667\), \(x_2 = \tfrac{721}{228} \approx 3.1623\). \(L = \tfrac12\left(L + \tfrac{10}{L}\right)\) gives \(2L^2 = L^2 + 10\), so \(L^2 = 10\). The terms are positive, so \(L = \sqrt{10} = 3.16228\ldots\) The rule computes square roots, and two steps already give four correct decimal places.</li>
+<li>\(x_{n+1} = 0.7x_n + 6\). \(L = 0.7L + 6\) gives \(L = 20\) tonnes, and \(|0.7| \lt 1\) so the level does settle there. The gap starts at 30 and is \(30 \times 0.7^n\) after \(n\) years. \(30 \times 0.7^9 \approx 1.21\) and \(30 \times 0.7^{10} \approx 0.85\), so 10 years. For a limit of 12: \(12 = 0.7 \times 12 + b\), so \(b = 3.6\) tonnes a year.</li>
+</ol>
+<p><b>Stretch.</b> Squaring again and again gives \(x_n = x_0^{\,2^n}\). If \(-1 \lt x_0 \lt 1\) the terms shrink to 0. If \(x_0 = 1\) or \(-1\) the sequence is 1 from the first step on. Every other start has \(|x_0| \gt 1\) and runs away. So \(L = 1\) solves the equation, yet only two starting values reach it. Solving \(L = f(L)\) lists the candidates; it does not say which one you get.</p>
+</section>
+
+<div class="sheet-nav"><a href="a12-complex-arithmetic.html">← Dividing by a complex number</a><a href="a14-random-variables.html">Next: The average outcome and how far it strays →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

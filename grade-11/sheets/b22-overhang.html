@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How far can a stack of books lean? · Infinity Club</title>
+<meta name="description" content="One book can overhang a table by half its length, two by three quarters. With enough books the stack reaches as far as you like, because the harmonic series diverges.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 11</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 11 · Around the corner · 22</div>
+  <h1>How far can a stack of books lean?</h1>
+  <p class="teaser">One book can overhang half its length. Two can reach three quarters. With enough books the stack reaches as far as you like, because the harmonic series diverges.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A book stays on a table as long as its balance point, its middle, is over the table. So one book can stick out half its length. Call a book's length 1.</p>
+<p>In a stack the same rule applies at every level: the books above any book stay put if their combined balance point is over that book. Push every level to the limit, working from the top down.</p>
+<p>Say the top \(k - 1\) books balance exactly on the end of book \(k\). Their weight, \(k - 1\) books, acts at that end. Book \(k\)'s own weight acts at its middle, \(\tfrac12\) further back. The balance point of all \(k\) books is the weighted average of the two:</p>
+<p>\[\frac{(k - 1) \times 0 + 1 \times \tfrac12}{k} = \frac{1}{2k} \text{ back from the end of book } k.\]</p>
+<p>So book \(k\) can stick out \(\tfrac{1}{2k}\) past whatever is below it.</p>
+<p class="callout">\(n\) books reach an overhang of \(\tfrac12 + \tfrac14 + \tfrac16 + \cdots + \tfrac{1}{2n} = \tfrac12\left(1 + \tfrac12 + \tfrac13 + \cdots + \tfrac1n\right)\).</p>
+<p>The bracket is the harmonic series, and you have seen that it <a href="../../grade-10/sheets/b12-infinite-series.html">passes every number</a>. So there is no limit to the overhang.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: four books</h2>
+<p>From the top down, the books stick out by \(\tfrac12, \tfrac14, \tfrac16\) and \(\tfrac18\). The bottom one moves least, because it carries the most.</p>
+<p>\[\tfrac12 + \tfrac14 + \tfrac16 + \tfrac18 = \tfrac{12 + 6 + 4 + 3}{24} = \tfrac{25}{24}.\]</p>
+<figure><svg viewBox="0 0 400 190" width="300" height="143" role="img" aria-label="Four books stacked on the edge of a table, each shifted further out than the one below, by one eighth, one sixth, one quarter and one half of a book length; the top book lies entirely beyond the table edge" font-family="Nunito, sans-serif" font-size="13">
+<rect x="20" y="150" width="180" height="34" fill="#eee" stroke="#999" stroke-width="1.5"/><text x="110" y="172" text-anchor="middle" fill="#555">table</text>
+<rect x="95" y="132" width="120" height="18" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="223" y="146" fill="#3f44c9">+ 1/8</text>
+<rect x="115" y="114" width="120" height="18" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="243" y="128" fill="#3f44c9">+ 1/6</text>
+<rect x="145" y="96" width="120" height="18" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="273" y="110" fill="#3f44c9">+ 1/4</text>
+<rect x="205" y="78" width="120" height="18" fill="#fde8c4" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="333" y="92" fill="#3f44c9">+ 1/2</text>
+<line x1="200" y1="46" x2="200" y2="150" stroke="#999" stroke-width="1" stroke-dasharray="4 3"/>
+<line x1="325" y1="56" x2="325" y2="78" stroke="#999" stroke-width="1" stroke-dasharray="4 3"/>
+<line x1="200" y1="56" x2="325" y2="56" stroke="#f5a524" stroke-width="2"/><path d="M200,56 l7,-4 v8 Z M325,56 l-7,-4 v8 Z" fill="#f5a524"/>
+<text x="262.5" y="46" text-anchor="middle" fill="#b87400" font-weight="700">overhang 25/24</text>
+</svg><figcaption>Four books, drawn to scale. Each label is how far that book sticks out past the one below. The top book is clear of the table.</figcaption></figure>
+<p>That is more than 1. The whole of the top book is past the edge of the table, with nothing but air below it. Three books give \(\tfrac{11}{12}\), not quite enough.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Find the overhang this method gives for two books, and for five books.<div class="space short"></div></li>
+<li>Stack three books this way. Measured from the table edge, their outer ends are at \(\tfrac16\), \(\tfrac{5}{12}\) and \(\tfrac{11}{12}\). Find where the middle of each book is (negative means over the table). Show that the average of the three middles is 0. What does that tell you?<div class="space"></div></li>
+<li>The overhang reaches 2 book lengths when \(1 + \tfrac12 + \cdots + \tfrac1n\) passes 4. The sum up to \(n = 24\) is 3.7760. Keep adding terms. How many books are needed?<div class="space short"></div></li>
+<li>Grouping the terms shows that \(1 + \tfrac12 + \cdots + \tfrac{1}{2^k} \ge 1 + \tfrac{k}{2}\). Use this to find a number of books that is certain to give an overhang of 10 book lengths. What does doubling the number of books add to the overhang, at least?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: a very tall stack</h2>
+<p>For large \(n\), the sum \(1 + \tfrac12 + \cdots + \tfrac1n\) is close to \(\ln n + 0.577\), where \(\ln\) is the logarithm to base \(e\). Estimate how many books give an overhang of 5 book lengths. If each book is 2 cm thick, how tall is the stack?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Two books: \(\tfrac12 + \tfrac14 = \tfrac34\). Five books: \(\tfrac{25}{24} + \tfrac1{10} = \tfrac{137}{120} \approx 1.14\).</li>
+<li>Each middle is \(\tfrac12\) back from the outer end: \(\tfrac16 - \tfrac12 = -\tfrac13\), \(\tfrac5{12} - \tfrac12 = -\tfrac1{12}\) and \(\tfrac{11}{12} - \tfrac12 = \tfrac5{12}\). Their sum is \(\tfrac{-4 - 1 + 5}{12} = 0\), so the average is 0. The balance point of the whole stack is exactly above the table edge: it is on the point of tipping, and no further out is possible with this design.</li>
+<li>\(3.7760 + \tfrac1{25} = 3.8160\), then \(3.8544,\ 3.8915,\ 3.9272,\ 3.9617,\ 3.9950\) at \(n = 30\), and \(4.0272\) at \(n = 31\). So 31 books.</li>
+<li>An overhang of 10 needs the sum to reach 20. \(1 + \tfrac k2 \ge 20\) when \(k = 38\), so \(2^{38} \approx 2.7 \times 10^{11}\) books are certainly enough. (Far more than needed: the estimate in the stretch puts the real number at roughly 270 million.) Going from \(2^k\) to \(2^{k+1}\) books adds at least \(\tfrac12\) to the sum, so at least \(\tfrac14\) of a book length to the overhang. The overhang grows without limit, but very slowly.</li>
+</ol>
+<p><b>Stretch.</b> The sum must reach 10, so \(\ln n \approx 10 - 0.577 = 9.423\) and \(n \approx e^{9.423} \approx 12\,400\). (The exact answer is 12,367.) At 2 cm each the stack is about 250 m tall, to move the top book 5 book lengths sideways.</p>
+</section>
+
+<div class="sheet-nav"><a href="b21-simpson.html">← Previous</a><a href="b23-finite-fields.html">Next: A number system with five numbers →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

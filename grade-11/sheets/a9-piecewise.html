@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Functions in pieces · Infinity Club</title>
+<meta name="description" content="A tax schedule, a phone plan and |x| are all functions with different rules on different intervals. Evaluate them, graph them, compose them, and find where the pieces join up.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 11</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 11 · Sharpen · 9</div>
+  <h1>Functions in pieces</h1>
+  <p class="teaser">A tax schedule, a phone plan and \(|x|\) are all functions with different rules on different intervals. Graph them, compose them, and find where they join up.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A function does not need one rule for every input. A <b>piecewise function</b> uses different rules on different intervals, as postage, phone plans and income tax do. One bracket lists the rules:</p>
+<p>\[f(x) = \begin{cases} -x &amp; \text{if } x \lt 0 \\ x &amp; \text{if } 0 \le x \lt 2 \\ 1 &amp; \text{if } x \ge 2 \end{cases}\]</p>
+<p>To evaluate it, first find the interval the input lies in, then use that rule only. So \(f(-3) = 3\), \(f(1.5) = 1.5\) and \(f(2) = 1\). Every input still gets exactly one output, so this is one function, not three.</p>
+<figure><svg viewBox="0 0 330 170" width="250" height="129" role="img" aria-label="Graph of the piecewise function: a line falling to the origin, a line rising from the origin to a hollow dot at (2, 2), then a horizontal ray at height 1 starting from a filled dot at (2, 1)" font-family="Nunito, sans-serif" font-size="16">
+<line x1="8" y1="140" x2="318" y2="140" stroke="#999"/><line x1="120" y1="162" x2="120" y2="10" stroke="#999"/>
+<line x1="192" y1="68" x2="192" y2="140" stroke="#999" stroke-dasharray="4 3"/>
+<g stroke="#3f44c9" stroke-width="2.5" fill="none"><line x1="12" y1="32" x2="120" y2="140"/><line x1="120" y1="140" x2="188.5" y2="71.5"/><line x1="192" y1="104" x2="312" y2="104"/></g>
+<circle cx="192" cy="68" r="4.5" fill="#fff" stroke="#3f44c9" stroke-width="2"/><circle cx="192" cy="104" r="4.5" fill="#3f44c9"/><circle cx="120" cy="140" r="3.5" fill="#3f44c9"/>
+<g fill="#3f44c9" font-weight="700"><text x="46" y="52">−x</text><text x="136" y="100">x</text><text x="255" y="96">1</text></g>
+<g fill="#555" font-size="14"><text x="192" y="156" text-anchor="middle">2</text><text x="110" y="108" text-anchor="end">1</text><text x="110" y="72" text-anchor="end">2</text><text x="312" y="156" text-anchor="end">x</text></g>
+<line x1="116" y1="104" x2="124" y2="104" stroke="#999"/><line x1="116" y1="68" x2="124" y2="68" stroke="#999"/>
+<g fill="#b87400" font-weight="700" font-size="14"><text x="128" y="157">joins</text><text x="203" y="90">jumps</text></g>
+</svg><figcaption>The graph of \(f\). The filled dot is the value at \(x = 2\); the hollow dot is a value the graph approaches but never takes.</figcaption></figure>
+<p>The first two pieces together are \(|x|\), the absolute value from <a href="../../grade-10/sheets/a17-inequalities.html">grade 10</a>. At each boundary, ask whether the pieces <b>join</b>. Put the boundary value into both neighbouring rules. At \(x = 0\) both give 0, so the graph joins there, with a corner. At \(x = 2\) one rule gives 2 and the other gives 1, so the graph jumps.</p>
+<p class="callout">Pieces join at a boundary exactly when both rules give the same value there.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: a tax schedule</h2>
+<p>Income is \(x\) thousand dollars. The tax is nothing on the first 10, 20% of the part between 10 and 40, and 40% of the part above 40. So the tax \(T(x)\), in thousands, is</p>
+<p>\[T(x) = \begin{cases} 0 &amp; \text{if } 0 \le x \le 10 \\ 0.2(x - 10) &amp; \text{if } 10 \lt x \le 40 \\ 6 + 0.4(x - 40) &amp; \text{if } x \gt 40 \end{cases}\]</p>
+<p>The 6 is the tax already owed at 40, namely \(0.2 \times 30\). It makes the pieces join: at \(x = 40\) both rules give 6. So \(T(50) = 6 + 4 = 10\), and a raise never lowers take-home pay: only the extra dollars meet the higher rate.</p>
+<p class="small">Choose \(|x|\) from the menu, then shift and stretch it and watch its corner move: <a href="../../demos/transform.html">infinityclub.net/demos/transform.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Let \(g(x) = x + 3\) if \(x \lt 1\), \(g(x) = x^2\) if \(1 \le x \le 2\), and \(g(x) = 6 - x\) if \(x \gt 2\). Find \(g(-2)\), \(g(1)\), \(g(2)\) and \(g(5)\). Does the graph join or jump at \(x = 1\)? At \(x = 2\)?<div class="space short"></div></li>
+<li>Write \(|2x - 6|\) as a piecewise function with two pieces. Use the pieces to solve \(|2x - 6| = x\). Check that each answer lies in the interval of its piece.<div class="space short"></div></li>
+<li>Let \(h(x) = kx + 1\) if \(x \lt 2\) and \(h(x) = x^2 + 1\) if \(x \ge 2\). Find the value of \(k\) that makes the pieces join. With that \(k\), find \(h(h(1))\).<div class="space short"></div></li>
+<li>Plan A costs $20 a month for up to 5 GB of data, then $4 for each extra GB. Plan B costs $35 a month for up to 10 GB, then $2 for each extra GB. Write each monthly cost as a piecewise function of the data used, \(x\) GB. For which values of \(x\) is plan A cheaper?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: fold it twice</h2>
+<p>On \(0 \le x \le 1\), let \(T(x) = 2x\) if \(x \le \tfrac12\) and \(T(x) = 2 - 2x\) if \(x \gt \tfrac12\). Write \(T(T(x))\) as a piecewise function with four pieces. Then find every \(x\) with \(T(T(x)) = x\).</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(g(-2) = 1\), \(g(1) = 1\), \(g(2) = 4\), \(g(5) = 1\). At \(x = 1\) the rules give \(1 + 3 = 4\) and \(1^2 = 1\): a jump. At \(x = 2\) they give \(2^2 = 4\) and \(6 - 2 = 4\): a join.</li>
+<li>\(|2x - 6| = 2x - 6\) if \(x \ge 3\), and \(6 - 2x\) if \(x \lt 3\). First piece: \(2x - 6 = x\) gives \(x = 6\), and \(6 \ge 3\), so it counts. Second piece: \(6 - 2x = x\) gives \(x = 2\), and \(2 \lt 3\), so it counts. Solutions: \(x = 2\) and \(x = 6\).</li>
+<li>At \(x = 2\) the rules give \(2k + 1\) and \(5\), so \(k = 2\). Then \(h(1) = 2 + 1 = 3\), and \(3 \ge 2\), so \(h(3) = 9 + 1 = 10\). The inner output decides which rule the outer function uses.</li>
+<li>\(A(x) = 20\) if \(x \le 5\), and \(20 + 4(x - 5)\) if \(x \gt 5\). \(B(x) = 35\) if \(x \le 10\), and \(35 + 2(x - 10)\) if \(x \gt 10\). A starts cheaper. They are equal when \(20 + 4(x - 5) = 35\), so \(x = 8.75\). Beyond 10 GB, \(A = 4x\) and \(B = 2x + 15\), so B stays cheaper. Plan A is cheaper for \(x \lt 8.75\).</li>
+</ol>
+<p><b>Stretch.</b> The inner \(T\) switches rule at \(x = \tfrac12\), and the outer one switches when \(T(x) = \tfrac12\), at \(x = \tfrac14\) and \(\tfrac34\). So \(T(T(x))\) is \(4x\) on \([0, \tfrac14]\), \(2 - 4x\) on \((\tfrac14, \tfrac12]\), \(4x - 2\) on \((\tfrac12, \tfrac34]\) and \(4 - 4x\) on \((\tfrac34, 1]\). Setting each equal to \(x\) gives \(x = 0, \tfrac25, \tfrac23, \tfrac45\), and each lies in its own interval. Four solutions.</p>
+</section>
+
+<div class="sheet-nav"><a href="a8-polynomial-graphs.html">← Previous</a><a href="a10-resolving-vectors.html">Next: Splitting an arrow in two →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

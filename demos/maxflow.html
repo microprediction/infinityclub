@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Max Flow, Min Cut · Infinity Club</title>
+<meta name="description" content="Push flow through a small network of pipes one path at a time. When no path is left, the narrowest cut lights up and its capacity equals the flow.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+#net { cursor: pointer; touch-action: manipulation; width: 100%; }
+.controls select { font: inherit; padding: .25em .4em; border: 1px solid var(--rule); border-radius: 6px; background: #fff; max-width: 100%; }
+.key { display: flex; flex-wrap: wrap; gap: .3rem 1rem; margin: .5rem 0 0; }
+.key span::before { content: ""; display: inline-block; width: 1.3em; height: .28em; border-radius: 2px; margin-right: .4em; vertical-align: .2em; background: #c3c4d6; }
+.key .k-flow::before { background: var(--accent); }
+.key .k-full::before { background: #1d1f3a; }
+.key .k-path::before { background: var(--warm); }
+#log { font-size: .92rem; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Max flow, min cut</h1>
+<p class="explain">Water enters at <b>S</b> and leaves at <b>T</b>. Each pipe shows <b>flow/capacity</b>, and water only runs the way the arrow points. Tap junctions one after another to trace a path from S to T. When you reach T the demo pushes as much as that path can take. Or press <b>Step</b> and let the demo choose a path. Before you start, guess the most that can get through. Keep going until no path is left.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <button id="step">Step</button>
+    <button id="run" class="alt">Run to the end</button>
+    <button id="reset" class="ghost">Start again</button>
+    <label>Network <select id="netsel"></select></label>
+  </div>
+  <canvas id="net" width="640" height="420"></canvas>
+  <div class="key small"><span>empty pipe</span><span class="k-flow">carrying flow</span><span class="k-full">full</span><span class="k-path">your path, then the cut</span></div>
+  <div class="readout" id="log"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>A path from S to T can take as much extra flow as its tightest pipe has room for. Push that much, then look for another path. This is the <b>Ford–Fulkerson method</b>.</p>
+<p><b>Going backwards.</b> A path may also run against an arrow, but only along a pipe that already carries flow. Doing so sends some of that flow back and routes it another way. Try the network called "The trap". Tap S, A, B, T first. That path fills the middle pipe and seems to block everything at 4. Now tap S, B, A, T. The step from B to A runs backwards along pipe A → B and undoes the bad choice. The total rises to 8.</p>
+<p><b>The cut.</b> When no path is left, colour every junction that S can still reach with spare room. T is not one of them. The pipes that lead from the coloured junctions to the rest are all full, or S could reach further. Any pipe coming back the other way is empty. So every drop that reaches T crosses those full pipes exactly once, and the flow equals their total capacity.</p>
+<p>A set of pipes like that, whose removal separates S from T, is called a <b>cut</b>. No flow can be bigger than the capacity of any cut, because everything has to cross it. You have just found a flow and a cut with the same number. So the flow is the largest possible and the cut is the smallest possible. That is the <b>max-flow min-cut theorem</b>: the most a network can carry equals the capacity of its narrowest cut.</p>
+<p>Sheet: <a href="../grade-11/sheets/b15-max-flow.html">The bottleneck theorem</a>. A cousin of this demo: <a href="dijkstra.html">shortest path, step by step</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  // Each network: junctions with positions in the unit square, and one-way pipes [from, to, capacity].
+  // No two pipes join the same pair of junctions.
+  var NETS = [
+    { name: "Six junctions", s: 0, t: 5,
+      nodes: [["S", .04, .5], ["A", .35, .08], ["B", .35, .92], ["C", .65, .08], ["D", .65, .92], ["T", .96, .5]],
+      edges: [[0, 1, 7], [0, 2, 6], [1, 3, 4], [1, 2, 3], [2, 4, 6], [4, 3, 3], [3, 5, 6], [4, 5, 5]] },
+    { name: "The trap", s: 0, t: 3,
+      nodes: [["S", .04, .5], ["A", .5, .08], ["B", .5, .92], ["T", .96, .5]],
+      edges: [[0, 1, 4], [0, 2, 4], [1, 2, 4], [1, 3, 4], [2, 3, 4]] },
+    { name: "City pipes", s: 0, t: 7,
+      nodes: [["S", .04, .5], ["A", .34, .06], ["B", .34, .5], ["C", .34, .94], ["D", .66, .06], ["E", .66, .5], ["F", .66, .94], ["T", .96, .5]],
+      edges: [[0, 1, 6], [0, 2, 8], [0, 3, 5], [1, 4, 4], [1, 2, 2], [2, 5, 5], [3, 2, 3], [3, 6, 6], [4, 7, 7], [5, 4, 3], [5, 6, 2], [5, 7, 4], [6, 7, 5]] }
+  ];
+  function mfInit(net) { return net.edges.map(function () { return 0; }); }
+  // How much more can go from u to v. Forwards along pipe u → v: its unused capacity.
+  // Backwards along pipe v → u: the flow it carries, which can be sent back.
+  function mfSpare(net, flow, u, v) {
+    for (var i = 0; i < net.edges.length; i++) {
+      var e = net.edges[i];
+      if (e[0] === u && e[1] === v) return { room: e[2] - flow[i], edge: i, back: false };
+      if (e[0] === v && e[1] === u) return { room: flow[i], edge: i, back: true };
+    }
+    return { room: 0, edge: -1, back: false };
+  }
+  // Which junctions can s still reach with spare room, and how (breadth first, so paths use the fewest pipes).
+  function mfSearch(net, flow) {
+    var n = net.nodes.length, from = [], seen = [], queue = [net.s], i;
+    for (i = 0; i < n; i++) { from.push(-1); seen.push(false); }
+    seen[net.s] = true;
+    while (queue.length) {
+      var u = queue.shift();
+      for (var v = 0; v < n; v++) if (!seen[v] && mfSpare(net, flow, u, v).room > 0) { seen[v] = true; from[v] = u; queue.push(v); }
+    }
+    return { seen: seen, from: from };
+  }
+  // A path from s to t with spare room on every pipe, as a list of junctions, or null if there is none.
+  function mfFindPath(net, flow) {
+    var r = mfSearch(net, flow); if (!r.seen[net.t]) return null;
+    var p = [], v = net.t;
+    while (v >= 0) { p.unshift(v); v = r.from[v]; }
+    return p;
+  }
+  function mfRooms(net, flow, path) { var out = []; for (var i = 0; i + 1 < path.length; i++) out.push(mfSpare(net, flow, path[i], path[i + 1])); return out; }
+  function mfBottleneck(net, flow, path) { return Math.min.apply(null, mfRooms(net, flow, path).map(function (r) { return r.room; })); }
+  // Push amount along the path. Changes flow.
+  function mfPush(net, flow, path, amount) { mfRooms(net, flow, path).forEach(function (r) { flow[r.edge] += r.back ? -amount : amount; }); }
+  // Flow out of s, less any flow into s.
+  function mfValue(net, flow) { var v = 0; net.edges.forEach(function (e, i) { if (e[0] === net.s) v += flow[i]; if (e[1] === net.s) v -= flow[i]; }); return v; }
+  // The cut left when no path remains: side[i] is true for the junctions s can still reach.
+  function mfCut(net, flow) {
+    var side = mfSearch(net, flow).seen, edges = [], cap = 0;
+    net.edges.forEach(function (e, i) { if (side[e[0]] && !side[e[1]]) { edges.push(i); cap += e[2]; } });
+    return { side: side, edges: edges, capacity: cap };
+  }
+  function mfSolve(net) {
+    var flow = mfInit(net), p, steps = 0;
+    while ((p = mfFindPath(net, flow))) { mfPush(net, flow, p, mfBottleneck(net, flow, p)); steps++; }
+    return { flow: flow, value: mfValue(net, flow), cut: mfCut(net, flow), steps: steps };
+  }
+  /*ENDPURE*/
+
+  var canvas = document.getElementById("net"), ctx = canvas.getContext("2d"), log = document.getElementById("log"), netSel = document.getElementById("netsel");
+  var M, flow, path, shown, cut, done, pushes, timer = null, P = [], W = 640, H = 420, R = 18;
+  NETS.forEach(function (m, i) { var o = document.createElement("option"); o.value = i; o.textContent = m.name; netSel.appendChild(o); });
+  function name(i) { return M.nodes[i][0]; }
+  function pipe(i) { return name(M.edges[i][0]) + " → " + name(M.edges[i][1]); }
+  function stopRun() { if (timer) { clearTimeout(timer); timer = null; } }
+  function restart() {
+    stopRun(); flow = mfInit(M); path = [M.s]; shown = []; cut = null; done = false; pushes = 0;
+    draw(); log.textContent = "Flow reaching T: 0.\nTap S, then junctions one at a time until you reach T. Or press Step.";
+  }
+  function onPath(p, a, b) { for (var i = 0; i + 1 < p.length; i++) if ((p[i] === a && p[i + 1] === b) || (p[i] === b && p[i + 1] === a)) return true; return false; }
+  function arrow(a, b, colour, lw) {
+    var dx = b[0] - a[0], dy = b[1] - a[1], L = Math.hypot(dx, dy), ux = dx / L, uy = dy / L, hs = 8 + lw;
+    var x1 = a[0] + ux * R, y1 = a[1] + uy * R, x2 = b[0] - ux * (R + 2), y2 = b[1] - uy * (R + 2);
+    ctx.strokeStyle = colour; ctx.fillStyle = colour; ctx.lineWidth = lw;
+    ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2 - ux * hs * 0.8, y2 - uy * hs * 0.8); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(x2, y2); ctx.lineTo(x2 - ux * hs - uy * hs * 0.5, y2 - uy * hs + ux * hs * 0.5); ctx.lineTo(x2 - ux * hs + uy * hs * 0.5, y2 - uy * hs - ux * hs * 0.5); ctx.closePath(); ctx.fill();
+  }
+  function draw() {
+    var dpr = window.devicePixelRatio || 1; W = canvas.clientWidth || 640; H = Math.max(240, Math.round(W * 0.62));
+    canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, H);
+    R = W < 420 ? 16 : 20;
+    var pad = R + 8, big = 1, live = path.length > 1 ? path : shown, last = path[path.length - 1];
+    P = M.nodes.map(function (nd) { return [pad + nd[1] * (W - 2 * pad), pad + nd[2] * (H - 2 * pad)]; });
+    M.edges.forEach(function (e) { big = Math.max(big, e[2]); });
+    ctx.lineCap = "butt";
+    M.edges.forEach(function (e, i) {
+      var lit = cut ? cut.edges.indexOf(i) >= 0 : onPath(live, e[0], e[1]), full = flow[i] === e[2];
+      arrow(P[e[0]], P[e[1]], lit ? "#f5a524" : full ? "#1d1f3a" : flow[i] > 0 ? "#3f44c9" : "#c3c4d6", lit ? 6 : 2 + 4 * flow[i] / big);
+    });
+    ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    M.edges.forEach(function (e, i) {
+      var a = P[e[0]], b = P[e[1]], mx = (a[0] + b[0]) / 2, my = (a[1] + b[1]) / 2, text = flow[i] + "/" + e[2];
+      ctx.font = "800 13px Nunito, sans-serif"; var tw = ctx.measureText(text).width / 2 + 5;
+      ctx.fillStyle = "#fff"; ctx.fillRect(mx - tw, my - 10, 2 * tw, 20);
+      ctx.fillStyle = "#1d1f3a"; ctx.fillText(text, mx, my + 1);
+    });
+    M.nodes.forEach(function (nd, i) {
+      var inPath = path.length > 1 && path.indexOf(i) >= 0, blue = cut && cut.side[i];
+      var open = !done && path.indexOf(i) < 0 && mfSpare(M, flow, last, i).room > 0;
+      ctx.beginPath(); ctx.arc(P[i][0], P[i][1], R, 0, 2 * Math.PI);
+      ctx.fillStyle = inPath ? "#f5a524" : blue ? "#3f44c9" : "#fff"; ctx.fill();
+      ctx.lineWidth = 2.5; ctx.strokeStyle = inPath ? "#f5a524" : "#3f44c9"; ctx.stroke();
+      if (open) { ctx.setLineDash([4, 4]); ctx.strokeStyle = "#f5a524"; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(P[i][0], P[i][1], R + 5, 0, 2 * Math.PI); ctx.stroke(); ctx.setLineDash([]); }
+      ctx.fillStyle = blue && !inPath ? "#fff" : "#1d1f3a"; ctx.font = "800 15px Nunito, sans-serif"; ctx.fillText(nd[0], P[i][0], P[i][1] + 1);
+    });
+  }
+  function finish(text) {
+    done = true; cut = mfCut(M, flow); path = [M.s]; shown = [];
+    var v = mfValue(M, flow), parts = cut.edges.map(function (i) { return pipe(i) + " (" + M.edges[i][2] + ")"; });
+    var mine = M.nodes.map(function (nd, i) { return cut.side[i] ? nd[0] : ""; }).filter(String).join(", ");
+    log.textContent = (text ? text + "\n" : "") + "No path with spare room is left. S can still reach: " + mine + ".\nFlow reaching T: " + v + "\nCut: " + parts.join(" + ") + " = " + cut.capacity
+      + "\n" + (v === cut.capacity ? "Max flow = min cut = " + v + "." : "These should be equal!");
+    draw();
+  }
+  function pushAlong(p, who) {
+    var rooms = mfRooms(M, flow, p), amount = mfBottleneck(M, flow, p), backs = [];
+    rooms.forEach(function (r, i) { if (r.back) backs.push(name(p[i]) + " to " + name(p[i + 1]) + " runs backwards along pipe " + pipe(r.edge) + " and sends " + amount + " of its flow back"); });
+    mfPush(M, flow, p, amount); pushes++; shown = p; path = [M.s];
+    var t = "Path " + pushes + (who ? " (" + who + ")" : "") + ": " + p.map(name).join(" → ") + "\nSpare room along it: " + rooms.map(function (r) { return r.room; }).join(", ") + ". The smallest is " + amount + ", so push " + amount + "."
+      + (backs.length ? "\n" + backs.join(".\n") + "." : "");
+    if (!mfFindPath(M, flow)) { finish(t); return false; }
+    log.textContent = t + "\nFlow reaching T: " + mfValue(M, flow) + ". Find another path, or press Step.";
+    draw(); return true;
+  }
+  function doStep() {
+    if (done) return false;
+    var p = mfFindPath(M, flow);
+    if (!p) { finish(""); return false; }
+    return pushAlong(p, "the demo's choice");
+  }
+  function tap(v) {
+    if (done) return;
+    stopRun();
+    var last = path[path.length - 1], at = path.indexOf(v);
+    if (at >= 0) { path = path.slice(0, at + 1); shown = []; draw(); log.textContent = (path.length > 1 ? "Path so far: " + path.map(name).join(" → ") + "." : "At S.") + " Tap a junction with a dashed ring."; return; }
+    var sp = mfSpare(M, flow, last, v);
+    if (sp.room <= 0) {
+      log.textContent = (sp.edge < 0 ? "No pipe joins " + name(last) + " and " + name(v) + "." : sp.back ? "Pipe " + pipe(sp.edge) + " points the other way and carries no flow, so there is nothing to send back." : "Pipe " + pipe(sp.edge) + " is full.")
+        + "\nPath so far: " + path.map(name).join(" → ") + ". Tap a junction with a dashed ring, or tap an earlier junction to back up.";
+      return;
+    }
+    path.push(v); shown = [];
+    if (v === M.t) { pushAlong(path, "your choice"); return; }
+    var open = false; M.nodes.forEach(function (nd, i) { if (path.indexOf(i) < 0 && mfSpare(M, flow, v, i).room > 0) open = true; });
+    draw();
+    log.textContent = "Path so far: " + path.map(name).join(" → ") + (sp.back ? "  (backwards along pipe " + pipe(sp.edge) + ")" : "") + "\n" + (open ? "Tap the next junction." : "Dead end. Tap an earlier junction on the path to back up.");
+  }
+  canvas.addEventListener("click", function (ev) {
+    var r = canvas.getBoundingClientRect(), x = (ev.clientX - r.left) * (W / r.width), y = (ev.clientY - r.top) * (H / r.height), hit = -1, best = R + 12;
+    P.forEach(function (p, i) { var d = Math.hypot(x - p[0], y - p[1]); if (d < best) { best = d; hit = i; } });
+    if (hit >= 0) tap(hit);
+  });
+  document.getElementById("step").addEventListener("click", function () { stopRun(); doStep(); });
+  document.getElementById("run").addEventListener("click", function () {
+    stopRun();
+    (function tick() { timer = null; if (doStep()) timer = setTimeout(tick, 900); })();
+  });
+  document.getElementById("reset").addEventListener("click", restart);
+  netSel.addEventListener("change", function () { M = NETS[parseInt(netSel.value, 10)]; restart(); });
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(draw, 150); });
+  M = NETS[0]; restart();
+})();
+</script>
+</body>
+</html>

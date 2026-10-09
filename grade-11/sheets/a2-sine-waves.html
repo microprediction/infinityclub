@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reading a sine wave · Infinity Club</title>
+<meta name="description" content="In y = a sin(b(x − c)) + d each letter does one job: height, speed, slide, lift. Read all four off a graph and write the equation of a wave you can see.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 11</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 11 · Sharpen · 2</div>
+  <h1>Reading a sine wave</h1>
+  <p class="teaser">In \(y = a\sin(b(x - c)) + d\), each letter does one job: height, speed, slide, lift. Read all four off a graph, and write the equation of a wave you can see.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>The plain wave \(y = \sin x\), with \(x\) in radians, starts at 0, swings between \(-1\) and 1, and has period \(2\pi\): it repeats that often. Every other sine wave is that one after a <a href="../../grade-10/sheets/a4-transformations.html">shift, stretch or flip</a>. Four numbers say which.</p>
+<p class="callout">\(y = a\sin\big(b(x - c)\big) + d\)</p>
+<ul>
+<li><b>\(d\) lifts.</b> The wave swings about the <b>midline</b> \(y = d\), halfway between its highest and lowest values.</li>
+<li><b>\(a\) sets the height.</b> The <b>amplitude</b> \(|a|\) is the distance from the midline to a peak: half of highest minus lowest.</li>
+<li><b>\(b\) sets the speed.</b> The bracket must grow by \(2\pi\) for one full wave, so \(x\) must grow by \(2\pi/b\). That length is the <b>period</b>, the gap from one peak to the next.</li>
+<li><b>\(c\) slides.</b> The plain wave crosses its midline going up at 0. This one does so when the bracket is zero, at \(x = c\).</li>
+</ul>
+<figure><svg viewBox="0 0 420 192" width="420" height="192" role="img" aria-label="A sine wave between y = 1 and y = 5 with dashed midline y = 3. It crosses the midline going up at x = 1, peaks at x = 2 and x = 6, and has troughs at x = 4 and x = 8. Arrows mark the amplitude 2 and the period 4." font-family="Nunito, sans-serif" font-size="12">
+<line x1="30" y1="170" x2="408" y2="170" stroke="#999"/><line x1="30" y1="14" x2="30" y2="170" stroke="#999"/>
+<g stroke="#999"><line x1="70" y1="170" x2="70" y2="174"/><line x1="110" y1="170" x2="110" y2="174"/><line x1="150" y1="170" x2="150" y2="174"/><line x1="190" y1="170" x2="190" y2="174"/><line x1="230" y1="170" x2="230" y2="174"/><line x1="270" y1="170" x2="270" y2="174"/><line x1="310" y1="170" x2="310" y2="174"/><line x1="350" y1="170" x2="350" y2="174"/><line x1="390" y1="170" x2="390" y2="174"/><line x1="26" y1="144" x2="30" y2="144"/><line x1="26" y1="92" x2="30" y2="92"/><line x1="26" y1="40" x2="30" y2="40"/></g>
+<g fill="#555" text-anchor="middle"><text x="70" y="187">1</text><text x="110" y="187">2</text><text x="150" y="187">3</text><text x="190" y="187">4</text><text x="230" y="187">5</text><text x="270" y="187">6</text><text x="310" y="187">7</text><text x="350" y="187">8</text><text x="390" y="187">9</text><text x="18" y="148">1</text><text x="18" y="96">3</text><text x="18" y="44">5</text><text x="412" y="187">x</text><text x="18" y="18">y</text></g>
+<line x1="30" y1="92" x2="408" y2="92" stroke="#999" stroke-dasharray="5 4"/>
+<polyline fill="none" stroke="#3f44c9" stroke-width="2.2" points="30.0,144.0 34.0,143.4 38.0,141.5 42.0,138.3 46.0,134.1 50.0,128.8 54.0,122.6 58.0,115.6 62.0,108.1 66.0,100.1 70.0,92.0 74.0,83.9 78.0,75.9 82.0,68.4 86.0,61.4 90.0,55.2 94.0,49.9 98.0,45.7 102.0,42.5 106.0,40.6 110.0,40.0 114.0,40.6 118.0,42.5 122.0,45.7 126.0,49.9 130.0,55.2 134.0,61.4 138.0,68.4 142.0,75.9 146.0,83.9 150.0,92.0 154.0,100.1 158.0,108.1 162.0,115.6 166.0,122.6 170.0,128.8 174.0,134.1 178.0,138.3 182.0,141.5 186.0,143.4 190.0,144.0 194.0,143.4 198.0,141.5 202.0,138.3 206.0,134.1 210.0,128.8 214.0,122.6 218.0,115.6 222.0,108.1 226.0,100.1 230.0,92.0 234.0,83.9 238.0,75.9 242.0,68.4 246.0,61.4 250.0,55.2 254.0,49.9 258.0,45.7 262.0,42.5 266.0,40.6 270.0,40.0 274.0,40.6 278.0,42.5 282.0,45.7 286.0,49.9 290.0,55.2 294.0,61.4 298.0,68.4 302.0,75.9 306.0,83.9 310.0,92.0 314.0,100.1 318.0,108.1 322.0,115.6 326.0,122.6 330.0,128.8 334.0,134.1 338.0,138.3 342.0,141.5 346.0,143.4 350.0,144.0 354.0,143.4 358.0,141.5 362.0,138.3 366.0,134.1 370.0,128.8 374.0,122.6 378.0,115.6 382.0,108.1 386.0,100.1 390.0,92.0 394.0,83.9 398.0,75.9 402.0,68.4"/>
+<circle cx="70" cy="92" r="3.5" fill="#3f44c9"/>
+<g stroke="#f5a524" stroke-width="1.8"><line x1="110" y1="26" x2="270" y2="26"/><line x1="110" y1="21" x2="110" y2="34"/><line x1="270" y1="21" x2="270" y2="34"/><line x1="270" y1="44" x2="270" y2="92"/><line x1="265" y1="92" x2="275" y2="92"/></g>
+<text x="190" y="20" text-anchor="middle" fill="#b36b00">period 4</text>
+<text x="275" y="87" fill="#b36b00" font-size="11">a = 2</text>
+<text x="352" y="86" fill="#555">y = d</text>
+<text x="80" y="108" fill="#3f44c9">c = 1</text>
+</svg><figcaption>One wave, four readings: midline \(y = 3\), amplitude 2, period 4, and an upward crossing at \(x = 1\).</figcaption></figure>
+</section>
+
+<section class="example">
+<h2>Watch one: the wave in the figure</h2>
+<p>Highest value 5, lowest 1. The midline is halfway: \(d = \tfrac{5 + 1}{2} = 3\). The amplitude is half the gap: \(a = \tfrac{5 - 1}{2} = 2\).</p>
+<p>Peaks sit at \(x = 2\) and \(x = 6\), so the period is 4. Then \(\tfrac{2\pi}{b} = 4\) gives \(b = \tfrac{\pi}{2}\).</p>
+<p>The wave crosses the midline going up at \(x = 1\), so \(c = 1\).</p>
+<p>\[y = 2\sin\!\Big(\frac{\pi}{2}(x - 1)\Big) + 3.\]</p>
+<p>Check a peak: at \(x = 2\) the bracket is \(\tfrac{\pi}{2}\), where sine is 1, and \(y = 2 + 3 = 5\).</p>
+<p class="small">Move the four sliders and match a mystery wave: <a href="../../demos/sinewave.html">infinityclub.net/demos/sinewave.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>For \(y = 3\sin\big(2(x - \tfrac{\pi}{4})\big) - 1\), give the amplitude, the period, the midline, and the highest and lowest values.<div class="space short"></div></li>
+<li>A sine wave has highest value 7, lowest value 1 and period \(\pi\). It crosses its midline going up at \(x = 0\). Write its equation.<div class="space short"></div></li>
+<li>A wave has a peak at \((2, 9)\) and its next trough at \((5, -1)\). Find \(a\), \(d\), the period and \(b\). Then work out where it crosses the midline going up, and write an equation.<div class="space"></div></li>
+<li>Sam says \(y = \sin(2x - \tfrac{\pi}{3})\) is the wave \(y = \sin 2x\) slid right by \(\tfrac{\pi}{3}\). Find where the wave really crosses its midline going up, and rewrite the equation so the slide can be read off. Why was Sam out by a factor of 2?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: one wave, many names</h2>
+<p>The wave in the figure has other equations. Find one of the form \(y = -2\sin\big(\tfrac{\pi}{2}(x - c)\big) + 3\), and one of the form \(y = 2\cos\big(\tfrac{\pi}{2}(x - c)\big) + 3\). What does each \(c\) mark on the graph?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Amplitude 3, period \(\tfrac{2\pi}{2} = \pi\), midline \(y = -1\). Highest value \(-1 + 3 = 2\), lowest \(-1 - 3 = -4\).</li>
+<li>\(d = \tfrac{7 + 1}{2} = 4\), \(a = \tfrac{7 - 1}{2} = 3\), \(b = \tfrac{2\pi}{\pi} = 2\), \(c = 0\). So \(y = 3\sin 2x + 4\).</li>
+<li>\(d = \tfrac{9 + (-1)}{2} = 4\) and \(a = \tfrac{9 - (-1)}{2} = 5\). Peak to trough is half a period, so the period is 6 and \(b = \tfrac{2\pi}{6} = \tfrac{\pi}{3}\). The upward crossing is a quarter period before the peak: \(2 - 1.5 = 0.5\). So \(y = 5\sin\big(\tfrac{\pi}{3}(x - 0.5)\big) + 4\).</li>
+<li>The upward crossing is where the bracket is zero: \(2x - \tfrac{\pi}{3} = 0\), so \(x = \tfrac{\pi}{6}\). Factor out the 2: \(y = \sin\big(2(x - \tfrac{\pi}{6})\big)\), a slide of \(\tfrac{\pi}{6}\). The 2 makes the wave run twice as fast, so a change of \(\tfrac{\pi}{3}\) inside the bracket is used up by a change of only \(\tfrac{\pi}{6}\) in \(x\).</li>
+</ol>
+<p><b>Stretch.</b> A negative \(a\) flips the wave, so \(c\) must mark a <em>downward</em> crossing: \(c = 3\), giving \(y = -2\sin\big(\tfrac{\pi}{2}(x - 3)\big) + 3\). Cosine starts at its highest value, so \(c\) must mark a peak: \(c = 2\), giving \(y = 2\cos\big(\tfrac{\pi}{2}(x - 2)\big) + 3\). Adding any whole number of periods to \(c\) also works (\(c = 7\), or \(c = 6\)).</p>
+</section>
+
+<div class="sheet-nav"><a href="a1-radians.html">← Previous</a><a href="a3-addition-formulas.html">Next: sin(A + B), from a picture →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

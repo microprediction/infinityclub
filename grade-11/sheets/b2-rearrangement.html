@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Big with big, small with small · Infinity Club</title>
+<meta name="description" content="To make a sum of products as large as possible, pair the largest with the largest. The rearrangement inequality, proved by swapping two pairs, and three famous inequalities that fall out of it.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 11</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 11 · Around the corner · 2</div>
+  <h1>Big with big, small with small</h1>
+  <p class="teaser">To make a sum of products as large as possible, pair the largest with the largest. The rearrangement inequality, and three famous inequalities that fall out of it.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Take two prices \(a \le b\) and two quantities \(x \le y\). Pair each price with a quantity, multiply, and add. Matching small with small gives \(ax + by\). Crossing them gives \(ay + bx\).</p>
+<p class="callout"><b>Two-pair swap.</b> If \(a \le b\) and \(x \le y\), then \(ax + by \ge ay + bx\).</p>
+<figure><svg viewBox="0 0 250 140" width="250" height="140" role="img" aria-label="A rectangle cut into four cells by columns of width a and b and rows of height x and y. The cells a x and b y are shaded blue, the cells a y and b x orange." font-family="Nunito, sans-serif" font-size="13">
+<rect x="50" y="22" width="50" height="32" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><rect x="100" y="54" width="110" height="68" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="100" y="22" width="110" height="32" fill="#fde8c4" stroke="#3f44c9" stroke-width="1.5"/><rect x="50" y="54" width="50" height="68" fill="#fde8c4" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="75.0" y="15" text-anchor="middle">a</text><text x="155.0" y="15" text-anchor="middle">b</text><text x="38" y="42.0" text-anchor="middle">x</text><text x="38" y="92.0" text-anchor="middle">y</text>
+<text x="75.0" y="42.0" text-anchor="middle" fill="#3f44c9" font-weight="700">ax</text><text x="155.0" y="92.0" text-anchor="middle" fill="#3f44c9" font-weight="700">by</text><text x="155.0" y="42.0" text-anchor="middle" fill="#b87400" font-weight="700">bx</text><text x="75.0" y="92.0" text-anchor="middle" fill="#b87400" font-weight="700">ay</text>
+</svg><figcaption>Blue is the matched sum, orange the crossed sum.</figcaption></figure>
+<p><b>Proof.</b> Subtract: \((ax + by) - (ay + bx) = (b - a)(y - x)\). Neither bracket is negative, so neither is the product.</p>
+<p>Now take longer lists. Let \(a_1 \le a_2 \le \dots \le a_n\), and pair them with \(b\)'s in any order. If the largest \(b\) is not with \(a_n\), swap it with the \(b\) that is. Those two pairs go from crossed to matched, so the sum does not fall. Leave that pair alone and do the same for the next largest \(b\), and so on. At the end the \(b\)'s are in increasing order too, and the sum never fell.</p>
+<p class="callout"><b>Rearrangement inequality.</b> The sum \(a_1b_1 + \dots + a_nb_n\) is largest when both lists are sorted the same way. It is smallest when they are sorted opposite ways (apply this to the list of \(-b\)'s, which reverses both their order and the inequality).</p>
+</section>
+
+<section class="example">
+<h2>Watch one: \(a^2 + b^2 + c^2 \ge ab + bc + ca\)</h2>
+<p>First with numbers. Pair \((1, 3, 4)\) with \(2, 5, 6\) in all six orders. The sums are 41, 40, 35, 32, 31 and 29. The largest is \(1 \cdot 2 + 3 \cdot 5 + 4 \cdot 6 = 41\), sorted alike. The smallest is \(1 \cdot 6 + 3 \cdot 5 + 4 \cdot 2 = 29\), sorted opposite.</p>
+<p>Now with letters. Take any real numbers \(a, b, c\) and use the list \((a, b, c)\) twice. A list is sorted the same way as itself, so pairing each number with itself gives the largest sum, \(a \cdot a + b \cdot b + c \cdot c\). Any other pairing is no bigger. Slide the second copy round one place, to \((b, c, a)\):</p>
+<p>\[a^2 + b^2 + c^2 \ \ge\ ab + bc + ca.\]</p>
+<p>No algebra, only the observation that one pairing is the sorted one.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Three piles hold 2, 5 and 9 coins. One pile must be all 10-cent coins, one all 20-cent and one all 50-cent. What is the most money the piles can hold? The least?<div class="space short"></div></li>
+<li>Use the list \((a, b)\) twice to prove \(a^2 + b^2 \ge 2ab\) for any real numbers. Deduce that \(\dfrac{x}{y} + \dfrac{y}{x} \ge 2\) for positive \(x\) and \(y\).<div class="space short"></div></li>
+<li>For positive \(a, b, c\), prove \(a^3 + b^3 + c^3 \ge a^2b + b^2c + c^2a\). Say which two lists you are pairing, and why they are sorted the same way.<div class="space"></div></li>
+<li>Four customers need 2, 4, 5 and 9 minutes at a single till. Each person's wait runs until their own service ends. If the service times in order are \(t_1, t_2, t_3, t_4\), explain why the total wait is \(4t_1 + 3t_2 + 2t_3 + t_4\). Which order makes it smallest? Find the smallest and largest totals.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: Nesbitt's inequality</h2>
+<p>For positive \(a, b, c\), prove \(\dfrac{a}{b+c} + \dfrac{b}{c+a} + \dfrac{c}{a+b} \ge \dfrac32\). Hint: the lists \((a, b, c)\) and \(\left(\tfrac{1}{b+c}, \tfrac{1}{c+a}, \tfrac{1}{a+b}\right)\) are sorted the same way. Write down the two slid pairings and add them.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Most: big with big, \(2 \times 10 + 5 \times 20 + 9 \times 50 = 570\) cents. Least: opposite order, \(2 \times 50 + 5 \times 20 + 9 \times 10 = 290\) cents.</li>
+<li>Pairing \((a, b)\) with itself is the sorted pairing, \(a^2 + b^2\). The other pairing is \(ab + ba = 2ab\). So \(a^2 + b^2 \ge 2ab\). Put \(a = x\), \(b = y\) and divide by \(xy\), which is positive: \(\tfrac{x}{y} + \tfrac{y}{x} \ge 2\).</li>
+<li>Pair \((a^2, b^2, c^2)\) with \((a, b, c)\). For positive numbers a bigger number has a bigger square, so the two lists are sorted the same way. The matched pairing is \(a^3 + b^3 + c^3\). Sliding the second list to \((b, c, a)\) gives \(a^2b + b^2c + c^2a\), which is no bigger.</li>
+<li>The first service time is waited through by all four people, the second by three, the third by two and the last by one. The multipliers \(4, 3, 2, 1\) are fixed, so the total is smallest when the times are sorted the opposite way: shortest first. Smallest: \(4 \cdot 2 + 3 \cdot 4 + 2 \cdot 5 + 1 \cdot 9 = 39\) minutes. Largest (longest first): \(4 \cdot 9 + 3 \cdot 5 + 2 \cdot 4 + 1 \cdot 2 = 61\) minutes.</li>
+</ol>
+<p><b>Stretch.</b> The expression does not change if the letters are renamed, so take \(a \le b \le c\). Then \(b + c \ge c + a \ge a + b\), so \(\tfrac{1}{b+c} \le \tfrac{1}{c+a} \le \tfrac{1}{a+b}\): sorted the same way as \((a, b, c)\). Call the matched sum \(S\). The two slid pairings are no bigger: \(S \ge \tfrac{b}{b+c} + \tfrac{c}{c+a} + \tfrac{a}{a+b}\) and \(S \ge \tfrac{c}{b+c} + \tfrac{a}{c+a} + \tfrac{b}{a+b}\). Add them: \(2S \ge \tfrac{b+c}{b+c} + \tfrac{c+a}{c+a} + \tfrac{a+b}{a+b} = 3\). So \(S \ge \tfrac32\). The three inequalities were \(a^2 + b^2 \ge 2ab\), \(a^2 + b^2 + c^2 \ge ab + bc + ca\), and Nesbitt's.</p>
+</section>
+
+<div class="sheet-nav"><a href="b1-infinite-descent.html">← Previous</a><a href="b3-modular-division.html">Next: Dividing in clock arithmetic →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

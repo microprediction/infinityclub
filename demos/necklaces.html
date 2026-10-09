@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Counting Necklaces · Infinity Club</title>
+<meta name="description" content="Choose the beads and colours, see every different necklace drawn, and check the count with Burnside's table of colourings left alone by each turn and flip.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+#list { width: 100%; }
+.controls input[type=range] { width: 130px; }
+.controls select { font: inherit; padding: .25em .4em; border: 1px solid var(--rule); border-radius: 6px; background: #fff; }
+.controls .val { font-family: var(--mono); min-width: 1.2em; display: inline-block; }
+.controls input[type=checkbox] { width: 1.15em; height: 1.15em; }
+.pager { margin: .6rem 0 0; }
+.burn { display: flex; flex-wrap: wrap; gap: 1rem 1.6rem; align-items: flex-start; }
+.burn table { border-collapse: collapse; font-size: .95rem; }
+.burn th, .burn td { text-align: left; padding: .3rem .45rem; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+.burn td:first-child { white-space: normal; }
+.burn td.n, .burn th.n { text-align: right; font-family: var(--mono); }
+.burn tbody tr { cursor: pointer; }
+.burn tbody tr.sel { background: #fdeccd; }
+.burn tfoot td { font-weight: 800; border-bottom: 0; }
+.loops { flex: 1 1 220px; max-width: 340px; }
+.loops p { margin: .5rem 0 0; }
+h2.sub { font-size: 1.1rem; margin: 1.2rem 0 .5rem; }
+#summary, #avg { font-size: .95rem; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Counting necklaces</h1>
+<p class="explain">Choose how many beads and how many colours. The demo draws every different necklace. Two necklaces are the same if you can turn one round to get the other. Before you look at the count, guess it: with 6 beads and 2 colours there are 64 ways to colour numbered beads, and each necklace can sit in 6 positions. Is the answer 64 ÷ 6? Then tap a row of the table underneath to see how the exact count is found.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <label>Beads <input type="range" id="beads" min="3" max="8" step="1" value="6"> <span class="val" id="beadsv">6</span></label>
+    <label>Colours <select id="cols"><option>2</option><option>3</option><option>4</option></select></label>
+    <label><input type="checkbox" id="flip"> Flipping over counts as the same</label>
+  </div>
+  <div class="readout" id="summary"></div>
+  <canvas id="list" width="640" height="200"></canvas>
+  <div class="controls pager" id="pager">
+    <button id="prev" class="ghost">Earlier</button>
+    <button id="next" class="ghost">Later</button>
+    <span class="small" id="where"></span>
+  </div>
+  <h2 class="sub">The Burnside table</h2>
+  <div class="burn">
+    <table>
+      <thead><tr><th>Move</th><th class="n">Loops</th><th class="n">Left alone</th></tr></thead>
+      <tbody id="rows"></tbody>
+      <tfoot><tr><td>Total</td><td></td><td class="n" id="tot"></td></tr></tfoot>
+    </table>
+    <div class="loops">
+      <canvas id="loop" width="220" height="220"></canvas>
+      <p class="small" id="loopnote"></p>
+    </div>
+  </div>
+  <div class="readout" id="avg"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>Number the beads and there are (colours)<sup>beads</sup> colourings. Turning the necklace by one bead, two beads and so on gives the same necklace, so each necklace shows up several times in that list. The trouble is that it is not always the same number of times. Take 6 beads. The all-blue necklace shows up once. The necklace that alternates blue, orange shows up twice. Most show up once for every position. So dividing by the number of positions gives the wrong answer, and often not even a whole number.</p>
+<p><b>Burnside's count</b> fixes this. For each move, count the colourings that the move leaves looking exactly the same (the "Left alone" column). Add those counts and divide by the number of moves. The result is the number of different necklaces, exactly.</p>
+<p><b>How to count the colourings a move leaves alone.</b> Tap a row. The small picture shows where each bead goes. The beads fall into loops. Turn 6 beads by 2, for example: bead 1 goes to where bead 3 was, bead 3 to bead 5, and round again. The colouring looks the same afterwards only when every bead in a loop has the same colour. So you pick one colour per loop, and the count is (colours)<sup>loops</sup>. Turning n beads by r places makes gcd(n, r) loops.</p>
+<p>Tick the box to let flips count as well. A flip turns the necklace over, as you can with a real one. Now there are twice as many moves and usually fewer necklaces. With 6 beads and 2 colours the count drops from 14 to 13: find the two necklaces that are mirror images of each other.</p>
+<p>Sheet: <a href="../grade-11/sheets/b10-necklaces.html">How many different necklaces?</a></p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  function gcd(a, b) { while (b) { var t = a % b; a = b; b = t; } return a; }
+  // A move is a list p where the bead in place i goes to place p[i].
+  function turnMove(n, r) { var p = []; for (var i = 0; i < n; i++) p.push((i + r) % n); return p; }
+  function flipMove(n, a) { var p = []; for (var i = 0; i < n; i++) p.push(((a - i) % n + n) % n); return p; }
+  // The loops of a move: each loop is a list of places that swap among themselves.
+  function loopsOf(p) {
+    var seen = [], out = [];
+    for (var i = 0; i < p.length; i++) {
+      if (seen[i]) continue;
+      var loop = [], j = i;
+      while (!seen[j]) { seen[j] = true; loop.push(j); j = p[j]; }
+      out.push(loop);
+    }
+    return out;
+  }
+  function allMoves(n, reflect) {
+    var m = [], i;
+    for (i = 0; i < n; i++) m.push(turnMove(n, i));
+    if (reflect) for (i = 0; i < n; i++) m.push(flipMove(n, i));
+    return m;
+  }
+  // Burnside's table. Turns get a row each. Flips are grouped by how many beads sit on the flip line.
+  function burnside(n, k, reflect) {
+    var rows = [], total = 0, size = 0, r, a;
+    for (r = 0; r < n; r++) {
+      var p = turnMove(n, r), loops = loopsOf(p).length;
+      rows.push({ kind: "turn", by: r, move: p, loops: loops, times: 1, fixed: Math.pow(k, loops) });
+    }
+    if (reflect) {
+      var groups = {};
+      for (a = 0; a < n; a++) {
+        var q = flipMove(n, a), still = 0;
+        q.forEach(function (to, from) { if (to === from) still++; });
+        if (groups[still]) groups[still].times++;
+        else { groups[still] = { kind: "flip", still: still, move: q, loops: loopsOf(q).length, times: 1 }; rows.push(groups[still]); }
+      }
+      rows.forEach(function (row) { if (row.kind === "flip") row.fixed = row.times * Math.pow(k, row.loops); });
+    }
+    rows.forEach(function (row) { total += row.fixed; size += row.times; });
+    return { rows: rows, total: total, size: size, count: total / size };
+  }
+  // Every different necklace, each as a list of n colour numbers. Of all the ways to write a necklace, keep the smallest.
+  function listNecklaces(n, k, reflect) {
+    var moves = allMoves(n, reflect).slice(1), out = [], all = Math.pow(k, n), d = [], pw = [], i;
+    for (i = 0; i < n; i++) pw.push(Math.pow(k, n - 1 - i));
+    for (var code = 0; code < all; code++) {
+      var c = code, least = true;
+      for (i = n - 1; i >= 0; i--) { d[i] = c % k; c = (c - d[i]) / k; }
+      for (var m = 0; m < moves.length && least; m++) {
+        var v = 0, p = moves[m];
+        for (i = 0; i < n; i++) v += d[i] * pw[p[i]];
+        if (v < code) least = false;
+      }
+      if (least) out.push(d.slice());
+    }
+    return out;
+  }
+  /*ENDPURE*/
+
+  var BEAD = ["#3f44c9", "#f5a524", "#2a9d8f", "#d1495b"], LOOP = ["#3f44c9", "#f5a524", "#2a9d8f", "#d1495b", "#8a5cc9", "#5d6079", "#7cb342", "#00a3d9"];
+  var list = document.getElementById("list"), lx = list.getContext("2d"), loop = document.getElementById("loop"), px = loop.getContext("2d");
+  var beadsIn = document.getElementById("beads"), colsIn = document.getElementById("cols"), flipIn = document.getElementById("flip");
+  var n = 6, k = 2, reflect = false, items = [], B, page = 0, per = 48, sel = 1, lastW = -1;
+  function size(canvas, ctx, w, h) {
+    var dpr = window.devicePixelRatio || 1;
+    canvas.width = w * dpr; canvas.height = h * dpr; canvas.style.width = w + "px"; canvas.style.height = h + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, w, h);
+  }
+  function spot(cx, cy, R, i) { var a = -Math.PI / 2 + 2 * Math.PI * i / n; return [cx + R * Math.cos(a), cy + R * Math.sin(a)]; }
+  function drawList() {
+    list.style.width = "100%";
+    var W = list.clientWidth || 640, cell = W < 420 ? 44 : 56, cols = Math.max(1, Math.floor(W / cell));
+    per = cols * 8;
+    var pages = Math.ceil(items.length / per); if (page >= pages) page = pages - 1; if (page < 0) page = 0;
+    var from = page * per, to = Math.min(items.length, from + per), rows = Math.ceil((to - from) / cols), off = (W - cols * cell) / 2;
+    size(list, lx, W, Math.max(1, rows) * cell); list.style.width = "100%";
+    var R = cell * 0.33, br = Math.min(R * Math.sin(Math.PI / n) * 0.92, cell * 0.12);
+    for (var t = from; t < to; t++) {
+      var cx = off + ((t - from) % cols + 0.5) * cell, cy = (Math.floor((t - from) / cols) + 0.5) * cell;
+      lx.strokeStyle = "#c3c4d6"; lx.lineWidth = 1; lx.beginPath(); lx.arc(cx, cy, R, 0, 2 * Math.PI); lx.stroke();
+      for (var i = 0; i < n; i++) {
+        var s = spot(cx, cy, R, i);
+        lx.fillStyle = BEAD[items[t][i]]; lx.beginPath(); lx.arc(s[0], s[1], br, 0, 2 * Math.PI); lx.fill();
+      }
+    }
+    document.getElementById("pager").style.display = pages > 1 ? "" : "none";
+    document.getElementById("where").textContent = "Showing " + (from + 1) + " to " + to + " of " + items.length;
+    document.getElementById("prev").disabled = page === 0; document.getElementById("next").disabled = page >= pages - 1;
+  }
+  function moveName(row) {
+    if (row.kind === "turn") return row.by === 0 ? "Leave it alone" : "Turn by " + row.by + (row.by === 1 ? " bead" : " beads");
+    return row.times + " flips " + (row.still === 2 ? "through two beads" : row.still === 1 ? "through one bead" : "between beads");
+  }
+  function pow(l) { return k + "<sup>" + l + "</sup>"; }
+  function buildTable() {
+    var body = document.getElementById("rows"); body.innerHTML = "";
+    B.rows.forEach(function (row, i) {
+      var tr = document.createElement("tr"); if (i === sel) tr.className = "sel";
+      tr.innerHTML = "<td>" + moveName(row) + "</td><td class='n'>" + row.loops + "</td><td class='n'>" + (row.times > 1 ? row.times + " × " : "") + pow(row.loops) + " = " + row.fixed + "</td>";
+      tr.addEventListener("click", function () { sel = i; buildTable(); drawLoops(); });
+      body.appendChild(tr);
+    });
+    document.getElementById("tot").textContent = B.total;
+    document.getElementById("avg").textContent = "Total " + B.total + " ÷ " + B.size + " moves = " + B.count + " necklaces.\nThe demo drew " + items.length + ". " + (B.count === items.length ? "They agree." : "They disagree!")
+      + "\nNumbered colourings ÷ moves would give " + Math.pow(k, n) + " ÷ " + B.size + " = " + (Math.round(Math.pow(k, n) / B.size * 100) / 100) + ".";
+  }
+  function drawLoops() {
+    var row = B.rows[sel], S = 220, c = S / 2, R = 78, br = n > 6 ? 15 : 17, loops = loopsOf(row.move), colour = [];
+    size(loop, px, S, S);
+    loops.forEach(function (l, li) { l.forEach(function (i) { colour[i] = LOOP[li % LOOP.length]; }); });
+    px.strokeStyle = "#ece9e0"; px.lineWidth = 1; px.beginPath(); px.arc(c, c, R, 0, 2 * Math.PI); px.stroke();
+    loops.forEach(function (l, li) {
+      if (l.length < 2) return;
+      px.strokeStyle = LOOP[li % LOOP.length]; px.lineWidth = 2.5; px.beginPath();
+      l.forEach(function (i, t) { var s = spot(c, c, R, i); if (t) px.lineTo(s[0], s[1]); else px.moveTo(s[0], s[1]); });
+      px.closePath(); px.stroke();
+    });
+    px.textAlign = "center"; px.textBaseline = "middle"; px.font = "800 14px Nunito, sans-serif";
+    for (var i = 0; i < n; i++) {
+      var s = spot(c, c, R, i);
+      px.fillStyle = colour[i]; px.beginPath(); px.arc(s[0], s[1], br, 0, 2 * Math.PI); px.fill();
+      px.fillStyle = "#fff"; px.fillText(i + 1, s[0], s[1] + 1);
+    }
+    var L = row.loops, name = row.kind === "turn" ? moveName(row) : "One of the " + moveName(row).replace(/^\d+ /, "");
+    document.getElementById("loopnote").innerHTML = "<b>" + name + ".</b> " + (L === 1 ? "All the beads are in 1 loop." : "The beads fall into " + L + " loops, one colour each in this picture.")
+      + " The move leaves a necklace alone only when each loop is a single colour. That is " + k + " choices for each loop: " + pow(L) + " = " + Math.pow(k, L) + ".";
+  }
+  function render() {
+    n = parseInt(beadsIn.value, 10); k = parseInt(colsIn.value, 10); reflect = flipIn.checked;
+    document.getElementById("beadsv").textContent = n;
+    B = burnside(n, k, reflect); items = listNecklaces(n, k, reflect); page = 0; if (sel >= B.rows.length) sel = 1;
+    document.getElementById("summary").textContent = n + " beads, " + k + " colours: " + Math.pow(k, n) + " colourings if the beads are numbered.\nDifferent necklaces, when turning " + (reflect ? "or flipping " : "") + "does not count: " + items.length;
+    drawList(); buildTable(); drawLoops();
+  }
+  beadsIn.addEventListener("input", render); colsIn.addEventListener("change", render); flipIn.addEventListener("change", render);
+  document.getElementById("prev").addEventListener("click", function () { page--; drawList(); });
+  document.getElementById("next").addEventListener("click", function () { page++; drawList(); });
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(function () { var w = list.parentNode.clientWidth; if (w !== lastW) { lastW = w; drawList(); } }, 150); });
+  lastW = list.parentNode.clientWidth; render();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dropping needles to find π · Infinity Club</title>
+<meta name="description" content="Drop a needle on a lined floor. The chance it crosses a line is 2/π when the needle is as long as the gap, and a noodle of any shape shows why.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 11</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 11 · Around the corner · 12</div>
+  <h1>Dropping needles to find π</h1>
+  <p class="teaser">Drop a needle on a lined floor. If it is as long as the gap between lines, the chance it crosses one is \(2/\pi\), and a noodle of any shape shows why.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A floor has parallel lines a distance \(d\) apart. Drop a needle of length \(L \le d\) at random. The chance that it lands across a line is</p>
+<p class="callout">\(P = \dfrac{2L}{\pi d}\).</p>
+<p>No circle is in sight, so why \(\pi\)?</p>
+<figure><svg viewBox="0 0 500 176" width="500" height="176" role="img" aria-label="A floor with parallel lines a distance d apart. Needles of length d: some cross a line, some do not. A circle of diameter d crosses twice. A bent noodle crosses several times. A rounded triangle of width d." font-family="Nunito, sans-serif" font-size="13">
+<line x1="22" y1="16" x2="496" y2="16" stroke="#999" stroke-width="1.5"/>
+<line x1="22" y1="64" x2="496" y2="64" stroke="#999" stroke-width="1.5"/>
+<line x1="22" y1="112" x2="496" y2="112" stroke="#999" stroke-width="1.5"/>
+<line x1="22" y1="160" x2="496" y2="160" stroke="#999" stroke-width="1.5"/>
+<line x1="12" y1="64" x2="12" y2="112" stroke="#000" stroke-width="1"/><line x1="8" y1="64" x2="16" y2="64" stroke="#000"/><line x1="8" y1="112" x2="16" y2="112" stroke="#000"/><text x="5" y="92.0" font-style="italic" font-size="12" text-anchor="middle" dx="-0">d</text>
+<line x1="38.2" y1="29.9" x2="81.8" y2="50.1" stroke="#3f44c9" stroke-width="3" stroke-linecap="round"/>
+<line x1="90.8" y1="76.4" x2="99.2" y2="123.6" stroke="#f5a524" stroke-width="3" stroke-linecap="round"/>
+<line x1="124.6" y1="78.4" x2="155.4" y2="41.6" stroke="#f5a524" stroke-width="3" stroke-linecap="round"/>
+<line x1="46.4" y1="135.8" x2="93.6" y2="144.2" stroke="#3f44c9" stroke-width="3" stroke-linecap="round"/>
+<line x1="166.8" y1="150.6" x2="183.2" y2="105.4" stroke="#f5a524" stroke-width="3" stroke-linecap="round"/>
+<line x1="191.1" y1="35.9" x2="238.9" y2="40.1" stroke="#3f44c9" stroke-width="3" stroke-linecap="round"/>
+<circle cx="280" cy="80" r="24.0" fill="none" stroke="#3f44c9" stroke-width="2.5"/>
+<circle cx="262.1" cy="64" r="3.5" fill="#f5a524"/>
+<circle cx="297.9" cy="64" r="3.5" fill="#f5a524"/>
+<path d="M335 150 C 330 110, 345 80, 362 100 S 385 150, 392 110 S 395 50, 430 34" fill="none" stroke="#3f44c9" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M442 146 A 48 48 0 0 1 466 104.4 A 48 48 0 0 1 490 146 A 48 48 0 0 1 442 146 Z" fill="#dcdcf5" stroke="#3f44c9" stroke-width="2"/>
+<text x="280" y="152" text-anchor="middle" font-size="12" fill="#555">circle</text>
+<text x="372" y="152" text-anchor="middle" font-size="12" fill="#555">noodle</text>
+<text x="120" y="174" text-anchor="middle" font-size="12" fill="#555">needles</text>
+<text x="466.0" y="174" text-anchor="middle" font-size="12" fill="#555">question 4</text>
+</svg><figcaption>Needles that cross a line are orange. The circle has diameter \(d\). However it lands, it crosses twice.</figcaption></figure>
+<p>Drop a bent wire, a "noodle", of length \(L\). Let \(E\) be its expected number of crossings.</p>
+<p><b>Step 1.</b> Cut the noodle into tiny straight pieces. Its crossings are the sum of theirs, and <a href="b11-linearity.html">expectation adds</a> even though the pieces are joined. So \(E\) depends only on length, and twice the length gives twice the crossings: \(E = cL\) for some constant \(c\).</p>
+<p><b>Step 2.</b> A circle of diameter \(d\) always crosses exactly twice. Its length is \(\pi d\), so \(c \times \pi d = 2\) and \(c = \dfrac{2}{\pi d}\).</p>
+<p><b>Step 3.</b> A needle with \(L \le d\) crosses once or not at all, so its expected number of crossings <em>is</em> its chance of crossing: \(P = cL\).</p>
+</section>
+
+<section class="example">
+<h2>Watch one: a needle as long as the gap</h2>
+<p>Take \(L = d\). Then \(P = \dfrac{2}{\pi} \approx 0.637\), so about 64 needles in 100 cross a line.</p>
+<p>Turn it round. In \(N\) drops you expect about \(\dfrac{2N}{\pi}\) crossings, so</p>
+<p>\[\pi \approx \frac{2 \times \text{drops}}{\text{crossings}}.\]</p>
+<p>Suppose 500 drops give 320 crossings. The estimate is \(1000/320 = 3.125\). That is close, but not very. Needles are a slow way to find \(\pi\): each extra digit takes about 100 times as many drops.</p>
+<p class="small">Drop 10,000 needles in a second: <a href="../../demos/buffon.html">infinityclub.net/demos/buffon.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>The lines are 5 cm apart and the needle is 2 cm long. Find the chance that it crosses a line. About how many crossings do you expect in 400 drops?<div class="space short"></div></li>
+<li>With \(L = 3\) cm and \(d = 4\) cm, 2,000 drops give 950 crossings. Rearrange the formula and estimate \(\pi\).<div class="space short"></div></li>
+<li>(a) A wire of length \(3d\) is bent into a square. Find its expected number of crossings. (b) Do the same for a straight needle of length \(2d\). Why is the answer to (b) not the chance of crossing a line?<div class="space"></div></li>
+<li>The rounded triangle in the figure is made from three arcs. Each arc joins two corners of an equilateral triangle of side \(d\) and is centred on the third corner. Like the circle, it is \(d\) wide in every direction, so it always crosses exactly twice. What does the noodle argument say its perimeter must be? Check by working out the three arcs.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: square tiles</h2>
+<p>Now the floor has lines both ways, making squares of side \(d\). Drop a needle of length \(d\). Find the expected number of crossings. The chance of crossing both a horizontal and a vertical line is \(\tfrac1\pi\). Find the chance of crossing at least one line.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(P = \dfrac{2 \times 2}{\pi \times 5} = \dfrac{4}{5\pi} \approx 0.255\). In 400 drops, about \(400 \times 0.255 \approx 102\) crossings.</li>
+<li>\(\dfrac{\text{crossings}}{\text{drops}} \approx \dfrac{2L}{\pi d}\), so \(\pi \approx \dfrac{2L \times \text{drops}}{d \times \text{crossings}} = \dfrac{2 \times 3 \times 2000}{4 \times 950} = \dfrac{12000}{3800} \approx 3.16\).</li>
+<li>(a) Only the length matters: \(E = \dfrac{2 \times 3d}{\pi d} = \dfrac{6}{\pi} \approx 1.91\). (b) \(E = \dfrac{4}{\pi} \approx 1.27\). This is bigger than 1, so it cannot be a chance. A needle longer than \(d\) can cross two lines at once, so the expected number of crossings is more than the chance of at least one.</li>
+<li>It always crosses twice, so \(c \times \text{perimeter} = 2\), the same equation as for the circle. The perimeter must be \(\pi d\). Check: each arc has radius \(d\) and turns through \(60^\circ\), a sixth of a full circle, so its length is \(\tfrac16 \times 2\pi d = \tfrac{\pi d}{3}\). Three arcs make \(\pi d\). Every curve of constant width \(d\) has this perimeter.</li>
+</ol>
+<p><b>Stretch.</b> Expectation adds: \(\tfrac2\pi\) for the horizontal lines plus \(\tfrac2\pi\) for the vertical ones, so \(E = \tfrac4\pi \approx 1.27\). For the chance of at least one, add the two chances and take away the overlap, which was counted twice: \(\tfrac2\pi + \tfrac2\pi - \tfrac1\pi = \tfrac3\pi \approx 0.955\).</p>
+</section>
+
+<div class="sheet-nav"><a href="b11-linearity.html">← Previous</a><a href="b13-sphere-packing.html">Next: How many errors can a code fix? →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

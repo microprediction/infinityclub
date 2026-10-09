@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Start here · Grade 11 · Infinity Club</title>
+<meta name="description" content="A suggested first thirty nights of Infinity Club, and a printable club card to tick off every sheet.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.plan { columns: 2; column-gap: 2rem; padding-left: 0; list-style: none; counter-reset: night; }
+.plan li { break-inside: avoid; margin: 0 0 .45em; padding-left: 2.6em; position: relative; counter-increment: night; }
+.plan li::before { content: counter(night); position: absolute; left: 0; top: .1em; width: 1.6em; text-align: right; color: var(--muted); font-weight: 800; font-size: .85em; }
+.box { display: inline-block; width: .95em; height: .95em; border: 1.5px solid var(--ink); border-radius: 3px; vertical-align: -0.12em; margin-right: .5em; }
+.card-list { list-style: none; padding-left: 0; }
+.card-list li { margin: 0 0 .35em; break-inside: avoid; }
+.three { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem; }
+.three h3 { margin-top: 0; }
+.plan a, .card-list a { text-decoration: none; color: inherit; }
+@media (max-width: 600px) { .plan { columns: 1; } }
+@media print { .three { grid-template-columns: repeat(3, 1fr); font-size: .74em; line-height: 1.3; } .card-list li { margin-bottom: .2em; } h2.club { break-before: page; } .plan { columns: 2; } }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Grade 11</a>
+  <a href="index.html#sheets">Sheets</a>
+  <a href="../demos/index.html">Demos</a>
+  <a href="plan.html">Start here</a>
+  <a href="../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this page</button>
+</nav>
+
+<main class="paper">
+<h1>Start here</h1>
+<p>There are 48 sheets and no required order. If you would rather not choose, here is a first thirty nights that mixes school math with new ideas and keeps the surprises coming. Each is ten to fifteen minutes; the starred problem is extra. Tick each night off.</p>
+
+<h2>The first thirty nights</h2>
+<ol class="plan">
+<li><span class="box"></span><a href="sheets/b1-infinite-descent.html">Proof by infinite descent</a></li>
+<li><span class="box"></span><a href="sheets/a1-radians.html">Why radians</a></li>
+<li><span class="box"></span><a href="sheets/b5-cubic.html">The cubic formula, and the numbers it forced into existence</a></li>
+<li><span class="box"></span><a href="sheets/a2-sine-waves.html">Reading a sine wave</a></li>
+<li><span class="box"></span><a href="sheets/b12-buffon.html">Dropping needles to find π</a></li>
+<li><span class="box"></span><a href="sheets/a3-addition-formulas.html">sin(A + B), from a picture</a></li>
+<li><span class="box"></span><a href="sheets/c1-tides.html">Predicting the tide</a></li>
+<li><span class="box"></span><a href="sheets/a4-sine-and-cosine-rules.html">Triangles without a right angle</a></li>
+<li><span class="box"></span><a href="sheets/b10-necklaces.html">How many different necklaces?</a></li>
+<li><span class="box"></span><a href="sheets/a7-log-scales.html">Straight lines hiding in curved data</a></li>
+<li><span class="box"></span><a href="sheets/b11-linearity.html">Expectation adds, even when nothing is independent</a></li>
+<li><span class="box"></span><a href="sheets/a6-trig-equations.html">All the solutions</a></li>
+<li><span class="box"></span><a href="sheets/c4-moores-law.html">Fifty years of doubling</a></li>
+<li><span class="box"></span><a href="sheets/b3-modular-division.html">Dividing in clock arithmetic</a></li>
+<li><span class="box"></span><a href="sheets/a12-complex-arithmetic.html">Dividing by a complex number</a></li>
+<li><span class="box"></span><a href="sheets/b15-max-flow.html">The bottleneck theorem</a></li>
+<li><span class="box"></span><a href="sheets/a10-resolving-vectors.html">Splitting an arrow in two</a></li>
+<li><span class="box"></span><a href="sheets/b20-newton.html">Newton's method</a></li>
+<li><span class="box"></span><a href="sheets/a14-random-variables.html">The average outcome and how far it strays</a></li>
+<li><span class="box"></span><a href="sheets/c7-rainbows.html">Why the rainbow is at 42 degrees</a></li>
+<li><span class="box"></span><a href="sheets/b9-count-it-twice.html">Count it twice</a></li>
+<li><span class="box"></span><a href="sheets/a11-three-unknowns.html">Three equations, three unknowns</a></li>
+<li><span class="box"></span><a href="sheets/b16-mixed-strategies.html">Where should the penalty taker aim?</a></li>
+<li><span class="box"></span><a href="sheets/a13-recursive-sequences.html">Sequences that feed on themselves</a></li>
+<li><span class="box"></span><a href="sheets/b22-overhang.html">How far can a stack of books lean?</a></li>
+<li><span class="box"></span><a href="sheets/a15-best-fit-computed.html">The line of best fit, computed</a></li>
+<li><span class="box"></span><a href="sheets/c5-insurance.html">Why insurance works</a></li>
+<li><span class="box"></span><a href="sheets/b7-linear-recurrences.html">Guess rⁿ</a></li>
+<li><span class="box"></span><a href="sheets/a16-margin-of-error.html">Plus or minus three points</a></li>
+<li><span class="box"></span><a href="sheets/b24-fractal-dimension.html">A shape of dimension 1.26</a></li>
+</ol>
+<p class="small">After night thirty, pick whatever looks interesting. The Connections sheets are good for tired evenings: more reading, less calculation. The demos are for screens, five minutes each.</p>
+
+<h2 class="club">Club card</h2>
+<p>Every grade 11 sheet. Print this page, stick it somewhere visible, and tick them off. Finish a whole track and tell someone.</p>
+<div class="three">
+<div><h3>Sharpen</h3><ul class="card-list"><li><span class="box"></span><a href="sheets/a1-radians.html">Why radians</a></li>
+<li><span class="box"></span><a href="sheets/a2-sine-waves.html">Reading a sine wave</a></li>
+<li><span class="box"></span><a href="sheets/a3-addition-formulas.html">sin(A + B), from a picture</a></li>
+<li><span class="box"></span><a href="sheets/a4-sine-and-cosine-rules.html">Triangles without a right angle</a></li>
+<li><span class="box"></span><a href="sheets/a5-inverse-functions.html">Undoing a function that is not one-to-one</a></li>
+<li><span class="box"></span><a href="sheets/a6-trig-equations.html">All the solutions</a></li>
+<li><span class="box"></span><a href="sheets/a7-log-scales.html">Straight lines hiding in curved data</a></li>
+<li><span class="box"></span><a href="sheets/a8-polynomial-graphs.html">Sketching a polynomial at sight</a></li>
+<li><span class="box"></span><a href="sheets/a9-piecewise.html">Functions in pieces</a></li>
+<li><span class="box"></span><a href="sheets/a10-resolving-vectors.html">Splitting an arrow in two</a></li>
+<li><span class="box"></span><a href="sheets/a11-three-unknowns.html">Three equations, three unknowns</a></li>
+<li><span class="box"></span><a href="sheets/a12-complex-arithmetic.html">Dividing by a complex number</a></li>
+<li><span class="box"></span><a href="sheets/a13-recursive-sequences.html">Sequences that feed on themselves</a></li>
+<li><span class="box"></span><a href="sheets/a14-random-variables.html">The average outcome and how far it strays</a></li>
+<li><span class="box"></span><a href="sheets/a15-best-fit-computed.html">The line of best fit, computed</a></li>
+<li><span class="box"></span><a href="sheets/a16-margin-of-error.html">Plus or minus three points</a></li></ul></div>
+<div><h3>Around the corner</h3><ul class="card-list"><li><span class="box"></span><a href="sheets/b1-infinite-descent.html">Proof by infinite descent</a></li>
+<li><span class="box"></span><a href="sheets/b2-rearrangement.html">Big with big, small with small</a></li>
+<li><span class="box"></span><a href="sheets/b3-modular-division.html">Dividing in clock arithmetic</a></li>
+<li><span class="box"></span><a href="sheets/b4-decimal-periods.html">Why 1/7 repeats after six digits and 1/13 after six too</a></li>
+<li><span class="box"></span><a href="sheets/b5-cubic.html">The cubic formula, and the numbers it forced into existence</a></li>
+<li><span class="box"></span><a href="sheets/b6-rational-roots.html">Hunting for fraction roots</a></li>
+<li><span class="box"></span><a href="sheets/b7-linear-recurrences.html">Guess rⁿ</a></li>
+<li><span class="box"></span><a href="sheets/b8-sums-of-powers.html">Summing squares and cubes without guessing</a></li>
+<li><span class="box"></span><a href="sheets/b9-count-it-twice.html">Count it twice</a></li>
+<li><span class="box"></span><a href="sheets/b10-necklaces.html">How many different necklaces?</a></li>
+<li><span class="box"></span><a href="sheets/b11-linearity.html">Expectation adds, even when nothing is independent</a></li>
+<li><span class="box"></span><a href="sheets/b12-buffon.html">Dropping needles to find π</a></li>
+<li><span class="box"></span><a href="sheets/b13-sphere-packing.html">How many errors can a code fix?</a></li>
+<li><span class="box"></span><a href="sheets/b14-cayley.html">Counting trees</a></li>
+<li><span class="box"></span><a href="sheets/b15-max-flow.html">The bottleneck theorem</a></li>
+<li><span class="box"></span><a href="sheets/b16-mixed-strategies.html">Where should the penalty taker aim?</a></li>
+<li><span class="box"></span><a href="sheets/b17-power-of-a-point.html">The power of a point</a></li>
+<li><span class="box"></span><a href="sheets/b18-complex-geometry.html">Geometry by multiplication</a></li>
+<li><span class="box"></span><a href="sheets/b19-isoperimetric.html">Why bubbles are round</a></li>
+<li><span class="box"></span><a href="sheets/b20-newton.html">Newton's method</a></li>
+<li><span class="box"></span><a href="sheets/b21-simpson.html">Areas from a table of values</a></li>
+<li><span class="box"></span><a href="sheets/b22-overhang.html">How far can a stack of books lean?</a></li>
+<li><span class="box"></span><a href="sheets/b23-finite-fields.html">A number system with five numbers</a></li>
+<li><span class="box"></span><a href="sheets/b24-fractal-dimension.html">A shape of dimension 1.26</a></li></ul></div>
+<div><h3>Connections</h3><ul class="card-list"><li><span class="box"></span><a href="sheets/c1-tides.html">Predicting the tide</a></li>
+<li><span class="box"></span><a href="sheets/c2-triangulation.html">Mapping a country with one measured line</a></li>
+<li><span class="box"></span><a href="sheets/c3-ph.html">What pH measures</a></li>
+<li><span class="box"></span><a href="sheets/c4-moores-law.html">Fifty years of doubling</a></li>
+<li><span class="box"></span><a href="sheets/c5-insurance.html">Why insurance works</a></li>
+<li><span class="box"></span><a href="sheets/c6-rotating-a-cube.html">How a screen turns a cube</a></li>
+<li><span class="box"></span><a href="sheets/c7-rainbows.html">Why the rainbow is at 42 degrees</a></li>
+<li><span class="box"></span><a href="sheets/c8-power-laws.html">The few that are huge</a></li></ul></div>
+</div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="../assets/site.js"></script>
+</body>
+</html>

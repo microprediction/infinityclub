@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Triangles without a right angle · Infinity Club</title>
+<meta name="description" content="The sine rule and the cosine rule solve any triangle. The cosine rule is Pythagoras with a correction term, and dropping one height shows where the term comes from.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 11</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 11 · Sharpen · 4</div>
+  <h1>Triangles without a right angle</h1>
+  <p class="teaser">The sine rule and the cosine rule solve any triangle. The cosine rule is Pythagoras with a correction term, and you can see where the term comes from.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>SOHCAHTOA needs a right angle. Most triangles do not have one, so make one. Label the triangle so that side \(a\) is opposite angle \(A\), and so on. Drop a height \(h\) from \(A\) to the base.</p>
+<figure><svg viewBox="0 0 290 196" width="290" height="196" role="img" aria-label="Triangle ABC with base CB of length a. A height h drops from A to the point D on the base, making two right triangles. CD has length b cos C and DB has length a minus b cos C. Side CA is b and side AB is c." font-family="Nunito, sans-serif" font-size="13">
+<polygon points="30,150 116,27.1 116,150" fill="#fde8c4"/>
+<polygon points="116,27.1 250,150 116,150" fill="#dcdcf5"/>
+<polygon points="30,150 250,150 116,27.1" fill="none" stroke="#000" stroke-width="2"/>
+<line x1="116" y1="27.1" x2="116" y2="150" stroke="#3f44c9" stroke-width="2" stroke-dasharray="5 4"/>
+<polyline points="116,140 126,140 126,150" fill="none" stroke="#000"/>
+<path d="M 54 150 A 24 24 0 0 0 43.8 130.3" fill="none" stroke="#000"/>
+<text x="20" y="155" text-anchor="end">C</text><text x="258" y="155">B</text><text x="116" y="19" text-anchor="middle">A</text><text x="116" y="164" text-anchor="middle" font-size="12">D</text>
+<text x="62" y="82" text-anchor="end">b</text><text x="192" y="82">c</text><text x="122" y="100" fill="#3f44c9">h</text>
+<text x="59" y="143" font-size="12">C</text>
+<g stroke="#999"><line x1="30" y1="172" x2="250" y2="172"/><line x1="30" y1="167" x2="30" y2="177"/><line x1="116" y1="167" x2="116" y2="177"/><line x1="250" y1="167" x2="250" y2="177"/></g>
+<text x="73" y="190" text-anchor="middle" font-size="12" fill="#b36b00">b cos C</text><text x="183" y="190" text-anchor="middle" font-size="12" fill="#3f44c9">a − b cos C</text>
+</svg><figcaption>One height, two right triangles. The whole base \(CB\) is \(a\).</figcaption></figure>
+<p>In the left triangle, \(h = b\sin C\) and \(CD = b\cos C\). That leaves \(DB = a - b\cos C\). Now use Pythagoras in the right triangle:</p>
+<p>\[c^2 = (b\sin C)^2 + (a - b\cos C)^2 = a^2 + b^2(\sin^2 C + \cos^2 C) - 2ab\cos C.\]</p>
+<p>Since \(\sin^2 C + \cos^2 C = 1\):</p>
+<p class="callout"><b>Cosine rule.</b> \(c^2 = a^2 + b^2 - 2ab\cos C\). Pythagoras, with a correction for how far \(C\) is from a right angle.</p>
+<p>The same height read from the other side is \(h = c\sin B\). So \(b\sin C = c\sin B\), and nothing is special about this pair of sides:</p>
+<p class="callout"><b>Sine rule.</b> \(\dfrac{a}{\sin A} = \dfrac{b}{\sin B} = \dfrac{c}{\sin C}\).</p>
+<p>Both rules hold for obtuse triangles too, by the same steps. Use the cosine rule given two sides and the angle between them, or three sides; the sine rule given a side and its opposite angle.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: two sides and the angle between</h2>
+<p>\(a = 7\), \(b = 5\), \(C = 60^\circ\). No side is paired with its angle yet, so start with the cosine rule:</p>
+<p>\[c^2 = 49 + 25 - 2(7)(5)\cos 60^\circ = 74 - 35 = 39, \qquad c = \sqrt{39} \approx 6.24.\]</p>
+<p>Now \(c\) and \(C\) are a pair, so the sine rule gives \(B\):</p>
+<p>\[\sin B = \frac{b\sin C}{c} = \frac{5\sin 60^\circ}{\sqrt{39}} \approx 0.693, \qquad B \approx 43.9^\circ.\]</p>
+<p>Angles add to 180°, so \(A \approx 76.1^\circ\). The longest side faces the largest angle, as it should.</p>
+<p class="small">Type in three known parts and read the working: <a href="../../demos/trianglesolver.html">infinityclub.net/demos/trianglesolver.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>In a triangle, \(A = 40^\circ\), \(B = 75^\circ\) and \(a = 10\). Find \(b\).<div class="space short"></div></li>
+<li>A triangle has sides 5, 6 and 7. Find the angle opposite the side of length 7.<div class="space short"></div></li>
+<li>Two boats leave a harbour at the same time on straight courses \(50^\circ\) apart. After an hour one has gone 8 km and the other 11 km. How far apart are they?<div class="space short"></div></li>
+<li>What does the cosine rule say when \(C = 90^\circ\)? When \(C\) is bigger than 90°, is \(c^2\) more or less than \(a^2 + b^2\), and why? Without finding any angle, decide whether the triangle with sides 4, 5 and 7 has an obtuse angle.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the parallelogram law</h2>
+<p>A parallelogram has sides \(a\) and \(b\). Neighbouring angles add to 180°, and \(\cos(180^\circ - C) = -\cos C\). Use the cosine rule on each diagonal to show that the squares of the two diagonals add up to \(2a^2 + 2b^2\).</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(\dfrac{b}{\sin 75^\circ} = \dfrac{10}{\sin 40^\circ}\), so \(b = \dfrac{10\sin 75^\circ}{\sin 40^\circ} \approx 15.0\).</li>
+<li>\(49 = 25 + 36 - 2(5)(6)\cos C\), so \(\cos C = \tfrac{12}{60} = 0.2\) and \(C \approx 78.5^\circ\).</li>
+<li>Two sides and the angle between: \(d^2 = 8^2 + 11^2 - 2(8)(11)\cos 50^\circ \approx 185 - 113.1 = 71.9\), so \(d \approx 8.5\) km.</li>
+<li>\(\cos 90^\circ = 0\), so the correction vanishes and it is Pythagoras: \(c^2 = a^2 + b^2\). Past 90° the cosine is negative, so \(-2ab\cos C\) is positive and \(c^2\) is <em>more</em> than \(a^2 + b^2\): opening the angle pushes the far ends apart. For 4, 5, 7: \(4^2 + 5^2 = 41\), which is less than \(7^2 = 49\), so the angle opposite the 7 is obtuse (about 101.5°).</li>
+</ol>
+<p><b>Stretch.</b> Each diagonal is the third side of a triangle with sides \(a\) and \(b\). One faces the angle \(C\), the other faces \(180^\circ - C\). So \(p^2 = a^2 + b^2 - 2ab\cos C\) and \(q^2 = a^2 + b^2 + 2ab\cos C\). Add: the correction terms cancel and \(p^2 + q^2 = 2a^2 + 2b^2\). For a rectangle the diagonals are equal and this is Pythagoras again.</p>
+</section>
+
+<div class="sheet-nav"><a href="a3-addition-formulas.html">← Previous</a><a href="a5-inverse-functions.html">Next: Undoing a function that is not one-to-one →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

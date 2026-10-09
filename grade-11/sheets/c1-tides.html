@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Predicting the tide · Infinity Club</title>
+<meta name="description" content="Fit a sine wave to a tide table: amplitude, midline, period and phase. Then solve a trig inequality to find when the water is deep enough to cross the bar.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 11</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 11 · Connections · 1</div>
+  <h1>Predicting the tide</h1>
+  <p class="teaser">High water to low water and back in about twelve and a half hours. Fit a sine wave to a tide table and say when a boat can cross the bar.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>The sea rises and falls about twice a day. The moon does most of the pulling, and one cycle, high water to high water, takes about 12.4 hours. Near many coasts the depth is close to a sine wave, so four numbers describe it (see <a href="a2-sine-waves.html">Reading a sine wave</a>):</p>
+<p class="callout">\(d(t) = a \sin\!\left(\dfrac{2\pi}{P}(t - c)\right) + m\), with \(t\) in hours after midnight and \(d\) the depth in metres.</p>
+<ul>
+<li><b>Midline</b> \(m\): halfway between high and low water.</li>
+<li><b>Amplitude</b> \(a\): half the difference between high and low water.</li>
+<li><b>Period</b> \(P\): the time from one high water to the next.</li>
+<li><b>Phase</b> \(c\): a time when the water is at the midline and rising. That is a quarter period before high water.</li>
+</ul>
+<p>Then "when is the water deep enough?" is a trig equation. Write \(\theta\) for the angle inside the sine, in radians. In each cycle, \(\sin\theta \ge k\) holds from \(\theta = \arcsin k\) to \(\theta = \pi - \arcsin k\). Turn those angles back into times.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: crossing the bar</h2>
+<p>An invented tide table for a sandbar: high 5.2 m at 04:06, low 1.2 m at 10:18, high 5.2 m at 16:30, low 1.2 m at 22:42.</p>
+<p>Midline \(\tfrac{5.2 + 1.2}{2} = 3.2\). Amplitude \(\tfrac{5.2 - 1.2}{2} = 2\). Period \(16.5 - 4.1 = 12.4\) hours. Phase \(4.1 - \tfrac{12.4}{4} = 1.0\).</p>
+<p>\[d(t) = 2\sin\!\left(\frac{2\pi}{12.4}(t - 1)\right) + 3.2.\]</p>
+<p>A boat needs 4.2 m, so \(\sin\theta \ge 0.5\), so \(\tfrac{\pi}{6} \le \theta \le \tfrac{5\pi}{6}\). Since \(t = 1 + \tfrac{12.4}{2\pi}\theta\), the window is \(t = 2.03\) to \(6.17\): 02:02 to 06:10. Check: \(d(2.03) = 4.2\).</p>
+<figure><svg viewBox="0 0 520 190" width="400" height="146" role="img" aria-label="Depth against time for one day: a sine wave through the four table points, with the stretches above 4.2 metres shaded" font-family="Nunito, sans-serif" font-size="13">
+<polygon points="79.7,59.2 79.7,59.2 82.3,56.4 85.0,53.6 87.7,51.1 90.4,48.7 93.1,46.4 95.8,44.4 98.5,42.5 101.1,40.8 103.8,39.3 106.5,38.1 109.2,37.1 111.9,36.2 114.6,35.7 117.3,35.3 119.9,35.2 122.6,35.3 125.3,35.7 128.0,36.2 130.7,37.1 133.4,38.1 136.1,39.3 138.8,40.8 141.4,42.5 144.1,44.4 146.8,46.4 149.5,48.7 152.2,51.1 154.9,53.6 157.6,56.4 160.2,59.2" fill="#fde8c4"/><polygon points="321.4,59.2 321.4,59.2 324.1,56.4 326.8,53.6 329.5,51.1 332.2,48.7 334.9,46.4 337.6,44.4 340.3,42.5 342.9,40.8 345.6,39.3 348.3,38.1 351.0,37.1 353.7,36.2 356.4,35.7 359.1,35.3 361.8,35.2 364.4,35.3 367.1,35.7 369.8,36.2 372.5,37.1 375.2,38.1 377.9,39.3 380.6,40.8 383.2,42.5 385.9,44.4 388.6,46.4 391.3,48.7 394.0,51.1 396.7,53.6 399.4,56.4 402.1,59.2" fill="#fde8c4"/>
+<line x1="40" y1="160" x2="508.0" y2="160" stroke="#000" stroke-width="1.5"/><line x1="40" y1="160" x2="40" y2="16" stroke="#000" stroke-width="1.5"/>
+<line x1="40" y1="83.2" x2="508.0" y2="83.2" stroke="#999" stroke-width="1" stroke-dasharray="4 3"/>
+<line x1="40" y1="59.2" x2="508.0" y2="59.2" stroke="#f5a524" stroke-width="1.5" stroke-dasharray="5 3"/>
+<polyline points="40.0,106.5 43.9,102.1 47.8,97.6 51.7,92.9 55.6,88.1 59.5,83.2 63.4,78.3 67.3,73.5 71.2,68.8 75.1,64.3 79.0,59.9 82.9,55.8 86.8,51.9 90.7,48.4 94.6,45.2 98.5,42.5 102.4,40.1 106.3,38.2 110.2,36.7 114.1,35.8 118.0,35.3 121.9,35.3 125.8,35.8 129.7,36.7 133.6,38.2 137.5,40.1 141.4,42.5 145.3,45.2 149.2,48.4 153.1,51.9 157.0,55.8 160.9,59.9 164.8,64.3 168.7,68.8 172.6,73.5 176.5,78.3 180.4,83.2 184.3,88.1 188.2,92.9 192.1,97.6 196.0,102.1 199.9,106.5 203.8,110.6 207.7,114.5 211.6,118.0 215.5,121.2 219.4,123.9 223.3,126.3 227.2,128.2 231.1,129.7 235.0,130.6 238.9,131.1 242.8,131.1 246.7,130.6 250.6,129.7 254.5,128.2 258.4,126.3 262.3,123.9 266.2,121.2 270.1,118.0 274.0,114.5 277.9,110.6 281.8,106.5 285.7,102.1 289.6,97.6 293.5,92.9 297.4,88.1 301.3,83.2 305.2,78.3 309.1,73.5 313.0,68.8 316.9,64.3 320.8,59.9 324.7,55.8 328.6,51.9 332.5,48.4 336.4,45.2 340.3,42.5 344.2,40.1 348.1,38.2 352.0,36.7 355.9,35.8 359.8,35.3 363.7,35.3 367.6,35.8 371.5,36.7 375.4,38.2 379.3,40.1 383.2,42.5 387.1,45.2 391.0,48.4 394.9,51.9 398.8,55.8 402.7,59.9 406.6,64.3 410.5,68.8 414.4,73.5 418.3,78.3 422.2,83.2 426.1,88.1 430.0,92.9 433.9,97.6 437.8,102.1 441.7,106.5 445.6,110.6 449.5,114.5 453.4,118.0 457.3,121.2 461.2,123.9 465.1,126.3 469.0,128.2 472.9,129.7 476.8,130.6 480.7,131.1 484.6,131.1 488.5,130.6 492.4,129.7 496.3,128.2 500.2,126.3 504.1,123.9 508.0,121.2" fill="none" stroke="#3f44c9" stroke-width="2"/>
+<circle cx="119.9" cy="35.2" r="3.5" fill="#3f44c9"/><circle cx="240.9" cy="131.2" r="3.5" fill="#3f44c9"/><circle cx="361.8" cy="35.2" r="3.5" fill="#3f44c9"/><circle cx="482.6" cy="131.2" r="3.5" fill="#3f44c9"/><line x1="40.0" y1="160" x2="40.0" y2="164" stroke="#000"/><text x="40.0" y="177" text-anchor="middle" font-size="12">00:00</text><line x1="157.0" y1="160" x2="157.0" y2="164" stroke="#000"/><text x="157.0" y="177" text-anchor="middle" font-size="12">06:00</text><line x1="274.0" y1="160" x2="274.0" y2="164" stroke="#000"/><text x="274.0" y="177" text-anchor="middle" font-size="12">12:00</text><line x1="391.0" y1="160" x2="391.0" y2="164" stroke="#000"/><text x="391.0" y="177" text-anchor="middle" font-size="12">18:00</text><line x1="508.0" y1="160" x2="508.0" y2="164" stroke="#000"/><text x="503.0" y="177" text-anchor="middle" font-size="12">24:00</text><text x="34" y="164" text-anchor="end" font-size="12">0</text><text x="34" y="116" text-anchor="end" font-size="12">2</text><text x="34" y="68" text-anchor="end" font-size="12">4</text><text x="34" y="20" text-anchor="end" font-size="12">6</text>
+<text x="241" y="54" text-anchor="middle" font-size="12" fill="#b87400">4.2 m needed</text>
+<text x="241" y="78" text-anchor="middle" font-size="12" fill="#666">midline 3.2 m</text>
+<text x="120" y="28" text-anchor="middle" font-size="12" fill="#3f44c9">high 04:06</text>
+<text x="362" y="28" text-anchor="middle" font-size="12" fill="#3f44c9">high 16:30</text>
+<text x="12" y="26" font-size="12">m</text>
+</svg><figcaption>The fitted wave through the four table points. The boat can cross in the shaded stretches.</figcaption></figure>
+<p class="small">See what each of the four numbers does to a wave: <a href="../../demos/sinewave.html">infinityclub.net/demos/sinewave.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Another invented table, for a harbour: high water 7.5 m at 05:00, low water 1.5 m at 11:12, high water 7.5 m at 17:24. Find the midline, the amplitude and the period.<div class="space short"></div></li>
+<li>Find the phase \(c\) for the harbour and write down its formula. Use it to find the depth at 08:00.<div class="space short"></div></li>
+<li>A ship needs 5.5 m of water in the harbour. Find the first window after midnight, to the nearest minute.<div class="space short"></div></li>
+<li>Back at the sandbar. A week later the tides are weaker: the amplitude has fallen to 1.25 m, with the same midline and period. How long is each 4.2 m window now? What is the smallest amplitude at which the boat can cross at all?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: why the tides weaken and strengthen</h2>
+<p>A real tide is a sum of sine waves. The two largest have periods of about 12.42 hours (the moon's) and 12.00 hours (the sun's). When their high waters coincide, the tide is large. How many days pass before they coincide again?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Midline \(\tfrac{7.5 + 1.5}{2} = 4.5\) m. Amplitude \(\tfrac{7.5 - 1.5}{2} = 3\) m. Period \(17.4 - 5 = 12.4\) hours.</li>
+<li>\(c = 5 - 3.1 = 1.9\), so \(d(t) = 3\sin\!\left(\tfrac{2\pi}{12.4}(t - 1.9)\right) + 4.5\). At \(t = 8\) the angle is \(\tfrac{2\pi}{12.4} \times 6.1 = 3.091\) radians, \(\sin 3.091 = 0.0506\), and \(d = 4.65\) m. Sensible: 08:06 is halfway from high to low, when the depth is the midline 4.5 m.</li>
+<li>\(3\sin\theta + 4.5 \ge 5.5\) means \(\sin\theta \ge \tfrac13\), so \(0.3398 \le \theta \le \pi - 0.3398 = 2.8018\). With \(t = 1.9 + \tfrac{12.4}{2\pi}\theta\): from \(t = 2.571\) to \(t = 7.429\), which is 02:34 to 07:26. Check: \(d(2.571) = 5.50\).</li>
+<li>\(1.25\sin\theta + 3.2 \ge 4.2\) means \(\sin\theta \ge 0.8\), so \(0.9273 \le \theta \le 2.2143\), a width of 1.2870 radians. In time that is \(\tfrac{12.4}{2\pi} \times 1.2870 = 2.54\) hours, about 2 h 32 min, down from 4 h 8 min. The boat can cross only if high water reaches 4.2 m: \(3.2 + a \ge 4.2\), so the smallest amplitude is 1 m, and then only for a moment at high water.</li>
+</ol>
+<p><b>Stretch.</b> In a time \(T\) hours the sun's wave completes \(\tfrac{T}{12}\) cycles and the moon's \(\tfrac{T}{12.42}\). They are back in step when the sun's wave has gained exactly one cycle: \(\tfrac{T}{12} - \tfrac{T}{12.42} = 1\), so \(T = \tfrac{12 \times 12.42}{0.42} = 354.9\) hours, about 14.8 days. Large tides come round about once a fortnight, with weak ones in between.</p>
+</section>
+
+<div class="sheet-nav"><a href="b24-fractal-dimension.html">← Previous</a><a href="c2-triangulation.html">Next: Mapping a country with one measured line →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

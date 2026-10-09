@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rotate a Cube · Infinity Club</title>
+<meta name="description" content="Drag a wireframe cube or slide its three angles, and watch the 3 × 3 rotation matrix that turns it update live. Switch perspective on and off.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+#view { cursor: grab; touch-action: none; width: 100%; }
+#view.drag { cursor: grabbing; }
+.controls input[type=range] { width: 150px; }
+.controls .val { font-family: var(--mono); min-width: 3.4em; display: inline-block; }
+.controls input[type=checkbox] { width: 1.15em; height: 1.15em; }
+#mat, #info { font-size: .92rem; }
+.cx { color: #c2374a; font-weight: 700; } .cy { color: #1f8377; font-weight: 700; } .cz { color: #3f44c9; font-weight: 700; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Rotate a cube</h1>
+<p class="explain">Drag the cube, or move the three sliders. Each slider turns the cube about one axis: x points right, y points up, z points out of the screen at you. The grid of nine numbers underneath is the <b>rotation matrix</b>. Watch it change as the cube turns. Start by pressing <b>Zero the angles</b>, then move one slider at a time and see which numbers stay put.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <label><span class="cx">x</span> <input type="range" id="ax" min="-180" max="180" step="1" value="25"> <span class="val" id="axv"></span></label>
+    <label><span class="cy">y</span> <input type="range" id="ay" min="-180" max="180" step="1" value="-30"> <span class="val" id="ayv"></span></label>
+    <label><span class="cz">z</span> <input type="range" id="az" min="-180" max="180" step="1" value="0"> <span class="val" id="azv"></span></label>
+    <label><input type="checkbox" id="persp" checked> Perspective</label>
+    <button id="spin" class="alt">Spin</button>
+    <button id="zero" class="ghost">Zero the angles</button>
+  </div>
+  <canvas id="view" width="640" height="420"></canvas>
+  <div class="readout" id="mat"></div>
+  <div class="readout" id="info"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>The cube is a list of 8 corners, each with three coordinates, such as (1, 1, 1) or (−1, 1, −1). Nothing more. To turn the cube, multiply every corner by the same 3 × 3 matrix. To draw it, work out where each corner lands on the screen and join the corners with 12 lines.</p>
+<p><b>Read the columns.</b> The three coloured arrows start as the x, y and z axes. The first column of the matrix is where the x arrow points now, the second is the y arrow, the third is the z arrow. Each arrow still has length 1, and the three are still at right angles. That is what makes it a rotation and not a stretch or a squash.</p>
+<p><b>One axis at a time.</b> A turn about z by an angle θ sends (x, y, z) to (x cos θ − y sin θ, x sin θ + y cos θ, z). It is a turn of the flat plane, with z left alone. Turns about x and y work the same way with the letters swapped. The matrix shown is the three turns multiplied together: the x turn is done first, then y, then z.</p>
+<p><b>Order matters.</b> Set x to 90° and y to 90° and note where the orange corner P lands. Doing the y turn first and the x turn second would put it somewhere else. Try it with a book: a quarter turn forwards then a quarter turn sideways is different from sideways then forwards.</p>
+<p><b>Getting to the screen.</b> With perspective off, the screen position is the x and y of each corner, and z is thrown away. With perspective on, corners nearer to you are drawn further from the centre: x and y are multiplied by 6 ÷ (6 − z), as if your eye were 6 units from the middle of the cube. That is why the near face looks bigger.</p>
+<p>Sheet: <a href="../grade-11/sheets/c6-rotating-a-cube.html">How a screen turns a cube</a>. A cousin of this demo: <a href="matrix.html">matrices in the plane</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  // Angles in radians. x points right, y up, z out of the screen. A positive turn is anticlockwise seen from the tip of the axis.
+  function rotX(a) { var c = Math.cos(a), s = Math.sin(a); return [[1, 0, 0], [0, c, -s], [0, s, c]]; }
+  function rotY(a) { var c = Math.cos(a), s = Math.sin(a); return [[c, 0, s], [0, 1, 0], [-s, 0, c]]; }
+  function rotZ(a) { var c = Math.cos(a), s = Math.sin(a); return [[c, -s, 0], [s, c, 0], [0, 0, 1]]; }
+  function matMul(A, B) {
+    var C = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
+    for (var i = 0; i < 3; i++) for (var j = 0; j < 3; j++) for (var k = 0; k < 3; k++) C[i][j] += A[i][k] * B[k][j];
+    return C;
+  }
+  function matVec(M, v) { return [M[0][0] * v[0] + M[0][1] * v[1] + M[0][2] * v[2], M[1][0] * v[0] + M[1][1] * v[1] + M[1][2] * v[2], M[2][0] * v[0] + M[2][1] * v[1] + M[2][2] * v[2]]; }
+  function transpose(M) { return [[M[0][0], M[1][0], M[2][0]], [M[0][1], M[1][1], M[2][1]], [M[0][2], M[1][2], M[2][2]]]; }
+  function det3(M) {
+    return M[0][0] * (M[1][1] * M[2][2] - M[1][2] * M[2][1]) - M[0][1] * (M[1][0] * M[2][2] - M[1][2] * M[2][0]) + M[0][2] * (M[1][0] * M[2][1] - M[1][1] * M[2][0]);
+  }
+  // Turn about x first, then y, then z.
+  function rotation(ax, ay, az) { return matMul(rotZ(az), matMul(rotY(ay), rotX(ax))); }
+  // Screen position of a point. Without perspective, drop z. With it, scale by eye ÷ (eye − z).
+  function project(v, persp, eye) { var k = persp ? eye / (eye - v[2]) : 1; return [v[0] * k, v[1] * k]; }
+  var CORNERS = [], EDGES = [];
+  (function () {
+    for (var i = 0; i < 8; i++) CORNERS.push([i & 1 ? 1 : -1, i & 2 ? 1 : -1, i & 4 ? 1 : -1]);
+    for (var a = 0; a < 8; a++) for (var b = a + 1; b < 8; b++) { var d = a ^ b; if (d === 1 || d === 2 || d === 4) EDGES.push([a, b]); }
+  })();
+  /*ENDPURE*/
+
+  var EYE = 6, DEG = Math.PI / 180, HOME = { ax: 25, ay: -30, az: 0 };
+  var canvas = document.getElementById("view"), ctx = canvas.getContext("2d"), persp = document.getElementById("persp"), spinBtn = document.getElementById("spin");
+  var A = { ax: HOME.ax, ay: HOME.ay, az: HOME.az }, sl = {}, W, H, spinning = false, raf = null;
+  function wrap(d) { d = ((d + 180) % 360 + 360) % 360 - 180; return Math.round(d); }
+  function num(v) { var r = Math.round(v * 100) / 100; if (Object.is(r, -0)) r = 0; return (r < 0 ? "−" : " ") + Math.abs(r).toFixed(2); }
+  function trio(v) { return "(" + v.map(function (t) { return num(t).trim(); }).join(", ") + ")"; }
+  function draw() {
+    ["ax", "ay", "az"].forEach(function (key) { sl[key].value = A[key]; document.getElementById(key + "v").textContent = String(A[key]).replace("-", "−") + "°"; });
+    var Rm = rotation(A.ax * DEG, A.ay * DEG, A.az * DEG), on = persp.checked;
+    var dpr = window.devicePixelRatio || 1; W = canvas.clientWidth || 640; H = Math.round(Math.min(W * 0.8, 430));
+    canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, H);
+    var unit = Math.min(W, H) / 4.6;
+    function scr(v) { var p = project(v, on, EYE); return [W / 2 + p[0] * unit, H / 2 - p[1] * unit]; }
+    var pts = CORNERS.map(function (c) { return matVec(Rm, c); });
+    var lines = EDGES.map(function (e) { return { a: pts[e[0]], b: pts[e[1]], z: (pts[e[0]][2] + pts[e[1]][2]) / 2, colour: "29,31,58", w: 1 }; });
+    [["194,55,74", "x"], ["31,131,119", "y"], ["63,68,201", "z"]].forEach(function (ax, j) {
+      var tip = [Rm[0][j], Rm[1][j], Rm[2][j]];
+      lines.push({ a: [0, 0, 0], b: tip, z: tip[2] / 2, colour: ax[0], w: 1.6, label: ax[1] });
+    });
+    lines.sort(function (p, q) { return p.z - q.z; });
+    ctx.lineCap = "round"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    lines.forEach(function (l) {
+      var near = (l.z + 1.5) / 3, a = scr(l.a), b = scr(l.b);
+      ctx.strokeStyle = "rgba(" + l.colour + "," + (l.label ? 1 : 0.3 + 0.7 * near) + ")"; ctx.lineWidth = l.w * (1.4 + 2 * near);
+      ctx.beginPath(); ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); ctx.stroke();
+      if (l.label) {
+        var dx = b[0] - a[0], dy = b[1] - a[1], L = Math.hypot(dx, dy) || 1;
+        ctx.fillStyle = "rgb(" + l.colour + ")"; ctx.font = "800 15px Nunito, sans-serif"; ctx.fillText(l.label, b[0] + dx / L * 11, b[1] + dy / L * 11);
+      }
+    });
+    var P = pts[7], sp = scr(P);
+    ctx.fillStyle = "#f5a524"; ctx.beginPath(); ctx.arc(sp[0], sp[1], 7, 0, 2 * Math.PI); ctx.fill(); ctx.strokeStyle = "#fff"; ctx.lineWidth = 2; ctx.stroke();
+    ctx.fillStyle = "#1d1f3a"; ctx.font = "800 14px Nunito, sans-serif"; ctx.fillText("P", sp[0] + 14, sp[1] - 10);
+    document.getElementById("mat").innerHTML = "R = Rz × Ry × Rx =\n" + Rm.map(function (row) {
+      return "[ <span class='cx'>" + num(row[0]) + "</span>  <span class='cy'>" + num(row[1]) + "</span>  <span class='cz'>" + num(row[2]) + "</span> ]";
+    }).join("\n");
+    var flat = project(P, on, EYE);
+    document.getElementById("info").textContent = "Corner P starts at (1, 1, 1).\nR × P = " + trio(P) + "\n"
+      + (on ? "On screen: x and y times " + EYE + " ÷ (" + EYE + " − z) = " + num(EYE / (EYE - P[2])).trim() + ", giving (" + num(flat[0]).trim() + ", " + num(flat[1]).trim() + ")" : "On screen: drop z, giving (" + num(flat[0]).trim() + ", " + num(flat[1]).trim() + ")");
+  }
+  function stopSpin() { spinning = false; if (raf) cancelAnimationFrame(raf); raf = null; spinBtn.textContent = "Spin"; }
+  function tick() { if (!spinning) return; A.ay = wrap(A.ay + 1); draw(); raf = requestAnimationFrame(tick); }
+  ["ax", "ay", "az"].forEach(function (key) {
+    sl[key] = document.getElementById(key);
+    sl[key].addEventListener("input", function () { stopSpin(); A[key] = parseInt(sl[key].value, 10); draw(); });
+  });
+  persp.addEventListener("change", draw);
+  spinBtn.addEventListener("click", function () { if (spinning) { stopSpin(); return; } spinning = true; spinBtn.textContent = "Stop"; tick(); });
+  document.getElementById("zero").addEventListener("click", function () { stopSpin(); A = { ax: 0, ay: 0, az: 0 }; draw(); });
+  var grab = null;
+  canvas.addEventListener("pointerdown", function (ev) { stopSpin(); grab = { x: ev.clientX, y: ev.clientY, ax: A.ax, ay: A.ay }; canvas.classList.add("drag"); canvas.setPointerCapture(ev.pointerId); ev.preventDefault(); });
+  canvas.addEventListener("pointermove", function (ev) {
+    if (!grab) return;
+    A.ay = wrap(grab.ay + (ev.clientX - grab.x) * 0.6); A.ax = wrap(grab.ax + (ev.clientY - grab.y) * 0.6); draw();
+  });
+  function up() { grab = null; canvas.classList.remove("drag"); }
+  canvas.addEventListener("pointerup", up); canvas.addEventListener("pointercancel", up);
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(draw, 120); });
+  draw();
+})();
+</script>
+</body>
+</html>

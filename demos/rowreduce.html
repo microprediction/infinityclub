@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Row Reduction, Step by Step · Infinity Club</title>
+<meta name="description" content="Solve three equations in three unknowns by row operations. Do the steps yourself or let the demo choose, watch the staircase form, then back-substitute. Exact fractions throughout.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.controls select, .ops select { font: inherit; padding: .2em .3em; border: 1px solid var(--rule); border-radius: 6px; background: #fff; }
+.grid { display: grid; grid-template-columns: 1.5em repeat(3, 2.9em) .9em 2.9em; gap: .35rem .3rem; align-items: center; margin: .4rem 0 1rem; }
+.grid .h { text-align: center; font-weight: 700; color: var(--muted); }
+.grid input, .ops input { font: inherit; font-family: var(--mono); width: 100%; box-sizing: border-box; padding: .25em .2em; border: 1px solid var(--rule); border-radius: 6px; text-align: center; }
+.ops input { width: 3.4em; }
+.ops { display: flex; flex-wrap: wrap; gap: .5rem .5rem; align-items: center; margin: .5rem 0; }
+.ops .op { display: flex; flex-wrap: wrap; align-items: center; gap: .3rem; padding: .4rem .5rem; border: 1px solid var(--rule); border-radius: 8px; background: #fff; }
+.ops button { font: inherit; font-weight: 700; background: transparent; color: var(--accent); border: 2px solid var(--accent); border-radius: 8px; padding: .25rem .7rem; cursor: pointer; }
+main.demo-wrap table#work { display: table; width: auto; border-collapse: separate; border-spacing: 4px; font-family: var(--mono); font-size: 1.1rem; margin: .4rem 0; }
+.scroll { overflow-x: auto; }
+#work td { min-width: 2.2em; padding: .35em .4em; text-align: center; border-radius: 6px; background: #fff; border: 1px solid var(--rule); }
+#work td.rn { background: none; border: 0; min-width: 0; color: var(--muted); font-family: var(--sans); font-weight: 700; font-size: .9rem; }
+#work td.zero { background: #dcdcf5; border-color: #dcdcf5; color: #5d6079; }
+#work td.piv { background: #fde8c4; border-color: var(--warm); font-weight: 700; }
+#work td.rhs { border-left: 3px solid var(--ink); }
+#log { font-family: var(--mono); font-size: .95rem; padding-left: 1.6em; margin: .4rem 0; }
+#msg { color: #b3261e; font-weight: 700; min-height: 1.2em; margin: .2rem 0; }
+h2.sub { font-size: 1rem; margin: 1rem 0 .2rem; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Row reduction, step by step</h1>
+<p class="explain">Pick an example or type your own three equations in x, y and z. Then press <b>Next step</b> to let the demo choose a row operation, or use the three operations yourself. The aim is zeros in the bottom-left corner, so the system becomes a staircase. Once it is, the demo climbs back up to find z, then y, then x. Fractions stay exact.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <label>Example
+      <select id="preset">
+        <option value="one">one solution</option>
+        <option value="swap">needs a swap</option>
+        <option value="none">no solution</option>
+        <option value="many">infinitely many solutions</option>
+      </select>
+    </label>
+  </div>
+  <h2 class="sub">Your equations (each row is  ▢x + ▢y + ▢z = ▢)</h2>
+  <div class="grid" id="grid"></div>
+  <div class="controls">
+    <button id="next">Next step</button>
+    <button id="undo" class="ghost">Undo</button>
+    <button id="reset" class="ghost">Start again</button>
+  </div>
+  <h2 class="sub">The system now</h2>
+  <div class="scroll"><table id="work"></table></div>
+  <div class="readout" id="eqs"></div>
+  <h2 class="sub">Or do a row operation yourself</h2>
+  <div class="ops">
+    <span class="op">Swap R<select id="s1"></select> and R<select id="s2"></select> <button id="doSwap">Swap</button></span>
+    <span class="op">Multiply R<select id="m1"></select> by <input id="mk" value="2" aria-label="multiplier"> <button id="doScale">Multiply</button></span>
+    <span class="op">Add <input id="ak" value="-1" aria-label="multiple"> × R<select id="a2"></select> to R<select id="a1"></select> <button id="doAdd">Add</button></span>
+  </div>
+  <div id="msg"></div>
+  <h2 class="sub">Steps so far</h2>
+  <ol id="log"></ol>
+  <div class="readout" id="result"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>Each row is one equation, with the numbers after the bar on the right-hand side. Three things can be done to a system without changing its solutions: <b>swap</b> two equations, <b>multiply</b> an equation by a number that is not zero, and <b>add a multiple</b> of one equation to another. Every step here is one of those three.</p>
+<p>The plan is to use row 1 to remove x from rows 2 and 3, then use row 2 to remove y from row 3. The shaded zeros show the staircase forming, and the orange cells are the <b>pivots</b>, the first non-zero number in each row. The last row then has only z in it, so it can be solved at once. Put that z into row 2 to get y, then both into row 1 to get x. That is <b>back-substitution</b>.</p>
+<p>Two things can go wrong, and both show up in the last row. If it becomes 0 = 5 (or any non-zero number), the equations contradict each other and there is <b>no solution</b>. If it becomes 0 = 0, one equation was a combination of the others and told you nothing new, so there are <b>infinitely many solutions</b>: one unknown is free and the others follow from it.</p>
+<p>A computer solving thousands of equations uses the same three operations, one row at a time.</p>
+<p>Sheet: <a href="../grade-11/sheets/a11-three-unknowns.html">Three equations, three unknowns</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  // exact fractions { n, d } with d > 0, always in lowest terms
+  function gcd(p, q) { p = Math.abs(p); q = Math.abs(q); while (q) { var t = p % q; p = q; q = t; } return p || 1; }
+  function F(n, d) { d = d === undefined ? 1 : d; if (d < 0) { n = -n; d = -d; } var g = gcd(n, d); n = n / g; return { n: n === 0 ? 0 : n, d: d / g }; }
+  function add(p, q) { return F(p.n * q.d + q.n * p.d, p.d * q.d); }
+  function mul(p, q) { return F(p.n * q.n, p.d * q.d); }
+  function neg(p) { return F(-p.n, p.d); }
+  function sub(p, q) { return add(p, neg(q)); }
+  function div(p, q) { return F(p.n * q.d, p.d * q.n); }
+  function isZero(p) { return p.n === 0; }
+  function eq(p, q) { return p.n === q.n && p.d === q.d; }
+  function fstr(p) { return (p.n < 0 ? "−" : "") + Math.abs(p.n) + (p.d === 1 ? "" : "/" + p.d); }
+  // "3", "-3", "3/4", "1.25" -> fraction; anything else -> null
+  function parseFrac(s) {
+    s = String(s).trim().replace(/−/g, "-").replace(/\s+/g, "");
+    var m = s.match(/^(-?\d+)(?:\/(\d+))?$/);
+    if (m) { var den = m[2] === undefined ? 1 : parseInt(m[2], 10); return den === 0 ? null : F(parseInt(m[1], 10), den); }
+    m = s.match(/^(-?)(\d*)\.(\d+)$/);
+    if (m) { var p = Math.pow(10, m[3].length), num = parseInt((m[2] || "0") + m[3], 10); return F(m[1] ? -num : num, p); }
+    return null;
+  }
+  function fromInts(rows) { return rows.map(function (r) { return r.map(function (v) { return F(v); }); }); }
+  function copy(M) { return M.map(function (r) { return r.slice(); }); }
+  // the three row operations; rows are numbered from 0 here and from 1 on screen
+  function apply(M, op) {
+    var N = copy(M), t;
+    if (op.type === "swap") { t = N[op.i]; N[op.i] = N[op.j]; N[op.j] = t; }
+    else if (op.type === "scale") N[op.i] = N[op.i].map(function (v) { return mul(v, op.k); });
+    else if (op.type === "add") N[op.i] = N[op.i].map(function (v, c) { return add(v, mul(op.k, M[op.j][c])); });
+    return N;
+  }
+  function opText(op) {
+    if (op.type === "swap") return "Swap R" + (op.i + 1) + " and R" + (op.j + 1);
+    if (op.type === "scale") return "R" + (op.i + 1) + " → " + coef(op.k) + " × R" + (op.i + 1);
+    var k = op.k, a = F(Math.abs(k.n), k.d), one = a.n === 1 && a.d === 1;
+    return "R" + (op.i + 1) + " → R" + (op.i + 1) + (k.n < 0 ? " − " : " + ") + (one ? "" : coef(a) + " × ") + "R" + (op.j + 1);
+  }
+  function coef(p) { return p.d === 1 && p.n >= 0 ? fstr(p) : "(" + fstr(p) + ")"; }
+  // the next step of elimination, or null when the system is already a staircase
+  function nextStep(M) {
+    var r = 0, i;
+    for (var c = 0; c < 3 && r < 3; c++) {
+      var first = -1;
+      for (i = r; i < 3; i++) if (!isZero(M[i][c])) { first = i; break; }
+      if (first < 0) continue;
+      if (first !== r) return { type: "swap", i: r, j: first, why: "R" + (r + 1) + " has no " + "xyz"[c] + " to work with, so swap in a row that does." };
+      for (i = r + 1; i < 3; i++) if (!isZero(M[i][c]))
+        return { type: "add", i: i, j: r, k: neg(div(M[i][c], M[r][c])), why: "This removes " + "xyz"[c] + " from R" + (i + 1) + "." };
+      r++;
+    }
+    return null;
+  }
+  // column of the first non-zero coefficient in each row (3 if the row has none)
+  function leads(M) { return M.map(function (row) { for (var c = 0; c < 3; c++) if (!isZero(row[c])) return c; return 3; }); }
+  function isStaircase(M) { return nextStep(M) === null; }
+  // one row written as an equation, e.g. "2x − y + (1/2)z = 3"
+  function rowEq(row) {
+    var s = "";
+    for (var c = 0; c < 3; c++) {
+      var v = row[c]; if (isZero(v)) continue;
+      var a = F(Math.abs(v.n), v.d), t = (a.n === 1 && a.d === 1 ? "" : a.d === 1 ? fstr(a) : "(" + fstr(a) + ")") + "xyz"[c];
+      s += s === "" ? (v.n < 0 ? "−" : "") + t : (v.n < 0 ? " − " : " + ") + t;
+    }
+    return (s === "" ? "0" : s) + " = " + fstr(row[3]);
+  }
+  // constant + multiples of the free letters, e.g. "1 − 2t"
+  function expr(k, terms) {
+    var s = isZero(k) && terms.some(function (t) { return !isZero(t.k); }) ? "" : fstr(k);
+    terms.forEach(function (t) {
+      if (isZero(t.k)) return;
+      var a = F(Math.abs(t.k.n), t.k.d), body = (a.n === 1 && a.d === 1 ? "" : a.d === 1 ? fstr(a) : "(" + fstr(a) + ")") + t.name;
+      s += s === "" ? (t.k.n < 0 ? "−" : "") + body : (t.k.n < 0 ? " − " : " + ") + body;
+    });
+    return s;
+  }
+  // fully reduce (for the many-solutions description); returns { R, pivots: [col of pivot in each pivot row] }
+  function rref(M) {
+    var R = copy(M), s;
+    while ((s = nextStep(R))) R = apply(R, s);
+    var L = leads(R), pivots = [];
+    for (var r = 0; r < 3; r++) {
+      if (L[r] === 3) continue;
+      pivots.push(L[r]);
+      R = apply(R, { type: "scale", i: r, k: div(F(1), R[r][L[r]]) });
+      for (var i = 0; i < r; i++) if (!isZero(R[i][L[r]])) R = apply(R, { type: "add", i: i, j: r, k: neg(R[i][L[r]]) });
+    }
+    return { R: R, pivots: pivots };
+  }
+  // analyse a staircase system: { kind: "one" | "none" | "many", solution, lines }
+  function analyse(M) {
+    var L = leads(M), lines = [], r, c, names = "xyz";
+    for (r = 0; r < 3; r++) if (L[r] === 3 && !isZero(M[r][3])) {
+      lines.push("R" + (r + 1) + " now says 0 = " + fstr(M[r][3]) + ", which is impossible.");
+      lines.push("NO SOLUTION: the three equations contradict each other.");
+      return { kind: "none", lines: lines };
+    }
+    var rank = L.filter(function (v) { return v < 3; }).length;
+    if (rank === 3) {
+      var sol = [null, null, null];
+      for (r = 2; r >= 0; r--) {
+        var rhs = M[r][3], used = [];
+        for (c = r + 1; c < 3; c++) if (!isZero(M[r][c])) { rhs = sub(rhs, mul(M[r][c], sol[c])); used.push(names[c] + " = " + fstr(sol[c])); }
+        sol[r] = div(rhs, M[r][r]);
+        var one = eq(M[r][r], F(1)), lhs = rowEq([0, 1, 2].map(function (cc) { return cc === r ? M[r][r] : F(0); }).concat([F(0)])).replace(" = 0", "");
+        lines.push("R" + (r + 1) + ": " + rowEq(M[r]) + "."
+          + (used.length ? " Put in " + used.join(", ") + ": " + lhs + " = " + fstr(rhs) + (one ? "." : ", so " + names[r] + " = " + fstr(sol[r]) + ".")
+            : one ? "" : " So " + names[r] + " = " + fstr(sol[r]) + "."));
+      }
+      lines.push("ONE SOLUTION: x = " + fstr(sol[0]) + ", y = " + fstr(sol[1]) + ", z = " + fstr(sol[2]));
+      return { kind: "one", solution: sol, lines: lines };
+    }
+    var rr = rref(M), free = [0, 1, 2].filter(function (cc) { return rr.pivots.indexOf(cc) < 0; }), letters = ["t", "s", "u"];
+    for (r = 0; r < 3; r++) if (L[r] === 3) lines.push("R" + (r + 1) + " now says 0 = 0: true, but it tells us nothing.");
+    lines.push("Only " + rank + " real equation" + (rank === 1 ? "" : "s") + " for 3 unknowns, so INFINITELY MANY SOLUTIONS.");
+    lines.push("Let " + free.map(function (cc, i) { return names[cc] + " = " + letters[i]; }).join(" and ") + " (any number" + (free.length > 1 ? "s" : "") + ")." + (rank ? " Then:" : " Every choice works."));
+    var general = [null, null, null];
+    free.forEach(function (cc, i) { general[cc] = letters[i]; });
+    rr.pivots.forEach(function (pc, row) {
+      general[pc] = expr(rr.R[row][3], free.map(function (cc, i) { return { k: neg(rr.R[row][cc]), name: letters[i] }; }));
+      lines.push("  " + names[pc] + " = " + general[pc]);
+    });
+    return { kind: "many", general: general, free: free, rref: rr.R, pivots: rr.pivots, lines: lines };
+  }
+  // does (x, y, z) satisfy every equation of M?
+  function check(M, sol) { return M.every(function (row) { return eq(add(add(mul(row[0], sol[0]), mul(row[1], sol[1])), mul(row[2], sol[2])), row[3]); }); }
+  var PRESETS = {
+    one:  [[1, 1, 1, 6], [2, -1, 1, 3], [1, 2, -1, 2]],
+    swap: [[0, 2, 1, 7], [1, 1, 1, 6], [2, 1, -1, 1]],
+    none: [[1, 1, 1, 2], [2, 3, 1, 5], [3, 4, 2, 8]],
+    many: [[1, 1, 1, 2], [2, 3, 1, 5], [3, 4, 2, 7]]
+  };
+  /*ENDPURE*/
+
+  var $ = function (id) { return document.getElementById(id); };
+  var grid = $("grid"), work = $("work"), eqs = $("eqs"), logEl = $("log"), result = $("result"), msg = $("msg");
+  var cells = [], M0, M, history = [];
+  // build the input grid
+  ["", "x", "y", "z", "", ""].forEach(function (h) { var e = document.createElement("div"); e.className = "h"; e.textContent = h; grid.appendChild(e); });
+  for (var r = 0; r < 3; r++) {
+    cells.push([]);
+    var lab = document.createElement("div"); lab.className = "h"; lab.textContent = "R" + (r + 1); grid.appendChild(lab);
+    for (var c = 0; c < 4; c++) {
+      if (c === 3) { var bar = document.createElement("div"); bar.className = "h"; bar.textContent = "="; grid.appendChild(bar); }
+      var inp = document.createElement("input"); inp.type = "text"; inp.autocomplete = "off";
+      inp.setAttribute("aria-label", "row " + (r + 1) + ", " + (c < 3 ? "number in front of " + "xyz"[c] : "right-hand side"));
+      inp.addEventListener("input", fromInputs); grid.appendChild(inp); cells[r].push(inp);
+    }
+  }
+  ["s1", "s2", "m1", "a1", "a2"].forEach(function (id, k) {
+    for (var i = 1; i <= 3; i++) { var o = document.createElement("option"); o.value = i - 1; o.textContent = i; $(id).appendChild(o); }
+    $(id).value = [0, 1, 0, 1, 0][k];
+  });
+
+  function loadPreset() { PRESETS[$("preset").value].forEach(function (row, i) { row.forEach(function (v, j) { cells[i][j].value = String(v); }); }); fromInputs(); }
+  function fromInputs() {
+    var bad = false, rows = cells.map(function (row) { return row.map(function (el) { var f = el.value.trim() === "" ? F(0) : parseFrac(el.value); if (!f) bad = true; return f; }); });
+    msg.textContent = bad ? "Use whole numbers, fractions like 3/4, or decimals." : "";
+    if (bad) return;
+    M0 = rows; M = copy(M0); history = []; render();
+  }
+  function doOp(op, why) { msg.textContent = ""; history.push({ M: M, text: opText(op) + (why ? "   " + why : "") }); M = apply(M, op); render(); }
+  $("preset").addEventListener("change", loadPreset);
+  $("next").addEventListener("click", function () { var s = nextStep(M); if (s) doOp(s, s.why); });
+  $("undo").addEventListener("click", function () { if (history.length) { M = history.pop().M; msg.textContent = ""; render(); } });
+  $("reset").addEventListener("click", function () { M = copy(M0); history = []; msg.textContent = ""; render(); });
+  $("doSwap").addEventListener("click", function () {
+    var i = +$("s1").value, j = +$("s2").value; if (i === j) { msg.textContent = "Choose two different rows to swap."; return; }
+    doOp({ type: "swap", i: i, j: j });
+  });
+  $("doScale").addEventListener("click", function () {
+    var k = parseFrac($("mk").value); if (!k) { msg.textContent = "Type a number to multiply by, such as 2 or 1/3."; return; }
+    if (isZero(k)) { msg.textContent = "Multiplying a row by 0 throws the equation away. Choose another number."; return; }
+    doOp({ type: "scale", i: +$("m1").value, k: k });
+  });
+  $("doAdd").addEventListener("click", function () {
+    var k = parseFrac($("ak").value), i = +$("a1").value, j = +$("a2").value;
+    if (!k) { msg.textContent = "Type the multiple to add, such as -2 or 1/3."; return; }
+    if (i === j) { msg.textContent = "Add a multiple of a different row."; return; }
+    doOp({ type: "add", i: i, j: j, k: k });
+  });
+
+  function render() {
+    var L = leads(M), done = isStaircase(M), html = "";
+    for (var r = 0; r < 3; r++) {
+      html += "<tr><td class='rn'>R" + (r + 1) + "</td>";
+      var stair = L[r] < 3; // a pivot only counts if the rows above it already step down to the right
+      for (var k = 1; k <= r; k++) if (L[k] <= L[k - 1]) stair = false;
+      for (var c = 0; c < 4; c++) {
+        var cls = c === 3 ? "rhs" : c < L[r] && c < r ? "zero" : c === L[r] && stair ? "piv" : "";
+        html += "<td class='" + cls + "'>" + fstr(M[r][c]) + "</td>";
+      }
+      html += "</tr>";
+    }
+    work.innerHTML = html;
+    eqs.textContent = M.map(function (row, i) { return "R" + (i + 1) + ":  " + rowEq(row); }).join("\n");
+    logEl.innerHTML = "";
+    history.forEach(function (h) { var li = document.createElement("li"); li.textContent = h.text; logEl.appendChild(li); });
+    if (!history.length) { var li0 = document.createElement("li"); li0.textContent = "No steps yet."; li0.style.listStyle = "none"; logEl.appendChild(li0); }
+    $("next").disabled = done; $("next").style.opacity = done ? 0.45 : 1;
+    $("undo").disabled = !history.length;
+    if (done) {
+      var a = analyse(M), lines = ["Staircase reached. Now climb back up from the last row."].concat(a.lines);
+      if (a.kind === "one") lines.push(check(M0, a.solution) ? "Check: these values fit all three of your original equations." : "Check failed: the values do not fit the original equations.");
+      result.textContent = lines.join("\n");
+    } else {
+      var s = nextStep(M), stuck = M.some(function (row, i) { return L[i] === 3 && !isZero(row[3]); });
+      result.textContent = (stuck ? "One row already says 0 = a non-zero number, so there will be no solution.\n" : "")
+        + "Not a staircase yet. Suggested next step: " + opText(s) + "\n" + s.why;
+    }
+  }
+  loadPreset();
+})();
+</script>
+</body>
+</html>

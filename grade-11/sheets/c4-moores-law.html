@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fifty years of doubling · Infinity Club</title>
+<meta name="description" content="Moore's law on a log axis: approximate transistor counts from 1971 to 2020 fall near a straight line, and the slope gives a doubling time of about two years.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 11</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 11 · Connections · 4</div>
+  <h1>Fifty years of doubling</h1>
+  <p class="teaser">Plot transistor counts on ordinary axes and you see nothing; on a log axis you see a straight line. Read the doubling time off the slope.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>In 1965 the engineer Gordon Moore noticed that the number of transistors on a chip kept doubling at a steady pace. This is <b>Moore's law</b>. It is an observation about an industry, not a law of nature, and nothing guarantees that it continues. Here are five chips, with widely quoted, approximate counts:</p>
+<table class="tt">
+<tr><th>Chip</th><td>Intel 4004</td><td>Intel 8086</td><td>Intel 486</td><td>Pentium 4</td><td>Apple M1</td></tr>
+<tr><th>Year</th><td>1971</td><td>1978</td><td>1989</td><td>2000</td><td>2020</td></tr>
+<tr><th>Transistors</th><td>2,300</td><td>29,000</td><td>1.2 million</td><td>42 million</td><td>16 billion</td></tr>
+</table>
+<figure><svg viewBox="0 0 520 190" width="520" height="190" role="img" aria-label="The same five transistor counts plotted twice: on ordinary axes four points lie on the floor and one is far above; on a logarithmic axis all five lie close to a straight line" font-family="Nunito, sans-serif" font-size="13">
+<line x1="48" y1="148" x2="238" y2="148" stroke="#000" stroke-width="1.5"/><line x1="48" y1="148" x2="48" y2="22" stroke="#000" stroke-width="1.5"/><line x1="48.0" y1="148" x2="48.0" y2="152" stroke="#000"/><text x="48.0" y="165" text-anchor="middle" font-size="12">1970</text><line x1="124.0" y1="148" x2="124.0" y2="152" stroke="#000"/><text x="124.0" y="165" text-anchor="middle" font-size="12">1990</text><line x1="200.0" y1="148" x2="200.0" y2="152" stroke="#000"/><text x="200.0" y="165" text-anchor="middle" font-size="12">2010</text><line x1="44" y1="148.0" x2="48" y2="148.0" stroke="#000"/><text x="41" y="152.0" text-anchor="end" font-size="12">0</text><line x1="44" y1="88.0" x2="48" y2="88.0" stroke="#000"/><text x="41" y="92.0" text-anchor="end" font-size="12">8</text><line x1="44" y1="28.0" x2="48" y2="28.0" stroke="#000"/><text x="41" y="32.0" text-anchor="end" font-size="12">16</text><circle cx="51.8" cy="148.0" r="4" fill="#3f44c9"/><circle cx="78.4" cy="148.0" r="4" fill="#3f44c9"/><circle cx="120.2" cy="148.0" r="4" fill="#3f44c9"/><circle cx="162.0" cy="147.7" r="4" fill="#3f44c9"/><circle cx="238.0" cy="28.0" r="4" fill="#3f44c9"/><line x1="310" y1="148" x2="500" y2="148" stroke="#000" stroke-width="1.5"/><line x1="310" y1="148" x2="310" y2="22" stroke="#000" stroke-width="1.5"/><line x1="310.0" y1="148" x2="310.0" y2="152" stroke="#000"/><text x="310.0" y="165" text-anchor="middle" font-size="12">1970</text><line x1="386.0" y1="148" x2="386.0" y2="152" stroke="#000"/><text x="386.0" y="165" text-anchor="middle" font-size="12">1990</text><line x1="462.0" y1="148" x2="462.0" y2="152" stroke="#000"/><text x="462.0" y="165" text-anchor="middle" font-size="12">2010</text><line x1="310" y1="134.7" x2="500" y2="134.7" stroke="#999" stroke-width="0.6"/><text x="305" y="138.7" text-anchor="end" font-size="12">10³</text><line x1="310" y1="108.0" x2="500" y2="108.0" stroke="#999" stroke-width="0.6"/><text x="305" y="112.0" text-anchor="end" font-size="12">10⁵</text><line x1="310" y1="81.3" x2="500" y2="81.3" stroke="#999" stroke-width="0.6"/><text x="305" y="85.3" text-anchor="end" font-size="12">10⁷</text><line x1="310" y1="54.7" x2="500" y2="54.7" stroke="#999" stroke-width="0.6"/><text x="305" y="58.7" text-anchor="end" font-size="12">10⁹</text><line x1="310" y1="28.0" x2="500" y2="28.0" stroke="#999" stroke-width="0.6"/><text x="305" y="32.0" text-anchor="end" font-size="12">10¹¹</text><line x1="313.8" y1="129.8" x2="500.0" y2="38.6" stroke="#f5a524" stroke-width="2"/><circle cx="313.8" cy="129.8" r="4" fill="#3f44c9"/><circle cx="340.4" cy="115.2" r="4" fill="#3f44c9"/><circle cx="382.2" cy="93.6" r="4" fill="#3f44c9"/><circle cx="424.0" cy="73.0" r="4" fill="#3f44c9"/><circle cx="500.0" cy="38.6" r="4" fill="#3f44c9"/>
+<text x="143" y="14" text-anchor="middle" font-weight="700">ordinary axis (billions)</text><text x="405" y="14" text-anchor="middle" font-weight="700">log axis</text>
+<text x="143" y="184" text-anchor="middle" font-size="12" fill="#555">four points sit on the floor</text><text x="405" y="184" text-anchor="middle" font-size="12" fill="#555">the same points, near a line</text>
+</svg><figcaption>The same five chips, plotted twice. The orange line joins the first and last points.</figcaption></figure>
+<p>Steady doubling is exponential growth: \(N = N_0 \times 2^{t/T}\), where \(T\) is the <b>doubling time</b> and \(t\) is years since the start. Take base-ten logs of both sides:</p>
+<p class="callout">\(\log N = \log N_0 + \dfrac{\log 2}{T}\, t\). A straight line in \(t\), with slope \(\dfrac{\log 2}{T}\).</p>
+<p>So plot \(\log N\) against the year (see <a href="a7-log-scales.html">Straight lines hiding in curved data</a>). If the points fall on a line, the growth is exponential, and \(T = \log 2 \div \text{slope}\).</p>
+</section>
+
+<section class="example">
+<h2>Watch one: the doubling time, 1971 to 2020</h2>
+<p>Use the first and last chips. \(\log 2300 = 3.36\) and \(\log(1.6 \times 10^{10}) = 10.20\), and the years are 49 apart.</p>
+<p>\[\text{slope} = \frac{10.20 - 3.36}{49} = 0.140 \text{ per year}, \qquad T = \frac{\log 2}{0.140} = \frac{0.301}{0.140} = 2.16 \text{ years}.\]</p>
+<p>About two years, as Moore's law says. Check: \(49 \div 2.16 = 22.7\) doublings, and \(2300 \times 2^{22.7}\) is about 16 billion.</p>
+<p class="small">Switch the transistor data between ordinary and log axes: <a href="../../demos/logaxes.html">infinityclub.net/demos/logaxes.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>The line in the example is \(\log N = 3.36 + 0.140(\text{year} - 1971)\). What does it predict for 1978 and for 2000? Compare with the logs of the real counts.<div class="space short"></div></li>
+<li>Find the doubling time using only the 8086 and the Pentium 4.<div class="space short"></div></li>
+<li>Start from 2,300 in 1971 and double every 2 years exactly. In which year does the count pass one billion?<div class="space short"></div></li>
+<li>Moore's first estimate, in 1965, was a doubling every year. In 1975 he revised it to every two years. Start from 2,300 in 1971 and find what each rule predicts for 2020. What does this say about using an exponential to predict far ahead?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: how fast the parts shrink</h2>
+<p>Suppose chips stay the same area while the count doubles every two years. Then each transistor's area halves, so its width is divided by \(\sqrt2\). How many years does it take for the width to shrink to a tenth?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>1978: \(3.36 + 0.140 \times 7 = 4.34\); the real value is \(\log 29000 = 4.46\). 2000: \(3.36 + 0.140 \times 29 = 7.42\); the real value is \(\log(4.2 \times 10^7) = 7.62\). Both real chips sit a little above the line, by 0.12 and 0.20. Those gaps are factors of \(10^{0.12} = 1.3\) and \(10^{0.20} = 1.6\): small beside a rise of seven powers of ten.</li>
+<li>Slope \(= \dfrac{7.62 - 4.46}{22} = 0.144\) per year, so \(T = \dfrac{0.301}{0.144} = 2.1\) years.</li>
+<li>Solve \(2300 \times 2^n = 10^9\): \(n = \dfrac{\log(10^9 / 2300)}{\log 2} = \dfrac{5.638}{0.301} = 18.7\) doublings. That takes \(37.5\) years, so during 2008.</li>
+<li>Every year: \(2300 \times 2^{49} = 1.3 \times 10^{18}\). Every two years: \(2300 \times 2^{24.5} = 5.5 \times 10^{10}\), or 55 billion. The real figure was about 16 billion. Halving the doubling time does not double the prediction; it squares the growth factor, and the two answers differ by a factor of over 20 million. Even 2 years against 2.16 years gives 55 billion against 16 billion. A far-ahead exponential prediction is only as good as the rate, and the rate is never known exactly.</li>
+</ol>
+<p><b>Stretch.</b> After \(k\) two-year steps the width is divided by \((\sqrt2)^k = 2^{k/2}\). Set \(2^{k/2} = 10\): \(k = \dfrac{2 \log 10}{\log 2} = \dfrac{2}{0.301} = 6.64\) steps, which is about 13.3 years. In that time the count grows a hundredfold, since a tenth of the width is a hundredth of the area.</p>
+</section>
+
+<div class="sheet-nav"><a href="c3-ph.html">← Previous</a><a href="c5-insurance.html">Next: Why insurance works →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

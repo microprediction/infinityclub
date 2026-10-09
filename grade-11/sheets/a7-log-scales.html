@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Straight lines hiding in curved data · Infinity Club</title>
+<meta name="description" content="Plot the logarithm and exponential growth becomes a straight line; plot both logarithms and a power law does. The slope gives the growth rate or the power.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 11</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 11 · Sharpen · 7</div>
+  <h1>Straight lines hiding in curved data</h1>
+  <p class="teaser">Plot the logarithm instead and exponential growth becomes a line; plot both logarithms and a power law does. The slope tells you the rate or the power.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A logarithm is an exponent, and it turns multiplying into adding (<a href="../../grade-10/sheets/a5-logs.html">where you met this</a>). That is enough to straighten two families of curves. On this sheet \(\log\) means \(\log_{10}\).</p>
+<p><b>Exponential growth,</b> \(y = A \cdot b^x\). Take logs of both sides:</p>
+<p>\[\log y = \log A + x \log b.\]</p>
+<p>Call the left side \(Y\). Then \(Y = (\log b)\,x + \log A\), a straight line in \(x\). Its slope is \(\log b\) and its intercept is \(\log A\).</p>
+<figure><svg viewBox="0 0 480 180" width="440" height="165" role="img" aria-label="Two plots of the same six data points. On ordinary axes they lie on a steep curve. With log y on the vertical axis they lie on a straight line." font-family="Nunito, sans-serif" font-size="13">
+<line x1="40" y1="150" x2="218" y2="150" stroke="#000"/><line x1="40" y1="22" x2="40" y2="150" stroke="#000"/>
+<line x1="37" y1="150.0" x2="40" y2="150.0" stroke="#000"/><text x="34" y="154.0" text-anchor="end" font-size="12">0</text><line x1="37" y1="90.0" x2="40" y2="90.0" stroke="#000"/><text x="34" y="94.0" text-anchor="end" font-size="12">50</text><line x1="37" y1="30.0" x2="40" y2="30.0" stroke="#000"/><text x="34" y="34.0" text-anchor="end" font-size="12">100</text>
+<text x="40.0" y="165" text-anchor="middle" font-size="12">0</text><text x="74.0" y="165" text-anchor="middle" font-size="12">1</text><text x="108.0" y="165" text-anchor="middle" font-size="12">2</text><text x="142.0" y="165" text-anchor="middle" font-size="12">3</text><text x="176.0" y="165" text-anchor="middle" font-size="12">4</text><text x="210.0" y="165" text-anchor="middle" font-size="12">5</text>
+<path d="M40.0 146.4 L43.4 146.1 L46.8 145.9 L50.2 145.6 L53.6 145.2 L57.0 144.9 L60.4 144.5 L63.8 144.2 L67.2 143.7 L70.6 143.3 L74.0 142.8 L77.4 142.3 L80.8 141.7 L84.2 141.1 L87.6 140.5 L91.0 139.8 L94.4 139.1 L97.8 138.3 L101.2 137.5 L104.6 136.6 L108.0 135.6 L111.4 134.6 L114.8 133.5 L118.2 132.3 L121.6 131.0 L125.0 129.6 L128.4 128.2 L131.8 126.6 L135.2 124.9 L138.6 123.1 L142.0 121.2 L145.4 119.1 L148.8 116.9 L152.2 114.5 L155.6 112.0 L159.0 109.3 L162.4 106.3 L165.8 103.2 L169.2 99.9 L172.6 96.3 L176.0 92.4 L179.4 88.3 L182.8 83.8 L186.2 79.1 L189.6 74.0 L193.0 68.5 L196.4 62.7 L199.8 56.4 L203.2 49.7 L206.6 42.5 L210.0 34.8" fill="none" stroke="#f5a524" stroke-width="2"/>
+<circle cx="40.0" cy="146.4" r="3.5" fill="#3f44c9"/><circle cx="74.0" cy="142.8" r="3.5" fill="#3f44c9"/><circle cx="108.0" cy="135.6" r="3.5" fill="#3f44c9"/><circle cx="142.0" cy="121.2" r="3.5" fill="#3f44c9"/><circle cx="176.0" cy="92.4" r="3.5" fill="#3f44c9"/><circle cx="210.0" cy="34.8" r="3.5" fill="#3f44c9"/>
+<text x="125.0" y="14" text-anchor="middle" font-weight="700">y against x</text><text x="218" y="144" text-anchor="end" font-size="12" fill="#555">x</text>
+<line x1="290" y1="150" x2="468" y2="150" stroke="#000"/><line x1="290" y1="22" x2="290" y2="150" stroke="#000"/>
+<line x1="287" y1="150.0" x2="290" y2="150.0" stroke="#000"/><text x="284" y="154.0" text-anchor="end" font-size="12">0</text><line x1="287" y1="90.0" x2="290" y2="90.0" stroke="#000"/><text x="284" y="94.0" text-anchor="end" font-size="12">1</text><line x1="287" y1="30.0" x2="290" y2="30.0" stroke="#000"/><text x="284" y="34.0" text-anchor="end" font-size="12">2</text>
+<text x="290.0" y="165" text-anchor="middle" font-size="12">0</text><text x="324.0" y="165" text-anchor="middle" font-size="12">1</text><text x="358.0" y="165" text-anchor="middle" font-size="12">2</text><text x="392.0" y="165" text-anchor="middle" font-size="12">3</text><text x="426.0" y="165" text-anchor="middle" font-size="12">4</text><text x="460.0" y="165" text-anchor="middle" font-size="12">5</text>
+<line x1="290.0" y1="121.4" x2="460.0" y2="31.1" stroke="#f5a524" stroke-width="2"/>
+<circle cx="290.0" cy="121.4" r="3.5" fill="#3f44c9"/><circle cx="324.0" cy="103.3" r="3.5" fill="#3f44c9"/><circle cx="358.0" cy="85.2" r="3.5" fill="#3f44c9"/><circle cx="392.0" cy="67.2" r="3.5" fill="#3f44c9"/><circle cx="426.0" cy="49.1" r="3.5" fill="#3f44c9"/><circle cx="460.0" cy="31.1" r="3.5" fill="#3f44c9"/>
+<text x="375.0" y="14" text-anchor="middle" font-weight="700">log y against x</text><text x="468" y="144" text-anchor="end" font-size="12" fill="#555">x</text>
+</svg><figcaption>The same six points, \(y = 3 \cdot 2^x\). Only the vertical axis has changed.</figcaption></figure>
+<p><b>Power law,</b> \(y = A x^k\). Logs again: \(\log y = \log A + k \log x\). This time plot \(\log y\) against \(\log x\). The slope of the line is \(k\), the power itself.</p>
+<p class="callout">Log on the \(y\)-axis only (<b>semi-log</b>): exponentials become lines, slope \(\log b\).<br>Log on both axes (<b>log-log</b>): power laws become lines, slope \(k\).</p>
+<p>Why bother? By eye, \(2^x\) and \(x^3\) are both curves that go up. A straight line is something you can test with a ruler, and its slope and intercept hand you the formula.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: a dish of bacteria</h2>
+<p>At \(t = 0, 2, 4, 6\) hours the counts are \(N = 50,\ 113,\ 253,\ 570\). Their logs are \(1.699,\ 2.053,\ 2.403,\ 2.756\).</p>
+<p>Each 2-hour step adds about 0.35, so the points lie on a line and the growth is exponential. The slope is \((2.756 - 1.699) \div 6 \approx 0.176\) per hour, so \(b = 10^{0.176} \approx 1.5\). The intercept is \(1.699 = \log 50\). So \(N \approx 50 \cdot 1.5^{\,t}\): the count rises by half every hour.</p>
+<p class="small">Switch each axis between linear and log and watch data straighten: <a href="../../demos/logaxes.html">infinityclub.net/demos/logaxes.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>For each, say which axes give a straight line (semi-log or log-log) and give its slope: \(y = 4 \cdot 3^x\), \(\;y = 5x^2\), \(\;y = 2/x\), \(\;y = 7 \cdot (0.5)^x\).<div class="space short"></div></li>
+<li>On semi-log axes (\(\log y\) against \(x\)) a line passes through \((0, 1)\) and \((4, 3)\). Write \(y\) as a formula in \(x\).<div class="space short"></div></li>
+<li>A pendulum of length \(L\) metres takes \(T\) seconds for one full swing. Lengths \(0.25,\ 1,\ 4\) give times \(1.00,\ 2.01,\ 4.01\) (calculated from the physics, not measured). Assume \(T = A L^k\). Find the log-log slope \(k\) from the first and last points, then find \(A\). What happens to \(T\) when the pendulum is made four times as long?<div class="space short"></div></li>
+<li>A table gives \(x = 1, 2, 3, 4, 5\) and \(y = 2, 16, 54, 128, 250\). Without plotting, decide whether \(y\) is exponential or a power law, explain how you can tell, and find the formula.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: why exponentials always win</h2>
+<p>On semi-log axes \(y = 2^x\) is a line. What does \(y = x^5\) become, and what shape is it? Use the picture to explain why a growing exponential must eventually overtake any power. Then find the first whole number \(x > 1\) with \(2^x > x^5\).</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(4 \cdot 3^x\): semi-log, slope \(\log 3 \approx 0.477\). \(5x^2\): log-log, slope 2. \(2/x = 2x^{-1}\): log-log, slope \(-1\). \(7 \cdot (0.5)^x\): semi-log, slope \(\log 0.5 \approx -0.301\) (a falling line: decay).</li>
+<li>Slope \(\tfrac{3 - 1}{4} = 0.5\), intercept 1, so \(\log y = 1 + 0.5x\) and \(y = 10 \cdot \left(10^{0.5}\right)^x \approx 10 \cdot 3.16^x\).</li>
+<li>\(k = \dfrac{\log 4.01 - \log 1.00}{\log 4 - \log 0.25} = \dfrac{0.603}{1.204} \approx 0.50\). At \(L = 1\), \(T = A\), so \(A \approx 2.01\) and \(T \approx 2.01\sqrt{L}\). Four times the length doubles the time, since \(4^{0.5} = 2\).</li>
+<li>For an exponential, equal steps in \(x\) multiply \(y\) by the same factor each time. Here the factors are \(8,\ 3.4,\ 2.4,\ 2.0\): not constant, so not exponential. For a power law, multiplying \(x\) by a fixed factor multiplies \(y\) by a fixed factor. Doubling \(x\) from 1 to 2 and from 2 to 4 both multiply \(y\) by 8, so \(2^k = 8\) and \(k = 3\). With \(y = 2\) at \(x = 1\): \(y = 2x^3\), which fits all five points.</li>
+</ol>
+<p><b>Stretch.</b> \(y = x^5\) becomes \(Y = 5\log x\): a log curve, which keeps rising but flattens, its slope shrinking towards zero. The line \(Y = x\log 2\) keeps the fixed slope 0.301, so it must end up above. The crossing is between 22 and 23: \(2^{22} = 4{,}194{,}304 \lt 22^5 = 5{,}153{,}632\), but \(2^{23} = 8{,}388{,}608 > 23^5 = 6{,}436{,}343\). So \(x = 23\), and \(2^x\) stays ahead from then on.</p>
+</section>
+
+<div class="sheet-nav"><a href="a6-trig-equations.html">← Previous</a><a href="a8-polynomial-graphs.html">Next: Sketching a polynomial at sight →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

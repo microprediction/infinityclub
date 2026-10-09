@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Buffon's Needle · Infinity Club</title>
+<meta name="description" content="Drop 1, 100 or 10,000 needles on a lined floor, count how many cross a line, and watch 2 × drops ÷ crossings close in on pi.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+#floor, #chart { width: 100%; }
+.controls input[type=range] { width: 150px; }
+.controls .val { font-family: var(--mono); min-width: 2.6em; display: inline-block; }
+.key { display: flex; flex-wrap: wrap; gap: .3rem 1rem; margin: .5rem 0 0; }
+.key span::before { content: ""; display: inline-block; width: 1.3em; height: .22em; border-radius: 2px; margin-right: .4em; vertical-align: .22em; background: var(--accent); }
+.key .k-hit::before { background: var(--warm); }
+.key .k-line::before { background: #1d1f3a; height: .1em; }
+#info { font-size: .92rem; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Buffon's needle</h1>
+<p class="explain">Press a button to drop needles on a lined floor. Each needle lands in a random place at a random angle. A needle that crosses a line turns orange. Now work out 2 × drops ÷ crossings. Drop 100 and look at the answer. Then guess what 10,000 will give before you press it.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <span style="font-weight:700">Drop</span>
+    <button data-n="1">1</button><button data-n="100">100</button><button data-n="10000">10 000</button>
+    <button id="reset" class="ghost">Sweep the floor</button>
+    <label>Needle ÷ gap <input type="range" id="len" min="0.2" max="1" step="0.05" value="1"> <span class="val" id="lenv">1</span></label>
+  </div>
+  <canvas id="floor" width="640" height="430"></canvas>
+  <div class="key small"><span class="k-line">line on the floor</span><span class="k-hit">needle crossing a line</span><span class="k-miss">needle between lines</span></div>
+  <div class="readout" id="info"></div>
+  <canvas id="chart" width="640" height="150"></canvas>
+  <p class="small" style="margin:.4rem 0 0">The estimate after each drop. The dashed line is π. The drop count is on a scale where each step is ten times more.</p>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>Start with the needle as long as the gap between the lines. Then the chance that a needle crosses a line is exactly 2/π, about 0.637. So crossings ÷ drops is close to 2/π, and turning that around, 2 × drops ÷ crossings is close to π.</p>
+<p><b>Why 2/π?</b> Tilt a needle of length L at an angle θ to the lines. Measured straight across the lines, it reaches a distance L sin θ. The lines are d apart, so the chance it covers one is L sin θ ÷ d. Every angle from 0° to 180° is equally likely, and the average of sin θ over that range is 2/π. So the chance of a crossing is 2L/(πd). The π comes from averaging over a half turn.</p>
+<p>Move the slider to make the needle shorter. The chance drops in proportion, so the estimate becomes 2 × (needle ÷ gap) × drops ÷ crossings. The slider stops at 1 because a longer needle can cross two lines at once and the rule changes.</p>
+<p>The estimate is slow to settle. The error shrinks roughly like 1 over the square root of the number of drops, so one more correct digit costs about 100 times more needles. Sweep the floor and drop 10,000 a few times. You will get a different answer each time, and most of them will be within 0.05 of π.</p>
+<p>Sheet: <a href="../grade-11/sheets/b12-buffon.html">Dropping needles to find π</a>. A cousin of this demo: <a href="pi-darts.html">measure π with random darts</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  // Lengths are measured in gaps: the lines are at y = 0, 1, 2, … and the needle has length len (at most 1).
+  // A needle with centre height y at angle theta to the lines crosses a line when its two ends lie in different gaps.
+  function crosses(y, theta, len) { var h = len / 2 * Math.abs(Math.sin(theta)); return Math.floor(y - h) !== Math.floor(y + h); }
+  // A random needle on a floor with lines at 0..rows: [position along the floor (0 to 1), centre height, angle].
+  function randomNeedle(rnd, rows) { return [rnd(), -0.5 + rnd() * (rows + 1), rnd() * Math.PI]; }
+  // The chance of a crossing, for len ≤ 1.
+  function crossChance(len) { return 2 * len / Math.PI; }
+  function estimatePi(len, drops, hits) { return hits ? 2 * len * drops / hits : NaN; }
+  /*ENDPURE*/
+
+  var ROWS = 6, KEEP = 30000;
+  var floor = document.getElementById("floor"), fx = floor.getContext("2d"), chart = document.getElementById("chart"), cx = chart.getContext("2d");
+  var info = document.getElementById("info"), slider = document.getElementById("len");
+  var len = 1, total = 0, hits = 0, needles = [], hist = [], nextRec = 1, W = 0, H, unit, wide, lastW = -1;
+  function size(canvas, ctx, w, h) {
+    var dpr = window.devicePixelRatio || 1;
+    canvas.width = w * dpr; canvas.height = h * dpr; canvas.style.height = h + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, w, h);
+  }
+  function style() { return total <= 200 ? [0.9, 2] : total <= 3000 ? [0.6, 1.2] : [0.35, 1]; }
+  function drawNeedle(nd, st) {
+    var x = (0.5 + nd[0] * (wide - 1)) * unit, y = (nd[1] + 0.5) * unit, dx = Math.cos(nd[2]) * len * unit / 2, dy = Math.sin(nd[2]) * len * unit / 2;
+    fx.strokeStyle = (crosses(nd[1], nd[2], len) ? "rgba(245,165,36," : "rgba(63,68,201,") + st[0] + ")"; fx.lineWidth = st[1];
+    fx.beginPath(); fx.moveTo(x - dx, y - dy); fx.lineTo(x + dx, y + dy); fx.stroke();
+  }
+  function drawLines() {
+    fx.strokeStyle = "#1d1f3a"; fx.lineWidth = 1;
+    for (var i = 0; i <= ROWS; i++) { var y = Math.round((i + 0.5) * unit) + 0.5; fx.beginPath(); fx.moveTo(0, y); fx.lineTo(W, y); fx.stroke(); }
+  }
+  function drawFloor() {
+    W = floor.clientWidth || 640; H = Math.round(Math.min(W * 0.7, 430)); unit = H / (ROWS + 1); wide = W / unit;
+    size(floor, fx, W, H); fx.lineCap = "round";
+    var st = style(); needles.forEach(function (nd) { drawNeedle(nd, st); });
+    drawLines();
+  }
+  function drawChart() {
+    var w = chart.clientWidth || 640, h = 150, L = 34, Rm = 10, T = 10, B = 22, lo = 2.2, hi = 4.2;
+    size(chart, cx, w, h);
+    var top = Math.log(Math.max(100, total)) / Math.LN10;
+    function X(n) { return L + Math.log(n) / Math.LN10 / top * (w - L - Rm); }
+    function Y(v) { return T + (hi - Math.min(hi, Math.max(lo, v))) / (hi - lo) * (h - T - B); }
+    cx.font = "11px Nunito, sans-serif"; cx.fillStyle = "#5d6079"; cx.strokeStyle = "#ece9e0"; cx.lineWidth = 1;
+    cx.textAlign = "right"; cx.textBaseline = "middle";
+    [2.5, 3, 3.5, 4].forEach(function (v) { cx.beginPath(); cx.moveTo(L, Y(v)); cx.lineTo(w - Rm, Y(v)); cx.stroke(); cx.fillText(v, L - 5, Y(v)); });
+    cx.textAlign = "center"; cx.textBaseline = "alphabetic";
+    for (var p = 0; p <= top + 1e-9; p++) { var n = Math.pow(10, p); cx.beginPath(); cx.moveTo(X(n), T); cx.lineTo(X(n), h - B); cx.stroke(); var lab = n.toLocaleString("en").replace(/,/g, " "); cx.fillText(lab, Math.min(X(n), w - 4 - cx.measureText(lab).width / 2), h - 7); }
+    cx.strokeStyle = "#f5a524"; cx.lineWidth = 1.5; cx.setLineDash([6, 5]); cx.beginPath(); cx.moveTo(L, Y(Math.PI)); cx.lineTo(w - Rm, Y(Math.PI)); cx.stroke(); cx.setLineDash([]);
+    if (!hist.length) return;
+    cx.strokeStyle = "#3f44c9"; cx.lineWidth = 2; cx.lineJoin = "round"; cx.beginPath();
+    hist.forEach(function (pt, i) { if (i) cx.lineTo(X(pt[0]), Y(pt[1])); else cx.moveTo(X(pt[0]), Y(pt[1])); });
+    cx.stroke();
+    var end = hist[hist.length - 1]; cx.fillStyle = "#3f44c9"; cx.beginPath(); cx.arc(X(end[0]), Y(end[1]), 3.5, 0, 2 * Math.PI); cx.fill();
+  }
+  function num(v) { return String(Math.round(v * 100) / 100); }
+  function report() {
+    document.getElementById("lenv").textContent = num(len);
+    var lead = len === 1 ? "2 × " : "2 × " + num(len) + " × ";
+    if (!total) { info.textContent = "No needles yet. The needle is " + (len === 1 ? "as long as the gap" : num(len) + " of the gap") + ".\nChance of a crossing: 2 × " + num(len) + " ÷ π = " + crossChance(len).toFixed(3); return; }
+    var t = "Drops: " + total + "   crossings: " + hits + "\nFraction crossing: " + (hits / total).toFixed(3) + "   (theory " + crossChance(len).toFixed(3) + ")";
+    if (hits) { var est = estimatePi(len, total, hits); t += "\n" + lead + total + " ÷ " + hits + " = " + est.toFixed(4) + "\nπ = 3.1416…   error: " + Math.abs(est - Math.PI).toFixed(4); }
+    else t += "\nNo crossings yet, so no estimate. Drop some more.";
+    info.textContent = t;
+  }
+  function drop(n) {
+    var before = style(), from = needles.length;
+    for (var i = 0; i < n; i++) {
+      var nd = randomNeedle(Math.random, ROWS);
+      total++; if (crosses(nd[1], nd[2], len)) hits++;
+      if (needles.length < KEEP) needles.push(nd);
+      if (hits && (total <= 100 || total >= nextRec || i === n - 1)) { hist.push([total, estimatePi(len, total, hits)]); nextRec = Math.ceil(total * 1.03); }
+    }
+    var st = style();
+    if (st[0] !== before[0]) drawFloor(); else { for (var j = from; j < needles.length; j++) drawNeedle(needles[j], st); drawLines(); }
+    drawChart(); report();
+  }
+  function reset() { total = 0; hits = 0; needles = []; hist = []; nextRec = 1; drawFloor(); drawChart(); report(); }
+  document.querySelectorAll("[data-n]").forEach(function (b) { b.addEventListener("click", function () { drop(parseInt(b.dataset.n, 10)); }); });
+  document.getElementById("reset").addEventListener("click", reset);
+  slider.addEventListener("input", function () { len = parseFloat(slider.value); reset(); });
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(function () { if (floor.clientWidth !== lastW) { lastW = floor.clientWidth; drawFloor(); drawChart(); } }, 150); });
+  lastW = floor.clientWidth; reset();
+})();
+</script>
+</body>
+</html>

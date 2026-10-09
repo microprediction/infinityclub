@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Solve Any Triangle · Infinity Club</title>
+<meta name="description" content="Enter any three parts of a triangle (SSS, SAS, ASA, AAS or SSA). The demo draws it, finds the other three parts and shows the sine-rule or cosine-rule working line by line.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+#plot { width: 100%; }
+.controls select { font: inherit; padding: .25em .4em; border: 1px solid var(--rule); border-radius: 6px; background: #fff; max-width: calc(100% - 4.2em); min-width: 0; }
+.controls label { max-width: 100%; }
+.controls input[type=number] { width: 5.2em; }
+#work { font-size: .95rem; }
+.key b.given { color: var(--accent); } .key b.found { color: #b86e00; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Solve any triangle</h1>
+<p class="explain">Choose which three parts you know, then type them in. Side a is opposite angle A, side b is opposite B, side c is opposite C. Angles are in degrees. The demo draws the triangle to scale and writes out the working. Try the last option (SSA), two sides and an angle that is not between them: sometimes it gives two triangles, sometimes none.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <label>I know
+      <select id="mode">
+        <option value="SSS">SSS: three sides</option>
+        <option value="SAS">SAS: two sides, the angle between</option>
+        <option value="ASA">ASA: two angles, the side between</option>
+        <option value="AAS">AAS: two angles, another side</option>
+        <option value="SSA">SSA: two sides, another angle</option>
+      </select>
+    </label>
+  </div>
+  <div class="controls">
+    <label><span id="l0">side a</span> <input type="number" id="v0" step="any" min="0"></label>
+    <label><span id="l1">side b</span> <input type="number" id="v1" step="any" min="0"></label>
+    <label><span id="l2">side c</span> <input type="number" id="v2" step="any" min="0"></label>
+    <button id="example" class="ghost">Example</button>
+  </div>
+  <p class="small key">In the picture, <b class="given">blue</b> parts are the ones you typed and <b class="found">orange</b> parts were worked out.</p>
+  <canvas id="plot" width="900" height="560"></canvas>
+  <div class="readout" id="work"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>Two rules solve every triangle. The <b>cosine rule</b>, a² = b² + c² − 2bc cos A, is Pythagoras with a correction term for an angle that is not 90°. Use it when you have three sides, or two sides and the angle between them. The <b>sine rule</b>, a/sin A = b/sin B = c/sin C, says each side is in the same ratio to the sine of the angle facing it. Use it when you know a side and the angle opposite it.</p>
+<p>When two angles are known the third is free, because the three add to 180°. That is why ASA and AAS are easy: find the third angle first, then use the sine rule twice.</p>
+<p><b>SSA is the awkward one.</b> The sine rule gives sin B, but two angles between 0° and 180° share each sine: B and 180° − B. Picture side a as a rod hinged at C, swinging down towards the base. If it is too short it never reaches (no triangle). If it is at least as long as b it reaches once. In between (when A is less than 90°) it reaches the base in two places, and both triangles are real. Try a = 7, b = 10, A = 40°, then make a smaller until the two triangles merge and disappear.</p>
+<p>Sheets: <a href="../grade-11/sheets/a4-sine-and-cosine-rules.html">Triangles without a right angle</a> and <a href="../grade-11/sheets/c2-triangulation.html">Mapping a country with one measured line</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  var RAD = Math.PI / 180;
+  function fmt(v, d) { d = d === undefined ? 2 : d; var r = Math.round(v * Math.pow(10, d)) / Math.pow(10, d); if (Object.is(r, -0)) r = 0; return r.toString().replace("-", "−"); }
+  function sinD(x) { return Math.sin(x * RAD); }
+  function cosD(x) { return Math.cos(x * RAD); }
+  function acosD(x) { return Math.acos(Math.max(-1, Math.min(1, x))) / RAD; }
+  function asinD(x) { return Math.asin(Math.max(-1, Math.min(1, x))) / RAD; }
+  var MODES = {
+    SSS: { fields: ["a", "b", "c"], example: [3, 4, 5] },
+    SAS: { fields: ["b", "c", "A"], example: [8, 11, 40] },
+    ASA: { fields: ["A", "B", "c"], example: [40, 65, 10] },
+    AAS: { fields: ["A", "B", "a"], example: [40, 65, 10] },
+    SSA: { fields: ["a", "b", "A"], example: [7, 10, 40] }
+  };
+  function isAngle(name) { return name === "A" || name === "B" || name === "C"; }
+  function area(t) { return 0.5 * t.b * t.c * sinD(t.A); }
+  // solve(mode, values) -> { error } or { intro: [lines], solutions: [{ tri: {a,b,c,A,B,C}, lines: [...] }] }
+  // values are in the order of MODES[mode].fields
+  function solve(mode, v) {
+    var f = MODES[mode].fields, g = {}, i;
+    for (i = 0; i < 3; i++) {
+      if (!(typeof v[i] === "number" && isFinite(v[i]))) return { error: "Type three numbers." };
+      if (v[i] <= 0) return { error: (isAngle(f[i]) ? "Angles" : "Sides") + " must be bigger than 0." };
+      if (isAngle(f[i]) && v[i] >= 180) return { error: "An angle of a triangle must be less than 180°." };
+      g[f[i]] = v[i];
+    }
+    var a = g.a, b = g.b, c = g.c, A = g.A, B = g.B, C, L = [], cosA, cosB;
+    if (mode === "SSS") {
+      if (a + b <= c || a + c <= b || b + c <= a) return { error: "No triangle: the longest side must be shorter than the other two put together." };
+      cosA = (b * b + c * c - a * a) / (2 * b * c); A = acosD(cosA);
+      cosB = (a * a + c * c - b * b) / (2 * a * c); B = acosD(cosB); C = 180 - A - B;
+      L.push("Three sides, no angles: use the cosine rule.");
+      L.push("cos A = (b² + c² − a²) / (2bc) = (" + fmt(b * b) + " + " + fmt(c * c) + " − " + fmt(a * a) + ") / " + fmt(2 * b * c) + " = " + fmt(cosA, 4));
+      L.push("A = cos⁻¹(" + fmt(cosA, 4) + ") = " + fmt(A) + "°");
+      L.push("cos B = (a² + c² − b²) / (2ac) = (" + fmt(a * a) + " + " + fmt(c * c) + " − " + fmt(b * b) + ") / " + fmt(2 * a * c) + " = " + fmt(cosB, 4));
+      L.push("B = cos⁻¹(" + fmt(cosB, 4) + ") = " + fmt(B) + "°");
+      L.push("C = 180° − A − B = " + fmt(C) + "°");
+      return { intro: [], solutions: [{ tri: { a: a, b: b, c: c, A: A, B: B, C: C }, lines: L }] };
+    }
+    if (mode === "SAS") {
+      var a2 = b * b + c * c - 2 * b * c * cosD(A); a = Math.sqrt(a2);
+      cosB = (a2 + c * c - b * b) / (2 * a * c); B = acosD(cosB); C = 180 - A - B;
+      L.push("Two sides and the angle between them: use the cosine rule for the third side.");
+      L.push("a² = b² + c² − 2bc cos A = " + fmt(b * b) + " + " + fmt(c * c) + " − " + fmt(2 * b * c) + " × cos " + fmt(A) + "° = " + fmt(a2, 3));
+      L.push("a = √" + fmt(a2, 3) + " = " + fmt(a, 3));
+      L.push("cos B = (a² + c² − b²) / (2ac) = " + fmt(cosB, 4) + ", so B = " + fmt(B) + "°");
+      L.push("C = 180° − A − B = " + fmt(C) + "°");
+      return { intro: [], solutions: [{ tri: { a: a, b: b, c: c, A: A, B: B, C: C }, lines: L }] };
+    }
+    if (mode === "ASA" || mode === "AAS") {
+      if (A + B >= 180) return { error: "No triangle: the two angles already add up to " + fmt(A + B) + "°, which leaves nothing for the third." };
+      C = 180 - A - B;
+      L.push("Two angles known, so find the third first.");
+      L.push("C = 180° − A − B = 180° − " + fmt(A) + "° − " + fmt(B) + "° = " + fmt(C) + "°");
+      L.push("Now the sine rule: a / sin A = b / sin B = c / sin C.");
+      if (mode === "ASA") {
+        a = c * sinD(A) / sinD(C); b = c * sinD(B) / sinD(C);
+        L.push("a = c sin A / sin C = " + fmt(c) + " × sin " + fmt(A) + "° / sin " + fmt(C) + "° = " + fmt(a, 3));
+        L.push("b = c sin B / sin C = " + fmt(c) + " × sin " + fmt(B) + "° / sin " + fmt(C) + "° = " + fmt(b, 3));
+      } else {
+        b = a * sinD(B) / sinD(A); c = a * sinD(C) / sinD(A);
+        L.push("b = a sin B / sin A = " + fmt(a) + " × sin " + fmt(B) + "° / sin " + fmt(A) + "° = " + fmt(b, 3));
+        L.push("c = a sin C / sin A = " + fmt(a) + " × sin " + fmt(C) + "° / sin " + fmt(A) + "° = " + fmt(c, 3));
+      }
+      return { intro: [], solutions: [{ tri: { a: a, b: b, c: c, A: A, B: B, C: C }, lines: L }] };
+    }
+    // SSA: sides a, b and angle A (opposite a)
+    var sinB = b * sinD(A) / a, intro = [], sols = [];
+    intro.push("A side and the angle facing it are known (a and A): use the sine rule.");
+    intro.push("sin B / b = sin A / a, so sin B = b sin A / a = " + fmt(b) + " × sin " + fmt(A) + "° / " + fmt(a) + " = " + fmt(sinB, 4));
+    if (sinB > 1 + 1e-9) {
+      intro.push("No angle has a sine bigger than 1, so there is NO triangle. Side a is too short to reach the base.");
+      return { intro: intro, solutions: [] };
+    }
+    var cands;
+    if (Math.abs(sinB - 1) <= 1e-9) { cands = [90]; intro.push("sin B = 1, so B = 90° exactly: side a only just reaches."); }
+    else {
+      var B1 = asinD(sinB); cands = [B1, 180 - B1];
+      intro.push("Two angles have that sine: B = " + fmt(B1) + "° or B = 180° − " + fmt(B1) + "° = " + fmt(180 - B1) + "°.");
+    }
+    cands.forEach(function (Bc) {
+      if (A + Bc >= 180 - 1e-9) { intro.push("B = " + fmt(Bc) + "° does not fit: A + B = " + fmt(A + Bc) + "°, which leaves no room for C."); return; }
+      var Cc = 180 - A - Bc, cc = a * sinD(Cc) / sinD(A);
+      sols.push({ tri: { a: a, b: b, c: cc, A: A, B: Bc, C: Cc }, lines: [
+        "B = " + fmt(Bc) + "°",
+        "C = 180° − A − B = " + fmt(Cc) + "°",
+        "c = a sin C / sin A = " + fmt(a) + " × sin " + fmt(Cc) + "° / sin " + fmt(A) + "° = " + fmt(cc, 3)
+      ] });
+    });
+    intro.push(sols.length === 2 ? "Both fit, so there are TWO triangles." : sols.length === 1 ? "So there is ONE triangle." : "So there is NO triangle.");
+    return { intro: intro, solutions: sols };
+  }
+  // corner positions with A at the origin and side c along the x-axis
+  function corners(t) { return { A: [0, 0], B: [t.c, 0], C: [t.b * cosD(t.A), t.b * sinD(t.A)] }; }
+  function report(mode, res) {
+    if (res.error) return res.error;
+    var out = res.intro.slice();
+    res.solutions.forEach(function (s, i) {
+      if (res.solutions.length > 1) out.push("", "Triangle " + (i + 1) + ":");
+      out = out.concat(s.lines);
+      var t = s.tri;
+      out.push("→ a = " + fmt(t.a, 3) + ", b = " + fmt(t.b, 3) + ", c = " + fmt(t.c, 3) + ";  A = " + fmt(t.A) + "°, B = " + fmt(t.B) + "°, C = " + fmt(t.C) + "°");
+      out.push("  area = ½ bc sin A = " + fmt(area(t), 3));
+    });
+    return out.join("\n");
+  }
+  /*ENDPURE*/
+
+  var canvas = document.getElementById("plot"), ctx = canvas.getContext("2d");
+  var modeSel = document.getElementById("mode"), work = document.getElementById("work");
+  var inputs = [0, 1, 2].map(function (i) { return document.getElementById("v" + i); });
+  var labels = [0, 1, 2].map(function (i) { return document.getElementById("l" + i); });
+  function loadExample() { var m = MODES[modeSel.value]; inputs.forEach(function (el, i) { el.value = m.example[i]; }); }
+  function setLabels() { MODES[modeSel.value].fields.forEach(function (name, i) { labels[i].textContent = isAngle(name) ? "angle " + name + " (°)" : "side " + name; }); }
+  modeSel.addEventListener("change", function () { setLabels(); loadExample(); draw(); });
+  inputs.forEach(function (el) { el.addEventListener("input", draw); });
+  document.getElementById("example").addEventListener("click", function () { loadExample(); draw(); });
+
+  var BLUE = "#3f44c9", ORANGE = "#b86e00";
+  function drawTri(t, given, x0, y0, w, h, title) {
+    var P = corners(t), pad = 40;
+    var minx = Math.min(0, P.C[0]), maxx = Math.max(t.c, P.C[0]), hgt = P.C[1];
+    var sc = Math.min((w - 2 * pad) / (maxx - minx), (h - 2 * pad - 8) / hgt);
+    var ox = x0 + (w - (maxx - minx) * sc) / 2 - minx * sc, oy = y0 + (h + hgt * sc) / 2 - 2;
+    function S(p) { return [ox + p[0] * sc, oy - p[1] * sc]; }
+    var a = S(P.A), b = S(P.B), c = S(P.C), cen = [(a[0] + b[0] + c[0]) / 3, (a[1] + b[1] + c[1]) / 3];
+    ctx.fillStyle = "#dcdcf5"; ctx.globalAlpha = 0.5; ctx.beginPath(); ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); ctx.lineTo(c[0], c[1]); ctx.closePath(); ctx.fill(); ctx.globalAlpha = 1;
+    function away(p, dist) { var dx = p[0] - cen[0], dy = p[1] - cen[1], n = Math.sqrt(dx * dx + dy * dy) || 1; return [p[0] + dx / n * dist, p[1] + dy / n * dist]; }
+    function side(p, q, name, val) {
+      var col = given[name] ? BLUE : ORANGE;
+      ctx.strokeStyle = col; ctx.lineWidth = given[name] ? 3.5 : 2.5; ctx.lineCap = "round";
+      ctx.beginPath(); ctx.moveTo(p[0], p[1]); ctx.lineTo(q[0], q[1]); ctx.stroke();
+      ctx.fillStyle = col; ctx.font = "bold 12px Nunito, sans-serif"; ctx.textAlign = "center";
+      var text = name + " = " + fmt(val), mid = [(p[0] + q[0]) / 2, (p[1] + q[1]) / 2], m;
+      if (name === "c") m = [mid[0], mid[1] + (Math.abs(q[0] - p[0]) < 170 ? 32 : 17)]; // the base: below it, clear of the A and B labels
+      else { // push the label out far enough that the text clears a steep side
+        var ex = q[0] - p[0], ey = q[1] - p[1], n = Math.sqrt(ex * ex + ey * ey) || 1, nx = -ey / n, ny = ex / n;
+        if (nx * (mid[0] - cen[0]) + ny * (mid[1] - cen[1]) < 0) { nx = -nx; ny = -ny; } // the normal that points out of the triangle
+        var dist = 8 + Math.abs(nx) * ctx.measureText(text).width / 2 + Math.abs(ny) * 7;
+        m = [mid[0] + nx * dist, mid[1] + ny * dist];
+      }
+      ctx.fillText(text, Math.max(x0 + 30, Math.min(x0 + w - 30, m[0])), m[1] + 4);
+    }
+    side(b, c, "a", t.a); side(a, c, "b", t.b); side(a, b, "c", t.c);
+    function vertex(p, name, val) {
+      var m = name === "C" ? [p[0], p[1] - 16] : [p[0], p[1] + 17]; // C above its corner, A and B below the base
+      var midBase = (a[0] + b[0]) / 2; // on a short base, keep the A and B labels from colliding
+      if (name === "A") m[0] = Math.min(m[0], midBase - 27); if (name === "B") m[0] = Math.max(m[0], midBase + 27);
+      ctx.fillStyle = "#1d1f3a"; ctx.beginPath(); ctx.arc(p[0], p[1], 3.5, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = given[name] ? BLUE : ORANGE; ctx.font = "bold 12px Nunito, sans-serif"; ctx.textAlign = "center";
+      ctx.fillText(name + " " + fmt(val, 1) + "°", Math.max(x0 + 26, Math.min(x0 + w - 26, m[0])), Math.max(y0 + 12, Math.min(y0 + h - 4, m[1] + 4)));
+    }
+    vertex(a, "A", t.A); vertex(b, "B", t.B); vertex(c, "C", t.C);
+    if (title) { ctx.fillStyle = "#5d6079"; ctx.font = "bold 12px Nunito, sans-serif"; ctx.textAlign = "left"; ctx.fillText(title, x0 + 8, y0 + 16); }
+  }
+  function draw() {
+    var mode = modeSel.value, vals = inputs.map(function (el) { return parseFloat(el.value); });
+    var res = solve(mode, vals), n = res.error ? 0 : res.solutions.length;
+    var dpr = window.devicePixelRatio || 1, W = canvas.clientWidth || 900;
+    var stacked = n === 2 && W < 560, cellH = Math.max(210, Math.round(W * (n === 2 && !stacked ? 0.42 : 0.56)));
+    var H = stacked ? cellH * 2 : cellH;
+    canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, H);
+    var given = {}; MODES[mode].fields.forEach(function (name) { given[name] = true; });
+    if (n === 0) {
+      ctx.fillStyle = "#5d6079"; ctx.font = "bold 14px Nunito, sans-serif"; ctx.textAlign = "center";
+      ctx.fillText("No triangle to draw", W / 2, H / 2);
+    } else if (n === 1) drawTri(res.solutions[0].tri, given, 0, 0, W, H, "");
+    else if (stacked) {
+      drawTri(res.solutions[0].tri, given, 0, 0, W, cellH, "Triangle 1"); drawTri(res.solutions[1].tri, given, 0, cellH, W, cellH, "Triangle 2");
+      ctx.strokeStyle = "#d9d6cc"; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(0, cellH); ctx.lineTo(W, cellH); ctx.stroke();
+    } else {
+      drawTri(res.solutions[0].tri, given, 0, 0, W / 2, H, "Triangle 1"); drawTri(res.solutions[1].tri, given, W / 2, 0, W / 2, H, "Triangle 2");
+      ctx.strokeStyle = "#d9d6cc"; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(W / 2, 0); ctx.lineTo(W / 2, H); ctx.stroke();
+    }
+    work.textContent = report(mode, res);
+  }
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(draw, 120); });
+  setLabels(); loadExample(); draw();
+})();
+</script>
+</body>
+</html>

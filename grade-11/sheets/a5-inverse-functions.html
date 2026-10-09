@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Undoing a function that is not one-to-one · Infinity Club</title>
+<meta name="description" content="Sine takes the same value at many angles, so its inverse needs a choice. Restrict the domain, and see which angle arcsin, arccos and arctan hand back.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 11</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 11 · Sharpen · 5</div>
+  <h1>Undoing a function that is not one-to-one</h1>
+  <p class="teaser">sin 30° and sin 150° are both a half, so "the angle whose sine is a half" needs a choice. Restrict the domain, and see what the calculator chose for you.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>An inverse function runs a machine backwards (<a href="../../grade-10/sheets/a3-functions.html">where you met this</a>). That only works if each output came from one input. Sine fails: \(\sin 30° = \sin 150° = \tfrac12\). "The angle whose sine is \(\tfrac12\)" is not one angle.</p>
+<figure><svg viewBox="0 0 440 160" width="440" height="160" role="img" aria-label="The sine curve from minus 180 to 360 degrees. The piece from minus 90 to 90 degrees is highlighted. A dashed line at height one half meets the curve at 30 and 150 degrees." font-family="Nunito, sans-serif" font-size="13">
+<line x1="34" y1="78" x2="422" y2="78" stroke="#000" stroke-width="1"/>
+<line x1="160.7" y1="14" x2="160.7" y2="146" stroke="#000" stroke-width="1"/>
+<line x1="34" y1="54.0" x2="414" y2="54.0" stroke="#999" stroke-width="1" stroke-dasharray="4 3"/>
+<path d="M34.0 78.0 L37.5 82.2 L41.0 86.3 L44.6 90.4 L48.1 94.4 L51.6 98.3 L55.1 102.0 L58.6 105.5 L62.1 108.9 L65.7 111.9 L69.2 114.8 L72.7 117.3 L76.2 119.6 L79.7 121.5 L83.3 123.1 L86.8 124.4 L90.3 125.3 L93.8 125.8 L97.3 126.0 L100.9 125.8 L104.4 125.3 L107.9 124.4 L111.4 123.1 L114.9 121.5 L118.4 119.6 L122.0 117.3 L125.5 114.8 L129.0 111.9 L132.5 108.9 L136.0 105.5 L139.6 102.0 L143.1 98.3 L146.6 94.4 L150.1 90.4 L153.6 86.3 L157.1 82.2 L160.7 78.0 L164.2 73.8 L167.7 69.7 L171.2 65.6 L174.7 61.6 L178.3 57.7 L181.8 54.0 L185.3 50.5 L188.8 47.1 L192.3 44.1 L195.9 41.2 L199.4 38.7 L202.9 36.4 L206.4 34.5 L209.9 32.9 L213.4 31.6 L217.0 30.7 L220.5 30.2 L224.0 30.0 L227.5 30.2 L231.0 30.7 L234.6 31.6 L238.1 32.9 L241.6 34.5 L245.1 36.4 L248.6 38.7 L252.1 41.2 L255.7 44.1 L259.2 47.1 L262.7 50.5 L266.2 54.0 L269.7 57.7 L273.3 61.6 L276.8 65.6 L280.3 69.7 L283.8 73.8 L287.3 78.0 L290.9 82.2 L294.4 86.3 L297.9 90.4 L301.4 94.4 L304.9 98.3 L308.4 102.0 L312.0 105.5 L315.5 108.9 L319.0 111.9 L322.5 114.8 L326.0 117.3 L329.6 119.6 L333.1 121.5 L336.6 123.1 L340.1 124.4 L343.6 125.3 L347.1 125.8 L350.7 126.0 L354.2 125.8 L357.7 125.3 L361.2 124.4 L364.7 123.1 L368.3 121.5 L371.8 119.6 L375.3 117.3 L378.8 114.8 L382.3 111.9 L385.9 108.9 L389.4 105.5 L392.9 102.0 L396.4 98.3 L399.9 94.4 L403.4 90.4 L407.0 86.3 L410.5 82.2 L414.0 78.0" fill="none" stroke="#3f44c9" stroke-width="1.5"/>
+<path d="M97.3 126.0 L100.9 125.8 L104.4 125.3 L107.9 124.4 L111.4 123.1 L114.9 121.5 L118.4 119.6 L122.0 117.3 L125.5 114.8 L129.0 111.9 L132.5 108.9 L136.0 105.5 L139.6 102.0 L143.1 98.3 L146.6 94.4 L150.1 90.4 L153.6 86.3 L157.1 82.2 L160.7 78.0 L164.2 73.8 L167.7 69.7 L171.2 65.6 L174.7 61.6 L178.3 57.7 L181.8 54.0 L185.3 50.5 L188.8 47.1 L192.3 44.1 L195.9 41.2 L199.4 38.7 L202.9 36.4 L206.4 34.5 L209.9 32.9 L213.4 31.6 L217.0 30.7 L220.5 30.2 L224.0 30.0" fill="none" stroke="#f5a524" stroke-width="4"/>
+<circle cx="181.8" cy="54.0" r="3.5" fill="#000"/><circle cx="266.2" cy="54.0" r="3.5" fill="#000"/>
+<line x1="97.3" y1="75" x2="97.3" y2="81" stroke="#000"/><line x1="224.0" y1="75" x2="224.0" y2="81" stroke="#000"/><line x1="287.3" y1="75" x2="287.3" y2="81" stroke="#000"/><line x1="350.7" y1="75" x2="350.7" y2="81" stroke="#000"/><line x1="414.0" y1="75" x2="414.0" y2="81" stroke="#000"/>
+<text x="97.3" y="70" text-anchor="middle" font-size="12">−90°</text><text x="228.0" y="95" text-anchor="middle" font-size="12">90°</text><text x="301.3" y="70" text-anchor="middle" font-size="12">180°</text><text x="410.0" y="70" text-anchor="middle" font-size="12">360°</text>
+<text x="179.8" y="45.0" text-anchor="middle" font-size="12">30°</text><text x="272.2" y="45.0" text-anchor="middle" font-size="12">150°</text>
+<text x="414" y="48.0" text-anchor="end" font-size="12" fill="#555">height ½</text>
+<text x="170.7" y="119" font-size="12" fill="#b87400">the piece arcsin undoes</text>
+</svg><figcaption>The line at height \(\tfrac12\) meets the sine curve again and again, but the thick piece only once.</figcaption></figure>
+<p>The fix is to throw most of the curve away. Keep one piece on which sine takes every value from \(-1\) to 1 exactly once: the climb from \(-90°\) to \(90°\). The inverse of that piece is <b>arcsin</b>, written \(\sin^{-1}\) on a calculator. (The \(-1\) means "inverse", not "one over".)</p>
+<p class="callout">\(\arcsin x\) is the one angle from \(-90°\) to \(90°\) whose sine is \(x\).<br>\(\arccos x\) is the one angle from \(0°\) to \(180°\) whose cosine is \(x\).<br>\(\arctan x\) is the one angle strictly between \(-90°\) and \(90°\) whose tangent is \(x\).</p>
+<p>Each window is a choice, made so that no value is hit twice and none is missed. The cost: \(\sin(\arcsin x) = x\) always, but \(\arcsin(\sin\theta) = \theta\) only when \(\theta\) is inside the window. Outside it, you get back a different angle with the same sine.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: \(\arcsin(\sin 200°)\)</h2>
+<p>The answer cannot be \(200°\), which is outside the window. Work in two steps.</p>
+<p>First the sine. \(200°\) is \(20°\) past \(180°\), in quadrant III, so \(\sin 200° = -\sin 20°\).</p>
+<p>Now ask which angle from \(-90°\) to \(90°\) has that sine. Since \(\sin(-\theta) = -\sin\theta\), it is \(-20°\):</p>
+<p>\[\arcsin(\sin 200°) = -20°.\]</p>
+<p>You have made this kind of choice before. Squaring is not one-to-one either. Keep only \(x \ge 0\) and the inverse is \(\sqrt{x}\), which is why \(\sqrt9\) is 3 and never \(-3\).</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Give exact values in degrees, without a calculator: \(\arcsin\tfrac{\sqrt3}{2}\), \(\;\arccos\left(-\tfrac12\right)\), \(\;\arctan(-1)\), \(\;\arcsin(-1)\).<div class="space short"></div></li>
+<li>Find \(\arcsin(\sin 130°)\), \(\;\arccos(\cos 300°)\) and \(\arctan(\tan 135°)\). None of them is the angle you started with.<div class="space short"></div></li>
+<li>\(f(x) = x^2 - 4x + 1\) is not one-to-one. Complete the square, restrict \(f\) to \(x \ge 2\), and find the inverse and its domain. What changes if you keep \(x \le 2\) instead?<div class="space"></div></li>
+<li>(a) Explain why the window \(-90°\) to \(90°\) would be a bad choice for cosine. Give two separate reasons. (b) Show that \(\cos(\arcsin x) = \sqrt{1 - x^2}\), and say why the answer is never the negative root.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: two windows that fit together</h2>
+<p>Try \(\arcsin x + \arccos x\) on a calculator for a few values of \(x\), including a negative one. Guess the rule, then prove it. Start from \(\theta = \arcsin x\) and the fact that \(\cos(90° - \theta) = \sin\theta\). Which window must \(90° - \theta\) lie in?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(60°\), \(120°\), \(-45°\), \(-90°\).</li>
+<li>\(\sin 130° = \sin 50°\), so \(\arcsin(\sin 130°) = 50°\). \(\cos 300° = \cos 60°\), so \(\arccos(\cos 300°) = 60°\). \(\tan 135° = -1\), so \(\arctan(\tan 135°) = -45°\).</li>
+<li>\(f(x) = (x - 2)^2 - 3\). For \(x \ge 2\): \(y + 3 = (x-2)^2\) gives \(x - 2 = +\sqrt{y + 3}\), so \(f^{-1}(x) = 2 + \sqrt{x + 3}\), with domain \(x \ge -3\) (the range of \(f\)). Keeping \(x \le 2\) instead gives \(f^{-1}(x) = 2 - \sqrt{x + 3}\), on the same domain.</li>
+<li>(a) It is not one-to-one there: \(\cos(-60°) = \cos 60°\). And it misses values: cosine is never negative between \(-90°\) and \(90°\), so \(\arccos(-\tfrac12)\) would have no answer. (b) Let \(\theta = \arcsin x\), so \(\sin\theta = x\). Then \(\cos^2\theta = 1 - \sin^2\theta = 1 - x^2\). Because \(\theta\) lies between \(-90°\) and \(90°\), \(\cos\theta \ge 0\), so \(\cos\theta = +\sqrt{1 - x^2}\).</li>
+</ol>
+<p><b>Stretch.</b> The sum is always \(90°\). Let \(\theta = \arcsin x\), so \(-90° \le \theta \le 90°\) and \(\sin\theta = x\). Then \(\cos(90° - \theta) = \sin\theta = x\), and \(90° - \theta\) lies between \(0°\) and \(180°\), which is exactly the arccos window. So \(\arccos x = 90° - \theta\), and \(\arcsin x + \arccos x = 90°\) for every \(x\) from \(-1\) to 1.</p>
+</section>
+
+<div class="sheet-nav"><a href="a4-sine-and-cosine-rules.html">← Previous</a><a href="a6-trig-equations.html">Next: All the solutions →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

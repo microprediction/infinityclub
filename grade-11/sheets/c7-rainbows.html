@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why the rainbow is at 42 degrees · Infinity Club</title>
+<meta name="description" content="Snell's law bends a ray entering a raindrop; it reflects and bends again. Tabulate the total turn against the angle of arrival and the rays pile up at one angle: 42 degrees.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 11</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 11 · Connections · 7</div>
+  <h1>Why the rainbow is at 42 degrees</h1>
+  <p class="teaser">Light bends entering a raindrop, reflects, and bends again. Follow many rays and they pile up at one angle.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Light slows down as it passes from air into water, and that bends the ray. Measure angles from the <b>normal</b>, the line at right angles to the surface. <b>Snell's law</b> says</p>
+<p class="callout">\(n_1 \sin\theta_1 = n_2 \sin\theta_2\), where \(n\) is the <b>refractive index</b>: 1 for air, about 1.33 for water.</p>
+<p>So a ray that meets a raindrop at angle \(i\) to the normal travels inside at angle \(r\), where \(\sin i = 1.33 \sin r\).</p>
+<figure><svg viewBox="0 0 520 200" width="460" height="177" role="img" aria-label="A ray of sunlight enters a round raindrop near the top, bends, reflects off the back of the drop, bends again on the way out and leaves heading back and down, 42 degrees away from the direction it came from" font-family="Nunito, sans-serif" font-size="13">
+<circle cx="335" cy="70" r="58" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<line x1="335" y1="70" x2="290.4" y2="-5.9" stroke="#999" stroke-dasharray="4 3"/>
+<line x1="335" y1="70" x2="389.1" y2="49" stroke="#999" stroke-dasharray="4 3"/>
+<line x1="335" y1="70" x2="347.2" y2="126.7" stroke="#999" stroke-dasharray="4 3"/>
+<polyline points="60,20 305.6,20 389.1,49 347.2,126.7 277.1,190.9" fill="none" stroke="#f5a524" stroke-width="2.2"/>
+<polygon points="170,20 161,24 161,16" fill="#f5a524"/>
+<polygon points="277.1,190.9 281.1,181.9 286.5,187.8" fill="#f5a524"/>
+<line x1="347.2" y1="126.7" x2="227.2" y2="126.7" stroke="#999" stroke-dasharray="4 3"/>
+<path d="M305.2,126.7 A42,42 0 0 0 316.2,155.1" fill="none" stroke="#000"/>
+<text x="289.4" y="153.2" text-anchor="middle">42°</text>
+<text x="62" y="13" font-size="12">sunlight</text>
+<text x="283.6" y="15" text-anchor="middle">i</text>
+<text x="328.8" y="43" text-anchor="middle">r</text>
+<text x="397.1" y="53" font-size="12">reflects here</text>
+<text x="267.1" y="188.9" font-size="12" text-anchor="end">to your eye</text>
+</svg><figcaption>One ray through a round drop: bend, reflect, bend. The dashed lines from the centre are normals.</figcaption></figure>
+<p>Follow the ray. Entering, it turns through \(i - r\). At the back of the drop it reflects, turning through \(180° - 2r\). Leaving, it turns through \(i - r\) again. The total turn is the <b>deviation</b></p>
+<p>\[D = 180° + 2i - 4r.\]</p>
+<p>Sunlight meets the drop at every \(i\) from 0° to 90°. The table below shows \(D\) falling, bottoming out near 138° when \(i\) is about 60°, and rising again. Near the bottom \(D\) hardly changes, so rays arriving at quite different angles leave in almost the same direction. That pile-up is the bow. You see it \(180° - 138° = 42°\) from the point opposite the sun.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: \(i = 60°\)</h2>
+<p>Snell's law gives \(\sin r = \dfrac{\sin 60°}{1.33} = 0.651\), so \(r = 40.6°\). Then \(D = 180° + 120° - 4 \times 40.6° = 137.5°\). A calculator does the same for every other angle:</p>
+<table class="tt" style="break-inside:avoid">
+<tr><th>\(i\)</th><td>0°</td><td>10°</td><td>20°</td><td>30°</td><td>40°</td><td>50°</td><td>60°</td><td>70°</td><td>80°</td><td>90°</td></tr>
+<tr><th>\(r\)</th><td>0.0°</td><td>7.5°</td><td>14.9°</td><td>22.1°</td><td>28.9°</td><td>35.2°</td><td>40.6°</td><td>45.0°</td><td>47.8°</td><td>48.8°</td></tr>
+<tr><th>\(D\)</th><td>180.0°</td><td>170.0°</td><td>160.4°</td><td>151.7°</td><td>144.4°</td><td>139.3°</td><td>137.5°</td><td>140.2°</td><td>148.9°</td><td>165.0°</td></tr>
+</table>
+<p>The smallest entry is 137.5°, and no ray turns through less. No once-reflected ray reaches your eye from more than about 42° out, which is why the sky is darker just outside the bow.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>A ray meets a flat pond at 30° to the normal. Find its angle to the normal under water.<div class="space short"></div></li>
+<li>Find \(r\) and \(D\) for \(i = 45°\). Check that your \(D\) fits between its neighbours in the table.<div class="space short"></div></li>
+<li>Find \(D\) for \(i = 55°\) and \(i = 65°\). Rays arriving anywhere between these two angles leave within how many degrees of each other? Compare with rays arriving between 20° and 30°.<div class="space"></div></li>
+<li>The refractive index depends slightly on colour: about 1.331 for red light and 1.343 for violet. Taking \(i = 59°\) for both, find \(D\) and the bow angle \(180° - D\) for each colour. Which colour is on the outside of the bow?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the second bow</h2>
+<p>A ray that reflects twice inside the drop has \(D = 360° + 2i - 6r\). With \(n = 1.33\), find \(D\) for \(i = 60°, 65°, 70°, 72°, 75°, 80°\). What is the smallest \(D\), and how far is it from 180°? That is where the fainter second bow sits.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(\sin r = \sin 30° / 1.33 = 0.376\), so \(r \approx 22.1°\). The ray bends towards the normal.</li>
+<li>\(\sin r = \sin 45°/1.33 = 0.532\), so \(r \approx 32.1°\) and \(D = 180° + 90° - 128.5° = 141.5°\). That lies between 144.4° (at 40°) and 139.3° (at 50°).</li>
+<li>\(i = 55°\): \(r = 38.0°\), \(D = 137.9°\). \(i = 65°\): \(r = 43.0°\), \(D = 138.2°\). Between them \(D\) dips to 137.5°, so all these rays leave within about 0.7° of each other. From 20° to 30°, \(D\) runs from 160.4° to 151.7°, a spread of 8.7°. The same 10° range of arrivals is squeezed more than ten times tighter near the minimum.</li>
+<li>Red: \(r = 40.1°\), \(D = 137.6°\), bow angle 42.4°. Violet: \(r = 39.7°\), \(D = 139.4°\), bow angle 40.6°. Red has the larger angle, so red is on the outside of the bow and violet on the inside. The colours separate because each has its own minimum.</li>
+</ol>
+<p><b>Stretch.</b> \(D = 236.2°, 232.3°, 230.3°, 230.1°, 230.6°, 233.4°\). The smallest is about 230°, which is 50° past 180°. The second bow sits about 50° from the point opposite the sun, outside the first.</p>
+</section>
+
+<div class="sheet-nav"><a href="c6-rotating-a-cube.html">← Previous</a><a href="c8-power-laws.html">Next: The few that are huge →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

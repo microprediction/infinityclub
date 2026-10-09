@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why insurance works · Infinity Club</title>
+<meta name="description" content="Expected loss, premium and pooling. The standard deviation of the average of n independent risks falls like one over root n, and that is why an insurer can carry a risk you cannot.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 11</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 11 · Connections · 5</div>
+  <h1>Why insurance works</h1>
+  <p class="teaser">You pay a little more than your expected loss and are glad to. Pooling many independent risks shrinks the uncertainty, and the square root explains by how much.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Suppose (invented numbers) each house has a 2% chance per year of a fire costing 20,000. The loss \(X\) is a random variable, as in <a href="a14-random-variables.html">The average outcome and how far it strays</a>. Its expected value is \(\mu = 0.02 \times 20{,}000 = 400\). Its standard deviation is \(\sigma = 20{,}000\sqrt{0.02 \times 0.98} = 2800\).</p>
+<p>An insurer charges a <b>premium</b> of, say, 500 a year. On average you lose 100 by buying. You are still glad to: a certain 500 is bearable and a sudden 20,000 is not.</p>
+<p>The insurer can bear it because it holds many houses. For <b>independent</b> risks (one fire tells you nothing about another) variances add. So the total loss of \(n\) houses has variance \(n\sigma^2\) and standard deviation \(\sigma\sqrt{n}\). Divide by \(n\) for the average:</p>
+<p class="callout">The average of \(n\) independent risks still has mean \(\mu\), but its standard deviation is \(\dfrac{\sigma}{\sqrt{n}}\).</p>
+<figure><svg viewBox="0 0 520 195" width="380" height="143" role="img" aria-label="Graph of the standard deviation of the average loss against the number of members n: it starts at 2800 for one member and falls to 1400 at 4, 700 at 16 and 280 at 100" font-family="Nunito, sans-serif" font-size="13">
+<line x1="50" y1="165" x2="495" y2="165" stroke="#000" stroke-width="1.2"/><line x1="50" y1="165" x2="50" y2="12" stroke="#000" stroke-width="1.2"/>
+<line x1="50" y1="115" x2="495" y2="115" stroke="#999" stroke-width="0.6" stroke-dasharray="3 3"/><text x="44" y="119" text-anchor="end" font-size="12">1000</text>
+<line x1="50" y1="65" x2="495" y2="65" stroke="#999" stroke-width="0.6" stroke-dasharray="3 3"/><text x="44" y="69" text-anchor="end" font-size="12">2000</text>
+<line x1="50" y1="15" x2="495" y2="15" stroke="#999" stroke-width="0.6" stroke-dasharray="3 3"/><text x="44" y="19" text-anchor="end" font-size="12">3000</text>
+<line x1="157.5" y1="165" x2="157.5" y2="169" stroke="#000"/><text x="157.5" y="182" text-anchor="middle" font-size="12">25</text>
+<line x1="265" y1="165" x2="265" y2="169" stroke="#000"/><text x="265" y="182" text-anchor="middle" font-size="12">50</text>
+<line x1="372.5" y1="165" x2="372.5" y2="169" stroke="#000"/><text x="372.5" y="182" text-anchor="middle" font-size="12">75</text>
+<line x1="480" y1="165" x2="480" y2="169" stroke="#000"/><text x="480" y="182" text-anchor="middle" font-size="12">100</text>
+<polyline points="54.3,25 56.5,50.7 58.6,66 60.8,76.5 62.9,84.2 65,90.2 67.2,95 69.3,99 71.5,102.4 73.7,105.3 75.8,107.8 78,110.1 80.1,112.1 82.2,113.9 84.4,115.5 86.5,117 88.7,118.3 90.8,119.6 93,120.7 95.2,121.8 97.3,122.8 99.4,123.7 101.6,124.6 103.8,125.4 105.9,126.2 108,126.9 110.2,127.6 112.3,128.2 114.5,128.9 116.6,129.4 118.8,130 121,130.5 123.1,131 125.2,131.5 127.4,132 129.6,132.5 131.7,132.9 133.8,133.3 136,133.7 138.1,134.1 140.3,134.4 142.4,134.8 144.6,135.2 146.8,135.5 148.9,135.8 151.1,136.1 153.2,136.4 155.3,136.7 157.5,137 159.6,137.3 161.8,137.5 163.9,137.8 166.1,138.1 168.2,138.3 170.4,138.5 172.6,138.8 174.7,139 176.8,139.2 179,139.4 181.2,139.6 183.3,139.9 185.4,140.1 187.6,140.3 189.8,140.4 191.9,140.6 194,140.8 196.2,141 198.3,141.2 200.5,141.3 202.7,141.5 204.8,141.7 206.9,141.8 209.1,142 211.2,142.1 213.4,142.3 215.5,142.4 217.7,142.6 219.8,142.7 222,142.9 224.2,143 226.3,143.1 228.4,143.3 230.6,143.4 232.8,143.5 234.9,143.7 237,143.8 239.2,143.9 241.3,144 243.5,144.1 245.7,144.2 247.8,144.4 249.9,144.5 252.1,144.6 254.2,144.7 256.4,144.8 258.5,144.9 260.7,145 262.9,145.1 265,145.2 267.1,145.3 269.3,145.4 271.4,145.5 273.6,145.6 275.8,145.7 277.9,145.8 280,145.9 282.2,145.9 284.4,146 286.5,146.1 288.6,146.2 290.8,146.3 292.9,146.4 295.1,146.5 297.2,146.5 299.4,146.6 301.5,146.7 303.7,146.8 305.9,146.9 308,146.9 310.1,147 312.3,147.1 314.4,147.1 316.6,147.2 318.8,147.3 320.9,147.4 323.1,147.4 325.2,147.5 327.3,147.6 329.5,147.6 331.6,147.7 333.8,147.8 335.9,147.8 338.1,147.9 340.2,148 342.4,148 344.6,148.1 346.7,148.1 348.8,148.2 351,148.3 353.1,148.3 355.3,148.4 357.4,148.4 359.6,148.5 361.8,148.6 363.9,148.6 366.1,148.7 368.2,148.7 370.3,148.8 372.5,148.8 374.6,148.9 376.8,148.9 378.9,149 381.1,149 383.2,149.1 385.4,149.1 387.6,149.2 389.7,149.2 391.8,149.3 394,149.3 396.1,149.4 398.3,149.4 400.4,149.5 402.6,149.5 404.8,149.6 406.9,149.6 409.1,149.7 411.2,149.7 413.3,149.8 415.5,149.8 417.6,149.9 419.8,149.9 421.9,149.9 424.1,150 426.2,150 428.4,150.1 430.6,150.1 432.7,150.2 434.8,150.2 437,150.2 439.1,150.3 441.3,150.3 443.4,150.4 445.6,150.4 447.8,150.4 449.9,150.5 452.1,150.5 454.2,150.6 456.3,150.6 458.5,150.6 460.6,150.7 462.8,150.7 464.9,150.7 467.1,150.8 469.2,150.8 471.4,150.9 473.5,150.9 475.7,150.9 477.8,151 480,151" fill="none" stroke="#3f44c9" stroke-width="2"/>
+<circle cx="54.3" cy="25" r="3.5" fill="#f5a524"/><text x="62.3" y="29" text-anchor="start" font-size="12">n = 1: 2800</text>
+<circle cx="67.2" cy="95" r="3.5" fill="#f5a524"/><text x="75.2" y="97" text-anchor="start" font-size="12">n = 4: 1400</text>
+<circle cx="118.8" cy="130" r="3.5" fill="#f5a524"/><text x="124.8" y="124" text-anchor="start" font-size="12">n = 16: 700</text>
+<circle cx="480" cy="151" r="3.5" fill="#f5a524"/><text x="480" y="142" text-anchor="middle" font-size="12">n = 100: 280</text>
+<text x="272" y="194" text-anchor="middle" font-size="12">number of members, n</text><text x="200" y="40" fill="#3f44c9">sd of the average loss = 2800 / √n</text>
+</svg><figcaption>Four times the members, half the spread. The curve falls fast, then slowly.</figcaption></figure>
+<p>With 10,000 houses the average loss is 400, give or take 28. The extra 100 pays for the little risk that is left.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: a pool of two</h2>
+<p>Two neighbours agree to split whatever either loses. Each pays the average of the two losses.</p>
+<table class="tt" style="break-inside:avoid">
+<tr><th>Fires</th><th>Probability</th><th>Each pays</th></tr>
+<tr><td>0</td><td>\(0.98^2 = 0.9604\)</td><td>0</td></tr>
+<tr><td>1</td><td>\(2 \times 0.02 \times 0.98 = 0.0392\)</td><td>10,000</td></tr>
+<tr><td>2</td><td>\(0.02^2 = 0.0004\)</td><td>20,000</td></tr>
+</table>
+<p>Mean: \(10{,}000 \times 0.0392 + 20{,}000 \times 0.0004 = 400\). Variance: \(10{,}000^2 \times 0.0392 + 20{,}000^2 \times 0.0004 - 400^2 = 3{,}920{,}000\), so the standard deviation is 1980. The rule predicts \(2800/\sqrt{2} = 1980\). Same average, less spread, with only two in the pool.</p>
+<p class="small">Watch many independent chances add up to a predictable pile: <a href="../../demos/galton.html">infinityclub.net/demos/galton.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>A phone has a 5% chance per year of needing a 600 repair (invented numbers). Find the expected loss and its standard deviation. A policy costs 45. How much more than the expected loss is that?<div class="space short"></div></li>
+<li>For the houses above, \(\sigma = 2800\). Find the standard deviation of the average loss in a pool of 400 houses. How big must the pool be for it to fall to 10?<div class="space short"></div></li>
+<li>An insurer charges 500 per house. With 10,000 houses, find the premiums collected, the expected total claims, and the standard deviation of the total claims, \(\sigma\sqrt{n}\). How many standard deviations separate premiums from expected claims? Repeat for 100 houses. Which insurer is safe?<div class="space short"></div></li>
+<li>A flood is different: either every house in a town is hit or none is. Suppose all \(n\) houses share a single 2% chance of losing 20,000 each. What is the standard deviation of the average loss now? Which word in the rule has failed?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: how big is big enough?</h2>
+<p>An insurer sets its premium at the expected loss plus two standard deviations of the average loss. Write the premium as a formula in \(n\) for the houses above. How many houses does it need before it can charge 450 or less?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Expected loss \(0.05 \times 600 = 30\). Standard deviation \(600\sqrt{0.05 \times 0.95} \approx 131\). The policy costs 15 more than the expected loss.</li>
+<li>\(2800/\sqrt{400} = 140\). For 10 we need \(\sqrt{n} = 280\), so \(n = 78{,}400\).</li>
+<li>10,000 houses: premiums 5,000,000; expected claims \(10{,}000 \times 400 = 4{,}000{,}000\); standard deviation \(2800 \times 100 = 280{,}000\). The gap of 1,000,000 is about 3.6 standard deviations. 100 houses: premiums 50,000; expected claims 40,000; standard deviation \(2800 \times 10 = 28{,}000\). The gap of 10,000 is only 0.36 of a standard deviation. The large insurer is safe; the small one will often pay out more than it collects.</li>
+<li>The average loss is 20,000 with probability 0.02 and 0 otherwise, exactly like one house. Its standard deviation is 2800 whatever \(n\) is. The risks are not <b>independent</b>, so variances do not simply add and pooling within the town does nothing. Insurers handle this by spreading over many regions.</li>
+</ol>
+<p><b>Stretch.</b> Premium \(= 400 + \dfrac{2 \times 2800}{\sqrt{n}} = 400 + \dfrac{5600}{\sqrt{n}}\). For this to be at most 450 we need \(\sqrt{n} \ge 112\), so \(n \ge 12{,}544\) houses.</p>
+</section>
+
+<div class="sheet-nav"><a href="c4-moores-law.html">← Previous</a><a href="c6-rotating-a-cube.html">Next: How a screen turns a cube →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

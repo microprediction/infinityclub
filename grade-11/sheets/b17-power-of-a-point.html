@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The power of a point · Infinity Club</title>
+<meta name="description" content="Any line through a point cuts a circle at two distances whose product never changes. Proved for chords and for secants with similar triangles, with the tangent as the limiting case.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 11</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 11 · Around the corner · 17</div>
+  <h1>The power of a point</h1>
+  <p class="teaser">Draw any line through a point to cut a circle twice, and multiply the two distances. The product never changes. Similar triangles are why.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Fix a circle and a point \(P\). Draw a line through \(P\) that cuts the circle at \(A\) and \(B\). Draw another that cuts it at \(C\) and \(D\).</p>
+<p class="callout"><b>Power of a point.</b> \(PA \cdot PB = PC \cdot PD\). The product is the same for every line through \(P\).</p>
+<figure><svg viewBox="0 0 500 200" width="500" height="200" role="img" aria-label="Left: two chords AB and CD of a circle crossing at a point P inside it, with triangles PAC and PDB shaded. Right: a point P outside a circle with two secants PAB and PCD, triangles PAD and PCB marked, and a tangent PT" font-family="Nunito, sans-serif" font-size="13" font-weight="700">
+<polygon points="128.0,112.0 36.5,145.3 86.6,23.2" fill="#dcdcf5" stroke="none" stroke-width="1.5"/>
+<polygon points="128.0,112.0 150.2,159.7 177.8,93.9" fill="#fde8c4" stroke="none" stroke-width="1.5"/>
+<circle cx="100" cy="100" r="78" fill="none" stroke="#3f44c9" stroke-width="2"/>
+<line x1="36.5" y1="145.3" x2="177.8" y2="93.9" stroke="#000" stroke-width="2"/>
+<line x1="86.6" y1="23.2" x2="150.2" y2="159.7" stroke="#000" stroke-width="2"/>
+<line x1="36.5" y1="145.3" x2="86.6" y2="23.2" stroke="#3f44c9" stroke-width="1.5" stroke-dasharray="4 3"/>
+<line x1="150.2" y1="159.7" x2="177.8" y2="93.9" stroke="#f5a524" stroke-width="1.5" stroke-dasharray="4 3"/>
+<circle cx="36.5" cy="145.3" r="3" fill="#000"/>
+<circle cx="177.8" cy="93.9" r="3" fill="#000"/>
+<circle cx="86.6" cy="23.2" r="3" fill="#000"/>
+<circle cx="150.2" cy="159.7" r="3" fill="#000"/>
+<circle cx="128.0" cy="112.0" r="3" fill="#000"/>
+<text x="22.5" y="153.3">A</text>
+<text x="182.8" y="96.9">B</text>
+<text x="80.6" y="17.2">C</text>
+<text x="153.2" y="173.7">D</text>
+<text x="135.0" y="128.0">P</text>
+<text x="100.0" y="196.0" text-anchor="middle" font-weight="400" fill="#555" font-size="12">P inside</text>
+<polygon points="262.0,146.0 341.7,134.8 433.6,34.6" fill="#dcdcf5" stroke="none" stroke-width="1.5"/>
+<polygon points="262.0,146.0 330.2,101.7 466.7,117.2" fill="#fde8c4" stroke="none" stroke-width="1.5"/>
+<polygon points="262.0,146.0 341.7,134.8 433.6,34.6" fill="#dcdcf5" stroke="none" stroke-width="1.5"/>
+<circle cx="400" cy="96" r="70" fill="none" stroke="#3f44c9" stroke-width="2"/>
+<line x1="262.0" y1="146.0" x2="466.7" y2="117.2" stroke="#000" stroke-width="2"/>
+<line x1="262.0" y1="146.0" x2="433.6" y2="34.6" stroke="#000" stroke-width="2"/>
+<line x1="341.7" y1="134.8" x2="433.6" y2="34.6" stroke="#3f44c9" stroke-width="1.5" stroke-dasharray="4 3"/>
+<line x1="330.2" y1="101.7" x2="466.7" y2="117.2" stroke="#f5a524" stroke-width="1.5" stroke-dasharray="4 3"/>
+<line x1="262.0" y1="146.0" x2="389.6" y2="165.2" stroke="#999" stroke-width="1.5"/>
+<circle cx="341.7" cy="134.8" r="3" fill="#000"/>
+<circle cx="466.7" cy="117.2" r="3" fill="#000"/>
+<circle cx="330.2" cy="101.7" r="3" fill="#000"/>
+<circle cx="433.6" cy="34.6" r="3" fill="#000"/>
+<circle cx="262.0" cy="146.0" r="3" fill="#000"/>
+<circle cx="389.6" cy="165.2" r="3" fill="#999"/>
+<text x="337.7" y="150.8">A</text>
+<text x="472.7" y="122.2">B</text>
+<text x="318.2" y="96.7">C</text>
+<text x="437.6" y="29.6">D</text>
+<text x="248.0" y="151.0">P</text>
+<text x="395.6" y="177.2" fill="#777">T</text>
+<text x="400.0" y="196.0" text-anchor="middle" font-weight="400" fill="#555" font-size="12">P outside</text>
+</svg><figcaption>In each picture the two shaded triangles are similar. The dashed sides are added only to make the triangles.</figcaption></figure>
+<p><b>\(P\) inside: two chords.</b> Look at triangles \(PAC\) and \(PDB\). Their angles at \(P\) are equal, because they are opposite angles where two lines cross. Their angles at \(A\) and \(D\) are equal, because both stand on the arc \(BC\). That is "angles in the same segment" from <a href="../../grade-10/sheets/a12-circles.html">Circle theorems, with proofs</a>. Two equal angles make the triangles similar, so matching sides are in the same ratio:</p>
+<p>\[\frac{PA}{PD} = \frac{PC}{PB} \quad\Longrightarrow\quad PA \cdot PB = PC \cdot PD.\]</p>
+<p><b>\(P\) outside: two secants.</b> A <b>secant</b> is a line that cuts the circle twice. Use triangles \(PAD\) and \(PCB\). They share the angle at \(P\). Their angles at \(D\) and \(B\) are equal, because both stand on the arc \(AC\). Similar again:</p>
+<p>\[\frac{PA}{PC} = \frac{PD}{PB} \quad\Longrightarrow\quad PA \cdot PB = PC \cdot PD. \qquad \square\]</p>
+<p>Swing a secant round until \(A\) and \(B\) merge. It becomes a tangent touching at \(T\), and the product becomes \(PT^2\).</p>
+</section>
+
+<section class="example">
+<h2>Watch one: what the constant is</h2>
+<p>Chords \(AB\) and \(CD\) cross at \(P\), with \(PA = 3\), \(PB = 8\) and \(PC = 4\). Then \(3 \times 8 = 4 \times PD\), so \(PD = 6\).</p>
+<p>Now suppose the radius is \(r = 7\). How far is \(P\) from the centre \(O\)? Call that distance \(d\) and use the one line we have not tried: the diameter through \(P\). It is cut into pieces \(r - d\) and \(r + d\), so</p>
+<p>\[(r - d)(r + d) = r^2 - d^2 = 24 \quad\Longrightarrow\quad d^2 = 49 - 24 = 25, \quad d = 5.\]</p>
+<p>So inside the circle the constant is \(r^2 - d^2\). Outside, the pieces are \(d - r\) and \(d + r\), and the constant is \(d^2 - r^2\).</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Chords \(AB\) and \(CD\) cross at \(P\) inside a circle. \(PA = 4\), \(PB = 9\) and \(PC = 3\). Find \(PD\).<div class="space short"></div></li>
+<li>From a point \(P\) outside a circle, one secant meets the circle at \(A\) and then \(B\), with \(PA = 4\) and \(AB = 5\). A second secant meets it at \(C\) and then \(D\), with \(PC = 3\). Find the length of the chord \(CD\).<div class="space short"></div></li>
+<li>From \(P\) outside a circle, a secant meets the circle at distances 4 and 9 from \(P\). Find the length of the tangent \(PT\). If the radius is 8, how far is \(P\) from the centre?<div class="space short"></div></li>
+<li>\(AB\) is a diameter. \(P\) lies on it with \(PA = 2\) and \(PB = 8\). The chord through \(P\) at right angles to \(AB\) is cut in half by \(P\). Find the length \(h\) of each half. Now replace 2 and 8 by any positive \(a\) and \(b\). Explain why \(h\) cannot be longer than the radius, and write down the inequality that this gives.<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: two circles at once</h2>
+<p>Two circles cross at \(X\) and \(Y\). Take any point \(P\) on the line \(XY\) that is outside both circles. Show that the tangent from \(P\) to one circle has the same length as the tangent from \(P\) to the other.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(4 \times 9 = 3 \times PD\), so \(PD = 12\).</li>
+<li>\(PB = 4 + 5 = 9\), so the product is \(4 \times 9 = 36\). Then \(3 \times PD = 36\) gives \(PD = 12\), and \(CD = PD - PC = 9\).</li>
+<li>\(PT^2 = 4 \times 9 = 36\), so \(PT = 6\). Outside the circle the constant is \(d^2 - r^2\): \(d^2 - 64 = 36\), so \(d = 10\).</li>
+<li>The two halves of the chord multiply to \(PA \cdot PB\): \(h \times h = 2 \times 8\), so \(h = 4\). In general \(h^2 = ab\), so \(h = \sqrt{ab}\). The diameter is \(a + b\), so the radius is \(\tfrac{a+b}{2}\). No chord is longer than a diameter, so half a chord is at most a radius: \(\sqrt{ab} \le \tfrac{a + b}{2}\). They are equal only when \(P\) is the centre, that is when \(a = b\). (Here \(4 \le 5\).)</li>
+</ol>
+<p><b>Stretch.</b> The line \(XY\) is a secant of both circles, and it meets each of them at \(X\) and \(Y\). So the power of \(P\) is \(PX \cdot PY\) for the first circle and \(PX \cdot PY\) for the second. Each tangent length squared equals that same number, so the two tangents are equal.</p>
+</section>
+
+<div class="sheet-nav"><a href="b16-mixed-strategies.html">← Previous</a><a href="b18-complex-geometry.html">Next: Geometry by multiplication →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

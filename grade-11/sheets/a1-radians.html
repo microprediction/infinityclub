@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why radians · Infinity Club</title>
+<meta name="description" content="Measure an angle by the arc it cuts off, and arc length is just radius times angle. Why the circle itself prefers radians to degrees.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 11</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 11 · Sharpen · 1</div>
+  <h1>Why radians</h1>
+  <p class="teaser">Measure an angle by the arc it cuts off and arc length is just radius times angle. Degrees are a habit; radians are what the circle itself uses.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>The number 360 was chosen by people. The circle knows nothing about it.</p>
+<p>Draw an angle at the centre of a circle of radius \(r\). It cuts off an arc of length \(s\). Double the radius and the arc doubles, so the ratio \(s/r\) depends only on the angle. Use that ratio <em>as</em> the angle.</p>
+<p class="callout">The angle in <b>radians</b> is \(\theta = \dfrac{s}{r}\): arc length divided by radius. One radian cuts off an arc exactly as long as the radius.</p>
+<figure><svg viewBox="0 0 215 192" width="190" height="170" role="img" aria-label="A circle with two radii one radian apart and the arc between them, of length r, highlighted. Marks at 2, 3, 4, 5 and 6 radians show that six such arcs do not quite go all the way round." font-family="Nunito, sans-serif" font-size="13">
+<circle cx="105" cy="98" r="70" fill="none" stroke="#000" stroke-width="1.5"/>
+<path d="M 105 98 L 175 98 A 70 70 0 0 0 142.8 39.1 Z" fill="#dcdcf5"/>
+<line x1="105" y1="98" x2="175" y2="98" stroke="#3f44c9" stroke-width="2"/>
+<line x1="105" y1="98" x2="142.8" y2="39.1" stroke="#3f44c9" stroke-width="2"/>
+<path d="M 175 98 A 70 70 0 0 0 142.8 39.1" fill="none" stroke="#f5a524" stroke-width="4"/>
+<g stroke="#999" stroke-width="1.5"><line x1="78.0" y1="38.9" x2="73.8" y2="29.8"/><line x1="40.7" y1="88.8" x2="30.8" y2="87.4"/><line x1="62.5" y1="147.2" x2="56.0" y2="154.8"/><line x1="123.4" y1="160.3" x2="126.3" y2="169.9"/><line x1="167.4" y1="116.2" x2="177.0" y2="119.0"/></g>
+<circle cx="105" cy="98" r="2.5" fill="#000"/>
+<text x="140" y="113" text-anchor="middle" fill="#3f44c9">r</text><text x="115" y="66" text-anchor="middle" fill="#3f44c9">r</text>
+<text x="178" y="62" text-anchor="middle" fill="#b36b00">r</text>
+<text x="124" y="91" font-size="12">1</text>
+<g font-size="12" fill="#555" text-anchor="middle"><text x="70" y="24">2</text><text x="22" y="92">3</text><text x="51" y="167">4</text><text x="129" y="184">5</text><text x="187" y="128">6</text></g>
+</svg><figcaption>The orange arc is as long as the radius, so the shaded angle is 1 radian. Six of them do not quite close the circle.</figcaption></figure>
+<p>The whole circumference is \(2\pi r\), so a full turn is \(2\pi r / r = 2\pi\) radians, about 6.28. Hence</p>
+<p>\[180^\circ = \pi \text{ radians}, \qquad 1 \text{ radian} = \frac{180^\circ}{\pi} \approx 57.3^\circ.\]</p>
+<p>Turn the definition round and you get arc length. Take the fraction \(\theta/2\pi\) of the disc's area \(\pi r^2\) and you get the area of a sector (a slice):</p>
+<p class="callout">\(s = r\theta\) and \(A = \tfrac12 r^2\theta\), with \(\theta\) in radians.</p>
+<p>In degrees both need a factor of \(\pi/180\), as in <a href="../../grade-9/sheets/a8-arcs-and-sectors.html">grade 9</a>.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: a slice of pizza</h2>
+<p>A pizza of radius 15 cm is cut into slices with an angle of \(40^\circ\) at the tip. Convert first: multiply by \(\pi/180\).</p>
+<p>\[\theta = 40 \times \frac{\pi}{180} = \frac{2\pi}{9} \approx 0.698.\]</p>
+<p>The crust is the arc: \(s = r\theta = 15 \times \tfrac{2\pi}{9} = \tfrac{10\pi}{3} \approx 10.5\) cm. The area is \(A = \tfrac12 \times 15^2 \times \tfrac{2\pi}{9} = 25\pi \approx 78.5\) cm². Check: \(40^\circ\) is one ninth of a turn, and one ninth of \(\pi \times 15^2\) is \(25\pi\).</p>
+<p class="small">Drag a point round the circle and watch the angle in radians: <a href="../../demos/unitcircle.html">infinityclub.net/demos/unitcircle.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Write \(60^\circ\) and \(135^\circ\) in radians, as multiples of \(\pi\). Write \(\tfrac{5\pi}{6}\) radians and 2 radians in degrees.<div class="space short"></div></li>
+<li>A sector has radius 6 cm and angle \(\tfrac{2\pi}{3}\). Find its arc length and its area. Leave \(\pi\) in your answers.<div class="space short"></div></li>
+<li>A bicycle wheel has radius 0.35 m. It turns through 20 radians without slipping. How far does the bicycle move? Roughly how many full turns is that?<div class="space short"></div></li>
+<li>Seen from Earth, the Moon fills an angle of about 0.009 radians, and it is about 384,000 km away. Estimate the Moon's diameter. Your method treats a straight line as if it were an arc. Why is that safe here, and when would it fail?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the best slice</h2>
+<p>A 20 cm piece of string is bent into the outline of a sector: two radii and an arc. Write the area in terms of \(r\) alone and complete the square. Which radius gives the largest area, and what is the angle then?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(60^\circ = \tfrac{\pi}{3}\) and \(135^\circ = \tfrac{3\pi}{4}\). \(\tfrac{5\pi}{6} = 150^\circ\) and 2 radians \(= \tfrac{360^\circ}{\pi} \approx 114.6^\circ\).</li>
+<li>\(s = r\theta = 6 \times \tfrac{2\pi}{3} = 4\pi\) cm, about 12.6 cm. \(A = \tfrac12 \times 36 \times \tfrac{2\pi}{3} = 12\pi\) cm², about 37.7 cm².</li>
+<li>The ground covered equals the arc that has rolled past: \(s = r\theta = 0.35 \times 20 = 7\) m. One turn is \(2\pi\) radians, so that is \(20 / 2\pi \approx 3.2\) turns.</li>
+<li>\(s = r\theta = 384{,}000 \times 0.009 = 3{,}456\) km, so about 3,500 km (the measured value is about 3,470 km). The diameter is a straight chord, not an arc, but for a small angle the chord and the arc are almost the same length. It would fail for a large angle: at \(\pi\) radians the arc is \(\pi r\) while the chord is only \(2r\).</li>
+</ol>
+<p><b>Stretch.</b> The outline is \(2r + r\theta = 20\), so \(r\theta = 20 - 2r\). Then \(A = \tfrac12 r^2\theta = \tfrac12 r(20 - 2r) = 10r - r^2 = 25 - (r - 5)^2\). The largest area is 25 cm², at \(r = 5\) cm, and then \(\theta = 10/5 = 2\) radians. The answer is 2 radians for any length of string: the best sector has an arc as long as its two radii together.</p>
+</section>
+
+<div class="sheet-nav"><a href="../index.html#sheets">← All sheets</a><a href="a2-sine-waves.html">Next: Reading a sine wave →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

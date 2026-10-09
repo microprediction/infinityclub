@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mapping a country with one measured line · Infinity Club</title>
+<meta name="description" content="Triangulation: measure one baseline and two angles, and the sine rule gives the other distances. Chain the triangles and a whole country is mapped.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 11</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 11 · Connections · 2</div>
+  <h1>Mapping a country with one measured line</h1>
+  <p class="teaser">Measure one baseline and two angles and the sine rule gives every other distance. Repeat, and triangles cover a continent.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>You cannot stretch a tape measure across a mountain range. You can measure angles across one, with a telescope on a turntable. <b>Triangulation</b> turns one measured length and many angles into a map.</p>
+<p>Pick two points \(A\) and \(B\) on flat ground and measure the distance between them with great care. This is the <b>baseline</b>. From \(A\), sight a distant hilltop \(C\) and measure the angle between \(AB\) and \(AC\). Do the same at \(B\). The third angle is whatever is left of 180°.</p>
+<p>Now you know all three angles and one side. The sine rule (see <a href="a4-sine-and-cosine-rules.html">Triangles without a right angle</a>) gives the other two sides:</p>
+<p class="callout">\(\dfrac{a}{\sin A} = \dfrac{b}{\sin B} = \dfrac{c}{\sin C}\), where each side is named after the angle opposite it.</p>
+<p>The new sides are now known lengths. Use one of them as the baseline of the next triangle and you need not measure a length again. Before satellites, whole countries were mapped this way: a net of triangles grown from a few measured baselines.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: a 5 km baseline</h2>
+<p>The baseline is \(AB = c = 5\) km. The measured angles are \(A = 62°\) and \(B = 75°\), so \(C = 180° - 62° - 75° = 43°\). The known pair is \(c\) and \(C\).</p>
+<figure><svg viewBox="0 0 400 196" width="400" height="196" role="img" aria-label="Triangle ABC with a measured baseline AB of 5 km and angles of 62 and 75 degrees at A and B; a second dashed triangle BCD is built on side BC" font-family="Nunito, sans-serif" font-size="13">
+<polygon points="40.0,178.0 160.0,178.0 119.8,27.9" fill="#dcdcf5" stroke="none"/>
+<polygon points="160.0,178.0 272.2,80.4 119.8,27.9" fill="none" stroke="#999" stroke-width="1.5" stroke-dasharray="4 3"/>
+<line x1="40" y1="178" x2="119.8" y2="27.9" stroke="#000" stroke-width="1.5"/><line x1="160.0" y1="178" x2="119.8" y2="27.9" stroke="#000" stroke-width="1.5"/>
+<line x1="40" y1="178" x2="160.0" y2="178" stroke="#f5a524" stroke-width="3.5"/>
+<path d="M60.0,178.0 A20,20 0 0 0 49.4,160.3" fill="none" stroke="#3f44c9" stroke-width="1.5"/><path d="M154.8,158.7 A20,20 0 0 0 140.0,178.0" fill="none" stroke="#3f44c9" stroke-width="1.5"/><path d="M109.5,47.4 A22,22 0 0 0 125.5,49.2" fill="none" stroke="#3f44c9" stroke-width="1.5"/>
+<circle cx="40" cy="178" r="3" fill="#000"/><circle cx="160.0" cy="178" r="3" fill="#000"/><circle cx="119.8" cy="27.9" r="3" fill="#000"/><circle cx="272.2" cy="80.4" r="3" fill="#999"/>
+<text x="26" y="182" font-weight="700">A</text><text x="168.0" y="183" font-weight="700">B</text><text x="120" y="21" text-anchor="middle" font-weight="700">C</text><text x="280" y="84" font-weight="700" fill="#666">D</text>
+<text x="100.0" y="193" text-anchor="middle" fill="#b87400" font-size="12">5 km, measured</text>
+<text x="64" y="170" fill="#3f44c9" font-size="12">62°</text><text x="130.0" y="170" fill="#3f44c9" font-size="12">75°</text><text x="116" y="66" text-anchor="middle" fill="#3f44c9" font-size="12">43°</text>
+<text x="72" y="103" text-anchor="end" font-size="12">7.08 km</text>
+<text x="152" y="121" font-size="12">6.47 km</text>
+<text x="206" y="46" font-size="12" fill="#666">next triangle</text>
+</svg><figcaption>Only the orange line is measured on the ground. Side \(BC\) becomes the baseline of the dashed triangle.</figcaption></figure>
+<p>\[AC = b = \frac{5 \sin 75°}{\sin 43°} = 7.08 \text{ km}, \qquad BC = a = \frac{5 \sin 62°}{\sin 43°} = 6.47 \text{ km}.\]</p>
+<p>Check: the largest angle, 75°, faces the longest side, 7.08 km, and the smallest angle faces the shortest side.</p>
+<p class="small">Enter two angles and a side (ASA) and watch the working: <a href="../../demos/trianglesolver.html">infinityclub.net/demos/trianglesolver.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>A baseline \(AB\) is 8 km long. The angle at \(A\) is 50° and the angle at \(B\) is 60°. Find the angle at \(C\), then \(AC\) and \(BC\).<div class="space short"></div></li>
+<li>Two lighthouses \(A\) and \(B\) stand 12 km apart on a straight coast. A ship \(C\) is sighted at 40° to the coast from \(A\) and at 65° to the coast from \(B\). Find \(AC\), then the ship's distance from the coast.<div class="space"></div></li>
+<li>Carry on from the example, with \(BC = 6.47\) km as the new baseline. A tower \(D\) is sighted, and the angles of triangle \(BCD\) are 64° at \(B\) and 56° at \(C\). Find \(CD\) and \(BD\).<div class="space short"></div></li>
+<li>A baseline is 5 km, with \(A = 88°\) and \(B = 89°\). Find \(AC\). Now suppose the angle at \(B\) was really 89.5°. Find \(AC\) again. What shape of triangle should a surveyor choose, and why?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: one mistake, everywhere</h2>
+<p>Every length in the net is the baseline times a ratio of sines. Years later, the baseline is found to have been measured 0.1% too long. How far out is a distance of 400 km computed across the net? What happens to the angles on the map?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(C = 180° - 50° - 60° = 70°\). \(AC = \dfrac{8 \sin 60°}{\sin 70°} = 7.37\) km (opposite \(B\)). \(BC = \dfrac{8 \sin 50°}{\sin 70°} = 6.52\) km (opposite \(A\)).</li>
+<li>\(C = 180° - 40° - 65° = 75°\). \(AC = \dfrac{12 \sin 65°}{\sin 75°} = 11.26\) km. Drop a perpendicular from \(C\) to the coast: its length is \(AC \sin 40° = 7.24\) km.</li>
+<li>\(D = 180° - 64° - 56° = 60°\). \(CD\) is opposite \(B\): \(CD = \dfrac{6.47 \sin 64°}{\sin 60°} = 6.71\) km. \(BD\) is opposite \(C\): \(BD = \dfrac{6.47 \sin 56°}{\sin 60°} = 6.19\) km.</li>
+<li>\(C = 3°\), so \(AC = \dfrac{5 \sin 89°}{\sin 3°} = 95.5\) km. With \(B = 89.5°\), \(C = 2.5°\) and \(AC = \dfrac{5 \sin 89.5°}{\sin 2.5°} = 114.6\) km. Half a degree moved the answer by 20%. The trouble is the tiny angle at \(C\): its sine is on the bottom of the fraction, and a small change in a small number is a large change in proportion. Choose triangles that are close to equilateral. With all three angles 60°, the same half-degree error changes \(AC\) from 5.00 km to 5.05 km, about 1%.</li>
+</ol>
+<p><b>Stretch.</b> Every length is multiplied by the same factor, 1.001. A 400 km distance is out by \(0.001 \times 400 = 0.4\) km, or 400 m. The angles do not change at all: scaling a figure keeps its angles. The map has the right shape and the wrong size, which is why the baseline is the one measurement worth extreme care.</p>
+</section>
+
+<div class="sheet-nav"><a href="c1-tides.html">← Previous</a><a href="c3-ph.html">Next: What pH measures →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A shape of dimension 1.26 · Infinity Club</title>
+<meta name="description" content="Scale a line by 3 and you get 3 copies, a square 9, a cube 27. Scale the Koch curve by 3 and you get 4. Solving 3 to the d equals 4 gives a dimension that is not a whole number.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 11</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 11 · Around the corner · 24</div>
+  <h1>A shape of dimension 1.26</h1>
+  <p class="teaser">Double a line and you get 2 copies, a square 4, a cube 8. Triple the Koch curve and you get 4. Solve \(3^d = 4\) and dimension stops being a whole number.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Double the size of a line segment and it is made of 2 copies of the original. Double a square: 4 copies. Double a cube: 8. Triple them and you get 3, 9 and 27. Every time, the number of copies \(N\) is the scale factor \(s\) raised to the dimension \(d\):</p>
+<p>\[N = s^d.\]</p>
+<p>Turn that round to measure dimension. Take logarithms, in any base:</p>
+<p class="callout">\(d = \dfrac{\log N}{\log s}\), the <b>similarity dimension</b>.</p>
+<p>Now try it on the <a href="../../grade-8/sheets/b11-koch.html">Koch curve</a>. Start with a segment, replace its middle third with a two-sided bump, and repeat on every new segment for ever.</p>
+<figure><svg viewBox="0 0 440 196" width="360" height="160" role="img" aria-label="A Koch curve with its first quarter highlighted. The highlighted part is a copy of the whole curve at one third of the width, and four such copies make the whole" font-family="Nunito, sans-serif" font-size="13">
+<polyline points="160,125 166.7,113.5 160,101.9 173.3,101.9 180,90.4 173.3,78.8 160,78.8 166.7,67.3 160,55.7 173.3,55.7 180,44.2 186.7,55.7 200,55.7 206.7,44.2 200,32.6 213.3,32.6 220,21.1 226.7,32.6 240,32.6 233.3,44.2 240,55.7 253.3,55.7 260,44.2 266.7,55.7 280,55.7 273.3,67.3 280,78.8 266.7,78.8 260,90.4 266.7,101.9 280,101.9 273.3,113.5 280,125 293.3,125 300,113.5 306.7,125 320,125 326.7,113.5 320,101.9 333.3,101.9 340,90.4 346.7,101.9 360,101.9 353.3,113.5 360,125 373.3,125 380,113.5 386.7,125 400,125" fill="none" stroke="#3f44c9" stroke-width="1.5"/>
+<polyline points="40,125 53.3,125 60,113.5 66.7,125 80,125 86.7,113.5 80,101.9 93.3,101.9 100,90.4 106.7,101.9 120,101.9 113.3,113.5 120,125 133.3,125 140,113.5 146.7,125 160,125" fill="none" stroke="#f5a524" stroke-width="2.5"/>
+<path d="M40,139 v8 M160,139 v8 M40,143 H160" stroke="#f5a524" stroke-width="1.5" fill="none"/><text x="100" y="160" text-anchor="middle" fill="#b87400">one copy: width 1</text>
+<path d="M40,168 v8 M400,168 v8 M40,172 H400" stroke="#3f44c9" stroke-width="1.5" fill="none"/><text x="220" y="189" text-anchor="middle" fill="#3f44c9">whole curve: width 3, and 4 copies</text>
+</svg><figcaption>The highlighted part is the whole curve shrunk by 3. Four of them make the whole.</figcaption></figure>
+<p>The finished curve is 4 copies of itself, each a third of the size. Scale by 3, get 4 copies, so \(3^d = 4\) and</p>
+<p>\[d = \frac{\log 4}{\log 3} \approx 1.262.\]</p>
+<p>Not 1 and not 2. That fits. The curve is infinitely long, so more than a line. It covers no area, so less than a surface. Shapes like this are <b>fractals</b>.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: the Sierpinski triangle</h2>
+<p>Take a solid triangle. Join the midpoints of its sides and remove the middle triangle. Three corner triangles are left, each half the size. Do the same to each of them, for ever.</p>
+<p>What remains is made of 3 copies of itself at half size. Scale by 2, get 3 copies:</p>
+<p>\[d = \frac{\log 3}{\log 2} \approx 1.585.\]</p>
+<p>Each step keeps \(\tfrac34\) of the area, so the area shrinks to 0: less than 2 dimensions is right.</p>
+<p class="small">Step through the first six stages of the Koch snowflake, with each new set of bumps in orange and the perimeter growing by \(\tfrac43\) a step: <a href="../../demos/koch.html">infinityclub.net/demos/koch.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Scale a cube by 4. How many copies of the original fit? Check that the formula gives \(d = 3\).<div class="space short"></div></li>
+<li>The Cantor set: remove the middle third of a segment, then the middle third of each piece left, for ever. How many copies of itself is it made of, at what scale? Find its dimension to 3 decimal places.<div class="space short"></div></li>
+<li>The Sierpinski carpet: cut a square into 9 equal squares, remove the centre one, and repeat in each of the 8 left. Find its dimension. Then find the dimension of a curve in which every segment is replaced by 8 segments, each a quarter as long. Give that one exactly.<div class="space short"></div></li>
+<li>After \(n\) steps the Koch curve, built on a segment of length 1, has \(4^n\) pieces of length \(r = 3^{-n}\). So a ruler of length \(r\) measures its length as \(L = \left(\tfrac43\right)^n\). Use \(3^d = 4\) to show that \(L = r^{1 - d}\). What happens to \(L\) as the ruler gets shorter?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: dust of dimension 1</h2>
+<p>Cut a square into 16 equal squares and keep only the four corner ones. Repeat in each, for ever. Find the dimension of what is left. It contains no curve at all, only scattered points. What does that tell you about what this dimension measures?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(4^3 = 64\) copies. \(d = \dfrac{\log 64}{\log 4} = 3\), since \(64 = 4^3\).</li>
+<li>Two copies, each a third of the size. \(d = \dfrac{\log 2}{\log 3} \approx 0.631\). More than a point, less than a line.</li>
+<li>Carpet: 8 copies at a third of the size, so \(d = \dfrac{\log 8}{\log 3} \approx 1.893\). Curve: 8 copies at a quarter of the size, so \(d = \dfrac{\log 8}{\log 4} = \dfrac{3 \log 2}{2 \log 2} = \dfrac32\) exactly.</li>
+<li>\(r^{1 - d} = \left(3^{-n}\right)^{1 - d} = 3^{-n} \times \left(3^{d}\right)^{n} = 3^{-n} \times 4^n = \left(\tfrac43\right)^n = L\). Since \(1 - d \approx -0.262\) is negative, \(L\) grows without limit as \(r\) shrinks. The shorter the ruler, the longer the curve. The same thing happens when you measure a rugged coastline.</li>
+</ol>
+<p><b>Stretch.</b> Four copies, each a quarter of the width: \(d = \dfrac{\log 4}{\log 4} = 1\). The dust has the same dimension as a line without being one. Similarity dimension measures how the amount of stuff grows when you scale up, not whether the pieces join together.</p>
+</section>
+
+<div class="sheet-nav"><a href="b23-finite-fields.html">← Previous</a><a href="c1-tides.html">Next: Predicting the tide →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>
