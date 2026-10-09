@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lights Out: a puzzle you can prove impossible · Infinity Club</title>
+<meta name="description" content="Press a light and its neighbours flip. Clearing the board is a matrix equation over bits, and a parity mask proves that some 4 × 4 boards can never be cleared.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 10</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 10 · Around the corner · 31</div>
+  <h1>Lights Out: a puzzle you can prove impossible</h1>
+  <p class="teaser">Press a light and its neighbours flip. Clearing the board is matrix algebra with bits, and some boards can never be cleared.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A Lights Out board is a grid of lights. Pressing a cell toggles it and its up, down, left and right neighbours, with no wrapping at the edges. The goal is every light off.</p>
+<p>Pressing a cell twice undoes it, so each cell is pressed once or never. A light only cares how many times it was toggled, so order does not matter. A plan is a set of cells: a vector \(x\) of 0s and 1s.</p>
+<p>Write 1 for on, 0 for off, and add the odd way: \(1 + 1 = 0\), since two toggles cancel. That is arithmetic <b>mod 2</b>, the <a href="../../grade-6/sheets/b11-parity.html">parity</a> rule. Each press is a column recording which lights it toggles. The columns form a matrix \(A\), and clearing a board \(b\) means solving</p>
+<p class="callout">\(A x = b \pmod 2\): the <a href="b14-matrices-transformations.html">matrix equations</a> you have met, but over bits.</p>
+<figure>
+<svg viewBox="0 0 360 180" width="360" height="180" role="img" aria-label="Left: a 3 by 3 board with every light on; the four corners and the centre are marked as the cells to press. Right: a 4 by 4 board with eight cells shaded as the invariant mask." font-family="Nunito, sans-serif" font-size="12">
+<text x="67" y="22" text-anchor="middle" fill="#1d1f3a" font-weight="700">3 × 3, all on</text>
+<rect x="16" y="36" width="34" height="34" fill="#fde8c4" stroke="#999"/>
+<circle cx="33" cy="53" r="9" fill="#3f44c9"/>
+<rect x="50" y="36" width="34" height="34" fill="#fde8c4" stroke="#999"/>
+<rect x="84" y="36" width="34" height="34" fill="#fde8c4" stroke="#999"/>
+<circle cx="101" cy="53" r="9" fill="#3f44c9"/>
+<rect x="16" y="70" width="34" height="34" fill="#fde8c4" stroke="#999"/>
+<rect x="50" y="70" width="34" height="34" fill="#fde8c4" stroke="#999"/>
+<circle cx="67" cy="87" r="9" fill="#3f44c9"/>
+<rect x="84" y="70" width="34" height="34" fill="#fde8c4" stroke="#999"/>
+<rect x="16" y="104" width="34" height="34" fill="#fde8c4" stroke="#999"/>
+<circle cx="33" cy="121" r="9" fill="#3f44c9"/>
+<rect x="50" y="104" width="34" height="34" fill="#fde8c4" stroke="#999"/>
+<rect x="84" y="104" width="34" height="34" fill="#fde8c4" stroke="#999"/>
+<circle cx="101" cy="121" r="9" fill="#3f44c9"/>
+<text x="67" y="156" text-anchor="middle" fill="#3f44c9">● = press here</text>
+<text x="268" y="22" text-anchor="middle" fill="#1d1f3a" font-weight="700">4 × 4 mask</text>
+<rect x="200" y="30" width="34" height="34" fill="#dcdcf5" stroke="#999"/>
+<text x="217" y="51" text-anchor="middle" fill="#3f44c9">1</text>
+<rect x="234" y="30" width="34" height="34" fill="#dcdcf5" stroke="#999"/>
+<text x="251" y="51" text-anchor="middle" fill="#3f44c9">1</text>
+<rect x="268" y="30" width="34" height="34" fill="#fff" stroke="#999"/>
+<text x="285" y="51" text-anchor="middle" fill="#999">0</text>
+<rect x="302" y="30" width="34" height="34" fill="#dcdcf5" stroke="#999"/>
+<text x="319" y="51" text-anchor="middle" fill="#3f44c9">1</text>
+<rect x="200" y="64" width="34" height="34" fill="#fff" stroke="#999"/>
+<text x="217" y="85" text-anchor="middle" fill="#999">0</text>
+<rect x="234" y="64" width="34" height="34" fill="#fff" stroke="#999"/>
+<text x="251" y="85" text-anchor="middle" fill="#999">0</text>
+<rect x="268" y="64" width="34" height="34" fill="#fff" stroke="#999"/>
+<text x="285" y="85" text-anchor="middle" fill="#999">0</text>
+<rect x="302" y="64" width="34" height="34" fill="#dcdcf5" stroke="#999"/>
+<text x="319" y="85" text-anchor="middle" fill="#3f44c9">1</text>
+<rect x="200" y="98" width="34" height="34" fill="#dcdcf5" stroke="#999"/>
+<text x="217" y="119" text-anchor="middle" fill="#3f44c9">1</text>
+<rect x="234" y="98" width="34" height="34" fill="#dcdcf5" stroke="#999"/>
+<text x="251" y="119" text-anchor="middle" fill="#3f44c9">1</text>
+<rect x="268" y="98" width="34" height="34" fill="#dcdcf5" stroke="#999"/>
+<text x="285" y="119" text-anchor="middle" fill="#3f44c9">1</text>
+<rect x="302" y="98" width="34" height="34" fill="#fff" stroke="#999"/>
+<text x="319" y="119" text-anchor="middle" fill="#999">0</text>
+<rect x="200" y="132" width="34" height="34" fill="#fff" stroke="#999"/>
+<text x="217" y="153" text-anchor="middle" fill="#999">0</text>
+<rect x="234" y="132" width="34" height="34" fill="#dcdcf5" stroke="#999"/>
+<text x="251" y="153" text-anchor="middle" fill="#3f44c9">1</text>
+<rect x="268" y="132" width="34" height="34" fill="#fff" stroke="#999"/>
+<text x="285" y="153" text-anchor="middle" fill="#999">0</text>
+<rect x="302" y="132" width="34" height="34" fill="#fff" stroke="#999"/>
+<text x="319" y="153" text-anchor="middle" fill="#999">0</text>
+<text x="268" y="180" text-anchor="middle" fill="#555">shaded = marked cell</text>
+</svg>
+<figcaption>Left: five presses clear the all-on board. Right: a mask that blocks some \(4 \times 4\) boards.</figcaption>
+</figure>
+<p>Pressing the four corners and the centre clears the all-on \(3 \times 3\) board. A corner is toggled once, an edge cell three times (two corners and the centre), the centre once. All odd, so every light goes off.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: a \(2 \times 2\) board, top-left on</h2>
+<p>Call the presses \(p_1, p_2, p_3, p_4\) (top-left, top-right, bottom-left, bottom-right). Each light lists the presses that reach it, and the right-hand side is the starting board:</p>
+<p>\[p_1 + p_2 + p_3 = 1, \qquad p_1 + p_2 + p_4 = 0, \qquad p_1 + p_3 + p_4 = 0, \qquad p_2 + p_3 + p_4 = 0.\]</p>
+<p>Eliminate with row XOR, no minus signs needed since \(-1 = 1\). Add row 1 into rows 2 and 3: \(p_3 + p_4 = 1\) and \(p_2 + p_4 = 1\). Add that new row 3 into row 4: \(p_3 = 1\). Back-substitute: \(p_4 = 0\), \(p_2 = 1\), \(p_1 = 1\). Press top-left, top-right and bottom-left. Check: the top-left light is toggled three times and goes off; every other light is toggled twice and stays off.</p>
+<p class="small">Play it, get a hint, or watch the solver: <a href="../../demos/lightsout.html">infinityclub.net/demos/lightsout.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>On a \(3 \times 3\) board only the centre light is on. Find a set of presses that clears it, and check every light.<div class="space short"></div></li>
+<li>How many press plans are there on a \(3 \times 3\) board? No non-empty plan leaves the board unchanged, so different plans give different boards. Use the <a href="b3-pigeonhole.html">pigeonhole principle</a> to deduce that every \(3 \times 3\) board can be cleared, in exactly one way.<div class="space short"></div></li>
+<li>On the \(4 \times 4\) mask, press row 3, column 2 and list the marked cells that toggle. Repeat for the top-left and bottom-right presses. Then check all sixteen presses: each toggles an even number of marked cells.<div class="space short"></div></li>
+<li>The number of lit marked cells is odd or even. Explain why no press can change that parity, and deduce that the \(4 \times 4\) board with only the top-left light on can never be cleared. Which other single-light boards does the mask rule out?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: all the masks</h2>
+<p>A mask \(z\) works when \(z^{\mathsf T} A = 0 \pmod 2\). Show that the mirror image of the given mask also works, and that if two masks work then their XOR works too. The \(4 \times 4\) masks form a <a href="b28-groups.html">group</a> under XOR. How many are there, if \(A\) has rank 12 out of 16?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Press the centre and the four edge-middle cells, a plus sign. The centre is toggled 5 times and goes off. Each edge cell is toggled twice (itself and the centre), each corner twice (its two edge neighbours), so they stay off.</li>
+<li>Each of 9 cells is pressed or not: \(2^9 = 512\) plans. They produce 512 different boards, and there are only \(2^9 = 512\) boards in all, so every board is produced by exactly one plan. In matrix language, \(A\) has rank 9: it is invertible mod 2.</li>
+<li>Pressing row 3, column 2 toggles (3,1), (3,2), (3,3), (2,2) and (4,2); the marked ones are (3,1), (3,2), (3,3), (4,2): four. Top-left toggles (1,1), (1,2), (2,1); marked: (1,1), (1,2), two. Bottom-right toggles (4,4), (3,4), (4,3): none marked, zero. All sixteen presses toggle 2 marked cells, except row 3, column 2 (4) and bottom-right (0).</li>
+<li>A press toggles an even number of marked cells, so the count of lit marked cells changes by an even amount and its parity is fixed. The top-left light sits on a marked cell: one lit marked cell, odd. The cleared board has zero, even. No sequence of presses connects them. The mask rules out every single-light board whose light is on a marked cell: 8 of the 16. (The other 8 are impossible too, but need another mask.)</li>
+</ol>
+<p><b>Stretch.</b> The mirror mask (rows 1011, 1000, 0111, 0010) also toggles evenly under every press. If \(z^{\mathsf T} A = 0\) and \(w^{\mathsf T} A = 0\) then \((z + w)^{\mathsf T} A = 0\) mod 2, so masks are closed under XOR; the empty mask is the identity and each mask is its own inverse. Rank 12 leaves \(16 - 12 = 4\) independent masks, hence \(2^4 = 16\) masks in all, including the empty one. The same count says only \(2^{12} = 4096\) of the 65 536 boards can be cleared: one in sixteen.</p>
+</section>
+
+<div class="sheet-nav"><a href="b30-coprime-pi.html">← Previous</a><a href="c1-harmonics.html">Next: Why a violin doesn't sound like a flute →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

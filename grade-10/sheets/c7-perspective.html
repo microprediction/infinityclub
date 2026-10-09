@@ -76,20 +76,29 @@ Everything about perspective is this one fact: <b>divide by depth</b>.</div>
 
 <section class="stretch" style="display:flow-root;margin-top:.4rem">
 <h2>Stretch: where φ really lives</h2>
-<figure style="float:right;margin:0 0 .2em .8em"><svg viewBox="0 0 160 150" width="112" height="105" role="img" aria-label="Regular pentagon ABCDE with diagonals AC and AD, and the bisector from C meeting AD at Q">
-<polygon points="82.0,16.0 141.0,58.8 118.4,128.2 45.6,128.2 23.0,58.8" fill="none" stroke="#000" stroke-width="1.5"/>
-<line x1="82.0" y1="16.0" x2="118.4" y2="128.2" stroke="#3f44c9" stroke-width="1.5"/>
-<line x1="82.0" y1="16.0" x2="45.6" y2="128.2" stroke="#3f44c9" stroke-width="1.5"/>
-<line x1="118.4" y1="128.2" x2="59.5" y2="85.3" stroke="#f5a524" stroke-width="1.5"/>
-<circle cx="59.5" cy="85.3" r="2.5" fill="#f5a524" stroke="#000" stroke-width="1"/>
+<figure style="float:right;width:150px;margin:0 0 .2em .8em"><svg viewBox="0 0 225 200" width="150" height="133" role="img" aria-label="Regular pentagon ABCDE with A at the top, labelled clockwise. Diagonals AC and AD are drawn, making triangle ACD with angle 36 degrees at A and 72 degrees at C and D. The bisector of angle C meets AD at Q, splitting the 72 degrees into two 36s; triangle CDQ is shaded. The side CD is labelled 1, the part AQ is labelled 1 and the part QD is labelled 1 over d.">
+<polygon points="108.0,22.0 180.3,74.5 152.7,159.5 63.3,159.5 35.7,74.5" fill="none" stroke="#000" stroke-width="1.5"/>
+<polygon points="152.7,159.5 63.3,159.5 80.4,107.0" fill="#fde8c4"/>
+<line x1="108.0" y1="22.0" x2="152.7" y2="159.5" stroke="#3f44c9" stroke-width="1.5"/>
+<line x1="108.0" y1="22.0" x2="63.3" y2="159.5" stroke="#3f44c9" stroke-width="1.5"/>
+<line x1="152.7" y1="159.5" x2="80.4" y2="107.0" stroke="#f5a524" stroke-width="1.8"/>
+<path d="M 102.4 39.1 A 18 18 0 0 0 113.6 39.1" fill="none" stroke="#999" stroke-width="1"/>
+<path d="M 147.1 142.4 A 18 18 0 0 0 138.1 148.9" fill="none" stroke="#999" stroke-width="1"/><path d="M 138.1 148.9 A 18 18 0 0 0 134.7 159.5" fill="none" stroke="#999" stroke-width="1"/>
+<path d="M 79.3 159.5 A 16 16 0 0 0 68.3 144.3" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="80.4" cy="107.0" r="2.5" fill="#f5a524" stroke="#000" stroke-width="1"/>
+<g font-family="Nunito, sans-serif" font-size="13" font-weight="700">
+<text x="108.0" y="16.0" text-anchor="middle">A</text><text x="185.3" y="79.5">B</text><text x="155.7" y="172.5">C</text><text x="60.3" y="172.5" text-anchor="end">D</text><text x="30.7" y="79.5" text-anchor="end">E</text>
+<text x="86.4" y="104.0" fill="#f5a524">Q</text>
+</g>
 <g font-family="Nunito, sans-serif" font-size="12" fill="#1d1f3a">
-<text x="82.0" y="10.0" text-anchor="middle">A</text><text x="150.0" y="62.8" text-anchor="middle">B</text><text x="124.4" y="140.2" text-anchor="middle">C</text><text x="33.6" y="140.2" text-anchor="middle">D</text><text x="13.0" y="62.8" text-anchor="middle">E</text>
-<text x="68.5" y="81.3">Q</text>
-<text x="82.0" y="34.0" text-anchor="middle" font-size="10">36°</text>
-<text x="114.4" y="122.2" text-anchor="end" font-size="10">72°</text>
-<text x="53.6" y="122.2" font-size="10">72°</text>
-</g></svg></figure>
-<p>A regular pentagon has side 1 and diagonal \(d\). Triangle \(ACD\) has angles 36°, 72°, 72°. Bisect the angle at \(C\) to meet \(AD\) at \(Q\). Explain why triangle \(CDQ\) is similar to \(ACD\), giving \(DQ = 1/d\), and why \(AQ = 1\). Deduce \(d = 1 + 1/d\) and solve it.</p>
+<text x="108.0" y="60.0" text-anchor="middle">36°</text>
+<text x="132.1" y="139.0" text-anchor="middle">36°</text><text x="124.1" y="154.2" text-anchor="middle">36°</text>
+<text x="87.6" y="145.9" text-anchor="middle">72°</text>
+<text x="108.0" y="173.5" text-anchor="middle">CD = 1</text>
+<text x="80" y="92" text-anchor="end" font-size="10">AQ = 1</text>
+<text x="52" y="141" text-anchor="end">QD = 1/d</text>
+</g></svg><figcaption style="text-align:left;font-size:.8rem">Side 1, diagonal \(d\): find the similar triangles.</figcaption></figure>
+<p>A regular pentagon has side 1 and diagonal \(d\). Triangle \(ACD\) has angles 36°, 72°, 72°, and the bisector of the angle at \(C\) meets \(AD\) at \(Q\). Find a triangle in the figure similar to \(ACD\), explain why, and deduce \(DQ = 1/d\). Then explain why \(AQ = 1\), deduce \(d = 1 + 1/d\) and solve it.</p>
 <div class="space"></div>
 </section>
 

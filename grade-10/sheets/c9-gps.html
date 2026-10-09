@@ -32,53 +32,63 @@
 <section class="idea">
 <h2>Tonight's idea</h2>
 <p>A GPS satellite does one thing: it broadcasts the time and its own position, over and over. Your phone compares the broadcast time with its own clock. The delay, multiplied by the speed of light \(c = 299{,}792.458\) km/s, is the distance to the satellite. From 20,200 km up, the signal takes about 67 milliseconds.</p>
-<p>Knowing you are 20,176 km from one satellite puts you on a <b>sphere</b> of that radius centred on it. Two spheres meet in a circle; a third cuts that circle in two points, one of which is out in space and thrown away. Three distances, one position. This is <b>trilateration</b> (not triangulation, which uses angles).</p>
-<p>The catch is the clock. The satellites carry atomic clocks; your phone does not. If your clock is off by one microsecond, every distance is off by \(10^{-6} \times 299{,}792 \approx 0.3\) km. The fix: treat your clock error \(e\) as a fourth unknown alongside \(x, y, z\), and use a <b>fourth satellite</b>. Four equations, four unknowns. Every GPS fix is also a clock synchronised to the atomic standard.</p>
-<p>Relativity matters here too. The satellites move at 3.87 km/s and sit higher in Earth's gravity, and each changes how fast their clocks tick:</p>
-<table class="tt"><tr><th>effect</th><th>per day</th></tr><tr><td>motion (special relativity)</td><td>−7 µs, slow</td></tr><tr><td>weaker gravity (general relativity)</td><td>+46 µs, fast</td></tr><tr><td>net</td><td>+38 µs ≈ 11 km of position</td></tr></table>
-<p>So the satellite clocks are built to tick slightly slow before launch and keep ground time in orbit.</p>
+<p>Knowing you are 20,176 km from one satellite puts you on a <b>sphere</b> of that radius centred on it. Two spheres meet in a circle; a third cuts that circle in two points, one of which is out in space and thrown away. Three distances, one position: <b>trilateration</b> (not triangulation, which uses angles).</p>
+<p>The catch is the clock. The satellites carry atomic clocks; your phone does not, so every delay it measures is off by the same unknown amount. What it computes is a <b>pseudorange</b>: <b>measured range = geometric distance + \(e\)</b>, one signed \(e\) shared by all the satellites (a microsecond of clock error makes \(e\) about 0.3 km). So treat \(e\) as a fourth unknown alongside \(x, y, z\) and use a <b>fourth satellite</b>: four equations, four unknowns. Every GPS fix is also a clock synchronised to the atomic standard.</p>
+<p>Relativity matters here too. The satellites move at 3.87 km/s and sit higher in Earth's gravity, and each changes how fast their clocks tick, per day (so they are built to tick slightly slow before launch):</p>
+<table class="tt"><tr><td>motion (special relativity)</td><td>−7 µs, slow</td></tr><tr><td>weaker gravity (general relativity)</td><td>+46 µs, fast</td></tr><tr><td>net</td><td>+38 µs ≈ 11 km of range</td></tr></table>
 </section>
 
 <section class="example">
 <h2>Watch one: trilateration in two dimensions</h2>
-
-<figure style="float:right;margin:0 0 .3em .8em"><svg viewBox="0 0 185 190" width="185" height="190" role="img" aria-label="Three circles centred at towers A, B and C with radii 5, root 65 and root 45 km, all passing through the point (3, 4)">
-<circle cx="52" cy="128" r="35" fill="none" stroke="#3f44c9" stroke-width="1.5"/>
-<circle cx="122" cy="128" r="56.4" fill="none" stroke="#3f44c9" stroke-width="1.5"/>
-<circle cx="52" cy="58" r="47.0" fill="none" stroke="#3f44c9" stroke-width="1.5"/>
-<circle cx="52" cy="128" r="3" fill="#000"/><circle cx="122" cy="128" r="3" fill="#000"/><circle cx="52" cy="58" r="3" fill="#000"/>
-<circle cx="73" cy="100" r="4" fill="#f5a524" stroke="#000" stroke-width="1"/>
+<figure style="float:right;width:180px;margin:0 0 .3em .8em"><svg viewBox="0 0 247 193" width="180" height="141" role="img" aria-label="Three towers A at (0,0), B at (8,0) and C at (0,6). Solid circles of radius 5 about each tower: the circles about A and B cross at (4,3) and (4,-3); the circle about C passes through (4,3) only. Dashed circles of radius 6, the measured ranges, do not share a point; a short bar marked e = 1 shows the gap between a dashed circle and its solid circle.">
+<circle cx="78.0" cy="116.0" r="69.0" fill="none" stroke="#f5a524" stroke-width="1" stroke-dasharray="3 4"/>
+<circle cx="170.0" cy="116.0" r="69.0" fill="none" stroke="#f5a524" stroke-width="1" stroke-dasharray="3 4"/>
+<circle cx="78.0" cy="47.0" r="69.0" fill="none" stroke="#f5a524" stroke-width="1" stroke-dasharray="3 4"/>
+<circle cx="78.0" cy="116.0" r="57.5" fill="none" stroke="#3f44c9" stroke-width="1.5"/>
+<circle cx="170.0" cy="116.0" r="57.5" fill="none" stroke="#3f44c9" stroke-width="1.5"/>
+<circle cx="78.0" cy="47.0" r="57.5" fill="none" stroke="#3f44c9" stroke-width="1.5"/>
+<circle cx="78.0" cy="116.0" r="3" fill="#000"/>
+<circle cx="170.0" cy="116.0" r="3" fill="#000"/>
+<circle cx="78.0" cy="47.0" r="3" fill="#000"/>
+<line x1="78.0" y1="116.0" x2="124.0" y2="81.5" stroke="#999" stroke-width="1"/>
+<line x1="37.3" y1="156.7" x2="29.2" y2="164.8" stroke="#f5a524" stroke-width="3"/>
+<line x1="214.0" y1="153.0" x2="222.9" y2="160.4" stroke="#f5a524" stroke-width="3"/>
+<line x1="49.3" y1="-2.8" x2="43.5" y2="-12.8" stroke="#f5a524" stroke-width="3"/>
+<circle cx="124.0" cy="81.5" r="4" fill="#f5a524" stroke="#000" stroke-width="1"/>
+<circle cx="124.0" cy="150.5" r="4" fill="#fff" stroke="#000" stroke-width="1.2"/>
 <g font-family="Nunito, sans-serif" font-size="12" fill="#1d1f3a">
-<text x="42" y="142">A</text><text x="128" y="142">B</text><text x="40" y="52">C</text>
-<text x="80" y="95">(3, 4)</text></g>
-</svg></figure>
-<p>Three radio towers at \(A = (0, 0)\), \(B = (10, 0)\) and \(C = (0, 10)\), in km. Your phone measures its distance to each: \(5\), \(\sqrt{65} \approx 8.06\) and \(\sqrt{45} \approx 6.71\). Where are you?</p>
-<p>The three circles are \(x^2 + y^2 = 25\), \((x - 10)^2 + y^2 = 65\) and \(x^2 + (y - 10)^2 = 45\). Subtract the first from the second: \(-20x + 100 = 40\), so \(x = 3\). Subtract the first from the third: \(-20y + 100 = 20\), so \(y = 4\). Check: \(3^2 + 4^2 = 25\). You are at \((3, 4)\).</p>
-<p>Subtracting turned two quadratic equations into a linear one, because the \(x^2\) and \(y^2\) terms cancelled.</p>
+<text x="73" y="130" text-anchor="end" font-weight="700">A</text><text x="176" y="130" font-weight="700">B</text><text x="71" y="51" text-anchor="end" font-weight="700">C</text>
+<text x="97" y="95" text-anchor="end" fill="#555">5</text>
+<text x="131" y="86" font-weight="700">(4, 3)</text>
+<text x="131" y="154">(4, −3)</text>
+<text x="27" y="177" text-anchor="end" fill="#f5a524" font-weight="700">e = 1</text>
+</g>
+</svg><figcaption style="text-align:left;font-size:.8rem">Solid: true distance 5; \(A\) and \(B\) allow \((4,3)\) or \((4,-3)\), \(C\) picks \((4,3)\). Dashed: measured 6, too long by the shared \(e = 1\).</figcaption></figure>
+<p>Three radio towers at \(A = (0, 0)\), \(B = (8, 0)\) and \(C = (0, 6)\), in km. Your phone's distance to each is exactly 5. The circles are \(x^2 + y^2 = 25\), \((x - 8)^2 + y^2 = 25\) and \(x^2 + (y - 6)^2 = 25\). Subtract the first from the second: \(-16x + 64 = 0\), so \(x = 4\), which with circle \(A\) alone allows \((4, 3)\) or \((4, -3)\). Subtract the first from the third: \(-12y + 36 = 0\), so \(y = 3\): the third circle picks \((4, 3)\). Subtracting cancelled the \(x^2\) and \(y^2\) terms and left linear equations. Now the clock. Suppose the phone reads 6, 6 and 6 (dashed): each is the true distance plus the same unknown \(e\), so the true distances are \(6 - e\). The subtractions still cancel the squares, so \(x = 4\), \(y = 3\) again, and \(4^2 + 3^2 = (6 - e)^2\) forces \(6 - e = 5\), \(e = 1\): every dashed circle shrinks by the same 1 km onto its solid one.</p>
 </section>
 
 <section class="exercises">
 <h2>Your turn</h2>
 <ol>
-<li>(a) A signal arrives 67.3 ms after it was sent. How far away is the satellite? (b) If your clock is wrong by 1 microsecond, by how much is that distance wrong? By 1 nanosecond? (c) What timing accuracy do you need for a 3 m position fix?<div class="space"></div></li>
-<li>Towers at \(A = (0, 0)\), \(B = (8, 0)\), \(C = (0, 6)\). Your measured distances are 5, 5 and 5. Find your position by the subtraction trick. Then: if you only had towers \(A\) and \(B\), what two positions would be possible?<div class="space"></div></li>
-<li><b>The clock problem.</b> Same towers, but your clock is slow, so every distance you measure is too long by the same unknown amount \(e\). You measure 6, 6 and 6. Find \(x\), \(y\) <em>and</em> \(e\). Then explain why, in three dimensions, you need four satellites rather than three.<div class="space"></div></li>
-<li>Satellite clocks gain 38.5 microseconds a day. Convert that to a distance error per day, and per hour. How many minutes until an uncorrected clock has accumulated a 1 microsecond error?<div class="space short"></div></li>
+<li>(a) A signal arrives 67.3 ms after it was sent. How far away is the satellite? (b) If your clock is off by 1 microsecond, how wrong is that range? By 1 nanosecond? (c) What timing accuracy gives 3 m range accuracy?<div class="space"></div></li>
+<li>Towers at \(A = (0, 0)\), \(B = (10, 0)\), \(C = (0, 10)\); your distances to them are \(5\), \(\sqrt{65} \approx 8.06\) and \(\sqrt{45} \approx 6.71\). Find your position by the subtraction trick. With only towers \(A\) and \(B\), what two positions would be possible?<div class="space"></div></li>
+<li><b>The clock problem.</b> Back to the figure's towers \(A = (0, 0)\), \(B = (8, 0)\), \(C = (0, 6)\). Each measured range is the geometric distance plus the same unknown \(e\), possibly negative; you measure 4, 4 and 4. Find \(x\), \(y\) <em>and</em> \(e\), then explain why three dimensions need four satellites rather than three.<div class="space"></div></li>
+<li>Satellite clocks gain 38.5 microseconds a day. Convert that to a range error per day, and per hour. After how many minutes has an uncorrected clock drifted by 1 microsecond?<div class="space short"></div></li>
 </ol>
 </section>
 
 <section class="stretch">
 <h2>Stretch: where the 7 microseconds comes from</h2>
-<p>A clock moving at speed \(v\) ticks slower by the factor \(\sqrt{1 - v^2/c^2}\) (special relativity's time-dilation factor; take it on trust tonight). For small \(x\), \(\sqrt{1 - x} \approx 1 - x/2\) (check by squaring), so the fractional slowing is about \(\dfrac{v^2}{2c^2}\). Put in \(v = 3.874\) km/s and \(c = 299{,}792\) km/s, multiply by the 86,400 seconds in a day, and see whether you get 7 microseconds.</p>
+<p>A clock moving at speed \(v\) ticks slower by the factor \(\sqrt{1 - v^2/c^2}\) (special relativity's time-dilation factor, on trust tonight). For small \(x\), \(\sqrt{1 - x} \approx 1 - x/2\) (check by squaring), so the fractional slowing is about \(v^2/(2c^2)\). Put in \(v = 3.874\) km/s and \(c = 299{,}792\) km/s, multiply by the 86,400 s in a day, and see whether you get 7 microseconds.</p>
 <div class="space"></div>
 </section>
 
 <section class="answers">
 <h2>Answers</h2>
 <ol>
-<li>(a) \(0.0673 \times 299{,}792 \approx 20{,}176\) km. (b) One microsecond: \(0.30\) km (300 m). One nanosecond: 30 cm. (c) For 3 m you need the time right to \(3 / (3 \times 10^8) = 10\) nanoseconds.</li>
-<li>Circles \(x^2 + y^2 = 25\), \((x-8)^2 + y^2 = 25\), \(x^2 + (y-6)^2 = 25\). First minus second: \(-16x + 64 = 0\), \(x = 4\). First minus third: \(-12y + 36 = 0\), \(y = 3\). Position \((4, 3)\); check \(16 + 9 = 25\). With only \(A\) and \(B\): \(x = 4\) and \(y^2 = 9\), so \((4, 3)\) or \((4, -3)\). The third circle picks one.</li>
-<li>True distance is \(6 - e\) to each tower. The subtractions are unchanged (the \((6-e)^2\) cancels), so \(x = 4\), \(y = 3\) again, and then \(4^2 + 3^2 = (6 - e)^2\) gives \(6 - e = 5\), \(e = 1\) (the other root, \(e = 11\), would make the distances negative). Three towers fixed three unknowns \((x, y, e)\). In three dimensions the unknowns are \((x, y, z, e)\), four of them, so four satellites are needed.</li>
+<li>(a) \(0.0673 \times 299{,}792 \approx 20{,}176\) km. (b) One microsecond: \(0.30\) km (300 m). One nanosecond: 30 cm. (c) For 3 m of range you need the time right to \(3 / (3 \times 10^8) = 10\) nanoseconds. (The position error is bigger and depends on how the satellites are spread across the sky.)</li>
+<li>Circles \(x^2 + y^2 = 25\), \((x-10)^2 + y^2 = 65\), \(x^2 + (y-10)^2 = 45\). First minus second: \(-20x + 100 = 40\), \(x = 3\). First minus third: \(-20y + 100 = 20\), \(y = 4\). Position \((3, 4)\); check \(9 + 16 = 25\). With only \(A\) and \(B\): \(x = 3\) and \(y^2 = 16\), so \((3, 4)\) or \((3, -4)\). The third circle picks one.</li>
+<li>Geometric distance is \(4 - e\) to each tower. The subtractions are unchanged (the \((4-e)^2\) cancels), so \(x = 4\), \(y = 3\) as in the figure, and then \(4^2 + 3^2 = (4 - e)^2\) gives \(4 - e = 5\), \(e = -1\): this time the ranges were 1 km too short. (The other root, \(e = 9\), would make the distances negative.) Three towers fixed three unknowns \((x, y, e)\). In three dimensions the unknowns are \((x, y, z, e)\), four of them, so four satellites are needed.</li>
 <li>\(38.5 \times 10^{-6} \times 299{,}792 \approx 11.5\) km per day, about 480 m per hour. \(1/38.5\) of a day is about 37 minutes.</li>
 </ol>
 <p><b>Stretch.</b> \((1 - x/2)^2 = 1 - x + x^2/4 \approx 1 - x\) for small \(x\). \(v^2/(2c^2) = (3.874/299{,}792)^2/2 \approx 8.35 \times 10^{-11}\); times 86,400 s gives \(7.2 \times 10^{-6}\) s, about 7 microseconds slow per day. The gravitational 46 microseconds needs general relativity, and wins; a satellite in a very low orbit moves faster and sits barely higher, so there the velocity term wins and the clock runs slow overall. Astronauts on the space station age very slightly less than we do; GPS satellites age very slightly more.</p>

@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why π knows whether a fraction cancels · Infinity Club</title>
+<meta name="description" content="Pick two whole numbers at random. Shade a grid, count with inclusion–exclusion, and watch the chance that their fraction is already in lowest terms settle towards 6/π².">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 10</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 10 · Around the corner · 30</div>
+  <h1>Why π knows whether a fraction cancels</h1>
+  <p class="teaser">Pick two whole numbers at random. The chance that their fraction is already in lowest terms has π in it.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Choose two whole numbers \(a\) and \(b\), each from 1 to \(N\), every choice equally likely. The fraction \(\tfrac{a}{b}\) cancels exactly when \(a\) and \(b\) share a <a href="../../grade-6/sheets/b1-primes.html">prime factor</a>. Otherwise \(\gcd(a, b) = 1\) and the pair is called <b>coprime</b>. How likely is that?</p>
+<p>Start with \(N = 6\). The 36 ordered pairs make a grid. Shade a cell when \(a\) and \(b\) share a factor.</p>
+<figure>
+<svg viewBox="0 0 430 190" width="430" height="190" role="img" aria-label="A 6 by 6 grid of pairs (a, b). Cells where both are even are shaded blue, both multiples of 3 orange, both multiples of 5 grey. The cell (6, 6) is half blue, half orange. 23 cells are unshaded." font-family="Nunito, sans-serif" font-size="12">
+<rect x="60" y="46" width="24" height="24" fill="#dcdcf5"/>
+<rect x="108" y="46" width="24" height="24" fill="#dcdcf5"/>
+<rect x="156" y="46" width="24" height="24" fill="#dcdcf5"/>
+<rect x="84" y="70" width="24" height="24" fill="#fde8c4"/>
+<rect x="156" y="70" width="24" height="24" fill="#fde8c4"/>
+<rect x="60" y="94" width="24" height="24" fill="#dcdcf5"/>
+<rect x="108" y="94" width="24" height="24" fill="#dcdcf5"/>
+<rect x="156" y="94" width="24" height="24" fill="#dcdcf5"/>
+<rect x="132" y="118" width="24" height="24" fill="#e3e3e3"/>
+<rect x="60" y="142" width="24" height="24" fill="#dcdcf5"/>
+<rect x="84" y="142" width="24" height="24" fill="#fde8c4"/>
+<rect x="108" y="142" width="24" height="24" fill="#dcdcf5"/>
+<rect x="156" y="142" width="24" height="24" fill="#dcdcf5"/>
+<polygon points="156,166 180,142 180,166" fill="#fde8c4"/>
+<line x1="36" y1="22" x2="180" y2="22" stroke="#999"/>
+<line x1="36" y1="22" x2="36" y2="166" stroke="#999"/>
+<line x1="36" y1="46" x2="180" y2="46" stroke="#999"/>
+<line x1="60" y1="22" x2="60" y2="166" stroke="#999"/>
+<line x1="36" y1="70" x2="180" y2="70" stroke="#999"/>
+<line x1="84" y1="22" x2="84" y2="166" stroke="#999"/>
+<line x1="36" y1="94" x2="180" y2="94" stroke="#999"/>
+<line x1="108" y1="22" x2="108" y2="166" stroke="#999"/>
+<line x1="36" y1="118" x2="180" y2="118" stroke="#999"/>
+<line x1="132" y1="22" x2="132" y2="166" stroke="#999"/>
+<line x1="36" y1="142" x2="180" y2="142" stroke="#999"/>
+<line x1="156" y1="22" x2="156" y2="166" stroke="#999"/>
+<line x1="36" y1="166" x2="180" y2="166" stroke="#999"/>
+<line x1="180" y1="22" x2="180" y2="166" stroke="#999"/>
+<text x="48" y="15" text-anchor="middle" fill="#555">1</text>
+<text x="28" y="38" text-anchor="end" fill="#555">1</text>
+<text x="72" y="15" text-anchor="middle" fill="#555">2</text>
+<text x="28" y="62" text-anchor="end" fill="#555">2</text>
+<text x="96" y="15" text-anchor="middle" fill="#555">3</text>
+<text x="28" y="86" text-anchor="end" fill="#555">3</text>
+<text x="120" y="15" text-anchor="middle" fill="#555">4</text>
+<text x="28" y="110" text-anchor="end" fill="#555">4</text>
+<text x="144" y="15" text-anchor="middle" fill="#555">5</text>
+<text x="28" y="134" text-anchor="end" fill="#555">5</text>
+<text x="168" y="15" text-anchor="middle" fill="#555">6</text>
+<text x="28" y="158" text-anchor="end" fill="#555">6</text>
+<text x="108" y="182" text-anchor="middle" fill="#555">b</text>
+<text x="12" y="98" text-anchor="middle" fill="#555">a</text>
+<rect x="215" y="26" width="16" height="16" fill="#dcdcf5" stroke="#999"/>
+<text x="239" y="39" fill="#1d1f3a">both even: 9 cells</text>
+<rect x="215" y="52" width="16" height="16" fill="#fde8c4" stroke="#999"/>
+<text x="239" y="65" fill="#1d1f3a">both multiples of 3: 4 cells</text>
+<rect x="215" y="78" width="16" height="16" fill="#e3e3e3" stroke="#999"/>
+<text x="239" y="91" fill="#1d1f3a">both multiples of 5: 1 cell</text>
+<rect x="215" y="104" width="16" height="16" fill="#dcdcf5" stroke="#999"/><polygon points="215,120 231,104 231,120" fill="#fde8c4"/>
+<text x="239" y="117" fill="#1d1f3a">(6, 6) counted twice: add 1 back</text>
+<rect x="215" y="130" width="16" height="16" fill="#fff" stroke="#999"/>
+<text x="239" y="143" fill="#1d1f3a">unshaded, coprime: 23 cells</text>
+<text x="215" y="164" fill="#3f44c9" font-weight="700">36 − 9 − 4 − 1 + 1 = 23</text>
+</svg>
+<figcaption>Rows are \(a\), columns \(b\). The colour says which prime is shared.</figcaption>
+</figure>
+<p>Both even: \(3 \times 3 = 9\) cells. Both multiples of 3: \(2 \times 2 = 4\). Both multiples of 5: just \((5, 5)\). But \((6, 6)\) is both even and a multiple of 3, so it was shaded twice. Add it back once:</p>
+<p class="callout">\(36 - 9 - 4 - 1 + 1 = 23\) coprime pairs, a proportion of \(\tfrac{23}{36} \approx 0.639\). Subtract, then add back what was subtracted twice: <b>inclusion–exclusion</b>, the same bookkeeping as in <a href="a15-probability.html">probability</a>.</p>
+<p>For a prime \(p\), about \(\tfrac1p\) of the numbers up to \(N\) are multiples of \(p\), so about \(\tfrac{1}{p^2}\) of the pairs share \(p\) and a share \(1 - \tfrac{1}{p^2}\) avoids it. On a big grid the primes act almost independently, which is where the stretch begins.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: bigger grids</h2>
+<p>Counting \(\gcd(a, b) = 1\) over every cell of an \(N \times N\) grid gives these exact totals:</p>
+<table>
+<tr><th>\(N\)</th><td>6</td><td>10</td><td>20</td><td>100</td></tr>
+<tr><th>coprime ordered pairs</th><td>23</td><td>63</td><td>255</td><td>6087</td></tr>
+<tr><th>proportion</th><td>0.6389</td><td>0.6300</td><td>0.6375</td><td>0.6087</td></tr>
+</table>
+<p>Guess where the proportion is heading before you read on. It wobbles, since each new \(N\) adds a row and a column, but the wobbles shrink. As \(N\) grows without bound the proportion tends to a limit, and the limit is</p>
+<p><b>\(\dfrac{6}{\pi^2} \approx 0.6079\).</b> This is a claim about the limit of finite grids. For any particular \(N\) the proportion is an ordinary fraction, and there is no such thing as a uniformly random positive integer. The \(N = 1000\) grid gives 608 383 coprime pairs out of a million.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>For \(N = 10\), count the pairs that share 2, share 3, share 5 and share 7. Then count the pairs that share 6 and the pairs that share 10. Use inclusion–exclusion to confirm the total of 63 coprime pairs.<div class="space short"></div></li>
+<li>Explain why exactly \(\tfrac14\) of the 36 cells have both \(a\) and \(b\) even, but for \(N = 7\) the fraction of both-even cells is not exactly \(\tfrac14\). What does that fraction approach as \(N\) grows?<div class="space short"></div></li>
+<li>The cell \((a, a)\) is coprime only when \(a = 1\), and the grid is symmetric about that diagonal. Show that the number of coprime ordered pairs is odd for every \(N\). Check against the table.<div class="space short"></div></li>
+<li>Simulate it. With a spreadsheet, draw 200 pairs from 1 to 1000 and count those with \(\mathrm{GCD}(a, b) = 1\). Record \(N\), the sample size and the proportion. How far from 0.608 would be surprising?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the product over primes</h2>
+<p>Multiply \(1 - \tfrac{1}{p^2}\) over the primes 2, 3, 5, 7. Then write each \(\big(1 - \tfrac{1}{p^2}\big)^{-1}\) as a geometric series \(1 + \tfrac{1}{p^2} + \tfrac{1}{p^4} + \cdots\) and multiply those out. Using unique factorisation, which sum from <a href="b12-infinite-series.html">Corner 12</a> appears, and why is the limit \(6/\pi^2\)?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Share 2: \(5 \times 5 = 25\). Share 3: \(3 \times 3 = 9\). Share 5: \(2 \times 2 = 4\). Share 7: 1. Share 6: only \((6, 6)\), 1 cell. Share 10: only \((10, 10)\), 1 cell. No pair shares 14 or 15. Total \(100 - 25 - 9 - 4 - 1 + 1 + 1 = 63\).</li>
+<li>Up to 6 there are exactly 3 even numbers, so \(3 \times 3 = 9 = \tfrac14 \times 36\). Up to 7 there are still 3 evens, giving \(\tfrac{9}{49}\), not \(\tfrac14\). The fraction approaches \(\tfrac14\) as \(N\) grows, since the number of evens is always within one of \(N/2\).</li>
+<li>Off the diagonal, coprime cells come in mirror pairs, \((a, b)\) with \((b, a)\): an even count. The diagonal contributes exactly one coprime cell, \((1, 1)\). Even plus one is odd. The table shows 23, 63, 255 and 6087, all odd.</li>
+<li>Answers vary. Each draw is coprime with probability about 0.608, so the count out of 200 has standard deviation \(\sqrt{200 \times 0.608 \times 0.392} \approx 6.9\), about 0.035 as a proportion. A result outside roughly 0.54 to 0.68 would be surprising.</li>
+</ol>
+<p><b>Stretch.</b> \(\tfrac34 \cdot \tfrac89 \cdot \tfrac{24}{25} \cdot \tfrac{48}{49} \approx 0.627\); taking primes up to 50 brings it to 0.610. Multiplying the series out, every product \(\tfrac{1}{p^{2k} q^{2m} \cdots}\) is \(\tfrac{1}{n^2}\) for exactly one \(n\), because each \(n\) factorises in exactly one way. So the product of all the \(\dfrac{1}{1 - 1/p^2}\) is \(1 + \tfrac14 + \tfrac19 + \cdots = \tfrac{\pi^2}{6}\), and the product of the \(1 - \tfrac{1}{p^2}\), the limiting coprime proportion, is its reciprocal \(\tfrac{6}{\pi^2}\). A rigorous version handles finitely many primes at a time and bounds what the rest can change.</p>
+</section>
+
+<div class="sheet-nav"><a href="b29-slope-area.html">← Previous</a><a href="b31-lights-out.html">Next: Lights Out: a puzzle you can prove impossible →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

@@ -13,6 +13,9 @@
 .controls input[type=range] { width: 160px; }
 .controls .val { font-family: var(--mono); min-width: 3em; display: inline-block; }
 #forms { font-size: 1.05rem; }
+.mission { max-width: 70ch; margin: -.4rem 0 1rem; }
+.mission p { margin: .3rem 0; }
+.mission summary { cursor: pointer; font-weight: 700; }
 </style>
 </head>
 <body>
@@ -25,6 +28,10 @@
 <main class="demo-wrap">
 <h1>Quadratic explorer</h1>
 <p class="explain">Slide a, b and c, or grab the vertex and drag it around. The three formulas under the graph (standard, vertex and factored form) are the same parabola written three ways. Watch which numbers change and which stay put, and watch the two roots meet and vanish as the discriminant crosses zero.</p>
+<div class="mission">
+<p class="small"><b>Mission.</b> Keep a = 1 and b = −2. Before you touch c, predict the value of c at which the two roots merge into one. Then slide c and test. Which feature of the picture records the discriminant reaching zero?</p>
+<details class="small"><summary>Answer</summary><p>c = 1. With a = 1 and b = −2, Δ = b² − 4ac = 4 − 4c, which is zero when c = 1. In the picture the two black root dots slide together and the orange vertex touches the x-axis: k = 0 and Δ = 0 are the same statement, because k = −Δ/(4a). Push c past 1 and the roots are gone. Extension: predict the merging value of c for a = 2, b = −4 (it is c = 2), then try a negative a.</p></details>
+</div>
 <div class="demo-panel">
   <div class="controls">
     <label>a <input type="range" id="a" min="-3" max="3" step="0.1" value="1"> <span class="val" id="av">1</span></label>

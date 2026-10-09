@@ -15,6 +15,8 @@
 .harm label span.v { width: 3.6em; text-align: right; font-family: var(--mono); font-size: .9rem; font-weight: 400; }
 #wave { width: 100%; height: 330px; }
 .controls input[type=number] { width: 6em; }
+.scope { font-size: .92rem; color: var(--muted); margin: .2rem 0 .3rem; }
+#phase { width: 160px; vertical-align: middle; }
 </style>
 </head>
 <body>
@@ -26,7 +28,7 @@
 </nav>
 <main class="demo-wrap">
 <h1>Build a sound from sines</h1>
-<p class="explain">A note at 220 Hz is never just 220 Hz. Real instruments also vibrate at 440, 660, 880 and so on: whole-number multiples called <b>harmonics</b>. The mix of harmonics is what makes a violin sound different from a flute playing the same note. Each slider is one harmonic, labelled with its frequency. Set how much of each you want, watch the wave they add up to, and press play.</p>
+<p class="explain">A note at 220 Hz is never just 220 Hz. Real instruments also vibrate at 440, 660, 880 and so on: whole-number multiples called <b>harmonics</b>. The mix of harmonics is what makes a violin sound different from a flute playing the same note. Each slider is the amplitude of one harmonic, labelled with its frequency. Set how much of each you want, watch the wave they add up to, and press play. The phase slider is the extra knob the sheet talks about: it shifts the fundamental in time.</p>
 <div class="demo-panel">
   <div class="controls">
     <span style="font-weight:700">Presets</span>
@@ -37,7 +39,12 @@
     <button class="ghost" data-preset="clar">Clarinet-ish</button>
     <button class="ghost" data-preset="zero">Clear</button>
   </div>
+  <p class="scope"><b>Amplitudes</b> of the first eight harmonics, every sine starting together (phase 0). A general repeating wave also needs a phase for each harmonic and a constant term; this page gives one phase, on the fundamental, below.</p>
   <div class="harm" id="harm"></div>
+  <div class="controls">
+    <label>phase of the fundamental <input type="range" id="phase" min="-180" max="180" step="1" value="0"> <span class="mono" id="phasev">0°</span></label>
+    <span class="scope">at 90° the fundamental is a cosine: 1 at t = 0, which no mix of unshifted sines can reach</span>
+  </div>
   <div class="controls">
     <button id="play">▶ Play</button>
     <label>fundamental <input type="number" id="freq" min="55" max="880" step="1" value="220"> Hz</label>
@@ -48,9 +55,9 @@
 </div>
 <div class="explain">
 <h2>What's going on</h2>
-<p>In 1807 Joseph Fourier claimed that any repeating wave, however jagged, is a sum of smooth sine waves whose frequencies are whole-number multiples of the lowest one. Mathematicians were sceptical. He was right. The sliders above are the first eight terms of such a sum, and the picture is one period of the total.</p>
+<p>In 1807 Joseph Fourier claimed that any repeating wave, however jagged, is a sum of smooth sine waves whose frequencies are whole-number multiples of the lowest one. Mathematicians were sceptical. He was right. The amplitude sliders above are the first eight sine terms of such a sum, all starting together, and the picture is one period of the total. A general recipe also gives each term its own phase and adds a constant; the single phase slider shows what that extra freedom does.</p>
 <p>The presets are recipes. A <b>square wave</b> uses only odd harmonics with amplitudes 1, 1/3, 1/5, 1/7, …. A <b>sawtooth</b> uses every harmonic, 1/n, with alternating signs. A <b>triangle</b> uses odd harmonics with amplitudes 1/n² and alternating signs, and because its harmonics fade so fast it sounds much softer than the square. With only eight terms the corners are still wobbly: that wobble is called the Gibbs phenomenon and it never quite goes away however many terms you add, it just gets narrower.</p>
-<p>Notice what does not change the sound: flipping the sign of one slider, or shifting a harmonic in time, changes the picture a lot but changes the sound hardly at all. Your ear mostly hears how much of each harmonic is present, not how they line up. That is why the spectrum (the bars) is a better fingerprint of an instrument than the waveform.</p>
+<p>Notice what does not change the sound: flipping the sign of one slider, or sliding the phase of the fundamental, changes the picture a lot but changes the sound hardly at all. Your ear mostly hears how much of each harmonic is present, not how they line up. That is why the spectrum (the bars) is a better fingerprint of a steady tone than the waveform. A real instrument also has an attack and a fade that no steady sum captures, and those matter to the ear too.</p>
 <p>Sheet: <a href="../grade-10/sheets/c1-harmonics.html">Why a violin doesn't sound like a flute</a>. Related demo: <a href="tones.html">simple ratios and the circle of fifths</a>.</p>
 </div>
 </main>
@@ -59,7 +66,7 @@
 (function () {
   var K = 8;
   // ---- pure maths ----
-  function wave(amps, t) { var y = 0; for (var n = 1; n <= amps.length; n++) y += amps[n - 1] * Math.sin(2 * Math.PI * n * t); return y; }
+  function wave(amps, t, ph) { ph = ph || 0; var y = 0; for (var n = 1; n <= amps.length; n++) y += amps[n - 1] * Math.sin(2 * Math.PI * n * t + (n === 1 ? ph : 0)); return y; }
   var PRESETS = {
     sine: [1, 0, 0, 0, 0, 0, 0, 0],
     square: [1, 0, 1 / 3, 0, 1 / 5, 0, 1 / 7, 0],
@@ -70,8 +77,9 @@
   };
   if (typeof document === "undefined") { module.exports = { wave: wave, PRESETS: PRESETS }; return; }
 
-  var amps = PRESETS.square.slice(), freq = 220, playing = false, actx = null, osc = null, gain = null;
-  var harm = document.getElementById("harm"), canvas = document.getElementById("wave"), info = document.getElementById("info"), playBtn = document.getElementById("play");
+  var amps = PRESETS.square.slice(), freq = 220, phaseDeg = 0, playing = false, actx = null, osc = null, gain = null;
+  function phaseRad() { return phaseDeg * Math.PI / 180; }
+  var harm = document.getElementById("harm"), canvas = document.getElementById("wave"), info = document.getElementById("info"), playBtn = document.getElementById("play"), phaseInp = document.getElementById("phase"), phaseVal = document.getElementById("phasev");
   var sliders = [], vals = [], ks = [];
   for (var n = 1; n <= K; n++) {
     var lab = document.createElement("label");
@@ -90,10 +98,10 @@
     g.strokeStyle = "#d9d6cc"; g.lineWidth = 1; g.beginPath(); g.moveTo(L, mid); g.lineTo(R, mid); g.stroke();
     g.font = "12px Nunito, sans-serif"; g.fillStyle = "#5d6079"; g.textAlign = "left"; g.fillText("one period (" + (1000 / freq).toFixed(2) + " ms)", L + 4, B + 14);
     if (document.getElementById("parts").checked) {
-      for (var n = 1; n <= K; n++) { if (amps[n - 1] === 0) continue; g.strokeStyle = "rgba(245,165,36,0.45)"; g.lineWidth = 1; g.beginPath(); for (var i = 0; i <= 400; i++) { var t = i / 400, y = mid - amps[n - 1] * Math.sin(2 * Math.PI * n * t) * scale; if (i === 0) g.moveTo(L + (R - L) * t, y); else g.lineTo(L + (R - L) * t, y); } g.stroke(); }
+      for (var n = 1; n <= K; n++) { if (amps[n - 1] === 0) continue; g.strokeStyle = "rgba(245,165,36,0.45)"; g.lineWidth = 1; g.beginPath(); for (var i = 0; i <= 400; i++) { var t = i / 400, y = mid - amps[n - 1] * Math.sin(2 * Math.PI * n * t + (n === 1 ? phaseRad() : 0)) * scale; if (i === 0) g.moveTo(L + (R - L) * t, y); else g.lineTo(L + (R - L) * t, y); } g.stroke(); }
     }
     g.strokeStyle = "#3f44c9"; g.lineWidth = 2.5; g.beginPath();
-    for (var j = 0; j <= 600; j++) { var tt = j / 600, yy = mid - wave(amps, tt) * scale; if (j === 0) g.moveTo(L + (R - L) * tt, yy); else g.lineTo(L + (R - L) * tt, yy); } g.stroke();
+    for (var j = 0; j <= 600; j++) { var tt = j / 600, yy = mid - wave(amps, tt, phaseRad()) * scale; if (j === 0) g.moveTo(L + (R - L) * tt, yy); else g.lineTo(L + (R - L) * tt, yy); } g.stroke();
     // spectrum bars
     var sT = H - specH, bw = (R - L) / K;
     g.fillStyle = "#5d6079"; g.textAlign = "center";
@@ -106,7 +114,8 @@
   }
   function describe() {
     var terms = [];
-    for (var n = 1; n <= K; n++) { vals[n - 1].textContent = amps[n - 1].toFixed(2); if (Math.abs(amps[n - 1]) > 0.004) terms.push((amps[n - 1] < 0 ? "− " : terms.length ? "+ " : "") + Math.abs(amps[n - 1]).toFixed(2) + " sin(" + (n === 1 ? "" : n) + "ωt)"); }
+    for (var n = 1; n <= K; n++) { vals[n - 1].textContent = amps[n - 1].toFixed(2); if (Math.abs(amps[n - 1]) > 0.004) terms.push((amps[n - 1] < 0 ? "− " : terms.length ? "+ " : "") + Math.abs(amps[n - 1]).toFixed(2) + " sin(" + (n === 1 ? "ωt" + (phaseDeg ? (phaseDeg > 0 ? " + " : " − ") + Math.abs(phaseDeg) + "°" : "") : n + "ωt") + ")"); }
+    phaseVal.textContent = (phaseDeg > 0 ? "+" : "") + phaseDeg + "°";
     info.textContent = "y(t) = " + (terms.length ? terms.join(" ") : "0") + "\nω = 2π × " + freq + " Hz" + (playing ? "    playing" : "");
   }
   function update() { ks.forEach(function (k, i) { k.textContent = (i + 1) + "× " + ((i + 1) * freq) + " Hz"; }); draw(); describe(); if (playing) setWave(); }
@@ -116,6 +125,8 @@
     if (!osc) return;
     var real = new Float32Array(K + 1), imag = new Float32Array(K + 1), any = false;
     for (var n = 1; n <= K; n++) { imag[n] = amps[n - 1]; if (amps[n - 1] !== 0) any = true; }
+    // a·sin(ωt + φ) = a·cos φ · sin ωt + a·sin φ · cos ωt ; PeriodicWave takes cosine terms in real[], sine terms in imag[]
+    real[1] = amps[0] * Math.sin(phaseRad()); imag[1] = amps[0] * Math.cos(phaseRad());
     if (any) { osc.setPeriodicWave(actx.createPeriodicWave(real, imag)); gain.gain.setTargetAtTime(0.18, actx.currentTime, 0.02); }
     else gain.gain.setTargetAtTime(0, actx.currentTime, 0.02);
     osc.frequency.setTargetAtTime(freq, actx.currentTime, 0.02);
@@ -133,7 +144,8 @@
   playBtn.addEventListener("click", function () { if (playing) stop(); else start(); });
   document.getElementById("freq").addEventListener("input", function (e) { var v = parseFloat(e.target.value); if (isFinite(v)) { freq = Math.min(880, Math.max(55, v)); update(); } });
   document.getElementById("parts").addEventListener("change", draw);
-  document.querySelectorAll("[data-preset]").forEach(function (b) { b.addEventListener("click", function () { amps = PRESETS[b.dataset.preset].slice(); sliders.forEach(function (s, i) { s.value = amps[i]; }); update(); }); });
+  phaseInp.addEventListener("input", function (e) { phaseDeg = Math.round(parseFloat(e.target.value)) || 0; update(); });
+  document.querySelectorAll("[data-preset]").forEach(function (b) { b.addEventListener("click", function () { amps = PRESETS[b.dataset.preset].slice(); sliders.forEach(function (s, i) { s.value = amps[i]; }); phaseDeg = 0; phaseInp.value = 0; update(); }); });
   var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(draw, 150); });
   update();
 })();

@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lights Out · Infinity Club</title>
+<meta name="description" content="Press a light and its neighbours flip. Clear the board, ask for a hint, or watch a solver do linear algebra over bits and prove some boards impossible.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.board { display: grid; gap: 6px; width: 100%; max-width: 340px; margin: .8rem auto; }
+.cell { position: relative; min-width: 0; aspect-ratio: 1; border-radius: 10px; border: 2px solid var(--accent); background: #fff; cursor: pointer; padding: 0; transition: background .12s, transform .08s; }
+.cell.on { background: var(--warm); border-color: #d98f12; box-shadow: 0 0 0 3px var(--warm-soft); }
+.cell:active { transform: scale(.94); }
+.cell.mark::after { content: ""; position: absolute; left: 50%; top: 50%; width: 36%; height: 36%; margin: -18% 0 0 -18%; border-radius: 50%; background: var(--accent); border: 3px solid #fff; }
+.cell.mark.on::after { background: var(--accent); }
+.controls select { font: inherit; padding: .25em .4em; border: 1px solid var(--rule); border-radius: 6px; }
+.readout { text-align: center; min-height: 1.5em; }
+.secret { font-family: var(--mono); font-size: .92rem; background: #eeece6; border-radius: 8px; padding: .6rem .9rem; margin-top: .6rem; white-space: pre; overflow-x: auto; }
+.legend { text-align: center; color: var(--muted); font-size: .9rem; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Lights Out</h1>
+<p class="explain">Pressing a light flips it <b>and its up, down, left and right neighbours</b>. Turn every light off. Stuck? Ask for a hint (one press), or let the solver mark the whole plan. Then try a truly random board: some of those can never be cleared, and the solver will tell you so.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <label>Board <select id="size"><option value="3">3 × 3</option><option value="4">4 × 4</option><option value="5" selected>5 × 5</option></select></label>
+    <button id="newgame">New board</button>
+    <button id="random" class="ghost">Random board</button>
+    <button id="hint" class="alt">Hint</button>
+    <button id="solve" class="alt">Solve</button>
+    <label><input type="checkbox" id="secret"> show the algebra</label>
+  </div>
+  <div class="board" id="board" role="grid" aria-label="Lights Out board"></div>
+  <div class="legend">A blue dot means: press this cell.</div>
+  <div class="readout" id="status"></div>
+  <div class="secret" id="secretbox" hidden></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>Pressing a cell twice undoes it, and the order of presses does not matter, so a plan is just a set of cells: a column of 0s and 1s. Each press is also a column, recording which lights it flips. Put the press columns side by side and you have a matrix <i>A</i>. Clearing a board <i>b</i> means finding a plan <i>x</i> with <i>Ax</i> = <i>b</i>, where 1 + 1 = 0 because two flips cancel. That is linear algebra <b>mod 2</b>.</p>
+<p>The solver runs Gaussian elimination the way you would on paper, except that "subtract a row" is "XOR a row". If the elimination ends with a row saying 0 = 1, no plan exists and the board is impossible. On a 3 × 3 board the matrix is invertible, so every board can be cleared, in exactly one way. On 4 × 4 the matrix has rank 12 out of 16, so only 4096 of the 65 536 boards can be cleared: one in sixteen. On 5 × 5 the rank is 23 out of 25, so one board in four.</p>
+<p>"New board" starts from all-off and applies random presses, so it is always solvable. "Random board" lights each cell with a coin flip, and may not be.</p>
+<p>Sheet: <a href="../grade-10/sheets/b31-lights-out.html">Lights Out: a puzzle you can prove impossible</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+// --- solver (pure functions, no DOM) ---
+function buildMatrix(n) {
+  // Row k lists which presses flip light k. The matrix is symmetric, so rows and columns agree.
+  var A = [];
+  for (var i = 0; i < n; i++) for (var j = 0; j < n; j++) {
+    var row = new Array(n * n).fill(0);
+    [[0, 0], [1, 0], [-1, 0], [0, 1], [0, -1]].forEach(function (d) {
+      var a = i + d[0], b = j + d[1];
+      if (a >= 0 && a < n && b >= 0 && b < n) row[a * n + b] = 1;
+    });
+    A.push(row);
+  }
+  return A;
+}
+function eliminate(A, b) {
+  // Gaussian elimination mod 2 on [A | b]. Returns { rank, solution } with solution null if inconsistent.
+  var m = A.length, n = A[0].length, M = A.map(function (r, i) { return r.concat([b ? b[i] : 0]); });
+  var pivots = [], r = 0;
+  for (var c = 0; c < n && r < m; c++) {
+    var p = -1;
+    for (var i = r; i < m; i++) if (M[i][c]) { p = i; break; }
+    if (p < 0) continue;
+    var t = M[r]; M[r] = M[p]; M[p] = t;
+    for (var k = 0; k < m; k++) if (k !== r && M[k][c]) for (var q = c; q <= n; q++) M[k][q] ^= M[r][q];
+    pivots.push(c); r++;
+  }
+  for (var i2 = r; i2 < m; i2++) if (M[i2][n]) return { rank: r, solution: null };
+  var x = new Array(n).fill(0);
+  pivots.forEach(function (c2, i3) { x[c2] = M[i3][n]; });
+  return { rank: r, solution: x };
+}
+function applyPress(board, n, k) {
+  var i = Math.floor(k / n), j = k % n;
+  [[0, 0], [1, 0], [-1, 0], [0, 1], [0, -1]].forEach(function (d) {
+    var a = i + d[0], b = j + d[1];
+    if (a >= 0 && a < n && b >= 0 && b < n) board[a * n + b] ^= 1;
+  });
+}
+function checkPlan(n, board, plan) {
+  var copy = board.slice();
+  plan.forEach(function (v, k) { if (v) applyPress(copy, n, k); });
+  return copy.every(function (v) { return v === 0; });
+}
+if (typeof module !== "undefined") module.exports = { buildMatrix: buildMatrix, eliminate: eliminate, applyPress: applyPress, checkPlan: checkPlan };
+
+// --- ui ---
+if (typeof document !== "undefined") (function () {
+  var n = 5, A = buildMatrix(n), rank = eliminate(A, null).rank;
+  var board = [], presses = 0, mode = "none", hintCell = -1, solvable = true;
+  var boardEl = document.getElementById("board"), status = document.getElementById("status"), secretBox = document.getElementById("secretbox");
+  function isClear() { return board.every(function (v) { return v === 0; }); }
+  function currentSolution() { return eliminate(A, board).solution; }
+  function draw() {
+    boardEl.style.gridTemplateColumns = "repeat(" + n + ", minmax(0, 1fr))";
+    boardEl.innerHTML = "";
+    var sol = mode === "none" ? null : currentSolution();
+    board.forEach(function (v, k) {
+      var c = document.createElement("button"); c.className = "cell" + (v ? " on" : "");
+      c.setAttribute("aria-label", "row " + (Math.floor(k / n) + 1) + " column " + (k % n + 1) + (v ? ", on" : ", off"));
+      if (sol && sol[k] && (mode === "full" || k === hintCell)) c.classList.add("mark");
+      c.addEventListener("click", function () { press(k); });
+      boardEl.appendChild(c);
+    });
+    drawSecret(sol);
+  }
+  function drawSecret(sol) {
+    var N = n * n, lines = [];
+    lines.push("board " + n + " × " + n + ":  " + N + " lights, " + N + " possible presses");
+    lines.push("rank of A over bits:  " + rank + " of " + N);
+    lines.push("boards that can be cleared:  2^" + rank + " of 2^" + N + "  (1 in " + Math.pow(2, N - rank) + ")");
+    if (sol === undefined) sol = eliminate(A, board).solution;
+    if (sol === null) {
+      lines.push("this board:  A x = b has NO solution; elimination ends with a row saying 0 = 1");
+    } else {
+      var cnt = sol.reduce(function (a, v) { return a + v; }, 0);
+      lines.push("this board:  solvable, " + Math.pow(2, N - rank) + " plan" + (N - rank ? "s" : "") + " work" + (N - rank ? "" : "s") + "; this one uses " + cnt + " press" + (cnt === 1 ? "" : "es"));
+      lines.push("plan x (1 = press):");
+      for (var i = 0; i < n; i++) lines.push("   " + sol.slice(i * n, i * n + n).join(" "));
+    }
+    secretBox.textContent = lines.join("\n");
+  }
+  function say(t) { status.textContent = t; }
+  function press(k) {
+    if (isClear()) return;
+    applyPress(board, n, k); presses++;
+    if (isClear()) { mode = "none"; draw(); say("All off in " + presses + " press" + (presses === 1 ? "" : "es") + ". Try a bigger board, or a random one."); return; }
+    if (mode === "hint") { var s = currentSolution(); hintCell = s ? firstCell(s) : -1; }
+    draw();
+    say(presses + " press" + (presses === 1 ? "" : "es") + " so far." + (solvable ? "" : " (This board cannot be cleared.)"));
+  }
+  function firstCell(sol) { for (var k = 0; k < sol.length; k++) if (sol[k]) return k; return -1; }
+  function start(b, how) {
+    board = b; presses = 0; mode = "none"; hintCell = -1;
+    solvable = currentSolution() !== null;
+    draw();
+    if (isClear()) say("Every light is already off. Press New board.");
+    else if (how === "random") say(solvable ? "A coin-flip board. This one happens to be solvable." : "A coin-flip board. The solver says: this one can never be cleared.");
+    else say("Made by pressing from all-off, so a solution exists. Your move.");
+  }
+  function newBoard() {
+    var b = new Array(n * n).fill(0), tries = 0;
+    do {
+      b.fill(0);
+      for (var k = 0; k < n * n; k++) if (Math.random() < 0.5) applyPress(b, n, k);
+      tries++;
+    } while (b.every(function (v) { return v === 0; }) && tries < 20);
+    start(b, "made");
+  }
+  function randomBoard() {
+    var b = []; for (var k = 0; k < n * n; k++) b.push(Math.random() < 0.5 ? 1 : 0);
+    start(b, "random");
+  }
+  function setSize(s) { n = s; A = buildMatrix(n); rank = eliminate(A, null).rank; newBoard(); }
+  document.getElementById("size").addEventListener("change", function (e) { setSize(parseInt(e.target.value, 10)); });
+  document.getElementById("newgame").addEventListener("click", newBoard);
+  document.getElementById("random").addEventListener("click", randomBoard);
+  document.getElementById("hint").addEventListener("click", function () {
+    if (isClear()) { say("Already clear."); return; }
+    var s = currentSolution();
+    if (!s) { mode = "none"; draw(); say("No hint possible: this board cannot be cleared. No set of presses solves A x = b."); return; }
+    mode = "hint"; hintCell = firstCell(s); draw();
+    say("Press the dotted cell. Then ask again if you need to.");
+  });
+  document.getElementById("solve").addEventListener("click", function () {
+    if (isClear()) { say("Already clear."); return; }
+    var s = currentSolution();
+    if (!s) { mode = "none"; draw(); say("Unsolvable: elimination ends with a row reading 0 = 1, so no plan exists."); return; }
+    mode = "full"; draw();
+    var cnt = s.reduce(function (a, v) { return a + v; }, 0);
+    say("Press every dotted cell, in any order: " + cnt + " press" + (cnt === 1 ? "" : "es") + ". The dots update as you go.");
+  });
+  document.getElementById("secret").addEventListener("change", function (e) { secretBox.hidden = !e.target.checked; });
+  newBoard();
+})();
+</script>
+</body>
+</html>

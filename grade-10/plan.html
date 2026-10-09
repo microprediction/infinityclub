@@ -16,9 +16,15 @@
 .card-list li { margin: 0 0 .35em; break-inside: avoid; }
 .three { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem; }
 .three h3 { margin-top: 0; }
-.plan a, .card-list a { text-decoration: none; color: inherit; }
+.plan a, .card-list a, .routes a { text-decoration: none; color: inherit; }
+.plan .small { display: block; font-size: .8rem; margin-top: .1em; }
+.routes { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.2rem; }
+.routes h3 { margin-top: 0; }
+.routes ol { padding-left: 1.4em; margin: 0; }
+.routes li { margin-bottom: .35em; break-inside: avoid; }
+.routes .small { display: block; font-size: .8rem; }
 @media (max-width: 600px) { .plan { columns: 1; } }
-@media print { .three { grid-template-columns: repeat(3, 1fr); font-size: .74em; line-height: 1.3; } .card-list li { margin-bottom: .2em; } h2.club { break-before: page; } .plan { columns: 2; } }
+@media print { h2#routes { break-before: page; } .routes { grid-template-columns: repeat(3, 1fr); } .three { grid-template-columns: repeat(3, 1fr); font-size: .74em; line-height: 1.3; } .card-list li { margin-bottom: .2em; } h2.club { break-before: page; } .plan { columns: 2; } }
 </style>
 </head>
 <body>
@@ -35,7 +41,7 @@
 
 <main class="paper">
 <h1>Start here</h1>
-<p>There are 57 sheets and no required order. If you would rather not choose, here is a first thirty nights that alternates the school course with new ideas and keeps the surprises coming. Each is ten to fifteen minutes; the starred problem is extra. Tick each night off.</p>
+<p>There are 59 sheets and no required order. If you would rather not choose, here is a first thirty nights that alternates the school course with new ideas and keeps the surprises coming. Each is ten to fifteen minutes; the starred problem is extra. Tick each night off.</p>
 
 <h2>The first thirty nights</h2>
 <ol class="plan">
@@ -48,14 +54,14 @@
 <li><span class="box"></span><a href="sheets/c5-medical-tests.html">What a positive test really means</a></li>
 <li><span class="box"></span><a href="sheets/a2-discriminant-vieta.html">What the roots are telling you</a></li>
 <li><span class="box"></span><a href="sheets/b4-counting.html">Counting without counting</a></li>
-<li><span class="box"></span><a href="sheets/b21-bayes.html">Bayes' theorem</a></li>
+<li><span class="box"></span><a href="sheets/b21-bayes.html">Bayes' theorem</a> <span class="small">Recall: in night 7's test, which number was the base rate, and why did it matter so much?</span></li>
 <li><span class="box"></span><a href="sheets/a14-sequences-series.html">Sequences, series, and Gauss's trick</a></li>
 <li><span class="box"></span><a href="sheets/b7-complex-rotations.html">Multiplying is rotating</a></li>
 <li><span class="box"></span><a href="sheets/c4-money.html">Compound interest, mortgages and why the casino wins</a></li>
 <li><span class="box"></span><a href="sheets/a15-probability.html">Conditional probability and trees</a></li>
 <li><span class="box"></span><a href="sheets/b9-e.html">The number e</a></li>
 <li><span class="box"></span><a href="sheets/a4-transformations.html">Shift, stretch, flip</a></li>
-<li><span class="box"></span><a href="sheets/b11-area-under-curves.html">Area under a curve, Archimedes' way</a></li>
+<li><span class="box"></span><a href="sheets/b11-area-under-curves.html">Area under a curve, Archimedes' way</a> <span class="small">Recall: on night 5 a secant became a tangent as h shrank to zero. What shrinks to zero tonight?</span></li>
 <li><span class="box"></span><a href="sheets/c1-harmonics.html">Why a violin doesn't sound like a flute</a></li>
 <li><span class="box"></span><a href="sheets/a16-statistics.html">Standard deviation and the bell curve</a></li>
 <li><span class="box"></span><a href="sheets/b3-pigeonhole.html">The pigeonhole principle</a></li>
@@ -64,14 +70,33 @@
 <li><span class="box"></span><a href="sheets/b14-matrices-transformations.html">Matrices that move the plane</a></li>
 <li><span class="box"></span><a href="sheets/c8-elo.html">Elo ratings and regression to the mean</a></li>
 <li><span class="box"></span><a href="sheets/a7-polynomials.html">Factor, remainder, and the cubes</a></li>
-<li><span class="box"></span><a href="sheets/b22-markov-pagerank.html">Markov chains and how Google ranked the web</a></li>
+<li><span class="box"></span><a href="sheets/b22-markov-pagerank.html">Markov chains and how Google ranked the web</a> <span class="small">Recall: on night 23, multiplying two matrices meant doing one move after another. What does one move after another mean here?</span></li>
 <li><span class="box"></span><a href="sheets/a12-circles.html">Circle theorems, with proofs</a></li>
 <li><span class="box"></span><a href="sheets/b13-cantor.html">Some infinities are bigger</a></li>
 <li><span class="box"></span><a href="sheets/c6-epidemics.html">R₀ and herd immunity</a></li>
 <li><span class="box"></span><a href="sheets/b28-groups.html">Groups: the mathematics of symmetry</a></li>
 </ol>
 <p class="small">After night thirty, pick whatever looks interesting. The Connections sheets are good for tired evenings: more reading, less calculation. The demos are for screens, five minutes each.</p>
-<p class="small">An optional detour after night 17: <a href="sheets/b29-slope-area.html">Area and slope undo each other</a> joins the slope and area sheets with one thin strip.</p>
+
+<h2 id="routes">Three short routes</h2>
+<p>If you would rather follow one idea than keep switching, each route below builds a single idea over three nights. Do them in order; each sheet names the earlier one it leans on. The recall line is a question to answer out loud before you start that sheet.</p>
+<div class="routes">
+<div><h3>Primes to a padlock</h3><ol>
+<li><a href="../grade-6/sheets/b3-clock-arithmetic.html">Clock arithmetic</a> (grade 6, a quick revisit)</li>
+<li><a href="sheets/b5-fermat-little.html">Fermat's little theorem</a></li>
+<li><a href="sheets/b6-rsa.html">RSA: a lock anyone can close</a> <span class="small">Recall first: why does multiplying the nonzero residues by a number coprime to the modulus just rearrange them?</span></li>
+</ol></div>
+<div><h3>Rotations to music</h3><ol>
+<li><a href="sheets/b7-complex-rotations.html">Multiplying is rotating</a></li>
+<li><a href="sheets/b8-euler-formula.html">e to the i pi</a> <span class="small">Recall first: what happens to the angle when you multiply two complex numbers?</span></li>
+<li><a href="sheets/c1-harmonics.html">Why a violin doesn't sound like a flute</a></li>
+</ol></div>
+<div><h3>Slope to area</h3><ol>
+<li><a href="sheets/b10-derivative.html">The slope of a curve</a></li>
+<li><a href="sheets/b11-area-under-curves.html">Area under a curve, Archimedes' way</a></li>
+<li><a href="sheets/b29-slope-area.html">Area and slope undo each other</a> <span class="small">Recall first: what did the slope sheet send to zero, and what did the area sheet send to infinity?</span></li>
+</ol></div>
+</div>
 
 <h2 class="club">Club card</h2>
 <p>Every grade 10 sheet. Print this page, stick it somewhere visible, and tick them off. Finish a whole track and tell someone.</p>
@@ -122,7 +147,9 @@
 <li><span class="box"></span><a href="sheets/b26-algorithms.html">Algorithms and big-O</a></li>
 <li><span class="box"></span><a href="sheets/b27-non-euclidean.html">Geometry on a sphere and beyond</a></li>
 <li><span class="box"></span><a href="sheets/b28-groups.html">Groups: the mathematics of symmetry</a></li>
-<li><span class="box"></span><a href="sheets/b29-slope-area.html">Area and slope undo each other</a></li></ul></div>
+<li><span class="box"></span><a href="sheets/b29-slope-area.html">Area and slope undo each other</a></li>
+<li><span class="box"></span><a href="sheets/b30-coprime-pi.html">Why π knows whether a fraction cancels</a></li>
+<li><span class="box"></span><a href="sheets/b31-lights-out.html">Lights Out: a puzzle you can prove impossible</a></li></ul></div>
 <div><h3>Connections</h3><ul class="card-list"><li><span class="box"></span><a href="sheets/c1-harmonics.html">Why a violin doesn't sound like a flute</a></li>
 <li><span class="box"></span><a href="sheets/c2-kepler.html">Kepler's laws and measuring the universe</a></li>
 <li><span class="box"></span><a href="sheets/c3-projectiles.html">Parabolas in flight</a></li>

@@ -4,12 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Galton Board · Infinity Club</title>
-<meta name="description" content="Balls bounce left or right through twelve rows of pegs and pile up in a bell curve. Watch the normal distribution build itself from coin flips.">
+<meta name="description" content="Balls bounce left or right through twelve rows of pegs and pile up in a bell shape. Watch Pascal's triangle build itself from coin flips, and see how close to normal twelve rows get.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
 <link rel="stylesheet" href="../assets/site.css">
 <style>
 #board { width: 100%; height: auto; aspect-ratio: 9 / 8; display: block; }
 .controls input[type=range] { width: 140px; }
+.mission { max-width: 70ch; margin: -.4rem 0 1rem; }
+.mission p { margin: .3rem 0; }
+.mission summary { cursor: pointer; font-weight: 700; }
 </style>
 </head>
 <body>
@@ -21,14 +24,19 @@
 </nav>
 <main class="demo-wrap">
 <h1>The Galton board</h1>
-<p class="explain">Each ball hits twelve pegs and bounces left or right at every one. Where it lands is just the number of rights. Drop a few and it looks random. Drop a thousand and the pile is a bell. The orange curve is the normal distribution with the same mean and spread, and it fits better the more balls you drop.</p>
+<p class="explain">Each ball hits twelve pegs and bounces left or right at every one. Where it lands is just the number of rights. Drop a few and it looks random. Drop a thousand and the pile is a bell shape. The dark dots are the exact prediction for twelve pegs, the binomial distribution; the dashed orange curve is the normal distribution with the same mean and spread. More balls bring the pile closer to the dots. Only more rows of pegs would bring the dots closer to the curve.</p>
+<div class="mission">
+<p class="small"><b>Mission.</b> Predict: if you drop 100 times as many balls (10 000 instead of 100), does the pile become exactly normal? Test it, then look for a gap between the dots and the curve that refuses to go away.</p>
+<details class="small"><summary>Answer</summary><p>No. With more balls the sampling noise fades and the pile settles onto the binomial dots, not onto the curve; the gap between dots and curve stays, however many balls you drop. Two persistent ones: the curve is about 2% too tall at the middle bin (0.2303 against 924/4096 = 0.2256), and the share within one standard deviation of the mean (bins 5, 6 and 7) is 2508/4096 ≈ 61.2%, not the 68% of the normal rule. Extension: what would change the dots themselves? More rows, not more balls; that is the separate operation that improves the normal approximation.</p></details>
+</div>
 <div class="demo-panel">
   <div class="controls">
     <span style="font-weight:700">Drop</span>
     <button data-n="1">1</button><button data-n="20">20</button><button data-n="100">100</button><button data-n="1000" class="alt">1000 (instant)</button><button data-n="10000" class="alt">10 000 (instant)</button>
     <button id="reset" class="ghost">Reset</button>
     <label>chance of bouncing right <input type="range" id="p" min="0.1" max="0.9" step="any" value="0.5"> <span id="pv">0.50</span></label>
-    <label><input type="checkbox" id="curve" checked> normal curve</label>
+    <label><input type="checkbox" id="exact" checked> exact binomial (dots)</label>
+    <label><input type="checkbox" id="curve" checked> normal approximation (dashed)</label>
   </div>
   <canvas id="board" width="900" height="800"></canvas>
   <div class="readout" id="info"></div>
@@ -36,8 +44,8 @@
 <div class="explain">
 <h2>What's going on</h2>
 <p>Each peg is a coin flip. Landing in bin k means exactly k of the twelve flips went right, so the chance of bin k is the binomial number C(12, k) / 2¹² when the coin is fair: 1, 12, 66, 220, 495, 792, 924, 792, 495, 220, 66, 12, 1 out of 4096. Those are the numbers in row 12 of Pascal's triangle. The middle bin is 924 times more likely than the edge.</p>
-<p>The mean position is 12p and the standard deviation is √(12 p (1 − p)), which for a fair coin is √3 ≈ 1.73. About 68% of the balls land within one standard deviation of the mean, about 95% within two. Those are the numbers that make the normal curve famous, and here you can watch them appear out of nothing but left-or-right.</p>
-<p>The deep reason is the <b>central limit theorem</b>: add up many small independent random nudges and the total is approximately normal, whatever the nudges look like individually. Heights, measurement errors and exam marks are bell-shaped for the same reason the balls are. Drag the bias slider to see what happens when the coin is unfair: the pile shifts and squashes but, with enough rows, it is still a bell.</p>
+<p>The mean position is 12p and the standard deviation is √(12 p (1 − p)), which for a fair coin is √3 ≈ 1.73. For a normal curve, 68% of the area lies within one standard deviation of the mean and 95% within two. Twelve pegs do not quite deliver that. The bins within √3 of 6 are 5, 6 and 7, and they hold (792 + 924 + 792)/4096 = 2508/4096 ≈ 61.2% of the balls; within two standard deviations (bins 3 to 9) is 3938/4096 ≈ 96.1%. The readout shows both the exact figures and the normal rule, so you can watch the pile converge to 61%, not 68%.</p>
+<p>Two different things are going on. Dropping more balls reduces <b>sampling noise</b>: the pile converges to the binomial dots, which it would do even with two rows of pegs. Adding more rows is what makes the binomial itself look more normal, and that is the <b>central limit theorem</b>: add up many small independent random nudges and the total is approximately normal, whatever the nudges look like individually. Heights, measurement errors and exam marks are bell-shaped for the same reason. Drag the bias slider: the pile shifts and squashes, and with only twelve rows the normal approximation gets worse as p moves away from ½. More rows, not more balls, would restore the bell.</p>
 <p>Sheet: <a href="../grade-10/sheets/a16-statistics.html">Standard deviation and the bell curve</a>. Related demo: <a href="dice.html">two dice, many rolls</a>.</p>
 </div>
 </main>
@@ -51,7 +59,12 @@
   function stats(bins) { var n = 0, s = 0, s2 = 0; bins.forEach(function (c, k) { n += c; s += c * k; s2 += c * k * k; }); if (!n) return { n: 0, mean: NaN, sd: NaN }; var m = s / n; return { n: n, mean: m, sd: Math.sqrt(Math.max(0, s2 / n - m * m)) }; }
   function within(bins, mu, w) { var n = 0, c = 0; bins.forEach(function (v, k) { n += v; if (Math.abs(k - mu) <= w) c += v; }); return n ? c / n : NaN; }
   function theoryWithin(p, w) { var mu = ROWS * p, c = 0; for (var k = 0; k <= ROWS; k++) if (Math.abs(k - mu) <= w) c += binomPmf(ROWS, k, p); return c; }
-  if (typeof document === "undefined") { module.exports = { binom: binom, binomPmf: binomPmf, stats: stats, within: within, theoryWithin: theoryWithin, ROWS: ROWS }; return; }
+  // which bins count as "within w of the mean": [lowest, highest]
+  function binsWithin(mu, w) { var lo = Math.max(0, Math.ceil(mu - w)), hi = Math.min(ROWS, Math.floor(mu + w)); return [lo, hi]; }
+  // normal density with the same mean and sd, as a probability per unit bin width
+  function normalPdf(x, mu, sd) { return Math.exp(-0.5 * Math.pow((x - mu) / sd, 2)) / (sd * Math.sqrt(2 * Math.PI)); }
+  var NORMAL_1SD = 0.6826895, NORMAL_2SD = 0.9544997; // normal area within 1 and 2 sd
+  if (typeof document === "undefined") { module.exports = { binom: binom, binomPmf: binomPmf, stats: stats, within: within, theoryWithin: theoryWithin, binsWithin: binsWithin, normalPdf: normalPdf, ROWS: ROWS }; return; }
 
   var bins = [], balls = [], p = 0.5, queue = 0, anim = null;
   var canvas = document.getElementById("board"), ctx = canvas.getContext("2d"), info = document.getElementById("info");
@@ -86,20 +99,31 @@
     }
     ctx.strokeStyle = "#d9d6cc"; ctx.beginPath(); ctx.moveTo(10, g.binBottom); ctx.lineTo(W - 10, g.binBottom); ctx.stroke();
     if (document.getElementById("curve").checked && total > 0) {
-      ctx.strokeStyle = "#f5a524"; ctx.lineWidth = 2.5; ctx.beginPath();
-      for (var i = 0; i <= 200; i++) { var kk = -0.5 + (ROWS + 1) * i / 200, y = total * Math.exp(-0.5 * Math.pow((kk - mu) / sd, 2)) / (sd * Math.sqrt(2 * Math.PI)); var px = W / 2 + (kk - ROWS / 2) * g.s, py = g.binBottom - y / scaleMax * bh; if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py); }
-      ctx.stroke(); ctx.lineWidth = 1;
+      ctx.strokeStyle = "#f5a524"; ctx.lineWidth = 2.5; ctx.setLineDash([7, 5]); ctx.beginPath();
+      for (var i = 0; i <= 200; i++) { var kk = -0.5 + (ROWS + 1) * i / 200, y = total * normalPdf(kk, mu, sd); var px = W / 2 + (kk - ROWS / 2) * g.s, py = g.binBottom - y / scaleMax * bh; if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py); }
+      ctx.stroke(); ctx.setLineDash([]); ctx.lineWidth = 1;
+    }
+    if (document.getElementById("exact").checked && total > 0) {
+      // exact Binomial(12, p): expected count in each bin for this many balls
+      for (var kb = 0; kb < BINS; kb++) {
+        var ex = total * binomPmf(ROWS, kb, p), xb = W / 2 + (kb - ROWS / 2) * g.s, yb = g.binBottom - ex / scaleMax * bh;
+        ctx.strokeStyle = "#1d1f3a"; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(xb - g.s * 0.42, yb); ctx.lineTo(xb + g.s * 0.42, yb); ctx.stroke();
+        ctx.fillStyle = "#1d1f3a"; ctx.beginPath(); ctx.arc(xb, yb, 4, 0, Math.PI * 2); ctx.fill();
+        ctx.strokeStyle = "#fff"; ctx.lineWidth = 1.5; ctx.stroke(); ctx.lineWidth = 1;
+      }
     }
     // balls
     ctx.fillStyle = "#f5a524";
     balls.forEach(function (b) { var x0 = pegX(g, b.row, b.j), x1 = b.row + 1 < ROWS ? pegX(g, b.row + 1, b.j + b.dir) : W / 2 + (b.j + b.dir - ROWS / 2) * g.s; var y0 = g.top + b.row * g.dy, y1 = y0 + g.dy; var t = b.t, x = x0 + (x1 - x0) * t, y = y0 + (y1 - y0) * (t * t); ctx.beginPath(); ctx.arc(x, y - 6, 5, 0, Math.PI * 2); ctx.fill(); });
     // legend
     ctx.textAlign = "left"; ctx.fillStyle = "#1d1f3a"; ctx.font = "13px Nunito, sans-serif";
-    ctx.fillText("dark: within 1σ of the mean, lighter: within 2σ", 12, 16);
+    ctx.fillText("bars: dark within 1σ of the mean, lighter within 2σ.  dots: exact binomial.  dashed: normal approximation", 12, 16);
   }
   function describe() {
     var st = stats(bins), mu = ROWS * p, sd = Math.sqrt(ROWS * p * (1 - p));
-    var lines = ["Theory: mean 12p = " + mu.toFixed(2) + ", σ = √(12p(1−p)) = " + sd.toFixed(3) + "    expected within 1σ: " + (100 * theoryWithin(p, sd)).toFixed(1) + "%, within 2σ: " + (100 * theoryWithin(p, 2 * sd)).toFixed(1) + "%"];
+    var b1 = binsWithin(mu, sd), b2 = binsWithin(mu, 2 * sd);
+    var lines = ["Exact binomial: mean 12p = " + mu.toFixed(2) + ", σ = √(12p(1−p)) = " + sd.toFixed(3) + "    within 1σ (bins " + b1[0] + "–" + b1[1] + "): " + (100 * theoryWithin(p, sd)).toFixed(1) + "%, within 2σ (bins " + b2[0] + "–" + b2[1] + "): " + (100 * theoryWithin(p, 2 * sd)).toFixed(1) + "%",
+      "Normal rule for comparison: " + (100 * NORMAL_1SD).toFixed(1) + "% and " + (100 * NORMAL_2SD).toFixed(1) + "%"];
     if (st.n) lines.push("So far: " + st.n.toLocaleString() + " balls, mean " + st.mean.toFixed(3) + ", s.d. " + st.sd.toFixed(3) + "    within 1σ: " + (100 * within(bins, mu, sd)).toFixed(1) + "%, within 2σ: " + (100 * within(bins, mu, 2 * sd)).toFixed(1) + "%");
     else lines.push("No balls yet. Drop some.");
     info.textContent = lines.join("\n");
@@ -119,6 +143,7 @@
   document.getElementById("reset").addEventListener("click", function () { if (anim) { cancelAnimationFrame(anim); anim = null; } reset(); draw(); describe(); });
   document.getElementById("p").addEventListener("input", function (e) { p = parseFloat(e.target.value); document.getElementById("pv").textContent = p.toFixed(2); if (anim) { cancelAnimationFrame(anim); anim = null; } reset(); draw(); describe(); });
   document.getElementById("curve").addEventListener("change", draw);
+  document.getElementById("exact").addEventListener("change", draw);
   var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(draw, 150); });
   draw(); describe();
 })();

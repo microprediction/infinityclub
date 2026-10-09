@@ -13,6 +13,9 @@
 table.slopes { font-family: var(--mono); font-size: .92rem; }
 table.slopes th, table.slopes td { padding: .25em .8em; border-bottom: 1px solid var(--rule); text-align: right; }
 table.slopes th { background: #eeece6; }
+.mission { max-width: 70ch; margin: -.4rem 0 1rem; }
+.mission p { margin: .3rem 0; }
+.mission summary { cursor: pointer; font-weight: 700; }
 </style>
 </head>
 <body>
@@ -25,6 +28,10 @@ table.slopes th { background: #eeece6; }
 <main class="demo-wrap">
 <h1>Secant to tangent</h1>
 <p class="explain">Pick a curve and a point a on it. A second point sits at a + h. The line through the two points is a <b>secant</b>, and its slope is rise over run: (f(a + h) − f(a)) / h. Drag h toward zero. The second point slides into the first and the secant settles onto the <b>tangent</b>. The slope it settles on is the derivative f′(a).</p>
+<div class="mission">
+<p class="small"><b>Mission.</b> Keep f(x) = x² and a = 1. Before you move the h slider, predict the secant slopes for h = 0.5 and h = 0.25. Then drag h and check the readout.</p>
+<details class="small"><summary>Answer</summary><p>2.5 and 2.25. The secant slope is 2 + h, so the error (slope − 2) is exactly h, and halving h halves the error. (The slider is coarse, so you may land on h = 0.251 and read 2.251; same rule.) Extension: find an h that makes the error less than 0.01. Any h below 0.01 does it: the table row h = 0.001 gives 2.001. For x³ the error is 3h + h², so halving h does slightly better than halving the error.</p></details>
+</div>
 <div class="demo-panel">
   <div class="controls">
     <label>f(x)

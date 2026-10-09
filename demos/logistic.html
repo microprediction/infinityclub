@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>The Logistic Map · Infinity Club</title>
-<meta name="description" content="x becomes r x (1 − x), again and again. Slide r and watch a steady value turn into a 2-cycle, a 4-cycle, and then chaos.">
+<meta name="description" content="x becomes r x (1 − x), again and again. Slide r and watch a steady value turn into a 2-cycle, a 4-cycle, then chaos, with calm periodic windows hidden inside it.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
 <link rel="stylesheet" href="../assets/site.css">
 <style>
@@ -13,6 +13,9 @@
 #ts { flex: 1 1 280px; height: 260px; min-width: 0; }
 #bif { width: 100%; height: 340px; display: none; cursor: crosshair; touch-action: none; }
 .controls input[type=number] { width: 7em; }
+.mission { max-width: 70ch; margin: -.4rem 0 1rem; }
+.mission p { margin: .3rem 0; }
+.mission summary { cursor: pointer; font-weight: 700; }
 </style>
 </head>
 <body>
@@ -24,7 +27,11 @@
 </nav>
 <main class="demo-wrap">
 <h1>The logistic map</h1>
-<p class="explain">One rule: replace x by r·x·(1 − x). Start anywhere between 0 and 1 and repeat. For small r the value settles down. Push r past 3 and it starts to flip between two values, then four, then eight, and then, past about 3.57, it never repeats at all. The left picture is a <b>cobweb</b>. Start at x₀ on the bottom axis and go up to the curve: that height is the next x. Go across to the diagonal line, which carries the height back to the bottom axis. Repeat: up, across, up, across. The first step is drawn in blue. The right picture is the same numbers in order.</p>
+<p class="explain">One rule: replace x by r·x·(1 − x). Start anywhere between 0 and 1 and repeat. For small r the value settles down. Push r past 3 and it starts to flip between two values, then four, then eight, and past about 3.57 it is mostly <b>chaotic</b>: a typical start never settles down, and two nearby starts soon part company. Mostly, not always. The left picture is a <b>cobweb</b>. Start at x₀ on the bottom axis and go up to the curve: that height is the next x. Go across to the diagonal line, which carries the height back to the bottom axis. Repeat: up, across, up, across. The first step is drawn in blue. The right picture is the same numbers in order.</p>
+<div class="mission">
+<p class="small"><b>Mission.</b> Predict first: does bigger r always mean more chaotic? Then press <b>3.83</b>, leave x₀ where it is, and read the "Long run" line.</p>
+<details class="small"><summary>Answer</summary><p>No. At r = 3.83, well past 3.57, almost every start calms down onto an attracting 3-cycle, 0.1561, 0.5047, 0.9574: a <b>periodic window</b> inside the chaos. Change x₀ and it still lands there. Now compare: at r = 3.9 or 4 run x₀ = 0.2 and then 0.2001 and look at the time series after thirty steps. That sensitivity to the start is what chaos means, and the bifurcation diagram shows where each kind of behaviour lives.</p></details>
+</div>
 <div class="demo-panel">
   <div class="controls">
     <label>r <input type="range" id="r" min="0" max="4" step="any" value="2.8"> <input type="number" id="rn" min="0" max="4" step="0.001" value="2.8"></label>
@@ -52,8 +59,8 @@
 <div class="explain">
 <h2>What's going on</h2>
 <p>The rule x → r·x·(1 − x) was meant to model a population: next year's size is proportional to this year's (the r·x part) but shrinks as the habitat fills up (the 1 − x part). It is about the simplest nonlinear rule you can write down, and it contains a universe.</p>
-<p>For r below 1 everything dies out. Between 1 and 3 the population settles at the <b>fixed point</b> x* = 1 − 1/r, where the curve crosses the diagonal. At r = 3 that point stops attracting and a 2-cycle takes over; at about 3.449 it becomes a 4-cycle, at 3.544 an 8-cycle, and the doublings pile up ever faster until about r = 3.5699, after which the sequence is <b>chaotic</b>: it never repeats, and two starting values that differ in the tenth decimal place end up nowhere near each other. Try x₀ = 0.2 and 0.2001 at r = 4 and compare the time series after thirty steps.</p>
-<p>The <b>bifurcation diagram</b> plots, for each r across the bottom, every value the sequence keeps visiting after it has settled. The fork-shaped doublings are easy to see. So is a sudden window of calm at r ≈ 3.83, where a 3-cycle appears out of the chaos. The ratio of successive gaps between doublings approaches 4.669…, Feigenbaum's constant, and the astonishing fact is that this same number appears for almost any hump-shaped rule, not just this one.</p>
+<p>For r below 1 everything dies out. Between 1 and 3 the population settles at the <b>fixed point</b> x* = 1 − 1/r, where the curve crosses the diagonal. At r = 3 that point stops attracting and a 2-cycle takes over; at about 3.449 it becomes a 4-cycle, at 3.544 an 8-cycle, and the doublings pile up ever faster until about r = 3.5699. Beyond that, for most values of r, the behaviour is <b>chaotic</b>: a typical start never settles into a cycle, and two starts that differ in the fourth decimal place end up nowhere near each other. Try x₀ = 0.2 and 0.2001 at r = 4 and compare the time series after thirty steps. That sensitivity, not the failure to repeat, is the mark of chaos. A few special starts do repeat even here: at r = 3.9, x₀ = 29/39 is an exact fixed point, but a repelling one, so the slightest rounding throws you off it and the computer cannot hold it.</p>
+<p>The <b>bifurcation diagram</b> plots, for each r across the bottom, every value the sequence keeps visiting after it has settled. The fork-shaped doublings are easy to see. So are the <b>periodic windows</b>: pale gaps in the chaos where a cycle attracts again. The widest sits at r ≈ 3.83, where the 3-cycle 0.1561, 0.5047, 0.9574 catches almost every start, and zooming in shows it has its own cascade of doublings (3, 6, 12, …) on the way back into chaos. So bigger r does not simply mean more chaotic. The ratio of successive gaps between doublings approaches 4.669…, Feigenbaum's constant, and the astonishing fact is that this same number appears for almost any hump-shaped rule, not just this one.</p>
 <p>Sheet: <a href="../grade-10/sheets/b24-chaos.html">The logistic map and chaos</a>. Related demo: <a href="mandelbrot.html">the Mandelbrot set</a>, which is the same idea with complex numbers.</p>
 </div>
 </main>
@@ -127,7 +134,7 @@
     if (rVal <= 1) lines.push("Long run: dies out to 0. The only fixed point is 0, and it attracts.");
     else {
       var fx = 1 - 1 / rVal, slope = Math.abs(2 - rVal);
-      lines.push("Fixed point 1 − 1/r = " + fmt(fx) + ", slope there |2 − r| = " + slope.toFixed(3) + (slope < 1 ? " (attracts)" : " (repels)"));
+      lines.push("Fixed point 1 − 1/r = " + fmt(fx) + ", slope there |2 − r| = " + slope.toFixed(3) + (Math.abs(slope - 1) < 1e-9 ? " (|slope| = 1: the test is inconclusive)" : slope < 1 ? " (attracts)" : " (repels)"));
       var p = period(rVal, x0Val);
       if (p === 1) lines.push("Long run: settles to " + fmt(cycleValues(rVal, x0Val, 1)[0]) + ".");
       else if (p > 0) lines.push("Long run: a " + p + "-cycle: " + cycleValues(rVal, x0Val, p).map(fmt).join(", "));

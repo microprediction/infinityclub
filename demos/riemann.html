@@ -14,6 +14,9 @@ table.sums { font-family: var(--mono); font-size: .92rem; }
 table.sums th, table.sums td { padding: .25em .8em; border-bottom: 1px solid var(--rule); text-align: right; }
 table.sums th { background: #eeece6; }
 table.sums tr.cur td { font-weight: 800; color: var(--accent); }
+.mission { max-width: 70ch; margin: -.4rem 0 1rem; }
+.mission p { margin: .3rem 0; }
+.mission summary { cursor: pointer; font-weight: 700; }
 </style>
 </head>
 <body>
@@ -26,6 +29,10 @@ table.sums tr.cur td { font-weight: 800; color: var(--accent); }
 <main class="demo-wrap">
 <h1>Area by slices</h1>
 <p class="explain">Cut the region under a curve into n strips, stand a rectangle on each, add up the rectangles. Too tall in places, too short in others. Now make n bigger. The errors shrink and the sum heads for a definite number: the exact area, which calculus writes as an integral.</p>
+<div class="mission">
+<p class="small"><b>Mission.</b> Keep x² on [0, 1]. Predict what doubling n does to the gap between the left and right sums. Then read the table at n = 4, 8 and 16.</p>
+<details class="small"><summary>Answer</summary><p>It halves: 0.25, 0.125, 0.0625. The gap is the first and last rectangles swapping, (f(1) − f(0))Δx = 1/n. Stretch: the midpoint error for this curve is exactly −1/(12n²), so doubling n quarters it. Check the error column with midpoints selected: n = 8 gives −1.302 × 10⁻³ and n = 16 gives −3.255 × 10⁻⁴.</p></details>
+</div>
 <div class="demo-panel">
   <div class="controls">
     <label>f(x)
