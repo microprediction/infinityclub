@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How precise is your answer? · Infinity Club</title>
+<meta name="description" content="A length given as 12 cm could be anything from 11.5 to 12.5. Carry the bounds through a calculation and see how many digits you can honestly keep.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 9</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 9 · Sharpen · 16</div>
+  <h1>How precise is your answer?</h1>
+  <p class="teaser">A length given as 12 cm could be anything from 11.5 to 12.5. Carry the bounds through a calculation and see how many digits you can honestly keep.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A measurement is a range, not a point. "12 cm to the nearest centimetre" means the true length rounds to 12. So it is at least 11.5 and less than 12.5: half a unit either side. These are the <b>lower bound</b> and the <b>upper bound</b>.</p>
+<p>Now calculate with it. A card measures 12 cm by 8 cm, each to the nearest centimetre. A calculator says the area is 96 cm². But the smallest card that fits the measurements and the largest are quite different.</p>
+<figure><svg viewBox="0 0 400 172" width="400" height="172" role="img" aria-label="Three rectangles sharing a bottom-left corner: the smallest possible card 11.5 by 7.5, the measured 12 by 8 drawn dashed, and the largest possible 12.5 by 8.5" font-family="Nunito, sans-serif" font-size="13">
+<rect x="40" y="14" width="200" height="136" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/>
+<rect x="40" y="30" width="184" height="120" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="40" y="22" width="192" height="128" fill="none" stroke="#000" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="132" y="86" text-anchor="middle" fill="#3f44c9">smallest: 11.5 × 7.5</text>
+<text x="132" y="104" text-anchor="middle" fill="#3f44c9">= 86.25 cm²</text>
+<text x="250" y="60" fill="#000">largest: 12.5 × 8.5</text>
+<text x="250" y="78" fill="#000">= 106.25 cm²</text>
+<text x="140" y="166" text-anchor="middle" fill="#000">12 cm</text>
+<text x="32" y="90" text-anchor="end" fill="#000">8 cm</text>
+</svg><figcaption>The true area is somewhere between 86.25 and 106.25 cm². The dashed outline is the 12 by 8 the ruler reported.</figcaption></figure>
+<p>For each bound, ask which choices push the answer that way.</p>
+<p class="callout"><b>Add or multiply:</b> smallest with smallest, largest with largest.<br><b>Subtract or divide:</b> the largest answer is largest minus (or ÷) smallest; the smallest answer is smallest minus (or ÷) largest.</p>
+<p>Then keep only the digits the two bounds agree on. Here they agree on none, so "about 100 cm²" is honest and "96" claims too much.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: a sprinter's speed</h2>
+<p>A runner covers 200 m (to the nearest metre) in 24.6 s (to the nearest tenth of a second). The calculator gives \(200 \div 24.6 = 8.130081\ldots\) m/s.</p>
+<p>Distance: from 199.5 to 200.5 m. Time: from 24.55 to 24.65 s. Speed is a division, so pair opposite ends.</p>
+\[\text{largest} = \frac{200.5}{24.55} \approx 8.167 \qquad \text{smallest} = \frac{199.5}{24.65} \approx 8.093\]
+<p>Both bounds round to 8.1, and they disagree in the next digit. The honest answer is 8.1 m/s. The other digits on the screen say nothing about the runner.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Write the lower and upper bounds: (a) 7 cm, to the nearest cm; (b) 4.3 kg, to one decimal place; (c) 250 m, to the nearest 10 m; (d) 3000 people, to the nearest thousand.<div class="space short"></div></li>
+<li>A fence is made of 5 panels, each 1.8 m wide to the nearest 0.1 m. (a) Find the bounds of the total width. (b) Is the fence certain to span a gap of exactly 8.8 m?<div class="space short"></div></li>
+<li>(a) A square tile has side 5.0 cm, to the nearest millimetre. Find the bounds of its area. (b) A jug holds 500 ml and you pour out 180 ml, both to the nearest 10 ml. Find the bounds of what is left.<div class="space"></div></li>
+<li>A car goes 150 km (to the nearest km) on 12 litres of fuel (to the nearest litre). (a) Find the bounds of its km per litre, to 2 decimal places. (b) The calculator says 12.5. Which of those digits can you trust? (c) You may measure one quantity ten times more precisely. Which one, and what are the new bounds?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: errors add up</h2>
+<p>A cube's side is 10 cm, give or take 1%. Find the bounds of its volume. How far, as a percentage, is each bound from 1000 cm³? Guess a rule for the percentage error when you multiply three measurements.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) 6.5 and 7.5 cm. (b) 4.25 and 4.35 kg. (c) 245 and 255 m. (d) 2500 and 3500 people. Each time it is half the rounding unit either side.</li>
+<li>(a) Each panel is from 1.75 to 1.85 m, so the total is from \(5 \times 1.75 = 8.75\) m to \(5 \times 1.85 = 9.25\) m. (b) No. The fence could be as short as 8.75 m, which is 5 cm too little.</li>
+<li>(a) The side is from 4.95 to 5.05 cm, so the area is from \(4.95^2 = 24.5025\) to \(5.05^2 = 25.5025\) cm². (b) Largest left: \(505 - 175 = 330\) ml. Smallest left: \(495 - 185 = 310\) ml. Subtracting pairs opposite ends.</li>
+<li>(a) Smallest: \(149.5 \div 12.5 = 11.96\). Largest: \(150.5 \div 11.5 \approx 13.09\). (b) None for certain: the true figure could start 11, 12 or 13. "About 12 or 13 km per litre" is honest. (c) The fuel. Half a litre in 12 is about 4%, but half a km in 150 is about 0.3%. With fuel from 11.95 to 12.05 litres the bounds are \(149.5 \div 12.05 \approx 12.41\) and \(150.5 \div 11.95 \approx 12.59\), so now "12" is safe.</li>
+</ol>
+<p><b>Stretch.</b> The side is from 9.9 to 10.1 cm. Volume: \(9.9^3 = 970.299\) to \(10.1^3 = 1030.301\) cm³. Each is about 3% from 1000. Rule: when you multiply, the percentage errors roughly add, so three measurements at 1% each give about 3%.</p>
+</section>
+
+<div class="sheet-nav"><a href="a15-two-way-tables.html">← Previous</a><a href="b1-proof-with-letters.html">Next: Proof with letters →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

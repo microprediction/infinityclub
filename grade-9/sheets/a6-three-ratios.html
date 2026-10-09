@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Three ratios that measure an angle · Infinity Club</title>
+<meta name="description" content="In every right triangle with a 35° angle, opposite over hypotenuse is the same number. Sine, cosine and tangent are names for those ratios, and they measure heights you cannot reach.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 9</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 9 · Sharpen · 6</div>
+  <h1>Three ratios that measure an angle</h1>
+  <p class="teaser">In every right triangle with a 35° angle, opposite over hypotenuse is the same number. Give that number a name and you can measure heights you cannot reach.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Draw a right triangle with a 35° angle. Draw another, any size. Both have angles 35°, 90° and 55°, so they are the same shape: one is a scaled copy of the other. Scaling multiplies every side by the same factor, so the ratio of any two sides stays the same. (The same argument made <a href="../../grade-8/sheets/a2-slope.html">slope</a> constant in grade 8.)</p>
+<figure><svg viewBox="0 0 320 185" width="320" height="185" role="img" aria-label="Two right triangles sharing a 35 degree angle at the bottom left, a small one inside a large one. On the large one the sloping side is labelled hypotenuse, the vertical side opposite and the horizontal side adjacent." font-family="Nunito, sans-serif" font-size="13">
+<polygon points="20,165 240,165 240,11" fill="#fde8c4" stroke="#000" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="20,165 140,165 140,81" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5" stroke-linejoin="round"/>
+<line x1="20" y1="165" x2="240" y2="11" stroke="#000" stroke-width="2"/>
+<polyline points="130,165 130,155 140,155" fill="none" stroke="#3f44c9" stroke-width="1"/>
+<polyline points="230,165 230,155 240,155" fill="none" stroke="#000" stroke-width="1"/>
+<path d="M 56 165 A 36 36 0 0 0 49.5 144.4" fill="none" stroke="#3f44c9" stroke-width="1.2"/>
+<text x="61" y="158" font-size="12" fill="#3f44c9">35°</text>
+<text x="118" y="84" text-anchor="middle" transform="rotate(-35 118 84)">hypotenuse</text>
+<text x="247" y="94">opposite</text>
+<text x="190" y="180" text-anchor="middle">adjacent</text>
+</svg><figcaption>Same angle, same shape. Every ratio of sides in the small triangle equals the matching ratio in the large one.</figcaption></figure>
+<p>Name the sides as the angle sees them. The <b>hypotenuse</b> faces the right angle. The <b>opposite</b> side is across from the angle. The <b>adjacent</b> side is next to it.</p>
+<p>That gives three ratios which depend only on the angle \(\theta\) (theta, a Greek letter often used for angles):</p>
+<p class="callout">\(\sin\theta = \dfrac{\text{opposite}}{\text{hypotenuse}}\), &nbsp; \(\cos\theta = \dfrac{\text{adjacent}}{\text{hypotenuse}}\), &nbsp; \(\tan\theta = \dfrac{\text{opposite}}{\text{adjacent}}\)</p>
+<p>The names are short for sine, cosine and tangent. A calculator in degree mode knows them: \(\sin 35^\circ \approx 0.574\), \(\cos 35^\circ \approx 0.819\), \(\tan 35^\circ \approx 0.700\). So whenever a right triangle has a 35° angle, the opposite side is 0.574 of the hypotenuse. Know the angle and one side, and you can find the rest.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: the height of a tree</h2>
+<p>You stand 20 m from a tree on level ground. The line from your feet to its top makes 35° with the ground. How tall is the tree?</p>
+<p>The ground is adjacent to the 35° angle and the tree is opposite. The ratio linking those two is tan: \(\tan 35^\circ = \dfrac{h}{20}\), so \(h = 20 \times \tan 35^\circ \approx 20 \times 0.700 = 14.0\) m.</p>
+<p>How long is the line to the top? It is the hypotenuse: \(\cos 35^\circ = \dfrac{20}{d}\), so \(d = \dfrac{20}{\cos 35^\circ} \approx 24.4\) m.</p>
+<p class="small">Drag the angle and resize the triangle; the ratios only notice the angle: <a href="../../demos/trigtriangle.html">infinityclub.net/demos/trigtriangle.html</a>. Next year the angle is allowed past 90°: <a href="../../grade-10/sheets/a11-trig.html">SOHCAHTOA grows up</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>A right triangle has sides 3, 4 and 5. The angle \(\theta\) is opposite the side of length 3. Write \(\sin\theta\), \(\cos\theta\) and \(\tan\theta\) as fractions.<div class="space short"></div></li>
+<li>Find the side, to two decimal places. (a) Hypotenuse 12, angle 35°: the opposite side. (b) Adjacent 8, angle 50°: the opposite side. (c) Hypotenuse 20, angle 70°: the adjacent side.<div class="space"></div></li>
+<li>No calculator. Use the two triangles from the last sheet (sides \(1, 1, \sqrt2\) and \(1, \sqrt3, 2\)) to write exact values of \(\sin 30^\circ\), \(\cos 30^\circ\), \(\tan 45^\circ\) and \(\tan 60^\circ\).<div class="space short"></div></li>
+<li>(a) A playground slide makes 35° with the ground and its top is 3 m high. How long is the slide? (b) Why can \(\sin\theta\) and \(\cos\theta\) never be bigger than 1 in a right triangle, while \(\tan\theta\) can? (c) For which angle is \(\tan\theta\) exactly 1?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: two facts that hold for every angle</h2>
+<p>Call the sides \(o\), \(a\) and \(h\). (a) Show that \(\sin\theta \div \cos\theta = \tan\theta\). (b) Use Pythagoras to show that \((\sin\theta)^2 + (\cos\theta)^2 = 1\). Check both on a calculator with \(\theta = 35^\circ\).</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Opposite 3, adjacent 4, hypotenuse 5: \(\sin\theta = \tfrac35\), \(\cos\theta = \tfrac45\), \(\tan\theta = \tfrac34\).</li>
+<li>(a) \(12 \times \sin 35^\circ \approx 6.88\). (b) \(8 \times \tan 50^\circ \approx 9.53\). (c) \(20 \times \cos 70^\circ \approx 6.84\).</li>
+<li>In the \(1, \sqrt3, 2\) triangle the side opposite 30° is 1 and the side opposite 60° is \(\sqrt3\). So \(\sin 30^\circ = \tfrac12\), \(\cos 30^\circ = \dfrac{\sqrt3}{2}\), \(\tan 60^\circ = \sqrt3\). In the \(1, 1, \sqrt2\) triangle, \(\tan 45^\circ = \tfrac11 = 1\).</li>
+<li>(a) The height is opposite and the slide is the hypotenuse: \(\sin 35^\circ = \dfrac{3}{L}\), so \(L = \dfrac{3}{\sin 35^\circ} \approx 5.23\) m. (b) The hypotenuse is the longest side, so a leg divided by it is less than 1. For tan, the opposite leg can be longer than the adjacent one. (c) 45°, where the two legs are equal.</li>
+</ol>
+<p><b>Stretch.</b> (a) \(\dfrac{o}{h} \div \dfrac{a}{h} = \dfrac{o}{h} \times \dfrac{h}{a} = \dfrac{o}{a} = \tan\theta\). (b) \(\dfrac{o^2}{h^2} + \dfrac{a^2}{h^2} = \dfrac{o^2 + a^2}{h^2} = \dfrac{h^2}{h^2} = 1\), since \(o^2 + a^2 = h^2\). Check: \(0.574 \div 0.819 \approx 0.70\), and \(0.574^2 + 0.819^2 \approx 0.329 + 0.671 = 1.000\).</p>
+</section>
+
+<div class="sheet-nav"><a href="a5-special-triangles.html">← Previous</a><a href="a7-congruence.html">Next: Three facts fix a triangle (usually) →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Un-multiplying: the sum and product hunt · Infinity Club</title>
+<meta name="description" content="To factor x² + 7x + 12, find two numbers that add to 7 and multiply to 12. A rectangle of tiles shows why those are the right two questions.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 9</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 9 · Sharpen · 1</div>
+  <h1>Un-multiplying: the sum and product hunt</h1>
+  <p class="teaser">To factor x² + 7x + 12, find two numbers that add to 7 and multiply to 12. A rectangle of tiles shows why those are the right two questions.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Expanding turns \((x + 4)(x + 3)\) into \(x^2 + 7x + 12\). <b>Factoring</b> runs it backwards: given \(x^2 + 7x + 12\), find the brackets. You <a href="../../grade-8/sheets/a18-expand-and-factor.html">met this in grade 8</a>. Tonight is why the method works.</p>
+<figure><svg viewBox="0 0 220 160" width="220" height="160" role="img" aria-label="A rectangle of tiles: one large square x by x, four upright strips to its right, three flat strips below it, and a block of twelve unit squares in the corner, four wide and three tall" font-family="Nunito, sans-serif" font-size="13">
+<rect x="50" y="30" width="66" height="66" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="116" y="30" width="18" height="66" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="134" y="30" width="18" height="66" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="152" y="30" width="18" height="66" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="170" y="30" width="18" height="66" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="50" y="96" width="66" height="18" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="50" y="114" width="66" height="18" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="50" y="132" width="66" height="18" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="116" y="96" width="18" height="18" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/>
+<rect x="116" y="114" width="18" height="18" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/>
+<rect x="116" y="132" width="18" height="18" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/>
+<rect x="134" y="96" width="18" height="18" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/>
+<rect x="134" y="114" width="18" height="18" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/>
+<rect x="134" y="132" width="18" height="18" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/>
+<rect x="152" y="96" width="18" height="18" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/>
+<rect x="152" y="114" width="18" height="18" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/>
+<rect x="152" y="132" width="18" height="18" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/>
+<rect x="170" y="96" width="18" height="18" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/>
+<rect x="170" y="114" width="18" height="18" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/>
+<rect x="170" y="132" width="18" height="18" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/>
+<text x="83.0" y="68.0" text-anchor="middle" fill="#3f44c9" font-weight="700">x²</text>
+<text x="83.0" y="21" text-anchor="middle">x</text><text x="152" y="21" text-anchor="middle">4</text>
+<text x="38" y="68.0" text-anchor="middle">x</text><text x="38" y="128.0" text-anchor="middle">3</text>
+<text x="196" y="128.0" fill="#f5a524">12</text>
+</svg><figcaption>One \(x^2\) tile, 7 strips and 12 units fill a rectangle \(x + 4\) wide and \(x + 3\) tall.</figcaption></figure>
+<p>Picture \(x^2 + 7x + 12\) as tiles: one square, \(x\) by \(x\); seven strips, \(x\) by 1; twelve unit squares. Can they fill a rectangle? Put the square in a corner. Stand \(p\) of the strips against its right side and lay the other \(q\) underneath. That leaves a corner gap \(p\) wide and \(q\) tall, and the units must fill it exactly.</p>
+<p class="callout">The strips say \(p + q = 7\). The corner says \(p \times q = 12\). In symbols: \((x + p)(x + q) = x^2 + (p + q)x + pq\).</p>
+<p>So the hunt is for two numbers with a given sum and a given product. Here they are 4 and 3. Start with the product, because it has fewer candidates. Negative numbers are allowed. A positive product means \(p\) and \(q\) have the same sign. A negative product means opposite signs.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: \(x^2 - 2x - 15\)</h2>
+<p>The product is \(-15\), which is negative, so one number is positive and the other negative. Ignoring signs, the pairs that multiply to 15 are 1 and 15, or 3 and 5.</p>
+<p>The sum must be \(-2\). Only 3 and \(-5\) do that: the larger one takes the minus sign.</p>
+<p>\[x^2 - 2x - 15 = (x + 3)(x - 5)\]</p>
+<p>Check by expanding: \(x^2 - 5x + 3x - 15 = x^2 - 2x - 15\). Always check. Expanding is quick and it catches sign slips.</p>
+<p class="small">Slide \(b\) and \(c\) and watch the tiles try to form a rectangle: <a href="../../demos/factortiles.html">infinityclub.net/demos/factortiles.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Factor: (a) \(x^2 + 9x + 20\); (b) \(x^2 + 13x + 12\); (c) \(x^2 + 10x + 25\).<div class="space short"></div></li>
+<li>Factor, and expand to check: (a) \(x^2 - 8x + 15\); (b) \(x^2 + 2x - 24\); (c) \(x^2 - x - 30\).<div class="space"></div></li>
+<li>(a) Draw the tile rectangle for \(x^2 + 5x + 6\) and label its two sides. (b) Explain why the tiles for \(x^2 + 5x + 7\) cannot make a rectangle with whole-number sides.<div class="space"></div></li>
+<li>\(x^2 + bx + 12\) factors as \((x + p)(x + q)\) with \(p\) and \(q\) whole numbers, positive or negative. Find every possible value of \(b\).<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the biggest corner</h2>
+<p>\(x^2 + 10x + c\) factors with \(p\) and \(q\) positive whole numbers. List every possible \(c\). Which is largest, and what shape is the block of unit tiles then? Now write \(p = 5 - d\) and \(q = 5 + d\) and explain why that one must win.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \((x + 4)(x + 5)\). (b) \((x + 1)(x + 12)\). (c) \((x + 5)(x + 5) = (x + 5)^2\): the two numbers can be equal.</li>
+<li>(a) Product \(+15\), sum \(-8\): both negative. \((x - 3)(x - 5)\). (b) Product \(-24\), sum \(+2\): 6 and \(-4\). \((x + 6)(x - 4)\). (c) Product \(-30\), sum \(-1\): 5 and \(-6\). \((x + 5)(x - 6)\).</li>
+<li>(a) A rectangle \(x + 2\) by \(x + 3\): the square, 2 strips on one side, 3 on the other, and a 2 by 3 block of six units. (b) The 7 units must form a \(p\) by \(q\) block. Since 7 is prime the block is 1 by 7, which needs \(1 + 7 = 8\) strips. There are only 5.</li>
+<li>Pairs with product 12: 1 and 12, 2 and 6, 3 and 4, and the same pairs with both signs negative. Their sums give \(b = 13, 8, 7, -13, -8, -7\).</li>
+</ol>
+<p><b>Stretch.</b> \(p + q = 10\): the pairs 1, 9; 2, 8; 3, 7; 4, 6; 5, 5 give \(c = 9, 16, 21, 24, 25\). The largest is 25, when the unit block is a 5 by 5 square. In general \(c = (5 - d)(5 + d) = 25 - d^2\), a difference of two squares. That is largest when \(d = 0\).</p>
+</section>
+
+<div class="sheet-nav"><a href="../index.html#sheets">← All sheets</a><a href="a2-zero-product.html">Next: If a product is zero →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

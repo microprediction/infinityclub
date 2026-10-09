@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The problem nobody can solve quickly · Infinity Club</title>
+<meta name="description" content="Visit every town once and come home by the shortest route. Nearest neighbour fails on a five-town map, and no fast method that is always right is known.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 9</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 9 · Around the corner · 13</div>
+  <h1>The problem nobody can solve quickly</h1>
+  <p class="teaser">Visit every town once and come home by the shortest route. The greedy idea that built the cheapest network fails here, and no fast method is known.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A delivery van must visit every town on the map once and return to its start, driving as little as possible. This is the <b>travelling salesman problem</b>. A round trip that visits every town once is called a <b>tour</b>.</p>
+<figure><svg viewBox="0 0 400 204" width="340" height="173" role="img" aria-label="A map of five towns A to E joined by ten roads with lengths in kilometres: AB 9, AC 5, AD 6, AE 12, BC 7, BD 10, BE 4, CD 4, CE 8, DE 11" font-family="Nunito, sans-serif" font-size="13">
+<line x1="51" y1="20" x2="294" y2="47" stroke="#999" stroke-width="1.5"/>
+<line x1="51" y1="20" x2="140.1" y2="101" stroke="#999" stroke-width="1.5"/>
+<line x1="51" y1="20" x2="51" y2="182" stroke="#999" stroke-width="1.5"/>
+<line x1="51" y1="20" x2="348" y2="155" stroke="#999" stroke-width="1.5"/>
+<line x1="294" y1="47" x2="140.1" y2="101" stroke="#999" stroke-width="1.5"/>
+<line x1="294" y1="47" x2="51" y2="182" stroke="#999" stroke-width="1.5"/>
+<line x1="294" y1="47" x2="348" y2="155" stroke="#999" stroke-width="1.5"/>
+<line x1="140.1" y1="101" x2="51" y2="182" stroke="#999" stroke-width="1.5"/>
+<line x1="140.1" y1="101" x2="348" y2="155" stroke="#999" stroke-width="1.5"/>
+<line x1="51" y1="182" x2="348" y2="155" stroke="#999" stroke-width="1.5"/>
+<rect x="162.5" y="24.5" width="20" height="18" rx="4" fill="#fff"/><text x="172.5" y="38" text-anchor="middle" fill="#3f44c9" font-weight="700">9</text>
+<rect x="85.5" y="51.5" width="20" height="18" rx="4" fill="#fff"/><text x="95.5" y="65" text-anchor="middle" fill="#3f44c9" font-weight="700">5</text>
+<rect x="41" y="92" width="20" height="18" rx="4" fill="#fff"/><text x="51" y="105.5" text-anchor="middle" fill="#3f44c9" font-weight="700">6</text>
+<rect x="159.8" y="65" width="20" height="18" rx="4" fill="#fff"/><text x="169.8" y="78.5" text-anchor="middle" fill="#3f44c9" font-weight="700">12</text>
+<rect x="207.1" y="65" width="20" height="18" rx="4" fill="#fff"/><text x="217.1" y="78.5" text-anchor="middle" fill="#3f44c9" font-weight="700">7</text>
+<rect x="138.2" y="119" width="20" height="18" rx="4" fill="#fff"/><text x="148.2" y="132.5" text-anchor="middle" fill="#3f44c9" font-weight="700">10</text>
+<rect x="311" y="92" width="20" height="18" rx="4" fill="#fff"/><text x="321" y="105.5" text-anchor="middle" fill="#3f44c9" font-weight="700">4</text>
+<rect x="85.5" y="132.5" width="20" height="18" rx="4" fill="#fff"/><text x="95.5" y="146" text-anchor="middle" fill="#3f44c9" font-weight="700">4</text>
+<rect x="254.8" y="124.4" width="20" height="18" rx="4" fill="#fff"/><text x="264.8" y="137.9" text-anchor="middle" fill="#3f44c9" font-weight="700">8</text>
+<rect x="189.5" y="159.5" width="20" height="18" rx="4" fill="#fff"/><text x="199.5" y="173" text-anchor="middle" fill="#3f44c9" font-weight="700">11</text>
+<circle cx="51" cy="20" r="5" fill="#000"/><text x="37" y="25" text-anchor="middle" font-weight="800" font-size="14">A</text>
+<circle cx="294" cy="47" r="5" fill="#000"/><text x="294" y="37" text-anchor="middle" font-weight="800" font-size="14">B</text>
+<circle cx="140.1" cy="101" r="5" fill="#000"/><text x="125.1" y="106" text-anchor="middle" font-weight="800" font-size="14">C</text>
+<circle cx="51" cy="182" r="5" fill="#000"/><text x="37" y="187" text-anchor="middle" font-weight="800" font-size="14">D</text>
+<circle cx="348" cy="155" r="5" fill="#000"/><text x="362" y="160" text-anchor="middle" font-weight="800" font-size="14">E</text>
+</svg><figcaption>Five towns and the ten roads between them, in km. How many different tours are there?</figcaption></figure>
+<p>Being greedy built <a href="b12-cheapest-network.html">the cheapest network</a>. The greedy idea here is <b>nearest neighbour</b>: from where you are, always drive to the closest town you have not visited. It is quick, and it can be wrong.</p>
+<p>The safe method is to try every tour. With \(n\) towns, fix the start. The other towns can follow in \((n-1)!\) orders, where \(k!\) means \(k \times (k-1) \times \cdots \times 1\). Each tour appears twice, once in each direction.</p>
+<p class="callout">The number of different tours of \(n\) towns is \(\dfrac{(n-1)!}{2}\).</p>
+<p>For 5 towns that is 12. For 20 towns it is about \(6 \times 10^{16}\). Nobody has found a method that is always right and stays fast as the map grows. Nobody has proved that there is none, either.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: greedy against the best</h2>
+<p>Start at A. The nearest town is C (5). From C the nearest unvisited town is D (4). From D, B (10) beats E (11). Then E (4), and the only way home is the 12.</p>
+<p>\(A \to C \to D \to B \to E \to A\): \(5 + 4 + 10 + 4 + 12 = 35\) km.</p>
+<p>Checking all 12 tours finds a shorter one. \(A \to B \to E \to C \to D \to A\): \(9 + 4 + 8 + 4 + 6 = 31\) km. Greedy grabbed the 5 and the 4 first, and paid with the 10 and the 12.</p>
+<figure><svg viewBox="0 0 400 124" width="400" height="124" role="img" aria-label="Two copies of the map. On the left the nearest-neighbour tour A C D B E A, 35 km. On the right the best tour A B E C D A, 31 km." font-family="Nunito, sans-serif" font-size="13">
+<line x1="35" y1="14" x2="152" y2="27" stroke="#ccc" stroke-width="1"/>
+<line x1="35" y1="14" x2="77.9" y2="53" stroke="#ccc" stroke-width="1"/>
+<line x1="35" y1="14" x2="35" y2="92" stroke="#ccc" stroke-width="1"/>
+<line x1="35" y1="14" x2="178" y2="79" stroke="#ccc" stroke-width="1"/>
+<line x1="152" y1="27" x2="77.9" y2="53" stroke="#ccc" stroke-width="1"/>
+<line x1="152" y1="27" x2="35" y2="92" stroke="#ccc" stroke-width="1"/>
+<line x1="152" y1="27" x2="178" y2="79" stroke="#ccc" stroke-width="1"/>
+<line x1="77.9" y1="53" x2="35" y2="92" stroke="#ccc" stroke-width="1"/>
+<line x1="77.9" y1="53" x2="178" y2="79" stroke="#ccc" stroke-width="1"/>
+<line x1="35" y1="92" x2="178" y2="79" stroke="#ccc" stroke-width="1"/>
+<polygon points="35,14 77.9,53 35,92 152,27 178,79" fill="none" stroke="#f5a524" stroke-width="3" stroke-linejoin="round"/>
+<circle cx="35" cy="14" r="3.5" fill="#000"/><text x="25" y="18" text-anchor="middle" font-size="12">A</text>
+<circle cx="152" cy="27" r="3.5" fill="#000"/><text x="152" y="19" text-anchor="middle" font-size="12">B</text>
+<circle cx="77.9" cy="53" r="3.5" fill="#000"/><text x="67.9" y="57" text-anchor="middle" font-size="12">C</text>
+<circle cx="35" cy="92" r="3.5" fill="#000"/><text x="25" y="96" text-anchor="middle" font-size="12">D</text>
+<circle cx="178" cy="79" r="3.5" fill="#000"/><text x="188" y="83" text-anchor="middle" font-size="12">E</text>
+<text x="106.5" y="118" text-anchor="middle" font-weight="700" fill="#000">greedy: 35 km</text>
+<line x1="240" y1="14" x2="357" y2="27" stroke="#ccc" stroke-width="1"/>
+<line x1="240" y1="14" x2="282.9" y2="53" stroke="#ccc" stroke-width="1"/>
+<line x1="240" y1="14" x2="240" y2="92" stroke="#ccc" stroke-width="1"/>
+<line x1="240" y1="14" x2="383" y2="79" stroke="#ccc" stroke-width="1"/>
+<line x1="357" y1="27" x2="282.9" y2="53" stroke="#ccc" stroke-width="1"/>
+<line x1="357" y1="27" x2="240" y2="92" stroke="#ccc" stroke-width="1"/>
+<line x1="357" y1="27" x2="383" y2="79" stroke="#ccc" stroke-width="1"/>
+<line x1="282.9" y1="53" x2="240" y2="92" stroke="#ccc" stroke-width="1"/>
+<line x1="282.9" y1="53" x2="383" y2="79" stroke="#ccc" stroke-width="1"/>
+<line x1="240" y1="92" x2="383" y2="79" stroke="#ccc" stroke-width="1"/>
+<polygon points="240,14 357,27 383,79 282.9,53 240,92" fill="none" stroke="#3f44c9" stroke-width="3" stroke-linejoin="round"/>
+<circle cx="240" cy="14" r="3.5" fill="#000"/><text x="230" y="18" text-anchor="middle" font-size="12">A</text>
+<circle cx="357" cy="27" r="3.5" fill="#000"/><text x="357" y="19" text-anchor="middle" font-size="12">B</text>
+<circle cx="282.9" cy="53" r="3.5" fill="#000"/><text x="272.9" y="57" text-anchor="middle" font-size="12">C</text>
+<circle cx="240" cy="92" r="3.5" fill="#000"/><text x="230" y="96" text-anchor="middle" font-size="12">D</text>
+<circle cx="383" cy="79" r="3.5" fill="#000"/><text x="393" y="83" text-anchor="middle" font-size="12">E</text>
+<text x="311.5" y="118" text-anchor="middle" font-weight="700" fill="#3f44c9">best: 31 km</text>
+</svg><figcaption>Nearest neighbour (left) saves early and then has to drive the 10 and the 12.</figcaption></figure>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>How many different tours are there for (a) 4 towns, (b) 6 towns, (c) 10 towns?<div class="space short"></div></li>
+<li>On the map, run nearest neighbour starting from (a) B, (b) D. Write down each tour and its length. Does the starting town matter?<div class="space short"></div></li>
+<li>The two shortest roads are B–E and C–D. Exactly four of the 12 tours use both. List the four and find their lengths. Does using both cheapest roads guarantee the best tour?<div class="space short"></div></li>
+<li>A computer checks a million tours every second. (a) How long does it need for 15 towns? (b) For 20 towns, in years? (c) By what factor does the work grow when a 21st town is added?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: a floor under every tour</h2>
+<p>Remove one road from any tour. What is left still connects every town. So every tour is longer than the cheapest network. Find the cheapest network on the map (being greedy <a href="b12-cheapest-network.html">works there</a>) and its total length. How far above this floor is the best tour?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(3!/2 = 3\). (b) \(5!/2 = 60\). (c) \(9!/2 = 181{,}440\).</li>
+<li>(a) \(B \to E \to C \to D \to A \to B\): \(4 + 8 + 4 + 6 + 9 = 31\) km, the best tour. (b) \(D \to C \to A \to B \to E \to D\): \(4 + 5 + 9 + 4 + 11 = 33\) km. Yes: the same rule gives 35, 31 or 33 depending on where it starts. From B it happens to be right, but nothing told you so.</li>
+<li>Treat B–E and C–D as two blocks to place around A; each block can face either way. A–B–E–C–D–A: 31. A–B–E–D–C–A: 33. A–E–B–C–D–A: \(12 + 4 + 7 + 4 + 6 = 33\). A–E–B–D–C–A: 35 (the greedy tour, backwards). No: three of the four are not the best.</li>
+<li>(a) \(14!/2 = 43{,}589{,}145{,}600\) tours, about 43,600 seconds: roughly 12 hours. (b) \(19!/2 \approx 6.08 \times 10^{16}\) tours, so \(6.08 \times 10^{10}\) seconds, about 1,900 years. (c) \(\dfrac{20!/2}{19!/2} = 20\). Each extra town multiplies the work by the number of towns already there. That is why "try them all" is hopeless, and why a fast method would matter.</li>
+</ol>
+<p><b>Stretch.</b> Take the cheapest roads that do not close a loop: C–D (4), B–E (4), A–C (5), then B–C (7), skipping A–D (6), which would close the loop A–C–D. Total 20 km. A tour with one road removed is a network joining all five towns, so it is at least 20 km, and the whole tour is more. The best tour, 31 km, is 11 km above the floor. A floor like this tells you how far from the best a tour can possibly be, without finding the best.</p>
+</section>
+
+<div class="sheet-nav"><a href="b12-cheapest-network.html">← Previous</a><a href="b14-stable-matching.html">Next: Matching without regrets →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

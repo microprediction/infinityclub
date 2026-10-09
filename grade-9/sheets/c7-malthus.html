@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Will food keep up with people? · Infinity Club</title>
+<meta name="description" content="In 1798 Malthus argued that population multiplies while food only adds. Compare an exponential with a line, find where they cross, and see what he missed.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 9</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 9 · Connections · 7</div>
+  <h1>Will food keep up with people?</h1>
+  <p class="teaser">In 1798 Malthus argued that population multiplies while food only adds. Compare an exponential with a line, find where they cross, and see what he missed.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>In 1798 the English writer Thomas Malthus published an essay on population. His argument, roughly: a population with nothing holding it back <b>multiplies</b>. If it doubles in 25 years, it doubles again in the next 25. Food, he thought, could at best <b>add</b>: each generation might farm enough to feed a fixed number more.</p>
+<p>So population is an <a href="a10-exponential-functions.html">exponential</a> and food is a line. A quantity that multiplies always overtakes one that adds, however big a head start the line is given. Malthus concluded that hunger, disease or fewer births would have to hold numbers down.</p>
+<figure><svg viewBox="0 0 400 200" width="360" height="180" role="img" aria-label="Graph from 1800 to 1925. Food is a straight line rising from 4 million to 19 million. People is a curve that starts at 1 million, meets the food line at 16 million in 1900 and reaches 32 million by 1925" font-family="Nunito, sans-serif" font-size="12">
+<line x1="50" y1="175" x2="362" y2="175" stroke="#999" stroke-width="1"/>
+<line x1="50" y1="175" x2="50" y2="10" stroke="#999" stroke-width="1"/>
+<g fill="#999" text-anchor="middle"><text x="50" y="190">1800</text><text x="170" y="190">1850</text><text x="290" y="190">1900</text></g>
+<g fill="#999" text-anchor="end"><text x="44" y="179">0</text><text x="44" y="132">10</text><text x="44" y="85">20</text><text x="44" y="38">30</text></g>
+<text x="58" y="18" fill="#999">millions</text>
+<line x1="290" y1="175" x2="290" y2="99.8" stroke="#999" stroke-width="1" stroke-dasharray="4 3"/>
+<line x1="50" y1="156.2" x2="350" y2="85.7" stroke="#f5a524" stroke-width="2"/>
+<polyline fill="none" stroke="#3f44c9" stroke-width="2" points="50,170.3 62,169.6 74,168.8 86,167.9 98,166.8 110,165.6 122,164.2 134,162.6 146,160.8 158,158.6 170,156.2 182,153.4 194,150.2 206,146.5 218,142.3 230,137.4 242,131.8 254,125.4 266,118.0 278,109.5 290,99.8 302,88.6 314,75.8 326,61.0 338,44.1 350,24.6"/>
+<circle cx="290" cy="99.8" r="3.5" fill="#000"/>
+<text x="318" y="36" fill="#3f44c9" text-anchor="end">people</text>
+<text x="356" y="90" fill="#f5a524">food</text>
+<text x="282" y="92" text-anchor="end">equal in 1900</text>
+</svg><figcaption>The land in the example below. Food starts four times ahead and is caught in a century.</figcaption></figure>
+<p><b>What he missed.</b> The arithmetic was sound, and in his day harvests did grow slowly. The assumption about food did not last. In the two centuries since, better crops, fertiliser and machines made harvests multiply as well, and food production grew faster than population. Birth rates also fell in many countries. A model is only as good as its assumptions.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: a land of 1 million in 1800</h2>
+<p>People double every 25 years. Food feeds 4 million, and each 25 years farmers can feed 3 million more. After \(n\) periods of 25 years, in millions: people \(= 2^n\), food feeds \(4 + 3n\).</p>
+<table class="tt">
+<tr><th>Year</th><td>1800</td><td>1825</td><td>1850</td><td>1875</td><td>1900</td><td>1925</td></tr>
+<tr><th>People \(2^n\)</th><td>1</td><td>2</td><td>4</td><td>8</td><td>16</td><td>32</td></tr>
+<tr><th>Food feeds \(4 + 3n\)</th><td>4</td><td>7</td><td>10</td><td>13</td><td>16</td><td>19</td></tr>
+</table>
+<p>They cross at \(n = 4\), the year 1900: \(2^4 = 16 = 4 + 3(4)\). By 1925 there are 32 million people and food for 19 million.</p>
+<p class="small">Race a line \(a \times n\) against an exponential \(b^n\) (the demo also runs \(n^2\)) and see where the exponential passes it: <a href="../../demos/growth.html">infinityclub.net/demos/growth.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Another land has 2 million people in 1800, doubling every 25 years. Food feeds 10 million, plus 2 million more each 25 years. (a) Write a formula for each after \(n\) periods. (b) Make a table. In which year do they cross?<div class="space"></div></li>
+<li>Give food a huge head start: it feeds 100 million, plus 10 million more each 25 years. The people start at 1 million and double every 25 years. Between which two years do they overtake the food?<div class="space short"></div></li>
+<li>A population grows by 3% a year, so each year it is multiplied by 1.03. (a) Show that after 25 years it has roughly doubled. (b) What does 1% a year multiply it by in 25 years?<div class="space short"></div></li>
+<li>Suppose food multiplies too. People start at 1 million and double each period. Food feeds 4 million and is multiplied by 1.5 each period. (a) Do they still cross? Between which periods? (b) What if food also doubles each period? (c) What decides whether food keeps up?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: what really happened</h2>
+<p>The world held about 1 billion people around 1800 and about 8 billion around 2025. (a) If it had doubled every 25 years, how many would there be in 2025? (b) How many doublings really happened, and what was the average doubling time?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) People \(= 2 \times 2^n\), food feeds \(10 + 2n\). (b) People: 2, 4, 8, 16, 32. Food: 10, 12, 14, 16, 18. They cross at \(n = 3\), the year 1875, at 16 million.</li>
+<li>Compare \(2^n\) with \(100 + 10n\). At \(n = 7\): 128 against 170. At \(n = 8\): 256 against 180. The people overtake between 1975 and 2000. A head start of a hundred times bought less than two centuries.</li>
+<li>(a) \(1.03^{25} \approx 2.09\), a little more than double. (b) \(1.01^{25} \approx 1.28\), a rise of 28%. A small change in the yearly rate makes a large change over 25 years.</li>
+<li>(a) Yes. At \(n = 4\): 16 against \(4 \times 1.5^4 = 20.25\). At \(n = 5\): 32 against about 30.4. They cross between periods 4 and 5. (b) Then food feeds \(4 \times 2^n\), always exactly 4 times the population. They never cross. (c) The multipliers. If food's multiplier is at least as big as the population's, food keeps its lead. If it is smaller, any head start is used up in the end.</li>
+</ol>
+<p><b>Stretch.</b> (a) From 1800 to 2025 is 225 years, which is 9 periods of 25. \(2^9 = 512\) billion. (b) \(8 = 2^3\), so three doublings in 225 years: one every 75 years on average. The population did grow by multiplying, but far more slowly than a doubling every 25 years.</p>
+</section>
+
+<div class="sheet-nav"><a href="c6-fuel-economy.html">← Previous</a><a href="c8-f-stops.html">Next: Why camera settings go 2, 2.8, 4, 5.6 →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

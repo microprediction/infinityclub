@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Proof with letters · Infinity Club</title>
+<meta name="description" content="Write an odd number as 2n + 1 and you can prove facts about every odd number at once: the sum of two odds, the square of an odd, and a calendar trick.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 9</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 9 · Around the corner · 1</div>
+  <h1>Proof with letters</h1>
+  <p class="teaser">Call an odd number 2n + 1 and you can prove things about every odd number at once. The sum of two odds, the square of an odd, and a calendar trick.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Add two odd numbers: \(3 + 5 = 8\), \(7 + 11 = 18\). Even each time. But checking examples never finishes: the odd numbers never run out. A letter finishes the job. An even number is two times a whole number: \(2n\). An odd number is one more: \(2n + 1\). So \(101 = 2(50) + 1\).</p>
+<figure><svg viewBox="0 0 470 104" width="470" height="104" role="img" aria-label="Dots arranged in pairs. Seven is three pairs and one left over, five is two pairs and one left over. Added together the two leftover dots make one more pair, giving six pairs." font-family="Nunito, sans-serif" font-size="13">
+<circle cx="30" cy="26" r="6" fill="#3f44c9"/><circle cx="30" cy="46" r="6" fill="#3f44c9"/>
+<circle cx="50" cy="26" r="6" fill="#3f44c9"/><circle cx="50" cy="46" r="6" fill="#3f44c9"/>
+<circle cx="70" cy="26" r="6" fill="#3f44c9"/><circle cx="70" cy="46" r="6" fill="#3f44c9"/>
+<circle cx="90" cy="46" r="6" fill="#f5a524"/>
+<text x="118" y="42" text-anchor="middle" font-size="16">+</text>
+<circle cx="146" cy="26" r="6" fill="#3f44c9"/><circle cx="146" cy="46" r="6" fill="#3f44c9"/>
+<circle cx="166" cy="26" r="6" fill="#3f44c9"/><circle cx="166" cy="46" r="6" fill="#3f44c9"/>
+<circle cx="186" cy="46" r="6" fill="#f5a524"/>
+<text x="214" y="42" text-anchor="middle" font-size="16">=</text>
+<circle cx="242" cy="26" r="6" fill="#3f44c9"/><circle cx="242" cy="46" r="6" fill="#3f44c9"/>
+<circle cx="262" cy="26" r="6" fill="#3f44c9"/><circle cx="262" cy="46" r="6" fill="#3f44c9"/>
+<circle cx="282" cy="26" r="6" fill="#3f44c9"/><circle cx="282" cy="46" r="6" fill="#3f44c9"/>
+<circle cx="302" cy="26" r="6" fill="#3f44c9"/><circle cx="302" cy="46" r="6" fill="#3f44c9"/>
+<circle cx="322" cy="26" r="6" fill="#3f44c9"/><circle cx="322" cy="46" r="6" fill="#3f44c9"/>
+<rect x="333" y="15" width="18" height="42" rx="9" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/>
+<circle cx="342" cy="26" r="6" fill="#f5a524"/><circle cx="342" cy="46" r="6" fill="#f5a524"/>
+<text x="60" y="78" text-anchor="middle" fill="#3f44c9">7 = 2(3) + 1</text>
+<text x="166" y="78" text-anchor="middle" fill="#3f44c9">5 = 2(2) + 1</text>
+<text x="292" y="78" text-anchor="middle" fill="#3f44c9">12 = 2(3 + 2 + 1)</text>
+<text x="410" y="34" text-anchor="middle" fill="#f5a524">the two</text><text x="410" y="50" text-anchor="middle" fill="#f5a524">leftovers pair up</text>
+<text x="60" y="96" text-anchor="middle" fill="#999">2a + 1</text><text x="166" y="96" text-anchor="middle" fill="#999">2b + 1</text><text x="292" y="96" text-anchor="middle" fill="#999">2(a + b + 1)</text>
+</svg><figcaption>An odd number is a row of pairs with one left over. Add two of them and the leftovers make a pair.</figcaption></figure>
+<p>Take any two odd numbers, \(2a + 1\) and \(2b + 1\). Two letters, because the numbers need not be equal. Their sum is</p>
+\[(2a + 1) + (2b + 1) = 2a + 2b + 2 = 2(a + b + 1).\]
+<p>Two times a whole number, so even. The letters stood for every pair of odd numbers at once. That is a <b>proof</b>: an argument that leaves no case out. An odd square: \((2n + 1)^2 = 4n^2 + 4n + 1 = 4(n^2 + n) + 1\). Always one more than a multiple of 4.</p>
+<p class="callout">To prove a fact about every number: write the number with a letter, do the algebra, then read what the result says.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: a calendar trick</h2>
+<p>Box a 2 by 2 square of dates, say 10, 11 above 17, 18. Multiply the diagonals: \(10 \times 18 = 180\) and \(11 \times 17 = 187\). They differ by 7. Luck?</p>
+<p>Call the top-left date \(d\). The others are \(d + 1\), \(d + 7\) and \(d + 8\), since one row down adds 7.</p>
+<p>\(d(d + 8) = d^2 + 8d\) and \((d + 1)(d + 7) = d^2 + 8d + 7\). The difference is 7 for every box, every month.</p>
+<p class="small">Where you met this: the 3 by 3 box in <a href="../../grade-7/sheets/b18-calendar-magic.html">Calendar magic</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Use \(2a\) for an even number and \(2b + 1\) for an odd one. Prove that (a) an even number plus an odd number is odd; (b) an odd number times an odd number is odd.<div class="space"></div></li>
+<li>Three whole numbers in a row can be written \(n\), \(n + 1\), \(n + 2\). (a) Prove that their sum is always a multiple of 3. (b) Is the sum of four whole numbers in a row always a multiple of 4? Use letters to decide.<div class="space"></div></li>
+<li>Box a 3 by 3 square of dates and call the middle date \(m\). (a) Write the four corner dates using \(m\). (b) Multiply each pair of opposite corners. Prove that the two products always differ by the same amount, and find it. (c) Check with the box whose middle date is 17.<div class="space"></div></li>
+<li>A two-digit number with tens digit \(a\) and units digit \(b\) is worth \(10a + b\). Reverse the digits to get a second number. Prove that (a) the difference of the two numbers is always a multiple of 9; (b) their sum is always a multiple of 11. (c) Check both with 72.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: one more than a multiple of 8</h2>
+<p>Square some odd numbers and subtract 1: you get 8, 24, 48, 80. All multiples of 8, not just of 4. Prove that this always happens. Start from \((2n + 1)^2 = 4n(n + 1) + 1\) and ask what you know about \(n(n + 1)\).</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(2a + (2b + 1) = 2(a + b) + 1\): one more than an even number, so odd. (b) \((2a + 1)(2b + 1) = 4ab + 2a + 2b + 1 = 2(2ab + a + b) + 1\): odd. (Here both odd numbers need their own letter.)</li>
+<li>(a) \(n + (n + 1) + (n + 2) = 3n + 3 = 3(n + 1)\), three times a whole number. (b) No. \(n + (n + 1) + (n + 2) + (n + 3) = 4n + 6 = 4(n + 1) + 2\), which is always 2 more than a multiple of 4. So it is never a multiple of 4.</li>
+<li>(a) \(m - 8\), \(m - 6\), \(m + 6\), \(m + 8\). (b) \((m - 8)(m + 8) = m^2 - 64\) and \((m - 6)(m + 6) = m^2 - 36\). The difference is \(64 - 36 = 28\) every time. (c) Corners 9, 11, 23, 25: \(9 \times 25 = 225\) and \(11 \times 23 = 253\), and \(253 - 225 = 28\).</li>
+<li>The reversed number is \(10b + a\). (a) \((10a + b) - (10b + a) = 9a - 9b = 9(a - b)\). (b) \((10a + b) + (10b + a) = 11a + 11b = 11(a + b)\). (c) \(72 - 27 = 45 = 9 \times 5\) and \(72 + 27 = 99 = 11 \times 9\).</li>
+</ol>
+<p><b>Stretch.</b> \(n\) and \(n + 1\) are next to each other, so one of them is even, and \(n(n + 1)\) is even. Write \(n(n + 1) = 2k\). Then \((2n + 1)^2 = 4(2k) + 1 = 8k + 1\), one more than a multiple of 8.</p>
+</section>
+
+<div class="sheet-nav"><a href="a16-how-precise.html">← Previous</a><a href="b2-counterexamples.html">Next: One counterexample is enough →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

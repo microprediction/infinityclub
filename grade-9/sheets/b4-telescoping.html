@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sums that collapse · Infinity Club</title>
+<meta name="description" content="Write each term of a sum as a difference and the middle cancels, like a telescope closing. A sum of ninety-nine fractions becomes one subtraction.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 9</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 9 · Around the corner · 4</div>
+  <h1>Sums that collapse</h1>
+  <p class="teaser">Write each term as a difference and the middle cancels, like a telescope closing. A sum of ninety-nine fractions becomes one subtraction.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Add these: \(\dfrac{1}{1 \times 2} + \dfrac{1}{2 \times 3} + \dfrac{1}{3 \times 4} + \dots + \dfrac{1}{99 \times 100}\). Ninety-nine fractions, and a common denominator would be enormous. Look at one term instead. \(\tfrac12 - \tfrac13 = \tfrac{3 - 2}{6} = \tfrac16\), which is \(\tfrac{1}{2 \times 3}\). The same thing happens every time:</p>
+\[\frac1n - \frac1{n+1} = \frac{(n+1) - n}{n(n+1)} = \frac{1}{n(n+1)}.\]
+<p>So rewrite every term as a difference:</p>
+\[\left(1 - \tfrac12\right) + \left(\tfrac12 - \tfrac13\right) + \left(\tfrac13 - \tfrac14\right) + \dots + \left(\tfrac1{99} - \tfrac1{100}\right).\]
+<p>The \(-\tfrac12\) meets a \(+\tfrac12\). The \(-\tfrac13\) meets a \(+\tfrac13\). Everything in the middle cancels. Only the two ends survive: \(1 - \tfrac1{100} = \tfrac{99}{100}\). This is a <b>telescoping sum</b>, named after a spyglass that slides shut until only its ends show.</p>
+<figure><svg viewBox="0 0 480 92" width="480" height="92" role="img" aria-label="A bar from 0 to 1. Pieces of length one half, one sixth, one twelfth and one twentieth are laid end to end and reach four fifths. The gap left before 1 is one fifth." font-family="Nunito, sans-serif" font-size="12">
+<rect x="24" y="30" width="215" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="131.5" y="47" text-anchor="middle" fill="#3f44c9">1/2</text>
+<rect x="239" y="30" width="71.7" height="26" fill="#fde8c4" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="274.8" y="47" text-anchor="middle" fill="#3f44c9">1/6</text>
+<rect x="310.7" y="30" width="35.8" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="328.6" y="47" text-anchor="middle" fill="#3f44c9">1/12</text>
+<rect x="346.5" y="30" width="21.5" height="26" fill="#fde8c4" stroke="#3f44c9" stroke-width="1.5"/>
+<line x1="357.2" y1="30" x2="357.2" y2="20" stroke="#3f44c9" stroke-width="1"/><text x="357.2" y="15" text-anchor="middle" fill="#3f44c9">1/20</text>
+<rect x="368" y="30" width="86" height="26" fill="none" stroke="#999" stroke-width="1.5" stroke-dasharray="4 3"/>
+<text x="411" y="47" text-anchor="middle" fill="#999">gap 1/5</text>
+<line x1="24" y1="56" x2="24" y2="62" stroke="#000" stroke-width="1"/><text x="24" y="74" text-anchor="middle">0</text>
+<line x1="239" y1="56" x2="239" y2="62" stroke="#000" stroke-width="1"/><text x="239" y="74" text-anchor="middle">1/2</text>
+<line x1="310.7" y1="56" x2="310.7" y2="62" stroke="#000" stroke-width="1"/><text x="310.7" y="74" text-anchor="middle">2/3</text>
+<line x1="346.5" y1="56" x2="346.5" y2="62" stroke="#000" stroke-width="1"/><text x="346.5" y="74" text-anchor="middle">3/4</text>
+<line x1="368" y1="56" x2="368" y2="76" stroke="#000" stroke-width="1"/><text x="368" y="88" text-anchor="middle">4/5</text>
+<line x1="454" y1="56" x2="454" y2="62" stroke="#000" stroke-width="1"/><text x="454" y="74" text-anchor="middle">1</text>
+</svg><figcaption>Four terms laid end to end reach \(\tfrac45\). After \(n\) terms the gap left is \(\tfrac{1}{n+1}\).</figcaption></figure>
+<p class="callout">If each term is (one thing) − (the next thing), the whole sum is first − last.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: a gap of 2</h2>
+<p>Find \(\dfrac{1}{1 \times 3} + \dfrac{1}{3 \times 5} + \dfrac{1}{5 \times 7} + \dots + \dfrac{1}{99 \times 101}\). Try the same split: \(1 - \tfrac13 = \tfrac23\). That is twice \(\tfrac{1}{1 \times 3}\), not once. In general \(\dfrac1n - \dfrac1{n+2} = \dfrac{2}{n(n+2)}\), so each term is half a difference:</p>
+\[\tfrac12\left[\left(1 - \tfrac13\right) + \left(\tfrac13 - \tfrac15\right) + \dots + \left(\tfrac1{99} - \tfrac1{101}\right)\right] = \tfrac12\left(1 - \tfrac1{101}\right) = \tfrac{50}{101}.\]
+<p class="small">Next year: what happens when the sum never stops, in <a href="../../grade-10/sheets/b12-infinite-series.html">Adding up forever</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>(a) Check by subtracting that \(\tfrac13 - \tfrac14 = \tfrac1{12}\) and \(\tfrac14 - \tfrac15 = \tfrac1{20}\). (b) Find \(\dfrac{1}{1 \times 2} + \dfrac{1}{2 \times 3} + \dots + \dfrac{1}{9 \times 10}\) as a single fraction.<div class="space short"></div></li>
+<li>This sum starts in the middle. Find \(\dfrac{1}{10 \times 11} + \dfrac{1}{11 \times 12} + \dots + \dfrac{1}{19 \times 20}\).<div class="space short"></div></li>
+<li>Products can collapse too. (a) Write \(1 - \tfrac12\), \(1 - \tfrac13\) and \(1 - \tfrac14\) as single fractions. (b) Find \(\left(1 - \tfrac12\right)\left(1 - \tfrac13\right)\left(1 - \tfrac14\right) \cdots \left(1 - \tfrac1{100}\right)\).<div class="space"></div></li>
+<li>(a) Write \(\dfrac1n - \dfrac1{n+3}\) as a single fraction. (b) Use it to find \(\dfrac{1}{1 \times 4} + \dfrac{1}{4 \times 7} + \dfrac{1}{7 \times 10} + \dots + \dfrac{1}{28 \times 31}\).<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: square roots that collapse</h2>
+<p>Expand \(\left(\sqrt{n+1} + \sqrt{n}\right)\left(\sqrt{n+1} - \sqrt{n}\right)\). Use the result to write \(\dfrac{1}{\sqrt{n} + \sqrt{n+1}}\) as a difference, then find</p>
+\[\frac{1}{\sqrt1 + \sqrt2} + \frac{1}{\sqrt2 + \sqrt3} + \dots + \frac{1}{\sqrt{99} + \sqrt{100}}.\]
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(\tfrac13 - \tfrac14 = \tfrac{4 - 3}{12} = \tfrac1{12}\) and \(\tfrac14 - \tfrac15 = \tfrac{5 - 4}{20} = \tfrac1{20}\). (b) \(\left(1 - \tfrac12\right) + \left(\tfrac12 - \tfrac13\right) + \dots + \left(\tfrac19 - \tfrac1{10}\right) = 1 - \tfrac1{10} = \tfrac9{10}\).</li>
+<li>\(\left(\tfrac1{10} - \tfrac1{11}\right) + \left(\tfrac1{11} - \tfrac1{12}\right) + \dots + \left(\tfrac1{19} - \tfrac1{20}\right) = \tfrac1{10} - \tfrac1{20} = \tfrac1{20}\). First minus last still works; the first is now \(\tfrac1{10}\).</li>
+<li>(a) \(\tfrac12\), \(\tfrac23\), \(\tfrac34\). (b) \(\tfrac12 \times \tfrac23 \times \tfrac34 \times \dots \times \tfrac{99}{100}\). Each numerator cancels the denominator before it, leaving \(\tfrac1{100}\).</li>
+<li>(a) \(\dfrac{(n + 3) - n}{n(n + 3)} = \dfrac{3}{n(n + 3)}\). (b) Each term is a third of a difference, so the sum is \(\tfrac13\left[\left(1 - \tfrac14\right) + \left(\tfrac14 - \tfrac17\right) + \dots + \left(\tfrac1{28} - \tfrac1{31}\right)\right] = \tfrac13\left(1 - \tfrac1{31}\right) = \tfrac13 \times \tfrac{30}{31} = \tfrac{10}{31}\).</li>
+</ol>
+<p><b>Stretch.</b> By the difference of two squares the product is \((n + 1) - n = 1\). So \(\dfrac{1}{\sqrt{n} + \sqrt{n+1}} = \sqrt{n+1} - \sqrt{n}\). The sum is \(\left(\sqrt2 - \sqrt1\right) + \left(\sqrt3 - \sqrt2\right) + \dots + \left(\sqrt{100} - \sqrt{99}\right) = \sqrt{100} - \sqrt1 = 10 - 1 = 9\).</p>
+</section>
+
+<div class="sheet-nav"><a href="b3-n-cubed-minus-n.html">← Previous</a><a href="b5-missing-square.html">Next: The puzzle where 64 = 65 →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

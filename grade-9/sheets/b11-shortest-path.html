@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How a map app finds the shortest route · Infinity Club</title>
+<meta name="description" content="Dijkstra's method for the shortest route: always settle the nearest unsettled place next. Run it by hand on a small map and see why it never has to go back.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 9</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 9 · Around the corner · 11</div>
+  <h1>How a map app finds the shortest route</h1>
+  <p class="teaser">Dijkstra's method: always settle the nearest unsettled place next. Run it by hand on a small map and see why it never has to go back.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A map app cannot try every route: there are far too many. It uses a method found by the Dutch computer scientist Edsger Dijkstra in the 1950s.</p>
+<p>Give every place a <b>label</b>: the shortest distance from the start found so far. The start gets 0. The rest get \(\infty\), meaning "no route yet". Then repeat two steps.</p>
+<p class="callout"><b>1.</b> Of the places not yet settled, pick the one with the smallest label. <b>Settle</b> it: that label is final.<br><b>2.</b> For each road from it to an unsettled place, add the road's length to its label. If the total beats that place's label, replace the label.<br>Stop when the destination is settled.</p>
+<p>Why is the smallest label final? Any other route to that place must leave the settled places somewhere. Its first stop outside them is an unsettled place whose label is already at least as big. The rest of the route can only add length, because no road is shorter than zero. So no detour can win, and the method never has to go back.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: from A to F</h2>
+<figure style="float:right;width:340px;margin:0 0 .4em 1em"><svg viewBox="0 0 450 200" width="340" height="151" role="img" aria-label="A map of six places A to F joined by eight roads with lengths: A to B 4, A to C 2, B to C 1, B to D 5, C to E 7, D to E 2, D to F 6, E to F 3" font-family="Nunito, sans-serif" font-size="13">
+<line x1="30" y1="100" x2="150" y2="30" stroke="#000" stroke-width="1.5"/><line x1="30" y1="100" x2="150" y2="170" stroke="#000" stroke-width="1.5"/><line x1="150" y1="30" x2="150" y2="170" stroke="#000" stroke-width="1.5"/><line x1="150" y1="30" x2="300" y2="30" stroke="#000" stroke-width="1.5"/><line x1="150" y1="170" x2="300" y2="170" stroke="#000" stroke-width="1.5"/><line x1="300" y1="30" x2="300" y2="170" stroke="#000" stroke-width="1.5"/><line x1="300" y1="30" x2="420" y2="100" stroke="#000" stroke-width="1.5"/><line x1="300" y1="170" x2="420" y2="100" stroke="#000" stroke-width="1.5"/>
+<circle cx="90" cy="65" r="9" fill="#fff"/><text x="90" y="69.5" text-anchor="middle" fill="#000">4</text><circle cx="90" cy="135" r="9" fill="#fff"/><text x="90" y="139.5" text-anchor="middle" fill="#000">2</text><circle cx="150" cy="100" r="9" fill="#fff"/><text x="150" y="104.5" text-anchor="middle" fill="#000">1</text><circle cx="225" cy="30" r="9" fill="#fff"/><text x="225" y="34.5" text-anchor="middle" fill="#000">5</text><circle cx="225" cy="170" r="9" fill="#fff"/><text x="225" y="174.5" text-anchor="middle" fill="#000">7</text><circle cx="300" cy="100" r="9" fill="#fff"/><text x="300" y="104.5" text-anchor="middle" fill="#000">2</text><circle cx="360" cy="65" r="9" fill="#fff"/><text x="360" y="69.5" text-anchor="middle" fill="#000">6</text><circle cx="360" cy="135" r="9" fill="#fff"/><text x="360" y="139.5" text-anchor="middle" fill="#000">3</text>
+<circle cx="30" cy="100" r="13" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><text x="30" y="104.5" text-anchor="middle" font-weight="700">A</text><circle cx="150" cy="30" r="13" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><text x="150" y="34.5" text-anchor="middle" font-weight="700">B</text><circle cx="150" cy="170" r="13" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><text x="150" y="174.5" text-anchor="middle" font-weight="700">C</text><circle cx="300" cy="30" r="13" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><text x="300" y="34.5" text-anchor="middle" font-weight="700">D</text><circle cx="300" cy="170" r="13" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><text x="300" y="174.5" text-anchor="middle" font-weight="700">E</text><circle cx="420" cy="100" r="13" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><text x="420" y="104.5" text-anchor="middle" font-weight="700">F</text>
+</svg><figcaption>Six places and eight roads. The numbers are lengths in km.</figcaption></figure>
+<table>
+<tr><th>Settle</th><th>Label</th><th>Roads out of it</th></tr>
+<tr><td>A</td><td>0</td><td>B gets 4. C gets 2.</td></tr>
+<tr><td>C</td><td>2</td><td>B: \(2 + 1 = 3\), beats 4.<br>E gets \(2 + 7 = 9\).</td></tr>
+<tr><td>B</td><td>3</td><td>D gets \(3 + 5 = 8\).</td></tr>
+<tr><td>D</td><td>8</td><td>E: \(8 + 2 = 10\), no: 9 stays.<br>F gets \(8 + 6 = 14\).</td></tr>
+<tr><td>E</td><td>9</td><td>F: \(9 + 3 = 12\), beats 14.</td></tr>
+<tr><td>F</td><td>12</td><td>Done.</td></tr>
+</table>
+<p style="clear:both">The shortest distance from A to F is 12 km. For the route, trace back who gave each final label: F got 12 from E, E got 9 from C, C got 2 from A. The route is A–C–E–F.</p>
+<p class="small">Tap a start and an end, then press Step to settle one town at a time and watch the labels change: <a href="../../demos/dijkstra.html">infinityclub.net/demos/dijkstra.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<p>All four questions use the map above.</p>
+<ol>
+<li>A friend has a simpler rule: from where you stand, always take the shortest road to a place you have not visited. (a) Follow it from A until you reach F. Which route, and how long? (b) At which place did the rule make its mistake?<div class="space short"></div></li>
+<li>Run Dijkstra's method starting from F. Write down the final label of every place, in the order you settle them. What is the shortest route from F to A?<div class="space"></div></li>
+<li>The road C–E is closed. Start from A again. (a) Which labels stay the same, and why? (b) Find the new shortest distance and route to F.<div class="space"></div></li>
+<li>With every road open, a new road is built straight from A to D, a whole number of km long. How long can it be and still make the trip from A to F shorter than 12 km? Say which route the trip then takes.<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: a road that pays you</h2>
+<p>Three places. A–B is 2, A–C is 3, and C–B is \(-2\): a road that pays you back. Run Dijkstra's method from A. With what label is B settled? What is the true shortest distance to B? Which sentence of the argument has failed?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) A–C (2), C–B (1), B–D (5), D–E (2), E–F (3): the route A–C–B–D–E–F, 13 km. (b) At C. The 1 km road to B looked better than the 7 km road to E, but it led to a longer trip. A short next step says nothing about the whole route. Dijkstra's labels measure the whole distance from the start.</li>
+<li>F 0, E 3, D 5 (via E, beating the direct 6), then B 10 and C 10 in either order, then A 12. B is reached through D (\(5 + 5\)) and C through E (\(3 + 7\)). A gets \(10 + 2 = 12\) from C, beating \(10 + 4 = 14\) from B. Route F–E–C–A, the earlier route backwards.</li>
+<li>(a) B (3), C (2) and D (8) stay the same: their shortest routes never used C–E. (b) E can now only be reached through D: \(8 + 2 = 10\). F is \(10 + 3 = 13\), beating \(8 + 6 = 14\). Route A–C–B–D–E–F, 13 km.</li>
+<li>Call the new road \(x\) km. From D the best way on is D–E–F, \(2 + 3 = 5\) km, not D–F, which is 6. So the trip is \(x + 5\), and \(x + 5 \lt 12\) when \(x \lt 7\). The road can be up to 6 km long, and the route is A–D–E–F.</li>
+</ol>
+<p><b>Stretch.</b> Labels after settling A: B 2, C 3. B has the smallest label, so it is settled with 2. But A–C–B is \(3 - 2 = 1\). The sentence "the rest of the route can only add length" failed: a negative road lets a detour through an unsettled place come out shorter. Dijkstra's method needs every length to be zero or more.</p>
+</section>
+
+<div class="sheet-nav"><a href="b10-exam-timetable.html">← Previous</a><a href="b12-cheapest-network.html">Next: The cheapest way to connect everything →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

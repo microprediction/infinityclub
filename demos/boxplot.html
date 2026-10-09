@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Build a box plot · Infinity Club</title>
+<meta name="description" content="Drag up to 15 data points along a number line and watch the five-number summary and the box plot update live, with outliers marked by the 1.5 × IQR rule.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+#plot { touch-action: pan-y; cursor: pointer; user-select: none; -webkit-user-select: none; }
+#plot svg { display: block; max-width: 100%; }
+.controls button { min-height: 44px; }
+.controls button:disabled { opacity: .45; cursor: default; }
+.controls .val { font-family: var(--mono); }
+.mission { max-width: 70ch; margin: -.4rem 0 1rem; }
+.mission p { margin: .3rem 0; }
+.mission summary { cursor: pointer; font-weight: 700; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Build a box plot</h1>
+<p class="explain">Drag any dot left or right along the number line. Tap an empty spot above the line to add a dot, up to 15. The box plot on top redraws as you go, and the five numbers behind it are listed underneath. A dot that turns orange is an outlier.</p>
+<div class="mission">
+<p class="small"><b>Mission.</b> Press <b>Outlier</b>. The dot at 19 is orange. Drag it slowly to the left. Predict the value where it stops being an outlier, then check. What happens to the median while you drag?</p>
+<details class="small"><summary>Answer</summary><p>It turns blue at 14. Here Q1 = 7 and Q3 = 10, so IQR = 3 and the upper fence is 10 + 1.5 × 3 = 14.5. Anything above 14.5 is an outlier. The median stays at 9 the whole time: it only cares about the middle dot, so dragging the largest value around cannot move it.</p></details>
+</div>
+<div class="demo-panel">
+  <div class="controls">
+    <button id="add">Add a dot</button>
+    <button id="remove" class="ghost">Remove selected</button>
+    <button id="clear" class="ghost">Clear</button>
+    <span class="val" id="n"></span>
+  </div>
+  <div class="controls">
+    <span class="small">Try:</span>
+    <button class="alt" data-set="even">Even</button>
+    <button class="alt" data-set="lopsided">Lopsided</button>
+    <button class="alt" data-set="outlier">Outlier</button>
+  </div>
+  <div id="plot"></div>
+  <p class="small">Box: the middle half of the data. Orange line: the median. Dashed lines: the fences. Open orange circles: outliers.</p>
+  <div class="readout" id="info"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>Sort the data. The <b>median</b> is the middle value, or halfway between the middle two. Now split the list into a lower half and an upper half, leaving the median out if the count is odd. The median of the lower half is the <b>lower quartile Q1</b>. The median of the upper half is the <b>upper quartile Q3</b>. With the smallest and largest values, that makes five numbers.</p>
+<p>The box runs from Q1 to Q3, so it holds the middle half of the data. Its width is the <b>interquartile range</b>, IQR = Q3 − Q1. The whiskers reach out to the smallest and largest values that are not outliers.</p>
+<p>The usual rule for an <b>outlier</b>: go 1.5 × IQR below Q1 and 1.5 × IQR above Q3. Those two marks are the fences. Any value outside them is flagged and drawn on its own.</p>
+<p>Press <b>Lopsided</b> and look at the shape. The median sits near the left of the box and the right whisker is long. The plot is showing skew without you reading a single number.</p>
+<p>Some books and calculators find quartiles a slightly different way. This demo uses the median-of-halves method above.</p>
+<p>Sheet: <a href="../grade-9/sheets/a14-box-plots.html">Five numbers that draw a data set</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  var LO = 0, HI = 20, MAXN = 15;
+  function sorted(v) { return v.slice().sort(function (a, b) { return a - b; }); }
+  function median(s) { var n = s.length, m = Math.floor(n / 2); return n % 2 ? s[m] : (s[m - 1] + s[m]) / 2; }
+  // Five-number summary. Quartiles are the medians of the two halves; the middle value is left out when n is odd.
+  function fiveNumber(values) {
+    var s = sorted(values), n = s.length;
+    if (n === 0) return null;
+    var h = Math.floor(n / 2), lower = s.slice(0, h), upper = s.slice(n - h), med = median(s);
+    return { n: n, sorted: s, lower: lower, upper: upper, min: s[0], q1: h ? median(lower) : med, median: med, q3: h ? median(upper) : med, max: s[n - 1] };
+  }
+  // 1.5 x IQR rule: fences, the outliers, and where the whiskers stop.
+  function outlierInfo(f) {
+    var iqr = f.q3 - f.q1, lo = f.q1 - 1.5 * iqr, hi = f.q3 + 1.5 * iqr;
+    var inside = f.sorted.filter(function (v) { return v >= lo && v <= hi; });
+    return { iqr: iqr, loFence: lo, hiFence: hi, outliers: f.sorted.filter(function (v) { return v < lo || v > hi; }), whiskLo: inside[0], whiskHi: inside[inside.length - 1] };
+  }
+  function num(v) { var r = Math.round(v * 100) / 100; return (r < 0 ? "−" : "") + String(Math.abs(r)); }
+  var PRESETS = {
+    even: [4, 6, 7, 8, 9, 10, 10, 11, 12, 13, 14, 16],
+    lopsided: [1, 1, 2, 2, 3, 3, 4, 5, 6, 8, 11, 14],
+    outlier: [6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 19]
+  };
+  /*ENDPURE*/
+
+  var host = document.getElementById("plot"), info = document.getElementById("info"), nOut = document.getElementById("n");
+  var addBtn = document.getElementById("add"), remBtn = document.getElementById("remove");
+  var data = PRESETS.even.slice(), sel = -1, G = {}, pos = [];
+
+  function px(v) { return G.mL + (v - LO) * G.ppu; }
+  function draw() {
+    var W = Math.max(240, Math.min(900, host.clientWidth || 320)), mL = 18, ppu = (W - 2 * mL) / (HI - LO), r = Math.max(5, Math.min(9, ppu * 0.46));
+    var counts = {}, most = 0, i;
+    pos = data.map(function (v) { counts[v] = (counts[v] || 0) + 1; most = Math.max(most, counts[v]); return counts[v] - 1; });
+    var boxTop = 22, boxBot = 54, mid = 38, dotsTop = 72, axisY = dotsTop + Math.max(5, most) * 2 * r + 8, H = axisY + 30;
+    G = { mL: mL, ppu: ppu, r: r, axisY: axisY, dotsTop: 62 };
+    var f = fiveNumber(data), o = f ? outlierInfo(f) : null, s = "";
+    function line(x1, y1, x2, y2, col, w, dash) { return '<line x1="' + x1.toFixed(1) + '" y1="' + y1 + '" x2="' + x2.toFixed(1) + '" y2="' + y2 + '" stroke="' + col + '" stroke-width="' + w + '"' + (dash ? ' stroke-dasharray="4 4"' : "") + "/>"; }
+    function isOut(v) { return o && (v < o.loFence || v > o.hiFence); }
+    // axis
+    s += line(px(LO), axisY, px(HI), axisY, "#8a8ca8", 1.5);
+    for (i = LO; i <= HI; i++) {
+      s += line(px(i), axisY, px(i), axisY + (i % 5 === 0 ? 7 : 4), "#8a8ca8", 1);
+      if (i % 5 === 0 || ppu >= 22) s += '<text x="' + px(i).toFixed(1) + '" y="' + (axisY + 21) + '" text-anchor="middle" font-size="12" fill="#5d6079">' + i + "</text>";
+    }
+    if (f) {
+      // fences
+      [o.loFence, o.hiFence].forEach(function (v) { if (v >= LO && v <= HI && o.iqr > 0) s += line(px(v), 8, px(v), axisY, "#999", 1, true); });
+      // whiskers, box, median
+      s += line(px(o.whiskLo), mid, px(f.q1), mid, "#1d1f3a", 1.5) + line(px(f.q3), mid, px(o.whiskHi), mid, "#1d1f3a", 1.5);
+      s += line(px(o.whiskLo), mid - 9, px(o.whiskLo), mid + 9, "#1d1f3a", 1.5) + line(px(o.whiskHi), mid - 9, px(o.whiskHi), mid + 9, "#1d1f3a", 1.5);
+      s += '<rect x="' + px(f.q1).toFixed(1) + '" y="' + boxTop + '" width="' + Math.max(0, px(f.q3) - px(f.q1)).toFixed(1) + '" height="' + (boxBot - boxTop) + '" fill="#dcdcf5" stroke="#3f44c9" stroke-width="2"/>';
+      s += line(px(f.median), boxTop - 3, px(f.median), boxBot + 3, "#f5a524", 4);
+      var seen = {};
+      o.outliers.forEach(function (v) { if (seen[v]) return; seen[v] = 1; s += '<circle cx="' + px(v).toFixed(1) + '" cy="' + mid + '" r="5" fill="#fff" stroke="#f5a524" stroke-width="2.5"/>'; });
+      // number labels above the box, skipping any that would collide
+      var placed = [];
+      [f.median, f.q1, f.q3, f.min, f.max].forEach(function (v) {
+        var x = px(v); if (placed.some(function (p) { return Math.abs(p - x) < 20; })) return;
+        placed.push(x); s += '<text x="' + x.toFixed(1) + '" y="14" text-anchor="middle" font-size="12" font-weight="800" fill="#1d1f3a">' + num(v) + "</text>";
+      });
+    }
+    // dots
+    data.forEach(function (v, k) {
+      var cy = axisY - 8 - r - pos[k] * 2 * r;
+      s += '<circle cx="' + px(v).toFixed(1) + '" cy="' + cy.toFixed(1) + '" r="' + (r - 0.8).toFixed(1) + '" fill="' + (isOut(v) ? "#f5a524" : "#3f44c9") + '" stroke="' + (k === sel ? "#1d1f3a" : "#fff") + '" stroke-width="' + (k === sel ? 3 : 1) + '"/>';
+    });
+    host.innerHTML = '<svg viewBox="0 0 ' + W + " " + H + '" width="' + W + '" height="' + H + '" role="img" aria-label="Dot plot with a box plot above it" font-family="Nunito, sans-serif">' + s + "</svg>";
+
+    nOut.textContent = data.length + " of " + MAXN + " dots";
+    addBtn.disabled = data.length >= MAXN; remBtn.disabled = sel < 0;
+    if (!f) { info.textContent = "No data yet. Tap above the number line, or press Add a dot."; return; }
+    var t = "sorted: " + f.sorted.join(" ");
+    if (f.n > 1) t += "\nlower half: " + f.lower.join(" ") + (f.n % 2 ? "\nmiddle value: " + f.median + " (left out of both halves)" : "") + "\nupper half: " + f.upper.join(" ");
+    t += "\n\nsmallest " + num(f.min) + "\nQ1       " + num(f.q1) + "\nmedian   " + num(f.median) + "\nQ3       " + num(f.q3) + "\nlargest  " + num(f.max)
+      + "\n\nIQR = " + num(f.q3) + " − " + num(f.q1) + " = " + num(o.iqr)
+      + "\n1.5 × IQR = " + num(1.5 * o.iqr)
+      + "\nfences: " + num(f.q1) + " − " + num(1.5 * o.iqr) + " = " + num(o.loFence)
+      + "\n   and  " + num(f.q3) + " + " + num(1.5 * o.iqr) + " = " + num(o.hiFence)
+      + "\n" + (o.outliers.length ? "outlier" + (o.outliers.length > 1 ? "s" : "") + ": " + o.outliers.join(", ") : "no outliers");
+    if (f.n < 4) t += "\n(With fewer than 4 dots the quartiles do not mean much. Add more.)";
+    info.textContent = t;
+  }
+
+  function valueAt(x) { return Math.max(LO, Math.min(HI, Math.round((x - G.mL) / G.ppu) + LO)); }
+  function local(ev) { var b = host.getBoundingClientRect(); return [ev.clientX - b.left, ev.clientY - b.top]; }
+  var dragging = false;
+  host.addEventListener("pointerdown", function (ev) {
+    var p = local(ev), best = -1, bd = 26 * 26;
+    data.forEach(function (v, k) {
+      var dx = p[0] - px(v), dy = p[1] - (G.axisY - 8 - G.r - pos[k] * 2 * G.r), d = dx * dx + dy * dy;
+      if (d < bd) { bd = d; best = k; }
+    });
+    if (best < 0) {
+      if (p[1] < G.dotsTop || data.length >= MAXN) { sel = -1; draw(); return; }
+      data.push(valueAt(p[0])); best = data.length - 1;
+    }
+    sel = best; dragging = true;
+    try { host.setPointerCapture(ev.pointerId); } catch (e) {}
+    draw();
+  });
+  host.addEventListener("pointermove", function (ev) {
+    if (!dragging || sel < 0) return;
+    var v = valueAt(local(ev)[0]);
+    if (v !== data[sel]) { data[sel] = v; draw(); }
+  });
+  function up() { dragging = false; }
+  host.addEventListener("pointerup", up); host.addEventListener("pointercancel", up);
+
+  addBtn.addEventListener("click", function () {
+    if (data.length >= MAXN) return;
+    data.push(LO + Math.floor(Math.random() * (HI - LO + 1))); sel = data.length - 1; draw();
+  });
+  remBtn.addEventListener("click", function () { if (sel < 0) return; data.splice(sel, 1); sel = -1; draw(); });
+  document.getElementById("clear").addEventListener("click", function () { data = []; sel = -1; draw(); });
+  Array.prototype.forEach.call(document.querySelectorAll("[data-set]"), function (btn) {
+    btn.addEventListener("click", function () { data = PRESETS[btn.getAttribute("data-set")].slice(); sel = -1; draw(); });
+  });
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(draw, 120); });
+  draw();
+})();
+</script>
+</body>
+</html>

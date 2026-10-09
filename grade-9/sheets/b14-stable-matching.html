@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Matching without regrets · Infinity Club</title>
+<meta name="description" content="Pair applicants with schools so that no applicant and school would both rather have each other. A round of proposals always finds such a matching.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 9</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 9 · Around the corner · 14</div>
+  <h1>Matching without regrets</h1>
+  <p class="teaser">Pair applicants with schools so that no applicant and school would both rather have each other. A simple round of proposals always finds such a matching.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Applicants A, B and C want places at schools X, Y and Z. Each school has one place. Everyone ranks the other side, best first.</p>
+<p class="callout">A: X, Y, Z &nbsp;&nbsp; B: Z, X, Y &nbsp;&nbsp; C: Z, X, Y<br>X: B, C, A &nbsp;&nbsp; Y: B, C, A &nbsp;&nbsp; Z: A, B, C</p>
+<p>Try A–X, B–Y, C–Z. B would rather have Z, and Z would rather have B than C. Those two will make their own deal, and the plan falls apart. A matching is <b>stable</b> when no applicant and school both prefer each other to what they got.</p>
+<figure><svg viewBox="0 0 500 150" width="500" height="150" role="img" aria-label="Left: the matching A with X, B with Y, C with Z, with a dashed line joining B and Z, who both prefer each other. Right: the stable matching A with Y, B with Z, C with X." font-family="Nunito, sans-serif" font-size="13">
+<line x1="78" y1="28" x2="168" y2="28" stroke="#000" stroke-width="2.5"/>
+<line x1="78" y1="68" x2="168" y2="68" stroke="#000" stroke-width="2.5"/>
+<line x1="78" y1="108" x2="168" y2="108" stroke="#000" stroke-width="2.5"/>
+<line x1="78" y1="68" x2="168" y2="108" stroke="#f5a524" stroke-width="2.5" stroke-dasharray="6 4"/>
+<circle cx="78" cy="28" r="12" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><text x="78" y="32.5" text-anchor="middle" font-weight="800">A</text><text x="60" y="32.5" text-anchor="end" fill="#999" font-size="12">X Y Z</text>
+<circle cx="78" cy="68" r="12" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><text x="78" y="72.5" text-anchor="middle" font-weight="800">B</text><text x="60" y="72.5" text-anchor="end" fill="#999" font-size="12">Z X Y</text>
+<circle cx="78" cy="108" r="12" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><text x="78" y="112.5" text-anchor="middle" font-weight="800">C</text><text x="60" y="112.5" text-anchor="end" fill="#999" font-size="12">Z X Y</text>
+<rect x="156" y="16" width="24" height="24" rx="3" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/><text x="168" y="32.5" text-anchor="middle" font-weight="800">X</text><text x="186" y="32.5" fill="#999" font-size="12">B C A</text>
+<rect x="156" y="56" width="24" height="24" rx="3" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/><text x="168" y="72.5" text-anchor="middle" font-weight="800">Y</text><text x="186" y="72.5" fill="#999" font-size="12">B C A</text>
+<rect x="156" y="96" width="24" height="24" rx="3" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/><text x="168" y="112.5" text-anchor="middle" font-weight="800">Z</text><text x="186" y="112.5" fill="#999" font-size="12">A B C</text>
+<text x="123.0" y="143" text-anchor="middle" font-weight="700">not stable</text>
+<line x1="333" y1="28" x2="423" y2="68" stroke="#3f44c9" stroke-width="2.5"/>
+<line x1="333" y1="68" x2="423" y2="108" stroke="#3f44c9" stroke-width="2.5"/>
+<line x1="333" y1="108" x2="423" y2="28" stroke="#3f44c9" stroke-width="2.5"/>
+<circle cx="333" cy="28" r="12" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><text x="333" y="32.5" text-anchor="middle" font-weight="800">A</text><text x="315" y="32.5" text-anchor="end" fill="#999" font-size="12">X Y Z</text>
+<circle cx="333" cy="68" r="12" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><text x="333" y="72.5" text-anchor="middle" font-weight="800">B</text><text x="315" y="72.5" text-anchor="end" fill="#999" font-size="12">Z X Y</text>
+<circle cx="333" cy="108" r="12" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><text x="333" y="112.5" text-anchor="middle" font-weight="800">C</text><text x="315" y="112.5" text-anchor="end" fill="#999" font-size="12">Z X Y</text>
+<rect x="411" y="16" width="24" height="24" rx="3" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/><text x="423" y="32.5" text-anchor="middle" font-weight="800">X</text><text x="441" y="32.5" fill="#999" font-size="12">B C A</text>
+<rect x="411" y="56" width="24" height="24" rx="3" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/><text x="423" y="72.5" text-anchor="middle" font-weight="800">Y</text><text x="441" y="72.5" fill="#999" font-size="12">B C A</text>
+<rect x="411" y="96" width="24" height="24" rx="3" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/><text x="423" y="112.5" text-anchor="middle" font-weight="800">Z</text><text x="441" y="112.5" fill="#999" font-size="12">A B C</text>
+<text x="378.0" y="143" text-anchor="middle" font-weight="700">stable</text>
+</svg><figcaption>Grey letters are each one's ranking, best first. Left: B and Z (dashed) would both rather have each other. Right: no such pair.</figcaption></figure>
+<p>Here is a method that always finds one. In each round, every applicant without a place <b>proposes</b> to the best school that has not rejected them. Each school holds on to the best offer it has seen so far and rejects the rest. Stop when nobody is rejected.</p>
+<p>Why is the result stable? Suppose an applicant prefers some school S to the one they ended with. They proposed to S earlier, and S turned them down for someone it likes more. A school only ever trades up. So S does not want them back.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: three rounds</h2>
+<p><b>Round 1.</b> A proposes to X. B and C both propose to Z. Z prefers B, so it holds B and rejects C.</p>
+<p><b>Round 2.</b> C proposes to its next choice, X. X is holding A but prefers C, so it holds C and rejects A.</p>
+<p><b>Round 3.</b> A proposes to Y, which has no other offer. Nobody is rejected. Stop: A–Y, B–Z, C–X.</p>
+<p>Check. B has its first choice. A prefers only X, but X prefers C. C prefers only Z, but Z prefers B. Stable.</p>
+<p class="small">Step through the rounds, or build a matching and see its unstable pairs: <a href="../../demos/matching.html">infinityclub.net/demos/matching.html</a>. The method is due to David Gale and Lloyd Shapley. Versions of it place new doctors in hospitals.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>(a) The matching A–X, B–Y, C–Z has a second pair who both prefer each other. Find it. (b) Find such a pair in A–X, B–Z, C–Y.<div class="space short"></div></li>
+<li>Now let the <em>schools</em> propose, and let each applicant hold the best offer so far. Run the rounds. Which matching do you get?<div class="space"></div></li>
+<li>Compare the matching from the example with your answer to question 2. Both are stable. (a) Which one does each applicant prefer? (b) Which does each school prefer? (c) Which side would you rather be on: proposing, or receiving?<div class="space short"></div></li>
+<li>(a) Why does no applicant ever propose to the same school twice? (b) With 3 applicants and 3 schools, what is the largest number of proposals there could possibly be? With \(n\) of each? (c) Why does that prove the method always stops?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: when there are no two sides</h2>
+<p>Four students must pair up to share two rooms. A ranks the others B, C, D. B ranks them C, A, D. C ranks them A, B, D. There are only three ways to split four people into two pairs. Show that each one contains two students who would both rather share with each other.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) B and X. B prefers X to Y, and X prefers B to A. (b) C and X. C prefers X to Y, and X prefers C to A.</li>
+<li>Round 1: X and Y both propose to B, and Z proposes to A. B prefers X, so B holds X and rejects Y. Round 2: Y proposes to C. Nobody is rejected. Result: A–Z, B–X, C–Y.</li>
+<li>(a) A gets Y or Z and prefers Y. B gets Z or X and prefers Z. C gets X or Y and prefers X. Every applicant prefers the matching where applicants proposed. (b) X gets C or B and prefers B. Y gets A or C and prefers C. Z gets B or A and prefers A. Every school prefers the matching where schools proposed. (c) Proposing. The side that proposes starts at the top of its own lists and works down only when forced.</li>
+<li>(a) An applicant proposes again only after a rejection, and then moves to the next school down the list, never back up. (b) Each applicant can propose to each school at most once: at most \(3 \times 3 = 9\) proposals, and \(n^2\) in general. (c) Every round except the last contains a rejection, and each rejection is followed by a new proposal. The supply of proposals is limited, so the rounds must run out. (Here it took 5 proposals.)</li>
+</ol>
+<p><b>Stretch.</b> A–B with C–D: B and C. B ranks C first, and C prefers B to D. A–C with B–D: A and B. A ranks B first, and B prefers A to D. A–D with B–C: A and C. C ranks A first, and A prefers C to D. So no stable pairing exists, whatever D thinks. Whoever is left with D is always wanted by somebody else. Having two sides is what makes the proposal method work.</p>
+</section>
+
+<div class="sheet-nav"><a href="b13-travelling-salesman.html">← Previous</a><a href="b15-climbing-stairs.html">Next: How many ways up the stairs? →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

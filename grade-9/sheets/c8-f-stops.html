@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why camera settings go 2, 2.8, 4, 5.6 · Infinity Club</title>
+<meta name="description" content="Each step on a lens halves the light. The f-numbers are powers of √2, because the light depends on the area of the opening.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 9</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 9 · Connections · 8</div>
+  <h1>Why camera settings go 2, 2.8, 4, 5.6</h1>
+  <p class="teaser">Each step halves the light. The numbers are powers of √2, because the light depends on the area of the opening.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A camera lens has a round opening that can be made wider or narrower, called the <b>aperture</b>. Its size is given as an <b>f-number</b> \(N\): the focal length \(f\) of the lens (a fixed length, such as 50 mm) divided by the diameter \(d\) of the opening. So \(d = f/N\), and the setting is written f/4. A bigger f-number means a smaller hole.</p>
+<p>The light that gets through depends on the <em>area</em> of the opening, and area goes with the diameter squared.</p>
+<p class="callout">Light let in is proportional to \(d^2\), so to \(\dfrac{1}{N^2}\).</p>
+<p>Photographers want each step, called a <b>stop</b>, to halve the light. Halving the diameter would cut the area to a quarter. To halve the area, divide the diameter by \(\sqrt2\), which means multiplying \(N\) by \(\sqrt2\).</p>
+<figure><svg viewBox="0 0 370 130" width="350" height="123" role="img" aria-label="Five circles shrinking from left to right, labelled f/2, f/2.8, f/4, f/5.6 and f/8. Each has half the area of the one before" font-family="Nunito, sans-serif" font-size="13">
+<g fill="#dcdcf5" stroke="#3f44c9" stroke-width="2"><circle cx="50" cy="50" r="40"/><circle cx="148.3" cy="50" r="28.3"/><circle cx="226.6" cy="50" r="20"/><circle cx="290.7" cy="50" r="14.1"/><circle cx="344.8" cy="50" r="10"/></g>
+<g text-anchor="middle" font-weight="700"><text x="50" y="108">f/2</text><text x="148.3" y="108">f/2.8</text><text x="226.6" y="108">f/4</text><text x="290.7" y="108">f/5.6</text><text x="344.8" y="108">f/8</text></g>
+<g text-anchor="middle" fill="#3f44c9" font-size="12"><text x="50" y="124">light 1</text><text x="148.3" y="124">1/2</text><text x="226.6" y="124">1/4</text><text x="290.7" y="124">1/8</text><text x="344.8" y="124">1/16</text></g>
+</svg><figcaption>The opening at five settings, to scale. Each circle has half the area of the one on its left.</figcaption></figure>
+<p>Start at 1 and keep multiplying by \(\sqrt2\): 1.41, 2, 2.83, 4, 5.66, 8, 11.3, 16. Rounded, that is the scale on a lens: <b>1.4, 2, 2.8, 4, 5.6, 8, 11, 16</b>. Every second number doubles, because \(\sqrt2 \times \sqrt2 = 2\).</p>
+</section>
+
+<section class="example">
+<h2>Watch one: a 50 mm lens</h2>
+<p>At f/2 the opening is \(50 \div 2 = 25\) mm across. Its area is \(\pi \times 12.5^2 \approx 491\) mm².</p>
+<p>One stop on is f/2.8, which is really \(2\sqrt2\). The diameter is \(25 \div \sqrt2 \approx 17.7\) mm and the area is \(\pi \times 8.84^2 \approx 245\) mm²: half.</p>
+<p>At f/4 the diameter is 12.5 mm and the area about 123 mm²: a quarter. Check with the rule: \(N\) doubled from 2 to 4, and \(1/2^2 = \tfrac14\).</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>(a) Work out \((\sqrt2)^n\) for \(n = 1\) to 8, to 2 decimal places. Which number on the lens scale is not what correct rounding would give? (b) Find the next two stops after f/16.<div class="space short"></div></li>
+<li>A lens has focal length 100 mm. (a) How wide is the opening at f/4 and at f/8? (b) How many times as much light does f/4 let in? How many stops apart are they?<div class="space short"></div></li>
+<li>(a) How many times as much light does f/2 let in as f/16? How many stops is that? (b) The total light in a photo is the light let in each second times the time the shutter stays open. A photo is right at f/4 for \(\tfrac{1}{500}\) s. What time gives the same total at f/8?<div class="space short"></div></li>
+<li>A 50 mm lens and a 200 mm lens are both set to f/4. (a) Find each opening's diameter. (b) How many times the area is the larger opening? (c) The 200 mm lens makes everything in the picture 4 times as wide and 4 times as tall. Why are the two pictures equally bright?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: thirds of a stop</h2>
+<p>Many cameras click in thirds of a stop: three equal multiplying steps take \(N\) from one full stop to the next. What does each click multiply \(N\) by? Find the two settings between f/4 and f/5.6.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) 1.41, 2, 2.83, 4, 5.66, 8, 11.31, 16. To two figures 5.66 rounds to 5.7, but lenses are marked 5.6. The others round as marked. (b) \(16\sqrt2 \approx 22.6\), marked f/22, then f/32.</li>
+<li>(a) \(100/4 = 25\) mm and \(100/8 = 12.5\) mm. (b) The diameter is twice as big, so the area and the light are \(2^2 = 4\) times as much. Two stops, since each stop is a factor of 2.</li>
+<li>(a) \(N\) is 8 times bigger, so the light ratio is \(8^2 = 64 = 2^6\): six stops. Count them: 2, 2.8, 4, 5.6, 8, 11, 16. (b) f/8 lets in a quarter of the light each second, so the shutter must stay open 4 times as long: \(\tfrac{4}{500} = \tfrac{1}{125}\) s.</li>
+<li>(a) \(50/4 = 12.5\) mm and \(200/4 = 50\) mm. (b) The diameter is 4 times as big, so the area is 16 times as big. (c) The long lens collects 16 times the light but spreads it over \(4 \times 4 = 16\) times the area. The light on each bit of the picture is the same. That is why photographers quote \(N\) and not the diameter: equal f-numbers give equal brightness on any lens.</li>
+</ol>
+<p><b>Stretch.</b> Call the multiplier \(m\). Three clicks make one stop, so \(m^3 = \sqrt2 \approx 1.414\), and the cube root gives \(m \approx 1.122\). (Since \(m^6 = 2\), it is the sixth root of 2.) From 4: \(4 \times 1.122 \approx 4.49\) and \(4.49 \times 1.122 \approx 5.04\), then 5.66. Cameras show f/4.5 and f/5.0.</p>
+</section>
+
+<div class="sheet-nav"><a href="c7-malthus.html">← Previous</a><a href="../index.html#sheets">← All sheets</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

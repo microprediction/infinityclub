@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A universe with four rules · Infinity Club</title>
+<meta name="description" content="In the Game of Life, cells on a grid live or die by counting neighbours. Four rules give still lifes, blinkers, and a glider that walks across the grid.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 9</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 9 · Around the corner · 16</div>
+  <h1>A universe with four rules</h1>
+  <p class="teaser">Cells on a grid live or die by counting neighbours. From that come still lifes, blinkers, and a glider that walks.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Take a huge sheet of squared paper. Each square is a <b>cell</b>, either alive (filled in) or dead (empty). Every cell has eight <b>neighbours</b>: the squares that touch it, corners included. Time moves in steps. At each step, count the live neighbours of every cell and apply four rules.</p>
+<p class="callout">A live cell with fewer than 2 live neighbours dies.<br>A live cell with 2 or 3 lives on.<br>A live cell with more than 3 dies.<br>A dead cell with exactly 3 comes alive.</p>
+<p>All cells change at the same moment. Do all the counting on the old grid, then draw the new one. That is the whole of the <b>Game of Life</b>, invented by the mathematician John Conway. It has no players. You choose the starting pattern and the rules do the rest.</p>
+<figure><svg viewBox="0 0 480 122" width="440" height="112" role="img" aria-label="Five grids showing a glider at the start and after 1, 2, 3 and 4 steps. After 4 steps it has the starting shape again, moved one square right and one square down." font-family="Nunito, sans-serif" font-size="13">
+<rect x="8" y="36" width="15" height="15" fill="#3f44c9"/>
+<rect x="23" y="36" width="15" height="15" fill="#3f44c9"/>
+<rect x="38" y="21" width="15" height="15" fill="#3f44c9"/>
+<rect x="38" y="36" width="15" height="15" fill="#3f44c9"/>
+<rect x="23" y="6" width="15" height="15" fill="#3f44c9"/>
+<line x1="8" y1="6" x2="8" y2="81" stroke="#999" stroke-width="1"/>
+<line x1="23" y1="6" x2="23" y2="81" stroke="#999" stroke-width="1"/>
+<line x1="38" y1="6" x2="38" y2="81" stroke="#999" stroke-width="1"/>
+<line x1="53" y1="6" x2="53" y2="81" stroke="#999" stroke-width="1"/>
+<line x1="68" y1="6" x2="68" y2="81" stroke="#999" stroke-width="1"/>
+<line x1="83" y1="6" x2="83" y2="81" stroke="#999" stroke-width="1"/>
+<line x1="8" y1="6" x2="83" y2="6" stroke="#999" stroke-width="1"/>
+<line x1="8" y1="21" x2="83" y2="21" stroke="#999" stroke-width="1"/>
+<line x1="8" y1="36" x2="83" y2="36" stroke="#999" stroke-width="1"/>
+<line x1="8" y1="51" x2="83" y2="51" stroke="#999" stroke-width="1"/>
+<line x1="8" y1="66" x2="83" y2="66" stroke="#999" stroke-width="1"/>
+<line x1="8" y1="81" x2="83" y2="81" stroke="#999" stroke-width="1"/>
+<text x="45.5" y="102" text-anchor="middle" font-weight="700">start</text>
+<text x="93.5" y="48.5" text-anchor="middle" fill="#999" font-size="14">→</text>
+<rect x="104" y="21" width="15" height="15" fill="#3f44c9"/>
+<rect x="119" y="36" width="15" height="15" fill="#3f44c9"/>
+<rect x="134" y="21" width="15" height="15" fill="#3f44c9"/>
+<rect x="134" y="36" width="15" height="15" fill="#3f44c9"/>
+<rect x="119" y="51" width="15" height="15" fill="#3f44c9"/>
+<line x1="104" y1="6" x2="104" y2="81" stroke="#999" stroke-width="1"/>
+<line x1="119" y1="6" x2="119" y2="81" stroke="#999" stroke-width="1"/>
+<line x1="134" y1="6" x2="134" y2="81" stroke="#999" stroke-width="1"/>
+<line x1="149" y1="6" x2="149" y2="81" stroke="#999" stroke-width="1"/>
+<line x1="164" y1="6" x2="164" y2="81" stroke="#999" stroke-width="1"/>
+<line x1="179" y1="6" x2="179" y2="81" stroke="#999" stroke-width="1"/>
+<line x1="104" y1="6" x2="179" y2="6" stroke="#999" stroke-width="1"/>
+<line x1="104" y1="21" x2="179" y2="21" stroke="#999" stroke-width="1"/>
+<line x1="104" y1="36" x2="179" y2="36" stroke="#999" stroke-width="1"/>
+<line x1="104" y1="51" x2="179" y2="51" stroke="#999" stroke-width="1"/>
+<line x1="104" y1="66" x2="179" y2="66" stroke="#999" stroke-width="1"/>
+<line x1="104" y1="81" x2="179" y2="81" stroke="#999" stroke-width="1"/>
+<text x="141.5" y="102" text-anchor="middle" font-weight="700">step 1</text>
+<text x="189.5" y="48.5" text-anchor="middle" fill="#999" font-size="14">→</text>
+<rect x="230" y="21" width="15" height="15" fill="#3f44c9"/>
+<rect x="230" y="51" width="15" height="15" fill="#3f44c9"/>
+<rect x="200" y="36" width="15" height="15" fill="#3f44c9"/>
+<rect x="230" y="36" width="15" height="15" fill="#3f44c9"/>
+<rect x="215" y="51" width="15" height="15" fill="#3f44c9"/>
+<line x1="200" y1="6" x2="200" y2="81" stroke="#999" stroke-width="1"/>
+<line x1="215" y1="6" x2="215" y2="81" stroke="#999" stroke-width="1"/>
+<line x1="230" y1="6" x2="230" y2="81" stroke="#999" stroke-width="1"/>
+<line x1="245" y1="6" x2="245" y2="81" stroke="#999" stroke-width="1"/>
+<line x1="260" y1="6" x2="260" y2="81" stroke="#999" stroke-width="1"/>
+<line x1="275" y1="6" x2="275" y2="81" stroke="#999" stroke-width="1"/>
+<line x1="200" y1="6" x2="275" y2="6" stroke="#999" stroke-width="1"/>
+<line x1="200" y1="21" x2="275" y2="21" stroke="#999" stroke-width="1"/>
+<line x1="200" y1="36" x2="275" y2="36" stroke="#999" stroke-width="1"/>
+<line x1="200" y1="51" x2="275" y2="51" stroke="#999" stroke-width="1"/>
+<line x1="200" y1="66" x2="275" y2="66" stroke="#999" stroke-width="1"/>
+<line x1="200" y1="81" x2="275" y2="81" stroke="#999" stroke-width="1"/>
+<text x="237.5" y="102" text-anchor="middle" font-weight="700">step 2</text>
+<text x="285.5" y="48.5" text-anchor="middle" fill="#999" font-size="14">→</text>
+<rect x="311" y="21" width="15" height="15" fill="#3f44c9"/>
+<rect x="326" y="51" width="15" height="15" fill="#3f44c9"/>
+<rect x="326" y="36" width="15" height="15" fill="#3f44c9"/>
+<rect x="341" y="36" width="15" height="15" fill="#3f44c9"/>
+<rect x="311" y="51" width="15" height="15" fill="#3f44c9"/>
+<line x1="296" y1="6" x2="296" y2="81" stroke="#999" stroke-width="1"/>
+<line x1="311" y1="6" x2="311" y2="81" stroke="#999" stroke-width="1"/>
+<line x1="326" y1="6" x2="326" y2="81" stroke="#999" stroke-width="1"/>
+<line x1="341" y1="6" x2="341" y2="81" stroke="#999" stroke-width="1"/>
+<line x1="356" y1="6" x2="356" y2="81" stroke="#999" stroke-width="1"/>
+<line x1="371" y1="6" x2="371" y2="81" stroke="#999" stroke-width="1"/>
+<line x1="296" y1="6" x2="371" y2="6" stroke="#999" stroke-width="1"/>
+<line x1="296" y1="21" x2="371" y2="21" stroke="#999" stroke-width="1"/>
+<line x1="296" y1="36" x2="371" y2="36" stroke="#999" stroke-width="1"/>
+<line x1="296" y1="51" x2="371" y2="51" stroke="#999" stroke-width="1"/>
+<line x1="296" y1="66" x2="371" y2="66" stroke="#999" stroke-width="1"/>
+<line x1="296" y1="81" x2="371" y2="81" stroke="#999" stroke-width="1"/>
+<text x="333.5" y="102" text-anchor="middle" font-weight="700">step 3</text>
+<text x="381.5" y="48.5" text-anchor="middle" fill="#999" font-size="14">→</text>
+<rect x="422" y="21" width="15" height="15" fill="#3f44c9"/>
+<rect x="422" y="51" width="15" height="15" fill="#3f44c9"/>
+<rect x="437" y="51" width="15" height="15" fill="#3f44c9"/>
+<rect x="437" y="36" width="15" height="15" fill="#3f44c9"/>
+<rect x="407" y="51" width="15" height="15" fill="#3f44c9"/>
+<line x1="392" y1="6" x2="392" y2="81" stroke="#999" stroke-width="1"/>
+<line x1="407" y1="6" x2="407" y2="81" stroke="#999" stroke-width="1"/>
+<line x1="422" y1="6" x2="422" y2="81" stroke="#999" stroke-width="1"/>
+<line x1="437" y1="6" x2="437" y2="81" stroke="#999" stroke-width="1"/>
+<line x1="452" y1="6" x2="452" y2="81" stroke="#999" stroke-width="1"/>
+<line x1="467" y1="6" x2="467" y2="81" stroke="#999" stroke-width="1"/>
+<line x1="392" y1="6" x2="467" y2="6" stroke="#999" stroke-width="1"/>
+<line x1="392" y1="21" x2="467" y2="21" stroke="#999" stroke-width="1"/>
+<line x1="392" y1="36" x2="467" y2="36" stroke="#999" stroke-width="1"/>
+<line x1="392" y1="51" x2="467" y2="51" stroke="#999" stroke-width="1"/>
+<line x1="392" y1="66" x2="467" y2="66" stroke="#999" stroke-width="1"/>
+<line x1="392" y1="81" x2="467" y2="81" stroke="#999" stroke-width="1"/>
+<rect x="393.5" y="37.5" width="12" height="12" fill="none" stroke="#f5a524" stroke-width="2" stroke-dasharray="3 2"/>
+<rect x="408.5" y="37.5" width="12" height="12" fill="none" stroke="#f5a524" stroke-width="2" stroke-dasharray="3 2"/>
+<rect x="423.5" y="22.5" width="12" height="12" fill="none" stroke="#f5a524" stroke-width="2" stroke-dasharray="3 2"/>
+<rect x="423.5" y="37.5" width="12" height="12" fill="none" stroke="#f5a524" stroke-width="2" stroke-dasharray="3 2"/>
+<rect x="408.5" y="7.5" width="12" height="12" fill="none" stroke="#f5a524" stroke-width="2" stroke-dasharray="3 2"/>
+<text x="429.5" y="102" text-anchor="middle" font-weight="700">step 4</text>
+<text x="240" y="118" text-anchor="middle" fill="#999" font-size="12">dashed orange: where it started</text>
+</svg><figcaption>The glider. After four steps it is the same shape, one square right and one square down.</figcaption></figure>
+<p>Some patterns never change. They are called <b>still lifes</b>. Some repeat. And one five-cell pattern, the <b>glider</b>, rebuilds itself every four steps, one square further along a diagonal. Nothing in the rules mentions movement.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: the blinker</h2>
+<p>Start with three live cells in a row.</p>
+<figure><svg viewBox="0 0 400 126" width="280" height="88" role="img" aria-label="Left: a five by five grid with three live cells in a horizontal row, and in every cell the number of its live neighbours. The end cells show 1, the middle cell 2, and the cells above and below the middle show 3. Right: the next step, three live cells in a vertical line." font-family="Nunito, sans-serif" font-size="13">
+<rect x="106" y="52" width="22" height="22" fill="#dcdcf5"/>
+<rect x="62" y="52" width="22" height="22" fill="#dcdcf5"/>
+<rect x="84" y="52" width="22" height="22" fill="#dcdcf5"/>
+<line x1="40" y1="8" x2="40" y2="118" stroke="#999" stroke-width="1"/>
+<line x1="62" y1="8" x2="62" y2="118" stroke="#999" stroke-width="1"/>
+<line x1="84" y1="8" x2="84" y2="118" stroke="#999" stroke-width="1"/>
+<line x1="106" y1="8" x2="106" y2="118" stroke="#999" stroke-width="1"/>
+<line x1="128" y1="8" x2="128" y2="118" stroke="#999" stroke-width="1"/>
+<line x1="150" y1="8" x2="150" y2="118" stroke="#999" stroke-width="1"/>
+<line x1="40" y1="8" x2="150" y2="8" stroke="#999" stroke-width="1"/>
+<line x1="40" y1="30" x2="150" y2="30" stroke="#999" stroke-width="1"/>
+<line x1="40" y1="52" x2="150" y2="52" stroke="#999" stroke-width="1"/>
+<line x1="40" y1="74" x2="150" y2="74" stroke="#999" stroke-width="1"/>
+<line x1="40" y1="96" x2="150" y2="96" stroke="#999" stroke-width="1"/>
+<line x1="40" y1="118" x2="150" y2="118" stroke="#999" stroke-width="1"/>
+<text x="51.0" y="23.5" text-anchor="middle" font-weight="400" fill="#000">0</text>
+<text x="51.0" y="45.5" text-anchor="middle" font-weight="400" fill="#000">1</text>
+<text x="51.0" y="67.5" text-anchor="middle" font-weight="400" fill="#000">1</text>
+<text x="51.0" y="89.5" text-anchor="middle" font-weight="400" fill="#000">1</text>
+<text x="51.0" y="111.5" text-anchor="middle" font-weight="400" fill="#000">0</text>
+<text x="73.0" y="23.5" text-anchor="middle" font-weight="400" fill="#000">0</text>
+<text x="73.0" y="45.5" text-anchor="middle" font-weight="400" fill="#000">2</text>
+<text x="73.0" y="67.5" text-anchor="middle" font-weight="800" fill="#3f44c9">1</text>
+<text x="73.0" y="89.5" text-anchor="middle" font-weight="400" fill="#000">2</text>
+<text x="73.0" y="111.5" text-anchor="middle" font-weight="400" fill="#000">0</text>
+<text x="95.0" y="23.5" text-anchor="middle" font-weight="400" fill="#000">0</text>
+<text x="95.0" y="45.5" text-anchor="middle" font-weight="400" fill="#000">3</text>
+<text x="95.0" y="67.5" text-anchor="middle" font-weight="800" fill="#3f44c9">2</text>
+<text x="95.0" y="89.5" text-anchor="middle" font-weight="400" fill="#000">3</text>
+<text x="95.0" y="111.5" text-anchor="middle" font-weight="400" fill="#000">0</text>
+<text x="117.0" y="23.5" text-anchor="middle" font-weight="400" fill="#000">0</text>
+<text x="117.0" y="45.5" text-anchor="middle" font-weight="400" fill="#000">2</text>
+<text x="117.0" y="67.5" text-anchor="middle" font-weight="800" fill="#3f44c9">1</text>
+<text x="117.0" y="89.5" text-anchor="middle" font-weight="400" fill="#000">2</text>
+<text x="117.0" y="111.5" text-anchor="middle" font-weight="400" fill="#000">0</text>
+<text x="139.0" y="23.5" text-anchor="middle" font-weight="400" fill="#000">0</text>
+<text x="139.0" y="45.5" text-anchor="middle" font-weight="400" fill="#000">1</text>
+<text x="139.0" y="67.5" text-anchor="middle" font-weight="400" fill="#000">1</text>
+<text x="139.0" y="89.5" text-anchor="middle" font-weight="400" fill="#000">1</text>
+<text x="139.0" y="111.5" text-anchor="middle" font-weight="400" fill="#000">0</text>
+<text x="200" y="68.0" text-anchor="middle" fill="#999" font-size="16">→</text>
+<rect x="294" y="74" width="22" height="22" fill="#3f44c9"/>
+<rect x="294" y="30" width="22" height="22" fill="#3f44c9"/>
+<rect x="294" y="52" width="22" height="22" fill="#3f44c9"/>
+<line x1="250" y1="8" x2="250" y2="118" stroke="#999" stroke-width="1"/>
+<line x1="272" y1="8" x2="272" y2="118" stroke="#999" stroke-width="1"/>
+<line x1="294" y1="8" x2="294" y2="118" stroke="#999" stroke-width="1"/>
+<line x1="316" y1="8" x2="316" y2="118" stroke="#999" stroke-width="1"/>
+<line x1="338" y1="8" x2="338" y2="118" stroke="#999" stroke-width="1"/>
+<line x1="360" y1="8" x2="360" y2="118" stroke="#999" stroke-width="1"/>
+<line x1="250" y1="8" x2="360" y2="8" stroke="#999" stroke-width="1"/>
+<line x1="250" y1="30" x2="360" y2="30" stroke="#999" stroke-width="1"/>
+<line x1="250" y1="52" x2="360" y2="52" stroke="#999" stroke-width="1"/>
+<line x1="250" y1="74" x2="360" y2="74" stroke="#999" stroke-width="1"/>
+<line x1="250" y1="96" x2="360" y2="96" stroke="#999" stroke-width="1"/>
+<line x1="250" y1="118" x2="360" y2="118" stroke="#999" stroke-width="1"/>
+</svg><figcaption>Left: live cells are shaded, and each number counts live neighbours. Right: one step later.</figcaption></figure>
+<p>The two end cells have 1 live neighbour each, so they die. The middle cell has 2 and lives on. The dead cells just above and just below the middle touch all three live cells, so they come alive. Every other dead cell counts 1 or 2 and stays dead.</p>
+<p>The row has turned upright. One more step turns it back, so the blinker repeats every 2 steps.</p>
+<p class="small">Draw a pattern and press Step or Run: <a href="../../demos/life.html">infinityclub.net/demos/life.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>What is left after one step if you start with (a) a single live cell, (b) two live cells side by side, (c) a <b>block</b>: four live cells in a 2 × 2 square?<div class="space short"></div></li>
+<li>Start with three live cells in an L shape: a block with one corner missing. Draw the next step, and the step after that.<div class="space short"></div></li>
+<li>Start with four live cells in a row. Draw the next two steps. What happens after that?<div class="space short"></div></li>
+<li>Look at the glider. (a) Where is it after 100 steps? (b) A dead cell with no live neighbours stays dead. Use this to explain why no pattern can spread faster than one square per step. How does the glider's speed compare with that limit?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: no way back</h2>
+<p>Find two different patterns that both turn into a block after one step. Then find two different patterns that both turn into an empty grid. What does this tell you about working out the previous step from the present one?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) Nothing. The cell has 0 live neighbours and dies, and no dead cell has 3. (b) Nothing. Each has 1 live neighbour and dies. (c) The same block. Each live cell has 3 live neighbours and lives on, and no dead cell touches more than 2 of them. The block is a still life.</li>
+<li>Each of the three live cells has 2 live neighbours and lives on. The missing corner touches all three, so it comes alive. No other dead cell touches more than 2. The next step is a block, and it stays a block for ever.</li>
+<li>Step 1: the two end cells die (1 neighbour each), the middle two live on (2 each), and the four cells above and below the middle two come alive (3 each). That makes a solid rectangle, 2 wide and 3 high. Step 2: the two cells in its middle row have 5 neighbours and die, the four corners have 3 and live on, and the dead cells just left and right of the middle row touch 3 and come alive. The result is a ring of six cells round two empty ones, called a beehive. Every live cell in it has 2 neighbours and no dead cell has exactly 3, so it is a still life.</li>
+<li>(a) It moves one square right and one square down every 4 steps, so after 100 steps it is 25 squares right and 25 down, in its starting shape. (b) A cell can only come alive if it already touches a live cell. So in one step the live region can grow by at most one square in any direction. The glider covers one diagonal square in 4 steps: a quarter of the limit.</li>
+</ol>
+<p><b>Stretch.</b> A block and the L shape from question 2 both become a block. A single cell, a pair of cells and an empty grid all become an empty grid. So the present does not tell you the past: Life can be run forwards but not backwards. The rules decide the future completely, yet they throw information away at every step.</p>
+</section>
+
+<div class="sheet-nav"><a href="b15-climbing-stairs.html">← Previous</a><a href="b17-logic-gates.html">Next: Adding with switches →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

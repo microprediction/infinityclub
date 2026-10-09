@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Five numbers that draw a data set · Infinity Club</title>
+<meta name="description" content="Smallest, lower quartile, median, upper quartile, largest. A box plot shows centre, spread and skew at a glance, and flags outliers.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 9</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 9 · Sharpen · 14</div>
+  <h1>Five numbers that draw a data set</h1>
+  <p class="teaser">Smallest, lower quartile, median, upper quartile, largest. A box plot shows centre, spread and skew at a glance, and flags outliers.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Sort the data, then cut it into four equal parts.</p>
+<p>The <a href="../../grade-6/sheets/a8-averages.html">median</a> is the middle value, or half way between the middle two. The <b>lower quartile</b> \(Q_1\) is the median of the lower half. The <b>upper quartile</b> \(Q_3\) is the median of the upper half. Add the smallest and largest values: five numbers.</p>
+<p class="callout">This sheet's rule: if the number of values is odd, leave the median out of both halves. Other rules exist and give slightly different quartiles.</p>
+<p>A <b>box plot</b> draws the five numbers. The box runs from \(Q_1\) to \(Q_3\), so it holds the middle half. Its width is the <b>interquartile range</b>, \(\text{IQR} = Q_3 - Q_1\): a measure of spread that one strange value barely affects. Whiskers reach out to the smallest and largest values. A long whisker on one side shows <b>skew</b>.</p>
+<p>A value more than \(1.5 \times \text{IQR}\) beyond the box is flagged as an <b>outlier</b> and drawn as its own point. The whisker then stops at the last value not flagged. A flag means "look at this", not "delete this".</p>
+</section>
+
+<section class="example">
+<h2>Watch one: eleven journeys to school</h2>
+<p>Minutes, sorted: 5, 8, 9, 10, 12, 12, 14, 15, 18, 20, 41.</p>
+<figure><svg viewBox="0 0 510 150" width="510" height="150" role="img" aria-label="Eleven dots on a number line from 0 to 45 minutes with a box plot above. The box runs from 9 to 18 with the median line at 12, whiskers reach to 5 and 20, and 41 is drawn as a separate outlier beyond the fence at 31.5." font-family="Nunito, sans-serif" font-size="12">
+<line x1="20" y1="118" x2="495" y2="118" stroke="#999" stroke-width="1"/>
+<g stroke="#999" stroke-width="1"><line x1="30" y1="118" x2="30" y2="123"/><line x1="80" y1="118" x2="80" y2="123"/><line x1="130" y1="118" x2="130" y2="123"/><line x1="180" y1="118" x2="180" y2="123"/><line x1="230" y1="118" x2="230" y2="123"/><line x1="280" y1="118" x2="280" y2="123"/><line x1="330" y1="118" x2="330" y2="123"/><line x1="380" y1="118" x2="380" y2="123"/><line x1="430" y1="118" x2="430" y2="123"/><line x1="480" y1="118" x2="480" y2="123"/></g>
+<g fill="#555" text-anchor="middle"><text x="30" y="138">0</text><text x="80" y="138">5</text><text x="130" y="138">10</text><text x="180" y="138">15</text><text x="230" y="138">20</text><text x="280" y="138">25</text><text x="330" y="138">30</text><text x="380" y="138">35</text><text x="430" y="138">40</text><text x="480" y="138">45</text></g>
+<line x1="345" y1="22" x2="345" y2="118" stroke="#999" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="350" y="26" fill="#555">fence at 31.5</text>
+<line x1="80" y1="55" x2="120" y2="55" stroke="#3f44c9" stroke-width="1.5"/><line x1="80" y1="47" x2="80" y2="63" stroke="#3f44c9" stroke-width="1.5"/>
+<line x1="210" y1="55" x2="230" y2="55" stroke="#3f44c9" stroke-width="1.5"/><line x1="230" y1="47" x2="230" y2="63" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="120" y="40" width="90" height="30" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<line x1="150" y1="40" x2="150" y2="70" stroke="#f5a524" stroke-width="3"/>
+<circle cx="440" cy="55" r="4.5" fill="#fff" stroke="#f5a524" stroke-width="2"/>
+<text x="440" y="40" text-anchor="middle" fill="#f5a524" font-weight="700">outlier</text>
+<text x="116" y="32" text-anchor="middle" fill="#3f44c9">Q₁</text><text x="153" y="32" text-anchor="middle" fill="#f5a524" font-weight="700">median</text><text x="212" y="32" text-anchor="middle" fill="#3f44c9">Q₃</text>
+<g fill="#000"><circle cx="80" cy="108" r="3.5"/><circle cx="110" cy="108" r="3.5"/><circle cx="120" cy="108" r="3.5"/><circle cx="130" cy="108" r="3.5"/><circle cx="150" cy="108" r="3.5"/><circle cx="150" cy="98" r="3.5"/><circle cx="170" cy="108" r="3.5"/><circle cx="180" cy="108" r="3.5"/><circle cx="210" cy="108" r="3.5"/><circle cx="230" cy="108" r="3.5"/><circle cx="440" cy="108" r="3.5"/></g>
+</svg><figcaption>The dots are the data. The box plot sums them up.</figcaption></figure>
+<p>Eleven values, so the median is the 6th: 12. Leave it out. The lower half 5, 8, 9, 10, 12 has median \(Q_1 = 9\). The upper half 14, 15, 18, 20, 41 has median \(Q_3 = 18\). So \(\text{IQR} = 9\).</p>
+<p>Outliers lie above \(18 + 1.5 \times 9 = 31.5\) or below \(9 - 13.5 = -4.5\). Only 41 does, so the upper whisker stops at 20.</p>
+<p class="small">Drag the points and watch the box move: <a href="../../demos/boxplot.html">infinityclub.net/demos/boxplot.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Find the five-number summary and the IQR of 12, 3, 18, 7, 21, 13, 8, 14. Sort first.<div class="space short"></div></li>
+<li>Nine test marks: 35, 55, 58, 60, 63, 65, 68, 70, 74. (a) Find the five-number summary. (b) Is any mark an outlier by the \(1.5 \times \text{IQR}\) rule? (c) Draw the box plot above the axis.
+<figure><svg viewBox="0 0 460 70" width="460" height="70" role="img" aria-label="An empty number line from 30 to 80 with a tick every 5, for drawing a box plot above it" font-family="Nunito, sans-serif" font-size="12">
+<path d="M20 45 L440 45" stroke="#000" stroke-width="1"/>
+<g stroke="#000" stroke-width="1"><path d="M30 45 L30 51"/><path d="M70 45 L70 49"/><path d="M110 45 L110 51"/><path d="M150 45 L150 49"/><path d="M190 45 L190 51"/><path d="M230 45 L230 49"/><path d="M270 45 L270 51"/><path d="M310 45 L310 49"/><path d="M350 45 L350 51"/><path d="M390 45 L390 49"/><path d="M430 45 L430 51"/></g>
+<g fill="#000" text-anchor="middle"><text x="30" y="65">30</text><text x="110" y="65">40</text><text x="190" y="65">50</text><text x="270" y="65">60</text><text x="350" y="65">70</text><text x="430" y="65">80</text></g>
+</svg></figure><div class="space short"></div></li>
+<li>Two classes sat the same test. Class A's five numbers are 40, 55, 62, 70, 85. Class B's are 50, 58, 62, 64, 72. (a) Which class is more spread out? Give two numbers that show it. (b) A mark of 66 is in the top quarter of one class but not the other. Which, and why?<div class="space"></div></li>
+<li>(a) Write down seven whole numbers whose five-number summary is 3, 6, 10, 12, 18. (b) The 18 is mistyped as 100. Which of the five numbers change? Does the IQR? (c) Is 100 flagged as an outlier? Where does the upper whisker now end?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: trapping the mean</h2>
+<p>A box plot does not show the mean, but it does trap it. Seven numbers have five-number summary 1, 3, 5, 9, 10. What is the smallest their mean could be? The largest?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Sorted: 3, 7, 8, 12, 13, 14, 18, 21. Median \((12 + 13) \div 2 = 12.5\). Lower half 3, 7, 8, 12: \(Q_1 = 7.5\). Upper half 13, 14, 18, 21: \(Q_3 = 16\). Summary 3, 7.5, 12.5, 16, 21. \(\text{IQR} = 8.5\).</li>
+<li>(a) Median 63 (the 5th), left out. Lower half 35, 55, 58, 60: \(Q_1 = 56.5\). Upper half 65, 68, 70, 74: \(Q_3 = 69\). Summary 35, 56.5, 63, 69, 74. (b) \(\text{IQR} = 12.5\) and \(1.5 \times 12.5 = 18.75\), so the fences are at \(56.5 - 18.75 = 37.75\) and \(69 + 18.75 = 87.75\). The mark 35 is below 37.75: an outlier. (c) Box from 56.5 to 69, median line at 63, lower whisker to 55, upper whisker to 74, and a separate point at 35.</li>
+<li>(a) Class A. Its range is \(85 - 40 = 45\) against \(72 - 50 = 22\), and its IQR is \(70 - 55 = 15\) against \(64 - 58 = 6\). The medians are equal, so the centres match and only the spread differs. (b) Class B. There 66 is above \(Q_3 = 64\), so it is in the top quarter. In class A it is below \(Q_3 = 70\).</li>
+<li>(a) In order the numbers are 3, 6, ?, 10, ?, 12, 18: the 2nd is \(Q_1\), the 4th the median, the 6th \(Q_3\). The 3rd can be anything from 6 to 10 and the 5th from 10 to 12, for example 3, 6, 8, 10, 11, 12, 18. (b) Only the largest. \(Q_1\), the median and \(Q_3\) stay, so the IQR is still 6. (c) The fence is at \(12 + 1.5 \times 6 = 21\), so 100 is flagged. The last value not flagged is 12, which is \(Q_3\) itself: there is no upper whisker at all.</li>
+</ol>
+<p><b>Stretch.</b> In order, the 1st, 2nd, 4th, 6th and 7th numbers are fixed at 1, 3, 5, 9, 10. The 3rd lies between 3 and 5 and the 5th between 5 and 9. Smallest total: \(1 + 3 + 3 + 5 + 5 + 9 + 10 = 36\), mean \(36 \div 7 \approx 5.14\). Largest: \(1 + 3 + 5 + 5 + 9 + 9 + 10 = 42\), mean 6.</p>
+</section>
+
+<div class="sheet-nav"><a href="a13-algebraic-fractions.html">← Previous</a><a href="a15-two-way-tables.html">Next: Two questions at once →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

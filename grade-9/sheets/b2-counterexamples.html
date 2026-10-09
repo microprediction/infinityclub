@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>One counterexample is enough · Infinity Club</title>
+<meta name="description" content="n² + n + 41 is prime for n = 0 to 39 and then fails at n = 40. Forty cases are not a proof, and one counterexample is enough to sink a claim.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 9</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 9 · Around the corner · 2</div>
+  <h1>One counterexample is enough</h1>
+  <p class="teaser">n² + n + 41 is prime for n = 0, 1, 2, … 39. Forty cases are not a proof, and n = 40 is why.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Put whole numbers into \(n^2 + n + 41\). Starting from \(n = 0\) you get 41, 43, 47, 53, 61, 71, … Each is prime: no divisors except 1 and itself. It stays that way from \(n = 0\) all the way to \(n = 39\). Forty primes in a row. So is it always prime? Try \(n = 40\):</p>
+\[40^2 + 40 + 41 = 40(40 + 1) + 41 = 40 \times 41 + 41 = 41 \times 41.\]
+<p>Not prime. Forty successes were evidence, not proof.</p>
+<p class="callout">A claim about <em>every</em> number is sunk by one case where it fails. That case is a <b>counterexample</b>. No pile of successes can prove such a claim. Only a reason that covers every case can.</p>
+<p>Here is another trap. Mark points on a circle and join every pair with a straight line. Place the points so that no three lines cross at one spot. Count the regions.</p>
+<figure><svg viewBox="0 0 520 124" width="520" height="124" role="img" aria-label="Six circles with 1, 2, 3, 4, 5 and 6 points marked on the edge and every pair of points joined. The circles are cut into 1, 2, 4, 8, 16 and then 31 regions." font-family="Nunito, sans-serif" font-size="13">
+<circle cx="44" cy="44" r="38" fill="#dcdcf5" stroke="#000" stroke-width="1.5"/>
+<circle cx="81.9" cy="40.7" r="2.5" fill="#000"/>
+<text x="44" y="102" text-anchor="middle" fill="#999">1 point</text>
+<text x="44" y="119" text-anchor="middle" font-weight="800" font-size="14" fill="#000">1</text>
+<circle cx="130.4" cy="44" r="38" fill="#dcdcf5" stroke="#000" stroke-width="1.5"/>
+<line x1="168.3" y1="40.7" x2="92.4" y2="44" stroke="#3f44c9" stroke-width="1"/>
+<circle cx="168.3" cy="40.7" r="2.5" fill="#000"/>
+<circle cx="92.4" cy="44" r="2.5" fill="#000"/>
+<text x="130.4" y="102" text-anchor="middle" fill="#999">2 points</text>
+<text x="130.4" y="119" text-anchor="middle" font-weight="800" font-size="14" fill="#000">2</text>
+<circle cx="216.8" cy="44" r="38" fill="#dcdcf5" stroke="#000" stroke-width="1.5"/>
+<line x1="254.7" y1="40.7" x2="197.8" y2="11.1" stroke="#3f44c9" stroke-width="1"/>
+<line x1="254.7" y1="40.7" x2="203.8" y2="79.7" stroke="#3f44c9" stroke-width="1"/>
+<line x1="197.8" y1="11.1" x2="203.8" y2="79.7" stroke="#3f44c9" stroke-width="1"/>
+<circle cx="254.7" cy="40.7" r="2.5" fill="#000"/>
+<circle cx="197.8" cy="11.1" r="2.5" fill="#000"/>
+<circle cx="203.8" cy="79.7" r="2.5" fill="#000"/>
+<text x="216.8" y="102" text-anchor="middle" fill="#999">3 points</text>
+<text x="216.8" y="119" text-anchor="middle" font-weight="800" font-size="14" fill="#000">4</text>
+<circle cx="303.2" cy="44" r="38" fill="#dcdcf5" stroke="#000" stroke-width="1.5"/>
+<line x1="341.1" y1="40.7" x2="325" y2="12.9" stroke="#3f44c9" stroke-width="1"/>
+<line x1="341.1" y1="40.7" x2="265.2" y2="44" stroke="#3f44c9" stroke-width="1"/>
+<line x1="341.1" y1="40.7" x2="290.2" y2="79.7" stroke="#3f44c9" stroke-width="1"/>
+<line x1="325" y1="12.9" x2="265.2" y2="44" stroke="#3f44c9" stroke-width="1"/>
+<line x1="325" y1="12.9" x2="290.2" y2="79.7" stroke="#3f44c9" stroke-width="1"/>
+<line x1="265.2" y1="44" x2="290.2" y2="79.7" stroke="#3f44c9" stroke-width="1"/>
+<circle cx="341.1" cy="40.7" r="2.5" fill="#000"/>
+<circle cx="325" cy="12.9" r="2.5" fill="#000"/>
+<circle cx="265.2" cy="44" r="2.5" fill="#000"/>
+<circle cx="290.2" cy="79.7" r="2.5" fill="#000"/>
+<text x="303.2" y="102" text-anchor="middle" fill="#999">4 points</text>
+<text x="303.2" y="119" text-anchor="middle" font-weight="800" font-size="14" fill="#000">8</text>
+<circle cx="389.6" cy="44" r="38" fill="#dcdcf5" stroke="#000" stroke-width="1.5"/>
+<line x1="427.5" y1="40.7" x2="411.4" y2="12.9" stroke="#3f44c9" stroke-width="1"/>
+<line x1="427.5" y1="40.7" x2="370.6" y2="11.1" stroke="#3f44c9" stroke-width="1"/>
+<line x1="427.5" y1="40.7" x2="351.6" y2="44" stroke="#3f44c9" stroke-width="1"/>
+<line x1="427.5" y1="40.7" x2="376.6" y2="79.7" stroke="#3f44c9" stroke-width="1"/>
+<line x1="411.4" y1="12.9" x2="370.6" y2="11.1" stroke="#3f44c9" stroke-width="1"/>
+<line x1="411.4" y1="12.9" x2="351.6" y2="44" stroke="#3f44c9" stroke-width="1"/>
+<line x1="411.4" y1="12.9" x2="376.6" y2="79.7" stroke="#3f44c9" stroke-width="1"/>
+<line x1="370.6" y1="11.1" x2="351.6" y2="44" stroke="#3f44c9" stroke-width="1"/>
+<line x1="370.6" y1="11.1" x2="376.6" y2="79.7" stroke="#3f44c9" stroke-width="1"/>
+<line x1="351.6" y1="44" x2="376.6" y2="79.7" stroke="#3f44c9" stroke-width="1"/>
+<circle cx="427.5" cy="40.7" r="2.5" fill="#000"/>
+<circle cx="411.4" cy="12.9" r="2.5" fill="#000"/>
+<circle cx="370.6" cy="11.1" r="2.5" fill="#000"/>
+<circle cx="351.6" cy="44" r="2.5" fill="#000"/>
+<circle cx="376.6" cy="79.7" r="2.5" fill="#000"/>
+<text x="389.6" y="102" text-anchor="middle" fill="#999">5 points</text>
+<text x="389.6" y="119" text-anchor="middle" font-weight="800" font-size="14" fill="#000">16</text>
+<circle cx="476" cy="44" r="38" fill="#fde8c4" stroke="#000" stroke-width="1.5"/>
+<line x1="513.9" y1="40.7" x2="497.8" y2="12.9" stroke="#3f44c9" stroke-width="1"/>
+<line x1="513.9" y1="40.7" x2="457" y2="11.1" stroke="#3f44c9" stroke-width="1"/>
+<line x1="513.9" y1="40.7" x2="438" y2="44" stroke="#3f44c9" stroke-width="1"/>
+<line x1="513.9" y1="40.7" x2="463" y2="79.7" stroke="#3f44c9" stroke-width="1"/>
+<line x1="513.9" y1="40.7" x2="492.1" y2="78.4" stroke="#3f44c9" stroke-width="1"/>
+<line x1="497.8" y1="12.9" x2="457" y2="11.1" stroke="#3f44c9" stroke-width="1"/>
+<line x1="497.8" y1="12.9" x2="438" y2="44" stroke="#3f44c9" stroke-width="1"/>
+<line x1="497.8" y1="12.9" x2="463" y2="79.7" stroke="#3f44c9" stroke-width="1"/>
+<line x1="497.8" y1="12.9" x2="492.1" y2="78.4" stroke="#3f44c9" stroke-width="1"/>
+<line x1="457" y1="11.1" x2="438" y2="44" stroke="#3f44c9" stroke-width="1"/>
+<line x1="457" y1="11.1" x2="463" y2="79.7" stroke="#3f44c9" stroke-width="1"/>
+<line x1="457" y1="11.1" x2="492.1" y2="78.4" stroke="#3f44c9" stroke-width="1"/>
+<line x1="438" y1="44" x2="463" y2="79.7" stroke="#3f44c9" stroke-width="1"/>
+<line x1="438" y1="44" x2="492.1" y2="78.4" stroke="#3f44c9" stroke-width="1"/>
+<line x1="463" y1="79.7" x2="492.1" y2="78.4" stroke="#3f44c9" stroke-width="1"/>
+<circle cx="513.9" cy="40.7" r="2.5" fill="#000"/>
+<circle cx="497.8" cy="12.9" r="2.5" fill="#000"/>
+<circle cx="457" cy="11.1" r="2.5" fill="#000"/>
+<circle cx="438" cy="44" r="2.5" fill="#000"/>
+<circle cx="463" cy="79.7" r="2.5" fill="#000"/>
+<circle cx="492.1" cy="78.4" r="2.5" fill="#000"/>
+<text x="476" y="102" text-anchor="middle" fill="#999">6 points</text>
+<text x="476" y="119" text-anchor="middle" font-weight="800" font-size="14" fill="#f5a524">31</text>
+</svg><figcaption>Regions: 1, 2, 4, 8, 16. Doubling, surely. Then six points give 31, not 32.</figcaption></figure>
+</section>
+
+<section class="example">
+<h2>Watch one: Fermat's guess</h2>
+<p>Fermat studied the numbers \(2^{2^n} + 1\), where the exponent is itself a power of 2.</p>
+<p>\(n = 0, 1, 2, 3, 4\) give \(3,\ 5,\ 17,\ 257,\ 65537\). All prime. He guessed that every number of this kind is prime.</p>
+<p>\(n = 5\) gives \(2^{32} + 1 = 4294967297\), too big to test easily by hand. Euler later found</p>
+\[4294967297 = 641 \times 6700417.\]
+<p>One counterexample, and the guess was finished. Nobody has found another prime of this kind since.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Find a counterexample to each claim. (a) Every prime number is odd. (b) Squaring a number never makes it smaller. (c) If a whole number divides by 4 and by 6, it divides by 24.<div class="space short"></div></li>
+<li>Look at \(n^2 - n + 11\). (a) Work it out for \(n = 1, 2, 3, 4, 5\). Are the answers prime? (b) Without more calculating, name a value of \(n\) for which it is certainly not prime, and say why.<div class="space"></div></li>
+<li>Claim: "if \(p\) is prime, then \(2^p - 1\) is prime." (a) Check it for \(p = 2, 3, 5, 7\). (b) For \(p = 11\) you get 2047. Divide 2047 by 23. What does that do to the claim?<div class="space"></div></li>
+<li>Each claim is about every whole number \(n\). If it is false, give a counterexample. If it is true, give a reason that covers every \(n\). (a) \(n^2 + n\) is even. (b) The sum of three whole numbers in a row is odd. (c) \(n^2 + n + 41\) is odd.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: no formula of this shape works</h2>
+<p>Replace 41 by any whole number \(c\) bigger than 1. Show that \(n^2 + n + c\) cannot be prime for every whole number \(n\). Hint: try \(n = c\) and factor what you get.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) 2 is prime and even. (b) \(\left(\tfrac12\right)^2 = \tfrac14\), which is smaller than \(\tfrac12\). Any number between 0 and 1 works. (c) 12 divides by 4 and by 6 but not by 24. So does 36.</li>
+<li>(a) 11, 13, 17, 23, 31. All prime. (b) \(n = 11\): \(11^2 - 11 + 11 = 11^2 = 121\), which divides by 11. (In fact it is prime for every \(n\) from 0 to 10, then fails.)</li>
+<li>(a) 3, 7, 31, 127. All prime. (b) \(2047 = 23 \times 89\), so it is not prime. 11 is prime, so the claim is false. Four successes and one failure make a false claim.</li>
+<li>(a) True. \(n^2 + n = n(n + 1)\), two whole numbers in a row. One of them is even, so the product is even. (b) False. \(1 + 2 + 3 = 6\). (c) True. By (a), \(n^2 + n\) is even, and an even number plus 41 is odd. Notice that "always odd" is true while "always prime" is false.</li>
+</ol>
+<p><b>Stretch.</b> Put \(n = c\): \(c^2 + c + c = c^2 + 2c = c(c + 2)\). Both factors are bigger than 1, so this is not prime. For \(c = 41\) that is \(n = 41\), giving \(41 \times 43 = 1763\): the formula fails a second time straight after \(n = 40\).</p>
+</section>
+
+<div class="sheet-nav"><a href="b1-proof-with-letters.html">← Previous</a><a href="b3-n-cubed-minus-n.html">Next: Why n³ − n always divides by 6 →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

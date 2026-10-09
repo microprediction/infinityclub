@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Adding versus multiplying · Infinity Club</title>
+<meta name="description" content="A linear function adds the same amount each step; an exponential one multiplies by the same amount. Tell them apart from a table, and write y = a·bˣ.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 9</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 9 · Sharpen · 10</div>
+  <h1>Adding versus multiplying</h1>
+  <p class="teaser">A linear function adds the same amount each step; an exponential one multiplies by the same amount. Tell them apart from a table, and write y = a·bˣ.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Two columns, A and B. In both, \(x\) goes up by 1 each row.</p>
+<figure><div style="display:flex;gap:1.6em;justify-content:center;align-items:center;flex-wrap:wrap">
+<table>
+<tr><th>\(x\)</th><th>A</th><th>B</th></tr>
+<tr><td>0</td><td>5</td><td>1</td></tr>
+<tr><td>1</td><td>8</td><td>2</td></tr>
+<tr><td>2</td><td>11</td><td>4</td></tr>
+<tr><td>3</td><td>14</td><td>8</td></tr>
+<tr><td>4</td><td>17</td><td>16</td></tr>
+<tr><td>5</td><td>20</td><td>32</td></tr>
+</table>
+<svg viewBox="0 0 280 165" width="280" height="165" role="img" aria-label="Column A plotted as six points on a straight line rising from 5 to 20; column B plotted as six points on a curve that starts at 1, stays low, then climbs steeply to 32 and crosses the line between x = 4 and x = 5" font-family="Nunito, sans-serif" font-size="12">
+<line x1="35" y1="150" x2="268" y2="150" stroke="#999" stroke-width="1"/>
+<line x1="35" y1="150" x2="35" y2="6" stroke="#999" stroke-width="1"/>
+<g fill="#666" text-anchor="middle"><text x="35" y="162">0</text><text x="79" y="162">1</text><text x="123" y="162">2</text><text x="167" y="162">3</text><text x="211" y="162">4</text><text x="255" y="162">5</text></g>
+<g fill="#666" text-anchor="end"><text x="30" y="111">10</text><text x="30" y="68">20</text><text x="30" y="25">30</text></g>
+<line x1="35" y1="128.5" x2="255" y2="64" stroke="#3f44c9" stroke-width="1.5"/>
+<polyline points="35,145.7 43.8,145.1 52.6,144.3 61.4,143.5 70.2,142.5 79,141.4 87.8,140.1 96.6,138.7 105.4,137 114.2,135 123,132.8 131.8,130.2 140.6,127.3 149.4,123.9 158.2,120.1 167,115.6 175.8,110.5 184.6,104.6 193.4,97.9 202.2,90.1 211,81.2 219.8,71 228.6,59.2 237.4,45.7 246.2,30.2 255,12.4" fill="none" stroke="#f5a524" stroke-width="1.5"/>
+<g fill="#3f44c9"><circle cx="35" cy="128.5" r="3.5"/><circle cx="79" cy="115.6" r="3.5"/><circle cx="123" cy="102.7" r="3.5"/><circle cx="167" cy="89.8" r="3.5"/><circle cx="211" cy="76.9" r="3.5"/><circle cx="255" cy="64" r="3.5"/></g>
+<g fill="#f5a524"><circle cx="35" cy="145.7" r="3.5"/><circle cx="79" cy="141.4" r="3.5"/><circle cx="123" cy="132.8" r="3.5"/><circle cx="167" cy="115.6" r="3.5"/><circle cx="211" cy="81.2" r="3.5"/><circle cx="255" cy="12.4" r="3.5"/></g>
+<text x="264" y="68" fill="#3f44c9" font-weight="700">A</text><text x="264" y="17" fill="#f5a524" font-weight="700">B</text>
+</svg></div>
+<figcaption>A adds 3 at every step. B multiplies by 2 at every step, starts behind, and overtakes between \(x = 4\) and \(x = 5\).</figcaption></figure>
+<p>A has a constant <em>difference</em>, so it is <a href="../../grade-8/sheets/a9-linear-or-not.html">linear</a>: \(y = 3x + 5\).</p>
+<p>B has a constant <em>ratio</em>. Divide each value by the one before: \(\tfrac21\), \(\tfrac42\), \(\tfrac84\), always 2. A function like this is <b>exponential</b>.</p>
+<p class="callout">\(y = a \cdot b^x\). Here \(a\) is the value at \(x = 0\) and \(b\) is the multiplier for each step.</p>
+<p>Why this rule? Start at \(a\). Each step multiplies by \(b\), so after \(x\) steps you have multiplied by \(b\) a total of \(x\) times: \(a \cdot b^x\). At \(x = 0\) there are no steps, and <a href="../../grade-8/sheets/a5-exponent-laws.html">\(b^0 = 1\)</a> leaves just \(a\). Column B is \(y = 1 \cdot 2^x\).</p>
+<p>If \(b\) is bigger than 1, \(y\) grows. If \(b\) is between 0 and 1, \(y\) shrinks: 80, 40, 20, 10 has \(b = \tfrac12\).</p>
+<p>Adding gives the same gain every step. Multiplying gives a gain that itself grows, which is why B wins in the end.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: 5, 15, 45, 135</h2>
+<p>These are the values of \(y\) at \(x = 0, 1, 2, 3\). Differences: 10, 30, 90. Not constant, so not linear.</p>
+<p>Ratios: \(\tfrac{15}{5} = 3\), \(\tfrac{45}{15} = 3\), \(\tfrac{135}{45} = 3\). Constant, so exponential with \(b = 3\). The value at \(x = 0\) is 5, so \(a = 5\).</p>
+<p>The rule is \(y = 5 \cdot 3^x\). Check \(x = 2\): \(5 \times 9 = 45\). Predict \(x = 5\): \(5 \times 243 = 1215\).</p>
+<p class="small">Race a line \(a \times n\), the square \(n^2\) and a multiplier \(b^n\) on one chart. Slide \(a\) up and \(b\) down, and read off the step where the multiplier overtakes for good: <a href="../../demos/growth.html">infinityclub.net/demos/growth.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Each list gives \(y\) at \(x = 0, 1, 2, 3\). Linear, exponential or neither? Give the constant difference or ratio. (a) 7, 11, 15, 19. (b) 3, 6, 12, 24. (c) 1, 4, 9, 16. (d) 80, 40, 20, 10.<div class="space short"></div></li>
+<li>(a) Write the rule \(y = a \cdot b^x\) for lists (b) and (d) in question 1, and find \(y\) at \(x = 6\) for each. (b) Another exponential table has \(y = 12, 36, 108\) at \(x = 1, 2, 3\). Find \(b\), then \(a\). Careful: \(a\) is not 12.<div class="space"></div></li>
+<li>Growing by 5% means multiplying by 1.05. (a) A town of 20,000 people grows by 5% a year. Write a rule for its population after \(x\) years, and find it after 3 years. (b) A car bought for $15,000 loses 20% of its value each year. What is \(b\)? What is the car worth after 3 years?<div class="space"></div></li>
+<li>An exponential function passes through \((2, 18)\) and \((4, 162)\). (a) Two steps multiplied \(y\) by how much? Find \(b\) (it is positive) and \(a\). (b) Find the linear function through the same two points. (c) Which function is larger at \(x = 3\)? At \(x = 6\)?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: differences of an exponential</h2>
+<p>The differences of 2, 6, 18, 54, 162 are 4, 12, 36, 108: exponential again, same ratio. Show that the differences of any \(a \cdot b^x\) are exponential with the same \(b\). For which \(b\) are the differences the original values?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) Linear, difference 4. (b) Exponential, ratio 2. (c) Neither: differences 3, 5, 7 and ratios 4, 2.25, 1.78 both change. (d) Exponential, ratio \(\tfrac12\).</li>
+<li>(a) \(y = 3 \cdot 2^x\), and \(3 \times 64 = 192\). \(y = 80 \cdot \left(\tfrac12\right)^x\), and \(80/64 = 1.25\). (b) \(b = 36/12 = 3\). Step back once from \(x = 1\): \(a = 12/3 = 4\), so \(y = 4 \cdot 3^x\).</li>
+<li>(a) \(y = 20{,}000 \times 1.05^x\). After 3 years: \(20{,}000 \times 1.157625 = 23{,}152.5\), about 23,150 people. (b) Losing 20% leaves 80%, so \(b = 0.8\). \(15{,}000 \times 0.8^3 = 15{,}000 \times 0.512 = \$7{,}680\).</li>
+<li>(a) \(162/18 = 9\), and two steps multiply by \(b^2\), so \(b = 3\). Step back twice from 18: \(a = 18/9 = 2\). \(y = 2 \cdot 3^x\). (b) Slope \(\dfrac{162 - 18}{4 - 2} = 72\), so \(y = 72x - 126\). (c) At \(x = 3\): exponential 54, line 90. At \(x = 6\): exponential 1458, line 306. The line is ahead between the two shared points and the exponential is ahead after them.</li>
+</ol>
+<p><b>Stretch.</b> One step takes \(a \cdot b^x\) to \(a \cdot b^{x+1} = a \cdot b^x \cdot b\). The difference is \(a \cdot b^x \cdot b - a \cdot b^x = a(b - 1) \cdot b^x\): exponential, starting value \(a(b - 1)\), same multiplier \(b\). It equals the original when \(b - 1 = 1\), so \(b = 2\). Doubling is the growth whose gain each step is what you already have.</p>
+</section>
+
+<div class="sheet-nav"><a href="a9-inverse-variation.html">← Previous</a><a href="a11-nth-term.html">Next: The nth term →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The cheapest way to connect everything · Infinity Club</title>
+<meta name="description" content="Join towns with cable using as little as possible. Kruskal's greedy method, always adding the cheapest link that does not close a loop, gives the best answer every time.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 9</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 9 · Around the corner · 12</div>
+  <h1>The cheapest way to connect everything</h1>
+  <p class="teaser">Join towns with cable using as little as possible. Being greedy, always adding the cheapest safe link, gives the best answer every time.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Six towns need joining by cable so that every town can reach every other, perhaps through others. Each possible link has a cost. Which links should be built?</p>
+<p>Two facts come first. A loop is a waste: cut any one link of a loop and everything is still connected. So the cheapest network has no loops. And a network with no loops that joins \(n\) towns has exactly \(n - 1\) links. Start with \(n\) separate towns. Each link joins two pieces into one, so it takes \(n - 1\) links to get down to one piece.</p>
+<p>Joseph Kruskal's method, from the 1950s:</p>
+<p class="callout">List the links from cheapest to dearest. Go down the list and build each link, unless it would close a loop.</p>
+<p>This is <b>greedy</b>: grab the cheapest thing now and never reconsider. Greed often fails. Here it always gives the cheapest total. The reason is that the dearest link in a loop is never needed, and every link the method skips is exactly that: the rest of its loop was cheaper and is already built.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: six towns</h2>
+<figure><svg viewBox="0 0 450 200" width="360" height="160" role="img" aria-label="Six towns A to F and nine possible links with costs: A to B 4, A to C 3, B to C 2, B to D 6, C to E 7, B to E 5, D to E 1, D to F 8, E to F 9. The five links D-E, B-C, A-C, B-E and D-F are drawn thick" font-family="Nunito, sans-serif" font-size="13">
+<line x1="30" y1="100" x2="150" y2="30" stroke="#999" stroke-width="1.5"/><line x1="30" y1="100" x2="150" y2="170" stroke="#3f44c9" stroke-width="3"/><line x1="150" y1="30" x2="150" y2="170" stroke="#3f44c9" stroke-width="3"/><line x1="150" y1="30" x2="300" y2="30" stroke="#999" stroke-width="1.5"/><line x1="150" y1="170" x2="300" y2="170" stroke="#999" stroke-width="1.5"/><line x1="150" y1="30" x2="300" y2="170" stroke="#3f44c9" stroke-width="3"/><line x1="300" y1="30" x2="300" y2="170" stroke="#3f44c9" stroke-width="3"/><line x1="300" y1="30" x2="420" y2="100" stroke="#3f44c9" stroke-width="3"/><line x1="300" y1="170" x2="420" y2="100" stroke="#999" stroke-width="1.5"/>
+<circle cx="90" cy="65" r="9" fill="#fff"/><text x="90" y="69.5" text-anchor="middle" fill="#000">4</text><circle cx="90" cy="135" r="9" fill="#fff"/><text x="90" y="139.5" text-anchor="middle" fill="#000">3</text><circle cx="150" cy="100" r="9" fill="#fff"/><text x="150" y="104.5" text-anchor="middle" fill="#000">2</text><circle cx="225" cy="30" r="9" fill="#fff"/><text x="225" y="34.5" text-anchor="middle" fill="#000">6</text><circle cx="225" cy="170" r="9" fill="#fff"/><text x="225" y="174.5" text-anchor="middle" fill="#000">7</text><circle cx="202.5" cy="79" r="9" fill="#fff"/><text x="202.5" y="83.5" text-anchor="middle" fill="#000">5</text><circle cx="300" cy="100" r="9" fill="#fff"/><text x="300" y="104.5" text-anchor="middle" fill="#000">1</text><circle cx="360" cy="65" r="9" fill="#fff"/><text x="360" y="69.5" text-anchor="middle" fill="#000">8</text><circle cx="360" cy="135" r="9" fill="#fff"/><text x="360" y="139.5" text-anchor="middle" fill="#000">9</text>
+<circle cx="30" cy="100" r="13" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><text x="30" y="104.5" text-anchor="middle" font-weight="700">A</text><circle cx="150" cy="30" r="13" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><text x="150" y="34.5" text-anchor="middle" font-weight="700">B</text><circle cx="150" cy="170" r="13" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><text x="150" y="174.5" text-anchor="middle" font-weight="700">C</text><circle cx="300" cy="30" r="13" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><text x="300" y="34.5" text-anchor="middle" font-weight="700">D</text><circle cx="300" cy="170" r="13" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><text x="300" y="174.5" text-anchor="middle" font-weight="700">E</text><circle cx="420" cy="100" r="13" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><text x="420" y="104.5" text-anchor="middle" font-weight="700">F</text>
+</svg><figcaption>Nine possible links with their costs. The thick ones are the five that get built.</figcaption></figure>
+<p>In order of cost: D–E (1) build. B–C (2) build. A–C (3) build. A–B (4) skip: A and B are already joined through C, so it would close a loop. B–E (5) build. B–D (6) skip: it would close the loop B–E–D. C–E (7) skip. D–F (8) build.</p>
+<p>That is five links for six towns, so stop. Total cost \(1 + 2 + 3 + 5 + 8 = 19\). No other choice of links connects the towns for less.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>(a) How many links does the cheapest network joining 10 towns have? (b) Four towns P, Q, R, S have possible links P–Q 3, Q–R 4, R–S 2, S–P 5 and P–R 6. Sketch them, run Kruskal's method and give the total cost.<div class="space"></div></li>
+<li>In the six-town map, the cost of B–E rises from 5 to 10. Run the method again. Which links are built, and what is the total?<div class="space short"></div></li>
+<li>Go back to the original costs. A new town G can be linked to F for 2, to C for 4, or to A for 5. Run the method on all seven towns. What is the total now? What is surprising about it?<div class="space"></div></li>
+<li>Someone shows you a loop-free network for the original six towns that uses A–B (cost 4). Without knowing their other links, explain how to make it cheaper and still connected. Start by removing A–B and asking what happens to the network.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: beating the cheapest network</h2>
+<p>Four towns sit at the corners of a square of side 1 km, and cable can run along any straight line. Using only links between towns, what is the shortest network? Now add a junction at the centre of the square and join every town to it. How much cable is that?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(10 - 1 = 9\). (b) R–S (2) build, P–Q (3) build, Q–R (4) build. That is three links for four towns, so stop. Total 9. S–P and P–R would each close a loop.</li>
+<li>D–E (1), B–C (2), A–C (3) build; A–B (4) skip; B–D (6) build; C–E (7) skip, since C and E are now joined through B and D; D–F (8) build. Total \(1 + 2 + 3 + 6 + 8 = 20\). B–D takes over the job B–E used to do.</li>
+<li>D–E (1), B–C (2), G–F (2), A–C (3) build; A–B (4) skip; G–C (4) build; B–E (5) build. Six links for seven towns, so stop. Total \(1 + 2 + 2 + 3 + 4 + 5 = 17\). An extra town made the network cheaper, down from 19. F is now reached through G for \(4 + 2 = 6\), and the 8 for D–F is no longer needed.</li>
+<li>Remove A–B. With no loops there was only one way from A to B, so the network falls into two pieces, one holding A and one holding B. C is in one of them. If C is with A, then B–C (2) joins the two pieces; if C is with B, then A–C (3) does. Either way, add that link. Everything is connected again and the cost has dropped by at least 1.</li>
+</ol>
+<p><b>Stretch.</b> Between towns, the sides cost 1 and the diagonals \(\sqrt2\), so Kruskal builds three sides: 3 km. With a junction, each town is half a diagonal from the centre, \(\tfrac{\sqrt2}{2}\) km, so the total is \(4 \times \tfrac{\sqrt2}{2} = 2\sqrt2 \approx 2.83\) km. Extra points can beat the cheapest network. Two junctions do better still, \(1 + \sqrt3 \approx 2.73\) km, and finding the best junctions is a much harder problem.</p>
+</section>
+
+<div class="sheet-nav"><a href="b11-shortest-path.html">← Previous</a><a href="b13-travelling-salesman.html">Next: The problem nobody can solve quickly →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The nth term · Infinity Club</title>
+<meta name="description" content="Jump straight to the hundredth number of a sequence without writing the first ninety-nine. Constant difference gives a linear rule, constant ratio an exponential one.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 9</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 9 · Sharpen · 11</div>
+  <h1>The nth term</h1>
+  <p class="teaser">Jump straight to the hundredth number of a sequence without writing the first ninety-nine. Constant difference gives a linear rule, constant ratio an exponential one.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A <b>sequence</b> is a list of numbers in order. Write \(a_n\) for the term in position \(n\). The small \(n\) is a label, not a power: \(a_1\) is the first term, \(a_4\) the fourth. A rule for \(a_n\) lets you jump to any term.</p>
+<p>Take 5, 8, 11, 14, … Each term is 3 more than the last: a <b>constant difference</b> \(d = 3\).</p>
+<figure><svg viewBox="0 0 400 96" width="400" height="96" role="img" aria-label="Four dots in a row labelled 5, 8, 11 and 14, joined by three arched jumps each marked plus 3, then a dotted gap and a fifth dot labelled a n" font-family="Nunito, sans-serif" font-size="13">
+<line x1="30" y1="52" x2="290" y2="52" stroke="#999" stroke-width="1"/>
+<line x1="290" y1="52" x2="350" y2="52" stroke="#999" stroke-width="1" stroke-dasharray="3 4"/>
+<g fill="none" stroke="#f5a524" stroke-width="2"><path d="M40,46 Q80,6 120,46"/><path d="M120,46 Q160,6 200,46"/><path d="M200,46 Q240,6 280,46"/></g>
+<g fill="#f5a524" text-anchor="middle" font-weight="700"><text x="80" y="18">+3</text><text x="160" y="18">+3</text><text x="240" y="18">+3</text></g>
+<g fill="#3f44c9"><circle cx="40" cy="52" r="5"/><circle cx="120" cy="52" r="5"/><circle cx="200" cy="52" r="5"/><circle cx="280" cy="52" r="5"/><circle cx="360" cy="52" r="5"/></g>
+<g text-anchor="middle" font-weight="700"><text x="40" y="72">5</text><text x="120" y="72">8</text><text x="200" y="72">11</text><text x="280" y="72">14</text><text x="360" y="72">?</text></g>
+<g text-anchor="middle" fill="#666" font-size="12"><text x="40" y="89">n = 1</text><text x="120" y="89">n = 2</text><text x="200" y="89">n = 3</text><text x="280" y="89">n = 4</text><text x="360" y="89">n</text></g>
+</svg><figcaption>Four terms, three jumps. Reaching term \(n\) from term 1 takes \(n - 1\) jumps, not \(n\).</figcaption></figure>
+<p class="callout">Constant difference \(d\): \(\;a_n = a_1 + (n - 1)d\).</p>
+<p>Here \(a_n = 5 + 3(n - 1) = 3n + 2\). That is a linear rule, with \(d\) playing the part of the slope in \(y = mx + b\).</p>
+<p>Now take 5, 10, 20, 40, … Each term is 2 times the last: a <b>constant ratio</b> \(r = 2\). It is still \(n - 1\) jumps, but each jump multiplies.</p>
+<p class="callout">Constant ratio \(r\): \(\;a_n = a_1 \cdot r^{\,n-1}\).</p>
+<p>Here \(a_n = 5 \cdot 2^{\,n-1}\), an <a href="a10-exponential-functions.html">exponential rule</a>. Check \(n = 4\): \(5 \times 2^3 = 40\).</p>
+</section>
+
+<section class="example">
+<h2>Watch one: the 100th term of 7, 11, 15, 19, …</h2>
+<p>The differences are all 4, so \(d = 4\) and \(a_1 = 7\).</p>
+<p>\(a_n = 7 + 4(n - 1) = 4n + 3\). Check \(n = 2\): \(8 + 3 = 11\). Then \(a_{100} = 403\), with no need for the 99 terms before it.</p>
+<p>Is 201 in the sequence? Solve \(4n + 3 = 201\): \(n = 49.5\). A position must be a whole number, so no. But 203 is, at \(n = 50\).</p>
+<p class="small">Next year you add the terms up as well: <a href="../../grade-10/sheets/a14-sequences-series.html">Sequences, series, and Gauss's trick</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Find a rule for \(a_n\), then the term asked for. (a) 4, 9, 14, 19, …; the 50th term. (b) 20, 17, 14, 11, …; the 50th term. (c) 2, 6, 18, 54, …; the 8th term.<div class="space"></div></li>
+<li>A sequence has \(a_n = 6n - 5\). (a) Write its first four terms. (b) Which term is 295? (c) Is 500 a term? Say how you know.<div class="space short"></div></li>
+<li>A row of squares is built from matchsticks, each square sharing a side with the next. One square needs 4 sticks, two need 7, three need 10. (a) Find a rule for the sticks in a row of \(n\) squares, and say where each part of the rule comes from. (b) How many complete squares can you make with 100 sticks?<div class="space"></div></li>
+<li>(a) A sequence with a constant difference has 3rd term 17 and 7th term 41. Find \(d\), then \(a_1\), then \(a_{100}\). (b) A sequence with a constant positive ratio has 3rd term 12 and 5th term 48. Find \(r\), \(a_1\) and a rule for \(a_n\).<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: one sequence inside another</h2>
+<p>Both 3, 6, 9, 12, … and 3, 6, 12, 24, … start 3, 6. Explain why every term of the second appears somewhere in the first. At which position in the first does the 10th term of the second sit?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(d = 5\): \(a_n = 4 + 5(n - 1) = 5n - 1\), and \(a_{50} = 249\). (b) \(d = -3\): \(a_n = 20 - 3(n - 1) = 23 - 3n\), and \(a_{50} = -127\). (c) \(r = 3\): \(a_n = 2 \cdot 3^{\,n-1}\), and \(a_8 = 2 \times 3^7 = 4374\).</li>
+<li>(a) 1, 7, 13, 19. (b) \(6n - 5 = 295\) gives \(n = 50\): the 50th. (c) \(6n - 5 = 500\) gives \(n = 505/6\), not a whole number, so no.</li>
+<li>(a) \(a_n = 4 + 3(n - 1) = 3n + 1\). Each square adds 3 new sticks; the 1 is the stick that closes the left end. (b) \(3n + 1 \le 100\) gives \(n \le 33\): 33 squares, using all 100 sticks.</li>
+<li>(a) From the 3rd term to the 7th is 4 jumps: \(4d = 41 - 17 = 24\), so \(d = 6\). Two jumps back from 17: \(a_1 = 5\). \(a_n = 6n - 1\), so \(a_{100} = 599\). (b) Two jumps: \(r^2 = 48/12 = 4\), so \(r = 2\). Two jumps back from 12: \(a_1 = 12/4 = 3\). \(a_n = 3 \cdot 2^{\,n-1}\).</li>
+</ol>
+<p><b>Stretch.</b> The first sequence is \(3n\): every positive multiple of 3. The second is \(3 \cdot 2^{\,n-1}\), always 3 times a whole number, so each term is a multiple of 3 and is in the first. Its 10th term is \(3 \times 2^9 = 1536 = 3 \times 512\), which sits at position 512.</p>
+</section>
+
+<div class="sheet-nav"><a href="a10-exponential-functions.html">← Previous</a><a href="a12-change-the-subject.html">Next: Change the subject →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The miles-per-gallon illusion · Infinity Club</title>
+<meta name="description" content="Swapping a 10 mpg car for a 20 mpg one saves three times as much fuel as swapping 30 for 60. Fuel used varies inversely with miles per gallon.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 9</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 9 · Connections · 6</div>
+  <h1>The miles-per-gallon illusion</h1>
+  <p class="teaser">Swapping a 10 mpg car for a 20 mpg one saves far more fuel than swapping 30 for 60. Inverse variation fools almost everyone.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A car's fuel economy is often given in miles per gallon (mpg): how far it goes on one gallon. Which swap saves more fuel: 10 mpg to 20 mpg, or 30 mpg to 60 mpg? Both double the mpg, and the second gains 30 mpg against 10. Most people pick the second, or call it a tie.</p>
+<p>But what you pay for is gallons, and</p>
+<p class="callout">\(\text{gallons used} = \dfrac{\text{miles driven}}{\text{mpg}}\).</p>
+<p>For a fixed distance this is <a href="a9-inverse-variation.html">inverse variation</a>: gallons × mpg stays constant, so doubling the mpg halves the fuel. Halving a big number saves a lot. Halving a small number saves little.</p>
+<figure><svg viewBox="0 0 480 200" width="440" height="183" role="img" aria-label="Graph of gallons used over 6,000 miles against miles per gallon. The curve falls steeply from 600 gallons at 10 mpg to 300 at 20 mpg, then flattens: 200 at 30 mpg and 100 at 60 mpg" font-family="Nunito, sans-serif" font-size="12">
+<line x1="50" y1="170" x2="462" y2="170" stroke="#999" stroke-width="1"/>
+<line x1="50" y1="170" x2="50" y2="10" stroke="#999" stroke-width="1"/>
+<g fill="#999" text-anchor="middle"><text x="50" y="184">10</text><text x="130" y="184">20</text><text x="210" y="184">30</text><text x="290" y="184">40</text><text x="370" y="184">50</text><text x="450" y="184">60</text><text x="250" y="198">miles per gallon</text></g>
+<g fill="#999" text-anchor="end"><text x="44" y="174">0</text><text x="44" y="124">200</text><text x="44" y="74">400</text><text x="44" y="24">600</text></g>
+<text x="250" y="16" fill="#999">gallons used over 6,000 miles</text>
+<line x1="50" y1="20" x2="130" y2="20" stroke="#999" stroke-width="1" stroke-dasharray="4 3"/>
+<line x1="210" y1="120" x2="450" y2="120" stroke="#999" stroke-width="1" stroke-dasharray="4 3"/>
+<polyline fill="none" stroke="#3f44c9" stroke-width="2" points="50,20.0 66,45.0 82,62.9 98,76.2 114,86.7 130,95.0 146,101.8 162,107.5 178,112.3 194,116.4 210,120.0 226,123.1 242,125.9 258,128.3 274,130.5 290,132.5 306,134.3 322,135.9 338,137.4 354,138.8 370,140.0 386,141.2 402,142.2 418,143.2 434,144.1 450,145.0"/>
+<line x1="130" y1="20" x2="130" y2="95" stroke="#f5a524" stroke-width="4"/>
+<line x1="450" y1="120" x2="450" y2="145" stroke="#f5a524" stroke-width="4"/>
+<circle cx="50" cy="20" r="3" fill="#000"/><circle cx="130" cy="95" r="3" fill="#000"/><circle cx="210" cy="120" r="3" fill="#000"/><circle cx="450" cy="145" r="3" fill="#000"/>
+<text x="138" y="60" fill="#f5a524">10 → 20 saves 300</text>
+<text x="442" y="112" fill="#f5a524" text-anchor="end">30 → 60 saves 100</text>
+</svg><figcaption>Equal steps along the mpg axis are not equal steps in fuel. The curve is steep on the left and nearly flat on the right.</figcaption></figure>
+<p>The honest measure turns the fraction over: <b>gallons per 100 miles</b>. Many countries quote litres per 100 km, which works the same way. On that scale, equal differences are equal savings.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: 6,000 miles in each car</h2>
+<p>At 10 mpg: \(6000 \div 10 = 600\) gallons. At 20 mpg: 300 gallons. The swap saves <b>300</b>.</p>
+<p>At 30 mpg: 200 gallons. At 60 mpg: 100 gallons. The swap saves <b>100</b>.</p>
+<p>The first swap saves three times as much fuel. In gallons per 100 miles the four cars use 10, 5, 3.33 and 1.67. The drops are 5 and 1.67, and the answer is in plain view.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Four cars each drive 12,000 miles. They get 15, 20, 30 and 40 mpg. (a) How many gallons does each use? (b) Which saves more fuel: going from 15 to 20 mpg, or from 30 to 40 mpg?<div class="space short"></div></li>
+<li>(a) Convert to gallons per 100 miles: 25 mpg, 40 mpg, 50 mpg. (b) A truck uses 8 gallons per 100 miles. What is its mpg? (c) Which is the bigger saving, 25 → 40 mpg or 40 → 50 mpg?<div class="space short"></div></li>
+<li>An engineer improves a 20 mpg car to 25 mpg. A second car gets 40 mpg. What must its mpg rise to, to save the same fuel over the same distance? Work in gallons per 100 miles.<div class="space short"></div></li>
+<li>A family drives a 12 mpg truck and a 36 mpg car 9,000 miles a year each. Plan A swaps the truck for an 18 mpg one. Plan B swaps the car for a 72 mpg one. (a) How many gallons a year does each plan save? (b) Could any replacement for the car save more than Plan A? Explain.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the average that is not 40</h2>
+<p>You drive 60 miles in town at 20 mpg, then 60 miles on the open road at 60 mpg. What is your mpg for the whole 120 miles? It is not 40. Then find how many open-road miles would bring the overall figure up to 40.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) 800, 600, 400 and 300 gallons. (b) 15 → 20 saves 200 gallons. 30 → 40 saves 100. The smaller-looking step saves twice as much.</li>
+<li>(a) \(100/25 = 4\), \(100/40 = 2.5\), \(100/50 = 2\). (b) \(100/8 = 12.5\) mpg. (c) 25 → 40 saves 1.5 gallons per 100 miles; 40 → 50 saves 0.5. The first is three times the saving.</li>
+<li>20 mpg is 5 gallons per 100 miles and 25 mpg is 4, a saving of 1. The second car uses 2.5, so it must come down to 1.5: \(100/1.5 \approx 66.7\) mpg. A gain of 5 mpg on the thirsty car matches a gain of nearly 27 mpg on the efficient one.</li>
+<li>(a) Truck: \(9000/12 = 750\) gallons, falling to \(9000/18 = 500\). Plan A saves 250. Car: \(9000/36 = 250\) gallons, falling to 125. Plan B saves 125. (b) No. The car burns only 250 gallons a year in total, so even a car that used no fuel at all would save 250, which only ties Plan A.</li>
+</ol>
+<p><b>Stretch.</b> Town: \(60/20 = 3\) gallons. Road: \(60/60 = 1\) gallon. Overall \(120 \div 4 = 30\) mpg. The slow-mpg miles use most of the fuel, so they pull the figure down. For 40 mpg with \(d\) road miles: \(60 + d = 40\left(3 + \dfrac{d}{60}\right)\), so \(60 + d = 120 + \tfrac23 d\) and \(d = 180\) miles. Check: 240 miles on \(3 + 3 = 6\) gallons is 40 mpg.</p>
+</section>
+
+<div class="sheet-nav"><a href="c5-ramps-and-roofs.html">← Previous</a><a href="c7-malthus.html">Next: Will food keep up with people? →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

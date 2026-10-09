@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Factoring with tiles · Infinity Club</title>
+<meta name="description" content="Slide b and c and try to arrange one x² tile, b strips and c unit tiles into a rectangle. When it works, the sides of the rectangle are the factors of x² + bx + c.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.controls input[type=range] { width: 150px; }
+.controls .val { font-family: var(--mono); min-width: 2.4em; display: inline-block; }
+.controls input[type=checkbox] { width: 1.2rem; height: 1.2rem; }
+#tiles svg { display: block; max-width: 100%; }
+#poly { font-size: 1.1rem; }
+@media (max-width: 420px) { #poly { font-size: .95rem; } }
+#pairs { display: flex; flex-wrap: wrap; gap: .4rem; margin: .5rem 0; }
+#pairs .chip { font-family: var(--mono); font-size: .92rem; border: 1px solid var(--rule); border-radius: 999px; padding: .15rem .65rem; background: #fff; white-space: nowrap; }
+#pairs .chip.hit { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 700; }
+.mission { max-width: 70ch; margin: -.4rem 0 1rem; }
+.mission p { margin: .3rem 0; }
+.mission summary { cursor: pointer; font-weight: 700; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Factoring with tiles</h1>
+<p class="explain">Slide b and c. You get one big x² tile, b strips (each is 1 by x) and c small unit tiles. The demo tries to pack them into one rectangle. When it works, read the two side lengths off the edges: they are the factors of x² + bx + c. When it cannot be done with whole numbers, it says so.</p>
+<div class="mission">
+<p class="small"><b>Mission.</b> Set b = 7. Before you slide c, predict which values of c from 1 to 12 make a rectangle. Then test them all.</p>
+<details class="small"><summary>Answer</summary><p>Only 6, 10 and 12. The two numbers must add to 7, so they are 1 and 6, 2 and 5, or 3 and 4. Their products are 6, 10 and 12. Every other c leaves a gap or spare tiles.</p></details>
+</div>
+<div class="demo-panel">
+  <div class="controls">
+    <label>b <input type="range" id="b" min="0" max="12" step="1" value="7"> <span class="val" id="bv">7</span></label>
+    <label>c <input type="range" id="c" min="0" max="36" step="1" value="12"> <span class="val" id="cv">12</span></label>
+    <label><input type="checkbox" id="neg"> Allow negatives</label>
+    <button id="reset" class="ghost">Reset</button>
+  </div>
+  <div class="readout" id="poly"></div>
+  <div id="tiles"></div>
+  <p class="small" id="count"></p>
+  <p class="small" id="pairhead"></p>
+  <div id="pairs"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>A rectangle with sides x + p and x + q has four parts: an x² square, p strips down one side, q strips along the other, and a corner block of p × q unit tiles. So you need p + q strips and p × q unit tiles. Factoring x² + bx + c is the same hunt run backwards: find two numbers that <b>add to b</b> and <b>multiply to c</b>.</p>
+<p>The list under the picture shows every pair of whole numbers that multiplies to c, with its sum. If one of the sums is b, that pair is highlighted and the rectangle closes up. If none is, no whole-number rectangle exists.</p>
+<p>Tick <b>Allow negatives</b> and red tiles appear. A red tile counts as minus. A red strip cancels a blue strip, so 5 blue strips and 2 red strips are worth 3x. That is how x² + 3x − 10 can still be a rectangle, with sides x + 5 and x − 2.</p>
+<p>Once you have the factors, solving the equation is quick. A product is zero only when one of its factors is zero, so (x + 3)(x + 4) = 0 means x = −3 or x = −4.</p>
+<p>Sheets: <a href="../grade-9/sheets/a1-sum-and-product.html">Un-multiplying: the sum and product hunt</a> and <a href="../grade-9/sheets/a2-zero-product.html">If a product is zero</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  // Whole numbers p >= q with p + q = b and p * q = c, or null if there are none.
+  function factorPair(b, c) {
+    var D = b * b - 4 * c;
+    if (D < 0) return null;
+    var s = Math.round(Math.sqrt(D));
+    if (s * s !== D) return null;
+    return { p: (b + s) / 2, q: (b - s) / 2 };   // b and s always have the same parity
+  }
+  // Every pair of whole numbers (p >= q) that multiplies to c. c must not be 0.
+  function pairsOf(c, allowNeg) {
+    var out = [], n = Math.abs(c), d;
+    for (d = 1; d * d <= n; d++) {
+      if (n % d !== 0) continue;
+      var e = n / d;
+      if (c > 0) { out.push([e, d]); if (allowNeg) out.push([-d, -e]); }
+      else if (allowNeg) { out.push([e, -d]); if (e !== d) out.push([d, -e]); }
+    }
+    return out;
+  }
+  // For b >= 0, c > 0 with no rectangle: the split of b whose corner block is closest to c (ties go to the bigger block).
+  function nearestTry(b, c) {
+    var best = null, q;
+    for (q = 0; q <= Math.floor(b / 2); q++) {
+      var p = b - q, gap = Math.abs(p * q - c);
+      if (best === null || gap <= best.gap) best = { p: p, q: q, gap: gap };
+    }
+    return best;
+  }
+  function num(n) { return n < 0 ? "−" + (-n) : String(n); }
+  function par(n) { return n < 0 ? "(" + num(n) + ")" : String(n); }
+  function polyText(b, c) {
+    var s = "x²";
+    if (b !== 0) s += (b > 0 ? " + " : " − ") + (Math.abs(b) === 1 ? "" : Math.abs(b)) + "x";
+    if (c !== 0) s += (c > 0 ? " + " : " − ") + Math.abs(c);
+    return s;
+  }
+  function factorText(p, q) {
+    function t(r) { return "(x" + (r > 0 ? " + " : " − ") + Math.abs(r) + ")"; }
+    if (p === 0 && q === 0) return "x × x";
+    if (p === 0) return "x" + t(q);
+    if (q === 0) return "x" + t(p);
+    if (p === q) return t(p) + "²";
+    return t(p) + t(q);
+  }
+  /*ENDPURE*/
+
+  var host = document.getElementById("tiles"), poly = document.getElementById("poly"), count = document.getElementById("count");
+  var pairhead = document.getElementById("pairhead"), pairs = document.getElementById("pairs");
+  var bIn = document.getElementById("b"), cIn = document.getElementById("c"), negIn = document.getElementById("neg");
+  var S = { b: 7, c: 12 };
+  var XU = 4.5, POS = { sq: "#b9bbee", strip: "#dcdcf5", unit: "#fde8c4" }, NEG = { strip: "#f6c9c4", unit: "#f0a299" };
+
+  function box(x, y, w, h, fill, dashed) {
+    return '<rect x="' + x.toFixed(1) + '" y="' + y.toFixed(1) + '" width="' + w.toFixed(1) + '" height="' + h.toFixed(1) + '" fill="' + fill + '" stroke="' + (dashed ? "#999" : "#1d1f3a") + '" stroke-width="1"' + (dashed ? ' stroke-dasharray="3 3"' : "") + "/>";
+  }
+  function text(x, y, t, anchor, size, fill) {
+    return '<text x="' + x.toFixed(1) + '" y="' + y.toFixed(1) + '" text-anchor="' + anchor + '" font-size="' + size + '" font-weight="800" fill="' + (fill || "#1d1f3a") + '">' + t + "</text>";
+  }
+  function plural(n, word) { return n + " " + word + (n === 1 ? "" : "s"); }
+
+  function draw() {
+    var b = S.b, c = S.c, f = factorPair(b, c), mode, P = 0, Q = 0, t;
+    document.getElementById("bv").textContent = num(b); document.getElementById("cv").textContent = num(c);
+    if (f) { mode = "rect"; P = f.p; Q = f.q; if (Math.abs(Q) > Math.abs(P)) { t = P; P = Q; Q = t; } }
+    else if (b >= 0 && c > 0) { mode = "try"; t = nearestTry(b, c); P = t.p; Q = t.q; }
+    else mode = "pile";
+
+    var W = Math.max(240, Math.min(560, host.clientWidth || 320)), mL = 34, mT = 26, mR = 4;
+    var aP = mode === "pile" ? Math.abs(b) : Math.abs(P), aQ = mode === "pile" ? 0 : Math.abs(Q);
+    var wu = XU + aP, u = Math.min(26, (W - mL - mR) / wu);
+    var x0 = mL, y0 = mT, xs = x0 + XU * u, ys = y0 + XU * u, s = "", i, j, k, bottom = ys;
+    s += box(x0, y0, XU * u, XU * u, POS.sq) + text(x0 + XU * u / 2, y0 + XU * u / 2 + 6, "x²", "middle", 18);
+    var stripP = (mode === "pile" ? b : P) < 0 ? NEG.strip : POS.strip;
+    for (i = 0; i < aP; i++) s += box(xs + i * u, y0, u, XU * u, stripP);
+    for (j = 0; j < aQ; j++) s += box(x0, ys + j * u, XU * u, u, Q < 0 ? NEG.strip : POS.strip);
+    if (mode !== "pile") {
+      var cornerFill = P * Q < 0 ? NEG.unit : POS.unit, have = mode === "rect" ? aP * aQ : c;
+      k = 0;
+      for (j = 0; j < aQ; j++) for (i = 0; i < aP; i++) { s += k < have ? box(xs + i * u, ys + j * u, u, u, cornerFill) : box(xs + i * u, ys + j * u, u, u, "#fff", true); k++; }
+      bottom = ys + aQ * u;
+      s += text(x0 + XU * u / 2, mT - 8, "x", "middle", 15, "#3f44c9") + text(mL - 8, y0 + XU * u / 2 + 5, "x", "end", 15, "#3f44c9");
+      if (P !== 0) s += text(xs + aP * u / 2, mT - 8, (P > 0 ? "+ " : "− ") + aP, "middle", 15, P < 0 ? "#b3261e" : "#3f44c9");
+      if (Q !== 0) s += text(mL - 6, ys + aQ * u / 2 + 5, (Q > 0 ? "+" : "−") + aQ, "end", 15, Q < 0 ? "#b3261e" : "#3f44c9");
+    }
+    // loose unit tiles: the spare ones in a near miss, or all of them in a pile
+    var loose = mode === "try" ? Math.max(0, c - P * Q) : mode === "pile" ? Math.abs(c) : 0;
+    if (loose > 0) {
+      var cols = Math.max(4, Math.floor(wu)), top = bottom + 0.7 * u, g = u * 1.08;
+      for (k = 0; k < loose; k++) s += box(x0 + (k % cols) * g, top + Math.floor(k / cols) * g, u, u, c < 0 ? NEG.unit : POS.unit);
+      bottom = top + Math.ceil(loose / cols) * g;
+    }
+    var H = Math.ceil(bottom + 6);
+    host.innerHTML = '<svg viewBox="0 0 ' + W + " " + H + '" width="' + W + '" height="' + H + '" role="img" aria-label="Tiles for ' + polyText(b, c) + '" font-family="Nunito, sans-serif">' + s + "</svg>";
+
+    var name = polyText(b, c);
+    if (mode === "rect") {
+      var eq = name + "\n= " + factorText(f.p, f.q) + "\nadd:   " + par(f.p) + " + " + par(f.q) + " = " + num(b) + "\ntimes: " + par(f.p) + " × " + par(f.q) + " = " + num(c);
+      eq += "\nzero at x = " + num(-f.p === 0 ? 0 : -f.p) + (f.p === f.q ? " only" : " and x = " + num(-f.q === 0 ? 0 : -f.q));
+      poly.textContent = eq;
+    } else if (mode === "try") {
+      var need = P * Q, miss = need > c ? plural(need - c, "gap") : plural(c - need, "spare tile");
+      poly.textContent = name + "\nNo whole-number rectangle.\nNearest: " + factorText(P, Q) + "\nneeds " + plural(need, "unit tile") + "\nyou have " + c + ": " + miss + ".";
+    } else {
+      poly.textContent = name + "\nNo whole-number rectangle.\nNo two whole numbers multiply to " + num(c) + " and add to " + num(b) + ".";
+    }
+
+    var parts = ["1 x² tile"];
+    if (mode === "rect" && P * Q < 0) {
+      var blue = Math.max(P, Q), red = -Math.min(P, Q);
+      parts.push(plural(blue, "blue strip") + " and " + plural(red, "red strip") + " (" + blue + " − " + red + " = " + num(b) + ")");
+    } else if (b !== 0) parts.push(plural(Math.abs(b), b < 0 ? "red strip" : "strip") + (b < 0 ? " (" + num(b) + ")" : ""));
+    if (c !== 0) parts.push(plural(Math.abs(c), c < 0 ? "red unit tile" : "unit tile") + (c < 0 ? " (" + num(c) + ")" : ""));
+    count.textContent = "Tiles: " + parts.join(", ") + "." + (negIn.checked ? " Red tiles count as minus." : "");
+
+    if (c === 0) { pairhead.textContent = "c = 0, so one of the two numbers is 0 and the other is b. There is no corner block."; pairs.innerHTML = ""; }
+    else {
+      var list = pairsOf(c, negIn.checked);
+      if (list.length === 0) { pairhead.textContent = "With positive numbers only, nothing multiplies to " + num(c) + "."; pairs.innerHTML = ""; }
+      else {
+        pairhead.textContent = "Pairs that multiply to " + num(c) + ", and what each adds to. You want a sum of " + num(b) + ".";
+        pairs.innerHTML = list.map(function (pq) {
+          var sum = pq[0] + pq[1];
+          return '<span class="chip' + (sum === b ? " hit" : "") + '">' + par(pq[0]) + " × " + par(pq[1]) + " → sum " + num(sum) + "</span>";
+        }).join("");
+      }
+    }
+  }
+  function ranges() {
+    var neg = negIn.checked;
+    bIn.min = neg ? -12 : 0; cIn.min = neg ? -36 : 0;
+    if (!neg) { S.b = Math.max(0, S.b); S.c = Math.max(0, S.c); }
+    bIn.value = S.b; cIn.value = S.c;
+  }
+  bIn.addEventListener("input", function () { S.b = parseInt(bIn.value, 10); draw(); });
+  cIn.addEventListener("input", function () { S.c = parseInt(cIn.value, 10); draw(); });
+  negIn.addEventListener("change", function () { ranges(); draw(); });
+  document.getElementById("reset").addEventListener("click", function () { S = { b: 7, c: 12 }; negIn.checked = false; ranges(); draw(); });
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(draw, 120); });
+  ranges(); draw();
+})();
+</script>
+</body>
+</html>

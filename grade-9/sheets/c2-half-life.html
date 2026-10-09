@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How long does a medicine last? · Infinity Club</title>
+<meta name="description" content="Half a dose is gone after one half-life. Repeated doses climb towards a steady level, and one short equation says what that level is.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 9</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 9 · Connections · 2</div>
+  <h1>How long does a medicine last?</h1>
+  <p class="teaser">Half the dose is gone after one half-life, three quarters after two. Repeated doses climb towards a steady level you can calculate.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>For many medicines, the body clears a fixed fraction of what is left in each equal stretch of time. The time it takes for the amount to fall by half is the <b>half-life</b>.</p>
+<p>After one half-life, \(\tfrac12\) of a dose is left. After two, \(\tfrac14\). After \(n\) half-lives, \(\left(\tfrac12\right)^n\) is left. The fraction gone is \(\tfrac12, \tfrac34, \tfrac78, \dots\) and never quite reaches 1.</p>
+<p>Now take a dose \(D\) once every half-life. Just after the second dose you hold \(D + \tfrac12 D\). After the third, \(D + \tfrac12 D + \tfrac14 D\). The amounts climb: \(D,\ 1.5D,\ 1.75D,\ 1.875D, \dots\) Each rise is half the one before, so the gap below \(2D\) halves every time.</p>
+<p>Why \(2D\)? Suppose the level just after a dose has settled at \(L\). It halves to \(\tfrac12 L\), then one dose brings it back to \(L\).</p>
+<p class="callout">\(\tfrac12 L + D = L\), so \(L = 2D\).</p>
+<p>At that level the body clears exactly one dose between doses.</p>
+<p class="small">The medicines and doses on this sheet are invented for the arithmetic. Real doses are set by doctors and pharmacists.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: 200 mg every 6 hours</h2>
+<p>An invented medicine has a half-life of 6 hours. Just after each dose the body holds 200, 300, 350, 375, 387.5 mg.</p>
+<figure><svg viewBox="0 0 430 180" width="430" height="180" role="img" aria-label="A sawtooth graph of the amount of medicine in the body over 42 hours. Each dose lifts the amount by 200 milligrams and it then decays by half over 6 hours. The peaks climb 200, 300, 350, 375 towards a dashed line at 400 and the troughs climb towards a dashed line at 200" font-family="Nunito, sans-serif" font-size="12">
+<line x1="48" y1="156" x2="422" y2="156" stroke="#999" stroke-width="1"/><line x1="48" y1="156" x2="48" y2="8" stroke="#999" stroke-width="1"/>
+<line x1="48" y1="91.2" x2="422" y2="91.2" stroke="#999" stroke-width="1" stroke-dasharray="4 3"/><text x="42" y="95.2" text-anchor="end" fill="#999">200</text>
+<line x1="48" y1="26.5" x2="422" y2="26.5" stroke="#999" stroke-width="1" stroke-dasharray="4 3"/><text x="42" y="30.5" text-anchor="end" fill="#999">400</text>
+<text x="42" y="160" text-anchor="end" fill="#999">0</text>
+<line x1="48" y1="156" x2="48" y2="160" stroke="#999" stroke-width="1"/><text x="48" y="172" text-anchor="middle" fill="#999">0</text>
+<line x1="100.3" y1="156" x2="100.3" y2="160" stroke="#999" stroke-width="1"/><text x="100.3" y="172" text-anchor="middle" fill="#999">6</text>
+<line x1="152.6" y1="156" x2="152.6" y2="160" stroke="#999" stroke-width="1"/><text x="152.6" y="172" text-anchor="middle" fill="#999">12</text>
+<line x1="204.9" y1="156" x2="204.9" y2="160" stroke="#999" stroke-width="1"/><text x="204.9" y="172" text-anchor="middle" fill="#999">18</text>
+<line x1="257.1" y1="156" x2="257.1" y2="160" stroke="#999" stroke-width="1"/><text x="257.1" y="172" text-anchor="middle" fill="#999">24</text>
+<line x1="309.4" y1="156" x2="309.4" y2="160" stroke="#999" stroke-width="1"/><text x="309.4" y="172" text-anchor="middle" fill="#999">30</text>
+<line x1="361.7" y1="156" x2="361.7" y2="160" stroke="#999" stroke-width="1"/><text x="361.7" y="172" text-anchor="middle" fill="#999">36</text>
+<polyline points="48,156 48,91.2 52.4,94.9 56.7,98.3 61.1,101.5 65.4,104.6 69.8,107.5 74.1,110.2 78.5,112.8 82.9,115.2 87.2,117.5 91.6,119.7 95.9,121.7 100.3,123.6 100.3,58.9 104.6,64.3 109,69.5 113.4,74.3 117.7,78.9 122.1,83.2 126.4,87.3 130.8,91.2 135.1,94.8 139.5,98.2 143.9,101.5 148.2,104.5 152.6,107.4 152.6,42.7 156.9,49 161.3,55 165.6,60.7 170,66 174.4,71.1 178.7,75.9 183.1,80.4 187.4,84.6 191.8,88.6 196.1,92.4 200.5,96 204.9,99.3 204.9,34.6 209.2,41.4 213.6,47.8 217.9,53.9 222.3,59.6 226.6,65 231,70.1 235.4,75 239.7,79.5 244.1,83.8 248.4,87.9 252.8,91.7 257.1,95.3 257.1,30.5 261.5,37.6 265.9,44.2 270.2,50.5 274.6,56.4 278.9,62 283.3,67.3 287.6,72.3 292,77 296.4,81.4 300.7,85.6 305.1,89.5 309.4,93.3 309.4,28.5 313.8,35.7 318.1,42.4 322.5,48.8 326.9,54.8 331.2,60.5 335.6,65.8 339.9,70.9 344.3,75.7 348.6,80.2 353,84.4 357.4,88.5 361.7,92.2 361.7,27.5 366.1,34.7 370.4,41.5 374.8,47.9 379.1,54 383.5,59.7 387.9,65.1 392.2,70.2 396.6,75 400.9,79.6 405.3,83.9 409.6,87.9 414,91.7" fill="none" stroke="#3f44c9" stroke-width="2" stroke-linejoin="round"/>
+<circle cx="48" cy="91.2" r="3" fill="#f5a524" stroke="#000" stroke-width="0.8"/>
+<circle cx="100.3" cy="58.9" r="3" fill="#f5a524" stroke="#000" stroke-width="0.8"/>
+<circle cx="152.6" cy="42.7" r="3" fill="#f5a524" stroke="#000" stroke-width="0.8"/>
+<circle cx="204.9" cy="34.6" r="3" fill="#f5a524" stroke="#000" stroke-width="0.8"/>
+<circle cx="257.1" cy="30.5" r="3" fill="#f5a524" stroke="#000" stroke-width="0.8"/>
+<circle cx="309.4" cy="28.5" r="3" fill="#f5a524" stroke="#000" stroke-width="0.8"/>
+<circle cx="361.7" cy="27.5" r="3" fill="#f5a524" stroke="#000" stroke-width="0.8"/>
+<text x="54" y="88.2" fill="#000">200</text>
+<text x="106.3" y="55.9" fill="#000">300</text>
+<text x="158.6" y="39.7" fill="#000">350</text>
+<text x="54" y="16" fill="#999">mg in the body</text><text x="422" y="172" text-anchor="end" fill="#999">hours</text></svg><figcaption>Each dose adds 200 mg. Then half of everything goes in 6 hours.</figcaption></figure>
+<p>The gaps below 400 are 200, 100, 50, 25, 12.5. They halve each time, as predicted. The steady level is \(2 \times 200 = 400\) mg just after a dose and 200 mg just before the next. After five doses you are within about 3% of it.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<p class="small">All medicines and doses below are invented.</p>
+<ol>
+<li>One 80 mg dose, half-life 4 hours. (a) How much is left after 4, 8 and 12 hours? (b) What fraction of the dose has gone after 12 hours? (c) What percent is left after 5 half-lives?<div class="space short"></div></li>
+<li>A 120 mg dose is taken once every half-life. (a) Find the amount just after each of the first five doses. (b) What is the steady level just after a dose? (c) At the steady level, how much is left just before a dose?<div class="space short"></div></li>
+<li>Another medicine is taken once every <em>two</em> half-lives, so a quarter is left when the next dose arrives. The dose is 300 mg. (a) Write an equation for the steady level \(L\) just after a dose, and solve it. (b) Check by working out the level just after each of the first four doses.<div class="space"></div></li>
+<li>The aim is a steady level of 500 mg just after each dose, with a dose every half-life. (a) What dose is needed? (b) With that dose, which dose first takes the level past 450 mg? (c) Suppose the first dose alone is doubled. What is the level just after every later dose, and why?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: any fraction left</h2>
+<p>Suppose a fraction \(k\) of the medicine is left when the next dose \(D\) arrives. Show that the steady level just after a dose is \(\dfrac{D}{1-k}\). If the steady level is five times the dose, find \(k\). With that \(k\), how many doses until the level passes 90% of steady?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) 40 mg, 20 mg, 10 mg. (b) \(\tfrac78\) has gone, since \(\tfrac18\) is left. (c) \(\left(\tfrac12\right)^5 = \tfrac{1}{32} \approx 3.1\%\).</li>
+<li>(a) 120, 180, 210, 225, 232.5 mg. (b) \(2 \times 120 = 240\) mg. The gaps below 240 are 120, 60, 30, 15, 7.5. (c) Half of 240, which is 120 mg: exactly one dose has been cleared.</li>
+<li>(a) \(\tfrac14 L + 300 = L\), so \(\tfrac34 L = 300\) and \(L = 400\) mg. (b) 300, 375, 393.75, 398.44 mg (to 2 decimal places). The gap below 400 is divided by 4 each time: 100, 25, 6.25, 1.56.</li>
+<li>(a) \(L = 2D = 500\), so the dose is 250 mg. (b) The levels are 250, 375, 437.5, 468.75 mg: the fourth dose. (c) 500 mg every time. A first dose of 500 mg halves to 250 mg, and the next 250 mg dose brings it back to 500 mg. You start at the steady level, so you stay there.</li>
+</ol>
+<p><b>Stretch.</b> At the steady level \(kL + D = L\), so \(L(1 - k) = D\) and \(L = \dfrac{D}{1-k}\). If \(L = 5D\) then \(1 - k = \tfrac15\) and \(k = 0.8\). The gap below \(L\) is multiplied by \(k\) at every dose, so after \(n\) doses it is \(0.8^n\) of \(L\). You need \(0.8^n \lt 0.1\). Since \(0.8^{10} = 0.107\) and \(0.8^{11} = 0.086\), it takes 11 doses.</p>
+</section>
+
+<div class="sheet-nav"><a href="c1-rule-of-72.html">← Previous</a><a href="c3-arches-and-cables.html">Next: The shape of a bridge →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

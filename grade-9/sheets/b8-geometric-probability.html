@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Probability you can measure with a ruler · Infinity Club</title>
+<meta name="description" content="Two friends each arrive at a random moment in the same hour and wait ten minutes. Plot the two arrival times as a point in a square, and the chance they meet is an area: 11/36.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 9</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 9 · Around the corner · 8</div>
+  <h1>Probability you can measure with a ruler</h1>
+  <p class="teaser">Two friends each arrive at a random moment in the same hour and wait ten minutes. The chance they meet is an area.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A grain of rice falls at a random spot on a 30 cm ruler. What is the chance it lands in the first 6 cm? You cannot count outcomes, because there are infinitely many spots. You measure instead: 6 cm out of 30 cm, so \(\tfrac{6}{30} = \tfrac15\). "At random" here means no part of the ruler is favoured, so equal lengths get equal chances.</p>
+<p>Two random choices need two axes. Ann and Ben agree to meet at a café. Each arrives at a random moment between 12:00 and 1:00, and neither knows when the other will come. Say Ann arrives \(x\) minutes past 12 and Ben \(y\) minutes past. Each possible pair of arrival times is one point \((x, y)\) in a 60 by 60 square, and no part of the square is favoured. Now equal <em>areas</em> get equal chances.</p>
+<p class="callout">Probability \(= \dfrac{\text{area where it happens}}{\text{total area}}\)</p>
+<p>A question about chance has become a question about a shape.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: will they meet?</h2>
+<figure style="float:right;width:290px;max-width:48%;margin:0 0 .4em 1em"><svg viewBox="0 0 290 200" width="290" height="200" role="img" aria-label="A 60 by 60 square of arrival times. A shaded diagonal band between the lines y equals x plus 10 and y equals x minus 10 marks where the friends meet. Two unshaded corner triangles with legs 50 mark where they miss." font-family="Nunito, sans-serif" font-size="12">
+<rect x="58" y="18" width="150" height="150" fill="#fff" stroke="none"/>
+<polygon points="58,168 83,168 208,43 208,18 183,18 58,143" fill="#dcdcf5"/>
+<line x1="58" y1="143" x2="183" y2="18" stroke="#3f44c9" stroke-width="2"/><line x1="83" y1="168" x2="208" y2="43" stroke="#3f44c9" stroke-width="2"/>
+<line x1="58" y1="168" x2="208" y2="18" stroke="#999" stroke-width="1" stroke-dasharray="4 3"/>
+<rect x="58" y="18" width="150" height="150" fill="none" stroke="#000" stroke-width="1.5"/>
+<line x1="58" y1="168" x2="58" y2="172" stroke="#000"/><text x="58" y="184" text-anchor="middle">0</text>
+<line x1="54" y1="168" x2="58" y2="168" stroke="#000"/><text x="51" y="172" text-anchor="end">0</text>
+<line x1="83" y1="168" x2="83" y2="172" stroke="#000"/><text x="83" y="184" text-anchor="middle">10</text>
+<line x1="54" y1="143" x2="58" y2="143" stroke="#000"/><text x="51" y="147" text-anchor="end">10</text>
+<line x1="183" y1="168" x2="183" y2="172" stroke="#000"/><text x="183" y="184" text-anchor="middle">50</text>
+<line x1="54" y1="43" x2="58" y2="43" stroke="#000"/><text x="51" y="47" text-anchor="end">50</text>
+<line x1="208" y1="168" x2="208" y2="172" stroke="#000"/><text x="208" y="184" text-anchor="middle">60</text>
+<line x1="54" y1="18" x2="58" y2="18" stroke="#000"/><text x="51" y="22" text-anchor="end">60</text>
+<text x="133" y="198" text-anchor="middle">Ann arrives, x minutes past 12</text>
+<text x="14" y="93" text-anchor="middle" transform="rotate(-90 14 93)">Ben arrives, y</text>
+<text x="100.5" y="58" text-anchor="middle" fill="#f5a524" font-weight="700">miss</text>
+<text x="165.5" y="135.5" text-anchor="middle" fill="#f5a524" font-weight="700">miss</text>
+<text x="133" y="97" text-anchor="middle" fill="#3f44c9" font-weight="700" transform="rotate(-45 133 93)">meet</text>
+<text x="173" y="12" text-anchor="middle" fill="#3f44c9">y = x + 10</text>
+<text x="213" y="47" fill="#3f44c9">y = x − 10</text>
+</svg><figcaption>Each point is one pair of arrival times.</figcaption></figure>
+<p>Each waits 10 minutes, then leaves. They meet if the arrival times differ by 10 or less: \(y \le x + 10\) and \(y \ge x - 10\). That is the band between two parallel lines.</p>
+<p>The misses are easier to measure. They are two right triangles with legs 50, and together the triangles make a 50 by 50 square of area 2500. The whole square has area 3600.</p>
+\[P(\text{meet}) = \frac{3600 - 2500}{3600} = \frac{11}{36} \approx 0.31\]
+<p>Less than one chance in three.</p>
+</section>
+
+<section class="exercises" style="clear:both">
+<h2>Your turn</h2>
+<ol>
+<li>(a) A bus comes every 12 minutes, and you turn up at a random moment. What is the chance you wait 3 minutes or less? (b) A point is picked at random in a 6 by 4 rectangle. What is the chance it is within 1 of the edge? (Find the area of the part that is not.)<div class="space short"></div></li>
+<li>Ann and Ben decide to wait longer. Sketch the square and find the chance they meet if each waits (a) 20 minutes, (b) 30 minutes.<div class="space"></div></li>
+<li>Two numbers \(x\) and \(y\) are each picked at random between 0 and 1. Sketch the region in a 1 by 1 square and find the chance that (a) \(x + y \lt \tfrac12\), (b) \(y \gt 2x\).<div class="space"></div></li>
+<li>Ann still waits 10 minutes, but Ben is more patient and waits 20. (a) One of the two lines in the figure moves. Which one, and to where? (b) Find the chance they meet.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the broken stick</h2>
+<p>Snap a stick of length 1 at two random points \(x\) and \(y\). The three pieces <a href="../../grade-7/sheets/a11-three-sticks.html">make a triangle</a> only if each is shorter than \(\tfrac12\). In a 1 by 1 square, shade the points \((x, y)\) where that holds, and find the probability.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) You arrive at a random point of a 12-minute gap, and the good part is its last 3 minutes: \(\tfrac{3}{12} = \tfrac14\). (b) Points more than 1 from every edge fill a 4 by 2 rectangle, area 8 out of 24. So the chance is \(1 - \tfrac{8}{24} = \tfrac23\).</li>
+<li>(a) The corner triangles have legs 40 and make a 40 by 40 square: \(1 - \tfrac{1600}{3600} = \tfrac59 \approx 0.56\). (b) Legs 30: \(1 - \tfrac{900}{3600} = \tfrac34\).</li>
+<li>(a) The triangle with corners \((0, 0)\), \((\tfrac12, 0)\), \((0, \tfrac12)\): area \(\tfrac12 \times \tfrac12 \times \tfrac12 = \tfrac18\). (b) The region above the line from \((0, 0)\) to \((\tfrac12, 1)\) is a triangle with corners \((0, 0)\), \((0, 1)\), \((\tfrac12, 1)\): area \(\tfrac12 \times \tfrac12 \times 1 = \tfrac14\).</li>
+<li>(a) If Ben comes first he now waits 20, so they meet when \(x \le y + 20\). The lower line moves from \(y = x - 10\) to \(y = x - 20\). The upper line stays, because Ann still waits only 10. (b) The upper miss triangle has legs 50, area 1250. The lower one has legs 40, area 800. \(P = 1 - \tfrac{2050}{3600} = \tfrac{1550}{3600} = \tfrac{31}{72} \approx 0.43\).</li>
+</ol>
+<p><b>Stretch.</b> Suppose \(x \lt y\). The pieces have lengths \(x\), \(y - x\) and \(1 - y\). All are under \(\tfrac12\) when \(x \lt \tfrac12\), \(y \gt \tfrac12\) and \(y \lt x + \tfrac12\). That is the triangle with corners \((0, \tfrac12)\), \((\tfrac12, \tfrac12)\), \((\tfrac12, 1)\), area \(\tfrac18\). The case \(x \gt y\) gives its mirror image, another \(\tfrac18\). The probability is \(\tfrac14\).</p>
+</section>
+
+<div class="sheet-nav"><a href="b7-stars-and-bars.html">← Previous</a><a href="b9-monte-carlo.html">Next: Finding an area by throwing darts →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

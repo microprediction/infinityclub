@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Area from three sides · Infinity Club</title>
+<meta name="description" content="Heron's formula gives the area of a triangle from its three sides, with no height needed. Test it against triangles whose area you already know.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 9</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 9 · Around the corner · 19</div>
+  <h1>Area from three sides</h1>
+  <p class="teaser">No height needed. Heron's formula gives the area of a triangle from its sides alone, and you can check it against one you already know.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Area is half of base times height. But a height is not one of the sides, and in a field it is awkward to measure. Three sides fix a triangle (<a href="a7-congruence.html">Three facts fix a triangle (usually)</a>), so the sides alone must decide the area. Heron of Alexandria wrote down how, about two thousand years ago.</p>
+<p>Call the sides \(a\), \(b\), \(c\). First find half the perimeter, \(s = \dfrac{a + b + c}{2}\). Then:</p>
+<p class="callout"><b>Heron's formula.</b> \(\text{Area} = \sqrt{s(s - a)(s - b)(s - c)}\)</p>
+<p>We skip the proof tonight. When a formula comes without one, test it.</p>
+<p><b>A triangle you know.</b> The 3-4-5 right triangle has area \(\tfrac12 \times 3 \times 4 = 6\). Heron: \(s = 6\), and \(\sqrt{6 \times 3 \times 2 \times 1} = \sqrt{36} = 6\).</p>
+<p><b>A flat triangle.</b> Sides 2, 3, 5 fold flat, because \(2 + 3 = 5\). The area should be 0. Heron: \(s = 5\), so \(s - c = 0\) and the product is 0.</p>
+<p><b>Units.</b> Four lengths multiplied, then a square root: a length squared, as an area should be.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: sides 13, 14, 15</h2>
+<figure style="float:right;width:200px;margin:0 0 .3em .8em"><svg viewBox="0 0 220 175" width="200" height="159" role="img" aria-label="A triangle with sides 13, 14 and 15. The height drawn to the side of length 14 is 12 and splits that side into 5 and 9, making two right triangles." font-family="Nunito, sans-serif" font-size="13">
+<polygon points="40,138 90,138 90,18" fill="#dcdcf5"/><polygon points="90,138 180,138 90,18" fill="#fde8c4"/>
+<polygon points="40,138 180,138 90,18" fill="none" stroke="#000" stroke-width="2"/>
+<line x1="90" y1="138" x2="90" y2="18" stroke="#3f44c9" stroke-width="1.8" stroke-dasharray="5 3"/>
+<polyline points="90,129 99,129 99,138" fill="none" stroke="#3f44c9" stroke-width="1.2"/>
+<text x="55.0" y="76" text-anchor="end" font-weight="700">13</text><text x="145.0" y="76" font-weight="700">15</text>
+<text x="96" y="83.0" fill="#3f44c9" font-weight="700">12</text>
+<text x="65.0" y="154" text-anchor="middle" fill="#3f44c9">5</text><text x="135.0" y="154" text-anchor="middle" fill="#f5a524">9</text>
+<text x="110" y="171" text-anchor="middle" fill="#999" font-size="12">5 + 9 = 14</text>
+</svg><figcaption>The 13-14-15 triangle is two right triangles side by side.</figcaption></figure>
+<p><b>Heron.</b> \(s = \tfrac12(13 + 14 + 15) = 21\). The three differences are 8, 7 and 6.</p>
+\[\text{Area} = \sqrt{21 \times 8 \times 7 \times 6} = \sqrt{7056} = 84.\]
+<p><b>Check with a height.</b> Drop the height onto the side of 14. It splits it into 5 and 9, since 5-12-13 and 9-12-15 are right triangles (\(25 + 144 = 169\) and \(81 + 144 = 225\)). The height is 12, so the area is \(\tfrac12 \times 14 \times 12 = 84\). The two methods agree.</p>
+<p class="small">By hand: \(21 \times 8 \times 7 \times 6 = 2^4 \times 3^2 \times 7^2\), so the root is \(4 \times 3 \times 7\).</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>A triangle has sides 6, 8 and 10. Find its area with Heron's formula. Then check it another way.<div class="space short"></div></li>
+<li>Use Heron's formula on the triangle with sides 5, 5, 6 and on the one with sides 5, 5, 8. Check one of them by cutting it into two right triangles. Why do the two answers come out the same?<div class="space"></div></li>
+<li>A field has straight sides of 7 m, 15 m and 20 m. (a) Find its area. (b) How far is the opposite corner from the 20 m side? (c) How far is the opposite corner from the line of the 7 m side?<div class="space"></div></li>
+<li>(a) Try Heron's formula on sides 4, 5 and 10. What goes wrong, and what is the formula telling you? (b) Find the exact area of an equilateral triangle of side 2 with Heron's formula. Check it using the height from <a href="a5-special-triangles.html">Two triangles worth knowing by heart</a>.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the best triangle</h2>
+<p>A triangle has perimeter 12 and one side of length 4. Use Heron's formula to find the other two sides that make the area as large as possible, and give that area exactly. (Hint: the two brackets you can change have a fixed sum. Write them as \(2 + t\) and \(2 - t\).)</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(s = 12\). Area \(= \sqrt{12 \times 6 \times 4 \times 2} = \sqrt{576} = 24\). Check: \(6^2 + 8^2 = 10^2\), so there is a right angle between the sides 6 and 8, and \(\tfrac12 \times 6 \times 8 = 24\).</li>
+<li>Sides 5, 5, 6: \(s = 8\), area \(= \sqrt{8 \times 3 \times 3 \times 2} = \sqrt{144} = 12\). Sides 5, 5, 8: \(s = 9\), area \(= \sqrt{9 \times 4 \times 4 \times 1} = \sqrt{144} = 12\). Check the first: the height to the side of 6 cuts it into 3 and 3, so the height is \(\sqrt{25 - 9} = 4\) and the area is \(\tfrac12 \times 6 \times 4 = 12\). Both triangles are two 3-4-5 triangles. Join the pair along the side of 4 and you get 5, 5, 6. Join them along the side of 3 and you get 5, 5, 8.</li>
+<li>(a) \(s = 21\). Area \(= \sqrt{21 \times 14 \times 6 \times 1} = \sqrt{1764} = 42\) m². (b) \(\tfrac12 \times 20 \times h = 42\), so \(h = 4.2\) m. (c) \(\tfrac12 \times 7 \times h = 42\), so \(h = 12\) m. The same area gives every height.</li>
+<li>(a) \(s = 9.5\) and \(s - 10 = -0.5\), so the product under the root is negative and there is no square root to take. No such triangle exists: \(4 + 5\) is less than 10, so the two short sides cannot reach each other. (b) \(s = 3\). Area \(= \sqrt{3 \times 1 \times 1 \times 1} = \sqrt3\). Check: half the triangle is a 1, \(\sqrt3\), 2 triangle, so the height is \(\sqrt3\) and the area is \(\tfrac12 \times 2 \times \sqrt3 = \sqrt3\).</li>
+</ol>
+<p><b>Stretch.</b> \(s = 6\) and the fixed side gives \(s - a = 2\). The other two sides add to 8, so the brackets \(6 - b\) and \(6 - c\) add to 4. Write them as \(2 + t\) and \(2 - t\). Their product is \(4 - t^2\), which is largest when \(t = 0\). Then \(b = c = 4\): the triangle is equilateral, with area \(\sqrt{6 \times 2 \times 2 \times 2} = \sqrt{48} = 4\sqrt3 \approx 6.93\).</p>
+</section>
+
+<div class="sheet-nav"><a href="b18-circle-through-three-points.html">← Previous</a><a href="b20-great-circles.html">Next: Why planes fly over Greenland →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

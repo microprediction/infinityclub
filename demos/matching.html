@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stable Matching · Infinity Club</title>
+<meta name="description" content="Match four applicants to four schools: run the rounds of proposals one step at a time, or build a matching by hand and see which pairs would break it.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.two { display: flex; flex-wrap: wrap; gap: .6rem 2rem; align-items: flex-start; }
+.two > div { flex: 1 1 250px; min-width: 0; }
+.two h3 { margin: .6rem 0 .3rem; font-size: 1rem; }
+.prow { display: flex; align-items: center; gap: .3rem; margin: .3rem 0; }
+.prow .who { width: 3.6em; font-weight: 800; flex: none; }
+.chip { font: inherit; font-weight: 700; font-size: .92rem; border: 2px solid var(--rule); background: #fff; color: var(--ink); border-radius: 8px; padding: .3em 0; width: 3.4em; cursor: pointer; flex: 0 1 auto; min-width: 0; }
+.chip.held { background: var(--accent); border-color: var(--accent); color: #fff; }
+.chip.no { text-decoration: line-through; color: #a9abbd; background: #f4f2ec; }
+.grid { border-collapse: collapse; margin: .4rem 0; }
+.grid th { font-weight: 800; padding: .25em .4em; font-size: .92rem; }
+.grid td { padding: 2px; }
+.cellb { font: inherit; font-weight: 800; width: 3.1em; height: 2.6em; border: 2px solid var(--rule); border-radius: 8px; background: #fff; color: var(--ink); cursor: pointer; padding: 0; }
+.cellb.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+.cellb.bad { background: var(--warm-soft); border-color: var(--warm); color: #9a5b00; }
+.cellb.no { color: #a9abbd; background: #f4f2ec; }
+#status { font-size: .92rem; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Stable matching</h1>
+<p class="explain">Four applicants, four schools, one place at each school. Everyone has a list, favourite first. Press <b>Step</b> to run one round: every applicant without a place asks the best school that has not yet turned them down, and each school keeps the applicant it likes best and turns down the rest. Keep pressing until everyone has a place. Then try to do it yourself: tap squares in the table to build your own matching, and any pair that would rather have each other lights up as <b>unstable</b>. Tap a name in a list to move it one place towards the front.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <button id="step">Step</button>
+    <button id="run" class="alt">Run to the end</button>
+    <button id="again" class="ghost">Start again</button>
+    <button id="hand" class="ghost">Build my own</button>
+    <button id="random" class="ghost">Random lists</button>
+    <button id="reset" class="ghost">Reset lists</button>
+  </div>
+  <div class="two">
+    <div>
+      <h3 id="gridtitle">The matching</h3>
+      <table class="grid" id="grid"></table>
+      <p class="small" id="gridnote"></p>
+      <div class="readout" id="status"></div>
+    </div>
+    <div>
+      <h3>Applicants' lists, favourite first</h3>
+      <div id="alist"></div>
+      <h3>Schools' lists, favourite first</h3>
+      <div id="slist"></div>
+    </div>
+  </div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>A matching gives every applicant one school and every school one applicant. Suppose Ben has been given East, but Ben would rather be at North, and North would rather have Ben than the applicant it was given. Then Ben and North have a reason to walk away from the plan together. A pair like that makes the matching <b>unstable</b>. A matching with no such pair is <b>stable</b>: nobody can find a partner who would agree to swap.</p>
+<p><b>The rounds always end.</b> An applicant never asks the same school twice, and there are only 4 × 4 = 16 possible requests, so the rounds must stop. A school that has been asked once holds on to somebody from then on. So if an applicant ran out of schools, all four schools would be holding four other applicants, and there are only four applicants. That cannot happen, so everyone ends with a place.</p>
+<p><b>The result is always stable.</b> Suppose Ben prefers North to the school he ended up with. Then Ben asked North before he asked his final school, and North turned him down for someone it liked better. A school only ever trades up, so North still likes its final applicant more than Ben. North will not swap. That argument works for every applicant and every school, so there are no unstable pairs.</p>
+<p>This method was published by David Gale and Lloyd Shapley in 1962. Versions of it place new doctors in hospitals and students in schools in many cities. There can be more than one stable matching, and the side that does the asking gets its best one: build the other one by hand, if you can find it, and compare who is happier.</p>
+<p>Sheet: <a href="../grade-9/sheets/b14-stable-matching.html">Matching without regrets</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  // ap[a] is applicant a's list of schools, favourite first; sp[s] is school s's list of applicants.
+  // A matching is an array: match[a] = the school holding applicant a, or -1 for none.
+  function rank(list, x) { return list.indexOf(x); }                 // 0 = favourite
+  function prefers(list, x, y) { return y < 0 || rank(list, x) < rank(list, y); }   // x beats y; anything beats nothing
+  function holders(match, n) { var h = [], a; for (a = 0; a < n; a++) h.push(-1); for (a = 0; a < n; a++) if (match[a] >= 0) h[match[a]] = a; return h; }
+  function gsInit(n) {
+    var st = { match: [], next: [], rejected: [], round: 0, done: false };
+    for (var a = 0; a < n; a++) { st.match.push(-1); st.next.push(0); st.rejected.push([]); for (var s = 0; s < n; s++) st.rejected[a].push(false); }
+    return st;
+  }
+  // One round of proposals. Changes st and returns what happened: who asked whom, and each school's decision.
+  function gsRound(ap, sp, st) {
+    var n = ap.length, hold = holders(st.match, n), asks = [], bySchool = [], a, s;
+    for (s = 0; s < n; s++) bySchool.push([]);
+    for (a = 0; a < n; a++) if (st.match[a] < 0 && st.next[a] < n) { s = ap[a][st.next[a]]; asks.push([a, s]); bySchool[s].push(a); }
+    if (!asks.length) { st.done = true; return null; }
+    st.round++;
+    var decisions = [];
+    for (s = 0; s < n; s++) {
+      if (!bySchool[s].length) continue;
+      var keep = hold[s], out = [];
+      bySchool[s].forEach(function (x) { if (prefers(sp[s], x, keep)) keep = x; });
+      bySchool[s].concat(hold[s] >= 0 ? [hold[s]] : []).forEach(function (x) {
+        if (x === keep) return;
+        out.push(x); st.rejected[x][s] = true; st.match[x] = -1; st.next[x]++;
+      });
+      st.match[keep] = s;
+      decisions.push({ school: s, keep: keep, out: out, had: hold[s] });
+    }
+    st.done = true;
+    for (a = 0; a < n; a++) if (st.match[a] < 0 && st.next[a] < n) st.done = false;
+    return { round: st.round, asks: asks, decisions: decisions };
+  }
+  function galeShapley(ap, sp) { var st = gsInit(ap.length); while (!st.done) gsRound(ap, sp, st); return st; }
+  // Every applicant-school pair who are not together but would both rather be: [applicant, school].
+  function blockingPairs(ap, sp, match) {
+    var n = ap.length, hold = holders(match, n), out = [];
+    for (var a = 0; a < n; a++) for (var s = 0; s < n; s++) {
+      if (match[a] === s) continue;
+      if (prefers(ap[a], s, match[a]) && prefers(sp[s], a, hold[s])) out.push([a, s]);
+    }
+    return out;
+  }
+  var DEFAULT_AP = [[0, 1, 2, 3], [0, 2, 1, 3], [1, 0, 3, 2], [1, 3, 0, 2]];
+  var DEFAULT_SP = [[2, 3, 0, 1], [0, 1, 3, 2], [3, 0, 1, 2], [1, 2, 0, 3]];
+  /*ENDPURE*/
+
+  var AN = ["Ana", "Ben", "Cleo", "Dev"], SN = ["North", "East", "South", "West"], N = 4;
+  var ap, sp, st, mode, hand, timer = null;
+  var status = document.getElementById("status"), aEl = document.getElementById("alist"), sEl = document.getElementById("slist"), grid = document.getElementById("grid");
+  function copy(m) { return m.map(function (r) { return r.slice(); }); }
+  function list(names) { return names.length < 2 ? names.join("") : names.slice(0, -1).join(", ") + " and " + names[names.length - 1]; }
+  function stopRun() { if (timer) { clearTimeout(timer); timer = null; } }
+  function current() { return mode === "hand" ? hand : st.match; }
+  function prefRows(el, lists, rowNames, chipNames, isApplicant) {
+    var match = current(), hold = holders(match, N);
+    el.innerHTML = "";
+    lists.forEach(function (lst, i) {
+      var row = document.createElement("div"); row.className = "prow";
+      var who = document.createElement("span"); who.className = "who"; who.textContent = rowNames[i]; row.appendChild(who);
+      lst.forEach(function (x, k) {
+        var c = document.createElement("button"); c.className = "chip"; c.textContent = chipNames[x];
+        var mine = isApplicant ? match[i] : hold[i];
+        if (mine === x) c.className += " held";
+        else if (isApplicant && mode === "gs" && st.rejected[i][x]) c.className += " no";
+        c.title = k ? "Move " + chipNames[x] + " one place towards the front" : rowNames[i] + "'s favourite";
+        c.addEventListener("click", function () { if (!k) return; lst[k] = lst[k - 1]; lst[k - 1] = x; changedLists(); });
+        row.appendChild(c);
+      });
+      el.appendChild(row);
+    });
+  }
+  function render() {
+    prefRows(aEl, ap, AN, SN, true); prefRows(sEl, sp, SN, AN, false);
+    var match = current(), bad = mode === "hand" ? blockingPairs(ap, sp, match) : [];
+    var h = "<tr><th></th>" + SN.map(function (s) { return "<th>" + s + "</th>"; }).join("") + "</tr>";
+    grid.innerHTML = h;
+    AN.forEach(function (nm, a) {
+      var tr = document.createElement("tr"), th = document.createElement("th"); th.textContent = nm; tr.appendChild(th);
+      SN.forEach(function (sn, s) {
+        var td = document.createElement("td"), b = document.createElement("button"); b.className = "cellb";
+        var isBad = bad.some(function (p) { return p[0] === a && p[1] === s; });
+        if (match[a] === s) { b.className += " on"; b.textContent = "✓"; }
+        else if (isBad) { b.className += " bad"; b.textContent = "!"; }
+        else if (mode === "gs" && st.rejected[a][s]) { b.className += " no"; b.textContent = "✗"; }
+        b.setAttribute("aria-label", nm + " and " + sn + (match[a] === s ? ", matched" : isBad ? ", unstable pair" : ""));
+        b.addEventListener("click", function () { pair(a, s); });
+        td.appendChild(b); tr.appendChild(td);
+      });
+      grid.appendChild(tr);
+    });
+    document.getElementById("gridtitle").textContent = mode === "hand" ? "Your matching" : "The matching so far";
+    document.getElementById("gridnote").textContent = mode === "hand" ? "✓ matched.  ! unstable pair: these two would both rather have each other.  Tap a square to match that pair." : "✓ holding a place for now.  ✗ turned down.  Tap any square to build a matching by hand.";
+    if (mode === "hand") {
+      status.textContent = bad.length
+        ? "Unstable. " + bad.length + (bad.length === 1 ? " pair" : " pairs") + " would walk away together:\n" + bad.map(function (p) {
+            return "  " + AN[p[0]] + " and " + SN[p[1]] + ": " + AN[p[0]] + " prefers " + SN[p[1]] + " to " + SN[match[p[0]]] + ", and " + SN[p[1]] + " prefers " + AN[p[0]] + " to " + AN[holders(match, N)[p[1]]] + ".";
+          }).join("\n")
+        : "Stable. No applicant and school would both rather have each other.";
+    }
+  }
+  function startGS() {
+    stopRun(); mode = "gs"; st = gsInit(N); render();
+    status.textContent = "Nobody has a place yet. Press Step: every applicant will ask their favourite school.";
+  }
+  function doStep() {
+    if (mode !== "gs") { startGS(); }
+    if (st.done) { status.textContent = "The rounds are over and the matching is stable. Press Start again, change a list, or tap the table to build your own."; return false; }
+    var info = gsRound(ap, sp, st);
+    if (!info) { render(); return false; }
+    var t = "Round " + info.round + ". " + info.asks.map(function (p) { return AN[p[0]] + " asks " + SN[p[1]]; }).join(". ") + ".";
+    info.decisions.forEach(function (d) {
+      t += "\n  " + SN[d.school] + (d.keep === d.had ? " keeps " : " takes ") + AN[d.keep];
+      if (d.out.length) t += " and turns down " + list(d.out.map(function (x) { return AN[x]; }));
+      t += ".";
+    });
+    if (st.done) t += "\nEveryone has a place after " + info.round + (info.round === 1 ? " round" : " rounds") + ". Unstable pairs: " + blockingPairs(ap, sp, st.match).length + ". The matching is stable.";
+    render(); status.textContent = t;
+    return !st.done;
+  }
+  function pair(a, s) {
+    stopRun();
+    if (mode !== "hand") {
+      var full = st.match.every(function (x) { return x >= 0; });
+      hand = full ? st.match.slice() : [0, 1, 2, 3]; mode = "hand";
+    }
+    var other = hand.indexOf(s), old = hand[a];
+    if (other !== a) { hand[other] = old; hand[a] = s; }
+    render();
+  }
+  function changedLists() { stopRun(); if (mode === "hand") render(); else startGS(); }
+  document.getElementById("step").addEventListener("click", function () { stopRun(); doStep(); });
+  document.getElementById("run").addEventListener("click", function () {
+    stopRun(); if (mode !== "gs" || st.done) startGS();
+    (function tick() { timer = null; if (doStep()) timer = setTimeout(tick, 900); })();
+  });
+  document.getElementById("again").addEventListener("click", startGS);
+  document.getElementById("hand").addEventListener("click", function () { stopRun(); mode = "hand"; hand = [0, 1, 2, 3]; render(); });
+  document.getElementById("random").addEventListener("click", function () {
+    function shuffled() { var v = [0, 1, 2, 3]; for (var i = 3; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), t = v[i]; v[i] = v[j]; v[j] = t; } return v; }
+    ap = [0, 1, 2, 3].map(shuffled); sp = [0, 1, 2, 3].map(shuffled); changedLists();
+  });
+  document.getElementById("reset").addEventListener("click", function () { ap = copy(DEFAULT_AP); sp = copy(DEFAULT_SP); changedLists(); });
+  ap = copy(DEFAULT_AP); sp = copy(DEFAULT_SP); startGS();
+})();
+</script>
+</body>
+</html>

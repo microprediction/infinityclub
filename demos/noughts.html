@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unbeatable Noughts and Crosses · Infinity Club</title>
+<meta name="description" content="Play noughts and crosses against a computer that never loses, then switch on the values and see whether each empty square wins, draws or loses.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.board { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; width: min(100%, 330px); margin: .8rem 0; }
+.sq { aspect-ratio: 1 / 1; min-height: 72px; border: 2px solid var(--accent); border-radius: 10px; background: #fff; font: inherit; font-weight: 800; font-size: 2.6rem; line-height: 1; color: var(--ink); cursor: pointer; padding: 0; display: flex; align-items: center; justify-content: center; }
+.sq:disabled { cursor: default; color: var(--ink); opacity: 1; }
+.sq.o { color: var(--accent); }
+.sq.line { background: var(--warm-soft); border-color: var(--warm); }
+.sq .hint { font-size: .95rem; font-weight: 800; border-radius: 6px; padding: .15em .45em; }
+.hint.win { background: #dff3e6; color: #17703f; }
+.hint.draw { background: #eeece6; color: var(--muted); }
+.hint.lose { background: #fbe3df; color: #a8321f; }
+.controls select { font: inherit; padding: .25em .4em; border: 1px solid var(--rule); border-radius: 6px; background: #fff; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Unbeatable noughts and crosses</h1>
+<p class="explain">Tap a square to play. Three in a row wins. The computer has looked at every possible game, so it <b>never loses</b>: the best you can get is a draw. Play a few games first. Then tick <b>show the value of each square</b>. Each empty square now says what happens if you move there and both sides play perfectly from then on: <b>win</b>, <b>draw</b> or <b>lose</b>.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <button id="new">New game</button>
+    <label>You play <select id="side"><option value="X">X (first)</option><option value="O">O (second)</option></select></label>
+    <label>Against <select id="opp"><option value="ai">the computer</option><option value="friend">a friend</option></select></label>
+    <label><input type="checkbox" id="hints"> show the value of each square</label>
+  </div>
+  <div class="readout" id="status"></div>
+  <div class="board" id="board"></div>
+  <div class="readout" id="score"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>Picture every possible game as a tree. The empty board is at the top. Below it hang the 9 boards you can reach in one move, below each of those hang 8 more, and so on down to the finished games. There are 255,168 different games in the tree, but only 5,478 different boards, which is small enough to check them all.</p>
+<p><b>Score the endings.</b> A finished game is a win, a draw or a loss for the player whose turn it would be. That part is easy.</p>
+<p><b>Work backwards.</b> Take a board one move from the end. If the player to move has any move that wins, the board is a win for them, because they will choose it. If every move loses, the board is a loss. Otherwise the best they can reach is a draw. Now every board one move from the end has a value, so do the same for boards two moves from the end, and keep going up to the empty board. This is called <b>minimax</b>: you pick the move that is best for you, knowing your opponent will then pick the move that is worst for you.</p>
+<p>Carry it all the way up and the empty board comes out as a <b>draw</b>. All nine first moves are draws. Neither side can force a win, and that is why two careful players always draw.</p>
+<p>Against the computer the hints never say <b>win</b>, because the computer never leaves you a winning square. One careless move, though, and some squares turn to <b>lose</b>. To see winning squares, choose <b>a friend</b>, play both sides yourself, and make a bad move on purpose. The hints then show the values for whoever moves next.</p>
+<p>Chess and Go have game trees too, but theirs are far too big to search to the bottom. Nobody knows the value of the empty chess board.</p>
+<p>Sheet: <a href="../grade-9/sheets/b23-game-trees.html">Playing noughts and crosses perfectly</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  // A board is an array of 9 entries, each "X", "O" or "". Squares are numbered 0-8, row by row.
+  var LINES = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
+  function other(p) { return p === "X" ? "O" : "X"; }
+  function winLine(b) { for (var i = 0; i < 8; i++) { var l = LINES[i]; if (b[l[0]] && b[l[0]] === b[l[1]] && b[l[0]] === b[l[2]]) return l; } return null; }
+  function winner(b) { var l = winLine(b); return l ? b[l[0]] : null; }
+  function isFull(b) { for (var i = 0; i < 9; i++) if (!b[i]) return false; return true; }
+  function toMove(b) { var n = 0; for (var i = 0; i < 9; i++) if (b[i]) n++; return n % 2 === 0 ? "X" : "O"; }
+  var memo = {};
+  // Minimax score for player p, who is about to move on board b. Positive: p can force a win; negative: p loses
+  // against best play; 0: a draw. The size says how soon: a quicker win scores higher and a slower loss scores
+  // less badly, so the computer wins at once when it can and holds out as long as possible when it cannot.
+  function score(b, p) {
+    var key = b.join(",") + p;
+    if (memo[key] !== undefined) return memo[key];
+    var s;
+    if (winner(b)) s = -10;                    // the player who just moved has won, so p has lost
+    else if (isFull(b)) s = 0;
+    else {
+      s = -Infinity;
+      for (var i = 0; i < 9; i++) if (!b[i]) {
+        b[i] = p; var v = -score(b, other(p)); b[i] = "";
+        if (v > 0) v -= 1; else if (v < 0) v += 1;
+        if (v > s) s = v;
+      }
+    }
+    memo[key] = s;
+    return s;
+  }
+  // The result for p, about to move on b, when both sides play perfectly: 1 win, 0 draw, -1 loss.
+  function value(b, p) { var s = score(b, p); return s > 0 ? 1 : s < 0 ? -1 : 0; }
+  // For each square: null if taken, otherwise the result for p of moving there (1, 0 or -1).
+  function moveValues(b, p) {
+    var out = [];
+    for (var i = 0; i < 9; i++) {
+      if (b[i] || winner(b)) { out.push(null); continue; }
+      b[i] = p; out.push(0 - value(b, other(p))); b[i] = "";
+    }
+    return out;
+  }
+  // Every square that is a best move for p.
+  function bestMoves(b, p) {
+    var best = -Infinity, list = [];
+    for (var i = 0; i < 9; i++) if (!b[i]) {
+      b[i] = p; var v = -score(b, other(p)); b[i] = "";
+      if (v > best) { best = v; list = [i]; } else if (v === best) list.push(i);
+    }
+    return list;
+  }
+  /*ENDPURE*/
+
+  var boardEl = document.getElementById("board"), status = document.getElementById("status"), scoreEl = document.getElementById("score");
+  var sideSel = document.getElementById("side"), oppSel = document.getElementById("opp"), hintsIn = document.getElementById("hints");
+  var b, human = "X", vsAI = true, over = false, busy = false, gen = 0, aiTimer = null, tally = { win: 0, draw: 0, lose: 0 };
+  var WORD = { "1": "win", "0": "draw", "-1": "lose" };
+  function render() {
+    var turn = toMove(b), line = winLine(b), vals = hintsIn.checked && !over && !busy ? moveValues(b, turn) : null;
+    boardEl.innerHTML = "";
+    for (var i = 0; i < 9; i++) {
+      var sq = document.createElement("button"); sq.className = "sq" + (b[i] === "O" ? " o" : "") + (line && line.indexOf(i) >= 0 ? " line" : "");
+      sq.disabled = !!b[i] || over || busy;
+      sq.setAttribute("aria-label", "square " + (i + 1) + (b[i] ? ", " + b[i] : ", empty"));
+      if (b[i]) sq.textContent = b[i] === "O" ? "O" : "X";
+      else if (vals && vals[i] !== null) { var h = document.createElement("span"); h.className = "hint " + WORD[vals[i]]; h.textContent = WORD[vals[i]]; sq.appendChild(h); }
+      (function (k) { sq.addEventListener("click", function () { play(k); }); })(i);
+      boardEl.appendChild(sq);
+    }
+    scoreEl.textContent = vsAI ? "Against the computer so far:  you won " + tally.win + ",  drew " + tally.draw + ",  lost " + tally.lose : "Two players. The hints show the values for whoever moves next.";
+  }
+  function finish() {
+    var w = winner(b);
+    if (!w && !isFull(b)) return false;
+    over = true; busy = false;
+    if (vsAI) {
+      if (!w) { tally.draw++; status.textContent = "A draw. Against perfect play, that is the best result there is."; }
+      else if (w === human) { tally.win++; status.textContent = "You won. That should be impossible."; }
+      else { tally.lose++; status.textContent = "The computer wins. Switch on the values and find the move where you went wrong."; }
+    } else status.textContent = w ? w + " wins." : "A draw.";
+    render();
+    return true;
+  }
+  function play(i) {
+    if (over || busy || b[i]) return;
+    b[i] = toMove(b);
+    if (finish()) return;
+    if (!vsAI) { status.textContent = toMove(b) + " to move."; render(); return; }
+    aiTurn();
+  }
+  function aiTurn() {
+    busy = true; render(); status.textContent = "The computer is thinking…";
+    var g = gen;
+    aiTimer = setTimeout(function () {
+      aiTimer = null; if (g !== gen) return;
+      var me = other(human), list = bestMoves(b, me), mv = list[Math.floor(Math.random() * list.length)];
+      b[mv] = me; busy = false;
+      if (finish()) return;
+      var v = value(b, human);
+      status.textContent = "Your move. You are " + human + ". With perfect play from here: " + (v > 0 ? "you win." : v < 0 ? "you lose." : "a draw.");
+      render();
+    }, 450);
+  }
+  function newGame() {
+    gen++; if (aiTimer) clearTimeout(aiTimer); aiTimer = null;
+    b = ["", "", "", "", "", "", "", "", ""]; over = false; busy = false;
+    human = sideSel.value; vsAI = oppSel.value === "ai"; sideSel.disabled = !vsAI;
+    if (vsAI && human === "O") { aiTurn(); return; }
+    status.textContent = vsAI ? "Your move. You are X. With perfect play from here: a draw." : "X to move.";
+    render();
+  }
+  document.getElementById("new").addEventListener("click", newGame);
+  sideSel.addEventListener("change", newGame);
+  oppSel.addEventListener("change", newGame);
+  hintsIn.addEventListener("change", render);
+  newGame();
+})();
+</script>
+</body>
+</html>

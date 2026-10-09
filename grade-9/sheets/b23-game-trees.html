@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Playing noughts and crosses perfectly · Infinity Club</title>
+<meta name="description" content="Draw every possible game of noughts and crosses as a tree, score the endings, and work backwards with minimax. With best play the game is always a draw.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 9</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 9 · Around the corner · 23</div>
+  <h1>Playing noughts and crosses perfectly</h1>
+  <p class="teaser">Draw every possible game as a tree, score the endings, and work backwards. With best play the game is always a draw.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Noughts and crosses (tic-tac-toe) is small enough to solve completely. Picture every possible game as a <b>tree</b>: the empty board at the top, a branch for each move, a finished game at the end of each path. There are 255,168 endings.</p>
+<p>Score each ending from X's side: \(+1\) if X wins, 0 for a draw, \(-1\) if O wins. X wants the score high. O wants it low. Now work backwards.</p>
+<p>Take a position one move from the end. If X is to move, X picks the branch with the biggest score, so the position is worth the <b>maximum</b> of the values below it. If O is to move, it is worth the <b>minimum</b>. Then do the same one level up, and keep going to the top. This is <b>minimax</b>.</p>
+<p class="callout">X to move: take the max of the values below. O to move: take the min.</p>
+<p>A computer fills in the whole tree in a blink. The empty board comes out as 0: with best play the game is a draw.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: three squares left</h2>
+<figure><svg viewBox="0 0 520 182" width="470" height="165" role="img" aria-label="Left: a noughts and crosses position with three empty squares labelled a, b and c. Middle: its game tree. X chooses a, b or c, then O chooses one of the two remaining squares. The six endings score minus 1, plus 1, plus 1, plus 1, plus 1, minus 1. The O positions are worth minus 1, plus 1, minus 1 and the top is worth plus 1. Right: a second position with empty squares p, q and r." font-family="Nunito, sans-serif" font-size="13">
+<line x1="42" y1="34" x2="42" y2="130" stroke="#000" stroke-width="2"/>
+<line x1="10" y1="66" x2="106" y2="66" stroke="#000" stroke-width="2"/>
+<line x1="74" y1="34" x2="74" y2="130" stroke="#000" stroke-width="2"/>
+<line x1="10" y1="98" x2="106" y2="98" stroke="#000" stroke-width="2"/>
+<text x="26.0" y="57.0" text-anchor="middle" font-weight="800" font-size="20" fill="#3f44c9">X</text>
+<text x="58.0" y="55.0" text-anchor="middle" fill="#f5a524" font-weight="700" font-style="italic" font-size="14">a</text>
+<text x="90.0" y="55.0" text-anchor="middle" fill="#f5a524" font-weight="700" font-style="italic" font-size="14">b</text>
+<text x="26.0" y="89.0" text-anchor="middle" font-weight="800" font-size="20" fill="#000">O</text>
+<text x="58.0" y="89.0" text-anchor="middle" font-weight="800" font-size="20" fill="#000">O</text>
+<text x="90.0" y="89.0" text-anchor="middle" font-weight="800" font-size="20" fill="#3f44c9">X</text>
+<text x="26.0" y="121.0" text-anchor="middle" font-weight="800" font-size="20" fill="#000">O</text>
+<text x="58.0" y="121.0" text-anchor="middle" font-weight="800" font-size="20" fill="#3f44c9">X</text>
+<text x="90.0" y="119.0" text-anchor="middle" fill="#f5a524" font-weight="700" font-style="italic" font-size="14">c</text>
+<text x="58" y="150" text-anchor="middle" fill="#999">example: X to move</text>
+<line x1="265" y1="22" x2="178" y2="88" stroke="#000" stroke-width="1.5"/>
+<text x="209.5" y="57.0" text-anchor="middle" fill="#f5a524" font-weight="700" font-style="italic">a</text>
+<line x1="178" y1="88" x2="152" y2="142" stroke="#000" stroke-width="1.5"/>
+<text x="156.0" y="118.0" text-anchor="middle" fill="#999" font-style="italic">b</text>
+<circle cx="152" cy="142" r="3" fill="#000"/>
+<text x="152" y="159" text-anchor="middle" font-weight="700">−1</text>
+<line x1="178" y1="88" x2="204" y2="142" stroke="#000" stroke-width="1.5"/>
+<text x="200.0" y="118.0" text-anchor="middle" fill="#999" font-style="italic">c</text>
+<circle cx="204" cy="142" r="3" fill="#000"/>
+<text x="204" y="159" text-anchor="middle" font-weight="700">+1</text>
+<circle cx="178" cy="88" r="10" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="178" y="92.5" text-anchor="middle" font-weight="700" font-size="12">−1</text>
+<line x1="265" y1="22" x2="265" y2="88" stroke="#f5a524" stroke-width="3"/>
+<text x="274.0" y="57.0" text-anchor="middle" fill="#f5a524" font-weight="700" font-style="italic">b</text>
+<line x1="265" y1="88" x2="239" y2="142" stroke="#000" stroke-width="1.5"/>
+<text x="243.0" y="118.0" text-anchor="middle" fill="#999" font-style="italic">a</text>
+<circle cx="239" cy="142" r="3" fill="#000"/>
+<text x="239" y="159" text-anchor="middle" font-weight="700">+1</text>
+<line x1="265" y1="88" x2="291" y2="142" stroke="#000" stroke-width="1.5"/>
+<text x="287.0" y="118.0" text-anchor="middle" fill="#999" font-style="italic">c</text>
+<circle cx="291" cy="142" r="3" fill="#000"/>
+<text x="291" y="159" text-anchor="middle" font-weight="700">+1</text>
+<circle cx="265" cy="88" r="10" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="265" y="92.5" text-anchor="middle" font-weight="700" font-size="12">+1</text>
+<line x1="265" y1="22" x2="352" y2="88" stroke="#000" stroke-width="1.5"/>
+<text x="318.5" y="57.0" text-anchor="middle" fill="#f5a524" font-weight="700" font-style="italic">c</text>
+<line x1="352" y1="88" x2="326" y2="142" stroke="#000" stroke-width="1.5"/>
+<text x="330.0" y="118.0" text-anchor="middle" fill="#999" font-style="italic">a</text>
+<circle cx="326" cy="142" r="3" fill="#000"/>
+<text x="326" y="159" text-anchor="middle" font-weight="700">+1</text>
+<line x1="352" y1="88" x2="378" y2="142" stroke="#000" stroke-width="1.5"/>
+<text x="374.0" y="118.0" text-anchor="middle" fill="#999" font-style="italic">b</text>
+<circle cx="378" cy="142" r="3" fill="#000"/>
+<text x="378" y="159" text-anchor="middle" font-weight="700">−1</text>
+<circle cx="352" cy="88" r="10" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="352" y="92.5" text-anchor="middle" font-weight="700" font-size="12">−1</text>
+<rect x="253" y="10" width="24" height="24" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="265" y="26.5" text-anchor="middle" font-weight="700" font-size="12">+1</text>
+<text x="285" y="26" fill="#3f44c9">X picks the max</text>
+<text x="370" y="83" fill="#000">O picks</text><text x="370" y="97" fill="#000">the min</text>
+<text x="265" y="176" text-anchor="middle" fill="#999">the six endings, scored for X</text>
+<line x1="450" y1="34" x2="450" y2="130" stroke="#000" stroke-width="2"/>
+<line x1="418" y1="66" x2="514" y2="66" stroke="#000" stroke-width="2"/>
+<line x1="482" y1="34" x2="482" y2="130" stroke="#000" stroke-width="2"/>
+<line x1="418" y1="98" x2="514" y2="98" stroke="#000" stroke-width="2"/>
+<text x="434.0" y="57.0" text-anchor="middle" font-weight="800" font-size="20" fill="#3f44c9">X</text>
+<text x="466.0" y="57.0" text-anchor="middle" font-weight="800" font-size="20" fill="#3f44c9">X</text>
+<text x="498.0" y="57.0" text-anchor="middle" font-weight="800" font-size="20" fill="#000">O</text>
+<text x="434.0" y="87.0" text-anchor="middle" fill="#f5a524" font-weight="700" font-style="italic" font-size="14">p</text>
+<text x="466.0" y="89.0" text-anchor="middle" font-weight="800" font-size="20" fill="#000">O</text>
+<text x="498.0" y="89.0" text-anchor="middle" font-weight="800" font-size="20" fill="#3f44c9">X</text>
+<text x="434.0" y="119.0" text-anchor="middle" fill="#f5a524" font-weight="700" font-style="italic" font-size="14">q</text>
+<text x="466.0" y="121.0" text-anchor="middle" font-weight="800" font-size="20" fill="#000">O</text>
+<text x="498.0" y="119.0" text-anchor="middle" fill="#f5a524" font-weight="700" font-style="italic" font-size="14">r</text>
+<text x="466" y="150" text-anchor="middle" fill="#999">question 3</text>
+</svg><figcaption>Squares hold the value for X to move, circles for O to move. The thick branch is X's best move.</figcaption></figure>
+<p>X is to move in the left-hand board. Whichever square X takes, O chooses between the other two. Either O completes a line, or X fills the last square. That makes six endings, scored along the bottom of the tree.</p>
+<p>O's choices: the min of each pair gives \(-1\), \(+1\), \(-1\). X's choice: the max of those is \(+1\). X should play b. It blocks O's diagonal and threatens the top row and the right-hand column at once.</p>
+<p class="small">Play a computer that uses minimax, and switch on the value of every square: <a href="../../demos/noughts.html">infinityclub.net/demos/noughts.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>X can choose move P, Q or R. After P, O chooses between endings worth \(+1\) and \(-1\). After Q, between 0 and 0. After R, between \(+1\), 0 and \(-1\). Find the value of each of the three O positions, the value at the top, and X's best move.<div class="space short"></div></li>
+<li>(a) If every game filled all nine squares, how many different games would there be, counting the order of the moves? (b) The true count is 255,168. Why is it smaller? (c) How many moves long is the shortest possible game?<div class="space short"></div></li>
+<li>In the right-hand board X is to move and squares p, q, r are empty. Draw the tree, score its six endings, and find the value of the position and X's best move.<div class="space"></div></li>
+<li>A different game: a pile of 4 counters. Players take turns removing 1 or 2. Whoever takes the last counter wins. Draw the whole tree (it has 5 endings), score each ending \(+1\) or \(-1\) from the first player's side, and work backwards. Who wins, and with which first move?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the corner opening</h2>
+<p>X opens in a corner. Minimax gives seven of O's eight replies the value \(+1\): X can then force a win. Which single reply is safe for O? Then suppose O replies in the opposite corner. Find a plan for X that wins whatever O does.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>After P: \(\min(+1, -1) = -1\). After Q: 0. After R: \(-1\). Top: \(\max(-1, 0, -1) = 0\). X plays Q. A branch that might win is worth nothing if the opponent gets to choose.</li>
+<li>(a) \(9! = 9 \times 8 \times \cdots \times 1 = 362{,}880\). (b) A game stops as soon as someone has three in a row. One game that stops early stands in for all the ways the leftover squares could have been filled. (c) Five moves: X's third mark can complete a line.</li>
+<li>X takes p: O takes q and wins on the diagonal (\(-1\)), or O takes r and X completes the left column (\(+1\)). Min \(-1\). X takes q: O takes p and the board fills level (0), or O takes r and X completes the left column (\(+1\)). Min 0. X takes r: O takes q and wins (\(-1\)), or O takes p and it ends level (0). Min \(-1\). The value is \(\max(-1, 0, -1) = 0\), and X must play q. Anything else loses.</li>
+<li>Endings (the amounts taken in turn): 1,1,1,1 is \(-1\); 1,1,2 is \(+1\); 1,2,1 is \(+1\); 2,1,1 is \(+1\); 2,2 is \(-1\). If the first player takes 1, three counters are left and both of the second player's replies lead to \(+1\). If the first player takes 2, the second player takes 2 and wins. The value is \(\max(+1, -1) = +1\): the first player wins by taking 1.</li>
+</ol>
+<p><b>Stretch.</b> The centre. Every other reply loses. Against the opposite corner, X takes a third corner, making two in a row along one side. O must block between them. X takes the last corner. Now X has two lines open at once, one along a side and one through the centre, and O can block only one.</p>
+</section>
+
+<div class="sheet-nav"><a href="b22-fifteen-puzzle.html">← Previous</a><a href="b24-one-time-pad.html">Next: The unbreakable code →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

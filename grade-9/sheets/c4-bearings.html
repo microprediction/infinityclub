@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Finding your way with angles · Infinity Club</title>
+<meta name="description" content="A bearing is an angle measured clockwise from north. Split each leg of a journey into north and east with sine and cosine, then find the way home.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 9</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 9 · Connections · 4</div>
+  <h1>Finding your way with angles</h1>
+  <p class="teaser">A bearing is an angle clockwise from north. Two legs of a journey, a right triangle, and trigonometry tells you how far you are from home.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A <b>bearing</b> is a direction given as an angle. It is measured clockwise from north and written with three digits. North is 000°, east 090°, south 180°, west 270°.</p>
+<p>Walk \(d\) km on a bearing \(\theta\) (theta) that lies between north and east. Draw the north line from your start and you have a right triangle. Your path is the hypotenuse. The side along the north line is adjacent to \(\theta\). The side pointing east is opposite it. The <a href="a6-three-ratios.html">three ratios</a> then give both sides.</p>
+<p class="callout">north \(= d\cos\theta\) &nbsp; and &nbsp; east \(= d\sin\theta\)</p>
+<p>A journey with two legs works the same way. Split each leg into its north part and its east part. Add the norths. Add the easts. The two totals are the short sides of one big right triangle, and its hypotenuse is the straight line home. Pythagoras gives its length. The tangent ratio gives its angle from north.</p>
+<p>For a leg that heads south or west, draw the triangle and subtract that part instead of adding it.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: 10 km on 060°, then 6 km due east</h2>
+<figure><svg viewBox="0 0 350 176" width="350" height="176" role="img" aria-label="A map of the journey. From home a north arrow points up. The first leg runs 10 kilometres at 60 degrees clockwise from north, making a right triangle with 5 kilometres north and 8.66 kilometres east. The second leg runs 6 kilometres due east. A dashed line joins home to the end point" font-family="Nunito, sans-serif" font-size="12">
+<polygon points="70,150 70,70 208.6,70" fill="#dcdcf5" stroke="none"/>
+<line x1="70" y1="150" x2="70" y2="22" stroke="#999" stroke-width="1.5"/><polygon points="70,12 66,24 74,24" fill="#999"/><text x="78" y="22" fill="#999">N</text>
+<line x1="70" y1="70" x2="208.6" y2="70" stroke="#3f44c9" stroke-width="1.5" stroke-dasharray="4 3"/><line x1="70" y1="150" x2="70" y2="70" stroke="#3f44c9" stroke-width="2"/>
+<polyline points="70,79 79,79 79,70" fill="none" stroke="#3f44c9" stroke-width="1"/>
+<line x1="70" y1="150" x2="304.6" y2="70" stroke="#f5a524" stroke-width="2" stroke-dasharray="6 4"/>
+<line x1="70" y1="150" x2="208.6" y2="70" stroke="#000" stroke-width="2"/><line x1="208.6" y1="70" x2="304.6" y2="70" stroke="#000" stroke-width="2"/>
+<path d="M70,128 A22,22 0 0 1 89.1,139" fill="none" stroke="#000" stroke-width="1"/>
+<text x="76" y="123" fill="#000">60°</text>
+<circle cx="70" cy="150" r="3" fill="#000"/>
+<circle cx="208.6" cy="70" r="3" fill="#000"/>
+<circle cx="304.6" cy="70" r="3" fill="#000"/>
+<text x="64" y="114" text-anchor="end" fill="#3f44c9">5 km</text>
+<text x="139.3" y="64" text-anchor="middle" fill="#3f44c9">8.66 km</text>
+<text x="256.6" y="64" text-anchor="middle" fill="#000">6 km</text>
+<text x="141.3" y="103" text-anchor="middle" fill="#000" transform="rotate(-30 141.3 103)">10 km</text>
+<text x="227.3" y="112" fill="#f5a524" font-weight="700">? km</text>
+<text x="70" y="166" text-anchor="middle" fill="#000">home</text></svg><figcaption>The shaded triangle splits the first leg into north and east.</figcaption></figure>
+<p>Leg one: north \(10\cos 60° = 5\) km, east \(10\sin 60° = 8.66\) km. Leg two: north 0, east 6 km. Totals: 5 km north and 14.66 km east.</p>
+<p>Distance from home: \(\sqrt{5^2 + 14.66^2} = 15.5\) km.</p>
+<p>Angle from north: \(\tan\theta = \dfrac{14.66}{5} = 2.932\). The \(\tan^{-1}\) key on a calculator (often SHIFT or 2nd, then tan) answers "which angle has this tangent?" It gives \(\theta = 71.2°\). You are on a bearing of 071° from home. To walk back, face the opposite way: \(71 + 180 = 251°\).</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Write each direction as a three-digit bearing: (a) due east; (b) south-west; (c) north-west; (d) exactly opposite to 070°.<div class="space short"></div></li>
+<li>A hiker walks 8 km on a bearing of 035°. How far north of her start is she? How far east? Give both to 1 decimal place.<div class="space short"></div></li>
+<li>A ship sails 12 km on a bearing of 050°, then 9 km on a bearing of 140°. (a) Why do the two legs meet at a right angle? (b) How far is the ship from its start? (c) Find the angle at the start between the first leg and the straight line to the ship. What is the ship's bearing from its start?<div class="space"></div></li>
+<li>Two lookouts fix the position of a lighthouse. From A it is due north. B is 4 km due east of A, and from B the lighthouse is on a bearing of 320°. Sketch it. (a) How many degrees west of north is the lighthouse from B? (b) How far is the lighthouse from A? (c) How far is it from B?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: home without a calculator</h2>
+<p>Walk 10 km on a bearing of 030°, then 10 km on a bearing of 150°. How far are you from home, and on what bearing? Then explain the answer using no trigonometry at all.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) 090°. (b) 225°, half way between south (180°) and west (270°). (c) 315°. (d) \(70 + 180 = 250°\).</li>
+<li>North: \(8\cos 35° = 6.6\) km. East: \(8\sin 35° = 4.6\) km.</li>
+<li>(a) The ship turns from 050° to 140°, a turn of 90°. (b) The legs are the short sides of a right triangle: \(\sqrt{12^2 + 9^2} = \sqrt{225} = 15\) km. (c) \(\tan\) of the angle is \(\tfrac{9}{12} = 0.75\), so the angle is 36.9°. The turn was to the right, so the bearing is \(50 + 36.9 = 86.9°\), or 087°.</li>
+<li>(a) \(360 - 320 = 40°\) west of north. (b) Call the lighthouse L. The triangle ABL has its right angle at A. The north lines through B and through A are parallel, so the angle at L is also 40°. AB is opposite it and AL is adjacent: \(\tan 40° = \dfrac{4}{AL}\), so \(AL = \dfrac{4}{\tan 40°} = 4.8\) km. (c) \(\sin 40° = \dfrac{4}{BL}\), so \(BL = \dfrac{4}{\sin 40°} = 6.2\) km.</li>
+</ol>
+<p><b>Stretch.</b> Leg one: north \(10\cos 30° = 8.66\), east \(10\sin 30° = 5\). Leg two points 30° east of south: south 8.66, east 5. North total 0, east total 10. You are 10 km from home on a bearing of 090°. Without trigonometry: you turned through 120°, so the angle inside the triangle between the two legs is 60°. Two equal sides with 60° between them make an equilateral triangle, so the third side is also 10 km, and it points \(30 + 60 = 90°\) from north.</p>
+</section>
+
+<div class="sheet-nav"><a href="c3-arches-and-cables.html">← Previous</a><a href="c5-ramps-and-roofs.html">Next: How steep is too steep? →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

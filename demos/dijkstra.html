@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shortest Path, Step by Step · Infinity Club</title>
+<meta name="description" content="Pick a start and an end on a small map, then press Step to run Dijkstra's method one town at a time and watch the shortest route light up.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+#map { cursor: pointer; touch-action: manipulation; width: 100%; }
+.controls select { font: inherit; padding: .25em .4em; border: 1px solid var(--rule); border-radius: 6px; background: #fff; max-width: 100%; }
+.key { display: flex; flex-wrap: wrap; gap: .3rem 1rem; margin: .5rem 0 0; }
+.key span::before { content: ""; display: inline-block; width: .85em; height: .85em; border-radius: 50%; margin-right: .35em; vertical-align: -.08em; border: 2px solid var(--accent); background: #fff; }
+.key .k-set::before { background: var(--accent); }
+.key .k-now::before { background: var(--warm); border-color: var(--warm); }
+#log { font-size: .92rem; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Shortest path, step by step</h1>
+<p class="explain">Tap a town to make it the <b>start</b>, then tap another to make it the <b>end</b>. Now press <b>Step</b>. Each press picks the unsettled town with the smallest label, <b>settles</b> it, and uses its roads to improve the labels of its neighbours. A label is the length of the best route found so far. Before each press, guess which town will be settled next. When the end is settled, the shortest route lights up.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <button id="step">Step</button>
+    <button id="run" class="alt">Run to the end</button>
+    <button id="reset" class="ghost">Start again</button>
+    <label>Map <select id="mapsel"></select></label>
+    <label>Start <select id="startsel"></select></label>
+    <label>End <select id="endsel"></select></label>
+  </div>
+  <canvas id="map" width="640" height="420"></canvas>
+  <div class="key small"><span class="k-un">not settled</span><span class="k-now">settled just now</span><span class="k-set">settled</span></div>
+  <div class="readout" id="log"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>The number on each road is its length. The number inside each town is its <b>label</b>: the length of the shortest route from the start that has been found so far. At the beginning the start has label 0 and every other town has label ∞, meaning "no route found yet".</p>
+<p>One step does two things. First, look at every town that is not yet settled and pick the one with the smallest label. Settle it: its label is now final. Second, for each road out of that town, add the road's length to the town's label. If that total beats the neighbour's label, the neighbour gets the smaller label and remembers which town it came from.</p>
+<p><b>Why is the smallest label final?</b> Suppose the smallest unsettled label is 8, at town D. Any other route to D has to leave the settled towns somewhere, and the first unsettled town it reaches already has a label of at least 8. Roads never have negative length, so the route can only get longer from there. Nothing can beat 8, so the method never has to go back and change its mind.</p>
+<p>This is <b>Dijkstra's method</b>, found by Edsger Dijkstra in 1956. Map apps use faster versions of the same idea. Try the map called "Fewest roads is not shortest": the route with the fewest roads loses to a route with more of them.</p>
+<p>Sheet: <a href="../grade-9/sheets/b11-shortest-path.html">How a map app finds the shortest route</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  // Each map: towns with positions in the unit square, and two-way roads [from, to, length].
+  var MAPS = [
+    { name: "Seven towns", start: 0, end: 6,
+      nodes: [["A", .04, .5], ["B", .3, .08], ["C", .3, .92], ["D", .55, .5], ["E", .78, .08], ["F", .78, .92], ["G", .96, .5]],
+      edges: [[0, 1, 4], [0, 2, 2], [1, 2, 1], [1, 3, 5], [2, 3, 8], [2, 5, 10], [1, 4, 8], [3, 4, 2], [3, 5, 6], [3, 6, 9], [4, 6, 5], [5, 6, 2]] },
+    { name: "Fewest roads is not shortest", start: 0, end: 5,
+      nodes: [["A", .04, .5], ["B", .35, .08], ["C", .35, .92], ["D", .65, .08], ["E", .65, .92], ["F", .96, .5]],
+      edges: [[0, 1, 3], [1, 3, 3], [3, 5, 3], [0, 2, 1], [2, 4, 1], [4, 5, 8], [1, 2, 1], [3, 4, 2]] },
+    { name: "Grid city", start: 0, end: 8,
+      nodes: [["A", .06, .06], ["B", .5, .06], ["C", .94, .06], ["D", .06, .5], ["E", .5, .5], ["F", .94, .5], ["G", .06, .94], ["H", .5, .94], ["I", .94, .94]],
+      edges: [[0, 1, 3], [1, 2, 4], [3, 4, 1], [4, 5, 7], [6, 7, 6], [7, 8, 2], [0, 3, 2], [3, 6, 5], [1, 4, 6], [4, 7, 3], [2, 5, 1], [5, 8, 4]] }
+  ];
+  function djInit(n, start) {
+    var st = { dist: [], prev: [], settled: [], order: [] };
+    for (var i = 0; i < n; i++) { st.dist.push(Infinity); st.prev.push(-1); st.settled.push(false); }
+    st.dist[start] = 0;
+    return st;
+  }
+  // The unsettled town with the smallest finite label (ties: the earlier letter), or -1 if there is none.
+  function djNearest(st) {
+    var best = -1;
+    for (var i = 0; i < st.dist.length; i++) if (!st.settled[i] && st.dist[i] < Infinity && (best < 0 || st.dist[i] < st.dist[best])) best = i;
+    return best;
+  }
+  // One step: settle the nearest unsettled town and try to improve its unsettled neighbours. Changes st.
+  function djStep(edges, st) {
+    var u = djNearest(st); if (u < 0) return null;
+    st.settled[u] = true; st.order.push(u);
+    var checks = [];
+    edges.forEach(function (e) {
+      var v = e[0] === u ? e[1] : e[1] === u ? e[0] : -1;
+      if (v < 0 || st.settled[v]) return;
+      var cand = st.dist[u] + e[2], old = st.dist[v], better = cand < old;
+      if (better) { st.dist[v] = cand; st.prev[v] = u; }
+      checks.push({ to: v, w: e[2], cand: cand, old: old, better: better });
+    });
+    return { node: u, dist: st.dist[u], checks: checks };
+  }
+  function djPath(st, end) {
+    if (!(st.dist[end] < Infinity)) return [];
+    var p = [], v = end;
+    while (v >= 0) { p.unshift(v); v = st.prev[v]; }
+    return p;
+  }
+  function djRun(n, edges, start, end) {
+    var st = djInit(n, start);
+    while (!(end >= 0 && st.settled[end]) && djStep(edges, st)) { /* keep stepping */ }
+    return st;
+  }
+  /*ENDPURE*/
+
+  var canvas = document.getElementById("map"), ctx = canvas.getContext("2d"), log = document.getElementById("log");
+  var mapSel = document.getElementById("mapsel"), startSel = document.getElementById("startsel"), endSel = document.getElementById("endsel");
+  var M, start, end, st, last, stepNo, done, pickNext = "start", timer = null, P = [], W = 640, H = 420, R = 17;
+  MAPS.forEach(function (m, i) { var o = document.createElement("option"); o.value = i; o.textContent = m.name; mapSel.appendChild(o); });
+  function name(i) { return M.nodes[i][0]; }
+  function lab(d) { return d < Infinity ? String(d) : "∞"; }
+  function stopRun() { if (timer) { clearTimeout(timer); timer = null; } }
+  function loadMap(i) {
+    M = MAPS[i]; start = M.start; end = M.end; pickNext = "start";
+    [startSel, endSel].forEach(function (sel) {
+      sel.innerHTML = "";
+      M.nodes.forEach(function (nd, k) { var o = document.createElement("option"); o.value = k; o.textContent = nd[0]; sel.appendChild(o); });
+    });
+    restart();
+  }
+  function restart() {
+    stopRun(); st = djInit(M.nodes.length, start); last = null; stepNo = 0; done = false;
+    startSel.value = start; endSel.value = end;
+    draw();
+    log.textContent = "Start " + name(start) + ", end " + name(end) + ". " + name(start) + " has label 0 and every other town has ∞.\nPress Step.";
+  }
+  function onPath(path, a, b) { for (var i = 0; i + 1 < path.length; i++) if ((path[i] === a && path[i + 1] === b) || (path[i] === b && path[i + 1] === a)) return true; return false; }
+  function draw() {
+    var dpr = window.devicePixelRatio || 1; W = canvas.clientWidth || 640; H = Math.max(240, Math.round(W * 0.62));
+    canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, H);
+    R = W < 420 ? 18 : 21;
+    var padX = R + 8, padT = R + 8, padB = R + 22;
+    P = M.nodes.map(function (nd) { return [padX + nd[1] * (W - 2 * padX), padT + nd[2] * (H - padT - padB)]; });
+    var path = done ? djPath(st, end) : [];
+    ctx.lineCap = "round";
+    M.edges.forEach(function (e) {
+      var a = P[e[0]], b = P[e[1]], lit = onPath(path, e[0], e[1]);
+      var tree = (st.prev[e[0]] === e[1] && st.settled[e[0]]) || (st.prev[e[1]] === e[0] && st.settled[e[1]]);
+      ctx.strokeStyle = lit ? "#f5a524" : tree ? "#3f44c9" : "#c3c4d6"; ctx.lineWidth = lit ? 7 : tree ? 3 : 2;
+      ctx.beginPath(); ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); ctx.stroke();
+    });
+    ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    M.edges.forEach(function (e) {
+      var a = P[e[0]], b = P[e[1]], mx = (a[0] + b[0]) / 2, my = (a[1] + b[1]) / 2;
+      ctx.fillStyle = "#fff"; ctx.beginPath(); ctx.arc(mx, my, 10, 0, 2 * Math.PI); ctx.fill();
+      ctx.fillStyle = "#1d1f3a"; ctx.font = "800 13px Nunito, sans-serif"; ctx.fillText(e[2], mx, my + 1);
+    });
+    M.nodes.forEach(function (nd, i) {
+      var now = last && last.node === i, set = st.settled[i];
+      ctx.beginPath(); ctx.arc(P[i][0], P[i][1], R, 0, 2 * Math.PI);
+      ctx.fillStyle = now ? "#f5a524" : set ? "#3f44c9" : "#fff"; ctx.fill();
+      ctx.lineWidth = 2.5; ctx.strokeStyle = now ? "#f5a524" : "#3f44c9"; ctx.stroke();
+      ctx.fillStyle = set && !now ? "#fff" : "#1d1f3a";
+      ctx.font = "800 12px Nunito, sans-serif"; ctx.fillText(nd[0], P[i][0], P[i][1] - R * 0.42);
+      ctx.font = "800 " + (R < 18 ? 13 : 15) + "px Nunito, sans-serif"; ctx.fillText(lab(st.dist[i]), P[i][0], P[i][1] + R * 0.3);
+      if (i === start || i === end) { ctx.fillStyle = "#5d6079"; ctx.font = "700 11px Nunito, sans-serif"; ctx.fillText(i === start ? "start" : "end", P[i][0], P[i][1] + R + 9); }
+    });
+  }
+  function waiting() {
+    var w = []; for (var i = 0; i < st.dist.length; i++) if (!st.settled[i] && st.dist[i] < Infinity) w.push(name(i) + " " + st.dist[i]);
+    return w;
+  }
+  function doStep() {
+    if (done) return false;
+    var info = djStep(M.edges, st);
+    if (!info) { done = true; draw(); log.textContent = "No unsettled town has a label, so there is no route from " + name(start) + " to " + name(end) + "."; return false; }
+    last = info; stepNo++;
+    var t = "Step " + stepNo + ". Smallest unsettled label: " + name(info.node) + " at " + info.dist + ". " + name(info.node) + " is settled.";
+    info.checks.forEach(function (c) {
+      t += "\n  " + name(info.node) + " → " + name(c.to) + ": " + info.dist + " + " + c.w + " = " + c.cand + ", ";
+      t += c.better ? (c.old < Infinity ? "better than " + c.old + ". Label drops to " + c.cand + "." : "the first route found. Label " + c.cand + ".") : "no better than " + c.old + ". No change.";
+    });
+    if (st.settled[end]) {
+      done = true;
+      var path = djPath(st, end);
+      t += "\nDone. Shortest route: " + path.map(name).join(" → ") + ", length " + st.dist[end] + ".";
+    } else {
+      var w = waiting();
+      t += w.length ? "\nUnsettled labels: " + w.join(", ") + ". Which is next?" : "\nNo unsettled town has a label. Press Step.";
+    }
+    draw(); log.textContent = t;
+    return !done;
+  }
+  function setEnds(s, e) { if (s === e) return; start = s; end = e; restart(); }
+  canvas.addEventListener("click", function (ev) {
+    var r = canvas.getBoundingClientRect(), x = (ev.clientX - r.left) * (W / r.width), y = (ev.clientY - r.top) * (H / r.height), hit = -1, bestD = R + 10;
+    P.forEach(function (p, i) { var d = Math.hypot(x - p[0], y - p[1]); if (d < bestD) { bestD = d; hit = i; } });
+    if (hit < 0) return;
+    if (pickNext === "start") { if (hit === end) setEnds(end, start); else setEnds(hit, end); pickNext = "end"; log.textContent = "Start is now " + name(start) + ". Tap another town to choose the end, or press Step."; }
+    else { if (hit === start) return; setEnds(start, hit); pickNext = "start"; }
+  });
+  document.getElementById("step").addEventListener("click", function () { stopRun(); doStep(); });
+  document.getElementById("run").addEventListener("click", function () {
+    stopRun();
+    (function tick() { timer = null; if (doStep()) timer = setTimeout(tick, 700); })();
+  });
+  document.getElementById("reset").addEventListener("click", restart);
+  mapSel.addEventListener("change", function () { loadMap(parseInt(mapSel.value, 10)); });
+  startSel.addEventListener("change", function () { var s = parseInt(startSel.value, 10); if (s === end) setEnds(s, start); else setEnds(s, end); });
+  endSel.addEventListener("change", function () { var e = parseInt(endSel.value, 10); if (e === start) setEnds(end, e); else setEnds(start, e); });
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(draw, 150); });
+  loadMap(0);
+})();
+</script>
+</body>
+</html>

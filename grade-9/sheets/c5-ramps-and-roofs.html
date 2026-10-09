@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How steep is too steep? · Infinity Club</title>
+<meta name="description" content="A ramp's 1 in 12, a road sign's 10% and a roof's pitch all describe the same right triangle. Tangent converts between a ratio, a percent and an angle.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 9</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 9 · Connections · 5</div>
+  <h1>How steep is too steep?</h1>
+  <p class="teaser">A wheelchair ramp may rise 1 in 12. A roof pitch, a road sign's 10% and a staircase are all the same idea, and tangent converts between them.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Builders, road engineers and roofers all measure steepness, and each trade says it differently. A common rule for wheelchair ramps is "no steeper than <b>1 in 12</b>": 1 unit up for every 12 along the level. A road sign says <b>10%</b>: 10 up for every 100 along. A roofer says "6 in 12". A surveyor gives an angle.</p>
+<p>All of them describe one right triangle. The height gained is the <b>rise</b> and the level distance is the <b>run</b>. Rise ÷ run is the slope, and it is also the <a href="a6-three-ratios.html">tangent</a> of the angle \(\theta\) the slope makes with the ground: opposite over adjacent.</p>
+<p class="callout">\(\tan\theta = \dfrac{\text{rise}}{\text{run}}\). As a percent, multiply by 100. For the angle, use the \(\tan^{-1}\) key, which answers "which angle has this tangent?"</p>
+<figure><svg viewBox="0 0 420 204" width="380" height="185" role="img" aria-label="Five slopes drawn from the same corner over the same run: a ramp at 4.8 degrees, a road at 14 degrees, a roof at 26.6 degrees, stairs at 33.7 degrees and a 100 percent slope at 45 degrees" font-family="Nunito, sans-serif" font-size="12">
+<line x1="210" y1="185" x2="210" y2="15" stroke="#999" stroke-width="1" stroke-dasharray="4 3"/>
+<polygon points="40,185 210,185 210,170.8" fill="#dcdcf5" stroke="none"/>
+<line x1="40" y1="185" x2="210" y2="15" stroke="#000" stroke-width="1.5"/>
+<line x1="40" y1="185" x2="210" y2="71.7" stroke="#f5a524" stroke-width="2"/>
+<line x1="40" y1="185" x2="210" y2="100" stroke="#3f44c9" stroke-width="2"/>
+<line x1="40" y1="185" x2="210" y2="142.5" stroke="#f5a524" stroke-width="2"/>
+<line x1="40" y1="185" x2="210" y2="170.8" stroke="#3f44c9" stroke-width="2"/>
+<line x1="40" y1="185" x2="210" y2="185" stroke="#000" stroke-width="2"/>
+<text x="125" y="199" text-anchor="middle" fill="#999">the same run for all five</text>
+<text x="218" y="175" fill="#3f44c9">ramp, 1 in 12: 4.8°</text>
+<text x="218" y="147" fill="#f5a524">steep road, 25%: 14.0°</text>
+<text x="218" y="104" fill="#3f44c9">roof, 6 in 12: 26.6°</text>
+<text x="218" y="76" fill="#f5a524">stairs, 18 up for 27 along: 33.7°</text>
+<text x="218" y="19">100%: 45°</text>
+</svg><figcaption>Five slopes over the same run. Only the rise changes.</figcaption></figure>
+<p>The legal ramp is \(\tan^{-1}(1/12) \approx 4.8°\). The 10% road is \(\tan^{-1}(0.1) \approx 5.7°\), a little steeper than the ramp. Slopes that feel steep are small angles.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: a roof, both ways</h2>
+<p>A roof rises 6 for every 12 along. Then \(\tan\theta = 6/12 = 0.5\), which is a 50% slope, and \(\theta = \tan^{-1}(0.5) \approx 26.6°\).</p>
+<p>Now backwards. Another roof is at 30°. Then rise ÷ run \(= \tan 30° \approx 0.577\), a slope of 57.7%. For a run of 12 the rise is \(12 \times 0.577 \approx 6.9\), so a roofer would call it about "7 in 12".</p>
+<p class="small">Drag the angle and watch opposite ÷ adjacent change: <a href="../../demos/trigtriangle.html">infinityclub.net/demos/trigtriangle.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Give each slope as a percent and as an angle to 1 decimal place: (a) a path that rises 1 in 20; (b) a road signed 15%; (c) a roof that rises 4 in 12.<div class="space short"></div></li>
+<li>Each step of a staircase rises 18 cm and goes 27 cm forward. (a) What angle does the staircase make with the floor? (b) What is its slope as a percent? (c) How many times steeper than a 1 in 12 ramp is that, comparing slopes?<div class="space short"></div></li>
+<li>A ramp must be no steeper than 1 in 12. One ramp is 5 m long, measured along its sloping surface, and rises 40 cm. (a) Use Pythagoras to find its run. (b) Is it legal?<div class="space short"></div></li>
+<li>(a) Find the angles of a 10% slope and a 20% slope. Is the second angle about double the first? (b) Do the same for 100% and 200%. (c) Is a 100% slope vertical? What percent would a vertical wall be?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: which distance?</h2>
+<p>Some people work out a percent slope as rise ÷ distance travelled along the slope. That ratio is \(\sin\theta\), not \(\tan\theta\). Find both percents for a 5° slope and for a 30° slope. Why do the two methods agree for gentle slopes and disagree for steep ones?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(1/20 = 5\%\); \(\tan^{-1}(0.05) \approx 2.9°\). (b) 15%; \(\tan^{-1}(0.15) \approx 8.5°\). (c) \(4/12 \approx 33.3\%\); \(\tan^{-1}(1/3) \approx 18.4°\).</li>
+<li>(a) \(\tan\theta = 18/27 = 2/3\), so \(\theta \approx 33.7°\). (b) About 66.7%. (c) \(\tfrac23 \div \tfrac1{12} = 8\) times as steep.</li>
+<li>(a) Run \(= \sqrt{5^2 - 0.4^2} = \sqrt{24.84} \approx 4.98\) m. (b) Slope \(= 0.4/4.98 \approx 0.080\), under \(1/12 \approx 0.083\), so it is legal, at an angle of about 4.6°. A quicker check: a 40 cm rise needs a run of at least \(12 \times 0.4 = 4.8\) m, and this ramp has 4.98 m.</li>
+<li>(a) 5.7° and 11.3°: close to double. (b) 45° and 63.4°: nowhere near double. Angle and slope keep step only when both are small. (c) No. 100% means rise equals run, which is 45°. A vertical wall has no run at all, so its percent is not a number: as the angle approaches 90° the percent grows without limit.</li>
+</ol>
+<p><b>Stretch.</b> At 5°: \(\tan 5° \approx 8.75\%\) and \(\sin 5° \approx 8.72\%\). At 30°: \(\tan 30° \approx 57.7\%\) and \(\sin 30° = 50\%\). The two ratios share the same rise and differ only in what they divide by: the run or the sloping length (the hypotenuse). On a gentle slope those two lengths are almost equal. On a steep one the hypotenuse is much longer than the run.</p>
+</section>
+
+<div class="sheet-nav"><a href="c4-bearings.html">← Previous</a><a href="c6-fuel-economy.html">Next: The miles-per-gallon illusion →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

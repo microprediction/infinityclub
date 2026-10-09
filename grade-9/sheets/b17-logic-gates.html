@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Adding with switches · Infinity Club</title>
+<meta name="description" content="AND, OR and NOT are enough to build a circuit that adds. Wire a half adder on paper, check it against a truth table, and see how a chip does arithmetic.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 9</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 9 · Around the corner · 17</div>
+  <h1>Adding with switches</h1>
+  <p class="teaser">AND, OR and NOT are enough to build a circuit that adds. Wire a half adder on paper and see how a chip does arithmetic.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A chip is made of switches. Each wire carries a <b>bit</b>: 1 (on) or 0 (off). A <b>gate</b> takes bits in and sends one bit out. <b>AND</b> gives 1 only when both inputs are 1. <b>OR</b> gives 1 when at least one is. <b>NOT</b> flips its single input. These are grade 8's <a href="../../grade-8/sheets/b15-knights-knaves.html">truth tables</a>, with 1 for true.</p>
+<p>Now add two bits. The hard case is \(1 + 1 = 2\), which in <a href="../../grade-6/sheets/b2-binary.html">binary</a> is 10: write 0, carry 1. So the answer needs two bits, a <b>carry</b> \(C\) and a <b>sum</b> \(S\).</p>
+<table><tr><th>\(A\)</th><th>\(B\)</th><th>\(A\) AND \(B\)</th><th>\(A\) OR \(B\)</th><th>\(A + B\)</th><th>\(C\)</th><th>\(S\)</th></tr>
+<tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td></tr>
+<tr><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>1</td></tr>
+<tr><td>1</td><td>1</td><td>1</td><td>1</td><td>2</td><td>1</td><td>0</td></tr></table>
+<p>\(C\) matches AND: you carry only when both bits are 1. \(S\) is nearly OR, but it must be 0 in the last row. It is 1 when exactly one input is 1. That rule is <b>XOR</b>, short for "exclusive or".</p>
+<p class="callout">A <b>half adder</b> adds two bits: \(S = A \text{ XOR } B\) and \(C = A \text{ AND } B\).</p>
+</section>
+
+<section class="example">
+<h2>Watch one: XOR from AND, OR and NOT</h2>
+<p>\(S\) should be 1 when \(A\) OR \(B\) is 1, but not when \(A\) AND \(B\) is 1:</p>
+\[S = (A \text{ OR } B) \text{ AND } \big(\text{NOT } (A \text{ AND } B)\big).\]
+<figure><svg viewBox="0 0 440 160" width="440" height="160" role="img" aria-label="A half adder wired from four gates. Inputs A and B both feed an OR gate and an AND gate. The AND output is the carry C, and also passes through a NOT gate. A second AND gate combines the OR output with the NOT output to give the sum S." font-family="Nunito, sans-serif" font-size="13">
+<g fill="none" stroke="#000" stroke-width="1.5">
+<polyline points="34,30 120,30"/><polyline points="60,30 60,110 120,110"/>
+<polyline points="34,130 120,130"/><polyline points="88,130 88,50 120,50"/>
+<polyline points="176,40 300,40"/>
+<polyline points="176,120 400,120"/>
+<polyline points="198,120 198,82 214,82"/>
+<polyline points="270,82 284,82 284,60 300,60"/>
+<polyline points="356,50 400,50"/>
+</g>
+<circle cx="60" cy="30" r="3.2" fill="#000"/>
+<circle cx="88" cy="130" r="3.2" fill="#000"/>
+<circle cx="198" cy="120" r="3.2" fill="#000"/>
+<rect x="120" y="20" width="56" height="40" rx="8" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><text x="148" y="45" text-anchor="middle" fill="#3f44c9" font-weight="700">OR</text><rect x="120" y="100" width="56" height="40" rx="8" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><text x="148" y="125" text-anchor="middle" fill="#3f44c9" font-weight="700">AND</text><rect x="214" y="62" width="56" height="40" rx="8" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><text x="242" y="87" text-anchor="middle" fill="#3f44c9" font-weight="700">NOT</text><rect x="300" y="30" width="56" height="40" rx="8" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><text x="328" y="55" text-anchor="middle" fill="#3f44c9" font-weight="700">AND</text>
+<text x="26" y="35" text-anchor="end" font-weight="700">A</text><text x="26" y="135" text-anchor="end" font-weight="700">B</text>
+<text x="406" y="55" fill="#f5a524" font-weight="700">S</text><text x="406" y="125" fill="#f5a524" font-weight="700">C</text>
+<text x="238" y="34" text-anchor="middle" fill="#999" font-size="12">A OR B</text><text x="300" y="136" text-anchor="middle" fill="#999" font-size="12">A AND B</text>
+</svg><figcaption>A half adder from four gates. Wires join only at the dots. \(S\) is the sum bit and \(C\) the carry.</figcaption></figure>
+<p>Trace \(A = 1\), \(B = 1\). OR gives 1. The lower AND gives 1, so NOT gives 0. The last AND sees 1 and 0, so \(S = 0\). The carry is the lower AND's output, \(C = 1\). Together: 10, which is two. The carry is free, because \(A\) AND \(B\) was already in the circuit.</p>
+<p class="small">Flip the inputs and watch every gate: <a href="../../demos/gates.html">infinityclub.net/demos/gates.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Write the four-row truth table for NOT (\(A\) AND \(B\)), and for (NOT \(A\)) OR (NOT \(B\)). What do you notice?<div class="space"></div></li>
+<li>(a) Trace \(A = 1\), \(B = 0\) through the figure. Give the output of each gate, then \(S\) and \(C\). (b) Someone uses a plain OR for the sum bit instead of XOR. For which inputs is the adder wrong, and what does it say \(1 + 1\) is?<div class="space short"></div></li>
+<li>A column of a long addition has three bits: \(A\), \(B\) and a carry in, \(K\). A <b>full adder</b> adds them with two half adders. The first adds \(A\) and \(B\), giving \(S_1\) and \(C_1\). The second adds \(S_1\) and \(K\), giving \(S\) and \(C_2\). The carry out is \(C_1\) OR \(C_2\). Find \(S\) and the carry out when \(A, B, K\) are (a) 1, 1, 1; (b) 1, 0, 1. Check against ordinary addition.<div class="space short"></div></li>
+<li>(a) In the full adder, can \(C_1\) and \(C_2\) both be 1? Explain without listing all eight cases. (b) The half adder in the figure uses 4 gates. How many does a full adder use? How many to add two 8-bit numbers (one half adder, then seven full adders)?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: one gate to build them all</h2>
+<p>A <b>NAND</b> gate is AND followed by NOT. Using NAND gates and nothing else, build NOT, then AND, then OR. (Hint: both inputs of a gate may carry the same bit.) So a whole computer can be made from one kind of gate.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>For \(A, B = 00, 01, 10, 11\) both columns read 1, 1, 1, 0. They are the same gate. "Not both are 1" says the same thing as "at least one of them is 0".</li>
+<li>(a) OR gives 1. The lower AND gives 0, so NOT gives 1. The last AND sees 1 and 1 and gives 1. So \(S = 1\), \(C = 0\): the answer 01, which is one. (b) OR and XOR differ only when \(A = B = 1\). There the faulty adder gives \(C = 1\), \(S = 1\), which reads 11: it claims \(1 + 1 = 3\).</li>
+<li>(a) \(1 + 1\): \(S_1 = 0\), \(C_1 = 1\). Then \(0 + 1\): \(S = 1\), \(C_2 = 0\). Carry out \(1 \text{ OR } 0 = 1\). Answer 11, three. (b) \(1 + 0\): \(S_1 = 1\), \(C_1 = 0\). Then \(1 + 1\): \(S = 0\), \(C_2 = 1\). Carry out 1. Answer 10, two. Both agree with ordinary addition.</li>
+<li>(a) No. \(C_1 = 1\) needs \(A = B = 1\), and then \(S_1 = 0\). But \(C_2 = S_1 \text{ AND } K\), which is 0 whenever \(S_1 = 0\). This fits the arithmetic: three bits add to at most 3, which is 11, so one carry is always enough. (b) A full adder has \(4 + 4 + 1 = 9\) gates. The 8-bit adder has \(4 + 7 \times 9 = 67\).</li>
+</ol>
+<p><b>Stretch.</b> Feed the same bit into both inputs: \(A\) NAND \(A\) is NOT \(A\). AND is NAND followed by that NOT: \((A \text{ NAND } B) \text{ NAND } (A \text{ NAND } B)\). For OR, use exercise 1 backwards: \((\text{NOT } A) \text{ NAND } (\text{NOT } B)\) is 0 only when both inputs are 0, which is \(A\) OR \(B\). In NAND gates: \((A \text{ NAND } A) \text{ NAND } (B \text{ NAND } B)\). That is 1, 2 and 3 gates.</p>
+</section>
+
+<div class="sheet-nav"><a href="b16-game-of-life.html">← Previous</a><a href="b18-circle-through-three-points.html">Next: The circle through three points →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

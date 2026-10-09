@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Logic gates · Infinity Club</title>
+<meta name="description" content="Flip the inputs A, B and carry-in. See what AND, OR, XOR and NOT put out, then watch a half adder and a full adder, wired from those gates, add in binary.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+.controls button.bit { min-height: 48px; min-width: 6.2rem; font-size: 1.1rem; font-family: var(--mono); background: #fff; color: var(--ink); border: 2px solid var(--rule); }
+.controls button.bit.on { background: var(--warm); border-color: var(--warm); color: var(--ink); }
+.gates { display: grid; grid-template-columns: repeat(auto-fit, minmax(118px, 1fr)); gap: .6rem; margin: .6rem 0; }
+.gate { border: 1px solid var(--rule); border-radius: 10px; padding: .5rem .7rem; background: #fff; }
+.gate .name { font-weight: 800; }
+.gate .calc { font-family: var(--mono); font-size: 1.05rem; }
+.gate .calc b { display: inline-block; min-width: 1.5em; text-align: center; border-radius: 6px; background: #eeece6; }
+.gate.on .calc b { background: var(--warm); }
+.gate .rule { font-size: .85rem; color: var(--muted); }
+.circuit svg { display: block; width: 100%; max-width: 520px; height: auto; }
+.demo-panel h2 { margin: 1.2rem 0 .2rem; font-size: 1.15rem; }
+table.tt { border-collapse: collapse; font-family: var(--mono); font-size: .95rem; margin: .5rem 0; }
+table.tt th, table.tt td { padding: .12rem .55rem; text-align: center; border-bottom: 1px solid var(--rule); }
+table.tt th { font-family: var(--sans); font-size: .85rem; }
+table.tt td.gap, table.tt th.gap { border-left: 2px solid var(--ink); }
+table.tt tr.now td { background: #fde8c4; font-weight: 700; }
+.mission { max-width: 70ch; margin: -.4rem 0 1rem; }
+.mission p { margin: .3rem 0; }
+.mission summary { cursor: pointer; font-weight: 700; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Logic gates</h1>
+<p class="explain">Tap A, B and Carry in to flip each one between 0 and 1. First read what the four gates put out. Then follow the orange wires through the two circuits below: orange carries a 1, grey carries a 0. The circuits are built from the same gates, and they add.</p>
+<div class="mission">
+<p class="small"><b>Mission.</b> In the full adder, find every setting of A, B and Carry in that makes Carry out equal 1. Before you try all eight, guess the rule in plain words.</p>
+<details class="small"><summary>Answer</summary><p>Carry out is 1 exactly when <b>at least two</b> of the three inputs are 1. That is four of the eight settings: 110, 101, 011 and 111. Two or three 1s add up to 2 or 3, which is 10 or 11 in binary, and the left digit is the carry.</p></details>
+</div>
+<div class="demo-panel">
+  <div class="controls">
+    <button class="bit" id="tA" aria-pressed="false">A = 0</button>
+    <button class="bit" id="tB" aria-pressed="false">B = 0</button>
+    <button class="bit" id="tC" aria-pressed="false">Carry in = 0</button>
+  </div>
+
+  <h2>Four gates</h2>
+  <div class="gates" id="gates"></div>
+
+  <h2>Half adder: A + B</h2>
+  <div class="circuit" id="half"></div>
+  <div class="readout" id="halfsay"></div>
+
+  <h2>Full adder: A + B + Carry in</h2>
+  <div class="circuit" id="full"></div>
+  <div class="readout" id="fullsay"></div>
+  <div id="table"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>A gate is a tiny switch circuit with a fixed rule. <b>AND</b> gives 1 only when both inputs are 1. <b>OR</b> gives 1 when at least one is. <b>XOR</b> gives 1 when the inputs differ. <b>NOT</b> has one input and flips it.</p>
+<p>Now add two one-digit binary numbers. 0 + 0 = 0, 0 + 1 = 1, 1 + 0 = 1, and 1 + 1 = 10: write 0, carry 1. Look at the right-hand digit in those four sums. It is 1 when the inputs differ, which is XOR. The carry is 1 only for 1 + 1, which is AND. One XOR and one AND side by side make a <b>half adder</b>.</p>
+<p>In a longer sum, each column also has a carry coming in from the column to its right, so it has three things to add. A <b>full adder</b> does that with two half adders and an OR. The first adds A and B. The second adds Carry in to that result. If either half adder produced a carry, the OR passes it on.</p>
+<p>Chain 64 full adders, each one's Carry out feeding the next one's Carry in, and you have the circuit a computer uses to add 64-bit numbers.</p>
+<p>Sheet: <a href="../grade-9/sheets/b17-logic-gates.html">Adding with switches</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  function AND(a, b) { return a & b; }
+  function OR(a, b) { return a | b; }
+  function XOR(a, b) { return a ^ b; }
+  function NOT(a) { return a ? 0 : 1; }
+  function halfAdder(a, b) { return { sum: XOR(a, b), carry: AND(a, b) }; }
+  // Two half adders and an OR. s1, c1, c2 are the wires in between.
+  function fullAdder(a, b, cin) {
+    var h1 = halfAdder(a, b), h2 = halfAdder(h1.sum, cin);
+    return { s1: h1.sum, c1: h1.carry, c2: h2.carry, sum: h2.sum, carry: OR(h1.carry, h2.carry) };
+  }
+  function twoBits(carry, sum) { return String(carry) + String(sum); }
+  /*ENDPURE*/
+
+  var S = { a: 0, b: 0, c: 0 };
+  var ON = "#f5a524", OFF = "#b9b9c6", INK = "#1d1f3a";
+  function wire(pts, v) {
+    return '<polyline points="' + pts.map(function (p) { return p[0] + "," + p[1]; }).join(" ") + '" fill="none" stroke="' + (v ? ON : OFF) + '" stroke-width="' + (v ? 4 : 2.5) + '" stroke-linejoin="round" stroke-linecap="round"/>';
+  }
+  function joint(x, y, v) { return '<circle cx="' + x + '" cy="' + y + '" r="4" fill="' + (v ? ON : OFF) + '"/>'; }
+  function gate(x, y, w, h, label) {
+    return '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '" rx="8" fill="#dcdcf5" stroke="#3f44c9" stroke-width="2"/>'
+      + '<text x="' + (x + w / 2) + '" y="' + (y + h / 2 + 4.5) + '" text-anchor="middle" font-size="13" font-weight="800" fill="' + INK + '">' + label + "</text>";
+  }
+  function label(x, y, t, anchor) { return '<text x="' + x + '" y="' + y + '" text-anchor="' + (anchor || "start") + '" font-size="13" font-weight="800" fill="' + INK + '">' + t + "</text>"; }
+  function bit(x, y, v) { return '<text x="' + x + '" y="' + y + '" text-anchor="middle" font-size="12" font-weight="800" fill="' + INK + '">' + v + "</text>"; }
+  function lamp(x, y, v) {
+    return '<circle cx="' + x + '" cy="' + y + '" r="12" fill="' + (v ? ON : "#fff") + '" stroke="' + INK + '" stroke-width="2"/>'
+      + '<text x="' + x + '" y="' + (y + 5) + '" text-anchor="middle" font-size="14" font-weight="800" fill="' + INK + '">' + v + "</text>";
+  }
+  function svg(w, h, aria, body) { return '<svg viewBox="0 0 ' + w + " " + h + '" role="img" aria-label="' + aria + '" font-family="Nunito, sans-serif">' + body + "</svg>"; }
+
+  function halfSVG(a, b) {
+    var h = halfAdder(a, b), s = "";
+    s += wire([[26, 34], [130, 34]], a) + wire([[60, 34], [60, 100], [130, 100]], a);
+    s += wire([[26, 50], [130, 50]], b) + wire([[90, 50], [90, 116], [130, 116]], b);
+    s += joint(60, 34, a) + joint(90, 50, b);
+    s += wire([[180, 42], [290, 42]], h.sum) + wire([[180, 108], [290, 108]], h.carry);
+    s += gate(130, 22, 50, 40, "XOR") + gate(130, 88, 50, 40, "AND");
+    s += label(6, 38, "A") + label(6, 56, "B") + bit(34, 28, a) + bit(34, 66, b);
+    s += label(235, 34, "Sum", "middle") + label(235, 100, "Carry", "middle");
+    s += lamp(304, 42, h.sum) + lamp(304, 108, h.carry);
+    return svg(340, 140, "Half adder: A and B feed an XOR gate for the sum and an AND gate for the carry", s);
+  }
+  function fullSVG(a, b, c) {
+    var f = fullAdder(a, b, c), s = "";
+    s += wire([[26, 44], [80, 44]], a) + wire([[40, 44], [40, 112], [80, 112]], a);
+    s += wire([[26, 60], [80, 60]], b) + wire([[58, 60], [58, 128], [80, 128]], b);
+    s += wire([[124, 52], [180, 52]], f.s1) + wire([[146, 52], [146, 160], [180, 160]], f.s1);
+    s += wire([[26, 206], [162, 206], [162, 68], [180, 68]], c) + wire([[162, 176], [180, 176]], c);
+    s += wire([[124, 120], [134, 120], [134, 224], [244, 224], [244, 188], [256, 188]], f.c1);
+    s += wire([[224, 168], [256, 168]], f.c2);
+    s += wire([[224, 60], [306, 60]], f.sum) + wire([[300, 178], [306, 178]], f.carry);
+    s += joint(40, 44, a) + joint(58, 60, b) + joint(146, 52, f.s1) + joint(162, 176, c);
+    s += gate(80, 32, 44, 40, "XOR") + gate(80, 100, 44, 40, "AND") + gate(180, 40, 44, 40, "XOR") + gate(180, 148, 44, 40, "AND") + gate(256, 156, 44, 44, "OR");
+    s += label(6, 40, "A") + label(6, 74, "B") + label(6, 198, "Carry in");
+    s += bit(132, 46, f.s1) + bit(142, 114, f.c1) + bit(234, 162, f.c2);
+    s += label(336, 40, "Sum", "end") + label(336, 148, "Carry out", "end");
+    s += lamp(320, 60, f.sum) + lamp(320, 178, f.carry);
+    return svg(340, 236, "Full adder built from two XOR gates, two AND gates and an OR gate", s);
+  }
+
+  function gateCard(name, calc, v, rule) {
+    return '<div class="gate' + (v ? " on" : "") + '"><div class="name">' + name + '</div><div class="calc">' + calc + " = <b>" + v + '</b></div><div class="rule">' + rule + "</div></div>";
+  }
+  function draw() {
+    var a = S.a, b = S.b, c = S.c, h = halfAdder(a, b), f = fullAdder(a, b, c);
+    [["tA", "A", a], ["tB", "B", b], ["tC", "Carry in", c]].forEach(function (t) {
+      var el = document.getElementById(t[0]); el.textContent = t[1] + " = " + t[2]; el.classList.toggle("on", !!t[2]); el.setAttribute("aria-pressed", t[2] ? "true" : "false");
+    });
+    document.getElementById("gates").innerHTML =
+      gateCard("AND", a + " AND " + b, AND(a, b), "1 only if both are 1")
+      + gateCard("OR", a + " OR " + b, OR(a, b), "1 if at least one is 1")
+      + gateCard("XOR", a + " XOR " + b, XOR(a, b), "1 if they differ")
+      + gateCard("NOT", "NOT " + a, NOT(a), "flips A");
+    document.getElementById("half").innerHTML = halfSVG(a, b);
+    document.getElementById("halfsay").textContent = a + " + " + b + " = " + (a + b) + ", which is " + twoBits(h.carry, h.sum) + " in binary:  carry " + h.carry + ", sum " + h.sum;
+    document.getElementById("full").innerHTML = fullSVG(a, b, c);
+    document.getElementById("fullsay").textContent = a + " + " + b + " + " + c + " = " + (a + b + c) + ", which is " + twoBits(f.carry, f.sum) + " in binary:  carry out " + f.carry + ", sum " + f.sum;
+    var rows = "";
+    for (var i = 0; i < 8; i++) {
+      var x = (i >> 2) & 1, y = (i >> 1) & 1, z = i & 1, r = fullAdder(x, y, z);
+      rows += "<tr" + (x === a && y === b && z === c ? ' class="now"' : "") + "><td>" + x + "</td><td>" + y + "</td><td>" + z + '</td><td class="gap">' + r.carry + "</td><td>" + r.sum + "</td><td>" + (x + y + z) + "</td></tr>";
+    }
+    document.getElementById("table").innerHTML = '<table class="tt"><tr><th>A</th><th>B</th><th>Carry in</th><th class="gap">Carry out</th><th>Sum</th><th>Total</th></tr>' + rows + "</table>";
+  }
+  [["tA", "a"], ["tB", "b"], ["tC", "c"]].forEach(function (t) {
+    document.getElementById(t[0]).addEventListener("click", function () { S[t[1]] = S[t[1]] ? 0 : 1; draw(); });
+  });
+  draw();
+})();
+</script>
+</body>
+</html>

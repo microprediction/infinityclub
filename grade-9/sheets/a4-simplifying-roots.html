@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why √50 is 5√2 · Infinity Club</title>
+<meta name="description" content="Pull the square factors out from under the root. Exact answers stay short, and √2 turns up everywhere.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 9</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 9 · Sharpen · 4</div>
+  <h1>Why \(\sqrt{50}\) is \(5\sqrt2\)</h1>
+  <p class="teaser">Pull the square factors out from under the root. Exact answers stay short, and \(\sqrt2\) turns up everywhere.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Pythagoras hands you lengths like \(\sqrt{50}\): the positive number whose square is 50. A calculator says 7.0710678…, which is rounded and hard to recognise. There is an exact form that is shorter.</p>
+<figure><svg viewBox="0 0 300 190" width="300" height="190" role="img" aria-label="A large square of area 50 divided into a 5 by 5 grid of 25 small squares, each of area 2 and side root 2, so the large side is 5 root 2" font-family="Nunito, sans-serif" font-size="13">
+<rect x="60" y="26" width="140" height="140" fill="#dcdcf5" stroke="none"/>
+<rect x="60" y="26" width="28" height="28" fill="#fde8c4" stroke="none"/>
+<line x1="88" y1="26" x2="88" y2="166" stroke="#3f44c9" stroke-width="1"/>
+<line x1="60" y1="54" x2="200" y2="54" stroke="#3f44c9" stroke-width="1"/>
+<line x1="116" y1="26" x2="116" y2="166" stroke="#3f44c9" stroke-width="1"/>
+<line x1="60" y1="82" x2="200" y2="82" stroke="#3f44c9" stroke-width="1"/>
+<line x1="144" y1="26" x2="144" y2="166" stroke="#3f44c9" stroke-width="1"/>
+<line x1="60" y1="110" x2="200" y2="110" stroke="#3f44c9" stroke-width="1"/>
+<line x1="172" y1="26" x2="172" y2="166" stroke="#3f44c9" stroke-width="1"/>
+<line x1="60" y1="138" x2="200" y2="138" stroke="#3f44c9" stroke-width="1"/>
+<rect x="60" y="26" width="140" height="140" fill="none" stroke="#000" stroke-width="2"/>
+<rect x="60" y="26" width="28" height="28" fill="none" stroke="#f5a524" stroke-width="2"/>
+<text x="74.0" y="45.0" text-anchor="middle" font-weight="700">2</text>
+<text x="74.0" y="18" text-anchor="middle" fill="#f5a524" font-weight="700">√2</text>
+<text x="52" y="45.0" text-anchor="end" fill="#f5a524" font-weight="700">√2</text>
+<text x="208" y="101.0">√50 = 5√2</text>
+<text x="130.0" y="183" text-anchor="middle" fill="#3f44c9">area 50</text>
+</svg><figcaption>25 squares of area 2 make one square of area 50. Five sides of length \(\sqrt2\) make its side.</figcaption></figure>
+<p>A square of area 50 has side \(\sqrt{50}\). Cut it into a 5 by 5 grid. Each of the 25 small squares has area 2, so each has side \(\sqrt2\). Five of those sides make the big side: \(\sqrt{50} = 5\sqrt2\).</p>
+<p class="callout">\(\sqrt{ab} = \sqrt a \times \sqrt b\) for positive \(a\) and \(b\).</p>
+<p>Why? Square the right-hand side: \(\sqrt a \sqrt b \times \sqrt a \sqrt b = a \times b\). So \(\sqrt a \sqrt b\) is a positive number whose square is \(ab\), and that is exactly what \(\sqrt{ab}\) means.</p>
+<p>To simplify a root, split off a square factor: \(\sqrt{50} = \sqrt{25 \times 2} = \sqrt{25} \times \sqrt2 = 5\sqrt2\).</p>
+<p>Roots split over multiplying, not over adding: \(\sqrt{9 + 16} = 5\), but \(\sqrt9 + \sqrt{16} = 7\). What you can do is collect like roots, just as \(3x + 5x = 8x\): \(3\sqrt2 + 5\sqrt2 = 8\sqrt2\).</p>
+</section>
+
+<section class="example">
+<h2>Watch one: a right triangle with legs 4 and 8</h2>
+<p>By Pythagoras the longest side is \(\sqrt{4^2 + 8^2} = \sqrt{80}\).</p>
+<p>The biggest square that divides 80 is 16, since \(80 = 16 \times 5\). So \(\sqrt{80} = \sqrt{16} \times \sqrt5 = 4\sqrt5\).</p>
+<p>Spotted only the 4? Then \(\sqrt{80} = 2\sqrt{20}\), and \(20 = 4 \times 5\) gives \(2 \times 2\sqrt5 = 4\sqrt5\) again. Keep going until no square factor is left under the root.</p>
+<p>Check: \((4\sqrt5)^2 = 16 \times 5 = 80\). The short form also shows something the decimal hides: this side is exactly 4 times \(\sqrt5\), the longest side of the triangle with legs 1 and 2.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Simplify: (a) \(\sqrt{12}\); (b) \(\sqrt{45}\); (c) \(\sqrt{72}\); (d) \(\sqrt{200}\).<div class="space short"></div></li>
+<li>Simplify: (a) \(\sqrt{18} + \sqrt8\); (b) \(\sqrt{75} - \sqrt{27}\); (c) \(\sqrt6 \times \sqrt{15}\).<div class="space"></div></li>
+<li>(a) A square has side 7. Find its diagonal exactly, in simplest form. (b) Another square has diagonal 10. Find its side exactly.<div class="space"></div></li>
+<li>No calculator. (a) Which is bigger, \(3\sqrt5\) or \(2\sqrt{11}\)? Hint: run the rule backwards and put everything under the root. (b) True or false: \(\sqrt2 + \sqrt8 = \sqrt{18}\). Give a reason.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: cubes instead of squares</h2>
+<p>\(\sqrt[3]{n}\), the cube root, is the number whose cube is \(n\); so \(\sqrt[3]{27} = 3\). The same rule holds: \(\sqrt[3]{ab} = \sqrt[3]{a} \times \sqrt[3]{b}\). Simplify \(\sqrt[3]{54}\). Then write \(\sqrt[3]{16} + \sqrt[3]{54}\) as a single cube root.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(\sqrt{4 \times 3} = 2\sqrt3\). (b) \(\sqrt{9 \times 5} = 3\sqrt5\). (c) \(\sqrt{36 \times 2} = 6\sqrt2\). (d) \(\sqrt{100 \times 2} = 10\sqrt2\).</li>
+<li>(a) \(3\sqrt2 + 2\sqrt2 = 5\sqrt2\). (b) \(5\sqrt3 - 3\sqrt3 = 2\sqrt3\). (c) \(\sqrt{90} = \sqrt{9 \times 10} = 3\sqrt{10}\).</li>
+<li>(a) \(\sqrt{7^2 + 7^2} = \sqrt{98} = \sqrt{49 \times 2} = 7\sqrt2\). (b) If the side is \(s\), then \(s^2 + s^2 = 100\), so \(s^2 = 50\) and \(s = \sqrt{50} = 5\sqrt2\), about 7.07.</li>
+<li>(a) \(3\sqrt5 = \sqrt9 \times \sqrt5 = \sqrt{45}\) and \(2\sqrt{11} = \sqrt{44}\). So \(3\sqrt5\) is bigger, but only just. (b) True: \(\sqrt8 = 2\sqrt2\), so the left side is \(3\sqrt2 = \sqrt{9 \times 2} = \sqrt{18}\). It is true because of like roots, not because of adding under the root: \(2 + 8\) is not 18.</li>
+</ol>
+<p><b>Stretch.</b> Look for cube factors: \(54 = 27 \times 2\), so \(\sqrt[3]{54} = 3\sqrt[3]{2}\). Likewise \(16 = 8 \times 2\) gives \(\sqrt[3]{16} = 2\sqrt[3]{2}\). The sum is \(5\sqrt[3]{2} = \sqrt[3]{125 \times 2} = \sqrt[3]{250}\).</p>
+</section>
+
+<div class="sheet-nav"><a href="a3-mirror-line.html">← Previous</a><a href="a5-special-triangles.html">Next: Two triangles worth knowing by heart →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

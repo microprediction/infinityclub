@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Game of Life · Infinity Club</title>
+<meta name="description" content="Draw live cells on a grid, press Run, and watch Conway's Game of Life: blinkers, gliders and a gun that fires gliders forever, all from four simple rules.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+#grid { cursor: crosshair; touch-action: none; }
+.controls input[type=range] { width: 130px; }
+.presets { margin-top: -.4rem; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>The Game of Life</h1>
+<p class="explain">Tap or drag on the grid to switch cells on and off. Press <b>Step</b> to move time forward one tick, or <b>Run</b> to let it go. Or load a ready-made pattern: a <b>blinker</b>, a <b>glider</b>, or a <b>gun</b> that fires gliders. Before you press Step, try to predict the next picture. Nobody steers anything: every cell just counts its live neighbours.</p>
+<div class="demo-panel">
+  <div class="controls">
+    <button id="step">Step</button>
+    <button id="run" class="alt">Run</button>
+    <button id="clear" class="ghost">Clear</button>
+    <label>speed <input type="range" id="speed" min="1" max="30" step="1" value="8"> <span id="speedv">8</span> a second</label>
+  </div>
+  <div class="controls presets">
+    <button class="ghost" data-p="blinker">Blinker</button>
+    <button class="ghost" data-p="block">Block</button>
+    <button class="ghost" data-p="glider">Glider</button>
+    <button class="ghost" data-p="gun">Glider gun</button>
+    <button class="ghost" id="random">Random</button>
+    <label><input type="checkbox" id="wrap"> edges wrap around</label>
+  </div>
+  <canvas id="grid" width="640" height="480"></canvas>
+  <div class="readout" id="info"></div>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>Every cell has eight neighbours: the cells that touch it, corners included. At each tick, every cell counts how many of its neighbours are alive, and all cells change at the same moment.</p>
+<p><b>The four rules.</b> A live cell with fewer than 2 live neighbours dies (too lonely). A live cell with 2 or 3 live neighbours lives on. A live cell with more than 3 live neighbours dies (too crowded). A dead cell with exactly 3 live neighbours comes alive.</p>
+<p>That is the whole game. John Conway invented it in 1970, and people are still finding new patterns in it.</p>
+<p><b>Block.</b> Each of its four cells has 3 live neighbours, and no dead cell nearby has exactly 3. Nothing changes. A pattern like this is called a still life.</p>
+<p><b>Blinker.</b> Three cells in a row flip between flat and upright, forever. It repeats every 2 ticks.</p>
+<p><b>Glider.</b> Five cells that rebuild themselves one square down and one square across every 4 ticks. Nothing in the rules says "move", yet it walks across the grid.</p>
+<p><b>Glider gun.</b> Conway offered a prize to anyone who could show that a pattern can grow forever. Bill Gosper's team won it in 1970 with this gun, which fires a new glider every 30 ticks.</p>
+<p>Normally anything that walks off the edge of the grid is gone. Tick <b>edges wrap around</b> and the left edge joins the right and the top joins the bottom, so a glider comes back round. Try the gun with wrapping on and see what its own gliders do to it.</p>
+<p>Sheet: <a href="../grade-9/sheets/b16-game-of-life.html">A universe with four rules</a>.</p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  // A grid is a flat array of 0s and 1s; cell (r, c) lives at index r * cols + c.
+  function lifeStep(g, rows, cols, wrap) {
+    var out = new Array(rows * cols), r, c, dr, dc, rr, cc, n;
+    for (r = 0; r < rows; r++) for (c = 0; c < cols; c++) {
+      n = 0;
+      for (dr = -1; dr <= 1; dr++) for (dc = -1; dc <= 1; dc++) {
+        if (!dr && !dc) continue;
+        rr = r + dr; cc = c + dc;
+        if (wrap) { rr = (rr + rows) % rows; cc = (cc + cols) % cols; }
+        else if (rr < 0 || cc < 0 || rr >= rows || cc >= cols) continue;
+        n += g[rr * cols + cc];
+      }
+      out[r * cols + c] = (n === 3 || (n === 2 && g[r * cols + c])) ? 1 : 0;
+    }
+    return out;
+  }
+  // The visible grid sits inside a hidden border `margin` cells wide. When a live cell comes within `ring`
+  // cells of the outer edge, remove it and everything touching it inside the hidden border, so that a glider
+  // which leaves the picture disappears whole and leaves no wreckage behind. Changes g; returns cells removed.
+  function sweepEdge(g, rows, cols, ring, margin) {
+    function hidden(r, c) { return r < margin || c < margin || r >= rows - margin || c >= cols - margin; }
+    var stack = [], r, c, removed = 0;
+    for (r = 0; r < rows; r++) for (c = 0; c < cols; c++)
+      if (g[r * cols + c] && (r < ring || c < ring || r >= rows - ring || c >= cols - ring)) { g[r * cols + c] = 0; removed++; stack.push([r, c]); }
+    while (stack.length) {
+      var p = stack.pop();
+      for (var dr = -1; dr <= 1; dr++) for (var dc = -1; dc <= 1; dc++) {
+        r = p[0] + dr; c = p[1] + dc;
+        if (r < 0 || c < 0 || r >= rows || c >= cols || !g[r * cols + c] || !hidden(r, c)) continue;
+        g[r * cols + c] = 0; removed++; stack.push([r, c]);
+      }
+    }
+    return removed;
+  }
+  var PATTERNS = {
+    blinker: ["OOO"],
+    block: ["OO", "OO"],
+    glider: [".O.", "..O", "OOO"],
+    gun: [
+      "........................O...........",
+      "......................O.O...........",
+      "............OO......OO............OO",
+      "...........O...O....OO............OO",
+      "OO........O.....O...OO..............",
+      "OO........O...O.OO....O.O...........",
+      "..........O.....O.......O...........",
+      "...........O...O....................",
+      "............OO......................"]
+  };
+  function emptyGrid(rows, cols) { var g = []; for (var i = 0; i < rows * cols; i++) g.push(0); return g; }
+  function place(g, rows, cols, pat, r0, c0) {
+    pat.forEach(function (line, r) { for (var c = 0; c < line.length; c++) if (line.charAt(c) === "O" && r0 + r < rows && c0 + c < cols) g[(r0 + r) * cols + c0 + c] = 1; });
+    return g;
+  }
+  function population(g) { var n = 0; for (var i = 0; i < g.length; i++) n += g[i]; return n; }
+  /*ENDPURE*/
+
+  var ROWS = 30, COLS = 40, MARGIN = 8, RING = 2;      // what you see is ROWS x COLS
+  var canvas = document.getElementById("grid"), ctx = canvas.getContext("2d"), info = document.getElementById("info");
+  var runBtn = document.getElementById("run"), speedIn = document.getElementById("speed"), wrapIn = document.getElementById("wrap");
+  var wrap = false, off = MARGIN, GR = ROWS + 2 * MARGIN, GC = COLS + 2 * MARGIN, g = emptyGrid(GR, GC);
+  var gen = 0, timer = null, cell = 10, note = "";
+  function at(r, c) { return g[(r + off) * GC + c + off]; }
+  function set(r, c, v) { g[(r + off) * GC + c + off] = v; }
+  function visible() { var v = []; for (var r = 0; r < ROWS; r++) for (var c = 0; c < COLS; c++) v.push(at(r, c)); return v; }
+  function load(v) {   // v is a ROWS x COLS picture; rebuild the working grid around it
+    off = wrap ? 0 : MARGIN; GR = ROWS + 2 * off; GC = COLS + 2 * off; g = emptyGrid(GR, GC);
+    for (var r = 0; r < ROWS; r++) for (var c = 0; c < COLS; c++) if (v[r * COLS + c]) set(r, c, 1);
+  }
+  function draw() {
+    var dpr = window.devicePixelRatio || 1, cs = window.getComputedStyle(canvas.parentNode);
+    var avail = canvas.parentNode.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight) - 2;
+    if (!(avail > 0)) avail = 640;
+    avail = Math.min(avail, 800);
+    cell = Math.max(4, avail / COLS);
+    var W = Math.round(cell * COLS), H = Math.round(cell * ROWS);
+    function px(k) { return Math.round(k * cell); }
+    canvas.style.width = W + "px"; canvas.style.height = H + "px"; canvas.width = W * dpr; canvas.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, H);
+    ctx.strokeStyle = "#ece9e0"; ctx.lineWidth = 1; ctx.beginPath();
+    for (var c = 1; c < COLS; c++) { ctx.moveTo(px(c) + .5, 0); ctx.lineTo(px(c) + .5, H); }
+    for (var r = 1; r < ROWS; r++) { ctx.moveTo(0, px(r) + .5); ctx.lineTo(W, px(r) + .5); }
+    ctx.stroke();
+    ctx.fillStyle = "#3f44c9"; var n = 0;
+    for (r = 0; r < ROWS; r++) for (c = 0; c < COLS; c++) if (at(r, c)) { n++; ctx.fillRect(px(c) + 1, px(r) + 1, px(c + 1) - px(c) - 1, px(r + 1) - px(r) - 1); }
+    info.textContent = "tick " + gen + "    live cells: " + n + (note ? "\n" + note : "");
+  }
+  function stop() { if (timer) { clearTimeout(timer); timer = null; } runBtn.textContent = "Run"; }
+  function tick() {
+    var before = visible();
+    g = lifeStep(g, GR, GC, wrap);
+    if (!wrap) sweepEdge(g, GR, GC, RING, MARGIN);
+    gen++;
+    var after = visible(), same = true, alive = 0;
+    for (var i = 0; i < after.length; i++) { if (after[i] !== before[i]) same = false; alive += after[i]; }
+    note = !alive ? "Every cell is dead. Draw something, or load a pattern." : same ? "Nothing changed on that tick: this is a still life." : "";
+    draw();
+    return alive > 0 && !same;
+  }
+  function loop() { timer = null; if (!tick()) { stop(); return; } timer = setTimeout(loop, 1000 / parseInt(speedIn.value, 10)); }
+  document.getElementById("step").addEventListener("click", function () { stop(); tick(); });
+  runBtn.addEventListener("click", function () { if (timer) { stop(); return; } runBtn.textContent = "Pause"; loop(); });
+  document.getElementById("clear").addEventListener("click", function () { stop(); load(emptyGrid(ROWS, COLS)); gen = 0; note = ""; draw(); });
+  speedIn.addEventListener("input", function () { document.getElementById("speedv").textContent = speedIn.value; });
+  wrapIn.addEventListener("change", function () { var v = visible(); wrap = wrapIn.checked; load(v); note = ""; draw(); });
+  var WHERE = { blinker: [14, 18], block: [14, 19], glider: [2, 2], gun: [2, 2] };
+  var SAY = { blinker: "Blinker loaded. Press Step a few times.", block: "Block loaded. Press Step: nothing will change.", glider: "Glider loaded. Press Run, and watch it every 4 ticks.", gun: "Glider gun loaded. Press Run. A new glider leaves every 30 ticks." };
+  Array.prototype.forEach.call(document.querySelectorAll("[data-p]"), function (b) {
+    b.addEventListener("click", function () {
+      var k = b.getAttribute("data-p");
+      stop(); load(place(emptyGrid(ROWS, COLS), ROWS, COLS, PATTERNS[k], WHERE[k][0], WHERE[k][1])); gen = 0; note = SAY[k]; draw();
+    });
+  });
+  document.getElementById("random").addEventListener("click", function () {
+    stop(); var v = emptyGrid(ROWS, COLS); for (var i = 0; i < v.length; i++) v[i] = Math.random() < 0.3 ? 1 : 0;
+    load(v); gen = 0; note = "Random soup. Press Run and see what survives."; draw();
+  });
+  // drawing with finger or mouse: the first cell you touch decides whether this stroke switches cells on or off
+  var painting = false, paintTo = 1;
+  function cellAt(ev) {
+    var rc = canvas.getBoundingClientRect(), c = Math.floor((ev.clientX - rc.left) / rc.width * COLS), r = Math.floor((ev.clientY - rc.top) / rc.height * ROWS);
+    return (r < 0 || c < 0 || r >= ROWS || c >= COLS) ? null : [r, c];
+  }
+  canvas.addEventListener("pointerdown", function (ev) {
+    var p = cellAt(ev); if (!p) return;
+    painting = true; paintTo = at(p[0], p[1]) ? 0 : 1; set(p[0], p[1], paintTo); note = "";
+    try { canvas.setPointerCapture(ev.pointerId); } catch (e) { /* older browsers */ }
+    ev.preventDefault(); draw();
+  });
+  canvas.addEventListener("pointermove", function (ev) {
+    if (!painting) return;
+    var p = cellAt(ev); if (!p || at(p[0], p[1]) === paintTo) return;
+    set(p[0], p[1], paintTo); draw();
+  });
+  function up() { painting = false; }
+  canvas.addEventListener("pointerup", up); canvas.addEventListener("pointercancel", up);
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(draw, 150); });
+  load(place(emptyGrid(ROWS, COLS), ROWS, COLS, PATTERNS.glider, 2, 2)); note = "A glider is loaded. Press Step or Run, or draw your own cells.";
+  draw();
+})();
+</script>
+</body>
+</html>

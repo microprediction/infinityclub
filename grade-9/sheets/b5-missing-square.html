@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The puzzle where 64 = 65 · Infinity Club</title>
+<meta name="description" content="Cut an 8 by 8 square into four pieces and rearrange them into a 5 by 13 rectangle. The extra square is a thin gap, and a Fibonacci identity says its area is exactly 1.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 9</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 9 · Around the corner · 5</div>
+  <h1>The puzzle where 64 = 65</h1>
+  <p class="teaser">Cut an 8 by 8 square into four pieces and rearrange them into a 5 by 13 rectangle. The trick is a Fibonacci identity and a sliver you cannot see.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Cut an 8 by 8 square into four pieces: two triangles with legs 8 and 3, and two trapezoids. Rearrange them into a 5 by 13 rectangle. Area 64 has become 65. Where did the extra square come from?</p>
+<figure><svg viewBox="0 0 472 182" width="472" height="182" role="img" aria-label="An 8 by 8 square cut into two triangles and two trapezoids, and the same four pieces laid out in a 5 by 13 rectangle with a thin orange gap along the diagonal" font-family="Nunito, sans-serif" font-size="12">
+<polygon points="26,162 170,162 170,108" fill="#dcdcf5"/>
+<polygon points="26,162 170,108 26,108" fill="#dcdcf5"/>
+<polygon points="26,108 80,108 116,18 26,18" fill="#fde8c4"/>
+<polygon points="80,108 170,108 170,18 116,18" fill="#fde8c4"/>
+<path d="M44,162V18M62,162V18M80,162V18M98,162V18M116,162V18M134,162V18M152,162V18M26,144H170M26,126H170M26,108H170M26,90H170M26,72H170M26,54H170M26,36H170" stroke="#999" stroke-width="0.4" fill="none"/>
+<polygon points="26,162 170,162 170,108" fill="none" stroke="#000" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="26,162 170,108 26,108" fill="none" stroke="#000" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="26,108 80,108 116,18 26,18" fill="none" stroke="#000" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="80,108 170,108 170,18 116,18" fill="none" stroke="#000" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="212,162 356,162 356,108" fill="#dcdcf5"/>
+<polygon points="446,72 302,72 302,126" fill="#dcdcf5"/>
+<polygon points="356,162 446,162 446,72 356,108" fill="#fde8c4"/>
+<polygon points="212,162 302,126 302,72 212,72" fill="#fde8c4"/>
+<path d="M230,162V72M248,162V72M266,162V72M284,162V72M302,162V72M320,162V72M338,162V72M356,162V72M374,162V72M392,162V72M410,162V72M428,162V72M212,144H446M212,126H446M212,108H446M212,90H446" stroke="#999" stroke-width="0.4" fill="none"/>
+<polygon points="212,162 356,162 356,108" fill="none" stroke="#000" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="446,72 302,72 302,126" fill="none" stroke="#000" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="356,162 446,162 446,72 356,108" fill="none" stroke="#000" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="212,162 302,126 302,72 212,72" fill="none" stroke="#000" stroke-width="1" stroke-linejoin="round"/>
+<polygon points="212,162 356,108 446,72 302,126" fill="#f5a524" stroke="#f5a524" stroke-width="0.6" stroke-linejoin="round"/>
+<circle cx="356" cy="108" r="2.5" fill="#000"/>
+<circle cx="302" cy="126" r="2.5" fill="#000"/>
+<text x="98" y="177" text-anchor="middle" fill="#000">8</text>
+<text x="18" y="139" text-anchor="middle" fill="#000">3</text>
+<text x="18" y="67" text-anchor="middle" fill="#000">5</text>
+<text x="71" y="13" text-anchor="middle" fill="#000">5</text>
+<text x="143" y="13" text-anchor="middle" fill="#000">3</text>
+<text x="53" y="103" text-anchor="middle" fill="#000">3</text>
+<text x="329" y="177" text-anchor="middle" fill="#000">13</text>
+<text x="455" y="121" text-anchor="middle" fill="#000">5</text>
+<text x="361" y="123" text-anchor="start" fill="#000">(8, 3)</text>
+<text x="297" y="120" text-anchor="end" fill="#000">(5, 2)</text>
+<text x="209" y="177" text-anchor="middle" fill="#999">(0, 0)</text>
+<text x="446" y="66" text-anchor="end" fill="#999">(13, 5)</text>
+<text x="329" y="42" text-anchor="middle" fill="#3f44c9" font-weight="700">the same four pieces</text>
+<text x="329" y="58" text-anchor="middle" fill="#3f44c9">5 × 13 = 65 squares?</text>
+</svg><figcaption>Drawn to scale. The orange sliver is not a thick line. It is a hole.</figcaption></figure>
+<p>Moving pieces cannot change their area, so they cannot fill the rectangle. Look along its diagonal. The triangle's long edge climbs 3 for every 8 across: slope \(\tfrac38 = 0.375\). The trapezoid's slanted edge climbs 2 for every 5: slope \(\tfrac25 = 0.4\). The slopes differ, so the edges do not make one straight line. They leave a thin parallelogram of area exactly 1.</p>
+<p>Why exactly 1? The numbers 5, 8, 13 are neighbours in the <a href="../../grade-6/sheets/b6-fibonacci.html">Fibonacci sequence</a> 1, 1, 2, 3, 5, 8, 13, 21, …, each the sum of the two before. Write \(F_n\) for the \(n\)th term, so \(F_6 = 8\).</p>
+<p class="callout"><b>Cassini's identity.</b> \(F_{n-1} \times F_{n+1} - F_n^2\) is always \(+1\) or \(-1\). Here \(5 \times 13 - 8^2 = 1\).</p>
+</section>
+
+<section class="example">
+<h2>Watch one: a 13 by 13 square</h2>
+<p>Cut it the same way, one Fibonacci step up: triangles with legs 13 and 5, and trapezoids whose slanted edge climbs 3 for every 8. They seem to make an 8 by 21 rectangle.</p>
+<p>Areas: \(13^2 = 169\) but \(8 \times 21 = 168\). A square has vanished.</p>
+<p>Slopes: triangle \(\tfrac{5}{13} \approx 0.385\), trapezoid \(\tfrac38 = 0.375\). Now the triangle's edge is the steeper one, so the pieces overlap along the diagonal instead of leaving a gap. The overlap has area 1, and Cassini agrees: \(8 \times 21 - 13^2 = -1\).</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Find the area of each of the four pieces in the figure. (Trapezoid: average the two parallel sides, then multiply by the distance between them.) Do the four areas add to 64 or to 65?<div class="space short"></div></li>
+<li>Complete the table. What decides whether the bottom row is \(+1\) or \(-1\)?
+<table class="tt">
+<tr><th>\(n\)</th><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
+<tr><th>\(F_n\)</th><td>1</td><td>2</td><td>3</td><td>5</td><td>8</td><td>13</td></tr>
+<tr><th>\(F_{n-1} \times F_{n+1} - F_n^2\)</th><td style="width:3em">&nbsp;</td><td style="width:3em">&nbsp;</td><td style="width:3em">&nbsp;</td><td style="width:3em">&nbsp;</td><td style="width:3em">1</td><td style="width:3em">&nbsp;</td></tr>
+</table></li>
+<li>A 5 by 5 square is cut the same way: triangles with legs 5 and 2, and trapezoids whose slanted edge climbs 1 for every 3. The pieces are laid out as a 3 by 8 rectangle. (a) Compare the two areas. (b) Compare the two slopes. (c) Is there a gap or an overlap?<div class="space"></div></li>
+<li>In the 5 by 13 rectangle, one long side of the gap runs from \((0, 0)\) to \((8, 3)\). (a) Find its length. (b) A parallelogram's area is base × height, and this one has area 1. How far apart are its two long sides? (c) On 1 cm squares, how many millimetres is that? (d) A 21 by 21 square makes a 13 by 34 rectangle. Why is that version even harder to see through?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: why it is always ±1</h2>
+<p>Let \(D_n = F_{n-1}F_{n+1} - F_n^2\). The next one is \(D_{n+1} = F_nF_{n+2} - F_{n+1}^2\). Replace \(F_{n+2}\) by \(F_{n+1} + F_n\), tidy up, and show that \(D_{n+1} = -D_n\). Since \(D_2 = 1\), what have you proved?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Each triangle: \(\tfrac12 \times 8 \times 3 = 12\). Each trapezoid: \(\tfrac{3 + 5}{2} \times 5 = 20\). Total \(12 + 12 + 20 + 20 = 64\). The pieces cover 64 squares wherever you put them, so the 5 by 13 rectangle has one square's worth of hole.</li>
+<li>\(1 \times 2 - 1 = 1\), \(1 \times 3 - 4 = -1\), \(2 \times 5 - 9 = 1\), \(3 \times 8 - 25 = -1\), \(5 \times 13 - 64 = 1\), \(8 \times 21 - 169 = -1\). Even \(n\) gives \(+1\), odd \(n\) gives \(-1\).</li>
+<li>(a) Square 25, rectangle \(3 \times 8 = 24\): one less. (b) Triangle \(\tfrac25 = 0.4\), trapezoid \(\tfrac13 \approx 0.333\). (c) The triangle's edge is steeper, as in the 13 by 13 case, so the pieces overlap by area 1. With such small pieces the misfit is easy to see.</li>
+<li>(a) \(\sqrt{8^2 + 3^2} = \sqrt{73} \approx 8.54\). (b) \(1 \div 8.54 \approx 0.117\). (c) About 1.2 mm, easily hidden by a pencil line or a rough cut. (d) The gap still has area 1, since \(13 \times 34 - 21^2 = 442 - 441 = 1\), but its long side is now \(\sqrt{21^2 + 8^2} = \sqrt{505} \approx 22.5\). The width is \(1 \div 22.5 \approx 0.044\), under half a millimetre.</li>
+</ol>
+<p><b>Stretch.</b> \(D_{n+1} = F_n(F_{n+1} + F_n) - F_{n+1}^2 = F_n^2 - F_{n+1}(F_{n+1} - F_n)\). But \(F_{n+1} - F_n = F_{n-1}\), so \(D_{n+1} = F_n^2 - F_{n+1}F_{n-1} = -D_n\). The value flips sign at every step and never changes size. It starts at 1, so it is \(+1, -1, +1, \dots\) for ever. That is Cassini's identity, and it is why every Fibonacci square is exactly one unit away from its rectangle.</p>
+</section>
+
+<div class="sheet-nav"><a href="b4-telescoping.html">← Previous</a><a href="b6-catalan.html">Next: Counting balanced brackets →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

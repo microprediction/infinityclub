@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A doughnut is not a ball · Infinity Club</title>
+<meta name="description" content="Corners minus edges plus faces is 2 for any solid shaped like a ball and 0 for a doughnut. Stretching cannot change the number, so a doughnut can never be squashed into a ball.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 9</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 9 · Around the corner · 21</div>
+  <h1>A doughnut is not a ball</h1>
+  <p class="teaser">Corners minus edges plus faces is 2 for anything shaped like a ball. For a doughnut it is 0, and that number cannot be changed by stretching.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Take a cube. Count its corners (vertices, \(V\)), edges (\(E\)) and faces (\(F\)): \(8 - 12 + 6 = 2\). You met this in <a href="../../grade-5/sheets/b10-corners-edges-faces.html">grade 5</a>. <b>Euler's formula</b> says every solid shaped like a ball gives 2, however it is cut into faces.</p>
+<p>Two moves show why the cutting does not matter. Put a new corner on an edge: \(V\) and \(E\) both go up by 1. Draw a new edge across a face: \(E\) and \(F\) both go up by 1. Either way \(V - E + F\) stays put.</p>
+<p>Stretching changes no count either. So the number belongs to the surface, not to the drawing on it. One rule: a face must be a patch with no hole in it.</p>
+<p class="callout">\(V - E + F = 2\) on anything shaped like a ball. On a doughnut it is 0.</p>
+<p>Suppose a doughnut (a <b>torus</b>) could be squashed into a ball without tearing. A map drawn on it would ride along, giving a ball with number 0. Every map on a ball gives 2. So it cannot be done. A count detects the hole.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: a doughnut made from a sheet</h2>
+<p>Rule a stretchy sheet into a 3 × 3 grid of squares. Glue the top side to the bottom side to make a tube. Bend the tube round and glue its two ends. That is a torus, with a map already drawn on it.</p>
+<figure><svg viewBox="0 0 430 184" width="380" height="163" role="img" aria-label="Left: a three by three grid of squares whose sixteen grid points are labelled so that the top row repeats as the bottom row and the left column repeats as the right column, leaving nine different letters A to I. Right: a square picture frame seen from above, its top cut into four faces by lines joining inner corners to outer corners." font-family="Nunito, sans-serif" font-size="13">
+<line x1="84" y1="28" x2="84" y2="148" stroke="#000" stroke-width="1.5"/>
+<line x1="44" y1="68" x2="164" y2="68" stroke="#000" stroke-width="1.5"/>
+<line x1="124" y1="28" x2="124" y2="148" stroke="#000" stroke-width="1.5"/>
+<line x1="44" y1="108" x2="164" y2="108" stroke="#000" stroke-width="1.5"/>
+<line x1="44" y1="28" x2="164" y2="28" stroke="#3f44c9" stroke-width="3"/>
+<polygon points="111.0,28 99.0,22 99.0,34" fill="#3f44c9"/>
+<line x1="44" y1="148" x2="164" y2="148" stroke="#3f44c9" stroke-width="3"/>
+<polygon points="111.0,148 99.0,142 99.0,154" fill="#3f44c9"/>
+<line x1="44" y1="28" x2="44" y2="148" stroke="#f5a524" stroke-width="3"/>
+<polygon points="44,81.0 38,93.0 50,93.0" fill="#f5a524"/>
+<line x1="164" y1="28" x2="164" y2="148" stroke="#f5a524" stroke-width="3"/>
+<polygon points="164,81.0 158,93.0 170,93.0" fill="#f5a524"/>
+<circle cx="44" cy="28" r="3" fill="#000"/>
+<text x="36" y="22" text-anchor="end" font-weight="700">A</text>
+<circle cx="84" cy="28" r="3" fill="#000"/>
+<text x="76" y="22" text-anchor="end" font-weight="700">B</text>
+<circle cx="124" cy="28" r="3" fill="#000"/>
+<text x="116" y="22" text-anchor="end" font-weight="700">C</text>
+<circle cx="164" cy="28" r="3" fill="#000"/>
+<text x="172" y="22" text-anchor="start" font-weight="700">A</text>
+<circle cx="44" cy="68" r="3" fill="#000"/>
+<text x="36" y="62" text-anchor="end" font-weight="700">D</text>
+<circle cx="84" cy="68" r="3" fill="#000"/>
+<text x="76" y="62" text-anchor="end" font-weight="700">E</text>
+<circle cx="124" cy="68" r="3" fill="#000"/>
+<text x="116" y="62" text-anchor="end" font-weight="700">F</text>
+<circle cx="164" cy="68" r="3" fill="#000"/>
+<text x="172" y="62" text-anchor="start" font-weight="700">D</text>
+<circle cx="44" cy="108" r="3" fill="#000"/>
+<text x="36" y="102" text-anchor="end" font-weight="700">G</text>
+<circle cx="84" cy="108" r="3" fill="#000"/>
+<text x="76" y="102" text-anchor="end" font-weight="700">H</text>
+<circle cx="124" cy="108" r="3" fill="#000"/>
+<text x="116" y="102" text-anchor="end" font-weight="700">I</text>
+<circle cx="164" cy="108" r="3" fill="#000"/>
+<text x="172" y="102" text-anchor="start" font-weight="700">G</text>
+<circle cx="44" cy="148" r="3" fill="#000"/>
+<text x="36" y="142" text-anchor="end" font-weight="700">A</text>
+<circle cx="84" cy="148" r="3" fill="#000"/>
+<text x="76" y="142" text-anchor="end" font-weight="700">B</text>
+<circle cx="124" cy="148" r="3" fill="#000"/>
+<text x="116" y="142" text-anchor="end" font-weight="700">C</text>
+<circle cx="164" cy="148" r="3" fill="#000"/>
+<text x="172" y="142" text-anchor="start" font-weight="700">A</text>
+<text x="104.0" y="170" text-anchor="middle" fill="#999">glue blue to blue, orange to orange</text>
+<polygon points="270,24 406,24 368,62 308,62" fill="#fde8c4" stroke="#000" stroke-width="1.5"/>
+<polygon points="406,24 406,160 368,122 368,62" fill="#dcdcf5" stroke="#000" stroke-width="1.5"/>
+<polygon points="406,160 270,160 308,122 368,122" fill="#dcdcf5" stroke="#000" stroke-width="1.5"/>
+<polygon points="270,160 270,24 308,62 308,122" fill="#dcdcf5" stroke="#000" stroke-width="1.5"/>
+<circle cx="270" cy="24" r="3" fill="#000"/>
+<circle cx="406" cy="24" r="3" fill="#000"/>
+<circle cx="406" cy="160" r="3" fill="#000"/>
+<circle cx="270" cy="160" r="3" fill="#000"/>
+<circle cx="308" cy="62" r="3" fill="#000"/>
+<circle cx="368" cy="62" r="3" fill="#000"/>
+<circle cx="368" cy="122" r="3" fill="#000"/>
+<circle cx="308" cy="122" r="3" fill="#000"/>
+<text x="338.0" y="96.0" text-anchor="middle" fill="#999">hole</text>
+<text x="338.0" y="47.0" text-anchor="middle" fill="#000">one face</text>
+<text x="338.0" y="178" text-anchor="middle" fill="#999">picture frame, from above</text>
+</svg><figcaption>Left: a 3 × 3 grid that rolls up into a doughnut. Points with the same letter are glued into one. Right: the frame for question 3.</figcaption></figure>
+<p>Corners: the letters A to I, so \(V = 9\). Edges: each corner has one edge going right and one going down, so \(E = 2 \times 9 = 18\). Faces: \(F = 9\) squares. So \(V - E + F = 9 - 18 + 9 = 0\).</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Find \(V - E + F\) for (a) a tetrahedron (a pyramid on a triangle); (b) a pyramid on a square; (c) a triangular prism.<div class="space short"></div></li>
+<li>Glue a 4 × 5 grid of squares in the same way. Find \(V\), \(E\), \(F\) and \(V - E + F\). What happens for an \(m \times n\) grid?<div class="space short"></div></li>
+<li>The picture frame has four faces on top, four underneath, four outer walls and four inner walls. (a) Count \(V\), \(E\) and \(F\), and find \(V - E + F\). (b) A friend rubs out the eight slanting edges and counts the top as one ring-shaped face, and the underside too. What number does she get? Which rule did she break?<div class="space"></div></li>
+<li>A solid shaped like a ball has 20 faces, all triangles. How many edges and how many corners does it have? Start from the fact that every edge is shared by exactly two faces.<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: two holes</h2>
+<p>Take two doughnuts with grids on them. Cut one square face out of each. Glue the doughnuts together along the rims of the two gaps, corner to corner and edge to edge. Each doughnut started at 0. What is \(V - E + F\) for the two-holed surface? What would a three-holed pretzel give?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(4 - 6 + 4 = 2\). (b) \(5 - 8 + 5 = 2\). (c) \(6 - 9 + 5 = 2\). All are shaped like a ball.</li>
+<li>\(V = 20\), \(E = 40\), \(F = 20\), so \(20 - 40 + 20 = 0\). For \(m \times n\): \(V = mn\), \(E = 2mn\), \(F = mn\), and \(mn - 2mn + mn = 0\) every time. The number does not depend on the grid.</li>
+<li>(a) \(V = 16\): eight corners on top, eight underneath. \(E = 32\): twelve on top (four outer, four inner, four slanting), twelve underneath, eight upright. \(F = 16\). So \(16 - 32 + 16 = 0\): a frame is a doughnut. (b) \(E = 32 - 8 = 24\) and \(F = 16 - 6 = 10\), so \(16 - 24 + 10 = 2\). That is wrong, because a ring-shaped face has a hole in it. Faces must be patches without holes.</li>
+<li>Twenty triangles have \(20 \times 3 = 60\) sides, and each edge is two of those sides, so \(E = 30\). Then \(V - 30 + 20 = 2\) gives \(V = 12\). (This is the icosahedron.)</li>
+</ol>
+<p><b>Stretch.</b> Before gluing, the two totals add to \(0 + 0 = 0\). Removing two faces takes away 2. Gluing the rims merges four corners with four corners and four edges with four edges, so \(V\) drops by 4 and \(E\) drops by 4, which cancel in \(V - E + F\). The answer is \(-2\). Each extra hole takes off another 2, so three holes give \(-4\).</p>
+</section>
+
+<div class="sheet-nav"><a href="b20-great-circles.html">← Previous</a><a href="b22-fifteen-puzzle.html">Next: The puzzle that cannot be solved →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

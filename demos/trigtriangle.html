@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Three ratios · Infinity Club</title>
+<meta name="description" content="Drag the corner of a right triangle to change its angle and size. Watch sine, cosine and tangent follow the angle and ignore the size.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+<style>
+#plot { display: block; width: 100%; max-width: 600px; cursor: grab; touch-action: none; border-radius: 8px; }
+#plot.drag { cursor: grabbing; }
+.controls input[type=range] { width: 150px; }
+.controls .val { font-family: var(--mono); min-width: 2.8em; display: inline-block; }
+#ratios { font-family: var(--mono); font-size: 1rem; margin: .6rem 0; }
+#ratios .row { display: flex; flex-wrap: wrap; gap: 0 .6ch; background: #eeece6; border-radius: 8px; padding: .4rem .8rem; margin: .35rem 0; }
+#ratios .row b { min-width: 7ch; }
+#ratios .row .v { font-weight: 700; color: var(--accent); }
+.key { display: inline-block; width: .9em; height: .9em; border-radius: 3px; vertical-align: -.08em; margin-right: .25em; }
+.mission { max-width: 70ch; margin: -.4rem 0 1rem; }
+.mission p { margin: .3rem 0; }
+.mission summary { cursor: pointer; font-weight: 700; }
+</style>
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="index.html">Demos</a>
+  <a href="../index.html#grades">Grades</a>
+  <a href="../parents.html">Parents</a>
+</nav>
+<main class="demo-wrap">
+<h1>Three ratios</h1>
+<p class="explain">Drag the orange corner, or use the sliders. The angle slider changes the shape of the right triangle. The size slider makes the same shape bigger or smaller. Watch the three side lengths change, then watch the three ratios underneath. One of the sliders does nothing to them.</p>
+<div class="mission">
+<p class="small"><b>Mission.</b> Set the angle to 30° and read off sin 30°. Now change the size. What happens to it? Then find the angle where tan is exactly 1, and say why it has to be that angle.</p>
+<details class="small"><summary>Answer</summary><p>sin 30° = 0.5 at every size: the opposite side is always half the hypotenuse. tan = 1 at 45°, because tan is opposite ÷ adjacent, and those two sides are equal only when the triangle is half a square.</p></details>
+</div>
+<div class="demo-panel">
+  <div class="controls">
+    <label>angle <input type="range" id="ang" min="5" max="85" step="1" value="35"> <span class="val" id="angv">35°</span></label>
+    <label>size <input type="range" id="hyp" min="3" max="10" step="0.1" value="8"> <span class="val" id="hypv">8.0</span></label>
+    <button id="reset" class="ghost">Reset</button>
+  </div>
+  <canvas id="plot" width="600" height="520"></canvas>
+  <p class="small"><span class="key" style="background:#f5a524"></span>opposite (across from the angle) &nbsp; <span class="key" style="background:#3f44c9"></span>adjacent (next to the angle) &nbsp; <span class="key" style="background:#1d1f3a"></span>hypotenuse (the longest side)</p>
+  <div id="ratios"></div>
+  <p class="small">Side lengths are rounded to 2 decimal places, so a calculator may disagree with the last digit of a ratio.</p>
+</div>
+<div class="explain">
+<h2>What's going on</h2>
+<p>Two right triangles with the same angle are the same shape. One is a scaled copy of the other. Scaling multiplies every side by the same number, so when you divide one side by another, that number cancels. The ratio depends on the angle and on nothing else.</p>
+<p>That makes each ratio a way to measure the angle, and each has a name. <b>Sine</b> is opposite ÷ hypotenuse. <b>Cosine</b> is adjacent ÷ hypotenuse. <b>Tangent</b> is opposite ÷ adjacent. The dashed line shows it: slide the size and the corner runs along the same line, because every triangle with this angle fits under it.</p>
+<p>Tangent is rise over run, so it is the slope of that dashed line. A ramp that rises 1 for every 12 along has tan = 1 ÷ 12 ≈ 0.083. Slide the angle down until tan is close to that. It is about 5°, which is gentler than most people guess.</p>
+<p>Sheets: <a href="../grade-9/sheets/a6-three-ratios.html">Three ratios that measure an angle</a> and <a href="../grade-9/sheets/c5-ramps-and-roofs.html">How steep is too steep?</a></p>
+</div>
+</main>
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script>
+(function () {
+  /*PURE*/
+  var AMIN = 5, AMAX = 85, HMIN = 3, HMAX = 10;
+  // Right triangle with the given angle (degrees) and hypotenuse.
+  function triSides(angleDeg, hyp) {
+    var t = angleDeg * Math.PI / 180;
+    return { opp: hyp * Math.sin(t), adj: hyp * Math.cos(t), hyp: hyp };
+  }
+  // The three ratios, worked out from the side lengths alone.
+  function ratios(s) { return { sin: s.opp / s.hyp, cos: s.adj / s.hyp, tan: s.opp / s.adj }; }
+  function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+  // Where the dragged corner is (in triangle units) -> whole-degree angle and hypotenuse to 0.1.
+  function fromPoint(x, y) {
+    var a = Math.atan2(Math.max(y, 0), Math.max(x, 1e-9)) * 180 / Math.PI;
+    return { angle: clamp(Math.round(a), AMIN, AMAX), hyp: clamp(Math.round(Math.sqrt(x * x + y * y) * 10) / 10, HMIN, HMAX) };
+  }
+  function fx(v, d) { return v.toFixed(d); }
+  /*ENDPURE*/
+
+  var canvas = document.getElementById("plot"), ctx = canvas.getContext("2d"), out = document.getElementById("ratios");
+  var angIn = document.getElementById("ang"), hypIn = document.getElementById("hyp");
+  var S = { angle: 35, hyp: 8 }, W, H, sc, mL = 30, mR = 22, mT = 14, mB = 38, SPAN = 10.2;
+  function X(x) { return mL + x * sc; }
+  function Y(y) { return H - mB - y * sc; }
+  function sync() { angIn.value = S.angle; hypIn.value = S.hyp; }
+
+  function draw() {
+    var s = triSides(S.angle, S.hyp), r = ratios(s), t = S.angle * Math.PI / 180;
+    document.getElementById("angv").textContent = S.angle + "°"; document.getElementById("hypv").textContent = fx(S.hyp, 1);
+    var dpr = window.devicePixelRatio || 1; W = canvas.clientWidth || 600; sc = (W - mL - mR) / SPAN; H = Math.round(SPAN * sc + mT + mB);
+    canvas.width = W * dpr; canvas.height = H * dpr; canvas.style.height = H + "px"; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, H);
+    ctx.strokeStyle = "#ece9e0"; ctx.lineWidth = 1;
+    for (var g = 0; g <= 10; g++) {
+      ctx.beginPath(); ctx.moveTo(X(g), Y(0)); ctx.lineTo(X(g), Y(SPAN)); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(X(0), Y(g)); ctx.lineTo(X(SPAN), Y(g)); ctx.stroke();
+    }
+    var ax = X(0), ay = Y(0), bx = X(s.adj), by = Y(s.opp), cx = bx, cy = ay;
+    // the line every triangle with this angle sits under
+    var far = 14;
+    ctx.strokeStyle = "#999"; ctx.setLineDash([6, 5]); ctx.lineWidth = 1.2;
+    ctx.beginPath(); ctx.moveTo(ax, ay); ctx.lineTo(X(far * Math.cos(t)), Y(far * Math.sin(t))); ctx.stroke(); ctx.setLineDash([]);
+    ctx.fillStyle = "rgba(220,220,245,.55)"; ctx.beginPath(); ctx.moveTo(ax, ay); ctx.lineTo(cx, cy); ctx.lineTo(bx, by); ctx.closePath(); ctx.fill();
+    // right-angle mark
+    var m = Math.min(12, s.opp * sc * 0.5, s.adj * sc * 0.5);
+    ctx.strokeStyle = "#1d1f3a"; ctx.lineWidth = 1.2; ctx.strokeRect(cx - m, cy - m, m, m);
+    // angle arc
+    var ar = Math.min(34, s.adj * sc * 0.6);
+    ctx.beginPath(); ctx.arc(ax, ay, ar, -t, 0); ctx.stroke();
+    ctx.lineCap = "round"; ctx.lineWidth = 4;
+    ctx.strokeStyle = "#3f44c9"; ctx.beginPath(); ctx.moveTo(ax, ay); ctx.lineTo(cx, cy); ctx.stroke();
+    ctx.strokeStyle = "#f5a524"; ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(bx, by); ctx.stroke();
+    ctx.strokeStyle = "#1d1f3a"; ctx.beginPath(); ctx.moveTo(ax, ay); ctx.lineTo(bx, by); ctx.stroke();
+    ctx.lineCap = "butt";
+    // labels
+    var wide = W >= 440, fs = wide ? 14 : 12.5;
+    ctx.font = "bold " + fs + "px Nunito, sans-serif";
+    ctx.fillStyle = "#1d1f3a";
+    if (S.angle >= 20 && S.angle <= 60 && s.adj * sc > 95) { ctx.textAlign = "left"; ctx.fillText(S.angle + "°", ax + ar + 5, ay - 5 - Math.min(10, ar * Math.sin(t / 2) * 0.6)); }
+    else { ctx.textAlign = "right"; ctx.fillText(S.angle + "°", ax - 4, ay + 4); }
+    var la = (wide ? "adjacent " : "adj ") + fx(s.adj, 2), lo = (wide ? "opposite " : "opp ") + fx(s.opp, 2), lh = (wide ? "hypotenuse " : "hyp ") + fx(s.hyp, 2);
+    ctx.textAlign = "center"; ctx.fillStyle = "#3f44c9";
+    var wa = ctx.measureText(la).width, xa = clamp((ax + cx) / 2, wa / 2 + 2, W - wa / 2 - 2);
+    ctx.fillText(la, xa, ay + 20);
+    var wo = ctx.measureText(lo).width, yo = Math.min((by + cy) / 2 + 5, ay - 6);
+    if (cx + 9 + wo <= W - 2) { ctx.textAlign = "left"; ctx.fillStyle = "#a66a00"; ctx.fillText(lo, cx + 9, yo); }
+    else { ctx.textAlign = "right"; ctx.fillStyle = "#a66a00"; ctx.fillText(lo, W - 3, by - 17); }
+    ctx.save(); ctx.translate((ax + bx) / 2, (ay + by) / 2); ctx.rotate(-t); ctx.textAlign = "center"; ctx.fillStyle = "#1d1f3a"; ctx.fillText(lh, 0, -9); ctx.restore();
+    // drag handle
+    ctx.fillStyle = "#f5a524"; ctx.beginPath(); ctx.arc(bx, by, 10, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = "#fff"; ctx.lineWidth = 2; ctx.stroke();
+
+    function row(name, top, bottom, a, b, v) {
+      return '<div class="row"><b>' + name + " " + S.angle + "°</b><span>= " + top + " ÷ " + bottom + "</span><span>= " + fx(a, 2) + " ÷ " + fx(b, 2) + '</span><span class="v">= ' + fx(v, 3) + "</span></div>";
+    }
+    out.innerHTML = row("sin", "opposite", "hypotenuse", s.opp, s.hyp, r.sin) + row("cos", "adjacent", "hypotenuse", s.adj, s.hyp, r.cos) + row("tan", "opposite", "adjacent", s.opp, s.adj, r.tan);
+  }
+
+  angIn.addEventListener("input", function () { S.angle = parseInt(angIn.value, 10); draw(); });
+  hypIn.addEventListener("input", function () { S.hyp = parseFloat(hypIn.value); draw(); });
+  document.getElementById("reset").addEventListener("click", function () { S = { angle: 35, hyp: 8 }; sync(); draw(); });
+
+  var dragging = false;
+  function pos(ev) { var r = canvas.getBoundingClientRect(); return [ev.clientX - r.left, ev.clientY - r.top]; }
+  canvas.addEventListener("pointerdown", function (ev) {
+    var p = pos(ev), s = triSides(S.angle, S.hyp), dx = p[0] - X(s.adj), dy = p[1] - Y(s.opp);
+    if (dx * dx + dy * dy > 30 * 30) return;
+    dragging = true; canvas.classList.add("drag"); canvas.setPointerCapture(ev.pointerId); ev.preventDefault();
+  });
+  canvas.addEventListener("pointermove", function (ev) {
+    if (!dragging) return;
+    var p = pos(ev), n = fromPoint((p[0] - mL) / sc, (H - mB - p[1]) / sc);
+    S.angle = n.angle; S.hyp = n.hyp; sync(); draw();
+  });
+  function up() { dragging = false; canvas.classList.remove("drag"); }
+  canvas.addEventListener("pointerup", up); canvas.addEventListener("pointercancel", up);
+  var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(draw, 120); });
+  draw();
+})();
+</script>
+</body>
+</html>

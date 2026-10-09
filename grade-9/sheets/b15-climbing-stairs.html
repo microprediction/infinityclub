@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How many ways up the stairs? · Infinity Club</title>
+<meta name="description" content="Climb a staircase one or two stairs at a time. The number of ways up ten stairs comes from the counts for nine and eight, and the Fibonacci numbers appear.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 9</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 9 · Around the corner · 15</div>
+  <h1>How many ways up the stairs?</h1>
+  <p class="teaser">Take one step or two at a time. The count for ten stairs comes from the counts for nine and eight, and a familiar sequence appears.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>You climb a staircase taking one stair or two with each stride. In how many different ways can you get to the top? Order matters: a single then a double is a different climb from a double then a single.</p>
+<p>Small cases first. One stair: 1 way. Two stairs: \(1 + 1\) or \(2\), so 2 ways. Three stairs: \(1 + 1 + 1\), \(1 + 2\), \(2 + 1\), so 3 ways. Listing ten stairs this way is hopeless. Look for a rule.</p>
+<p>Think about the <b>last</b> stride. If it was a single, you were standing on stair \(n - 1\), and you could have reached that in any of the ways up \(n - 1\) stairs. If it was a double, you were on stair \(n - 2\). Every climb ends one way or the other, never both. Write \(W(n)\) for the number of ways up \(n\) stairs.</p>
+<p class="callout">\(W(n) = W(n-1) + W(n-2)\)</p>
+<figure><svg viewBox="0 0 430 150" width="430" height="150" role="img" aria-label="The five ways up four stairs drawn as rows of tiles, a short tile for a single stride and a long tile for a double. Three rows end with a single: 1 1 1 1, 2 1 1 and 1 2 1. Two rows end with a double: 1 1 2 and 2 2." font-family="Nunito, sans-serif" font-size="13">
+<text x="88" y="16" text-anchor="middle" font-weight="700">last stride a single</text>
+<rect x="41" y="28" width="22" height="20" rx="3" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><text x="52.0" y="42.5" text-anchor="middle" font-weight="700">1</text>
+<rect x="65" y="28" width="22" height="20" rx="3" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><text x="76.0" y="42.5" text-anchor="middle" font-weight="700">1</text>
+<rect x="89" y="28" width="22" height="20" rx="3" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><text x="100.0" y="42.5" text-anchor="middle" font-weight="700">1</text>
+<rect x="113" y="28" width="22" height="20" rx="3" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/><text x="124.0" y="42.5" text-anchor="middle" font-weight="700">1</text>
+<rect x="41" y="56" width="46" height="20" rx="3" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><text x="64.0" y="70.5" text-anchor="middle" font-weight="700">2</text>
+<rect x="89" y="56" width="22" height="20" rx="3" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><text x="100.0" y="70.5" text-anchor="middle" font-weight="700">1</text>
+<rect x="113" y="56" width="22" height="20" rx="3" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/><text x="124.0" y="70.5" text-anchor="middle" font-weight="700">1</text>
+<rect x="41" y="84" width="22" height="20" rx="3" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><text x="52.0" y="98.5" text-anchor="middle" font-weight="700">1</text>
+<rect x="65" y="84" width="46" height="20" rx="3" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><text x="88.0" y="98.5" text-anchor="middle" font-weight="700">2</text>
+<rect x="113" y="84" width="22" height="20" rx="3" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/><text x="124.0" y="98.5" text-anchor="middle" font-weight="700">1</text>
+<line x1="40" y1="110" x2="112" y2="110" stroke="#3f44c9" stroke-width="2"/>
+<text x="88" y="128" text-anchor="middle" fill="#3f44c9">the 3 ways up 3 stairs</text>
+<text x="88" y="144" text-anchor="middle" fill="#3f44c9">then a single</text>
+<text x="318" y="16" text-anchor="middle" font-weight="700">last stride a double</text>
+<rect x="271" y="28" width="22" height="20" rx="3" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><text x="282.0" y="42.5" text-anchor="middle" font-weight="700">1</text>
+<rect x="295" y="28" width="22" height="20" rx="3" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><text x="306.0" y="42.5" text-anchor="middle" font-weight="700">1</text>
+<rect x="319" y="28" width="46" height="20" rx="3" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/><text x="342.0" y="42.5" text-anchor="middle" font-weight="700">2</text>
+<rect x="271" y="56" width="46" height="20" rx="3" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><text x="294.0" y="70.5" text-anchor="middle" font-weight="700">2</text>
+<rect x="319" y="56" width="46" height="20" rx="3" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/><text x="342.0" y="70.5" text-anchor="middle" font-weight="700">2</text>
+<line x1="270" y1="110" x2="318" y2="110" stroke="#3f44c9" stroke-width="2"/>
+<text x="318" y="128" text-anchor="middle" fill="#3f44c9">the 2 ways up 2 stairs</text>
+<text x="318" y="144" text-anchor="middle" fill="#3f44c9">then a double</text>
+<text x="215" y="62" text-anchor="middle" font-size="14" font-weight="800">+</text>
+</svg><figcaption>Four stairs: \(W(4) = W(3) + W(2) = 3 + 2 = 5\). The last stride is shaded orange.</figcaption></figure>
+<p>Each count is the sum of the two before it: 1, 2, 3, 5, 8, … These are the <a href="../../grade-6/sheets/b6-fibonacci.html">Fibonacci numbers</a>.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: ten stairs</h2>
+<p>Start from \(W(1) = 1\) and \(W(2) = 2\). Keep adding the last two.</p>
+<table class="tt">
+<tr><th>Stairs \(n\)</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td></tr>
+<tr><th>Ways \(W(n)\)</th><td>1</td><td>2</td><td>3</td><td>5</td><td>8</td><td>13</td><td>21</td><td>34</td><td>55</td><td>89</td></tr>
+</table>
+<p>There are 89 ways up ten stairs, and no list was needed. \(89 = 55 + 34\): the 55 climbs that end with a single from stair 9, and the 34 that end with a double from stair 8.</p>
+<p>The rule only works because the two groups do not overlap and nothing is left out. Check it against the figure: \(W(4) = 3 + 2 = 5\).</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>List every way up 5 stairs. How many end with a single, and how many with a double?<div class="space"></div></li>
+<li>Carry the table on. (a) How many ways are there up 12 stairs? (b) Which is the shortest staircase with more than 1,000 ways up?<div class="space short"></div></li>
+<li>Now a stride may cover 1, 2 or 3 stairs. (a) Explain why each count is the sum of the <em>three</em> before it. (b) The counts start 1, 2, 4. How many ways are there up ten stairs?<div class="space"></div></li>
+<li>Back to singles and doubles. Stair 5 of a ten-stair staircase has wet paint, and you must not tread on it. How many ways up are there now?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: count the doubles</h2>
+<p>A climb of ten stairs with three doubles has four singles: seven strides. Choose which three are the doubles: \(\dbinom{7}{3} = \dfrac{7 \times 6 \times 5}{3 \times 2 \times 1} = 35\) ways. Count the climbs with 0, 1, 2, 4 and 5 doubles the same way. What should the six counts add up to? Check.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(1{+}1{+}1{+}1{+}1\), \(2{+}1{+}1{+}1\), \(1{+}2{+}1{+}1\), \(1{+}1{+}2{+}1\), \(2{+}2{+}1\) end with a single: 5 ways, one for each way up 4 stairs. \(1{+}1{+}1{+}2\), \(2{+}1{+}2\), \(1{+}2{+}2\) end with a double: 3 ways, one for each way up 3 stairs. Total \(5 + 3 = 8\).</li>
+<li>(a) \(W(11) = 144\) and \(W(12) = 233\). (b) The counts go on 377, 610, 987, 1,597, so 16 stairs is the first with more than 1,000 ways.</li>
+<li>(a) The last stride covered 1, 2 or 3 stairs, so just before it you stood on stair \(n-1\), \(n-2\) or \(n-3\). The three groups do not overlap and cover every climb. (b) 1, 2, 4, 7, 13, 24, 44, 81, 149, 274. There are 274 ways.</li>
+<li>To miss stair 5 you must stand on stair 4 and take a double to stair 6. There are \(W(4) = 5\) ways to reach stair 4. From stair 6 there are 4 stairs left, another \(W(4) = 5\) ways. Each start can go with each finish: \(5 \times 5 = 25\) ways. Check from the other side: climbs that <em>do</em> use stair 5 number \(W(5) \times W(5) = 64\), and \(89 - 64 = 25\).</li>
+</ol>
+<p><b>Stretch.</b> With \(k\) doubles there are \(10 - 2k\) singles, so \(10 - k\) strides, and \(\dbinom{10-k}{k}\) climbs. That gives \(\dbinom{10}{0} = 1\), \(\dbinom{9}{1} = 9\), \(\dbinom{8}{2} = 28\), \(\dbinom{7}{3} = 35\), \(\dbinom{6}{4} = 15\), \(\dbinom{5}{5} = 1\). Every climb has some number of doubles, so they must add to \(W(10)\): \(1 + 9 + 28 + 35 + 15 + 1 = 89\). These six numbers lie along a slanting line through Pascal's triangle.</p>
+</section>
+
+<div class="sheet-nav"><a href="b14-stable-matching.html">← Previous</a><a href="b16-game-of-life.html">Next: A universe with four rules →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

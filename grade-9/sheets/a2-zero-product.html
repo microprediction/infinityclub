@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>If a product is zero · Infinity Club</title>
+<meta name="description" content="If a product is zero, one of the factors is. That single fact turns a quadratic equation into two easy linear ones, and it works for no other number.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 9</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 9 · Sharpen · 2</div>
+  <h1>If a product is zero</h1>
+  <p class="teaser">Then one of the factors is. That single fact turns a quadratic equation into two easy linear ones, and it works for no other number.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Two numbers multiply to 6. What are they? You cannot tell: \(6 \times 1\), \(3 \times 2\), \(4 \times 1.5\), \((-12) \times (-0.5)\) and endlessly many more. Now two numbers multiply to 0. This time you know something for certain.</p>
+<figure><svg viewBox="0 0 480 112" width="480" height="112" role="img" aria-label="Three different rectangles that all have area 6, measuring 6 by 1, 3 by 2 and 4 by 1.5, next to a rectangle of area 0 that has collapsed to a flat line because its height is 0" font-family="Nunito, sans-serif" font-size="13">
+<text x="150" y="16" text-anchor="middle" fill="#3f44c9" font-weight="700">area 6: many rectangles</text>
+<text x="405" y="16" text-anchor="middle" fill="#f5a524" font-weight="700">area 0: a side is 0</text>
+<rect x="10" y="64" width="120" height="20" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="70" y="101" text-anchor="middle">6 × 1</text>
+<rect x="155" y="44" width="60" height="40" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="185" y="101" text-anchor="middle">3 × 2</text>
+<rect x="240" y="54" width="80" height="30" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="280" y="101" text-anchor="middle">4 × 1.5</text>
+<line x1="325" y1="28" x2="325" y2="104" stroke="#999" stroke-width="1" stroke-dasharray="4 3"/>
+<line x1="355" y1="84" x2="455" y2="84" stroke="#f5a524" stroke-width="3"/>
+<text x="405" y="101" text-anchor="middle">5 × 0</text>
+</svg><figcaption>Knowing the area is 6 says little about the sides. Knowing it is 0 says one side has vanished.</figcaption></figure>
+<p class="callout">If \(a \times b = 0\), then \(a = 0\) or \(b = 0\) (or both).</p>
+<p>Why? Suppose \(a\) is not 0. Then you may divide both sides by \(a\), which leaves \(b = 0 \div a = 0\). So if \(a\) is not zero, \(b\) has to be.</p>
+<p>This is the key to a <b>quadratic equation</b>, one containing \(x^2\). Take \(x^2 - 7x + 12 = 0\). The sum and product hunt factors the left side:</p>
+<p>\[(x - 3)(x - 4) = 0.\]</p>
+<p>A product is zero, so \(x - 3 = 0\) or \(x - 4 = 0\). That gives \(x = 3\) or \(x = 4\). One hard equation has become two easy ones, and both answers are correct.</p>
+<p>The zero must stand alone on one side first. \((x - 3)(x - 4) = 6\) tells you nothing about either bracket.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: \(x^2 + 3x = 10\)</h2>
+<p>Get zero on one side: \(x^2 + 3x - 10 = 0\).</p>
+<p>Factor. Product \(-10\), sum \(3\): the numbers are 5 and \(-2\). So \((x + 5)(x - 2) = 0\).</p>
+<p>Set each bracket to zero: \(x + 5 = 0\) gives \(x = -5\), and \(x - 2 = 0\) gives \(x = 2\).</p>
+<p>Check both in the original equation. \((-5)^2 + 3(-5) = 25 - 15 = 10\). \(2^2 + 3(2) = 4 + 6 = 10\).</p>
+<p class="small">See the left side as a rectangle of tiles before you solve: <a href="../../demos/factortiles.html">infinityclub.net/demos/factortiles.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Solve: (a) \((x - 4)(x + 9) = 0\); (b) \(x(x - 6) = 0\); (c) \((2x - 1)(x + 3) = 0\).<div class="space short"></div></li>
+<li>Solve by factoring: (a) \(x^2 + 8x + 15 = 0\); (b) \(x^2 - 3x - 28 = 0\); (c) \(x^2 = 5x\).<div class="space"></div></li>
+<li>A rectangle is 3 cm longer than it is wide, and its area is 40 cm². Call the width \(x\). Write an equation, solve it, and give the rectangle's measurements. One solution makes no sense here. Say which and why.<div class="space"></div></li>
+<li>Sam solves \((x - 1)(x - 4) = 10\) by writing "\(x - 1 = 10\) or \(x - 4 = 10\), so \(x = 11\) or \(x = 14\)". (a) Check Sam's answers. (b) What went wrong? (c) Solve the equation properly.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: three factors</h2>
+<p>Solve \(x^3 = 9x\). A classmate divides both sides by \(x\) and gets \(x^2 = 9\). Which solution did that throw away, and why was dividing not allowed? Find all three solutions by moving everything to one side and factoring fully.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(x = 4\) or \(x = -9\). (b) \(x = 0\) or \(x = 6\). (c) \(2x - 1 = 0\) gives \(x = \tfrac12\); or \(x = -3\).</li>
+<li>(a) \((x + 3)(x + 5) = 0\): \(x = -3\) or \(-5\). (b) \((x - 7)(x + 4) = 0\): \(x = 7\) or \(-4\). (c) \(x^2 - 5x = 0\), so \(x(x - 5) = 0\): \(x = 0\) or \(5\). Dividing by \(x\) would lose \(x = 0\).</li>
+<li>\(x(x + 3) = 40\), so \(x^2 + 3x - 40 = 0\) and \((x + 8)(x - 5) = 0\). \(x = -8\) or \(x = 5\). A width cannot be negative, so the rectangle is 5 cm by 8 cm.</li>
+<li>(a) \(x = 11\): \(10 \times 7 = 70\). \(x = 14\): \(13 \times 10 = 130\). Neither is 10. (b) The rule only works for zero. Two numbers can multiply to 10 without either being 10. (c) Expand: \(x^2 - 5x + 4 = 10\), so \(x^2 - 5x - 6 = 0\) and \((x - 6)(x + 1) = 0\). \(x = 6\) or \(x = -1\). Check: \(5 \times 2 = 10\) and \((-2) \times (-5) = 10\).</li>
+</ol>
+<p><b>Stretch.</b> Dividing by \(x\) is only allowed when \(x\) is not 0, and \(x = 0\) is a solution: \(0^3 = 9 \times 0\). Instead, \(x^3 - 9x = 0\), so \(x(x^2 - 9) = 0\), and by the difference of two squares \(x(x - 3)(x + 3) = 0\). A product of three factors is zero only if one of them is: \(x = 0\), \(3\) or \(-3\).</p>
+</section>
+
+<div class="sheet-nav"><a href="a1-sum-and-product.html">← Previous</a><a href="a3-mirror-line.html">Next: The parabola's mirror line →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

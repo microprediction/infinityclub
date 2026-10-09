@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Two questions at once · Infinity Club</title>
+<meta name="description" content="Sort people by two things at the same time and a table shows whether the two are linked. Row percentages and column percentages answer different questions.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 9</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 9 · Sharpen · 15</div>
+  <h1>Two questions at once</h1>
+  <p class="teaser">Sort people by two things at the same time and a table shows whether the two are linked. Row percentages and column percentages answer different questions.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<table class="tt" style="float:right;margin:.2em 0 .5em 1em">
+<tr><th></th><th>Job</th><th>No job</th><th>Total</th></tr>
+<tr><th>Grade 9</th><td>12</td><td>108</td><td>120</td></tr>
+<tr><th>Grade 12</th><td>32</td><td>48</td><td>80</td></tr>
+<tr><th>Total</th><td>44</td><td>156</td><td>200</td></tr>
+</table>
+<p>Ask 200 students at a made-up school two questions: which grade are you in, and do you have a part-time job? A <b>two-way table</b> counts every combination.</p>
+<p>A percentage needs an "out of". A <b>row percentage</b> divides by the row total. Of the 80 Grade 12 students, 32 have a job: 40%. For Grade 9 it is 12 out of 120: 10%.</p>
+<p>A <b>column percentage</b> divides by the column total. Of the 44 students with a job, 32 are in Grade 12: about 73%.</p>
+<p>Both 40% and 73% come from the same cell, 32. They answer different questions. The words after "of" name the total to divide by.</p>
+<figure><svg viewBox="0 0 500 104" width="440" height="92" role="img" aria-label="Two bars of equal length. In the Grade 9 bar 10 percent is shaded for students with a job; in the Grade 12 bar 40 percent is shaded. A dashed line marks the whole-school figure of 22 percent." font-family="Nunito, sans-serif" font-size="13">
+<rect x="80" y="26" width="280" height="24" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="80" y="26" width="28" height="24" fill="#f5a524" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="80" y="62" width="280" height="24" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<rect x="80" y="62" width="112" height="24" fill="#f5a524" stroke="#3f44c9" stroke-width="1.5"/>
+<line x1="141.6" y1="18" x2="141.6" y2="94" stroke="#000" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="146" y="15" fill="#000">whole school: 22% have a job</text>
+<text x="72" y="43" text-anchor="end" fill="#000">Grade 9</text><text x="72" y="79" text-anchor="end" fill="#000">Grade 12</text>
+<text x="368" y="43" fill="#000">10% have a job</text><text x="368" y="79" fill="#000">40% have a job</text>
+</svg><figcaption>Row percentages as bars. If grade made no difference, both bars would stop at the dashed line.</figcaption></figure>
+<p><b>Linked or not?</b> Compare the row percentages. Here 10% against 40%: grade and jobs are linked. If they were unrelated, every row would show roughly the whole-school figure, 44 out of 200, or 22%.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: does the bus make you late?</h2>
+<table class="tt" style="float:right;margin:.2em 0 .5em 1em">
+<tr><th></th><th>Late</th><th>Never late</th><th>Total</th></tr>
+<tr><th>Bus</th><td>18</td><td>42</td><td>60</td></tr>
+<tr><th>No bus</th><td>27</td><td>63</td><td>90</td></tr>
+<tr><th>Total</th><td>45</td><td>105</td><td>150</td></tr>
+</table>
+<p>Of 150 students, 60 take the bus, and 18 of those were late at least once this month. Of the other 90, 27 were late. Subtraction fills the rest of the table.</p>
+<p>Row percentages: \(18 \div 60 = 30\%\) of bus riders were late, and \(27 \div 90 = 30\%\) of the others. The rows match, so there is no link.</p>
+<p>A column percentage: of the 45 late students, \(18 \div 45 = 40\%\) took the bus. That sounds like news, but 40% of all the students take the bus.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li><table class="tt" style="float:right;margin:.2em 0 .5em 1em">
+<tr><th></th><th>Dog</th><th>No dog</th><th>Total</th></tr>
+<tr><th>Cat</th><td>6</td><td>&nbsp;</td><td>20</td></tr>
+<tr><th>No cat</th><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><th>Total</th><td>30</td><td>&nbsp;</td><td>80</td></tr>
+</table>Eighty people were asked about pets. (a) Fill in the five missing numbers. (b) What percentage of the cat owners have a dog? (c) What percentage of the dog owners have a cat?<div style="clear:both"></div></li>
+<li>Ninety students sat a test. Fifty went to a revision class, and 45 of those passed. Of the 40 who did not go, 28 passed. (a) Make the two-way table. (b) Find the two row percentages for passing. (c) Does the table prove that the class causes passes? Give one other explanation.<div class="space"></div></li>
+<li>In a made-up town, 900 cyclists wear helmets and 100 do not. Last year 27 helmet wearers and 18 of the others were hurt. A headline says "Most injured cyclists wore helmets". (a) Is the headline true? Which kind of percentage is it using? (b) Which percentages should you compare to judge helmets? Find them.<div class="space short"></div></li>
+<li>A school has 400 students and 25% are in the choir. Of the choir members, 60% play an instrument. Of the rest, 20% do. (a) Build the table of counts. (b) What percentage of the instrument players are in the choir? (c) Why is that not 60%?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the table with no link</h2>
+<p>A table has row totals 120 and 80, column totals 50 and 150, and 200 people in all. Fill in the four cells so that the rows and columns are not linked at all. Then find a rule that gives each cell from its row total, its column total and 200.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) Cat row: 6, 14, 20. No cat row: 24, 36, 60. Totals: 30, 50, 80. (b) A row percentage: \(6 \div 20 = 30\%\). (c) A column percentage: \(6 \div 30 = 20\%\).</li>
+<li>(a) Went: 45 passed, 5 failed, total 50. Did not go: 28 passed, 12 failed, total 40. Totals: 73, 17, 90. (b) \(45 \div 50 = 90\%\) and \(28 \div 40 = 70\%\). (c) No. It shows a link, not a cause. Students who choose to go may be the ones who work harder anyway, for example.</li>
+<li>(a) True: 45 were hurt and \(27 \div 45 = 60\%\) wore helmets. It is a column percentage, and it is high only because nine in ten cyclists wear helmets. (b) The row percentages. Hurt among helmet wearers: \(27 \div 900 = 3\%\). Among the others: \(18 \div 100 = 18\%\). Riders without helmets were hurt six times as often.</li>
+<li>(a) Choir: 60 play, 40 do not, total 100. Not choir: 60 play, 240 do not, total 300. Totals: 120, 280, 400. (b) \(60 \div 120 = 50\%\). (c) 60% is a row percentage, out of the 100 choir members. The question asks for a column percentage, out of the 120 players. The 300 other students are a much bigger group, so even 20% of them adds as many players as the choir does.</li>
+</ol>
+<p><b>Stretch.</b> No link means each row has the same split as the totals: 50 out of 200, or 25%, in the first column. So the rows are 30, 90 and 20, 60. The rule: cell = row total × column total ÷ 200. Check: \(120 \times 50 \div 200 = 30\).</p>
+</section>
+
+<div class="sheet-nav"><a href="a14-box-plots.html">← Previous</a><a href="a16-how-precise.html">Next: How precise is your answer? →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

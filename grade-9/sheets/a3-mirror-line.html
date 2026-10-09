@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The parabola's mirror line · Infinity Club</title>
+<meta name="description" content="Every parabola is symmetric. Find where it crosses the axis and the turning point sits exactly half way between.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 9</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 9 · Sharpen · 3</div>
+  <h1>The parabola's mirror line</h1>
+  <p class="teaser">Every parabola is symmetric. Find where it crosses the axis and the turning point sits exactly half way between.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>The graph of a quadratic such as \(y = (x - 1)(x - 5)\) is a U-shaped curve called a <b>parabola</b>. A product is zero only when a factor is, so \(y = 0\) at \(x = 1\) and \(x = 5\). Those are the places it crosses the \(x\)-axis.</p>
+<figure><svg viewBox="0 0 340 186" width="340" height="186" role="img" aria-label="The parabola y equals (x minus 1)(x minus 5), crossing the x-axis at 1 and 5, with a dashed vertical mirror line at x equals 3 through its lowest point (3, minus 4), and two points at the same height, (0, 5) and (6, 5), each 3 units from the mirror" font-family="Nunito, sans-serif" font-size="13">
+<line x1="30" y1="110" x2="325" y2="110" stroke="#999" stroke-width="1"/>
+<line x1="74" y1="12" x2="74" y2="178" stroke="#999" stroke-width="1"/>
+<text x="322" y="105" fill="#999" text-anchor="end">x</text><text x="64" y="22" fill="#999">y</text>
+<line x1="176" y1="12" x2="176" y2="180" stroke="#f5a524" stroke-width="2" stroke-dasharray="6 4"/>
+<line x1="74" y1="45" x2="278" y2="45" stroke="#3f44c9" stroke-width="1.5" stroke-dasharray="4 3"/>
+<polyline points="66.5,27.2 69.9,35.5 73.4,43.5 76.8,51.3 80.2,58.8 83.6,66.0 87.0,73.0 90.5,79.7 93.9,86.2 97.3,92.4 100.7,98.3 104.2,104.0 107.6,109.3 111.0,114.5 114.4,119.4 117.8,124.0 121.3,128.3 124.7,132.4 128.1,136.2 131.5,139.8 134.9,143.0 138.4,146.1 141.8,148.8 145.2,151.3 148.6,153.6 152.1,155.6 155.5,157.3 158.9,158.7 162.3,159.9 165.7,160.8 169.2,161.5 172.6,161.9 176.0,162.0 179.4,161.9 182.8,161.5 186.3,160.8 189.7,159.9 193.1,158.7 196.5,157.3 199.9,155.6 203.4,153.6 206.8,151.3 210.2,148.8 213.6,146.1 217.1,143.0 220.5,139.8 223.9,136.2 227.3,132.4 230.7,128.3 234.2,124.0 237.6,119.4 241.0,114.5 244.4,109.3 247.8,104.0 251.3,98.3 254.7,92.4 258.1,86.2 261.5,79.7 265.0,73.0 268.4,66.0 271.8,58.8 275.2,51.3 278.6,43.5 282.1,35.5 285.5,27.2" fill="none" stroke="#000" stroke-width="2"/>
+<circle cx="108" cy="110" r="3.5" fill="#000"/>
+<circle cx="244" cy="110" r="3.5" fill="#000"/>
+<circle cx="74" cy="45" r="3.5" fill="#000"/>
+<circle cx="278" cy="45" r="3.5" fill="#000"/>
+<circle cx="176" cy="162" r="4" fill="#f5a524" stroke="#000" stroke-width="1"/>
+<text x="99" y="126" text-anchor="end">1</text><text x="253" y="126">5</text>
+<text x="125.0" y="39" text-anchor="middle" fill="#3f44c9">3</text><text x="227.0" y="39" text-anchor="middle" fill="#3f44c9">3</text>
+<text x="142" y="104" text-anchor="middle" fill="#3f44c9">2</text><text x="210" y="104" text-anchor="middle" fill="#3f44c9">2</text>
+<text x="184" y="24" fill="#f5a524" font-weight="700">mirror: x = 3</text>
+<text x="186" y="174">vertex (3, −4)</text>
+</svg><figcaption>\(y = (x - 1)(x - 5)\). Points at the same height are the same distance from the dashed line.</figcaption></figure>
+<p>Half way between the crossings is \(x = 3\). Step a distance \(d\) to either side and work out the height:</p>
+<p>\[\begin{aligned} x = 3 + d:&\quad y = (2 + d)(-2 + d) = d^2 - 4 \\ x = 3 - d:&\quad y = (2 - d)(-2 - d) = d^2 - 4 \end{aligned}\]</p>
+<p>The same height, whatever \(d\) is. So the line \(x = 3\) is a mirror: the left half of the curve is the reflection of the right half. The turning point, called the <b>vertex</b>, has no partner, so it must lie on the mirror. Put \(d = 0\): the vertex is \((3, -4)\). And since \(d^2\) is never negative, \(y\) never goes below \(-4\).</p>
+<p class="callout">The mirror line is half way between any two points at the same height. The vertex is on it.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: the lowest point of \(y = x^2 - 2x - 8\)</h2>
+<p>Factor: \(y = (x + 2)(x - 4)\). The curve crosses the axis at \(x = -2\) and \(x = 4\).</p>
+<p>The mirror line is half way between: \(x = \dfrac{-2 + 4}{2} = 1\).</p>
+<p>The vertex is on it. At \(x = 1\), \(y = 1 - 2 - 8 = -9\). The lowest point is \((1, -9)\).</p>
+<p>Check the symmetry one step either side: \(x = 0\) and \(x = 2\) both give \(y = -8\).</p>
+<p class="small">Drag a parabola by its vertex and watch the crossings move with it: <a href="../../demos/quadratic.html">infinityclub.net/demos/quadratic.html</a>. Next year you will find the vertex of <a href="../../grade-10/sheets/a1-completing-the-square.html">any quadratic</a>, factorable or not.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>For \(y = (x - 2)(x - 8)\), find (a) where it crosses the \(x\)-axis, (b) the mirror line, (c) the vertex.<div class="space short"></div></li>
+<li>Factor \(y = x^2 + 6x + 5\). Then find its crossings, mirror line and vertex. Sketch it.<div class="space"></div></li>
+<li>A ball is thrown straight up. After \(t\) seconds its height is \(h = 5t(4 - t)\) metres. (a) When does it land? (b) When is it highest, and how high is that? (c) It passes 15 m on the way up at \(t = 1\). When does it pass 15 m on the way down?<div class="space"></div></li>
+<li>\(y = x^2 - 6x + 20\) never crosses the \(x\)-axis, so there are no crossings to use. (a) Find the two values of \(x\) where \(y = 20\). (b) Use them to find the mirror line and the vertex. (c) How does the vertex show the curve never reaches the axis?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the biggest pen</h2>
+<p>You have 40 m of fence to make three sides of a rectangular pen. A long wall is the fourth side. If the two sides leaving the wall are \(x\) metres each, the area is \(A = x(40 - 2x)\). Find the largest possible area and the pen's measurements. This parabola is upside down.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(x = 2\) and \(x = 8\). (b) \(x = 5\). (c) \(y = (5 - 2)(5 - 8) = -9\), so the vertex is \((5, -9)\).</li>
+<li>\(y = (x + 1)(x + 5)\). Crossings at \(x = -1\) and \(x = -5\). Mirror line \(x = -3\). There \(y = 9 - 18 + 5 = -4\), so the vertex is \((-3, -4)\). The sketch is a U through \((-5, 0)\), \((-3, -4)\), \((-1, 0)\) and \((0, 5)\).</li>
+<li>(a) \(h = 0\) at \(t = 0\) (the throw) and \(t = 4\): it lands after 4 seconds. (b) Half way, at \(t = 2\): \(h = 5 \times 2 \times 2 = 20\) m. (c) \(t = 1\) is one second before the mirror, so the partner is one second after: \(t = 3\). Check: \(5 \times 3 \times 1 = 15\).</li>
+<li>(a) \(x^2 - 6x + 20 = 20\) means \(x^2 - 6x = 0\), so \(x(x - 6) = 0\): \(x = 0\) or \(x = 6\). (b) Two points at the same height, so the mirror is half way: \(x = 3\). There \(y = 9 - 18 + 20 = 11\). Vertex \((3, 11)\). (c) The vertex is the lowest point and it is 11 above the axis.</li>
+</ol>
+<p><b>Stretch.</b> \(A = 0\) at \(x = 0\) and at \(x = 20\). The mirror line is \(x = 10\), and the vertex is the highest point because the curve opens downward. \(A = 10 \times 20 = 200\) m². The pen is 10 m out from the wall and 20 m along it: twice as long as it is deep, not a square.</p>
+</section>
+
+<div class="sheet-nav"><a href="a2-zero-product.html">← Previous</a><a href="a4-simplifying-roots.html">Next: Why √50 is 5√2 →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

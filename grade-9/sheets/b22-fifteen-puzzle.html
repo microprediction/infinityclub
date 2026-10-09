@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The puzzle that cannot be solved · Infinity Club</title>
+<meta name="description" content="Swap two tiles of the fifteen puzzle and no amount of sliding will put it right. A quantity that every move leaves unchanged, an invariant, proves it.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 9</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 9 · Around the corner · 22</div>
+  <h1>The puzzle that cannot be solved</h1>
+  <p class="teaser">Swap two tiles of the fifteen puzzle and no amount of sliding will fix it. A quantity that every move leaves unchanged proves it.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>The fifteen puzzle is a 4 × 4 tray with tiles 1 to 15 and one gap. A move slides a neighbouring tile into the gap. Lift tiles 14 and 15 out of the solved tray and put them back swapped. Now slide your way home. Nobody ever has. Here is why nobody will.</p>
+<p>Read the tiles row by row as one list, skipping the gap. An <b>inversion</b> is a pair in the wrong order: a bigger tile somewhere before a smaller one. Let \(T\) be the number of inversions plus the row number of the gap.</p>
+<p>A sideways move changes neither the list nor the gap's row. A move up or down carries one tile past exactly three others in the list. Each of those three pairs flips between right and wrong order, so the inversions change by an odd number. The gap's row changes by 1. Odd plus odd is even.</p>
+<p class="callout">Every move changes \(T\) by an even number. Even stays even, and odd stays odd.</p>
+<p>Something no move can change is an <b>invariant</b>. Here it is whether \(T\) is odd or even.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: three trays</h2>
+<figure><svg viewBox="0 0 444 152" width="444" height="152" role="img" aria-label="Three fifteen-puzzle trays. The solved tray has T equal to 4. The tray after sliding tile 12 down has T equal to 6. The tray with tiles 14 and 15 swapped has T equal to 5." font-family="Nunito, sans-serif" font-size="13">
+<rect x="16" y="6" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="29.0" y="23.5" text-anchor="middle" font-weight="700">1</text>
+<rect x="42" y="6" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="55.0" y="23.5" text-anchor="middle" font-weight="700">2</text>
+<rect x="68" y="6" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="81.0" y="23.5" text-anchor="middle" font-weight="700">3</text>
+<rect x="94" y="6" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="107.0" y="23.5" text-anchor="middle" font-weight="700">4</text>
+<rect x="16" y="32" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="29.0" y="49.5" text-anchor="middle" font-weight="700">5</text>
+<rect x="42" y="32" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="55.0" y="49.5" text-anchor="middle" font-weight="700">6</text>
+<rect x="68" y="32" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="81.0" y="49.5" text-anchor="middle" font-weight="700">7</text>
+<rect x="94" y="32" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="107.0" y="49.5" text-anchor="middle" font-weight="700">8</text>
+<rect x="16" y="58" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="29.0" y="75.5" text-anchor="middle" font-weight="700">9</text>
+<rect x="42" y="58" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="55.0" y="75.5" text-anchor="middle" font-weight="700">10</text>
+<rect x="68" y="58" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="81.0" y="75.5" text-anchor="middle" font-weight="700">11</text>
+<rect x="94" y="58" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="107.0" y="75.5" text-anchor="middle" font-weight="700">12</text>
+<rect x="16" y="84" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="29.0" y="101.5" text-anchor="middle" font-weight="700">13</text>
+<rect x="42" y="84" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="55.0" y="101.5" text-anchor="middle" font-weight="700">14</text>
+<rect x="68" y="84" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="81.0" y="101.5" text-anchor="middle" font-weight="700">15</text>
+<rect x="94" y="84" width="26" height="26" fill="#fff" stroke="#999" stroke-width="1" stroke-dasharray="3 2"/>
+<text x="68" y="128" text-anchor="middle">solved</text>
+<text x="68" y="145" text-anchor="middle" fill="#3f44c9" font-weight="700">T = 0 + 4 = 4</text>
+<rect x="170" y="6" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="183.0" y="23.5" text-anchor="middle" font-weight="700">1</text>
+<rect x="196" y="6" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="209.0" y="23.5" text-anchor="middle" font-weight="700">2</text>
+<rect x="222" y="6" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="235.0" y="23.5" text-anchor="middle" font-weight="700">3</text>
+<rect x="248" y="6" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="261.0" y="23.5" text-anchor="middle" font-weight="700">4</text>
+<rect x="170" y="32" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="183.0" y="49.5" text-anchor="middle" font-weight="700">5</text>
+<rect x="196" y="32" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="209.0" y="49.5" text-anchor="middle" font-weight="700">6</text>
+<rect x="222" y="32" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="235.0" y="49.5" text-anchor="middle" font-weight="700">7</text>
+<rect x="248" y="32" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="261.0" y="49.5" text-anchor="middle" font-weight="700">8</text>
+<rect x="170" y="58" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="183.0" y="75.5" text-anchor="middle" font-weight="700">9</text>
+<rect x="196" y="58" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="209.0" y="75.5" text-anchor="middle" font-weight="700">10</text>
+<rect x="222" y="58" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="235.0" y="75.5" text-anchor="middle" font-weight="700">11</text>
+<rect x="248" y="58" width="26" height="26" fill="#fff" stroke="#999" stroke-width="1" stroke-dasharray="3 2"/>
+<rect x="170" y="84" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="183.0" y="101.5" text-anchor="middle" font-weight="700">13</text>
+<rect x="196" y="84" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="209.0" y="101.5" text-anchor="middle" font-weight="700">14</text>
+<rect x="222" y="84" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="235.0" y="101.5" text-anchor="middle" font-weight="700">15</text>
+<rect x="248" y="84" width="26" height="26" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/>
+<text x="261.0" y="101.5" text-anchor="middle" font-weight="700">12</text>
+<text x="222" y="128" text-anchor="middle">12 slides down</text>
+<text x="222" y="145" text-anchor="middle" fill="#3f44c9" font-weight="700">T = 3 + 3 = 6</text>
+<rect x="324" y="6" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="337.0" y="23.5" text-anchor="middle" font-weight="700">1</text>
+<rect x="350" y="6" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="363.0" y="23.5" text-anchor="middle" font-weight="700">2</text>
+<rect x="376" y="6" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="389.0" y="23.5" text-anchor="middle" font-weight="700">3</text>
+<rect x="402" y="6" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="415.0" y="23.5" text-anchor="middle" font-weight="700">4</text>
+<rect x="324" y="32" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="337.0" y="49.5" text-anchor="middle" font-weight="700">5</text>
+<rect x="350" y="32" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="363.0" y="49.5" text-anchor="middle" font-weight="700">6</text>
+<rect x="376" y="32" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="389.0" y="49.5" text-anchor="middle" font-weight="700">7</text>
+<rect x="402" y="32" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="415.0" y="49.5" text-anchor="middle" font-weight="700">8</text>
+<rect x="324" y="58" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="337.0" y="75.5" text-anchor="middle" font-weight="700">9</text>
+<rect x="350" y="58" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="363.0" y="75.5" text-anchor="middle" font-weight="700">10</text>
+<rect x="376" y="58" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="389.0" y="75.5" text-anchor="middle" font-weight="700">11</text>
+<rect x="402" y="58" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="415.0" y="75.5" text-anchor="middle" font-weight="700">12</text>
+<rect x="324" y="84" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="337.0" y="101.5" text-anchor="middle" font-weight="700">13</text>
+<rect x="350" y="84" width="26" height="26" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/>
+<text x="363.0" y="101.5" text-anchor="middle" font-weight="700">15</text>
+<rect x="376" y="84" width="26" height="26" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/>
+<text x="389.0" y="101.5" text-anchor="middle" font-weight="700">14</text>
+<rect x="402" y="84" width="26" height="26" fill="#fff" stroke="#999" stroke-width="1" stroke-dasharray="3 2"/>
+<text x="376" y="128" text-anchor="middle">14 and 15 swapped</text>
+<text x="376" y="145" text-anchor="middle" fill="#3f44c9" font-weight="700">T = 1 + 4 = 5</text>
+</svg><figcaption>\(T\) = inversions + row of the gap. Even, even, odd.</figcaption></figure>
+<p>Solved: no inversions, gap in row 4, so \(T = 4\).</p>
+<p>Slide 12 down. The list now ends 11, 13, 14, 15, 12. Tile 12 sits after three bigger tiles: 3 inversions. The gap is in row 3, so \(T = 6\). Still even.</p>
+<p>Swap 14 and 15 instead: one inversion, gap in row 4, so \(T = 5\). Odd. Sliding can never join an odd tray to an even one, so this tray cannot be solved.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Count the inversions in each list: (a) 3, 1, 2, 5, 4; (b) 4, 3, 2, 1.<div class="space short"></div></li>
+<li>Find \(T\) for each tray. Which one can be solved? For that one, give the moves.<br>
+(a) <table style="display:inline-table;border-collapse:collapse;margin:.3em 1.2em .3em .3em;vertical-align:middle"><tr><td style="width:2.1em;text-align:center;border:1px solid #000;padding:.1em 0">1</td><td style="width:2.1em;text-align:center;border:1px solid #000;padding:.1em 0">2</td><td style="width:2.1em;text-align:center;border:1px solid #000;padding:.1em 0">3</td><td style="width:2.1em;text-align:center;border:1px solid #000;padding:.1em 0">4</td></tr><tr><td style="width:2.1em;text-align:center;border:1px solid #000;padding:.1em 0">5</td><td style="width:2.1em;text-align:center;border:1px solid #000;padding:.1em 0">6</td><td style="width:2.1em;text-align:center;border:1px solid #000;padding:.1em 0">7</td><td style="width:2.1em;text-align:center;border:1px solid #000;padding:.1em 0">8</td></tr><tr><td style="width:2.1em;text-align:center;border:1px solid #000;padding:.1em 0">9</td><td style="width:2.1em;text-align:center;border:1px solid #000;padding:.1em 0">10</td><td style="width:2.1em;text-align:center;border:1px solid #000;padding:.1em 0">&nbsp;</td><td style="width:2.1em;text-align:center;border:1px solid #000;padding:.1em 0">12</td></tr><tr><td style="width:2.1em;text-align:center;border:1px solid #000;padding:.1em 0">13</td><td style="width:2.1em;text-align:center;border:1px solid #000;padding:.1em 0">14</td><td style="width:2.1em;text-align:center;border:1px solid #000;padding:.1em 0">11</td><td style="width:2.1em;text-align:center;border:1px solid #000;padding:.1em 0">15</td></tr></table> (b) <table style="display:inline-table;border-collapse:collapse;margin:.3em 1.2em .3em .3em;vertical-align:middle"><tr><td style="width:2.1em;text-align:center;border:1px solid #000;padding:.1em 0">1</td><td style="width:2.1em;text-align:center;border:1px solid #000;padding:.1em 0">2</td><td style="width:2.1em;text-align:center;border:1px solid #000;padding:.1em 0">3</td><td style="width:2.1em;text-align:center;border:1px solid #000;padding:.1em 0">4</td></tr><tr><td style="width:2.1em;text-align:center;border:1px solid #000;padding:.1em 0">5</td><td style="width:2.1em;text-align:center;border:1px solid #000;padding:.1em 0">6</td><td style="width:2.1em;text-align:center;border:1px solid #000;padding:.1em 0">7</td><td style="width:2.1em;text-align:center;border:1px solid #000;padding:.1em 0">8</td></tr><tr><td style="width:2.1em;text-align:center;border:1px solid #000;padding:.1em 0">9</td><td style="width:2.1em;text-align:center;border:1px solid #000;padding:.1em 0">10</td><td style="width:2.1em;text-align:center;border:1px solid #000;padding:.1em 0">11</td><td style="width:2.1em;text-align:center;border:1px solid #000;padding:.1em 0">&nbsp;</td></tr><tr><td style="width:2.1em;text-align:center;border:1px solid #000;padding:.1em 0">13</td><td style="width:2.1em;text-align:center;border:1px solid #000;padding:.1em 0">14</td><td style="width:2.1em;text-align:center;border:1px solid #000;padding:.1em 0">12</td><td style="width:2.1em;text-align:center;border:1px solid #000;padding:.1em 0">15</td></tr></table><div class="space short"></div></li>
+<li>In some tray, tile 9 moves up. In the list it jumps over three tiles: … 4, 12, 6, 9 … becomes … 9, 4, 12, 6 …. (a) By how much does the number of inversions change? (b) Name three tiles for the 9 to jump over that would change it by 3.<div class="space short"></div></li>
+<li>All fifteen tiles are tipped out and put back in reverse order: 15, 14, 13, …, 1, reading row by row. (a) With the gap in the last place, can the tray be solved? (b) With the gap in the first place instead? You will need the number of pairs that can be chosen from 15 tiles.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the eight puzzle</h2>
+<p>On a 3 × 3 tray, with tiles 1 to 8, a move up or down carries a tile past two others, not three. What is the invariant now? Does the gap's row still matter? Decide whether the tray reading 8, 7, 6, 5, 4, 3, 2, 1 with the gap last could be solved.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) 3: the pairs (3, 1), (3, 2) and (5, 4). (b) 6: every one of the six pairs is in the wrong order.</li>
+<li>(a) The list ends 10, 12, 13, 14, 11, 15. Tile 11 sits after 12, 13 and 14: 3 inversions. Gap in row 3, so \(T = 6\), even. Solve it by sliding 11 up, then 15 left. (b) The list ends 11, 13, 14, 12, 15: 2 inversions. Gap in row 3, so \(T = 5\), odd. It cannot be solved, although it looks only a move or two from home.</li>
+<li>(a) Before the move only the pair (12, 9) is out of order. After it, (9, 4) and (9, 6) are. The count goes from 1 to 2: a change of \(+1\). (b) Any three tiles smaller than 9, such as 1, 2, 3. All three pairs go from right to wrong.</li>
+<li>In reverse order every pair is an inversion, and there are \(\dfrac{15 \times 14}{2} = 105\) pairs. (a) \(T = 105 + 4 = 109\), odd: impossible. (b) \(T = 105 + 1 = 106\), even, the same kind as the solved tray. The invariant does not stop it, and in fact it can be solved (see below).</li>
+</ol>
+<p><b>Stretch.</b> Two pairs flip, so the inversions change by \(-2\), 0 or \(+2\): always even. The invariant is whether the number of inversions alone is odd or even, and the gap's row is not needed. The reversed tray has \(\dfrac{8 \times 7}{2} = 28\) inversions, even like the solved tray, so nothing forbids it. A computer search of all \(9! = 362{,}880\) arrangements finds that exactly half, 181,440, can be reached from the solved tray: every arrangement that passes the test, this one included. The same holds for the fifteen puzzle: half of its 20,922,789,888,000 arrangements can be solved, the ones with \(T\) even.</p>
+</section>
+
+<div class="sheet-nav"><a href="b21-doughnut.html">← Previous</a><a href="b23-game-trees.html">Next: Playing noughts and crosses perfectly →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

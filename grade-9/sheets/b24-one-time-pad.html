@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The unbreakable code · Infinity Club</title>
+<meta name="description" content="XOR a message with a random key, bit by bit, and the result could stand for any message at all. Reuse the key once and the secret leaks.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 9</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 9 · Around the corner · 24</div>
+  <h1>The unbreakable code</h1>
+  <p class="teaser">Add a random key, bit by bit, and the message could be anything. Reuse the key once and it falls apart.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>The ciphers in <a href="../../grade-6/sheets/b16-codes.html">grade 6</a> fall to letter counting, because they scramble every letter the same way. The <b>one-time pad</b>, used properly, cannot be broken at all.</p>
+<p>Write the message in bits. Here a letter is its place in the alphabet as five bits: A = 1 = 00001, H = 8 = 01000, Z = 26 = 11010. The <b>key</b> is a string of random bits, one per message bit, made by coin flips and shared in advance.</p>
+<p>Combine message and key bit by bit with <b>XOR</b>, written \(\oplus\): 1 if the two bits differ, 0 if they match. To decode, XOR with the key again. A bit matches itself, so the key cancels.</p>
+<p class="callout">cipher text = message \(\oplus\) key. &nbsp; message = cipher text \(\oplus\) key.</p>
+<p>Why unbreakable? Take any message of the right length. One key turns it into the cipher text you intercepted: cipher text \(\oplus\) that message. Every key is equally likely, so the cipher text fits every message equally well. The cipher text gives away only the length.</p>
+<p>The catch is in the name: use each key once.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: sending HI</h2>
+<figure><svg viewBox="0 0 430 136" width="430" height="136" role="img" aria-label="Three rows of ten bits. Message 01000 01001, the letters H and I. Key 10110 00111. Cipher text 11110 01110, which has a 1 wherever the message bit and the key bit differ." font-family="Nunito, sans-serif" font-size="13">
+<text x="100" y="37.5" text-anchor="end">message</text>
+<rect x="112" y="20" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="125.0" y="38.0" text-anchor="middle" font-weight="700" font-size="14">0</text>
+<rect x="138" y="20" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="151.0" y="38.0" text-anchor="middle" font-weight="700" font-size="14">1</text>
+<rect x="164" y="20" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="177.0" y="38.0" text-anchor="middle" font-weight="700" font-size="14">0</text>
+<rect x="190" y="20" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="203.0" y="38.0" text-anchor="middle" font-weight="700" font-size="14">0</text>
+<rect x="216" y="20" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="229.0" y="38.0" text-anchor="middle" font-weight="700" font-size="14">0</text>
+<rect x="256" y="20" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="269.0" y="38.0" text-anchor="middle" font-weight="700" font-size="14">0</text>
+<rect x="282" y="20" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="295.0" y="38.0" text-anchor="middle" font-weight="700" font-size="14">1</text>
+<rect x="308" y="20" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="321.0" y="38.0" text-anchor="middle" font-weight="700" font-size="14">0</text>
+<rect x="334" y="20" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="347.0" y="38.0" text-anchor="middle" font-weight="700" font-size="14">0</text>
+<rect x="360" y="20" width="26" height="26" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="373.0" y="38.0" text-anchor="middle" font-weight="700" font-size="14">1</text>
+<text x="100" y="73.5" text-anchor="end">key</text>
+<rect x="112" y="56" width="26" height="26" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/>
+<text x="125.0" y="74.0" text-anchor="middle" font-weight="700" font-size="14">1</text>
+<rect x="138" y="56" width="26" height="26" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/>
+<text x="151.0" y="74.0" text-anchor="middle" font-weight="700" font-size="14">0</text>
+<rect x="164" y="56" width="26" height="26" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/>
+<text x="177.0" y="74.0" text-anchor="middle" font-weight="700" font-size="14">1</text>
+<rect x="190" y="56" width="26" height="26" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/>
+<text x="203.0" y="74.0" text-anchor="middle" font-weight="700" font-size="14">1</text>
+<rect x="216" y="56" width="26" height="26" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/>
+<text x="229.0" y="74.0" text-anchor="middle" font-weight="700" font-size="14">0</text>
+<rect x="256" y="56" width="26" height="26" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/>
+<text x="269.0" y="74.0" text-anchor="middle" font-weight="700" font-size="14">0</text>
+<rect x="282" y="56" width="26" height="26" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/>
+<text x="295.0" y="74.0" text-anchor="middle" font-weight="700" font-size="14">0</text>
+<rect x="308" y="56" width="26" height="26" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/>
+<text x="321.0" y="74.0" text-anchor="middle" font-weight="700" font-size="14">1</text>
+<rect x="334" y="56" width="26" height="26" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/>
+<text x="347.0" y="74.0" text-anchor="middle" font-weight="700" font-size="14">1</text>
+<rect x="360" y="56" width="26" height="26" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/>
+<text x="373.0" y="74.0" text-anchor="middle" font-weight="700" font-size="14">1</text>
+<text x="100" y="121.5" text-anchor="end">cipher text</text>
+<rect x="112" y="104" width="26" height="26" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="125.0" y="122.0" text-anchor="middle" font-weight="700" font-size="14">1</text>
+<rect x="138" y="104" width="26" height="26" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="151.0" y="122.0" text-anchor="middle" font-weight="700" font-size="14">1</text>
+<rect x="164" y="104" width="26" height="26" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="177.0" y="122.0" text-anchor="middle" font-weight="700" font-size="14">1</text>
+<rect x="190" y="104" width="26" height="26" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="203.0" y="122.0" text-anchor="middle" font-weight="700" font-size="14">1</text>
+<rect x="216" y="104" width="26" height="26" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="229.0" y="122.0" text-anchor="middle" font-weight="700" font-size="14">0</text>
+<rect x="256" y="104" width="26" height="26" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="269.0" y="122.0" text-anchor="middle" font-weight="700" font-size="14">0</text>
+<rect x="282" y="104" width="26" height="26" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="295.0" y="122.0" text-anchor="middle" font-weight="700" font-size="14">1</text>
+<rect x="308" y="104" width="26" height="26" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="321.0" y="122.0" text-anchor="middle" font-weight="700" font-size="14">1</text>
+<rect x="334" y="104" width="26" height="26" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="347.0" y="122.0" text-anchor="middle" font-weight="700" font-size="14">1</text>
+<rect x="360" y="104" width="26" height="26" fill="#fff" stroke="#000" stroke-width="1.5"/>
+<text x="373.0" y="122.0" text-anchor="middle" font-weight="700" font-size="14">0</text>
+<text x="177.0" y="13" text-anchor="middle" fill="#3f44c9" font-weight="700">H = 8</text>
+<text x="321.0" y="13" text-anchor="middle" fill="#3f44c9" font-weight="700">I = 9</text>
+<text x="398" y="74.0" font-size="14">⊕</text>
+<line x1="112" y1="93" x2="386" y2="93" stroke="#999" stroke-width="1"/>
+</svg><figcaption>The cipher text has a 1 wherever message and key differ.</figcaption></figure>
+<p>H is 01000 and I is 01001. Ten coin flips give the key 10110 00111. XOR each column: the cipher text is 11110 01110.</p>
+<p>The receiver XORs that with the same key and gets 01000 01001 back, which is 8 and 9: H, I.</p>
+<p class="small">Turn numbers into bits and back with the switches at <a href="../../demos/binary.html">infinityclub.net/demos/binary.html</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Work out (a) \(10110 \oplus 01101\); (b) \(11111 \oplus 10101\); (c) \(01010 \oplus 01010\). What does XOR with 11111 do to a string?<div class="space short"></div></li>
+<li>You receive 11101 11100. Your copy of the key says 11010 10011. Decode the two-letter message.<div class="space short"></div></li>
+<li>A spy intercepts the one-letter cipher text 10011. (a) Which key would make the message Y (25 = 11001)? (b) Which key would make it N (14 = 01110)? (c) Both keys are equally likely coin-flip results. What has the spy learned about the answer?<div class="space short"></div></li>
+<li>A careless sender uses the same five-bit key for two answers, each Y or N. The cipher texts are 10011 and 00100. (a) XOR the two cipher texts. (b) Compare your result with \(\text{Y} \oplus \text{N}\). What does the spy now know, without the key? (c) Explain why the key dropped out. (d) The spy later hears that the first answer was Y. Find the key and the second answer.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: try every key</h2>
+<p>A 100-letter message needs 500 key bits. How many different keys are there? Use \(2^{10} \approx 10^3\) to write the number roughly as a power of 10. A spy with unlimited computer time decodes the cipher text with every one of them. Why is the spy no wiser?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) 11011. (b) 01010. (c) 00000. XOR with 11111 flips every bit.</li>
+<li>\(11101 \oplus 11010 = 00111 = 7\), which is G. \(11100 \oplus 10011 = 01111 = 15\), which is O. The message is GO.</li>
+<li>(a) \(10011 \oplus 11001 = 01010\). (b) \(10011 \oplus 01110 = 11101\). (c) Nothing. Each answer fits the cipher text with one key, and the two keys are equally likely.</li>
+<li>(a) \(10011 \oplus 00100 = 10111\). (b) \(\text{Y} \oplus \text{N} = 11001 \oplus 01110 = 10111\), the same. Two equal answers would give 00000. So the spy knows the two answers were different, though not yet which was which. (c) \((m_1 \oplus k) \oplus (m_2 \oplus k) = m_1 \oplus m_2\), because \(k \oplus k\) is all zeros. Reusing a key leaks the XOR of the two messages. (d) Key \(= 10011 \oplus 11001 = 01010\). Second answer \(= 00100 \oplus 01010 = 01110\), which is N.</li>
+</ol>
+<p><b>Stretch.</b> \(2^{500} = (2^{10})^{50} \approx (10^3)^{50} = 10^{150}\) keys. Trying them all produces every possible 500-bit string exactly once. Every 100-letter message is in that pile, each from its own key, and nothing marks the true one. The search hands back the list of all messages, which the spy already had.</p>
+</section>
+
+<div class="sheet-nav"><a href="b23-game-trees.html">← Previous</a><a href="c1-rule-of-72.html">Next: How long until your money doubles? →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>
