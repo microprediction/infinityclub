@@ -32,7 +32,19 @@
 <section class="idea">
 <h2>Tonight's idea</h2>
 <p>The <b>distributive law</b> says \(a(b + c) = ab + ac\). It is the engine behind every multiplication trick, and the easiest way to believe it is as <b>area</b>. A rectangle \(a\) tall and \(b + c\) wide can be cut into two rectangles, \(a \times b\) and \(a \times c\). The area does not change when you cut.</p>
-<figure><svg viewBox="0 0 420 150" width="420" height="150" role="img" aria-label="23 by 17 rectangle split into four parts"><rect x="30" y="20" width="200" height="100" fill="none" stroke="#000" stroke-width="1.5"/><rect x="230" y="20" width="30" height="100" fill="none" stroke="#000" stroke-width="1.5"/><rect x="30" y="120" width="200" height="20" fill="none" stroke="#000" stroke-width="1.5"/><rect x="230" y="120" width="30" height="20" fill="none" stroke="#000" stroke-width="1.5"/><g font-family="Nunito, sans-serif" font-size="14" text-anchor="middle"><text x="130" y="75">20 × 10 = 200</text><text x="245" y="75" font-size="12">3×10</text><text x="245" y="88" font-size="12">= 30</text><text x="130" y="134" font-size="12">20 × 7 = 140</text><text x="245" y="134" font-size="11">21</text><text x="130" y="12">20</text><text x="245" y="12">3</text><text x="18" y="75">10</text><text x="18" y="134">7</text></g></svg>
+<figure><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 215" width="320" height="215" role="img" aria-label="A 23 by 17 rectangle drawn to scale and split into 20 by 10, 3 by 10, 20 by 7 and 3 by 7 rectangles.">
+<g font-family="Nunito, sans-serif" text-anchor="middle" fill="#1d1f3a">
+<rect x="44" y="30" width="200" height="100" fill="none" stroke="#1d1f3a" stroke-width="1.5"/>
+<text x="144" y="85" font-size="16">20 × 10 = 200</text>
+<rect x="244" y="30" width="30" height="100" fill="none" stroke="#1d1f3a" stroke-width="1.5"/>
+<text x="259" y="85" font-size="13">30</text>
+<rect x="44" y="130" width="200" height="70" fill="none" stroke="#1d1f3a" stroke-width="1.5"/>
+<text x="144" y="170" font-size="16">20 × 7 = 140</text>
+<rect x="244" y="130" width="30" height="70" fill="none" stroke="#1d1f3a" stroke-width="1.5"/>
+<text x="259" y="170" font-size="13">21</text>
+<g font-size="16"><text x="144" y="21">20</text><text x="259" y="21">3</text><text x="22" y="85">10</text><text x="22" y="170">7</text></g>
+</g>
+</svg>
 <figcaption>\(23 \times 17 = (20 + 3)(10 + 7) = 200 + 140 + 30 + 21 = 391\).</figcaption></figure>
 <p>Now the magician's version. Write \(23 \times 17\) as \((20 + 3)(20 - 3)\). Multiply out: \(400 - 60 + 60 - 9 = 400 - 9 = 391\). The middle terms always cancel. In general:</p>
 <p class="callout">\((a + b)(a - b) = a^2 - b^2\). Any two numbers the same distance either side of a round number multiply in one step.</p>
@@ -60,7 +72,7 @@
 
 <section class="stretch">
 <h2>Stretch: a proof you can cut out</h2>
-<p>Draw an \(a \times a\) square. Cut a \(b \times b\) square out of one corner. The L-shape left over has area \(a^2 - b^2\). Now cut the L-shape into two rectangles and slide one of them around so that together they make a single rectangle. What are its length and width? You have just proved the difference-of-squares formula with scissors.</p>
+<p>Draw an \(a \times a\) square, with \(a &gt; b &gt; 0\). Cut a \(b \times b\) square out of one corner. The L-shape left over has area \(a^2 - b^2\). Now cut the L-shape into two rectangles and turn one of them a quarter turn and move it so that together they make a single rectangle. What are its length and width? You have just proved the difference-of-squares formula with scissors.</p>
 <p>Then a last trick: for numbers near 50, \((50 + n)^2 = 2500 + 100n + n^2\). So \(53^2 = 2500 + 300 + 9 = 2809\). Use it for \(47^2\) (take \(n = -3\)) and \(58^2\).</p>
 <div class="space"></div>
 </section>
@@ -75,6 +87,27 @@
 <li>\(600 + 180 + 80 + 24 = 884\). Fast way: \(900 - 16 = 884\).</li>
 <li>\(41^2 = 1600 + 80 + 1 = 1681\); \(39^2 = 1600 - 80 + 1 = 1521\). Difference of squares: \(41^2 - 39^2 = (41 + 39)(41 - 39) = 80 \times 2 = 160\).</li>
 </ol>
+<figure><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 250" width="560" height="250" role="img" aria-label="A 5 by 5 square with a 2 by 2 corner removed leaves a 5 by 3 rectangle and a 3 by 2 rectangle. Turn the smaller rectangle and place it beside the larger to make a 7 by 3 rectangle.">
+<g font-family="Nunito, sans-serif" fill="#1d1f3a" text-anchor="middle" font-size="16">
+<text x="112" y="23">1. Cut out the corner</text><text x="394" y="23">2. Turn the small piece</text>
+<rect x="52" y="49" width="60" height="40" fill="#fff1d6" stroke="#1d1f3a" stroke-width="1.5"/>
+<rect x="112" y="49" width="40" height="40" fill="none" stroke="#5d6079" stroke-width="1.5" stroke-dasharray="4 3"/>
+<rect x="52" y="89" width="100" height="60" fill="#e6e7fb" stroke="#1d1f3a" stroke-width="1.5"/>
+<text x="132" y="74" font-size="14">2 × 2</text><text x="82" y="74">Q</text><text x="102" y="124">P</text>
+<path d="M52 158 V167 H152 V158 M42 49 H33 V149 H42" fill="none" stroke="#1d1f3a" stroke-width="1.3"/>
+<text x="102" y="188">a = 5</text><text x="16" y="104">5</text>
+<text x="102" y="217">area: 25 − 4 = 21</text>
+<path d="M188 109 H251 M239 100 L251 109 L239 118" fill="none" stroke="#1d1f3a" stroke-width="2"/>
+<rect x="290" y="89" width="100" height="60" fill="#e6e7fb" stroke="#1d1f3a" stroke-width="1.5"/>
+<rect x="390" y="89" width="40" height="60" fill="#fff1d6" stroke="#1d1f3a" stroke-width="1.5"/>
+<text x="340" y="124">P</text><text x="410" y="124">Q</text>
+<text x="340" y="76">a = 5</text><text x="410" y="76">b = 2</text>
+<path d="M290 158 V167 H430 V158 M440 89 H449 V149 H440" fill="none" stroke="#1d1f3a" stroke-width="1.3"/>
+<text x="360" y="188">a + b = 7</text><text x="503" y="116">a − b</text><text x="503" y="137">= 3</text>
+<text x="394" y="217">area: 7 × 3 = 21</text>
+</g>
+</svg>
+<figcaption>Same two pieces, new shape. P is \(a \times (a-b)\); Q becomes \(b \times (a-b)\) after a quarter turn. No area is lost.</figcaption></figure>
 <p><b>Stretch.</b> The two pieces of the L-shape are \(b \times (a - b)\) and \(a \times (a - b)\) (or similar, depending on your cut). Laid end to end they form a rectangle \((a + b)\) long and \((a - b)\) wide, area \((a+b)(a-b)\). Since nothing was thrown away, that equals \(a^2 - b^2\). Near-50 trick: \(47^2 = 2500 - 300 + 9 = 2209\); \(58^2 = 2500 + 800 + 64 = 3364\).</p>
 </section>
 
