@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Area and slope undo each other · Infinity Club</title>
+<meta name="description" content="Move the end of an area by a tiny amount and discover why its slope is the curve's height: the fundamental theorem of calculus, with a strip diagram and a car that returns home.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 10</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 10 · Around the corner · 29</div>
+  <h1>Area and slope undo each other</h1>
+  <p class="teaser">How steep? How much? One thin strip connects the two questions and makes calculus work.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>First meet <a href="b10-derivative.html">slope</a> and <a href="b11-area-under-curves.html">area under a curve</a>. Now let \(A(x)\) be the area under \(y = t^2\), from \(t = 0\) to \(t = x\), where \(x \ge 0\). The letter \(t\) runs along the graph; \(x\) marks the movable end of the region.</p>
+<p>Push that end a little to the right, by \(h\). <b>Predict:</b> what sets the extra area's size — the whole curve, or just its height near the moving edge?</p>
+<figure>
+<svg viewBox="0 0 420 205" width="420" height="205" role="img" aria-label="The old area under y equals t squared ends at x. A narrow extra strip runs from x to x plus h, between rectangles of heights x squared and x plus h squared.">
+  <path d="M40 165 L61 164.4 L82 162.6 L103 159.6 L124 155.4 L145 150 L166 143.4 L187 135.6 L208 126.6 L229 116.4 L250 105 L250 165 Z" fill="#e6e7fb"/>
+  <path d="M250 165 L250 105 L260.5 98.85 L271 92.4 L281.5 85.65 L292 78.6 L302.5 71.25 L302.5 165 Z" fill="#fff1d6" stroke="#b57810" stroke-width="1.3"/>
+  <line x1="30" y1="165" x2="360" y2="165" stroke="#999"/>
+  <line x1="40" y1="172" x2="40" y2="25" stroke="#999"/>
+  <polyline points="40,165 61,164.4 82,162.6 103,159.6 124,155.4 145,150 166,143.4 187,135.6 208,126.6 229,116.4 250,105 260.5,98.85 271,92.4 281.5,85.65 292,78.6 302.5,71.25 313,63.6 323.5,55.65 334,47.4" fill="none" stroke="#3f44c9" stroke-width="2.5"/>
+  <rect x="250" y="71.25" width="52.5" height="93.75" fill="none" stroke="#555" stroke-dasharray="4 3"/>
+  <line x1="250" y1="105" x2="302.5" y2="105" stroke="#555" stroke-dasharray="4 3"/>
+  <line x1="304" y1="71.25" x2="340" y2="71.25" stroke="#aaa"/>
+  <line x1="304" y1="105" x2="340" y2="105" stroke="#aaa"/>
+  <line x1="273" y1="33" x2="282" y2="78" stroke="#b57810"/>
+  <line x1="250" y1="179" x2="302.5" y2="179" stroke="#555"/>
+  <line x1="250" y1="175" x2="250" y2="183" stroke="#555"/>
+  <line x1="302.5" y1="175" x2="302.5" y2="183" stroke="#555"/>
+  <g font-family="Nunito, sans-serif" font-size="13" fill="#1d1f3a">
+    <text x="74" y="45">y = t²</text>
+    <text x="143" y="145">old area A(x)</text>
+    <text x="219" y="27" fill="#805000">extra area</text>
+    <text x="347" y="76">(x+h)²</text>
+    <text x="347" y="110">x²</text>
+    <text x="37" y="198">0</text>
+    <text x="245" y="198">x</text>
+    <text x="290" y="198">x+h</text>
+    <text x="273" y="175">h</text>
+    <text x="365" y="169">t</text>
+  </g>
+</svg>
+<figcaption>The extra strip sits between two rectangles. Both have width \(h\); their heights are \(x^2\) and \((x+h)^2\).</figcaption>
+</figure>
+<p>The extra area is \(A(x+h)-A(x)\). Divide by its width \(h\): that is the strip's average height, and also the slope between two points on the graph of \(A\). For \(h &gt; 0\),</p>
+\[
+x^2 \le \frac{A(x+h)-A(x)}{h} \le (x+h)^2.
+\]
+<p>As \(h\) shrinks to zero, both bounds tend to \(x^2\). Moving the edge left gives the same limit when \(x &gt; 0\). So <b>\(A'(x)=x^2\): the slope of accumulated area is the curve's height.</b></p>
+<p class="callout">For a continuous curve \(f\), accumulated area has derivative \(f\). Below the axis, count area negatively. This is the <b>fundamental theorem of calculus</b>.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: find an area by checking a slope</h2>
+<p>The area sheet found \(A(1)=\tfrac13\). Stretching that region to end at \(x\) multiplies widths by \(x\) and heights by \(x^2\), so \(A(x)=\tfrac{x^3}{3}\). Check: its derivative is \(x^2\), and \(A(0)=0\).</p>
+<p>From 1 to 2, subtract the area you don't want:</p>
+\[
+A(2)-A(1)=\frac{8}{3}-\frac{1}{3}=\frac{7}{3}.
+\]
+<p>More generally, if \(F'=f\), then \(F\) and the accumulated area have the same slope, so they differ only by a constant. Subtracting cancels it: the signed area from \(a\) to \(b\) is \(F(b)-F(a)\). Find an area by finding a function with the right derivative.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Under \(y=2t\), from 0 to \(x\), the region is a triangle. Find \(A(x)\) using its base and height, then check that \(A'(x)=2x\).<div class="space short"></div></li>
+<li>Find the area under \(y=t^2\) from 2 to 3. Why would using \(A(3)\) alone give too much?<div class="space short"></div></li>
+<li>A car's speed is \(2t+3\) metres per second, from \(t=0\) to \(t=4\) seconds. Find its distance using a rectangle and a triangle. Check by finding a function whose derivative is \(2t+3\).<div class="space"></div></li>
+<li>A curve stays on or above the axis. Could its accumulated-area graph ever slope downwards? Explain.<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: home again, but how far?</h2>
+<p>A car's velocity is \(v(t)=2t-4\) metres per second for \(0 \le t \le 4\). Negative velocity means travelling backwards. Sketch the velocity graph. Use signed area to find its final displacement from the start, then find the total distance it travelled. Why are the answers different?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>The base is \(x\), the height \(2x\): \(A(x)=\tfrac12 x(2x)=x^2\), and \(A'(x)=2x\).</li>
+<li>\(A(3)-A(2)=\tfrac{27}{3}-\tfrac{8}{3}=\tfrac{19}{3}\). \(A(3)\) includes the unwanted region from 0 to 2.</li>
+<li>The rectangle has area \(4 \times 3=12\); the triangle has area \(\tfrac12 \times 4 \times 8=16\). Total: 28 metres. \(D(t)=t^2+3t\) has the right derivative; \(D(4)-D(0)=28\).</li>
+<li>No. Its slope is the curve's height, which is nonnegative. It can be flat where the height is zero.</li>
+</ol>
+<p><b>Stretch.</b> Velocity is zero at \(t=2\). The triangle below the axis has signed area \(-4\) metres; the one above has area \(+4\). Displacement: 0 metres — back at the start. Distance: \(4+4=8\) metres. Checking with \(F(t)=t^2-4t\) gives \(F(4)-F(0)=0\); signed area records direction as well as amount.</p>
+</section>
+
+<div class="sheet-nav"><a href="b28-groups.html">← Previous</a><a href="c1-harmonics.html">Next: Why a violin doesn't sound like a flute →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>
