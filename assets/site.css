@@ -168,3 +168,13 @@ details.fold > summary:hover { text-decoration: underline; }
 details.fold[open] > summary { margin-bottom: .4rem; }
 details.fold.howto { border: 1px solid var(--rule); border-radius: 10px; padding: .3rem .9rem; margin: 1rem 0 1.6rem; }
 details.fold.howto > summary { color: var(--ink); }
+
+/* research page: one fold per study */
+details.study { border-left: 3px solid var(--rule); padding: .05rem 0 .05rem .8rem; margin: .35rem 0; }
+details.study > summary { cursor: pointer; list-style-position: inside; padding: .15rem 0; line-height: 1.35; }
+details.study > summary .st { font-weight: 700; }
+details.study > summary:hover .st { text-decoration: underline; }
+details.study > summary .tag { margin-right: .35em; }
+details.study[open] { margin: .7rem 0 1.1rem; border-left-color: var(--accent); }
+details.study[open] > summary { margin-bottom: .3rem; }
+.foldhint { margin: 0 0 .5rem; color: var(--muted); }
