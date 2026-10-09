@@ -1,6 +1,6 @@
 # Infinity Club
 
-Printable math sheets, one a night, organised by grade. Grade 6 (58 sheets) and grade 10 (56 sheets) are live, each in three tracks; other grades will follow. Shared interactive demos (43) live in `demos/`. Live at [infinityclub.net](https://infinityclub.net).
+Printable math sheets, one a night, organised by grade. Grade 6 (58 sheets) and grade 10 (57 sheets) are live, each in three tracks; other grades will follow. Shared interactive demos (43) live in `demos/`. Live at [infinityclub.net](https://infinityclub.net).
 
 ## Layout
 
