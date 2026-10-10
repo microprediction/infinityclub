@@ -90,7 +90,7 @@
 <li>Stars: 5, one for each choice of \(a\). Paths: \(5 \times 4 \times 3 = 60\). The rest: \(125 - 5 - 60 = 60\). Their codes have one number twice and another once, so one town has three roads and one has two: a path of four towns with one extra road from a middle town to the fifth town, like the letter T with a long arm. (Check: 5 choices for the doubled number, 4 for the single one, 3 orders, \(5 \times 4 \times 3 = 60\).)</li>
 <li>Town 1 is a leaf when 1 is missing from the code: each of the four entries is one of the other 5 labels, so \(5^4 = 625\). Town 6 has three roads when 6 appears exactly twice: choose its two positions in 6 ways and fill the other two with any of 5 labels, \(6 \times 5^2 = 150\).</li>
 </ol>
-<p><b>Stretch.</b> Town 1 is a leaf when none of the \(n - 2\) entries is 1. That is \((n-1)^{n-2}\) codes out of \(n^{n-2}\), a fraction \(\left(1 - \tfrac1n\right)^{n-2}\). For \(n = 6\): \((5/6)^4 = 625/1296 \approx 0.48\). As \(n\) grows it approaches \(1/e \approx 0.37\), because \(\left(1 - \tfrac1n\right)^n \to 1/e\) and the two missing factors approach 1. In a large random tree about 37% of the towns are dead ends.</p>
+<p><b>Stretch.</b> Town 1 is a leaf when none of the \(n - 2\) entries is 1. That is \((n-1)^{n-2}\) codes out of \(n^{n-2}\), a fraction \(\left(1 - \tfrac1n\right)^{n-2}\). For \(n = 6\): \((5/6)^4 = 625/1296 \approx 0.48\). As \(n\) grows it approaches \(1/e \approx 0.37\), because \(\left(1 - \tfrac1n\right)^n \to 1/e\) and the two extra factors approach 1. In a large random tree about 37% of the towns are dead ends.</p>
 </section>
 
 <div class="sheet-nav"><a href="b13-sphere-packing.html">← Previous</a><a href="b15-max-flow.html">Next: The bottleneck theorem →</a></div>

@@ -98,7 +98,7 @@
 <p>Call the presses \(p_1, p_2, p_3, p_4\) (top-left, top-right, bottom-left, bottom-right). Each light lists the presses that reach it, and the right-hand side is the starting board:</p>
 <p>\[p_1 + p_2 + p_3 = 1, \qquad p_1 + p_2 + p_4 = 0, \qquad p_1 + p_3 + p_4 = 0, \qquad p_2 + p_3 + p_4 = 0.\]</p>
 <p>Eliminate with row XOR, no minus signs needed since \(-1 = 1\). Add row 1 into rows 2 and 3: \(p_3 + p_4 = 1\) and \(p_2 + p_4 = 1\). Add that new row 3 into row 4: \(p_3 = 1\). Back-substitute: \(p_4 = 0\), \(p_2 = 1\), \(p_1 = 1\). Press top-left, top-right and bottom-left. Check: the top-left light is toggled three times and goes off; every other light is toggled twice and stays off.</p>
-<p class="small">Play it, get a hint, or watch the solver: <a href="../../demos/lightsout.html">infinityclub.net/demos/lightsout.html</a>.</p>
+<p class="small">Play it, get a hint, or see the solver's plan: <a href="../../demos/lightsout.html">infinityclub.net/demos/lightsout.html</a>.</p>
 </section>
 
 <section class="exercises">

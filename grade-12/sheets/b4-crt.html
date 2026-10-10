@@ -36,7 +36,7 @@
 <p class="callout">If the moduli are <b>pairwise coprime</b> (no two share a factor), there is exactly one solution modulo their product, here \(3 \cdot 5 \cdot 7 = 105\).</p>
 <p><b>Why unique.</b> If \(x\) and \(y\) both work, \(x - y\) is divisible by \(3\), by \(5\) and by \(7\). Coprime divisors multiply: \(105\) divides \(x - y\). So any two solutions agree mod \(105\).</p>
 <p><b>Why one exists.</b> Each residue \(0, \ldots, 104\) gives a triple of remainders \((x \bmod 3,\ x \bmod 5,\ x \bmod 7)\). By uniqueness, no two residues give the same triple. There are \(3 \cdot 5 \cdot 7 = 105\) possible triples. So \(105\) residues land on \(105\) triples without repeats: every triple, including \((2, 3, 2)\), is hit exactly once. The figure shows two moduli.</p>
-<figure><svg viewBox="0 0 250 150" width="250" height="150" role="img" aria-label="A 3 by 5 grid: rows are the remainder mod 3, columns the remainder mod 5. The numbers 0 to 14 fill the fifteen cells exactly once; the cell for remainder 2 mod 3 and 3 mod 5 holds 8 and is highlighted" font-family="Nunito, sans-serif" font-size="13">
+<figure><svg viewBox="-4 0 258 150" width="250" height="150" role="img" aria-label="A 3 by 5 grid: rows are the remainder mod 3, columns the remainder mod 5. The numbers 0 to 14 fill the fifteen cells exactly once; the cell for remainder 2 mod 3 and 3 mod 5 holds 8 and is highlighted" font-family="Nunito, sans-serif" font-size="13">
 <text x="140" y="14" text-anchor="middle" fill="#555" font-size="12">remainder mod 5</text>
 <text x="68" y="48" text-anchor="middle" font-size="12">0</text><text x="104" y="48" text-anchor="middle" font-size="12">1</text><text x="140" y="48" text-anchor="middle" font-size="12">2</text><text x="176" y="48" text-anchor="middle" font-size="12">3</text><text x="212" y="48" text-anchor="middle" font-size="12">4</text>
 <text x="10" y="101" text-anchor="middle" fill="#555" font-size="12" transform="rotate(-90 10 101)">mod 3</text>
@@ -62,7 +62,7 @@
 <p>For each modulus, multiply the other two: \(35\), \(21\), \(15\). Now \(35\) is \(0\) mod \(5\) and mod \(7\); mod \(3\) it is \(2\), and \(2 \cdot 2 = 4 \equiv 1\), so \(e_1 = 2 \cdot 35 = 70\) has remainders \((1, 0, 0)\). Already \(21 \equiv 1 \pmod 5\) and \(15 \equiv 1 \pmod 7\), so \(e_2 = 21\) gives \((0, 1, 0)\) and \(e_3 = 15\) gives \((0, 0, 1)\). These are switches. Scale by the wanted remainders and add:</p>
 <p>\[x = 2 \cdot 70 + 3 \cdot 21 + 2 \cdot 15 = 233 \equiv 23 \pmod{105}.\]</p>
 <p>Check: \(23 = 7 \cdot 3 + 2 = 4 \cdot 5 + 3 = 3 \cdot 7 + 2\). Every solution is \(23 + 105k\).</p>
-<p class="small">RSA works mod \(pq\); computers use this theorem to work mod \(p\) and mod \(q\) separately, then recombine: <a href="../../demos/rsa.html">infinityclub.net/demos/rsa.html</a>.</p>
+<p class="small">RSA works mod \(pq\) (<a href="../../demos/rsa.html">infinityclub.net/demos/rsa.html</a>); computers use this theorem to work mod \(p\) and mod \(q\) separately, then recombine.</p>
 </section>
 
 <section class="exercises">
