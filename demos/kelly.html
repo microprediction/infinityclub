@@ -147,7 +147,7 @@
     var eps = 1e-6;
     if (f === 0) txt += "\nf = 0: no bet, no growth, no risk.";
     else if (Math.abs(f - fk) < 1e-9) txt += "\nf = f*: the top of the curve. Nothing grows faster in the long run.";
-    else if (g < -eps) txt += "\n" + (f > fk ? "f > f*" : "f < f*") + " and g(f) < 0: the growth rate is negative. The coin is in your favour and you still go broke.";
+    else if (g < -eps) txt += "\n" + (f > fk ? "f > f*" : "f < f*") + " and g(f) < 0: the growth rate is negative. " + (p > 0.5 ? "The coin is in your favour and you still go broke." : "The coin is fair, so every bet shrinks your wealth in the long run.");
     else if (Math.abs(g) <= eps) txt += "\ng(f) = 0 (to six decimals): on the knife edge between growing and shrinking.";
     else if (f > fk) txt += "\nf > f* and g(f) > 0: still growing, but slower than Kelly and with wilder swings.";
     else txt += "\nf < f* and g(f) > 0: growing, but slower than Kelly. Too timid rather than too bold.";

@@ -47,7 +47,7 @@
 <h2>What's going on</h2>
 <p>Take any distribution with a mean μ and a finite standard deviation σ. Draw n values independently and average them. The average has mean μ, because averaging does not move the centre, and standard deviation σ/√n, because the variances of independent draws add: n of them give variance nσ², the average divides by n², and the square root of σ²/n is σ/√n. That is the <b>standard error</b>. Quadruple the sample and you halve the noise.</p>
 <p>The surprise is the shape. The <b>central limit theorem</b> says the histogram of averages approaches the normal curve as n grows, whatever the parent looked like. The two-point parent is the extreme case: an average of n of those is just a count of ones divided by n, so the histogram is a binomial, and the binomial becomes a bell. The exponential parent is skewed, and the skew fades like 1/√n, which is why it takes longer.</p>
-<p>What the theorem does not say: it does not make the parent normal (the small picture never changes), and it does not help if σ is infinite, as it is for some heavy-tailed distributions. For those, averages never settle down.</p>
+<p>What the theorem does not say: it does not make the parent normal (the small picture never changes), and it does not help if σ is infinite, as it is for some heavy-tailed distributions. For some of those, averages never settle down at all.</p>
 <p>Sheet: <a href="../grade-12/sheets/a16-clt.html">Why averages are normal</a>. Related demo: <a href="galton.html">the Galton board</a>, where the parent is a coin flip.</p>
 </div>
 </main>

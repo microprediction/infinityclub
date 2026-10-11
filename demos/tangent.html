@@ -112,11 +112,12 @@ table.slopes th { background: #eeece6; }
     for (var i = 0; i <= W; i++) { var x = XMIN + (XMAX - XMIN) * i / W, y = F.f(x); if (i === 0) ctx.moveTo(X(x), Y(y)); else ctx.lineTo(X(x), Y(y)); }
     ctx.stroke();
     var fa = F.f(a), fah = F.f(a + h), m = secantSlope(F.f, a, h), d = F.d(a);
+    var noD = fnSel.value === "abs" && Math.abs(a) < 1e-9; // |x| has a corner at 0: no derivative, no tangent
     function line(slope, through, color, width, dash) {
       ctx.strokeStyle = color; ctx.lineWidth = width; ctx.setLineDash(dash || []); ctx.beginPath();
       ctx.moveTo(X(XMIN), Y(fa + slope * (XMIN - a))); ctx.lineTo(X(XMAX), Y(fa + slope * (XMAX - a))); ctx.stroke(); ctx.setLineDash([]);
     }
-    if (tanCb.checked) line(d, a, "#f5a524", 2, [7, 6]);
+    if (tanCb.checked && !noD) line(d, a, "#f5a524", 2, [7, 6]);
     line(m, a, "#3f44c9", 2.5);
     // rise / run triangle
     ctx.strokeStyle = "#3f44c9"; ctx.lineWidth = 1.2; ctx.setLineDash([3, 4]);
@@ -129,10 +130,11 @@ table.slopes th { background: #eeece6; }
     ctx.fillStyle = "#e0453a"; ctx.fillText("(a + h, f(a + h))", X(a + h) + 10, Y(fah) + 16);
     info.textContent = "f(x) = " + F.name + ",  a = " + a.toFixed(1) + ",  h = " + fmtH(h)
       + "\nsecant slope = (f(a + h) − f(a)) / h = (" + fah.toFixed(5) + " − " + fa.toFixed(5) + ") / " + fmtH(h) + " = " + m.toFixed(5)
-      + "\nderivative f′(a) = " + F.dname + " = " + d.toFixed(5) + "    gap = " + Math.abs(m - d).toExponential(2)
+      + (noD ? "\nderivative f′(0) does not exist: the secant slope is +1 from the right and −1 from the left, so there is no tangent here"
+        : "\nderivative f′(a) = " + F.dname + " = " + d.toFixed(5) + "    gap = " + Math.abs(m - d).toExponential(2))
       + "\n(click the h value to approach from the other side)";
-    var rows = [1, 0.5, 0.1, 0.01, 0.001, 0.0001].map(function (hh) { var s = neg ? -hh : hh; return "<tr><td>" + fmtH(s) + "</td><td>" + secantSlope(F.f, a, s).toFixed(6) + "</td><td>" + (secantSlope(F.f, a, s) - d).toExponential(2) + "</td></tr>"; });
-    tbl.innerHTML = "<tr><th>h</th><th>secant slope</th><th>slope − f′(a)</th></tr>" + rows.join("") + "<tr><th>h → 0</th><th>" + d.toFixed(6) + "</th><th>0</th></tr>";
+    var rows = [1, 0.5, 0.1, 0.01, 0.001, 0.0001].map(function (hh) { var s = neg ? -hh : hh; return "<tr><td>" + fmtH(s) + "</td><td>" + secantSlope(F.f, a, s).toFixed(6) + "</td><td>" + (noD ? "–" : (secantSlope(F.f, a, s) - d).toExponential(2)) + "</td></tr>"; });
+    tbl.innerHTML = "<tr><th>h</th><th>secant slope</th><th>slope − f′(a)</th></tr>" + rows.join("") + (noD ? "<tr><th>h → 0</th><th>" + (neg ? "−1" : "+1") + " from this side only</th><th>no f′(0)</th></tr>" : "<tr><th>h → 0</th><th>" + d.toFixed(6) + "</th><th>0</th></tr>");
   }
   var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(draw, 120); });
   draw();

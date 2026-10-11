@@ -40,7 +40,7 @@
 
 <section class="example">
 <h2>Watch one: the Luhn check on a card number</h2>
-<p>Credit cards use the <b>Luhn algorithm</b>, which works modulo 10 so the check is always a digit. Starting from the right-hand neighbour of the check digit, double every second digit; if doubling gives two digits, subtract 9. Add everything up. The number is valid when the total ends in 0. Take the test number 4539 1488 0343 6467 (not anyone's card):</p>
+<p>Credit cards use the <b>Luhn algorithm</b>, which works modulo 10 so the check is always a digit. Starting with the digit just left of the check digit and moving left, double every second digit; if doubling gives two digits, subtract 9. Add everything up. The number is valid when the total ends in 0. Take the test number 4539 1488 0343 6467 (not anyone's card):</p>
 <figure><svg viewBox="0 0 500 112" width="500" height="112" role="img" aria-label="The sixteen digits 4539 1488 0343 6467 in boxes with every second digit from the right shaded; below, the doubled values 8 5 6 9 2 4 7 8 0 3 8 3 3 4 3 7 which add to 80" font-family="Nunito, sans-serif" font-size="13">
 <g stroke="#3f44c9" stroke-width="1.2">
 <rect x="12" y="14" width="26" height="24" fill="#fde8c4"/><rect x="42" y="14" width="26" height="24" fill="#fff"/><rect x="72" y="14" width="26" height="24" fill="#fde8c4"/><rect x="102" y="14" width="26" height="24" fill="#fff"/>

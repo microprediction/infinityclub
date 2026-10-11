@@ -49,7 +49,7 @@
 <h2>What's going on</h2>
 <p>Rabbits R breed at rate a and are eaten at a rate proportional to how often a rabbit meets a fox, bRF. Foxes F die at rate c and breed in proportion to the rabbits they catch, dRF. That gives the <b>Lotka–Volterra</b> equations dR/dt = aR − bRF and dF/dt = −cF + dRF. There is no formula for R(t) and F(t); the demo steps the equations forward numerically (a fourth-order Runge–Kutta scheme, step 0.005) and draws what comes out.</p>
 <p>Both derivatives vanish at the <b>equilibrium</b> R* = c/d, F* = a/b, the grey cross. Everywhere else the populations move: lots of rabbits feed a fox boom, the boom eats the rabbits down, the foxes then starve, and the rabbits recover. In the phase plane that is a loop running anticlockwise, and the fox peak lags the rabbit peak by about a quarter of a cycle.</p>
-<p>Why a closed loop rather than a spiral? Divide the two equations and separate variables, and you find that V = dR − c ln R + bF − a ln F never changes along a solution. Each loop is a level curve of V, like a contour line on a map. The readout checks how well the numerics keep V constant. Two more facts to test: near the cross the period is close to 2π/√(ac), and the time-average of R over a cycle is exactly c/d, the same for every loop. Cull foxes (raise c) and the average rabbit population does not change at all; the average fox population a/b does not depend on c either, but the loops swing wider.</p>
+<p>Why a closed loop rather than a spiral? Divide the two equations and separate variables, and you find that V = dR − c ln R + bF − a ln F never changes along a solution. Each loop is a level curve of V, like a contour line on a map. The readout checks how well the numerics keep V constant. Two more facts to test: near the cross the period is close to 2π/√(ac), and the time-average of R over a cycle is exactly c/d, the same for every loop. Cull foxes (raise c) and the average fox population a/b does not change at all. It is the average rabbit population c/d that goes up.</p>
 <p>Sheet: <a href="../grade-12/sheets/b20-predator-prey.html">Foxes and rabbits</a>. Cousins: <a href="sir.html">an epidemic in a box</a>, another pair of coupled rates, and the <a href="logistic.html">logistic map</a>, where one population alone can go chaotic.</p>
 </div>
 </main>
@@ -148,10 +148,11 @@
     // readout
     var V0 = firstIntegral(S.R0, S.F0, k), Vmax = -Infinity, Vmin = Infinity;
     for (var q = 0; q < sol.R.length; q++) { var v = firstIntegral(sol.R[q], sol.F[q], k); if (v > Vmax) Vmax = v; if (v < Vmin) Vmin = v; }
-    var per = measurePeriod(sol.t, sol.R), avg = cycleAverages(sol.t, sol.R, sol.F);
+    var atEq = Math.abs(S.R0 - eq[0]) < 1e-9 * eq[0] && Math.abs(S.F0 - eq[1]) < 1e-9 * eq[1];
+    var per = atEq ? null : measurePeriod(sol.t, sol.R), avg = atEq ? null : cycleAverages(sol.t, sol.R, sol.F);
     var txt = "dR/dt = " + fmt(S.a) + "R − " + fmt(S.b, 3) + "RF,   dF/dt = −" + fmt(S.c) + "F + " + fmt(S.d, 3) + "RF.   start: R = " + fmt(S.R0, 0) + ", F = " + fmt(S.F0, 0) + "\n";
     txt += "equilibrium R* = c/d = " + fmt(eq[0], 1) + ", F* = a/b = " + fmt(eq[1], 1) + "    peaks on this orbit: " + fmt(Rmax, 0) + " rabbits, " + fmt(Fmax, 0) + " foxes\n";
-    txt += "period: " + (per ? fmt(per, 2) + " years measured" : "more than one cycle needed, lengthen the time shown") + ";  2π/√(ac) = " + fmt(linearPeriod(k), 2) + " (small loops)\n";
+    txt += "period: " + (per ? fmt(per, 2) + " years measured" : atEq ? "none here, you are sitting on the equilibrium and nothing moves" : "more than one cycle needed, lengthen the time shown") + ";  2π/√(ac) = " + fmt(linearPeriod(k), 2) + " (small loops)\n";
     if (avg) txt += "time-averages over " + avg.cycles + " whole cycle" + (avg.cycles > 1 ? "s" : "") + ": R̄ = " + fmt(avg.R, 1) + ", F̄ = " + fmt(avg.F, 1) + "  (compare R*, F*)\n";
     txt += "conserved V = dR − c ln R + bF − a ln F = " + fmt(V0, 4) + ";  along the computed orbit it wanders by " + (Math.abs(Vmax - Vmin) / Math.abs(V0) * 100).toExponential(1) + "%";
     info.textContent = txt;

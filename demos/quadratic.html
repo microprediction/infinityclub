@@ -56,7 +56,7 @@
 (function () {
   /*PURE*/
   function quadInfo(a, b, c) {
-    var h = -b / (2 * a), k = c - b * b / (4 * a), D = b * b - 4 * a * c, roots = [];
+    var h = -b / (2 * a), k = c - b * b / (4 * a), D = Math.round((b * b - 4 * a * c) * 1e6) / 1e6, roots = []; // rounding removes floating-point dust, so Δ = 0 is seen as exactly 0
     if (D > 0) { var s = Math.sqrt(D); roots = [(-b - s) / (2 * a), (-b + s) / (2 * a)].sort(function (p, q) { return p - q; }); }
     else if (D === 0) roots = [h];
     return { h: h, k: k, D: D, roots: roots, sum: -b / a, product: c / a };

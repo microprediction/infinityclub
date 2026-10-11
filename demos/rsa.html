@@ -106,7 +106,15 @@ var RSA = (function () {
     if (p === q) { info.textContent = "Choose two different primes."; out.innerHTML = ""; return; }
     var n = p * q, phi = (p - 1n) * (q - 1n);
     var eWanted = BigInt(Math.max(3, parseInt(eIn.value, 10) || 3)), e = eWanted, note = "";
-    if (RSA.gcd(e, phi) !== 1n || e >= phi) { e = RSA.nextCoprime(eWanted, phi); if (e === null) { info.textContent = "No valid e for these primes. Try larger ones."; out.innerHTML = ""; return; } note = "e = " + eWanted + " shares a factor with φ(n) = " + phi + " (gcd " + RSA.gcd(eWanted, phi) + "), so the next usable e is " + e + ". "; eIn.value = e.toString(); }
+    if (RSA.gcd(e, phi) !== 1n || e >= phi) {
+      var tooBig = eWanted >= phi;
+      e = RSA.nextCoprime(tooBig ? 3n : eWanted, phi);
+      if (e === null && !tooBig) e = RSA.nextCoprime(3n, phi); // nothing usable above the typed value: look below it
+      if (e === null) { info.textContent = "No usable e (odd, at least 3, below φ(n) = " + phi + ") for these primes. Try larger ones."; out.innerHTML = ""; return; }
+      note = tooBig ? "e must be smaller than φ(n) = " + phi + ", so using e = " + e + ". "
+        : "e = " + eWanted + " shares a factor with φ(n) = " + phi + " (gcd " + RSA.gcd(eWanted, phi) + "), so using e = " + e + " instead. ";
+      eIn.value = e.toString();
+    }
     var eg = RSA.egcd(e, phi), d = RSA.modinv(e, phi);
     var m = BigInt(Math.max(0, parseInt(mIn.value, 10) || 0)), mnote = "";
     if (m >= n) { mnote = "m must be smaller than n = " + n + "; using m = " + (m % n) + ". "; m = m % n; mIn.value = m.toString(); }

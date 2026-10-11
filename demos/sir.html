@@ -108,7 +108,7 @@ var SIR = (function () {
     }
     var people = function (f) { return Math.round(f * 1000); }, pct = function (f) { return (f * 100).toFixed(1) + "%"; };
     var txt = "R₀ = " + R0.toFixed(1) + ", infectious " + days + " days, so β = " + (R0 / days).toFixed(3) + " per day and γ = " + (1 / days).toFixed(3) + " per day.\n";
-    txt += "Effective R at the start = R₀ × susceptible fraction = " + res.Reff0.toFixed(2) + (res.Reff0 <= 1 ? "  (≤ 1: no epidemic, cases fizzle out)" : "") + "\n";
+    txt += "Effective R at the start = R₀ × susceptible fraction = " + res.Reff0.toFixed(2) + (res.Reff0 <= 1 + 1e-9 ? "  (≤ 1: no epidemic, cases fizzle out)" : "") + "\n";
     if (res.peakDay > 0) txt += "peak: " + people(res.peakI) + " infected at once on day " + Math.round(res.peakDay) + ", with " + people(res.peakS) + " still susceptible (S/N ≈ 1/R₀ = " + pct(res.susceptibleThreshold) + ")\n";
     else txt += "no peak: the number infected falls from day 0\n";
     if (res.stop === "extinct") txt += "outbreak over by day " + Math.round(res.days) + ".  total who fell ill: " + people(res.finalSize) + " of 1,000 (" + pct(res.finalSize) + ")    never infected: " + people(res.finalS) + "\n";

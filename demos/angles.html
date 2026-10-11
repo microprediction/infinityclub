@@ -68,6 +68,13 @@
     a = Math.abs(a) % (2 * Math.PI); if (a > Math.PI) a = 2 * Math.PI - a; return a * DEG;
   }
   function triangleAngles(A, B, C) { return { A: angleAt(A, B, C), B: angleAt(B, C, A), C: angleAt(C, A, B) }; }
+  // Whole-degree labels for the three angles that still add to exactly 180: round down, then give the spare degrees to the biggest leftovers.
+  function wholeDegrees(t) {
+    var keys = ["A", "B", "C"], out = {}, spare = 180;
+    keys.forEach(function (k) { out[k] = Math.floor(t[k] + 1e-9); spare -= out[k]; });
+    keys.slice().sort(function (p, q) { return (t[q] - out[q]) - (t[p] - out[p]); }).forEach(function (k) { if (spare > 0) { out[k]++; spare--; } });
+    return out;
+  }
   // direction of the ray from P to Q in radians, 0..2pi
   function dir(P, Q) { var a = Math.atan2(Q[1] - P[1], Q[0] - P[0]); return a < 0 ? a + 2 * Math.PI : a; }
   /*ENDPURE*/
@@ -135,7 +142,7 @@
   }
 
   function drawTri() {
-    var A = [S.ax, L], B = [S.bx, -L], C = [S.cx, -L], t = triangleAngles(A, B, C);
+    var A = [S.ax, L], B = [S.bx, -L], C = [S.cx, -L], t = wholeDegrees(triangleAngles(A, B, C));
     hline(-L, "#1d1f3a", 2.5); hline(L, "#8a8ca8", 2, [8, 6]);
     ctx.fillStyle = "#5d6079"; ctx.font = "11px Nunito, sans-serif"; ctx.textAlign = "right";
     ctx.fillText("parallel to the base", W - 8, Y(L) - 7);

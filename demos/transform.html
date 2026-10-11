@@ -87,6 +87,7 @@
     var as = a === 1 ? "" : a === -1 ? "\u2212" : fmt(a);
     var ks = k === 0 ? "" : (k > 0 ? " + " : " − ") + fmt(Math.abs(k));
     if (a === 0) return "y = " + fmt(k);
+    if (base === "inv") return "y = " + fmt(a) + "/(" + inner(b, h) + ")" + ks; // a·1/(…) written as a/(…), so 2·1/(x) is not shown as 21/(x)
     return "y = " + as + core + ks;
   }
   /*ENDPURE*/

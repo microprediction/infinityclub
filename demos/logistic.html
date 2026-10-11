@@ -136,7 +136,8 @@
       var fx = 1 - 1 / rVal, slope = Math.abs(2 - rVal);
       lines.push("Fixed point 1 − 1/r = " + fmt(fx) + ", slope there |2 − r| = " + slope.toFixed(3) + (Math.abs(slope - 1) < 1e-9 ? " (|slope| = 1: the test is inconclusive)" : slope < 1 ? " (attracts)" : " (repels)"));
       var p = period(rVal, x0Val);
-      if (p === 1) lines.push("Long run: settles to " + fmt(cycleValues(rVal, x0Val, 1)[0]) + ".");
+      if (rVal <= 3 && p !== 1) lines.push("Long run: heading for the fixed point " + fmt(fx) + ", but very slowly this close to r = " + (rVal < 2 ? "1" : "3") + ".");
+      else if (p === 1) lines.push("Long run: settles to " + fmt(cycleValues(rVal, x0Val, 1)[0]) + ".");
       else if (p > 0) lines.push("Long run: a " + p + "-cycle: " + cycleValues(rVal, x0Val, p).map(fmt).join(", "));
       else lines.push("Long run: no cycle of length up to 64 found. Chaos, or very close to a doubling point.");
     }

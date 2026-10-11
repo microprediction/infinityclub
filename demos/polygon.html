@@ -44,7 +44,7 @@ table.lace tr.total td { font-weight: 800; color: var(--accent); }
 <p>Write the corners in a column, (x₁, y₁) down to (xₙ, yₙ), then repeat the first corner at the bottom. Multiply diagonally down-right (x₁y₂, x₂y₃, …) and diagonally down-left (y₁x₂, y₂x₃, …), like lacing a shoe. Subtract the second total from the first and halve. The result is the area, with a sign: positive if you went round anticlockwise, negative if clockwise. Take the absolute value.</p>
 <p>Why it works: each term (xᵢyᵢ₊₁ − xᵢ₊₁yᵢ)/2 is the signed area of the triangle made by the origin and one edge. Going round the polygon, the triangles outside it get counted once positive and once negative and cancel; the inside is counted exactly once.</p>
 <p>The grid count shades every unit square whose centre lies inside. It is only an estimate, since edges slice through squares, but it is usually within a square or two. Pick's theorem is exact for corners on grid points: area = (dots strictly inside) + (dots on the edge)/2 − 1. Three ways to the same number.</p>
-<p>If your edges cross each other, the formula still gives a number but it is no longer the area: the two loops are counted with opposite signs. The demo warns you when that happens.</p>
+<p>If your edges cross each other, the formula still gives a number but it is no longer the area: the two loops are counted with opposite signs. The demo warns you when that happens, and also when edges only touch or double back, because Pick's count needs an outline that never meets itself.</p>
 <p>Sheet: <a href="../grade-8/sheets/b16-shoelace.html">The shoelace formula</a>.</p>
 </div>
 </main>
@@ -102,6 +102,22 @@ table.lace tr.total td { font-weight: 800; color: var(--accent); }
     }
     return false;
   }
+  // edges that touch without properly crossing: a corner sitting on another edge, or an edge running back along its neighbour
+  function selfTouches(P) {
+    var n = P.length;
+    function cr(p, q, r) { return (q[0] - p[0]) * (r[1] - p[1]) - (q[1] - p[1]) * (r[0] - p[0]); }
+    for (var i = 0; i < n; i++) {
+      var a = P[i], b = P[(i + 1) % n], c = P[(i + 2) % n];
+      if (a[0] === b[0] && a[1] === b[1]) return true;
+      if (Math.abs(cr(a, b, c)) < 1e-9 && (a[0] - b[0]) * (c[0] - b[0]) + (a[1] - b[1]) * (c[1] - b[1]) > 0) return true;
+      for (var j = i + 2; j < n; j++) {
+        if (i === 0 && j === n - 1) continue;
+        var e = P[j], f = P[(j + 1) % n];
+        if (onSegment(a, e, f) || onSegment(b, e, f) || onSegment(e, a, b) || onSegment(f, a, b)) return true;
+      }
+    }
+    return false;
+  }
   /*ENDPURE*/
 
   var canvas = document.getElementById("plot"), ctx = canvas.getContext("2d"), info = document.getElementById("info"), tbl = document.getElementById("tbl");
@@ -123,7 +139,7 @@ table.lace tr.total td { font-weight: 800; color: var(--accent); }
     ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, H);
     var padL = 26, padB = 22, padT = 12, padR = 12;
     cell = Math.min((W - padL - padR) / GW, (H - padT - padB) / GH); ox = padL + (W - padL - padR - GW * cell) / 2; oy = padT + (H - padT - padB - GH * cell) / 2;
-    var closed = pts.length >= 3, crosses = closed && selfIntersects(pts), cells = [];
+    var closed = pts.length >= 3, proper = closed && selfIntersects(pts), crosses = proper || (closed && selfTouches(pts)), cells = [];
     // grid-count shading
     if (closed && gridBox.checked && !crosses) {
       cells = gridCount(pts, GW, GH);
@@ -174,7 +190,8 @@ table.lace tr.total td { font-weight: 800; color: var(--accent); }
       + '<tr class="total"><td colspan="5">sum</td><td>' + fm(sl.sum) + "</td></tr>"
       + '<tr class="total"><td colspan="5">area = |sum| / 2</td><td>' + fm(sl.area) + "</td></tr>";
     var txt = "shoelace: area = |" + fm(sl.sum) + "| / 2 = " + fm(sl.area) + "   (" + (sl.sum > 0 ? "anticlockwise, sum positive" : sl.sum < 0 ? "clockwise, sum negative" : "zero") + ")";
-    if (crosses) { txt += "\nedges cross: this is not a simple polygon, so the number above is a signed mix of two regions, not an area."; }
+    if (proper) { txt += "\nedges cross: this is not a simple polygon, so the number above is a signed mix of two regions, not an area."; }
+    else if (crosses) { txt += "\nedges touch or run back over each other: this is not a simple polygon, so the number above may not be a true area, and Pick's count does not apply."; }
     else {
       if (gridBox.checked) txt += "\ngrid count: " + cells.length + " square" + (cells.length === 1 ? "" : "s") + " have their centre inside  (estimate, off by " + fm(Math.abs(cells.length - sl.area)) + ")";
       txt += "\nPick's dots: " + pk.I + " inside + " + pk.B + "/2 on the edge − 1 = " + fm(pk.area);

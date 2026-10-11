@@ -172,7 +172,7 @@
     var s = sides(tri);
     if (!prev || !move) {
       ruleBox.textContent = "A = " + pt(tri[0]) + ",  B = " + pt(tri[1]) + ",  C = " + pt(tri[2]) + "\nPick a move. Or drag a corner first.";
-      info.textContent = "sides: AB = " + fmt(s[0]) + ",  BC = " + fmt(s[1]) + ",  CA = " + fmt(s[2]) + ";  area = " + fmt(area(tri)) + ";  A → B → C runs " + (orientation(tri) > 0 ? "anticlockwise" : "clockwise");
+      info.textContent = "sides: AB = " + fmt(s[0]) + ",  BC = " + fmt(s[1]) + ",  CA = " + fmt(s[2]) + ";  area = " + fmt(area(tri)) + ";  " + (orientation(tri) === 0 ? "A, B and C lie on one line, so this is not a triangle" : "A → B → C runs " + (orientation(tri) > 0 ? "anticlockwise" : "clockwise"));
       return;
     }
     var s0 = sides(prev);
@@ -182,7 +182,7 @@
     var lines = ["before: AB = " + fmt(s0[0]) + ",  BC = " + fmt(s0[1]) + ",  CA = " + fmt(s0[2]) + ";  area " + fmt(area(prev)),
                  "after:  A′B′ = " + fmt(s[0]) + ",  B′C′ = " + fmt(s[1]) + ",  C′A′ = " + fmt(s[2]) + ";  area " + fmt(area(tri))];
     var flipped = orientation(prev) !== orientation(tri);
-    if (move.kind === "rigid") lines.push("Every length is unchanged: a rigid motion, the triangles are congruent." + (flipped ? "  It has been turned over: A → B → C now runs the other way round, which no slide or turn can do." : "  A → B → C still runs the same way round."));
+    if (move.kind === "rigid") lines.push("Every length is unchanged: a rigid motion, the triangles are congruent." + (orientation(prev) === 0 ? "" : flipped ? "  It has been turned over: A → B → C now runs the other way round, which no slide or turn can do." : "  A → B → C still runs the same way round."));
     else lines.push("Every length is multiplied by " + fmt(Math.abs(move.k)) + " and the area by " + fmt(move.k * move.k) + "; angles are unchanged. Similar" + (Math.abs(move.k) === 1 ? ", and since |k| = 1 also congruent: compare with the 180° turn." : ", not congruent."));
     if (steps.length > 1) lines.push("steps so far: " + steps.join("  →  "));
     info.textContent = lines.join("\n");

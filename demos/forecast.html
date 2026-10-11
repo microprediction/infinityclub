@@ -127,7 +127,7 @@ table.log td.best { background: var(--warm-soft); }
       var order = [["you", tot.you], ["always 50%", tot.half], ["the calibrated forecaster", tot.cal]].sort(function (a, b) { return a[1] - b[1]; });
       line += "\n\nWeek over. Totals: you " + fmt(tot.you) + ", always 50% " + fmt(tot.half, 2) + " (10 × 0.25), calibrated " + fmt(tot.cal) + ".";
       line += "\nBest this week: " + order[0][0] + ". " + (order[0][0] === "you" ? (tot.you < tot.cal ? "You beat the calibrated forecaster, partly skill and partly luck. Try another week and see if it lasts." : "") : "")
-        + (tot.you < tot.half ? (order[0][0] === "you" ? "" : "You beat always-50%, so reading the sky paid off.") : "Always-50% beat you this week. Were you too sure, or too timid?")
+        + (tot.you < tot.half ? (order[0][0] === "you" ? "" : "You beat always-50%, so reading the sky paid off.") : tot.you === tot.half ? "You tied with always-50%. Read the sky and you should beat it." : "Always-50% beat you this week. Were you too sure, or too timid?")
         + "\nTick \"reveal the true probabilities\" to compare your numbers with the real chances, then press New week.";
       skyEl.innerHTML = "Week complete<small>Press New week for ten fresh days.</small>";
     } else {

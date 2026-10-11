@@ -127,7 +127,7 @@
     txt += "check at the root: up → Δ·" + fmt(Su) + " + B(1+r) = " + fmt(root.delta * Su + root.B * (1 + r), 4) + " = Vu = " + fmt(Vu, 4) + ";   down → Δ·" + fmt(Sd) + " + B(1+r) = " + fmt(root.delta * Sd + root.B * (1 + r), 4) + " = Vd = " + fmt(Vd, 4) + "\n";
     txt += "risk-neutral q = (1 + r − d)/(u − d) = " + fmt(T.q, 4) + ",  so V = [q·Vu + (1−q)·Vd]/(1+r) = " + fmt((T.q * Vu + (1 - T.q) * Vd) / (1 + r), 4) + "\n";
     var wrong = discountedRealExpectation(S0, u, d, r, K, n, S.type, p);
-    txt += "real probability p = " + fmt(p) + ": appears nowhere above. Discounted real-world expected payoff = " + fmt(wrong, 4) + (Math.abs(wrong - T.price) < 5e-5 ? " (equal to the price only because p happens to equal q)" : ", which is NOT the price: quote it and someone will take your money");
+    txt += "real probability p = " + fmt(p) + ": appears nowhere above. Discounted real-world expected payoff = " + fmt(wrong, 4) + (Math.abs(wrong - T.price) < 5e-5 ? (Math.abs(p - T.q) < 1e-9 ? " (equal to the price only because p happens to equal q)" : Math.abs(T.price) < 5e-5 ? " (equal to the price only because this option can never pay out, so both are 0)" : " (equal to the price here, but only by coincidence)") : ", which is NOT the price: quote it and someone will take your money");
     info.textContent = txt;
   }
   function roundRect(x, y, w, h, rr) { ctx.beginPath(); ctx.moveTo(x + rr, y); ctx.lineTo(x + w - rr, y); ctx.quadraticCurveTo(x + w, y, x + w, y + rr); ctx.lineTo(x + w, y + h - rr); ctx.quadraticCurveTo(x + w, y + h, x + w - rr, y + h); ctx.lineTo(x + rr, y + h); ctx.quadraticCurveTo(x, y + h, x, y + h - rr); ctx.lineTo(x, y + rr); ctx.quadraticCurveTo(x, y, x + rr, y); ctx.closePath(); }

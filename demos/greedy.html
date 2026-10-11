@@ -33,7 +33,7 @@
 </nav>
 <main class="demo-wrap">
 <h1>Four colours are enough. Can you make the computer use six?</h1>
-<p class="explain">Change the order the computer colours in. Can you make it need six colours on a map that only needs four? The computer is <b>greedy</b>: it takes the regions in your order and gives each the smallest colour no coloured neighbour has used. The map never changes, only the order. Step 1: push regions up or down the order until greedy needs five colours, then six. Step 2: switch to <b>Repair</b> and colour the very same map with four.</p>
+<p class="explain">Change the order the computer colours in. Can you make it need six colours on a map that only needs four? The computer is <b>greedy</b>: it takes the regions in your order and gives each the smallest colour no coloured neighbour has used. The map never changes, only the order. Step 1: push regions up or down the order until greedy needs five colours. Then load the <b>Challenge map</b> and go for six (the small map tops out at five). Step 2: switch to <b>Repair</b> and colour the very same map with four.</p>
 <div class="demo-panel">
   <div class="controls">
     <button data-m="small">Small map</button>
@@ -189,7 +189,7 @@
         var msg = "Greedy used " + k + " colour" + (k === 1 ? "" : "s") + " in this order. Checked: no two neighbours match.";
         if (k !== expect) msg += " (Mismatch with the direct calculation: " + expect + ".)";
         if (k >= 6) msg += " Six! The theorem promises four exist. The order you chose fooled the method.";
-        else if (k === 5) msg += " Five, when four would do. Can you squeeze out a sixth?";
+        else if (k === 5) msg += mapName === "small" ? " Five, when three would do. That is the worst greedy can do on this small map. Try the Challenge map for six." : " Five, when four would do. Can you squeeze out a sixth?";
         else if (k === 4 && solve(adj, 3)) msg += " Four, but this map can be done in three. Can you make greedy do worse?";
         else msg += " Can you reorder to make it worse?";
         say(msg);
