@@ -31,16 +31,36 @@
 
 <section class="idea">
 <h2>Tonight's idea</h2>
-<p>A book stays on a table as long as its balance point, its middle, is over the table. So one book can stick out half its length. Call a book's length 1.</p>
-<p>In a stack the same rule applies at every level: the books above any book stay put if their combined balance point is over that book. Push every level to the limit, working from the top down.</p>
-<p>Say the top \(k - 1\) books balance exactly on the end of book \(k\). Their weight, \(k - 1\) books, acts at that end. Book \(k\)'s own weight acts at its middle, \(\tfrac12\) further back. The balance point of all \(k\) books is the weighted average of the two:</p>
-<p>\[\frac{(k - 1) \times 0 + 1 \times \tfrac12}{k} = \frac{1}{2k} \text{ back from the end of book } k.\]</p>
-<p>So book \(k\) can stick out \(\tfrac{1}{2k}\) past whatever is below it.</p>
+<p>Use an ideal model: identical, rigid, uniform books of length 1. Ignore deformation and tiny disturbances. A single book is supported while its middle lies above the table; with its middle exactly above the edge, it is at the <b>tipping limit</b>. Every exact balance below means this limiting position.</p>
+<p>In a stack the same rule applies at every level: the books above any book are supported while their combined balance point is no farther out than that book's end. Push every level to the tipping limit, working from the top down.</p>
+<p>Let the outer end of book \(k\) be \(x = 0\), with positive \(x\) pointing out over the air. Balance the top \(k - 1\) books at that end, so their combined centre is at \(x = 0\). Book \(k\)'s own centre is half a length back, at \(x = -\tfrac12\). Since every book has the same weight, the centre of all \(k\) books is</p>
+<p>\[x_{\mathrm{centre}} = \frac{(k - 1) \times 0 + 1 \times (-\tfrac12)}{k} = -\frac{1}{2k}.\]</p>
+<figure><svg viewBox="0 0 390 210" width="390" height="210" role="img" aria-label="For four books, the top three books act with weight three at the outer edge of book four. Book four acts with weight one at its middle. Their combined centre lies one eighth of a book behind the edge." font-family="Nunito, sans-serif" font-size="14">
+<rect x="20" y="110" width="320" height="30" rx="3" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="180" y="130" text-anchor="middle" fill="#3f44c9" font-weight="700">book 4</text>
+<rect x="290" y="32" width="100" height="42" rx="7" fill="#fde8c4" stroke="#b87400" stroke-width="1.5"/>
+<text x="340" y="49" text-anchor="middle" fill="#555">top 3 books</text>
+<text x="340" y="66" text-anchor="middle" fill="#555">as one weight</text>
+<line x1="180" y1="80" x2="180" y2="109" stroke="#3f44c9" stroke-width="2"/>
+<path d="M174 101 L180 110 L186 101" fill="#3f44c9"/>
+<text x="180" y="76" text-anchor="middle" fill="#3f44c9">weight 1 at x = −1/2</text>
+<line x1="340" y1="74" x2="340" y2="109" stroke="#b87400" stroke-width="2"/>
+<path d="M334 101 L340 110 L346 101" fill="#b87400"/>
+<text x="328" y="96" text-anchor="end" fill="#b87400">weight 3</text>
+<line x1="300" y1="27" x2="300" y2="151" stroke="#f5a524" stroke-width="2" stroke-dasharray="4 3"/>
+<circle cx="300" cy="125" r="5" fill="#f5a524" stroke="#b87400" stroke-width="1"/>
+<text x="292" y="18" text-anchor="end" fill="#b87400" font-weight="700">combined centre: x = −1/8</text>
+<text x="340" y="157" text-anchor="middle" fill="#555">edge x = 0</text>
+<line x1="300" y1="173" x2="340" y2="173" stroke="#b87400" stroke-width="1.5"/>
+<path d="M300 173 l7 -4 v8 Z M340 173 l-7 -4 v8 Z" fill="#b87400"/>
+<text x="320" y="195" text-anchor="middle" fill="#b87400">1/8 behind the edge</text>
+</svg><figcaption>Here \(k=4\): three equal weights at 0 and one at \(-1/2\) average to \(-1/8\). For general \(k\), the same picture gives \(-1/(2k)\).</figcaption></figure>
+<p>Line up the edge of whatever is below with this combined centre. The outer end of book \(k\) is then \(\tfrac{1}{2k}\) farther out.</p>
 <p class="callout">\(n\) books reach an overhang of \(\tfrac12 + \tfrac14 + \tfrac16 + \cdots + \tfrac{1}{2n} = \tfrac12\left(1 + \tfrac12 + \tfrac13 + \cdots + \tfrac1n\right)\).</p>
 <p>The bracket is the harmonic series, and you have seen that it <a href="../../grade-10/sheets/b12-infinite-series.html">passes every number</a>. So there is no limit to the overhang.</p>
 </section>
 
-<section class="example">
+<section class="example" style="break-before: page;">
 <h2>Watch one: four books</h2>
 <p>From the top down, the books stick out by \(\tfrac12, \tfrac14, \tfrac16\) and \(\tfrac18\). The bottom one moves least, because it carries the most.</p>
 <p>\[\tfrac12 + \tfrac14 + \tfrac16 + \tfrac18 = \tfrac{12 + 6 + 4 + 3}{24} = \tfrac{25}{24}.\]</p>
@@ -75,6 +95,7 @@
 <section class="stretch">
 <h2>Stretch: a very tall stack</h2>
 <p>For large \(n\), the sum \(1 + \tfrac12 + \cdots + \tfrac1n\) is close to \(\ln n + 0.577\), where \(\ln\) is the logarithm to base \(e\). Estimate how many books give an overhang of 5 book lengths. If each book is 2 cm thick, how tall is the stack?</p>
+<p class="small"><b>Research-level surprise.</b> This harmonic staircase is best possible under the one-on-one rule, where each book rests on at most one other book. If books may sit side by side as counterweights, the <a href="https://arxiv.org/abs/0707.0093">best overhang grows on the order of \(n^{1/3}\)</a>, far faster than \(\ln n\). The balance rule is the same; the geometry is much wilder.</p>
 <div class="space short"></div>
 </section>
 
