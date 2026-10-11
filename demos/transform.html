@@ -142,7 +142,8 @@
       ctx.stroke();
     }
     curve(BASES[base].f, "#c9c6bb", 2.5);
-    if (b !== 0) curve(T(base, a, b, h, k), "#3f44c9", 3);
+    var f0 = BASES[base].f(0), flatOK = b !== 0 || isFinite(f0); // at b = 0 the graph is the line y = a·f(0) + k, if f(0) exists
+    if (flatOK) curve(T(base, a, b, h, k), "#3f44c9", 3);
 
     // marked point
     var p = BASES[base].px, fp = BASES[base].f(p);
@@ -154,7 +155,8 @@
       ctx.strokeStyle = "#f5a524"; ctx.setLineDash([4, 4]); ctx.lineWidth = 1.2;
       ctx.beginPath(); ctx.moveTo(X(p), Y(fp)); ctx.lineTo(X(im[0]), Y(im[1])); ctx.stroke(); ctx.setLineDash([]);
       txt = "The grey point (" + fmt(p) + ", " + fmt(fp) + ") lands at (" + fmt(p) + "/b + h, a·" + fmt(fp) + " + k) = (" + fmt(im[0]) + ", " + fmt(im[1]) + ").";
-    } else txt = "b = 0 flattens everything to the single value f(0). Nudge b away from zero.";
+    } else if (isFinite(f0)) txt = "b = 0: every x is squashed to 0 inside the brackets, so the graph is the flat line y = a·f(0) + k = " + fmt(a) + "·" + fmt(f0) + " + " + fmt(k) + " = " + fmt(a * f0 + k) + ". No point maps to the grey one any more. Nudge b away from zero.";
+    else txt = "b = 0: every x is squashed to 0 inside the brackets, and f(0) does not exist for this base, so there is no graph at all. Nudge b away from zero.";
     form.textContent = formula(base, a, b, h, k) + "    (base: f(x) = " + BASES[base].name + ")";
     info.textContent = txt + "\nInside the brackets: horizontal, and backwards (divide by b, add h). Outside: vertical, as written (multiply by a, add k).";
   }
