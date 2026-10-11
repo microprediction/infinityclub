@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Geometry with coordinates · Infinity Club</title>
-<meta name="description" content="Distance, midpoint, perpendicular slopes, the equation of a circle by completing the square, and proving a shape is a rhombus with algebra instead of a ruler.">
+<meta name="description" content="Distance, midpoint, perpendicular slopes, the equation of a circle by completing the square, and a coordinate proof about parallelogram diagonals.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
 <link rel="stylesheet" href="../../assets/site.css">
@@ -34,8 +34,8 @@
 <p>A point is a pair of numbers, so every geometry statement becomes an algebra statement. Four tools do almost all the work.</p>
 <p><b>Distance.</b> From \((x_1, y_1)\) to \((x_2, y_2)\), go across \(x_2 - x_1\) and up \(y_2 - y_1\). Those are the legs of a right triangle, so the distance is the hypotenuse: \(d = \sqrt{(x_2 - x_1)^2 + (y_2 - y_1)^2}\).</p>
 <p><b>Midpoint.</b> Average the coordinates: \(\left(\frac{x_1 + x_2}{2}, \frac{y_1 + y_2}{2}\right)\).</p>
-<p><b>Slope.</b> \(m = \dfrac{y_2 - y_1}{x_2 - x_1}\), rise over run. Parallel lines have equal slopes. <b>Perpendicular lines have slopes that multiply to \(-1\).</b> Why: a line of slope \(m\) goes across 1 and up \(m\). Rotate that little triangle a quarter turn and it goes across \(-m\) and up 1, so the perpendicular slope is \(-\dfrac1m\).</p>
-<figure><svg viewBox="0 0 200 118" width="200" height="118" role="img" aria-label="Two slope triangles from the same point: across 1 and up m for a line of slope m, and the same triangle turned a quarter turn, across minus m and up 1, for the perpendicular" font-family="Nunito, sans-serif" font-size="12">
+<p><b>Slope.</b> If \(x_2\) differs from \(x_1\), \(m = \dfrac{y_2 - y_1}{x_2 - x_1}\), rise over run; vertical lines have no slope. Non-vertical parallel lines have equal slopes. <b>Perpendicular non-vertical lines have slopes whose product is \(-1\).</b> Horizontal and vertical lines are perpendicular too. For nonzero \(m\), rotate the direction “across 1, up \(m\)” a quarter turn: it becomes “across \(-m\), up 1,” with slope \(-\dfrac1m\).</p>
+<figure><svg viewBox="0 0 200 118" width="200" height="118" role="img" aria-label="For nonzero m, two slope triangles from the same point: across 1 and up m for a line of slope m, and the same triangle turned a quarter turn, across minus m and up 1, for the perpendicular" font-family="Nunito, sans-serif" font-size="12">
 <polygon points="90,90 120,90 120,30" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
 <polygon points="90,90 30,90 30,60" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/>
 <line x1="70" y1="130" x2="135" y2="0" stroke="#3f44c9" stroke-width="1"/>
@@ -44,7 +44,7 @@
 <text x="105" y="104" text-anchor="middle">1</text><text x="126" y="64">m</text>
 <text x="60" y="104" text-anchor="middle">−m</text><text x="18" y="78">1</text>
 <text x="134" y="22" fill="#3f44c9" font-size="11">slope m</text><text x="138" y="98" fill="#b36b00" font-size="11">slope −1/m</text>
-</svg><figcaption>A line of slope \(m\) goes across 1, up \(m\). Turn that triangle a quarter turn: across \(-m\), up 1.</figcaption></figure>
+</svg><figcaption>For nonzero \(m\): across 1, up \(m\). Turn the triangle a quarter turn: across \(-m\), up 1.</figcaption></figure>
 <p><b>Circle.</b> The points at distance \(r\) from the centre \((h, k)\). Write that with the distance formula and square both sides:</p>
 <p class="callout">\((x - h)^2 + (y - k)^2 = r^2\)</p>
 <p>Handed a circle in expanded form, complete the square in \(x\) and in \(y\) separately to read off the centre and radius. To prove a shape has a property: put coordinates on it, compute, conclude. Choose coordinates to make the arithmetic kind: a vertex at the origin, a side along an axis.</p>
