@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Three shirts, four trousers · Infinity Club</title>
-<meta name="description" content="Three shirts and four pairs of trousers make twelve outfits. A tree diagram shows every one, and shows why choices made one after another are counted by multiplying.">
+<meta name="description" content="Three shirts and four pairs of trousers make twelve outfits. A tree diagram shows when choices are counted by multiplying and when branch totals must be added.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
 <link rel="stylesheet" href="../../assets/site.css">
@@ -25,7 +25,7 @@
 <header class="sheet-head">
   <div class="kicker">Infinity Club · Grade 5 · Around the corner · 13</div>
   <h1>Three shirts, four trousers</h1>
-  <p class="teaser">Twelve outfits, and a tree diagram shows every one. Multiplying counts choices made one after another.</p>
+  <p class="teaser">Twelve outfits, and a tree diagram shows every one. The same number of choices on every branch means you can multiply.</p>
   <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
 </header>
 
@@ -84,16 +84,16 @@
 </svg><figcaption>J jeans, S shorts, C cords, T tracksuit bottoms. The orange path is the white shirt with shorts.</figcaption></figure>
 <p>The picture is a <b>tree diagram</b>. It splits each time you choose. First it splits 3 ways, one branch for each shirt. Then every shirt splits 4 ways, one branch for each pair of trousers.</p>
 <p>Follow any path from the top to the bottom and you have picked an outfit. So the number of outfits is the number of ends. There are 3 groups of 4 ends, and \(3 \times 4 = 12\).</p>
-<p>Why multiply and not add? Every shirt can go with every pair of trousers. Each shirt brings 4 outfits of its own.</p>
-<p class="callout">Choices made one after another: multiply the number of ways for each choice.</p>
+<p>Why multiply and not add? Every shirt can go with every pair of trousers. Each shirt brings 4 outfits, so every shirt branch has 4 ends.</p>
+<p>That same number on every branch matters. If the red shirt could go with only jeans and shorts, but the other shirts could still go with all 4 pairs, the tree would have \(2 + 4 + 4 = 10\) ends.</p>
+<p class="callout">Same number of next choices on every branch: multiply. Different numbers: count the ends, or add the branch totals.</p>
 </section>
 
 <section class="example">
 <h2>Watch one: the sandwich shop</h2>
 <p>You pick 1 bread from 2, then 1 filling from 3, then 1 drink from 2. How many different lunches are there?</p>
-<p>The tree splits 2 ways for the bread. Each branch splits 3 ways for the filling. That makes \(2 \times 3 = 6\) sandwiches. Each of those 6 ends then splits 2 ways for the drink.</p>
+<p>The tree splits 2 ways for the bread. Each branch splits 3 ways for the filling. That makes \(2 \times 3 = 6\) sandwiches. Each of those 6 ends then splits 2 ways for the drink, so the branches stay even.</p>
 \[2 \times 3 \times 2 = 12 \text{ lunches}\]
-<p>Three choices in a row, so three numbers multiplied.</p>
 </section>
 
 <section class="exercises">
