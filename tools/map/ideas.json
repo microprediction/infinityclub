@@ -387,7 +387,7 @@
   "idea": "Differential algebra in commutative rings treats taking derivatives as an algebraic rule, with the product rule as the key axiom.",
   "entry": "Define D on numbers by D(prime) = 1 and D(ab) = aD(b) + bD(a). Compute the \"arithmetic derivative\" of 6, 12 and 30.",
   "grade": 9,
-  "fit": "natural"
+  "fit": "stretch"
  },
  "13P": {
   "idea": "Computational commutative algebra solves polynomial systems by systematic elimination, such as Gröbner bases.",
@@ -471,7 +471,7 @@
   "idea": "Enumerative geometry counts geometric objects, like how many lines meet four given lines, and projective geometry adds points at infinity.",
   "entry": "Two lines always meet in projective geometry: parallel railway tracks meet at the horizon. Draw a perspective picture with a vanishing point.",
   "grade": 6,
-  "fit": "natural"
+  "fit": "stretch"
  },
  "14P": {
   "idea": "Real algebraic geometry studies polynomial shapes over the real numbers, including how many ovals a curve can have and where polynomials are positive.",
@@ -561,7 +561,7 @@
   "idea": "Finiteness conditions ask whether chains of ever bigger pieces must stop, which is what makes many proofs about algebra terminate.",
   "entry": "Start with multiples of 64, then 32, 16, 8, 4, 2, 1: each set contains the last. Why must every such growing chain of 'multiples of' sets stop?",
   "grade": 7,
-  "fit": "natural"
+  "fit": "stretch"
  },
  "16R": {
   "idea": "Some non-commuting systems still obey a hidden polynomial rule, like 2x2 matrices satisfying a fixed identity, which tames their behaviour.",
@@ -675,7 +675,7 @@
   "idea": "Monoidal categories and operads describe all the ways to combine several inputs into one output, like plugging in trees of operations.",
   "entry": "Count the ways to bracket a times b times c times d (5 ways). Draw each as a tree and see how trees plug into trees, the idea of an operad.",
   "grade": 7,
-  "fit": "natural"
+  "fit": "stretch"
  },
  "18N": {
   "idea": "Higher categories have arrows between arrows between arrows, used to treat 'the same up to deformation' precisely.",
@@ -837,7 +837,7 @@
   "idea": "Some number systems let you both combine things and move smoothly between them, so algebra and nearness live together.",
   "entry": "Turn a clock hand: rotations add like numbers, and a tiny turn is close to no turn. Compare with a 12-hour clock where you can only jump.",
   "grade": 7,
-  "fit": "natural"
+  "fit": "stretch"
  },
  "22B": {
   "idea": "Repeating patterns, like sound waves, can be built from pure tones, and the same idea works on circles, lines and clocks.",
@@ -987,7 +987,7 @@
   "idea": "One single function can, by shifting or zooming, approximate every possible function: a universal pattern hiding everything.",
   "entry": "The digits 0.123456789101112... (Champernowne) contain every finite digit string, including your birthday. Find it. Universal functions do the same for shapes.",
   "grade": 6,
-  "fit": "natural"
+  "fit": "stretch"
  },
  "30L": {
   "idea": "Calculus ideas like slope and stretch can be done on spaces with only distances, no coordinates.",
@@ -1245,7 +1245,7 @@
   "idea": "A single theory covering both smooth change and step-by-step change, and mixtures of the two.",
   "entry": "Compare money growing 10 percent a year in one jump with continuous growth, then a calendar with jumps on weekdays and smooth weekends.",
   "grade": 8,
-  "fit": "natural"
+  "fit": "stretch"
  },
  "35A": {
   "idea": "A PDE links how a quantity changes in several directions at once; the first question is whether a solution exists and is unique.",
@@ -2619,19 +2619,19 @@
   "idea": "Some materials bend permanently once pushed past a limit; plasticity describes that yield and the memory it leaves.",
   "entry": "Bend a paperclip slightly and it springs back; bend more and it stays bent. Bend it back and forth and count bends until it snaps.",
   "grade": 5,
-  "fit": "natural"
+  "fit": "stretch"
  },
  "74D": {
   "idea": "Materials whose response depends on how fast and how long you push them, mixing springiness with slow flow.",
   "entry": "Silly putty or cornflour slime: pull slowly and it stretches, yank it and it snaps. Time how long a ball of it takes to flatten.",
   "grade": 5,
-  "fit": "natural"
+  "fit": "stretch"
  },
  "74E": {
   "idea": "Special material behaviours: different stiffness in different directions, layers, crystals, foams and other structures.",
   "entry": "Tear a sheet of newspaper top to bottom, then side to side. One tear is straight and easy: paper has a grain, it is anisotropic.",
   "grade": 5,
-  "fit": "natural"
+  "fit": "stretch"
  },
  "74F": {
   "idea": "Solids interacting with heat, electricity, fluids or chemistry, such as metals expanding when warm.",
@@ -2697,7 +2697,7 @@
   "idea": "How cracks start and grow, and why a small notch can make strong things fail.",
   "entry": "A tiny cut makes a crisp packet or ketchup sachet easy to tear. Try tearing paper with and without a nick and count the force in coins.",
   "grade": 5,
-  "fit": "natural"
+  "fit": "stretch"
  },
  "74S": {
   "idea": "Computing how solids deform by cutting them into many small simple pieces, the finite element idea.",
@@ -2901,7 +2901,7 @@
   "idea": "Scattering theory works out what comes out when a particle bounces off a target, inferring the hidden shape from the pattern of deflections.",
   "entry": "Roll marbles at a hidden shape under a cardboard sheet and record where they exit; guess the shape from the bounce angles, like Rutherford discovering the nucleus.",
   "grade": 6,
-  "fit": "natural"
+  "fit": "stretch"
  },
  "81V": {
   "idea": "Quantum theory explains real systems like atoms, molecules and solids, for example why atoms emit light only at particular colours.",
@@ -3144,58 +3144,58 @@
   "fit": "n/a"
  },
  "97E": {
-  "idea": "Teaching logic, sets and proof to students, showing why a chain of statements can force a conclusion.",
-  "entry": "Knights and knaves: on an island knights always tell the truth and knaves always lie. A says 'B is a knave', B says 'we are both knights'. Who is who?",
-  "grade": 5,
-  "fit": "natural"
+  "idea": "How this part of school math(s) is taught and learned. Every sheet in the matching area plants it, so it is not tracked separately.",
+  "entry": "",
+  "grade": null,
+  "fit": "n/a"
  },
  "97F": {
-  "idea": "Teaching arithmetic and number theory so that kids see why rules work, not only how.",
-  "entry": "Multiply 23 by 14 by drawing a rectangle split into 20+3 by 10+4 and adding the four areas; then use the same picture to explain long multiplication.",
-  "grade": 5,
-  "fit": "natural"
+  "idea": "How this part of school math(s) is taught and learned. Every sheet in the matching area plants it, so it is not tracked separately.",
+  "entry": "",
+  "grade": null,
+  "fit": "n/a"
  },
  "97G": {
-  "idea": "Teaching geometry through shapes, symmetry, measurement and proof that kids can draw and test.",
-  "entry": "Cut the corners off a paper triangle and line them up on a straight edge: the angles always make 180 degrees. Then try a quadrilateral.",
-  "grade": 5,
-  "fit": "natural"
+  "idea": "How this part of school math(s) is taught and learned. Every sheet in the matching area plants it, so it is not tracked separately.",
+  "entry": "",
+  "grade": null,
+  "fit": "n/a"
  },
  "97H": {
-  "idea": "Teaching algebra as a language for patterns, so letters stand for any number in a rule.",
-  "entry": "Matchstick squares in a row: 1 square uses 4 sticks, 2 use 7, 3 use 10. Find a rule for n squares and explain it from the picture.",
-  "grade": 5,
-  "fit": "natural"
+  "idea": "How this part of school math(s) is taught and learned. Every sheet in the matching area plants it, so it is not tracked separately.",
+  "entry": "",
+  "grade": null,
+  "fit": "n/a"
  },
  "97I": {
-  "idea": "Teaching analysis and calculus ideas such as limits, rates and areas through pictures before formulas.",
-  "entry": "Zeno's walk: walk half way to the wall, then half the rest, and so on. Shade a square by halves to see 1/2+1/4+1/8+... reach 1.",
-  "grade": 5,
-  "fit": "natural"
+  "idea": "How this part of school math(s) is taught and learned. Every sheet in the matching area plants it, so it is not tracked separately.",
+  "entry": "",
+  "grade": null,
+  "fit": "n/a"
  },
  "97K": {
-  "idea": "Teaching counting, graphs, probability and statistics through games and real data.",
-  "entry": "Roll two dice 36 times and tally the sums. Why is 7 most common? List all 36 outcomes in a grid to see the six ways.",
-  "grade": 5,
-  "fit": "natural"
+  "idea": "How this part of school math(s) is taught and learned. Every sheet in the matching area plants it, so it is not tracked separately.",
+  "entry": "",
+  "grade": null,
+  "fit": "n/a"
  },
  "97M": {
-  "idea": "Teaching modelling: turning a messy real question into math, solving it, and checking it against reality.",
-  "entry": "How many piano tuners in your city? Estimate people, households with pianos, tunings per year and tunings per tuner, then multiply. A Fermi problem.",
-  "grade": 6,
-  "fit": "natural"
+  "idea": "How this part of school math(s) is taught and learned. Every sheet in the matching area plants it, so it is not tracked separately.",
+  "entry": "",
+  "grade": null,
+  "fit": "n/a"
  },
  "97N": {
-  "idea": "Teaching numerical math: approximation, rounding, error and step-by-step algorithms for solving problems.",
-  "entry": "Find the square root of 10 by guessing 3, then averaging the guess with 10 divided by the guess. Two steps give 3.1623, very close.",
-  "grade": 6,
-  "fit": "natural"
+  "idea": "How this part of school math(s) is taught and learned. Every sheet in the matching area plants it, so it is not tracked separately.",
+  "entry": "",
+  "grade": null,
+  "fit": "n/a"
  },
  "97P": {
-  "idea": "Teaching computer science ideas such as algorithms, data and programming, often without a computer.",
-  "entry": "Sort 8 playing cards by hand with bubble sort and then with merge sort, counting comparisons. Which needs fewer as the pile grows?",
-  "grade": 5,
-  "fit": "natural"
+  "idea": "How this part of school math(s) is taught and learned. Every sheet in the matching area plants it, so it is not tracked separately.",
+  "entry": "",
+  "grade": null,
+  "fit": "n/a"
  },
  "97U": {
   "idea": "Bookkeeping: educational materials, media and technology for teaching math.",
