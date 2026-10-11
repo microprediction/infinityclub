@@ -1,0 +1,32 @@
+name: checks
+on:
+  pull_request:
+  push:
+    branches: [main]
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install KaTeX for the maths check
+        run: cd tools && npm install --no-audit --no-fund
+      - name: KaTeX, exercise/answer counts, tags, house style
+        run: node tools/check_math.js
+      - name: Links, sheet structure, kickers, hub cards, JS syntax
+        run: python3 tools/check_site.py
+      - name: Prev/next links match file order
+        run: python3 tools/relink.py --check
+      - name: Map data covers every sheet and demo
+        run: python3 tools/map/build_map.py --check
+      - name: Printed page count of changed sheets (3 expected, 4 allowed)
+        if: github.event_name == 'pull_request'
+        run: |
+          files=$(git diff --name-only --diff-filter=AM origin/${{ github.base_ref }}...HEAD -- 'grade-*/sheets/*.html')
+          if [ -z "$files" ]; then echo "no sheets changed"; exit 0; fi
+          python3 tools/pagecount.py $files | tee pages.txt
+          if awk '$1 !~ /^[34]$/ {bad=1} END {exit !bad}' pages.txt; then echo "A sheet prints to more than 4 pages (or failed to print)"; exit 1; fi

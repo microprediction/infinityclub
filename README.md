@@ -6,6 +6,7 @@ Printable math sheets, one a night, organised by grade. Grade 5 (48 sheets), gra
 
 - `index.html`: grade chooser.
 - `grade-5/`, `grade-6/`, `grade-7/`, `grade-8/`, `grade-9/`, `grade-10/`, `grade-11/`, `grade-12/`: one folder per grade with `index.html` (the hub, all sheets by track), `plan.html` (first thirty nights and club card) and `sheets/`.
+- `map.html`: the map of mathematics (built from `tools/map/`).
 - `demos/index.html`: gallery of every demo; `demos/*.html` the demos themselves, shared across grades.
 - `sheets/*.html` and `plan.html` are redirect stubs for the original URLs.
 
@@ -27,7 +28,17 @@ Plain static HTML, no build step. `.nojekyll` disables Jekyll on GitHub Pages. S
 
 ## Adding a sheet
 
-Copy any sheet in the same grade's `sheets/` folder, keep the section structure (`idea`, `example`, `exercises`, `stretch`, `answers`), update the kicker, title, prev/next links, and add a card to that grade's `index.html` and `plan.html` club card. Answers are hidden on screen and always print on their own page. Use `<div class="space"></div>` (`short`, `tall` variants) for ruled writing room, which only appears in print.
+See [CONTRIBUTING.md](CONTRIBUTING.md): the full sheet spec, the accuracy checklist, and how to claim a `new-sheet` issue. In short: copy a sheet from the same grade and track, keep the section structure (`idea`, `example`, `exercises`, `stretch`, `answers`), add a card to that grade's `index.html`, add the sheet to `tools/map/pages.json`, then run `python3 tools/relink.py` and `python3 tools/map/build_map.py`.
+
+## Tools and checks
+
+- `tools/relink.py`: rebuilds every sheet's prev/next links from file order.
+- `tools/check_site.py`: links, anchors, sheet structure, kickers, hub cards, inline JS syntax.
+- `tools/check_math.js`: KaTeX errors, exercise/answer counts, tag balance, house style (`cd tools && npm install` first).
+- `tools/pagecount.py`: printed page count via headless Chrome (3 expected, 4 allowed).
+- `tools/map/`: data and builder for `map.html`, the map of all 534 MSC2020 sections against the site.
+
+The same checks run on every pull request (`.github/workflows/checks.yml`).
 
 ## Local preview
 

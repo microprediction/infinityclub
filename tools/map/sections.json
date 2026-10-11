@@ -1,0 +1,2516 @@
+[
+ {
+  "code": "00",
+  "name": "General and overarching topics; collections",
+  "sections": [
+   {
+    "code": "00A",
+    "name": "General and miscellaneous specific topics"
+   },
+   {
+    "code": "00B",
+    "name": "Conference proceedings and collections of articles"
+   }
+  ]
+ },
+ {
+  "code": "01",
+  "name": "History and biography",
+  "sections": [
+   {
+    "code": "01A",
+    "name": "History of mathematics and mathematicians"
+   }
+  ]
+ },
+ {
+  "code": "03",
+  "name": "Mathematical logic and foundations",
+  "sections": [
+   {
+    "code": "03A",
+    "name": "Philosophical aspects of logic and foundations"
+   },
+   {
+    "code": "03B",
+    "name": "General logic"
+   },
+   {
+    "code": "03C",
+    "name": "Model theory"
+   },
+   {
+    "code": "03D",
+    "name": "Computability and recursion theory"
+   },
+   {
+    "code": "03E",
+    "name": "Set theory"
+   },
+   {
+    "code": "03F",
+    "name": "Proof theory and constructive mathematics"
+   },
+   {
+    "code": "03G",
+    "name": "Algebraic logic"
+   },
+   {
+    "code": "03H",
+    "name": "Nonstandard models"
+   }
+  ]
+ },
+ {
+  "code": "05",
+  "name": "Combinatorics",
+  "sections": [
+   {
+    "code": "05A",
+    "name": "Enumerative combinatorics"
+   },
+   {
+    "code": "05B",
+    "name": "Designs and configurations"
+   },
+   {
+    "code": "05C",
+    "name": "Graph theory"
+   },
+   {
+    "code": "05D",
+    "name": "Extremal combinatorics"
+   },
+   {
+    "code": "05E",
+    "name": "Algebraic combinatorics"
+   }
+  ]
+ },
+ {
+  "code": "06",
+  "name": "Order, lattices, ordered algebraic structures",
+  "sections": [
+   {
+    "code": "06A",
+    "name": "Ordered sets"
+   },
+   {
+    "code": "06B",
+    "name": "Lattices"
+   },
+   {
+    "code": "06C",
+    "name": "Modular lattices, complemented lattices"
+   },
+   {
+    "code": "06D",
+    "name": "Distributive lattices"
+   },
+   {
+    "code": "06E",
+    "name": "Boolean algebras (Boolean rings)"
+   },
+   {
+    "code": "06F",
+    "name": "Ordered structures"
+   }
+  ]
+ },
+ {
+  "code": "08",
+  "name": "General algebraic systems",
+  "sections": [
+   {
+    "code": "08A",
+    "name": "Algebraic structures"
+   },
+   {
+    "code": "08B",
+    "name": "Varieties"
+   },
+   {
+    "code": "08C",
+    "name": "Other classes of algebras"
+   }
+  ]
+ },
+ {
+  "code": "11",
+  "name": "Number theory",
+  "sections": [
+   {
+    "code": "11A",
+    "name": "Elementary number theory"
+   },
+   {
+    "code": "11B",
+    "name": "Sequences and sets"
+   },
+   {
+    "code": "11C",
+    "name": "Polynomials and matrices"
+   },
+   {
+    "code": "11D",
+    "name": "Diophantine equations"
+   },
+   {
+    "code": "11E",
+    "name": "Forms and linear algebraic groups"
+   },
+   {
+    "code": "11F",
+    "name": "Discontinuous groups and automorphic forms"
+   },
+   {
+    "code": "11G",
+    "name": "Arithmetic algebraic geometry (Diophantine geometry)"
+   },
+   {
+    "code": "11H",
+    "name": "Geometry of numbers"
+   },
+   {
+    "code": "11J",
+    "name": "Diophantine approximation, transcendental number theory"
+   },
+   {
+    "code": "11K",
+    "name": "Probabilistic theory: distribution modulo 1; metric theory of algorithms"
+   },
+   {
+    "code": "11L",
+    "name": "Exponential sums and character sums"
+   },
+   {
+    "code": "11M",
+    "name": "Zeta and L-functions: analytic theory"
+   },
+   {
+    "code": "11N",
+    "name": "Multiplicative number theory"
+   },
+   {
+    "code": "11P",
+    "name": "Additive number theory; partitions"
+   },
+   {
+    "code": "11R",
+    "name": "Algebraic number theory: global fields"
+   },
+   {
+    "code": "11S",
+    "name": "Algebraic number theory: local fields"
+   },
+   {
+    "code": "11T",
+    "name": "Finite fields and commutative rings (number-theoretic aspects)"
+   },
+   {
+    "code": "11U",
+    "name": "Connections of number theory and logic"
+   },
+   {
+    "code": "11Y",
+    "name": "Computational number theory"
+   },
+   {
+    "code": "11Z",
+    "name": "Miscellaneous applications of number theory"
+   }
+  ]
+ },
+ {
+  "code": "12",
+  "name": "Field theory and polynomials",
+  "sections": [
+   {
+    "code": "12D",
+    "name": "Real and complex fields"
+   },
+   {
+    "code": "12E",
+    "name": "General field theory"
+   },
+   {
+    "code": "12F",
+    "name": "Field extensions"
+   },
+   {
+    "code": "12G",
+    "name": "Homological methods (field theory)"
+   },
+   {
+    "code": "12H",
+    "name": "Differential and difference algebra"
+   },
+   {
+    "code": "12J",
+    "name": "Topological fields"
+   },
+   {
+    "code": "12K",
+    "name": "Generalizations of fields"
+   },
+   {
+    "code": "12L",
+    "name": "Connections between field theory and logic"
+   }
+  ]
+ },
+ {
+  "code": "13",
+  "name": "Commutative algebra",
+  "sections": [
+   {
+    "code": "13A",
+    "name": "General commutative ring theory"
+   },
+   {
+    "code": "13B",
+    "name": "Commutative ring extensions and related topics"
+   },
+   {
+    "code": "13C",
+    "name": "Theory of modules and ideals in commutative rings"
+   },
+   {
+    "code": "13D",
+    "name": "Homological methods in commutative ring theory"
+   },
+   {
+    "code": "13E",
+    "name": "Chain conditions, finiteness conditions in commutative ring theory"
+   },
+   {
+    "code": "13F",
+    "name": "Arithmetic rings and other special commutative rings"
+   },
+   {
+    "code": "13G",
+    "name": "Integral domains"
+   },
+   {
+    "code": "13H",
+    "name": "Local rings and semilocal rings"
+   },
+   {
+    "code": "13J",
+    "name": "Topological rings and modules"
+   },
+   {
+    "code": "13L",
+    "name": "Applications of logic to commutative algebra"
+   },
+   {
+    "code": "13M",
+    "name": "Finite commutative rings"
+   },
+   {
+    "code": "13N",
+    "name": "Differential algebra"
+   },
+   {
+    "code": "13P",
+    "name": "Computational aspects and applications of commutative rings"
+   }
+  ]
+ },
+ {
+  "code": "14",
+  "name": "Algebraic geometry",
+  "sections": [
+   {
+    "code": "14A",
+    "name": "Foundations of algebraic geometry"
+   },
+   {
+    "code": "14B",
+    "name": "Local theory in algebraic geometry"
+   },
+   {
+    "code": "14C",
+    "name": "Cycles and subschemes"
+   },
+   {
+    "code": "14D",
+    "name": "Families, fibrations in algebraic geometry"
+   },
+   {
+    "code": "14E",
+    "name": "Birational geometry"
+   },
+   {
+    "code": "14F",
+    "name": "(Co)homology theory in algebraic geometry"
+   },
+   {
+    "code": "14G",
+    "name": "Arithmetic problems in algebraic geometry; Diophantine geometry"
+   },
+   {
+    "code": "14H",
+    "name": "Curves in algebraic geometry"
+   },
+   {
+    "code": "14J",
+    "name": "Surfaces and higher-dimensional varieties"
+   },
+   {
+    "code": "14K",
+    "name": "Abelian varieties and schemes"
+   },
+   {
+    "code": "14L",
+    "name": "Algebraic groups"
+   },
+   {
+    "code": "14M",
+    "name": "Special varieties"
+   },
+   {
+    "code": "14N",
+    "name": "Projective and enumerative algebraic geometry"
+   },
+   {
+    "code": "14P",
+    "name": "Real algebraic and real-analytic geometry"
+   },
+   {
+    "code": "14Q",
+    "name": "Computational aspects in algebraic geometry"
+   },
+   {
+    "code": "14R",
+    "name": "Affine geometry"
+   },
+   {
+    "code": "14T",
+    "name": "Tropical geometry"
+   }
+  ]
+ },
+ {
+  "code": "15",
+  "name": "Linear and multilinear algebra; matrix theory",
+  "sections": [
+   {
+    "code": "15A",
+    "name": "Basic linear algebra"
+   },
+   {
+    "code": "15B",
+    "name": "Special matrices"
+   }
+  ]
+ },
+ {
+  "code": "16",
+  "name": "Associative rings and algebras",
+  "sections": [
+   {
+    "code": "16B",
+    "name": "General and miscellaneous"
+   },
+   {
+    "code": "16D",
+    "name": "Modules, bimodules and ideals in associative algebras"
+   },
+   {
+    "code": "16E",
+    "name": "Homological methods in associative algebras"
+   },
+   {
+    "code": "16G",
+    "name": "Representation theory of associative rings and algebras"
+   },
+   {
+    "code": "16H",
+    "name": "Associative algebras and orders"
+   },
+   {
+    "code": "16K",
+    "name": "Division rings and semisimple Artin rings"
+   },
+   {
+    "code": "16L",
+    "name": "Local rings and generalizations"
+   },
+   {
+    "code": "16N",
+    "name": "Radicals and radical properties of associative rings"
+   },
+   {
+    "code": "16P",
+    "name": "Chain conditions, growth conditions, and other forms of finiteness for associative rings and algebras"
+   },
+   {
+    "code": "16R",
+    "name": "Rings with polynomial identity"
+   },
+   {
+    "code": "16S",
+    "name": "Associative rings and algebras arising under various constructions"
+   },
+   {
+    "code": "16T",
+    "name": "Hopf algebras, quantum groups and related topics"
+   },
+   {
+    "code": "16U",
+    "name": "Conditions on elements"
+   },
+   {
+    "code": "16W",
+    "name": "Associative rings and algebras with additional structure"
+   },
+   {
+    "code": "16Y",
+    "name": "Generalizations"
+   },
+   {
+    "code": "16Z",
+    "name": "Computational aspects of associative rings"
+   }
+  ]
+ },
+ {
+  "code": "17",
+  "name": "Nonassociative rings and algebras",
+  "sections": [
+   {
+    "code": "17A",
+    "name": "General nonassociative rings"
+   },
+   {
+    "code": "17B",
+    "name": "Lie algebras and Lie superalgebras"
+   },
+   {
+    "code": "17C",
+    "name": "Jordan algebras (algebras, triples and pairs)"
+   },
+   {
+    "code": "17D",
+    "name": "Other nonassociative rings and algebras"
+   }
+  ]
+ },
+ {
+  "code": "18",
+  "name": "Category theory; homological algebra",
+  "sections": [
+   {
+    "code": "18A",
+    "name": "General theory of categories and functors"
+   },
+   {
+    "code": "18B",
+    "name": "Special categories"
+   },
+   {
+    "code": "18C",
+    "name": "Categories and theories"
+   },
+   {
+    "code": "18D",
+    "name": "Categorical structures"
+   },
+   {
+    "code": "18E",
+    "name": "Categorical algebra"
+   },
+   {
+    "code": "18F",
+    "name": "Categories in geometry and topology"
+   },
+   {
+    "code": "18G",
+    "name": "Homological algebra in category theory, derived categories and functors"
+   },
+   {
+    "code": "18M",
+    "name": "Monoidal categories and operads"
+   },
+   {
+    "code": "18N",
+    "name": "Higher categories and homotopical algebra"
+   }
+  ]
+ },
+ {
+  "code": "19",
+  "name": "K-theory",
+  "sections": [
+   {
+    "code": "19A",
+    "name": "Grothendieck groups and K_0"
+   },
+   {
+    "code": "19B",
+    "name": "Whitehead groups and K_1"
+   },
+   {
+    "code": "19C",
+    "name": "Steinberg groups and K_2"
+   },
+   {
+    "code": "19D",
+    "name": "Higher algebraic K-theory"
+   },
+   {
+    "code": "19E",
+    "name": "K-theory in geometry"
+   },
+   {
+    "code": "19F",
+    "name": "K-theory in number theory"
+   },
+   {
+    "code": "19G",
+    "name": "K-theory of forms"
+   },
+   {
+    "code": "19J",
+    "name": "Obstructions from topology"
+   },
+   {
+    "code": "19K",
+    "name": "K-theory and operator algebras"
+   },
+   {
+    "code": "19L",
+    "name": "Topological K-theory"
+   },
+   {
+    "code": "19M",
+    "name": "Miscellaneous applications of K-theory"
+   }
+  ]
+ },
+ {
+  "code": "20",
+  "name": "Group theory and generalizations",
+  "sections": [
+   {
+    "code": "20A",
+    "name": "Foundations"
+   },
+   {
+    "code": "20B",
+    "name": "Permutation groups"
+   },
+   {
+    "code": "20C",
+    "name": "Representation theory of groups"
+   },
+   {
+    "code": "20D",
+    "name": "Abstract finite groups"
+   },
+   {
+    "code": "20E",
+    "name": "Structure and classification of infinite or finite groups"
+   },
+   {
+    "code": "20F",
+    "name": "Special aspects of infinite or finite groups"
+   },
+   {
+    "code": "20G",
+    "name": "Linear algebraic groups and related topics"
+   },
+   {
+    "code": "20H",
+    "name": "Other groups of matrices"
+   },
+   {
+    "code": "20J",
+    "name": "Connections of group theory with homological algebra and category theory"
+   },
+   {
+    "code": "20K",
+    "name": "Abelian groups"
+   },
+   {
+    "code": "20L",
+    "name": "Groupoids (i.e. small categories in which all morphisms are isomorphisms)"
+   },
+   {
+    "code": "20M",
+    "name": "Semigroups"
+   },
+   {
+    "code": "20N",
+    "name": "Other generalizations of groups"
+   },
+   {
+    "code": "20P",
+    "name": "Probabilistic methods in group theory"
+   }
+  ]
+ },
+ {
+  "code": "22",
+  "name": "Topological groups, Lie groups",
+  "sections": [
+   {
+    "code": "22A",
+    "name": "Topological and differentiable algebraic systems"
+   },
+   {
+    "code": "22B",
+    "name": "Locally compact abelian groups (LCA groups)"
+   },
+   {
+    "code": "22C",
+    "name": "Compact groups"
+   },
+   {
+    "code": "22D",
+    "name": "Locally compact groups and their algebras"
+   },
+   {
+    "code": "22E",
+    "name": "Lie groups"
+   },
+   {
+    "code": "22F",
+    "name": "Noncompact transformation groups"
+   }
+  ]
+ },
+ {
+  "code": "26",
+  "name": "Real functions",
+  "sections": [
+   {
+    "code": "26A",
+    "name": "Functions of one variable"
+   },
+   {
+    "code": "26B",
+    "name": "Functions of several variables"
+   },
+   {
+    "code": "26C",
+    "name": "Polynomials, rational functions in real analysis"
+   },
+   {
+    "code": "26D",
+    "name": "Inequalities in real analysis"
+   },
+   {
+    "code": "26E",
+    "name": "Miscellaneous topics in real functions"
+   }
+  ]
+ },
+ {
+  "code": "28",
+  "name": "Measure and integration",
+  "sections": [
+   {
+    "code": "28A",
+    "name": "Classical measure theory"
+   },
+   {
+    "code": "28B",
+    "name": "Set functions, measures and integrals with values in abstract spaces"
+   },
+   {
+    "code": "28C",
+    "name": "Set functions and measures on spaces with additional structure"
+   },
+   {
+    "code": "28D",
+    "name": "Measure-theoretic ergodic theory"
+   },
+   {
+    "code": "28E",
+    "name": "Miscellaneous topics in measure theory"
+   }
+  ]
+ },
+ {
+  "code": "30",
+  "name": "Functions of a complex variable",
+  "sections": [
+   {
+    "code": "30A",
+    "name": "General properties of functions of one complex variable"
+   },
+   {
+    "code": "30B",
+    "name": "Series expansions of functions of one complex variable"
+   },
+   {
+    "code": "30C",
+    "name": "Geometric function theory"
+   },
+   {
+    "code": "30D",
+    "name": "Entire and meromorphic functions of one complex variable, and related topics"
+   },
+   {
+    "code": "30E",
+    "name": "Miscellaneous topics of analysis in the complex plane"
+   },
+   {
+    "code": "30F",
+    "name": "Riemann surfaces"
+   },
+   {
+    "code": "30G",
+    "name": "Generalized function theory"
+   },
+   {
+    "code": "30H",
+    "name": "Spaces and algebras of analytic functions of one complex variable"
+   },
+   {
+    "code": "30J",
+    "name": "Function theory on the disc"
+   },
+   {
+    "code": "30K",
+    "name": "Universal holomorphic functions of one complex variable"
+   },
+   {
+    "code": "30L",
+    "name": "Analysis on metric spaces"
+   }
+  ]
+ },
+ {
+  "code": "31",
+  "name": "Potential theory",
+  "sections": [
+   {
+    "code": "31A",
+    "name": "Two-dimensional potential theory"
+   },
+   {
+    "code": "31B",
+    "name": "Higher-dimensional potential theory"
+   },
+   {
+    "code": "31C",
+    "name": "Generalizations of potential theory"
+   },
+   {
+    "code": "31D",
+    "name": "Axiomatic potential theory"
+   },
+   {
+    "code": "31E",
+    "name": "Potential theory on fractals and metric spaces"
+   }
+  ]
+ },
+ {
+  "code": "32",
+  "name": "Several complex variables and analytic spaces",
+  "sections": [
+   {
+    "code": "32A",
+    "name": "Holomorphic functions of several complex variables"
+   },
+   {
+    "code": "32B",
+    "name": "Local analytic geometry"
+   },
+   {
+    "code": "32C",
+    "name": "Analytic spaces"
+   },
+   {
+    "code": "32D",
+    "name": "Analytic continuation"
+   },
+   {
+    "code": "32E",
+    "name": "Holomorphic convexity"
+   },
+   {
+    "code": "32F",
+    "name": "Geometric convexity in several complex variables"
+   },
+   {
+    "code": "32G",
+    "name": "Deformations of analytic structures"
+   },
+   {
+    "code": "32H",
+    "name": "Holomorphic mappings and correspondences"
+   },
+   {
+    "code": "32J",
+    "name": "Compact analytic spaces"
+   },
+   {
+    "code": "32K",
+    "name": "Generalizations of analytic spaces"
+   },
+   {
+    "code": "32L",
+    "name": "Holomorphic fiber spaces"
+   },
+   {
+    "code": "32M",
+    "name": "Complex spaces with a group of automorphisms"
+   },
+   {
+    "code": "32N",
+    "name": "Automorphic functions"
+   },
+   {
+    "code": "32P",
+    "name": "Non-Archimedean analysis"
+   },
+   {
+    "code": "32Q",
+    "name": "Complex manifolds"
+   },
+   {
+    "code": "32S",
+    "name": "Complex singularities"
+   },
+   {
+    "code": "32T",
+    "name": "Pseudoconvex domains"
+   },
+   {
+    "code": "32U",
+    "name": "Pluripotential theory"
+   },
+   {
+    "code": "32V",
+    "name": "CR manifolds"
+   },
+   {
+    "code": "32W",
+    "name": "Differential operators in several variables"
+   }
+  ]
+ },
+ {
+  "code": "33",
+  "name": "Special functions",
+  "sections": [
+   {
+    "code": "33B",
+    "name": "Elementary classical functions"
+   },
+   {
+    "code": "33C",
+    "name": "Hypergeometric functions"
+   },
+   {
+    "code": "33D",
+    "name": "Basic hypergeometric functions"
+   },
+   {
+    "code": "33E",
+    "name": "Other special functions"
+   },
+   {
+    "code": "33F",
+    "name": "Computational aspects of special functions"
+   }
+  ]
+ },
+ {
+  "code": "34",
+  "name": "Ordinary differential equations",
+  "sections": [
+   {
+    "code": "34A",
+    "name": "General theory for ordinary differential equations"
+   },
+   {
+    "code": "34B",
+    "name": "Boundary value problems for ordinary differential equations"
+   },
+   {
+    "code": "34C",
+    "name": "Qualitative theory for ordinary differential equations"
+   },
+   {
+    "code": "34D",
+    "name": "Stability theory for ordinary differential equations"
+   },
+   {
+    "code": "34E",
+    "name": "Asymptotic theory for ordinary differential equations"
+   },
+   {
+    "code": "34F",
+    "name": "Ordinary differential equations and systems with randomness"
+   },
+   {
+    "code": "34G",
+    "name": "Differential equations in abstract spaces"
+   },
+   {
+    "code": "34H",
+    "name": "Control problems involving ordinary differential equations"
+   },
+   {
+    "code": "34K",
+    "name": "Functional-differential equations (including equations with delayed, advanced or state-dependent argument)"
+   },
+   {
+    "code": "34L",
+    "name": "Ordinary differential operators"
+   },
+   {
+    "code": "34M",
+    "name": "Ordinary differential equations in the complex domain"
+   },
+   {
+    "code": "34N",
+    "name": "Dynamic equations on time scales or measure chains"
+   }
+  ]
+ },
+ {
+  "code": "35",
+  "name": "Partial differential equations",
+  "sections": [
+   {
+    "code": "35A",
+    "name": "General topics in partial differential equations"
+   },
+   {
+    "code": "35B",
+    "name": "Qualitative properties of solutions to partial differential equations"
+   },
+   {
+    "code": "35C",
+    "name": "Representations of solutions to partial differential equations"
+   },
+   {
+    "code": "35D",
+    "name": "Generalized solutions to partial differential equations"
+   },
+   {
+    "code": "35E",
+    "name": "Partial differential equations and systems of partial differential equations with constant coefficients"
+   },
+   {
+    "code": "35F",
+    "name": "General first-order partial differential equations and systems of first-order partial differential equations"
+   },
+   {
+    "code": "35G",
+    "name": "General higher-order partial differential equations and systems of higher-order partial differential equations"
+   },
+   {
+    "code": "35H",
+    "name": "Close-to-elliptic equations"
+   },
+   {
+    "code": "35J",
+    "name": "Elliptic equations and elliptic systems"
+   },
+   {
+    "code": "35K",
+    "name": "Parabolic equations and parabolic systems"
+   },
+   {
+    "code": "35L",
+    "name": "Hyperbolic equations and hyperbolic systems"
+   },
+   {
+    "code": "35M",
+    "name": "Partial differential equations of mixed type and mixed-type systems of partial differential equations"
+   },
+   {
+    "code": "35N",
+    "name": "Overdetermined problems for partial differential equations and systems of partial differential equations"
+   },
+   {
+    "code": "35P",
+    "name": "Spectral theory and eigenvalue problems for partial differential equations"
+   },
+   {
+    "code": "35Q",
+    "name": "Partial differential equations of mathematical physics and other areas of application"
+   },
+   {
+    "code": "35R",
+    "name": "Miscellaneous topics in partial differential equations"
+   },
+   {
+    "code": "35S",
+    "name": "Pseudodifferential operators and other generalizations of partial differential operators"
+   }
+  ]
+ },
+ {
+  "code": "37",
+  "name": "Dynamical systems and ergodic theory",
+  "sections": [
+   {
+    "code": "37A",
+    "name": "Ergodic theory"
+   },
+   {
+    "code": "37B",
+    "name": "Topological dynamics"
+   },
+   {
+    "code": "37C",
+    "name": "Smooth dynamical systems: general theory"
+   },
+   {
+    "code": "37D",
+    "name": "Dynamical systems with hyperbolic behavior"
+   },
+   {
+    "code": "37E",
+    "name": "Low-dimensional dynamical systems"
+   },
+   {
+    "code": "37F",
+    "name": "Dynamical systems over complex numbers"
+   },
+   {
+    "code": "37G",
+    "name": "Local and nonlocal bifurcation theory for dynamical systems"
+   },
+   {
+    "code": "37H",
+    "name": "Random dynamical systems"
+   },
+   {
+    "code": "37J",
+    "name": "Dynamical aspects of finite-dimensional Hamiltonian and Lagrangian systems"
+   },
+   {
+    "code": "37K",
+    "name": "Dynamical system aspects of infinite-dimensional Hamiltonian and Lagrangian systems"
+   },
+   {
+    "code": "37L",
+    "name": "Infinite-dimensional dissipative dynamical systems"
+   },
+   {
+    "code": "37M",
+    "name": "Approximation methods and numerical treatment of dynamical systems"
+   },
+   {
+    "code": "37N",
+    "name": "Applications of dynamical systems"
+   },
+   {
+    "code": "37P",
+    "name": "Arithmetic and non-Archimedean dynamical systems"
+   }
+  ]
+ },
+ {
+  "code": "39",
+  "name": "Difference and functional equations",
+  "sections": [
+   {
+    "code": "39A",
+    "name": "Difference equations"
+   },
+   {
+    "code": "39B",
+    "name": "Functional equations and inequalities"
+   }
+  ]
+ },
+ {
+  "code": "40",
+  "name": "Sequences, series, summability",
+  "sections": [
+   {
+    "code": "40A",
+    "name": "Convergence and divergence of infinite limiting processes"
+   },
+   {
+    "code": "40B",
+    "name": "Multiple sequences and series"
+   },
+   {
+    "code": "40C",
+    "name": "General summability methods"
+   },
+   {
+    "code": "40D",
+    "name": "Direct theorems on summability"
+   },
+   {
+    "code": "40E",
+    "name": "Inversion theorems"
+   },
+   {
+    "code": "40F",
+    "name": "Absolute and strong summability"
+   },
+   {
+    "code": "40G",
+    "name": "Special methods of summability"
+   },
+   {
+    "code": "40H",
+    "name": "Functional analytic methods in summability"
+   },
+   {
+    "code": "40J",
+    "name": "Summability in abstract structures"
+   }
+  ]
+ },
+ {
+  "code": "41",
+  "name": "Approximations and expansions",
+  "sections": [
+   {
+    "code": "41A",
+    "name": "Approximations and expansions"
+   }
+  ]
+ },
+ {
+  "code": "42",
+  "name": "Harmonic analysis on Euclidean spaces",
+  "sections": [
+   {
+    "code": "42A",
+    "name": "Harmonic analysis in one variable"
+   },
+   {
+    "code": "42B",
+    "name": "Harmonic analysis in several variables"
+   },
+   {
+    "code": "42C",
+    "name": "Nontrigonometric harmonic analysis"
+   }
+  ]
+ },
+ {
+  "code": "43",
+  "name": "Abstract harmonic analysis",
+  "sections": [
+   {
+    "code": "43A",
+    "name": "Abstract harmonic analysis"
+   }
+  ]
+ },
+ {
+  "code": "44",
+  "name": "Integral transforms, operational calculus",
+  "sections": [
+   {
+    "code": "44A",
+    "name": "Integral transforms, operational calculus"
+   }
+  ]
+ },
+ {
+  "code": "45",
+  "name": "Integral equations",
+  "sections": [
+   {
+    "code": "45A",
+    "name": "Linear integral equations"
+   },
+   {
+    "code": "45B",
+    "name": "Fredholm integral equations"
+   },
+   {
+    "code": "45C",
+    "name": "Eigenvalue problems for integral equations"
+   },
+   {
+    "code": "45D",
+    "name": "Volterra integral equations"
+   },
+   {
+    "code": "45E",
+    "name": "Singular integral equations"
+   },
+   {
+    "code": "45F",
+    "name": "Systems of linear integral equations"
+   },
+   {
+    "code": "45G",
+    "name": "Nonlinear integral equations"
+   },
+   {
+    "code": "45H",
+    "name": "Integral equations with miscellaneous special kernels"
+   },
+   {
+    "code": "45J",
+    "name": "Integro-ordinary differential equations"
+   },
+   {
+    "code": "45K",
+    "name": "Integro-partial differential equations"
+   },
+   {
+    "code": "45L",
+    "name": "Theoretical approximation of solutions to integral equations"
+   },
+   {
+    "code": "45M",
+    "name": "Qualitative behavior of solutions to integral equations"
+   },
+   {
+    "code": "45N",
+    "name": "Abstract integral equations, integral equations in abstract spaces"
+   },
+   {
+    "code": "45P",
+    "name": "Integral operators"
+   },
+   {
+    "code": "45Q",
+    "name": "Inverse problems for integral equations"
+   },
+   {
+    "code": "45R",
+    "name": "Random integral equations"
+   }
+  ]
+ },
+ {
+  "code": "46",
+  "name": "Functional analysis",
+  "sections": [
+   {
+    "code": "46A",
+    "name": "Topological linear spaces and related structures"
+   },
+   {
+    "code": "46B",
+    "name": "Normed linear spaces and Banach spaces; Banach lattices"
+   },
+   {
+    "code": "46C",
+    "name": "Inner product spaces and their generalizations, Hilbert spaces"
+   },
+   {
+    "code": "46E",
+    "name": "Linear function spaces and their duals"
+   },
+   {
+    "code": "46F",
+    "name": "Distributions, generalized functions, distribution spaces"
+   },
+   {
+    "code": "46G",
+    "name": "Measures, integration, derivative, holomorphy (all involving infinite-dimensional spaces)"
+   },
+   {
+    "code": "46H",
+    "name": "Topological algebras, normed rings and algebras, Banach algebras"
+   },
+   {
+    "code": "46J",
+    "name": "Commutative Banach algebras and commutative topological algebras"
+   },
+   {
+    "code": "46K",
+    "name": "Topological (rings and) algebras with an involution"
+   },
+   {
+    "code": "46L",
+    "name": "Selfadjoint operator algebras (C^*-algebras, von Neumann (W^*-) algebras, etc.)"
+   },
+   {
+    "code": "46M",
+    "name": "Methods of category theory in functional analysis"
+   },
+   {
+    "code": "46N",
+    "name": "Miscellaneous applications of functional analysis"
+   },
+   {
+    "code": "46S",
+    "name": "Other (nonclassical) types of functional analysis"
+   },
+   {
+    "code": "46T",
+    "name": "Nonlinear functional analysis"
+   }
+  ]
+ },
+ {
+  "code": "47",
+  "name": "Operator theory",
+  "sections": [
+   {
+    "code": "47A",
+    "name": "General theory of linear operators"
+   },
+   {
+    "code": "47B",
+    "name": "Special classes of linear operators"
+   },
+   {
+    "code": "47C",
+    "name": "Individual linear operators as elements of algebraic systems"
+   },
+   {
+    "code": "47D",
+    "name": "Groups and semigroups of linear operators, their generalizations and applications"
+   },
+   {
+    "code": "47E",
+    "name": "Ordinary differential operators"
+   },
+   {
+    "code": "47F",
+    "name": "Partial differential operators"
+   },
+   {
+    "code": "47G",
+    "name": "Integral, integro-differential, and pseudodifferential operators"
+   },
+   {
+    "code": "47H",
+    "name": "Nonlinear operators and their properties"
+   },
+   {
+    "code": "47J",
+    "name": "Equations and inequalities involving nonlinear operators"
+   },
+   {
+    "code": "47L",
+    "name": "Linear spaces and algebras of operators"
+   },
+   {
+    "code": "47N",
+    "name": "Miscellaneous applications of operator theory"
+   },
+   {
+    "code": "47S",
+    "name": "Other (nonclassical) types of operator theory"
+   }
+  ]
+ },
+ {
+  "code": "49",
+  "name": "Calculus of variations and optimal control; optimization",
+  "sections": [
+   {
+    "code": "49J",
+    "name": "Existence theories in calculus of variations and optimal control"
+   },
+   {
+    "code": "49K",
+    "name": "Optimality conditions"
+   },
+   {
+    "code": "49L",
+    "name": "Hamilton-Jacobi theories"
+   },
+   {
+    "code": "49M",
+    "name": "Numerical methods in optimal control"
+   },
+   {
+    "code": "49N",
+    "name": "Miscellaneous topics in calculus of variations and optimal control"
+   },
+   {
+    "code": "49Q",
+    "name": "Manifolds and measure-geometric topics"
+   },
+   {
+    "code": "49R",
+    "name": "Variational methods for eigenvalues of operators"
+   },
+   {
+    "code": "49S",
+    "name": "Variational principles of physics"
+   }
+  ]
+ },
+ {
+  "code": "51",
+  "name": "Geometry",
+  "sections": [
+   {
+    "code": "51A",
+    "name": "Linear incidence geometry"
+   },
+   {
+    "code": "51B",
+    "name": "Nonlinear incidence geometry"
+   },
+   {
+    "code": "51C",
+    "name": "Ring geometry (Hjelmslev, Barbilian, etc.)"
+   },
+   {
+    "code": "51D",
+    "name": "Geometric closure systems"
+   },
+   {
+    "code": "51E",
+    "name": "Finite geometry and special incidence structures"
+   },
+   {
+    "code": "51F",
+    "name": "Metric geometry"
+   },
+   {
+    "code": "51G",
+    "name": "Ordered geometries (ordered incidence structures, etc.)"
+   },
+   {
+    "code": "51H",
+    "name": "Topological geometry"
+   },
+   {
+    "code": "51J",
+    "name": "Incidence groups"
+   },
+   {
+    "code": "51K",
+    "name": "Distance geometry"
+   },
+   {
+    "code": "51L",
+    "name": "Geometric order structures"
+   },
+   {
+    "code": "51M",
+    "name": "Real and complex geometry"
+   },
+   {
+    "code": "51N",
+    "name": "Analytic and descriptive geometry"
+   },
+   {
+    "code": "51P",
+    "name": "Classical or axiomatic geometry and physics"
+   }
+  ]
+ },
+ {
+  "code": "52",
+  "name": "Convex and discrete geometry",
+  "sections": [
+   {
+    "code": "52A",
+    "name": "General convexity"
+   },
+   {
+    "code": "52B",
+    "name": "Polytopes and polyhedra"
+   },
+   {
+    "code": "52C",
+    "name": "Discrete geometry"
+   }
+  ]
+ },
+ {
+  "code": "53",
+  "name": "Differential geometry",
+  "sections": [
+   {
+    "code": "53A",
+    "name": "Classical differential geometry"
+   },
+   {
+    "code": "53B",
+    "name": "Local differential geometry"
+   },
+   {
+    "code": "53C",
+    "name": "Global differential geometry"
+   },
+   {
+    "code": "53D",
+    "name": "Symplectic geometry, contact geometry"
+   },
+   {
+    "code": "53E",
+    "name": "Geometric evolution equations"
+   },
+   {
+    "code": "53Z",
+    "name": "Applications of differential geometry to sciences and engineering"
+   }
+  ]
+ },
+ {
+  "code": "54",
+  "name": "General topology",
+  "sections": [
+   {
+    "code": "54A",
+    "name": "Generalities in topology"
+   },
+   {
+    "code": "54B",
+    "name": "Basic constructions in general topology"
+   },
+   {
+    "code": "54C",
+    "name": "Maps and general types of topological spaces defined by maps"
+   },
+   {
+    "code": "54D",
+    "name": "Fairly general properties of topological spaces"
+   },
+   {
+    "code": "54E",
+    "name": "Topological spaces with richer structures"
+   },
+   {
+    "code": "54F",
+    "name": "Special properties of topological spaces"
+   },
+   {
+    "code": "54G",
+    "name": "Peculiar topological spaces"
+   },
+   {
+    "code": "54H",
+    "name": "Connections of general topology with other structures, applications"
+   },
+   {
+    "code": "54J",
+    "name": "Nonstandard topology"
+   }
+  ]
+ },
+ {
+  "code": "55",
+  "name": "Algebraic topology",
+  "sections": [
+   {
+    "code": "55M",
+    "name": "Classical topics in algebraic topology"
+   },
+   {
+    "code": "55N",
+    "name": "Homology and cohomology theories in algebraic topology"
+   },
+   {
+    "code": "55P",
+    "name": "Homotopy theory"
+   },
+   {
+    "code": "55Q",
+    "name": "Homotopy groups"
+   },
+   {
+    "code": "55R",
+    "name": "Fiber spaces and bundles in algebraic topology"
+   },
+   {
+    "code": "55S",
+    "name": "Operations and obstructions in algebraic topology"
+   },
+   {
+    "code": "55T",
+    "name": "Spectral sequences in algebraic topology"
+   },
+   {
+    "code": "55U",
+    "name": "Applied homological algebra and category theory in algebraic topology"
+   }
+  ]
+ },
+ {
+  "code": "57",
+  "name": "Manifolds and cell complexes",
+  "sections": [
+   {
+    "code": "57K",
+    "name": "Low-dimensional topology in specific dimensions"
+   },
+   {
+    "code": "57M",
+    "name": "General low-dimensional topology"
+   },
+   {
+    "code": "57N",
+    "name": "Topological manifolds"
+   },
+   {
+    "code": "57P",
+    "name": "Generalized manifolds"
+   },
+   {
+    "code": "57Q",
+    "name": "PL-topology"
+   },
+   {
+    "code": "57R",
+    "name": "Differential topology"
+   },
+   {
+    "code": "57S",
+    "name": "Topological transformation groups"
+   },
+   {
+    "code": "57T",
+    "name": "Homology and homotopy of topological groups and related structures"
+   },
+   {
+    "code": "57Z",
+    "name": "Relations of manifolds and cell complexes with science and engineering"
+   }
+  ]
+ },
+ {
+  "code": "58",
+  "name": "Global analysis, analysis on manifolds",
+  "sections": [
+   {
+    "code": "58A",
+    "name": "General theory of differentiable manifolds"
+   },
+   {
+    "code": "58B",
+    "name": "Infinite-dimensional manifolds"
+   },
+   {
+    "code": "58C",
+    "name": "Calculus on manifolds; nonlinear operators"
+   },
+   {
+    "code": "58D",
+    "name": "Spaces and manifolds of mappings (including nonlinear versions of 46Exx)"
+   },
+   {
+    "code": "58E",
+    "name": "Variational problems in infinite-dimensional spaces"
+   },
+   {
+    "code": "58H",
+    "name": "Pseudogroups, differentiable groupoids and general structures on manifolds"
+   },
+   {
+    "code": "58J",
+    "name": "Partial differential equations on manifolds; differential operators"
+   },
+   {
+    "code": "58K",
+    "name": "Theory of singularities and catastrophe theory"
+   },
+   {
+    "code": "58Z",
+    "name": "Applications of global analysis to the sciences"
+   }
+  ]
+ },
+ {
+  "code": "60",
+  "name": "Probability theory and stochastic processes",
+  "sections": [
+   {
+    "code": "60A",
+    "name": "Foundations of probability theory"
+   },
+   {
+    "code": "60B",
+    "name": "Probability theory on algebraic and topological structures"
+   },
+   {
+    "code": "60C",
+    "name": "Combinatorial probability"
+   },
+   {
+    "code": "60D",
+    "name": "Geometric probability and stochastic geometry"
+   },
+   {
+    "code": "60E",
+    "name": "Distribution theory"
+   },
+   {
+    "code": "60F",
+    "name": "Limit theorems in probability theory"
+   },
+   {
+    "code": "60G",
+    "name": "Stochastic processes"
+   },
+   {
+    "code": "60H",
+    "name": "Stochastic analysis"
+   },
+   {
+    "code": "60J",
+    "name": "Markov processes"
+   },
+   {
+    "code": "60K",
+    "name": "Special processes"
+   },
+   {
+    "code": "60L",
+    "name": "Rough analysis"
+   }
+  ]
+ },
+ {
+  "code": "62",
+  "name": "Statistics",
+  "sections": [
+   {
+    "code": "62A",
+    "name": "Foundational topics in statistics"
+   },
+   {
+    "code": "62B",
+    "name": "Sufficiency and information"
+   },
+   {
+    "code": "62C",
+    "name": "Statistical decision theory"
+   },
+   {
+    "code": "62D",
+    "name": "Statistical sampling theory and related topics"
+   },
+   {
+    "code": "62E",
+    "name": "Statistical distribution theory"
+   },
+   {
+    "code": "62F",
+    "name": "Parametric inference"
+   },
+   {
+    "code": "62G",
+    "name": "Nonparametric inference"
+   },
+   {
+    "code": "62H",
+    "name": "Multivariate analysis"
+   },
+   {
+    "code": "62J",
+    "name": "Linear inference, regression"
+   },
+   {
+    "code": "62K",
+    "name": "Design of statistical experiments"
+   },
+   {
+    "code": "62L",
+    "name": "Sequential statistical methods"
+   },
+   {
+    "code": "62M",
+    "name": "Inference from stochastic processes"
+   },
+   {
+    "code": "62N",
+    "name": "Survival analysis and censored data"
+   },
+   {
+    "code": "62P",
+    "name": "Applications of statistics"
+   },
+   {
+    "code": "62Q",
+    "name": "Statistical tables"
+   },
+   {
+    "code": "62R",
+    "name": "Statistics on algebraic and topological structures"
+   }
+  ]
+ },
+ {
+  "code": "65",
+  "name": "Numerical analysis",
+  "sections": [
+   {
+    "code": "65A",
+    "name": "Tables in numerical analysis"
+   },
+   {
+    "code": "65B",
+    "name": "Acceleration of convergence in numerical analysis"
+   },
+   {
+    "code": "65C",
+    "name": "Probabilistic methods, stochastic differential equations"
+   },
+   {
+    "code": "65D",
+    "name": "Numerical approximation and computational geometry (primarily algorithms)"
+   },
+   {
+    "code": "65E",
+    "name": "Numerical methods in complex analysis (potential theory, etc.)"
+   },
+   {
+    "code": "65F",
+    "name": "Numerical linear algebra"
+   },
+   {
+    "code": "65G",
+    "name": "Error analysis and interval analysis"
+   },
+   {
+    "code": "65H",
+    "name": "Nonlinear algebraic or transcendental equations"
+   },
+   {
+    "code": "65J",
+    "name": "Numerical analysis in abstract spaces"
+   },
+   {
+    "code": "65K",
+    "name": "Numerical methods for mathematical programming, optimization and variational techniques"
+   },
+   {
+    "code": "65L",
+    "name": "Numerical methods for ordinary differential equations"
+   },
+   {
+    "code": "65M",
+    "name": "Numerical methods for partial differential equations, initial value and time-dependent initial-boundary value problems"
+   },
+   {
+    "code": "65N",
+    "name": "Numerical methods for partial differential equations, boundary value problems"
+   },
+   {
+    "code": "65P",
+    "name": "Numerical problems in dynamical systems"
+   },
+   {
+    "code": "65Q",
+    "name": "Numerical methods for difference and functional equations, recurrence relations"
+   },
+   {
+    "code": "65R",
+    "name": "Numerical methods for integral equations, integral transforms"
+   },
+   {
+    "code": "65S",
+    "name": "Graphical methods in numerical analysis"
+   },
+   {
+    "code": "65T",
+    "name": "Numerical methods in Fourier analysis"
+   },
+   {
+    "code": "65Y",
+    "name": "Computer aspects of numerical algorithms"
+   },
+   {
+    "code": "65Z",
+    "name": "Applications to the sciences"
+   }
+  ]
+ },
+ {
+  "code": "68",
+  "name": "Computer science",
+  "sections": [
+   {
+    "code": "68M",
+    "name": "Computer system organization"
+   },
+   {
+    "code": "68N",
+    "name": "Theory of software"
+   },
+   {
+    "code": "68P",
+    "name": "Theory of data"
+   },
+   {
+    "code": "68Q",
+    "name": "Theory of computing"
+   },
+   {
+    "code": "68R",
+    "name": "Discrete mathematics in relation to computer science"
+   },
+   {
+    "code": "68T",
+    "name": "Artificial intelligence"
+   },
+   {
+    "code": "68U",
+    "name": "Computing methodologies and applications"
+   },
+   {
+    "code": "68V",
+    "name": "Computer science support for mathematical research and practice"
+   },
+   {
+    "code": "68W",
+    "name": "Algorithms in computer science"
+   }
+  ]
+ },
+ {
+  "code": "70",
+  "name": "Mechanics of particles and systems",
+  "sections": [
+   {
+    "code": "70A",
+    "name": "Axiomatics, foundations"
+   },
+   {
+    "code": "70B",
+    "name": "Kinematics"
+   },
+   {
+    "code": "70C",
+    "name": "Statics"
+   },
+   {
+    "code": "70E",
+    "name": "Dynamics of a rigid body and of multibody systems"
+   },
+   {
+    "code": "70F",
+    "name": "Dynamics of a system of particles, including celestial mechanics"
+   },
+   {
+    "code": "70G",
+    "name": "General models, approaches, and methods in mechanics of particles and systems"
+   },
+   {
+    "code": "70H",
+    "name": "Hamiltonian and Lagrangian mechanics"
+   },
+   {
+    "code": "70J",
+    "name": "Linear vibration theory"
+   },
+   {
+    "code": "70K",
+    "name": "Nonlinear dynamics in mechanics"
+   },
+   {
+    "code": "70L",
+    "name": "Random and stochastic aspects of the mechanics of particles and systems"
+   },
+   {
+    "code": "70M",
+    "name": "Orbital mechanics"
+   },
+   {
+    "code": "70P",
+    "name": "Variable mass, rockets"
+   },
+   {
+    "code": "70Q",
+    "name": "Control of mechanical systems"
+   },
+   {
+    "code": "70S",
+    "name": "Classical field theories"
+   }
+  ]
+ },
+ {
+  "code": "74",
+  "name": "Mechanics of deformable solids",
+  "sections": [
+   {
+    "code": "74A",
+    "name": "Generalities, axiomatics, foundations of continuum mechanics of solids"
+   },
+   {
+    "code": "74B",
+    "name": "Elastic materials"
+   },
+   {
+    "code": "74C",
+    "name": "Plastic materials, materials of stress-rate and internal-variable type"
+   },
+   {
+    "code": "74D",
+    "name": "Materials of strain-rate type and history type, other materials with memory (including elastic materials with viscous damping, various viscoelastic materials)"
+   },
+   {
+    "code": "74E",
+    "name": "Material properties given special treatment"
+   },
+   {
+    "code": "74F",
+    "name": "Coupling of solid mechanics with other effects"
+   },
+   {
+    "code": "74G",
+    "name": "Equilibrium (steady-state) problems in solid mechanics"
+   },
+   {
+    "code": "74H",
+    "name": "Dynamical problems in solid mechanics"
+   },
+   {
+    "code": "74J",
+    "name": "Waves in solid mechanics"
+   },
+   {
+    "code": "74K",
+    "name": "Thin bodies, structures"
+   },
+   {
+    "code": "74L",
+    "name": "Special subfields of solid mechanics"
+   },
+   {
+    "code": "74M",
+    "name": "Special kinds of problems in solid mechanics"
+   },
+   {
+    "code": "74N",
+    "name": "Phase transformations in solids"
+   },
+   {
+    "code": "74P",
+    "name": "Optimization problems in solid mechanics"
+   },
+   {
+    "code": "74Q",
+    "name": "Homogenization, determination of effective properties in solid mechanics"
+   },
+   {
+    "code": "74R",
+    "name": "Fracture and damage"
+   },
+   {
+    "code": "74S",
+    "name": "Numerical and other methods in solid mechanics"
+   }
+  ]
+ },
+ {
+  "code": "76",
+  "name": "Fluid mechanics",
+  "sections": [
+   {
+    "code": "76A",
+    "name": "Foundations, constitutive equations, rheology, hydrodynamical models of non-fluid phenomena"
+   },
+   {
+    "code": "76B",
+    "name": "Incompressible inviscid fluids"
+   },
+   {
+    "code": "76D",
+    "name": "Incompressible viscous fluids"
+   },
+   {
+    "code": "76E",
+    "name": "Hydrodynamic stability"
+   },
+   {
+    "code": "76F",
+    "name": "Turbulence"
+   },
+   {
+    "code": "76G",
+    "name": "General aerodynamics and subsonic flows"
+   },
+   {
+    "code": "76H",
+    "name": "Transonic flows"
+   },
+   {
+    "code": "76J",
+    "name": "Supersonic flows"
+   },
+   {
+    "code": "76K",
+    "name": "Hypersonic flows"
+   },
+   {
+    "code": "76L",
+    "name": "Shock waves and blast waves in fluid mechanics"
+   },
+   {
+    "code": "76M",
+    "name": "Basic methods in fluid mechanics"
+   },
+   {
+    "code": "76N",
+    "name": "Compressible fluids and gas dynamics"
+   },
+   {
+    "code": "76P",
+    "name": "Rarefied gas flows, Boltzmann equation in fluid mechanics"
+   },
+   {
+    "code": "76Q",
+    "name": "Hydro- and aero-acoustics"
+   },
+   {
+    "code": "76R",
+    "name": "Diffusion and convection"
+   },
+   {
+    "code": "76S",
+    "name": "Flows in porous media; filtration; seepage"
+   },
+   {
+    "code": "76T",
+    "name": "Multiphase and multicomponent flows"
+   },
+   {
+    "code": "76U",
+    "name": "Rotating fluids"
+   },
+   {
+    "code": "76V",
+    "name": "Reaction effects in flows"
+   },
+   {
+    "code": "76W",
+    "name": "Magnetohydrodynamics and electrohydrodynamics"
+   },
+   {
+    "code": "76X",
+    "name": "Ionized gas flow in electromagnetic fields; plasmic flow"
+   },
+   {
+    "code": "76Y",
+    "name": "Quantum hydrodynamics and relativistic hydrodynamics"
+   },
+   {
+    "code": "76Z",
+    "name": "Biological fluid mechanics"
+   }
+  ]
+ },
+ {
+  "code": "78",
+  "name": "Optics, electromagnetic theory",
+  "sections": [
+   {
+    "code": "78A",
+    "name": "General topics in optics and electromagnetic theory"
+   },
+   {
+    "code": "78M",
+    "name": "Basic methods for problems in optics and electromagnetic theory"
+   }
+  ]
+ },
+ {
+  "code": "80",
+  "name": "Classical thermodynamics, heat transfer",
+  "sections": [
+   {
+    "code": "80A",
+    "name": "Thermodynamics and heat transfer"
+   },
+   {
+    "code": "80M",
+    "name": "Basic methods in thermodynamics and heat transfer"
+   }
+  ]
+ },
+ {
+  "code": "81",
+  "name": "Quantum theory",
+  "sections": [
+   {
+    "code": "81P",
+    "name": "Foundations, quantum information and its processing, quantum axioms, and philosophy"
+   },
+   {
+    "code": "81Q",
+    "name": "General mathematical topics and methods in quantum theory"
+   },
+   {
+    "code": "81R",
+    "name": "Groups and algebras in quantum theory"
+   },
+   {
+    "code": "81S",
+    "name": "General quantum mechanics and problems of quantization"
+   },
+   {
+    "code": "81T",
+    "name": "Quantum field theory; related classical field theories"
+   },
+   {
+    "code": "81U",
+    "name": "Quantum scattering theory"
+   },
+   {
+    "code": "81V",
+    "name": "Applications of quantum theory to specific physical systems"
+   }
+  ]
+ },
+ {
+  "code": "82",
+  "name": "Statistical mechanics, structure of matter",
+  "sections": [
+   {
+    "code": "82B",
+    "name": "Equilibrium statistical mechanics"
+   },
+   {
+    "code": "82C",
+    "name": "Time-dependent statistical mechanics (dynamic and nonequilibrium)"
+   },
+   {
+    "code": "82D",
+    "name": "Applications of statistical mechanics to specific types of physical systems"
+   },
+   {
+    "code": "82M",
+    "name": "Basic methods in statistical mechanics"
+   }
+  ]
+ },
+ {
+  "code": "83",
+  "name": "Relativity and gravitational theory",
+  "sections": [
+   {
+    "code": "83A",
+    "name": "Special relativity"
+   },
+   {
+    "code": "83B",
+    "name": "Observational and experimental questions in relativity and gravitational theory"
+   },
+   {
+    "code": "83C",
+    "name": "General relativity"
+   },
+   {
+    "code": "83D",
+    "name": "Relativistic gravitational theories other than Einstein's, including asymmetric field theories"
+   },
+   {
+    "code": "83E",
+    "name": "Unified, higher-dimensional and super field theories"
+   },
+   {
+    "code": "83F",
+    "name": "Relativistic cosmology"
+   }
+  ]
+ },
+ {
+  "code": "85",
+  "name": "Astronomy and astrophysics",
+  "sections": [
+   {
+    "code": "85A",
+    "name": "Astronomy and astrophysics"
+   }
+  ]
+ },
+ {
+  "code": "86",
+  "name": "Geophysics",
+  "sections": [
+   {
+    "code": "86A",
+    "name": "Geophysics"
+   }
+  ]
+ },
+ {
+  "code": "90",
+  "name": "Operations research, mathematical programming",
+  "sections": [
+   {
+    "code": "90B",
+    "name": "Operations research and management science"
+   },
+   {
+    "code": "90C",
+    "name": "Mathematical programming"
+   }
+  ]
+ },
+ {
+  "code": "91",
+  "name": "Game theory, economics, finance, and other social and behavioral sciences",
+  "sections": [
+   {
+    "code": "91A",
+    "name": "Game theory"
+   },
+   {
+    "code": "91B",
+    "name": "Mathematical economics"
+   },
+   {
+    "code": "91C",
+    "name": "Social and behavioral sciences: general topics"
+   },
+   {
+    "code": "91D",
+    "name": "Mathematical sociology (including anthropology)"
+   },
+   {
+    "code": "91E",
+    "name": "Mathematical psychology"
+   },
+   {
+    "code": "91F",
+    "name": "Other social and behavioral sciences (mathematical treatment)"
+   },
+   {
+    "code": "91G",
+    "name": "Actuarial science and mathematical finance"
+   }
+  ]
+ },
+ {
+  "code": "92",
+  "name": "Biology and other natural sciences",
+  "sections": [
+   {
+    "code": "92B",
+    "name": "Mathematical biology in general"
+   },
+   {
+    "code": "92C",
+    "name": "Physiological, cellular and medical topics"
+   },
+   {
+    "code": "92D",
+    "name": "Genetics and population dynamics"
+   },
+   {
+    "code": "92E",
+    "name": "Chemistry"
+   },
+   {
+    "code": "92F",
+    "name": "Other natural sciences (mathematical treatment)"
+   }
+  ]
+ },
+ {
+  "code": "93",
+  "name": "Systems theory; control",
+  "sections": [
+   {
+    "code": "93A",
+    "name": "General systems theory"
+   },
+   {
+    "code": "93B",
+    "name": "Controllability, observability, and system structure"
+   },
+   {
+    "code": "93C",
+    "name": "Model systems in control theory"
+   },
+   {
+    "code": "93D",
+    "name": "Stability of control systems"
+   },
+   {
+    "code": "93E",
+    "name": "Stochastic systems and control"
+   }
+  ]
+ },
+ {
+  "code": "94",
+  "name": "Information and communication theory, circuits",
+  "sections": [
+   {
+    "code": "94A",
+    "name": "Communication, information"
+   },
+   {
+    "code": "94B",
+    "name": "Theory of error-correcting codes and error-detecting codes"
+   },
+   {
+    "code": "94C",
+    "name": "Circuits, networks"
+   },
+   {
+    "code": "94D",
+    "name": "Miscellaneous topics in information and communication theory"
+   }
+  ]
+ },
+ {
+  "code": "97",
+  "name": "Mathematics education",
+  "sections": [
+   {
+    "code": "97A",
+    "name": "History and society (aspects of mathematics education)"
+   },
+   {
+    "code": "97B",
+    "name": "Educational policy and systems"
+   },
+   {
+    "code": "97C",
+    "name": "Psychology of mathematics education, research in mathematics education"
+   },
+   {
+    "code": "97D",
+    "name": "Education and instruction in mathematics"
+   },
+   {
+    "code": "97E",
+    "name": "Education of foundations of mathematics"
+   },
+   {
+    "code": "97F",
+    "name": "Education of arithmetic and number theory"
+   },
+   {
+    "code": "97G",
+    "name": "Geometry education"
+   },
+   {
+    "code": "97H",
+    "name": "Algebra education"
+   },
+   {
+    "code": "97I",
+    "name": "Analysis education"
+   },
+   {
+    "code": "97K",
+    "name": "Education of combinatorics, graph theory, probability theory, and statistics"
+   },
+   {
+    "code": "97M",
+    "name": "Education of mathematical modeling and applications of mathematics"
+   },
+   {
+    "code": "97N",
+    "name": "Education of numerical mathematics"
+   },
+   {
+    "code": "97P",
+    "name": "Computer science (educational aspects)"
+   },
+   {
+    "code": "97U",
+    "name": "Educational material and media and educational technology in mathematics education"
+   }
+  ]
+ }
+]

@@ -1,0 +1,1 @@
+{ "private": true, "description": "Infinity Club checks", "dependencies": { "katex": "0.16.11" } }
