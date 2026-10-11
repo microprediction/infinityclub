@@ -31,8 +31,8 @@
 
 <section class="idea">
 <h2>Tonight's idea</h2>
-<p>A tiny, steady fraction of the carbon in the air is carbon-14, a radioactive isotope made by cosmic rays. Plants take it in and animals eat the plants, so a living thing's carbon-14 ratio tracks the atmosphere's. At death the intake stops, and the carbon-14 decays with nothing to replace it.</p>
-<p>Decay is the equation of <a href="a11-exponential-decay.html">a11</a>, rate proportional to amount: \(N(t) = N_0 e^{-kt}\), with \(N_0\) the amount at death and \(k\) the <b>decay constant</b>. The <b>half-life</b> \(T = 5{,}730\) years fixes \(k\): \(N(T) = N_0/2\) means \(e^{-kT} = \tfrac12\), so \(k = \ln 2 / T \approx 1.21 \times 10^{-4}\) per year.</p>
+<p>A tiny fraction of the carbon in the air is carbon-14, a radioactive isotope continually made by cosmic rays. Plants take it in and animals eat the plants, so carbon being built into living tissue tracks the atmosphere's carbon-14 ratio. Once that tissue stops exchanging carbon, its carbon-14 decays with nothing to replace it.</p>
+<p>Decay is the equation of <a href="a11-exponential-decay.html">a11</a>, rate proportional to amount: \(N(t) = N_0 e^{-kt}\), with \(N_0\) the amount when exchange stops and \(k\) the <b>decay constant</b>. The <b>half-life</b> \(T = 5{,}730\) years fixes \(k\): \(N(T) = N_0/2\) means \(e^{-kT} = \tfrac12\), so \(k = \ln 2 / T \approx 1.21 \times 10^{-4}\) per year.</p>
 <figure><svg viewBox="0 0 320 180" width="320" height="180" role="img" aria-label="The fraction of carbon-14 remaining falls as an exponential curve from 1 at time zero, through one half at 5,730 years, one quarter at 11,460 and one eighth at 17,190" font-family="Nunito, sans-serif" font-size="12">
 <line x1="40" y1="160" x2="300" y2="160" stroke="#000" stroke-width="1.5"/><line x1="40" y1="16" x2="40" y2="160" stroke="#000" stroke-width="1.5"/>
 <g stroke="#999" stroke-width="1" stroke-dasharray="3 3">
@@ -56,7 +56,7 @@
 <h2>Watch one: 60% remaining</h2>
 <p>Charcoal from a hearth has a carbon-14 ratio 0.60 times the modern value. Then</p>
 <p>\[t = 8{,}267 \ln\frac{1}{0.60} = 8{,}267 \times 0.511 \approx 4{,}220 \text{ years}.\]</p>
-<p>Check it in half-lives: \(4{,}220 / 5{,}730 = 0.737\), and \(2^{-0.737} = 0.600\). Two cautions. The date is when the wood stopped exchanging carbon with the air, not when the fire burned, and a tree can be centuries old when it is cut. And 4,220 is a raw age; the calibration curve would move it.</p>
+<p>Check it in half-lives: \(4{,}220 / 5{,}730 = 0.737\), and \(2^{-0.737} = 0.600\). Two cautions. The date is roughly when that wood's carbon was fixed from the atmosphere (when the tree ring grew), not when the fire burned. Inner wood can therefore be centuries older than the fire. And 4,220 is a raw age; the calibration curve would move it.</p>
 </section>
 
 <section class="exercises">
@@ -64,7 +64,7 @@
 <ol>
 <li>What fraction of the original carbon-14 remains after 2,000 years? After 10,000 years?<div class="space short"></div></li>
 <li>A bone has 12.5% of the modern ratio. Find its age twice: by counting half-lives, and with the formula.<div class="space short"></div></li>
-<li>A lab reports \(f = 0.50 \pm 0.01\). (a) Put \(0.49\) and \(0.51\) into the formula and give the age as a range. (b) Differentiate \(t = -\tfrac1k \ln f\) to show a small error \(\Delta f\) gives an age error \(\Delta t \approx \Delta f/(kf)\), and check against (a). (c) Evaluate \(\Delta t\) for the same \(\pm 0.01\) when \(f = 0.05\). Why does the method struggle with very old samples?<div class="space"></div></li>
+<li>A lab reports \(f = 0.50 \pm 0.01\). (a) Put \(0.49\) and \(0.51\) into the formula and give the age as a range. (b) Differentiate \(t = -\tfrac1k \ln f\) to show a small measurement error \(|\Delta f|\) gives an age uncertainty \(|\Delta t| \approx |\Delta f|/(kf)\), and check against (a). (c) Evaluate \(|\Delta t|\) for the same \(\pm 0.01\) when \(f = 0.05\). Why does the method struggle with very old samples?<div class="space"></div></li>
 <li>A sample is really 20,000 years old. In handling, 1% of its carbon is replaced by modern carbon (\(f = 1\)). (a) Find the true \(f\), the measured \(f\), and the age the lab reports. (b) Repeat for a 40,000-year-old sample. Which way does modern contamination push a date, and when does it matter most?<div class="space"></div></li>
 </ol>
 </section>
@@ -80,7 +80,7 @@
 <ol>
 <li>\(e^{-k \cdot 2000} = e^{-0.242} = 0.785\), so 78.5%. \(e^{-k \cdot 10000} = e^{-1.21} = 0.298\), about 30%.</li>
 <li>\(12.5\% = \tfrac18 = \left(\tfrac12\right)^3\): three half-lives, \(3 \times 5{,}730 = 17{,}190\) years. Formula: \(8{,}267 \ln 8 = 8{,}267 \times 2.079 = 17{,}190\) years.</li>
-<li>(a) \(f = 0.51\) gives 5,566 years and \(f = 0.49\) gives 5,897: the age is 5,730 give or take about 165 years. (b) \(\dfrac{dt}{df} = -\dfrac{1}{kf}\), so \(|\Delta t| \approx \dfrac{\Delta f}{kf} = \dfrac{0.01}{1.21 \times 10^{-4} \times 0.5} = 165\) years, matching (a). (c) At \(f = 0.05\) (about 24,800 years) the same \(\pm 0.01\) gives \(\pm 1{,}650\) years, ten times worse. The error grows like \(1/f\): the less carbon-14 is left, the more every tiny measurement error is magnified, until past about 50,000 years there is too little left to measure.</li>
+<li>(a) \(f = 0.51\) gives 5,566 years and \(f = 0.49\) gives 5,897: the age is 5,730 give or take about 165 years. (b) \(\dfrac{dt}{df} = -\dfrac{1}{kf}\), so \(|\Delta t| \approx \dfrac{|\Delta f|}{kf} = \dfrac{0.01}{1.21 \times 10^{-4} \times 0.5} = 165\) years, matching (a). (c) At \(f = 0.05\) (about 24,800 years) the same \(\pm 0.01\) gives a linear estimate of about \(\pm 1{,}650\) years, ten times worse. The error grows like \(1/f\): the less carbon-14 is left, the more every tiny measurement error is magnified, until past about 50,000 years there is too little left to measure.</li>
 <li>(a) True \(f = 2^{-20000/5730} = 0.0890\). Measured \(0.99 \times 0.0890 + 0.01 \times 1 = 0.0981\). Reported age \(8{,}267 \ln(1/0.0981) = 19{,}190\) years, about 800 years too young. (b) True \(f = 0.0079\); measured \(0.0178\); reported age 33,300 years, nearly 7,000 years too young. Modern carbon always makes a sample look younger, and the older the sample, the less of its own carbon-14 it has to dilute the intruder.</li>
 </ol>
 <p><b>Stretch.</b> By parts with \(u = t\), \(dv = k e^{-kt}\,dt\): \(\big[-t e^{-kt}\big]_0^\infty + \displaystyle\int_0^\infty e^{-kt}\,dt = 0 + \dfrac1k\). The mean lifetime is \(1/k = T/\ln 2 \approx 8{,}267\) years, longer than the half-life. Half the atoms are gone by 5,730 years, but the survivors include some that last for a very long time, and that long tail pulls the mean up. (It is also the 8,267 in the age formula: age equals mean lifetime times \(\ln(1/f)\).)</p>
