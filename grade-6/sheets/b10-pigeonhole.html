@@ -49,10 +49,10 @@
 <h2>Your turn</h2>
 <ol>
 <li>A class has 30 students. Explain why at least 3 of them were born in the same month. Could you guarantee 4?<div class="space short"></div></li>
-<li>The sock drawer now has red, blue, green and yellow socks. How many must you pull to guarantee a matching pair? How many to guarantee <em>two</em> matching pairs (they may be the same colour or different)?<div class="space short"></div></li>
+<li>The sock drawer now has red, blue, green and yellow socks. How many must you pull to guarantee a matching pair? How many to guarantee <em>two disjoint</em> matching pairs, using four different socks? (The pairs may be the same colour or different.)<div class="space short"></div></li>
 <li>Pick any 5 whole numbers. Show that two of them leave the same remainder when divided by 4. Then explain why that means their difference is a multiple of 4.<div class="space"></div></li>
-<li>Five dots are placed anywhere inside a 2 by 2 square. Show that some two of them are no more than \(\sqrt{2}\) apart. (Hint: cut the square into four 1 by 1 squares. How far apart can two points in the same small square be?)<div class="space"></div></li>
-<li>At a party, everyone shakes hands with some of the others (possibly none, never the same person twice). Show that two people shook exactly the same number of hands. (Hint: with \(n\) people, the possible counts are 0 up to \(n-1\). That is \(n\) holes for \(n\) people, which is not enough. Why can the counts 0 and \(n-1\) never both appear?)<div class="space tall"></div></li>
+<li>Five dots are placed anywhere inside a 2 by 2 square. Show that some two of them are no more than \(\sqrt{2}\) apart. (Hint: cut the square into four 1 by 1 squares. Assign a dot on a cut line to one of the small squares it touches. How far apart can two points in the same small square be?)<div class="space"></div></li>
+<li>At a party with at least two people, everyone shakes hands with some of the others (possibly none, never the same person twice). Show that two people shook exactly the same number of hands. (Hint: with \(n\) people, the possible counts are 0 up to \(n-1\). That is \(n\) holes for \(n\) people, which is not enough. Why can the counts 0 and \(n-1\) never both appear?)<div class="space tall"></div></li>
 </ol>
 </section>
 
@@ -67,12 +67,12 @@
 <h2>Answers</h2>
 <ol>
 <li>30 students, 12 months. If each month had at most 2, that covers at most 24 students, leaving 6 unplaced. So some month has at least 3. You cannot guarantee 4: six months with 3 and six with 2 uses all 30 with no month reaching 4.</li>
-<li>4 colours, so 5 socks force a pair. For two pairs: 7 socks. After 7 pulls, remove one matching pair; 5 socks remain, which force another pair. With 6 socks you could have 3 of one colour and 1 each of the others, only one pair.</li>
+<li>4 colours, so 5 socks force a pair. For two disjoint pairs: 7 socks. After 7 pulls, remove one matching pair; 5 socks remain, which force another pair using different socks. With 6 socks you could have 3 of one colour and 1 each of the others, leaving only one disjoint pair.</li>
 <li>Dividing by 4 leaves remainder 0, 1, 2 or 3: four holes. Five numbers into four holes, so two share a remainder. If \(a = 4p + r\) and \(b = 4q + r\), then \(a - b = 4(p - q)\), a multiple of 4.</li>
-<li>Cut the 2 by 2 square into four 1 by 1 squares. Five dots, four small squares, so two dots land in the same small square. The farthest apart two points of a 1 by 1 square can be is corner to opposite corner, which is \(\sqrt{1^2 + 1^2} = \sqrt{2}\).</li>
+<li>Cut the 2 by 2 square into four 1 by 1 squares, assigning every dot on a cut line to just one square it touches. Five dots, four small squares, so two dots are assigned to the same small square. The farthest apart two points of a 1 by 1 square can be is corner to opposite corner, which is \(\sqrt{1^2 + 1^2} = \sqrt{2}\).</li>
 <li>With \(n\) people the handshake counts run from 0 to \(n - 1\), which is \(n\) possibilities for \(n\) people, apparently just enough to all be different. But 0 and \(n - 1\) cannot both happen: someone who shook \(n - 1\) hands shook everyone's, including the person who supposedly shook nobody's. So only \(n - 1\) counts are really available for \(n\) people, and two people must share.</li>
 </ol>
-<p><b>Stretch.</b> The odd cores of numbers from 1 to 200 are the odd numbers from 1 to 199: there are 100 of them. You picked 101 numbers, so two of them, say \(a\) and \(b\), share an odd core \(m\): \(a = m \times 2^i\) and \(b = m \times 2^j\) with \(i \ne j\). Whichever has the smaller power of 2 divides the other. (With only 100 numbers it can fail: 101, 102, …, 200 has no number dividing another.)</p>
+<p><b>Stretch.</b> The odd cores of numbers from 1 to 200 are the odd numbers from 1 to 199: there are 100 of them. You picked 101 numbers, so two of them, say \(a\) and \(b\), share an odd core \(m\): \(a = m \times 2^i\) and \(b = m \times 2^j\). Because the numbers are different, the exponents differ; rename them so \(i < j\). Then \(b = a \times 2^{j-i}\), so \(a\) divides \(b\). (With only 100 numbers it can fail: 101, 102, …, 200 has no number dividing another.)</p>
 </section>
 
 <div class="sheet-nav"><a href="b9-matrices.html">← Matrices: grids that do things</a><a href="b11-parity.html">Next: Odd, even and things that never change →</a></div>
