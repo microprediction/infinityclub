@@ -45,8 +45,8 @@
 <div class="explain">
 <h2>What's going on</h2>
 <p>Betting a fixed fraction f means your wealth is multiplied by 1 + f on a win and 1 − f on a loss. After many rounds the order of wins and losses does not matter, only how many of each: wealth = (1 + f)<sup>wins</sup>(1 − f)<sup>losses</sup>. Take logs and divide by the number of rounds, and the law of large numbers hands you the <b>growth rate</b> g(f) = p ln(1 + f) + (1 − p) ln(1 − f). Wealth grows like e<sup>g·t</sup>, so the sign of g decides everything: positive and you get rich, negative and you go broke, no matter how favourable the coin is.</p>
-<p>Differentiate: g′(f) = p/(1 + f) − (1 − p)/(1 − f), which is zero at f* = 2p − 1. For p = 0.6 that is f* = 0.2, the <b>Kelly fraction</b>: bet your edge. Anything above 2f* has g below zero. Betting more than Kelly does not just add risk, it lowers your typical growth, because the logarithm punishes big losses more than it rewards big wins.</p>
-<p>Why the median and not the mean? The <i>expected</i> wealth is largest when you bet everything every time, (1.2)<sup>1000</sup> in the lucky case. But that case has probability 0.6<sup>1000</sup>, and every other gambler is at zero. Expected value is dominated by a miracle nobody will live to see. The median gambler, and in fact almost every gambler, experiences the growth rate g(f) instead. The orange theory line on the left is e<sup>g(f)·t</sup>, and the bold median hugs it.</p>
+<p>Differentiate: g′(f) = p/(1 + f) − (1 − p)/(1 − f), which is zero at f* = 2p − 1. For p = 0.6 that is f* = 0.2, the <b>Kelly fraction</b>: bet your edge. The growth rate turns negative a little before 2f*. For p = 0.6, g drops below zero at about f = 0.39, not 0.4. The rule of thumb "above twice Kelly you shrink" is exact only for tiny edges. Betting more than Kelly does not just add risk, it lowers your typical growth, because the logarithm punishes big losses more than it rewards big wins.</p>
+<p>Why the median and not the mean? The <i>expected</i> wealth is largest when you bet everything every time. The one gambler who wins all 1,000 rounds has 2<sup>1000</sup> times their stake. That happens with probability 0.6<sup>1000</sup>, so the expected wealth is 2<sup>1000</sup> × 0.6<sup>1000</sup> = 1.2<sup>1000</sup>. Every other gambler is at zero. Expected value is dominated by a miracle nobody will live to see. The median gambler, and in fact almost every gambler, experiences the growth rate g(f) instead. The orange theory line on the left is e<sup>g(f)·t</sup>, and the bold median hugs it.</p>
 <p>Sheet: <a href="../grade-12/sheets/b15-kelly.html">How much to bet</a>. Related demos: <a href="galton.html">Galton board</a> and <a href="growth.html">growth and compounding</a>.</p>
 </div>
 </main>
@@ -144,10 +144,13 @@
     var txt = "p = " + fmt(p) + ", bet fraction f = " + fmt(f) + ".   Kelly fraction f* = 2p − 1 = " + fmt(fk) + ", with growth g(f*) = " + fmt(gk, 4) + " per round.\n";
     txt += "g(f) = p ln(1+f) + (1−p) ln(1−f) = " + fmt(g, 4) + " per round  →  wealth × " + fmt(Math.exp(g), 4) + " per round, × " + pow10txt(Math.round(g * ROUNDS / LN10)) + " over 1,000 rounds (typical gambler)\n";
     txt += "simulation: median gambler finished at " + pow10txt(Math.round(med[ROUNDS] / LN10)) + " (actual rate " + fmt(empirical, 4) + " per round); " + broke + " of 20 finished below where they started.";
+    var eps = 1e-6;
     if (f === 0) txt += "\nf = 0: no bet, no growth, no risk.";
-    else if (f > 2 * fk + 1e-9) txt += "\nf > 2f*: the growth rate is negative. The coin is in your favour and you still go broke.";
-    else if (f > fk + 1e-9) txt += "\nf* < f < 2f*: still growing, but slower than Kelly and with wilder swings.";
     else if (Math.abs(f - fk) < 1e-9) txt += "\nf = f*: the top of the curve. Nothing grows faster in the long run.";
+    else if (g < -eps) txt += "\n" + (f > fk ? "f > f*" : "f < f*") + " and g(f) < 0: the growth rate is negative. The coin is in your favour and you still go broke.";
+    else if (Math.abs(g) <= eps) txt += "\ng(f) = 0 (to six decimals): on the knife edge between growing and shrinking.";
+    else if (f > fk) txt += "\nf > f* and g(f) > 0: still growing, but slower than Kelly and with wilder swings.";
+    else txt += "\nf < f* and g(f) > 0: growing, but slower than Kelly. Too timid rather than too bold.";
     info.textContent = txt;
   }
   var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(draw, 120); });

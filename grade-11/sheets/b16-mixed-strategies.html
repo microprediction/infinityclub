@@ -76,7 +76,7 @@
 
 <section class="stretch">
 <h2>Stretch: one formula</h2>
-<p>Call the table \(a, b\) on the top row and \(c, d\) on the bottom. Assuming the lines cross between 0 and 1, show that \(p = \dfrac{d - c}{a - b - c + d}\) and that the value is \(\dfrac{ad - bc}{a - b - c + d}\). Check both on the first table.</p>
+<p>Call the table \(a, b\) on the top row and \(c, d\) on the bottom. Suppose one line rises and the other falls, so they cross between 0 and 1. Show that \(p = \dfrac{d - c}{a - b - c + d}\) and that the value is \(\dfrac{ad - bc}{a - b - c + d}\). Check both on the first table. Then try \(a, b, c, d = 90, 70, 50, 60\). The lines still cross between 0 and 1, but the formula gives the wrong value. Why?</p>
 <div class="space short"></div>
 </section>
 
@@ -88,7 +88,7 @@
 <li>Left dive: \(60p + 80(1 - p) = 80 - 20p\). Right dive: \(60 + 30p\) as before. So \(p = 0.4\) and the value is \(72\%\). Keeper: \(60q + 90(1 - q) = 90 - 30q\) and \(60 + 20q\), so \(q = 0.6\). Her mix is chosen to make the <em>kicker's</em> two shots equally good, and his numbers changed. If she stayed at \(q = \tfrac12\), a kick left would score 75% and a kick right 70%, so he would shoot left every time.</li>
 <li>Left dive: \(70p + 50(1 - p) = 50 + 20p\). Right dive: \(90p + 60(1 - p) = 60 + 30p\). They cross at \(p = -1\), which is not a probability. Between 0 and 1 the left-dive line is always the lower one, and it is highest at \(p = 1\). So the kicker always shoots left, the keeper always dives left, and the value is 70%. Kicking left beats kicking right against either dive (70 against 50, 90 against 60), so there is nothing to mix.</li>
 </ol>
-<p><b>Stretch.</b> Left dive: \(ap + c(1 - p)\). Right dive: \(bp + d(1 - p)\). Setting them equal, \(p(a - c - b + d) = d - c\), so \(p = \dfrac{d - c}{a - b - c + d}\). Then \(1 - p = \dfrac{a - b}{a - b - c + d}\), and the value is \(ap + c(1 - p) = \dfrac{a(d - c) + c(a - b)}{a - b - c + d} = \dfrac{ad - bc}{a - b - c + d}\). First table: \(p = \dfrac{60 - 80}{50 - 90 - 80 + 60} = \dfrac{-20}{-60} = \tfrac13\), and the value is \(\dfrac{3000 - 7200}{-60} = 70\).</p>
+<p><b>Stretch.</b> Left dive: \(ap + c(1 - p)\). Right dive: \(bp + d(1 - p)\). Setting them equal, \(p(a - c - b + d) = d - c\), so \(p = \dfrac{d - c}{a - b - c + d}\). Then \(1 - p = \dfrac{a - b}{a - b - c + d}\), and the value is \(ap + c(1 - p) = \dfrac{a(d - c) + c(a - b)}{a - b - c + d} = \dfrac{ad - bc}{a - b - c + d}\). First table: \(p = \dfrac{60 - 80}{50 - 90 - 80 + 60} = \dfrac{-20}{-60} = \tfrac13\), and the value is \(\dfrac{3000 - 7200}{-60} = 70\). With 90, 70, 50, 60 the lines are \(50 + 40p\) and \(60 + 10p\). They cross at \(p = \tfrac13\), at about 63%, but <em>both</em> rise, so the lower line is highest at \(p = 1\). Always shooting left guarantees 70%, and the keeper holds him to 70% by always diving right. The value is 70%, not 63%. The keeper's formula \(q = \dfrac{d - b}{a - b - c + d} = -\tfrac13\) gives the warning: it is not a probability. The crossing gives the value only when one line rises and the other falls, which is the same as both \(p\) and \(q\) lying between 0 and 1. Otherwise compare the ends of the lower line.</p>
 </section>
 
 <div class="sheet-nav"><a href="b15-max-flow.html">← Previous</a><a href="b17-power-of-a-point.html">Next: The power of a point →</a></div>

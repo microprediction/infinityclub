@@ -42,17 +42,17 @@
 <text x="205" y="31" fill="#f5a524" font-weight="700" text-anchor="end">∇f</text>
 <text x="14" y="30" fill="#555" font-size="12">k = −1</text><text x="301" y="181" fill="#555" font-size="12">k = 1</text><text x="301" y="152" fill="#f5a524" font-size="12">k = √2</text><text x="301" y="111" fill="#555" font-size="12">k = 2</text>
 <text x="60" y="186" fill="#3f44c9" font-size="12">x² + y² = 1</text>
-</svg><figcaption>Level lines \(x + y = k\) (grey) and the constraint circle. Lines with \(k \lt \sqrt2\) cut it, \(k = 2\) misses it, and at the touching line \(k = \sqrt2\) the gradients \(\nabla f\) and \(\nabla g\) are parallel.</figcaption></figure>
+</svg><figcaption>Level lines \(x + y = k\) (grey) and the constraint circle. Lines with \(|k| \lt \sqrt2\) cut it, \(k = 2\) misses it (as does any line with \(|k| \gt \sqrt2\)), and at the touching line \(k = \sqrt2\) the gradients \(\nabla f\) and \(\nabla g\) are parallel.</figcaption></figure>
 <p>Touching curves share a tangent, so they share a normal. The normal to a level curve of \(f\) is its <b>gradient</b></p>
 <p>\[\nabla f = \left(\frac{\partial f}{\partial x},\ \frac{\partial f}{\partial y}\right),\]</p>
 <p>where \(\partial f / \partial x\) means: differentiate with respect to \(x\), treating \(y\) as a constant. (A small step \((dx, dy)\) along a level curve changes \(f\) by \(\frac{\partial f}{\partial x}dx + \frac{\partial f}{\partial y}dy = 0\), so the step is perpendicular to \(\nabla f\); see also <a href="b9-gradient-descent.html">gradient descent</a>.) Likewise \(\nabla g\) is normal to the constraint. At the best point the two line up:</p>
-<p class="callout">\(\nabla f = \lambda\, \nabla g\) for some number \(\lambda\), together with \(g(x, y) = c\).</p>
-<p>One equation per coordinate plus the constraint, and as many unknowns. The rule finds candidates, maxima and minima alike; you decide which is which. It works in any number of variables, where it earns its keep.</p>
+<p class="callout">At a constrained maximum or minimum where \(\nabla g \ne 0\): \(\nabla f = \lambda\, \nabla g\) for some number \(\lambda\), together with \(g(x, y) = c\).</p>
+<p>One equation per coordinate plus the constraint, and as many unknowns. The rule finds candidates, maxima and minima alike; you decide which is which. It works in any number of variables, where it earns its keep. Points where \(\nabla g = 0\) must be checked separately: with the constraint \(y^2 = 0\), the best value of \(y - x^2\) is at \((0, 0)\), but there \(\nabla g = (0, 0)\) and no \(\lambda\) works. Writing the same line as \(y = 0\) fixes it.</p>
 </section>
 
 <section class="example">
 <h2>Watch one: the largest \(x + y\) on the unit circle</h2>
-<p>\(f = x + y\), constraint \(g = x^2 + y^2 = 1\). Then \(\nabla f = (1, 1)\) and \(\nabla g = (2x, 2y)\). Parallel means \(1 = 2\lambda x\) and \(1 = 2\lambda y\), so \(x = y\). With \(x^2 + y^2 = 1\) that gives \(x = y = \pm\tfrac{1}{\sqrt2}\). The plus sign is the maximum, \(f = \sqrt2\); the minus sign is the minimum, \(-\sqrt2\). In the figure, \(x + y = \sqrt2\) is the line that touches the circle; smaller \(k\) cuts it, larger \(k\) misses it.</p>
+<p>\(f = x + y\), constraint \(g = x^2 + y^2 = 1\). Then \(\nabla f = (1, 1)\) and \(\nabla g = (2x, 2y)\). Parallel means \(1 = 2\lambda x\) and \(1 = 2\lambda y\), so \(x = y\). With \(x^2 + y^2 = 1\) that gives \(x = y = \pm\tfrac{1}{\sqrt2}\). The plus sign is the maximum, \(f = \sqrt2\); the minus sign is the minimum, \(-\sqrt2\). In the figure, \(x + y = \sqrt2\) touches the circle at the top. Lines with \(|k| \lt \sqrt2\) cut it, \(k = -\sqrt2\) touches it at the bottom (the minimum), and \(|k| \gt \sqrt2\) misses it.</p>
 </section>
 
 <section class="exercises">
@@ -61,7 +61,7 @@
 <li>Maximise \(xy\) subject to \(x + y = 10\) with \(x, y > 0\). Write down the three equations, solve them, and keep the value of \(\lambda\) for the stretch. Check by substituting \(y = 10 - x\).<div class="space short"></div></li>
 <li>Find the point on the line \(x + 2y = 5\) closest to the origin by minimising \(x^2 + y^2\). Give the point and the distance, and confirm the distance with the formula for the distance from a point to a line.<div class="space short"></div></li>
 <li>Find the largest and smallest values of \(f = x^2 y\) on the circle \(x^2 + y^2 = 3\). The first gradient equation is \(2xy = 2\lambda x\); do not divide by \(x\) without asking whether \(x\) could be zero.<div class="space"></div></li>
-<li>A box sits inside a sphere of radius \(R\) with its eight corners on the sphere. With corner \((x, y, z)\) in the positive octant, the volume is \(8xyz\) and the constraint is \(x^2 + y^2 + z^2 = R^2\). Find the largest box, its side, and the fraction of the sphere it fills.<div class="space"></div></li>
+<li>A box sits inside a sphere of radius \(R\) with its eight corners on the sphere. With corner \((x, y, z)\) in the positive octant, the volume is \(8xyz\) and the constraint is \(x^2 + y^2 + z^2 = R^2\). Find the largest box, its side, and the fraction of the sphere it fills.<div class="space short"></div></li>
 </ol>
 </section>
 

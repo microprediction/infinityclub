@@ -25,7 +25,7 @@
 <header class="sheet-head">
   <div class="kicker">Infinity Club · Grade 10 · Around the corner · 5</div>
   <h1>Fermat's little theorem</h1>
-  <p class="teaser">Divide \(a^{p-1}\) by the prime \(p\) and the remainder is 1. Why, what it does to huge powers, and how it tests primes.</p>
+  <p class="teaser">Divide \(a^{p-1}\) by the prime \(p\) and the remainder is 1, unless \(p\) divides \(a\). Why, what it does to huge powers, and how it tests primes.</p>
   <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
 </header>
 
@@ -42,7 +42,7 @@
 <section class="example">
 <h2>Watch one: \(2^{100}\) mod 7</h2>
 <p>Fermat says \(2^6 \equiv 1 \pmod 7\), so every block of six 2s is worth 1. Divide: \(100 = 6 \times 16 + 4\). Then \(2^{100} = (2^6)^{16} \cdot 2^4 \equiv 1^{16} \cdot 16 \equiv 2 \pmod 7\).</p>
-<p>The recipe: reduce the <em>exponent</em> mod \(p - 1\), then compute the small power. Reduce the exponent mod \(p - 1\), not mod \(p\): that is the classic slip.</p>
+<p>The recipe, when \(a\) is not a multiple of \(p\): reduce the <em>exponent</em> mod \(p - 1\), then compute the small power. Reduce the exponent mod \(p - 1\), not mod \(p\): that is the classic slip. The condition matters too: \(7^6 \equiv 0 \pmod 7\), but blindly reducing the exponent would give \(7^0 = 1\).</p>
 </section>
 
 <section class="exercises">
@@ -50,10 +50,10 @@
 <ol>
 <li>Find the remainders of \(5^{20}\) divided by 7, of \(10^{18}\) divided by 19, and of \(2^{35}\) divided by 13.<div class="space"></div></li>
 <li>What is the last digit of \(7^{2026}\)? 10 is not prime, so Fermat does not apply directly. Use mod 5 (where it does) and the fact that \(7^{2026}\) is odd.<div class="space short"></div></li>
-<li>Fermat gives a primality test: pick \(a\), compute \(a^{n-1} \bmod n\), and if the answer is not 1 then \(n\) is definitely composite. (a) Show that \(2^{340} \equiv 1 \pmod{341}\), even though \(341 = 11 \times 31\) is composite. (Hint: \(2^{10} = 1024 = 3 \times 341 + 1\).) (b) What does this say about the test with base 2? (c) Why does base 3, with \(3^{340} \equiv 56 \pmod{341}\), catch it?<div class="space"></div></li>
+<li>Fermat gives a primality test: pick a base \(a\) with \(1 \le a \le n - 1\), compute \(a^{n-1} \bmod n\), and if the answer is not 1 then \(n\) is definitely composite. (a) Show that \(2^{340} \equiv 1 \pmod{341}\), even though \(341 = 11 \times 31\) is composite. (Hint: \(2^{10} = 1024 = 3 \times 341 + 1\).) (b) What does this say about the test with base 2? (c) Why does base 3, with \(3^{340} \equiv 56 \pmod{341}\), catch it?<div class="space"></div></li>
 <li>Prove that \(n^5 - n\) is divisible by 30 for every whole number \(n\). (Use \(a^p \equiv a\) for \(p = 2, 3, 5\); for \(p = 3\) write \(n^5 = n^3 \cdot n^2\).)<div class="space"></div></li>
 </ol>
-<p class="small">The <a href="../../demos/circle-times.html">times tables on a circle</a> demo draws the multiplication-by-\(a\) shuffle from the proof: set \(n\) to a prime and watch every point get hit exactly once.</p>
+<p class="small">The <a href="../../demos/circle-times.html">times tables on a circle</a> demo draws the multiplication-by-\(a\) shuffle from the proof: set \(n\) to a prime, pick a multiplier that is not a multiple of it, and watch every point get hit exactly once.</p>
 </section>
 
 <section class="stretch">

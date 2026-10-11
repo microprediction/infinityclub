@@ -35,7 +35,7 @@
 \[40^2 + 40 + 41 = 40(40 + 1) + 41 = 40 \times 41 + 41 = 41 \times 41.\]
 <p>Not prime. Forty successes were evidence, not proof.</p>
 <p class="callout">A claim about <em>every</em> number is sunk by one case where it fails. That case is a <b>counterexample</b>. No pile of successes can prove such a claim. Only a reason that covers every case can.</p>
-<p>Here is another trap. Mark points on a circle and join every pair with a straight line. Place the points so that no three lines cross at one spot. Count the regions.</p>
+<p>Here is another trap. Mark points on a circle and join every pair with a straight line. Place the points so that no three chords meet at one point inside the circle. Count the regions.</p>
 <figure><svg viewBox="0 0 520 124" width="520" height="124" role="img" aria-label="Six circles with 1, 2, 3, 4, 5 and 6 points marked on the edge and every pair of points joined. The circles are cut into 1, 2, 4, 8, 16 and then 31 regions." font-family="Nunito, sans-serif" font-size="13">
 <circle cx="44" cy="44" r="38" fill="#dcdcf5" stroke="#000" stroke-width="1.5"/>
 <circle cx="81.9" cy="40.7" r="2.5" fill="#000"/>
@@ -111,7 +111,7 @@
 <circle cx="492.1" cy="78.4" r="2.5" fill="#000"/>
 <text x="476" y="102" text-anchor="middle" fill="#999">6 points</text>
 <text x="476" y="119" text-anchor="middle" font-weight="800" font-size="14" fill="#f5a524">31</text>
-</svg><figcaption>Regions: 1, 2, 4, 8, 16. Doubling, surely. Then six points give 31, not 32.</figcaption></figure>
+</svg><figcaption>Regions: 1, 2, 4, 8, 16. Doubling, surely. Then six points give 31, not 32. Why: each new chord adds one region, plus one for every chord it crosses. There are \(\binom62 = 15\) chords, and every 4 of the points give exactly one crossing, \(\binom64 = 15\) of them. So \(1 + 15 + 15 = 31\).</figcaption></figure>
 </section>
 
 <section class="example">
