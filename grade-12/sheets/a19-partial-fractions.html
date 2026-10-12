@@ -36,7 +36,7 @@
 <p>\[\frac{1}{(x-1)(x+1)} = \frac{A}{x-1} + \frac{B}{x+1}, \qquad\text{so}\qquad 1 = A(x+1) + B(x-1).\]</p>
 <p>The second equation must hold for every \(x\), so choose convenient ones. \(x = 1\) kills the \(B\) term: \(1 = 2A\), \(A = \tfrac12\). \(x = -1\) kills \(A\): \(B = -\tfrac12\). (The <b>cover-up</b> shortcut: to find \(A\), cover \((x-1)\) in the original fraction and set \(x = 1\) in what remains.) Then</p>
 <p class="callout">\(\displaystyle\int \frac{dx}{x^2-1} = \frac12\int\frac{dx}{x-1} - \frac12\int\frac{dx}{x+1} = \frac12 \ln\left|\frac{x-1}{x+1}\right| + C.\)</p>
-<p>Each distinct linear factor in the denominator gets one constant, and there are always enough equations to find them, provided the numerator has lower degree than the denominator. If it does not, divide first.</p>
+<p>When the denominator is a product of distinct linear factors, each factor gets one constant, and there are always enough equations to find them, provided the numerator has lower degree than the denominator. If it does not, divide first. Repeated factors need one term for every power, and quadratic factors that do not split need numerators of the form \(Bx + C\).</p>
 <p>The same split sums series. Since \(\dfrac{1}{n(n+1)} = \dfrac1n - \dfrac{1}{n+1}\), the sum of the first \(N\) terms collapses:</p>
 <p>\[\Big(1 - \tfrac12\Big) + \Big(\tfrac12 - \tfrac13\Big) + \cdots + \Big(\tfrac1N - \tfrac{1}{N+1}\Big) = 1 - \frac{1}{N+1}.\]</p>
 <p>Every middle term cancels with its neighbour, like a collapsing telescope. As \(N \to \infty\) the sum is exactly 1.</p>
