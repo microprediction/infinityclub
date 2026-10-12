@@ -85,7 +85,7 @@
 
 <section class="stretch">
 <h2>Stretch: Euler's other formula</h2>
-<p>Euler found another gem about shapes. For any solid with flat faces (and no holes through it), count the corners \(V\), the edges \(E\) and the faces \(F\). Then \(V - E + F = 2\). Always.</p>
+<p>Euler found another gem about shapes. For any convex solid with flat faces (no dents and no holes), count the corners \(V\), the edges \(E\) and the faces \(F\). Then \(V - E + F = 2\). Always.</p>
 <p>Check it on a cube. Then on a tetrahedron (a pyramid with a triangular base, four faces in all). Then on a square-based pyramid. Then try a shape nobody told you about, like a prism with a hexagonal end. Does it ever fail?</p>
 <p>It even works for a <b>connected</b> graph drawn flat on paper with no crossing lines, if you count the outside region as a face. Connected means you can follow edges from any dot to any other. Try it on the house.</p>
 <div class="space"></div>
@@ -101,7 +101,7 @@
 <li>Five dots, each of degree 2 (two lines meet at each point). All degrees even, so the walk exists from anywhere and must return to its start.</li>
 <li>Many answers. One: islands A and B, banks N and S. Bridges A–N, A–S, B–N, B–S, A–B, A–B (two parallel bridges between the islands). Degrees: A 4, B 4, N 2, S 2, all even, so you can start anywhere and return.</li>
 </ol>
-<p><b>Stretch.</b> Cube: \(8 - 12 + 6 = 2\). Tetrahedron: \(4 - 6 + 4 = 2\). Square pyramid: \(5 - 8 + 5 = 2\). Hexagonal prism: \(12 - 18 + 8 = 2\). It does not fail for any solid without holes. The house drawn flat: the two diagonals cross, so count the crossing as a dot. Then \(V = 6\), \(E = 10\) (six outer lines plus four half-diagonals), and \(F = 6\) (the roof triangle, four triangles inside the square, and the outside). \(6 - 10 + 6 = 2\).</p>
+<p><b>Stretch.</b> Cube: \(8 - 12 + 6 = 2\). Tetrahedron: \(4 - 6 + 4 = 2\). Square pyramid: \(5 - 8 + 5 = 2\). Hexagonal prism: \(12 - 18 + 8 = 2\). It does not fail for any convex solid. The house drawn flat: the two diagonals cross, so count the crossing as a dot. Then \(V = 6\), \(E = 10\) (six outer lines plus four half-diagonals), and \(F = 6\) (the roof triangle, four triangles inside the square, and the outside). \(6 - 10 + 6 = 2\).</p>
 </section>
 
 <div class="sheet-nav"><a href="b12-infinity.html">← Previous</a><a href="b14-dice.html">Next: Dice don't lie →</a></div>
