@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The number ...9999 is minus one · Infinity Club</title>
+<meta name="description" content="Meet the 10-adic numbers, whose digits go on forever to the left. Add and multiply them column by column, find the ones that act like −1 and 1/3, and see two nonzero numbers whose product is 0.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 9</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 9 · Around the corner · 31</div>
+  <h1>The number ...9999 is minus one</h1>
+  <p class="teaser">Add 1 to ...99999, a number with nines going on forever to the left. Every column carries, and you get 0. So ...99999 behaves exactly like −1.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Write a number whose digits go on forever to the left, like \(\dots 6667\) or \(\dots 9999\). In ordinary arithmetic that means nothing: \(9 + 90 + 900 + \cdots\) just grows. In a different number system, the <b>10-adic numbers</b>, it does mean something.</p>
+<p>You add and multiply as usual, column by column from the right, carrying to the left. Each digit of the answer depends only on its own column and those to its right, so you can find as many digits as you like.</p>
+<p>What changes is the meaning of close. Two 10-adic numbers are <b>close</b> when their last digits agree: the more digits, the closer. So 7, 67, 667, 6667 home in on \(\dots 6667\). And 1,000,000 is close to 0, because its last six digits are 000000.</p>
+<p class="callout">In the 10-adic numbers, a number is 0 when every digit is 0, and big powers of 10 are tiny.</p>
+<p>Use a prime \(p\) in place of 10, with digits in base \(p\), and you get the <b>\(p\)-adic numbers</b>, a standard tool in number theory. The stretch shows why primes behave better.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: \(\dots 9999 + 1\)</h2>
+<p>Line up the columns and add from the right.</p>
+\[\begin{array}{cccccc} &amp; \cdots &amp; 9 &amp; 9 &amp; 9 &amp; 9 \\ + &amp; &amp; &amp; &amp; &amp; 1 \\ \hline &amp; \cdots &amp; 0 &amp; 0 &amp; 0 &amp; 0 \end{array}\]
+<p>Units column: \(9 + 1 = 10\), write 0 and carry 1. Tens column: \(9 + 0 + 1 = 10\), write 0 and carry 1. Every column after that does the same thing. With an ordinary number the carry would finally land in an empty column and leave a 1 at the front. Here there is no front, so the carry never lands. Every digit of the answer is 0, and that is the number 0.</p>
+<p>So \(\dots 9999\) is the number that gives 0 when you add 1. That is the job of \(-1\).</p>
+<p><b>A second check.</b> If it really is \(-1\), its square should be 1. Try a few nines: \(999 \times 999 = 998001\), which ends in 001. More nines give more zeros before the final 1, so \(\dots 9999 \times \dots 9999 = \dots 0001 = 1\).</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>(a) Work out \(3 \times 7\), \(3 \times 67\), \(3 \times 667\) and \(3 \times 6667\). (b) Now multiply \(\dots 6667\) by 3, column by column from the right. What do you write, and what do you carry, in each column? (c) Which fraction does \(\dots 6667\) act like?<div class="space short"></div></li>
+<li>(a) Multiply \(\dots 1111\) by 9. Which number from the worked example do you get? Which fraction does \(\dots 1111\) act like? (b) Do the same for \(3 \times \dots 3333\). (c) Add \(\dots 3333 + \dots 6667\) column by column. Does the answer agree with part (b) and exercise 1?<div class="space short"></div></li>
+<li>(a) Square 625 and square 376. Look at the last three digits of each answer. (b) A computer gives \(890625^2 = 793{,}212{,}890{,}625\) and \(109376^2 = 11{,}963{,}109{,}376\). What do you notice? (c) Both patterns can be continued to the left forever, one digit at a time. That gives two 10-adic numbers, \(e = \dots 890625\) and \(f = \dots 109376\), with \(e^2 = e\) and \(f^2 = f\). Which ordinary numbers equal their own square? (d) Add \(890625 + 109376\). What does this suggest about \(e + f\)?<div class="space"></div></li>
+<li>(a) Multiply \(625 \times 376\). (b) Multiply \(625 \times 9376\). (These are the last four digits of \(e\) and \(f\), since \(e\) ends in 0625.) (c) A computer gives \(890625 \times 109376 = 97{,}413{,}000{,}000\). Count the zeros at the end of all three products. What 10-adic number is \(e \times f\)? (d) Use \(e + f = 1\) and \(e^2 = e\) to explain your answer to (c) with algebra.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: why a prime is safer</h2>
+<p>Exercise 4 found two 10-adic numbers, neither of them 0, whose product is 0. A clue is in the last digits: \(e\) ends in 5, \(f\) ends in 6, and \(5 \times 6 = 30\) ends in 0. (a) List every pair of digits from 1 to 9 whose product ends in 0. (b) The 5-adic numbers are written in base 5, with digits 0 to 4. Check that no two of the digits 1, 2, 3, 4 have a product that is a multiple of 5. (c) Use (b) to explain why the product of two 5-adic numbers is never 0 unless one of them is 0. Hint: find the rightmost digit of each number that is not 0.</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) 21, 201, 2001, 20001. (b) Units: \(3 \times 7 = 21\), write 1 and carry 2. Every later column: \(3 \times 6 + 2 = 20\), write 0 and carry 2. The carry never lands, so the product is \(\dots 0001 = 1\). (c) Three times it is 1, so \(\dots 6667\) acts like \(\tfrac13\). Not every fraction has a 10-adic partner like this: 2 times any 10-adic number ends in an even digit, so nothing acts like \(\tfrac12\).</li>
+<li>(a) \(9 \times 1 = 9\) in every column with nothing to carry, so the product is \(\dots 9999 = -1\). Nine times it is \(-1\), so \(\dots 1111\) acts like \(-\tfrac19\). (b) \(3 \times 3 = 9\) in every column, so \(3 \times \dots 3333 = \dots 9999 = -1\) and \(\dots 3333\) acts like \(-\tfrac13\). (c) Units: \(3 + 7 = 10\), write 0 and carry 1. Every later column: \(3 + 6 + 1 = 10\), write 0 and carry 1. The sum is \(\dots 0000 = 0\). That agrees: \(-\tfrac13 + \tfrac13 = 0\).</li>
+<li>(a) \(625^2 = 390{,}625\) and \(376^2 = 141{,}376\). Each square ends in the number you started with. (b) The same thing with six digits: the squares end in 890625 and in 109376. (c) \(x^2 = x\) means \(x(x - 1) = 0\), so only 0 and 1. The 10-adic numbers have two more, \(e\) and \(f\). (d) \(890625 + 109376 = 1{,}000{,}001\), which ends in 000001. The more digits you keep, the more zeros appear before the final 1, so \(e + f = \dots 000001 = 1\).</li>
+<li>(a) \(235{,}000\). (b) \(5{,}860{,}000\). (c) Three zeros, then four, then six: as many as the digits you kept. Keep every digit and every digit of the product is 0, so \(e \times f = 0\), although neither \(e\) nor \(f\) is 0. (d) \(f = 1 - e\), so \(e \times f = e(1 - e) = e - e^2 = e - e = 0\).</li>
+</ol>
+<p><b>Stretch.</b> (a) 2 and 5, 4 and 5, 5 and 6, 5 and 8: a 5 with an even digit, because 10 is \(2 \times 5\). (b) The products are 1, 2, 3, 4, 4, 6, 8, 9, 12 and 16. None is a multiple of 5. (c) Take two 5-adic numbers that are not 0. Say the first has rightmost nonzero digit \(s\) with \(i\) zeros after it, and the second has rightmost nonzero digit \(t\) with \(j\) zeros after it. The zeros are factors of 5 (in base 5, multiplying by 5 shifts the digits one place left), so set them aside and multiply what remains. The last digit of that product comes from \(s \times t\) alone, and by (b) it is not 0. Put the zeros back: the product has a nonzero digit with \(i + j\) zeros after it, so it is not 0. The same argument works for any prime \(p\), because a prime that divides \(s \times t\) must divide \(s\) or \(t\), and no digit from 1 to \(p - 1\) is a multiple of \(p\). It fails for 10, which is not prime. That is why number theorists work with \(p\)-adic numbers for a prime \(p\).</p>
+</section>
+
+<div class="sheet-nav"><a href="b30-points-on-a-circle.html">← Previous</a><a href="b32-three-distances.html">Next: Three ways to measure distance →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>
