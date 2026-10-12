@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Squash eight numbers into a few · Math Detours</title>
+<meta name="description" content="The Haar transform on eight numbers: swap each pair for its average and half its difference, repeat on the averages, then drop the small differences and see how close the rebuilt copy is.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Math Detours · Grade 8 · Connections · 15</div>
+  <h1>Squash eight numbers into a few</h1>
+  <p class="teaser">Replace pairs of numbers by their average and half their difference. Throw away the small differences and you can still rebuild a recognisable copy from far fewer numbers.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A sound, or a row of pixels in a photo, is a list of numbers. Neighbours are usually close, like 4, 6 or 10, 12. Can such a list be stored with less?</p>
+<p>Take a pair \(x, y\) and swap it for its average and half its difference:</p>
+<p class="callout">\[a = \frac{x + y}{2}, \qquad d = \frac{x - y}{2}.\] Nothing is lost, because \(x = a + d\) and \(y = a - d\).</p>
+<p>Do this to every pair. Then do it again to the averages only, and again, until one average is left. Eight numbers become one average and seven differences. That is still eight numbers, so nothing is saved yet. The saving comes when the list is smooth: many differences are small, and you can call them 0 and rebuild a close copy.</p>
+<p>This is the <b>Haar transform</b>. It builds a list out of flat steps, called <b>Haar wavelets</b>, instead of the smooth sine waves used to describe musical notes.</p>
+<figure><svg viewBox="0 0 500 82" width="500" height="82" role="img" aria-label="Four step-shaped building blocks drawn over eight slots, each against a dashed zero line: a flat block at height 1 across all eight slots; a wide step at plus 1 for four slots then minus 1 for four; a half-width step at plus 1 for two slots, minus 1 for two, then zero for four; and a narrow step at plus 1 for one slot, minus 1 for one, then zero for six" font-family="Nunito, sans-serif" font-size="12">
+<line x1="18" y1="34" x2="122" y2="34" stroke="#999" stroke-width="1" stroke-dasharray="3 3"/>
+<polyline points="18,18 31,18 31,18 44,18 44,18 57,18 57,18 70,18 70,18 83,18 83,18 96,18 96,18 109,18 109,18 122,18" fill="none" stroke="#3f44c9" stroke-width="2.5" stroke-linejoin="round"/>
+<text x="70" y="74" text-anchor="middle" fill="#1d1f3a">flat (1 of these)</text>
+<line x1="140" y1="34" x2="244" y2="34" stroke="#999" stroke-width="1" stroke-dasharray="3 3"/>
+<polyline points="140,18 153,18 153,18 166,18 166,18 179,18 179,18 192,18 192,50 205,50 205,50 218,50 218,50 231,50 231,50 244,50" fill="none" stroke="#3f44c9" stroke-width="2.5" stroke-linejoin="round"/>
+<text x="192" y="74" text-anchor="middle" fill="#1d1f3a">wide step (1)</text>
+<line x1="262" y1="34" x2="366" y2="34" stroke="#999" stroke-width="1" stroke-dasharray="3 3"/>
+<polyline points="262,18 275,18 275,18 288,18 288,50 301,50 301,50 314,50 314,34 327,34 327,34 340,34 340,34 353,34 353,34 366,34" fill="none" stroke="#3f44c9" stroke-width="2.5" stroke-linejoin="round"/>
+<text x="314" y="74" text-anchor="middle" fill="#1d1f3a">half step (2)</text>
+<line x1="384" y1="34" x2="488" y2="34" stroke="#999" stroke-width="1" stroke-dasharray="3 3"/>
+<polyline points="384,18 397,18 397,50 410,50 410,34 423,34 423,34 436,34 436,34 449,34 449,34 462,34 462,34 475,34 475,34 488,34" fill="none" stroke="#3f44c9" stroke-width="2.5" stroke-linejoin="round"/>
+<text x="436" y="74" text-anchor="middle" fill="#1d1f3a">narrow step (4)</text>
+</svg><figcaption>Eight building blocks: the average scales the flat one, and each difference scales one step.</figcaption></figure>
+</section>
+
+<section class="example">
+<h2>Watch one: 4, 6, 10, 12, 8, 6, 5, 5</h2>
+<p><b>Round 1.</b> The pairs are \((4, 6)\), \((10, 12)\), \((8, 6)\), \((5, 5)\). Averages: 5, 11, 7, 5. Differences: \(-1, -1, 1, 0\). For example \((4 - 6)/2 = -1\).</p>
+<p><b>Round 2.</b> Pair up the averages: \((5, 11)\) and \((7, 5)\). Averages: 8, 6. Differences: \(-3, 1\). <b>Round 3.</b> One pair left, \((8, 6)\). Average 7, difference 1.</p>
+<p>The transform is the last average followed by the differences, newest first: \[7 \;\big|\; 1 \;\big|\; {-3},\ 1 \;\big|\; {-1},\ -1,\ 1,\ 0.\] The 7 is the average of all eight numbers. To rebuild, run the rounds backwards using \(a + d\) and \(a - d\): 7 and 1 give \(8, 6\). Then 8 with \(-3\) gives \(5, 11\), and 6 with 1 gives \(7, 5\). One more round returns the original list. Following the first number down: \(7 + 1 - 3 - 1 = 4\).</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>A transform reads \(10 \;\big|\; 2 \;\big|\; 1,\ -1 \;\big|\; 0,\ 1,\ 0,\ -2\). Rebuild the eight numbers, one round at a time.<div class="space"></div></li>
+<li>Find the full transform of the steady climb 2, 4, 6, 8, 10, 12, 14, 16. What happens to the size of the differences from round to round?<div class="space"></div></li>
+<li>Take the transform from the worked example and change every difference of size 1 or less to 0. (a) How many nonzero numbers are left? (b) Rebuild the eight numbers. (c) Compare with the original list. What is the largest error?<div class="space"></div></li>
+<li>(a) Find the full transform of 2, 2, 2, 2, 10, 10, 10, 10. How many of its eight numbers are not zero? (b) Do the same for 2, 2, 2, 2, 2, 10, 10, 10, where the jump comes one place later. (c) If you store only the nonzero numbers from (b) and rebuild, is the jump blurred?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: how bad can it get?</h2>
+<p>In exercise 3 each dropped difference had size 1 or less, yet one error was 2. With eight numbers, what is the largest error that dropping differences of size 1 or less could ever cause? Explain why, and find a list of eight numbers where it happens. What would the answer be for sixteen numbers?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>10 with 2 gives \(12, 8\). Then 12 with 1 gives \(13, 11\), and 8 with \(-1\) gives \(7, 9\). Last round: 13 with 0 gives \(13, 13\); 11 with 1 gives \(12, 10\); 7 with 0 gives \(7, 7\); 9 with \(-2\) gives \(7, 11\). The list is 13, 13, 12, 10, 7, 7, 7, 11.</li>
+<li>Round 1: averages 3, 7, 11, 15 and differences \(-1, -1, -1, -1\). Round 2: averages 5, 13 and differences \(-2, -2\). Round 3: average 9 and difference \(-4\). The transform is \(9 \;\big|\; {-4} \;\big|\; {-2},\ -2 \;\big|\; {-1},\ -1,\ -1,\ -1\). The differences double each round, because each round compares averages that sit twice as far apart. A smooth list has small differences in round 1, but not always in the later rounds.</li>
+<li>(a) Two: the average 7 and the difference \(-3\). The transform is now \(7 \;\big|\; 0 \;\big|\; {-3},\ 0 \;\big|\; 0,\ 0,\ 0,\ 0\). (b) 7 with 0 gives \(7, 7\). Then 7 with \(-3\) gives \(4, 10\), and 7 with 0 gives \(7, 7\). Every last-round difference is 0, so each number is just repeated: 4, 4, 10, 10, 7, 7, 7, 7. (c) The original was 4, 6, 10, 12, 8, 6, 5, 5, so the errors are 0, 2, 0, 2, 1, 1, 2, 2. The largest is 2. Two numbers in place of eight give a rough copy with the right overall shape. (A real system must also record which positions the kept numbers came from.)</li>
+<li>(a) Round 1: averages 2, 2, 10, 10, differences all 0. Round 2: averages 2, 10, differences 0, 0. Round 3: average 6, difference \(-4\). Transform \(6 \;\big|\; {-4} \;\big|\; 0,\ 0 \;\big|\; 0,\ 0,\ 0,\ 0\): two nonzero numbers. (b) Round 1: averages 2, 2, 6, 10, differences \(0, 0, -4, 0\). Round 2: averages 2, 8, differences \(0, -2\). Round 3: average 5, difference \(-3\). Transform \(5 \;\big|\; {-3} \;\big|\; 0,\ -2 \;\big|\; 0,\ 0,\ -4,\ 0\): four nonzero numbers. (c) No. The numbers you left out were already 0, so the rebuilt list is exactly the original and the jump is as sharp as ever. The blocks are steps themselves, so a sudden jump costs them only a few numbers.</li>
+</ol>
+<p><b>Stretch.</b> The largest error is 3. Each rebuilt number is the overall average plus or minus one difference from each round, as in \(7 + 1 - 3 - 1 = 4\). With eight numbers there are three rounds, so at most three dropped differences touch any one number, and the error is at most \(1 + 1 + 1 = 3\). It happens for 10, 8, 8, 6, 8, 6, 6, 4, whose transform is \(7 \;\big|\; 1 \;\big|\; 1,\ 1 \;\big|\; 1,\ 1,\ 1,\ 1\). Dropping every difference leaves eight 7s, and the first number is off by 3. Sixteen numbers need four rounds, so the largest error is 4. Small errors can pile up, which is why exercise 3 gave an error of 2.</p>
+</section>
+
+<div class="sheet-nav"><a href="c14-fishing-limits.html">← Previous</a><a href="c16-hidden-shape-scattering.html">Next: Find the hidden shape →</a></div>
+</main>
+
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

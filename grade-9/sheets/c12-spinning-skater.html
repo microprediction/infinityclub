@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why the skater spins faster · Math Detours</title>
+<meta name="description" content="A spinning skater who pulls in her arms speeds up because angular momentum is conserved. Work out the speed-up for point weights, see where the extra energy comes from, and test the tennis racket theorem by tossing a book.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
+  <a href="../index.html">Grade 9</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Math Detours · Grade 9 · Connections · 12</div>
+  <h1>Why the skater spins faster</h1>
+  <p class="teaser">A skater pulls in her arms and spins faster, though nothing pushes her. Toss a book spinning about each of its three axes and one of the spins will not stay steady. Spinning things follow surprising rules.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A skater spins on the spot with her arms out. She pulls them in and spins much faster, yet nobody pushed her.</p>
+<p>A small mass \(m\) at distance \(r\) from the spin axis adds \(m r^2\) to the <b>moment of inertia</b> \(I\) (how hard a thing is to spin). Multiply by the spin rate to get the <b>angular momentum</b>: \(L = I \times \text{spin rate}\).</p>
+<p class="callout">If nothing outside twists the system, \(L\) stays the same. Make \(I\) smaller and the spin rate must go up.</p>
+<p>This is a <b>conservation law</b>. It lets you predict the end of a motion without following the middle.</p>
+<p>A solid object has three natural spin axes, at right angles, each with its own \(I\). If the three values are all different, spins about the largest and the smallest are steady. A spin about the middle one is unstable: the tiniest wobble grows until the object flips. This is the <b>tennis racket theorem</b>. Tonight you test it.</p>
+<p class="small">Model: the weights are points, with no friction and no body. The stretch puts the body back.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: pulling the weights in</h2>
+<p>A skater holds a 2 kg weight in each hand, 0.8 m from her spin axis, and turns once a second. She pulls both weights in to 0.4 m. How fast does she spin now? Use the model: count only the weights.</p>
+<p><b>Before.</b> Two weights, each adding \(m r^2\):</p>
+\[I = 2 \times 2 \times 0.8^2 = 2.56\ \text{kg m}^2, \qquad L = 2.56 \times 1 = 2.56.\]
+<p><b>After.</b> \(I = 2 \times 2 \times 0.4^2 = 0.64\ \text{kg m}^2\). Nothing outside twisted her, so \(L\) is still 2.56:</p>
+\[\text{spin rate} = \frac{L}{I} = \frac{2.56}{0.64} = 4\ \text{turns per second}.\]
+<p>A shortcut: halving \(r\) divides \(I\) by \(2^2 = 4\), so the spin rate is multiplied by 4. In general the spin rate is multiplied by \(\left(\dfrac{r_{\text{before}}}{r_{\text{after}}}\right)^2\).</p>
+<p class="small">We count spin in turns per second. Physicists usually use another unit, radians per second. That multiplies every \(L\) by the same number, so no ratio changes. A real skater speeds up less than this, as the stretch shows.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>In the same model, a skater holds a 1.5 kg weight in each hand, 0.6 m from the axis, and makes half a turn each second. (a) Find \(I\) and \(L\). (b) She pulls the weights in to 0.2 m. Find the new \(I\) and the new spin rate. (c) She then pushes them out to 0.9 m. What is the spin rate now?<div class="space short"></div></li>
+<li>A mass \(m\) moving at speed \(v\) has kinetic energy \(\tfrac12 m v^2\), in joules when \(m\) is in kg and \(v\) in m/s. A weight going round a circle of radius \(r\) has speed \(2\pi r \times\) (turns per second). (a) For the worked example, find the speed of a weight and the total kinetic energy of the two weights, before and after. (b) By what factor did the energy change? Compare it with the factor for the spin rate. (c) Energy cannot appear from nowhere. Where did the extra come from?<div class="space short"></div></li>
+<li>For a solid block, the same all the way through, the moment of inertia about the axis through its centre parallel to one edge is \(\tfrac{1}{12}M(b^2 + c^2)\), where \(M\) is its mass and \(b\) and \(c\) are the <i>other</i> two edges. A book is 2 cm thick, 15 cm wide and 20 cm tall. (a) Work out \(b^2 + c^2\) for each of the three axes. Which axis is the middle one? (b) Hold a book shut with a rubber band. Over a bed, toss it gently so it turns once about each axis in turn, five times each. Record how often it comes down twisted over. (c) What would you predict for a book 2 cm by 20 cm by 20 cm?<div class="space short"></div></li>
+<li>A model star is a ball of radius 700,000 km, about the size of the Sun, turning once every 25 days. It collapses to a ball of radius 10 km. Suppose it loses no mass and its mass stays spread out in the same pattern, so that \(I\) is a fixed number times \(M R^2\). (a) By what factor does the spin rate go up? (b) How long does one turn take now? (One day is 86,400 s.) (c) What had to be true for \(L\) to stay the same?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: put the body back</h2>
+<p>A skater's body, arms by her sides, has a moment of inertia of very roughly 1 kg m² about her spin axis. Suppose it stays at 1 whatever her hands do. (a) Redo the worked example with the body included. What is the new spin rate, and what is the speed-up factor? (b) Explain why the factor must be less than 4 for any body with \(I \gt 0\). (c) In this model a skater with empty hands could not speed up at all. Real skaters do. What has the model left out?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(I = 2 \times 1.5 \times 0.6^2 = 1.08\ \text{kg m}^2\) and \(L = 1.08 \times 0.5 = 0.54\). (b) \(I = 2 \times 1.5 \times 0.2^2 = 0.12\ \text{kg m}^2\), so the spin rate is \(0.54 \div 0.12 = 4.5\) turns per second. The radius went down by a factor of 3, so the rate went up by \(3^2 = 9\). (c) \(I = 2 \times 1.5 \times 0.9^2 = 2.43\ \text{kg m}^2\), so the rate is \(0.54 \div 2.43 = \tfrac29 \approx 0.22\) turns per second. Pushing mass outwards slows the spin.</li>
+<li>(a) Before: \(v = 2\pi \times 0.8 \times 1 \approx 5.03\) m/s. Each weight has \(\tfrac12 \times 2 \times 5.03^2 \approx 25.3\) J, so the total is about 50.5 J. After: \(v = 2\pi \times 0.4 \times 4 \approx 10.05\) m/s, and the total is \(2 \times \tfrac12 \times 2 \times 10.05^2 \approx 202\) J. (b) The energy went up by a factor of 4, the same as the spin rate. The radius halved but the speed doubled, and energy depends on speed squared. (c) From the skater's muscles. A weight going round a circle keeps trying to fly off in a straight line, so she has to pull hard to drag it inwards. That pull, acting through the distance the weights move in, does about 152 J of work. Angular momentum is conserved here. Kinetic energy is not.</li>
+<li>(a) Axis along the 2 cm edge (through the covers): \(15^2 + 20^2 = 625\). Axis along the 15 cm edge (across the cover): \(2^2 + 20^2 = 404\). Axis along the 20 cm edge (along the spine): \(2^2 + 15^2 = 229\). The middle one is the axis across the cover, parallel to the 15 cm edges. (b) Spun flat like a plate (625) or about its spine (229), the book should come down the way it went up. Tumbled top edge over bottom edge (404), it usually comes down twisted over, with the back cover where the front was. A real book is not a perfect solid block and your tosses will vary, so expect a clear pattern, not a perfect score. (c) The three numbers are 800, 404 and 404. Two are equal, so there is no middle value and the theorem does not apply. It only speaks about three different values.</li>
+<li>(a) The radius shrinks by a factor of \(700\,000 \div 10 = 70\,000\), so \(I\) shrinks by \(70\,000^2 = 4.9 \times 10^{9}\). The spin rate goes up by the same factor, almost five billion. (b) \(25 \times 86\,400 = 2\,160\,000\) s, and \(2\,160\,000 \div (4.9 \times 10^{9}) \approx 0.00044\) s. That is about 2,300 turns every second. (c) Nothing outside may twist the star, and nothing may leave carrying angular momentum away. In space the first is nearly true. The second is not: a real collapsing star throws off a great deal of material, and only its core is squeezed down. So the model is too simple. Even so, real neutron stars, which are about this size, have been seen spinning hundreds of times a second.</li>
+</ol>
+<p><b>Stretch.</b> (a) Before: \(I = 2.56 + 1 = 3.56\ \text{kg m}^2\), so \(L = 3.56\). After: \(I = 0.64 + 1 = 1.64\ \text{kg m}^2\). The spin rate is \(3.56 \div 1.64 \approx 2.17\) turns per second, a factor of about 2.2, not 4. (b) The factor is \(\dfrac{2.56 + I}{0.64 + I}\). It is less than 4 because \(2.56 + I \lt 4 \times (0.64 + I) = 2.56 + 4I\) whenever \(I \gt 0\). The body's share of the moment of inertia does not shrink, so it dilutes the effect. A larger body \(I\) brings the factor closer to 1. (c) Her arms, and often one leg, are themselves mass held far from the axis. Pulling them in lowers the body's own \(I\), so it is not really fixed at 1. A better model would treat the arms as moving mass too.</p>
+</section>
+
+<div class="sheet-nav"><a href="c11-robot-arm-torus.html">← Previous</a><a href="c13-stream-to-drops.html">Next: Why a tap stream breaks into drops →</a></div>
+</main>
+
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

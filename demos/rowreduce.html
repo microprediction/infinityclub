@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Row Reduction, Step by Step · Infinity Club</title>
+<title>Row Reduction, Step by Step · Math Detours</title>
 <meta name="description" content="Solve three equations in three unknowns by row operations. Do the steps yourself or let the demo choose, watch the staircase form, then back-substitute. Exact fractions throughout.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
 <link rel="stylesheet" href="../assets/site.css">
@@ -30,7 +30,7 @@ h2.sub { font-size: 1rem; margin: 1rem 0 .2rem; }
 </head>
 <body>
 <nav class="top">
-  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Math Detours</a>
   <a href="index.html">Demos</a>
   <a href="../index.html#grades">Grades</a>
   <a href="../parents.html">Parents</a>
@@ -74,12 +74,12 @@ h2.sub { font-size: 1rem; margin: 1rem 0 .2rem; }
 <h2>What's going on</h2>
 <p>Each row is one equation, with the numbers after the bar on the right-hand side. Three things can be done to a system without changing its solutions: <b>swap</b> two equations, <b>multiply</b> an equation by a number that is not zero, and <b>add a multiple</b> of one equation to another. Every step here is one of those three.</p>
 <p>The plan is to use row 1 to remove x from rows 2 and 3, then use row 2 to remove y from row 3. The shaded zeros show the staircase forming, and the orange cells are the <b>pivots</b>, the first non-zero number in each row. The last row then has only z in it, so it can be solved at once. Put that z into row 2 to get y, then both into row 1 to get x. That is <b>back-substitution</b>.</p>
-<p>Two things can go wrong, and both show up in the last row. If it becomes 0 = 5 (or any non-zero number), the equations contradict each other and there is <b>no solution</b>. If it becomes 0 = 0 (and no other row says 0 = a non-zero number), one equation was a combination of the others and told you nothing new, so there are <b>infinitely many solutions</b>: one unknown is free and the others follow from it.</p>
+<p>Two things can go wrong, and both show up in the last row. If it becomes 0 = 5 (or any non-zero number), the equations contradict each other and there is <b>no solution</b>. If it becomes 0 = 0 (and no other row says 0 = a non-zero number), one equation was a combination of the others and told you nothing new, so there are <b>infinitely many solutions</b>: at least one unknown is free and the others follow from the free ones.</p>
 <p>A computer solving thousands of equations uses the same three operations, one row at a time.</p>
 <p>Sheet: <a href="../grade-11/sheets/a11-three-unknowns.html">Three equations, three unknowns</a>.</p>
 </div>
 </main>
-<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
 <script>
 (function () {
   /*PURE*/

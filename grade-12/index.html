@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Grade 12 · Infinity Club</title>
+<title>Grade 12 · Math Detours</title>
 <meta name="description" content="Printable math sheets for curious 17 and 18 year olds: calculus, vectors and probability derived rather than memorised, ideas from ε–δ to Kelly betting, and where the mathematics shows up in rockets, trials, options and climate.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
 <link rel="stylesheet" href="../assets/site.css">
 </head>
 <body>
 <nav class="top">
-  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Math Detours</a>
   <a href="index.html">Grade 12</a>
   <a href="#sheets">Sheets</a>
   <a href="../demos/index.html">Demos</a>
@@ -86,6 +86,12 @@
   <a class="card" href="sheets/b26-inversion.html"><div class="num">Corner 26</div><h3>Inversion in a circle</h3><p>Turn the plane inside out: lines become circles through the centre, and tangent circles stay tangent, and a hard problem becomes easy.</p></a>
   <a class="card" href="sheets/b27-knots.html"><div class="num">Corner 27</div><h3>Proving a knot is knotted</h3><p>The trefoil cannot be undone. Colour its arcs with three colours and watch the colouring survive every move. An invariant in one evening.</p></a>
   <a class="card" href="sheets/b28-lagrange.html"><div class="num">Corner 28</div><h3>The best point on a curve</h3><p>Maximise f along a constraint: at the optimum the gradients are parallel. Lagrange multipliers with a picture, then the largest box in a sphere.</p></a>
+  <a class="card" href="sheets/b29-arithmetic-derivative.html"><div class="num">Corner 29</div><h3>A derivative for whole numbers</h3><p>Make up a rule: D(prime) = 1 and D(ab) = a D(b) + b D(a), the product rule. It works on whole numbers, it has a power rule, and a few numbers turn out to be their own derivative.</p></a>
+  <a class="card" href="sheets/b30-cancel-the-error.html"><div class="num">Corner 30</div><h3>Spot the error, then cancel it</h3><p>Estimate an area with 4 rectangles, then 8. The error roughly halves. If you know how the error behaves, you can cancel most of it with one line of arithmetic.</p></a>
+  <a class="card" href="sheets/b31-distance-between-functions.html"><div class="num">Corner 31</div><h3>How far apart are two functions?</h3><p>How far is y = x from y = x squared? You can measure the biggest gap, or the area between them. Different measures can disagree about which functions are close.</p></a>
+  <a class="card" href="sheets/b32-grandi-series.html"><div class="num">Corner 32</div><h3>What is 1 − 1 + 1 − 1 + …?</h3><p>The partial sums of 1 − 1 + 1 − 1 + … go 1, 0, 1, 0 for ever, so the series has no sum. Yet two famous methods, averaging and Abel's trick, both assign it the value 1/2.</p></a>
+  <a class="card" href="sheets/b33-simulation-drift.html"><div class="num">Corner 33</div><h3>Why the simulated planet drifts away</h3><p>Simulate a spring or an orbit with the simplest step-by-step method and it slowly spirals outwards, gaining energy from nowhere. Update the velocity first, then move using the new velocity, and the drift disappears.</p></a>
+  <a class="card" href="sheets/b34-sufficient-summary.html"><div class="num">Corner 34</div><h3>Does the order of heads matter?</h3><p>Two friends flip the same coin 10 times. One writes down every flip; the other only counts the heads. For learning how biased the coin is, the count is all you need, as long as the flips are independent.</p></a>
 </div>
 
 <h2>Connections <span class="tag">space · finance · medicine · control · genetics · images · archaeology · queues · climate</span></h2>
@@ -101,12 +107,15 @@
   <a class="card" href="sheets/c8-radiocarbon.html"><div class="num">Connections 8</div><h3>Radiocarbon dating</h3><p>Carbon-14 halves every 5,730 years. From the ratio left in a sample to its age, with the decay equation, and what makes the answer uncertain.</p></a>
   <a class="card" href="sheets/c9-queues.html"><div class="num">Connections 9</div><h3>Why the queue is longer than you think</h3><p>Arrivals at random, one server. Utilisation ρ, average queue ρ/(1 − ρ), and why a server at 90% has a queue nine times longer than at 50%.</p></a>
   <a class="card" href="sheets/c10-energy-balance.html"><div class="num">Connections 10</div><h3>Why the Earth is not frozen</h3><p>Sunlight in, heat radiated out as T⁴. Balance them and the planet should be −18 °C. The greenhouse effect is the 33 degrees of difference.</p></a>
+  <a class="card" href="sheets/c11-lifeguard-snell.html"><div class="num">Connections 11</div><h3>Where should the lifeguard enter the water?</h3><p>A lifeguard runs fast on sand and swims slowly. The quickest route bends where sand meets water, by exactly the rule light follows when it enters water.</p></a>
+  <a class="card" href="sheets/c12-noisy-readings.html"><div class="num">Connections 12</div><h3>Guessing a number from noisy readings</h3><p>A sensor gives 52, 47, 50, 55, 46 for the same hidden number. Keep a running best guess, correcting it a little with each reading. That loop is the seed of the filters that help navigate spacecraft.</p></a>
+  <a class="card" href="sheets/c13-survival-curves.html"><div class="num">Connections 13</div><h3>How long do light bulbs last when some never fail?</h3><p>You test 8 bulbs for 6 months. Three are still glowing at the end, and one was removed early. How do you estimate lifetimes without throwing that information away?</p></a>
 </div>
 
 <h2 id="demos">Demos <span class="tag">play with it</span></h2>
 <p class="small">Twelve new interactive demos go with this grade, from Taylor polynomials to a binomial option tree, alongside the other grades' demos. All of them live in <a href="../demos/index.html">the demo gallery</a>.</p>
 </main>
 
-<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
 </body>
 </html>

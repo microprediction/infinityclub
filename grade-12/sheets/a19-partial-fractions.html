@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Partial fractions · Infinity Club</title>
+<title>Partial fractions · Math Detours</title>
 <meta name="description" content="Split 1/(x² − 1) into two simple pieces, integrate each, and get a logarithm. The same trick collapses telescoping series such as Σ 1/(n(n+1)) = 1.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
@@ -11,7 +11,7 @@
 </head>
 <body>
 <nav class="top">
-  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
   <a href="../index.html">Grade 12</a>
   <a href="../index.html#sheets">Sheets</a>
   <a href="../../demos/index.html">Demos</a>
@@ -23,7 +23,7 @@
 
 <main class="paper">
 <header class="sheet-head">
-  <div class="kicker">Infinity Club · Grade 12 · Sharpen · 19</div>
+  <div class="kicker">Math Detours · Grade 12 · Sharpen · 19</div>
   <h1>Partial fractions</h1>
   <p class="teaser">Split 1/(x² − 1) into two simple pieces, integrate each, and get a logarithm. The same trick sums telescoping series.</p>
   <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
@@ -36,7 +36,7 @@
 <p>\[\frac{1}{(x-1)(x+1)} = \frac{A}{x-1} + \frac{B}{x+1}, \qquad\text{so}\qquad 1 = A(x+1) + B(x-1).\]</p>
 <p>The second equation must hold for every \(x\), so choose convenient ones. \(x = 1\) kills the \(B\) term: \(1 = 2A\), \(A = \tfrac12\). \(x = -1\) kills \(A\): \(B = -\tfrac12\). (The <b>cover-up</b> shortcut: to find \(A\), cover \((x-1)\) in the original fraction and set \(x = 1\) in what remains.) Then</p>
 <p class="callout">\(\displaystyle\int \frac{dx}{x^2-1} = \frac12\int\frac{dx}{x-1} - \frac12\int\frac{dx}{x+1} = \frac12 \ln\left|\frac{x-1}{x+1}\right| + C.\)</p>
-<p>Each distinct linear factor in the denominator gets one constant, and there are always enough equations to find them, provided the numerator has lower degree than the denominator. If it does not, divide first.</p>
+<p>When the denominator is a product of distinct linear factors, each factor gets one constant, and there are always enough equations to find them, provided the numerator has lower degree than the denominator. If it does not, divide first. Repeated factors need one term for every power, and quadratic factors that do not split need numerators of the form \(Bx + C\).</p>
 <p>The same split sums series. Since \(\dfrac{1}{n(n+1)} = \dfrac1n - \dfrac{1}{n+1}\), the sum of the first \(N\) terms collapses:</p>
 <p>\[\Big(1 - \tfrac12\Big) + \Big(\tfrac12 - \tfrac13\Big) + \cdots + \Big(\tfrac1N - \tfrac{1}{N+1}\Big) = 1 - \frac{1}{N+1}.\]</p>
 <p>Every middle term cancels with its neighbour, like a collapsing telescope. As \(N \to \infty\) the sum is exactly 1.</p>
@@ -99,7 +99,7 @@
 <div class="sheet-nav"><a href="a18-implicit.html">← Previous</a><a href="a20-parametric.html">Next: Curves by parameter →</a></div>
 </main>
 
-<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
 <script defer src="../../assets/site.js"></script>

@@ -1,16 +1,18 @@
-# Infinity Club
+# Math Detours
 
-Printable math sheets, one a night, organised by grade. Grade 5 (48 sheets), grade 6 (61 sheets), grade 7 (48 sheets), grade 8 (56 sheets), grade 9 (48 sheets), grade 10 (59 sheets), grade 11 (48 sheets) and grade 12 (58 sheets) are live, each in three tracks. Shared interactive demos (100) live in `demos/`. Live at [infinityclub.net](https://infinityclub.net).
+*The more you see, the less you have to remember.*
+
+Printable math sheets, one a night, organised by grade. Grade 5 (48 sheets), grade 6 (76 sheets), grade 7 (65 sheets), grade 8 (79 sheets), grade 9 (63 sheets), grade 10 (74 sheets), grade 11 (58 sheets) and grade 12 (67 sheets) are live, each in three tracks. Shared interactive demos (100) live in `demos/`. Live at [mathdetours.com](https://mathdetours.com).
 
 ## Layout
 
 - `index.html`: grade chooser.
-- `grade-5/`, `grade-6/`, `grade-7/`, `grade-8/`, `grade-9/`, `grade-10/`, `grade-11/`, `grade-12/`: one folder per grade with `index.html` (the hub, all sheets by track), `plan.html` (first thirty nights and club card) and `sheets/`.
+- `grade-5/`, `grade-6/`, `grade-7/`, `grade-8/`, `grade-9/`, `grade-10/`, `grade-11/`, `grade-12/`: one folder per grade with `index.html` (the hub, all sheets by track), `plan.html` (first thirty nights and tick-off card) and `sheets/`.
 - `map.html`: the map of mathematics (built from `tools/map/`).
 - `demos/index.html`: gallery of every demo; `demos/*.html` the demos themselves, shared across grades.
 - `sheets/*.html` and `plan.html` are redirect stubs for the original URLs.
 
-To add a grade, write a spec table (file, title, teaser) for its three tracks, copy a recent grade folder to `grade-N/`, replace the sheets, update the kickers (`Infinity Club · Grade N · Track · n`), and turn that grade's card on `index.html` from `soon` to `live`.
+To add a grade, write a spec table (file, title, teaser) for its three tracks, copy a recent grade folder to `grade-N/`, replace the sheets, update the kickers (`Math Detours · Grade N · Track · n`), and turn that grade's card on `index.html` from `soon` to `live`.
 
 Three tracks in every grade:
 
@@ -28,7 +30,7 @@ Plain static HTML, no build step. `.nojekyll` disables Jekyll on GitHub Pages. S
 
 ## Adding a sheet
 
-See [CONTRIBUTING.md](CONTRIBUTING.md): the full sheet spec, the accuracy checklist, and how to claim a `new-sheet` issue. In short: copy a sheet from the same grade and track, keep the section structure (`idea`, `example`, `exercises`, `stretch`, `answers`), add a card to that grade's `index.html`, add the sheet to `tools/map/pages.json`, then run `python3 tools/relink.py` and `python3 tools/map/build_map.py`.
+See [CONTRIBUTING.md](CONTRIBUTING.md) (and [AGENTS.md](AGENTS.md) for AI agents): the full sheet spec, the accuracy checklist, and how to claim a `new-sheet` issue. In short: copy a sheet from the same grade and track, keep the section structure (`idea`, `example`, `exercises`, `stretch`, `answers`), add a card to that grade's `index.html`, add the sheet to `tools/map/pages.json`, then run `python3 tools/relink.py` and `python3 tools/map/build_map.py`.
 
 ## Tools and checks
 

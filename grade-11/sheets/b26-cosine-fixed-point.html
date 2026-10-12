@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Press cos until it stops · Math Detours</title>
+<meta name="description" content="Press cos again and again in radians and the display settles at 0.739085. Measure how fast the gap shrinks, prove the fixed point exists and is the only one, read the pull from the slope of the curve, and meet a rule whose fixed point pushes away instead.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
+  <a href="../index.html">Grade 11</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Math Detours · Grade 11 · Around the corner · 26</div>
+  <h1>Press cos until it stops</h1>
+  <p class="teaser">Set a calculator to radians, type any number and keep pressing cos. The display always settles at 0.739085... Why must there be such a number, and why does it pull everything in?</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Set a calculator to <a href="a1-radians.html">radians</a>, type 1 and keep pressing cos. The display hops about, then freezes at \(0.739085\ldots\) Call that number \(d\). It is a <b>fixed point</b> of cos: \(\cos d = d\), so another press changes nothing.</p>
+<p>Close to \(d\) the curve is almost its tangent line, and a straight-line rule multiplies the gap from its fixed point by its slope each step, as in <a href="a13-recursive-sequences.html">Sequences that feed on themselves</a>.</p>
+<p class="callout"><b>Slope test.</b> Suppose \(f(d) = d\) and the curve \(y = f(x)\) has slope \(m\) at \(d\). If \(|m| \lt 1\), every start close enough to \(d\) is pulled in to \(d\). If \(|m| \gt 1\), a start near \(d\), other than \(d\) itself, lands further from \(d\). If \(|m| = 1\), the test says nothing.</p>
+<p>In radians the slope of \(\cos x\) is \(-\sin x\), a fact from calculus. At \(d\) that is about \(-0.67\), so each press multiplies a small gap by about \(-0.67\). The test assumes a fixed point exists and only covers nearby starts: question 2 and the stretch fill those holes.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: start at 1</h2>
+<p>In radians, start at 1 and press cos six times. The gap is \(x - d\), with \(d \approx 0.7391\). It changes sign every time and shrinks: the values hop from side to side of \(d\), closing in. After 32 presses the gap is under a millionth.</p>
+<table>
+<thead><tr><th>press</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th></tr></thead>
+<tbody>
+<tr><td>display \(x\)</td><td>1</td><td>0.5403</td><td>0.8576</td><td>0.6543</td><td>0.7935</td><td>0.7014</td><td>0.7640</td></tr>
+<tr><td>gap \(x - d\)</td><td>0.2609</td><td>\(-0.1988\)</td><td>0.1185</td><td>\(-0.0848\)</td><td>0.0544</td><td>\(-0.0377\)</td><td>0.0249</td></tr>
+</tbody>
+</table>
+<figure><svg viewBox="0 0 520 196" width="416" height="157" role="img" aria-label="Two cobweb diagrams, each showing a curve, the diagonal y = x, and a path of vertical and horizontal steps between them that starts from a dot on the diagonal at 1. Left: y = cos x, where the path winds inwards around the crossing point at d, about 0.739. Right: y = 2 cos x, where the path starts close to the crossing point near 1.03 and winds outwards in larger and larger loops" font-family="Nunito, sans-serif" font-size="14">
+<text x="135" y="14" text-anchor="middle" font-weight="700" fill="#1d1f3a">y = cos x</text>
+<path d="M60,24V174H210" stroke="#999" stroke-width="1" fill="none"/>
+<line x1="60" y1="174" x2="210" y2="24" stroke="#999" stroke-width="1.2"/>
+<line x1="132.3" y1="101.7" x2="132.3" y2="174" stroke="#3f44c9" stroke-width="1" stroke-dasharray="3 3"/>
+<polyline points="60.0,61.4 62.5,62.5 65.0,63.6 67.5,64.8 70.0,65.9 72.5,67.1 75.0,68.3 77.5,69.5 80.0,70.8 82.5,72.1 85.0,73.4 87.5,74.7 90.0,76.0 92.5,77.4 95.0,78.8 97.5,80.2 100.0,81.6 102.5,83.0 105.0,84.5 107.5,86.0 110.0,87.5 112.5,89.0 115.0,90.5 117.5,92.1 120.0,93.7 122.5,95.3 125.0,96.9 127.5,98.5 130.0,100.2 132.5,101.9 135.0,103.6 137.5,105.3 140.0,107.0 142.5,108.8 145.0,110.5 147.5,112.3 150.0,114.1 152.5,115.9 155.0,117.8 157.5,119.6 160.0,121.5 162.5,123.4 165.0,125.3 167.5,127.2 170.0,129.1 172.5,131.1 175.0,133.1 177.5,135.0 180.0,137.0 182.5,139.1 185.0,141.1 187.5,143.1 190.0,145.2 192.5,147.2 195.0,149.3 197.5,151.4 200.0,153.5 202.5,155.7 205.0,157.8 207.5,159.9 210.0,162.1" fill="none" stroke="#3f44c9" stroke-width="2"/>
+<path d="M197.5,36.5V151.4H82.6V72.1H161.9V122.9H111.1V88.1H145.9V111.2H122.8V95.5H138.5V106.0H128.0" fill="none" stroke="#f5a524" stroke-width="1.6"/>
+<circle cx="197.5" cy="36.5" r="3.2" fill="#1d1f3a"/>
+<circle cx="132.3" cy="101.7" r="2.6" fill="#3f44c9"/>
+<line x1="72.5" y1="174" x2="72.5" y2="178" stroke="#999"/>
+<text x="72.5" y="191" text-anchor="middle" fill="#555">0.5</text>
+<line x1="132.3" y1="174" x2="132.3" y2="178" stroke="#999"/>
+<text x="132.3" y="191" text-anchor="middle" fill="#3f44c9" font-weight="700">d</text>
+<line x1="197.5" y1="174" x2="197.5" y2="178" stroke="#999"/>
+<text x="197.5" y="191" text-anchor="middle" fill="#555">1</text>
+<line x1="56" y1="161.5" x2="60" y2="161.5" stroke="#999"/>
+<text x="53" y="165.5" text-anchor="end" fill="#555">0.5</text>
+<line x1="56" y1="36.5" x2="60" y2="36.5" stroke="#999"/>
+<text x="53" y="40.5" text-anchor="end" fill="#555">1</text>
+<text x="215" y="34" fill="#555">y = x</text>
+<text x="385" y="14" text-anchor="middle" font-weight="700" fill="#1d1f3a">y = 2 cos x</text>
+<path d="M310,24V174H460" stroke="#999" stroke-width="1" fill="none"/>
+<line x1="310" y1="174" x2="460" y2="24" stroke="#999" stroke-width="1.2"/>
+<polyline points="310.0,24.0 312.0,24.1 313.9,24.2 315.9,24.5 317.9,24.8 319.8,25.3 321.8,25.8 323.7,26.5 325.7,27.3 327.7,28.1 329.6,29.1 331.6,30.2 333.6,31.3 335.5,32.6 337.5,34.0 339.5,35.4 341.4,37.0 343.4,38.6 345.3,40.3 347.3,42.2 349.3,44.1 351.2,46.1 353.2,48.2 355.2,50.4 357.1,52.6 359.1,55.0 361.1,57.4 363.0,59.9 365.0,62.5 366.9,65.2 368.9,67.9 370.9,70.7 372.8,73.6 374.8,76.6 376.8,79.6 378.7,82.7 380.7,85.8 382.6,89.0 384.6,92.3 386.6,95.6 388.5,99.0 390.5,102.4 392.5,105.9 394.4,109.4 396.4,113.0 398.4,116.6 400.3,120.2 402.3,123.9 404.2,127.6 406.2,131.4 408.2,135.2 410.1,139.0 412.1,142.8 414.1,146.7 416.0,150.5 418.0,154.4 420.0,158.3 421.9,162.2 423.9,166.1 425.8,170.1 427.8,174.0" fill="none" stroke="#3f44c9" stroke-width="2"/>
+<path d="M385.0,99.0V93.0H391.0V103.4H380.6V85.7H398.3V116.4H367.6V66.0H418.0V154.4H329.6V29.1H454.9" fill="none" stroke="#f5a524" stroke-width="1.6"/>
+<circle cx="385.0" cy="99.0" r="3.2" fill="#1d1f3a"/>
+<line x1="310.0" y1="174" x2="310.0" y2="178" stroke="#999"/>
+<text x="310.0" y="191" text-anchor="middle" fill="#555">0</text>
+<line x1="385.0" y1="174" x2="385.0" y2="178" stroke="#999"/>
+<text x="385.0" y="191" text-anchor="middle" fill="#555">1</text>
+<line x1="460.0" y1="174" x2="460.0" y2="178" stroke="#999"/>
+<text x="460.0" y="191" text-anchor="middle" fill="#555">2</text>
+<line x1="306" y1="99.0" x2="310" y2="99.0" stroke="#999"/>
+<text x="303" y="103.0" text-anchor="end" fill="#555">1</text>
+<line x1="306" y1="24.0" x2="310" y2="24.0" stroke="#999"/>
+<text x="303" y="28.0" text-anchor="end" fill="#555">2</text>
+<text x="465" y="34" fill="#555">y = x</text>
+</svg><figcaption>Seven presses from the dot at 1. Left: \(y = \cos x\). Right: \(y = 2\cos x\), for question 4.</figcaption></figure>
+<p><b>The cobweb.</b> In the left picture, start at the dot at \((1, 1)\) and go straight down to the curve: that height is \(\cos 1\). Go across to the diagonal: the output becomes the next input. Repeat. The curve slopes downwards at the crossing, so the path winds round it. The slope there has size less than 1, so it winds inwards.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>In radians, start at 10 and press cos eight times. Write each display to 4 decimal places. From the third press on, work out the gap from 0.7391, and divide each gap by the one before it. What number do the ratios stay near?<div class="space short"></div></li>
+<li>Let \(g(x) = \cos x - x\), in radians. (a) Find \(g(0)\) and \(g(1)\). The graph of \(g\) has no jumps. Why must \(g\) be zero somewhere between 0 and 1? (b) Why can \(g\) be zero only once between 0 and 1? (c) Why does \(\cos x = x\) have no solution below 0 or above 1?<div class="space short"></div></li>
+<li>(a) Find the slope of \(\cos x\) at \(d\), which is \(-\sin(0.7391)\), to 3 decimal places. Compare it with your ratios in question 1. (b) What does the minus sign do to the display? (c) Each press multiplies the size of a small gap by about 0.67. About how many presses make a gap ten times smaller?<div class="space short"></div></li>
+<li>Change the rule to \(f(x) = 2\cos x\): press cos, then double. (a) Check that \(2\cos(1.03)\) is close to 1.03. The slope there is \(-2\sin(1.03)\): find it to 2 decimal places. What does the slope test predict? (b) Start at 1 and apply the rule seven times, keeping the full display. Write each value to 4 decimal places, with its gap from 1.03. (c) Can a value go above 2 or below \(-2\)? What are the values doing?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: why every start works</h2>
+<p>The slope test only covers starts near \(d\). (a) In radians, why do two presses of cos put every start in the range from \(\cos 1 \approx 0.54\) to 1, for good? (b) In that range the slope \(-\sin x\) has size below 0.85. By calculus, two inputs in the range then have outputs at most 0.85 times as far apart. Let one input be \(d\). What follows? (c) In degrees mode the game ends near \(0.99985\) almost at once. Why there, and why so fast?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>The displays are \(-0.8391\), 0.6682, 0.7850, 0.7074, 0.7600, 0.7248, 0.7486, 0.7326. From the third press the gaps are 0.0459, \(-0.0317\), 0.0209, \(-0.0143\), 0.0095, \(-0.0065\). The ratios are about \(-0.69\), \(-0.66\), \(-0.68\), \(-0.66\), \(-0.68\), all near \(-0.67\). Rounding may shift a last digit. Even a start of 10 is inside \(-1\) to 1 after one press.</li>
+<li>(a) \(g(0) = 1 - 0 = 1\), which is positive, and \(g(1) = \cos 1 - 1 \approx -0.46\), which is negative. A graph with no jumps that goes from above the axis to below it must cross the axis. This is the intermediate value theorem. (b) From 0 to 1, \(\cos x\) falls and \(x\) rises, so \(g\) falls all the way and cannot take the value 0 twice. (c) \(\cos x\) is never above 1 or below \(-1\), so a solution cannot be above 1 or below \(-1\). From \(-1\) up to 0, \(\cos x\) is positive and \(x\) is not, so they are not equal. So \(d\) is the only fixed point of cos. None of this says that \(d\) pulls.</li>
+<li>(a) \(-\sin(0.7391) \approx -0.674\), matching the ratios in question 1. (b) It changes the sign of the gap at every press, so the display is above \(d\), then below, then above: the winding of the cobweb. (c) \(0.67^5 \approx 0.135\) and \(0.67^6 \approx 0.090\), so about 6 presses for each new correct digit. Compare <a href="b20-newton.html">Newton's method</a>, where the number of correct digits roughly doubles at each step.</li>
+<li>(a) \(2\cos(1.03) \approx 1.0296\), and the fixed point is \(1.02987\) to 5 places. The slope of \(2\cos x\) is \(-2\sin x\), and \(-2\sin(1.03) \approx -1.71\). Its size is more than 1, so the test predicts that nearby values are pushed away. (b) 1.0806, 0.9416, 1.1770, 0.7674, 1.4395, 0.2619, 1.9318. The gaps from 1.03 start at \(-0.03\) and go 0.0506, \(-0.0884\), 0.1470, \(-0.2626\), 0.4095, \(-0.7681\), 0.9018. At first each gap is about \(-1.7\) times the one before. Later the gaps are too big for the tangent line to be a good guide. (c) No. \(\cos x\) is between \(-1\) and 1, so \(2\cos x\) is between \(-2\) and 2. The values are trapped, yet they cannot settle at the fixed point unless one lands on it exactly, because every near miss is thrown back out. On a computer, the values from a start of 1 are still roaming between about \(-0.83\) and 2 after a thousand steps, much as in <a href="../../grade-10/sheets/b24-chaos.html">The logistic map and chaos</a>.</li>
+</ol>
+<p><b>Stretch.</b> (a) Cos of any number is between \(-1\) and 1. For an input between \(-1\) and 1, the cosine is smallest at the two ends, where it is \(\cos 1 \approx 0.54\), and largest at 0, where it is 1. So the second press lands from 0.54 to 1. That range lies inside \(-1\) to 1, so every later press lands in it again. (b) The largest slope size in the range is \(\sin 1 \approx 0.84\). \(d\) is in the range and \(\cos d = d\), so each press there leaves the value at most 0.85 times as far from \(d\) as before. After two presses the gap is at most \(1 - 0.54 = 0.46\), and \(n\) presses later at most \(0.46 \times 0.85^n\), which shrinks towards zero. Every start is pulled in to \(d\). (c) In degrees the first press still lands between \(-1\) and 1. That is a tiny angle, with cosine at least \(\cos 1^\circ\), which is 0.99985 to 5 places. So two presses put every start between \(\cos 1^\circ\) and 1, and the fixed point is in there, just above \(\cos 1^\circ\). For the speed: \(x\) degrees is \(\tfrac{\pi x}{180}\) radians, so the degrees curve is the radians curve stretched sideways by a factor of about 57.3, which divides every slope by 57.3. The slope at the fixed point is about \(-\sin 1^\circ \div 57.3 \approx -0.0003\), so each press shrinks the gap more than 3000 times.</p>
+</section>
+
+<div class="sheet-nav"><a href="b25-block-spin-zoom.html">← Previous</a><a href="b27-frog-steady-state.html">Next: Where does the frog end up? →</a></div>
+</main>
+
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

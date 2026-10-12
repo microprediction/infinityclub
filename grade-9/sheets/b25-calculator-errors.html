@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>When the calculator lies · Math Detours</title>
+<meta name="description" content="The rule x to 10x - 3 should hold one third fixed for ever, yet a calculator soon turns it into nonsense. See how a recurrence can multiply a tiny rounding error at every step, and why that limits weather forecasts.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
+  <a href="../index.html">Grade 9</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Math Detours · Grade 9 · Around the corner · 25</div>
+  <h1>When the calculator lies</h1>
+  <p class="teaser">Start at one third and keep applying x → 10x − 3. The exact answer is one third for ever. A calculator soon gives nonsense. Tiny errors can grow.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Take \(x = \tfrac13\) and apply the rule \(x \to 10x - 3\). You get \(\tfrac{10}{3} - 3 = \tfrac13\). Apply it again and you get \(\tfrac13\) again, for ever. A rule applied over and over like this is called a <b>recurrence</b>.</p>
+<p>Now try it on a calculator. It cannot hold \(\tfrac13\). It holds something like 0.33333333, which is too small by a tiny error. Say the stored number is \(\tfrac13 + e\). The rule turns it into \(10\left(\tfrac13 + e\right) - 3 = \tfrac13 + 10e\).</p>
+<p class="callout">Each exact step of \(x \to 10x - 3\) multiplies the error by exactly 10. After \(n\) steps an error \(e\) has become \(10^n e\).</p>
+<p>So an error in the eighth decimal place reaches the first decimal place in seven steps. Every step is done correctly, yet the answer is nonsense. The calculator is not broken. The recurrence is <b>unstable</b>: it magnifies whatever error it is given.</p>
+<p>Some recurrences shrink errors instead, and they forgive a rounded start. Others, called <b>chaotic</b>, magnify errors at an uneven rate. Weather behaves like that, which limits how far ahead any computer can forecast.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: an eight-digit calculator</h2>
+<p>Here is a simple model of a calculator: it keeps eight digits after the decimal point and drops the rest. Real machines differ in the details. Type \(1 \div 3\) and it stores 0.33333333. The true value is \(0.3333333333\ldots\), so the stored number is too small by \(0.0000000033\ldots\), about \(3.3 \times 10^{-9}\).</p>
+<p>Multiplying by 10 slides every digit one place left. The calculator has no ninth 3 to bring in, so each step loses a 3.</p>
+<table>
+<tr><th>Step</th><td>0</td><td>1</td><td>2</td><td>3</td><td>…</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td></tr>
+<tr><th>\(x\)</th><td>0.33333333</td><td>0.3333333</td><td>0.333333</td><td>0.33333</td><td>…</td><td>0.33</td><td>0.3</td><td>0</td><td>−3</td><td>−33</td></tr>
+</table>
+<p>At step 7 it shows 0.3, wrong by \(0.0333\ldots\), which is \(10^7\) times the starting error. At step 8 it shows 0, and from then on it runs away: \(-3, -33, -333, \ldots\) The exact answer is still \(\tfrac13\).</p>
+<p>A computer works in binary and keeps about 16 significant digits, so it lasts about twice as long. Python on our computer printed 0.3333333333333333 at step 0, 0.3333330372738601 at step 10, 0.3037273860099958 at step 15 and −2.6272613990004174 at step 17.</p>
+<p class="small">Results depend on the machine. The rule \(x \to 11x - 1\) holds 0.1 fixed, because \(1.1 - 1 = 0.1\). A calculator that works in decimal stores 0.1 exactly and never drifts. Binary cannot store 0.1 exactly, and on our computer the same rule had drifted to 4.18 by step 17.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Start at \(x = 0.34\) and apply \(x \to 10x - 3\) four times, exactly, by hand. (a) Write down the four results. (b) Subtract \(\tfrac13 = 0.3333\ldots\) from the start and from each result. What happens to the error at each step? (c) Some programs store fractions exactly, as a pair of whole numbers. What would such a program show after 100 steps starting from \(\tfrac13\)?<div class="space short"></div></li>
+<li>Now run the rule backwards: \(x \to \dfrac{x + 3}{10}\). (a) Start from the wild guess \(x = 5\) and compute four steps. (b) Put \(x = \tfrac13 + e\) into the rule and simplify. What happens to the error? (c) Starting from 5, how many steps until \(x\) is within 0.000001 of \(\tfrac13\)?<div class="space short"></div></li>
+<li>The rule \(x \to 4x(1 - x)\) is chaotic. The table follows two starts, 0.3 and 0.301. Each entry was computed without rounding along the way, then rounded to three decimal places.
+<table>
+<tr><th>Step</th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td></tr>
+<tr><th>from 0.3</th><td>0.300</td><td>0.840</td><td>0.538</td><td>0.994</td><td>0.022</td><td>0.088</td><td>0.321</td><td>0.872</td><td>0.448</td><td>0.989</td><td>0.043</td></tr>
+<tr><th>from 0.301</th><td>0.301</td><td>0.842</td><td>0.533</td><td>0.996</td><td>0.018</td><td>0.069</td><td>0.258</td><td>0.765</td><td>0.719</td><td>0.808</td><td>0.620</td></tr>
+</table>
+(a) Check the two step 1 entries yourself. (b) At which step do the two rows first disagree in the first decimal place? (c) Find the gap between the rows at steps 0, 5 and 10. Compare with a gap that doubles at every step. (d) Does the gap grow at every step? Look at steps 8 and 9.<div class="space short"></div></li>
+<li>Here is a made-up model of a weather forecast. Today's temperature is known to within 1 °C. The error in the forecast doubles every 2 days, and the forecast is useless once the error reaches 16 °C. (a) On which day does the forecast become useless? (b) Better instruments cut today's error to 0.25 °C. How many extra days does that buy? (c) How many times smaller than 1 °C must today's error be for the forecast to stay useful until day 22? (d) Why can a forecast for three weeks ahead not be precise?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: Fibonacci run backwards</h2>
+<p>The number \(g = 0.6180339887\ldots\) satisfies \(g^2 = 1 - g\), so \(g^{n+1} = g^{n-1} - g^n\): each power of \(g\) is the one two back minus the one before it. Start with 1 and the rounded value 0.618 and carry on by subtraction alone, exactly: \(1,\ 0.618,\ 0.382,\ 0.236, \ldots\) up to the entry for \(g^{14}\). The true powers are all positive and keep shrinking. Where does your list go wrong? Then call the starting error \(e\), follow it through the rule, and say which famous numbers appear.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(0.4,\ 1,\ 7,\ 67\). (b) The errors are \(0.00666\ldots\) at the start, then \(0.0666\ldots,\ 0.666\ldots,\ 6.666\ldots,\ 66.666\ldots\) Each step multiplies the error by exactly 10, as the callout says. Starting too big sends you off upwards; starting too small sends you off downwards. (c) It shows \(\tfrac13\) at every step, because \(\tfrac{10}{3} - \tfrac93 = \tfrac13\) with no rounding at all. Exact arithmetic like this is one way computers help mathematicians. The price is that exact fractions can grow very long in other problems.</li>
+<li>(a) \(0.8,\ 0.38,\ 0.338,\ 0.3338\). (b) \(\dfrac{\tfrac13 + e + 3}{10} = \dfrac{\tfrac{10}{3} + e}{10} = \tfrac13 + \dfrac{e}{10}\). Each step divides the error by 10, so any start is pulled towards \(\tfrac13\). Running an unstable rule backwards made it stable. (c) The starting error is \(5 - \tfrac13 = 4.666\ldots\) After 6 steps it is \(0.0000046\ldots\), still too big. After 7 steps it is \(0.00000046\ldots\), so 7 steps.</li>
+<li>(a) \(4 \times 0.3 \times 0.7 = 0.84\) and \(4 \times 0.301 \times 0.699 = 0.841596\), which rounds to 0.842. (b) At step 6: 0.321 against 0.258. (c) The gaps are 0.001, then \(0.088 - 0.069 = 0.019\), then \(0.620 - 0.043 = 0.577\). Doubling every step would give 0.001, 0.032 and 1.024. So the gap grows roughly as fast as doubling, a little slower here. (d) No. The gap is \(0.719 - 0.448 = 0.271\) at step 8 and \(0.989 - 0.808 = 0.181\) at step 9. Chaos magnifies errors on average, not at a steady rate. Both rows stay between 0 and 1, so the gap cannot pass 1. By step 10 the second row tells you almost nothing about the first.</li>
+<li>(a) The error runs 1, 2, 4, 8, 16 °C on days 0, 2, 4, 6, 8. Useless on day 8. (b) From 0.25 °C it takes two more doublings to reach 1 °C, so 4 extra days: useless on day 12. (c) Day 22 is 14 days after day 8, which is 7 more doublings, so the error must be \(2^7 = 128\) times smaller, about 0.008 °C. (d) Each extra 2 days costs instruments twice as good, everywhere at once. In this model three weeks needs every reading good to about 0.008 °C, and the demand doubles again for every 2 days after that. The numbers here are invented and real weather is far more complicated, but real forecasts do magnify small errors. In 1961 Edward Lorenz restarted a computer weather model from 0.506 instead of 0.506127 and watched the two runs drift completely apart.</li>
+</ol>
+<p><b>Stretch.</b> The list runs \(1,\ 0.618,\ 0.382,\ 0.236,\ 0.146,\ 0.090,\ 0.056,\ 0.034,\ 0.022,\ 0.012,\ 0.010,\ 0.002,\ 0.008,\ -0.006,\ 0.014\). The entry for \(g^{12}\) is bigger than the one before it, and the entry for \(g^{13}\) is negative. The true values are \(g^{12} = 0.0031\) and \(g^{13} = 0.0019\). Errors: the first two are 0 and \(e\), where \(e = 0.618 - g \approx -0.000034\). Errors obey the same subtraction rule, so they run \(0,\ e,\ -e,\ 2e,\ -3e,\ 5e,\ -8e, \ldots\) Those are the Fibonacci numbers with alternating signs, because \(F_{n-1} = F_{n+1} - F_n\) is the Fibonacci rule read backwards. At \(g^{13}\) the error is \(233e \approx -0.0079\), bigger in size than the true value. The true powers shrink by a factor of about 0.618 each step while the error grows by about 1.618, so the error must win in the end.</p>
+</section>
+
+<div class="sheet-nav"><a href="b24-one-time-pad.html">← Previous</a><a href="b26-computing-e.html">Next: How many terms to compute e? →</a></div>
+</main>
+
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

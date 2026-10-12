@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Can you feel the difference? · Math Detours</title>
+<meta name="description" content="Weber's law says the smallest change you can notice is a fixed fraction of what you started with. Count noticeable steps with powers and logarithms, and meet the ratio scale astronomers use for star brightness.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
+  <a href="../index.html">Grade 11</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Math Detours · Grade 11 · Connections · 11</div>
+  <h1>Can you feel the difference?</h1>
+  <p class="teaser">Many people can tell 100 g from 110 g in the hand. Hardly anyone can tell 1000 g from 1010 g. To a good approximation, our senses notice ratios, not differences.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Hold 100 g of rice in one hand and 110 g in the other, and you have a fair chance of feeling which is heavier. Try 1000 g against 1010 g. The gap is the same 10 g, and now it is very hard to feel.</p>
+<p>In the 1830s Ernst Weber studied the smallest change a person can notice, the <b>just noticeable difference</b>. It is not a fixed number of grams.</p>
+<p class="callout"><b>Weber's law:</b> the just noticeable difference is a fixed fraction \(k\) of the amount you start with.</p>
+<p>The fraction \(k\) depends on the sense and on the person. Tonight we take \(k = 5\) percent for lifted weights. That value is illustrative, not measured. The law is a <b>model</b>: it fits fairly well in the middle range and fails for very faint and very strong signals.</p>
+<p>In 1860 Gustav Fechner counted noticeable steps. Each step multiplies by the same factor, so he proposed that sensation grows like a <b>logarithm</b>. This is <b>mathematical psychology</b>: using math(s) to model perception, memory and decisions.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: a ladder of noticeable steps</h2>
+<p>Take \(k = 5\) percent. At 100 g the just noticeable difference is \(0.05 \times 100 = 5\) g. At 1000 g it is \(0.05 \times 1000 = 50\) g. So in this model 110 g against 100 g can be felt, because 10 g is more than 5 g. But 1010 g against 1000 g cannot, because 10 g is far less than 50 g.</p>
+<p>Now climb from 100 g, one just noticeable step at a time. Each step multiplies the weight by 1.05, so after \(n\) steps the weight is \(100 \times 1.05^n\) grams.</p>
+<table class="tt" style="break-inside:avoid">
+<tr><th>Steps \(n\)</th><td>0</td><td>1</td><td>2</td><td>3</td><td>5</td><td>10</td></tr>
+<tr><th>Weight (g)</th><td>100</td><td>105</td><td>110.25</td><td>115.76</td><td>127.63</td><td>162.89</td></tr>
+<tr><th>Size of the next step (g)</th><td>5.00</td><td>5.25</td><td>5.51</td><td>5.79</td><td>6.38</td><td>8.14</td></tr>
+</table>
+<p>The steps feel equal but they get bigger in grams. To find how many steps reach a weight \(W\), solve \(100 \times 1.05^n = W\) with logs: \(n = \log(W/100)/\log 1.05\). For \(W = 150\) that is \(n = \log 1.5 / \log 1.05 \approx 8.3\). Eight steps reach 147.7 g and the ninth passes 150 g. The count depends only on the ratio \(W/100\), which is Fechner's logarithm.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Use \(k = 5\) percent. (a) Find the just noticeable difference at 40 g and at 2 kg. (b) In this model, can you tell 43 g from 40 g? Can you tell 2050 g from 2000 g? (c) In a made-up experiment, Priya can only just tell 260 g from 250 g. What is her \(k\)? What weight could she only just tell from 1 kg?<div class="space short"></div></li>
+<li>Use \(k = 5\) percent. (a) How many just noticeable steps does it take to climb from 100 g to 200 g? Solve for \(n\) to one decimal place, then say what weight 14 steps reach. (b) Without a new calculation, how many steps from 1 kg to 2 kg? Why? (c) How many steps from 100 g to 1 kg?<div class="space short"></div></li>
+<li>Astronomers measure star brightness in <b>magnitudes</b>. A step of 5 magnitudes is defined as a brightness ratio of exactly 100, every single magnitude is the same ratio, and a smaller magnitude means a brighter star. (a) What brightness ratio is 1 magnitude, to three decimal places? (b) How many times brighter is a star of magnitude 2 than a star of magnitude 4.5?<div class="space short"></div></li>
+<li>You have rice, identical bags and a kitchen scale. (a) Design a fair test of Weber's law on a friend. Say what you would keep the same, and what result the law predicts. (b) A friend who feels no difference at all can only guess which bag is heavier. What is the chance of guessing right 10 times out of 10? What is the chance of 9 or more out of 10?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: sandwiches and phones</h2>
+<p>People often react to prices in a similar way. This is a loose analogy, not a measured law. (a) A sandwich rises from 3 pounds to 4 pounds. A phone rises from 300 pounds to 301 pounds. Write each rise as a percentage. (b) What rise in the phone price is the same ratio as the sandwich rise? (c) Pretend prices follow Weber's law with \(k = 5\) percent. How many noticeable steps is each rise in (a)?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(0.05 \times 40 = 2\) g and \(0.05 \times 2000 = 100\) g. (b) Yes for 43 g against 40 g, since 3 g is more than 2 g. No for 2050 g against 2000 g, since 50 g is less than 100 g. The bigger gap in grams is the one you miss. (c) \(k = 10/250 = 0.04\), or 4 percent. At 1 kg her just noticeable difference is \(0.04 \times 1000 = 40\) g, so 1040 g.</li>
+<li>(a) Solve \(1.05^n = 2\): \(n = \log 2/\log 1.05 \approx 14.2\). Fourteen steps reach \(100 \times 1.05^{14} \approx 198.0\) g, just short, and the fifteenth step reaches about 207.9 g. So about 14 steps. (b) The same, about 14.2, because the count depends only on the ratio, and \(2000/1000 = 2\) again. (c) \(n = \log 10/\log 1.05 \approx 47.2\), so about 47 steps. Ten times the weight is nowhere near ten times the steps of doubling: \(\log 10/\log 2 \approx 3.3\) times as many.</li>
+<li>(a) Five equal ratios multiply to 100, so one magnitude is \(100^{1/5} \approx 2.512\). (b) The gap is \(4.5 - 2 = 2.5\) magnitudes, half of 5, so the ratio is \(100^{2.5/5} = \sqrt{100} = 10\). The magnitude 2 star is exactly 10 times brighter. Equal steps on the scale are equal ratios of light, as in Fechner's idea.</li>
+<li>(a) One good design: make pairs with the same ratio, such as 100 g and 105 g, 200 g and 210 g, 400 g and 420 g, 1000 g and 1050 g. Keep the bags looking and feeling the same, lift them the same way with the same hand, and have someone else hand them over in a random order so your friend cannot know which is which. Do many trials of each pair and record the fraction correct. Weber's law predicts about the same fraction correct for every pair. Pairs with a fixed gap, such as 10 g, should get harder as the bags get heavier. (b) Each guess is right with chance \(\tfrac12\), so 10 out of 10 has chance \((\tfrac12)^{10} = \tfrac{1}{1024}\), about 0.1 percent. Exactly 9 right can happen in 10 ways, so 9 or more has chance \(\tfrac{10 + 1}{1024} = \tfrac{11}{1024}\), about 1.1 percent. A score like that is strong evidence your friend can feel the difference.</li>
+</ol>
+<p><b>Stretch.</b> (a) Sandwich: \(1/3 \approx 33.3\) percent. Phone: \(1/300 \approx 0.33\) percent, a hundred times smaller. (b) The ratio is \(4/3\), and \(300 \times 4/3 = 400\), so a rise of 100 pounds. (c) Sandwich: \(n = \log(4/3)/\log 1.05 \approx 5.9\) steps, easy to notice. Phone: \(n = \log(301/300)/\log 1.05 \approx 0.07\) of a step, far below one, so it goes unnoticed. In this pretend model the phone would need to rise by 5 percent, 15 pounds, to be noticed.</p>
+</section>
+
+<div class="sheet-nav"><a href="c10-shooting-method.html">← Previous</a><a href="../index.html#sheets">← All sheets</a></div>
+</main>
+
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

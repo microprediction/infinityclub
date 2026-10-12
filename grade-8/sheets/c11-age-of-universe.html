@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How old is the universe? · Math Detours</title>
+<meta name="description" content="Hubble's law says a distant galaxy's speed is proportional to its distance, v = H times d. Dots on a stretching balloon show why, and dividing distance by speed gives 1/H, a rough age of about 14 billion years. Why that is only an estimate.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Math Detours · Grade 8 · Connections · 11</div>
+  <h1>How old is the universe?</h1>
+  <p class="teaser">Distant galaxies are moving away from us, faster the farther they are. Run the film backwards and you can estimate when everything was together.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Draw dots on a balloon and blow it up. Every dot drifts away from every other dot, and no dot is the centre. The dots do not crawl across the rubber. The rubber stretches.</p>
+<p>Space does something similar. Astronomers find that distant galaxies are moving away from us, and that their speed is proportional to their distance. This is <b>Hubble's law</b>:</p>
+<p>\[v = H \times d.\]</p>
+<p>Distance \(d\) is in megaparsecs (1 Mpc is about 3.26 million light-years). \(H\) is about 70 km/s for each megaparsec. Measurements range from about 67 to 73.</p>
+<p>Run the film backwards. If a galaxy always had today's speed, the gap between us closes in a time</p>
+<p>\[\frac{d}{v} = \frac{d}{H \times d} = \frac{1}{H}.\]</p>
+<p class="callout">The distance cancels, so every galaxy gives the same answer: everything was together roughly \(1/H\) ago. The balloon is an analogy, and "always today's speed" is an idealisation.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: dots on a balloon</h2>
+<p>Mark a home dot, with dot A 2 cm away and dot B 4 cm away. In 10 seconds every distance doubles.</p>
+<figure><svg viewBox="0 0 420 102" width="420" height="102" role="img" aria-label="Two rows of dots on a line. At the start the home dot is at 0, A at 2 cm and B at 4 cm. Ten seconds later the home dot is at 0, A at 4 cm and B at 8 cm. Dashed lines join each dot to its later position." font-family="Nunito, sans-serif" font-size="12">
+<line x1="95" y1="30" x2="405" y2="30" stroke="#999" stroke-width="1.5"/>
+<line x1="95" y1="76" x2="405" y2="76" stroke="#999" stroke-width="1.5"/>
+<line x1="95" y1="30" x2="95" y2="76" stroke="#999" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="167" y1="30" x2="239" y2="76" stroke="#999" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="239" y1="30" x2="383" y2="76" stroke="#999" stroke-width="1" stroke-dasharray="3 3"/>
+<g fill="#1d1f3a"><circle cx="95" cy="30" r="5"/><circle cx="95" cy="76" r="5"/></g>
+<g fill="#3f44c9"><circle cx="167" cy="30" r="5"/><circle cx="239" cy="76" r="5"/></g>
+<g fill="#f5a524" stroke="#1d1f3a" stroke-width="1"><circle cx="239" cy="30" r="5"/><circle cx="383" cy="76" r="5"/></g>
+<g text-anchor="middle" fill="#1d1f3a"><text x="95" y="18">home</text><text x="167" y="18">A: 2 cm</text><text x="239" y="18">B: 4 cm</text>
+<text x="95" y="96">home</text><text x="239" y="96">A: 4 cm</text><text x="383" y="96">B: 8 cm</text></g>
+<g fill="#555"><text x="8" y="34">start</text><text x="8" y="80">10 s later</text></g>
+</svg></figure>
+<p>A moved \(4 - 2 = 2\) cm and B moved \(8 - 4 = 4\) cm in the same 10 seconds, so their average speeds are \(0.2\) cm/s and \(0.4\) cm/s. Twice as far, twice as fast. Now run the film backwards. A needs \(4 \div 0.2 = 20\) s to reach home and B needs \(8 \div 0.4 = 20\) s. Both give the same estimate of when the dots were together. It is only an estimate, because it assumes steady speeds.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>On another balloon, dots P, Q and R are 4 cm, 8 cm and 20 cm from a home dot. In 5 seconds every distance grows to 1.5 times what it was. For each dot find (a) the new distance, (b) the distance moved and the average speed, (c) the new distance divided by the speed. What do you notice in (c)?<div class="space"></div></li>
+<li>Use Hubble's law with \(H = 70\) km/s for each megaparsec. (a) How fast is a galaxy 100 Mpc away moving away from us? (b) And one 250 Mpc away? (c) A galaxy is moving away at 4900 km/s. About how far away is it?<div class="space short"></div></li>
+<li>One megaparsec is about \(3.09 \times 10^{19}\) km, and a galaxy 1 Mpc away moves at about 70 km/s. (a) At that steady speed, how many seconds does it take to cover 1 Mpc? This is \(1/H\). (b) A year is about \(3.16 \times 10^{7}\) seconds. Write \(1/H\) in years. (c) Find \(1/H\) in years if \(H\) is 67, and if \(H\) is 73. Does a bigger \(H\) make the estimate older or younger?<div class="space"></div></li>
+<li>Dots A, B, C and D sit in a row on a rubber strip, at 0, 2, 4 and 6 cm from the left end. The strip is stretched until they sit at 0, 4, 8 and 12 cm. (a) Dot A is home. How far did each other dot move away from A? (b) Now C is home. Find its distance to A, B and D before and after. (c) Which dots could say "everyone moves away from me, the farther ones more"? So where is the centre?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: why 1/H is only an estimate</h2>
+<p>The best current measurement of the age, which uses much more than Hubble's law, is about 13.8 billion years. Our film ran backwards at today's speeds. (a) If galaxies moved faster in the past, is the true age more or less than \(1/H\)? (b) What if they moved slower in the past? (c) In one simple model, where gravity slows the expansion the whole time, the age is exactly two thirds of \(1/H\). Find it, using \(1/H = 14\) billion years. Does it fit the measurement?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) 6 cm, 12 cm and 30 cm. (b) They moved 2 cm, 4 cm and 10 cm, so the speeds are \(0.4\), \(0.8\) and \(2\) cm/s. (c) \(6 \div 0.4 = 15\) s, \(12 \div 0.8 = 15\) s, \(30 \div 2 = 15\) s. Every dot gives the same time, because speed is proportional to distance.</li>
+<li>(a) \(70 \times 100 = 7000\) km/s. (b) \(70 \times 250 = 17\,500\) km/s. (c) \(4900 \div 70 = 70\) Mpc. The law describes the stretching of space on average. Each galaxy also has some motion of its own, so real answers are approximate, and a few nearby galaxies are even coming towards us.</li>
+<li>(a) \(3.09 \times 10^{19} \div 70 \approx 4.41 \times 10^{17}\) seconds. (b) \(4.41 \times 10^{17} \div (3.16 \times 10^{7}) \approx 1.40 \times 10^{10}\) years, about 14 billion years. (c) The time is \(70/H\) times as long: \(14.0 \times 70 \div 67 \approx 14.6\) billion years, and \(14.0 \times 70 \div 73 \approx 13.4\) billion years. A bigger \(H\) means faster galaxies, so less time is needed: a younger estimate.</li>
+<li>(a) B moved 2 cm, C moved 4 cm and D moved 6 cm. (b) Before: A is 4 cm away, B is 2 cm, D is 2 cm. After: A is 8 cm away, B is 4 cm, D is 4 cm. So seen from C, A moved 4 cm away and B and D each moved 2 cm away. (c) All four. Each one sees all the others move away, by an amount proportional to their distance. Nothing in these measurements picks out a centre. In the same way, seeing galaxies move away from us does not put us at the centre of the universe.</li>
+</ol>
+<p><b>Stretch.</b> (a) Less. Faster galaxies in the past covered the distance sooner, so the film reaches "together" in less time than \(1/H\). (b) More, for the same reason reversed. (c) \(\tfrac{2}{3} \times 14 \approx 9.3\) billion years, far too young, so that model does not fit. The real expansion slowed for its first several billion years and has been speeding up since. The two effects roughly cancel, which is why \(1/H\) lands within a few percent of 13.8 billion years. That closeness is partly a coincidence.</p>
+</section>
+
+<div class="sheet-nav"><a href="c10-rain.html">← Previous</a><a href="c12-diffusion-convection.html">Next: Stirred or still? →</a></div>
+</main>
+
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

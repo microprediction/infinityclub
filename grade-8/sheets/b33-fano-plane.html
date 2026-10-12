@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A geometry where parallel lines meet · Math Detours</title>
+<meta name="description" content="Projective geometry adds points at infinity so that every two lines meet. Explore the Fano plane, a geometry with 7 points and 7 lines, count its pairs, use it as a game schedule, and find its line at infinity.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Math Detours · Grade 8 · Around the corner · 33</div>
+  <h1>A geometry where parallel lines meet</h1>
+  <p class="teaser">In a photo, railway tracks run together at the horizon. Mathematicians took this seriously: add points at infinity and every two lines meet. One geometry built this way has just 7 points.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Stand between two straight rails and look ahead. The rails never touch, yet in a photo they run to one spot on the horizon. Mathematicians took the photo seriously. Give each family of parallel lines one extra point, a <b>point at infinity</b>, where they all meet. Put all the extra points on one extra line, the line at infinity. The result is called a <b>projective plane</b>.</p>
+<p class="callout">In a projective plane, every two points lie on exactly one line, and every two lines meet in exactly one point. No two lines are parallel.</p>
+<p>The same two rules can hold in a geometry with only a few points. There a "line" is just a chosen set of points. It does not have to look straight. Ask for more than one line and at least three points on every line. Then the smallest geometry that obeys both rules is the <b>Fano plane</b>. It has 7 points and 7 lines, with 3 points on each line and 3 lines through each point.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: seven points, seven lines</h2>
+<figure><svg viewBox="0 0 260 194" width="205" height="153" role="img" aria-label="A triangle with seven numbered points. Corner 3 is at the top, corner 5 at the bottom left and corner 6 at the bottom right. Point 1 is the middle of the bottom side, point 4 the middle of the right side and point 2 the middle of the left side. Point 7 is at the centre. Three straight segments join each corner to the middle of the opposite side through the centre. An orange circle passes through the three middle points 1, 2 and 4." font-family="Nunito, sans-serif" font-size="13">
+<g stroke="#1d1f3a" stroke-width="1.8" fill="none">
+<polygon points="130,22 216.6,172 43.4,172"/>
+<line x1="130" y1="22" x2="130" y2="172"/>
+<line x1="43.4" y1="172" x2="173.3" y2="97"/>
+<line x1="216.6" y1="172" x2="86.7" y2="97"/>
+</g>
+<circle cx="130" cy="122" r="50" fill="none" stroke="#f5a524" stroke-width="2.4"/>
+<g fill="#fff" stroke="#1d1f3a" stroke-width="1.6">
+<circle cx="130" cy="22" r="10"/><circle cx="43.4" cy="172" r="10"/><circle cx="216.6" cy="172" r="10"/>
+<circle cx="130" cy="172" r="10"/><circle cx="173.3" cy="97" r="10"/><circle cx="86.7" cy="97" r="10"/>
+<circle cx="130" cy="122" r="10"/>
+</g>
+<g text-anchor="middle" font-weight="700" fill="#1d1f3a">
+<text x="130" y="26.5">3</text><text x="43.4" y="176.5">5</text><text x="216.6" y="176.5">6</text>
+<text x="130" y="176.5">1</text><text x="173.3" y="101.5">4</text><text x="86.7" y="101.5">2</text>
+<text x="130" y="126.5">7</text>
+</g>
+</svg><figcaption>The Fano plane: the corners of a triangle, the middle of each side, and the centre.</figcaption></figure>
+<p>Three lines are the sides: \(\{5, 1, 6\}\), \(\{6, 4, 3\}\), \(\{3, 2, 5\}\). Three go from a corner through the centre: \(\{3, 7, 1\}\), \(\{5, 7, 4\}\), \(\{6, 7, 2\}\). The last is the circle \(\{1, 2, 4\}\). The circle is a line like the others, because a line here is only a set of three points. In the drawing the circle crosses each line through the centre a second time, but those crossings are not points of the geometry. Only the seven numbered points count. The lines follow a pattern. Start with \(124\) and keep adding 1 to every number, with 8 turning back into 1: \(124\), \(235\), \(346\), \(457\), \(561\), \(672\), \(713\).</p>
+<p><b>Two points, one line.</b> Points 3 and 6 are both on \(346\) and on no other line. Points 2 and 4 are both on the circle \(124\). Points 1 and 3 are both on \(713\). <b>Two lines, one point.</b> Lines \(235\) and \(457\) share only the point 5. The circle \(124\) and the side \(346\) share only 4. Lines \(713\) and \(672\) share only 7.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>(a) How many different pairs of points can you choose from the 7 points? (b) How many pairs of points lie on one line? How many is that in total over the 7 lines? (c) The two totals match. That alone does not prove that every pair lies on exactly one line. What else must be true? Check it for point 1: list the lines through 1 and the points that share a line with 1.<div class="space short"></div></li>
+<li>(a) How many different pairs of lines are there? (b) Find the point where the circle \(124\) meets each of the other six lines. (c) Every point is on 3 lines. Use this, and the rule about two points, to explain why any line must meet all six others, without checking them one by one.<div class="space short"></div></li>
+<li>Seven friends, numbered 1 to 7, play a game that needs exactly three players. (a) Write a list of 7 games so that every two friends play together in exactly one game. How many games does each friend play? (b) Six friends want the same thing: games of three, with every two friends together in exactly one game. Show that no list of games can do it. Hint: who does friend 1 play with?<div class="space short"></div></li>
+<li>Run the idea backwards. Rub out the circle \(124\) and its three points, leaving 3, 5, 6 and 7. (a) Each other line has lost one point. Write the six shortened lines. (b) Call two shortened lines <b>parallel</b> if they share no point. Find the three parallel pairs. (c) At which rubbed-out point did each parallel pair meet before? What part do 1, 2, 4 and the circle play?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: thirteen points</h2>
+<p>A bigger projective plane has points 1 to 13 and four points on every line. Start with \(\{1, 2, 4, 10\}\) and keep adding 1 to every number, with 14 turning back into 1. (a) Write the 13 lines and find the line through 5 and 12. (b) Count the pairs of points, and the pairs lying on a line, as in exercise 1. (c) Suppose a projective plane has \(n + 1\) points on every line and \(n + 1\) lines through every point. Stand at one point and count all the points to show there are \(n^2 + n + 1\). How many is that for \(n = 2\), 3 and 4?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(\tfrac{7 \times 6}{2} = 21\) pairs. (b) A line of 3 points holds 3 pairs, so the 7 lines hold \(7 \times 3 = 21\). (c) Matching totals would still allow one pair to sit on two lines while another pair sits on none. You also need that no pair is on two lines. Then the 21 places hold 21 different pairs, which is all of them, each exactly once. Point 1 is on \(124\), \(561\) and \(713\). Its partners are 2, 4, 5, 6, 3, 7: all six other points, each once.</li>
+<li>(a) There are 7 lines, so again \(\tfrac{7 \times 6}{2} = 21\) pairs. (b) \(235\) at 2, \(346\) at 4, \(457\) at 4, \(561\) at 1, \(672\) at 2, \(713\) at 1. (c) Take any line. Each of its 3 points is on 2 other lines, which gives \(3 \times 2 = 6\) lines. No line was counted twice: a line through two points of our line would be our line, because two points lie on only one line. So 6 different lines meet ours, and there are only 6 other lines.</li>
+<li>(a) Use the lines as games: \(124\), \(235\), \(346\), \(457\), \(561\), \(672\), \(713\). Every two friends are together once because every two points lie on exactly one line. Each friend plays 3 games, because each point is on 3 lines. (b) Friend 1 must meet each of the other 5 friends exactly once. Every game friend 1 plays brings 2 partners, and no partner may come twice. So after \(k\) games friend 1 has met \(2k\) friends, an even number, and never 5. No list works.</li>
+<li>(a) \(\{3, 5\}\), \(\{3, 6\}\), \(\{5, 6\}\), \(\{3, 7\}\), \(\{5, 7\}\), \(\{6, 7\}\): every pair of the four points. (b) \(\{3, 5\}\) with \(\{6, 7\}\), \(\{3, 6\}\) with \(\{5, 7\}\), and \(\{5, 6\}\) with \(\{3, 7\}\). (c) They met at 2, at 4 and at 1, because the full lines were \(235\) and \(672\), \(346\) and \(457\), \(561\) and \(713\). So 1, 2 and 4 are the points at infinity, one for each parallel pair, and the circle is the line at infinity. Putting them back makes the parallel lines meet. Any of the seven lines could have played the circle's part.</li>
+</ol>
+<p><b>Stretch.</b> (a) \(\{1,2,4,10\}\), \(\{2,3,5,11\}\), \(\{3,4,6,12\}\), \(\{4,5,7,13\}\), \(\{5,6,8,1\}\), \(\{6,7,9,2\}\), \(\{7,8,10,3\}\), \(\{8,9,11,4\}\), \(\{9,10,12,5\}\), \(\{10,11,13,6\}\), \(\{11,12,1,7\}\), \(\{12,13,2,8\}\), \(\{13,1,3,9\}\). The line through 5 and 12 is \(\{9,10,12,5\}\). (b) There are \(\tfrac{13 \times 12}{2} = 78\) pairs of points. A line of 4 points holds \(\tfrac{4 \times 3}{2} = 6\) pairs, and \(13 \times 6 = 78\). The totals match, and no two of these lines share two points, so every pair is on exactly one line. (c) Stand at a point. There are \(n + 1\) lines through it, each with \(n\) other points. Every other point is on exactly one of those lines, since it shares exactly one line with yours. So the total is \(1 + n(n + 1) = n^2 + n + 1\). For \(n = 2\) that is 7 and for \(n = 3\) it is 13. For \(n = 4\) it is 21. Planes are known whenever \(n\) is a power of a prime, such as 2, 3, 4, 5, 7, 8, 9. None exists for \(n = 6\) or \(n = 10\). For \(n = 12\), nobody knows.</p>
+</section>
+
+<div class="sheet-nav"><a href="b32-do-moves-commute.html">← Previous</a><a href="b34-glue-a-square.html">Next: Glue a square four ways →</a></div>
+</main>
+
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

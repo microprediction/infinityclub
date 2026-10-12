@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Time averages equal space averages · Math Detours</title>
+<meta name="description" content="Keep adding the golden step 0.6180339... and keep the part after the decimal point: tally where the walk lands, compare the time average with the space average, see why fraction steps fail, and meet the doubling map, which a computer cannot follow for long.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
+  <a href="../index.html">Grade 10</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Math Detours · Grade 10 · Around the corner · 38</div>
+  <h1>Time averages equal space averages</h1>
+  <p class="teaser">Keep adding 0.6180339... and keep only the part after the decimal point. In the long run the values spread out evenly between 0 and 1. One long journey visits every stretch in fair proportion.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Start at 0. Add a fixed step. If the answer reaches 1 or more, throw away the whole-number part and keep the rest. Repeat. You are walking round a circle of length 1 and writing down where you land.</p>
+<p>There are two ways to average. A <b>time average</b> follows one walker for many steps. A <b>space average</b> looks at the whole circle at once. The stretch from 0.3 to 0.4 is one tenth of the space, so its fair share of the time is one tenth. The space average of the position itself is \(\frac{1}{2}\), the middle.</p>
+<p class="callout">A system is <b>ergodic</b> when, for almost every starting point, long-run time averages equal space averages.</p>
+<p>"Almost every" allows exceptions, but a start picked at random is one with chance 0. The walk with an irrational step (a step that is not a fraction) is ergodic. For this walk every start works, and every stretch of the circle gets its fair share. That is a theorem about the long run. A short table can only let you watch it begin.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: the golden step</h2>
+<p>Use the step \(a = \frac{\sqrt{5} - 1}{2} = 0.6180339\ldots\), which is irrational. Step 1 lands on 0.618. Step 2: \(0.618 + 0.618 = 1.236\), keep 0.236. Step 3: 0.854. Here are steps 1 to 20, read across, worked with many digits and rounded to three at the end. (Adding 0.618 by hand can differ by 1 in the last place.)</p>
+<table>
+<tr><th>1 to 10</th><td>0.618</td><td>0.236</td><td>0.854</td><td>0.472</td><td>0.090</td><td>0.708</td><td>0.326</td><td>0.944</td><td>0.562</td><td>0.180</td></tr>
+<tr><th>11 to 20</th><td>0.798</td><td>0.416</td><td>0.034</td><td>0.652</td><td>0.271</td><td>0.889</td><td>0.507</td><td>0.125</td><td>0.743</td><td>0.361</td></tr>
+</table>
+<p><b>Tally by tenths.</b> The first digit after the point tells you the tenth. The fair share is \(20 \div 10 = 2\) visits each. First digits 0 to 9 get 2, 2, 2, 2, 2, 2, 2, 3, 2, 1 visits.</p>
+<p><b>Average position.</b> The 20 values add to 9.786, so the time average is \(9.786 \div 20 \approx 0.489\). The space average is 0.5. Close already, and not equal: the match is a long-run promise.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Use the step 0.414 (this is \(\sqrt{2} - 1\) rounded to three places). Start at 0 and write the first 10 values. Tally them by fifths: 0 to 0.2, 0.2 to 0.4, and so on. Then find their average.<div class="space"></div></li>
+<li>Here are steps 21 to 50 of the golden walk, cut off (not rounded) after two decimal places. Tally them by first digit. Add your tally to the one in the worked example. What does each tenth get out of 50?
+<table>
+<tr><td>0.97</td><td>0.59</td><td>0.21</td><td>0.83</td><td>0.45</td><td>0.06</td><td>0.68</td><td>0.30</td><td>0.92</td><td>0.54</td></tr>
+<tr><td>0.15</td><td>0.77</td><td>0.39</td><td>0.01</td><td>0.63</td><td>0.24</td><td>0.86</td><td>0.48</td><td>0.10</td><td>0.72</td></tr>
+<tr><td>0.33</td><td>0.95</td><td>0.57</td><td>0.19</td><td>0.81</td><td>0.42</td><td>0.04</td><td>0.66</td><td>0.28</td><td>0.90</td></tr>
+</table>
+<div class="space short"></div></li>
+<li>Fraction steps, starting at 0. (a) Step 0.5: which values ever appear, and what is the long-run average position? (b) Step 0.3: write 10 values. Tally by first digit and find the average. (c) In (b), how often is the walk strictly between 0.01 and 0.09? What is the fair share? Is this walk ergodic?<div class="space short"></div></li>
+<li>A different system, the <b>doubling map</b>: double the number and keep the part after the point. (a) Start at 0.1234 and do 10 steps. How many of the 10 new values are in the left half (below 0.5)? (b) Start at \(\frac{1}{7}\), using fractions. What share of the time is spent in the left half? What is the average position? (c) Start at 0.5. What happens?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: why a computer loses the doubling map</h2>
+<p>A typical computer works in binary and cannot hold 0.1234 exactly. It holds the nearest fraction \(\frac{M}{2^{56}}\), and here \(M\) is odd. Doubling in binary is exact, so no further error creeps in. (a) After one doubling step the value is \(\frac{M}{2^{55}}\). What is the denominator after \(k\) steps? (b) What is the value after 55 steps, and after 56? (c) By hand, the true \(0.1234 = \frac{617}{5000}\) never reaches 0. Why not? (d) Should you test the doubling map for 1000 steps on a computer?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>0.414, 0.828, 0.242, 0.656, 0.070, 0.484, 0.898, 0.312, 0.726, 0.140. Each fifth gets exactly 2: (0.070, 0.140), (0.242, 0.312), (0.414, 0.484), (0.656, 0.726), (0.828, 0.898). The fair share is \(10 \div 5 = 2\). The sum is 4.770, so the average is 0.477, near 0.5. Ten steps prove nothing about the long run, and 0.414 is really a fraction, so this walk repeats after 500 steps. The true \(\sqrt{2} - 1\) never repeats.</li>
+<li>Steps 21 to 50 give, for first digits 0 to 9: 3, 3, 3, 3, 3, 3, 3, 2, 3, 4. Adding the worked example's 2, 2, 2, 2, 2, 2, 2, 3, 2, 1 gives 5 in every tenth, exactly the fair share \(50 \div 10\). Exact equality is partly luck in where we stopped: after 70 steps the counts are 7, 7, 7, 7, 7, 7, 7, 8, 6, 7. What the theorem promises is that each tenth's share of the time gets as close to \(\frac{1}{10}\) as you like.</li>
+<li>(a) 0.5, 0, 0.5, 0, and so on. Only two values ever appear. The long-run average position is 0.25, not 0.5. (b) 0.3, 0.6, 0.9, 0.2, 0.5, 0.8, 0.1, 0.4, 0.7, 0, and then it repeats. Each first digit appears once, so the tenths look perfectly fair. The average is \(4.5 \div 10 = 0.45\), and it stays 0.45 for ever. (c) Never: the walk only lands on the ten values 0, 0.1, ..., 0.9. The stretch has length 0.08, so its fair share is 8% of the time, and it gets 0%. The walk is not ergodic. A fraction step always repeats, so it visits only finitely many points and misses whole stretches. Tenths alone could not show this.</li>
+<li>(a) 0.2468, 0.4936, 0.9872, 0.9744, 0.9488, 0.8976, 0.7952, 0.5904, 0.1808, 0.3616. Four are in the left half and six in the right. Ten steps are too few to judge. (b) \(\frac{1}{7} \to \frac{2}{7} \to \frac{4}{7} \to \frac{8}{7}\), keep \(\frac{1}{7}\). The cycle has two values below \(\frac{1}{2}\) and one above, so the left half gets \(\frac{2}{3}\) of the time, not \(\frac{1}{2}\). The average position is \(\frac{1}{3}\), not \(\frac{1}{2}\). (c) \(0.5 \to 1\), keep 0, and 0 stays at 0 for ever. The doubling map is ergodic, but only for almost every start. Every fraction start ends in a cycle or at 0, so it visits only finitely many points and is an exception. The starts that spread evenly are all irrational, and they are almost all of the numbers from 0 to 1.</li>
+</ol>
+<p><b>Stretch.</b> (Here \(M = 8891907104280307\).) (a) Each doubling cancels one 2, and dropping a whole number does not change the denominator, so after \(k\) steps (for \(k\) up to 55) the value is an odd number over \(2^{56-k}\). (b) After 55 steps it is an odd number over 2 with the whole part dropped, which is exactly 0.5. After 56 steps it is 0, and it stays 0. (c) \(\frac{617}{5000} \to \frac{617}{2500} \to \frac{617}{1250} \to \frac{617}{625}\). Now the denominator is odd, and doubling can never cancel it. The numerator is never a multiple of 5 (doubling and subtracting 625 cannot create a factor of 5), so the value is never a whole number and the kept part is never 0. (d) No. It tells you nothing after step 56: the computer is following its own stored number, which dies, and typical starts die within about 55 steps too. Doubling pushes the binary digits one place left and drops the front one, and a computer stores only about 53 of them. The adding walk fares far better: adding a step does not use up digits, and its rounding errors grow very slowly.</p>
+</section>
+
+<div class="sheet-nav"><a href="b37-shuffles-mix.html">← Previous</a><a href="b39-turns-dont-commute.html">Next: Do turns commute? →</a></div>
+</main>
+
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

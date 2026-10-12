@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What is the chance two moves commute? · Math Detours</title>
+<meta name="description" content="The six symmetries of an equilateral triangle form a group. Build the table of moves, check the group rules, and count how often two moves picked at random give the same result in either order.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Math Detours · Grade 8 · Around the corner · 32</div>
+  <h1>What is the chance two moves commute?</h1>
+  <p class="teaser">Pick two symmetries of a triangle at random. Does it matter which you do first? Exactly half the time it does not.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Cut out a paper triangle with three equal sides and trace round it. A <b>symmetry</b> is a move that picks the triangle up and puts it back inside its outline. There are six: do nothing, two turns and three flips.</p>
+<p>These moves have three habits. Do one then another, and the result is one of the six. One is do-nothing. Each has an undo among the six.</p>
+<p class="callout">A <b>group</b> is a set of moves with a way to combine them such that: combining two moves gives a move in the set; the set has a do-nothing move; every move has an undo in the set.</p>
+<p>There is a fourth rule: doing \(x\) then \(y\), and then \(z\), must match doing \(x\), and then \(y\) then \(z\). It holds by itself for moves done one after another, and for adding or multiplying numbers.</p>
+<p>No rule mentions order. Two moves <b>commute</b> when doing them in either order gives the same result. Tonight you pick two moves at random (each equally likely, repeats allowed) and find the chance they commute.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: the six moves of a triangle</h2>
+<p>Write 1, 2, 3 on the corners, on both sides of the paper. Start with 1 at the top, 2 bottom right, 3 bottom left. The moves are \(N\) (do nothing), \(R\) (a third of a turn clockwise), \(S\) (two thirds of a turn clockwise), and the flips \(A\), \(B\), \(C\): turn the paper over across the dashed line through the top, bottom left or bottom right spot. The lines belong to the table. They stay put when the paper moves.</p>
+<figure><svg viewBox="0 0 500 160" width="500" height="160" role="img" aria-label="Three triangles. The first shows the start, corner 1 at the top, 2 at the bottom right, 3 at the bottom left, with dashed flip lines A through the top, B through the bottom left and C through the bottom right. The second shows the result of R then A: 3 at the top, 2 bottom right, 1 bottom left. The third shows the result of A then R: 2 at the top, 1 bottom right, 3 bottom left." font-family="Nunito, sans-serif" font-size="13">
+<polygon points="95,44 140,122 50,122" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="1.8"/>
+<line x1="95" y1="44" x2="95" y2="136" stroke="#f5a524" stroke-width="1.6" stroke-dasharray="5 3"/>
+<line x1="50" y1="122" x2="131" y2="75.2" stroke="#f5a524" stroke-width="1.6" stroke-dasharray="5 3"/>
+<line x1="140" y1="122" x2="59" y2="75.2" stroke="#f5a524" stroke-width="1.6" stroke-dasharray="5 3"/>
+<text x="95" y="151" text-anchor="middle" fill="#b36b00" font-weight="700">A</text>
+<text x="139" y="74" text-anchor="middle" fill="#b36b00" font-weight="700">B</text>
+<text x="51" y="74" text-anchor="middle" fill="#b36b00" font-weight="700">C</text>
+<text x="95" y="38" text-anchor="middle" font-weight="700" fill="#1d1f3a">1</text>
+<text x="150" y="134" text-anchor="middle" font-weight="700" fill="#1d1f3a">2</text>
+<text x="40" y="134" text-anchor="middle" font-weight="700" fill="#1d1f3a">3</text>
+<text x="95" y="14" text-anchor="middle" fill="#555">Start</text>
+<polygon points="270,44 315,122 225,122" fill="#fde8c4" stroke="#1d1f3a" stroke-width="1.8"/>
+<text x="270" y="38" text-anchor="middle" font-weight="700" fill="#1d1f3a">3</text>
+<text x="325" y="134" text-anchor="middle" font-weight="700" fill="#1d1f3a">2</text>
+<text x="215" y="134" text-anchor="middle" font-weight="700" fill="#1d1f3a">1</text>
+<text x="270" y="14" text-anchor="middle" fill="#555">After R then A</text>
+<polygon points="420,44 465,122 375,122" fill="#fde8c4" stroke="#1d1f3a" stroke-width="1.8"/>
+<text x="420" y="38" text-anchor="middle" font-weight="700" fill="#1d1f3a">2</text>
+<text x="475" y="134" text-anchor="middle" font-weight="700" fill="#1d1f3a">1</text>
+<text x="365" y="134" text-anchor="middle" font-weight="700" fill="#1d1f3a">3</text>
+<text x="420" y="14" text-anchor="middle" fill="#555">After A then R</text>
+</svg><figcaption>The start with its three flip lines, and where the corners land after \(R\) then \(A\), and after \(A\) then \(R\).</figcaption></figure>
+<p>Write \(RA\) for "\(R\) first, then \(A\)", reading left to right. \(R\) sends 3 to the top, 1 to the bottom right, 2 to the bottom left. Then \(A\) swaps the bottom two: 3, 2, 1 (top, right, left). Flip \(C\) alone does the same, so \(RA = C\). The other order: \(A\) gives 1, 3, 2, then \(R\) gives 2, 1, 3, which is \(B\) alone. So \(AR = B\), and \(R\) and \(A\) do not commute. Here is every pair, first move down the side, second move along the top:</p>
+<table class="tt">
+<tr><th>then</th><th>\(N\)</th><th>\(R\)</th><th>\(S\)</th><th>\(A\)</th><th>\(B\)</th><th>\(C\)</th></tr>
+<tr><th>\(N\)</th><td>\(N\)</td><td>\(R\)</td><td>\(S\)</td><td>\(A\)</td><td>\(B\)</td><td>\(C\)</td></tr>
+<tr><th>\(R\)</th><td>\(R\)</td><td>\(S\)</td><td>\(N\)</td><td>\(C\)</td><td>\(A\)</td><td>\(B\)</td></tr>
+<tr><th>\(S\)</th><td>\(S\)</td><td>\(N\)</td><td>\(R\)</td><td>\(B\)</td><td>\(C\)</td><td>\(A\)</td></tr>
+<tr><th>\(A\)</th><td>\(A\)</td><td>\(B\)</td><td>\(C\)</td><td>\(N\)</td><td>\(R\)</td><td>\(S\)</td></tr>
+<tr><th>\(B\)</th><td>\(B\)</td><td>\(C\)</td><td>\(A\)</td><td>\(S\)</td><td>\(N\)</td><td>\(R\)</td></tr>
+<tr><th>\(C\)</th><td>\(C\)</td><td>\(A\)</td><td>\(B\)</td><td>\(R\)</td><td>\(S\)</td><td>\(N\)</td></tr>
+</table>
+<p>Check the rules. Every entry is one of the six moves. Row \(N\) and column \(N\) copy the headings, so \(N\) is the do-nothing. Every row contains \(N\) exactly once, and that entry names the undo: \(R\) and \(S\) undo each other, and \(N\) and each flip undo themselves. The six moves form a group.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Moves \(x\) and \(y\) commute when \(xy = yx\): the entry in row \(x\), column \(y\) matches the entry in row \(y\), column \(x\). Count the ordered pairs \((x, y)\) that commute, out of all 36. Count \((R, S)\) and \((S, R)\) as two pairs, and include pairs with \(N\) and pairs like \((A, A)\). What is the chance that two random moves commute?<div class="space"></div></li>
+<li>Numbers can play the part of moves. Which of these are groups? If one is not, name a rule that fails. (a) The two numbers \(1\) and \(-1\), combined by multiplying. (b) The whole numbers \(0, 1, 2, 3, \ldots\), combined by adding. (c) The odd numbers \(1, 3, 5, \ldots\), combined by adding.<div class="space"></div></li>
+<li>A square has 8 symmetries: four turns (do nothing, a quarter turn, a half turn, a three-quarter turn) and four flips. You may use these facts, or test them on a paper square. Any two turns commute. The half turn commutes with all 8 moves. Each flip commutes with exactly four moves: do-nothing, the half turn, itself, and the one flip whose line is at right angles to its own. For each of the 8 moves, find how many moves commute with it. Then find the chance that two random symmetries of a square commute.<div class="space"></div></li>
+<li>Take only the turns \(N\), \(R\), \(S\) of the triangle. (a) Use the table to check that these three form a group on their own. (b) What is the chance that two random moves from this small group commute? (c) Explain why the chance can never be 0, in any group with a finite number of moves.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the five-eighths ceiling</h2>
+<p>A theorem published by W. H. Gustafson in 1973 says: in a group with a finite number of moves, if some pair of moves does not commute, then the chance that two random moves commute is at most \(\tfrac{5}{8}\). The proof rests on two facts about such a group. Fact 1: a move that fails to commute with some move commutes with at most half of the moves. Fact 2: the moves that commute with every move make up at most a quarter of the group. Check the theorem and both facts on the triangle and on the square. Then suppose a group has \(n\) moves, and \(z\) of them commute with every move. Use the two facts to show that at most \(\tfrac{5}{8}n^2\) of the \(n^2\) ordered pairs commute.</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Go row by row. \(N\) commutes with all 6 moves. \(R\) commutes with \(N\), \(R\), \(S\), which is 3, and so does \(S\). Each flip commutes only with \(N\) and itself, which is 2. Total \(6 + 3 + 3 + 2 + 2 + 2 = 18\) pairs out of 36, so the chance is \(\tfrac{18}{36} = \tfrac{1}{2}\).</li>
+<li>(a) A group. The products are \(1 \times 1 = 1\), \(1 \times (-1) = -1\), \((-1) \times 1 = -1\), \((-1) \times (-1) = 1\), all in the set. The do-nothing is 1, and each number undoes itself. (b) Not a group. Sums stay in the set and 0 is the do-nothing, but 1 has no undo, because that would need \(-1\). Allowing the negative whole numbers too would make a group. (c) Not a group. \(1 + 3 = 4\) is not odd, so combining leaves the set. There is also no do-nothing, since 0 is not odd.</li>
+<li>Do-nothing and the half turn: 8 each. Each flip: 4. A quarter turn or three-quarter turn commutes with the 4 turns. It commutes with no flip, because the four moves that commute with a flip do not include it. So 4 each. Total \(8 + 8 + 4 + 4 + 4 \times 4 = 40\) pairs out of \(8 \times 8 = 64\), and the chance is \(\tfrac{40}{64} = \tfrac{5}{8}\).</li>
+<li>(a) The top left 3 by 3 corner of the table contains only \(N\), \(R\), \(S\), so combining stays in the set. \(N\) is there, \(R\) and \(S\) undo each other, and \(N\) undoes itself. (b) That corner is the same when you swap rows with columns, so all 9 pairs commute and the chance is 1. (c) Do-nothing commutes with every move \(x\), because \(Nx\) and \(xN\) are both \(x\). So at least the pair \((N, N)\) commutes, and the chance is more than 0. Every pair \((x, x)\) commutes too.</li>
+</ol>
+<p><b>Stretch.</b> Triangle: \(\tfrac{1}{2}\) is below \(\tfrac{5}{8}\). Only \(N\) commutes with everything, and 1 is less than a quarter of 6. \(R\) and \(S\) commute with 3 moves, exactly half, and the flips with 2. Square: \(\tfrac{5}{8}\) exactly. Two moves of 8 commute with everything, exactly a quarter, and the other six each commute with 4, exactly half. Now the count. Each of the \(z\) moves commutes with all \(n\). Each of the other \(n - z\) commutes with at most \(\tfrac{n}{2}\), by Fact 1. So the number of commuting pairs is at most \(zn + (n - z)\tfrac{n}{2} = \tfrac{n^2}{2} + \tfrac{zn}{2}\). By Fact 2, \(z\) is at most \(\tfrac{n}{4}\), so this is at most \(\tfrac{n^2}{2} + \tfrac{n^2}{8} = \tfrac{5}{8}n^2\). The square reaches the ceiling, so \(\tfrac{5}{8}\) cannot be lowered. We used the two facts without proving them.</p>
+</section>
+
+<div class="sheet-nav"><a href="b31-distinct-and-odd-parts.html">← Previous</a><a href="b33-fano-plane.html">Next: A geometry where parallel lines meet →</a></div>
+</main>
+
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The biggest number is on the edge · Math Detours</title>
+<meta name="description" content="Fill a grid so that every inside cell is the average of its four neighbours. Solve two small grids exactly, prove that the largest value always sits on the border, use that to show the border allows only one filling, and see what changes when one cell is a heater.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
+  <a href="../index.html">Grade 9</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Math Detours · Grade 9 · Around the corner · 28</div>
+  <h1>The biggest number is on the edge</h1>
+  <p class="teaser">Fill a grid so every inside cell is the average of its four neighbours. Try to make an inside number bigger than everything on the border. You cannot.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Draw a rectangle of empty cells, the <b>inside</b>. Write any numbers you like in the cells that touch it, the <b>border</b>. (The four corner cells touch no inside cell, so leave them out.) Now fill the inside so that every inside cell is the average of its four neighbours: up, down, left and right.</p>
+<p>This rule links how the numbers change across the grid with how they change down it. It is a small model of a partial differential equation, and the first questions about any such equation are: is there a solution, and is there only one? You can answer a lot without solving anything.</p>
+<p class="callout"><b>Maximum principle.</b> The largest number in the grid is always found on the border. An inside cell can match it only when every cell in the grid holds the same number.</p>
+<p>The same is true of the smallest number. So if the border numbers are not all equal, every inside number lies strictly between the smallest and the largest of them. And, as you will prove, a border allows only one filling.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: four cells, four equations</h2>
+<figure><svg viewBox="0 0 520 138" width="520" height="138" role="img" aria-label="Two grids with shaded border cells and white inside cells, corners left out. Left, labelled Watch one: a two by two inside with a, b on its top row and c, d on its bottom row. Border: above 8 and 6, left 5 and 3, right 3 and 1, below 2 and 0. Right, labelled Exercise 1: one row of three inside cells x, y, z. Border: above 8, 5, 1, below 6, 2, 3, left end 6, right end 4." font-family="Nunito, sans-serif" font-size="14" fill="#1d1f3a">
+<rect x="128" y="2" width="28" height="28" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="1.5"/><text x="142" y="21" text-anchor="middle">8</text>
+<rect x="156" y="2" width="28" height="28" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="1.5"/><text x="170" y="21" text-anchor="middle">6</text>
+<rect x="100" y="30" width="28" height="28" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="1.5"/><text x="114" y="49" text-anchor="middle">5</text>
+<rect x="100" y="58" width="28" height="28" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="1.5"/><text x="114" y="77" text-anchor="middle">3</text>
+<rect x="184" y="30" width="28" height="28" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="1.5"/><text x="198" y="49" text-anchor="middle">3</text>
+<rect x="184" y="58" width="28" height="28" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="1.5"/><text x="198" y="77" text-anchor="middle">1</text>
+<rect x="128" y="86" width="28" height="28" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="1.5"/><text x="142" y="105" text-anchor="middle">2</text>
+<rect x="156" y="86" width="28" height="28" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="1.5"/><text x="170" y="105" text-anchor="middle">0</text>
+<rect x="128" y="30" width="28" height="28" fill="#fff" stroke="#1d1f3a" stroke-width="1.5"/><text x="142" y="49" text-anchor="middle" font-style="italic">a</text>
+<rect x="156" y="30" width="28" height="28" fill="#fff" stroke="#1d1f3a" stroke-width="1.5"/><text x="170" y="49" text-anchor="middle" font-style="italic">b</text>
+<rect x="128" y="58" width="28" height="28" fill="#fff" stroke="#1d1f3a" stroke-width="1.5"/><text x="142" y="77" text-anchor="middle" font-style="italic">c</text>
+<rect x="156" y="58" width="28" height="28" fill="#fff" stroke="#1d1f3a" stroke-width="1.5"/><text x="170" y="77" text-anchor="middle" font-style="italic">d</text>
+<text x="156" y="133" text-anchor="middle" font-size="13" fill="#3f44c9" font-weight="700">Watch one</text>
+<rect x="328" y="16" width="28" height="28" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="1.5"/><text x="342" y="35" text-anchor="middle">8</text>
+<rect x="356" y="16" width="28" height="28" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="1.5"/><text x="370" y="35" text-anchor="middle">5</text>
+<rect x="384" y="16" width="28" height="28" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="1.5"/><text x="398" y="35" text-anchor="middle">1</text>
+<rect x="328" y="72" width="28" height="28" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="1.5"/><text x="342" y="91" text-anchor="middle">6</text>
+<rect x="356" y="72" width="28" height="28" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="1.5"/><text x="370" y="91" text-anchor="middle">2</text>
+<rect x="384" y="72" width="28" height="28" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="1.5"/><text x="398" y="91" text-anchor="middle">3</text>
+<rect x="300" y="44" width="28" height="28" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="1.5"/><text x="314" y="63" text-anchor="middle">6</text>
+<rect x="412" y="44" width="28" height="28" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="1.5"/><text x="426" y="63" text-anchor="middle">4</text>
+<rect x="328" y="44" width="28" height="28" fill="#fff" stroke="#1d1f3a" stroke-width="1.5"/><text x="342" y="63" text-anchor="middle" font-style="italic">x</text>
+<rect x="356" y="44" width="28" height="28" fill="#fff" stroke="#1d1f3a" stroke-width="1.5"/><text x="370" y="63" text-anchor="middle" font-style="italic">y</text>
+<rect x="384" y="44" width="28" height="28" fill="#fff" stroke="#1d1f3a" stroke-width="1.5"/><text x="398" y="63" text-anchor="middle" font-style="italic">z</text>
+<text x="370" y="133" text-anchor="middle" font-size="13" fill="#3f44c9" font-weight="700">Exercise 1</text>
+</svg></figure>
+<p>Four times each inside cell is the sum of its four neighbours. The shaded border cells give the plain numbers, such as \(8 + 5 = 13\) for \(a\):</p>
+<p>\[ 4a = 13 + b + c, \qquad 4b = 9 + a + d, \qquad 4c = 5 + a + d, \qquad 4d = 1 + b + c. \]</p>
+<p>Add the first and last: \(4(a + d) = 14 + 2(b + c)\). Add the middle two: \(4(b + c) = 14 + 2(a + d).\) Subtracting gives \(6(a + d) = 6(b + c)\), so the two sums are equal, and then \(2(a + d) = 14\). So \(a + d = b + c = 7\). Now \(4a = 13 + 7\), \(4b = 9 + 7\), \(4c = 5 + 7\), \(4d = 1 + 7\): \(a = 5\), \(b = 4\), \(c = 3\), \(d = 2\). The border runs from 0 to 8, and every inside number is strictly between.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>In the right-hand grid above, the inside is one row of three cells. (a) Write the three equations and find \(x\), \(y\), \(z\). (b) Check that they lie between the smallest and largest border numbers.<div class="space short"></div></li>
+<li>Prove the maximum principle. Let \(M\) be the largest number anywhere in a filled grid, and suppose an inside cell holds \(M\). (a) Its four neighbours are each at most \(M\) and their average is \(M\). Why must all four equal \(M\)? (b) Start at that cell and keep stepping left. Explain why you must reach a border cell holding \(M\). (c) Explain why in fact every cell of the grid holds \(M\).<div class="space"></div></li>
+<li>Only one filling. Suppose two people fill the same grid, with identical border numbers, and both obey the averaging rule. Make a third grid by subtracting the second filling from the first, cell by cell. (a) What is on its border? (b) Show that the third grid obeys the averaging rule too. (c) Use the maximum principle, and the same fact for the smallest number, to show that the two fillings are identical.<div class="space"></div></li>
+<li>The averaging rule is a model of the steady temperature in a thin metal plate that is heated or cooled only at its border. The border is held at temperatures from 10 to 30 degrees, not all equal. Without solving: (a) Can an inside cell be at 31 degrees? At exactly 30? (b) Can there be a hot spot, an inside cell warmer than all four of its neighbours? (c) Two labs set the same border temperatures. What does exercise 3 say about their inside temperatures in this model?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: switch on a heater</h2>
+<p>Take one row of three inside cells again, with every border number 0. The two end cells obey the averaging rule. The middle cell is a <b>heater</b>: its number is the average of its four neighbours plus 7. (a) Find the three inside numbers. Where is the largest number in the grid now? (b) Which step of your proof in exercise 2 fails? (c) Change the heater into a cooler: the average minus 7. Is the largest number on the border again? Would it be, for any border and any number of coolers?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(4x = 8 + 6 + 6 + y = 20 + y\), \(4y = 5 + 2 + x + z = 7 + x + z\) and \(4z = 1 + 3 + 4 + y = 8 + y\). Add the first and third: \(4(x + z) = 28 + 2y\), so \(x + z = 7 + \tfrac{y}{2}\). Then \(4y = 14 + \tfrac{y}{2}\), so \(y = 4\), and \(x = 6\), \(z = 3\). (b) The border runs from 1 to 8, and 6, 4 and 3 are between. Notice that \(x = 6\) equals one border number, which is allowed. It just cannot reach the largest one.</li>
+<li>(a) If one neighbour were less than \(M\), the others, being at most \(M\), could not make up for it, and the average would be less than \(M\). (b) The cell to the left holds \(M\) by (a). If it is an inside cell, it obeys the averaging rule too, so (a) applies to it and the next cell left holds \(M\). The row is finite, so after a few steps you reach the border cell at its left end, and it holds \(M\). So the largest number is always found on the border. (c) By (a), \(M\) spreads from an inside cell to all four neighbours, and from each inside neighbour onward. Any inside cell can be reached from any other by steps up, down, left and right through the inside, so every inside cell holds \(M\). Every border cell touches an inside cell, so it holds \(M\) too. For the smallest number, run the same proof with "at least" in place of "at most".</li>
+<li>(a) The borders are identical, so every border cell of the third grid is 0. (b) Say an inside cell holds \(u\) in the first filling and \(v\) in the second, with neighbours \(u_1, \ldots, u_4\) and \(v_1, \ldots, v_4\). Then \(u - v = \tfrac{u_1 + u_2 + u_3 + u_4}{4} - \tfrac{v_1 + v_2 + v_3 + v_4}{4}\), which is the average of the four differences \(u_i - v_i\). (c) The largest number in the third grid is on its border, so it is 0. So is the smallest. Every cell is therefore 0, and the two fillings agree in every cell. Without identical borders the proof says nothing: the worked example and a grid with all 9s are both correct fillings, of different borders.</li>
+<li>(a) No to both. The largest number in the grid is on the border, so it is at most 30. An inside cell at exactly 30 would force every cell to be 30, but the border is not all equal. In the same way every inside cell is strictly above 10. (b) No. An inside cell is the average of its neighbours, and an average is never bigger than all of the numbers averaged. Heat does not pile up on its own. (c) They agree in every cell: the border decides the whole inside. Real plates are only approximated by the model, so real measurements would agree only roughly.</li>
+</ol>
+<p><b>Stretch.</b> (a) Call the cells \(x\), \(y\), \(z\). The end cells give \(4x = y\) and \(4z = y\). The heater gives \(y = \tfrac{x + z}{4} + 7 = \tfrac{y}{8} + 7\), so \(\tfrac{7y}{8} = 7\) and \(y = 8\), \(x = z = 2\). The largest number, 8, is inside, at the heater. (b) Step (a). The heater is above the average of its neighbours, so they need not equal it: they are 2, 2, 0 and 0. (c) Now \(y = \tfrac{y}{8} - 7\), so \(y = -8\) and \(x = z = -2\). The largest number is 0, on the border. Yes, this always holds. Every inside cell is now at most the average of its neighbours. If an inside cell held the largest number \(M\), the average of its neighbours would be at least \(M\), so all four would equal \(M\) and the walk to the border works as before. The matching proof for the smallest number is the one that breaks: coolers can make cold spots but never hot spots. One more fact, which needs more algebra than this sheet has: a filling always exists. Finding it means solving as many equations as there are inside cells, and since two solutions can never differ, those equations always have exactly one solution.</p>
+</section>
+
+<div class="sheet-nav"><a href="b27-grid-or-tree.html">← Previous</a><a href="b29-nearly-zero.html">Next: Mod 9, every failure is a multiple of 3 →</a></div>
+</main>
+
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

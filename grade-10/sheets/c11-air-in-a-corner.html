@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why the air does not gather in one corner · Math Detours</title>
+<meta name="description" content="Count the ways 10 coins can land, run the Ehrenfest urn with numbered tokens, and see why a huge random system sits near its most numerous arrangements.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
+  <a href="../index.html">Grade 10</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Math Detours · Grade 10 · Connections · 11</div>
+  <h1>Why the air does not gather in one corner</h1>
+  <p class="teaser">All the air in a room could rush into one corner, but it never does. With 10 coins, all heads comes up 1 time in 1024. With 100 coins, a billion tries a second since the universe began would almost certainly not be enough.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>No law of physics stops every air molecule in your room from wandering into the left half at once. So why are you not gasping?</p>
+<p>Try a small model. Each molecule is in the left half or the right half, like a coin showing heads or tails, each equally likely, whatever the others do. (An idealisation: real molecules collide. And a corner is smaller than a half, so it is rarer still.) With 10 coins there are \(2^{10} = 1024\) equally likely arrangements. Exactly 1 is all heads. But 252 have 5 heads. Nothing pushes the coins towards an even split. There are just more ways to be there.</p>
+<p class="callout">In a big random system, what you see is what can happen in the most ways.</p>
+<p>The <b>Ehrenfest urn</b> shows a system getting there. Put tokens numbered 0 to 9 in box A and leave box B empty. Each turn, pick a random digit 0 to 9 and move that token to the other box. The rule treats both boxes alike, yet box A drains towards 5 tokens and then hovers there.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: counting the ways for 10 coins</h2>
+<figure style="float:right;width:248px;margin:0 0 .3em .8em"><svg viewBox="0 0 248 150" width="248" height="150" role="img" aria-label="Bar chart of the number of arrangements of 10 coins with 0 to 10 heads. The bar heights are 1, 10, 45, 120, 210, 252, 210, 120, 45, 10, 1. The tallest bar, 252 at 5 heads, is highlighted.">
+<line x1="6" y1="118" x2="242" y2="118" stroke="#1d1f3a" stroke-width="1"/>
+<g font-family="Nunito, sans-serif" font-size="11" fill="#1d1f3a">
+<rect x="10.0" y="117.6" width="18" height="0.4" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1"/>
+<text x="19.0" y="113.6" text-anchor="middle">1</text>
+<text x="19.0" y="132" text-anchor="middle" fill="#555">0</text>
+<rect x="31.0" y="114.2" width="18" height="3.8" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1"/>
+<text x="40.0" y="110.2" text-anchor="middle">10</text>
+<text x="40.0" y="132" text-anchor="middle" fill="#555">1</text>
+<rect x="52.0" y="101.0" width="18" height="17.0" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1"/>
+<text x="61.0" y="97.0" text-anchor="middle">45</text>
+<text x="61.0" y="132" text-anchor="middle" fill="#555">2</text>
+<rect x="73.0" y="72.8" width="18" height="45.2" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1"/>
+<text x="82.0" y="68.8" text-anchor="middle">120</text>
+<text x="82.0" y="132" text-anchor="middle" fill="#555">3</text>
+<rect x="94.0" y="38.8" width="18" height="79.2" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1"/>
+<text x="103.0" y="34.8" text-anchor="middle">210</text>
+<text x="103.0" y="132" text-anchor="middle" fill="#555">4</text>
+<rect x="115.0" y="23.0" width="18" height="95.0" fill="#f5a524" stroke="#3f44c9" stroke-width="1"/>
+<text x="124.0" y="19.0" text-anchor="middle" font-weight="700">252</text>
+<text x="124.0" y="132" text-anchor="middle" fill="#555">5</text>
+<rect x="136.0" y="38.8" width="18" height="79.2" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1"/>
+<text x="145.0" y="34.8" text-anchor="middle">210</text>
+<text x="145.0" y="132" text-anchor="middle" fill="#555">6</text>
+<rect x="157.0" y="72.8" width="18" height="45.2" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1"/>
+<text x="166.0" y="68.8" text-anchor="middle">120</text>
+<text x="166.0" y="132" text-anchor="middle" fill="#555">7</text>
+<rect x="178.0" y="101.0" width="18" height="17.0" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1"/>
+<text x="187.0" y="97.0" text-anchor="middle">45</text>
+<text x="187.0" y="132" text-anchor="middle" fill="#555">8</text>
+<rect x="199.0" y="114.2" width="18" height="3.8" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1"/>
+<text x="208.0" y="110.2" text-anchor="middle">10</text>
+<text x="208.0" y="132" text-anchor="middle" fill="#555">9</text>
+<rect x="220.0" y="117.6" width="18" height="0.4" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1"/>
+<text x="229.0" y="113.6" text-anchor="middle">1</text>
+<text x="229.0" y="132" text-anchor="middle" fill="#555">10</text>
+<text x="124" y="146" text-anchor="middle" fill="#555">number of heads</text>
+</g>
+</svg><figcaption style="text-align:left;font-size:.8rem">Ways for 10 coins to show each number of heads: \(1 + 10 + 45 + \dots + 1 = 1024\).</figcaption></figure>
+<p>How many of the 1024 arrangements have exactly 2 heads? Choose which coins are the heads: 10 choices for one, 9 for the other, and each pair has been counted twice, so \(\frac{10 \times 9}{2} = 45\). For 5 heads, choose 5 coins in order, \(10 \times 9 \times 8 \times 7 \times 6 = 30{,}240\) ways, then divide by the \(5 \times 4 \times 3 \times 2 \times 1 = 120\) orders in which the same five could be picked: \(30{,}240 \div 120 = 252\).</p>
+<p>The figure shows every count. Swapping heads and tails turns \(k\) heads into \(10 - k\), so the chart is symmetric, and the bars add to 1024. The chance of exactly 5 heads is \(\frac{252}{1024} \approx 0.246\), and of all heads \(\frac{1}{1024}\). Even the most likely count comes up less than a quarter of the time. It is the whole middle of the chart that dominates, not one bar.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Use the chart for 10 fair coins. (a) What is the chance of 4, 5 or 6 heads? (b) What is the chance of a lopsided result: 0, 1, 9 or 10 heads?<div class="space short"></div></li>
+<li><b>Run the urn.</b> Tokens 0 to 9 all start in box A. Here are 20 digits from a computer's random number generator: 6, 3, 5, 4, 5, 9, 1, 7, 7, 9, 1, 7, 1, 6, 4, 2, 9, 5, 8, 1. For each digit, move that token to the other box, and write down how many tokens are in box A after each turn. Which tokens end in box A? Did the count ever get back to 10?<div class="space"></div></li>
+<li>The urn has 8 tokens in box A and 2 in box B. (a) What is the chance that the next turn takes a token out of A? Puts one into A? (b) With \(k\) tokens in A, what is the chance that the count goes down? (c) For which \(k\) are up and down equally likely? Does the count stay still there?<div class="space short"></div></li>
+<li>For 100 coins a computer adds up the counts: 40 to 60 heads covers about 0.965 of all \(2^{100}\) arrangements. (a) What is the chance of landing outside 40 to 60? (b) Compare with your answer to 1(a), which is the same band (40% to 60% heads) for 10 coins. What do you expect for 1000 coins and 400 to 600 heads? (c) Use \(2^{10} = 1024 \approx 10^3\) to estimate \(2^{100}\) as a power of 10. What is the chance that 100 coins all land heads?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: how long until it all comes back?</h2>
+<p>A known fact about the 10-token urn (a case of Kac's lemma), on trust tonight: over a very long run, the fraction of turns with \(k\) tokens in box A is \(\frac{\text{ways}}{1024}\), read off the chart, and the average number of turns between one visit to \(k\) and the next is \(\frac{1024}{\text{ways}}\). (a) Starting with all 10 in A, how many turns on average until all 10 are in A again? How many between visits to 5? (b) With 100 tokens the same rule gives \(2^{100}\) turns to refill A. At a billion turns a second, about how many seconds is that? The universe is about \(4 \times 10^{17}\) seconds old. (c) Every single move can be undone by the very next move. So why does the urn look as if it only runs one way?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(210 + 252 + 210 = 672\) ways, so \(\frac{672}{1024} = \frac{21}{32} \approx 0.66\). (b) \(1 + 10 + 10 + 1 = 22\) ways, so \(\frac{22}{1024} \approx 0.021\), about 1 time in 47. Near-even results are about 30 times as likely as these lopsided ones, with no force pulling towards the middle.</li>
+<li>The count in box A after each turn: 9, 8, 7, 6, 7, 6, 5, 4, 5, 6, 7, 6, 5, 6, 7, 6, 5, 4, 3, 4. (A digit that repeats, like the second 5, sends its token back.) Tokens 0, 1, 4 and 6 end in A. The count fell quickly from 10, then wandered between 3 and 7 and never came close to 10 again. Another list of digits gives a different path, but nearly always the same story.</li>
+<li>(a) Each token is equally likely to be picked and 8 of the 10 are in A, so out of A has chance \(\frac{8}{10}\) and into A has chance \(\frac{2}{10}\). (b) \(\frac{k}{10}\): the fuller box is the more likely one to lose a token. Nothing aims at 5. (c) \(k = 5\), where both chances are \(\frac{5}{10}\). The count does not stay still: every turn moves one token, so from 5 it goes to 4 or 6, and from there it is more likely to step back towards 5 than away.</li>
+<li>(a) \(1 - 0.965 = 0.035\), about 1 time in 28. (b) The same band holds about 0.66 for 10 coins and 0.965 for 100, so it tightens as the number grows. For 1000 coins the chance of landing outside 400 to 600 is about 2 in 10 billion: the band holds essentially everything. (c) \(2^{100} = (2^{10})^{10} \approx (10^3)^{10} = 10^{30}\) (more exactly \(1.27 \times 10^{30}\)), so the chance is about 1 in \(10^{30}\). A real room holds far more than 100 molecules, more like \(10^{27}\).</li>
+</ol>
+<p><b>Stretch.</b> (a) All in A is 1 way, so \(\frac{1024}{1} = 1024\) turns on average. Level 5 has 252 ways: \(\frac{1024}{252} \approx 4.1\) turns. The urn is back at 5 almost at once and back at 10 very rarely, because it spends only \(\frac{1}{1024}\) of its turns there. (b) About \(10^{30} \div 10^9 = 10^{21}\) seconds, a few thousand times the age of the universe, and that is for only 100 molecules. "Never" is not quite true; "not in any time that matters" is. (c) Each move is reversible, but from a lopsided state far more of the possible moves lead towards the middle than away (8 against 2 in exercise 3). The one-way look comes from counting, not from the rule. Spreading and mixing look one-way for the same reason.</p>
+</section>
+
+<div class="sheet-nav"><a href="c10-apportionment.html">← Previous</a><a href="c12-averaging-directions.html">Next: The average of 350 degrees and 10 degrees →</a></div>
+</main>
+
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Will tomorrow be like today? · Math Detours</title>
+<meta name="description" content="Count the transitions in a made-up month of sun and rain to estimate how sticky the weather is, link that to the average length of a run, and use the same count to tell typical coin flips from an invented list.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Math Detours · Grade 8 · Connections · 20</div>
+  <h1>Will tomorrow be like today?</h1>
+  <p class="teaser">Rainy days come in runs. From one month of weather you can estimate how sticky the weather is, and the same count helps you spot an invented list of coin flips.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Flip a fair coin and yesterday's flip tells you nothing about today's. Weather is different. Rainy days tend to come in runs, so today's weather is a clue about tomorrow's. The days <b>depend</b> on each other.</p>
+<p>To learn from a sequence like that, do not only count the rainy days. Count the <b>transitions</b>: the pairs of neighbouring days. There are four kinds: sun then sun, sun then rain, rain then sun, rain then rain. A record of \(n\) days has \(n - 1\) transitions, because the last day has no tomorrow in the record.</p>
+<p class="callout">\[\text{estimated chance that rain follows rain} = \frac{\text{number of rain-then-rain transitions}}{\text{number of transitions that start with rain}}.\]</p>
+<p>If that chance is well above the overall share of rainy days, the weather is <b>sticky</b>. This is a simple model. It supposes that tomorrow depends only on today, with the same chances every day. Real weather is more complicated, but the model is a useful first look.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: a made-up month</h2>
+<p>Here are 30 days of invented weather, in groups of five. S is a sunny day, R is a rainy day.</p>
+<p><code>SSSSS RRRRR SSSRR RSSSS SSRRR RSSSS</code></p>
+<p>Slide along the record one pair at a time: days 1 and 2, days 2 and 3, up to days 29 and 30. The pair across a gap counts too. The tally is \(\text{SS} = 14\), \(\text{SR} = 3\), \(\text{RS} = 3\), \(\text{RR} = 9\). Check: \(14 + 3 + 3 + 9 = 29\), one fewer than the 30 days.</p>
+<p>Transitions that start with rain: \(\text{RS} + \text{RR} = 3 + 9 = 12\). So the estimated chance that rain follows rain is \(9/12 = 0.75\).</p>
+<p>Compare. Rain fell on 12 of the 30 days, a share of 0.4. After a sunny day, rain came next in only 3 of \(14 + 3 = 17\) transitions, about 0.18. In this month, rain was about four times as likely after a rainy day as after a sunny one. That is sticky weather.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Here is a second made-up record, 20 days long: <code>RRSSS SRSSS SSRRR SSSSR</code>. (a) How many transitions does it have? (b) Count each of the four kinds, SS, SR, RS and RR, and check that they add up to your answer to (a).<div class="space short"></div></li>
+<li>Use your counts from question 1. (a) Estimate the chance that sun follows sun. (b) Estimate the chance that rain follows rain. Careful: how many rainy days have a tomorrow in the record? (c) Which is stickier in this record, sun or rain?<div class="space short"></div></li>
+<li>In the model, suppose the chance that tomorrow is the same as today is \(p\), the same every day, with \(p \lt 1\). Then a run lasts \(1/(1 - p)\) days on average. (a) Find the average run when \(p = 0.5\). (b) Find it when \(p = 0.8\). (c) In the worked month the estimate for rain was \(p = 0.75\). What average rain run does the rule give? Now list the rain runs in that month and find their real average.<div class="space short"></div></li>
+<li>For a fair coin, each flip differs from the one before with chance \(\tfrac12\), so \(n\) flips have \((n - 1)/2\) changes on average. (a) How many changes do you expect in 30 flips? In 100 flips? (b) Both lists below were made up for this sheet. One is built like typical fair coin flips. The other is built the way people usually invent "random" flips: they switch too often and avoid long runs. Count the changes and find the longest run in each. Which list is the imitation?
+<p>List A: <code>HHTHT TTTTH HTHHH THTTH HHHHT TTHTH</code><br>List B: <code>HTHHT HTTHT HTHHT THTTH THHTH TTHTH</code></p><div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: how far would you trust it?</h2>
+<p>The estimate 0.75 in the worked month came from only 12 transitions that start with rain. (a) If one of those 12 had gone the other way, what would the estimate be? Give both possibilities. (b) A whole year with the same pattern has 144 such transitions, 108 of them rain then rain. Now how much does one changed transition move the estimate? (c) Give one reason a single month could mislead you even if you counted perfectly.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(20 - 1 = 19\). (b) \(\text{SS} = 10\), \(\text{SR} = 3\), \(\text{RS} = 3\), \(\text{RR} = 3\), and \(10 + 3 + 3 + 3 = 19\).</li>
+<li>(a) Transitions that start with sun: \(10 + 3 = 13\). Estimate \(10/13 \approx 0.77\). (b) There are 7 rainy days, but day 20 is rainy and has no tomorrow in the record, so only \(3 + 3 = 6\) transitions start with rain. Estimate \(3/6 = 0.5\). Dividing by 7 would be a mistake. (c) Sun is stickier here: a sunny day was followed by another about 77% of the time, a rainy day only 50%. Even so, rain is more likely after rain (0.5) than after sun (\(3/13 \approx 0.23\)).</li>
+<li>(a) \(1/(1 - 0.5) = 2\) days. (b) \(1/(1 - 0.8) = 1/0.2 = 5\) days. (c) \(1/(1 - 0.75) = 4\) days. The rain runs in the month are 5, 3 and 4 days long, and their average is \(12/3 = 4\). The match is exact, and not by luck. The month ends with sun, so no rain run is cut off. Then every rain run ends in exactly one rain-then-sun transition: 12 rainy days in 3 runs, and \(1/(1 - \tfrac{9}{12}) = 12/3\) as well. If the record had stopped in the middle of a rain run, the two numbers would only roughly agree. Why the rule works: each day a run ends with chance \(1 - p\), like waiting for a six on a die, which takes 6 rolls on average when the chance is \(\tfrac16\).</li>
+<li>(a) \(29/2 = 14.5\) changes in 30 flips, and \(99/2 = 49.5\) in 100 flips. (b) List A has 14 changes and a longest run of 5. List B has 22 changes and a longest run of only 2. List B is the imitation: it switches far more often than 14.5, and never has three in a row. You cannot be certain from the counts alone, because a fair coin can produce any list. But 30 fair flips give 22 or more changes only about once in 250 tries, and no run of three or more only about once in 400.</li>
+</ol>
+<p><b>Stretch.</b> (a) \(8/12 \approx 0.67\) or \(10/12 \approx 0.83\). One transition moves the estimate by about 0.08. (b) \(107/144 \approx 0.743\) or \(109/144 \approx 0.757\), a move of about 0.007. Twelve times the data, one twelfth of the wobble from a single transition. (c) Some good reasons: 12 transitions is very few, so chance alone moves the estimate a lot. When a computer ran this model 100,000 times with the true chance set to 0.75, about one month in four gave an estimate below 0.6 or above 0.9. Also, one month is one season, and the stickiness in a wet month may differ from a dry one. And the model itself is an idealisation: real weather can depend on more than just yesterday.</p>
+</section>
+
+<div class="sheet-nav"><a href="c19-schelling-model.html">← Previous</a><a href="../index.html#sheets">← All sheets</a></div>
+</main>
+
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

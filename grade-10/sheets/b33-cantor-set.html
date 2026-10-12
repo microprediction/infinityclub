@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Remove everything, keep a lot · Math Detours</title>
+<meta name="description" content="Build the Cantor set by removing middle thirds for ever. Show the removed lengths add to 1, use base 3 to decide which numbers survive, and see why the dust that is left cannot be listed.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
+  <a href="../index.html">Grade 10</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Math Detours · Grade 10 · Around the corner · 33</div>
+  <h1>Remove everything, keep a lot</h1>
+  <p class="teaser">Remove the middle third of a line of length 1, then the middle third of each piece left, for ever. The lengths you remove add up to 1, yet the points left over are too many to list.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Start with every number from 0 to 1. Step 1: remove the numbers strictly between \(\tfrac13\) and \(\tfrac23\). The ends \(\tfrac13\) and \(\tfrac23\) stay. Step 2: do the same to each piece left. Carry on for ever. The numbers never removed form the <b>Cantor set</b>.</p>
+<figure><svg viewBox="0 0 520 108" width="520" height="108" role="img" aria-label="Five rows of bars, with the positions 0, 1/3, 2/3 and 1 labelled underneath. The top row is one bar from 0 to 1. Each row below removes the middle third of every bar above it, giving 2, 4, 8 and 16 bars. The total length left is written beside each row: 1, 2/3, 4/9, 8/27 and 16/81." font-family="Nunito, sans-serif" font-size="12">
+<text x="4" y="16" fill="#555">Start</text>
+<rect x="62.0" y="6" width="405.0" height="12" fill="#3f44c9"/>
+<text x="475" y="16" fill="#1d1f3a">1</text>
+<text x="4" y="34" fill="#555">Step 1</text>
+<rect x="62.0" y="24" width="135.0" height="12" fill="#3f44c9"/>
+<rect x="332.0" y="24" width="135.0" height="12" fill="#3f44c9"/>
+<text x="475" y="34" fill="#1d1f3a">2/3</text>
+<text x="4" y="52" fill="#555">Step 2</text>
+<rect x="62.0" y="42" width="45.0" height="12" fill="#3f44c9"/>
+<rect x="152.0" y="42" width="45.0" height="12" fill="#3f44c9"/>
+<rect x="332.0" y="42" width="45.0" height="12" fill="#3f44c9"/>
+<rect x="422.0" y="42" width="45.0" height="12" fill="#3f44c9"/>
+<text x="475" y="52" fill="#1d1f3a">4/9</text>
+<text x="4" y="70" fill="#555">Step 3</text>
+<rect x="62.0" y="60" width="15.0" height="12" fill="#3f44c9"/>
+<rect x="92.0" y="60" width="15.0" height="12" fill="#3f44c9"/>
+<rect x="152.0" y="60" width="15.0" height="12" fill="#3f44c9"/>
+<rect x="182.0" y="60" width="15.0" height="12" fill="#3f44c9"/>
+<rect x="332.0" y="60" width="15.0" height="12" fill="#3f44c9"/>
+<rect x="362.0" y="60" width="15.0" height="12" fill="#3f44c9"/>
+<rect x="422.0" y="60" width="15.0" height="12" fill="#3f44c9"/>
+<rect x="452.0" y="60" width="15.0" height="12" fill="#3f44c9"/>
+<text x="475" y="70" fill="#1d1f3a">8/27</text>
+<text x="4" y="88" fill="#555">Step 4</text>
+<rect x="62.0" y="78" width="5.0" height="12" fill="#3f44c9"/>
+<rect x="72.0" y="78" width="5.0" height="12" fill="#3f44c9"/>
+<rect x="92.0" y="78" width="5.0" height="12" fill="#3f44c9"/>
+<rect x="102.0" y="78" width="5.0" height="12" fill="#3f44c9"/>
+<rect x="152.0" y="78" width="5.0" height="12" fill="#3f44c9"/>
+<rect x="162.0" y="78" width="5.0" height="12" fill="#3f44c9"/>
+<rect x="182.0" y="78" width="5.0" height="12" fill="#3f44c9"/>
+<rect x="192.0" y="78" width="5.0" height="12" fill="#3f44c9"/>
+<rect x="332.0" y="78" width="5.0" height="12" fill="#3f44c9"/>
+<rect x="342.0" y="78" width="5.0" height="12" fill="#3f44c9"/>
+<rect x="362.0" y="78" width="5.0" height="12" fill="#3f44c9"/>
+<rect x="372.0" y="78" width="5.0" height="12" fill="#3f44c9"/>
+<rect x="422.0" y="78" width="5.0" height="12" fill="#3f44c9"/>
+<rect x="432.0" y="78" width="5.0" height="12" fill="#3f44c9"/>
+<rect x="452.0" y="78" width="5.0" height="12" fill="#3f44c9"/>
+<rect x="462.0" y="78" width="5.0" height="12" fill="#3f44c9"/>
+<text x="475" y="88" fill="#1d1f3a">16/81</text>
+<text x="62.0" y="103" text-anchor="middle" fill="#555">0</text>
+<text x="197.0" y="103" text-anchor="middle" fill="#555">1/3</text>
+<text x="332.0" y="103" text-anchor="middle" fill="#555">2/3</text>
+<text x="467.0" y="103" text-anchor="middle" fill="#555">1</text>
+</svg><figcaption>The first four steps, with the total length left on the right.</figcaption></figure>
+<p>After \(n\) steps the length left is \(\left(\tfrac23\right)^n\), which shrinks toward 0. The Cantor set sits inside every row, so its length is 0. It is not empty: an end of a piece is never removed.</p>
+<p>What else survives? Write numbers in base 3: \(0.d_1 d_2 d_3 \ldots\) means \(\tfrac{d_1}{3} + \tfrac{d_2}{9} + \tfrac{d_3}{27} + \cdots\), each digit 0, 1 or 2. First digit 0 puts you in the left third, 1 in the middle, 2 in the right. Step \(n\) tests digit \(n\) the same way.</p>
+<p class="callout">A number from 0 to 1 is in the Cantor set exactly when it can be written in base 3 using only the digits 0 and 2.</p>
+<p>"Can be" matters. \(\tfrac13\) is \(0.1\) in base 3, but it is also \(0.0222\ldots\), so it stays.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: three steps, and the number \(\tfrac14\)</h2>
+<p><b>Lengths.</b> After 3 steps there are \(2^3 = 8\) pieces, each of length \(\tfrac1{27}\), so \(\tfrac8{27}\) is left. The steps removed \(\tfrac13\), then \(2 \times \tfrac19\), then \(4 \times \tfrac1{27}\): in all \(\tfrac{9 + 6 + 4}{27} = \tfrac{19}{27}\). Check: \(\tfrac{19}{27} + \tfrac{8}{27} = 1\).</p>
+<p><b>Is \(\tfrac14\) in the set?</b> To find base 3 digits, multiply by 3 and split off the whole part, again and again. \(3 \times \tfrac14 = \tfrac34\): digit 0, carry on with \(\tfrac34\). \(3 \times \tfrac34 = 2\tfrac14\): digit 2, carry on with \(\tfrac14\). You are back at the start, so the digits repeat: \(\tfrac14 = 0.020202\ldots\) in base 3.</p>
+<p>Check with a <a href="b12-infinite-series.html">geometric series</a>, first term \(\tfrac29\) and ratio \(\tfrac19\): \(\tfrac29 + \tfrac2{81} + \cdots = \tfrac29 \div \tfrac89 = \tfrac14\). Only 0s and 2s, so \(\tfrac14\) is never removed.</p>
+<p><b>Is it the end of a piece?</b> No. Every end of a piece is a whole number over a power of 3, and \(\tfrac14\) is not: \(\tfrac14 = \tfrac{k}{3^n}\) would need \(4k = 3^n\), an even number equal to an odd one. So the set holds more than the ends you can see in the picture.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>(a) Write down the four pieces left after step 2, as intervals such as \(\left[0, \tfrac19\right]\). (b) Which of them contains \(\tfrac14\)? (c) Every number in that piece can be written with the same first two base 3 digits. What are they?<div class="space short"></div></li>
+<li>Step \(n\) removes \(2^{n-1}\) intervals, each of length \(\tfrac1{3^n}\). (a) Write the first four removed lengths and find the common ratio. (b) Add up the removed lengths over all the steps. (c) Which is the first step after which less than \(\tfrac1{100}\) of the length is left?<div class="space"></div></li>
+<li>Decide whether each number is in the Cantor set. (a) \(\tfrac34\): find its base 3 digits first. (b) \(\tfrac79\), which is \(0.21\) in base 3. (c) \(\tfrac12\), which is \(0.111\ldots\) in base 3 and has no other way to be written in base 3.<div class="space short"></div></li>
+<li>The numbers \(\tfrac14\) and \(\tfrac13\) are both in the Cantor set. (a) Find a removed interval that lies between them. (b) Let \(x \lt y\) be any two numbers in the Cantor set. Choose \(n\) with \(\tfrac1{3^n} \lt y - x\). Explain why a removed interval lies between \(x\) and \(y\). (c) Can the Cantor set contain a whole interval, however short?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: as many points as the whole line</h2>
+<p>Take a number in the Cantor set and write it in base 3 with only 0s and 2s (there is only one way to do that). Change every 2 to a 1 and read the result in base 2. For example \(\tfrac14 = 0.0202\ldots\) becomes \(0.0101\ldots\) in base 2. (a) Where do \(\tfrac14\) and \(\tfrac34\) go? (b) Explain why every number from 0 to 1 is reached. (c) Show that \(\tfrac13\) and \(\tfrac23\) go to the same place. Does that spoil the conclusion that the Cantor set has at least as many points as the whole of \([0, 1]\)?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(\left[0, \tfrac19\right]\), \(\left[\tfrac29, \tfrac13\right]\), \(\left[\tfrac23, \tfrac79\right]\), \(\left[\tfrac89, 1\right]\). (b) \(\tfrac14 = 0.25\) lies in \(\left[\tfrac29, \tfrac13\right]\), which runs from about 0.222 to 0.333. (c) The digits 0 then 2: left third first, then the right third of that. This matches \(\tfrac14 = 0.02\ldots\) The four pieces go with the starts 00, 02, 20 and 22.</li>
+<li>(a) \(\tfrac13, \tfrac29, \tfrac4{27}, \tfrac8{81}\). Each is \(\tfrac23\) of the one before. (b) A geometric series with first term \(\tfrac13\) and ratio \(\tfrac23\): \(\dfrac{1/3}{1 - 2/3} = 1\). The removed lengths add up to the whole length of the line. (c) You need \(\left(\tfrac23\right)^n \lt 0.01\). After 11 steps about 0.0116 is left, after 12 steps about 0.0077. So step 12.</li>
+<li>(a) \(3 \times \tfrac34 = 2\tfrac14\): digit 2, carry on with \(\tfrac14\). \(3 \times \tfrac14 = \tfrac34\): digit 0, and you are back at \(\tfrac34\). So \(\tfrac34 = 0.202020\ldots\), only 0s and 2s: in the set. (b) In the set. \(0.21\) can also be written \(0.20222\ldots\), because \(0.00222\ldots = 0.01\) in base 3, just as \(0.0999\ldots = 0.1\) in base 10. It is the right-hand end of the piece \(\left[\tfrac23, \tfrac79\right]\). (c) Not in the set. Its only base 3 form uses 1s. It lies strictly between \(\tfrac13\) and \(\tfrac23\), so step 1 removes it.</li>
+<li>(a) After step 3, \(\tfrac14\) is in \(\left[\tfrac29, \tfrac7{27}\right]\) and \(\tfrac13\) is in \(\left[\tfrac8{27}, \tfrac13\right]\). Everything strictly between \(\tfrac7{27}\) and \(\tfrac8{27}\) was removed at step 3. (b) After step \(n\) every piece has length \(\tfrac1{3^n}\), which is less than \(y - x\), so one piece cannot hold both \(x\) and \(y\). They sit in two different pieces, and two different pieces always have a removed interval between them. (c) No. An interval would contain two different numbers with nothing removed between them, and (b) rules that out. The Cantor set has no connected part bigger than a single point. Sets like that are called <b>totally disconnected</b>, and this one is often called Cantor dust.</li>
+</ol>
+<p><b>Stretch.</b> (a) \(\tfrac14\) goes to \(0.0101\ldots\) in base 2, which is \(\tfrac14 + \tfrac1{16} + \cdots = \dfrac{1/4}{1 - 1/4} = \tfrac13\). \(\tfrac34 = 0.2020\ldots\) goes to \(0.1010\ldots\) in base 2, which is \(\dfrac{1/2}{1 - 1/4} = \tfrac23\). (b) Run it backwards. Any number from 0 to 1 has a base 2 form \(0.b_1 b_2 b_3 \ldots\) (for 1 itself use \(0.111\ldots\)). Change every 1 to a 2 and read it in base 3. That uses only 0s and 2s, so it is in the Cantor set, and it goes to the number you started with. (c) \(\tfrac13 = 0.0222\ldots\) goes to \(0.0111\ldots\) in base 2, and \(\tfrac23 = 0.2\) goes to \(0.1\) in base 2. Both are \(\tfrac12\). It does not spoil the conclusion: two points landing on one target only means the Cantor set is using up more points than it needs. Every number in \([0, 1]\) still has its own point of the Cantor set, the one built in (b). So if you could list the Cantor set, you could list \([0, 1]\), and <a href="b13-cantor.html">that is impossible</a>. So this set, with length 0 and no interval inside it, is uncountable.</p>
+</section>
+
+<div class="sheet-nav"><a href="b32-add-to-multiply.html">← Previous</a><a href="b34-hyperbola-family.html">Next: Watch a hyperbola break →</a></div>
+</main>
+
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tables where every equation has an answer · Math Detours</title>
+<meta name="description" content="Use a Latin square as the table of a made-up operation on 0, 1, 2, 3. Equations like a * x = c then have exactly one answer, yet the grouping rule can fail. A first look at quasigroups.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
+  <a href="../index.html">Grade 6</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Math Detours · Grade 6 · Around the corner · 37</div>
+  <h1>Tables where every equation has an answer</h1>
+  <p class="teaser">Use a finished Sudoku-style square as a times table, and every equation like \(a * x = c\) has exactly one answer. But the table can still break the grouping rule.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>In a finished Sudoku, every row and every column holds each symbol exactly once. A square grid like that (forget Sudoku's little boxes) is called a <b>Latin square</b>.</p>
+<p>Now use a 4 by 4 Latin square as the "times table" of a made-up operation \(*\) on the numbers 0, 1, 2, 3. To find \(a * b\), look in row \(a\), column \(b\).</p>
+<p>Why bother? Because equations get solved. To solve \(a * x = c\), search row \(a\) for \(c\). Every number is in that row exactly once, so there is exactly one answer. To solve \(y * b = c\), search column \(b\) the same way.</p>
+<div class="callout">If the table is a Latin square, every equation \(a * x = c\) and every equation \(y * b = c\) has <b>exactly one</b> answer. Numbers with a table like this are called a <b>quasigroup</b>.</div>
+<p>Ordinary multiplication also obeys the <b>grouping rule</b>: \((a \times b) \times c = a \times (b \times c)\), so you may do either multiplication first. A Latin square promises nothing of the kind. Tonight you catch one breaking that rule.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: the take-away clock</h2>
+<table style="float:right;margin:.2em 0 .5em 1.2em;background:#fff"><tr><th>\(a\) ↓ &nbsp; \(b\) →</th><th>0</th><th>1</th><th>2</th><th>3</th></tr>
+<tr><th>0</th><td>0</td><td>3</td><td>2</td><td>1</td></tr>
+<tr><th>1</th><td>1</td><td>0</td><td>3</td><td>2</td></tr>
+<tr><th>2</th><td>2</td><td>1</td><td>0</td><td>3</td></tr>
+<tr><th>3</th><td>3</td><td>2</td><td>1</td><td>0</td></tr></table>
+<p>Picture a clock with only four hours, marked 0, 1, 2, 3 in a circle. Let \(a * b\) mean: start at \(a\) and step <b>back</b> \(b\) hours. So \(1 * 2\) starts at 1 and steps back to 0, then to 3: \(1 * 2 = 3\). Here is the whole table.</p>
+<p><b>Is it Latin?</b> The rows read 0 3 2 1, then 1 0 3 2, then 2 1 0 3, then 3 2 1 0. Each holds 0, 1, 2, 3 once. The columns read 0 1 2 3, then 3 0 1 2, then 2 3 0 1, then 1 2 3 0. The same. Yes, it is a Latin square.</p>
+<p><b>Solve \(1 * x = 3\).</b> Search row 1 for a 3. It sits in column 2 and nowhere else, so \(x = 2\) is the one answer.</p>
+<p><b>Test the grouping rule</b> on 3, 2, 1. Brackets first each time.</p>
+\[(3 * 2) * 1 = 1 * 1 = 0, \qquad 3 * (2 * 1) = 3 * 1 = 2.\]
+<p>Two different answers. This table solves every equation of the two kinds above, and still the grouping rule fails.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li><table style="float:right;margin:.2em 0 .5em 1.2em;background:#fff"><tr><th>\(a\) ↓ &nbsp; \(b\) →</th><th>0</th><th>1</th><th>2</th><th>3</th></tr>
+<tr><th>0</th><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><th>1</th><td>0</td><td>1</td><td>2</td><td>3</td></tr>
+<tr><th>2</th><td>0</td><td>2</td><td>0</td><td>2</td></tr>
+<tr><th>3</th><td>0</td><td>3</td><td>2</td><td>1</td></tr></table>
+Here is a different table on 0, 1, 2, 3: multiply \(a\) by \(b\), divide by 4, and keep the remainder. Which rows hold each of 0, 1, 2, 3 exactly once? Is the table a Latin square? Then say how many answers each equation has in this table, and list them: \(2 * x = 2\), \(2 * x = 1\), \(3 * x = 2\).
+<div class="space"></div></li>
+<li>Go back to the take-away clock table. Solve each equation by searching the right row or column: \(2 * x = 3\), \(0 * x = 1\), \(y * 3 = 1\), \(y * 1 = 2\).<div class="space short"></div></li>
+<li>Still with the take-away clock, work out \((a * b) * c\) and \(a * (b * c)\) for these three choices of \(a, b, c\): 1, 1, 1; then 3, 1, 2; then 2, 0, 3. A friend tried only 3, 1, 2 and announced that the grouping rule holds for this table. What is wrong with that?<div class="space"></div></li>
+<li><table style="float:right;margin:.2em 0 .5em 1.2em;background:#fff"><tr><th>\(a\) ↓ &nbsp; \(b\) →</th><th>0</th><th>1</th><th>2</th><th>3</th></tr>
+<tr><th>0</th><td>&nbsp;&nbsp;</td><td>&nbsp;&nbsp;</td><td>&nbsp;&nbsp;</td><td>&nbsp;&nbsp;</td></tr>
+<tr><th>1</th><td>&nbsp;&nbsp;</td><td>&nbsp;&nbsp;</td><td>&nbsp;&nbsp;</td><td>&nbsp;&nbsp;</td></tr>
+<tr><th>2</th><td>&nbsp;&nbsp;</td><td>&nbsp;&nbsp;</td><td>&nbsp;&nbsp;</td><td>&nbsp;&nbsp;</td></tr>
+<tr><th>3</th><td>&nbsp;&nbsp;</td><td>&nbsp;&nbsp;</td><td>&nbsp;&nbsp;</td><td>&nbsp;&nbsp;</td></tr></table>
+Now the adding clock: \(a * b\) means start at \(a\) and step <b>forward</b> \(b\) hours. Fill in the table. Is it a Latin square? Test the grouping rule on the same three choices as in question 3.
+<div class="space tall"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: a number that does nothing</h2>
+<p>In ordinary multiplication, 1 does nothing: \(a \times 1 = a\) and \(1 \times a = a\). Which number does nothing on both sides in the adding clock table? In the take-away clock table, find a number \(e\) with \(a * e = a\) for every \(a\). Does it also do nothing on the other side, so that \(e * a = a\) for every \(a\)? Does any number? Last, explain why a Latin square can never have two different numbers \(e\) and \(f\) with \(a * e = a\) and \(a * f = a\) for every \(a\).</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Rows 1 and 3 hold each number once. Row 0 is all 0s and row 2 reads 0 2 0 2, so the table is not a Latin square. (Columns 0 and 2 fail in the same way.) \(2 * x = 2\) has two answers, \(x = 1\) and \(x = 3\), because 2 appears twice in row 2. \(2 * x = 1\) has no answer, because row 2 has no 1. \(3 * x = 2\) has exactly one answer, \(x = 2\), because row 3 happens to hold each number once. Without the Latin property an equation can have too many answers or none.</li>
+<li>\(2 * x = 3\): row 2 has its 3 in column 3, so \(x = 3\). \(0 * x = 1\): row 0 has its 1 in column 3, so \(x = 3\). \(y * 3 = 1\): column 3 has its 1 in row 0, so \(y = 0\). \(y * 1 = 2\): column 1 has its 2 in row 3, so \(y = 3\). Check one on the clock: from 3, one step back is 2.</li>
+<li>1, 1, 1: \((1 * 1) * 1 = 0 * 1 = 3\) but \(1 * (1 * 1) = 1 * 0 = 1\). Different. 3, 1, 2: \((3 * 1) * 2 = 2 * 2 = 0\) and \(3 * (1 * 2) = 3 * 3 = 0\). Equal. 2, 0, 3: \((2 * 0) * 3 = 2 * 3 = 3\) but \(2 * (0 * 3) = 2 * 1 = 1\). Different. The friend found one choice that works, but a rule has to hold for every choice, and a single failure breaks it. In this table the two sides agree exactly when \(c\) is 0 or 2. That is 32 of the 64 possible choices.</li>
+<li>The rows are 0 1 2 3, then 1 2 3 0, then 2 3 0 1, then 3 0 1 2. Every row and every column holds each number once, so it is a Latin square. 1, 1, 1: \((1 * 1) * 1 = 2 * 1 = 3\) and \(1 * (1 * 1) = 1 * 2 = 3\). 3, 1, 2: \(0 * 2 = 2\) and \(3 * 3 = 2\). 2, 0, 3: \(2 * 3 = 1\) and \(2 * 3 = 1\). Equal every time. In fact the rule holds for all 64 choices here, because both sides mean: start at \(a\) and step forward \(b + c\) hours. A Latin square that also obeys the grouping rule is the table of a <b>group</b>. So the adding clock is a group, and the take-away clock is a quasigroup that is not a group.</li>
+</ol>
+<p><b>Stretch.</b> In the adding clock, 0 does nothing on both sides: stepping forward 0 hours leaves \(a\) alone, and starting at 0 and stepping forward \(a\) hours lands on \(a\). In the take-away clock, \(e = 0\) works on the right: column 0 reads 0 1 2 3, so \(a * 0 = a\). On the left it fails: \(0 * 1 = 3\), not 1. No number does nothing on the left, because that would need a row reading 0 1 2 3 and no row does. So the take-away clock has a do-nothing number on one side only. For the last part, suppose \(e\) and \(f\) both worked. Then \(0 * e = 0\) and \(0 * f = 0\), so the equation \(0 * x = 0\) would have two different answers. In a Latin square it has exactly one, so \(e\) and \(f\) cannot be different.</p>
+</section>
+
+<div class="sheet-nav"><a href="b36-pairs-for-negatives.html">← Previous</a><a href="c1-music.html">Next: Why there are twelve notes →</a></div>
+</main>
+
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>
