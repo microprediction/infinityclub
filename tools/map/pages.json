@@ -284,6 +284,7 @@
   "grade-9/sheets/b30-points-on-a-circle.html": [{"code": "14A", "level": "core"}, {"code": "14Q", "level": "core"}, {"code": "11G", "level": "touch"}],
   "grade-9/sheets/b31-ten-adic-numbers.html": [{"code": "32P", "level": "core"}, {"code": "11S", "level": "touch"}],
   "grade-9/sheets/b32-three-distances.html": [{"code": "46B", "level": "core"}, {"code": "54E", "level": "core"}],
+  "grade-9/sheets/b33-tropical-arithmetic.html": [{"code": "14T", "level": "core"}, {"code": "16Y", "level": "core"}],
   "grade-9/sheets/c1-rule-of-72.html": [{"code": "91G", "level": "core"}, {"code": "26A", "level": "touch"}],
   "grade-9/sheets/c2-half-life.html": [{"code": "92C", "level": "core"}, {"code": "39A", "level": "touch"}],
   "grade-9/sheets/c3-arches-and-cables.html": [{"code": "51N", "level": "core"}, {"code": "70C", "level": "touch"}, {"code": "74K", "level": "touch"}],
