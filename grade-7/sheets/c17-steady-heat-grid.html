@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How hot is the middle of the plate? · Infinity Club</title>
+<meta name="description" content="In a steady state, each inside cell of a heated plate is the average of its four neighbours. Solve small grids exactly, watch relaxation creep towards the answer, and find the centre of a 3 by 3 plate by adding four copies.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 7</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 7 · Connections · 17</div>
+  <h1>How hot is the middle of the plate?</h1>
+  <p class="teaser">Heat a metal plate along one edge and keep the others cold. Once things settle, every spot is the average of the spots around it.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Hold one edge of a metal plate at 100 degrees and the other edges at 0. Heat flows from hot to cold until nothing changes. That settled pattern is a <b>steady state</b>.</p>
+<p>In a steady state, a spot hotter than its surroundings would lose heat and cool. A colder spot would warm up. So every spot sits at the average of the spots around it. Now cut the plate into small square cells, with the border cells held fixed.</p>
+<p class="callout">In the steady state, each inside cell equals the average of its four neighbours: up, down, left and right. Diagonal cells do not count.</p>
+<p>The grid is a model of an even plate that loses no heat to the air. Smaller cells follow a real plate more closely. The height of a gently sloping soap film on a bent wire follows nearly the same rule.</p>
+<p>One way to find the numbers is <b>relaxation</b>. Guess every inside cell. Then replace each one by the average of its neighbours, over and over. The numbers creep towards the steady state.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: one cell, then two</h2>
+<p>One inside cell has neighbours 0, 0, 100 and 100. Its steady temperature is their average, 50. Now take a row of two inside cells, \(a\) and \(b\). The left border is held at 240 and the rest at 0. The corners are left out, because no inside cell touches one along an edge.</p>
+<figure><svg viewBox="0 0 106 80" width="106" height="80" role="img" aria-label="A row of two inside cells, a on the left and b on the right. The border cell to the left of a is held at 240. The other five border cells, above and below each inside cell and to the right of b, are held at 0. The four corner squares are missing." font-family="Nunito, sans-serif" font-size="12">
+<rect x="27" y="1" width="26" height="26" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="1"/>
+<text x="40.0" y="18.0" text-anchor="middle" font-size="11" fill="#1d1f3a">0</text>
+<rect x="53" y="1" width="26" height="26" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="1"/>
+<text x="66.0" y="18.0" text-anchor="middle" font-size="11" fill="#1d1f3a">0</text>
+<rect x="1" y="27" width="26" height="26" fill="#fde8c4" stroke="#1d1f3a" stroke-width="1"/>
+<text x="14.0" y="44.0" text-anchor="middle" font-size="11" fill="#1d1f3a">240</text>
+<rect x="27" y="27" width="26" height="26" fill="#fff" stroke="#1d1f3a" stroke-width="1.5"/>
+<text x="40.0" y="45.0" text-anchor="middle" font-size="14" font-style="italic" font-weight="700" fill="#3f44c9">a</text>
+<rect x="53" y="27" width="26" height="26" fill="#fff" stroke="#1d1f3a" stroke-width="1.5"/>
+<text x="66.0" y="45.0" text-anchor="middle" font-size="14" font-style="italic" font-weight="700" fill="#3f44c9">b</text>
+<rect x="79" y="27" width="26" height="26" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="1"/>
+<text x="92.0" y="44.0" text-anchor="middle" font-size="11" fill="#1d1f3a">0</text>
+<rect x="27" y="53" width="26" height="26" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="1"/>
+<text x="40.0" y="70.0" text-anchor="middle" font-size="11" fill="#1d1f3a">0</text>
+<rect x="53" y="53" width="26" height="26" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="1"/>
+<text x="66.0" y="70.0" text-anchor="middle" font-size="11" fill="#1d1f3a">0</text>
+</svg></figure>
+<p>The rule for each cell says \(a = (240 + 0 + 0 + b) \div 4\) and \(b = (a + 0 + 0 + 0) \div 4\). The second gives \(a = 4b\). The first gives \(4a = 240 + b\), so \(16b = 240 + b\), \(15b = 240\) and \(b = 16\). Then \(a = 64\). Check: \((240 + 16) \div 4 = 64\) and \(64 \div 4 = 16\).</p>
+<p>Relaxation gets there gradually. Start with \(a = b = 0\). In each round, work out both new values from the old ones. Round 1 gives 60 and 0. Round 2 gives 60 and 15. Round 3 gives 63.75 and 15, creeping towards 64 and 16.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Use the left plate: top border 160, the rest 0. Start with \(a\), \(b\), \(c\) and \(d\) all 0. Do three rounds of relaxation, each time finding all four new values from the old ones. Write the values after each round.
+<figure><svg viewBox="0 0 270 129" width="270" height="129" role="img" aria-label="Two plates. The left plate, for questions 1 and 2, has four inside cells in a square: a and b in the top row, c and d in the bottom row. The two border cells above them are held at 160 and the six border cells on the other three sides are held at 0. The right plate, for questions 3 and 4, has nine inside cells in a 3 by 3 square, with the centre cell labelled m. The three border cells above them are held at 100 and the nine border cells on the other three sides are held at 0. Neither plate has corner squares." font-family="Nunito, sans-serif" font-size="12">
+<rect x="23" y="12" width="22" height="22" fill="#fde8c4" stroke="#1d1f3a" stroke-width="1"/>
+<text x="34.0" y="27.0" text-anchor="middle" font-size="11" fill="#1d1f3a">160</text>
+<rect x="45" y="12" width="22" height="22" fill="#fde8c4" stroke="#1d1f3a" stroke-width="1"/>
+<text x="56.0" y="27.0" text-anchor="middle" font-size="11" fill="#1d1f3a">160</text>
+<rect x="1" y="34" width="22" height="22" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="1"/>
+<text x="12.0" y="49.0" text-anchor="middle" font-size="11" fill="#1d1f3a">0</text>
+<rect x="23" y="34" width="22" height="22" fill="#fff" stroke="#1d1f3a" stroke-width="1.5"/>
+<text x="34.0" y="50.0" text-anchor="middle" font-size="14" font-style="italic" font-weight="700" fill="#3f44c9">a</text>
+<rect x="45" y="34" width="22" height="22" fill="#fff" stroke="#1d1f3a" stroke-width="1.5"/>
+<text x="56.0" y="50.0" text-anchor="middle" font-size="14" font-style="italic" font-weight="700" fill="#3f44c9">b</text>
+<rect x="67" y="34" width="22" height="22" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="1"/>
+<text x="78.0" y="49.0" text-anchor="middle" font-size="11" fill="#1d1f3a">0</text>
+<rect x="1" y="56" width="22" height="22" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="1"/>
+<text x="12.0" y="71.0" text-anchor="middle" font-size="11" fill="#1d1f3a">0</text>
+<rect x="23" y="56" width="22" height="22" fill="#fff" stroke="#1d1f3a" stroke-width="1.5"/>
+<text x="34.0" y="72.0" text-anchor="middle" font-size="14" font-style="italic" font-weight="700" fill="#3f44c9">c</text>
+<rect x="45" y="56" width="22" height="22" fill="#fff" stroke="#1d1f3a" stroke-width="1.5"/>
+<text x="56.0" y="72.0" text-anchor="middle" font-size="14" font-style="italic" font-weight="700" fill="#3f44c9">d</text>
+<rect x="67" y="56" width="22" height="22" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="1"/>
+<text x="78.0" y="71.0" text-anchor="middle" font-size="11" fill="#1d1f3a">0</text>
+<rect x="23" y="78" width="22" height="22" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="1"/>
+<text x="34.0" y="93.0" text-anchor="middle" font-size="11" fill="#1d1f3a">0</text>
+<rect x="45" y="78" width="22" height="22" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="1"/>
+<text x="56.0" y="93.0" text-anchor="middle" font-size="11" fill="#1d1f3a">0</text>
+<rect x="181" y="1" width="22" height="22" fill="#fde8c4" stroke="#1d1f3a" stroke-width="1"/>
+<text x="192.0" y="16.0" text-anchor="middle" font-size="11" fill="#1d1f3a">100</text>
+<rect x="203" y="1" width="22" height="22" fill="#fde8c4" stroke="#1d1f3a" stroke-width="1"/>
+<text x="214.0" y="16.0" text-anchor="middle" font-size="11" fill="#1d1f3a">100</text>
+<rect x="225" y="1" width="22" height="22" fill="#fde8c4" stroke="#1d1f3a" stroke-width="1"/>
+<text x="236.0" y="16.0" text-anchor="middle" font-size="11" fill="#1d1f3a">100</text>
+<rect x="159" y="23" width="22" height="22" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="1"/>
+<text x="170.0" y="38.0" text-anchor="middle" font-size="11" fill="#1d1f3a">0</text>
+<rect x="181" y="23" width="22" height="22" fill="#fff" stroke="#1d1f3a" stroke-width="1.5"/>
+<rect x="203" y="23" width="22" height="22" fill="#fff" stroke="#1d1f3a" stroke-width="1.5"/>
+<rect x="225" y="23" width="22" height="22" fill="#fff" stroke="#1d1f3a" stroke-width="1.5"/>
+<rect x="247" y="23" width="22" height="22" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="1"/>
+<text x="258.0" y="38.0" text-anchor="middle" font-size="11" fill="#1d1f3a">0</text>
+<rect x="159" y="45" width="22" height="22" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="1"/>
+<text x="170.0" y="60.0" text-anchor="middle" font-size="11" fill="#1d1f3a">0</text>
+<rect x="181" y="45" width="22" height="22" fill="#fff" stroke="#1d1f3a" stroke-width="1.5"/>
+<rect x="203" y="45" width="22" height="22" fill="#fff" stroke="#1d1f3a" stroke-width="1.5"/>
+<text x="214.0" y="61.0" text-anchor="middle" font-size="14" font-style="italic" font-weight="700" fill="#3f44c9">m</text>
+<rect x="225" y="45" width="22" height="22" fill="#fff" stroke="#1d1f3a" stroke-width="1.5"/>
+<rect x="247" y="45" width="22" height="22" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="1"/>
+<text x="258.0" y="60.0" text-anchor="middle" font-size="11" fill="#1d1f3a">0</text>
+<rect x="159" y="67" width="22" height="22" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="1"/>
+<text x="170.0" y="82.0" text-anchor="middle" font-size="11" fill="#1d1f3a">0</text>
+<rect x="181" y="67" width="22" height="22" fill="#fff" stroke="#1d1f3a" stroke-width="1.5"/>
+<rect x="203" y="67" width="22" height="22" fill="#fff" stroke="#1d1f3a" stroke-width="1.5"/>
+<rect x="225" y="67" width="22" height="22" fill="#fff" stroke="#1d1f3a" stroke-width="1.5"/>
+<rect x="247" y="67" width="22" height="22" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="1"/>
+<text x="258.0" y="82.0" text-anchor="middle" font-size="11" fill="#1d1f3a">0</text>
+<rect x="181" y="89" width="22" height="22" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="1"/>
+<text x="192.0" y="104.0" text-anchor="middle" font-size="11" fill="#1d1f3a">0</text>
+<rect x="203" y="89" width="22" height="22" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="1"/>
+<text x="214.0" y="104.0" text-anchor="middle" font-size="11" fill="#1d1f3a">0</text>
+<rect x="225" y="89" width="22" height="22" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="1"/>
+<text x="236.0" y="104.0" text-anchor="middle" font-size="11" fill="#1d1f3a">0</text>
+<text x="45.0" y="125" text-anchor="middle" font-size="11" fill="#555">Questions 1 and 2</text>
+<text x="214.0" y="125" text-anchor="middle" font-size="11" fill="#555">Questions 3 and 4</text>
+</svg></figure>
+<div class="space short"></div></li>
+<li>Now find the exact steady state of the same plate. (a) Flip the plate left to right and its border looks the same. What does that tell you about \(a\) and \(b\), and about \(c\) and \(d\)? (b) Write the rule for \(a\) and the rule for \(c\), then solve them. (c) How far short of the exact values was each cell after rounds 1, 2 and 3? What will the gap be after round 4? Will relaxation ever land exactly on the answer?<div class="space short"></div></li>
+<li>Use the right plate: top border 100, the rest 0. Call the centre cell's steady value \(m\). (a) Give the plate a quarter turn, so the hot edge is on the right. What is the centre cell now? (b) Picture four copies, each with a different edge hot. Add them cell by cell. What is each border cell of the sum? (c) The sum still obeys the rule, and an all-100 border settles at 100 in every cell. Find \(m\).<div class="space short"></div></li>
+<li>Same plate. (a) Predict which inside cell is hottest and which is coldest, and say why. (b) The top-left inside cell is about 42.86. Use the rule to find the top-middle one. (c) Why can no inside cell be hotter than 100? Hint: an average is never bigger than the biggest of its numbers.<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: can two answers both be right?</h2>
+<p>Two friends fill in the same plate. Their borders match and both grids obey the rule. Subtract one grid from the other, cell by cell. (a) What is the border of the difference? (b) Why does the difference obey the rule? (c) Use question 4(c), and its mirror image for cold cells, to show it is 0 everywhere.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Round 1: \(a = b = (160 + 0 + 0 + 0) \div 4 = 40\) and \(c = d = 0\). Round 2: \(a = b = (160 + 0 + 40 + 0) \div 4 = 50\) and \(c = d = (40 + 0 + 0 + 0) \div 4 = 10\). Round 3: \(a = b = (160 + 0 + 50 + 10) \div 4 = 55\) and \(c = d = (50 + 0 + 0 + 10) \div 4 = 15\). Each cell uses only up, down, left and right. For \(a\) those are the 160 above, the 0 on its left, \(b\) and \(c\).</li>
+<li>(a) The flipped plate has the same border, so it has the same steady state. (Only one pattern fits a given border. The stretch shows why.) So \(a = b\) and \(c = d\). (b) \(a = (160 + 0 + b + c) \div 4\). With \(b = a\) this is \(4a = 160 + a + c\), so \(3a = 160 + c\). And \(c = (a + 0 + 0 + d) \div 4\) with \(d = c\) gives \(4c = a + c\), so \(a = 3c\). Then \(9c = 160 + c\), so \(c = 20\) and \(a = 60\). The steady state is 60, 60 on top and 20, 20 below. Check: \((160 + 0 + 60 + 20) \div 4 = 60\) and \((60 + 0 + 0 + 20) \div 4 = 20\). (c) Every cell was 20 short after round 1, 10 short after round 2 and 5 short after round 3. The gap halves each round, so it is 2.5 after round 4. Here is why: if all four cells are short by \(g\), the new \(a\) is \((160 + (60 - g) + (20 - g)) \div 4 = 60 - g \div 2\), and the same happens to \(c\). Half of a number that is not zero is never zero, so relaxation never lands exactly. It gets as close as you like.</li>
+<li>(a) Still \(m\). The rule treats up, down, left and right alike, so the turned plate has the same pattern, turned. The centre cell stays in the centre. (b) Each border cell is 100 in exactly one copy and 0 in the other three, so in the sum it is \(100 + 0 + 0 + 0 = 100\). (c) The centre of the sum is \(m + m + m + m = 4m\). The sum has an all-100 border, so it is 100 in every cell. So \(4m = 100\) and \(m = 25\). The centre is exactly 25 degrees, a quarter of the way from cold to hot.</li>
+<li>(a) Hottest: the top-middle inside cell. It touches the hot edge and is as far as it can be from the cold sides. Coldest: the two bottom corner inside cells, at about 7.14. Each touches two cold border cells and is far from the hot edge. The bottom-middle cell is a little warmer, about 9.82. (b) Its neighbours are 100 above, about 42.86 on each side (the top-right cell matches the top-left by the flip in question 2) and \(m = 25\) below. So it is about \((100 + 42.86 + 42.86 + 25) \div 4 = 210.72 \div 4 = 52.68\). (c) Look at the hottest inside cell and suppose it were above 100. No neighbour is hotter than it, and it is their average, so all four neighbours must be exactly as hot as it is. Then they are inside cells too, because border cells are at most 100. Step from cell to cell towards an edge and you reach an inside cell above 100 that touches the border. That border cell would have to be above 100 as well, which it is not. In the same way, no inside cell is below 0.</li>
+</ol>
+<p><b>Stretch.</b> (a) The borders match, so every border cell of the difference is 0. (b) Take one inside cell. Each friend's value is the average of that friend's four neighbours. The difference of two averages is the average of the differences: \((p + q + r + s) \div 4 - (P + Q + R + S) \div 4 = ((p - P) + (q - Q) + (r - R) + (s - S)) \div 4\). (c) The difference obeys the rule and its border is all 0. By question 4(c) no inside cell is above the hottest border cell, which is 0. By the mirror argument none is below 0. So the difference is 0 in every cell, and the two friends have the same grid. Only one pattern fits a given border. Questions 2 and 3 leaned on that.</p>
+</section>
+
+<div class="sheet-nav"><a href="c16-squeeze-the-air.html">← Previous</a><a href="../index.html#sheets">← All sheets</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>
