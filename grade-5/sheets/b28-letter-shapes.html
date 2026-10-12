@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Which letters are secretly the same? · Math Detours</title>
+<meta name="description" content="Stretch and squash exact wire letters without cutting or joining. Ends, junctions and loops reveal which shapes are topologically the same.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
+  <a href="../index.html">Grade 5</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Math Detours · Grade 5 · Around the corner · 28</div>
+  <h1>Which letters are secretly the same?</h1>
+  <p class="teaser">Bend and stretch a wire letter without cutting or joining. Which letters can become each other, and what changes when squashing is allowed?</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Use the exact <b>wire letters</b> drawn below. The thin line is the shape, and strokes join wherever they meet.</p>
+<p>In the <b>stretch game</b>, you may bend and stretch wire, but never cut, join, or squash a whole branch to a point. If every point matches continuously to one point on the other shape, and the matching works backwards too, the shapes are <b>homeomorphic</b>. Ends, junction types and loops are preserved.</p>
+<p>The <b>squash game</b> is looser. You may shrink dead-end branches away. If two shapes can continuously squash to the same smaller shape, they are <b>homotopy equivalent</b>. A tree can squash to a point, but a closed loop cannot disappear.</p>
+<p class="callout">Stretch-same shapes are squash-same. Squash-same shapes need not be stretch-same.</p>
+<p>These are two ways topology decides when shapes count as the same, without measuring lengths or angles.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: follow the wire</h2>
+<figure>
+<svg viewBox="0 0 520 145" width="520" height="145" role="img" aria-label="Wire letters C and L each have two ends, no junction and no loop, so one can stretch into the other. Wire letters O and D each have no ends and one loop, so they also stretch into each other. C and O differ because O has a loop." font-family="Nunito, sans-serif" fill="none" stroke="#3f44c9" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M76 26 C38 8, 24 50, 40 76 C49 91, 64 92, 78 84"/>
+  <path d="M126 20 V88 H176"/>
+  <path d="M250 54 a34 34 0 1 0 68 0 a34 34 0 1 0 -68 0"/>
+  <path d="M366 20 V88 H384 C437 88, 437 20, 384 20 Z"/>
+  <g fill="#1d1f3a" stroke="none" font-size="13" font-weight="700" text-anchor="middle">
+    <text x="52" y="119">C</text><text x="151" y="119">L</text>
+    <text x="284" y="119">O</text><text x="396" y="119">D</text>
+    <text x="102" y="139" fill="#555">2 ends · no loop</text>
+    <text x="340" y="139" fill="#555">0 ends · 1 loop</text>
+  </g>
+  <g fill="#f5a524" stroke="none" font-size="22" font-weight="700" text-anchor="middle"><text x="101" y="61">↔</text><text x="333" y="61">↔</text></g>
+</svg>
+<figcaption>C stretches into L. O stretches into D. C cannot stretch into O because cutting or joining would be needed to change two ends into a loop.</figcaption>
+</figure>
+<p>To test C and L, start at one end and travel along the wire. There is one route to the other end, with no choice and no return loop. Bends and corners do not matter, so slowly straightening C and bending it into L gives a reversible change.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<figure>
+<svg viewBox="0 0 520 190" width="520" height="190" role="img" aria-label="Exact connected wire drawings of capital letters A through Z in two rows, followed by digits 0 through 9. The digit 4 is open. Intersecting strokes are joined." font-family="Nunito, sans-serif" fill="none" stroke="#3f44c9" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+  <g transform="translate(10 4) scale(.67)"><path d="M2 48 L15 2 L28 48 M6.8 31 H23.2"/></g>
+  <g transform="translate(50 4) scale(.67)"><path d="M3 48 V2 M3 2 C30 2 30 25 3 25 C30 25 30 48 3 48"/></g>
+  <g transform="translate(90 4) scale(.67)"><path d="M28 8 C2 -7 -5 50 28 42"/></g>
+  <g transform="translate(130 4) scale(.67)"><path d="M3 2 V48 M3 2 C36 2 36 48 3 48"/></g>
+  <g transform="translate(170 4) scale(.67)"><path d="M28 2 H3 V48 H28 M3 25 H23"/></g>
+  <g transform="translate(210 4) scale(.67)"><path d="M28 2 H3 V48 M3 25 H23"/></g>
+  <g transform="translate(250 4) scale(.67)"><path d="M28 8 C2 -7 -5 50 28 42 V27 H18"/></g>
+  <g transform="translate(290 4) scale(.67)"><path d="M3 2 V48 M27 2 V48 M3 25 H27"/></g>
+  <g transform="translate(330 4) scale(.67)"><path d="M15 2 V48"/></g>
+  <g transform="translate(370 4) scale(.67)"><path d="M27 2 V35 C27 54 3 54 3 38"/></g>
+  <g transform="translate(410 4) scale(.67)"><path d="M3 2 V48 M3 26 L28 2 M3 26 L28 48"/></g>
+  <g transform="translate(450 4) scale(.67)"><path d="M3 2 V48 H28"/></g>
+  <g transform="translate(490 4) scale(.67)"><path d="M2 48 V2 L15 28 L28 2 V48"/></g>
+  <g transform="translate(10 70) scale(.67)"><path d="M3 48 V2 L27 48 V2"/></g>
+  <g transform="translate(50 70) scale(.67)"><ellipse cx="15" cy="25" rx="13" ry="23"/></g>
+  <g transform="translate(90 70) scale(.67)"><path d="M3 48 V2 M3 2 C31 2 31 27 3 27"/></g>
+  <g transform="translate(130 70) scale(.67)"><ellipse cx="15" cy="23" rx="13" ry="21"/><path d="M24.2 37.8 L30 50"/></g>
+  <g transform="translate(170 70) scale(.67)"><path d="M3 48 V2 M3 2 C31 2 31 27 3 27 M3 27 L30 48"/></g>
+  <g transform="translate(210 70) scale(.67)"><path d="M27 6 C14 -4 2 4 3 15 C4 26 26 24 27 35 C28 47 13 54 2 44"/></g>
+  <g transform="translate(250 70) scale(.67)"><path d="M2 2 H28 M15 2 V48"/></g>
+  <g transform="translate(290 70) scale(.67)"><path d="M3 2 V34 C3 54 27 54 27 34 V2"/></g>
+  <g transform="translate(330 70) scale(.67)"><path d="M2 2 L15 48 L28 2"/></g>
+  <g transform="translate(370 70) scale(.67)"><path d="M2 2 L8 48 L15 20 L22 48 L28 2"/></g>
+  <g transform="translate(410 70) scale(.67)"><path d="M3 2 L27 48 M27 2 L3 48"/></g>
+  <g transform="translate(450 70) scale(.67)"><path d="M2 2 L15 25 L28 2 M15 25 V48"/></g>
+  <g transform="translate(490 70) scale(.67)"><path d="M2 2 H28 L2 48 H28"/></g>
+  <g fill="#1d1f3a" stroke="none" font-size="9" font-weight="700" text-anchor="middle">
+    <text x="20" y="45">A</text><text x="60" y="45">B</text><text x="100" y="45">C</text><text x="140" y="45">D</text><text x="180" y="45">E</text><text x="220" y="45">F</text><text x="260" y="45">G</text><text x="300" y="45">H</text><text x="340" y="45">I</text><text x="380" y="45">J</text><text x="420" y="45">K</text><text x="460" y="45">L</text><text x="500" y="45">M</text>
+    <text x="20" y="111">N</text><text x="60" y="111">O</text><text x="100" y="111">P</text><text x="140" y="111">Q</text><text x="180" y="111">R</text><text x="220" y="111">S</text><text x="260" y="111">T</text><text x="300" y="111">U</text><text x="340" y="111">V</text><text x="380" y="111">W</text><text x="420" y="111">X</text><text x="460" y="111">Y</text><text x="500" y="111">Z</text>
+  </g>
+  <g transform="translate(14 132) scale(.58)"><ellipse cx="15" cy="25" rx="13" ry="23"/></g>
+  <g transform="translate(64 132) scale(.58)"><path d="M15 2 V48"/></g>
+  <g transform="translate(114 132) scale(.58)"><path d="M3 12 C5 -1 28 -2 28 13 C28 24 6 35 3 48 H29"/></g>
+  <g transform="translate(164 132) scale(.58)"><path d="M4 6 C13 -3 29 2 24 17 C21 23 15 24 10 24 C19 24 29 28 27 39 C25 52 9 52 2 43"/></g>
+  <g transform="translate(214 132) scale(.58)"><path d="M16 2 L4 31 H29 M22 14 V48"/></g>
+  <g transform="translate(264 132) scale(.58)"><path d="M28 2 H5 L3 23 C30 17 34 48 15 49 C8 49 3 46 2 42"/></g>
+  <g transform="translate(314 132) scale(.58)"><ellipse cx="16" cy="35" rx="13" ry="13"/><path d="M3 35 C3 18 9 7 25 3"/></g>
+  <g transform="translate(364 132) scale(.58)"><path d="M2 2 H29 L10 48"/></g>
+  <g transform="translate(414 132) scale(.58)"><ellipse cx="15" cy="14" rx="12" ry="12"/><ellipse cx="15" cy="38" rx="12" ry="12"/></g>
+  <g transform="translate(464 132) scale(.58)"><ellipse cx="14" cy="14" rx="12" ry="12"/><path d="M26 14 V48"/></g>
+  <g fill="#1d1f3a" stroke="none" font-size="9" font-weight="700" text-anchor="middle">
+    <text x="23" y="187">0</text><text x="73" y="187">1</text><text x="123" y="187">2</text><text x="173" y="187">3</text><text x="223" y="187">4</text><text x="273" y="187">5</text><text x="323" y="187">6</text><text x="373" y="187">7</text><text x="423" y="187">8</text><text x="473" y="187">9</text>
+  </g>
+</svg>
+<figcaption>This is the wire font for every question. The 4 is open. A crossing is a junction.</figcaption>
+</figure>
+<ol>
+<li>In the stretch game, sort C, I, L, S, Z, O, D, E, T and Y into secret-same groups. Use ends, junctions or loops to explain.<div class="space short"></div></li>
+<li>In the squash game, sort all 26 letters into the no-loop, one-loop and two-loop groups. Listing the one-loop and two-loop groups is enough.<div class="space short"></div></li>
+<li>F is stretch-same as E, T and Y. Start at the junction and explain why. Which parts may you bend or stretch?<div class="space short"></div></li>
+<li>Sort the ten digits into squash groups by number of loops. Remember to use the open 4 drawn here.<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: X against Y</h2>
+<p>Are X and Y stretch-same? Are they squash-same? Give a reason for each answer.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li><b>C, I, L, S, Z</b> are one group: each is a single route with two ends, no junction and no loop. <b>O, D</b> are one group: each is one closed loop with no ends or junctions. <b>E, T, Y</b> are one group: each has one three-way junction and three ends.</li>
+<li>One loop: <b>A, D, O, P, Q, R</b>. Two loops: <b>B</b>. Every other letter has no loop. Dead-end branches do not add loops and may be squashed away, so each no-loop letter shrinks to a point. Each one-loop letter shrinks to a circle; B shrinks to two circles joined at one point.</li>
+<li>From the one three-way junction in each letter, three unbranched routes lead to three ends. Corners and route lengths do not matter, so bend and stretch those three routes until any one of E, F, T and Y has the shape of another. Do not cut at the junction or join two routes.</li>
+<li>No loops: <b>1, 2, 3, 4, 5, 7</b>. One loop: <b>0, 6, 9</b>. Two loops: <b>8</b>. The answer uses the exact drawings, so the open 4 has no loop.</li>
+</ol>
+<p><b>Stretch.</b> They are <b>not stretch-same</b>. X has one four-way junction and four ends; Y has one three-way junction and three ends. They <b>are squash-same</b>: both are trees with no loop, so all their branches can squash to a point.</p>
+</section>
+
+<div class="sheet-nav"><a href="b27-getting-dressed.html">← Previous</a><a href="c1-time-zones.html">Next: What time is it in Tokyo? →</a></div>
+</main>
+
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>
