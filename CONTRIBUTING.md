@@ -22,6 +22,7 @@ Issues labelled `new-sheet` each describe one sheet: its file name, grade, track
 | `tools/map/pages.json` | Add one entry for the new sheet (see section 6). |
 | other sheets in `grade-N/sheets/` | Only the prev/next line, and only by running `python3 tools/relink.py`. |
 | `map.html` | Only by running `python3 tools/map/build_map.py`. |
+| `sitemap.xml` | Only by running `python3 tools/build_sitemap.py`. |
 
 Do not edit `plan.html`, other sheets' content, `assets/`, or the demos (unless the issue explicitly asks for a demo).
 
@@ -105,6 +106,7 @@ Use the codes listed in the issue (codes are the first three characters, like `2
 ```sh
 python3 tools/relink.py                 # fix prev/next links in the grade
 python3 tools/map/build_map.py          # rebuild map.html
+python3 tools/build_sitemap.py          # rebuild sitemap.xml
 (cd tools && npm install)               # once, for KaTeX
 node tools/check_math.js                # KaTeX, exercise/answer counts, tags, style
 python3 tools/check_site.py             # links, structure, kicker, hub card
