@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What is 1 − 1 + 1 − 1 + …? · Infinity Club</title>
+<meta name="description" content="The series 1 − 1 + 1 − 1 + … diverges, yet two summability methods, Cesàro averaging and Abel's method, both assign it the value 1/2. Try both on 1 − 2 + 3 − 4 + …, where they part company, and on a series that already converges.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Around the corner · 32</div>
+  <h1>What is 1 − 1 + 1 − 1 + …?</h1>
+  <p class="teaser">The partial sums of 1 − 1 + 1 − 1 + … go 1, 0, 1, 0 for ever, so the series has no sum. Yet two famous methods, averaging and Abel's trick, both assign it the value 1/2.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Add up \(1 - 1 + 1 - 1 + \cdots\) one term at a time. The <b>partial sums</b> go 1, 0, 1, 0, for ever. They never settle, so the series <b>diverges</b>: it has no sum. Still, they seem to hover around \(\tfrac12\). A <b>summability method</b> is a precise rule that turns such a hunch into a value. Here are two, for a series \(a_1 + a_2 + a_3 + \cdots\) with partial sums \(s_1, s_2, \dots\)</p>
+<p class="callout"><b>Cesàro (averaging).</b> Let \(\sigma_n = \dfrac{s_1 + s_2 + \cdots + s_n}{n}\). If \(\sigma_n\) approaches \(S\), the series is <b>Cesàro summable to \(S\)</b>.<br><b>Abel.</b> Let \(A(x) = a_1 + a_2 x + a_3 x^2 + \cdots\). If this converges for \(0 \le x \lt 1\) and \(A(x)\) approaches \(S\) as \(x\) climbs to 1, the series is <b>Abel summable to \(S\)</b>.</p>
+<p>Both rules are honest: a series that already converges to \(S\) gets the value \(S\) from each (two theorems; exercise 4 tests one case). Some divergent series get a value too, but not all. And "summable to \(\tfrac12\)" does not mean "equals \(\tfrac12\)". The series still diverges.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: averaging 1, 0, 1, 0, …</h2>
+<figure style="float:right;width:226px;margin:0 0 .3em .8em"><svg viewBox="0 0 226 118" width="226" height="118" role="img" aria-label="For n from 1 to 10, the partial sums of 1 minus 1 plus 1 minus 1 and so on are shown as open circles jumping between 1 and 0, and their running averages as filled dots joined by a line: 1, one half, two thirds, one half, three fifths, one half and so on, closing in on a dashed line at height one half." font-family="Nunito, sans-serif" font-size="12">
+<g stroke="#999" stroke-width="1"><line x1="28" y1="96" x2="219" y2="96"/><line x1="28" y1="96" x2="28" y2="6"/><line x1="24" y1="16" x2="28" y2="16"/><line x1="24" y1="56.0" x2="28" y2="56.0"/></g>
+<line x1="28" y1="56.0" x2="219" y2="56.0" stroke="#999" stroke-width="1" stroke-dasharray="3 3"/>
+<g fill="#fff" stroke="#3f44c9" stroke-width="1.6"><circle cx="38" cy="16.0" r="5.5"/><circle cx="57" cy="96.0" r="4.5"/><circle cx="76" cy="16.0" r="4.5"/><circle cx="95" cy="96.0" r="4.5"/><circle cx="114" cy="16.0" r="4.5"/><circle cx="133" cy="96.0" r="4.5"/><circle cx="152" cy="16.0" r="4.5"/><circle cx="171" cy="96.0" r="4.5"/><circle cx="190" cy="16.0" r="4.5"/><circle cx="209" cy="96.0" r="4.5"/></g>
+<polyline points="38,16.0 57,56.0 76,42.7 95,56.0 114,48.0 133,56.0 152,50.3 171,56.0 190,51.6 209,56.0" fill="none" stroke="#f5a524" stroke-width="1.5"/>
+<g fill="#f5a524"><circle cx="38" cy="16.0" r="3"/><circle cx="57" cy="56.0" r="3"/><circle cx="76" cy="42.7" r="3"/><circle cx="95" cy="56.0" r="3"/><circle cx="114" cy="48.0" r="3"/><circle cx="133" cy="56.0" r="3"/><circle cx="152" cy="50.3" r="3"/><circle cx="171" cy="56.0" r="3"/><circle cx="190" cy="51.6" r="3"/><circle cx="209" cy="56.0" r="3"/></g>
+<g fill="#555" text-anchor="end"><text x="20" y="20">1</text><text x="20" y="60.0">½</text><text x="20" y="100">0</text></g>
+<g fill="#555" text-anchor="middle"><text x="38" y="113">1</text><text x="57" y="113">2</text><text x="76" y="113">3</text><text x="95" y="113">4</text><text x="114" y="113">5</text><text x="133" y="113">6</text><text x="152" y="113">7</text><text x="171" y="113">8</text><text x="190" y="113">9</text><text x="209" y="113">10</text></g>
+</svg><figcaption>Open circles: partial sums \(s_n\). Orange dots: their averages \(\sigma_n\).</figcaption></figure>
+<p>For \(1 - 1 + 1 - 1 + \cdots\) the partial sums are \(s_n = 1\) for odd \(n\) and \(s_n = 0\) for even \(n\). Average the first \(n\) of them: \(\sigma_1 = 1\), \(\sigma_2 = \tfrac12\), \(\sigma_3 = \tfrac23\), \(\sigma_4 = \tfrac12\), \(\sigma_5 = \tfrac35\), \(\sigma_6 = \tfrac12\), and so on.</p>
+<p>Among the first \(n\) partial sums, the ones equal to 1 are those with odd index. For even \(n\) that is exactly half of them, so \(\sigma_n = \tfrac12\). For odd \(n\) it is \(\tfrac{n+1}{2}\) of them, so \(\sigma_n = \tfrac{n+1}{2n} = \tfrac12 + \tfrac{1}{2n}\).</p>
+<p>The extra \(\tfrac{1}{2n}\) shrinks towards 0 (\(\sigma_{99} = \tfrac{50}{99} \approx 0.505\)), so \(\sigma_n\) approaches \(\tfrac12\): the series is Cesàro summable to \(\tfrac12\). The partial sums themselves have not moved. They are still 1, 0, 1, 0.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Abel's method on the same series. Here \(A(x) = 1 - x + x^2 - x^3 + \cdots\), a geometric series with ratio \(-x\). (a) Write its sum as a formula, valid for \(0 \le x \lt 1\). (b) Evaluate it at \(x = 0.9\), \(0.99\) and \(0.999\). What value does Abel's method assign? (c) Why are you not allowed to skip the limit and put \(x = 1\) into the series?<div class="space"></div></li>
+<li>Now take \(1 - 2 + 3 - 4 + \cdots\). (a) Write down the first eight partial sums and the first eight averages \(\sigma_1, \dots, \sigma_8\). (b) Find \(\sigma_n\) for even \(n\), and for odd \(n\). (c) Is this series Cesàro summable?<div class="space"></div></li>
+<li>Abel's method on \(1 - 2 + 3 - 4 + \cdots\). Let \(B(x) = 1 - 2x + 3x^2 - 4x^3 + \cdots\), which does converge for \(0 \le x \lt 1\) (take that on trust). (a) Work out \((1 + x)B(x) = B(x) + xB(x)\) by collecting powers of \(x\). Which series appears? Deduce that \(B(x) = \tfrac{1}{(1+x)^2}\). (b) Evaluate \(B(0.9)\) and \(B(0.99)\). What value does Abel's method assign? (c) Which of the two methods reaches further?<div class="space"></div></li>
+<li>An honesty check on a series that converges: \(\tfrac12 + \tfrac14 + \tfrac18 + \cdots = 1\), with \(s_n = 1 - \tfrac{1}{2^n}\). (a) Show that \(\sigma_n = 1 - \dfrac{1}{n}\left(1 - \dfrac{1}{2^n}\right)\). Compute \(\sigma_4\) and \(\sigma_{10}\) and compare \(\sigma_{10}\) with \(s_{10}\). What does \(\sigma_n\) approach? (b) Find \(A(x) = \tfrac12 + \tfrac14 x + \tfrac18 x^2 + \cdots\) as a formula. What does it approach as \(x\) climbs to 1?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: average again, and a series nobody rescues</h2>
+<p>(a) Averaging failed in exercise 2. So average the averages: let \(\tau_n\) be the mean of \(\sigma_1, \dots, \sigma_n\) for \(1 - 2 + 3 - 4 + \cdots\). Compute \(\tau_2, \tau_4, \tau_6\). Where do the \(\tau_n\) seem to be heading, and why is that plausible? (b) Try both methods on \(1 + 1 + 1 + \cdots\). (c) "\(1 - 1 + 1 - \cdots\) diverges" and "\(1 - 1 + 1 - \cdots\) is summable to \(\tfrac12\)" are both true. Why is that not a contradiction?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) First term 1, ratio \(-x\), and \(|-x| \lt 1\), so \(A(x) = \dfrac{1}{1 + x}\). (b) \(A(0.9) = \tfrac{1}{1.9} \approx 0.5263\), \(A(0.99) \approx 0.5025\), \(A(0.999) \approx 0.50025\). As \(x\) climbs to 1, \(\tfrac{1}{1+x}\) approaches \(\tfrac12\), so the series is Abel summable to \(\tfrac12\), the same value averaging gave. (c) The formula was proved only where the geometric series converges, \(|x| \lt 1\). At \(x = 1\) the series is \(1 - 1 + 1 - \cdots\) itself, which diverges, so it has no value to compare with. Abel's method is the limit, never the substitution.</li>
+<li>(a) Partial sums: \(1, -1, 2, -2, 3, -3, 4, -4\). Averages: \(1, 0, \tfrac23, 0, \tfrac35, 0, \tfrac47, 0\). (b) The partial sums cancel in pairs, so for even \(n\) their total is 0 and \(\sigma_n = 0\). For odd \(n = 2k - 1\) the total is the last one left over, \(s_n = k\), so \(\sigma_n = \tfrac{k}{2k-1} = \tfrac{n+1}{2n}\), which approaches \(\tfrac12\). (c) No. The averages at even \(n\) sit at 0 while those at odd \(n\) head for \(\tfrac12\), so \(\sigma_n\) approaches no single number.</li>
+<li>(a) The coefficient of \(x^m\) in \(B(x)\) is \((-1)^m (m+1)\), and in \(xB(x)\) it is \((-1)^{m-1} m\). Add them: \((-1)^m (m + 1 - m) = (-1)^m\). So \((1+x)B(x) = 1 - x + x^2 - x^3 + \cdots = \dfrac{1}{1+x}\) by exercise 1, and dividing by \(1 + x\) gives \(B(x) = \dfrac{1}{(1+x)^2}\). (b) \(B(0.9) = \tfrac{1}{3.61} \approx 0.2770\) and \(B(0.99) = \tfrac{1}{3.9601} \approx 0.2525\). As \(x\) climbs to 1 this approaches \(\tfrac14\): the series is Abel summable to \(\tfrac14\). (c) Abel's method: it gives a value here, where averaging gave none. It is also a theorem (not proved here) that whenever averaging gives a value, Abel's method gives the same one.</li>
+<li>(a) \(s_1 + \cdots + s_n = n - \left(\tfrac12 + \tfrac14 + \cdots + \tfrac{1}{2^n}\right) = n - \left(1 - \tfrac{1}{2^n}\right)\). Divide by \(n\) to get the formula. \(\sigma_4 = 1 - \tfrac14 \cdot \tfrac{15}{16} = \tfrac{49}{64} \approx 0.766\) and \(\sigma_{10} = 1 - \tfrac{1}{10} \cdot \tfrac{1023}{1024} \approx 0.9001\), while \(s_{10} = \tfrac{1023}{1024} \approx 0.9990\). The bracket stays below 1, so \(\sigma_n\) is within \(\tfrac1n\) of 1 and approaches 1, the true sum. Averaging is slower than the series itself, but it arrives at the same place. (b) Geometric with first term \(\tfrac12\) and ratio \(\tfrac{x}{2}\): \(A(x) = \dfrac{1/2}{1 - x/2} = \dfrac{1}{2 - x}\), which approaches 1 as \(x\) climbs to 1. Both methods return the ordinary sum.</li>
+</ol>
+<p><b>Stretch.</b> (a) \(\tau_2 = \tfrac12(1 + 0) = \tfrac12\), \(\tau_4 = \tfrac14\left(1 + \tfrac23\right) = \tfrac{5}{12} \approx 0.417\), \(\tau_6 = \tfrac16\left(1 + \tfrac23 + \tfrac35\right) = \tfrac{17}{45} \approx 0.378\). They head, slowly, for \(\tfrac14\) (\(\tau_{1000} \approx 0.252\)). That is plausible because half of the \(\sigma\)'s are 0 and the other half are close to \(\tfrac12\), so their mean is close to \(\tfrac14\). Averaging twice gives the value Abel's method gave. (b) The partial sums are \(s_n = n\), so \(\sigma_n = \tfrac{1 + 2 + \cdots + n}{n} = \tfrac{n+1}{2}\), which grows without limit. And \(A(x) = 1 + x + x^2 + \cdots = \tfrac{1}{1-x}\) also grows without limit as \(x\) climbs to 1: it is 1000 at \(x = 0.999\). Neither method assigns a value, and neither rescues \(1 + 2 + 3 + \cdots\) either (see <a href="b25-minus-twelfth.html">1 + 2 + 3 + … = −1/12?</a>). (c) The two sentences are about different lists of numbers. "Diverges" says the partial sums \(s_n\) approach no limit. "Cesàro summable to \(\tfrac12\)" says the averages \(\sigma_n\) do approach \(\tfrac12\). "Abel summable to \(\tfrac12\)" says the function \(A(x)\) approaches \(\tfrac12\). A list can jump about for ever while its running average settles. A summability method is a new definition that agrees with the old one wherever the old one applies. It does not make the series converge.</p>
+</section>
+
+<div class="sheet-nav"><a href="b31-distance-between-functions.html">← Previous</a><a href="c1-escape-velocity.html">Next: Escape velocity →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>
