@@ -274,6 +274,7 @@
   "grade-9/sheets/b27-grid-or-tree.html": [{"code": "20F", "level": "core"}, {"code": "16Z", "level": "core"}],
   "grade-9/sheets/b28-maximum-on-edge.html": [{"code": "35A", "level": "core"}, {"code": "35B", "level": "core"}],
   "grade-9/sheets/b29-nearly-zero.html": [{"code": "16L", "level": "core"}, {"code": "16N", "level": "core"}],
+  "grade-9/sheets/b30-points-on-a-circle.html": [{"code": "14A", "level": "core"}, {"code": "14Q", "level": "core"}, {"code": "11G", "level": "touch"}],
   "grade-9/sheets/c1-rule-of-72.html": [{"code": "91G", "level": "core"}, {"code": "26A", "level": "touch"}],
   "grade-9/sheets/c2-half-life.html": [{"code": "92C", "level": "core"}, {"code": "39A", "level": "touch"}],
   "grade-9/sheets/c3-arches-and-cables.html": [{"code": "51N", "level": "core"}, {"code": "70C", "level": "touch"}, {"code": "74K", "level": "touch"}],
