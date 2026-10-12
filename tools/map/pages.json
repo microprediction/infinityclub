@@ -388,6 +388,7 @@
   "grade-11/sheets/b25-block-spin-zoom.html": [{"code": "82M", "level": "core"}],
   "grade-11/sheets/b26-cosine-fixed-point.html": [{"code": "37C", "level": "core"}, {"code": "47H", "level": "core"}, {"code": "58C", "level": "core"}],
   "grade-11/sheets/b27-frog-steady-state.html": [{"code": "47A", "level": "core"}, {"code": "47N", "level": "core"}],
+  "grade-11/sheets/b28-jumps-or-smooth.html": [{"code": "65L", "level": "core"}, {"code": "34N", "level": "touch"}],
   "grade-11/sheets/c1-tides.html": [{"code": "86A", "level": "core"}, {"code": "33B", "level": "core"}, {"code": "42A", "level": "touch"}],
   "grade-11/sheets/c2-triangulation.html": [{"code": "51M", "level": "core"}, {"code": "86A", "level": "touch"}],
   "grade-11/sheets/c3-ph.html": [{"code": "33B", "level": "core"}, {"code": "92E", "level": "touch"}],
