@@ -80,7 +80,7 @@
 <p><b>Stretch.</b> (a) Euler: \(\begin{pmatrix} 1 & h \\ -h & 1 \end{pmatrix}\), determinant \(1 + h^2\). Semi-implicit: \(x_{\text{new}} = x + h(v - hx)\), so the matrix is \(\begin{pmatrix} 1 - h^2 & h \\ -h & 1 \end{pmatrix}\), determinant \(1 - h^2 + h^2 = 1\). Euler inflates the area of every patch of starting points by \(1 + h^2\) at each step. The semi-implicit step keeps every area exactly, as a rotation does. Keeping areas is a property of the true motion of every frictionless system of this kind, and methods that copy it are a standard choice for long simulations of orbits. (b) The points are \((1, 0), (-3, -2), (5, 4), (-7, -6), \dots\), marching away by a fixed amount each step. When \(h = 2\), \(Q = x^2 + v^2 - 2xv = (x - v)^2\), and \((x - v)^2 = 1\) is a pair of parallel lines, not a closed curve, so the point can run along them for ever. For \(h \lt 2\) the curve \(Q = 1\) is an ellipse and the point is trapped, as in exercise 4. For \(h \gt 2\) it is a hyperbola: with \(h = 3\) the points from \((1, 0)\) are \((-8, -3), (55, 21), \dots\) So keeping areas is not enough by itself. The step must also be small enough, and too big a step blows up even a good method.</p>
 </section>
 
-<div class="sheet-nav"><a href="b32-grandi-series.html">← Previous</a><a href="c1-escape-velocity.html">Next: Escape velocity →</a></div>
+<div class="sheet-nav"><a href="b32-grandi-series.html">← Previous</a><a href="b34-sufficient-summary.html">Next: Does the order of heads matter? →</a></div>
 </main>
 
 <footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
