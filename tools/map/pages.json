@@ -230,6 +230,7 @@
   "grade-8/sheets/b32-do-moves-commute.html": [{"code": "20A", "level": "core"}, {"code": "20P", "level": "core"}],
   "grade-8/sheets/b33-fano-plane.html": [{"code": "51E", "level": "core"}, {"code": "14N", "level": "touch"}],
   "grade-8/sheets/b34-glue-a-square.html": [{"code": "54B", "level": "core"}, {"code": "55R", "level": "core"}],
+  "grade-8/sheets/b35-seventeen-wallpapers.html": [{"code": "20E", "level": "core"}, {"code": "57S", "level": "touch"}],
   "grade-8/sheets/b40-jam.html": [{"code": "91A", "level": "core"}, {"code": "05B", "level": "touch"}],
   "grade-8/sheets/c1-check-digits.html": [{"code": "94B", "level": "core"}, {"code": "11A", "level": "touch"}],
   "grade-8/sheets/c2-simpson.html": [{"code": "62P", "level": "core"}, {"code": "62A", "level": "touch"}, {"code": "11A", "level": "touch"}],
