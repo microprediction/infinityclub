@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Soap films find the shortest road · Infinity Club</title>
+<meta name="description" content="Compare road networks joining towns at the corners of a square and a triangle, meet the 120 degree junction rule that soap films obey, and see why a soap film can settle on a network that is not the shortest.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 7</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 7 · Connections · 14</div>
+  <h1>Soap films find the shortest road</h1>
+  <p class="teaser">Four towns sit at the corners of a square. What is the shortest road network joining them? A soap film between two plates can find it for you.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A soap film pulls itself tight. It shrinks its area until no small change can make it any smaller.</p>
+<p>Hold two clear plates a little apart with four pins between them, and dip them in soapy water. Thin walls of film form between the pins, standing straight up from plate to plate. The area of a wall is its length times the gap, and the gap is fixed. So the film is shrinking its total length. Seen from above, it draws a short network joining the pins.</p>
+<p>Think of the pins as towns and the walls as roads. This is a model: flat land, straight roads, and only total length counts. A junction could go anywhere, so there are infinitely many networks to choose from. Hunting for the best shape among infinitely many is a whole branch of math(s).</p>
+<p class="callout">In a shortest network, at every junction that is not a town, exactly three roads meet, and the angles between them are all 120°. Soap film walls between plates also meet in threes at 120°.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: four towns on a square</h2>
+<p>Towns A, B, C and D sit at the corners of a square with sides of 10 km. Here are three plans. The thick lines are roads.</p>
+<figure><svg viewBox="0 0 520 134" width="520" height="134" role="img" aria-label="Three road plans for four towns at the corners of a square. Plan 1 uses three sides of the square. Plan 2 uses the two diagonals, crossing at the centre. Plan 3 has two junctions P and Q on the line midway between the top and bottom sides: P is joined to the left-hand towns A and D, Q is joined to the right-hand towns B and C, and a short road joins P to Q." font-family="Nunito, sans-serif" font-size="12">
+<rect x="50" y="14" width="80" height="80" fill="none" stroke="#999" stroke-width="0.8" stroke-dasharray="3 3"/>
+<rect x="220" y="14" width="80" height="80" fill="none" stroke="#999" stroke-width="0.8" stroke-dasharray="3 3"/>
+<rect x="390" y="14" width="80" height="80" fill="none" stroke="#999" stroke-width="0.8" stroke-dasharray="3 3"/>
+<path d="M 50 14 L 50 94 L 130 94 L 130 14" fill="none" stroke="#3f44c9" stroke-width="2.5" stroke-linejoin="round"/>
+<path d="M 220 14 L 300 94 M 300 14 L 220 94" fill="none" stroke="#3f44c9" stroke-width="2.5"/>
+<path d="M 390 14 L 413.1 54 L 390 94 M 413.1 54 L 446.9 54 M 470 14 L 446.9 54 L 470 94" fill="none" stroke="#3f44c9" stroke-width="2.5" stroke-linejoin="round"/>
+<circle cx="413.1" cy="54" r="3" fill="#f5a524" stroke="#1d1f3a" stroke-width="1"/>
+<circle cx="446.9" cy="54" r="3" fill="#f5a524" stroke="#1d1f3a" stroke-width="1"/>
+<circle cx="50" cy="14" r="4" fill="#1d1f3a"/><circle cx="130" cy="14" r="4" fill="#1d1f3a"/><circle cx="130" cy="94" r="4" fill="#1d1f3a"/><circle cx="50" cy="94" r="4" fill="#1d1f3a"/>
+<text x="41" y="18" text-anchor="end" fill="#1d1f3a">A</text><text x="139" y="18" fill="#1d1f3a">B</text><text x="139" y="98" fill="#1d1f3a">C</text><text x="41" y="98" text-anchor="end" fill="#1d1f3a">D</text>
+<circle cx="220" cy="14" r="4" fill="#1d1f3a"/><circle cx="300" cy="14" r="4" fill="#1d1f3a"/><circle cx="300" cy="94" r="4" fill="#1d1f3a"/><circle cx="220" cy="94" r="4" fill="#1d1f3a"/>
+<text x="211" y="18" text-anchor="end" fill="#1d1f3a">A</text><text x="309" y="18" fill="#1d1f3a">B</text><text x="309" y="98" fill="#1d1f3a">C</text><text x="211" y="98" text-anchor="end" fill="#1d1f3a">D</text>
+<circle cx="390" cy="14" r="4" fill="#1d1f3a"/><circle cx="470" cy="14" r="4" fill="#1d1f3a"/><circle cx="470" cy="94" r="4" fill="#1d1f3a"/><circle cx="390" cy="94" r="4" fill="#1d1f3a"/>
+<text x="381" y="18" text-anchor="end" fill="#1d1f3a">A</text><text x="479" y="18" fill="#1d1f3a">B</text><text x="479" y="98" fill="#1d1f3a">C</text><text x="381" y="98" text-anchor="end" fill="#1d1f3a">D</text>
+<text x="401" y="58" text-anchor="middle" fill="#1d1f3a">P</text>
+<text x="459" y="58" text-anchor="middle" fill="#1d1f3a">Q</text>
+<text x="90" y="113" text-anchor="middle" fill="#555">Plan 1: three sides</text>
+<text x="90" y="128" text-anchor="middle" fill="#555">30 km</text>
+<text x="260" y="113" text-anchor="middle" fill="#555">Plan 2: two diagonals</text>
+<text x="260" y="128" text-anchor="middle" fill="#555">about 28.28 km</text>
+<text x="430" y="113" text-anchor="middle" fill="#555">Plan 3: two junctions</text>
+<text x="430" y="128" text-anchor="middle" fill="#555">about 27.32 km</text>
+</svg></figure>
+<p><b>Plan 1</b> is \(3 \times 10 = 30\) km. <b>Plan 2:</b> each diagonal is about 14.142 km, so the two total \(2 \times 14.142 = 28.284\), about 28.28 km. <b>Plan 3:</b> P and Q lie midway between the top and bottom sides, each about 2.887 km in from the nearest side. Each slanted road is about 5.774 km and PQ is about 4.226 km. Total: \(4 \times 5.774 + 4.226 = 27.322\), about 27.32 km.</p>
+<p>Plan 3 wins, and it is known to be a shortest possible network for these towns. A soap film between four pins at the corners of a square takes this shape. Plan 2 could never be the shortest: four roads meet at its junction.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>(a) The H plan for the square uses sides AD and BC, plus a road joining the middle of AD to the middle of BC. How long is it? (b) How long is the ring of all four sides? (c) The H plan has two junctions where three roads meet. What are the three angles at each? Does it obey the 120° rule? (d) How many metres does Plan 3 save compared with Plan 2? About what percentage of Plan 2 is that?<div class="space short"></div></li>
+<li>Three towns sit at the corners of an equilateral triangle with sides of 10 km. (a) How long is a network made of two sides? (b) The centre is about 5.774 km from each corner. How long is a network of three roads from the centre, one to each town? (c) By symmetry the three angles at the centre are equal. How big is each? (d) What percentage of the two-sides plan does the centre junction save?<div class="space short"></div></li>
+<li>In Plan 3, triangle APD has angles of 30° at A and at D. (a) Find the angle at P between roads PA and PD. (b) The picture is symmetric about the line through P and Q, so the other two angles at P are equal. Find them, using the fact that angles round a point add up to 360°. (c) Does Plan 3 obey the 120° rule?<div class="space short"></div></li>
+<li>Towns A, B and C have AB = 10 km and AC = 10 km. A junction J sits on the line from A to the middle of BC, \(d\) km from A, with roads JA, JB and JC. (a) Let the angle at A be 120°. When \(d = 1\), JB and JC are about 9.539 km each. When \(d = 2\), they are about 9.165 km each. Find both totals and compare them with the two roads AB and AC. (b) Now let the angle at A be 90°. When \(d = 3\), JB and JC are about 8.159 km each. Find the total and compare again. (c) In which triangle is a junction worth building?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: a film that gets stuck</h2>
+<p>Four pins sit at the corners of a rectangle 15 cm wide and 10 cm tall. A soap film can settle into either of two shapes, both with 120° at every junction. Shape 1 is like Plan 3, with its middle wall running across: four slanted walls of about 5.774 cm and a middle wall of about 9.226 cm. Shape 2 has its middle wall running up and down: four slanted walls of about 8.660 cm and a middle wall of about 1.340 cm. (a) Find both totals. (b) Three sides of the rectangle also join the pins. What is the shortest way to do that, and how does it compare with Shape 2? (c) Read the first line of tonight's idea again. Why can a film stay in Shape 2 even though Shape 1 is shorter?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(10 + 10 + 10 = 30\) km, the same as Plan 1. (b) \(4 \times 10 = 40\) km. (c) 90°, 90° and 180°. Three roads meet, but not at 120°, so the H plan breaks the rule and cannot be a shortest network. (d) \(28.28 - 27.32 = 0.96\) km, which is 960 metres. As a fraction of Plan 2 that is \(0.96 \div 28.28 \approx 0.034\), about 3.4 per cent. (The lengths are rounded. A more exact saving is 964 metres.)</li>
+<li>(a) \(10 + 10 = 20\) km. (b) \(3 \times 5.774 = 17.322\), about 17.32 km. (c) \(360° \div 3 = 120°\). The centre junction obeys the rule, and this is the shortest network for these three towns. (d) It saves \(20 - 17.32 = 2.68\) km, and \(2.68 \div 20 = 0.134\), so about 13.4 per cent.</li>
+<li>(a) The angles of a triangle add up to 180°, so the angle at P is \(180° - 30° - 30° = 120°\). (b) The other two angles share \(360° - 120° = 240°\) equally, so each is 120°. (c) Yes. Three roads meet at P and all three angles are 120°. The same is true at Q, because the picture is also symmetric left to right.</li>
+<li>(a) \(1 + 2 \times 9.539 = 20.078\) km and \(2 + 2 \times 9.165 = 20.33\) km. The roads AB and AC total 20 km, so both junctions make the network longer, and the further J moves from A the worse it gets. (b) \(3 + 2 \times 8.159 = 19.318\), about 19.32 km. That beats the 20 km of AB and AC. (c) In the 90° triangle. Here is the known rule: when a triangle of towns has an angle of 120° or more, the shortest network is just the two sides that meet at that angle, which are always the two shorter sides. No junction can help. When every angle is less than 120°, one junction with three 120° angles does better. In the 90° triangle the best spot is very close to \(d = 3\).</li>
+</ol>
+<p><b>Stretch.</b> (a) Shape 1: \(4 \times 5.774 + 9.226 = 32.322\), about 32.32 cm. Shape 2: \(4 \times 8.660 + 1.340 = 35.98\) cm. Shape 1 is the shortest network for these pins. (b) Leave out one of the long sides: \(10 + 15 + 10 = 35\) cm. That is shorter than Shape 2. So obeying the 120° rule does not make a network the shortest, or even a good one. The rule is something every shortest network must obey, but other networks can obey it too. (c) A film only shrinks while some small change makes it smaller. In Shape 2 every small nudge of the junctions makes the total longer, so the film stays put. To reach Shape 1 it would first have to get longer, by squeezing its middle wall down to nothing. It is like a ball resting in a dip on a hillside: it cannot tell that a deeper valley lies further down. So a soap film finds a network that beats all its near neighbours, which is not always the best of all. For the square in the example the two shapes are the same length, so the film cannot go wrong.</p>
+</section>
+
+<div class="sheet-nav"><a href="c13-running-averages.html">← Previous</a><a href="../index.html#sheets">← All sheets</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>
