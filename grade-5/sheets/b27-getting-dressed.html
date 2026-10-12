@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>In what order can you get dressed? · Infinity Club</title>
+<meta name="description" content="Socks must come before shoes, but some clothing can go in either order. Draw the rules and count every valid way to get dressed.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 5</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 5 · Around the corner · 27</div>
+  <h1>In what order can you get dressed?</h1>
+  <p class="teaser">Socks before shoes, but socks and trousers can go in either order. How many complete dressing orders obey every rule?</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Some jobs have to happen before others. Draw an arrow from the earlier job to the later one.</p>
+<p>For four clothes, use these rules:</p>
+<ul>
+<li>underwear before trousers;</li>
+<li>trousers before shoes;</li>
+<li>socks before shoes.</li>
+</ul>
+<p>You can follow arrows through the diagram. Underwear must come before shoes because there is a path through trousers, so we do not need a shortcut arrow.</p>
+<p>There is no path from socks to trousers or from trousers to socks. These two jobs are <b>incomparable</b>: the rules allow either one first. They are different jobs, not equal jobs.</p>
+<p>An <b>ordered set</b> can say that one thing must come before another while leaving other pairs incomparable.</p>
+<p class="callout">Arrows record what is forced. A finished list chooses between everything.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: find every dressing order</h2>
+<figure>
+<svg viewBox="0 0 520 190" width="520" height="190" role="img" aria-label="At left, arrows show underwear before trousers, trousers before shoes, and socks before shoes. At right are the three valid complete orders: socks underwear trousers shoes; underwear socks trousers shoes; and underwear trousers socks shoes." font-family="Nunito, sans-serif" font-size="12" fill="#1d1f3a">
+<defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0,0 L7,3.5 L0,7 z" fill="#3f44c9"/></marker></defs>
+<text x="110" y="16" text-anchor="middle" font-weight="700">the rules</text>
+<rect x="20" y="133" width="88" height="30" rx="5" fill="#dcdcf5" stroke="#3f44c9"/><text x="64" y="152" text-anchor="middle">underwear</text>
+<rect x="20" y="76" width="88" height="30" rx="5" fill="#dcdcf5" stroke="#3f44c9"/><text x="64" y="95" text-anchor="middle">trousers</text>
+<rect x="132" y="133" width="68" height="30" rx="5" fill="#fde8c4" stroke="#f5a524"/><text x="166" y="152" text-anchor="middle">socks</text>
+<rect x="76" y="25" width="68" height="30" rx="5" fill="#fde8c4" stroke="#f5a524"/><text x="110" y="44" text-anchor="middle">shoes</text>
+<path d="M64,132 L64,108" fill="none" stroke="#3f44c9" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M77,75 L96,57" fill="none" stroke="#3f44c9" stroke-width="2" marker-end="url(#arrow)"/>
+<path d="M158,132 L121,57" fill="none" stroke="#3f44c9" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="370" y="16" text-anchor="middle" font-weight="700">all valid complete orders</text>
+<text x="251" y="54" text-anchor="middle" font-weight="700">1</text>
+<text x="251" y="101" text-anchor="middle" font-weight="700">2</text>
+<text x="251" y="148" text-anchor="middle" font-weight="700">3</text>
+<g font-size="13" font-weight="700" text-anchor="middle">
+<rect x="270" y="35" width="52" height="28" rx="4" fill="#fde8c4"/><text x="296" y="54">So</text>
+<rect x="327" y="35" width="52" height="28" rx="4" fill="#dcdcf5"/><text x="353" y="54">U</text>
+<rect x="384" y="35" width="52" height="28" rx="4" fill="#dcdcf5"/><text x="410" y="54">T</text>
+<rect x="441" y="35" width="52" height="28" rx="4" fill="#fde8c4"/><text x="467" y="54">Sh</text>
+<rect x="270" y="82" width="52" height="28" rx="4" fill="#dcdcf5"/><text x="296" y="101">U</text>
+<rect x="327" y="82" width="52" height="28" rx="4" fill="#fde8c4"/><text x="353" y="101">So</text>
+<rect x="384" y="82" width="52" height="28" rx="4" fill="#dcdcf5"/><text x="410" y="101">T</text>
+<rect x="441" y="82" width="52" height="28" rx="4" fill="#fde8c4"/><text x="467" y="101">Sh</text>
+<rect x="270" y="129" width="52" height="28" rx="4" fill="#dcdcf5"/><text x="296" y="148">U</text>
+<rect x="327" y="129" width="52" height="28" rx="4" fill="#dcdcf5"/><text x="353" y="148">T</text>
+<rect x="384" y="129" width="52" height="28" rx="4" fill="#fde8c4"/><text x="410" y="148">So</text>
+<rect x="441" y="129" width="52" height="28" rx="4" fill="#fde8c4"/><text x="467" y="148">Sh</text>
+</g>
+<text x="381" y="181" text-anchor="middle" fill="#666">U underwear · T trousers · So socks · Sh shoes</text>
+</svg>
+<figcaption>A rule diagram leaves choices open. Each row on the right makes every choice and obeys every arrow.</figcaption>
+</figure>
+<p>The shoes go last. Underwear is before trousers. Place socks in the three possible slots in the chain <b>underwear, trousers, shoes</b>: before underwear, between underwear and trousers, or between trousers and shoes.</p>
+<p>Those are the three rows, so the list is complete rather than just three examples.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Add a shirt with no rules. Write “shirt” on a scrap of paper and place it into each of the five slots in every order above. How many valid orders are there now? Explain why none is counted twice.<div class="space"></div></li>
+<li>A morning has four jobs: wake, dress, eat and leave. Wake must be before dress and eat. Dress and eat must both be before leave. Draw the arrow diagram, then list every valid complete order.<div class="space"></div></li>
+<li>In the original four-clothes diagram, list every pair of jobs that is incomparable. Explain what incomparable means without using the word “equal”.<div class="space short"></div></li>
+<li>Four jobs in one chain have only one valid order. Four jobs with no rules have \(4\times3\times2\times1=24\) orders. Explain each count. Why is the clothing answer, 3, between these extremes?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: add a jacket</h2>
+<p>Keep the free shirt from exercise 1. Add a jacket, with just one new rule: shirt before jacket. How many orders of all six items obey every rule?</p>
+<p><b>Hint:</b> For each original four-item order, choose two of the six positions for shirt and jacket. Once the positions are chosen, their order is forced.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li><b>15.</b> Each of the three old orders has five slots: before all four items, in any of the three gaps, or after all four. That gives \(3\times5=15\). Removing the shirt recovers exactly one old order and one slot, so two constructions cannot give the same result.</li>
+<li>The arrows are wake to dress, wake to eat, dress to leave, and eat to leave. The valid orders are <b>wake, dress, eat, leave</b> and <b>wake, eat, dress, leave</b>. Dress and eat may swap; wake is first and leave is last.</li>
+<li><b>Underwear and socks</b>; <b>trousers and socks</b>. Incomparable means the rules do not force either member of the pair to come first. The shoes are comparable with underwear because following arrows through trousers shows underwear before shoes.</li>
+<li>A chain forces every next job, so there is one order. With no rules, there are 4 choices for the first job, then 3, then 2, then 1: \(4\times3\times2\times1=24\). The clothing rules forbid most orders but still leave a choice about where socks go, so the answer is more than 1 and less than 24.</li>
+</ol>
+<p><b>Stretch.</b> <b>45.</b> For one old four-item order, choose the two positions occupied by the shirt and jacket. There are \(6\times5=30\) ordered choices, but choosing the same two positions in the opposite order repeats them, so \(30\div2=15\). Shirt must use the earlier position. With three old orders, \(3\times15=45\).</p>
+</section>
+
+<div class="sheet-nav"><a href="b26-chaos-game.html">← Previous</a><a href="c1-time-zones.html">Next: What time is it in Tokyo? →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>
+
