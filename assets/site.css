@@ -61,6 +61,7 @@ footer { text-align: center; color: var(--muted); font-size: .9rem; padding: 2re
 .hero { padding: 2.5rem 1rem 1.5rem; text-align: center; }
 .hero h1 { font-size: 2.8rem; }
 .hero .inf { font-size: 3.6rem; vertical-align: -0.2em; }
+.hero p.tagline { font-size: 1.45rem; font-weight: 800; color: var(--accent); margin: .2rem auto .9rem; }
 .hero p.lead { font-size: 1.2rem; color: var(--muted); max-width: 620px; margin: 0 auto 1rem; }
 .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0 2rem; }
 .steps div { background: var(--paper); border: 1px solid var(--rule); border-radius: 12px; padding: 1rem 1.1rem; }

@@ -1,5 +1,7 @@
 # Math Detours
 
+*The more you see, the less you have to remember.*
+
 Printable math sheets, one a night, organised by grade. Grade 5 (48 sheets), grade 6 (61 sheets), grade 7 (48 sheets), grade 8 (56 sheets), grade 9 (48 sheets), grade 10 (59 sheets), grade 11 (48 sheets) and grade 12 (58 sheets) are live, each in three tracks. Shared interactive demos (100) live in `demos/`. Live at [mathdetours.com](https://mathdetours.com).
 
 ## Layout
