@@ -365,6 +365,7 @@
   "grade-10/sheets/c10-apportionment.html": [{"code": "91B", "level": "core"}],
   "grade-10/sheets/c11-air-in-a-corner.html": [{"code": "82B", "level": "core"}, {"code": "82C", "level": "core"}],
   "grade-10/sheets/c12-averaging-directions.html": [{"code": "62R", "level": "core"}],
+  "grade-10/sheets/c13-coriolis.html": [{"code": "76U", "level": "core"}],
   "grade-11/sheets/a1-radians.html": [{"code": "51M", "level": "core"}, {"code": "33B", "level": "touch"}],
   "grade-11/sheets/a2-sine-waves.html": [{"code": "33B", "level": "core"}, {"code": "42A", "level": "touch"}],
   "grade-11/sheets/a3-addition-formulas.html": [{"code": "33B", "level": "core"}, {"code": "51M", "level": "touch"}],
