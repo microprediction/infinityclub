@@ -180,7 +180,7 @@
     msg += "\ncharacteristic equation  λ² − (" + fmt(E.tr) + ")λ + (" + fmt(E.det) + ") = 0";
     if (!E.real) msg += "\neigenvalues " + fmt(E.re) + " ± " + fmt(E.im) + "i  (complex): no real eigenvector, every direction gets turned";
     else if (E.every) msg += "\neigenvalue " + fmt(E.vals[0]) + " (repeated): A = λI, so every vector is an eigenvector";
-    else if (E.vecs.length === 1) msg += "\neigenvalue " + fmt(E.vals[0]) + " (repeated), one eigen-direction " + vec(E.vecs[0]) + ": a shear has only one line it leaves alone";
+    else if (E.vecs.length === 1) msg += "\neigenvalue " + fmt(E.vals[0]) + " (repeated), one eigen-direction " + vec(E.vecs[0]) + ": only one line keeps its direction, as in a shear";
     else msg += "\nλ₁ = " + fmt(E.vals[0]) + " along " + vec(E.vecs[0]) + "\nλ₂ = " + fmt(E.vals[1]) + " along " + vec(E.vecs[1]);
     var lv = Math.hypot(v[0], v[1]), lAv = Math.hypot(Av[0], Av[1]);
     var ang = lv > 1e-9 && lAv > 1e-9 ? Math.acos(Math.max(-1, Math.min(1, (v[0] * Av[0] + v[1] * Av[1]) / (lv * lAv)))) * 180 / Math.PI : 0;
