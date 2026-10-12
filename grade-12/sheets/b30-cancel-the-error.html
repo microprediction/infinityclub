@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spot the error, then cancel it · Infinity Club</title>
+<meta name="description" content="Rectangle sums for the area under y = x squared have an error that roughly halves when you double the rectangles. Combine two estimates to cancel most of it (Richardson extrapolation), then try the same trick on a slow series for pi and on a small integral equation.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Around the corner · 30</div>
+  <h1>Spot the error, then cancel it</h1>
+  <p class="teaser">Estimate an area with 4 rectangles, then 8. The error roughly halves. If you know how the error behaves, you can cancel most of it with one line of arithmetic.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Chop the area under a curve into \(n\) thin rectangles and add them up. You get an estimate \(E_n\), and an error: the true area \(A\) minus the estimate. Doubling \(n\) helps, but slowly. With left-hand rectangles the error only about halves each time.</p>
+<p>Here is a cheaper way. Suppose the error is close to \(C/n\) for some fixed number \(C\) that you do not know. Then \(E_{2n}\) has about half the error of \(E_n\). Two estimates, one unknown \(C\): eliminate it.</p>
+<p class="callout">If \(E_n \approx A - \dfrac{C}{n}\), then \(2E_{2n} - E_n \approx 2A - \dfrac{C}{n} - A + \dfrac{C}{n} = A\). The \(C\) terms cancel.</p>
+<p>This is <b>Richardson extrapolation</b>, one way of <b>accelerating convergence</b>. It needs no new rectangles, only one line of arithmetic. The catch: it works only when the error really follows the pattern. A different pattern needs different weights, as exercise 3 and the stretch show. And it usually cancels most of the error, not all of it.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: the area under \(y = x^2\)</h2>
+<p>The area under \(y = x^2\) from \(0\) to \(1\) is exactly \(\frac13\). Pretend you do not know that. Use \(n\) left-hand rectangles of width \(\frac1n\), with heights taken at \(x = 0, \frac1n, \frac2n, \ldots, \frac{n-1}{n}\), and call the total \(L_n\).</p>
+<p>\[L_4 = \tfrac14\left(0 + \tfrac{1}{16} + \tfrac{4}{16} + \tfrac{9}{16}\right) = \tfrac{14}{64} = 0.21875, \qquad L_8 = \tfrac{0 + 1 + 4 + \cdots + 49}{512} = \tfrac{140}{512} \approx 0.27344.\]</p>
+<p>The errors are \(\frac13 - L_4 \approx 0.1146\) and \(\frac13 - L_8 \approx 0.0599\). Twice the work, and the error has only gone down by a factor of about \(1.9\). But that is the pattern in the callout, so combine:</p>
+<p>\[2L_8 - L_4 = 0.546875 - 0.21875 = 0.328125.\]</p>
+<p>The error is now \(\frac13 - 0.328125 \approx 0.0052\), more than eleven times smaller than the error of \(L_8\), and it used nothing but the two numbers you already had.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Use \(0^2 + 1^2 + \cdots + 15^2 = 1240\) to find \(L_{16}\) for the same area. Then work out \(2L_{16} - L_8\) and its error.<div class="space short"></div></li>
+<li>Use \(0^2 + 1^2 + \cdots + (n-1)^2 = \dfrac{(n-1)\,n\,(2n-1)}{6}\) to show that \(L_n = \dfrac13 - \dfrac{1}{2n} + \dfrac{1}{6n^2}\) exactly. Then find the exact error of \(2L_{2n} - L_n\). What happens to it when \(n\) doubles?<div class="space"></div></li>
+<li>The sums \(S_n\) of the first \(n\) terms of \(4\left(1 - \frac13 + \frac15 - \frac17 + \cdots\right)\) creep towards \(\pi \approx 3.1416\). (a) Find \(S_1\) to \(S_5\) to four decimal places and the error \(\pi - S_n\) of each. (b) These errors do not halve. Describe their pattern, then average neighbours: \(\frac12(S_n + S_{n+1})\) for \(n = 1, 2, 3, 4\). How much closer is the last average than \(S_5\)?<div class="space"></div></li>
+<li>An <b>integral equation</b> hides the unknown function inside an integral. Take \(u(x) = x + x\displaystyle\int_0^1 t\,u(t)\,dt\). (a) The integral is just a number, so \(u(x) = cx\) for some \(c\). Show that \(c = 1 + \frac{c}{3}\), so \(c = \frac32\). (b) Most integral equations cannot be solved exactly, so the integral is replaced by a sum. Replace \(\int_0^1 t^2\,dt\) by \(L_n\), giving \(c_n = 1 + c_n L_n\). Find \(c_8\) and \(c_{16}\) from \(L_8 = \frac{35}{128}\) and \(L_{16} = \frac{155}{512}\), then \(2c_{16} - c_8\). How far is each from \(1.5\)?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: midpoints, and new weights</h2>
+<p>Let \(M_n\) be the sum with \(n\) rectangles whose heights are taken at the <em>middle</em> of each strip. (a) For any function, explain why \(2L_{2n} - L_n\) is exactly \(M_n\). (Which heights survive the subtraction?) (b) So by exercise 2, for \(y = x^2\) the error of \(M_n\) is \(\dfrac{1}{12n^2}\), which quarters when \(n\) doubles. If \(E_n \approx A - \dfrac{K}{n^2}\), which combination of \(E_{2n}\) and \(E_n\) cancels \(K\)? Try it on \(M_4 = \frac{21}{64}\) and \(M_8 = \frac{85}{256}\).</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(L_{16} = \dfrac{1240}{16^3} = \dfrac{1240}{4096} = \dfrac{155}{512} \approx 0.30273\), with error about \(0.0306\), roughly half of \(0.0599\) again. Then \(2L_{16} - L_8 = 0.60547 - 0.27344 = 0.33203\), with error about \(0.0013\). That is about \(23\) times better than \(L_{16}\) itself.</li>
+<li>\(L_n = \dfrac1n \times \dfrac{0^2 + 1^2 + \cdots + (n-1)^2}{n^2} = \dfrac{(n-1)(2n-1)}{6n^2} = \dfrac{2n^2 - 3n + 1}{6n^2} = \dfrac13 - \dfrac{1}{2n} + \dfrac{1}{6n^2}\). So the error is \(\dfrac{1}{2n} - \dfrac{1}{6n^2}\): close to \(C/n\) with \(C = \frac12\), but not exactly. Then \(2L_{2n} - L_n = \dfrac23 - \dfrac{1}{2n} + \dfrac{1}{12n^2} - \dfrac13 + \dfrac{1}{2n} - \dfrac{1}{6n^2} = \dfrac13 - \dfrac{1}{12n^2}\). The \(\frac1n\) terms cancel and the error left is exactly \(\dfrac{1}{12n^2}\), which quarters when \(n\) doubles: \(\frac{1}{192} \approx 0.0052\) for \(n = 4\) and \(\frac{1}{768} \approx 0.0013\) for \(n = 8\), matching the example and exercise 1.</li>
+<li>(a) \(S_1, \ldots, S_5 = 4,\ 2.6667,\ 3.4667,\ 2.8952,\ 3.3397\), with errors \(-0.8584,\ 0.4749,\ -0.3251,\ 0.2464,\ -0.1981\). (b) The errors swap sign each time and shrink slowly; their sizes are roughly \(\frac1n\). Neighbours err on opposite sides by nearly the same amount, so the fair weights are \(\frac12\) and \(\frac12\), not \(2\) and \(-1\). The averages are about \(3.333,\ 3.067,\ 3.181,\ 3.117\). The last is off by about \(0.024\), against \(0.198\) for \(S_5\): about eight times closer, from the same five terms.</li>
+<li>(a) Put \(u(t) = ct\) into the equation: \(cx = x + x\displaystyle\int_0^1 c\,t^2\,dt = x\left(1 + \tfrac{c}{3}\right)\), so \(c = 1 + \frac{c}{3}\), \(\frac23 c = 1\) and \(c = \frac32\). (b) \(c_n = \dfrac{1}{1 - L_n}\), so \(c_8 = \dfrac{128}{93} \approx 1.3763\) and \(c_{16} = \dfrac{512}{357} \approx 1.4342\), off by about \(0.124\) and \(0.066\). Then \(2c_{16} - c_8 \approx 1.492\), off by only \(0.008\). The errors of \(c_n\) do not exactly halve (the ratio here is about \(1.9\)), yet the combination is still about eight times better than \(c_{16}\).</li>
+</ol>
+<p><b>Stretch.</b> (a) \(L_{2n}\) uses width \(\frac{1}{2n}\) and heights at \(0, \frac{1}{2n}, \frac{2}{2n}, \ldots, \frac{2n-1}{2n}\). Doubling it turns the width into \(\frac1n\). Subtracting \(L_n\) removes the heights at \(0, \frac1n, \ldots, \frac{n-1}{n}\), which are the even-numbered points. The odd-numbered points \(\frac{1}{2n}, \frac{3}{2n}, \ldots, \frac{2n-1}{2n}\) are left, and they are the middles of the \(n\) strips. So \(2L_{2n} - L_n = M_n\) for every function, and the example's \(0.328125\) is \(M_4 = \frac{21}{64}\). (b) \(4E_{2n} - E_n \approx 4A - \dfrac{K}{n^2} - A + \dfrac{K}{n^2} = 3A\), so use \(\dfrac{4E_{2n} - E_n}{3}\): weights \(\frac43\) and \(-\frac13\). Here \(\dfrac{4 \times \frac{85}{256} - \frac{21}{64}}{3} = \dfrac{\frac{85}{64} - \frac{21}{64}}{3} = \dfrac13\), exactly right. That is special to \(y = x^2\), whose midpoint error is exactly \(K/n^2\). For \(y = x^4\) the same combination with \(n = 2\) gives about \(0.1995\) against a true area of \(0.2\): a small error is left.</p>
+</section>
+
+<div class="sheet-nav"><a href="b29-arithmetic-derivative.html">← Previous</a><a href="c1-escape-velocity.html">Next: Escape velocity →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>
