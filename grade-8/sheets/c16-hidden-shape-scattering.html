@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Find the hidden shape · Infinity Club</title>
+<meta name="description" content="Roll marbles at a shape you cannot see and work backwards from the bounces: find a hidden wall from paths in and out, tell flat from round, estimate a width by counting hits, and meet the 1909 experiment that led to the atomic nucleus.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 8 · Connections · 16</div>
+  <h1>Find the hidden shape</h1>
+  <p class="teaser">Roll marbles at a shape hidden under a sheet of card. From the bounces alone you can work out where its walls are, much as Rutherford's laboratory found the atomic nucleus.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Prop a sheet of card on four books and hide a block under it. Roll marbles underneath and watch where they come out. You never see the block, but the paths give it away.</p>
+<p>Working backwards from what comes out to what is hidden is called an <b>inverse problem</b>. Firing things at a target to learn about it is called <b>scattering</b>. Two rules do most of the work.</p>
+<p><b>Bounce rule.</b> A marble leaves a flat wall at the angle it arrived at, so the wall stands where the paths in and out meet. (A model: real marbles spin and slow, so the angles are only nearly equal.)</p>
+<p><b>Counting rule.</b> Roll many marbles on parallel paths, spread evenly and at random across a gap. Roughly,</p>
+<p class="callout">\[\text{fraction of marbles that hit} \approx \frac{\text{width of target}}{\text{width of gap}}.\]</p>
+</section>
+
+<section class="example">
+<h2>Watch one: a hidden wall</h2>
+<p>The floor under the card has a centimetre grid. A marble rolls in travelling east along the line \(y = 2\) and comes out travelling north along the line \(x = 5\). (All tonight's data is made up.)</p>
+<figure><svg viewBox="0 0 500 140" width="500" height="140" role="img" aria-label="Left: a grid from 0 to 8 across and 0 to 6 up. A marble path comes in from the left along y = 2, meets a slanted wall at the point (5, 2), and leaves straight up along x = 5. The wall is a straight segment of slope 1 through (5, 2). Right: three marbles P, Q and R roll in from the left on parallel paths towards a round tin. P is aimed at the centre and comes straight back. Q, half a radius above P, bounces up and back to the left. R, near the top edge, bounces up and to the right." font-family="Nunito, sans-serif" font-size="12">
+<line x1="52" y1="118" x2="52" y2="10" stroke="#ccc" stroke-width="0.6"/>
+<line x1="70" y1="118" x2="70" y2="10" stroke="#ccc" stroke-width="0.6"/>
+<line x1="88" y1="118" x2="88" y2="10" stroke="#ccc" stroke-width="0.6"/>
+<line x1="106" y1="118" x2="106" y2="10" stroke="#ccc" stroke-width="0.6"/>
+<line x1="124" y1="118" x2="124" y2="10" stroke="#ccc" stroke-width="0.6"/>
+<line x1="142" y1="118" x2="142" y2="10" stroke="#ccc" stroke-width="0.6"/>
+<line x1="160" y1="118" x2="160" y2="10" stroke="#ccc" stroke-width="0.6"/>
+<line x1="178" y1="118" x2="178" y2="10" stroke="#ccc" stroke-width="0.6"/>
+<line x1="196" y1="118" x2="196" y2="10" stroke="#ccc" stroke-width="0.6"/>
+<line x1="52" y1="118" x2="196" y2="118" stroke="#ccc" stroke-width="0.6"/>
+<line x1="52" y1="100" x2="196" y2="100" stroke="#ccc" stroke-width="0.6"/>
+<line x1="52" y1="82" x2="196" y2="82" stroke="#ccc" stroke-width="0.6"/>
+<line x1="52" y1="64" x2="196" y2="64" stroke="#ccc" stroke-width="0.6"/>
+<line x1="52" y1="46" x2="196" y2="46" stroke="#ccc" stroke-width="0.6"/>
+<line x1="52" y1="28" x2="196" y2="28" stroke="#ccc" stroke-width="0.6"/>
+<line x1="52" y1="10" x2="196" y2="10" stroke="#ccc" stroke-width="0.6"/>
+<text x="52" y="133" text-anchor="middle" fill="#555">0</text>
+<text x="88" y="133" text-anchor="middle" fill="#555">2</text>
+<text x="124" y="133" text-anchor="middle" fill="#555">4</text>
+<text x="160" y="133" text-anchor="middle" fill="#555">6</text>
+<text x="196" y="133" text-anchor="middle" fill="#555">8</text>
+<text x="45" y="86" text-anchor="end" fill="#555">2</text>
+<text x="45" y="50" text-anchor="end" fill="#555">4</text>
+<text x="45" y="14" text-anchor="end" fill="#555">6</text>
+<line x1="113.2" y1="110.8" x2="174.4" y2="49.6" stroke="#1d1f3a" stroke-width="4"/>
+<line x1="52" y1="82" x2="142" y2="82" stroke="#3f44c9" stroke-width="2"/>
+<polygon points="98.6,82 88.8,85.8 88.8,78.2" fill="#3f44c9"/>
+<line x1="142" y1="82" x2="142" y2="10" stroke="#f5a524" stroke-width="2"/>
+<polygon points="142,28.2 145.8,38 138.2,38" fill="#f5a524"/>
+<circle cx="142" cy="82" r="3.5" fill="#1d1f3a"/>
+<text x="71.8" y="75" text-anchor="middle" fill="#3f44c9" font-weight="700">in</text>
+<text x="134" y="22.6" text-anchor="end" fill="#b37400" font-weight="700">out</text>
+<text x="176.2" y="62.2" text-anchor="start" fill="#1d1f3a" font-weight="700">wall</text>
+<text x="148.3" y="95.5" text-anchor="start" fill="#555">(5, 2)</text>
+<circle cx="392" cy="84" r="42" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="2"/>
+<text x="400" y="88" text-anchor="middle" fill="#1d1f3a">tin</text>
+<line x1="262" y1="84" x2="350" y2="84" stroke="#3f44c9" stroke-width="2"/>
+<polygon points="303,84 293.2,87.8 293.2,80.2" fill="#3f44c9"/>
+<text x="255" y="88" text-anchor="end" fill="#1d1f3a" font-weight="700">P</text>
+<line x1="350" y1="89" x2="312" y2="89" stroke="#f5a524" stroke-width="2" stroke-dasharray="5 3"/>
+<polygon points="311,89 320.8,85.2 320.8,92.8" fill="#f5a524"/>
+<circle cx="350" cy="84" r="3" fill="#1d1f3a"/>
+<line x1="262" y1="63" x2="355.6" y2="63" stroke="#3f44c9" stroke-width="2"/>
+<polygon points="303,63 293.2,66.8 293.2,59.1" fill="#3f44c9"/>
+<text x="255" y="67" text-anchor="end" fill="#1d1f3a" font-weight="700">Q</text>
+<line x1="355.6" y1="63" x2="330.6" y2="19.7" stroke="#f5a524" stroke-width="2"/>
+<polygon points="333.4,24.5 341.6,31 334.9,34.9" fill="#f5a524"/>
+<circle cx="355.6" cy="63" r="3" fill="#1d1f3a"/>
+<line x1="262" y1="47.6" x2="371" y2="47.6" stroke="#3f44c9" stroke-width="2"/>
+<polygon points="303,47.6 293.2,51.5 293.2,43.8" fill="#3f44c9"/>
+<text x="255" y="51.6" text-anchor="end" fill="#1d1f3a" font-weight="700">R</text>
+<line x1="371" y1="47.6" x2="391" y2="13" stroke="#f5a524" stroke-width="2"/>
+<polygon points="389.5,15.6 387.9,26 381.3,22.1" fill="#f5a524"/>
+<circle cx="371" cy="47.6" r="3" fill="#1d1f3a"/>
+</svg><figcaption>Left: the worked example. Right: a round tin (exercise 2). P comes straight back, drawn dashed just below its path.</figcaption></figure>
+<p><b>Where.</b> The two lines meet at \((5, 2)\), so the marble hit the wall there. <b>Tilt.</b> Call the angle between path and wall the <b>tilt</b>, \(t\). With no wall, the marble would carry on at angle \(t\) beyond the wall. Instead it leaves at angle \(t\) on the near side, so it turns through \(2t\): <b>turn \(= 2 \times\) tilt</b>. Here the turn is \(90^\circ\), so the tilt is \(45^\circ\). The marble turned left, so the wall rises to the right: slope 1 through \((5, 2)\), the line \(y = x - 3\). One marble gives one point and one tilt, not the wall's length.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Under a new card, marble A rolls in travelling east along \(y = 4\) and comes out travelling south along \(x = 3\). Marble B rolls in east along \(y = 2\) and comes out south along \(x = 5\). (a) Where did each hit? (b) Find the equation of a straight wall that fits both bounces. (c) A third marble rolls east along \(y = 6\) and is not turned at all. What does that tell you about the wall?<div class="space short"></div></li>
+<li>Use turn \(= 2 \times\) tilt. (a) Three marbles on parallel paths all hit one flat wall. Compare their turns. (b) The right-hand picture shows a hidden round tin. For a curved edge, use its tilt at the point hit: \(90^\circ\) for P, \(60^\circ\) for Q, \(30^\circ\) for R. Find each turn. (c) Under another card, three marbles on parallel paths each turn through \(40^\circ\). What tilt did each meet? Is this more like a flat wall or a round tin?<div class="space short"></div></li>
+<li>You roll 400 marbles on parallel paths, centres spread evenly and at random across a gap 100 cm wide. Exactly 20 hit something. (a) Estimate the target's width. (b) A marble is 1.6 cm wide and bounces if any part of it touches, so its centre can pass up to 0.8 cm outside either end of the target and still hit. Correct your estimate. (c) Why would the estimate be wrong if you aimed most marbles at the middle?<div class="space short"></div></li>
+<li>In 1909, in Ernest Rutherford's laboratory in Manchester, Hans Geiger and Ernest Marsden fired alpha particles (small, fast and positively charged) at thin metal foils. Nearly all went through, hardly turned. About 1 in 8000 came back, turned through more than \(90^\circ\). (a) What does "nearly all went through" suggest about the inside of an atom? (b) Treat it, very roughly, like the marble game: 1 marble in 8000 hits and the gap is 8 m wide. How wide is the target? What does that suggest about whatever turned particles back?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: why a bigger turn means a closer aim</h2>
+<p>A marble's <b>offset</b> is the distance from its path to the parallel line through the tin's centre. (a) The tin's radius is 10 cm and Q's offset is 5 cm. Show that the tin's edge where Q hits is tilted at \(60^\circ\) to Q's path. Hint: draw the radius to the hit point and look for half an equilateral triangle. A circle's edge is at right angles to its radius. (b) Explain why, for marbles that hit the tin, a smaller offset always gives a bigger turn.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) A hit at \((3, 4)\) and B at \((5, 2)\), where each pair of lines meets. (b) The line through both points has slope \((2 - 4)/(5 - 3) = -1\), so it is \(y = 7 - x\). Check: a line of slope \(-1\) makes \(45^\circ\) with an eastward path, and each marble turned \(90^\circ = 2 \times 45^\circ\). (c) That line would cross \(y = 6\) at \((1, 6)\). The third marble met nothing there, so the wall stops somewhere short of \((1, 6)\). Two bounces also cannot rule out a break in the wall between the hit points. More marbles would check.</li>
+<li>(a) They all meet the same tilt, so all three turns are equal. (b) P turns \(180^\circ\) and comes straight back. Q turns \(120^\circ\). R turns \(60^\circ\). (c) Each met a tilt of \(20^\circ\). Equal turns are what a flat wall gives. A round tin gives different turns to marbles at different offsets, as in (b). To be sure it is one flat wall, check that the hit points lie on one straight line.</li>
+<li>(a) \(20/400 = 1/20\) of the marbles hit, and \(1/20\) of 100 cm is about 5 cm. (b) The 5 cm is the target's width plus 0.8 cm at each end, so the target is about \(5 - 1.6 = 3.4\) cm wide. That is its width as seen from where the marbles come from, not its full shape. (c) The rule needs every position across the gap to be equally likely. Aim at the middle and a target in the middle is hit too often and looks too wide. A target near the side is hit too rarely and looks too narrow. Even done properly, a repeat run could easily give 16 or 24 hits instead of 20.</li>
+<li>(a) Most of an atom has nothing in it that can turn a fast alpha particle much. (b) \(1/8000\) of 8000 mm is 1 mm. Whatever sends particles back is tiny compared with the atom. Rutherford's 1911 answer was the nucleus: a very small, heavy, charged centre. The game is only an analogy. The foil was many atoms thick, so each particle had many chances. Alpha particles are not marbles hitting a hard surface: they have positive charge and are pushed away by the positive nucleus without touching it, so this count does not measure the nucleus. Later measurements show a nucleus is more than ten thousand times narrower than its atom.</li>
+</ol>
+<p><b>Stretch.</b> (a) Call the centre C, the hit point H, and the line through C parallel to the paths the centre line. H is 5 cm from the centre line and 10 cm from C. Reflect H in the centre line to get H′. Then CH, CH′ and HH′ are all 10 cm, an equilateral triangle, and the centre line cuts its \(60^\circ\) angle at C in half. So the radius CH makes \(30^\circ\) with the centre line, and with Q's path, which is parallel to it. The edge is at right angles to the radius, so its tilt is \(90^\circ - 30^\circ = 60^\circ\), and the turn is \(120^\circ\). (b) As the offset shrinks from 10 cm to 0, the hit point slides round to the point of the tin facing the marbles. The angle at C between the radius and the centre line shrinks from \(90^\circ\) to \(0^\circ\), so the tilt, which is \(90^\circ\) minus that angle, grows from \(0^\circ\) to \(90^\circ\), and the turn grows from \(0^\circ\) to \(180^\circ\). Alpha particles follow the same pattern for a different reason: the push from the nucleus is stronger close in. So rare big turns mean rare close passes.</p>
+</section>
+
+<div class="sheet-nav"><a href="c15-haar-wavelets.html">← Previous</a><a href="../index.html#sheets">← All sheets</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>
