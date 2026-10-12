@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How long do light bulbs last when some never fail? · Infinity Club</title>
+<meta name="description" content="Eight bulbs on test for six months: four fail, one is removed early, three are still glowing. Build the Kaplan-Meier survival curve step by step, read off the median lifetime, and see why the mean cannot be found.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Connections · 13</div>
+  <h1>How long do light bulbs last when some never fail?</h1>
+  <p class="teaser">You test 8 bulbs for 6 months. Three are still glowing at the end, and one was removed early. How do you estimate lifetimes without throwing that information away?</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A lab switches on 8 bulbs and watches for 6 months. Four burn out. One is unplugged at month 3 because its socket is needed. Three are still glowing at the end. For those four you know only that the lifetime is <i>longer</i> than some number. Such a story is <b>censored</b>: cut short before its ending.</p>
+<p>Averaging only the failures keeps just the short lives. To use everything, follow the <b>survival curve</b> \(S(t)\), the estimated fraction of bulbs lasting beyond time \(t\). Start at \(S = 1\). Each time bulbs fail, look only at the bulbs <b>at risk</b> (still on test just before that moment) and multiply:</p>
+<p class="callout">\(S_{\text{new}} = S_{\text{old}} \times \dfrac{\text{at risk} - \text{failures}}{\text{at risk}}\)</p>
+<p>A censored bulb causes no step down. It quietly leaves the at-risk group, so it counts in every fraction up to its removal and in none after. This is the <b>Kaplan-Meier estimate</b> (1958), a standard tool in medical trials. It assumes that being removed has nothing to do with how close a bulb was to failing.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: the 8 bulbs</h2>
+<figure><svg viewBox="0 0 520 140" width="520" height="140" role="img" aria-label="Timeline of eight bulbs over six months. Bulb A fails at month 1, B at month 2, C is removed at month 3, D fails at month 4, E fails at month 5, and F, G and H are still working at month 6." font-family="Nunito, sans-serif" font-size="12">
+<g stroke="#999" stroke-width="1" stroke-dasharray="3 3"><line x1="130" y1="6" x2="130" y2="118"/><line x1="200" y1="6" x2="200" y2="118"/><line x1="270" y1="6" x2="270" y2="118"/><line x1="340" y1="6" x2="340" y2="118"/><line x1="410" y1="6" x2="410" y2="118"/><line x1="480" y1="6" x2="480" y2="118"/></g>
+<line x1="60" y1="118" x2="500" y2="118" stroke="#1d1f3a" stroke-width="1.5"/><line x1="60" y1="6" x2="60" y2="118" stroke="#1d1f3a" stroke-width="1.5"/>
+<g stroke="#3f44c9" stroke-width="3"><line x1="60" y1="14" x2="130" y2="14"/><line x1="60" y1="27" x2="200" y2="27"/><line x1="60" y1="40" x2="265" y2="40"/><line x1="60" y1="53" x2="340" y2="53"/><line x1="60" y1="66" x2="410" y2="66"/><line x1="60" y1="79" x2="480" y2="79"/><line x1="60" y1="92" x2="480" y2="92"/><line x1="60" y1="105" x2="480" y2="105"/></g>
+<g stroke="#1d1f3a" stroke-width="2.5"><path d="M125,9 L135,19 M125,19 L135,9"/><path d="M195,22 L205,32 M195,32 L205,22"/><path d="M335,48 L345,58 M335,58 L345,48"/><path d="M405,61 L415,71 M405,71 L415,61"/></g>
+<circle cx="270" cy="40" r="4.5" fill="#fff" stroke="#f5a524" stroke-width="2.5"/>
+<g fill="#3f44c9"><path d="M480,74 L491,79 L480,84 Z"/><path d="M480,87 L491,92 L480,97 Z"/><path d="M480,100 L491,105 L480,110 Z"/></g>
+<g text-anchor="end" font-weight="700"><text x="50" y="18">A</text><text x="50" y="31">B</text><text x="50" y="44">C</text><text x="50" y="57">D</text><text x="50" y="70">E</text><text x="50" y="83">F</text><text x="50" y="96">G</text><text x="50" y="109">H</text></g>
+<g text-anchor="middle"><text x="60" y="133">0</text><text x="130" y="133">1</text><text x="200" y="133">2</text><text x="270" y="133">3</text><text x="340" y="133">4</text><text x="410" y="133">5</text><text x="480" y="133">6</text></g>
+<text x="46" y="133" text-anchor="end" fill="#555">month</text>
+</svg><figcaption>Made-up data. Cross: failure. Open circle: bulb C removed. Arrow: still working when the test ended.</figcaption></figure>
+<table class="tt">
+<tr><th>failure at month</th><td>1</td><td>2</td><td>4</td><td>5</td></tr>
+<tr><th>at risk just before</th><td>8</td><td>7</td><td>5</td><td>4</td></tr>
+<tr><th>factor</th><td>\(7/8\)</td><td>\(6/7\)</td><td>\(4/5\)</td><td>\(3/4\)</td></tr>
+<tr><th>\(S\) after</th><td>\(0.875\)</td><td>\(0.875 \times 6/7 = 0.75\)</td><td>\(0.75 \times 4/5 = 0.6\)</td><td>\(0.6 \times 3/4 = 0.45\)</td></tr>
+</table>
+<p>Month 3 has no column: nothing failed. But at month 4 only 5 are at risk, not 6, because C has gone. So an estimated 45% last beyond 5 months, a rough figure from 8 bulbs.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Draw the survival curve for the 8 bulbs, with \(t\) from 0 to 6 across and \(S\) from 0 to 1 up. It is a staircase: flat between failures, dropping straight down at each one. Mark the removal at month 3 with a small circle on the curve. Read off \(S(3)\) and \(S(4.5)\).<div class="space"></div></li>
+<li>Three shortcuts, each wrong. (a) Average the lifetimes of the four bulbs that failed. (b) Count bulb C as a failure at month 3, then give the fraction of the 8 lasting beyond month 5. (c) Count bulb C as still working at month 6, and do the same. Say what is wrong with each, and compare (b) and (c) with 0.45.<div class="space short"></div></li>
+<li>The estimated <b>median lifetime</b> is the first time the curve is at or below 0.5. (a) Find it for the 8 bulbs. (b) By when has an estimated quarter of the bulbs failed? (c) Why does this test give no time by which three quarters have failed?<div class="space short"></div></li>
+<li>More made-up data: 10 bulbs, tested for 8 months. Failures at months 2, 2, 5, 7 and 7. Two bulbs are removed at month 3. Three still work at month 8. (a) Find \(S\) after each failure time, handling failures at the same time together. (b) Find the median lifetime. (c) Show that taking the two month 7 failures one after the other gives the same factor.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: why there is no average</h2>
+<p>For lifetimes with nothing censored, the mean lifetime equals the area under the survival staircase (check it for three bulbs failing at months 1, 2 and 6). Find the area under the 8-bulb staircase from month 0 to month 6. Then explain why this is not an estimate of the mean lifetime, and what extra information would be needed to get one.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>The curve is level at 1 until month 1, then 0.875 until month 2, 0.75 until month 4, 0.6 until month 5, and 0.45 from month 5 to the end at month 6. \(S(3) = 0.75\): the removal causes no drop. \(S(4.5) = 0.6\).
+<figure><svg viewBox="0 0 340 190" width="340" height="190" role="img" aria-label="Kaplan-Meier staircase for the eight bulbs: level at 1 to month 1, 0.875 to month 2, 0.75 to month 4 with a small circle at month 3, 0.6 to month 5, then 0.45 to month 6. A dashed line at 0.5 is first crossed at month 5." font-family="Nunito, sans-serif" font-size="12">
+<line x1="40" y1="165" x2="300" y2="165" stroke="#1d1f3a" stroke-width="1.5"/><line x1="40" y1="15" x2="40" y2="165" stroke="#1d1f3a" stroke-width="1.5"/>
+<line x1="40" y1="95" x2="290" y2="95" stroke="#999" stroke-width="1" stroke-dasharray="3 3"/>
+<path d="M40,25 L80,25 L80,42.5 L120,42.5 L120,60 L200,60 L200,81 L240,81 L240,102 L280,102" fill="none" stroke="#3f44c9" stroke-width="2.5"/>
+<circle cx="160" cy="60" r="4" fill="#fff" stroke="#f5a524" stroke-width="2"/>
+<g text-anchor="end"><text x="34" y="169">0</text><text x="34" y="99">0.5</text><text x="34" y="29">1</text></g>
+<g text-anchor="middle"><text x="40" y="180">0</text><text x="80" y="180">1</text><text x="120" y="180">2</text><text x="160" y="180">3</text><text x="200" y="180">4</text><text x="240" y="180">5</text><text x="280" y="180">6</text></g>
+<g stroke="#1d1f3a" stroke-width="1"><line x1="80" y1="165" x2="80" y2="169"/><line x1="120" y1="165" x2="120" y2="169"/><line x1="160" y1="165" x2="160" y2="169"/><line x1="200" y1="165" x2="200" y2="169"/><line x1="240" y1="165" x2="240" y2="169"/><line x1="280" y1="165" x2="280" y2="169"/></g>
+<g fill="#3f44c9" text-anchor="middle"><text x="100" y="37">0.875</text><text x="140" y="54">0.75</text><text x="220" y="75">0.6</text><text x="262" y="118">0.45</text></g>
+<text x="294" y="180" fill="#555">months</text>
+</svg></figure></li>
+<li>(a) \((1 + 2 + 4 + 5)/4 = 3\) months. It uses only the short lives, and three bulbs have already lasted twice that long. (b) \(3/8 = 0.375\): too gloomy, since C was working when it left. (c) \(4/8 = 0.5\): too rosy, since nobody saw C reach month 6. Kaplan-Meier lands between, at 0.45. Of the 5 bulbs on test after month 3, 3 lasted beyond month 5, so it in effect counts C as \(3/5\) of a survivor: \((3 + 0.6)/8 = 0.45\).</li>
+<li>(a) Month 5, where the curve drops from 0.6 to 0.45. (b) Month 2, the first time \(S\) is at or below 0.75. (c) The curve stops at 0.45 when the test ends. It never gets down to 0.25, so the data cannot say when it would.</li>
+<li>(a) Month 2: 10 at risk, 2 fail, \(S = 8/10 = 0.8\). The removals leave 6 at risk. Month 5: 1 fails, \(S = 0.8 \times 5/6 = 2/3 \approx 0.67\). Month 7: 5 at risk, 2 fail, \(S = 2/3 \times 3/5 = 0.4\). (b) Month 7, the first time \(S\) is at or below 0.5. (c) One at a time: \(4/5 \times 3/4 = 3/5\), the same as \((5 - 2)/5\). The 4s cancel, and that always happens with ties.</li>
+</ol>
+<p><b>Stretch.</b> Three bulbs failing at 1, 2 and 6 have mean 3, and the staircase area is \(1 + \tfrac23 + 4 \times \tfrac13 = 3\). For the 8 bulbs the area to month 6 is \(1 + 0.875 + 2 \times 0.75 + 0.6 + 0.45 = 4.425\) months. But the curve is still at 0.45 there, and the rest of the area lies beyond month 6, where nothing was seen. If F, G and H had all failed at month 7 the area would be \(4.425 + 0.45 = 4.875\); if they had lasted until month 30 it would be \(4.425 + 24 \times 0.45 = 15.225\). Both fit the test equally well. You would need to keep watching until the curve reaches 0, or else assume a model for how bulbs fail. Here the median needs neither, because the curve did get below 0.5. That is why reports of this kind often quote a median.</p>
+</section>
+
+<div class="sheet-nav"><a href="c12-noisy-readings.html">← Previous</a><a href="../index.html#sheets">← All sheets</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>
