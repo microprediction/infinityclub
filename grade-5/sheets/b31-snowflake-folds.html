@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>One cut, twelve copies · Infinity Club</title>
+<meta name="description" content="Fold a paper snowflake, make one snip, and predict every copy before opening it. Compare mirror-made patterns with a turn-only pinwheel.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 5</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 5 · Around the corner · 31</div>
+  <h1>One cut, twelve copies</h1>
+  <p class="teaser">Fold a paper snowflake, make one snip, and open it up. Can you predict where every copy of that snip will appear?</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Fold a square in half, then in half again. Four parts now occupy the same quarter-square. A hole through the folded stack reaches all four parts. When you open it, each fold acts like a mirror and puts a copy on the other side.</p>
+<p>The flips and turns that match the finished pattern are its <b>symmetry moves</b>. Together they form a <b>group</b>: combining two symmetry moves gives another one.</p>
+<p class="callout">Away from creases, a mark through \(n\) stacked layers makes \(n\) separate copies.</p>
+<p>A mark on a crease is a boundary case: reflected copies can meet, so there may be fewer separate holes. Copying one doodle with every move in a symmetry group and overlaying the results is a kind of averaging. Every direction is treated equally.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: four parts become one</h2>
+<figure>
+<svg viewBox="0 0 520 185" width="520" height="185" role="img" aria-label="A square is folded along its vertical and horizontal midlines into a quarter-square with four layers. A small triangular punch away from the creases becomes four mirrored triangular holes when the square is opened." font-family="Nunito, sans-serif" font-size="13">
+  <rect x="20" y="20" width="100" height="100" fill="#fff" stroke="#1d1f3a" stroke-width="2"/>
+  <path d="M70 20 V120 M20 70 H120" stroke="#3f44c9" stroke-width="2" stroke-dasharray="5 4"/>
+  <path d="M36 63 L48 70 L36 77 M63 36 L70 48 L77 36" fill="none" stroke="#f5a524" stroke-width="2"/>
+  <text x="70" y="143" text-anchor="middle" fill="#555">two fold lines</text>
+
+  <text x="151" y="66" text-anchor="middle" fill="#3f44c9" font-size="20">→</text>
+  <text x="151" y="88" text-anchor="middle" fill="#555" font-size="11">fold</text>
+
+  <rect x="182" y="45" width="60" height="60" fill="#dcdcf5" stroke="#3f44c9" stroke-width="2"/>
+  <polygon points="210,67 224,67 220,54" fill="#f5a524" stroke="#b97400" stroke-width="1.5"/>
+  <text x="212" y="128" text-anchor="middle" fill="#555">4 layers</text>
+
+  <text x="288" y="66" text-anchor="middle" fill="#3f44c9" font-size="20">→</text>
+  <text x="288" y="88" text-anchor="middle" fill="#555" font-size="11">open</text>
+
+  <rect x="340" y="15" width="140" height="140" fill="#fff" stroke="#1d1f3a" stroke-width="2"/>
+  <path d="M410 15 V155 M340 85 H480" stroke="#3f44c9" stroke-width="2" stroke-dasharray="5 4"/>
+  <g fill="#fde8c4" stroke="#b97400" stroke-width="1.5">
+    <polygon points="438,55 452,55 448,42"/>
+    <polygon points="382,55 368,55 372,42"/>
+    <polygon points="438,115 452,115 448,128"/>
+    <polygon points="382,115 368,115 372,128"/>
+  </g>
+  <text x="410" y="177" text-anchor="middle" fill="#555">4 reflected copies</text>
+</svg>
+<figcaption>The punch is not on a crease. Opening the two folds reflects it across both midlines.</figcaption>
+</figure>
+<p>Each fold doubles the stack: 1 part becomes 2, then 4. The opened pattern has four symmetry moves: do nothing, flip left to right, flip top to bottom, or make both flips. Both flips together make a half turn.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<figure>
+<svg viewBox="0 0 520 185" width="520" height="185" role="img" aria-label="At left, a square is divided by its horizontal, vertical and diagonal mirror lines into eight triangular wedges, with one orange dot in the upper-right wedge. At right, one blue bent arrow in the upper-right quarter points clockwise around a centre point." font-family="Nunito, sans-serif" font-size="13">
+  <rect x="35" y="10" width="150" height="150" fill="#fff" stroke="#1d1f3a" stroke-width="2"/>
+  <g stroke="#999" stroke-width="1.5" stroke-dasharray="5 4">
+    <path d="M110 10 V160 M35 85 H185 M35 10 L185 160 M185 10 L35 160"/>
+  </g>
+  <circle cx="156.2" cy="65.9" r="6" fill="#f5a524" stroke="#b97400" stroke-width="1.5"/>
+  <text x="110" y="180" text-anchor="middle" fill="#555">add 7 reflected dots</text>
+
+  <circle cx="385" cy="85" r="70" fill="#fff" stroke="#999" stroke-width="1.5"/>
+  <circle cx="385" cy="85" r="3" fill="#1d1f3a"/>
+  <path d="M402 39 C430 39 444 57 444 82" fill="none" stroke="#3f44c9" stroke-width="5" stroke-linecap="round"/>
+  <polygon points="436,75 444,86 452,75" fill="#3f44c9"/>
+  <path d="M385 15 V155 M315 85 H455" stroke="#999" stroke-width="1" stroke-dasharray="4 4"/>
+  <text x="385" y="175" text-anchor="middle" fill="#555">add 3 quarter-turn copies</text>
+</svg>
+<figcaption>Use the left picture for question 2 and the right picture for question 3.</figcaption>
+</figure>
+<ol>
+<li>A small hole is away from every crease. How many copies appear after (a) one fold in half, (b) two folds in half, (c) those two folds and then one more diagonal fold?<div class="space short"></div></li>
+<li>The left square has eight wedge-shaped parts. Reflect the orange dot across the lines until every wedge has one. Which mirror lines and turns match the finished pattern? Counting “do nothing” too, how many symmetry moves are there?<div class="space short"></div></li>
+<li>In the right picture, rotate the bent arrow by a quarter turn three times and draw each copy. Do the four arrows have quarter-turn symmetry? Do they have a mirror line? Explain.<div class="space short"></div></li>
+<li>For a circular snowflake, fold in half, fold the semicircle into three equal 60° wedges stacked together, then fold that wedge in half to make 30°. How many layers are stacked? A small triangular snip is made in the curved outside edge, away from the wedge's corners. How many separate notches appear when opened?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: can folds make the pinwheel?</h2>
+<p>Suppose a pattern is built only by reflecting one mark across the straight edges of a folded wedge until the paper is filled. Explain why the finished pattern must have mirror lines. Why can this exact method not make the turn-only pinwheel from question 3?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) <b>2</b>. (b) <b>4</b>. (c) <b>8</b>. Each extra fold puts every existing layer on another layer, so the count doubles.</li>
+<li>There are <b>8 dots</b>, one in each wedge. Four mirror lines match the pattern: horizontal, vertical and both diagonals. Quarter, half and three-quarter turns also match it. With “do nothing”, that makes <b>8 symmetry moves</b>.</li>
+<li>Yes, a quarter turn moves every arrow onto the next one. No mirror line works. The arrows circulate clockwise; a reflection would reverse them to anticlockwise. Copying over the four turns treats all four directions equally without adding a reflection.</li>
+<li>The first fold gives 2 layers. Stacking three equal wedges gives \(2\times3=6\). The last fold doubles that to <b>12 layers</b>, so the snip makes <b>12 separate notches</b>. The conditions matter: at a wedge corner or crease, copies could meet.</li>
+</ol>
+<p><b>Stretch.</b> Each wedge edge is used as a mirror: every mark on one side gets a reflected partner on the other. After unfolding, those edge lines are mirror lines of the full pattern. The pinwheel has only turns; a mirror reverses its clockwise direction. It can be made by rotating and overlaying copies, but not by this reflect-and-unfold wedge method.</p>
+</section>
+
+<div class="sheet-nav"><a href="b30-robot-instructions.html">← Previous</a><a href="c1-time-zones.html">Next: What time is it in Tokyo? →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>
