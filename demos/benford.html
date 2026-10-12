@@ -51,7 +51,7 @@
   var canvas = document.getElementById("chart"), ctx = canvas.getContext("2d"), info = document.getElementById("info");
   var counts = new Array(10).fill(0), total = 0, label = "", note = "";
   function lead(x) { while (x >= 10) x /= 10; return Math.floor(x); }
-  function leadFromLog(L) { var f = L - Math.floor(L); return Math.floor(Math.pow(10, f)); }
+  function leadFromLog(L) { var f = L - Math.floor(L); return Math.floor(Math.pow(10, f) + 1e-9); }  // the nudge stops 2^3 = 8 computing as 7.999...
   function uniformDollars(lo, hi) { return lo + Math.floor(Math.random() * (hi - lo + 1)); }
   function logUniformDollars(lo, hi) { var a = Math.log10(lo), b = Math.log10(hi); return Math.min(hi, Math.max(lo, Math.round(Math.pow(10, a + Math.random() * (b - a))))); }
   function gather(src) {
