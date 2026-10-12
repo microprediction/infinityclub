@@ -144,7 +144,7 @@
 <p><b>Stretch.</b> Grid: after sorting and cancelling, a position is some number of steps east or west and some number north or south, and its shortest route has that many moves in total. Exactly \(k\) away, count the positions with at least 1 step east and none south: east \(1, 2, \ldots, k\) and the rest north, which is \(k\) positions. Quarter turns give three more groups of \(k\), so \(4k\) in all. The total is \(1 + 4(1 + 2 + \cdots + n) = 1 + 2n(n+1) = 2n^2 + 2n + 1\). Tree: a position \(k\) steps away is a word of \(k\) letters with nothing to cancel. There are 4 choices for the first letter and 3 for each one after, so \(4 \times 3^{k-1}\). The total is \(1 + 4 \times \tfrac{3^n - 1}{2} = 2 \times 3^n - 1\). Both formulas also give 1 when \(n = 0\). At \(n = 10\) the grid has \(200 + 20 + 1 = 221\) positions and the tree has \(2 \times 59049 - 1 = 118{,}097\), over 500 times as many. Mathematicians study a set of rules by the shape of its map in just this way. Sorting worked tonight because the rule was simple. For some sets of rules it has been proved that no mechanical method can decide every case.</p>
 </section>
 
-<div class="sheet-nav"><a href="b26-computing-e.html">← Previous</a><a href="c1-rule-of-72.html">Next: How long until your money doubles? →</a></div>
+<div class="sheet-nav"><a href="b26-computing-e.html">← Previous</a><a href="b28-maximum-on-edge.html">Next: The biggest number is on the edge →</a></div>
 </main>
 
 <footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
