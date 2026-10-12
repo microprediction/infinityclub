@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How can a car move sideways? · Infinity Club</title>
+<meta name="description" content="How steering and driving combine to move a car sideways: a model car on circles of radius 5 m, Pythagoras for the sideways shift of a wiggle, why small wiggles gain little, parallel parking, and what a speedometer cannot tell you.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 8 · Connections · 18</div>
+  <h1>How can a car move sideways?</h1>
+  <p class="teaser">A car can only drive forwards, drive backwards and steer. Yet you can park it in a space directly beside you. How do wiggles turn into sideways motion?</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A car has two controls. The pedals drive it forwards or backwards, and the wheel steers. It cannot slide sideways and it cannot spin on the spot: its tightest turn is a circle of some smallest radius.</p>
+<p>The trick is to combine moves. Curve left, curve back to the right, then reverse in a straight line. Each move is allowed. Together they slide the car sideways without turning it, which no single move can do.</p>
+<p class="callout">Allowed moves, combined in the right order, can produce motion that no single move gives.</p>
+<p>Choosing inputs to steer a changing system where you want it is called <b>control theory</b>. A car's <b>state</b> is where it is and which way it faces. A system is <b>controllable</b> if its controls can take it from any state to any other. A different question is <b>observability</b>: can you work out the state from the instruments you can read?</p>
+<p>Tonight's car is a model: a point with a direction, moving on straight lines and on circles of radius 5 m.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: a wiggle and a reverse</h2>
+<figure><svg viewBox="0 0 500 132" width="500" height="132" role="img" aria-label="Left: a right-angled triangle with corners at the centre of the turning circle, the point P on the arc, and a point on the line from the centre to the start. Its sides are 5, 2.5 and 4.33, leaving a gap of 0.67 between the triangle and the start. Right: the path of the car seen from above, with forwards drawn to the right. A blue left arc runs from the start to P, 2.5 m forward, an orange right arc runs on from P a further 2.5 m forward, and a dashed straight line reverses 5 m to the finish, which is 1.34 m to the left of the start." font-family="Nunito, sans-serif" font-size="12">
+<polygon points="44,27 44,100.6 86.5,100.6" fill="#dcdcf5" stroke="none"/>
+<line x1="44" y1="27" x2="44" y2="112" stroke="#555" stroke-width="1.2"/>
+<line x1="44" y1="27" x2="86.5" y2="100.6" stroke="#555" stroke-width="1.2"/>
+<line x1="44" y1="100.6" x2="86.5" y2="100.6" stroke="#555" stroke-width="1.2"/>
+<polyline points="44,112 45.9,112 47.7,111.9 49.6,111.8 51.4,111.7 53.3,111.5 55.1,111.3 56.9,111 58.8,110.7 60.6,110.4 62.4,110 64.2,109.6 66,109.1 67.8,108.6 69.6,108.1 71.3,107.5 73.1,106.9 74.8,106.2 76.5,105.5 78.2,104.8 79.9,104 81.6,103.2 83.2,102.4 84.9,101.5 86.5,100.6" fill="none" stroke="#3f44c9" stroke-width="2.5" stroke-linecap="round"/>
+<circle cx="44" cy="27" r="3" fill="#1d1f3a"/>
+<circle cx="86.5" cy="100.6" r="3" fill="#1d1f3a"/>
+<circle cx="44" cy="112" r="3" fill="#1d1f3a"/>
+<text x="44" y="20" text-anchor="middle" fill="#1d1f3a">centre</text>
+<text x="73.2" y="61.8" text-anchor="start" fill="#1d1f3a">5</text>
+<text x="38" y="67.8" text-anchor="end" fill="#1d1f3a">4.33</text>
+<text x="63.2" y="94.6" text-anchor="middle" fill="#1d1f3a">2.5</text>
+<text x="38" y="110.3" text-anchor="end" fill="#555">0.67</text>
+<text x="44" y="127" text-anchor="middle" fill="#555">start</text>
+<text x="93.5" y="104.6" text-anchor="start" fill="#1d1f3a" font-weight="700">P</text>
+<line x1="200" y1="102" x2="420" y2="102" stroke="#999" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="200" y1="98" x2="200" y2="106" stroke="#999" stroke-width="1"/>
+<line x1="310" y1="98" x2="310" y2="106" stroke="#999" stroke-width="1"/>
+<line x1="420" y1="98" x2="420" y2="106" stroke="#999" stroke-width="1"/>
+<line x1="310" y1="72.5" x2="310" y2="102" stroke="#999" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="420" y1="43.1" x2="420" y2="102" stroke="#999" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="420" y1="43.1" x2="209" y2="43.1" stroke="#555" stroke-width="1.6" stroke-dasharray="6 4"/>
+<polygon points="203,43.1 213,39.1 213,47.1" fill="#555"/>
+<polyline points="200,102 204.8,101.9 209.6,101.8 214.4,101.5 219.2,101.2 224,100.7 228.7,100.1 233.5,99.4 238.2,98.7 242.9,97.8 247.6,96.8 252.3,95.7 256.9,94.5 261.6,93.2 266.2,91.8 270.7,90.3 275.2,88.7 279.7,87 284.2,85.3 288.6,83.4 293,81.4 297.3,79.3 301.6,77.1 305.8,74.9 310,72.5" fill="none" stroke="#3f44c9" stroke-width="3" stroke-linecap="round"/>
+<polyline points="310,72.5 314.2,70.2 318.4,67.9 322.7,65.7 327,63.7 331.4,61.7 335.8,59.8 340.3,58 344.8,56.3 349.3,54.7 353.8,53.2 358.4,51.8 363.1,50.5 367.7,49.4 372.4,48.3 377.1,47.3 381.8,46.4 386.5,45.6 391.3,44.9 396,44.4 400.8,43.9 405.6,43.5 410.4,43.3 415.2,43.1 420,43.1" fill="none" stroke="#f5a524" stroke-width="3" stroke-linecap="round"/>
+<line x1="184" y1="102" x2="184" y2="43.1" stroke="#1d1f3a" stroke-width="1.2"/>
+<line x1="180" y1="102" x2="188" y2="102" stroke="#1d1f3a" stroke-width="1.2"/>
+<line x1="180" y1="43.1" x2="188" y2="43.1" stroke="#1d1f3a" stroke-width="1.2"/>
+<text x="178" y="76.5" text-anchor="end" fill="#1d1f3a" font-weight="700">1.34 m</text>
+<circle cx="200" cy="102" r="3.5" fill="#1d1f3a"/>
+<circle cx="310" cy="72.5" r="3.5" fill="#1d1f3a"/>
+<circle cx="420" cy="43.1" r="3.5" fill="#1d1f3a"/>
+<circle cx="200" cy="43.1" r="3.5" fill="#1d1f3a"/>
+<text x="200" y="120" text-anchor="middle" fill="#555">start</text>
+<text x="200" y="34.1" text-anchor="middle" fill="#555">finish</text>
+<text x="255" y="120" text-anchor="middle" fill="#555">2.5 m</text>
+<text x="365" y="120" text-anchor="middle" fill="#555">2.5 m</text>
+<text x="251" y="80" text-anchor="middle" fill="#3f44c9" font-weight="700">left arc</text>
+<text x="387" y="78.5" text-anchor="middle" fill="#b37400" font-weight="700">right arc</text>
+<text x="310" y="34.1" text-anchor="middle" fill="#555">reverse 5 m</text>
+<text x="303" y="66.5" text-anchor="end" fill="#1d1f3a" font-weight="700">P</text>
+</svg><figcaption>Left: the triangle that gives 0.67 m (smaller scale). Right: the move from above, forwards to the right.</figcaption></figure>
+<p><b>Left arc.</b> Follow P, the middle of the back axle. With the wheel hard left, P moves on a circle whose centre is 5 m to the car's left. Drive until P is 2.5 m further forward. The shaded right-angled triangle has longest side 5, so its upright side is \(\sqrt{5^2 - 2.5^2} = \sqrt{18.75} \approx 4.33\). P is now \(5 - 4.33 = 0.67\) m left.</p>
+<p><b>Right arc.</b> Stop, swing the wheel hard right and drive on. This arc is the first one given a half turn about P, so it adds another 2.5 m forward and 0.67 m left, and the car faces forwards again.</p>
+<p><b>Reverse</b> 5 m in a straight line. The car is back where it began, but \(2 \times 0.67 = 1.34\) m to the left. Call the two arcs a <b>wiggle</b> and the forward distance of each arc its <b>run</b>. For a run of \(d\) m, up to 5,</p>
+\[\text{sideways shift} = 2 \times \left(5 - \sqrt{25 - d^2}\right) \text{ metres}.\]
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Use Pythagoras, as in the example. (a) Each arc has a run of 3 m. How far left does one arc take the car? What is the sideways shift of the whole wiggle, and how far must the car reverse? (b) Repeat for a run of 4 m. (c) Check (a) with a scale drawing: 2 cm for each metre, compasses set to 10 cm.<div class="space short"></div></li>
+<li>Smaller wiggles. Use a calculator and give each shift to the nearest centimetre. (a) Find the sideways shift when the run is 1.25 m. (b) Find it when the run is 0.625 m. (c) A run of 2.5 m gave 134 cm. Each time the run is halved, roughly what happens to the shift?<div class="space short"></div></li>
+<li>(a) Swap the order: drive forwards on a right arc first, then a left arc, each with a run of 3 m. Where does the car end up? How far is that from where "left, then right" ends? (b) You have stopped on a road. An empty parking space is 2 m to your right and 6 m behind you. Using reverse gear only, list the moves that put the car in the space, facing the way it faces now. Try it with a toy car.<div class="space short"></div></li>
+<li>A passenger with eyes shut wants to know where the car is. Trip A is a left arc then a right arc, forwards, each with a run of 3 m. Trip B is a right arc then a left arc. Trip C goes straight ahead until its odometer matches trip A's. All three keep the same speed at every moment. (a) How do the three speedometer records compare? (b) Where does each trip end? Can the speedometer alone tell you where the car is? (c) Add a compass showing which way the car faces at every moment. If you know where the car started, can you now work out where it is?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: why not make tiny wiggles?</h2>
+<p>A parking move needs a sideways shift of 2 m. Count a wiggle with run \(d\) as about \(4d\) metres of driving: about \(2d\) forwards and \(2d\) back. (a) How many wiggles, and about how much driving, with a run of 3 m? (b) With a run of 1.25 m? (c) With 0.625 m? (d) When the run is halved, what happens to the number of wiggles and to the total driving? Why would a driver ever use small wiggles?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(\sqrt{5^2 - 3^2} = \sqrt{16} = 4\), so one arc takes the car \(5 - 4 = 1\) m left. The wiggle shifts it 2 m, and it has gone \(2 \times 3 = 6\) m forward, so it reverses 6 m. (b) \(\sqrt{5^2 - 4^2} = 3\), so one arc gives \(5 - 3 = 2\) m. The shift is 4 m and the car reverses 8 m. (c) Draw a start point, mark the centre 10 cm to its left, and draw the arc until it is 6 cm forward. It should then be 2 cm to the left, which stands for 1 m. The second centre is on the line from the first centre through the end of the arc, 10 cm beyond it.</li>
+<li>(a) \(\sqrt{25 - 1.25^2} = \sqrt{23.4375} \approx 4.841\), so the shift is \(2 \times 0.159 \approx 0.32\) m, or 32 cm. (b) \(\sqrt{25 - 0.625^2} = \sqrt{24.609375} \approx 4.961\), so the shift is \(2 \times 0.039 \approx 0.08\) m, or 8 cm. (c) The shifts are 134, 32 and 8 cm. Halving the run cuts the shift to roughly a quarter, not a half. This is something we have seen in three cases, not proved. It fits a rule of thumb for small runs: the shift is close to \(d^2 \div 5\), which gives 31 cm and 8 cm here. For big runs the rule of thumb is poor: at \(d = 5\) it gives 5 m, but the true shift is 10 m.</li>
+<li>(a) It ends 6 m forward and 2 m to the right, facing forwards. "Left, then right" ends 6 m forward and 2 m to the left. The same two kinds of move in the other order land 4 m apart. Order matters, and that is where the sideways motion comes from. (b) Turn the wheel hard right and reverse until the car is 3 m further back. It is now 1 m to the right, with its nose pointing out to the left. Stop, turn the wheel hard left and reverse until it is another 3 m back. It is now 6 m back and 2 m to the right, facing the way it started. This is a 3 m wiggle driven backwards. (The model tracks one point. A real car has corners that swing, so real drivers need more room.)</li>
+<li>(a) They are identical. The speedometer shows how fast, not which way. (b) A ends 6 m forward and 2 m left. B ends 6 m forward and 2 m right. C ends about 6.4 m straight ahead, because an arc is longer than its run. (The odometer adds up distance driven.) Three different places share one record, so the speedometer alone cannot tell you where the car is. The position is not observable from speed alone. (c) Yes, in the model. The compass records differ: on A the car swings about 37° to the left and back, on B to the right, and on C it never turns. In each short moment the speed tells you how far the car went and the compass tells you which way, so you can add up the small steps from the start. Sailors call this dead reckoning. Without the starting point you would know the shape of the path but not where it is. Real instruments have small errors, and these build up.</li>
+</ol>
+<p><b>Stretch.</b> (a) One wiggle shifts 2 m, so one is enough: about \(4 \times 3 = 12\) m of driving. (b) Each wiggle gives about 32 cm, so you need \(200 \div 32 = 6.25\) wiggles: six and a smaller seventh. That is about \(6.25 \times 5 \approx 31\) m. (c) Each gives about 8 cm, so you need about \(200 \div 8 = 25\) wiggles and about \(25 \times 2.5 = 62.5\) m. (d) Halving the run halves the driving in each wiggle but cuts its shift to about a quarter. So you need about four times as many wiggles and about twice the driving. Tiny wiggles are wasteful. Drivers use them only when hemmed in, with a car close in front and another close behind, so that a long run is impossible. The good news is that small wiggles still work. In this model, however short the run, each wiggle gains a little, so the car can creep sideways as far as it likes.</p>
+</section>
+
+<div class="sheet-nav"><a href="c17-paper-bridge.html">← Previous</a><a href="../index.html#sheets">← All sheets</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>
