@@ -67,7 +67,7 @@ table.tt tr.now td { background: #fde8c4; font-weight: 700; }
 <p>A gate is a tiny switch circuit with a fixed rule. <b>AND</b> gives 1 only when both inputs are 1. <b>OR</b> gives 1 when at least one is. <b>XOR</b> gives 1 when the inputs differ. <b>NOT</b> has one input and flips it.</p>
 <p>Now add two one-digit binary numbers. 0 + 0 = 0, 0 + 1 = 1, 1 + 0 = 1, and 1 + 1 = 10: write 0, carry 1. Look at the right-hand digit in those four sums. It is 1 when the inputs differ, which is XOR. The carry is 1 only for 1 + 1, which is AND. One XOR and one AND side by side make a <b>half adder</b>.</p>
 <p>In a longer sum, each column also has a carry coming in from the column to its right, so it has three things to add. A <b>full adder</b> does that with two half adders and an OR. The first adds A and B. The second adds Carry in to that result. If either half adder produced a carry, the OR passes it on.</p>
-<p>Chain 64 full adders, each one's Carry out feeding the next one's Carry in, and you have the circuit a computer uses to add 64-bit numbers.</p>
+<p>Chain 64 full adders, each one's Carry out feeding the next one's Carry in, and you have a circuit that adds 64-bit numbers. Real processors use a faster arrangement of the same gates.</p>
 <p>Sheet: <a href="../grade-9/sheets/b17-logic-gates.html">Adding with switches</a>.</p>
 </div>
 </main>

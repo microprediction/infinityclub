@@ -44,7 +44,7 @@
 <div class="explain">
 <h2>What's going on</h2>
 <p>Picture every possible game as a tree. The empty board is at the top. Below it hang the 9 boards you can reach in one move, below each of those hang 8 more, and so on down to the finished games. There are 255,168 different games in the tree, but only 5,478 different boards, which is small enough to check them all.</p>
-<p><b>Score the endings.</b> A finished game is a win, a draw or a loss for the player whose turn it would be. That part is easy.</p>
+<p><b>Score the endings.</b> A finished game is a draw, or a loss for the player whose turn it would be, because the other player has just made three in a row. That part is easy.</p>
 <p><b>Work backwards.</b> Take a board one move from the end. If the player to move has any move that wins, the board is a win for them, because they will choose it. If every move loses, the board is a loss. Otherwise the best they can reach is a draw. Now every board one move from the end has a value, so do the same for boards two moves from the end, and keep going up to the empty board. This is called <b>minimax</b>: you pick the move that is best for you, knowing your opponent will then pick the move that is worst for you.</p>
 <p>Carry it all the way up and the empty board comes out as a <b>draw</b>. All nine first moves are draws. Neither side can force a win, and that is why two careful players always draw.</p>
 <p>Against the computer the hints never say <b>win</b>, because the computer never leaves you a winning square. One careless move, though, and some squares turn to <b>lose</b>. To see winning squares, choose <b>a friend</b>, play both sides yourself, and make a bad move on purpose. The hints then show the values for whoever moves next.</p>
