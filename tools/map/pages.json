@@ -403,6 +403,7 @@
   "grade-11/sheets/b27-frog-steady-state.html": [{"code": "47A", "level": "core"}, {"code": "47N", "level": "core"}],
   "grade-11/sheets/b28-jumps-or-smooth.html": [{"code": "65L", "level": "core"}, {"code": "34N", "level": "touch"}],
   "grade-11/sheets/b29-lambert-w.html": [{"code": "33E", "level": "core"}],
+  "grade-11/sheets/b30-pizza-curvature.html": [{"code": "53C", "level": "core"}, {"code": "53Z", "level": "core"}],
   "grade-11/sheets/c1-tides.html": [{"code": "86A", "level": "core"}, {"code": "33B", "level": "core"}, {"code": "42A", "level": "touch"}],
   "grade-11/sheets/c2-triangulation.html": [{"code": "51M", "level": "core"}, {"code": "86A", "level": "touch"}],
   "grade-11/sheets/c3-ph.html": [{"code": "33B", "level": "core"}, {"code": "92E", "level": "touch"}],
