@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>An atlas for a ball · Infinity Club</title>
+<meta name="description" content="A curved surface looks flat up close, so it can be covered by overlapping flat pages. Build a two-page atlas for the equator and for a whole ball, a four-page atlas for a doughnut, and translate positions and speeds between pages.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 8 · Around the corner · 29</div>
+  <h1>An atlas for a ball</h1>
+  <p class="teaser">No single flat map can show a whole ball without tearing it somewhere. An atlas gets round this with overlapping pages, which is how mathematicians do calculus on curved spaces.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Your street looks flat, yet the Earth is close to a ball: a curved surface looks flat up close. On a ball of radius \(R\), aim a straight line level along the ground. After a distance \(d\) the ground has dropped below the line by only about \(d^2/(2R)\), as long as \(d\) is small compared with \(R\). So small pieces fit flat pages well.</p>
+<p>A <b>chart</b> is a flat map of a piece of a surface: every place in the piece appears exactly once, and neighbours stay neighbours. No single chart can show a whole ball (we will not prove that here).</p>
+<p class="callout">An <b>atlas</b> is a set of charts that cover the surface, with every place inside some page and not on its edge. Where pages overlap, a rule translates positions from one page to the other.</p>
+<p>A space with an atlas is called a <b>manifold</b>. With smooth rules, speeds and directions translate between pages too. That is how calculus is done on curved spaces.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: a two-page atlas for the equator</h2>
+<figure><svg viewBox="0 0 520 164" width="352" height="111" role="img" aria-label="Left: the equator seen from above the North Pole as a circle, with longitude 0 on the right, 90 east at the top, 180 on the left and 90 west at the bottom. Page A is a blue ring just outside it with one missing point at longitude 180. Page B is an orange ring just inside it with one missing point at longitude 0. Right: the two pages laid flat as number lines. Page A runs from minus 180 to 180 and page B from 0 to 360, each without its end points. The start of the ship is marked at 165 on both pages. Its place after 10 days is marked at minus 145 on page A and at 215 on page B. A dashed line joins the two start marks." font-family="Nunito, sans-serif" font-size="13">
+<circle cx="105" cy="82" r="52" fill="none" stroke="#1d1f3a" stroke-width="1.5"/>
+<circle cx="105" cy="82" r="60" fill="none" stroke="#3f44c9" stroke-width="3"/>
+<circle cx="105" cy="82" r="44" fill="none" stroke="#f5a524" stroke-width="3"/>
+<circle cx="45.0" cy="82.0" r="4" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/>
+<circle cx="149.0" cy="82.0" r="4" fill="#fff" stroke="#f5a524" stroke-width="1.5"/>
+<text x="173.0" y="86.0" text-anchor="start" fill="#1d1f3a">0</text>
+<text x="105.0" y="16.0" text-anchor="middle" fill="#1d1f3a">90 E</text>
+<text x="37.0" y="86.0" text-anchor="end" fill="#1d1f3a">180</text>
+<text x="105.0" y="159.0" text-anchor="middle" fill="#1d1f3a">90 W</text>
+<text x="105" y="78" text-anchor="middle" fill="#3f44c9" font-weight="700" font-size="12">A: outer ring</text>
+<text x="105" y="94" text-anchor="middle" fill="#555" font-weight="700" font-size="12">B: inner ring</text>
+<line x1="407.5" y1="50" x2="407.5" y2="122" stroke="#999" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="235.0" y1="50" x2="415.0" y2="50" stroke="#3f44c9" stroke-width="3"/>
+<text x="235.0" y="70" text-anchor="middle" fill="#555" font-size="12">−180</text>
+<line x1="280.0" y1="45" x2="280.0" y2="55" stroke="#1d1f3a" stroke-width="1.2"/>
+<text x="280.0" y="70" text-anchor="middle" fill="#555" font-size="12">−90</text>
+<line x1="325.0" y1="45" x2="325.0" y2="55" stroke="#1d1f3a" stroke-width="1.2"/>
+<text x="325.0" y="70" text-anchor="middle" fill="#555" font-size="12">0</text>
+<line x1="370.0" y1="45" x2="370.0" y2="55" stroke="#1d1f3a" stroke-width="1.2"/>
+<text x="370.0" y="70" text-anchor="middle" fill="#555" font-size="12">90</text>
+<text x="415.0" y="70" text-anchor="middle" fill="#555" font-size="12">180</text>
+<circle cx="235.0" cy="50" r="4" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/>
+<circle cx="415.0" cy="50" r="4" fill="#fff" stroke="#3f44c9" stroke-width="1.5"/>
+<line x1="325.0" y1="122" x2="505.0" y2="122" stroke="#f5a524" stroke-width="3"/>
+<text x="325.0" y="142" text-anchor="middle" fill="#555" font-size="12">0</text>
+<line x1="370.0" y1="117" x2="370.0" y2="127" stroke="#1d1f3a" stroke-width="1.2"/>
+<text x="370.0" y="142" text-anchor="middle" fill="#555" font-size="12">90</text>
+<line x1="415.0" y1="117" x2="415.0" y2="127" stroke="#1d1f3a" stroke-width="1.2"/>
+<text x="415.0" y="142" text-anchor="middle" fill="#555" font-size="12">180</text>
+<line x1="460.0" y1="117" x2="460.0" y2="127" stroke="#1d1f3a" stroke-width="1.2"/>
+<text x="460.0" y="142" text-anchor="middle" fill="#555" font-size="12">270</text>
+<text x="505.0" y="142" text-anchor="middle" fill="#555" font-size="12">360</text>
+<circle cx="325.0" cy="122" r="4" fill="#fff" stroke="#f5a524" stroke-width="1.5"/>
+<circle cx="505.0" cy="122" r="4" fill="#fff" stroke="#f5a524" stroke-width="1.5"/>
+<text x="325.0" y="22" text-anchor="middle" fill="#3f44c9" font-weight="700">Page A</text>
+<text x="460.0" y="94" text-anchor="middle" fill="#555" font-weight="700">Page B</text>
+<circle cx="407.5" cy="50" r="4.5" fill="#fde8c4" stroke="#1d1f3a" stroke-width="1.2"/>
+<circle cx="407.5" cy="122" r="4.5" fill="#fde8c4" stroke="#1d1f3a" stroke-width="1.2"/>
+<circle cx="252.5" cy="50" r="4.5" fill="#1d1f3a" stroke="#1d1f3a" stroke-width="1.2"/>
+<circle cx="432.5" cy="122" r="4.5" fill="#1d1f3a" stroke="#1d1f3a" stroke-width="1.2"/>
+<text x="400.5" y="40" text-anchor="end" fill="#1d1f3a">start</text>
+<text x="259.5" y="40" text-anchor="start" fill="#1d1f3a">after 10 days</text>
+<text x="400.5" y="112" text-anchor="end" fill="#1d1f3a">start</text>
+<text x="439.5" y="112" text-anchor="start" fill="#1d1f3a">after 10 days</text>
+</svg></figure>
+<p>Try a loop before a surface: the equator, drawn from above the North Pole. Its flat pages are pieces of number line. <b>Page A</b> gives each place a number \(a\) with \(-180 \lt a \lt 180\): degrees east of longitude 0, negative for west. It misses only longitude 180 (open circle), which would need both ends. <b>Page B</b> counts degrees east all the way round, \(0 \lt b \lt 360\), and misses only longitude 0.</p>
+<p><b>The rule.</b> Every other place is on both pages. If \(a \gt 0\) then \(b = a\). If \(a \lt 0\) then \(b = a + 360\).</p>
+<p><b>A route.</b> A ship leaves \(a = 165\) and sails east at 5 degrees per day. After 2 days \(a = 175\). After 4 days it would be at 185, off page A. So change pages before the edge: the start is \(b = 165\), and after 10 days \(b = 165 + 50 = 215\), which on page A is \(a = 215 - 360 = -145\).</p>
+<p><b>The speed.</b> The number goes up by 5 every day on page B, and on page A too, before and after the missing point. The rule only adds a fixed number, so here both pages report the same speed.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Model the Earth as a ball with \(R = 6371\) km and use the drop \(d^2/(2R)\). (a) Find the drop over 100 m, in millimetres. (b) Find it over 10 km, in metres. (c) For \(d = 6371\) km the rule gives about 3186 km, but an exact calculation with Pythagoras gives about 2639 km. Why is that no surprise?<div class="space short"></div></li>
+<li>On pages A and B, a plane leaves \(a = -160\) and flies west at 8 degrees per hour, so its number goes down. (a) Where is it on page A after 2 hours? What goes wrong after 3 hours? (b) Find the start on page B, then the plane after 5 hours, then that place on page A. (c) A degree of the equator is about 111 km, so page C uses \(c = 111a\). What is the speed on page C? Is one of the two speeds wrong?<div class="space short"></div></li>
+<li>Now the whole ball. <b>Page N</b> has the North Pole at its centre. A place at latitude \(L\) degrees (south is negative) is drawn \(90 - L\) mm from the centre, in the direction of its longitude. (a) How far out are the North Pole, a town at 60 north, the equator, and a town at 60 south? (b) Where would the South Pole go? Why must page N leave it off? (c) <b>Page S</b> is centred on the South Pole, at distance \(90 + L\) mm. Which places are on both pages? A place \(n\) mm out on page N is how far out on page S?<div class="space short"></div></li>
+<li>A game screen is a square, \(0 \le x \lt 10\) and \(0 \le y \lt 10\). Leave by the right edge and you return on the left; leave by the top and you return at the bottom. Glued like this, it models the surface of a doughnut, a <b>torus</b>. Cuts along lines \(x = p\) and \(y = q\) open the torus into a flat square page showing every point not on a cut. (a) Page 1 has cuts \(x = 0\), \(y = 0\) and page 2 has cuts \(x = 5\), \(y = 0\). Which points are on neither? (b) Add pages of this kind until every point is on some page. How many in all?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: an ant that never turns</h2>
+<p>An ant on the ball of exercise 3 walks straight ahead, never turning. From the equator at 30 east it heads north, over the North Pole and down 150 west to the equator. (a) Describe the walk on page N. (b) A wall map puts longitude across and latitude up. Describe the walk there. What belongs to the map, not the ant? (c) Another ant walks once round the equator. Describe its path on both maps. Can one page tell you that a path is straight on the ball?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>In metres, \(2R = 12\,742\,000\) m. (a) \(100^2 / 12\,742\,000 \approx 0.00078\) m, about 0.8 mm. (b) \(10\,000^2 / 12\,742\,000 \approx 7.8\) m, less than a thousandth of the distance. (c) The rule is only promised when \(d\) is small compared with \(R\), and here \(d = R\). The exact drop \(h\), measured towards the centre of the ball, comes from a right-angled triangle with sides \(R\), \(d\) and \(R + h\): \((R + h)^2 = R^2 + d^2\), so \(2Rh + h^2 = d^2\). When \(h\) is tiny compared with \(R\) the \(h^2\) hardly matters, leaving \(h \approx d^2/(2R)\). When \(d = R\) it matters a lot: \(h = (\sqrt{2} - 1)R \approx 2639\) km.</li>
+<li>(a) After 2 hours, \(a = -160 - 16 = -176\). After 3 hours the number would be \(-184\), which is not on page A: the plane passed longitude 180 after 2 and a half hours. (b) The start is \(b = -160 + 360 = 200\). After 5 hours \(b = 200 - 40 = 160\), and since that is less than 180 the same place is \(a = 160\). (c) Multiplying every position by 111 multiplies every change by 111, so the speed on page C is \(8 \times 111 = 888\) km per hour. Neither is wrong. A speed is measured on a page, and the rule \(c = 111a\) translates one page's speed into the other's.</li>
+<li>(a) 0 mm, 30 mm, 90 mm and 150 mm. The equator is a circle of radius 90 mm. (b) At \(90 - (-90) = 180\) mm from the centre, in every direction at once: one place would become a whole circle. A chart shows each place exactly once, so page N is the inside of a disc of radius 180 mm, with the South Pole left off. (c) Page S leaves off only the North Pole, so every place except the two poles is on both pages. Each pole is at the centre of its own page, so two pages make an atlas. Since \(n = 90 - L\), the distance on page S is \(90 + L = 180 - n\) mm.</li>
+<li>(a) Page 1 misses the points with \(x = 0\) or \(y = 0\). Page 2 misses those with \(x = 5\) or \(y = 0\). No point has \(x = 0\) and \(x = 5\) together, so the points on neither page are exactly those with \(y = 0\): one full loop. (b) One way: page 3 with cuts \(x = 0\), \(y = 5\) shows every point with \(y = 0\) except \((0, 0)\), and page 4 with cuts \(x = 5\), \(y = 5\) shows \((0, 0)\). That is four pages, and leaving out any one of these four loses a point, such as \((5, 5)\) without page 1. Atlases with other shapes of page can use fewer, but never just one.</li>
+</ol>
+<p><b>Stretch.</b> (a) A straight line through the centre, 180 mm long, from 90 mm out towards 30 east to 90 mm out the opposite way, which is 150 west. (b) It climbs the vertical line at 30 east to the top edge, then reappears 180 degrees away on the line at 150 west and comes back down. The jump belongs to the map: it draws the North Pole, one place, as its whole top edge, so it is not a chart there. (c) On page N, a circle of radius 90 mm. On the wall map, a straight line across the middle, cut where the map ends. Both ants walk equally straight, yet each looks straight on one page and bent or broken on another. So no. Pages agree about where the ant is, but straightness has to be measured on the ball itself.</p>
+</section>
+
+<div class="sheet-nav"><a href="b28-arrows-and-routes.html">← Previous</a><a href="b40-jam.html">Next: Two games that are secretly one →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>
