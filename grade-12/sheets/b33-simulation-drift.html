@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why the simulated planet drifts away · Infinity Club</title>
+<meta name="description" content="Step an idealised spring forward in time with Euler's method and its energy grows by a factor of 1 + h squared at every step. Update the velocity first and a slightly different quantity is kept exactly. Prove both facts, compare the determinants of the two steps, and find the step size at which the better method fails too.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Around the corner · 33</div>
+  <h1>Why the simulated planet drifts away</h1>
+  <p class="teaser">Simulate a spring or an orbit with the simplest step-by-step method and it slowly spirals outwards, gaining energy from nowhere. Update the velocity first, then move using the new velocity, and the drift disappears.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A computer cannot follow motion continuously. It jumps forward in time steps of size \(h \gt 0\), and each jump is slightly wrong. Tonight's model is an idealised spring with no friction, in units that make every constant 1. Its position \(x\) and velocity \(v\) obey \(x' = v\) and \(v' = -x\). Then \(E = x^2 + v^2\), twice the energy, never changes (its rate of change is \(2xv - 2vx = 0\)), so the true point \((x, v)\) travels round a circle for ever.</p>
+<p class="callout"><b>Euler's method.</b> Use the old values for both: \(x_{\text{new}} = x + hv\), \(\;v_{\text{new}} = v - hx\).<br><b>Semi-implicit Euler.</b> Velocity first, then move with the new velocity: \(v_{\text{new}} = v - hx\), \(\;x_{\text{new}} = x + hv_{\text{new}}\).</p>
+<p>The recipes differ by one subscript. Yet Euler's method adds energy at every step, however small \(h\) is. A simulated planet suffers too: in our test runs, one started on a circular orbit drifted ever further from its star. The second recipe keeps the spring's point on a closed curve for ever, as long as \(h \lt 2\).</p>
+</section>
+
+<section class="example">
+<h2>Watch one: two Euler steps with h = 0.5</h2>
+<figure style="float:right;width:218px;margin:0 0 .3em .8em"><svg viewBox="0 0 218 204" width="218" height="204" role="img" aria-label="The x v plane with the true path drawn as a dashed circle of radius 1. Starting from x = 1, v = 0 with step 0.5, twelve steps of Euler's method are joined in blue and spiral clockwise outwards to a distance of about 3.8. Twelve steps of the semi-implicit method are shown as orange dots that stay on a small tilted oval hugging the circle." font-family="Nunito, sans-serif" font-size="12">
+<g stroke="#999" stroke-width="1"><line x1="0" y1="137.1" x2="218" y2="137.1"/><line x1="92.0" y1="0" x2="92.0" y2="204"/></g>
+<circle cx="92.0" cy="137.1" r="38.0" fill="none" stroke="#555" stroke-width="1" stroke-dasharray="3 3"/>
+<polyline points="130.0,137.1 130.0,156.1 120.5,175.1 101.5,189.4 75.4,194.1 46.9,185.8 22.6,163.3 9.5,128.5 13.8,87.3 38.7,48.1 83.2,21.5 141.1,17.1 201.1,41.6" fill="none" stroke="#3f44c9" stroke-width="1.5"/>
+<g fill="#3f44c9"><circle cx="130.0" cy="137.1" r="2.8"/><circle cx="130.0" cy="156.1" r="2.8"/><circle cx="120.5" cy="175.1" r="2.8"/><circle cx="101.5" cy="189.4" r="2.8"/><circle cx="75.4" cy="194.1" r="2.8"/><circle cx="46.9" cy="185.8" r="2.8"/><circle cx="22.6" cy="163.3" r="2.8"/><circle cx="9.5" cy="128.5" r="2.8"/><circle cx="13.8" cy="87.3" r="2.8"/><circle cx="38.7" cy="48.1" r="2.8"/><circle cx="83.2" cy="21.5" r="2.8"/><circle cx="141.1" cy="17.1" r="2.8"/><circle cx="201.1" cy="41.6" r="2.8"/></g>
+<g fill="#f5a524"><circle cx="120.5" cy="156.1" r="2.8"/><circle cx="103.9" cy="170.4" r="2.8"/><circle cx="84.3" cy="176.3" r="2.8"/><circle cx="66.6" cy="172.5" r="2.8"/><circle cx="55.3" cy="159.8" r="2.8"/><circle cx="53.2" cy="141.4" r="2.8"/><circle cx="60.8" cy="122.0" r="2.8"/><circle cx="76.1" cy="106.4" r="2.8"/><circle cx="95.5" cy="98.4" r="2.8"/><circle cx="114.0" cy="100.1" r="2.8"/><circle cx="127.0" cy="111.1" r="2.8"/><circle cx="131.3" cy="128.6" r="2.8"/></g>
+<g fill="#555"><text x="208" y="132.1">x</text><text x="97.0" y="12">v</text></g>
+<text x="209.1" y="59.6" fill="#3f44c9" text-anchor="end">step 12</text>
+</svg><figcaption>Twelve steps from \((1, 0)\) with \(h = 0.5\). Blue: Euler. Orange: semi-implicit. Dashed: the true circle.</figcaption></figure>
+<p>Start the spring stretched and at rest: \((x, v) = (1, 0)\), so \(E = 1\). Take \(h = 0.5\).</p>
+<p><b>Step 1.</b> \(x_{\text{new}} = 1 + 0.5 \times 0 = 1\) and \(v_{\text{new}} = 0 - 0.5 \times 1 = -0.5\). Now \(E = 1 + 0.25 = 1.25\).</p>
+<p><b>Step 2.</b> Both lines use the old pair \((1, -0.5)\): \(x_{\text{new}} = 1 + 0.5 \times (-0.5) = 0.75\) and \(v_{\text{new}} = -0.5 - 0.5 \times 1 = -1\). Now \(E = 0.5625 + 1 = 1.5625\).</p>
+<p>So \(E\) went \(1 \to 1.25 \to 1.5625\): multiplied by 1.25 each time, and \(1.25 = 1 + h^2\). The true spring at time 1 is at \((\cos 1, -\sin 1) \approx (0.540, -0.841)\), still with \(E = 1\). Euler's point \((0.75, -1)\) is already outside the circle, and the picture shows it spiralling away.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Show that one Euler step multiplies \(E = x^2 + v^2\) by exactly \(1 + h^2\), whatever \(x\), \(v\) and \(h\) are. (Expand \((x + hv)^2 + (v - hx)^2\).)<div class="space"></div></li>
+<li>Use exercise 1. (a) With \(h = 0.5\), by what factor has \(E\) grown after 20 steps, which is time 10? By what factor has the distance of \((x, v)\) from the origin grown? (b) Reach time 10 with smaller steps instead: 100 steps of \(h = 0.1\), then 1000 steps of \(h = 0.01\). Find the growth factor of \(E\) each time. (c) Is there any step size \(h \gt 0\) for which Euler's method keeps \(E\) constant?<div class="space"></div></li>
+<li>Take three semi-implicit steps from \((1, 0)\) with \(h = 0.5\). Remember: new \(v\) first, then \(x\) using the new \(v\). Work out \(E = x^2 + v^2\) after each step. Is \(E\) constant? Is it steadily growing?<div class="space"></div></li>
+<li>Let \(Q = x^2 + v^2 - hxv\). (a) Show that a semi-implicit step leaves \(Q\) unchanged. (Write \(v' = v - hx\) and \(x' = x + hv'\), and notice that \(x' - hv' = x\) and \(v' + hx = v\).) (b) Check that \(Q = 1\) at each of your three points from exercise 3. (c) For any numbers, \(|xv| \le \tfrac12 (x^2 + v^2)\). Use this to show that when \(h = 0.5\) and \(Q = 1\), the true \(E\) is trapped: \(0.8 \le E \le \tfrac43\) for ever.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: areas, and a step that is too big</h2>
+<p>(a) Each method is a matrix acting on the column \((x, v)\). Write down both matrices and find their determinants. A determinant is the factor by which a matrix scales areas. What does each method do to the area of a patch of starting points, and which one copies the true motion (a rotation) in this respect? (b) Take semi-implicit steps from \((1, 0)\) with \(h = 2\). What happens? \(Q\) is still kept exactly, so why does it no longer trap the point?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\((x + hv)^2 + (v - hx)^2 = x^2 + 2hxv + h^2v^2 + v^2 - 2hxv + h^2x^2\). The cross terms cancel, leaving \((1 + h^2)x^2 + (1 + h^2)v^2 = (1 + h^2)(x^2 + v^2)\). No condition on \(x\), \(v\) or \(h\) was needed.</li>
+<li>(a) \(1.25^{20} \approx 86.7\). Distance is \(\sqrt{E}\), so it grows by \(1.25^{10} \approx 9.31\). The true answer is a factor of 1. (b) \(1.01^{100} \approx 2.70\) and \(1.0001^{1000} \approx 1.105\). Smaller steps help a lot, at the price of more work, and the factor heads towards 1. (c) No. \(1 + h^2 \gt 1\) for every \(h \ne 0\), so every Euler step adds energy and none ever takes any away. The error can be made small over a fixed time, but it always points outwards, and over a long enough run it piles up.</li>
+<li>Step 1: \(v = 0 - 0.5 \times 1 = -0.5\), then \(x = 1 + 0.5 \times (-0.5) = 0.75\). Step 2: \(v = -0.5 - 0.5 \times 0.75 = -0.875\), then \(x = 0.75 + 0.5 \times (-0.875) = 0.3125\). Step 3: \(v = -0.875 - 0.5 \times 0.3125 = -1.03125\), then \(x = 0.3125 + 0.5 \times (-1.03125) = -0.203125\). The values of \(E\) are \(0.8125\), then about \(0.8633\), then about \(1.1047\). So \(E\) is not constant, but it is not steadily growing either: it started at 1, dipped, and came back up. It wobbles.</li>
+<li>(a) \(Q_{\text{new}} = x'^2 + v'^2 - hx'v' = x'(x' - hv') + v'^2 = x'x + v'^2\). Put \(x' = x + hv'\): this is \(x^2 + hxv' + v'^2 = x^2 + v'(hx + v') = x^2 + v'v\). Finally \(v'v = (v - hx)v = v^2 - hxv\), so \(Q_{\text{new}} = x^2 + v^2 - hxv = Q\). (b) At \((0.75, -0.5)\): \(0.8125 + 0.5 \times 0.375 = 1\). At \((0.3125, -0.875)\): \(0.86328125 + 0.13671875 = 1\). At \((-0.203125, -1.03125)\): here \(xv\) is positive, and \(1.104736\ldots - 0.104736\ldots = 1\). (c) \(E = Q + hxv = 1 + 0.5xv\), and \(|0.5xv| \le 0.25E\). So \(E \le 1 + 0.25E\), which gives \(E \le \tfrac43\), and \(E \ge 1 - 0.25E\), which gives \(E \ge 0.8\). Every later point has \(Q = 1\) too, so the bounds hold for ever. The method keeps a <b>modified</b> energy \(Q\) exactly, not the true energy, and that is enough to stop any drift. In general \(\dfrac{Q}{1 + h/2} \le E \le \dfrac{Q}{1 - h/2}\) whenever \(0 \lt h \lt 2\).</li>
+</ol>
+<p><b>Stretch.</b> (a) Euler: \(\begin{pmatrix} 1 & h \\ -h & 1 \end{pmatrix}\), determinant \(1 + h^2\). Semi-implicit: \(x_{\text{new}} = x + h(v - hx)\), so the matrix is \(\begin{pmatrix} 1 - h^2 & h \\ -h & 1 \end{pmatrix}\), determinant \(1 - h^2 + h^2 = 1\). Euler inflates the area of every patch of starting points by \(1 + h^2\) at each step. The semi-implicit step keeps every area exactly, as a rotation does. Keeping areas is a property of the true motion of every frictionless system of this kind, and methods that copy it are a standard choice for long simulations of orbits. (b) The points are \((1, 0), (-3, -2), (5, 4), (-7, -6), \dots\), marching away by a fixed amount each step. When \(h = 2\), \(Q = x^2 + v^2 - 2xv = (x - v)^2\), and \((x - v)^2 = 1\) is a pair of parallel lines, not a closed curve, so the point can run along them for ever. For \(h \lt 2\) the curve \(Q = 1\) is an ellipse and the point is trapped, as in exercise 4. For \(h \gt 2\) it is a hyperbola: with \(h = 3\) the points from \((1, 0)\) are \((-8, -3), (55, 21), \dots\) So keeping areas is not enough by itself. The step must also be small enough, and too big a step blows up even a good method.</p>
+</section>
+
+<div class="sheet-nav"><a href="b32-grandi-series.html">← Previous</a><a href="c1-escape-velocity.html">Next: Escape velocity →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>
