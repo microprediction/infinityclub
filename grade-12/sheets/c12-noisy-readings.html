@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guessing a number from noisy readings · Infinity Club</title>
+<meta name="description" content="A running average updates a best guess one noisy reading at a time: new guess = old guess + (reading − old guess)/n. Why its spread shrinks like 1/√n, what a fixed gain does when the hidden number moves, and how to weight two thermometers.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Connections · 12</div>
+  <h1>Guessing a number from noisy readings</h1>
+  <p class="teaser">A sensor gives 52, 47, 50, 55, 46 for the same hidden number. Keep a running best guess, correcting it a little with each reading. That loop is the seed of the filters that help navigate spacecraft.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A sensor measures a hidden number \(x\), but each reading has a random error. The model: \(y_k = x + e_k\), with errors that are independent, average zero, and share one standard deviation \(\sigma\), the "spread".</p>
+<p>The natural guess after \(n\) readings is their average, \(g_n\). You need not store the readings. Keep only the guess and the count, and update:</p>
+<p class="callout">\(g_n = g_{n-1} + \dfrac{1}{n}\,(y_n - g_{n-1})\), starting from \(g_1 = y_1\).</p>
+<p>The bracket is the <b>surprise</b>: how far the new reading lands from your guess. The fraction \(1/n\) is the <b>gain</b>: how much of the surprise you believe. Early on you believe a lot; later, little.</p>
+<p>Why trust the guess more as time passes? For independent errors, variances add, and \(\mathrm{Var}(aY) = a^2\,\mathrm{Var}(Y)\). So the average has variance \(n\sigma^2/n^2 = \sigma^2/n\), and spread \(\sigma/\sqrt{n}\).</p>
+<p>Guess, compare, correct by a gain: that loop is the core of the Kalman filter (1960), which helped navigate Apollo. Steering a system on such guesses is <b>stochastic control</b>.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: five readings, one number kept</h2>
+<p>Made-up readings: 52, 47, 50, 55, 46. Each row needs only the row above and the new reading.</p>
+<table>
+<tr><th>\(n\)</th><th>reading \(y_n\)</th><th>surprise \(y_n - g_{n-1}\)</th><th>gain \(1/n\)</th><th>new guess \(g_n\)</th></tr>
+<tr><td>1</td><td>52</td><td></td><td></td><td>52</td></tr>
+<tr><td>2</td><td>47</td><td>\(-5\)</td><td>1/2</td><td>\(52 - 2.5 = 49.5\)</td></tr>
+<tr><td>3</td><td>50</td><td>\(0.5\)</td><td>1/3</td><td>\(49.5 + 0.167 = 49.67\)</td></tr>
+<tr><td>4</td><td>55</td><td>\(5.33\)</td><td>1/4</td><td>\(49.67 + 1.33 = 51\)</td></tr>
+<tr><td>5</td><td>46</td><td>\(-5\)</td><td>1/5</td><td>\(51 - 1 = 50\)</td></tr>
+</table>
+<p>Check: the readings sum to 250 and \(250/5 = 50\), the ordinary average exactly (49.67 is \(149/3\), rounded for display). The last two surprises are similar in size, but the later one moves the guess less: smaller gain.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>(a) A sixth reading, 53, arrives. Update \(g_5 = 50\) with the rule, then check against the average of all six readings. (b) Show it always works: if \(g_{n-1}\) is the average of the first \(n-1\) readings, then the rule makes \(g_n\) the average of the first \(n\).<div class="space short"></div></li>
+<li>In the model, suppose one reading has spread \(\sigma = 4\). (a) Find the spread of the average of 4, 16 and 64 readings. (b) You have 5 readings. How many readings in total would halve the spread of your average? (c) Your sensor always reads 1 too high. Which assumption of the model fails, and does averaging more readings fix it?<div class="space short"></div></li>
+<li>Now the hidden number moves. Made-up readings: 48, 52, 50, 62, 58, 60 (the hidden number jumped from 50 to 60 after the third reading). Starting from \(g_1 = 48\), track them twice: (a) with the running average, gain \(1/n\); (b) with a <b>fixed gain</b> of \(\tfrac12\), that is \(g_n = g_{n-1} + \tfrac12 (y_n - g_{n-1})\). Which ends nearer 60, and why?<div class="space"></div></li>
+<li>With fixed gain \(\tfrac12\) and a long run of readings behind it, the guess is very nearly \[g = \tfrac12 y_n + \tfrac14 y_{n-1} + \tfrac18 y_{n-2} + \cdots\] (a) What do the weights add up to? (b) Suppose the hidden number stays put and the model holds. Show that \(\mathrm{Var}(g) = \sigma^2/3\). (c) How many readings does the running average need to match that? What does the fixed gain give you in exchange for never improving?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: two thermometers</h2>
+<p>Two thermometers read the same room: 20.0 and 21.0. Their errors are independent and average zero, with spreads 1 and 2. Guess \(g = w \cdot 20.0 + (1-w) \cdot 21.0\). Write \(\mathrm{Var}(g)\) in terms of \(w\), find the \(w\) that makes it smallest, and give the guess and its spread. How does the plain average 20.5 compare? Then write your guess as old guess plus gain times surprise.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) Surprise \(53 - 50 = 3\), gain \(1/6\), so \(g_6 = 50.5\). Check: \(303/6 = 50.5\). (b) Write \(S\) for the sum of the first \(n-1\) readings, so \(g_{n-1} = S/(n-1)\). Then \(g_n = g_{n-1}\left(1 - \tfrac1n\right) + \tfrac{y_n}{n} = \tfrac{S}{n-1}\cdot\tfrac{n-1}{n} + \tfrac{y_n}{n} = \tfrac{S + y_n}{n}\). Since \(g_1 = y_1\) is the average of one reading, the rule gives the average at every step.</li>
+<li>(a) \(4/\sqrt4 = 2\), \(4/\sqrt{16} = 1\), \(4/\sqrt{64} = 0.5\). (b) The spread is \(\sigma/\sqrt n\), so halving it needs 4 times the readings: 20 in total, 15 more. (From \(4/\sqrt5 \approx 1.79\) to \(4/\sqrt{20} \approx 0.89\).) (c) "Errors average zero" fails. Averaging shrinks the random scatter, but the guess settles on \(x + 1\), not \(x\). No number of readings removes a steady bias.</li>
+<li>(a) 48, 50, 50, 53, 54, 55. (b) 48, 50, 50, 56, 57, 58.5. The fixed gain ends nearer 60. The running average still gives the three old readings near 50 the same weight as the new ones, and its gain has dropped to \(1/6\), so it creeps. The fixed gain keeps believing half of every surprise, so old readings fade.</li>
+<li>(a) \(\tfrac12 + \tfrac14 + \tfrac18 + \cdots = 1\), so \(g\) is a weighted average. (b) Variances add with squared weights: \(\sigma^2\left(\tfrac14 + \tfrac1{16} + \tfrac1{64} + \cdots\right) = \sigma^2 \cdot \dfrac{1/4}{1 - 1/4} = \dfrac{\sigma^2}{3}\). (c) \(\sigma^2/n = \sigma^2/3\) at \(n = 3\): however long it runs, the fixed-gain guess is only about as steady as an average of 3 readings, with spread \(\sigma/\sqrt3 \approx 0.58\sigma\). In exchange it forgets: a reading \(k\) steps back has weight \(1/2^{k+1}\), so it can follow a number that moves. Steady or nimble; you trade one for the other.</li>
+</ol>
+<p><b>Stretch.</b> \(\mathrm{Var}(g) = w^2 \cdot 1 + (1-w)^2 \cdot 4\). Its derivative \(2w - 8(1-w)\) is zero at \(w = \tfrac45\), a minimum since the quadratic opens upward. So \(g = 0.8 \cdot 20.0 + 0.2 \cdot 21.0 = 20.2\), with variance \(0.64 + 0.16 = 0.8\) and spread \(\sqrt{0.8} \approx 0.89\), better than either thermometer alone. The weights 4 to 1 are in the ratio of \(1/\text{variance}\), that is \(\tfrac11 : \tfrac14\), not \(1/\text{spread}\). The plain average 20.5 has variance \(\tfrac14 (1 + 4) = 1.25\), spread about 1.12: worse than the good thermometer on its own. As an update: \(20.2 = 20.0 + \tfrac15 (21.0 - 20.0)\), and the gain is \(\dfrac{1}{1 + 4}\), old variance over old plus new. Put in old variance \(\sigma^2/(n-1)\) and new variance \(\sigma^2\) and that gain is \(1/n\), the running average again.</p>
+</section>
+
+<div class="sheet-nav"><a href="c11-lifeguard-snell.html">← Previous</a><a href="../index.html#sheets">← All sheets</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>
