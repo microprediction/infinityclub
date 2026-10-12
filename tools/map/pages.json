@@ -472,6 +472,7 @@
   "grade-12/sheets/c8-radiocarbon.html": [{"code": "34A", "level": "touch"}, {"code": "26A", "level": "touch"}, {"code": "86A", "level": "core"}],
   "grade-12/sheets/c9-queues.html": [{"code": "60K", "level": "core"}, {"code": "90B", "level": "core"}, {"code": "60J", "level": "touch"}],
   "grade-12/sheets/c10-energy-balance.html": [{"code": "80A", "level": "core"}, {"code": "86A", "level": "core"}, {"code": "85A", "level": "touch"}],
+  "grade-12/sheets/c11-lifeguard-snell.html": [{"code": "49S", "level": "core"}, {"code": "70H", "level": "touch"}],
   "demos/angles.html": [{"code": "51M", "level": "core"}],
   "demos/areamodel.html": [{"code": "00A", "level": "core"}],
   "demos/balance.html": [{"code": "00A", "level": "touch"}],
