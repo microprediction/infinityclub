@@ -39,8 +39,8 @@ nav.top {
 }
 nav.top .brand { font-weight: 800; font-size: 1.15rem; text-decoration: none; color: var(--ink); display: flex; align-items: center; gap: .45rem; }
 /* The logo mark: the span keeps its text for screen readers and old caches; the picture is drawn over it. */
-.inf { display: inline-block; width: 1.34em; height: 1em; background: url(logo.svg) center / contain no-repeat; color: transparent; overflow: hidden; user-select: none; }
-nav.top .brand .inf { font-size: 1.7rem; line-height: 1; }
+.inf { display: inline-block; width: 1em; height: 1em; background: url(logo.svg) center / contain no-repeat; color: transparent; overflow: hidden; user-select: none; }
+nav.top .brand .inf { font-size: 2rem; line-height: 1; }
 nav.top a:not(.brand) { text-decoration: none; color: var(--muted); font-weight: 700; }
 nav.top a:not(.brand):hover { color: var(--accent); }
 nav.top .spacer { flex: 1; }
@@ -60,7 +60,7 @@ footer { text-align: center; color: var(--muted); font-size: .9rem; padding: 2re
 /* Home */
 .hero { padding: 2.5rem 1rem 1.5rem; text-align: center; }
 .hero h1 { font-size: 2.8rem; }
-.hero .inf { font-size: 3.4rem; vertical-align: -0.12em; }
+.hero .inf { font-size: 3.6rem; vertical-align: -0.2em; }
 .hero p.lead { font-size: 1.2rem; color: var(--muted); max-width: 620px; margin: 0 auto 1rem; }
 .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0 2rem; }
 .steps div { background: var(--paper); border: 1px solid var(--rule); border-radius: 12px; padding: 1rem 1.1rem; }
