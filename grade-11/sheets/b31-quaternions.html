@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Numbers where i times j is not j times i · Infinity Club</title>
+<meta name="description" content="Meet the quaternions: numbers with three square roots of minus one, where the order of multiplying matters and every nonzero number still has an inverse. Then see why three parts are not enough.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 11</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 11 · Around the corner · 31</div>
+  <h1>Numbers where i times j is not j times i</h1>
+  <p class="teaser">In 1843 Hamilton carved i² = j² = k² = ijk = −1 into a bridge in Dublin. He had found numbers where the order of multiplying matters, and you can still divide.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<figure style="float:right;width:140px;margin:0 0 .4em 1em"><svg viewBox="0 0 140 108" width="140" height="108" role="img" aria-label="The letters i, j and k placed around a circle, with arrows running clockwise from i to j, from j to k and from k back to i." font-family="Nunito, sans-serif" font-size="15">
+<defs><marker id="qarrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#3f44c9"/></marker></defs>
+<path d="M86.1,27.6 A38,38 0 0 1 107.9,65.3" fill="none" stroke="#3f44c9" stroke-width="2" marker-end="url(#qarrow)"/>
+<path d="M91.8,93.1 A38,38 0 0 1 48.2,93.1" fill="none" stroke="#3f44c9" stroke-width="2" marker-end="url(#qarrow)"/>
+<path d="M32.1,65.3 A38,38 0 0 1 53.9,27.6" fill="none" stroke="#3f44c9" stroke-width="2" marker-end="url(#qarrow)"/>
+<text x="70" y="29" text-anchor="middle" font-weight="700" font-style="italic" fill="#1d1f3a">i</text>
+<text x="102.9" y="86" text-anchor="middle" font-weight="700" font-style="italic" fill="#1d1f3a">j</text>
+<text x="37.1" y="86" text-anchor="middle" font-weight="700" font-style="italic" fill="#1d1f3a">k</text>
+</svg><figcaption>With the arrows: plus. Against them: minus.</figcaption></figure>
+<p>Complex numbers add one new number \(i\) with \(i^2 = -1\) (<a href="a12-complex-arithmetic.html">where you met this</a>). In 1843 William Rowan Hamilton found a system with three: \(i\), \(j\) and \(k\). A <b>quaternion</b> is \(a + bi + cj + dk\) with \(a, b, c, d\) real. Add them part by part. Multiply by expanding brackets with these rules.</p>
+<p class="callout" style="overflow:hidden">\(i^2 = j^2 = k^2 = -1\).<br>\(ij = k,\ \ jk = i,\ \ ki = j\).<br>\(ji = -k,\ \ kj = -i,\ \ ik = -j\).</p>
+<p>So \(ij \ne ji\). Keep the letters in order as you expand. Real numbers can still move anywhere, and regrouping brackets is still allowed.</p>
+<p>Can you divide? The <b>conjugate</b> of \(q = a + bi + cj + dk\) is \(\bar q = a - bi - cj - dk\), and \(q\bar q = \bar q q = a^2 + b^2 + c^2 + d^2\). That is a real number, and it is zero only when \(q = 0\). So every nonzero \(q\) has an inverse:</p>
+<p>\[q^{-1} = \frac{\bar q}{a^2 + b^2 + c^2 + d^2}.\]</p>
+<p>A system where you can add, subtract, multiply and divide by anything nonzero, even if order matters, is called a <b>division ring</b>.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: two orders, two answers</h2>
+<p>Expand, keeping each product in the order it appears.</p>
+<p>\[(1 + i)(1 + j) = 1 + j + i + ij = 1 + i + j + k,\]</p>
+<p>\[(1 + j)(1 + i) = 1 + i + j + ji = 1 + i + j - k.\]</p>
+<p>Same two numbers, different products. Hamilton's bridge formula also follows from the rules: \(ijk = (ij)k = k \cdot k = -1\).</p>
+<p><b>Now divide.</b> The conjugate of \(1 + i\) is \(1 - i\) and the sum of squares is \(1^2 + 1^2 = 2\), so \({(1 + i)^{-1}} = {\tfrac12(1 - i)}\). Check: \((1 + i)(1 - i) = 1 - i + i - i^2 = 2\), and half of 2 is 1.</p>
+<p>"Divide \(j\) by \(1 + i\)" now has two meanings, because the inverse \(\tfrac12(1 - i)\) can go on either side.</p>
+<p>Solve \((1 + i)x = j\): multiply on the <b>left</b>. Then \(x = {\tfrac12(1 - i)j} = {\tfrac12(j - ij)} = {\tfrac12(j - k)}\).</p>
+<p>Solve \(x(1 + i) = j\): multiply on the <b>right</b>. Then \(x = {\tfrac12\,j(1 - i)} = {\tfrac12(j - ji)} = {\tfrac12(j + k)}\).</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>(a) Write down \(ij\) and \(ji\). (b) Expand \((i + j)^2 = (i + j)(i + j)\) with the rules. (c) What does the school formula \(i^2 + 2ij + j^2\) give instead? Which step of the usual proof of that formula fails here?<div class="space short"></div></li>
+<li>Let \(q = 1 + i + j + k\). Find \(q^{-1}\). Then check it by multiplying \(q\) by your answer in full.<div class="space"></div></li>
+<li>The <b>size</b> of \(q = a + bi + cj + dk\) is \(|q| = \sqrt{a^2 + b^2 + c^2 + d^2}\). It is a fact that \(|pq| = |p|\,|q|\) for all quaternions \(p\) and \(q\). (a) Let \(p = 2 + i\) and \(q = 1 + j + k\). Work out \(pq\) and check the fact for this pair. (b) Use the fact to explain why \(pq = 0\) can only happen when \(p = 0\) or \(q = 0\).<div class="space"></div></li>
+<li>Compare with clock arithmetic (<a href="b3-modular-division.html">where you met this</a>). (a) Working mod 7, find the inverse of each of 1, 2, 3, 4, 5, 6. (b) Working mod 6, show that 2 has no inverse. (c) One of these two systems is a division ring and one is not. Which is which, and how does 3(b) tell them apart?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: why not three parts?</h2>
+<p>Before quaternions, Hamilton tried for years to multiply triples \(a + bi + cj\). Suppose such a system exists: \(i^2 = -1\), real numbers commute with everything, brackets expand and regroup as usual, and every number can be written as \(a + bi + cj\) in exactly one way, with \(a, b, c\) real. Then \(ij\) is itself a triple, say \(ij = a + bi + cj\). Multiply both sides on the left by \(i\) and find a contradiction.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(ij = k\) and \(ji = -k\). (b) \((i + j)(i + j) = i^2 + ij + ji + j^2 = -1 + k - k - 1 = -2\). (c) \(i^2 + 2ij + j^2 = -2 + 2k\), which is wrong. The usual proof collects \(ij + ji\) as \(2ij\), and that needs \(ji = ij\). Here \(ij + ji = 0\). A bonus: since \((i + j)^2 = -2\), the quaternion \((i + j)/\sqrt2\) squares to \(-1\). So \(-1\) has more square roots here than just \(\pm i\).</li>
+<li>The conjugate is \(1 - i - j - k\) and the sum of squares is \(1 + 1 + 1 + 1 = 4\), so \(q^{-1} = \tfrac14(1 - i - j - k)\). The conjugate alone is not the inverse. Check: write \(u = i + j + k\). Then \(u^2 = i^2 + j^2 + k^2 + (ij + ji) + (jk + kj) + (ki + ik) = -3 + 0 + 0 + 0 = -3\). So \((1 + u)(1 - u) = 1 - u + u - u^2 = 1 + 3 = 4\), and \(q \cdot \tfrac14(1 - u) = 1\).</li>
+<li>(a) \(pq = (2 + i)(1 + j + k) = 2 + 2j + 2k + i + ij + ik = 2 + 2j + 2k + i + k - j = 2 + i + j + 3k\). Sizes: \(|p| = \sqrt{4 + 1} = \sqrt5\), \(|q| = \sqrt{1 + 1 + 1} = \sqrt3\), and \(|pq| = \sqrt{4 + 1 + 1 + 9} = \sqrt{15} = \sqrt5 \times \sqrt3\). (b) If \(pq = 0\) then \(|p|\,|q| = |pq| = 0\). These are real numbers, so \(|p| = 0\) or \(|q| = 0\). A sum of four squares of real numbers is zero only when all four are zero, so \(p = 0\) or \(q = 0\).</li>
+<li>(a) \(1 \times 1 = 1\), \(2 \times 4 = 8\), \(3 \times 5 = 15\) and \(6 \times 6 = 36\) all leave remainder 1 on division by 7. So the inverses of 1, 2, 3, 4, 5, 6 are 1, 4, 5, 2, 3, 6. (b) The multiples of 2 mod 6 are 0, 2, 4, 0, 2, 4, never 1. (c) Mod 7 is a division ring, and its multiplication commutes as well. Mod 6 is not: \(2 \times 3 = 0\) mod 6 with neither factor zero. In a division ring that cannot happen, since multiplying \(pq = 0\) on the left by \(p^{-1}\) gives \(q = 0\). The quaternions pass this test, as 3(b) shows.</li>
+</ol>
+<p><b>Stretch.</b> Regrouping, \(i(ij) = (ii)j = -j\). Expanding, \(i(a + bi + cj) = ai - b + c(ij) = ai - b + c(a + bi + cj) = (ac - b) + (a + bc)i + c^2j\). Each number is written in only one way, so the \(j\) parts must match: \(c^2 = -1\). No real \(c\) does that, so no such triples exist. Hamilton needed a fourth part, \(k = ij\). This fits a theorem of Frobenius from the 1870s. Take a system built from finitely many real parts, containing the real numbers, where the reals commute with everything, brackets expand and regroup as usual, and you can divide by anything nonzero. It must be a copy of the real numbers, the complex numbers or the quaternions: 1, 2 or 4 parts, never 3. Give up regrouping (associativity) as well and division is also possible with 8 parts, the octonions.</p>
+</section>
+
+<div class="sheet-nav"><a href="b30-pizza-curvature.html">← Previous</a><a href="c1-tides.html">Next: Predicting the tide →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>
