@@ -98,6 +98,7 @@
   "grade-6/sheets/b32-efron-dice.html": [{"code": "60C", "level": "core"}, {"code": "91A", "level": "touch"}],
   "grade-6/sheets/b33-hilbert-buses.html": [{"code": "03E", "level": "core"}],
   "grade-6/sheets/b34-misere-nim.html": [{"code": "91A", "level": "core"}],
+  "grade-6/sheets/b35-nomogram.html": [{"code": "65S", "level": "core"}],
   "grade-6/sheets/c1-music.html": [{"code": "00A", "level": "core"}, {"code": "11J", "level": "touch"}, {"code": "11A", "level": "touch"}],
   "grade-6/sheets/c2-astronomy.html": [{"code": "85A", "level": "core"}, {"code": "70F", "level": "touch"}, {"code": "00A", "level": "touch"}],
   "grade-6/sheets/c3-magic.html": [{"code": "11A", "level": "core"}, {"code": "00A", "level": "core"}],
