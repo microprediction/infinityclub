@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Does the order of heads matter? · Math Detours</title>
+<meta name="description" content="Two records of the same ten coin flips: every flip, or just the number of heads. Under a model of independent flips with one unknown heads chance, the count keeps everything the flips say about that chance. Meet sufficient summaries, and see when the order does matter.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Math Detours · Grade 12 · Around the corner · 34</div>
+  <h1>Does the order of heads matter?</h1>
+  <p class="teaser">Two friends flip the same coin 10 times. One writes down every flip; the other only counts the heads. For learning how biased the coin is, the count is all you need, as long as the flips are independent.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A coin is flipped 10 times. Ana writes down every flip: HHTHHHTHTH. Ben only writes "7 heads". Who knows more about the coin?</p>
+<p>Use a model: the flips are independent, and each lands heads with the same unknown chance \(p\), where \(0 \lt p \lt 1\). Then Ana's exact sequence has chance \(p^7(1-p)^3\). So does every other sequence with 7 heads, and there are \(\binom{10}{7} = 120\) of them. So once you know there were 7 heads, each order has chance \(\tfrac{1}{120}\), whatever \(p\) is. The order cannot tell a \(p = 0.5\) coin from a \(p = 0.9\) coin.</p>
+<p class="callout">A summary is <b>sufficient</b> for \(p\) if, once you know the summary, the chances of the remaining details do not depend on \(p\).</p>
+<p>Under this model the head count is sufficient for \(p\): Ben has lost nothing about \(p\).</p>
+<p>Two warnings. The result leans on the model: independent flips, the same \(p\) every time. And "nothing lost" is about \(p\) only. Ana's full record can still help check whether the model itself is right.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: two heads in three flips</h2>
+<p>Three independent flips, heads chance \(p\). The sequences with two heads are HHT, HTH and THH, and each has chance \(p^2(1-p)\): multiplication does not care about order. So</p>
+<p>\[P(\text{2 heads}) = 3p^2(1-p), \qquad P(\text{HHT} \mid \text{2 heads}) = \frac{p^2(1-p)}{3p^2(1-p)} = \frac13 .\]</p>
+<p>Try numbers. With \(p = 0.6\): \(0.144 / 0.432 = \tfrac13\). With \(p = 0.1\): \(0.009 / 0.027 = \tfrac13\). The \(p\) cancels every time.</p>
+<p>Here is another way to see it. Ana, who saw HHT, judges each possible \(p\) by \(p^2(1-p)\). Ben, who knows only "2 heads", uses \(3p^2(1-p)\). Ben's curve is Ana's times the constant 3, so the two curves have the same shape and both peak at \(p = \tfrac23\). They rank every value of \(p\) the same way.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<p>In questions 1 and 2 the flips are independent with the same heads chance \(p\), and \(0 \lt p \lt 1\).</p>
+<ol>
+<li>A coin is flipped 4 times and lands heads exactly once. Find the chance that the order was THTT, given one head, (a) when \(p = 0.2\) and (b) when \(p = 0.9\). Work out both probabilities in each case before you divide.<div class="space short"></div></li>
+<li>A coin is flipped 3 times. Which of these summaries are sufficient for \(p\)? (a) The number of heads. (b) The proportion of heads. (c) The first flip only. (d) The length of the longest run of heads in a row. For each "no", find a conditional chance that changes with \(p\).<div class="space"></div></li>
+<li>A die may be loaded: face \(i\) comes up with unknown chance \(p_i\), each \(p_i \gt 0\), and the rolls are independent. (a) Write the chance of rolling 3, 1, 3, 6 in that order. What summary of a list of rolls is sufficient for the six chances? (b) Two rolls total 4. Find the chance that they were 2 then 2, first for a fair die, then for a die with \(p_1 = p_3 = 0.1\) and \(p_2 = 0.5\). Is the total sufficient?<div class="space"></div></li>
+<li>A model of a sticky coin: the first flip is fair, and after that each flip repeats the one before with chance \(s\) and switches with chance \(1 - s\), where \(0 \lt s \lt 1\). For 3 flips, find the chance of HTH given exactly 2 heads, as a formula in \(s\). Evaluate it at \(s = 0.5\) and \(s = 0.9\). Is the head count sufficient for \(s\)? Suggest a summary that is.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: one over n choose k</h2>
+<p>(a) For \(n\) independent flips with heads chance \(p\), \(0 \lt p \lt 1\), show that given exactly \(k\) heads, every order with \(k\) heads has chance \(1 / \binom{n}{k}\). (b) Ten flips give HHHHHTTTTT. Given 5 heads, what is the chance under this model that all the heads sit together at one end? What might a record like that make you doubt?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(P(\text{THTT}) = 0.2 \times 0.8^3 = 0.1024\) and \(P(\text{1 head}) = 4 \times 0.1024 = 0.4096\), so the chance is \(\tfrac14\). (b) \(P(\text{THTT}) = 0.9 \times 0.1^3 = 0.0009\) and \(P(\text{1 head}) = 0.0036\), so the chance is \(\tfrac14\) again. The single head is equally likely to be in any of the 4 places, whatever \(p\) is.</li>
+<li>(a) Yes: all orders with the same count have the same chance, so given the count each is equally likely. (b) Yes: with 3 flips known, the proportion tells you the count (\(\tfrac23\) means 2 heads). (c) No: given that the first flip is H, the chance of HHH is \(p^2\). The other two flips still carry news about \(p\). (d) No: the longest run is 1 for HTT, THT, TTH and HTH, so given a longest run of 1 the chance of HTH is \(\dfrac{p^2(1-p)}{3p(1-p)^2 + p^2(1-p)} = \dfrac{p}{3-2p}\), which is \(\tfrac14\) at \(p = 0.5\) and \(\tfrac34\) at \(p = 0.9\). The run length mixes sequences with different head counts.</li>
+<li>(a) \(p_3 \cdot p_1 \cdot p_3 \cdot p_6 = p_1 p_3^2 p_6\). Any list has chance \(p_1^{n_1} p_2^{n_2} \cdots p_6^{n_6}\), where \(n_i\) counts how often face \(i\) came up, so the six face counts are sufficient: lists with the same counts are equally likely. (b) A total of 4 comes from 1 then 3, 3 then 1, or 2 then 2, so the chance is \(\dfrac{p_2^2}{2p_1p_3 + p_2^2}\). Fair die: \(\tfrac13\). Loaded die: \(\dfrac{0.25}{0.02 + 0.25} = \tfrac{25}{27}\). It changes with the chances, so the total is not sufficient.</li>
+<li>\(P(\text{HHT}) = \tfrac12 s(1-s)\), \(P(\text{HTH}) = \tfrac12(1-s)^2\), \(P(\text{THH}) = \tfrac12(1-s)s\). So \[P(\text{HTH} \mid \text{2 heads}) = \frac{(1-s)^2}{2s(1-s) + (1-s)^2} = \frac{1-s}{1+s}.\] At \(s = 0.5\) this is \(\tfrac13\) (an ordinary fair coin); at \(s = 0.9\) it is \(\tfrac{1}{19}\). It depends on \(s\), so the head count is not sufficient: the flips are not independent, and the order now carries the news. A sequence with \(r\) repeats among its \(n - 1\) steps has chance \(\tfrac12 s^r (1-s)^{n-1-r}\), so the number of repeats is sufficient for \(s\).</li>
+</ol>
+<p><b>Stretch.</b> (a) Each order with \(k\) heads has chance \(p^k(1-p)^{n-k}\), and there are \(\binom{n}{k}\) of them, so \(P(k \text{ heads}) = \binom{n}{k}p^k(1-p)^{n-k}\). Dividing, the powers of \(p\) cancel and leave \(1/\binom{n}{k}\). (The division needs \(0 \lt p \lt 1\), so that you are not dividing by zero.) (b) There are \(\binom{10}{5} = 252\) orders and only 2 have the heads together at one end (HHHHHTTTTT and TTTTTHHHHH), so the chance is \(\tfrac{2}{252} = \tfrac{1}{126}\), whatever \(p\) is. The record says nothing more about \(p\) than "5 heads" does, but it should make you doubt the model: maybe the flips are not independent, or the coin changed halfway. That is the job the full record can still do.</p>
+</section>
+
+<div class="sheet-nav"><a href="b33-simulation-drift.html">← Previous</a><a href="c1-escape-velocity.html">Next: Escape velocity →</a></div>
+</main>
+
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

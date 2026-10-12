@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How far away was the earthquake? · Math Detours</title>
+<meta name="description" content="After an earthquake, fast P-waves arrive first and slower S-waves follow. Use the gap between them to estimate the distance, find the spot from three stations, and see how two pulses on a rope add.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
+  <a href="../index.html">Grade 7</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Math Detours · Grade 7 · Connections · 9</div>
+  <h1>How far away was the earthquake?</h1>
+  <p class="teaser">After an earthquake, fast P-waves arrive first and slower S-waves follow. The gap between them tells you how far away it happened.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>When rock underground suddenly slips, the shaking spreads out as waves. A wave does not arrive everywhere at once. It travels at a steady, finite speed, set by how stiff and how dense the rock is.</p>
+<p>An earthquake sends two kinds of wave through the rock. <b>P-waves</b> push and pull the rock along their path. In the Earth's crust they typically cover about 6 km each second. <b>S-waves</b> shake the rock across their path and are slower, about 3.5 km each second. Both set off at the same moment, so the further they travel, the further the S-wave falls behind.</p>
+<p class="callout">The gap between the P-wave and the S-wave grows in step with the distance. Time the gap and you can estimate how far away the earthquake was.</p>
+<p>This is a model. Real speeds change from rock to rock, so the answers are estimates.</p>
+<p>Waves have another habit. Send two pulses along a rope towards each other. They pass straight through each other. Where they overlap, their heights add. Afterwards each carries on with its old shape.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: a gap of 20 seconds</h2>
+<p>A seismometer records the P-wave, then the S-wave 20 s later. How far away was the earthquake?</p>
+<p>Try a distance that suits both speeds: 42 km. The P-wave takes \(42 \div 6 = 7\) s. The S-wave takes \(42 \div 3.5 = 12\) s. So every 42 km puts the S-wave another \(12 - 7 = 5\) s behind.</p>
+<p>A gap of 20 s is four lots of 5 s, so the distance is four lots of 42 km: \(4 \times 42 = 168\) km.</p>
+<p>Check: \(168 \div 6 = 28\) s and \(168 \div 3.5 = 48\) s, and \(48 - 28 = 20\) s. In symbols, the distance \(d\) solves \(d \div 3.5 - d \div 6 = 20\).</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Use 6 and 3.5 km each second throughout. The gap is 10 seconds. (a) How far away was the earthquake? (b) Check your answer by finding how long each wave took.<div class="space short"></div></li>
+<li>(a) Each 5 s of gap means 42 km. How many kilometres is each 1 s of gap? (b) Use your rule for a gap of 35 s. (c) An earthquake is 420 km away. How long does each wave take? What is the gap?<div class="space short"></div></li>
+<li>One gap gives a distance but not a direction, so the earthquake could be anywhere on a circle round the station. Stations A, B and C record gaps of 25 s, 15 s and 20 s. (a) How far is the earthquake from each station? (b) Which ring is that for each station, counting out from the station? (c) Which of P, Q and R is the earthquake? (d) Why are A and B not enough on their own?
+<figure><svg viewBox="0 0 286 213" width="286" height="213" role="img" aria-label="A map with three seismometer stations A, B and C. Around each station are six rings, 42 km apart. Three crossing points are marked P, Q and R. P is below station B, Q is above station B, and R is to the right of station B." font-family="Nunito, sans-serif" font-size="12">
+<defs><clipPath id="eqmap"><rect x="0" y="0" width="286" height="213"/></clipPath></defs>
+<rect x="0.5" y="0.5" width="285" height="212" fill="#fff" stroke="#999" stroke-width="1"/>
+<g clip-path="url(#eqmap)" fill="none" stroke-width="1">
+<circle cx="28.0" cy="107.8" r="28.0" stroke="#3f44c9"/>
+<circle cx="28.0" cy="107.8" r="56.0" stroke="#3f44c9"/>
+<circle cx="28.0" cy="107.8" r="84.0" stroke="#3f44c9"/>
+<circle cx="28.0" cy="107.8" r="112.0" stroke="#3f44c9"/>
+<circle cx="28.0" cy="107.8" r="140.0" stroke="#3f44c9"/>
+<circle cx="28.0" cy="107.8" r="168.0" stroke="#3f44c9"/>
+<circle cx="140.0" cy="107.8" r="28.0" stroke="#f5a524"/>
+<circle cx="140.0" cy="107.8" r="56.0" stroke="#f5a524"/>
+<circle cx="140.0" cy="107.8" r="84.0" stroke="#f5a524"/>
+<circle cx="140.0" cy="107.8" r="112.0" stroke="#f5a524"/>
+<circle cx="140.0" cy="107.8" r="140.0" stroke="#f5a524"/>
+<circle cx="140.0" cy="107.8" r="168.0" stroke="#f5a524"/>
+<circle cx="252.0" cy="23.8" r="28.0" stroke="#555"/>
+<circle cx="252.0" cy="23.8" r="56.0" stroke="#555"/>
+<circle cx="252.0" cy="23.8" r="84.0" stroke="#555"/>
+<circle cx="252.0" cy="23.8" r="112.0" stroke="#555"/>
+<circle cx="252.0" cy="23.8" r="140.0" stroke="#555"/>
+<circle cx="252.0" cy="23.8" r="168.0" stroke="#555"/>
+</g>
+<path d="M 28.0 101.8 L 33.5 111.8 L 22.5 111.8 z" fill="#3f44c9" stroke="#1d1f3a" stroke-width="1"/>
+<path d="M 140.0 101.8 L 145.5 111.8 L 134.5 111.8 z" fill="#f5a524" stroke="#1d1f3a" stroke-width="1"/>
+<path d="M 252.0 17.8 L 257.5 27.8 L 246.5 27.8 z" fill="#555" stroke="#1d1f3a" stroke-width="1"/>
+<text x="18.0" y="112.8" text-anchor="end" font-weight="800" font-size="14" fill="#1d1f3a" stroke="#fff" stroke-width="3" paint-order="stroke">A</text>
+<text x="140.0" y="127.8" text-anchor="middle" font-weight="800" font-size="14" fill="#1d1f3a" stroke="#fff" stroke-width="3" paint-order="stroke">B</text>
+<text x="263.0" y="28.8" text-anchor="start" font-weight="800" font-size="14" fill="#1d1f3a" stroke="#fff" stroke-width="3" paint-order="stroke">C</text>
+<circle cx="140.0" cy="191.8" r="3.6" fill="#1d1f3a"/>
+<text x="149.0" y="206.8" text-anchor="start" font-weight="800" font-size="14" fill="#1d1f3a" stroke="#fff" stroke-width="3" paint-order="stroke">P</text>
+<circle cx="140.0" cy="23.8" r="3.6" fill="#1d1f3a"/>
+<text x="132.0" y="16.8" text-anchor="end" font-weight="800" font-size="14" fill="#1d1f3a" stroke="#fff" stroke-width="3" paint-order="stroke">Q</text>
+<circle cx="220.6" cy="131.3" r="3.6" fill="#1d1f3a"/>
+<text x="229.6" y="144.3" text-anchor="start" font-weight="800" font-size="14" fill="#1d1f3a" stroke="#fff" stroke-width="3" paint-order="stroke">R</text>
+<line x1="8.4" y1="203" x2="36.4" y2="203" stroke="#1d1f3a" stroke-width="2"/><line x1="8.4" y1="199" x2="8.4" y2="207" stroke="#1d1f3a" stroke-width="1.5"/><line x1="36.4" y1="199" x2="36.4" y2="207" stroke="#1d1f3a" stroke-width="1.5"/>
+<text x="42.4" y="207" fill="#1d1f3a" stroke="#fff" stroke-width="3" paint-order="stroke">42 km</text>
+</svg><figcaption>A made-up map. Each station has six rings, 42 km apart. The first ring is 42 km from its station.</figcaption></figure>
+<div class="space short"></div></li>
+<li>A hump 2 cm high travels right along a rope. A dip 2 cm deep, the same shape upside down, travels left at the same speed. Each pulse is symmetric, left to right. (a) Sketch the rope before they meet, at the moment they exactly overlap, and after. (b) At that moment, has the wave gone? (c) If the dip were a second hump, how high would the rope be at that moment?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: how far away was the lightning?</h2>
+<p>Lightning and thunder set off together too. Light travels about 300,000 km each second, sound in air about 343 m each second. (a) How many seconds does sound take to travel 1 km, to one decimal place? What about light? (b) You count 12 s between flash and bang. How far away was the lightning? (c) A rule of thumb says "3 seconds for each kilometre". How far out is it here?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) 10 s is two lots of 5 s, so \(2 \times 42 = 84\) km. (b) P-wave: \(84 \div 6 = 14\) s. S-wave: \(84 \div 3.5 = 24\) s. The gap is \(24 - 14 = 10\) s, as it should be.</li>
+<li>(a) \(42 \div 5 = 8.4\) km for each second of gap. This is a rule of thumb, because it rests on our two typical speeds. (b) \(35 \times 8.4 = 294\) km. (c) P-wave: \(420 \div 6 = 70\) s. S-wave: \(420 \div 3.5 = 120\) s. The gap is 50 s, and \(50 \times 8.4 = 420\) agrees.</li>
+<li>(a) A: \(25 \times 8.4 = 210\) km. B: \(15 \times 8.4 = 126\) km. C: \(20 \times 8.4 = 168\) km. (b) Rings are 42 km apart, so A's 5th ring, B's 3rd ring and C's 4th ring. (c) Q. It is the only point on all three of those rings. (d) A's 5th ring and B's 3rd ring cross twice, at P and at Q. Two stations leave two possible places. The third station picks one: P is about 303 km from C, far too much. R is on the right rings for B and C but is about 291 km from A, not 210 km. This model treats the ground as flat and the earthquake as close to the surface.</li>
+<li>(a) Before: a hump on the left and a dip on the right, moving together. At the moment of overlap the heights add to \(2 + (-2) = 0\) everywhere, so the rope is a flat line. After: the hump is on the right, still moving right, and the dip is on the left, still moving left, each with its old shape. (b) No. The rope is flat for an instant, but it is not still. Parts of it are moving up and parts are moving down, and that motion carries the two pulses on. A photo would show a flat rope, but a film would not. (c) \(2 + 2 = 4\) cm, for an instant. This adding rule is itself a model. It works well for small pulses on a long, even rope.</li>
+</ol>
+<p><b>Stretch.</b> (a) \(1000 \div 343 \approx 2.9\) s for sound. Light takes \(1 \div 300{,}000\) of a second, about 3 millionths of a second, so the flash is as good as instant and the gap is all sound. (b) \(12 \times 343 = 4116\) m, about 4.1 km. (c) The rule gives \(12 \div 3 = 4\) km, about 0.1 km too little. The rule rounds 2.9 up to 3, so it is slightly short every time, by about 3 parts in 100. The speed of sound also changes a little with the temperature of the air, so 4 km is a fair estimate.</p>
+</section>
+
+<div class="sheet-nav"><a href="c8-rhythm.html">← Previous</a><a href="c10-field-by-river.html">Next: Dido's field by the river →</a></div>
+</main>
+
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

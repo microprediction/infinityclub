@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why sunflowers count in Fibonacci numbers · Math Detours</title>
+<meta name="description" content="A simple model places each new seed a fixed turn round from the last. With a turn of about 137.5 degrees the spirals come in Fibonacci numbers such as 8 and 13, and with turns like 90 or 135 degrees the seeds line up in spokes.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
+  <a href="../index.html">Grade 6</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Math Detours · Grade 6 · Connections · 22</div>
+  <h1>Why sunflowers count in Fibonacci numbers</h1>
+  <p class="teaser">Count the spirals on a sunflower head one way, then the other. You often get neighbouring Fibonacci numbers like 34 and 55. One simple rule for placing seeds does this.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>The seeds on a sunflower head sit in spirals, some curving one way and some the other. Count each set and you often get two neighbours from the <b>Fibonacci list</b> 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, where each number after the first two is the sum of the two before it. Pinecones often give 8 and 13.</p>
+<p>Here is a <b>model</b>: a simple rule that imitates the plant. Place each new seed a fixed turn round from the last one, and a little further out.</p>
+<p class="callout">With a turn of about <b>137.5°</b>, called the <b>golden angle</b>, the model spreads its seeds evenly and its spirals come in Fibonacci numbers.</p>
+<p>Many real plants place new seeds, leaves or scales close to this turn. Not all do, so say "often", not "always". A living plant is far more complicated than the model.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: ten seeds in the model</h2>
+<p>Measure every direction as a turn from a start line. Seed 1 is at 137.5°. Seed 2 is at \(2 \times 137.5 = 275^\circ\). Seed 3 is at \(3 \times 137.5 = 412.5^\circ\), which is more than a full turn, so take away 360: \(52.5^\circ\). Carry on, taking away 360 as often as you need to. The ten directions are 137.5, 275, 52.5, 190, 327.5, 105, 242.5, 20, 157.5 and 295.</p>
+<figure>
+<svg viewBox="0 0 520 176" width="520" height="176" role="img" aria-label="Three pictures of the model with a turn of 137.5 degrees. Left: seeds 1 to 10, numbered, with a dashed start line pointing right; each seed is further from the centre than the one before. Middle: 40 seeds, with blue lines joining each seed to the seed 8 later, making spiral arms that curve one way. Right: the same 40 seeds, with orange lines joining each seed to the seed 13 later, making spiral arms that curve the other way." font-family="Nunito, sans-serif">
+<line x1="88" y1="80" x2="168" y2="80" stroke="#999" stroke-width="1.5" stroke-dasharray="4 3"/>
+<circle cx="88" cy="80" r="2" fill="#999"/>
+<circle cx="73.3" cy="66.5" r="4" fill="#3f44c9"/>
+<text x="65.1" y="63.1" font-size="11" text-anchor="middle" fill="#1d1f3a">1</text>
+<circle cx="90.5" cy="108.2" r="4" fill="#3f44c9"/>
+<text x="91.4" y="123.1" font-size="11" text-anchor="middle" fill="#1d1f3a">2</text>
+<circle cx="109.1" cy="52.5" r="4" fill="#3f44c9"/>
+<text x="115.8" y="47.8" font-size="11" text-anchor="middle" fill="#1d1f3a">3</text>
+<circle cx="48.6" cy="86.9" r="4" fill="#3f44c9"/>
+<text x="37.8" y="92.9" font-size="11" text-anchor="middle" fill="#1d1f3a">4</text>
+<circle cx="125.7" cy="104.0" r="4" fill="#3f44c9"/>
+<text x="135.0" y="113.9" font-size="11" text-anchor="middle" fill="#1d1f3a">5</text>
+<circle cx="75.3" cy="32.7" r="4" fill="#3f44c9"/>
+<text x="72.5" y="26.1" font-size="11" text-anchor="middle" fill="#1d1f3a">6</text>
+<circle cx="63.6" cy="126.9" r="4" fill="#3f44c9"/>
+<text x="58.5" y="140.7" font-size="11" text-anchor="middle" fill="#1d1f3a">7</text>
+<circle cx="141.2" cy="60.7" r="4" fill="#3f44c9"/>
+<text x="151.5" y="54.9" font-size="11" text-anchor="middle" fill="#1d1f3a">8</text>
+<circle cx="32.6" cy="57.0" r="4" fill="#3f44c9"/>
+<text x="22.4" y="56.8" font-size="11" text-anchor="middle" fill="#1d1f3a">9</text>
+<circle cx="114.7" cy="137.3" r="4" fill="#3f44c9"/>
+<text x="119.4" y="151.3" font-size="11" text-anchor="middle" fill="#1d1f3a">10</text>
+<text x="88" y="170" font-size="12" text-anchor="middle" fill="#1d1f3a">seeds 1 to 10 and the start line</text>
+<polyline points="254.3,72.9 233.1,68.0 219.0,78.1 212.2,95.7 214.4,116.5" fill="none" stroke="#3f44c9" stroke-width="2"/>
+<polyline points="263.3,94.7 275.9,109.9 293.3,111.3 310.2,102.5 322.6,85.3" fill="none" stroke="#3f44c9" stroke-width="2"/>
+<polyline points="273.0,65.7 272.4,47.0 260.0,34.6 241.2,29.9 220.3,34.5" fill="none" stroke="#3f44c9" stroke-width="2"/>
+<polyline points="241.4,83.6 230.7,98.1 232.0,115.8 243.1,131.9 262.0,142.6" fill="none" stroke="#3f44c9" stroke-width="2"/>
+<polyline points="281.7,92.5 298.7,88.1 309.4,73.8 311.8,54.1 304.9,33.2" fill="none" stroke="#3f44c9" stroke-width="2"/>
+<polyline points="255.4,55.3 239.6,48.0 221.9,51.9 206.8,65.2 197.9,85.6" fill="none" stroke="#3f44c9" stroke-width="2"/>
+<polyline points="249.3,104.5 256.7,120.1 272.8,128.9 293.2,129.0 313.7,119.7" fill="none" stroke="#3f44c9" stroke-width="2"/>
+<polyline points="289.7,69.9 294.0,53.2 287.6,35.7 272.3,21.9 250.5,15.0" fill="none" stroke="#3f44c9" stroke-width="2"/>
+<circle cx="254.3" cy="72.9" r="3" fill="#1d1f3a"/>
+<circle cx="263.3" cy="94.7" r="3" fill="#1d1f3a"/>
+<circle cx="273.0" cy="65.7" r="3" fill="#1d1f3a"/>
+<circle cx="241.4" cy="83.6" r="3" fill="#1d1f3a"/>
+<circle cx="281.7" cy="92.5" r="3" fill="#1d1f3a"/>
+<circle cx="255.4" cy="55.3" r="3" fill="#1d1f3a"/>
+<circle cx="249.3" cy="104.5" r="3" fill="#1d1f3a"/>
+<circle cx="289.7" cy="69.9" r="3" fill="#1d1f3a"/>
+<circle cx="233.1" cy="68.0" r="3" fill="#1d1f3a"/>
+<circle cx="275.9" cy="109.9" r="3" fill="#1d1f3a"/>
+<circle cx="272.4" cy="47.0" r="3" fill="#1d1f3a"/>
+<circle cx="230.7" cy="98.1" r="3" fill="#1d1f3a"/>
+<circle cx="298.7" cy="88.1" r="3" fill="#1d1f3a"/>
+<circle cx="239.6" cy="48.0" r="3" fill="#1d1f3a"/>
+<circle cx="256.7" cy="120.1" r="3" fill="#1d1f3a"/>
+<circle cx="294.0" cy="53.2" r="3" fill="#1d1f3a"/>
+<circle cx="219.0" cy="78.1" r="3" fill="#1d1f3a"/>
+<circle cx="293.3" cy="111.3" r="3" fill="#1d1f3a"/>
+<circle cx="260.0" cy="34.6" r="3" fill="#1d1f3a"/>
+<circle cx="232.0" cy="115.8" r="3" fill="#1d1f3a"/>
+<circle cx="309.4" cy="73.8" r="3" fill="#1d1f3a"/>
+<circle cx="221.9" cy="51.9" r="3" fill="#1d1f3a"/>
+<circle cx="272.8" cy="128.9" r="3" fill="#1d1f3a"/>
+<circle cx="287.6" cy="35.7" r="3" fill="#1d1f3a"/>
+<circle cx="212.2" cy="95.7" r="3" fill="#1d1f3a"/>
+<circle cx="310.2" cy="102.5" r="3" fill="#1d1f3a"/>
+<circle cx="241.2" cy="29.9" r="3" fill="#1d1f3a"/>
+<circle cx="243.1" cy="131.9" r="3" fill="#1d1f3a"/>
+<circle cx="311.8" cy="54.1" r="3" fill="#1d1f3a"/>
+<circle cx="206.8" cy="65.2" r="3" fill="#1d1f3a"/>
+<circle cx="293.2" cy="129.0" r="3" fill="#1d1f3a"/>
+<circle cx="272.3" cy="21.9" r="3" fill="#1d1f3a"/>
+<circle cx="214.4" cy="116.5" r="3" fill="#1d1f3a"/>
+<circle cx="322.6" cy="85.3" r="3" fill="#1d1f3a"/>
+<circle cx="220.3" cy="34.5" r="3" fill="#1d1f3a"/>
+<circle cx="262.0" cy="142.6" r="3" fill="#1d1f3a"/>
+<circle cx="304.9" cy="33.2" r="3" fill="#1d1f3a"/>
+<circle cx="197.9" cy="85.6" r="3" fill="#1d1f3a"/>
+<circle cx="313.7" cy="119.7" r="3" fill="#1d1f3a"/>
+<circle cx="250.5" cy="15.0" r="3" fill="#1d1f3a"/>
+<text x="262" y="170" font-size="12" text-anchor="middle" fill="#1d1f3a">40 seeds, blue lines</text>
+<polyline points="424.3,72.9 409.6,48.0 411.2,29.9 420.5,15.0" fill="none" stroke="#f5a524" stroke-width="2"/>
+<polyline points="433.3,94.7 426.7,120.1 413.1,131.9" fill="none" stroke="#f5a524" stroke-width="2"/>
+<polyline points="443.0,65.7 464.0,53.2 481.8,54.1" fill="none" stroke="#f5a524" stroke-width="2"/>
+<polyline points="411.4,83.6 389.0,78.1 376.8,65.2" fill="none" stroke="#f5a524" stroke-width="2"/>
+<polyline points="451.7,92.5 463.3,111.3 463.2,129.0" fill="none" stroke="#f5a524" stroke-width="2"/>
+<polyline points="425.4,55.3 430.0,34.6 442.3,21.9" fill="none" stroke="#f5a524" stroke-width="2"/>
+<polyline points="419.3,104.5 402.0,115.8 384.4,116.5" fill="none" stroke="#f5a524" stroke-width="2"/>
+<polyline points="459.7,69.9 479.4,73.8 492.6,85.3" fill="none" stroke="#f5a524" stroke-width="2"/>
+<polyline points="403.1,68.0 391.9,51.9 390.3,34.5" fill="none" stroke="#f5a524" stroke-width="2"/>
+<polyline points="445.9,109.9 442.8,128.9 432.0,142.6" fill="none" stroke="#f5a524" stroke-width="2"/>
+<polyline points="442.4,47.0 457.6,35.7 474.9,33.2" fill="none" stroke="#f5a524" stroke-width="2"/>
+<polyline points="400.7,98.1 382.2,95.7 367.9,85.6" fill="none" stroke="#f5a524" stroke-width="2"/>
+<polyline points="468.7,88.1 480.2,102.5 483.7,119.7" fill="none" stroke="#f5a524" stroke-width="2"/>
+<circle cx="424.3" cy="72.9" r="3" fill="#1d1f3a"/>
+<circle cx="433.3" cy="94.7" r="3" fill="#1d1f3a"/>
+<circle cx="443.0" cy="65.7" r="3" fill="#1d1f3a"/>
+<circle cx="411.4" cy="83.6" r="3" fill="#1d1f3a"/>
+<circle cx="451.7" cy="92.5" r="3" fill="#1d1f3a"/>
+<circle cx="425.4" cy="55.3" r="3" fill="#1d1f3a"/>
+<circle cx="419.3" cy="104.5" r="3" fill="#1d1f3a"/>
+<circle cx="459.7" cy="69.9" r="3" fill="#1d1f3a"/>
+<circle cx="403.1" cy="68.0" r="3" fill="#1d1f3a"/>
+<circle cx="445.9" cy="109.9" r="3" fill="#1d1f3a"/>
+<circle cx="442.4" cy="47.0" r="3" fill="#1d1f3a"/>
+<circle cx="400.7" cy="98.1" r="3" fill="#1d1f3a"/>
+<circle cx="468.7" cy="88.1" r="3" fill="#1d1f3a"/>
+<circle cx="409.6" cy="48.0" r="3" fill="#1d1f3a"/>
+<circle cx="426.7" cy="120.1" r="3" fill="#1d1f3a"/>
+<circle cx="464.0" cy="53.2" r="3" fill="#1d1f3a"/>
+<circle cx="389.0" cy="78.1" r="3" fill="#1d1f3a"/>
+<circle cx="463.3" cy="111.3" r="3" fill="#1d1f3a"/>
+<circle cx="430.0" cy="34.6" r="3" fill="#1d1f3a"/>
+<circle cx="402.0" cy="115.8" r="3" fill="#1d1f3a"/>
+<circle cx="479.4" cy="73.8" r="3" fill="#1d1f3a"/>
+<circle cx="391.9" cy="51.9" r="3" fill="#1d1f3a"/>
+<circle cx="442.8" cy="128.9" r="3" fill="#1d1f3a"/>
+<circle cx="457.6" cy="35.7" r="3" fill="#1d1f3a"/>
+<circle cx="382.2" cy="95.7" r="3" fill="#1d1f3a"/>
+<circle cx="480.2" cy="102.5" r="3" fill="#1d1f3a"/>
+<circle cx="411.2" cy="29.9" r="3" fill="#1d1f3a"/>
+<circle cx="413.1" cy="131.9" r="3" fill="#1d1f3a"/>
+<circle cx="481.8" cy="54.1" r="3" fill="#1d1f3a"/>
+<circle cx="376.8" cy="65.2" r="3" fill="#1d1f3a"/>
+<circle cx="463.2" cy="129.0" r="3" fill="#1d1f3a"/>
+<circle cx="442.3" cy="21.9" r="3" fill="#1d1f3a"/>
+<circle cx="384.4" cy="116.5" r="3" fill="#1d1f3a"/>
+<circle cx="492.6" cy="85.3" r="3" fill="#1d1f3a"/>
+<circle cx="390.3" cy="34.5" r="3" fill="#1d1f3a"/>
+<circle cx="432.0" cy="142.6" r="3" fill="#1d1f3a"/>
+<circle cx="474.9" cy="33.2" r="3" fill="#1d1f3a"/>
+<circle cx="367.9" cy="85.6" r="3" fill="#1d1f3a"/>
+<circle cx="483.7" cy="119.7" r="3" fill="#1d1f3a"/>
+<circle cx="420.5" cy="15.0" r="3" fill="#1d1f3a"/>
+<text x="432" y="170" font-size="12" text-anchor="middle" fill="#1d1f3a">40 seeds, orange lines</text>
+</svg>
+<figcaption>Turn 137.5°, anticlockwise. Seed 4 is 2 units from the centre and seed 9 is 3 (distance \(\times\) distance = seed number). Blue lines join each seed to the seed 8 later, orange lines to the seed 13 later.</figcaption>
+</figure>
+<p>No two of the ten point the same way. Seed 8 is only 20° from the start line. In the same way, every seed is 20° on from the seed 8 before it. Those near misses are what your eye joins into spiral arms.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Look at the two pictures with 40 seeds. (a) How many separate blue lines are there? How many orange? (b) Find both counts in the Fibonacci list. Are they neighbours? (c) Write the next three numbers of the list after 89.<div class="space short"></div></li>
+<li>Change the turn to 90°. (a) Write the directions of seeds 1 to 8. How many different directions are there? (b) Do the same for 135°, only 2.5° away from the golden angle. Which seed is the first to land exactly on the start line? (c) What would these two heads look like, and why is that a poor way to pack seeds?<div class="space short"></div></li>
+<li>Back to 137.5°. (a) Find the directions of seed 13 and seed 21. (b) How far is each of seeds 8, 13 and 21 from the start line, going the shorter way round? (c) What do you notice about 8, 13 and 21?<div class="space short"></div></li>
+<li>(a) Work out \(21 \div 13\), \(34 \div 21\) and \(55 \div 34\) to 3 decimal places. (b) They close in on a number called the golden ratio, about 1.618. Work out \(360 \div 1.618\) to 1 decimal place, then take your answer away from 360. What do you get?<div class="space short"></div></li>
+<li>Jo counts spirals on three plants (made-up counts, but all three kinds turn up on real plants). Pinecone: 8 and 13. Daisy: 21 and 34. Another flower head: 18 and 29. (a) Which pairs are Fibonacci neighbours? (b) The list 1, 3, 4, 7, 11, ... uses the same rule as the Fibonacci list. Write it out as far as 47. (c) Jo says, "So the golden angle model is wrong." Is that fair?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: why 137.5° is not quite right</h2>
+<p>(a) Write \(137.5 \div 360\) as a fraction in lowest terms. (Double the top and bottom first.) (b) With a turn of exactly 137.5°, which seed is the first to land exactly on the start line? (c) What do you notice about the two numbers in your fraction? (d) The golden angle is really 137.5077...°, and it is not a whole-number fraction of a full turn. What does that tell you about seeds landing on the start line?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) <b>8</b> blue lines and <b>13</b> orange lines. Seeds 1 to 8 each start a blue line, and seeds 1 to 13 each start an orange one. The two sets curve opposite ways. (b) Yes: 8 and 13 are next to each other in the list. (c) \(55 + 89 = 144\), \(89 + 144 = 233\), \(144 + 233 = 377\). A head with more seeds shows bigger pairs further out, such as 21 and 34.</li>
+<li>(a) 90, 180, 270, 0, 90, 180, 270, 0. Only <b>4</b> directions, and seed 4 is the first on the start line. (b) 135, 270, 45, 180, 315, 90, 225, 0. (Seed 3 is \(405 - 360 = 45\), and seed 8 is \(1080 - 3 \times 360 = 0\).) <b>8</b> directions, and <b>seed 8</b> is the first on the start line. After that the directions repeat: seed 9 points the same way as seed 1. (c) The seeds line up in straight spokes: 4 spokes like a cross, or 8 spokes 45° apart. Seeds are jammed together along each spoke, and the gaps between the spokes, which widen towards the edge, are wasted. A change of only 2.5° turns spirals into spokes.</li>
+<li>(a) Seed 13: \(13 \times 137.5 = 1787.5\), and \(1787.5 - 4 \times 360 = 347.5^\circ\). Seed 21: \(21 \times 137.5 = 2887.5\), and \(2887.5 - 8 \times 360 = 7.5^\circ\). (b) Seed 8: 20°. Seed 13: \(360 - 347.5 = 12.5^\circ\), on the other side of the line. Seed 21: 7.5°. (c) 8, 13 and 21 are Fibonacci numbers, and each one lands closer than the last, on alternate sides. Of seeds 1 to 21, these three come closest to the start line. This is where the arm counts 8, 13 and 21 come from, and why the 8 arms and the 13 arms curve opposite ways.</li>
+<li>(a) \(21 \div 13 = 1.615\), \(34 \div 21 = 1.619\), \(55 \div 34 = 1.618\). (b) \(360 \div 1.618 = 222.5\), and \(360 - 222.5 = 137.5\). That is the golden angle. The Fibonacci numbers and the golden angle both come from the golden ratio, so it is less of a surprise that they turn up together.</li>
+<li>(a) 8 and 13, and 21 and 34. Not 18 and 29. (b) 1, 3, 4, 7, 11, 18, 29, 47. So 18 and 29 are neighbours in this second list. (c) <b>Not fair.</b> A model is not right or wrong for every plant at once. The golden angle model fits many plants and not this one. In the model, a different turn, about 99.5°, gives spiral counts from the second list. Counting real plants is how you find out which rule fits which plant.</li>
+</ol>
+<p><b>Stretch.</b> (a) \(\frac{137.5}{360} = \frac{275}{720} = \frac{55}{144}\), dividing top and bottom by 5. (b) <b>Seed 144.</b> Each seed adds \(\frac{55}{144}\) of a full turn, so seed \(n\) has turned \(\frac{55 \times n}{144}\) full turns. That is a whole number only when 144 divides \(n\), because 55 and 144 share no factor bigger than 1. Check: \(144 \times 137.5 = 19\,800 = 55 \times 360\). (c) 55 and 144 are both Fibonacci numbers. (d) With exactly 137.5°, seed 145 points the same way as seed 1, and every seed lies on one of 144 straight lines from the centre. With the true golden angle, no seed ever lands exactly on the start line, and no two seeds ever point exactly the same way. Mathematicians have also shown that the golden angle is, in a precise sense, the turn that is hardest to match closely with a fraction, so its seeds never settle into spokes.</p>
+</section>
+
+<div class="sheet-nav"><a href="c21-spoon-and-wing.html">← Previous</a><a href="../index.html#sheets">← All sheets</a></div>
+</main>
+
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

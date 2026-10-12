@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Functions that turn adding into multiplying · Math Detours</title>
+<meta name="description" content="A function obeys f(x + y) = f(x) f(y) and f(1) = 2. From that rule alone, work out its value at whole numbers, negatives and fractions, and see why steady growth follows the same rule.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
+  <a href="../index.html">Grade 10</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Math Detours · Grade 10 · Around the corner · 32</div>
+  <h1>Functions that turn adding into multiplying</h1>
+  <p class="teaser">A function obeys f(x + y) = f(x) f(y) and f(1) = 2. Knowing only that rule, you can work out f(3), f(0), f(−1) and even f(1/2).</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Here is a model. Something grows steadily: savings, or a colony of bacteria. Let \(G(t)\) be the factor it is multiplied by over \(t\) years. Growing for \(s\) years and then for \(t\) more is the same as growing for \(s + t\) years, so</p>
+<p class="callout">\(G(s + t) = G(s)\,G(t)\): adding the times multiplies the factors.</p>
+<p>Nobody gave you a formula for \(G\). You were given a rule it obeys. That is a <b>functional equation</b>: an equation whose unknown is a whole function, not a number. Your job: squeeze out everything the rule forces, and notice what it does not force.</p>
+<p>The same rule runs things bigger than numbers. Turning the plane by angle \(s\) and then by angle \(t\) is one turn by \(s + t\), so the rotation <a href="b14-matrices-transformations.html">matrices</a> obey \(R(s + t) = R(s)\,R(t)\). A family of actions, one for each length of time, where doing \(s\) and then \(t\) equals doing \(s + t\), is called a <b>one-parameter semigroup</b>. It is how mathematicians describe a system that evolves steadily in time.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: \(f(x + y) = f(x)\,f(y)\) and \(f(1) = 2\)</h2>
+<p>Suppose \(f\) is defined for every real number, and the rule holds for all real \(x\) and \(y\). You may choose any \(x\) and \(y\) you like.</p>
+<p><b>Whole numbers.</b> Take \(x = y = 1\): \(f(2) = f(1)\,f(1) = 4\). Take \(x = 2\), \(y = 1\): \(f(3) = f(2)\,f(1) = 8\).</p>
+<p><b>Zero.</b> Take \(x = 1\), \(y = 0\): \(f(1) = f(1)\,f(0)\), that is \(2 = 2 f(0)\), so \(f(0) = 1\). Dividing by \(f(1)\) was allowed only because \(f(1) = 2\) is not zero. The function that is 0 everywhere also obeys the rule, and for it \(f(0) = 0\).</p>
+<p><b>Negatives.</b> Take \(x = 1\), \(y = -1\): \(f(0) = f(1)\,f(-1)\), that is \(1 = 2 f(-1)\), so \(f(-1) = \tfrac12\).</p>
+<p>So far \(f\) agrees with \(2^x\) at \(x = -1, 0, 1, 2, 3\), and you never used a formula.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Keep the \(f\) from the example. (a) Use \(f(x)\,f(-x) = f(0)\) to explain why \(f(x)\) is never 0. (b) Write \(x = \tfrac{x}{2} + \tfrac{x}{2}\) and explain why \(f(x)\) is never negative. (c) Now find \(f\!\left(\tfrac12\right)\), and say where you needed (a) and (b).<div class="space"></div></li>
+<li>A different rule: \(g(x + y) = g(x) + g(y)\) for all real \(x\) and \(y\), and \(g(1) = 3\). Find \(g(2)\), \(g(0)\), \(g(-1)\) and \(g\!\left(\tfrac13\right)\).<div class="space"></div></li>
+<li>A third rule: \(h(xy) = h(x) + h(y)\) for all positive \(x\) and \(y\). (a) Show that \(h(1) = 0\). (b) Show that \(h(8) = 3h(2)\). (c) If you are also told \(h(2) = 1\), find \(h(8)\), \(h\!\left(\tfrac12\right)\) and \(h(\sqrt2)\).<div class="space"></div></li>
+<li>A made-up savings account doubles your money every year and grows steadily in between. As a model, its growth factor obeys \(G(s + t) = G(s)\,G(t)\) with \(G(1) = 2\). (a) A friend says half a year must multiply your money by 1.5. Use the rule to show that is wrong. (b) Find the true half-year factor, and what \(\$1000\) becomes after six months, to the nearest cent.<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: every fraction</h2>
+<p>Keep the \(f\) from the example. Let \(n\) be a positive whole number and \(m\) any whole number. Show that \(f\!\left(\tfrac1n\right) = 2^{1/n}\), the positive \(n\)th root of 2, and then that \(f\!\left(\tfrac mn\right) = 2^{m/n}\). Does your argument tell you \(f(\sqrt2)\)?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(f(x)\,f(-x) = f(x + (-x)) = f(0) = 1\). If \(f(x)\) were 0 the left side would be 0, not 1. (b) \(f(x) = f\!\left(\tfrac x2\right) f\!\left(\tfrac x2\right) = f\!\left(\tfrac x2\right)^2\), and the square of a real number is never negative. With (a), \(f(x) \gt 0\) for every \(x\). (c) \(f\!\left(\tfrac12\right)^2 = f(1) = 2\), so \(f\!\left(\tfrac12\right)\) is \(\sqrt2\) or \(-\sqrt2\). Because \(f\) is positive, \(f\!\left(\tfrac12\right) = \sqrt2 \approx 1.414\).</li>
+<li>\(g(2) = g(1) + g(1) = 6\). From \(g(1) = g(1) + g(0)\), \(g(0) = 0\). From \(g(0) = g(1) + g(-1)\), \(g(-1) = -3\). Adding three copies of \(\tfrac13\) gives \(g(1) = 3\,g\!\left(\tfrac13\right)\), so \(g\!\left(\tfrac13\right) = 1\). All four agree with \(g(x) = 3x\). This rule turns adding into adding.</li>
+<li>(a) Take \(x = y = 1\): \(h(1) = h(1) + h(1)\), so \(h(1) = 0\). (b) \(h(4) = h(2 \cdot 2) = 2h(2)\), then \(h(8) = h(4 \cdot 2) = h(4) + h(2) = 3h(2)\). (c) \(h(8) = 3\). Since \(h(2) + h\!\left(\tfrac12\right) = h(1) = 0\), \(h\!\left(\tfrac12\right) = -1\). Since \(h(\sqrt2) + h(\sqrt2) = h(2) = 1\), \(h(\sqrt2) = \tfrac12\). This rule turns multiplying into adding. It is the rule of <a href="a5-logs.html">logarithms</a>, and these values match \(\log_2\).</li>
+<li>(a) Two half-years make one year, so \(G\!\left(\tfrac12\right)^2 = G(1) = 2\). But \(1.5^2 = 2.25\), which is more than doubling. (b) A growth factor is positive, so \(G\!\left(\tfrac12\right) = \sqrt2 \approx 1.4142\), and \(\$1000\) becomes about \(\$1414.21\). The growth is about 41.4% in each half-year, not 50%.</li>
+</ol>
+<p><b>Stretch.</b> Adding \(n\) copies of \(\tfrac1n\) and using the rule \(n - 1\) times gives \(f\!\left(\tfrac1n\right)^n = f(1) = 2\). By exercise 1, \(f\!\left(\tfrac1n\right)\) is positive, so it is the positive \(n\)th root, \(2^{1/n}\). For \(m \gt 0\), adding \(m\) copies of \(\tfrac1n\) gives \(f\!\left(\tfrac mn\right) = \left(2^{1/n}\right)^m = 2^{m/n}\). For \(m = 0\), \(f(0) = 1 = 2^0\). For \(m \lt 0\), \(f\!\left(\tfrac mn\right) f\!\left(-\tfrac mn\right) = 1\), so \(f\!\left(\tfrac mn\right) = 1 / 2^{-m/n} = 2^{m/n}\). It does not tell you \(f(\sqrt2)\): these steps only ever reach fractions, and \(\sqrt2\) is not one. If you also know that \(f\) is continuous (its graph has no jumps), then \(f(x) = 2^x\) for every real \(x\). Without some extra condition like that, it is known that wild solutions exist: they equal \(2^x\) at every fraction but not at every real number.</p>
+</section>
+
+<div class="sheet-nav"><a href="b31-lights-out.html">← Previous</a><a href="b33-cantor-set.html">Next: Remove everything, keep a lot →</a></div>
+</main>
+
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

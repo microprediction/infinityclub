@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A bump that slides · Math Detours</title>
+<meta name="description" content="Replace x by x − vt and a shape slides along without changing. Follow sand on a conveyor belt along straight lines called characteristics, watch a bump on a string split into two half-size bumps, and see a front steepen when tall parts move faster.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
+  <a href="../index.html">Grade 10</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Math Detours · Grade 10 · Connections · 17</div>
+  <h1>A bump that slides</h1>
+  <p class="teaser">Draw a bump, then replace x by x − t. As t grows, the whole bump slides right without changing shape. The same trick follows sand on a conveyor belt and a wave on a string.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Sand lies in a pile on a conveyor belt. At the start, its height at position \(x\) is \(f(x)\). The belt runs right at a steady speed \(v\). What is the height at position \(x\) at time \(t\)?</p>
+<p>A grain that started at \(x_0\) is now at \(x = x_0 + vt\). So the sand you see at \(x\) started at \(x - vt\), and it brought its height along.</p>
+<p class="callout">The height at position \(x\) and time \(t\) is \(f(x - vt)\): the shape \(f\), unchanged, moved a distance \(vt\). With \(v \gt 0\) it moves right. To move it left, write \(f(x + vt)\).</p>
+<p>Plot a grain's path with \(x\) across and \(t\) up. It is the straight line \(x - vt = x_0\), called a characteristic. The height is carried along it, unchanged.</p>
+<p>The belt obeys a rule about rates: at each place, the height changes at \(-v\) times the slope of the pile there. That is a first-order partial differential equation. Following characteristics solves it.</p>
+<p>This is a model: a steady belt, and sand that never slumps or spills.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: three snapshots of one bump</h2>
+<figure style="float:right;width:278px;margin:0 0 .3em .8em"><svg viewBox="0 0 278 122" width="278" height="122" role="img" aria-label="Three copies of one bell-shaped bump drawn over an x-axis marked from −2 to 4. The dashed grey copy, labelled t = 0, has its peak at x = 0. The blue copy, labelled t = 1, has its peak at x = 1. The orange copy, labelled t = 2, has its peak at x = 2. All three have the same height and width. A dashed vertical line at x = 2 crosses the three curves at dots marked 1/5, 1/2 and 1.">
+<line x1="8" y1="102" x2="271" y2="102" stroke="#1d1f3a" stroke-width="1.2"/>
+<line x1="174" y1="102" x2="174" y2="22" stroke="#999" stroke-width="1.2" stroke-dasharray="4 3"/>
+<polyline points="8.0,91.7 9.8,91.3 11.6,91.0 13.4,90.6 15.2,90.2 17.0,89.7 18.8,89.3 20.6,88.8 22.4,88.3 24.2,87.8 26.0,87.2 27.8,86.6 29.6,86.0 31.4,85.3 33.2,84.6 35.0,83.9 36.8,83.1 38.6,82.3 40.4,81.4 42.2,80.5 44.0,79.5 45.8,78.5 47.6,77.4 49.4,76.2 51.2,75.0 53.0,73.7 54.8,72.3 56.6,70.8 58.4,69.2 60.2,67.6 62.0,65.8 63.8,64.0 65.6,62.0 67.4,60.0 69.2,57.8 71.0,55.6 72.8,53.2 74.6,50.8 76.4,48.3 78.2,45.8 80.0,43.2 81.8,40.6 83.6,38.0 85.4,35.5 87.2,33.0 89.0,30.7 90.8,28.6 92.6,26.7 94.4,25.1 96.2,23.8 98.0,22.8 99.8,22.2 101.6,22.0 103.4,22.2 105.2,22.8 107.0,23.8 108.8,25.1 110.6,26.7 112.4,28.6 114.2,30.7 116.0,33.0 117.8,35.5 119.6,38.0 121.4,40.6 123.2,43.2 125.0,45.8 126.8,48.3 128.6,50.8 130.4,53.2 132.2,55.6 134.0,57.8 135.8,60.0 137.6,62.0 139.4,64.0 141.2,65.8 143.0,67.6 144.8,69.2 146.6,70.8 148.4,72.3 150.2,73.7 152.0,75.0 153.8,76.2 155.6,77.4 157.4,78.5 159.2,79.5 161.0,80.5 162.8,81.4 164.6,82.3 166.4,83.1 168.2,83.9 170.0,84.6 171.8,85.3 173.6,86.0 175.4,86.6 177.2,87.2 179.0,87.8 180.8,88.3 182.6,88.8 184.4,89.3 186.2,89.7 188.0,90.2 189.8,90.6 191.6,91.0 193.4,91.3 195.2,91.7 197.0,92.0 198.8,92.3 200.6,92.7 202.4,93.0 204.2,93.2 206.0,93.5 207.8,93.8 209.6,94.0 211.4,94.2 213.2,94.5 215.0,94.7 216.8,94.9 218.6,95.1 220.4,95.3 222.2,95.5 224.0,95.6 225.8,95.8 227.6,96.0 229.4,96.1 231.2,96.3 233.0,96.4 234.8,96.6 236.6,96.7 238.4,96.8 240.2,96.9 242.0,97.1 243.8,97.2 245.6,97.3 247.4,97.4 249.2,97.5 251.0,97.6 252.8,97.7 254.6,97.8 256.4,97.9 258.2,98.0 260.0,98.1 261.8,98.2 263.6,98.2 265.4,98.3 267.2,98.4 269.0,98.5 270.8,98.5" fill="none" stroke="#555" stroke-width="1.8" stroke-dasharray="6 3"/>
+<polyline points="8.0,96.3 9.8,96.1 11.6,96.0 13.4,95.8 15.2,95.6 17.0,95.5 18.8,95.3 20.6,95.1 22.4,94.9 24.2,94.7 26.0,94.5 27.8,94.2 29.6,94.0 31.4,93.8 33.2,93.5 35.0,93.2 36.8,93.0 38.6,92.7 40.4,92.3 42.2,92.0 44.0,91.7 45.8,91.3 47.6,91.0 49.4,90.6 51.2,90.2 53.0,89.7 54.8,89.3 56.6,88.8 58.4,88.3 60.2,87.8 62.0,87.2 63.8,86.6 65.6,86.0 67.4,85.3 69.2,84.6 71.0,83.9 72.8,83.1 74.6,82.3 76.4,81.4 78.2,80.5 80.0,79.5 81.8,78.5 83.6,77.4 85.4,76.2 87.2,75.0 89.0,73.7 90.8,72.3 92.6,70.8 94.4,69.2 96.2,67.6 98.0,65.8 99.8,64.0 101.6,62.0 103.4,60.0 105.2,57.8 107.0,55.6 108.8,53.2 110.6,50.8 112.4,48.3 114.2,45.8 116.0,43.2 117.8,40.6 119.6,38.0 121.4,35.5 123.2,33.0 125.0,30.7 126.8,28.6 128.6,26.7 130.4,25.1 132.2,23.8 134.0,22.8 135.8,22.2 137.6,22.0 139.4,22.2 141.2,22.8 143.0,23.8 144.8,25.1 146.6,26.7 148.4,28.6 150.2,30.7 152.0,33.0 153.8,35.5 155.6,38.0 157.4,40.6 159.2,43.2 161.0,45.8 162.8,48.3 164.6,50.8 166.4,53.2 168.2,55.6 170.0,57.8 171.8,60.0 173.6,62.0 175.4,64.0 177.2,65.8 179.0,67.6 180.8,69.2 182.6,70.8 184.4,72.3 186.2,73.7 188.0,75.0 189.8,76.2 191.6,77.4 193.4,78.5 195.2,79.5 197.0,80.5 198.8,81.4 200.6,82.3 202.4,83.1 204.2,83.9 206.0,84.6 207.8,85.3 209.6,86.0 211.4,86.6 213.2,87.2 215.0,87.8 216.8,88.3 218.6,88.8 220.4,89.3 222.2,89.7 224.0,90.2 225.8,90.6 227.6,91.0 229.4,91.3 231.2,91.7 233.0,92.0 234.8,92.3 236.6,92.7 238.4,93.0 240.2,93.2 242.0,93.5 243.8,93.8 245.6,94.0 247.4,94.2 249.2,94.5 251.0,94.7 252.8,94.9 254.6,95.1 256.4,95.3 258.2,95.5 260.0,95.6 261.8,95.8 263.6,96.0 265.4,96.1 267.2,96.3 269.0,96.4 270.8,96.6" fill="none" stroke="#3f44c9" stroke-width="2"/>
+<polyline points="8.0,98.4 9.8,98.3 11.6,98.2 13.4,98.2 15.2,98.1 17.0,98.0 18.8,97.9 20.6,97.8 22.4,97.7 24.2,97.6 26.0,97.5 27.8,97.4 29.6,97.3 31.4,97.2 33.2,97.1 35.0,96.9 36.8,96.8 38.6,96.7 40.4,96.6 42.2,96.4 44.0,96.3 45.8,96.1 47.6,96.0 49.4,95.8 51.2,95.6 53.0,95.5 54.8,95.3 56.6,95.1 58.4,94.9 60.2,94.7 62.0,94.5 63.8,94.2 65.6,94.0 67.4,93.8 69.2,93.5 71.0,93.2 72.8,93.0 74.6,92.7 76.4,92.3 78.2,92.0 80.0,91.7 81.8,91.3 83.6,91.0 85.4,90.6 87.2,90.2 89.0,89.7 90.8,89.3 92.6,88.8 94.4,88.3 96.2,87.8 98.0,87.2 99.8,86.6 101.6,86.0 103.4,85.3 105.2,84.6 107.0,83.9 108.8,83.1 110.6,82.3 112.4,81.4 114.2,80.5 116.0,79.5 117.8,78.5 119.6,77.4 121.4,76.2 123.2,75.0 125.0,73.7 126.8,72.3 128.6,70.8 130.4,69.2 132.2,67.6 134.0,65.8 135.8,64.0 137.6,62.0 139.4,60.0 141.2,57.8 143.0,55.6 144.8,53.2 146.6,50.8 148.4,48.3 150.2,45.8 152.0,43.2 153.8,40.6 155.6,38.0 157.4,35.5 159.2,33.0 161.0,30.7 162.8,28.6 164.6,26.7 166.4,25.1 168.2,23.8 170.0,22.8 171.8,22.2 173.6,22.0 175.4,22.2 177.2,22.8 179.0,23.8 180.8,25.1 182.6,26.7 184.4,28.6 186.2,30.7 188.0,33.0 189.8,35.5 191.6,38.0 193.4,40.6 195.2,43.2 197.0,45.8 198.8,48.3 200.6,50.8 202.4,53.2 204.2,55.6 206.0,57.8 207.8,60.0 209.6,62.0 211.4,64.0 213.2,65.8 215.0,67.6 216.8,69.2 218.6,70.8 220.4,72.3 222.2,73.7 224.0,75.0 225.8,76.2 227.6,77.4 229.4,78.5 231.2,79.5 233.0,80.5 234.8,81.4 236.6,82.3 238.4,83.1 240.2,83.9 242.0,84.6 243.8,85.3 245.6,86.0 247.4,86.6 249.2,87.2 251.0,87.8 252.8,88.3 254.6,88.8 256.4,89.3 258.2,89.7 260.0,90.2 261.8,90.6 263.6,91.0 265.4,91.3 267.2,91.7 269.0,92.0 270.8,92.3" fill="none" stroke="#f5a524" stroke-width="2.5"/>
+<circle cx="174" cy="86.0" r="3.5" fill="#1d1f3a"/>
+<circle cx="174" cy="62.0" r="3.5" fill="#1d1f3a"/>
+<circle cx="174" cy="22.0" r="3.5" fill="#1d1f3a"/>
+<g stroke="#1d1f3a" stroke-width="1.2">
+<line x1="30" y1="102" x2="30" y2="106"/>
+<line x1="66" y1="102" x2="66" y2="106"/>
+<line x1="102" y1="102" x2="102" y2="106"/>
+<line x1="138" y1="102" x2="138" y2="106"/>
+<line x1="174" y1="102" x2="174" y2="106"/>
+<line x1="210" y1="102" x2="210" y2="106"/>
+<line x1="246" y1="102" x2="246" y2="106"/>
+</g>
+<g font-family="Nunito, sans-serif" font-size="12" fill="#1d1f3a">
+<text x="30" y="119" text-anchor="middle" fill="#555">−2</text>
+<text x="66" y="119" text-anchor="middle" fill="#555">−1</text>
+<text x="102" y="119" text-anchor="middle" fill="#555">0</text>
+<text x="138" y="119" text-anchor="middle" fill="#555">1</text>
+<text x="174" y="119" text-anchor="middle" fill="#555">2</text>
+<text x="210" y="119" text-anchor="middle" fill="#555">3</text>
+<text x="246" y="119" text-anchor="middle" fill="#555">4</text>
+<text x="265" y="119" text-anchor="middle" font-weight="700">x</text>
+<text x="102" y="15" text-anchor="middle" font-size="11" font-weight="700" fill="#555">t = 0</text>
+<text x="138" y="15" text-anchor="middle" font-size="11" font-weight="700" fill="#3f44c9">t = 1</text>
+<text x="174" y="15" text-anchor="middle" font-size="11" font-weight="700" fill="#1d1f3a">t = 2</text>
+<text x="181" y="84" text-anchor="start" font-size="11" paint-order="stroke" stroke="#fff" stroke-width="3" stroke-linejoin="round">1/5</text>
+<text x="181" y="60" text-anchor="start" font-size="11" paint-order="stroke" stroke="#fff" stroke-width="3" stroke-linejoin="round">1/2</text>
+<text x="194" y="24" text-anchor="start" font-size="11" paint-order="stroke" stroke="#fff" stroke-width="3" stroke-linejoin="round">1</text>
+</g>
+</svg><figcaption style="text-align:left;font-size:.8rem">One bump at \(t = 0\) (dashed), \(t = 1\) and \(t = 2\). The dots are the heights you see at \(x = 2\).</figcaption></figure>
+<p>Take \(f(x) = \dfrac{1}{1 + x^2}\) and \(v = 1\). The height at position \(x\) and time \(t\) is \(f(x - t) = \dfrac{1}{1 + (x - t)^2}\).</p>
+<p><b>Peak.</b> The fraction is biggest when \((x - t)^2 = 0\), so the peak is at \(x = t\): at 0, then 1, then 2. Its height is 1 every time. Subtracting \(t\) moves the bump right, because \(x\) now has to be bigger to give the same height.</p>
+<p><b>Width.</b> The height is \(\frac{1}{2}\) when \((x - t)^2 = 1\), so at \(x = t - 1\) and \(x = t + 1\). At half height the bump is 2 wide at every time. Nothing about the shape changes.</p>
+<p><b>Stand still.</b> At \(x = 2\) you see \(\frac{1}{1 + 4} = \frac{1}{5}\) at \(t = 0\), then \(\frac{1}{1 + 1} = \frac{1}{2}\) at \(t = 1\), then 1 at \(t = 2\) as the peak passes. After that the heights come back down in reverse order: \(\frac{1}{2}\) at \(t = 3\) and \(\frac{1}{5}\) at \(t = 4\).</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Keep \(f(x) = \frac{1}{1 + x^2}\). A bump has height \(f(x - 3t)\). (a) How fast is it moving, and which way? (b) Where is its peak at \(t = 2\)? (c) What is the height at \(x = 5\) at \(t = 2\)? (d) At which two times is the height at \(x = 9\) equal to \(\frac{1}{2}\)?<div class="space short"></div></li>
+<li>(a) Write a formula for the same bump moving left at speed 2, starting with its peak at \(x = 0\). (b) Where is its peak at \(t = 3\)? (c) Another bump has height \(f(x + 2t - 9)\). Where is its peak at \(t = 0\), and which way does it move? (d) When and where does its peak meet the peak of \(f(x - t)\)?<div class="space short"></div></li>
+<li>A belt runs right at 1.5 m each second. At \(t = 0\) the peak of a pile is at \(x = 2\) m. (a) Where is the peak after 3 s? (b) On spare paper, draw axes with \(x\) across (0 to 12) and \(t\) up (0 to 6). Draw the characteristics of the grains that start at \(x_0 = 0, 1, 2\) and \(3\). What do you notice about the four lines? (c) Which starting point \(x_0\) has its characteristic through \(x = 8\), \(t = 4\)? What does that tell you about the height there? (d) The belt ends at \(x = 11\) m. When does the peak fall off?<div class="space short"></div></li>
+<li>Press a very long string into the same shape \(f\) and let go from rest. In the ideal-string model with wave speed 1, its height at time \(t\) is \(w = \frac{1}{2}f(x - t) + \frac{1}{2}f(x + t)\). (a) Show that \(w = f(x)\) when \(t = 0\). (b) At \(t = 10\), find \(w\) at \(x = 10\), \(x = -10\) and \(x = 0\). Describe the string. (c) Show that the height at \(x = 0\) is \(\frac{1}{1 + t^2}\). When is it \(\frac{1}{10}\)? (d) At \(t = 0.5\), find \(w\) at \(x = 0\) and at \(x = 0.5\). Has the bump split yet?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: when the tall parts go faster</h2>
+<p>In shallow water, the taller parts of a wave travel faster. Here is a toy model: each point of a shape moves right at a speed equal to its own height \(h\), so a point that starts at \(x_0\) is at \(x_0 + ht\) at time \(t\). Start with a tent: height \(1 - x\) for \(0 \le x \le 1\), \(1 + x\) for \(-1 \le x \le 0\), and 0 elsewhere. (a) Where are the peak and the two feet at \(t = 0.5\)? (b) The sides stay straight. How steep are the front and the back at \(t = 0.5\)? (c) Write the characteristics of the points that start at \(x_0 = 0\), \(0.5\) and \(1\). Where do they meet, and what does the front look like then? (d) What heights does the rule give at \(x = 1.5\) when \(t = 2\)? Why is that a problem?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) Here \(vt = 3t\), so \(v = 3\): right at speed 3. (b) The peak is where \(x - 3t = 0\), so at \(x = 6\). (c) \(f(5 - 6) = f(-1) = \frac{1}{2}\). (d) The height is \(\frac{1}{2}\) when \(9 - 3t = 1\) or \(9 - 3t = -1\), so at \(t = \frac{8}{3}\) and \(t = \frac{10}{3}\). The peak passes \(x = 9\) halfway between, at \(t = 3\).</li>
+<li>(a) \(f(x + 2t) = \dfrac{1}{1 + (x + 2t)^2}\). At \(t = 0\) this is \(f(x)\), with its peak at 0. (b) Where \(x + 6 = 0\), so at \(x = -6\). (c) The peak is where \(x + 2t - 9 = 0\), so at \(x = 9 - 2t\). It starts at \(x = 9\) and moves left at speed 2. (d) The peak of \(f(x - t)\) is at \(x = t\). They meet when \(t = 9 - 2t\), so at \(t = 3\) and \(x = 3\).</li>
+<li>(a) It moves \(1.5 \times 3 = 4.5\) m, so it is at \(x = 6.5\) m. (b) The lines are \(x = x_0 + 1.5t\). Each starts on the \(x\)-axis at \(x_0\) and moves 1.5 across for each 1 up, so at \(t = 6\) they reach \(x = 9, 10, 11\) and \(12\). They are straight and parallel, and they never cross: the grains keep their order and their spacing. (c) \(x_0 = 8 - 1.5 \times 4 = 2\). That is where the peak started, so at \(t = 4\) the peak is at \(x = 8\). (d) \(2 + 1.5t = 11\) gives \(t = 6\) s.</li>
+<li>(a) At \(t = 0\) both terms are \(\frac{1}{2}f(x)\), and two halves of \(f(x)\) make \(f(x)\). (b) At \(x = 10\): \(\frac{1}{2}f(0) + \frac{1}{2}f(20) = \frac{1}{2}\left(1 + \frac{1}{401}\right) = \frac{201}{401} \approx 0.501\). At \(x = -10\) the two terms swap, so it is the same. At \(x = 0\): \(\frac{1}{2}f(-10) + \frac{1}{2}f(10) = \frac{1}{101} \approx 0.0099\). The string has two bumps, each about half as tall as the first one, near \(x = 10\) and \(x = -10\), with almost nothing between. (c) At \(x = 0\), \(w = \frac{1}{2}f(-t) + \frac{1}{2}f(t)\). Because of the square, \(f(-t) = f(t)\), so \(w = f(t) = \frac{1}{1 + t^2}\). It is \(\frac{1}{10}\) when \(t^2 = 9\), so at \(t = 3\) (taking \(t \ge 0\)). (d) At \(x = 0\): \(w = f(0.5) = \frac{1}{1.25} = 0.8\). At \(x = 0.5\): \(\frac{1}{2}f(0) + \frac{1}{2}f(1) = 0.5 + 0.25 = 0.75\). The middle is still the highest point, so there is still one hump. The two halves overlap at first. For this \(f\), a dip appears in the middle only after \(t = \frac{1}{\sqrt 3} \approx 0.58\). This formula for a string is named after d'Alembert.</li>
+</ol>
+<p><b>Stretch.</b> (a) The peak has height 1, so it is at \(0 + 1 \times 0.5 = 0.5\). The feet have height 0, so they stay at \(-1\) and \(1\). (b) The front drops 1 between \(x = 0.5\) and \(x = 1\), so its slope is \(-2\). The back rises 1 between \(x = -1\) and \(x = 0.5\), so its slope is \(\frac{2}{3}\). At the start they were \(-1\) and \(1\): the front has steepened and the back has flattened. (c) The heights are 1, 0.5 and 0, so the lines are \(x = t\), \(x = 0.5 + 0.5t\) and \(x = 1\). All three pass through \(x = 1\) at \(t = 1\). So does every other point of the front, since \(x_0 + (1 - x_0)t = 1\) when \(t = 1\). At that moment the front is a vertical cliff. These characteristics are still straight, but they are no longer parallel, so they can cross. (d) Three heights. From the front, \(x_0 + 2(1 - x_0) = 1.5\) gives \(x_0 = 0.5\) and height \(\frac{1}{2}\). From the back, \(x_0 + 2(1 + x_0) = 1.5\) gives \(x_0 = -\frac{1}{6}\) and height \(\frac{5}{6}\). And the ground at \(x_0 = 1.5\) has height 0 and has not moved. A shape has only one height at each place, so the toy model has broken down at \(t = 1\). A real wave running up a beach steepens at the front in a similar way, and then it breaks. What happens next needs more physics than this sheet has.</p>
+</section>
+
+<div class="sheet-nav"><a href="c16-ray-diagrams.html">← Previous</a><a href="../index.html#sheets">← All sheets</a></div>
+</main>
+
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

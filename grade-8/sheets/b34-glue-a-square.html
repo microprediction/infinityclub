@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Glue a square four ways · Math Detours</title>
+<meta name="description" content="Glue the edges of a square by matching arrows to make a band, a Möbius strip, a torus or a Klein bottle. Read gluing diagrams, predict what cutting a Möbius strip gives, play noughts and crosses on a torus, and see why a Klein bottle must pass through itself.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Math Detours · Grade 8 · Around the corner · 34</div>
+  <h1>Glue a square four ways</h1>
+  <p class="teaser">Take a square and glue its edges. Depending on the arrows, you get a tube, a Möbius strip, a doughnut, or a Klein bottle, which cannot be built in our space without passing through itself.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Draw an arrow on the left edge of a paper square and another on the right edge. Glue those edges so that the arrows line up. If both arrows point up, you get a <b>band</b>, a short tube. If one points down, the paper needs a half-twist first, and you get a <b>Möbius strip</b>, the one-sided loop from <a href="../../grade-6/sheets/b20-mobius.html">grade 6</a>.</p>
+<p>Cover all but a small patch of each and you cannot tell them apart: both patches are a row of short upright lines side by side. The difference only shows on a trip all the way round. On the Möbius strip an upright line comes back upside down.</p>
+<p class="callout">Gluing edges makes new spaces from old ones. Two spaces can match in every small patch and still differ as a whole, because one is twisted overall.</p>
+<p>Mathematicians call each a <b>bundle</b> of short lines around a loop. The Möbius strip is the simplest twisted one. Glue the top and bottom edges as well and no edge is left: you get a <b>torus</b> or a <b>Klein bottle</b>.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: four gluing diagrams</h2>
+<figure><svg viewBox="0 0 520 120" width="480" height="111" role="img" aria-label="Four squares in a row. In square A the left and right edges each carry one blue arrow pointing up, and the top and bottom edges are plain grey. In square B the left arrow points up and the right arrow points down, and the top and bottom edges are plain grey. Square C has the arrows of square A, and its top and bottom edges each carry an orange double arrow pointing right. Square D has the arrows of square B, and its top and bottom edges each carry an orange double arrow pointing right. The labels read A: band, B: Möbius strip, C: torus, D: Klein bottle." font-family="Nunito, sans-serif" font-size="13">
+<rect x="28" y="12" width="74" height="74" fill="#fff" stroke="none"/>
+<g stroke="#999" stroke-width="1.4"><line x1="28" y1="12" x2="102" y2="12"/><line x1="28" y1="86" x2="102" y2="86"/></g>
+<g stroke="#3f44c9" stroke-width="2.6" fill="none"><line x1="28" y1="12" x2="28" y2="86"/><line x1="102" y1="12" x2="102" y2="86"/><polyline points="22,54 28,44 34,54"/><polyline points="96,54 102,44 108,54"/></g>
+<text x="65" y="110" text-anchor="middle" font-weight="700" fill="#1d1f3a">A: band</text>
+<rect x="158" y="12" width="74" height="74" fill="#fff" stroke="none"/>
+<g stroke="#999" stroke-width="1.4"><line x1="158" y1="12" x2="232" y2="12"/><line x1="158" y1="86" x2="232" y2="86"/></g>
+<g stroke="#3f44c9" stroke-width="2.6" fill="none"><line x1="158" y1="12" x2="158" y2="86"/><line x1="232" y1="12" x2="232" y2="86"/><polyline points="152,54 158,44 164,54"/><polyline points="226,44 232,54 238,44"/></g>
+<text x="195" y="110" text-anchor="middle" font-weight="700" fill="#1d1f3a">B: Möbius strip</text>
+<rect x="288" y="12" width="74" height="74" fill="#fff" stroke="none"/>
+<g stroke="#f5a524" stroke-width="2.6" fill="none"><line x1="288" y1="12" x2="362" y2="12"/><line x1="288" y1="86" x2="362" y2="86"/><polyline points="315,6 325,12 315,18"/><polyline points="325,6 335,12 325,18"/><polyline points="315,80 325,86 315,92"/><polyline points="325,80 335,86 325,92"/></g>
+<g stroke="#3f44c9" stroke-width="2.6" fill="none"><line x1="288" y1="12" x2="288" y2="86"/><line x1="362" y1="12" x2="362" y2="86"/><polyline points="282,54 288,44 294,54"/><polyline points="356,54 362,44 368,54"/></g>
+<text x="325" y="110" text-anchor="middle" font-weight="700" fill="#1d1f3a">C: torus</text>
+<rect x="418" y="12" width="74" height="74" fill="#fff" stroke="none"/>
+<g stroke="#f5a524" stroke-width="2.6" fill="none"><line x1="418" y1="12" x2="492" y2="12"/><line x1="418" y1="86" x2="492" y2="86"/><polyline points="445,6 455,12 445,18"/><polyline points="455,6 465,12 455,18"/><polyline points="445,80 455,86 445,92"/><polyline points="455,80 465,86 455,92"/></g>
+<g stroke="#3f44c9" stroke-width="2.6" fill="none"><line x1="418" y1="12" x2="418" y2="86"/><line x1="492" y1="12" x2="492" y2="86"/><polyline points="412,54 418,44 424,54"/><polyline points="486,44 492,54 498,44"/></g>
+<text x="455" y="110" text-anchor="middle" font-weight="700" fill="#1d1f3a">D: Klein bottle</text>
+</svg><figcaption>Edges with matching arrows are glued so that the arrows line up. Grey edges stay free.</figcaption></figure>
+<p>Give the square side 6 and measure height from the bottom edge. An ant walks off the right edge at height 2. Where does it come back?</p>
+<p><b>A.</b> The arrows agree, so height \(h\) on the right is glued to height \(h\) on the left. The ant returns at height 2. The top edge closes into a loop of length 6, and so does the bottom: two edges. <b>B.</b> The arrows disagree, so height \(h\) is glued to height \(6 - h\). The ant returns at height 4, upside down. The right end of the top edge meets the left end of the bottom edge, so top and bottom join into one edge of length 12. <b>C.</b> Sides as in A, and the top is glued straight to the bottom. That makes a tube, then joins its ends: a doughnut surface. No edge is left, and all four corners become one point. <b>D.</b> Sides as in B, top and bottom as in C. Again no edge is left and the corners become one point.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Name what each diagram makes, and count its loops of free edge. (a) Left and right arrows both down, no others. (b) Top arrow pointing right, bottom arrow pointing left, no others. (c) Side arrows both down, with double arrows on the top and bottom both pointing left. (d) Side arrows both up, with a double arrow pointing right on the top and left on the bottom.<div class="space short"></div></li>
+<li>Cut a Möbius strip along its centre, on diagram B. (a) Scissors start on the left edge at height 3 and cut straight across. At what height do they come back in on the left? How long is the cut when it closes up? (b) The cut leaves a lower half and an upper half. Which half is the right edge of each glued to? How many pieces of paper are there, and how long and wide? (c) Flip the drawing of the upper half top to bottom and put it to the right of the lower half. Do the far ends of this long strip match straight or flipped? Is it a band or a Möbius strip?<div class="space short"></div></li>
+<li>Now start the cut at height 2, a third of the way in. (a) How many trips across the square before the cut closes up? How long is it? (b) The square is now in three strips. Which right edges are glued to which left edges? Give the length and width of each piece of paper. (c) Which piece is a Möbius strip and which is a band? Check that the areas add up to 36.<div class="space short"></div></li>
+<li>Play noughts and crosses on diagram C: a 3 × 3 board with columns a, b, c from the left and rows 1, 2, 3 from the bottom. A line of three may leave by one edge and come back by the opposite edge. So a3, b1, c2 is a line: stepping up and to the right from a3, you leave by the top and come back at the bottom in b1. (a) The ordinary board has 8 lines. Find the new ones. (b) How many lines pass through b2, through a1 and through b1 on the ordinary board? On the torus board? Why are all nine squares alike there? (c) X has a1 and b3, O has b2 and c3, and it is X's turn. Where does X win?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: no room for a Klein bottle</h2>
+<p>(a) In diagram D, what does the strip between heights 2 and 4 become when the sides are glued? (b) A surface with no edge that sits in space without passing through itself, like the skin of a ball or of a doughnut, has an inside and an outside. That is true, but hard to prove. Imagine painting the outward face red. Use (a) to explain why a Klein bottle cannot sit in space that way.</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) A band, with 2 loops. Only whether the arrows agree matters, so reversing both changes nothing. (b) A Möbius strip, with 1 loop: diagram B turned a quarter turn. (c) A torus, with no edge. (d) A Klein bottle, with no edge: one pair agrees and one disagrees, as in D. There is a fifth way. If both pairs disagree you get a surface called the projective plane, which also cannot be built in our space without passing through itself.</li>
+<li>(a) At height \(6 - 3 = 3\), where they started. The cut closes after one trip and has length 6. (b) Heights 0 to 3 on the right are glued to heights 6 to 3 on the left, so the lower half is glued to the upper half. Likewise the upper half is glued to the lower. The halves are joined at both ends: one piece, 12 long and 3 wide. (c) After the flip, the upper half's point at height \(h\) is drawn at height \(6 - h\), and that is the height it is glued to on the lower half. So the ends match straight and the diagram says a band. It has two edges of length 12: the old edge, and the cut counted along both its sides. Real paper gives a loop with two full twists. The diagram cannot show them, because a full twist glues every point to the same partner as no twist does.</li>
+<li>(a) The scissors leave at height 2 and return at \(6 - 2 = 4\), then leave at 4 and return at 2. That is two trips and length 12: one cut shows as two lines. (b) The middle strip is glued to itself, heights 2 to 4 on the right meeting 4 to 2 on the left: one piece, 6 long and 2 wide. The bottom strip's right edge is glued to the top strip's left edge, and the top's right to the bottom's left: a second piece, 12 long and 2 wide. (c) The middle piece is glued with a flip, so it is a Möbius strip. The long piece is a band, as in exercise 2. Areas: \(6 \times 2 + 12 \times 2 = 36\). In real paper the band has two full twists and is linked through the Möbius strip. The diagram records what is glued to what, not how the paper sits in space.</li>
+<li>(a) Up and to the right: a3, b1, c2 and a2, b3, c1. Down and to the right: a1, b3, c2 and a2, b1, c3. That makes 12 lines: three rows, three columns and three diagonals each way. (b) Ordinary board: 4, 3 and 2. Torus board: 4 through every square, namely its row, its column and a diagonal each way. Slide every mark one square to the right, with column c coming back as column a, and lines stay lines. Sliding up works too. So any square can be slid to the centre, and none is special. (c) At c2, completing a1, b3, c2. On the ordinary board X has no winning move here. A computer search of every game shows that on the torus board no game ends in a draw, and the first player can always win.</li>
+</ol>
+<p><b>Stretch.</b> (a) Its ends are glued with a flip, so it is a Möbius strip, like the middle strip in exercise 3. (b) Suppose the Klein bottle sat in space without passing through itself, with its outward face red. Put an ant on the red face of that Möbius strip and let it walk once round. A Möbius strip has one side, so the ant comes back to its starting spot on the other face, having walked on red all the way. Then at that spot both faces look outwards, which is impossible. So every model in our space passes through itself. In a space with four dimensions there is room, and a Klein bottle can be built there without passing through itself.</p>
+</section>
+
+<div class="sheet-nav"><a href="b33-fano-plane.html">← Previous</a><a href="b35-seventeen-wallpapers.html">Next: Only seventeen wallpapers →</a></div>
+</main>
+
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

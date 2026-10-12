@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Seven bridges of Königsberg · Infinity Club</title>
+<title>Seven bridges of Königsberg · Math Detours</title>
 <meta name="description" content="Euler turned a Sunday puzzle about bridges into graph theory. Learn his rule for which drawings can be traced in one stroke, and design a town where the walk works.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
@@ -11,7 +11,7 @@
 </head>
 <body>
 <nav class="top">
-  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
   <a href="../index.html">Grade 6</a>
   <a href="../index.html#sheets">Sheets</a>
   <a href="../../demos/index.html">Demos</a>
@@ -23,7 +23,7 @@
 
 <main class="paper">
 <header class="sheet-head">
-  <div class="kicker">Infinity Club · Grade 6 · Around the corner · 13</div>
+  <div class="kicker">Math Detours · Grade 6 · Around the corner · 13</div>
   <h1>Seven bridges of Königsberg</h1>
   <p class="teaser">A whole city failed to find a walk across its seven bridges. Euler proved there wasn't one by throwing away the map, and started a new kind of mathematics.</p>
   <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
@@ -85,7 +85,7 @@
 
 <section class="stretch">
 <h2>Stretch: Euler's other formula</h2>
-<p>Euler found another gem about shapes. For any solid with flat faces (and no holes through it), count the corners \(V\), the edges \(E\) and the faces \(F\). Then \(V - E + F = 2\). Always.</p>
+<p>Euler found another gem about shapes. For any convex solid with flat faces (no dents and no holes), count the corners \(V\), the edges \(E\) and the faces \(F\). Then \(V - E + F = 2\). Always.</p>
 <p>Check it on a cube. Then on a tetrahedron (a pyramid with a triangular base, four faces in all). Then on a square-based pyramid. Then try a shape nobody told you about, like a prism with a hexagonal end. Does it ever fail?</p>
 <p>It even works for a <b>connected</b> graph drawn flat on paper with no crossing lines, if you count the outside region as a face. Connected means you can follow edges from any dot to any other. Try it on the house.</p>
 <div class="space"></div>
@@ -101,13 +101,13 @@
 <li>Five dots, each of degree 2 (two lines meet at each point). All degrees even, so the walk exists from anywhere and must return to its start.</li>
 <li>Many answers. One: islands A and B, banks N and S. Bridges A–N, A–S, B–N, B–S, A–B, A–B (two parallel bridges between the islands). Degrees: A 4, B 4, N 2, S 2, all even, so you can start anywhere and return.</li>
 </ol>
-<p><b>Stretch.</b> Cube: \(8 - 12 + 6 = 2\). Tetrahedron: \(4 - 6 + 4 = 2\). Square pyramid: \(5 - 8 + 5 = 2\). Hexagonal prism: \(12 - 18 + 8 = 2\). It does not fail for any solid without holes. The house drawn flat: the two diagonals cross, so count the crossing as a dot. Then \(V = 6\), \(E = 10\) (six outer lines plus four half-diagonals), and \(F = 6\) (the roof triangle, four triangles inside the square, and the outside). \(6 - 10 + 6 = 2\).</p>
+<p><b>Stretch.</b> Cube: \(8 - 12 + 6 = 2\). Tetrahedron: \(4 - 6 + 4 = 2\). Square pyramid: \(5 - 8 + 5 = 2\). Hexagonal prism: \(12 - 18 + 8 = 2\). It does not fail for any convex solid. The house drawn flat: the two diagonals cross, so count the crossing as a dot. Then \(V = 6\), \(E = 10\) (six outer lines plus four half-diagonals), and \(F = 6\) (the roof triangle, four triangles inside the square, and the outside). \(6 - 10 + 6 = 2\).</p>
 </section>
 
 <div class="sheet-nav"><a href="b12-infinity.html">← Previous</a><a href="b14-dice.html">Next: Dice don't lie →</a></div>
 </main>
 
-<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
 <script defer src="../../assets/site.js"></script>

@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Smoothing a jumpy week · Math Detours</title>
+<meta name="description" content="Replace each number in a list by the average of it and its two neighbours. See how this running average smooths temperatures and blurs a row of pixels, and why a blur cannot be undone for certain.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
+  <a href="../index.html">Grade 7</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Math Detours · Grade 7 · Connections · 13</div>
+  <h1>Smoothing a jumpy week</h1>
+  <p class="teaser">Replace each day's temperature by the average of it and its two neighbours. The jumpy list becomes smoother. Undoing a blur, though, is much harder than doing it.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Daily temperatures jump about: warm, cold, warm again. To see the trend, replace each day's number by the average of three: the day before, the day itself and the day after. This is a 3-day running average. The first and last days have a neighbour missing, so on this sheet we leave them out.</p>
+<p class="callout">A running average takes in a whole list and gives back a whole new list. Each new number is a weighted average of old ones. Here the three weights are \(\tfrac13\), \(\tfrac13\) and \(\tfrac13\).</p>
+<p>A rule that turns one list into another is called an operator. Run a list through this one twice and each final number draws on five days, not three. A simple photo blur works the same way: each pixel's brightness is replaced by an average of it and its neighbours. Blurring is easy. Un-blurring is the hard direction, because different sharp rows can give exactly the same blurred row. Tonight you will see why.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: ten days of temperatures</h2>
+<p>Ten days of made-up noon temperatures in °C, with the running average underneath.</p>
+<table>
+<tr><th>Day</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td></tr>
+<tr><th>Temperature</th><td>12</td><td>18</td><td>15</td><td>21</td><td>12</td><td>18</td><td>21</td><td>15</td><td>18</td><td>24</td></tr>
+<tr><th>Running average</th><td></td><td>15</td><td>18</td><td>16</td><td>17</td><td>17</td><td>18</td><td>18</td><td>19</td><td></td></tr>
+</table>
+<p>Day 2: \((12 + 18 + 15) \div 3 = 45 \div 3 = 15\). Day 3: \((18 + 15 + 21) \div 3 = 54 \div 3 = 18\). Day 4: \((15 + 21 + 12) \div 3 = 48 \div 3 = 16\). And so on. Days 1 and 10 get no average, so ten numbers become eight.</p>
+<p>The temperatures (thin line) run from 12 to 24, and their biggest change from one day to the next is 9. The averages (thick line) run only from 15 to 19, and their biggest change is 3.</p>
+<figure><svg viewBox="0 0 520 124" width="520" height="124" role="img" aria-label="A graph of the ten temperatures 12, 18, 15, 21, 12, 18, 21, 15, 18, 24 as a thin zigzag line, and the eight running averages 15, 18, 16, 17, 17, 18, 18, 19 for days 2 to 9 as a thick, much flatter line that rises gently." font-family="Nunito, sans-serif" font-size="12">
+<line x1="60" y1="98.0" x2="510" y2="98.0" stroke="#999" stroke-width="0.6"/>
+<text x="54" y="102.0" text-anchor="end" fill="#555">12 °C</text>
+<line x1="60" y1="55.0" x2="510" y2="55.0" stroke="#999" stroke-width="0.6"/>
+<text x="54" y="59.0" text-anchor="end" fill="#555">18 °C</text>
+<line x1="60" y1="12.0" x2="510" y2="12.0" stroke="#999" stroke-width="0.6"/>
+<text x="54" y="16.0" text-anchor="end" fill="#555">24 °C</text>
+<polyline fill="none" stroke="#3f44c9" stroke-width="1.5" points="70.0,98.0 117.8,55.0 165.6,76.5 213.3,33.5 261.1,98.0 308.9,55.0 356.7,33.5 404.4,76.5 452.2,55.0 500.0,12.0"/>
+<polyline fill="none" stroke="#f5a524" stroke-width="3" points="117.8,76.5 165.6,55.0 213.3,69.3 261.1,62.2 308.9,62.2 356.7,55.0 404.4,55.0 452.2,47.8"/>
+<circle cx="70.0" cy="98.0" r="3" fill="#3f44c9"/>
+<circle cx="117.8" cy="55.0" r="3" fill="#3f44c9"/>
+<circle cx="165.6" cy="76.5" r="3" fill="#3f44c9"/>
+<circle cx="213.3" cy="33.5" r="3" fill="#3f44c9"/>
+<circle cx="261.1" cy="98.0" r="3" fill="#3f44c9"/>
+<circle cx="308.9" cy="55.0" r="3" fill="#3f44c9"/>
+<circle cx="356.7" cy="33.5" r="3" fill="#3f44c9"/>
+<circle cx="404.4" cy="76.5" r="3" fill="#3f44c9"/>
+<circle cx="452.2" cy="55.0" r="3" fill="#3f44c9"/>
+<circle cx="500.0" cy="12.0" r="3" fill="#3f44c9"/>
+<circle cx="117.8" cy="76.5" r="3.5" fill="#f5a524" stroke="#1d1f3a" stroke-width="1"/>
+<circle cx="165.6" cy="55.0" r="3.5" fill="#f5a524" stroke="#1d1f3a" stroke-width="1"/>
+<circle cx="213.3" cy="69.3" r="3.5" fill="#f5a524" stroke="#1d1f3a" stroke-width="1"/>
+<circle cx="261.1" cy="62.2" r="3.5" fill="#f5a524" stroke="#1d1f3a" stroke-width="1"/>
+<circle cx="308.9" cy="62.2" r="3.5" fill="#f5a524" stroke="#1d1f3a" stroke-width="1"/>
+<circle cx="356.7" cy="55.0" r="3.5" fill="#f5a524" stroke="#1d1f3a" stroke-width="1"/>
+<circle cx="404.4" cy="55.0" r="3.5" fill="#f5a524" stroke="#1d1f3a" stroke-width="1"/>
+<circle cx="452.2" cy="47.8" r="3.5" fill="#f5a524" stroke="#1d1f3a" stroke-width="1"/>
+<text x="70.0" y="118" text-anchor="middle" fill="#555">1</text>
+<text x="117.8" y="118" text-anchor="middle" fill="#555">2</text>
+<text x="165.6" y="118" text-anchor="middle" fill="#555">3</text>
+<text x="213.3" y="118" text-anchor="middle" fill="#555">4</text>
+<text x="261.1" y="118" text-anchor="middle" fill="#555">5</text>
+<text x="308.9" y="118" text-anchor="middle" fill="#555">6</text>
+<text x="356.7" y="118" text-anchor="middle" fill="#555">7</text>
+<text x="404.4" y="118" text-anchor="middle" fill="#555">8</text>
+<text x="452.2" y="118" text-anchor="middle" fill="#555">9</text>
+<text x="500.0" y="118" text-anchor="middle" fill="#555">10</text>
+<text x="54" y="118" text-anchor="end" fill="#555">day</text>
+</svg></figure>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>One week of made-up temperatures in °C: 6, 12, 3, 9, 15, 6, 3. (a) Work out the 3-day running average. How many numbers do you get? (b) Find the biggest change from one day to the next in the week, and then in your averages.<div class="space short"></div></li>
+<li>A row of nine pixels is dark except for one bright pixel in the middle. Their brightnesses are 0, 0, 0, 0, 9, 0, 0, 0, 0. (a) Blur the row once with the running average. (b) Blur your answer again. (c) Add up the brightness in each of the three rows. What has the blur done to the bright pixel?<div class="space short"></div></li>
+<li>Five days: 3, 12, 6, 9, 9. (a) Take the running average, then the running average of your answer. You should end with one number. (b) Now work out \((1 \times 3 + 2 \times 12 + 3 \times 6 + 2 \times 9 + 1 \times 9) \div 9\). (c) Explain why the two agree. Hint: call the days \(a, b, c, d, e\) and count how many times each one is used.<div class="space"></div></li>
+<li>Un-blurring. Every row here has five pixels, so its blur has three. (a) Check that 4, 4, 4, 4, 4 and 5, 3, 4, 5, 3 both blur to 4, 4, 4. (b) Find a third row that blurs to 4, 4, 4. (c) Another row blurs to 5, 7, 6. From that alone you cannot tell what it was. Now you are told its first two pixels are 3 and 6. Find the other three.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the invisible pattern</h2>
+<p>Look at the pattern \(1, -1, 0, 1, -1, 0, \dots\), which repeats for ever. (a) Add up any three neighbours in a row. What do you always get, and why? (b) Take the row 6, 9, 3, 6, 12, 6 and add the pattern to it, place by place. Work out the running average of the old row and of the new row. (c) Explain why adding this pattern to any row never changes its running average. Then find a different pattern that is invisible in the same way.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) The sums of three are 21, 24, 27, 30 and 24, so the averages are 7, 8, 9, 10, 8. Seven numbers give five. (b) In the week the biggest change is 9, from 12 down to 3 (and again from 15 down to 6). In the averages it is 2, from 10 down to 8. The biggest jump in a running average is never bigger than the biggest jump in the list it came from.</li>
+<li>(a) 0, 0, 3, 3, 3, 0, 0. Each of the three averages that includes the 9 is \(9 \div 3 = 3\). (b) 1, 2, 3, 2, 1. For example \((0 + 0 + 3) \div 3 = 1\) and \((0 + 3 + 3) \div 3 = 2\). (c) Each row adds up to 9. The blur has not removed any light. It has spread one bright pixel over three pixels, then over five, and the peak has dropped from 9 to 3. The total stays the same here because the row is dark near both ends. A row that is bright at its ends loses some of its total when the ends are left out.</li>
+<li>(a) First pass: \((3 + 12 + 6) \div 3 = 7\), \((12 + 6 + 9) \div 3 = 9\), \((6 + 9 + 9) \div 3 = 8\). Second pass: \((7 + 9 + 8) \div 3 = 8\). (b) \((3 + 24 + 18 + 18 + 9) \div 9 = 72 \div 9 = 8\). (c) The second pass adds the three sums \(a + b + c\), \(b + c + d\) and \(c + d + e\), and the two passes divide by 3 twice, which is dividing by 9. In those sums \(a\) appears once, \(b\) twice, \(c\) three times, \(d\) twice and \(e\) once. So two passes are one weighted average with weights 1, 2, 3, 2, 1 out of 9. The middle day counts most.</li>
+<li>(a) Every three neighbours in the first row add to 12. In the second, \(5 + 3 + 4 = 12\), \(3 + 4 + 5 = 12\) and \(4 + 5 + 3 = 12\). Each average is \(12 \div 3 = 4\). (b) Many answers, such as 3, 6, 3, 3, 6 or 6, 2, 4, 6, 2. Pick any first three pixels that add to 12, then repeat the first two. (c) The first three add to \(3 \times 5 = 15\), so the third is \(15 - 3 - 6 = 6\). The middle three add to \(3 \times 7 = 21\), so the fourth is \(21 - 6 - 6 = 9\). The last three add to \(3 \times 6 = 18\), so the fifth is \(18 - 6 - 9 = 3\). The row was 3, 6, 6, 9, 3. The blur kept three numbers out of five. You needed two more to get the row back.</li>
+</ol>
+<p><b>Stretch.</b> (a) Always 0. Any three neighbours are a 1, a \(-1\) and a 0 in some order, because the pattern repeats every three places. (b) The new row is 7, 8, 3, 7, 11, 6. Both rows have running average 6, 6, 7, 8. (c) Adding the pattern changes each sum of three neighbours by \(1 + (-1) + 0 = 0\), so every average stays the same. Another invisible pattern is \(2, -2, 0, 2, -2, 0, \dots\) or \(1, 0, -1, 1, 0, -1, \dots\). Any three numbers that add to 0, repeated for ever, will do. So the blurred row cannot tell you whether such a pattern was in the original. That information is lost for good, and no clever method can bring it back from the blurred row alone.</p>
+</section>
+
+<div class="sheet-nav"><a href="c12-narrow-pipes.html">← Previous</a><a href="c14-soap-shortest-road.html">Next: Soap films find the shortest road →</a></div>
+</main>
+
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

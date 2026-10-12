@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tropical arithmetic · Math Detours</title>
+<meta name="description" content="Let 'plus' mean 'take the smaller' and 'times' mean ordinary adding. Check which rules of arithmetic survive, see why subtraction is lost, find shortest routes on a small road map by multiplying a table by itself, and graph a quadratic made of three straight pieces.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
+  <a href="../index.html">Grade 9</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Math Detours · Grade 9 · Around the corner · 33</div>
+  <h1>Tropical arithmetic</h1>
+  <p class="teaser">Make "plus" mean "take the smaller" and "times" mean ordinary adding. Then 3 plus 5 is 3 and 3 times 5 is 8. This strange arithmetic finds shortest routes, and its quadratics have graphs made of straight pieces.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Change the meaning of the two signs. Let \(a \oplus b\), "tropical plus", be the smaller of \(a\) and \(b\). Let \(a \otimes b\), "tropical times", be the ordinary sum \(a + b\). So \(3 \oplus 5 = 3\) and \(3 \otimes 5 = 8\).</p>
+<p>Most of the old rules survive. Order does not matter, brackets can be regrouped, and "times" still spreads over "plus":</p>
+<p class="callout">\(a \otimes (b \oplus c) = (a \otimes b) \oplus (a \otimes c)\). In ordinary symbols: \(a + \min(b, c) = \min(a + b,\ a + c)\).</p>
+<p>Subtraction is lost. Ordinary \(3 + x = 5\) is solved by subtracting. Tropical \(3 \oplus x = 5\) has no answer, because the smaller of 3 and \(x\) is never more than 3. A system with a plus and a times that obey these rules, where subtraction may be missing, is called a <b>semiring</b>.</p>
+<p>Why bother? "Add, then keep the smallest" is exactly how you compare routes. And tropical polynomials have graphs made of straight pieces, which is where <b>tropical geometry</b> begins.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: shortest routes by "multiplying"</h2>
+<figure style="float:right;width:190px;max-width:45%;margin:0 0 .3em 1em"><svg viewBox="0 0 220 160" width="190" height="138" role="img" aria-label="A road map of four towns. A is on the left, B at the top, C on the right and D at the bottom. Five roads: A to B is 2 km, B to C is 3 km, C to D is 1 km, A to D is 9 km and A to C is 7 km. There is no road from B to D." font-family="Nunito, sans-serif" font-size="13">
+<g stroke="#3f44c9" stroke-width="2"><line x1="24" y1="80" x2="110" y2="22"/><line x1="110" y1="22" x2="196" y2="80"/><line x1="196" y1="80" x2="110" y2="138"/><line x1="24" y1="80" x2="110" y2="138"/><line x1="24" y1="80" x2="196" y2="80"/></g>
+<g fill="#fde8c4" stroke="#1d1f3a" stroke-width="1.5"><circle cx="24" cy="80" r="11"/><circle cx="110" cy="22" r="11"/><circle cx="196" cy="80" r="11"/><circle cx="110" cy="138" r="11"/></g>
+<g fill="#1d1f3a" font-weight="700" text-anchor="middle"><text x="24" y="85">A</text><text x="110" y="27">B</text><text x="196" y="85">C</text><text x="110" y="143">D</text></g>
+<g fill="#1d1f3a" text-anchor="middle"><text x="58" y="44">2</text><text x="162" y="44">3</text><text x="162" y="124">1</text><text x="58" y="124">9</text><text x="110" y="74">7</text></g>
+</svg><figcaption>Made-up road lengths in km.</figcaption></figure>
+<p>Put the direct roads in a table \(M\), rows and columns in the order A, B, C, D. A town to itself is 0. B and D have no direct road, so write \(\infty\): it loses every "smaller of" contest, and \(\infty\) plus anything is still \(\infty\). Beside it is a new table, \(M \otimes M\).</p>
+\[M = \begin{pmatrix} 0 & 2 & 7 & 9 \\ 2 & 0 & 3 & \infty \\ 7 & 3 & 0 & 1 \\ 9 & \infty & 1 & 0 \end{pmatrix} \quad M \otimes M = \begin{pmatrix} 0 & 2 & 5 & 8 \\ 2 & 0 & 3 & 4 \\ 5 & 3 & 0 & 1 \\ 8 & 4 & 1 & 0 \end{pmatrix}\]
+<p style="clear:both">For the A-to-D entry of \(M \otimes M\), pair row A of \(M\) with column D, \(\otimes\) each pair, then \(\oplus\) the results:</p>
+\[(0 \otimes 9) \oplus (2 \otimes \infty) \oplus (7 \otimes 1) \oplus (9 \otimes 0) = 9 \oplus \infty \oplus 8 \oplus 9 = 8.\]
+<p>Each pair is a route from A to a middle town and on to D. The middle towns are A, B, C, D in turn, and middle A or D just means the direct road. The winner, 8, is A to C to D, which beats the 9 km road. B to D works the same way: \((2 \otimes 9) \oplus (0 \otimes \infty) \oplus (3 \otimes 1) \oplus (\infty \otimes 0) = 11 \oplus \infty \oplus 4 \oplus \infty = 4\), through C. All sixteen entries are found this way, and each is the shortest route that uses at most two roads. Grids like these are called matrices, and this is matrix multiplication done tropically.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Work out (a) \(4 \oplus 9\) and \(4 \otimes 9\), (b) \((-2) \oplus 6\) and \((-2) \otimes 6\), (c) \(7 \oplus 7\) and \(7 \otimes 7\), (d) the tropical cube \(3 \otimes 3 \otimes 3\), (e) \((2 \otimes 5) \oplus (3 \otimes 3)\).<div class="space short"></div></li>
+<li>(a) Work out \(2 \otimes (3 \oplus 7)\) and \((2 \otimes 3) \oplus (2 \otimes 7)\). (b) Explain in a sentence why the rule in the box is true for all numbers. (c) Work out \((3 \oplus 5) \otimes (3 \oplus 5)\) and \((3 \otimes 3) \oplus (5 \otimes 5)\). Why does the tropical square of \(a \oplus b\) always equal \((a \otimes a) \oplus (b \otimes b)\)? Is \((a + b)^2 = a^2 + b^2\) true in ordinary arithmetic?<div class="space short"></div></li>
+<li>In ordinary arithmetic, adding 0 changes nothing and multiplying by 1 changes nothing. (a) Which number \(u\) has \(u \otimes x = x\) for every \(x\)? (b) Explain why no ordinary number \(z\) has \(z \oplus x = x\) for every \(x\). What was used for this job in the road table, and what did it mean there? (c) Solve where you can: \(3 \otimes x = 5\), then \(3 \oplus x = 3\), then \(3 \oplus x = 5\).<div class="space short"></div></li>
+<li>A tropical quadratic: \(p(x) = (x \otimes x) \oplus (1 \otimes x) \oplus 4\). (a) Rewrite \(p(x)\) with ordinary plus and "min". (b) Find \(p(x)\) for \(x = -1, 0, 1, 2, 3, 4, 5\) and draw the graph. Where does it bend? (c) Work out \((x \oplus 1) \otimes (x \oplus 3)\) for the same seven values of \(x\). What do you notice?<div class="space tall"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: square it again</h2>
+<p>Write \(M_2\) for the table \(M \otimes M\) in the worked example. (a) Work out \(M_2 \otimes M_2\). The tables are symmetric, so the six entries above the diagonal are enough. Which entry changes? (b) Which route is the new entry, and how many roads does it use? (c) Why would squaring yet again change nothing for this map?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) 4 and 13. (b) \(-2\) and 4. (c) 7 and 14: the smaller of two equal numbers is that number. (d) \(3 + 3 + 3 = 9\). A tropical power is an ordinary multiple. (e) \(7 \oplus 6 = 6\). (Some books let \(\oplus\) take the bigger number instead. This sheet takes the smaller throughout.)</li>
+<li>(a) \(2 \otimes 3 = 5\), and \(5 \oplus 9 = 5\). Both are 5. (b) Adding the same \(a\) to \(b\) and to \(c\) shifts both by the same amount, so whichever was smaller is still smaller (and a tie stays a tie). (c) \(3 \otimes 3 = 6\) and \(6 \oplus 10 = 6\). Both are 6. In ordinary symbols the rule says \(2\min(a, b) = \min(2a, 2b)\), which is true because doubling two numbers does not change which is smaller. In ordinary arithmetic it is false in general: \((3 + 5)^2 = 64\) but \(3^2 + 5^2 = 34\). The missing piece is \(2ab\), so it holds only when \(a\) or \(b\) is 0.</li>
+<li>(a) \(u = 0\), because \(0 + x = x\). The tropical "one" is 0. (b) We would need the smaller of \(z\) and \(x\) to be \(x\) every time, so \(z\) would have to be at least as big as every number. Try \(x = z + 1\): then \(z \oplus x = z\), not \(x\). So a new element \(\infty\) is added, with \(\infty \oplus x = x\) and \(\infty \otimes x = \infty\), just as ordinary \(0 \times x = 0\). The tropical "zero" is \(\infty\). In the road table it meant "no direct road". (c) \(3 \otimes x = 5\) means \(3 + x = 5\), so \(x = 2\): tropical division is ordinary subtraction. \(3 \oplus x = 3\) is true for every \(x \ge 3\), so there is no single answer. \(3 \oplus x = 5\) has no answer at all. Both failures say the same thing: \(\oplus\) cannot be undone.</li>
+<li>(a) \(p(x) = \min(2x,\ x + 1,\ 4)\). (b) \(-2, 0, 2, 3, 4, 4, 4\). The graph is three straight pieces: \(y = 2x\) up to \(x = 1\), then \(y = x + 1\) from 1 to 3, then flat at \(y = 4\). It bends at \(x = 1\) and \(x = 3\), the two places where two of the three terms tie for smallest. An ordinary quadratic gives a curved parabola. (c) \(\min(x, 1) + \min(x, 3)\) gives \(-2, 0, 2, 3, 4, 4, 4\) again. In fact \(p(x) = (x \oplus 1) \otimes (x \oplus 3)\) for every \(x\): expanding with the rule in the box gives \(\min(2x,\ x + 3,\ x + 1,\ 4)\), and \(x + 3\) never wins because \(x + 1\) is smaller. So the tropical quadratic factors, and the bends at 1 and 3 play the part of its roots.</li>
+</ol>
+<p><b>Stretch.</b> (a) The six entries are A to B: 2, A to C: 5, A to D: 6, B to C: 3, B to D: 4, C to D: 1. Only A to D changes, from 8 to 6: \((0 \otimes 8) \oplus (2 \otimes 4) \oplus (5 \otimes 1) \oplus (8 \otimes 0) = 8 \oplus 6 \oplus 6 \oplus 8 = 6\). (b) A to B to C to D, which is \(2 + 3 + 1 = 6\) km on three roads. The entries of \(M_2 \otimes M_2\) are the shortest routes using at most four roads, because each one joins two routes of at most two roads. (c) Every road has a positive length, so a shortest route never visits a town twice: cutting out the loop would make it shorter. With four towns that means at most three roads. So the table already holds the true shortest distances, and longer routes cannot beat them.</p>
+</section>
+
+<div class="sheet-nav"><a href="b32-three-distances.html">← Previous</a><a href="c1-rule-of-72.html">Next: How long until your money doubles? →</a></div>
+</main>
+
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

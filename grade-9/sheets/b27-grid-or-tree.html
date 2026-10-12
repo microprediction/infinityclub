@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grid or tree? · Math Detours</title>
+<meta name="description" content="Write routes as words in two moves a and b. With the rule ab = ba, rewriting sorts every word into a standard form and the positions form a grid. With no rule beyond cancelling a move against its reverse, the positions form a tree. Count both and compare how fast they grow.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
+  <a href="../index.html">Grade 9</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Math Detours · Grade 9 · Around the corner · 27</div>
+  <h1>Grid or tree?</h1>
+  <p class="teaser">Two moves, a and b. If ab = ba, every route lives on a grid. If no rule links them at all, the routes branch like a tree, and the tree grows far faster.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Let \(a\) mean "one step east" and \(b\) mean "one step north". A route is a word: \(aab\) is east, east, north. Since \(ab\) and \(ba\) end at the same corner, you may use the rule \(ba \to ab\): wherever a \(b\) stands just before an \(a\), swap them. Keep going and every word reaches its <b>standard form</b>, all the \(a\)s and then all the \(b\)s.</p>
+<p class="callout">With the rule \(ab = ba\), two words end at the same position exactly when they have the same standard form.</p>
+<p>So a question about routes is settled by mechanical rewriting, a job a computer does well.</p>
+<p>Now allow the reverse moves \(A\) (undo \(a\)) and \(B\) (undo \(b\)). With \(ab = ba\) the positions are the corners of a grid. Next imagine two other moves, still called \(a\) and \(b\), that obey no rule at all except that a move and its reverse cancel. Then \(ab\) and \(ba\) are different positions, the only way back to an earlier position is to retrace your steps, and the map is a branching tree.</p>
+<figure><svg viewBox="0 0 520 178" width="520" height="178" role="img" aria-label="Two maps of the positions within two steps of the start. On the left a grid: a diamond of 13 dots joined by horizontal and vertical lines, where the routes a b and b a meet at one corner. On the right a tree: 17 dots, a start with four branches, each splitting into three more, where a b and b a are different dots." font-family="Nunito, sans-serif" font-size="13">
+<line x1="66" y1="78" x2="98" y2="78" stroke="#999" stroke-width="1.5"/>
+<line x1="98" y1="110" x2="130" y2="110" stroke="#999" stroke-width="1.5"/>
+<line x1="98" y1="110" x2="98" y2="78" stroke="#999" stroke-width="1.5"/>
+<line x1="98" y1="78" x2="130" y2="78" stroke="#999" stroke-width="1.5"/>
+<line x1="98" y1="78" x2="98" y2="46" stroke="#999" stroke-width="1.5"/>
+<line x1="98" y1="46" x2="130" y2="46" stroke="#999" stroke-width="1.5"/>
+<line x1="130" y1="142" x2="130" y2="110" stroke="#999" stroke-width="1.5"/>
+<line x1="130" y1="110" x2="162" y2="110" stroke="#999" stroke-width="1.5"/>
+<line x1="130" y1="110" x2="130" y2="78" stroke="#999" stroke-width="1.5"/>
+<line x1="130" y1="78" x2="162" y2="78" stroke="#999" stroke-width="1.5"/>
+<line x1="130" y1="78" x2="130" y2="46" stroke="#999" stroke-width="1.5"/>
+<line x1="130" y1="46" x2="162" y2="46" stroke="#999" stroke-width="1.5"/>
+<line x1="130" y1="46" x2="130" y2="14" stroke="#999" stroke-width="1.5"/>
+<line x1="162" y1="110" x2="162" y2="78" stroke="#999" stroke-width="1.5"/>
+<line x1="162" y1="78" x2="194" y2="78" stroke="#999" stroke-width="1.5"/>
+<line x1="162" y1="78" x2="162" y2="46" stroke="#999" stroke-width="1.5"/>
+<circle cx="66" cy="78" r="5" fill="#f5a524"/>
+<circle cx="98" cy="110" r="5" fill="#f5a524"/>
+<circle cx="98" cy="78" r="5" fill="#3f44c9"/>
+<circle cx="98" cy="46" r="5" fill="#f5a524"/>
+<circle cx="130" cy="142" r="5" fill="#f5a524"/>
+<circle cx="130" cy="110" r="5" fill="#3f44c9"/>
+<circle cx="130" cy="78" r="5" fill="#1d1f3a"/>
+<circle cx="130" cy="46" r="5" fill="#3f44c9"/>
+<circle cx="130" cy="14" r="5" fill="#f5a524"/>
+<circle cx="162" cy="110" r="5" fill="#f5a524"/>
+<circle cx="162" cy="78" r="5" fill="#3f44c9"/>
+<circle cx="162" cy="46" r="5" fill="#f5a524"/>
+<circle cx="194" cy="78" r="5" fill="#f5a524"/>
+<text x="168" y="71" font-style="italic">a</text>
+<text x="136" y="39" font-style="italic">b</text>
+<text x="170" y="50" font-style="italic">ab = ba</text>
+<text x="130" y="170" text-anchor="middle" fill="#3f44c9" font-weight="700">grid: 1 + 4 + 8 = 13</text>
+<line x1="390" y1="78" x2="434" y2="78" stroke="#999" stroke-width="1.5"/>
+<line x1="434" y1="78" x2="456" y2="78" stroke="#999" stroke-width="1.5"/>
+<line x1="434" y1="78" x2="434" y2="56" stroke="#999" stroke-width="1.5"/>
+<line x1="434" y1="78" x2="434" y2="100" stroke="#999" stroke-width="1.5"/>
+<line x1="390" y1="78" x2="346" y2="78" stroke="#999" stroke-width="1.5"/>
+<line x1="346" y1="78" x2="324" y2="78" stroke="#999" stroke-width="1.5"/>
+<line x1="346" y1="78" x2="346" y2="56" stroke="#999" stroke-width="1.5"/>
+<line x1="346" y1="78" x2="346" y2="100" stroke="#999" stroke-width="1.5"/>
+<line x1="390" y1="78" x2="390" y2="34" stroke="#999" stroke-width="1.5"/>
+<line x1="390" y1="34" x2="412" y2="34" stroke="#999" stroke-width="1.5"/>
+<line x1="390" y1="34" x2="368" y2="34" stroke="#999" stroke-width="1.5"/>
+<line x1="390" y1="34" x2="390" y2="12" stroke="#999" stroke-width="1.5"/>
+<line x1="390" y1="78" x2="390" y2="122" stroke="#999" stroke-width="1.5"/>
+<line x1="390" y1="122" x2="412" y2="122" stroke="#999" stroke-width="1.5"/>
+<line x1="390" y1="122" x2="368" y2="122" stroke="#999" stroke-width="1.5"/>
+<line x1="390" y1="122" x2="390" y2="144" stroke="#999" stroke-width="1.5"/>
+<circle cx="390" cy="78" r="5" fill="#1d1f3a"/>
+<circle cx="434" cy="78" r="5" fill="#3f44c9"/>
+<circle cx="456" cy="78" r="5" fill="#f5a524"/>
+<circle cx="434" cy="56" r="5" fill="#f5a524"/>
+<circle cx="434" cy="100" r="5" fill="#f5a524"/>
+<circle cx="346" cy="78" r="5" fill="#3f44c9"/>
+<circle cx="324" cy="78" r="5" fill="#f5a524"/>
+<circle cx="346" cy="56" r="5" fill="#f5a524"/>
+<circle cx="346" cy="100" r="5" fill="#f5a524"/>
+<circle cx="390" cy="34" r="5" fill="#3f44c9"/>
+<circle cx="412" cy="34" r="5" fill="#f5a524"/>
+<circle cx="368" cy="34" r="5" fill="#f5a524"/>
+<circle cx="390" cy="12" r="5" fill="#f5a524"/>
+<circle cx="390" cy="122" r="5" fill="#3f44c9"/>
+<circle cx="412" cy="122" r="5" fill="#f5a524"/>
+<circle cx="368" cy="122" r="5" fill="#f5a524"/>
+<circle cx="390" cy="144" r="5" fill="#f5a524"/>
+<text x="440" y="94" font-style="italic">a</text>
+<text x="396" y="27" font-style="italic">b</text>
+<text x="442" y="60" font-style="italic">ab</text>
+<text x="420" y="38" font-style="italic">ba</text>
+<text x="390" y="170" text-anchor="middle" fill="#3f44c9" font-weight="700">tree: 1 + 4 + 12 = 17</text>
+</svg><figcaption>Positions within two steps. Dark dot: the start. Blue: one step away. Orange: two steps away.</figcaption></figure>
+</section>
+
+<section class="example">
+<h2>Watch one: sorting babba</h2>
+<p>Use the rule \(ba \to ab\) on the leftmost place it fits, and repeat until it fits nowhere.</p>
+<p>\[ \underline{ba}bba \;\to\; abb\underline{ba} \;\to\; ab\underline{ba}b \;\to\; a\underline{ba}bb \;\to\; aabbb \]</p>
+<p>Four steps, and the word is in standard form: \(aabbb\), two steps east and three north. The rule only swaps letters, so the count of each letter never changes: two \(a\)s and three \(b\)s throughout. Often the rule fits in several places at once. Exercise 2 shows that the choice does not matter.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Rewrite each word into standard form with the rule \(ba \to ab\), showing every step. (a) \(bab\) (b) \(abab\) (c) \(bbaa\) (d) Which two of these words end at the same position?<div class="space short"></div></li>
+<li>For any word, let \(T\) be the number of pairs made of a \(b\) and an \(a\) that comes later in the word. The two letters need not be neighbours. For \(babba\), \(T = 4\). (a) Find \(T\) for \(abab\) and for \(bbaa\), and compare with your step counts in exercise 1. (b) Explain why one use of the rule lowers \(T\) by exactly 1. Why must the rewriting stop, and why is the word then in standard form? (c) Which four-letter word needs the most steps?<div class="space short"></div></li>
+<li>Forward moves only, four letters. (a) How many words are there? (b) With the rule \(ab = ba\), list the standard forms. How many different positions is that? (c) How many of the words end at \(aabb\)? (d) Answer (a) and (b) again for words of \(n\) letters, then put \(n = 10\).<div class="space short"></div></li>
+<li>Now the reverse moves \(A\) and \(B\) are allowed too. A position is <b>two steps away</b> when its shortest route from the start has two moves. (a) There are 16 two-letter words in \(a\), \(b\), \(A\), \(B\). Four of them cancel back to the start. Which? List the other 12. (b) On the tree those 12 are 12 different positions. On the grid, which of them meet? How many grid positions are two steps away? Check your totals against the picture. (c) Go one step further. How many positions are exactly three steps away on the grid, and on the tree? How many are within three steps?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: how fast do the maps grow?</h2>
+<p>Show that the number of positions within \(n\) steps of the start is \(2n^2 + 2n + 1\) on the grid and \(2 \times 3^n - 1\) on the tree. Then compare the two at \(n = 10\). Hints: first count the positions exactly \(k\) steps away, for \(k \ge 1\). Then use \(1 + 2 + \cdots + n = \tfrac{n(n+1)}{2}\) and \(1 + 3 + 9 + \cdots + 3^{n-1} = \tfrac{3^n - 1}{2}\).</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(bab \to abb\), one step. (b) \(abab \to aabb\), one step. (c) Four steps: \(bbaa \to baba \to abba \to abab \to aabb\). Other choices give other middle words, but always four steps. (d) Words (b) and (c): both have standard form \(aabb\).</li>
+<li>(a) In \(abab\) only the first \(b\) has an \(a\) after it, so \(T = 1\). In \(bbaa\) each of the two \(b\)s is before both \(a\)s, so \(T = 4\). These match the step counts. (b) The \(b\) and \(a\) that swap were a counted pair and now are not. They were neighbours, so neither of them passed any third letter, and every other pair of letters is in the same order as before. So \(T\) falls by exactly 1. \(T\) is a whole number and cannot go below 0, so after as many steps as the starting \(T\) the rule fits nowhere, whatever choices you made. If no \(b\) stands just before an \(a\), then every letter after the first \(b\) is a \(b\), which is the standard form. (c) \(bbaa\), with \(T = 4\). A word with only one \(a\) or only one \(b\) has \(T\) at most 3.</li>
+<li>(a) Two choices for each letter: \(2^4 = 16\). (b) \(aaaa\), \(aaab\), \(aabb\), \(abbb\), \(bbbb\): 5 positions. (c) Six of them: \(aabb\), \(abab\), \(abba\), \(baab\), \(baba\), \(bbaa\). In the same way 1, 4, 6, 4 and 1 words end at the five positions, and \(1 + 4 + 6 + 4 + 1 = 16\). (d) There are \(2^n\) words. A standard form is fixed by how many times \(a\) appears, which can be \(0, 1, \ldots, n\), so there are \(n + 1\) positions. For \(n = 10\) that is 1024 words but only 11 positions. With no rule at all, the 1024 words would be 1024 different positions.</li>
+<li>(a) \(aA\), \(Aa\), \(bB\) and \(Bb\) cancel. The other 12 are \(aa\), \(ab\), \(aB\), \(bb\), \(ba\), \(bA\), \(AA\), \(Ab\), \(AB\), \(BB\), \(Ba\), \(BA\). (b) On the grid \(ab = ba\), \(aB = Ba\), \(Ab = bA\) and \(AB = BA\). Four pairs merge, so \(12 - 4 = 8\) positions are two steps away. Within two steps: \(1 + 4 + 8 = 13\) on the grid and \(1 + 4 + 12 = 17\) on the tree, as in the picture. (c) Tree: from each of the 12 positions you can go on with any move except the reverse of the last one, so \(12 \times 3 = 36\). Grid: the positions three steps away are 3 one way, or 2 one way and 1 the other. That is \(4 + 8 = 12\). Within three steps: \(13 + 12 = 25\) on the grid and \(17 + 36 = 53\) on the tree.</li>
+</ol>
+<p><b>Stretch.</b> Grid: after sorting and cancelling, a position is some number of steps east or west and some number north or south, and its shortest route has that many moves in total. Exactly \(k\) away, count the positions with at least 1 step east and none south: east \(1, 2, \ldots, k\) and the rest north, which is \(k\) positions. Quarter turns give three more groups of \(k\), so \(4k\) in all. The total is \(1 + 4(1 + 2 + \cdots + n) = 1 + 2n(n+1) = 2n^2 + 2n + 1\). Tree: a position \(k\) steps away is a word of \(k\) letters with nothing to cancel. There are 4 choices for the first letter and 3 for each one after, so \(4 \times 3^{k-1}\). The total is \(1 + 4 \times \tfrac{3^n - 1}{2} = 2 \times 3^n - 1\). Both formulas also give 1 when \(n = 0\). At \(n = 10\) the grid has \(200 + 20 + 1 = 221\) positions and the tree has \(2 \times 59049 - 1 = 118{,}097\), over 500 times as many. Mathematicians study a set of rules by the shape of its map in just this way. Sorting worked tonight because the rule was simple. For some sets of rules it has been proved that no mechanical method can decide every case.</p>
+</section>
+
+<div class="sheet-nav"><a href="b26-computing-e.html">← Previous</a><a href="b28-maximum-on-edge.html">Next: The biggest number is on the edge →</a></div>
+</main>
+
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

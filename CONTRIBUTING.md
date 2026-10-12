@@ -1,6 +1,6 @@
-# Writing a sheet for Infinity Club
+# Writing a sheet for Math Detours
 
-Infinity Club is free, printable math(s) for curious kids in grades 5 to 12 (ages 10 to 18). Each sheet is one evening: ten to fifteen minutes, one big idea, a worked example, four exercises, a starred stretch, and answers. This guide is written so that a person or an automated agent can turn a `new-sheet` issue into a pull request that can be merged without edits.
+Math Detours is free, printable math(s) for curious kids in grades 5 to 12 (ages 10 to 18). Each sheet is one evening: ten to fifteen minutes, one big idea, a worked example, four exercises, a starred stretch, and answers. This guide is written so that a person or an automated agent can turn a `new-sheet` issue into a pull request that can be merged without edits.
 
 The most important rule: **everything on the sheet must be true.** Outside reviewers have found real errors on this site (missing conditions, reversed logic, wrong answers). A charming sheet with a false claim does harm. Verify every number and every claim before opening the PR.
 
@@ -22,6 +22,7 @@ Issues labelled `new-sheet` each describe one sheet: its file name, grade, track
 | `tools/map/pages.json` | Add one entry for the new sheet (see section 6). |
 | other sheets in `grade-N/sheets/` | Only the prev/next line, and only by running `python3 tools/relink.py`. |
 | `map.html` | Only by running `python3 tools/map/build_map.py`. |
+| `sitemap.xml` | Only by running `python3 tools/build_sitemap.py`. |
 
 Do not edit `plan.html`, other sheets' content, `assets/`, or the demos (unless the issue explicitly asks for a demo).
 
@@ -29,9 +30,9 @@ Do not edit `plan.html`, other sheets' content, `assets/`, or the demos (unless 
 
 Copy a recent sheet from the **same grade and track** (for example `grade-8/sheets/b27-half-planes.html`) and replace the content. Keep the HTML skeleton exactly: head, nav, `<main class="paper">`, `header.sheet-head`, the five sections, `div.sheet-nav`, footer, and the three scripts at the bottom.
 
-- `<title>`: `Sheet title · Infinity Club`.
+- `<title>`: `Sheet title · Math Detours`.
 - `<meta name="description">`: one or two plain sentences saying what the sheet does. Only promise what is on the sheet.
-- Kicker: `Infinity Club · Grade N · Track · n`, where Track is `Sharpen` (a), `Around the corner` (b) or `Connections` (c), and n is the number in the file name.
+- Kicker: `Math Detours · Grade N · Track · n`, where Track is `Sharpen` (a), `Around the corner` (b) or `Connections` (c), and n is the number in the file name.
 - `<h1>`: a short, curious title, often a question.
 - `p.teaser`: one or two sentences, the hook. The hub card uses the same text.
 
@@ -105,6 +106,7 @@ Use the codes listed in the issue (codes are the first three characters, like `2
 ```sh
 python3 tools/relink.py                 # fix prev/next links in the grade
 python3 tools/map/build_map.py          # rebuild map.html
+python3 tools/build_sitemap.py          # rebuild sitemap.xml
 (cd tools && npm install)               # once, for KaTeX
 node tools/check_math.js                # KaTeX, exercise/answer counts, tags, style
 python3 tools/check_site.py             # links, structure, kicker, hub card

@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why can you balance a broom but not a pencil? · Math Detours</title>
+<meta name="description" content="A marble in a bowl rolls back; a marble on a hilltop rolls away. Multiply a small lean by the same number again and again to see when a balance is stable, and how a quick hand under a broom changes the number.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
+  <a href="../index.html">Grade 6</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Math Detours · Grade 6 · Connections · 11</div>
+  <h1>Why can you balance a broom but not a pencil?</h1>
+  <p class="teaser">A marble in a bowl rolls back. A marble on a hilltop rolls away. Balancing a broom on your hand turns a hilltop into a bowl, if you are quick enough.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Nudge a marble resting in a bowl and it rolls back. Nudge a marble resting on top of a hill and it rolls away. Both marbles were balanced. Only one balance survives a nudge.</p>
+<figure>
+<svg viewBox="0 0 520 120" width="520" height="120" role="img" aria-label="Left: a marble at the bottom of a bowl, with two arrows pointing in towards it, labelled stable, a push dies away. Right: a marble on top of a hill, with two arrows pointing away from it, labelled unstable, a push grows." font-family="Nunito, sans-serif">
+<path d="M 60 20 Q 130 120 200 20" fill="none" stroke="#1d1f3a" stroke-width="2.5"/>
+<circle cx="130" cy="59.5" r="9" fill="#3f44c9"/>
+<g stroke="#f5a524" stroke-width="2.5" fill="#f5a524">
+<line x1="82" y1="28" x2="103" y2="45"/><polygon points="109,50 99.5,49.5 106.5,40.5" stroke="none"/>
+<line x1="178" y1="28" x2="157" y2="45"/><polygon points="151,50 160.5,49.5 153.5,40.5" stroke="none"/>
+</g>
+<text x="130" y="108" font-size="13" text-anchor="middle" fill="#1d1f3a"><tspan font-weight="700">Stable:</tspan> a push dies away</text>
+<path d="M 320 84 Q 390 -16 460 84" fill="none" stroke="#1d1f3a" stroke-width="2.5"/>
+<circle cx="390" cy="23.5" r="9" fill="#3f44c9"/>
+<g stroke="#f5a524" stroke-width="2.5" fill="#f5a524">
+<line x1="374" y1="16" x2="352" y2="26"/><polygon points="345,29 351,21.5 355,30" stroke="none"/>
+<line x1="406" y1="16" x2="428" y2="26"/><polygon points="435,29 429,21.5 425,30" stroke="none"/>
+</g>
+<text x="390" y="108" font-size="13" text-anchor="middle" fill="#1d1f3a"><tspan font-weight="700">Unstable:</tspan> a push grows</text>
+</svg>
+</figure>
+<p class="callout">A balance is <b>stable</b> if a small push dies away, and <b>unstable</b> if a small push grows.</p>
+<p>A broom standing on your palm is a marble on a hilltop: a small lean makes it lean more. Yet you can keep it up, because you watch the lean and slide your hand under it. Using what you see to correct what happens next is called <b>feedback</b>.</p>
+<p><b>Tonight's model.</b> Call the lean \(y\), in millimetres away from upright. A negative \(y\) means leaning the other way. At each tick of a clock, a rule multiplies \(y\) by a fixed number \(k\). This is a simplified model, sensible only for small leans. Real brooms are messier.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: the same push, two rules</h2>
+<p>Start both times with a lean of \(y = 1\) mm.</p>
+<p><b>Rule \(y \to y \div 2\)</b> (so \(k = \tfrac12\)): the lean goes \(1,\ 0.5,\ 0.25,\ 0.125,\ \dots\) After 7 ticks it is \(1 \div 128\), less than a hundredth of a millimetre. The push dies away. Stable.</p>
+<p><b>Rule \(y \to 2y\)</b> (so \(k = 2\)): the lean goes \(1,\ 2,\ 4,\ 8,\ 16,\ 32,\ 64,\ 128\). After 7 ticks, a 1 mm lean has become 128 mm. The push grows. Unstable. (Long before 128 mm the lean has stopped being small, so the model has stopped being accurate. Its message is still right: the broom is going over.)</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Start with a lean of 8 mm and use the rule \(y \to -y \div 2\). Write the next four leans. Describe in words what the broom is doing. Stable or unstable?<div class="space short"></div></li>
+<li>Start with 10 mm. Write the next three leans for \(k = 1.1\), and then for \(k = 0.9\). Which rule is stable? With the other rule, will the lean ever pass 20 mm?<div class="space"></div></li>
+<li><b>A broom with feedback.</b> Left alone, the broom's lean doubles every tick. At the end of every tick your hand moves and removes three quarters of the lean that is there. Start at 8 mm and follow two ticks. What single number is the lean multiplied by each tick? Stable now?<div class="space short"></div></li>
+<li><b>A slow hand.</b> Same broom, but now your hand only moves at the end of every second tick. Start at 8 mm and follow four ticks. Does the push die away?<div class="space short"></div></li>
+<li><b>The pencil.</b> For plain sticks let go at the same small lean, the time to fall goes with the square root of the length: 4 times as long takes 2 times as long to fall, 9 times as long takes 3 times as long. The broom is 144 cm long and the pencil 16 cm. How many times faster does the pencil fall? So how many times does its lean double in one broom tick? Your hand still removes three quarters once per broom tick. What is the pencil's lean multiplied by each tick? Stable?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: exactly which rules are stable?</h2>
+<p>Try the rule \(y \to ky\) with \(k = 1\), \(k = -1\), \(k = 0\) and \(k = -2\), starting from a lean of 1 mm. Then describe all the numbers \(k\) for which a small push dies away.</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(-4,\ 2,\ -1,\ 0.5\). The broom wobbles from one side to the other, and each lean is half the size of the one before. The push dies away, so this is stable. A minus sign in the rule changes the side, not the size.</li>
+<li>\(k = 1.1\): \(11,\ 12.1,\ 13.31\). \(k = 0.9\): \(9,\ 8.1,\ 7.29\). The rule with \(k = 0.9\) is stable. With \(k = 1.1\) the lean grows by a tenth of itself every tick, so each step is bigger than the last (the first is 1 mm), and it does pass 20 mm: after 8 ticks it is about 21.4 mm. A multiplier only a little bigger than 1 still loses in the end.</li>
+<li>Tick one: \(8 \to 16\), then your hand leaves a quarter, \(16 \div 4 = 4\). Tick two: \(4 \to 8 \to 2\). Each tick multiplies the lean by \(2 \times \tfrac14 = \tfrac12\). That is the stable rule from the worked example. Feedback has turned the hilltop into a bowl.</li>
+<li>\(8 \to 16 \to 32\), then the hand leaves a quarter: \(32 \div 4 = 8\). Two more ticks give \(16\), then \(32 \div 4 = 8\) again. Every two ticks the lean is multiplied by \(2 \times 2 \times \tfrac14 = 1\), so it keeps coming back to 8 mm. The push does not die away, so this is not stable. The same hand, moving half as often, no longer does the job.</li>
+<li>\(144 \div 16 = 9\), and \(9 = 3 \times 3\), so the broom takes 3 times as long to fall and the pencil falls 3 times faster. Its lean doubles three times in one broom tick: \(2 \times 2 \times 2 = 8\). Then your hand leaves a quarter: \(8 \times \tfrac14 = 2\). The lean doubles every tick, so the pencil is unstable. The trouble is speed: the pencil falls too fast for your hand. In this model, a hand three times quicker would balance it. Feedback only works when it is fast compared with the fall.</li>
+</ol>
+<p><b>Stretch.</b> \(k = 1\): \(1, 1, 1, \dots\) The lean stays. \(k = -1\): \(-1, 1, -1, \dots\) It swaps sides for ever at the same size. \(k = 0\): \(0, 0, \dots\) Gone in one tick. \(k = -2\): \(-2, 4, -8, \dots\) It swaps sides and grows. Each tick multiplies the <em>size</em> of the lean by the size of \(k\), ignoring the sign. So a small push dies away exactly when \(k\) is between \(-1\) and \(1\), that is \(-1 \lt k \lt 1\). It grows when \(k \gt 1\) or \(k \lt -1\). At \(k = 1\) and \(k = -1\) it neither grows nor dies away, so those two do not count as stable by tonight's definition.</p>
+</section>
+
+<div class="sheet-nav"><a href="c10-friday-13th.html">← Previous</a><a href="c12-bouncing-ball.html">Next: How far does a bouncing ball travel? →</a></div>
+</main>
+
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>
