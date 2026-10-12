@@ -359,6 +359,7 @@
   "grade-11/sheets/b22-overhang.html": [{"code": "40A", "level": "core"}, {"code": "70C", "level": "touch"}],
   "grade-11/sheets/b23-finite-fields.html": [{"code": "11T", "level": "core"}, {"code": "11A", "level": "core"}, {"code": "51E", "level": "touch"}],
   "grade-11/sheets/b24-fractal-dimension.html": [{"code": "28A", "level": "core"}, {"code": "37F", "level": "touch"}],
+  "grade-11/sheets/b25-block-spin-zoom.html": [{"code": "82M", "level": "core"}],
   "grade-11/sheets/c1-tides.html": [{"code": "86A", "level": "core"}, {"code": "33B", "level": "core"}, {"code": "42A", "level": "touch"}],
   "grade-11/sheets/c2-triangulation.html": [{"code": "51M", "level": "core"}, {"code": "86A", "level": "touch"}],
   "grade-11/sheets/c3-ph.html": [{"code": "33B", "level": "core"}, {"code": "92E", "level": "touch"}],
