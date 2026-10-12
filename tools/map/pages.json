@@ -298,6 +298,7 @@
   "grade-9/sheets/c8-f-stops.html": [{"code": "78A", "level": "core"}, {"code": "33B", "level": "touch"}],
   "grade-9/sheets/c9-births-remember.html": [{"code": "45D", "level": "core"}, {"code": "45J", "level": "touch"}],
   "grade-9/sheets/c10-gps-relativity.html": [{"code": "83B", "level": "core"}],
+  "grade-9/sheets/c11-robot-arm-torus.html": [{"code": "57Z", "level": "core"}],
   "grade-10/sheets/a1-completing-the-square.html": [{"code": "12D", "level": "core"}, {"code": "26A", "level": "touch"}, {"code": "26D", "level": "touch"}],
   "grade-10/sheets/a2-discriminant-vieta.html": [{"code": "12D", "level": "core"}, {"code": "26C", "level": "touch"}, {"code": "11B", "level": "touch"}],
   "grade-10/sheets/a3-functions.html": [{"code": "26A", "level": "core"}, {"code": "08A", "level": "touch"}],
