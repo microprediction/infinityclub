@@ -255,6 +255,7 @@
   "grade-9/sheets/b22-fifteen-puzzle.html": [{"code": "20B", "level": "core"}, {"code": "00A", "level": "touch"}],
   "grade-9/sheets/b23-game-trees.html": [{"code": "91A", "level": "core"}, {"code": "68T", "level": "touch"}],
   "grade-9/sheets/b24-one-time-pad.html": [{"code": "94A", "level": "core"}],
+  "grade-9/sheets/b25-calculator-errors.html": [{"code": "65P", "level": "core"}, {"code": "65Q", "level": "core"}, {"code": "68V", "level": "touch"}],
   "grade-9/sheets/c1-rule-of-72.html": [{"code": "91G", "level": "core"}, {"code": "26A", "level": "touch"}],
   "grade-9/sheets/c2-half-life.html": [{"code": "92C", "level": "core"}, {"code": "39A", "level": "touch"}],
   "grade-9/sheets/c3-arches-and-cables.html": [{"code": "51N", "level": "core"}, {"code": "70C", "level": "touch"}, {"code": "74K", "level": "touch"}],
