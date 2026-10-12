@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why does an ISBN sometimes end in X? · Infinity Club</title>
+<meta name="description" content="The last digit of a ten-digit book number is a check digit, chosen so that a weighted sum is a multiple of 11. Work one out, meet the X that stands for 10, and see why a wrong digit or a swap of neighbours is always caught.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 6</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 6 · Connections · 17</div>
+  <h1>Why does an ISBN sometimes end in X?</h1>
+  <p class="teaser">Old book numbers end in a digit chosen so that a weighted sum is a multiple of 11. Sometimes that digit has to be 10, written X.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Many books printed before 2007 carry a ten-digit number, the <b>ISBN</b>, such as 0-306-40615-2. Ignore the hyphens. The first nine digits name the book. The tenth is a <b>check digit</b>, worked out from the other nine so that a computer can spot a typing slip.</p>
+<p>Here is the test. Multiply the first digit by 10, the second by 9, the third by 8, and so on, down to the tenth digit times 1. Add the ten products. The multipliers 10, 9, 8, ..., 1 are called <b>weights</b>.</p>
+<p class="callout">A ten-digit ISBN passes the test when its weighted sum is a <b>multiple of 11</b>.</p>
+<p>The check digit is whatever makes that happen. From any whole number, you reach the next multiple of 11 by adding 0, 1, 2, ... or 10, and exactly one of those works. So sometimes the last "digit" has to be 10. Two digits will not fit in one place, so 10 is written <b>X</b>, the Roman numeral for ten. X can only appear in the last place.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: find the check digit of 0-306-40615-?</h2>
+<p>Write the weights under the nine digits you know and multiply each pair.</p>
+<table>
+<tr><th>Digit</th><td>0</td><td>3</td><td>0</td><td>6</td><td>4</td><td>0</td><td>6</td><td>1</td><td>5</td><td>?</td></tr>
+<tr><th>Weight</th><td>10</td><td>9</td><td>8</td><td>7</td><td>6</td><td>5</td><td>4</td><td>3</td><td>2</td><td>1</td></tr>
+<tr><th>Product</th><td>0</td><td>27</td><td>0</td><td>42</td><td>24</td><td>0</td><td>24</td><td>3</td><td>10</td><td>?</td></tr>
+</table>
+<p>The nine products add to \(0 + 27 + 0 + 42 + 24 + 0 + 24 + 3 + 10 = 130\).</p>
+<p>The multiples of 11 near 130 are \(11 \times 11 = 121\) and \(12 \times 11 = 132\). The check digit has weight 1, so it adds itself to the sum. We need \(130 + {?} = 132\), so the check digit is <b>2</b>. The full number is 0-306-40615-2, and its weighted sum is 132.</p>
+<p>If the nine products had added to 133, the next multiple of 11 would be 143, and the check digit would be 10. That number would end in X.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Does 0-13-110362-8 pass the test? Write the ten products, add them, and say which multiple of 11 you get, if any.<div class="space short"></div></li>
+<li>A ten-digit ISBN starts 0-8044-2957. Find its check digit.<div class="space short"></div></li>
+<li>Someone copies 0-306-40615-2 as 0-306-40815-2. The second 6 has become an 8. Without starting again, find the new weighted sum. Does it pass? Then explain why no wrong digit in that place could pass.<div class="space short"></div></li>
+<li>A drop of ink hides one digit: 0-30?-40615-2. The number passed the test before the ink fell. Find the hidden digit, and show that no other digit works.<div class="space short"></div></li>
+<li>Someone copies 0-306-40615-2 as 0-306-40651-2. The neighbours 1 and 5 have swapped. Find the new weighted sum. By how much did it change? Then explain why swapping two different neighbours is always caught. (Hint: their weights differ by 1.)<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the 13-digit test has a blind spot</h2>
+<p>Since 2007, books carry a 13-digit ISBN with no X. Its weights go 1, 3, 1, 3, ..., ending in 1, and the weighted sum must be a multiple of <b>10</b>. The book in the example is now 978-0-306-40615-7. Check that it passes. Then find two different neighbouring digits in it that you can swap so that the number <em>still</em> passes. Which pairs of neighbours does this test miss?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>The products are 0, 9, 24, 7, 6, 0, 12, 18, 4 and 8. They add to 88, and \(88 = 8 \times 11\). <b>Yes, it passes.</b></li>
+<li>The nine products are 0, 72, 0, 28, 24, 10, 36, 15 and 14, which add to 199. The multiples of 11 nearby are \(18 \times 11 = 198\) and \(19 \times 11 = 209\). We cannot go down, so we need \(199 + 10 = 209\). The check digit is 10, written <b>X</b>: the number is 0-8044-2957-X.</li>
+<li>That place has weight 4. The digit went up by 2, so the sum went up by \(4 \times 2 = 8\), from 132 to <b>140</b>. Since \(140 = 12 \times 11 + 8\), it is not a multiple of 11 and the number <b>fails</b>. Any wrong digit there changes the digit by 1 to 9, so it changes the sum by 4, 8, 12, 16, 20, 24, 28, 32 or 36. None of those is a multiple of 11, and 132 plus or minus one of them is never a multiple of 11 either. The same works in every place. The change in the sum is a weight from 1 to 10 times a change from 1 to 10 (10 only for an X in the last place). Because 11 is prime, two whole numbers from 1 to 10 never multiply to a multiple of 11. So one wrong digit is always caught.</li>
+<li>The hidden digit has weight 7. The nine digits you can see give \(0 + 27 + 0 + 24 + 0 + 24 + 3 + 10 + 2 = 90\). So we need \(90 + 7 \times {?}\) to be a multiple of 11. Trying 0 to 9 gives 90, 97, 104, 111, 118, 125, 132, 139, 146 and 153. Only \(132 = 12 \times 11\) is a multiple of 11, so the hidden digit is <b>6</b>. A check digit can repair a smudge as well as spot a slip, if you know which place was smudged.</li>
+<li>The 1 has weight 3 and the 5 has weight 2, giving \(3 + 10 = 13\). After the swap they give \(15 + 2 = 17\). The sum goes up by 4, from 132 to <b>136</b>, which is \(12 \times 11 + 4\), so it fails. Notice that \(4 = 5 - 1\). That always happens. The left place has a weight one bigger than the right place. The digit that moves left is counted one extra time, and the digit that moves right is counted one time fewer. So the sum changes by the right digit minus the left digit. Two different digits (even a 10 for X) differ by something from 1 to 10, which is never a multiple of 11. So the swap is always caught.</li>
+</ol>
+<p><b>Stretch.</b> The products are 9, 21, 8, 0, 3, 0, 6, 12, 0, 18, 1, 15 and 7, which add to 100, a multiple of 10. It passes. Now swap the neighbours 6 and 1 to get 978-0-306-40165-7. Before, they gave \(3 \times 6 + 1 \times 1 = 19\). After, they give \(3 \times 1 + 1 \times 6 = 9\). The sum drops by 10, to 90, and still passes. It is the only such pair in this number. In general, two neighbours have weights 1 and 3 in some order, so swapping them changes the sum by twice their difference. That is a multiple of 10 exactly when the digits differ by 5. So the test misses swaps of 0 and 5, 1 and 6, 2 and 7, 3 and 8, and 4 and 9, and catches every other swap of different neighbours. (It still catches every single wrong digit.) The old test used 11 and never missed a neighbour swap. The price was the X.</p>
+</section>
+
+<div class="sheet-nav"><a href="c16-friendship-paradox.html">← Previous</a><a href="../index.html#sheets">← All sheets</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>
