@@ -317,6 +317,7 @@
   "grade-10/sheets/b30-coprime-pi.html": [{"code": "11N", "level": "core"}, {"code": "11A", "level": "touch"}, {"code": "05A", "level": "touch"}, {"code": "11M", "level": "touch"}],
   "grade-10/sheets/b31-lights-out.html": [{"code": "15A", "level": "core"}, {"code": "11T", "level": "touch"}, {"code": "05C", "level": "touch"}, {"code": "00A", "level": "touch"}],
   "grade-10/sheets/b32-add-to-multiply.html": [{"code": "39B", "level": "core"}, {"code": "47D", "level": "core"}],
+  "grade-10/sheets/b33-cantor-set.html": [{"code": "54F", "level": "core"}],
   "grade-10/sheets/c1-harmonics.html": [{"code": "42A", "level": "core"}, {"code": "00A", "level": "touch"}],
   "grade-10/sheets/c2-kepler.html": [{"code": "85A", "level": "core"}, {"code": "70F", "level": "touch"}],
   "grade-10/sheets/c3-projectiles.html": [{"code": "70B", "level": "core"}, {"code": "26A", "level": "touch"}, {"code": "85A", "level": "touch"}],
