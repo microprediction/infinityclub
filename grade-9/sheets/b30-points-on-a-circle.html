@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Whole-number points on a circle · Infinity Club</title>
+<meta name="description" content="Find every whole-number point on the circle x squared + y squared = 25, then find where lines cross, touch or miss the circle by substituting and solving a quadratic.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 9</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 9 · Around the corner · 30</div>
+  <h1>Whole-number points on a circle</h1>
+  <p class="teaser">The circle x² + y² = 25 passes through exactly 12 points with whole-number coordinates. A shape and its equation are two views of the same object.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Draw the circle with centre \((0, 0)\) and radius 5. By Pythagoras, a point \((x, y)\) is at distance 5 from the centre exactly when \(x^2 + y^2 = 25\). So the circle and the equation are one object seen two ways: a point is on the circle if its coordinates fit the equation, and not otherwise.</p>
+<p>That turns questions about the shape into algebra. Is \((3, 4)\) on the circle? Check: \(9 + 16 = 25\), so yes. Where does a line cross the circle? A crossing point must fit both equations at once, so substitute the line into the circle and solve.</p>
+<p class="callout">Substituting a straight line into a circle leaves a quadratic in one letter. Two solutions: the line crosses twice. One: it touches. None: it misses.</p>
+<p>Studying shapes through their polynomial equations is called <b>algebraic geometry</b>. It is also how a computer handles shapes. A program does not look at the picture. It solves the equations.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: every whole-number point on \(x^2 + y^2 = 25\)</h2>
+<figure style="float:right;width:224px;max-width:48%;margin:0 0 .3em 1em"><svg viewBox="0 0 224 200" width="224" height="200" role="img" aria-label="The circle x squared plus y squared equals 25 drawn on a grid of whole-number points, centred at the origin with radius 5. The 12 whole-number points on the circle are marked with dots: (5, 0), (-5, 0), (0, 5), (0, -5), and the eight points with coordinates 3 and 4 in either order and with either sign. The straight line y = x + 1 crosses the circle at the two orange dots (3, 4) and (-4, -3)" font-family="Nunito, sans-serif" font-size="12">
+<circle cx="22" cy="190" r="1" fill="#999"/>
+<circle cx="22" cy="175" r="1" fill="#999"/>
+<circle cx="22" cy="160" r="1" fill="#999"/>
+<circle cx="22" cy="145" r="1" fill="#999"/>
+<circle cx="22" cy="130" r="1" fill="#999"/>
+<circle cx="22" cy="115" r="1" fill="#999"/>
+<circle cx="22" cy="100" r="1" fill="#999"/>
+<circle cx="22" cy="85" r="1" fill="#999"/>
+<circle cx="22" cy="70" r="1" fill="#999"/>
+<circle cx="22" cy="55" r="1" fill="#999"/>
+<circle cx="22" cy="40" r="1" fill="#999"/>
+<circle cx="22" cy="25" r="1" fill="#999"/>
+<circle cx="22" cy="10" r="1" fill="#999"/>
+<circle cx="37" cy="190" r="1" fill="#999"/>
+<circle cx="37" cy="175" r="1" fill="#999"/>
+<circle cx="37" cy="160" r="1" fill="#999"/>
+<circle cx="37" cy="145" r="1" fill="#999"/>
+<circle cx="37" cy="130" r="1" fill="#999"/>
+<circle cx="37" cy="115" r="1" fill="#999"/>
+<circle cx="37" cy="100" r="1" fill="#999"/>
+<circle cx="37" cy="85" r="1" fill="#999"/>
+<circle cx="37" cy="70" r="1" fill="#999"/>
+<circle cx="37" cy="55" r="1" fill="#999"/>
+<circle cx="37" cy="40" r="1" fill="#999"/>
+<circle cx="37" cy="25" r="1" fill="#999"/>
+<circle cx="37" cy="10" r="1" fill="#999"/>
+<circle cx="52" cy="190" r="1" fill="#999"/>
+<circle cx="52" cy="175" r="1" fill="#999"/>
+<circle cx="52" cy="160" r="1" fill="#999"/>
+<circle cx="52" cy="145" r="1" fill="#999"/>
+<circle cx="52" cy="130" r="1" fill="#999"/>
+<circle cx="52" cy="115" r="1" fill="#999"/>
+<circle cx="52" cy="100" r="1" fill="#999"/>
+<circle cx="52" cy="85" r="1" fill="#999"/>
+<circle cx="52" cy="70" r="1" fill="#999"/>
+<circle cx="52" cy="55" r="1" fill="#999"/>
+<circle cx="52" cy="40" r="1" fill="#999"/>
+<circle cx="52" cy="25" r="1" fill="#999"/>
+<circle cx="52" cy="10" r="1" fill="#999"/>
+<circle cx="67" cy="190" r="1" fill="#999"/>
+<circle cx="67" cy="175" r="1" fill="#999"/>
+<circle cx="67" cy="160" r="1" fill="#999"/>
+<circle cx="67" cy="145" r="1" fill="#999"/>
+<circle cx="67" cy="130" r="1" fill="#999"/>
+<circle cx="67" cy="115" r="1" fill="#999"/>
+<circle cx="67" cy="100" r="1" fill="#999"/>
+<circle cx="67" cy="85" r="1" fill="#999"/>
+<circle cx="67" cy="70" r="1" fill="#999"/>
+<circle cx="67" cy="55" r="1" fill="#999"/>
+<circle cx="67" cy="40" r="1" fill="#999"/>
+<circle cx="67" cy="25" r="1" fill="#999"/>
+<circle cx="67" cy="10" r="1" fill="#999"/>
+<circle cx="82" cy="190" r="1" fill="#999"/>
+<circle cx="82" cy="175" r="1" fill="#999"/>
+<circle cx="82" cy="160" r="1" fill="#999"/>
+<circle cx="82" cy="145" r="1" fill="#999"/>
+<circle cx="82" cy="130" r="1" fill="#999"/>
+<circle cx="82" cy="115" r="1" fill="#999"/>
+<circle cx="82" cy="100" r="1" fill="#999"/>
+<circle cx="82" cy="85" r="1" fill="#999"/>
+<circle cx="82" cy="70" r="1" fill="#999"/>
+<circle cx="82" cy="55" r="1" fill="#999"/>
+<circle cx="82" cy="40" r="1" fill="#999"/>
+<circle cx="82" cy="25" r="1" fill="#999"/>
+<circle cx="82" cy="10" r="1" fill="#999"/>
+<circle cx="97" cy="190" r="1" fill="#999"/>
+<circle cx="97" cy="175" r="1" fill="#999"/>
+<circle cx="97" cy="160" r="1" fill="#999"/>
+<circle cx="97" cy="145" r="1" fill="#999"/>
+<circle cx="97" cy="130" r="1" fill="#999"/>
+<circle cx="97" cy="115" r="1" fill="#999"/>
+<circle cx="97" cy="100" r="1" fill="#999"/>
+<circle cx="97" cy="85" r="1" fill="#999"/>
+<circle cx="97" cy="70" r="1" fill="#999"/>
+<circle cx="97" cy="55" r="1" fill="#999"/>
+<circle cx="97" cy="40" r="1" fill="#999"/>
+<circle cx="97" cy="25" r="1" fill="#999"/>
+<circle cx="97" cy="10" r="1" fill="#999"/>
+<circle cx="112" cy="190" r="1" fill="#999"/>
+<circle cx="112" cy="175" r="1" fill="#999"/>
+<circle cx="112" cy="160" r="1" fill="#999"/>
+<circle cx="112" cy="145" r="1" fill="#999"/>
+<circle cx="112" cy="130" r="1" fill="#999"/>
+<circle cx="112" cy="115" r="1" fill="#999"/>
+<circle cx="112" cy="100" r="1" fill="#999"/>
+<circle cx="112" cy="85" r="1" fill="#999"/>
+<circle cx="112" cy="70" r="1" fill="#999"/>
+<circle cx="112" cy="55" r="1" fill="#999"/>
+<circle cx="112" cy="40" r="1" fill="#999"/>
+<circle cx="112" cy="25" r="1" fill="#999"/>
+<circle cx="112" cy="10" r="1" fill="#999"/>
+<circle cx="127" cy="190" r="1" fill="#999"/>
+<circle cx="127" cy="175" r="1" fill="#999"/>
+<circle cx="127" cy="160" r="1" fill="#999"/>
+<circle cx="127" cy="145" r="1" fill="#999"/>
+<circle cx="127" cy="130" r="1" fill="#999"/>
+<circle cx="127" cy="115" r="1" fill="#999"/>
+<circle cx="127" cy="100" r="1" fill="#999"/>
+<circle cx="127" cy="85" r="1" fill="#999"/>
+<circle cx="127" cy="70" r="1" fill="#999"/>
+<circle cx="127" cy="55" r="1" fill="#999"/>
+<circle cx="127" cy="40" r="1" fill="#999"/>
+<circle cx="127" cy="25" r="1" fill="#999"/>
+<circle cx="127" cy="10" r="1" fill="#999"/>
+<circle cx="142" cy="190" r="1" fill="#999"/>
+<circle cx="142" cy="175" r="1" fill="#999"/>
+<circle cx="142" cy="160" r="1" fill="#999"/>
+<circle cx="142" cy="145" r="1" fill="#999"/>
+<circle cx="142" cy="130" r="1" fill="#999"/>
+<circle cx="142" cy="115" r="1" fill="#999"/>
+<circle cx="142" cy="100" r="1" fill="#999"/>
+<circle cx="142" cy="85" r="1" fill="#999"/>
+<circle cx="142" cy="70" r="1" fill="#999"/>
+<circle cx="142" cy="55" r="1" fill="#999"/>
+<circle cx="142" cy="40" r="1" fill="#999"/>
+<circle cx="142" cy="25" r="1" fill="#999"/>
+<circle cx="142" cy="10" r="1" fill="#999"/>
+<circle cx="157" cy="190" r="1" fill="#999"/>
+<circle cx="157" cy="175" r="1" fill="#999"/>
+<circle cx="157" cy="160" r="1" fill="#999"/>
+<circle cx="157" cy="145" r="1" fill="#999"/>
+<circle cx="157" cy="130" r="1" fill="#999"/>
+<circle cx="157" cy="115" r="1" fill="#999"/>
+<circle cx="157" cy="100" r="1" fill="#999"/>
+<circle cx="157" cy="85" r="1" fill="#999"/>
+<circle cx="157" cy="70" r="1" fill="#999"/>
+<circle cx="157" cy="55" r="1" fill="#999"/>
+<circle cx="157" cy="40" r="1" fill="#999"/>
+<circle cx="157" cy="25" r="1" fill="#999"/>
+<circle cx="157" cy="10" r="1" fill="#999"/>
+<circle cx="172" cy="190" r="1" fill="#999"/>
+<circle cx="172" cy="175" r="1" fill="#999"/>
+<circle cx="172" cy="160" r="1" fill="#999"/>
+<circle cx="172" cy="145" r="1" fill="#999"/>
+<circle cx="172" cy="130" r="1" fill="#999"/>
+<circle cx="172" cy="115" r="1" fill="#999"/>
+<circle cx="172" cy="100" r="1" fill="#999"/>
+<circle cx="172" cy="85" r="1" fill="#999"/>
+<circle cx="172" cy="70" r="1" fill="#999"/>
+<circle cx="172" cy="55" r="1" fill="#999"/>
+<circle cx="172" cy="40" r="1" fill="#999"/>
+<circle cx="172" cy="25" r="1" fill="#999"/>
+<circle cx="172" cy="10" r="1" fill="#999"/>
+<circle cx="187" cy="190" r="1" fill="#999"/>
+<circle cx="187" cy="175" r="1" fill="#999"/>
+<circle cx="187" cy="160" r="1" fill="#999"/>
+<circle cx="187" cy="145" r="1" fill="#999"/>
+<circle cx="187" cy="130" r="1" fill="#999"/>
+<circle cx="187" cy="115" r="1" fill="#999"/>
+<circle cx="187" cy="100" r="1" fill="#999"/>
+<circle cx="187" cy="85" r="1" fill="#999"/>
+<circle cx="187" cy="70" r="1" fill="#999"/>
+<circle cx="187" cy="55" r="1" fill="#999"/>
+<circle cx="187" cy="40" r="1" fill="#999"/>
+<circle cx="187" cy="25" r="1" fill="#999"/>
+<circle cx="187" cy="10" r="1" fill="#999"/>
+<circle cx="202" cy="190" r="1" fill="#999"/>
+<circle cx="202" cy="175" r="1" fill="#999"/>
+<circle cx="202" cy="160" r="1" fill="#999"/>
+<circle cx="202" cy="145" r="1" fill="#999"/>
+<circle cx="202" cy="130" r="1" fill="#999"/>
+<circle cx="202" cy="115" r="1" fill="#999"/>
+<circle cx="202" cy="100" r="1" fill="#999"/>
+<circle cx="202" cy="85" r="1" fill="#999"/>
+<circle cx="202" cy="70" r="1" fill="#999"/>
+<circle cx="202" cy="55" r="1" fill="#999"/>
+<circle cx="202" cy="40" r="1" fill="#999"/>
+<circle cx="202" cy="25" r="1" fill="#999"/>
+<circle cx="202" cy="10" r="1" fill="#999"/>
+<line x1="16.0" y1="100" x2="208.0" y2="100" stroke="#999" stroke-width="1"/>
+<line x1="112" y1="196.0" x2="112" y2="4.0" stroke="#999" stroke-width="1"/>
+<circle cx="112" cy="100" r="75" fill="none" stroke="#3f44c9" stroke-width="2"/>
+<line x1="16.0" y1="181.0" x2="193.0" y2="4.0" stroke="#f5a524" stroke-width="2"/>
+<circle cx="37" cy="100" r="3.2" fill="#1d1f3a"/>
+<circle cx="52" cy="145" r="4" fill="#f5a524" stroke="#1d1f3a" stroke-width="1"/>
+<circle cx="52" cy="55" r="3.2" fill="#1d1f3a"/>
+<circle cx="67" cy="160" r="3.2" fill="#1d1f3a"/>
+<circle cx="67" cy="40" r="3.2" fill="#1d1f3a"/>
+<circle cx="112" cy="175" r="3.2" fill="#1d1f3a"/>
+<circle cx="112" cy="25" r="3.2" fill="#1d1f3a"/>
+<circle cx="157" cy="160" r="3.2" fill="#1d1f3a"/>
+<circle cx="157" cy="40" r="4" fill="#f5a524" stroke="#1d1f3a" stroke-width="1"/>
+<circle cx="172" cy="145" r="3.2" fill="#1d1f3a"/>
+<circle cx="172" cy="55" r="3.2" fill="#1d1f3a"/>
+<circle cx="187" cy="100" r="3.2" fill="#1d1f3a"/>
+<text x="165" y="42" fill="#1d1f3a">(3, 4)</text>
+<text x="60" y="153" fill="#1d1f3a">(−4, −3)</text>
+<text x="192" y="115" fill="#999">5</text>
+<text x="106" y="20" text-anchor="end" fill="#999">5</text>
+<text x="211.0" y="104" fill="#999">x</text>
+<text x="117" y="10.0" fill="#999">y</text>
+</svg><figcaption>The line \(y = x + 1\) passes through two of the twelve points.</figcaption></figure>
+<p>Here "whole-number" means any integer, so negatives and 0 count. If \(x\) is 6 or more, \(x^2\) alone is over 25, so try \(x = 0\) to 5 and ask whether \(25 - x^2\) is a square.</p>
+<table>
+<tr><th>\(x\)</th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
+<tr><th>\(25 - x^2\)</th><td>25</td><td>24</td><td>21</td><td>16</td><td>9</td><td>0</td></tr>
+<tr><th>\(y\)</th><td>\(\pm 5\)</td><td>none</td><td>none</td><td>\(\pm 4\)</td><td>\(\pm 3\)</td><td>0</td></tr>
+</table>
+<p>Now let \(x\) be negative too. That gives \((0, \pm 5)\) and \((\pm 5, 0)\), 4 points, then \((\pm 3, \pm 4)\) and \((\pm 4, \pm 3)\) with every choice of signs, 8 points. Total: 12.</p>
+<p><b>A line.</b> Where does \(y = x + 1\) meet the circle? Substitute: \(x^2 + (x + 1)^2 = 25\), so \(2x^2 + 2x - 24 = 0\), so \(x^2 + x - 12 = 0\), so \((x + 4)(x - 3) = 0\). Then \(x = 3\) gives \(y = 4\), and \(x = -4\) gives \(y = -3\). The line crosses at \((3, 4)\) and \((-4, -3)\), and nowhere else.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Find every whole-number point on the circle \(x^2 + y^2 = 50\). Make a table for \(x = 0\) to 7, then put in the signs. How many points are there?<div class="space"></div></li>
+<li>Show that the circle \(x^2 + y^2 = 3\) passes through no whole-number points at all.<div class="space short"></div></li>
+<li>Where does the line \(x + y = 7\) meet the circle \(x^2 + y^2 = 25\)? Write \(y = 7 - x\), substitute and solve.<div class="space"></div></li>
+<li>Both parts use the circle \(x^2 + y^2 = 25\). (a) Show that the line \(y = x + 10\) misses the circle. (b) The line \(3x + 4y = 25\) can be written \(y = \tfrac{25 - 3x}{4}\). Substitute, multiply through by 16, and solve. How many points do you get, and what does that say about the line?<div class="space tall"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: points with fraction coordinates</h2>
+<p>The point \((-5, 0)\) is on the circle \(x^2 + y^2 = 25\). A line through it with slope \(m\) is \(y = m(x + 5)\). (a) Take \(m = \tfrac12\). Where else does the line hit the circle? (b) Take \(m = \tfrac15\). The second point now has fraction coordinates. Find it and check that it fits the equation. (c) Why must every fraction slope give a second point whose coordinates are fractions (or whole numbers)?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>For \(x = 0, 1, \dots, 7\) the values of \(50 - x^2\) are 50, 49, 46, 41, 34, 25, 14, 1. Only 49, 25 and 1 are squares, at \(x = 1, 5, 7\). With signs: \((\pm 1, \pm 7)\), \((\pm 5, \pm 5)\) and \((\pm 7, \pm 1)\), 4 points each, so 12 points. If \(x\) is 8 or more, \(x^2\) is already over 50.</li>
+<li>If \(x\) is 2 or more, or \(-2\) or less, then \(x^2\) is at least 4, which is over 3. So \(x\) is \(-1\), 0 or 1 and \(x^2\) is 0 or 1. Then \(y^2\) would be 3 or 2, and neither is the square of a whole number. The circle is real, with radius \(\sqrt3 \approx 1.73\), and it has plenty of points. It just slips between all the grid points.</li>
+<li>\(x^2 + (7 - x)^2 = 25\) gives \(2x^2 - 14x + 49 = 25\), so \(2x^2 - 14x + 24 = 0\), so \(x^2 - 7x + 12 = 0\), so \((x - 3)(x - 4) = 0\). Then \(x = 3, y = 4\) or \(x = 4, y = 3\). The line crosses at \((3, 4)\) and \((4, 3)\).</li>
+<li>(a) \(x^2 + (x + 10)^2 = 25\) gives \(2x^2 + 20x + 75 = 0\). Complete the square: the left side is \(2(x + 5)^2 + 25\). A square is never negative, so this is at least 25 and can never be 0. No solutions, so no point is on both. (b) \(x^2 + \tfrac{(25 - 3x)^2}{16} = 25\) becomes \(16x^2 + 625 - 150x + 9x^2 = 400\), so \(25x^2 - 150x + 225 = 0\), so \(x^2 - 6x + 9 = 0\), so \((x - 3)^2 = 0\). The only solution is \(x = 3\), with \(y = \tfrac{25 - 9}{4} = 4\). One point, \((3, 4)\): the line touches the circle there. It is a tangent.</li>
+</ol>
+<p><b>Stretch.</b> (a) \(y = \tfrac{x + 5}{2}\), so \(x^2 + \tfrac{(x + 5)^2}{4} = 25\). Multiply by 4: \(5x^2 + 10x - 75 = 0\), so \(x^2 + 2x - 15 = 0\), so \((x + 5)(x - 3) = 0\). The new point is \((3, 4)\). (b) \(y = \tfrac{x + 5}{5}\), so \(25x^2 + (x + 5)^2 = 625\), so \(13x^2 + 5x - 300 = 0\), so \((x + 5)(13x - 60) = 0\). The new point is \(\left(\tfrac{60}{13}, \tfrac{25}{13}\right)\). Check: \(60^2 + 25^2 = 4225 = 25 \times 13^2\). (c) The quadratic has fraction coefficients, and \(x = -5\) is always one solution, so \((x + 5)\) is a factor. The other factor is a straight-line expression with fraction coefficients, so its solution is a fraction, and then \(y = m(x + 5)\) is a fraction too. In general the second point is \(\left(\tfrac{5(1 - m^2)}{1 + m^2}, \tfrac{10m}{1 + m^2}\right)\). Different slopes give different points, so this circle has only 12 whole-number points but infinitely many fraction points.</p>
+</section>
+
+<div class="sheet-nav"><a href="b29-nearly-zero.html">← Previous</a><a href="c1-rule-of-72.html">Next: How long until your money doubles? →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

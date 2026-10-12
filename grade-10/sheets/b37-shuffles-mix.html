@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How many shuffles mix a deck? · Infinity Club</title>
+<meta name="description" content="The top-to-random shuffle as a random walk on the orders of a deck: watch the card that starts at the bottom to find a moment when every order is equally likely, work out the average wait for 3, 4 and 52 cards, and see what 'seven riffle shuffles' really claims.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 10</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 10 · Around the corner · 37</div>
+  <h1>How many shuffles mix a deck?</h1>
+  <p class="teaser">Take the top card and push it back into the deck at a random place. Keep going. By watching one card you can spot a moment when the deck is perfectly random, and you can see it coming.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Hold a deck of \(n\) cards. One <b>top-to-random shuffle</b>: lift the top card and push it back into one of the \(n\) gaps, each equally likely. The gaps include the top (the card goes back where it was) and the very bottom.</p>
+<p>Each shuffle is one random step from one order of the deck to another: a <b>random walk</b> on the \(n!\) orders. How long until the walk forgets where it started? This is a model of shuffling, chosen because it can be analysed. Nobody shuffles this way.</p>
+<p>Watch the card that starts at the bottom. Call it the <b>marker</b>. Now and then a card lands below it, and the marker rises one place. The cards under the marker are always in a completely random order (exercise 2).</p>
+<p class="callout">When the marker reaches the top and is itself pushed in at random, every one of the \(n!\) orders is exactly equally likely.</p>
+<p>That moment comes at a different time in every game. One fact about waiting helps: if each try succeeds with chance \(p\), the average wait is \(1/p\) tries.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: three cards</h2>
+<p>Write the deck from top to bottom: ABC. The marker is C.</p>
+<p><b>One shuffle.</b> Lift A. Two cards, B and C, remain, with 3 gaps: above B, between B and C, below C. So the deck becomes ABC, BAC or BCA, each with chance \(\frac{1}{3}\). Three of the 6 orders cannot happen yet. Not mixed.</p>
+<p><b>The marker's climb.</b> At the start only 1 of the 3 gaps is below C, so each shuffle puts a card under C with chance \(\frac{1}{3}\). Average wait: 3 shuffles. Now one card is under C, and 2 of the 3 gaps are below C. The chance is \(\frac{2}{3}\), and the average wait is \(\frac{3}{2}\) shuffles. Now C is on top. One more shuffle pushes C in at random.</p>
+\[3 + \tfrac{3}{2} + 1 = 5\tfrac{1}{2}\]
+<p><b>What it means.</b> On average the perfectly mixed moment arrives after \(5\frac{1}{2}\) shuffles. In one game it might come after 3 shuffles (the fewest possible) or after 12.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Start from ABC and shuffle twice. List every order the deck can be in, with its chance. (Follow each of ABC, BAC and BCA through one more shuffle: nine paths, each with chance \(\frac{1}{9}\).) Is the deck mixed yet?<div class="space"></div></li>
+<li>Four cards, ABCD. The marker is D. (a) One card, X, is under D. The next card to land under D is Y. How many gaps are under D, and what is the chance of each order of X and Y? (b) Two cards are under D, both orders equally likely. A third card lands under D. Explain why all 6 orders of the three are equally likely. (c) Now D is on top and is pushed into a random gap. Explain why all 24 orders of the deck are equally likely.<div class="space"></div></li>
+<li>Four cards again. Find the chance that a shuffle puts a card under the marker when 0, 1 and 2 cards are under it already. Then find the average number of shuffles until the perfectly mixed moment.<div class="space short"></div></li>
+<li>(a) Write the average as a formula for \(n\) cards. (b) Use \(1 + \frac{1}{2} + \frac{1}{3} + \cdots + \frac{1}{51} \approx 4.519\) to find it for 52 cards. (c) Try \(n = 2\) in your formula. Then list what one shuffle does to the deck AB. What does this tell you about the marker's moment?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: what does "seven shuffles" mean?</h2>
+<p>Stop after a fixed number of shuffles and a deck of three or more cards is never exactly random, only close. Measure the <b>distance</b> from perfectly mixed like this: for each order, find the gap between its chance and the fair chance (\(\frac{1}{6}\) for three cards), add up the gaps, and halve. A perfect mix has distance 0, and the distance is never more than 1. (a) Find the distance for ABC after one shuffle and after two. (b) After \(k\) shuffles of ABC every chance is a whole number over \(3^k\). Why is the distance never exactly 0? (c) In 1992 Dave Bayer and Persi Diaconis studied a model of the riffle shuffle on 52 cards. With this distance they found 1.000, 1.000, 1.000, 1.000, 0.924, 0.614, 0.334, 0.167, 0.085, 0.043 after 1 to 10 riffles. People say "seven shuffles are needed". What could "needed" mean?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>From ABC: ABC, BAC, BCA. From BAC (lift B): BAC, ABC, ACB. From BCA (lift B): BCA, CBA, CAB. Collecting the nine paths: ABC, BAC and BCA have chance \(\frac{2}{9}\) each, and ACB, CBA and CAB have chance \(\frac{1}{9}\) each. Check: \(3 \times \frac{2}{9} + 3 \times \frac{1}{9} = 1\). All 6 orders can happen now, but a perfect mix needs \(\frac{1}{6}\) each, so the deck is not mixed yet.</li>
+<li>(a) Two gaps: between D and X, or below X. All gaps in the deck are equally likely, so these two are equally likely with each other. The orders YX and XY have chance \(\frac{1}{2}\) each. (b) Now 3 gaps are under D, equally likely with each other. There are 2 orders to start from and 3 gaps, so \(2 \times 3 = 6\) cases, each with chance \(\frac{1}{2} \times \frac{1}{3} = \frac{1}{6}\). Each case gives a different order of the three cards, so all 6 orders have chance \(\frac{1}{6}\). (c) D sits on 3 cards in one of 6 equally likely orders, and D goes into one of 4 equally likely gaps. That is \(6 \times 4 = 24\) cases, each with chance \(\frac{1}{24}\), and each gives a different order of the deck. The same argument works for any number of cards.</li>
+<li>With \(j\) cards under the marker, \(j + 1\) of the 4 gaps are below it. The chances are \(\frac{1}{4}\), \(\frac{2}{4}\) and \(\frac{3}{4}\), so the average waits are 4, 2 and \(\frac{4}{3}\) shuffles. Then the marker is on top and one more shuffle finishes: \(4 + 2 + \frac{4}{3} + 1 = 8\frac{1}{3}\), about 8.3 shuffles.</li>
+<li>(a) The chances are \(\frac{1}{n}, \frac{2}{n}, \ldots, \frac{n-1}{n}\), so the waits are \(\frac{n}{1}, \frac{n}{2}, \ldots, \frac{n}{n-1}\), plus one last shuffle: \[n\left(1 + \tfrac{1}{2} + \tfrac{1}{3} + \cdots + \tfrac{1}{n-1}\right) + 1.\] (b) \(52 \times 4.519 + 1 \approx 236\) shuffles. (c) The formula gives \(2 \times 1 + 1 = 3\). But one shuffle of AB gives AB or BA with chance \(\frac{1}{2}\) each, which is already a perfect mix. So the marker's moment is a moment when the deck is certainly mixed. It need not be the earliest one.</li>
+</ol>
+<p><b>Stretch.</b> (a) After one shuffle three orders have chance \(\frac{1}{3}\) and three have 0. Every gap is \(\frac{1}{6}\), so the distance is \(\frac{1}{2} \times 6 \times \frac{1}{6} = \frac{1}{2}\). After two, the gaps are \(\frac{2}{9} - \frac{1}{6} = \frac{1}{18}\) and \(\frac{1}{6} - \frac{1}{9} = \frac{1}{18}\), so the distance is \(\frac{1}{2} \times 6 \times \frac{1}{18} = \frac{1}{6}\). (b) Distance 0 needs every chance to be \(\frac{1}{6}\). If \(\frac{m}{3^k} = \frac{1}{6}\) then \(3^k = 6m\), which is even, but \(3^k\) is odd. So the mix is never exact after a fixed number of shuffles. The marker's moment is exact, but it comes at a different time in each game, and after any fixed number of shuffles some games have not reached it. (c) The distance never reaches 0, so no number of riffles is enough in the exact sense. It stays close to 1 for four riffles, drops below \(\frac{1}{2}\) for the first time at seven, and about halves with each riffle after that. "Seven" marks where the drop happens. It is a judgement, and it depends on their model of a riffle and on this way of measuring distance (called total variation). A different model or measure can give a different number.</p>
+</section>
+
+<div class="sheet-nav"><a href="b36-shift-machine.html">← Previous</a><a href="c1-harmonics.html">Next: Why a violin doesn't sound like a flute →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>
