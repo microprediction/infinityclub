@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hitting the target · Infinity Club</title>
+<meta name="description" content="Throw a ball at 20 m/s to land exactly 30 m away. Guess an angle, see where it lands, adjust, and find that a problem with a condition at each end can have two solutions, one, or none.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 11</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 11 · Connections · 10</div>
+  <h1>Hitting the target</h1>
+  <p class="teaser">Throw a ball at 20 m/s to land exactly 30 m away. There are two ways to do it, a low throw and a high lob. Move the target and there may be one way, or none.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Most motion problems tell you everything at the start: where the ball is and how it is thrown. Gravity then decides the rest, and there is exactly one path.</p>
+<p>Tonight you know where the ball starts and where it must <b>land</b>. That is one condition at each end. It is called a <b>boundary value problem</b>, and it behaves differently.</p>
+<p class="callout">With conditions at both ends, a problem can have no solution, exactly one, or more than one.</p>
+<p>One way to attack it is the <b>shooting method</b>: guess the launch angle, work out where the ball lands, and adjust the guess. Too short, too long, closer, closer.</p>
+<p>Our <b>model</b>: the ball leaves and lands at the same height, there is no air resistance, and gravity is \(g = 10\) m/s\(^2\). The measured value is about 9.8. We round it to 10 and keep 10 all evening. Real air changes the numbers.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: 20 m/s, target 30 m</h2>
+<p>Throw at 20 m/s at an angle \(\theta\) above the ground, with \(0^\circ \lt \theta \lt 90^\circ\). The sideways speed stays at \(20\cos\theta\). The height after \(t\) seconds is \(20\sin\theta\, t - 5t^2\), which is back to zero when \(t = 4\sin\theta\). So the ball lands at distance</p>
+<p>\[ 20\cos\theta \times 4\sin\theta = 80\sin\theta\cos\theta = 40\sin 2\theta \text{ metres.} \]</p>
+<p>For any speed \(v\) the same steps give \(v^2 \sin 2\theta / g\). Now shoot.</p>
+<table class="tt" style="break-inside:avoid">
+<tr><th>Guess \(\theta\)</th><td>20°</td><td>30°</td><td>25°</td><td>24°</td></tr>
+<tr><th>Lands at \(40\sin 2\theta\)</th><td>25.7 m</td><td>34.6 m</td><td>30.6 m</td><td>29.7 m</td></tr>
+<tr><th>Verdict</th><td>short</td><td>long</td><td>long</td><td>short</td></tr>
+</table>
+<p>The angle is trapped between 24° and 25°. Exactly: \(\sin 2\theta = 0.75\), so \(2\theta \approx 48.6^\circ\) and \(\theta \approx 24.3^\circ\). But \(2\theta \approx 180^\circ - 48.6^\circ = 131.4^\circ\) has the same sine, giving \(\theta \approx 65.7^\circ\). Two solutions.</p>
+<figure><svg viewBox="0 0 520 190" width="400" height="146" role="img" aria-label="Three throws at 20 metres per second from the same point, drawn to scale. A low throw at 24.3 degrees and a high lob at 65.7 degrees both land at the 30 metre mark. A dashed throw at 45 degrees lands at 40 metres. A mark at 50 metres is labelled out of reach" font-family="Nunito, sans-serif" font-size="12">
+<line x1="30" y1="165" x2="505" y2="165" stroke="#1d1f3a" stroke-width="1.2"/>
+<line x1="40" y1="165" x2="40" y2="169" stroke="#1d1f3a"/><text x="40" y="181" text-anchor="middle">0</text>
+<line x1="130" y1="165" x2="130" y2="169" stroke="#1d1f3a"/><text x="130" y="181" text-anchor="middle">10</text>
+<line x1="220" y1="165" x2="220" y2="169" stroke="#1d1f3a"/><text x="220" y="181" text-anchor="middle">20</text>
+<line x1="310" y1="165" x2="310" y2="169" stroke="#1d1f3a"/><text x="310" y="181" text-anchor="middle" font-weight="700">30</text>
+<line x1="400" y1="165" x2="400" y2="169" stroke="#1d1f3a"/><text x="400" y="181" text-anchor="middle">40</text>
+<line x1="490" y1="165" x2="490" y2="169" stroke="#1d1f3a"/><text x="490" y="181" text-anchor="middle">50 m</text>
+<polyline points="40.0,165.0 49.0,156.2 58.0,147.9 67.0,140.0 76.0,132.6 85.0,125.6 94.0,119.1 103.0,113.0 112.0,107.4 121.0,102.2 130.0,97.5 139.0,93.2 148.0,89.4 157.0,86.0 166.0,83.1 175.0,80.6 184.0,78.6 193.0,77.0 202.0,75.9 211.0,75.2 220.0,75.0 229.0,75.2 238.0,75.9 247.0,77.0 256.0,78.6 265.0,80.6 274.0,83.1 283.0,86.0 292.0,89.4 301.0,93.2 310.0,97.5 319.0,102.2 328.0,107.4 337.0,113.0 346.0,119.1 355.0,125.6 364.0,132.6 373.0,140.0 382.0,147.9 391.0,156.2 400.0,165.0" fill="none" stroke="#999" stroke-width="1.5" stroke-dasharray="5 4"/>
+<polyline points="40.0,165.0 46.8,162.0 53.5,159.2 60.3,156.5 67.0,154.0 73.8,151.7 80.5,149.5 87.3,147.4 94.0,145.5 100.8,143.7 107.5,142.1 114.3,140.7 121.0,139.4 127.8,138.3 134.5,137.3 141.3,136.4 148.0,135.7 154.8,135.2 161.5,134.8 168.3,134.6 175.0,134.5 181.8,134.6 188.5,134.8 195.3,135.2 202.0,135.7 208.8,136.4 215.5,137.3 222.3,138.3 229.0,139.4 235.8,140.7 242.5,142.1 249.3,143.7 256.0,145.5 262.8,147.4 269.5,149.5 276.3,151.7 283.0,154.0 289.8,156.5 296.5,159.2 303.3,162.0 310.0,165.0" fill="none" stroke="#3f44c9" stroke-width="2"/>
+<polyline points="40.0,165.0 46.8,150.4 53.5,136.6 60.3,123.5 67.0,111.2 73.8,99.6 80.5,88.7 87.3,78.6 94.0,69.3 100.8,60.7 107.5,52.9 114.3,45.8 121.0,39.4 127.8,33.8 134.5,28.9 141.3,24.8 148.0,21.5 154.8,18.8 161.5,17.0 168.3,15.8 175.0,15.5 181.8,15.8 188.5,17.0 195.3,18.8 202.0,21.5 208.8,24.8 215.5,28.9 222.3,33.8 229.0,39.4 235.8,45.8 242.5,52.9 249.3,60.7 256.0,69.3 262.8,78.6 269.5,88.7 276.3,99.6 283.0,111.2 289.8,123.5 296.5,136.6 303.3,150.4 310.0,165.0" fill="none" stroke="#f5a524" stroke-width="2"/>
+<circle cx="40" cy="165" r="3" fill="#1d1f3a"/><circle cx="310" cy="165" r="4" fill="#1d1f3a"/><circle cx="400" cy="165" r="3" fill="#999"/>
+<text x="175" y="153" text-anchor="middle" fill="#3f44c9">low throw, 24.3°</text>
+<text x="238" y="30" fill="#b06a00">high lob, 65.7°</text>
+<text x="338" y="95" fill="#555">45°, lands at 40 m</text>
+<text x="505" y="150" text-anchor="end" fill="#555">out of reach</text>
+</svg><figcaption>Both solid throws leave at 20 m/s and land at 30 m. Dashed: the longest throw at this speed.</figcaption></figure>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>The target moves to 35 m. The speed is still 20 m/s. (a) Shoot: work out where throws at 30° and at 35° land, then keep guessing until the low angle is trapped between two whole numbers of degrees that are one apart. (b) Solve \(40\sin 2\theta = 35\) for both angles, to one decimal place.<div class="space short"></div></li>
+<li>Still at 20 m/s. (a) Find both angles that land the ball exactly 20 m away. (b) How many angles land it exactly 40 m away? Find them all.<div class="space short"></div></li>
+<li>The target moves to 50 m. (a) Explain why no angle works at 20 m/s. (b) What is the smallest throwing speed that can reach 50 m, and at what angle?<div class="space short"></div></li>
+<li>Now change what is fixed. (a) The angle must be 45° and the speed is free. What speed lands the ball at 30 m? (b) If the angle and the speed are both free, how many ways are there to land at 30 m? Find the speed needed at 30°.<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: why the two angles add to 90°</h2>
+<p>(a) Show that throws at \(\theta\) and at \(90^\circ - \theta\) land in the same place, whatever the speed. Why does that put the two angles the same distance either side of 45°? (b) The two throws to 30 m land in the same place but not at the same time. The time in the air is \(4\sin\theta\) seconds. Find it for both throws.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(40\sin 60^\circ \approx 34.6\) m, short. \(40\sin 70^\circ \approx 37.6\) m, long. Try 31°: \(40\sin 62^\circ \approx 35.3\) m, long. So the low angle is between 30° and 31°. (b) \(\sin 2\theta = 0.875\), so \(2\theta \approx 61.0^\circ\) or \(180^\circ - 61.0^\circ = 119.0^\circ\), and \(\theta \approx 30.5^\circ\) or \(59.5^\circ\).</li>
+<li>(a) \(\sin 2\theta = 0.5\), so \(2\theta = 30^\circ\) or \(150^\circ\): the angles are exactly 15° and 75°. (b) Just one. \(\sin 2\theta = 1\) only when \(2\theta = 90^\circ\), so \(\theta = 45^\circ\). The two solutions have moved together and merged.</li>
+<li>(a) You would need \(\sin 2\theta = 50/40 = 1.25\), and a sine is never more than 1. At 20 m/s the farthest landing is 40 m. (b) The range is \(v^2\sin 2\theta/10\), which is at most \(v^2/10\), reached at 45°. You need \(v^2/10 \ge 50\), so \(v \ge \sqrt{500} \approx 22.4\) m/s. At exactly that speed only 45° works.</li>
+<li>(a) At 45°, \(\sin 2\theta = 1\), so \(v^2/10 = 30\) and \(v = \sqrt{300} \approx 17.3\) m/s. One solution (a speed cannot be negative). (b) Infinitely many. Pick any angle between 0° and 90° and the speed \(v = \sqrt{300/\sin 2\theta}\) lands the ball at 30 m. At 30°: \(v = \sqrt{300/\sin 60^\circ} \approx 18.6\) m/s. Two unknowns and only one condition to meet leaves a whole family of solutions.</li>
+</ol>
+<p><b>Stretch.</b> (a) \(\sin\bigl(2(90^\circ - \theta)\bigr) = \sin(180^\circ - 2\theta) = \sin 2\theta\), so \(v^2\sin 2\theta/g\) is the same for both throws. The two angles add to 90°, so their average is 45°: one is as far below 45° as the other is above. In the example, \(45 - 24.3 = 20.7\) and \(65.7 - 45 = 20.7\). (b) \(4\sin 24.3^\circ \approx 1.65\) s for the low throw and \(4\sin 65.7^\circ \approx 3.65\) s for the lob, two seconds longer. The landing point alone does not tell you which throw was made.</p>
+</section>
+
+<div class="sheet-nav"><a href="c9-savings-with-luck.html">← Previous</a><a href="../index.html#sheets">← All sheets</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>
