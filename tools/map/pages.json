@@ -205,6 +205,7 @@
   "grade-8/sheets/b26-perfect-shuffle.html": [{"code": "11A", "level": "core"}, {"code": "20B", "level": "core"}],
   "grade-8/sheets/b27-half-planes.html": [{"code": "90C", "level": "core"}, {"code": "52A", "level": "touch"}],
   "grade-8/sheets/b28-arrows-and-routes.html": [{"code": "18A", "level": "core"}, {"code": "20L", "level": "touch"}],
+  "grade-8/sheets/b40-jam.html": [{"code": "91A", "level": "core"}, {"code": "05B", "level": "touch"}],
   "grade-8/sheets/c1-check-digits.html": [{"code": "94B", "level": "core"}, {"code": "11A", "level": "touch"}],
   "grade-8/sheets/c2-simpson.html": [{"code": "62P", "level": "core"}, {"code": "62A", "level": "touch"}, {"code": "11A", "level": "touch"}],
   "grade-8/sheets/c3-capture-recapture.html": [{"code": "62D", "level": "core"}, {"code": "92D", "level": "touch"}],
