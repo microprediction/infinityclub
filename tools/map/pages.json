@@ -425,6 +425,7 @@
   "grade-11/sheets/c7-rainbows.html": [{"code": "78A", "level": "core"}, {"code": "86A", "level": "touch"}],
   "grade-11/sheets/c8-power-laws.html": [{"code": "62P", "level": "core"}, {"code": "60E", "level": "touch"}, {"code": "62J", "level": "touch"}],
   "grade-11/sheets/c9-savings-with-luck.html": [{"code": "34F", "level": "core"}, {"code": "60H", "level": "touch"}],
+  "grade-11/sheets/c10-shooting-method.html": [{"code": "34B", "level": "core"}],
   "grade-12/sheets/a1-limits.html": [{"code": "26A", "level": "core"}],
   "grade-12/sheets/a2-product-rule.html": [{"code": "26A", "level": "core"}],
   "grade-12/sheets/a3-chain-rule.html": [{"code": "26A", "level": "core"}],
