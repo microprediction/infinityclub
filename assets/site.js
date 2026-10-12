@@ -1,4 +1,4 @@
-// Infinity Club — shared behaviour
+// Math Detours — shared behaviour
 (function () {
   // Render TeX with KaTeX if it loaded.
   if (window.renderMathInElement) {

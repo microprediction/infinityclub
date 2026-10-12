@@ -35,7 +35,7 @@ for f in sorted(glob.glob('grade-*/sheets/*.html')):
         problems.append('STRUCTURE %s missing %s' % (f, miss))
     m = re.match(r'grade-(\d+)/sheets/([abc])(\d+)-', f)
     k = re.search(r'<div class="kicker">(.*?)</div>', s)
-    want = 'Infinity Club · Grade %s · %s · %s' % (m.group(1), TRACK[m.group(2)], m.group(3))
+    want = 'Math Detours · Grade %s · %s · %s' % (m.group(1), TRACK[m.group(2)], m.group(3))
     if k and k.group(1).strip() != want:
         problems.append('KICKER %s says "%s", expected "%s"' % (f, k.group(1).strip(), want))
     hub = open('grade-%s/index.html' % m.group(1), encoding='utf-8').read()

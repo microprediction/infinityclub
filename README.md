@@ -1,6 +1,6 @@
-# Infinity Club
+# Math Detours
 
-Printable math sheets, one a night, organised by grade. Grade 5 (48 sheets), grade 6 (61 sheets), grade 7 (48 sheets), grade 8 (56 sheets), grade 9 (48 sheets), grade 10 (59 sheets), grade 11 (48 sheets) and grade 12 (58 sheets) are live, each in three tracks. Shared interactive demos (100) live in `demos/`. Live at [infinityclub.net](https://infinityclub.net).
+Printable math sheets, one a night, organised by grade. Grade 5 (48 sheets), grade 6 (61 sheets), grade 7 (48 sheets), grade 8 (56 sheets), grade 9 (48 sheets), grade 10 (59 sheets), grade 11 (48 sheets) and grade 12 (58 sheets) are live, each in three tracks. Shared interactive demos (100) live in `demos/`. Live at [mathdetours.com](https://mathdetours.com).
 
 ## Layout
 
@@ -10,7 +10,7 @@ Printable math sheets, one a night, organised by grade. Grade 5 (48 sheets), gra
 - `demos/index.html`: gallery of every demo; `demos/*.html` the demos themselves, shared across grades.
 - `sheets/*.html` and `plan.html` are redirect stubs for the original URLs.
 
-To add a grade, write a spec table (file, title, teaser) for its three tracks, copy a recent grade folder to `grade-N/`, replace the sheets, update the kickers (`Infinity Club · Grade N · Track · n`), and turn that grade's card on `index.html` from `soon` to `live`.
+To add a grade, write a spec table (file, title, teaser) for its three tracks, copy a recent grade folder to `grade-N/`, replace the sheets, update the kickers (`Math Detours · Grade N · Track · n`), and turn that grade's card on `index.html` from `soon` to `live`.
 
 Three tracks in every grade:
 

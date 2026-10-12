@@ -1,1 +1,1 @@
-{ "private": true, "description": "Infinity Club checks", "dependencies": { "katex": "0.16.11" } }
+{ "private": true, "description": "Math Detours checks", "dependencies": { "katex": "0.16.11" } }

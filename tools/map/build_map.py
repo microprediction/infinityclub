@@ -30,7 +30,7 @@ for p, L in cls.items():
         if e.get('level') not in ('core', 'touch'): problems.append('bad level %r for %s' % (e.get('level'), p))
 def page_title(p):
     t = open(os.path.join(R, p), encoding='utf-8').read()
-    m = re.search(r'<h1[^>]*>(.*?)</h1>', t, re.S) or re.search(r'<title>(.*?)(?: · Infinity Club)?</title>', t, re.S)
+    m = re.search(r'<h1[^>]*>(.*?)</h1>', t, re.S) or re.search(r'<title>(.*?)(?: · Math Detours)?</title>', t, re.S)
     return re.sub(r'<[^>]+>', '', html.unescape(re.sub(r'\s+', ' ', m.group(1)))).strip()
 items = {p: {'title': page_title(p)} for p in cls if p in rel}
 cls = {p: L for p, L in cls.items() if p in rel}
@@ -81,8 +81,8 @@ page=f'''<!doctype html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Map of Mathematics · Infinity Club</title>
-<meta name="description" content="All 534 sections of the Mathematics Subject Classification, the key idea of each in one sentence, an elementary way in, and the Infinity Club sheets that already plant it.">
+<title>Map of Mathematics · Math Detours</title>
+<meta name="description" content="All 534 sections of the Mathematics Subject Classification, the key idea of each in one sentence, an elementary way in, and the Math Detours sheets that already plant it.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
 <link rel="stylesheet" href="assets/site.css">
@@ -126,7 +126,7 @@ details.more > summary {{ cursor:pointer; font-size:.85rem; font-weight:700; col
 </head>
 <body>
 <nav class="top">
-  <a class="brand" href="index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a class="brand" href="index.html"><span class="inf">∞</span> Math Detours</a>
   <a href="index.html#grades">Grades</a>
   <a href="demos/index.html">Demos</a>
   <a href="parents.html">Parents</a>
@@ -159,7 +159,7 @@ details.more > summary {{ cursor:pointer; font-size:.85rem; font-weight:700; col
 {chr(10).join(body)}
 <p class="small" style="margin-top:1.5rem">Section names are from MSC2020 (msc2020.org, CC BY-NC-SA). Key ideas, ways in and the matching of sheets are ours.</p>
 </main>
-<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
 <script>
 (function(){{
   var secs=[].slice.call(document.querySelectorAll('.sec')), areas=[].slice.call(document.querySelectorAll('details.area'));
