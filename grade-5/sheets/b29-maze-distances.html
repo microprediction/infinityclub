@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Number the maze from the exit · Math Detours</title>
+<meta name="description" content="Flood a maze with distance numbers from its exit. Walking downhill through the numbers reveals a shortest route from every reachable square.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
+  <a href="../index.html">Grade 5</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Math Detours · Grade 5 · Around the corner · 29</div>
+  <h1>Number the maze from the exit</h1>
+  <p class="teaser">Flood a maze with numbers, starting at the exit. Then every reachable square knows how far it is from safety.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Imagine a wave spreading backward from the exit, one square each beat. Write 0 at the exit. On beat 1, write 1 in every open neighbour. On beat 2, write 2 in every still-empty open neighbour. Keep going in whole waves.</p>
+<p>Neighbours share an edge. Diagonal squares are not neighbours, and a wall cannot be crossed.</p>
+<p>The first wave to reach a square has used as few moves as possible. Its number is therefore the length of a <b>shortest route</b> to the exit.</p>
+<p class="callout">Except at the exit: a square's number is 1 plus the smallest neighbouring number.</p>
+<p>This local best-choice rule is a tiny grid version of a Hamilton-Jacobi value equation. To escape by a shortest route, walk downhill by 1 each move. A square that never receives the wave has no route to the exit.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: let the exit flood backward</h2>
+<figure>
+<svg viewBox="0 0 520 190" width="520" height="190" role="img" aria-label="A five by five square maze with six blocked squares. The exit at the top right is numbered zero. Every reachable square is labelled with its shortest distance to the exit. An orange route descends from start square 8 through 7, 6, 5, 4, 3, 2 and 1 to the exit." font-family="Nunito, sans-serif" font-size="14">
+  <g fill="#1d1f3a"><text x="20" y="44" font-weight="700">Fill waves:</text><text x="20" y="68">0, then all 1s,</text><text x="20" y="90">then all 2s, ...</text><text x="20" y="126" font-weight="700">Escape:</text><text x="20" y="150">8, 7, 6, ... , 0</text></g>
+  <rect x="175" y="10" width="170" height="170" fill="#fff" stroke="#1d1f3a" stroke-width="2"/>
+  <g stroke="#999" stroke-width="1"><path d="M209 10 V180 M243 10 V180 M277 10 V180 M311 10 V180"/><path d="M175 44 H345 M175 78 H345 M175 112 H345 M175 146 H345"/></g>
+  <g fill="#1d1f3a"><rect x="277" y="10" width="34" height="34"/><rect x="209" y="44" width="34" height="34"/><rect x="209" y="78" width="34" height="34"/><rect x="277" y="78" width="34" height="34"/><rect x="175" y="146" width="34" height="34"/><rect x="209" y="146" width="34" height="34"/></g>
+  <polyline points="192,95 192,61 192,27 226,27 260,27 260,61 294,61 328,61 328,27" fill="none" stroke="#f5a524" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity=".65"/>
+  <rect x="311" y="10" width="34" height="34" fill="#fde8c4" stroke="#f5a524" stroke-width="2"/>
+  <rect x="175" y="78" width="34" height="34" fill="#dcdcf5" stroke="#3f44c9" stroke-width="2"/>
+  <g fill="#1d1f3a" text-anchor="middle" dominant-baseline="middle" font-weight="700">
+    <text x="192" y="27">6</text><text x="226" y="27">5</text><text x="260" y="27">4</text><text x="328" y="27">0</text>
+    <text x="192" y="61">7</text><text x="260" y="61">3</text><text x="294" y="61">2</text><text x="328" y="61">1</text>
+    <text x="192" y="95">8</text><text x="260" y="95">4</text><text x="328" y="95">2</text>
+    <text x="192" y="129">7</text><text x="226" y="129">6</text><text x="260" y="129">5</text><text x="294" y="129">4</text><text x="328" y="129">3</text>
+    <text x="260" y="163">6</text><text x="294" y="163">5</text><text x="328" y="163">4</text>
+  </g>
+  <g fill="#3f44c9" font-size="11" font-weight="700"><text x="179" y="90">S</text><text x="315" y="22">EXIT</text></g>
+  <g fill="#555" font-size="12"><text x="370" y="42">Dark squares</text><text x="370" y="60">are walls.</text><text x="370" y="100">The orange route</text><text x="370" y="118">always drops by 1.</text></g>
+</svg>
+<figcaption>Filling in waves solves every starting square at once. The marked start is 8 moves from the exit.</figcaption>
+</figure>
+<p>The exit gets 0. Its only open neighbour gets 1. The 2s are the open neighbours of the 1, and the wave continues. From S, the orange route reads (8,7,6,5,4,3,2,1,0), so it uses 8 moves.</p>
+<p>No shorter route is hiding elsewhere. The wave would have reached S on an earlier beat if one existed.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<figure>
+<svg viewBox="0 0 520 190" width="520" height="190" role="img" aria-label="A blank six by six square maze. The start S is at the top left, the exit E at the bottom right, and an open square U is surrounded on all four sides by blocked squares. Five squares in total are blocked." font-family="Nunito, sans-serif" font-size="14">
+  <g fill="#1d1f3a"><text x="28" y="54" font-weight="700">S</text><text x="50" y="54">start</text><text x="28" y="84" font-weight="700">E</text><text x="50" y="84">exit</text><text x="28" y="114" font-weight="700">U</text><text x="50" y="114">trapped square</text><rect x="28" y="137" width="18" height="18" rx="2"/><text x="54" y="151">wall</text></g>
+  <rect x="170" y="5" width="180" height="180" fill="#fff" stroke="#1d1f3a" stroke-width="2"/>
+  <g stroke="#999" stroke-width="1"><path d="M200 5 V185 M230 5 V185 M260 5 V185 M290 5 V185 M320 5 V185"/><path d="M170 35 H350 M170 65 H350 M170 95 H350 M170 125 H350 M170 155 H350"/></g>
+  <g fill="#1d1f3a"><rect x="230" y="35" width="30" height="30"/><rect x="200" y="65" width="30" height="30"/><rect x="260" y="65" width="30" height="30"/><rect x="230" y="95" width="30" height="30"/><rect x="260" y="125" width="30" height="30"/></g>
+  <rect x="170" y="5" width="30" height="30" fill="#dcdcf5" stroke="#3f44c9" stroke-width="2"/>
+  <rect x="320" y="155" width="30" height="30" fill="#fde8c4" stroke="#f5a524" stroke-width="2"/>
+  <rect x="230" y="65" width="30" height="30" fill="#fff" stroke="#f5a524" stroke-width="2"/>
+  <g text-anchor="middle" dominant-baseline="middle" font-weight="800"><text x="185" y="20" fill="#3f44c9">S</text><text x="335" y="170" fill="#b97400">E</text><text x="245" y="80" fill="#b97400">U</text></g>
+  <g fill="#555" font-size="12"><text x="378" y="52">Write 0 at E.</text><text x="378" y="76">Fill whole waves.</text><text x="378" y="112">Moves cross edges,</text><text x="378" y="136">never corners.</text></g>
+</svg>
+<figcaption>Write distance numbers in the open squares. Do not write in walls.</figcaption>
+</figure>
+<ol>
+<li>Fill the maze from E: all 1s, then all 2s, and so on. Leave any square the wave cannot reach empty.<div class="space short"></div></li>
+<li>Trace a shortest route from S to E by walking downhill through the numbers. How many moves does it use?<div class="space short"></div></li>
+<li>The square diagonally up-left from E has number 2. It cannot move diagonally, but it has two edge-sharing downhill choices. Trace both. Why are both routes shortest?<div class="space short"></div></li>
+<li>Why does U stay empty? Now erase the wall directly below U. What number enters that newly opened square, and what number then reaches U?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: how many shortest routes?</h2>
+<p>There is 1 finished route at E. At every other square, add the route counts from its downhill neighbours. How many different shortest routes lead from S to E?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Rows from top to bottom are: <b>10 9 8 7 6 5;</b> <b>9 10 wall 6 5 4;</b> <b>8 wall blank wall 4 3;</b> <b>7 6 wall 4 3 2;</b> <b>6 5 4 wall 2 1;</b> <b>5 4 3 2 1 0.</b> U is the blank square.</li>
+<li><b>10 moves.</b> One route goes right across the whole top row, then down the whole right edge. Its numbers are (10,9,8,7,6,5,4,3,2,1,0). Other shortest routes are possible.</li>
+<li>The two choices have number 1: move right, then down to E, or move down, then right to E. Each route uses two edge moves. A diagonal jump would use one move but is not allowed.</li>
+<li>Every edge-neighbour of U is a wall, so no wave can enter it. If the wall below U opens, that new square gets <b>5</b>: it touches squares numbered 4. Then U gets <b>6</b>.</li>
+</ol>
+<p><b>Stretch.</b> <b>16 routes.</b> Count backward from E. The square right of S begins 11 shortest routes, and the square below S begins 5. Every shortest route from S must start one of those two ways, so (11+5=16).</p>
+</section>
+
+<div class="sheet-nav"><a href="b28-letter-shapes.html">← Previous</a><a href="c1-time-zones.html">Next: What time is it in Tokyo? →</a></div>
+</main>
+
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>
