@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How far apart are two functions? · Infinity Club</title>
+<meta name="description" content="Measure the distance between two functions on the interval from 0 to 1 in two ways: the biggest vertical gap, and the area between the graphs. See the two measures disagree about a thin spike and about the powers of x, then find the constant closest to x squared under three different distances.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 12 · Around the corner · 31</div>
+  <h1>How far apart are two functions?</h1>
+  <p class="teaser">How far is y = x from y = x squared? You can measure the biggest gap, or the area between them. Different measures can disagree about which functions are close.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>The distance between two points is one number. What about the distance between two graphs? You have to decide what "far" means. Tonight every function lives on \(0 \le x \le 1\) and has an unbroken graph. Here are two sensible choices.</p>
+<p class="callout">The <b>gap distance</b> \(d_{\text{gap}}(f, g)\) is the biggest value of \(|f(x) - g(x)|\).<br>The <b>area distance</b> \(d_{\text{area}}(f, g) = \displaystyle\int_0^1 |f(x) - g(x)|\,dx\) is the area trapped between the graphs.</p>
+<p>Each one behaves like distance on a map. It is zero only when the two functions are the same. It is the same in both directions. And a detour through a third function is never shorter than the direct trip.</p>
+<p>So you can treat a whole collection of functions as a <b>space</b>, with each function a single point in it. But the two rulers are not the same ruler. They can disagree about which of two functions is the closer one, and even about whether a list of functions is closing in on a target at all.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: \(y = x\) and \(y = x^2\)</h2>
+<figure style="float:right;width:200px;margin:0 0 .3em .8em"><svg viewBox="0 0 230 185" width="199" height="160" role="img" aria-label="The line y = x and the curve y = x squared drawn from x = 0 to x = 1. They meet at both ends. The region between them is shaded, and a vertical bar at x = one half marks the biggest gap between them." font-family="Nunito, sans-serif" font-size="13">
+<polygon points="40.0,160.0 43.5,159.9 47.0,159.7 50.5,159.2 54.0,158.6 57.5,157.8 61.0,156.8 64.5,155.7 68.0,154.4 71.5,152.9 75.0,151.2 78.5,149.4 82.0,147.4 85.5,145.2 89.0,142.8 92.5,140.3 96.0,137.6 99.5,134.7 103.0,131.7 106.5,128.4 110.0,125.0 113.5,121.4 117.0,117.7 120.5,113.7 124.0,109.6 127.5,105.3 131.0,100.8 134.5,96.2 138.0,91.4 141.5,86.4 145.0,81.2 148.5,75.9 152.0,70.4 155.5,64.7 159.0,58.8 162.5,52.8 166.0,46.6 169.5,40.2 173.0,33.6 176.5,26.9 180.0,20.0" fill="#dcdcf5"/>
+<g stroke="#1d1f3a" stroke-width="1.2"><line x1="40" y1="160" x2="198" y2="160"/><line x1="40" y1="160" x2="40" y2="8"/><line x1="110" y1="160" x2="110" y2="164"/><line x1="180" y1="160" x2="180" y2="164"/><line x1="36" y1="20" x2="40" y2="20"/></g>
+<line x1="110" y1="125" x2="110" y2="160" stroke="#999" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="40" y1="160" x2="180" y2="20" stroke="#1d1f3a" stroke-width="1.8"/>
+<polyline points="40.0,160.0 43.5,159.9 47.0,159.7 50.5,159.2 54.0,158.6 57.5,157.8 61.0,156.8 64.5,155.7 68.0,154.4 71.5,152.9 75.0,151.2 78.5,149.4 82.0,147.4 85.5,145.2 89.0,142.8 92.5,140.3 96.0,137.6 99.5,134.7 103.0,131.7 106.5,128.4 110.0,125.0 113.5,121.4 117.0,117.7 120.5,113.7 124.0,109.6 127.5,105.3 131.0,100.8 134.5,96.2 138.0,91.4 141.5,86.4 145.0,81.2 148.5,75.9 152.0,70.4 155.5,64.7 159.0,58.8 162.5,52.8 166.0,46.6 169.5,40.2 173.0,33.6 176.5,26.9 180.0,20.0" fill="none" stroke="#3f44c9" stroke-width="1.8"/>
+<line x1="110" y1="90" x2="110" y2="125" stroke="#f5a524" stroke-width="3.5"/>
+<text x="64" y="76" fill="#1d1f3a" font-style="italic">y = x</text>
+<text x="150" y="128" fill="#3f44c9" font-style="italic">y = x²</text>
+<g fill="#555" font-size="12" text-anchor="middle"><text x="40" y="177">0</text><text x="110" y="177">½</text><text x="180" y="177">1</text><text x="28" y="24">1</text></g>
+</svg></figure>
+<p>On \(0 \le x \le 1\) the line is on top, so the gap at \(x\) is \(h(x) = x - x^2\). It is \(0\) at both ends. In between, \(h'(x) = 1 - 2x\) is zero only at \(x = \frac12\), where \(h = \frac12 - \frac14 = \frac14\). That is the orange bar. The area distance is the shaded region. So</p>
+<p>\[d_{\text{gap}} = \tfrac14, \qquad d_{\text{area}} = \int_0^1 (x - x^2)\,dx = \tfrac12 - \tfrac13 = \tfrac16.\]</p>
+<p>Two rulers, two numbers, and neither is wrong. The gap ruler reports the single worst place. The area ruler adds up the gap over the whole interval, so a gap that is large only briefly counts for little.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Find both distances between \(y = x\) and \(y = x^3\). Where is the biggest gap? Is \(x^3\) further from \(x\) than \(x^2\) is, on both rulers?<div class="space"></div></li>
+<li>A spike. Let \(s\) be zero everywhere except between \(x = 0.495\) and \(x = 0.505\), where its graph is a triangle rising in straight lines to height \(10\) at \(x = 0.5\). Let \(k\) be the flat function \(k(x) = 0.2\). (a) Find both distances from \(s\) to the zero function, and both from \(k\) to the zero function. (b) Which is closer to zero, \(s\) or \(k\)? (c) Now give the spike height \(H \ge 1\) and base width \(\frac{1}{H^2}\). What happens to its two distances from zero as \(H\) grows?<div class="space"></div></li>
+<li>(a) Find both distances from \(y = x^n\) to the zero function, for \(n = 1, 2, 9\) and then for any whole number \(n \ge 1\). (b) As \(n\) grows, do these functions close in on the zero function? Answer for each ruler. (c) Explain why the area distance between two functions on \(0 \le x \le 1\) can never be more than their gap distance.<div class="space"></div></li>
+<li>Which is closer to \(y = x\): \(y = x^2\) or \(y = \sqrt{x}\)? Work out both distances for \(\sqrt{x}\). Then explain what you find by thinking about the mirror line \(y = x\).<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the closest flat line</h2>
+<p>Which constant function \(y = c\) is closest to \(y = x^2\)? (a) Answer for the gap distance. (b) For \(0 \le c \le 1\), split the integral at \(x = \sqrt{c}\) to show that the area distance is \(\frac43 c^{3/2} - c + \frac13\), then find the best \(c\). (c) A third ruler squares the gap before adding it up: \(d_2(f, g) = \sqrt{\int_0^1 (f(x) - g(x))^2\,dx}\). Find its best \(c\). Three rulers give three different answers. What does each answer have to do with the values that \(x^2\) takes?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>The gap is \(h(x) = x - x^3\), zero at both ends. \(h'(x) = 1 - 3x^2 = 0\) at \(x = \frac{1}{\sqrt3} \approx 0.577\), where \(h = \frac{1}{\sqrt3}\left(1 - \frac13\right) = \frac{2}{3\sqrt3} \approx 0.385\). So \(d_{\text{gap}} \approx 0.385\) and \(d_{\text{area}} = \frac12 - \frac14 = \frac14\). Both are bigger than the \(\frac14\) and \(\frac16\) for \(x^2\), so yes on both rulers. That had to happen: \(x^3 \le x^2 \le x\) on this interval, so \(x^3\) is at least as far below the line at every \(x\).</li>
+<li>(a) For \(s\): the gap distance is the height, \(10\). The area distance is the area of the triangle, \(\frac12 \times 0.01 \times 10 = 0.05\). For \(k\): both distances are \(0.2\) (a rectangle of width \(1\) and height \(0.2\)). (b) It depends on the ruler. The gap ruler says \(k\) is far closer (\(0.2\) against \(10\)). The area ruler says \(s\) is closer (\(0.05\) against \(0.2\)). (c) The gap distance is \(H\), which grows without limit. The area distance is \(\frac12 \times \frac{1}{H^2} \times H = \frac{1}{2H}\), which shrinks towards \(0\). The same spikes run away from zero on one ruler and close in on it on the other.</li>
+<li>(a) The biggest value of \(x^n\) on the interval is \(1\), at \(x = 1\), so \(d_{\text{gap}} = 1\) for every \(n\). The area is \(\int_0^1 x^n\,dx = \frac{1}{n+1}\): that is \(\frac12, \frac13, \frac{1}{10}\) for \(n = 1, 2, 9\). (b) On the area ruler, yes: \(\frac{1}{n+1}\) gets as small as you like. On the gap ruler, no: the distance is stuck at \(1\), because every \(x^n\) still reaches \(1\) at \(x = 1\). (c) At every \(x\), \(|f(x) - g(x)|\) is at most \(d_{\text{gap}}\). So the region between the graphs fits inside a rectangle of width \(1\) and height \(d_{\text{gap}}\), and its area is at most \(d_{\text{gap}}\). A small gap forces a small area. Exercise 2 shows the reverse fails.</li>
+<li>Here \(\sqrt{x}\) is on top, with gap \(h(x) = \sqrt{x} - x\). \(h'(x) = \frac{1}{2\sqrt{x}} - 1 = 0\) at \(x = \frac14\), where \(h = \frac12 - \frac14 = \frac14\). The area is \(\frac23 - \frac12 = \frac16\). So it is a tie on both rulers. The reason: reflecting in the line \(y = x\) swaps \(x\) and \(y\), which turns the graph of \(y = x^2\) into the graph of \(y = \sqrt{x}\) and leaves the line alone. Reflection keeps areas, so the two areas match. It also keeps the distance of each point from the mirror line, and because the line has slope \(1\), the vertical gap at a point of either curve is \(\sqrt2\) times that distance. So the biggest gaps match too. The worst points, \(\left(\frac12, \frac14\right)\) and \(\left(\frac14, \frac12\right)\), are mirror images.</li>
+</ol>
+<p><b>Stretch.</b> (a) \(x^2\) takes every value from \(0\) to \(1\), so the biggest gap is the larger of \(|c|\) and \(|1 - c|\). That is smallest at \(c = \frac12\), where the distance is \(\frac12\). (b) \(\int_0^{\sqrt c} (c - x^2)\,dx + \int_{\sqrt c}^1 (x^2 - c)\,dx = \frac23 c^{3/2} + \left(\frac13 - c + \frac23 c^{3/2}\right) = \frac43 c^{3/2} - c + \frac13\). Its derivative \(2\sqrt{c} - 1\) is negative before \(c = \frac14\) and positive after, so the best constant is \(c = \frac14\), with distance \(\frac16 - \frac14 + \frac13 = \frac14\). (Outside \(0 \le c \le 1\) the area is more than \(\frac13\).) (c) \(\int_0^1 (x^2 - c)^2\,dx = \frac15 - \frac23 c + c^2\), smallest at \(c = \frac13\), where it is \(\frac{4}{45}\). So \(d_2 = \sqrt{4/45} \approx 0.298\). The three winners are three kinds of middle for the values of \(x^2\): \(\frac12\) is halfway between the smallest and largest value, \(\frac14\) is the median (half of the interval has \(x^2 \lt \frac14\)), and \(\frac13\) is the mean, \(\int_0^1 x^2\,dx\). The ruler \(d_2\) copies the length \(\sqrt{v \cdot v}\) of a vector, with \(\int_0^1 f(x)g(x)\,dx\) playing the part of the dot product. With it, the leftover \(x^2 - \frac13\) is perpendicular to every constant function, since \(\int_0^1 \left(x^2 - \frac13\right)c\,dx = 0\). The closest constant is the foot of a perpendicular, just as for points and lines.</p>
+</section>
+
+<div class="sheet-nav"><a href="b30-cancel-the-error.html">← Previous</a><a href="c1-escape-velocity.html">Next: Escape velocity →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>
