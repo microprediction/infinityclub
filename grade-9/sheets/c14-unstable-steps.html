@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The heat simulation that exploded · Infinity Club</title>
+<meta name="description" content="Simulate heat spreading along a bar with a simple cell-by-cell rule. See it behave when the step number r is at most 1/2, watch it blow up when r is 1, and find out why finer cells cost so many more time steps.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 9</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 9 · Connections · 14</div>
+  <h1>The heat simulation that exploded</h1>
+  <p class="teaser">Simulate heat spreading along a bar on a computer. With small time steps it looks right. Make the steps too big and, three steps later, one cell is at −700 °C, far below absolute zero.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A metal bar is cold except for one hot spot. Heat flows from hot to cold, so the spot spreads and fades. To simulate this, chop the bar into cells, each with a temperature \(u\), and move time forward in steps. A cell warms if its two neighbours average hotter than it is, and cools if they average colder.</p>
+<p class="callout">\(\text{new } u = u + r \times (\text{left} - 2u + \text{right})\)</p>
+<p>Every cell is updated at once, using only the old values. The number \(r\) is positive and grows with the time step: a bigger \(r\) is a bigger jump forward in time.</p>
+<p>Bigger jumps mean less work, so it is tempting to raise \(r\). Here is the catch. Up to \(r = \tfrac12\) the rule behaves. Past that, on a long bar, the numbers swing and grow, and the simulation is worthless. Such a rule is called <b>unstable</b>.</p>
+<p class="small">This is a model: cells and steps only approximate the real law, the heat equation, where time and space are smooth. Temperatures are in °C. Cells beyond those shown are at 0.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: two steps with \(r = \tfrac14\)</h2>
+<p>Seven cells, with the middle one at 100 and the rest at 0.</p>
+<p>Step 1. The middle cell: \(100 + \tfrac14(0 - 200 + 0) = 50\). Each neighbour of the middle: \(0 + \tfrac14(0 - 0 + 100) = 25\). Every other cell has \(u = 0\) and two neighbours at 0, so it stays at 0.</p>
+<p>Step 2, from the new row. The middle: \(50 + \tfrac14(25 - 100 + 25) = 37.5\). Cell 3: \(25 + \tfrac14(0 - 50 + 50) = 25\). Cell 2: \(0 + \tfrac14(0 - 0 + 25) = 6.25\). Cells 5 and 6 match cells 3 and 2 by symmetry.</p>
+<table class="tt">
+<tr><th>Cell</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
+<tr><th>Start</th><td>0</td><td>0</td><td>0</td><td>100</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><th>Step 1</th><td>0</td><td>0</td><td>25</td><td>50</td><td>25</td><td>0</td><td>0</td></tr>
+<tr><th>Step 2</th><td>0</td><td>6.25</td><td>25</td><td>37.5</td><td>25</td><td>6.25</td><td>0</td></tr>
+</table>
+<p>The hot spot spreads and flattens, as real heat does. Each row adds up to 100: the rule moves heat around without making or losing any.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Start again from 0, 0, 0, 100, 0, 0, 0 and take two steps with \(r = \tfrac12\). Does each row still add up to 100? Does any value leave the range 0 to 100?<div class="space short"></div></li>
+<li>Start again and take three steps with \(r = 1\). (a) Write out the three rows. (b) Does each row still add up to 100? (c) Absolute zero, the coldest that anything can be, is \(-273.15\) °C. What has gone wrong?<div class="space"></div></li>
+<li>(a) Show that the rule can be written \(\text{new } u = r \times \text{left} + (1 - 2r) \times u + r \times \text{right}\), and that the three weights \(r\), \(1 - 2r\), \(r\) add up to 1. (b) Write down the three weights for \(r = \tfrac14\), \(r = \tfrac12\) and \(r = 1\). (c) Explain why, when \(0 \lt r \le \tfrac12\), a new value can never be above the largest of the three old values it is made from, or below the smallest. What breaks when \(r \gt \tfrac12\)?<div class="space"></div></li>
+<li>For a real bar, \(r = k \times \text{time step} \div (\text{cell width})^2\), where \(k\) depends on the material. Take \(k = 1\) cm² per second (roughly right for copper). (a) With 1 cm cells, what is the largest time step that keeps \(r \le \tfrac12\)? How many steps then simulate one minute? (b) Halve the cell width. What happens to the largest safe time step? (c) With 1 mm cells, how many steps does one minute take? How many times as many as in (a)?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the zigzag</h2>
+<p>Suppose the temperatures zigzag: \(a, -a, a, -a, \dots\) Pretend the pattern goes on for ever in both directions. (a) Show that one step multiplies every value by \(1 - 4r\). (b) What happens to the zigzag when \(r = \tfrac14\)? When \(r = \tfrac12\)? When \(r = 1\)? (c) For which positive \(r\) does the zigzag grow? (d) A computer rounds its numbers, so every row carries tiny errors, and some of that error is zigzag-shaped. With \(r = 1\), about how many times bigger is a zigzag after 20 steps?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Step 1: 0, 0, 50, 0, 50, 0, 0. The middle cell is \(100 + \tfrac12(0 - 200 + 0) = 0\) and each neighbour is \(0 + \tfrac12(100) = 50\). Step 2: 0, 25, 0, 50, 0, 25, 0. Both rows add up to 100 and every value stays between 0 and 100. The row is bumpier than with \(r = \tfrac14\), but nothing runs away.</li>
+<li>(a) Step 1: \(0, 0, 100, -100, 100, 0, 0\). For example the middle cell is \(100 + (0 - 200 + 0) = -100\). Then \(0, 100, -200, 300, -200, 100, 0\) at step 2 and \(100, -300, 600, -700, 600, -300, 100\) at step 3. (b) Yes: \(200 - 100\), \(500 - 400\) and \(1400 - 1300\) are all 100. Heat is still conserved, and the answer is still nonsense. (c) A bar that started between 0 and 100 °C now has cells at \(-300\) and \(-700\) °C, below absolute zero, and others at 600 °C, hotter than anything it began with. Real heat never does that. The time step is too big for the rule.</li>
+<li>(a) Multiply out: \(u + r \times \text{left} - 2ru + r \times \text{right}\), and collect the two \(u\) terms as \((1 - 2r)u\). The weights add to \(r + 1 - 2r + r = 1\). (b) \(\tfrac14, \tfrac12, \tfrac14\); then \(\tfrac12, 0, \tfrac12\); then \(1, -1, 1\). (c) When \(0 \lt r \le \tfrac12\) no weight is negative and they add to 1, so the new value is a weighted average of the three old ones. An average cannot be above the largest or below the smallest. So no step can create a new hottest or coldest value. When \(r \gt \tfrac12\) the middle weight \(1 - 2r\) is negative, and the new value is no longer an average. A hot cell between two cells at 0 becomes \((1 - 2r) \times u\), which is below 0: it overshoots, ending up colder than both neighbours.</li>
+<li>(a) \(r = \text{time step} \div 1 \le \tfrac12\), so the largest time step is 0.5 seconds, and one minute takes \(60 \div 0.5 = 120\) steps. (b) The cell width squared is now \(0.25\), so the time step can be at most \(0.5 \times 0.25 = 0.125\) seconds, a quarter of what it was. Halving the cells quarters the safe time step. (c) The width is 0.1 cm and its square is 0.01, so the time step is at most 0.005 seconds: \(60 \div 0.005 = 12\,000\) steps, which is 100 times as many. There are also 10 times as many cells to update at each step, so the computer does 1000 times the work.</li>
+</ol>
+<p><b>Stretch.</b> (a) A cell at \(a\) has both neighbours at \(-a\): \(a + r(-a - 2a - a) = a - 4ra = (1 - 4r)a\). A cell at \(-a\) has both neighbours at \(a\) and becomes \(-(1 - 4r)a\) in the same way. (b) \(r = \tfrac14\): the factor is 0, so the zigzag is flattened in one step. \(r = \tfrac12\): the factor is \(-1\), so it flips over at every step, neither growing nor fading. That is the borderline. \(r = 1\): the factor is \(-3\), so it flips and triples every step. (c) It grows when the factor has size more than 1. Since \(r\) is positive, \(1 - 4r\) is less than 1, so this needs \(1 - 4r \lt -1\), which is \(r \gt \tfrac12\). (d) \(3^{20} = 3\,486\,784\,401\), about 3.5 billion times. An error far too small to notice soon swamps the real answer.</p>
+</section>
+
+<div class="sheet-nav"><a href="c13-stream-to-drops.html">← Previous</a><a href="../index.html#sheets">← All sheets</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>
