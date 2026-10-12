@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Instructions a robot can follow · Math Detours</title>
+<meta name="description" content="Write exact instructions for a tiny robot. Trace a loop, fix its bugs, and prove what every repeat does.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
+  <a href="../index.html">Grade 5</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Math Detours · Grade 5 · Around the corner · 30</div>
+  <h1>Instructions a robot can follow</h1>
+  <p class="teaser">Write exact instructions for a tiny robot. Trace a loop, fix its bugs, and prove what every repeat does.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A person can guess what you meant by “put jam on it.” A robot follows the words you gave it. Which slice is “it”? How much jam? Which side? A useful program replaces guesses with exact instructions.</p>
+<p>A <b>loop</b> repeats instructions. To check a loop without tracing it for ever, look for an <b>invariant</b>: a fact that is true before every repeat. Check that it is true at the start, then that one repeat keeps it true.</p>
+<p class="callout">A trace tests some steps. An invariant explains why every step works.</p>
+<p>This is a small taste of software verification: giving instructions a precise meaning, then proving that the program does what you intended.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: add 2, five times</h2>
+<figure>
+<svg viewBox="0 0 520 188" width="520" height="188" role="img" aria-label="A program starts number at zero and adds two five times. A trace table shows values zero, two, four, six, eight and ten after zero through five repeats. The invariant says that after r repeats, number equals two times r." font-family="Nunito, sans-serif" font-size="14">
+  <rect x="12" y="12" width="190" height="130" rx="10" fill="#dcdcf5" stroke="#3f44c9" stroke-width="2"/>
+  <text x="28" y="38" fill="#1d1f3a" font-weight="800">PROGRAM</text>
+  <text x="28" y="68" fill="#1d1f3a">number ← 0</text>
+  <text x="28" y="94" fill="#1d1f3a" font-weight="700">REPEAT 5 TIMES:</text>
+  <text x="48" y="120" fill="#1d1f3a">number ← number + 2</text>
+  <text x="234" y="30" fill="#1d1f3a" font-weight="800">completed repeats</text>
+  <text x="430" y="30" fill="#1d1f3a" font-weight="800">number</text>
+  <g fill="#1d1f3a" text-anchor="middle">
+    <text x="298" y="58">0</text><text x="298" y="80">1</text><text x="298" y="102">2</text><text x="298" y="124">3</text><text x="298" y="146">4</text><text x="298" y="168">5</text>
+    <text x="458" y="58">0</text><text x="458" y="80">2</text><text x="458" y="102">4</text><text x="458" y="124">6</text><text x="458" y="146">8</text><text x="458" y="168">10</text>
+  </g>
+  <g stroke="#999" stroke-width="1"><path d="M218 38 H508"/><path d="M390 15 V174"/></g>
+  <rect x="4" y="151" width="214" height="27" rx="7" fill="#fde8c4"/>
+  <text x="111" y="170" fill="#1d1f3a" text-anchor="middle" font-weight="700">after r repeats: number = 2 × r</text>
+</svg>
+<figcaption>The row before the first repeat matters. It is repeat 0, and the invariant already works.</figcaption>
+</figure>
+<p>At the start, \(r=0\) and the number is \(2\times0=0\). Suppose the number is \(2\times r\) before a repeat. Adding 2 makes it \(2\times r+2=2\times(r+1)\), so the rule is still true after the next repeat. After 5 repeats, the number must be \(2\times5=10\).</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>A sandwich robot has a plate, a closed jam jar, a knife and two slices of bread. Its program says: “Put bread on the plate. Spread jam on it. Put the other slice on top.” Find three places where the robot needs a more exact instruction. Rewrite one of them.<div class="space short"></div></li>
+<li>A floor robot starts on a grid point, facing east. It repeats <b>FORWARD 3, RIGHT</b> four times. FORWARD 3 means move three grid spaces; RIGHT means turn one quarter-turn clockwise. Draw its route. Where does it finish, which way does it face, and how far did it travel?<div class="space"></div></li>
+<li>This program is meant to print 1, 2, 3, 4, 5. What does it actually print? Change just one symbol to fix it.<br><b>step ← 1</b><br><b>WHILE step \(\lt 5\): PRINT step, then step ← step + 1</b><div class="space short"></div></li>
+<li>Start with \(n=1\), then repeat <b>n ← 2 × n</b> six times. Make a trace including repeat 0. What invariant describes \(n\) after \(r\) repeats, and what is \(n\) after repeat 6?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: will it ever stop?</h2>
+<p>Start with \(x=10\). While \(x\ne0\), replace \(x\) by \(x\div2\). An Exact robot keeps fractions. A Whole robot keeps only whole numbers and rounds down after each division. Trace both. Which robot stops, and after how many divisions?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Problems include: it does not say which slice goes on the plate; the jar is still closed; “it” could name more than one object; it does not say which side of the bread gets jam or how much; “on top” does not say that the jam sides should meet. Many rewrites work. One is: “Call the slices A and B. Put slice A flat on the plate.”</li>
+<li>The route is a square with side 3. The robot returns to its starting point facing east. It travels \(4\times3=12\) grid spaces and turns through four quarter-turns, one full turn.</li>
+<li>It prints <b>1, 2, 3, 4</b>. When step becomes 5, the test \(5\lt5\) is false, so the loop stops before printing 5. Change \(\lt\) to \(\le\). Then it prints 5 and stops after step becomes 6.</li>
+<li>The trace is <b>1, 2, 4, 8, 16, 32, 64</b> for repeats 0 through 6. The invariant is: after \(r\) repeats, \(n\) is 1 doubled \(r\) times, or \(n=2^r\). Therefore \(n=2^6=64\).</li>
+</ol>
+<p><b>Stretch.</b> Exact gives \(10,5,2.5,1.25,0.625,\ldots\). After \(r\) divisions it has \(10/2^r\), which is positive for every finite \(r\), so it never reaches 0. Whole gives <b>10, 5, 2, 1, 0</b>, so it stops after <b>4 divisions</b>. A program's result can depend on its number rules. Fixed-size computer number formats can also turn a very small value into 0, called underflow.</p>
+</section>
+
+<div class="sheet-nav"><a href="b29-maze-distances.html">← Previous</a><a href="c1-time-zones.html">Next: What time is it in Tokyo? →</a></div>
+</main>
+
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>
