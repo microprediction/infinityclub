@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Counting holes with V − E + F · Infinity Club</title>
+<meta name="description" content="Build shapes from flat polygons and work out vertices minus edges plus faces. Ball-like shapes give 2, a picture frame gives 0 and a two-hole frame gives −2, and you see why a ring-shaped face spoils the count.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 8 · Around the corner · 30</div>
+  <h1>Counting holes with V − E + F</h1>
+  <p class="teaser">For a cube, vertices minus edges plus faces is 2. For a picture frame cut into flat four-sided faces it is 0. The number keeps count of the holes, and stretching cannot change it.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Take a cube and count: \(V = 8\) vertices (corners), \(E = 12\) edges and \(F = 6\) faces. Then \(V - E + F = 8 - 12 + 6 = 2\). A pyramid on a triangle gives \(4 - 6 + 4 = 2\) again.</p>
+<p>Now build the surface of any solid from flat polygons glued edge to edge, where each face is a polygon with no hole in it. The number \(V - E + F\) is called the <b>Euler characteristic</b>.</p>
+<p class="callout">For a ball-like surface it is 2. For the surface of a doughnut it is 0, and for a doughnut with two holes it is \(-2\). Every hole takes away 2.</p>
+<p>Cutting the faces into smaller polygons does not change the number. Stretching and bending do not change it either, a fact we will not prove here. So the number belongs to the shape, not to the cuts. Alternating tallies like this are how mathematicians count holes of every kind, a subject called <b>homology</b>.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: a square picture frame</h2>
+<figure><svg viewBox="0 0 520 182" width="352" height="123" role="img" aria-label="Two shapes seen from above. Left: a square with a square hole in the middle. Four orange cuts join each outer corner to the nearest corner of the hole, making four four-sided pieces. There are 8 dots, one at each corner. It is labelled one hole. Right: a wide rectangle with two square holes side by side. Four orange cuts join the outer corners to the nearest hole corners, and two more orange cuts join the top corners and the bottom corners of the two holes across the bar between them, making five pieces. There are 12 dots. It is labelled two holes." font-family="Nunito, sans-serif" font-size="13">
+<path d="M30 14H170V154H30Z M70 54V114H130V54Z" fill="#dcdcf5" fill-rule="evenodd" stroke="#1d1f3a" stroke-width="1.5"/>
+<g stroke="#f5a524" stroke-width="2.5">
+<line x1="30" y1="14" x2="70" y2="54"/><line x1="170" y1="14" x2="130" y2="54"/><line x1="170" y1="154" x2="130" y2="114"/><line x1="30" y1="154" x2="70" y2="114"/>
+</g>
+<g fill="#1d1f3a">
+<circle cx="30" cy="14" r="3.5"/><circle cx="170" cy="14" r="3.5"/><circle cx="170" cy="154" r="3.5"/><circle cx="30" cy="154" r="3.5"/>
+<circle cx="70" cy="54" r="3.5"/><circle cx="130" cy="54" r="3.5"/><circle cx="130" cy="114" r="3.5"/><circle cx="70" cy="114" r="3.5"/>
+</g>
+<text x="100" y="88" text-anchor="middle" fill="#555" font-size="12">hole</text>
+<text x="100" y="175" text-anchor="middle" fill="#1d1f3a" font-weight="700">one hole</text>
+<path d="M240 14H490V154H240Z M285 54V114H345V54Z M385 54V114H445V54Z" fill="#dcdcf5" fill-rule="evenodd" stroke="#1d1f3a" stroke-width="1.5"/>
+<g stroke="#f5a524" stroke-width="2.5">
+<line x1="240" y1="14" x2="285" y2="54"/><line x1="490" y1="14" x2="445" y2="54"/><line x1="490" y1="154" x2="445" y2="114"/><line x1="240" y1="154" x2="285" y2="114"/>
+<line x1="345" y1="54" x2="385" y2="54"/><line x1="345" y1="114" x2="385" y2="114"/>
+</g>
+<g fill="#1d1f3a">
+<circle cx="240" cy="14" r="3.5"/><circle cx="490" cy="14" r="3.5"/><circle cx="490" cy="154" r="3.5"/><circle cx="240" cy="154" r="3.5"/>
+<circle cx="285" cy="54" r="3.5"/><circle cx="345" cy="54" r="3.5"/><circle cx="345" cy="114" r="3.5"/><circle cx="285" cy="114" r="3.5"/>
+<circle cx="385" cy="54" r="3.5"/><circle cx="445" cy="54" r="3.5"/><circle cx="445" cy="114" r="3.5"/><circle cx="385" cy="114" r="3.5"/>
+</g>
+<text x="315" y="88" text-anchor="middle" fill="#555" font-size="12">hole</text>
+<text x="415" y="88" text-anchor="middle" fill="#555" font-size="12">hole</text>
+<text x="365" y="175" text-anchor="middle" fill="#1d1f3a" font-weight="700">two holes</text>
+</svg><figcaption>Seen from above. Dots are vertices and orange lines are cuts.</figcaption></figure>
+<p>A square picture frame is a doughnut with corners. The left picture shows it from above. Its top is a square ring, which is not allowed as a face because it has a hole. So cut the top into 4 pieces along the orange lines. The bottom looks the same, and upright edges and walls join top to bottom.</p>
+<p><b>Vertices.</b> 8 on top (the dots) and 8 below: \(V = 16\). <b>Edges.</b> On top, 4 outer, 4 inner and 4 cuts make 12. Below, 12 more. Under each dot hangs one upright edge, 8 in all: \(E = 12 + 12 + 8 = 32\).</p>
+<p><b>Faces.</b> 4 on top, 4 below, 4 outer walls and 4 inner walls around the hole. So \(F = 16\).</p>
+<p><b>The tally.</b> \(V - E + F = 16 - 32 + 16 = 0\), the doughnut's number. <b>The trap.</b> Skip the cuts and you lose 8 edges and 6 faces: \(16 - 24 + 10 = 2\), a ball's number. Ring faces break the rule.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Find \(V\), \(E\), \(F\) and \(V - E + F\) for each solid. (a) A square pyramid. (b) An octahedron: two square pyramids glued base to base, so that the two bases disappear inside. (c) A prism with a triangle at each end and three rectangles round the sides.<div class="space short"></div></li>
+<li>Now flat shapes cut from card. Count only the pieces of card as faces: there is no outside face and no underside. (a) A square cut into 2 triangles by one diagonal. (b) A square with a dot at its centre, joined to all 4 corners. (c) Lift the centre dot of (b) up off the table. Which solid from exercise 1 has appeared, and which of its faces is missing? Use this to explain why the flat square does not give 2.<div class="space short"></div></li>
+<li>Treat the two pictures above as flat card shapes, cut along the orange lines. (a) Find \(V\), \(E\), \(F\) and \(V - E + F\) for the left shape. (b) Do the same for the right shape. Its top and bottom strips each have 6 corners, which is allowed. (c) With exercise 2 you now have flat shapes with 0, 1 and 2 holes. Guess the rule for a flat shape in one piece with \(h\) holes. What would 5 holes give?<div class="space short"></div></li>
+<li>The right picture is now the top of a solid window frame with two holes, built like the frame in the worked example: the same picture underneath, with upright edges and walls between. (a) Predict \(V - E + F\) before you count. (b) Count \(V\), \(E\) and \(F\) layer by layer and check. (c) The surface of a doughnut with \(g\) holes gives \(2 - 2g\). How many holes give \(-8\)? Can any number of holes give \(-3\)?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: why the cuts do not matter</h2>
+<p>(a) Put a new vertex inside a face that has \(n\) corners and join it to every corner. How do \(V\), \(E\) and \(F\) each change, and what happens to \(V - E + F\)? (b) Put a new vertex in the middle of an edge, splitting it in two. Same questions. (c) On the frame in the worked example, rub out the 4 cuts on the top one at a time. Each time, \(E\) drops by 1. What happens to \(F\) each time? Which rub-out changes \(V - E + F\), and what has the top become at that moment?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(V = 5\), \(E = 8\) (4 round the base and 4 sloping), \(F = 5\) (the base and 4 triangles): \(5 - 8 + 5 = 2\). (b) \(V = 6\) (4 round the middle, one at the top and one at the bottom), \(E = 12\) (4 round the middle, 4 up and 4 down), \(F = 8\) triangles: \(6 - 12 + 8 = 2\). (c) \(V = 6\), \(E = 9\) (3 at each end and 3 between), \(F = 5\): \(6 - 9 + 5 = 2\). All three are ball-like, so all three give 2.</li>
+<li>(a) \(V = 4\), \(E = 5\) (4 sides and the diagonal), \(F = 2\): \(4 - 5 + 2 = 1\). (b) \(V = 5\), \(E = 8\) (4 sides and 4 spokes), \(F = 4\): \(5 - 8 + 4 = 1\). (c) A square pyramid with its base missing. Lifting the dot changes no counts, so the open pyramid still gives 1. Putting the base back adds one face and no new vertices or edges, and \(1 + 1 = 2\). A flat piece of card with no hole gives 1, not 2, because it is a ball-like surface with one face left off.</li>
+<li>(a) \(V = 8\), \(E = 12\) (4 outer, 4 inner, 4 cuts), \(F = 4\): \(8 - 12 + 4 = 0\). (b) \(V = 12\) (4 outer corners and 4 on each hole). \(E = 18\): 4 outer sides, 8 hole sides and 6 cuts. \(F = 5\): left, right, top, bottom and the bar between the holes. So \(12 - 18 + 5 = -1\). (c) The results 1, 0, \(-1\) suggest \(V - E + F = 1 - h\), so 5 holes would give \(-4\). Three examples are evidence, not a proof, but the rule is true for every flat shape in one piece, as long as each face is a polygon with no hole.</li>
+<li>(a) Two holes, so \(2 - 2 \times 2 = -2\). (b) \(V = 12 + 12 = 24\). \(E = 18\) on top, 18 below and 12 uprights, so \(E = 48\). \(F = 5\) on top, 5 below, 4 outer walls and 4 walls inside each hole, so \(F = 5 + 5 + 4 + 8 = 22\). Then \(24 - 48 + 22 = -2\), as predicted. The cuts need no walls, because they lie on the surface and the frame is solid beneath them. (c) \(2 - 2g = -8\) gives \(g = 5\) holes. And \(2 - 2g\) is always even, so no doughnut gives \(-3\).</li>
+</ol>
+<p><b>Stretch.</b> (a) \(V\) goes up by 1. \(E\) goes up by \(n\), one new edge to each corner. The face becomes \(n\) triangles, so \(F\) goes up by \(n - 1\). The change in \(V - E + F\) is \(1 - n + (n - 1) = 0\). (b) \(V\) goes up by 1 and \(E\) goes up by 1, because one edge has become two. \(F\) stays the same, though the faces beside that edge each gain a corner. The change is \(1 - 1 = 0\). (c) The first three rub-outs each merge two different faces into one, so \(F\) drops by 1 along with \(E\), and \(V - E + F\) stays 0. The fourth cut has the same face on both sides, so \(F\) does not drop: the tally is \(16 - 28 + 13 = 1\). At that moment the top has closed up into a ring. Do the same underneath and you reach \(16 - 24 + 10 = 2\), the trap in the worked example. Cuts can be added or removed freely only while every face stays a polygon with no hole.</p>
+</section>
+
+<div class="sheet-nav"><a href="b29-atlas-for-a-sphere.html">← Previous</a><a href="b40-jam.html">Next: Two games that are secretly one →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>
