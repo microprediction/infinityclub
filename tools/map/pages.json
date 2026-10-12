@@ -216,6 +216,7 @@
   "grade-8/sheets/b29-atlas-for-a-sphere.html": [{"code": "58A", "level": "core"}],
   "grade-8/sheets/b30-counting-holes.html": [{"code": "55N", "level": "core"}, {"code": "57Q", "level": "core"}],
   "grade-8/sheets/b31-distinct-and-odd-parts.html": [{"code": "33D", "level": "core"}],
+  "grade-8/sheets/b32-do-moves-commute.html": [{"code": "20A", "level": "core"}, {"code": "20P", "level": "core"}],
   "grade-8/sheets/b40-jam.html": [{"code": "91A", "level": "core"}, {"code": "05B", "level": "touch"}],
   "grade-8/sheets/c1-check-digits.html": [{"code": "94B", "level": "core"}, {"code": "11A", "level": "touch"}],
   "grade-8/sheets/c2-simpson.html": [{"code": "62P", "level": "core"}, {"code": "62A", "level": "touch"}, {"code": "11A", "level": "touch"}],
