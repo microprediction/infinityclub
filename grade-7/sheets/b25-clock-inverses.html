@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Which numbers can you undo on a clock? · Infinity Club</title>
+<meta name="description" content="Multiplication tables on a 5-hour, 4-hour, 7-hour, 10-hour and 12-hour clock. A number can be undone exactly when it shares no factor bigger than 1 with the size of the clock.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 7</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 7 · Around the corner · 25</div>
+  <h1>Which numbers can you undo on a clock?</h1>
+  <p class="teaser">On a 5-hour clock every number except 0 has a partner that multiplies to 1. On a 12-hour clock, 3 times 4 is 0. What decides which numbers can be undone?</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A 5-hour clock has only the numbers 0, 1, 2, 3, 4. Add or multiply as usual, then keep the remainder after dividing by 5. So \(3 \times 4 = 12\) becomes 2.</p>
+<p>You can add and multiply, and the usual rules for order and brackets still hold. Such a number system is called a <b>ring</b>. This one is finite: five numbers and no more.</p>
+<p>Here \(2 \times 3 = 6\), which is 1. So multiplying by 3 <b>undoes</b> multiplying by 2, and 3 is called the <b>inverse</b> of 2. Inverse means multiplying to 1, not adding to 0.</p>
+<p>On a 12-hour clock (numbers 0 to 11) the multiples of 3 go 0, 3, 6, 9, 0, 3, ... and never hit 1. So 3 has no inverse. Stranger still, \(3 \times 4 = 0\).</p>
+<p class="callout">On an \(n\)-hour clock, with \(n\) at least 2, a number from 1 to \(n - 1\) has an inverse exactly when it shares no factor bigger than 1 with \(n\). Zero never has one.</p>
+<p>"Exactly when" is two claims. The stretch proves one: a shared factor means no inverse. The other is true too, but tonight you only test it.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: the 5-hour clock</h2>
+<p>Here is the whole multiplication table: ordinary products, then remainders after dividing by 5.</p>
+<table>
+<tr><th>\(\times\)</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th></tr>
+<tr><th>0</th><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><th>1</th><td>0</td><td><b>1</b></td><td>2</td><td>3</td><td>4</td></tr>
+<tr><th>2</th><td>0</td><td>2</td><td>4</td><td><b>1</b></td><td>3</td></tr>
+<tr><th>3</th><td>0</td><td>3</td><td><b>1</b></td><td>4</td><td>2</td></tr>
+<tr><th>4</th><td>0</td><td>4</td><td>3</td><td>2</td><td><b>1</b></td></tr>
+</table>
+<p>To find the inverse of a number, look along its row for a 1. Rows 2 and 3 show \(2 \times 3 = 6\), remainder 1, so 2 and 3 are partners. Rows 1 and 4 have their 1 on the diagonal: \(4 \times 4 = 16\), remainder 1. So 1 and 4 are their own inverses. Row 0 has no 1. The rule agrees: 5 is prime, so 1, 2, 3 and 4 share no factor bigger than 1 with it.</p>
+<p>Use it to undo. Suppose \(2 \times x = 3\) on this clock. Multiply both sides by 3, the inverse of 2: \(x = 3 \times 3 = 9\), which is 4. Check: \(2 \times 4 = 8\), remainder 3.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>(a) Finish the multiplication table for the 4-hour clock. (b) Which numbers have an inverse? (c) Find a non-zero number that gives 0 when you multiply it by itself.
+<table>
+<tr><th>\(\times\)</th><th>0</th><th>1</th><th>2</th><th>3</th></tr>
+<tr><th>0</th><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+<tr><th>1</th><td>0</td><td>1</td><td>2</td><td>3</td></tr>
+<tr><th>2</th><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><th>3</th><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</table>
+<div class="space short"></div></li>
+<li>On the 12-hour clock: (a) Which of the numbers 0 to 11 share no factor bigger than 1 with 12? (b) Find the inverse of each of those. What do you notice? (c) Find a non-zero \(b\) with \(8 \times b = 0\).<div class="space short"></div></li>
+<li>On the 7-hour clock, find the inverse of each of 1, 2, 3, 4, 5 and 6. Then use one to solve \(3 \times x = 2\).<div class="space short"></div></li>
+<li>(a) Use the rule to predict which numbers have an inverse on the 10-hour clock. Find each inverse to check. (b) List \(4 \times 0, 4 \times 1, \dots, 4 \times 9\) on that clock. What do all ten answers have in common, and why does that stop 4 having an inverse?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: why a shared factor is fatal</h2>
+<p>Suppose \(a\) and \(n\) are both multiples of some whole number \(d\) bigger than 1. Explain why \(a \times b\) on the \(n\)-hour clock is a multiple of \(d\), whatever \(b\) is. Why does that mean \(a\) has no inverse? Which half of tonight's rule have you now proved?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) Row 2 is 0, 2, 0, 2. Row 3 is 0, 3, 2, 1, since \(3 \times 2 = 6\) leaves 2 and \(3 \times 3 = 9\) leaves 1. (b) Only 1 and 3, and each is its own inverse. Row 2 has no 1 in it, and 2 shares the factor 2 with 4. (c) 2, because \(2 \times 2 = 4\), which is 0 on this clock.</li>
+<li>(a) 1, 5, 7 and 11. Every other number from 2 to 10 is a multiple of 2 or of 3, and 0 shares the factor 12 itself. (b) \(1 \times 1 = 1\), \(5 \times 5 = 25\), \(7 \times 7 = 49\) and \(11 \times 11 = 121\) all leave remainder 1 after dividing by 12. Each number is its own inverse. (c) 3, 6 or 9: \(8 \times 3 = 24\), \(8 \times 6 = 48\) and \(8 \times 9 = 72\) are all multiples of 12.</li>
+<li>1 and 6 are their own inverses (\(6 \times 6 = 36 = 35 + 1\)). 2 and 4 are partners (\(2 \times 4 = 8 = 7 + 1\)). 3 and 5 are partners (\(3 \times 5 = 15 = 14 + 1\)). To solve \(3 \times x = 2\), multiply both sides by 5: \(x = 5 \times 2 = 10\), which is 3. Check: \(3 \times 3 = 9\), remainder 2.</li>
+<li>(a) The numbers from 1 to 9 that are not multiples of 2 or of 5: 1, 3, 7 and 9. Check: \(1 \times 1 = 1\), \(3 \times 7 = 21\) and \(9 \times 9 = 81\), and each leaves remainder 1 after dividing by 10. So 3 and 7 are partners, and 1 and 9 are their own inverses. (b) 0, 4, 8, 2, 6, 0, 4, 8, 2, 6. All are even. An inverse would need the answer 1, which is odd.</li>
+</ol>
+<p><b>Stretch.</b> The clock answer is the ordinary product \(a \times b\) minus some number of \(n\)s. The product \(a \times b\) is a multiple of \(d\) because \(a\) is. Each \(n\) is a multiple of \(d\) too. Subtracting multiples of \(d\) from a multiple of \(d\) leaves a multiple of \(d\). But 1 is not a multiple of \(d\), because \(d\) is bigger than 1. So \(a \times b\) is never 1, and \(a\) has no inverse. That proves the half "a shared factor means no inverse". It does not prove that every number with no shared factor has an inverse. That half is true as well, and the usual proof uses Euclid's method for finding common factors.</p>
+</section>
+
+<div class="sheet-nav"><a href="b24-clock-hands.html">← Previous</a><a href="c1-bike-gears.html">Next: Why a bike has gears →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>
