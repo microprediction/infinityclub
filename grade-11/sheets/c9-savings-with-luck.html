@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Savings with luck · Infinity Club</title>
+<meta name="description" content="Savings grow 5 percent a year, then a coin flip adds or takes away 10 pounds. Follow one player year by year, list every outcome, and see why the average stays on the smooth curve while the spread grows.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 11</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 11 · Connections · 9</div>
+  <h1>Savings with luck</h1>
+  <p class="teaser">Your savings grow 5 percent a year, then a fair coin flip adds or takes away 10 pounds. Every player ends up somewhere different, but the average over all the possible players follows the smooth curve.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Put 100 pounds in a pretend bank. Each year two things happen, in this order. First the bank adds 5 percent. Then a fair coin is flipped: heads you gain 10 pounds, tails you lose 10.</p>
+<p class="callout">Next year \(= 1.05 \times\) this year \(+\) kick, where the kick is \(+10\) or \(-10\), each with probability \(\tfrac12\).</p>
+<p>With no coin the savings follow a smooth path: 105, 110.25, 115.76 and so on. With the coin, each player gets a different jagged path. This is a <b>model</b>: a rule plus random kicks. Models of this kind are used for populations and prices.</p>
+<p>Two facts tame the mess. The <b>average</b> over all the possible players sits exactly on the smooth path. That needs two things: the kicks average zero, and the rule is <b>linear</b> (multiply by a fixed number, then add). And the <b>spread</b> around the average grows every year, because each year adds a fresh kick on top of the old ones.</p>
+<p>Shrink the time steps and you reach differential equations with random kicks, a university subject.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: five years, flips H, T, T, H, H</h2>
+<p>Grow first, then kick. Keep the full value on your calculator and round to the penny only when you write it down.</p>
+<table class="tt" style="break-inside:avoid">
+<tr><th>Year</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
+<tr><th>After growing 5%</th><td>105.00</td><td>120.75</td><td>116.29</td><td>111.60</td><td>127.68</td></tr>
+<tr><th>Flip</th><td>H</td><td>T</td><td>T</td><td>H</td><td>H</td></tr>
+<tr><th>After the kick</th><td>115.00</td><td>110.75</td><td>106.29</td><td>121.60</td><td>137.68</td></tr>
+<tr><th>Smooth path (no coin)</th><td>105.00</td><td>110.25</td><td>115.76</td><td>121.55</td><td>127.63</td></tr>
+</table>
+<figure><svg viewBox="0 0 520 190" width="400" height="146" role="img" aria-label="Graph of savings against year for years 0 to 5. The smooth path rises steadily from 100 to 127.63. The player with flips H, T, T, H, H starts at 100, jumps to 115, falls to 110.75 and 106.29, then climbs to 121.60 and 137.68" font-family="Nunito, sans-serif" font-size="12">
+<line x1="60" y1="150" x2="410" y2="150" stroke="#000" stroke-width="1.2"/><line x1="60" y1="150" x2="60" y2="8" stroke="#000" stroke-width="1.2"/>
+<line x1="60" y1="122.8" x2="410" y2="122.8" stroke="#999" stroke-width="0.6" stroke-dasharray="3 3"/><text x="54" y="126.8" text-anchor="end">100</text>
+<line x1="60" y1="95.6" x2="410" y2="95.6" stroke="#999" stroke-width="0.6" stroke-dasharray="3 3"/><text x="54" y="99.6" text-anchor="end">110</text>
+<line x1="60" y1="68.4" x2="410" y2="68.4" stroke="#999" stroke-width="0.6" stroke-dasharray="3 3"/><text x="54" y="72.4" text-anchor="end">120</text>
+<line x1="60" y1="41.2" x2="410" y2="41.2" stroke="#999" stroke-width="0.6" stroke-dasharray="3 3"/><text x="54" y="45.2" text-anchor="end">130</text>
+<line x1="60" y1="14" x2="410" y2="14" stroke="#999" stroke-width="0.6" stroke-dasharray="3 3"/><text x="54" y="18" text-anchor="end">140</text>
+<text x="54" y="154" text-anchor="end">90</text>
+<line x1="60" y1="150" x2="60" y2="154" stroke="#000"/><text x="60" y="166" text-anchor="middle">0</text>
+<line x1="128" y1="150" x2="128" y2="154" stroke="#000"/><text x="128" y="166" text-anchor="middle">1</text><text x="128" y="182" text-anchor="middle" fill="#b06a00" font-weight="700">H</text>
+<line x1="196" y1="150" x2="196" y2="154" stroke="#000"/><text x="196" y="166" text-anchor="middle">2</text><text x="196" y="182" text-anchor="middle" fill="#b06a00" font-weight="700">T</text>
+<line x1="264" y1="150" x2="264" y2="154" stroke="#000"/><text x="264" y="166" text-anchor="middle">3</text><text x="264" y="182" text-anchor="middle" fill="#b06a00" font-weight="700">T</text>
+<line x1="332" y1="150" x2="332" y2="154" stroke="#000"/><text x="332" y="166" text-anchor="middle">4</text><text x="332" y="182" text-anchor="middle" fill="#b06a00" font-weight="700">H</text>
+<line x1="400" y1="150" x2="400" y2="154" stroke="#000"/><text x="400" y="166" text-anchor="middle">5</text><text x="400" y="182" text-anchor="middle" fill="#b06a00" font-weight="700">H</text>
+<text x="424" y="166" fill="#555">year</text><text x="424" y="182" fill="#555">flip</text>
+<polyline points="60.0,122.8 128.0,109.2 196.0,94.9 264.0,79.9 332.0,64.2 400.0,47.7" fill="none" stroke="#3f44c9" stroke-width="2"/>
+<polyline points="60.0,122.8 128.0,82.0 196.0,93.6 264.0,105.7 332.0,64.0 400.0,20.3" fill="none" stroke="#f5a524" stroke-width="2"/>
+<circle cx="60" cy="122.8" r="3" fill="#1d1f3a"/><circle cx="128" cy="82" r="3" fill="#f5a524"/><circle cx="196" cy="93.6" r="3" fill="#f5a524"/><circle cx="264" cy="105.7" r="3" fill="#f5a524"/><circle cx="332" cy="64" r="3" fill="#f5a524"/><circle cx="400" cy="20.3" r="3" fill="#f5a524"/>
+<text x="416" y="24.3" fill="#b06a00">this player: 137.68</text><text x="416" y="51.7" fill="#3f44c9">smooth: 127.63</text>
+</svg><figcaption>One player (orange) against the smooth path (blue): ahead, then behind, then 10.05 ahead at the end.</figcaption></figure>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>The <b>mirror player</b> gets the opposite flip every year: T, H, H, T, T. Run the five years from 100 pounds. Add the mirror player's final savings to 137.68, and compare with twice the smooth value 127.63.<div class="space short"></div></li>
+<li>Two years have four equally likely flip patterns: HH, HT, TH, TT. Find the savings after 2 years for each. Check that the four values average 110.25.<div class="space short"></div></li>
+<li>Find the highest and the lowest possible savings after 3 years. How far is each from the smooth value 115.7625?<div class="space short"></div></li>
+<li>(a) Explain why the average over all the possible players stays on the smooth path. The mirror player helps. (b) A meaner bank adds the 5 percent only in a year you begin with at least 100 pounds. Redo exercise 2 for this bank. Is the average still 110.25?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: measuring the spread</h2>
+<p>The variance \(V\) is the average squared distance from the mean, and the standard deviation is \(\sqrt{V}\) (see <a href="a14-random-variables.html">The average outcome and how far it strays</a>). Use your four values from exercise 2 to show that the standard deviation after 2 years is exactly 14.5. Then explain the rule \(V_{\text{next}} = 1.05^2\, V + 100\) for the variance, and use it to find the standard deviation after 3 years.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>After growing: 105.00, 99.75, 115.24, 131.50, 127.57. After the kick: 95.00, 109.75, 125.24, 121.50, 117.57. Then \(137.68 + 117.57 = 255.25\), and \(2 \times 127.63 = 255.26\). The penny is rounding: unrounded, both are 255.2563125. The mirror player ends exactly as far below the smooth path as the first player ends above it, and that is true in every year.</li>
+<li>After year 1 you have 115 (H) or 95 (T). HH: \(120.75 + 10 = 130.75\). HT: \(120.75 - 10 = 110.75\). TH: \(99.75 + 10 = 109.75\). TT: \(99.75 - 10 = 89.75\). The sum is 441 and \(441/4 = 110.25\).</li>
+<li>Highest, HHH: \(1.05 \times 130.75 + 10 = 147.2875\), about 147.29. Lowest, TTT: \(1.05 \times 89.75 - 10 = 84.2375\), about 84.24. Each is 31.525 from the smooth value: the three kicks have grown to \(10 \times 1.05^2\), \(10 \times 1.05\) and \(10\), which add to 31.525.</li>
+<li>(a) Let \(d\) be a player's distance above the smooth path. Then \(d\) starts at 0 and each year becomes \(1.05d + \text{kick}\). The mirror player's kicks are the opposites, so its distance is always \(-d\). Each pair averages exactly the smooth value, and the possible players split into such equally likely pairs, so the overall average is on the smooth path. This used both conditions: opposite kicks are equally likely, and the rule is linear. (b) After year 1: 115 or 95. From 115: \(120.75 \pm 10\), so 130.75 or 110.75. From 95 there is no interest: 105 or 85. The average is \(431.5/4 = 107.875\), not 110.25, though with no coin this bank also gives 110.25. The rule is no longer linear, and the average has left the smooth path.</li>
+</ol>
+<p><b>Stretch.</b> The distances from 110.25 are \(20.5,\ 0.5,\ -0.5,\ -20.5\). Their squares are 420.25, 0.25, 0.25, 420.25, with average 210.25, and \(\sqrt{210.25} = 14.5\). The rule: growing multiplies every distance from the mean by 1.05, so it multiplies the variance by \(1.05^2\). The new kick is independent of what came before, so its own variance, \(10^2 = 100\), is added. Check: \(1.05^2 \times 100 + 100 = 210.25\). After 3 years \(V = 1.1025 \times 210.25 + 100 = 331.800625\), so the standard deviation is about 18.2. The squared kicks pile up, so the spread never stops growing.</p>
+</section>
+
+<div class="sheet-nav"><a href="c8-power-laws.html">← Previous</a><a href="c10-shooting-method.html">Next: Hitting the target →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

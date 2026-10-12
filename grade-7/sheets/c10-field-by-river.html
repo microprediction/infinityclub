@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dido's field by the river · Infinity Club</title>
+<meta name="description" content="With 100 m of fence and a straight river as one side, compare the area of a rectangle, a triangle, half a hexagon and a semicircle, then use a mirror image to see why the semicircle wins.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 7</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 7 · Connections · 10</div>
+  <h1>Dido's field by the river</h1>
+  <p class="teaser">With 100 m of fence and a straight river as one side, what shape of field encloses the most land? A rectangle does well. A semicircle does better.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>You have 100 m of fence and some land beside a straight river. The river guards one side of your field, so the fence only has to do the rest. What shape holds the most land?</p>
+<p>An old legend says Queen Dido was offered as much land as an oxhide could cover. She cut the hide into thin strips, joined them into one long cord and enclosed far more. It is only a legend, but puzzles like this carry her name.</p>
+<p>It is harder than it looks. You are not choosing a number but a whole shape, out of all possible shapes. The part of math(s) that hunts for the best curve or shape is the <b>calculus of variations</b>.</p>
+<p class="callout">Same fence, different shape, different area. Tonight you test four shapes and meet the winner.</p>
+<figure><svg viewBox="0 0 520 126" width="520" height="126" role="img" aria-label="Four fields standing side by side on a straight river bank, each fenced with 100 metres of fence. A rectangle with fence sides 25, 50 and 25. A triangle with two fence sides of 50 meeting at a right angle. Half a regular hexagon with three fence sides of 33 and a third. A semicircle whose curved fence is 100." font-family="Nunito, sans-serif" font-size="12">
+<rect x="0" y="86" width="520" height="14" fill="#dcdcf5"/>
+<line x1="0" y1="86" x2="520" y2="86" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="8" y="97" fill="#3f44c9" font-size="11">river</text>
+<path d="M 34 86 L 34 48.5 L 109.0 48.5 L 109.0 86" fill="#fde8c4" stroke="#1d1f3a" stroke-width="2" stroke-linejoin="round"/>
+<text x="71.5" y="42.5" text-anchor="middle" fill="#1d1f3a">50</text>
+<text x="28.0" y="71.2" text-anchor="end" fill="#1d1f3a">25</text>
+<text x="115.0" y="71.2" text-anchor="start" fill="#1d1f3a">25</text>
+<text x="71.5" y="118" text-anchor="middle" fill="#555" font-size="12">rectangle</text>
+<path d="M 143.0 86 L 196 33.0 L 249.0 86" fill="#fde8c4" stroke="#1d1f3a" stroke-width="2" stroke-linejoin="round"/>
+<text x="162.5" y="57.5" text-anchor="end" fill="#1d1f3a">50</text>
+<text x="229.5" y="57.5" text-anchor="start" fill="#1d1f3a">50</text>
+<path d="M 191.1 37.9 L 196 42.9 L 200.9 37.9" fill="none" stroke="#1d1f3a" stroke-width="1"/>
+<text x="196.0" y="118" text-anchor="middle" fill="#555" font-size="12">triangle</text>
+<path d="M 276.0 86 L 301.0 42.7 L 351.0 42.7 L 376.0 86" fill="#fde8c4" stroke="#1d1f3a" stroke-width="2" stroke-linejoin="round"/>
+<text x="326.0" y="36.7" text-anchor="middle" fill="#1d1f3a">33⅓</text>
+<text x="282.5" y="64.3" text-anchor="end" fill="#1d1f3a">33⅓</text>
+<text x="369.5" y="64.3" text-anchor="start" fill="#1d1f3a">33⅓</text>
+<text x="326.0" y="118" text-anchor="middle" fill="#555" font-size="12">half hexagon</text>
+<path d="M 408.3 86 A 47.7 47.7 0 0 1 503.7 86" fill="#fde8c4" stroke="#1d1f3a" stroke-width="2" stroke-linejoin="round"/>
+<text x="456.0" y="32.3" text-anchor="middle" fill="#1d1f3a">arc 100</text>
+<text x="456.0" y="118" text-anchor="middle" fill="#555" font-size="12">semicircle</text>
+</svg><figcaption>Four fields, each with 100 m of fence (lengths in metres). A model: the river is perfectly straight and the land is flat.</figcaption></figure>
+</section>
+
+<section class="example">
+<h2>Watch one: the best rectangle</h2>
+<p>A rectangular field has two sides of width \(w\) metres running away from the river. They use \(2w\) metres of fence, so the side parallel to the river gets the rest: \(100 - 2w\) metres.</p>
+<p>The area is \(w \times (100 - 2w)\). Try \(w = 20\): the field is 20 by 60, area 1200 square metres. Try \(w = 25\): the field is 25 by 50, area 1250 square metres. Better.</p>
+<p>Is 25 the best width? Move \(d\) metres away from it. The width becomes \(25 + d\) and the long side becomes \(100 - 2(25 + d) = 50 - 2d\). Multiply out:</p>
+\[(25 + d)(50 - 2d) = 1250 - 50d + 50d - 2d^2 = 1250 - 2d^2.\]
+<p>A square such as \(d^2\) is never negative, so the area is at most 1250, and equals 1250 only when \(d = 0\). A negative \(d\) just means a narrower field. So the best rectangle is 25 by 50.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Rectangles, with \(w\) as in the example. (a) Find the area for each width: 10, 20, 24, 26, 30 and 40 metres. (b) Which pairs of widths give the same area? What does the formula \(1250 - 2d^2\) say about why? (c) A square field has three fence sides of \(33\tfrac13\) m each. Find its area. Is the square the best rectangle here?<div class="space"></div></li>
+<li>Triangle. Two straight fences of 50 m each meet at a right angle, and the river is the third side. (a) Use one fence as the base and the other as the height. What is the area? (b) Now swing one fence so the angle between the two fences is no longer a right angle. The base is still 50 m. Is the height more or less than 50 m? What happens to the area?<div class="space short"></div></li>
+<li>Half a regular hexagon. Three straight fences of \(33\tfrac13\) m each make a trapezium (trapezoid) with the river. The side along the river is \(66\tfrac23\) m and is parallel to the middle fence. The distance between those two parallel sides is about 28.87 m. (a) Find the area, using half the sum of the parallel sides times the distance between them. (b) How much more land is this than the best rectangle?<div class="space short"></div></li>
+<li>Semicircle. The fence is a curved arc 100 m long, half of a full circle. (a) How long is the full circle? Use circumference \(= 2 \times \pi \times r\) to find the radius \(r\) to two decimal places. (b) Find the area of the field, half of \(\pi \times r \times r\). (c) Put all five fields from this page in order of area, the square included. (d) About how many per cent more land does the semicircle give than the best rectangle?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: put a mirror along the river</h2>
+<p>Imagine the river bank is a mirror. A field and its mirror image join into one shape with twice the area. Its edge is the fence plus the image of the fence, a closed loop 200 m long. (a) What does each of the four fields become when it is doubled like this? (b) Here is a known fact, too hard to prove tonight: of all closed loops of a given length, the circle encloses the most area. Use it to explain why no fence of 100 m that starts and ends at the river can enclose more land than the semicircle.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(10 \times 80 = 800\), \(20 \times 60 = 1200\), \(24 \times 52 = 1248\), \(26 \times 48 = 1248\), \(30 \times 40 = 1200\) and \(40 \times 20 = 800\) square metres. (b) 24 and 26, 20 and 30, 10 and 40. Each pair is the same distance \(d\) either side of 25, and \(1250 - 2d^2\) only uses \(d^2\), which is the same for \(d\) and \(-d\). For example \(d = 5\) gives \(1250 - 50 = 1200\). (c) \(33\tfrac13 \times 33\tfrac13 = 1111\tfrac19\), about 1111 square metres. No. The square is the best rectangle when the fence goes all the way round, but here the river gives one side free, and 25 by 50 beats the square by about 139 square metres.</li>
+<li>(a) Half of base times height: \(\tfrac12 \times 50 \times 50 = 1250\) square metres, exactly the same as the best rectangle. (b) Less. The height is measured straight up from the base, and a leaning fence of 50 m reaches less than 50 m above it. So the area is less than 1250 whether the angle is made wider or narrower. The right angle is the best triangle with two 50 m fences.</li>
+<li>(a) \(\tfrac12 \times (33\tfrac13 + 66\tfrac23) \times 28.87 = 50 \times 28.87 = 1443.5\), so about 1443 square metres. (The distance 28.87 is rounded. A more exact area is 1443.4.) (b) About \(1443 - 1250 = 193\) square metres more. Three straight fences beat two.</li>
+<li>(a) 200 m. Then \(r = 200 \div (2 \times \pi) = 100 \div \pi \approx 31.83\) m. (b) \(\tfrac12 \times \pi \times 31.83 \times 31.83 \approx 1591\) square metres. The exact value is \(5000 \div \pi\), which is 1591.5 to one decimal place. With \(\pi\) rounded to 3.14 you may get an answer nearer 1593. (c) Square, about 1111. Then the 25 by 50 rectangle and the triangle, level on 1250. Then the half hexagon, about 1443. Then the semicircle, about 1592. (d) \(1591.5 \div 1250 \approx 1.27\), so about 27 per cent more land from the same fence.</li>
+</ol>
+<p><b>Stretch.</b> (a) The 25 by 50 rectangle becomes a 50 by 50 square. The triangle also becomes a square with sides of 50 m, standing on one corner. The half hexagon becomes a regular hexagon, and the semicircle becomes a full circle. Each has an edge of 200 m. (b) Take any field whose fence is 100 m long and starts and ends at the river. Doubled in the mirror, it is a shape with a closed edge of 200 m. By the known fact, its area is at most the area of the circle with circumference 200 m, which is \(\pi \times r \times r\) with \(r = 100 \div \pi\), about 3183 square metres. The field is half of the doubled shape, so its area is at most half of that, about 1591.5 square metres. The semicircle reaches exactly this, because doubling it gives the circle itself. So nothing beats it. The mirror also explains the example: the best rectangle is the one whose double is a square.</p>
+</section>
+
+<div class="sheet-nav"><a href="c9-earthquake-distance.html">← Previous</a><a href="c11-honey-and-drops.html">Next: Why do tiny drops take so long to settle? →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

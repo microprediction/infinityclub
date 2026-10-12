@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The average of 350 degrees and 10 degrees · Infinity Club</title>
+<meta name="description" content="Average directions and clock times by turning each one into an arrow, adding the arrows and reading off the direction of the total. See when the answer differs from the ordinary average and when there is no mean direction at all.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 10</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 10 · Connections · 12</div>
+  <h1>The average of 350 degrees and 10 degrees</h1>
+  <p class="teaser">Two wind readings: 350 degrees and 10 degrees, both nearly north. Their ordinary average is 180, due south. Averaging arrows instead gives the right answer.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Two made-up wind readings: \(350^\circ\) and \(10^\circ\), measured clockwise from north. Both are nearly north. Their ordinary average is \(\frac{350 + 10}{2} = 180^\circ\), due south, almost exactly opposite to both readings.</p>
+<p>The trouble is that directions live on a circle, where \(359^\circ\) and \(1^\circ\) are neighbours. Numbers on a line do not know that. So average arrows instead. Turn each direction \(\theta\) into an arrow of length 1: it goes \(\cos\theta\) towards \(0^\circ\) and \(\sin\theta\) towards \(90^\circ\). Add the arrows part by part, divide by how many there are, and read off the direction of the result.</p>
+<p class="callout">The mean direction is the direction of the average arrow. If the arrows cancel to zero, there is no mean direction.</p>
+<p>The length of the average arrow, between 0 and 1, tells you something too. Near 1, the directions agree. Near 0, they are spread around or pulling against each other. The same trick works for anything that wraps round, like times of day or dates in the year.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: 350 degrees and 10 degrees</h2>
+<figure style="float:right;width:230px;margin:0 0 .3em .8em"><svg viewBox="0 0 230 196" width="230" height="196" role="img" aria-label="A compass circle with 0 degrees at the top and angles growing clockwise. Two blue arrows from the centre point to 350 degrees and 10 degrees, just either side of the top. An orange arrow between them, the average arrow, points straight up to 0 degrees and has length 0.985. A grey dashed arrow points straight down to 180 degrees, the ordinary average.">
+<circle cx="115" cy="100" r="62" fill="none" stroke="#999" stroke-width="1"/>
+<line x1="115.0" y1="42.0" x2="115.0" y2="34.0" stroke="#555" stroke-width="1"/>
+<line x1="173.0" y1="100.0" x2="181.0" y2="100.0" stroke="#555" stroke-width="1"/>
+<line x1="115.0" y1="158.0" x2="115.0" y2="166.0" stroke="#555" stroke-width="1"/>
+<line x1="57.0" y1="100.0" x2="49.0" y2="100.0" stroke="#555" stroke-width="1"/>
+<line x1="115" y1="100" x2="115.0" y2="154.0" stroke="#999" stroke-width="1.5" stroke-dasharray="4 3"/>
+<polygon points="115.0,162.0 111.5,154.0 118.5,154.0" fill="#999"/>
+<line x1="115" y1="100" x2="105.6" y2="46.8" stroke="#3f44c9" stroke-width="2"/>
+<polygon points="104.2,38.9 109.1,46.2 102.2,47.4" fill="#3f44c9"/>
+<line x1="115" y1="100" x2="124.4" y2="46.8" stroke="#3f44c9" stroke-width="2"/>
+<polygon points="125.8,38.9 127.8,47.4 120.9,46.2" fill="#3f44c9"/>
+<line x1="115" y1="100" x2="115.0" y2="46.9" stroke="#f5a524" stroke-width="2.5"/>
+<polygon points="115.0,38.9 118.5,46.9 111.5,46.9" fill="#f5a524"/>
+<circle cx="115" cy="100" r="2.5" fill="#1d1f3a"/>
+<g font-family="Nunito, sans-serif" font-size="12" fill="#1d1f3a">
+<text x="96.2" y="32.9" text-anchor="end" fill="#3f44c9" font-weight="700">350°</text>
+<text x="133.8" y="32.9" text-anchor="start" fill="#3f44c9" font-weight="700">10°</text>
+<text x="115" y="14" text-anchor="middle" font-weight="700">average arrow: 0°</text>
+<text x="185" y="104" text-anchor="start" fill="#555">90°</text>
+<text x="45" y="104" text-anchor="end" fill="#555">270°</text>
+<text x="115" y="180" text-anchor="middle" fill="#555">180°: the ordinary average</text>
+</g>
+</svg><figcaption style="text-align:left;font-size:.8rem">The two blue arrows average to the orange one, which points to \(0^\circ\).</figcaption></figure>
+<p>Set your calculator to degrees. The arrow for \(350^\circ\) is \((\cos 350^\circ, \sin 350^\circ) \approx (0.985, -0.174)\). The arrow for \(10^\circ\) is about \((0.985, 0.174)\). Add part by part: \((1.970, 0)\). Divide by 2: the average arrow is \((0.985, 0)\).</p>
+<p>It goes 0.985 towards \(0^\circ\) and nothing towards \(90^\circ\), so it points at \(0^\circ\), due north. Its length is 0.985, close to 1: the two readings nearly agree.</p>
+<p><b>Reading off the angle.</b> For an average arrow \((a, b)\) the direction \(\theta\) has \(\tan\theta = \frac{b}{a}\). But \(\tan\) cannot tell an arrow from its opposite, so check the signs. Take \((-0.5, 0.5)\): the calculator gives \(\tan^{-1}(-1) = -45^\circ\), yet the arrow goes away from \(0^\circ\) and towards \(90^\circ\), so it points at \(135^\circ\). The rule: if \(a\) is negative, add \(180^\circ\). If the answer is negative, add \(360^\circ\). If \(a = 0\), the direction is \(90^\circ\) when \(b \gt 0\) and \(270^\circ\) when \(b \lt 0\).</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Average the directions \(30^\circ\), \(90^\circ\) and \(120^\circ\) with arrows. Give the mean direction to one decimal place and the length of the average arrow. What is the ordinary average?<div class="space"></div></li>
+<li>(a) Average \(0^\circ\), \(120^\circ\) and \(240^\circ\) with arrows. What happens? (b) Do the same for \(0^\circ\) and \(180^\circ\). (c) The ordinary averages are \(120^\circ\) and \(90^\circ\). Why should you not trust them?<div class="space"></div></li>
+<li>Times of day wrap round too. Put midnight at \(0^\circ\) and let each hour be \(15^\circ\), so 24 hours make \(360^\circ\). (a) Find the ordinary average and the arrow average of 23:00 and 01:00. (b) On three nights (made-up data) you fell asleep at 22:00, 23:00 and 03:00. Find the arrow average to the nearest minute. Check the signs before you read off the angle.<div class="space tall"></div></li>
+<li>(a) Find the ordinary average and the arrow average of \(0^\circ\), \(0^\circ\) and \(90^\circ\). (b) Nothing wraps round here, yet the two answers differ. Mark the three arrow tips as dots on a circle of radius 1. Where is the tip of the average arrow? (c) Now average \(40^\circ\) and \(100^\circ\) both ways. What do you notice?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: birthdays on a circle</h2>
+<p>Put the 365 days of a year round a circle, so day \(d\) sits at angle \(\frac{360d}{365}\) degrees, and turn each birthday in a class into an arrow. (a) Everyone was born in the same week. Roughly how long is the average arrow? (b) Half the class was born on 1 January (day 1) and the other half on 2 July (day 183). Roughly how long is the average arrow, and does its direction mean anything? (c) So if the average arrow is very short, can you say the birthdays are spread evenly round the year?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>The arrows are about \((0.866, 0.5)\), \((0, 1)\) and \((-0.5, 0.866)\). They add to \((0.366, 2.366)\), so the average arrow is \((0.122, 0.789)\). Both parts are positive, so \(\theta = \tan^{-1}\frac{2.366}{0.366} \approx 81.2^\circ\). The length is \(\sqrt{0.122^2 + 0.789^2} \approx 0.80\). The ordinary average is \(80^\circ\): close, but not the same.</li>
+<li>(a) The arrows are \((1, 0)\), \((-0.5, 0.866)\) and \((-0.5, -0.866)\). They add to \((0, 0)\). The average arrow has length 0 and points nowhere, so there is no mean direction. (b) \((1, 0) + (-1, 0) = (0, 0)\): the same. (c) The ordinary average depends on where you put \(0^\circ\). Rename the same three directions \(120^\circ\), \(240^\circ\) and \(360^\circ\) and their ordinary average becomes \(240^\circ\). Call \(180^\circ\) by its other name \(-180^\circ\) and the average of the pair becomes \(-90^\circ\), which is \(270^\circ\). No direction has a better claim than another, and the arrows say so honestly.</li>
+<li>(a) Ordinary: \(\frac{23 + 1}{2} = 12\), which is noon. Arrows: the angles are \(345^\circ\) and \(15^\circ\), the arrows are about \((0.966, -0.259)\) and \((0.966, 0.259)\), and the average \((0.966, 0)\) points at \(0^\circ\): midnight. (b) The angles are \(330^\circ\), \(345^\circ\) and \(45^\circ\). The arrows \((0.866, -0.5)\), \((0.966, -0.259)\) and \((0.707, 0.707)\) add to about \((2.539, -0.052)\). Then \(\tan^{-1}\frac{-0.052}{2.539} \approx -1.17^\circ\). The first part is positive, so only add \(360^\circ\): \(358.83^\circ\). Divide by 15: 23.92 hours, which is 23:55. (The ordinary average of 22, 23 and 3 is 16:00, the middle of the afternoon.)</li>
+<li>(a) Ordinary: \(\frac{0 + 0 + 90}{3} = 30^\circ\). Arrows: \((1, 0) + (1, 0) + (0, 1) = (2, 1)\), so \(\theta = \tan^{-1}\frac{1}{2} \approx 26.6^\circ\), with length \(\frac{\sqrt 5}{3} \approx 0.75\). (b) The tip is at \(\left(\frac23, \frac13\right)\), the balance point of the three dots. It lies on the straight line from \((1, 0)\) to \((0, 1)\), one third of the way along. One third of the way along that line is not one third of the way round the arc, so the angle is not \(30^\circ\). Neither answer is wrong: they are different averages. The arrow one is the one that never breaks at the wrap. (c) Both give \(70^\circ\). Two arrows of length 1 make a rhombus with their sum, and the diagonal of a rhombus halves the angle. So for two directions that are not opposite, the arrow average is exactly halfway round the shorter way.</li>
+</ol>
+<p><b>Stretch.</b> (a) Very close to 1 (about 0.999 for seven birthdays on seven days in a row), because the arrows are within \(6^\circ\) of each other. (b) The two days are 182 days apart, which is \(179.5^\circ\), almost opposite. The two bunches nearly cancel and the length is about 0.004. The leftover arrow points at early April, halfway round the shorter gap, where nobody was born. Its direction means nothing. (c) No. A short arrow says only that the arrows nearly cancel. Evenly spread birthdays do that, but so do two opposite bunches. A long arrow is the clear signal: it can only happen when the birthdays cluster. And a real class is a small sample: even if every day were equally likely (a model), 25 random birthdays typically give a length of about 0.2, not 0.</p>
+</section>
+
+<div class="sheet-nav"><a href="c11-air-in-a-corner.html">← Previous</a><a href="c13-coriolis.html">Next: Why a straight line on a spinning plate comes out curved →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>
