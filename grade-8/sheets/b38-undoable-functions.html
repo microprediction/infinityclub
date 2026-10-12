@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Functions you cannot undo · Infinity Club</title>
+<meta name="description" content="Combine functions on the set {1, 2, 3} and between small sets, count the ones that can be undone, and meet the semigroup: moves you can combine but not always undo.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 8 · Around the corner · 38</div>
+  <h1>Functions you cannot undo</h1>
+  <p class="teaser">"Send everything to 1" is a perfectly good rule, but it forgets where things came from. Which rules can be undone, and what happens when you combine one that cannot?</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A <b>function</b> on \(\{1, 2, 3\}\) is a rule that gives each of 1, 2, 3 one output, also from 1, 2, 3. Write it as its list of outputs: \(f = [2, 3, 1]\) sends 1 to 2, 2 to 3 and 3 to 1. The do-nothing rule is \(N = [1, 2, 3]\).</p>
+<p>Combine two rules by doing one after the other: \(f \text{ then } g\) always means apply \(f\) first, then \(g\) to the result. The bracket rule \((f \text{ then } g) \text{ then } h = f \text{ then } (g \text{ then } h)\) holds, because both sides do \(f\), \(g\), \(h\) in turn.</p>
+<p>A rule \(f\) on \(\{1, 2, 3\}\) <b>can be undone</b> if some rule \(h\) makes \(f \text{ then } h = N\). "Send everything to 1", which is \([1, 1, 1]\), cannot: it forgets where things came from.</p>
+<p class="callout">A <b>semigroup</b> is a set of moves with a way to combine them such that combining two moves gives a move in the set, and the bracket rule holds. Nobody promises an undo.</p>
+<p>A <a href="b32-do-moves-commute.html">group</a> is a semigroup with a do-nothing and an undo for every move. Sets, with functions as the arrows, also form a <a href="b28-arrows-and-routes.html">category</a>. Exercises 2 and 3 use functions between two different sets.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: order matters, and what is lost stays lost</h2>
+<p>Take \(f = [2, 3, 1]\) and \(g = [1, 1, 3]\). Follow each input through both rules. The two answers differ, so the order matters.</p>
+<table class="tt">
+<tr><th>input</th><td>\(1\)</td><td>\(2\)</td><td>\(3\)</td><th>list</th></tr>
+<tr><th>\(f \text{ then } g\)</th><td>\(1 \to 2 \to 1\)</td><td>\(2 \to 3 \to 3\)</td><td>\(3 \to 1 \to 1\)</td><td>\([1, 3, 1]\)</td></tr>
+<tr><th>\(g \text{ then } f\)</th><td>\(1 \to 1 \to 2\)</td><td>\(2 \to 1 \to 2\)</td><td>\(3 \to 3 \to 1\)</td><td>\([2, 2, 1]\)</td></tr>
+</table>
+<p><b>Can \(f\) be undone?</b> \(f\) sends 1 to 2, so the undo must send 2 back to 1. In the same way it must send 3 to 2 and 1 to 3. That is \(h = [3, 1, 2]\), and \(f \text{ then } h\) is \(1 \to 2 \to 1\), \(2 \to 3 \to 2\), \(3 \to 1 \to 3\), which is \(N\). Here \(h \text{ then } f = N\) as well.</p>
+<p><b>Can \(g\) be undone?</b> \(g\) sends both 1 and 2 to 1. Whatever \(h\) is, \(g \text{ then } h\) sends 1 and 2 to the same place, the output of \(h\) at 1. But \(N\) sends 1 and 2 to different places. So no \(h\) works.</p>
+<p>Both arguments work for any function on \(\{1, 2, 3\}\). If its three outputs are all different, each of 1, 2, 3 is the output of exactly one input, so you can send each one back. If two outputs are equal, two inputs have been merged, and no rule can separate them again. Both lists in the table repeat an output, and exercise 4 shows that this was no accident.</p>
+<p class="callout">A function on \(\{1, 2, 3\}\) can be undone exactly when its three outputs are all different.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Functions on \(\{1, 2, 3\}\). (a) How many are there? (b) How many of them can be undone? (c) Find the undo of \([3, 1, 2]\) and the undo of \([1, 3, 2]\). Check each by combining.<div class="space short"></div></li>
+<li>Let \(A = \{1, 2\}\) and \(B = \{1, 2, 3\}\). A function from \(A\) to \(B\) is a list of two outputs taken from \(B\). (a) How many are there? How many are <b>one-to-one</b>, meaning different inputs get different outputs? (b) Take \(k = [1, 3]\), which sends 1 to 1 and 2 to 3. Find every function \(h\) from \(B\) to \(A\) for which \(k \text{ then } h\) is the do-nothing on \(A\). (c) Why does no \(h\) from \(B\) to \(A\) make \(h \text{ then } k\) the do-nothing on \(B\)?<div class="space short"></div></li>
+<li>Now go from \(B\) to \(A\): a list of three outputs taken from \(\{1, 2\}\). (a) How many are there? How many are <b>onto</b>, meaning both 1 and 2 appear as outputs? (b) Take \(p = [1, 2, 2]\). Find every function \(q\) from \(A\) to \(B\) for which \(q \text{ then } p\) is the do-nothing on \(A\). (c) Why does no \(q\) from \(A\) to \(B\) make \(p \text{ then } q\) the do-nothing on \(B\)?<div class="space short"></div></li>
+<li>Back to functions on \(\{1, 2, 3\}\). Suppose \(g\) cannot be undone, and \(h\) is any function at all. (a) Explain why \(g \text{ then } h\) cannot be undone. (b) Explain why \(h \text{ then } g\) cannot be undone. Hint: \(g\) misses one of 1, 2, 3 as an output. (c) Do the functions that cannot be undone form a semigroup on their own? Do the ones that can?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: rules that change nothing the second time</h2>
+<p>How many functions \(e\) on \(\{1, 2, 3\}\) have \(e \text{ then } e = e\)? Sort them by how many different outputs they have. Then use the bracket rule to explain why \(N\) is the only one of them that can be undone.</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(3 \times 3 \times 3 = 27\). (b) The three outputs must be all different, so the list is 1, 2, 3 in some order: \(3 \times 2 \times 1 = 6\). The other 21 cannot be undone. (c) \([3, 1, 2]\) sends 1 to 3, 2 to 1 and 3 to 2, so its undo sends 3 to 1, 1 to 2 and 2 to 3. That is \([2, 3, 1]\). Check: \(1 \to 3 \to 1\), \(2 \to 1 \to 2\), \(3 \to 2 \to 3\). The rule \([1, 3, 2]\) swaps 2 and 3, so it undoes itself: \(1 \to 1 \to 1\), \(2 \to 3 \to 2\), \(3 \to 2 \to 3\).</li>
+<li>(a) \(3 \times 3 = 9\). For one-to-one, the first output can be any of 3 and the second any of the other 2: \(3 \times 2 = 6\). (b) \(k \text{ then } h\) is \(1 \to 1 \to\) the output of \(h\) at 1, which must be 1, and \(2 \to 3 \to\) the output of \(h\) at 3, which must be 2. The output of \(h\) at 2 is never used, so it can be 1 or 2. There are two answers: \(h = [1, 1, 2]\) and \(h = [1, 2, 2]\). (c) \(h \text{ then } k\) finishes with \(k\), so its outputs are outputs of \(k\): only 1 or 3. It never gives 2, but the do-nothing on \(B\) sends 2 to 2. So \(k\) can be undone afterwards, and in two ways, but never beforehand.</li>
+<li>(a) \(2 \times 2 \times 2 = 8\). Only \([1, 1, 1]\) and \([2, 2, 2]\) miss an output, so \(8 - 2 = 6\) are onto. (b) \(q \text{ then } p\) must send 1 to 1, so the output of \(q\) at 1 is the only input that \(p\) sends to 1, which is 1. It must send 2 to 2, so the output of \(q\) at 2 is 2 or 3. Two answers: \(q = [1, 2]\) and \(q = [1, 3]\). (c) \(p\) sends 2 and 3 both to 2, so \(p \text{ then } q\) sends 2 and 3 to the same place, the output of \(q\) at 2. The do-nothing on \(B\) sends them to different places. So a one-to-one function has an undo that works after it, an onto function has one that works before it, and only a function that is both has a single undo that works on both sides.</li>
+<li>(a) By the callout, two inputs of \(g\) share an output. Say \(g\) sends \(a\) and \(b\) to the same output. Then \(g \text{ then } h\) sends \(a\) and \(b\) to the same output too, so its three outputs are not all different. (b) Two of the three inputs of \(g\) share an output, so \(g\) has at most two different outputs and misses one of 1, 2, 3. Call it \(m\). \(h \text{ then } g\) finishes with \(g\), so it never gives \(m\) either. Three inputs then share at most two outputs, so two inputs get the same one. (c) Yes to both. By (a), combining two of the 21 gives one of the 21, and the bracket rule still holds. This semigroup does not contain \(N\). The 6 that can be undone also stay together: if \(h\) undoes \(f\) and \(j\) undoes \(g\), then \(j \text{ then } h\) undoes \(f \text{ then } g\). They contain \(N\) and every undo, so they form a group. Exercise 2 shows why (a) and (b) need both rules to live on the same set: there \(k\) has no two-sided undo, yet \(k \text{ then } h\) is a do-nothing.</li>
+</ol>
+<p><b>Stretch.</b> There are 10. \(e \text{ then } e = e\) says that applying \(e\) to any output of \(e\) changes nothing, so every output is sent to itself. One output: \([1, 1, 1]\), \([2, 2, 2]\), \([3, 3, 3]\), which is 3. Two outputs: choose the two numbers that stay put (3 ways), then send the third number to either of them (2 ways), which is 6: \([1, 2, 1]\), \([1, 2, 2]\), \([1, 1, 3]\), \([3, 2, 3]\), \([1, 3, 3]\), \([2, 2, 3]\). Three outputs: every number stays put, so only \(N\). Total \(3 + 6 + 1 = 10\). Now suppose \(e \text{ then } e = e\) and \(h\) undoes \(e\). Work out \(e \text{ then } e \text{ then } h\) in two ways. Bracketing the first two gives \(e \text{ then } h = N\). Bracketing the last two gives \(e \text{ then } N = e\). So \(e = N\).</p>
+</section>
+
+<div class="sheet-nav"><a href="b37-two-clocks.html">← Previous</a><a href="b40-jam.html">Next: Two games that are secretly one →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>
