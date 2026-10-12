@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How many terms to compute e? · Infinity Club</title>
+<meta name="description" content="Meet the number e and two recipes for computing it. Ten terms of the sum 1 + 1 + 1/2 + 1/6 + ... give six decimal places, while (1 + 1/n)^n needs n in the millions. Measure the error of each recipe and see why the choice of recipe matters.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 9</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 9 · Around the corner · 26</div>
+  <h1>How many terms to compute e?</h1>
+  <p class="teaser">Add 1 + 1 + 1/2 + 1/6 + 1/24 + ... and after ten terms you have the number e to six decimal places. The famous recipe (1 + 1/n)^n needs n in the millions to do as well.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Some numbers have decimals that never end and never repeat, so nobody can write them out in full. You need a recipe that gets as close as you like. Tonight's number is called \(e\). It starts \(2.718281828\ldots\) and it turns up wherever something grows in proportion to its own size.</p>
+<p><b>Recipe one.</b> Write \(k!\) (say "\(k\) factorial") for \(1 \times 2 \times \cdots \times k\), and agree that \(0! = 1\). Then add \(\tfrac1{0!} + \tfrac1{1!} + \tfrac1{2!} + \tfrac1{3!} + \tfrac1{4!} + \cdots\), which is \(1 + 1 + \tfrac12 + \tfrac16 + \tfrac1{24} + \cdots\)</p>
+<p><b>Recipe two.</b> Work out \(\left(1 + \tfrac1n\right)^n\) for a large whole number \(n\).</p>
+<p>Both close in on the same number \(e\), a fact proved in later courses. Tonight you measure how fast each one gets there.</p>
+<p class="callout">Ten terms of the sum land within 0.0000005 of \(e\). The power \(\left(1 + \frac1n\right)^n\) needs \(n\) above 2.7 million to do as well.</p>
+<p>Programmers hunt for recipes like the first: a little more work buys a lot more accuracy.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: seven terms of the sum</h2>
+<p>Each term is the one before it divided by the next whole number: \(\tfrac1{4!} = \tfrac1{3!} \div 4\). The <b>error</b> is \(e = 2.718281828\) minus the sum so far. Everything is rounded to five decimal places.</p>
+<table>
+<tr><th>Last term</th><td>\(\tfrac1{0!}\)</td><td>\(\tfrac1{1!}\)</td><td>\(\tfrac1{2!}\)</td><td>\(\tfrac1{3!}\)</td><td>\(\tfrac1{4!}\)</td><td>\(\tfrac1{5!}\)</td><td>\(\tfrac1{6!}\)</td></tr>
+<tr><th>Its value</th><td>1</td><td>1</td><td>0.5</td><td>0.16667</td><td>0.04167</td><td>0.00833</td><td>0.00139</td></tr>
+<tr><th>Sum so far</th><td>1</td><td>2</td><td>2.5</td><td>2.66667</td><td>2.70833</td><td>2.71667</td><td>2.71806</td></tr>
+<tr><th>Error</th><td>1.71828</td><td>0.71828</td><td>0.21828</td><td>0.05162</td><td>0.00995</td><td>0.00162</td><td>0.00023</td></tr>
+</table>
+<p>Seven terms, and the sum is within 0.00023 of \(e\). From the fourth column to the fifth the error shrinks about 5 times, and from the sixth to the seventh about 7 times. The terms shrink faster and faster, so the error does too.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Carry the table on. (a) Work out \(7!\) and \(8!\). (b) Find \(\tfrac1{7!}\) and \(\tfrac1{8!}\) to seven decimal places and add them, one at a time, to the more accurate sum \(2.7180556\). (c) Find the error after each, using \(e = 2.7182818\).<div class="space short"></div></li>
+<li>Call a value <b>correct to six decimal places</b> when its error is below 0.0000005. (a) The sum up to \(\tfrac1{8!}\) is \(2.71827877\). Add \(\tfrac1{9!}\), to eight decimal places. (b) Use \(e = 2.71828183\) to find the error before and after. Which sum is correct to six decimal places? (c) Count the terms used, starting from \(\tfrac1{0!}\).<div class="space short"></div></li>
+<li>Now recipe two, on a calculator. (a) Work out \(\left(1 + \tfrac1n\right)^n\) for \(n = 10\), \(100\) and \(1000\), to five decimal places. (b) Find the error of each, using \(e = 2.71828\). (c) When \(n\) gets ten times bigger, roughly what happens to the error?<div class="space short"></div></li>
+<li>For large \(n\), the error of \(\left(1 + \tfrac1n\right)^n\) is close to \(\tfrac{e}{2n}\). This is an approximation, not an exact formula. (a) Work out \(\tfrac{e}{2n}\) for \(n = 10\), \(100\) and \(1000\) and compare with exercise 3. (b) Estimate how large \(n\) must be for the error to drop below 0.0000005. (c) One more correct decimal place: what does it cost recipe two, and what does it cost recipe one near the tenth term?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: a guarantee that does not need e</h2>
+<p>So far you measured each error with a value of \(e\) that somebody else computed. Now do without. Stop the sum after \(\tfrac1{n!}\), with \(n \ge 1\). The part left out is the <b>tail</b> \(\tfrac1{(n+1)!} + \tfrac1{(n+2)!} + \tfrac1{(n+3)!} + \cdots\) Show that the tail is less than \(\tfrac{1}{n! \times n}\), then try \(n = 9\). Hints: put \(r = \tfrac1{n+1}\). Why is the second term of the tail less than \(r\) times the first, and the third less than \(r^2\) times the first? Then use \(1 + r + r^2 + r^3 + \cdots = \tfrac{1}{1 - r}\), true when \(0 \lt r \lt 1\).</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(7! = 720 \times 7 = 5040\) and \(8! = 5040 \times 8 = 40320\). (b) \(\tfrac1{5040} = 0.0001984\), so the sum becomes \(2.7180556 + 0.0001984 = 2.7182540\). Then \(\tfrac1{40320} = 0.0000248\), and the sum becomes \(2.7182788\). (c) The errors are \(2.7182818 - 2.7182540 = 0.0000278\) and \(2.7182818 - 2.7182788 = 0.0000030\). The last digit of each is not safe, because every number here was rounded: with more digits kept the errors are 0.00002786 and 0.00000306. Either way, one extra term cut the error about 9 times.</li>
+<li>(a) \(9! = 40320 \times 9 = 362880\) and \(\tfrac1{362880} = 0.00000276\). The sum becomes \(2.71827877 + 0.00000276 = 2.71828153\). (b) Before, the error was \(2.71828183 - 2.71827877 = 0.00000306\), which is too big. After, it is \(2.71828183 - 2.71828153 = 0.00000030\), which is below 0.0000005. So only the new sum is correct to six decimal places. (c) The terms run from \(\tfrac1{0!}\) to \(\tfrac1{9!}\), which is ten terms. With the trick from the example, that is at most nine divisions and nine additions.</li>
+<li>(a) \(1.1^{10} = 2.59374\), \(1.01^{100} = 2.70481\) and \(1.001^{1000} = 2.71692\). (b) The errors are \(0.12454\), \(0.01347\) and \(0.00136\). (c) The error becomes roughly ten times smaller. So ten times the \(n\) buys only about one more correct decimal place. Even \(n = 1000\) gives just \(2.717\), where seven terms of the sum gave \(2.71806\).</li>
+<li>(a) \(\tfrac{e}{20} = 0.13591\), \(\tfrac{e}{200} = 0.01359\) and \(\tfrac{e}{2000} = 0.00136\). The first is about 9% too big, the second about 1% too big, and the third agrees with your error to five decimal places. The approximation improves as \(n\) grows. (b) You need \(\dfrac{e}{2n} \lt 0.0000005\), so \(n \gt \dfrac{e}{0.000001} \approx 2{,}718{,}000\). That is about 2.7 million. A computer search with many digits agrees: the first \(n\) that works is 2,718,281. (c) Recipe two needs about 10 times more \(n\) for each extra place. Recipe one needs about one more term: the term \(\tfrac1{10!}\) cuts the error from \(0.00000030\) to \(0.00000003\). A warning about recipe two: the calculator must round \(1 + \tfrac1n\), and the huge power magnifies that rounding. A model calculator that keeps ten significant digits stores \(1 + \tfrac{1}{3{,}000{,}000}\) as \(1.000000333\), and that number to the power 3,000,000 is \(2.7156\), wrong in the third decimal place.</li>
+</ol>
+<p><b>Stretch.</b> The first term of the tail is \(\tfrac1{(n+1)!}\). The second is \(\tfrac1{(n+2)!} = \tfrac1{(n+1)!} \times \tfrac1{n+2}\), and \(\tfrac1{n+2} \lt \tfrac1{n+1} = r\). The third divides again, by \(n + 3\), so it is less than \(r^2\) times the first, and so on. So the tail is less than \(\tfrac1{(n+1)!}\left(1 + r + r^2 + \cdots\right)\). With \(r = \tfrac1{n+1}\) you get \(1 - r = \tfrac{n}{n+1}\), so the bracket is \(\tfrac{n+1}{n}\). Since \((n+1)! = n! \times (n+1)\), the bound is \(\dfrac{1}{n! \times (n+1)} \times \dfrac{n+1}{n} = \dfrac{1}{n! \times n}\). For \(n = 9\) that is \(\tfrac{1}{362880 \times 9} = \tfrac{1}{3265920} = 0.000000306\), which is below 0.0000005. So ten terms are guaranteed correct to six decimal places, and you never needed to know \(e\) in advance. The true error, 0.000000303, sits just under the bound. For \(n = 8\) the bound is 0.0000031, too big to promise six places, and exercise 2 showed that nine terms really do fall short. (The rule needs \(n \ge 1\): for \(n = 0\) it would divide by zero.)</p>
+</section>
+
+<div class="sheet-nav"><a href="b25-calculator-errors.html">← Previous</a><a href="c1-rule-of-72.html">Next: How long until your money doubles? →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The family tree of 12's divisors · Infinity Club</title>
+<meta name="description" content="Draw the divisors of 12, 30 and 16 as diagrams, with a line going up when one number divides another and nothing sits in between. Read the gcd and lcm off the picture, and meet an order where no best meeting point exists.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 7</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 7 · Around the corner · 26</div>
+  <h1>The family tree of 12's divisors</h1>
+  <p class="teaser">Draw the divisors of 12 in layers, with a line going up when one divides another and nothing sits in between. Any two of them have a best meeting point below and a best one above.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>The divisors of 12 are 1, 2, 3, 4, 6 and 12. "Divides" puts them in an <b>order</b>: 2 comes before 6 because 2 divides 6. But 4 and 6 cannot be compared: neither divides the other.</p>
+<p>Draw it. Put each number higher than the numbers that divide it. Join \(a\) up to \(b\) only when \(a\) divides \(b\) and no other number in the list fits between them. So 2 joins to 4, but not to 12, because 4 is in between.</p>
+<p>Say \(a\) is <b>below</b> \(b\), and \(b\) is <b>above</b> \(a\), if you can get from \(b\) to \(a\) going down lines only. That happens exactly when \(a\) divides \(b\). A number counts as below and above itself.</p>
+<p class="callout">Take two divisors of a positive whole number. Of the numbers below both, one is <b>best</b>: all the others are below it. It is their gcd. Of the numbers above both, one is best: it is below all the others. It is their lcm. An order where every pair has both is called a <b>lattice</b>.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: the divisors of 12</h2>
+<figure><svg viewBox="0 0 300 158" width="300" height="158" role="img" aria-label="The divisors of 12 drawn as dots in four layers. Bottom layer: 1. Second layer: 2 and 3. Third layer: 4 and 6. Top layer: 12. Seven lines: 1 to 2, 1 to 3, 2 to 4, 2 to 6, 3 to 6, 4 to 12 and 6 to 12." font-family="Nunito, sans-serif" font-size="14">
+<g stroke="#3f44c9" stroke-width="2">
+<line x1="150" y1="140" x2="100" y2="100"/>
+<line x1="150" y1="140" x2="200" y2="100"/>
+<line x1="100" y1="100" x2="50" y2="60"/>
+<line x1="100" y1="100" x2="150" y2="60"/>
+<line x1="200" y1="100" x2="150" y2="60"/>
+<line x1="50" y1="60" x2="100" y2="20"/>
+<line x1="150" y1="60" x2="100" y2="20"/>
+</g>
+<g fill="#fff" stroke="#1d1f3a" stroke-width="1.5"><circle cx="150" cy="140" r="13"/><circle cx="100" cy="100" r="13"/><circle cx="200" cy="100" r="13"/><circle cx="50" cy="60" r="13"/><circle cx="150" cy="60" r="13"/><circle cx="100" cy="20" r="13"/></g>
+<g fill="#1d1f3a" font-weight="700" text-anchor="middle"><text x="150" y="145">1</text><text x="100" y="105">2</text><text x="200" y="105">3</text><text x="50" y="65">4</text><text x="150" y="65">6</text><text x="100" y="25">12</text></g>
+</svg></figure>
+<p>Four layers and seven lines. Every line multiplies by one prime: by 2 going up to the left, by 3 going up to the right.</p>
+<p><b>Best below 4 and 6.</b> Below 4 are 4, 2 and 1. Below 6 are 6, 3, 2 and 1. Below both: 2 and 1. Since 1 is below 2, the best is 2. That is the greatest common divisor, \(\gcd(4, 6) = 2\).</p>
+<p><b>Best above 4 and 6.</b> Above 4 are 4 and 12. Above 6 are 6 and 12. Above both: only 12. That is the least common multiple, \(\operatorname{lcm}(4, 6) = 12\).</p>
+<p><b>Careful.</b> 3 is drawn lower than 4, but it is not below 4, because 3 does not divide 4.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>The divisors of 30 are 1, 2, 3, 5, 6, 10, 15 and 30. (a) Draw the diagram in four layers: 1, then 2, 3, 5, then 6, 10, 15, then 30. (b) How many lines did you draw? Which solid shape does the picture look like? (c) \(12 = 2 \times 2 \times 3\) also has three prime factors. Why is its picture not this shape?<div class="space tall"></div></li>
+<li>(a) Draw the diagram for the divisors of 16. (b) Here, which is the best below and which is the best above for any two different numbers? (c) Find another number whose diagram has this shape.<div class="space"></div></li>
+<li>Use your diagram for 30. (a) Find the best below (gcd) and the best above (lcm) for 6 and 10, for 2 and 15, and for 3 and 6. (b) Work out \(\gcd(6, \operatorname{lcm}(10, 15))\). Then work out \(\operatorname{lcm}(\gcd(6, 10), \gcd(6, 15))\). What do you notice?<div class="space short"></div></li>
+<li>Now keep only four numbers: 2, 3, 12 and 18, still ordered by "divides". (a) Draw the diagram, with the same rule for lines. (b) Which numbers in the list are above both 2 and 3? (c) Is one of them the best? Is this order a lattice?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: sets in disguise</h2>
+<p>Write down all eight subsets of \(\{x, y, z\}\), from the empty set \(\{\}\) up to \(\{x, y, z\}\) itself. Say one set is below another when everything in it is also in the other. Draw the diagram in layers by size. Why is it the same picture as the divisors of 30? What do gcd and lcm turn into?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<figure><svg viewBox="0 0 520 154" width="520" height="154" role="img" aria-label="Three diagrams. Exercise 1, the divisors of 30: 1 at the bottom, then 2, 3 and 5, then 6, 10 and 15, then 30 at the top, joined by twelve lines like the edges of a cube. Exercise 2, the divisors of 16: a single column 1, 2, 4, 8, 16 joined by four lines. Exercise 4: 2 and 3 on the bottom row, 12 and 18 on the top row, with each bottom number joined to each top number, four lines in all." font-family="Nunito, sans-serif" font-size="13">
+<g stroke="#3f44c9" stroke-width="2">
+<line x1="100" y1="120" x2="40" y2="86"/>
+<line x1="100" y1="120" x2="100" y2="86"/>
+<line x1="100" y1="120" x2="160" y2="86"/>
+<line x1="40" y1="86" x2="40" y2="52"/>
+<line x1="40" y1="86" x2="100" y2="52"/>
+<line x1="100" y1="86" x2="40" y2="52"/>
+<line x1="100" y1="86" x2="160" y2="52"/>
+<line x1="160" y1="86" x2="100" y2="52"/>
+<line x1="160" y1="86" x2="160" y2="52"/>
+<line x1="40" y1="52" x2="100" y2="18"/>
+<line x1="100" y1="52" x2="100" y2="18"/>
+<line x1="160" y1="52" x2="100" y2="18"/>
+</g>
+<g fill="#fff" stroke="#1d1f3a" stroke-width="1.5"><circle cx="100" cy="120" r="11"/><circle cx="40" cy="86" r="11"/><circle cx="100" cy="86" r="11"/><circle cx="160" cy="86" r="11"/><circle cx="40" cy="52" r="11"/><circle cx="100" cy="52" r="11"/><circle cx="160" cy="52" r="11"/><circle cx="100" cy="18" r="11"/></g>
+<g fill="#1d1f3a" font-weight="700" text-anchor="middle"><text x="100" y="124.5">1</text><text x="40" y="90.5">2</text><text x="100" y="90.5">3</text><text x="160" y="90.5">5</text><text x="40" y="56.5">6</text><text x="100" y="56.5">10</text><text x="160" y="56.5">15</text><text x="100" y="22.5">30</text></g>
+<g stroke="#3f44c9" stroke-width="2">
+<line x1="290" y1="120" x2="290" y2="94.5"/>
+<line x1="290" y1="94.5" x2="290" y2="69"/>
+<line x1="290" y1="69" x2="290" y2="43.5"/>
+<line x1="290" y1="43.5" x2="290" y2="18"/>
+</g>
+<g fill="#fff" stroke="#1d1f3a" stroke-width="1.5"><circle cx="290" cy="120" r="11"/><circle cx="290" cy="94.5" r="11"/><circle cx="290" cy="69" r="11"/><circle cx="290" cy="43.5" r="11"/><circle cx="290" cy="18" r="11"/></g>
+<g fill="#1d1f3a" font-weight="700" text-anchor="middle"><text x="290" y="124.5">1</text><text x="290" y="99.0">2</text><text x="290" y="73.5">4</text><text x="290" y="48.0">8</text><text x="290" y="22.5">16</text></g>
+<g stroke="#3f44c9" stroke-width="2">
+<line x1="400" y1="103" x2="400" y2="35"/>
+<line x1="400" y1="103" x2="480" y2="35"/>
+<line x1="480" y1="103" x2="400" y2="35"/>
+<line x1="480" y1="103" x2="480" y2="35"/>
+</g>
+<g fill="#fff" stroke="#1d1f3a" stroke-width="1.5"><circle cx="400" cy="103" r="11"/><circle cx="480" cy="103" r="11"/><circle cx="400" cy="35" r="11"/><circle cx="480" cy="35" r="11"/></g>
+<g fill="#1d1f3a" font-weight="700" text-anchor="middle"><text x="400" y="107.5">2</text><text x="480" y="107.5">3</text><text x="400" y="39.5">12</text><text x="480" y="39.5">18</text></g>
+<text x="100" y="147" text-anchor="middle" font-size="12" fill="#555">Exercise 1: 30</text><text x="290" y="147" text-anchor="middle" font-size="12" fill="#555">Exercise 2: 16</text><text x="440" y="147" text-anchor="middle" font-size="12" fill="#555">Exercise 4</text>
+</svg></figure>
+<ol>
+<li>(a) See the picture. Each line multiplies by one prime. (b) 12 lines. It looks like a cube standing on one corner: 8 corners and 12 edges. (c) A cube needs 8 corners, and 12 has only 6 divisors. In 30 the three primes are different, so each one is either in a divisor or not: \(2 \times 2 \times 2 = 8\) divisors. In 12 the prime 2 is used twice, and the picture is two squares side by side.</li>
+<li>(a) One column: 1, 2, 4, 8, 16, with four lines. (b) Every pair can be compared, so the best below is the smaller of the two and the best above is the larger. (c) 81 works: its divisors are 1, 3, 9, 27, 81. So does any prime multiplied by itself four times, such as \(5 \times 5 \times 5 \times 5 = 625\).</li>
+<li>(a) For 6 and 10: gcd 2, lcm 30. For 2 and 15: gcd 1, lcm 30. For 3 and 6: gcd 3, lcm 6, because 3 is already below 6. (b) \(\operatorname{lcm}(10, 15) = 30\) and \(\gcd(6, 30) = 6\). On the other side \(\gcd(6, 10) = 2\), \(\gcd(6, 15) = 3\) and \(\operatorname{lcm}(2, 3) = 6\). Both are 6. In fact \(\gcd(a, \operatorname{lcm}(b, c)) = \operatorname{lcm}(\gcd(a, b), \gcd(a, c))\) for any three positive whole numbers, the same pattern as \(a \times (b + c) = a \times b + a \times c\). A lattice that obeys this rule is called <b>distributive</b>. Some lattices do not.</li>
+<li>(a) Four lines: 2 to 12, 2 to 18, 3 to 12 and 3 to 18. (b) 12 and 18. (c) No. The best one would have to be below the other, but 12 does not divide 18 and 18 does not divide 12. So 2 and 3 have no best one above, and this order is not a lattice. Being the smaller number does not make 12 best: "below" means "divides" here. Among all whole numbers the best above 2 and 3 is 6, but 6 is not in the list.</li>
+</ol>
+<p><b>Stretch.</b> The layers are \(\{\}\); then \(\{x\}, \{y\}, \{z\}\); then \(\{x, y\}, \{x, z\}, \{y, z\}\); then \(\{x, y, z\}\). Swap \(x\) for 2, \(y\) for 3 and \(z\) for 5, and multiply whatever is in the set. The empty set gives 1, and \(\{x, z\}\) gives \(2 \times 5 = 10\). Because \(30 = 2 \times 3 \times 5\) uses each prime once, every divisor comes from exactly one subset. One divisor divides another exactly when all its primes are among the other's, that is, when its set is inside the other set. So the two orders match, line for line. The gcd turns into "the things in both sets" and the lcm into "the things in either set": 6 and 10 are \(\{x, y\}\) and \(\{x, z\}\), in both is \(\{x\}\), which is 2, and in either is \(\{x, y, z\}\), which is 30. The same trick fails for 12: it has 6 divisors, and no set has exactly 6 subsets.</p>
+</section>
+
+<div class="sheet-nav"><a href="b25-clock-inverses.html">← Previous</a><a href="c1-bike-gears.html">Next: Why a bike has gears →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>
