@@ -41,10 +41,11 @@ for f in sorted(glob.glob('grade-*/sheets/*.html')):
     hub = open('grade-%s/index.html' % m.group(1), encoding='utf-8').read()
     if 'href="sheets/%s"' % os.path.basename(f) not in hub:
         problems.append('NO HUB CARD for %s in grade-%s/index.html' % (f, m.group(1)))
+tmpdir = tempfile.mkdtemp()  # private, so parallel runs cannot overwrite each other's files
 for f in html:
     s = open(f, encoding='utf-8').read()
     for i, js in enumerate(re.findall(r'<script>(.*?)</script>', s, re.S)):
-        p = os.path.join(tempfile.gettempdir(), '_ic_chk_%d.js' % i)
+        p = os.path.join(tmpdir, '_ic_chk_%d.js' % i)
         open(p, 'w').write(js)
         r = subprocess.run(['node', '--check', p], capture_output=True, text=True)
         if r.returncode:
