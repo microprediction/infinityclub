@@ -423,6 +423,7 @@
   "grade-12/sheets/b27-knots.html": [{"code": "57K", "level": "core"}],
   "grade-12/sheets/b28-lagrange.html": [{"code": "49K", "level": "core"}, {"code": "26B", "level": "core"}, {"code": "90C", "level": "touch"}],
   "grade-12/sheets/b29-arithmetic-derivative.html": [{"code": "11A", "level": "core"}, {"code": "13N", "level": "touch"}, {"code": "12H", "level": "touch"}],
+  "grade-12/sheets/b30-cancel-the-error.html": [{"code": "45L", "level": "core"}, {"code": "65B", "level": "core"}],
   "grade-12/sheets/c1-escape-velocity.html": [{"code": "70F", "level": "core"}, {"code": "85A", "level": "touch"}, {"code": "26A", "level": "touch"}],
   "grade-12/sheets/c2-rocket.html": [{"code": "70P", "level": "core"}, {"code": "34A", "level": "touch"}],
   "grade-12/sheets/c3-options.html": [{"code": "91G", "level": "core"}],
