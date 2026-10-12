@@ -45,6 +45,7 @@ If you cannot verify a claim, leave it out. If an issue asks for something false
 | prev/next line at the bottom of every sheet | `python3 tools/relink.py` |
 | `map.html` | `python3 tools/map/build_map.py` |
 | `sitemap.xml` | `python3 tools/build_sitemap.py` |
+| `og:` and `twitter:` meta tags in every page head | `python3 tools/social_tags.py` |
 
 ## Checks (CI runs the same ones on every PR)
 
@@ -55,6 +56,7 @@ python3 tools/check_site.py                # links, anchors, structure, kickers,
 python3 tools/relink.py --check
 python3 tools/map/build_map.py --check
 python3 tools/build_sitemap.py --check
+python3 tools/social_tags.py --check
 python3 tools/pagecount.py grade-N/sheets/<file>.html   # 3 printed pages expected, 4 allowed
 ```
 

@@ -107,6 +107,7 @@ Use the codes listed in the issue (codes are the first three characters, like `2
 python3 tools/relink.py                 # fix prev/next links in the grade
 python3 tools/map/build_map.py          # rebuild map.html
 python3 tools/build_sitemap.py          # rebuild sitemap.xml
+python3 tools/social_tags.py            # add link-preview tags to the new sheet
 (cd tools && npm install)               # once, for KaTeX
 node tools/check_math.js                # KaTeX, exercise/answer counts, tags, style
 python3 tools/check_site.py             # links, structure, kicker, hub card
