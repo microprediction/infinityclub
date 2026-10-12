@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How many fish can you catch? · Math Detours</title>
+<meta name="description" content="A toy model of a fish pond that refills itself. Step it forward year by year with a fixed yearly catch, find the tipping point below which the pond collapses, and find the largest catch the model pond can sustain.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Math Detours · Grade 8 · Connections · 14</div>
+  <h1>How many fish can you catch?</h1>
+  <p class="teaser">A pond refills itself, but only so fast. In a simple model, catching 100 fish a year can go on for ever. Catching 150 empties the pond.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A pond has food for about 1000 fish. With few fish there are few parents, so few young. Near 1000 there is little food to spare, so again few young. In between, the pond grows fastest. Here is a toy model. With \(P\) fish this year, the pond adds this many by next year:</p>
+\[\text{growth} = \frac{P \times (1000 - P)}{2000}\]
+<table class="tt">
+<tr><th>Fish \(P\)</th><td>0</td><td>100</td><td>200</td><td>300</td><td>400</td><td>500</td><td>600</td><td>700</td><td>800</td><td>900</td><td>1000</td></tr>
+<tr><th>Growth</th><td>0</td><td>45</td><td>80</td><td>105</td><td>120</td><td>125</td><td>120</td><td>105</td><td>80</td><td>45</td><td>0</td></tr>
+</table>
+<p>If people also catch \(C\) fish a year, then \(\text{fish next year} = P + \text{growth} - C\). Round the growth to the nearest whole fish each year.</p>
+<p class="callout"><b>The balance:</b> catch less than the growth and the pond gains fish. Catch more and it loses fish. Catch exactly the growth and it stays steady.</p>
+<p>A rule you apply again and again to step forward in time is a <b>dynamical system</b>. This one hides a <b>tipping point</b>: a pond size below which a catch that was safe becomes fatal. Real fisheries are far more complicated.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: a pond left alone</h2>
+<p>Nobody fishes, so \(C = 0\). The pond starts with 100 fish. Follow it for 5 years.</p>
+<p>Year 1: the growth is \(100 \times 900 \div 2000 = 45\), so there are \(100 + 45 = 145\) fish. Year 2: the growth is \(145 \times 855 \div 2000 = 61.9875\), which rounds to 62, so there are \(145 + 62 = 207\) fish. Carry on in the same way:</p>
+<table class="tt">
+<tr><th>After year</th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
+<tr><th>Fish</th><td>100</td><td>145</td><td>207</td><td>289</td><td>392</td><td>511</td></tr>
+<tr><th>Growth that follows</th><td>45</td><td>62</td><td>82</td><td>103</td><td>119</td><td>125</td></tr>
+</table>
+<p>The pond gains more each year until it holds about 500 fish. After that the growth shrinks: the model gives 636, 752, 845, 910 and 951 fish after years 6 to 10. The pond creeps up towards 1000 and goes no higher, because at 1000 the growth is 0.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>People catch \(C = 100\) fish a year. The pond starts with 800 fish. (a) Find the number of fish after 1, 2, 3 and 4 years. (b) By how much does the pond fall each year? What is happening to the falls? (c) Work out the growth when \(P = 724\). What do you expect the pond to do in the long run?<div class="space"></div></li>
+<li>Same catch, \(C = 100\), but the pond starts with only 200 fish. (a) Step forward year by year until the rule gives fewer than 0 fish. In which year does that happen? (b) Write down the fall in each year. Why do the falls get bigger?<div class="space"></div></li>
+<li>Keep \(C = 100\). (a) In the table of growth, for which pond sizes is the growth more than 100? (b) Work out the growth at \(P = 276\) and at \(P = 277\). Which side of 100 is each? (c) Without stepping through the years, say what happens to a pond that starts with 250 fish, with 300 fish, and with 900 fish, and why.<div class="space short"></div></li>
+<li>Now people catch \(C = 150\) fish a year from a full pond of 1000. (a) Find the number of fish after 1, 2 and 3 years. (b) The largest growth in the model is 125. Explain why the pond loses at least 25 fish every year, and so cannot last more than 40 years. (c) What is the largest yearly catch that could go on for ever in this model? How many fish must the pond hold for the growth to match it?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: why the biggest catch is a risky catch</h2>
+<p>A pond holds 500 fish and people catch 125 a year, the most the model allows. One hard winter kills 50 fish, leaving 450. The catch stays at 125. What happens over the next few years, and in the end? Compare with a second pond that holds 724 fish, where people catch 100 a year, and which also loses 50 fish in a hard winter. Which plan would you choose, and why?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) The growths are 80, then \(780 \times 220 \div 2000 = 85.8 \approx 86\), then \(766 \times 234 \div 2000 = 89.622 \approx 90\), then \(756 \times 244 \div 2000 = 92.232 \approx 92\). So the pond goes \(800 \to 780 \to 766 \to 756 \to 748\). (b) The falls are 20, 14, 10 and 8. They are shrinking: as the pond falls towards 500, the growth rises towards the catch. (c) \(724 \times 276 \div 2000 = 99.912\), almost exactly 100. Near 724 fish the growth balances the catch, so the pond levels off there. (With rounding, the numbers stop at 725, where the growth of 99.6875 rounds to 100.)</li>
+<li>(a) The growths are 80, 74, 65, 52 and 33, so the pond goes \(200 \to 180 \to 154 \to 119 \to 71 \to 4\). In year 6 the growth is about 2, and \(4 + 2 - 100 = -94\). There are not 100 fish left to catch: the pond is empty in year 6. (b) The falls are 20, 26, 35, 48 and 67. Below 500, fewer fish means less growth, so the gap between the catch and the growth widens every year.</li>
+<li>(a) At 300, 400, 500, 600 and 700 fish. (b) \(276 \times 724 \div 2000 = 99.912\), just under 100. \(277 \times 723 \div 2000 = 100.1355\), just over. So the tipping point lies between 276 and 277 fish. (c) From 250: the growth is 93.75, less than the catch, so the pond falls. A smaller pond grows even less, so it keeps falling until it is empty, in year 10. From 300: the growth is 105, more than the catch, so the pond rises. The growth stays above 100 until the pond levels off near 724. From 900: the growth is only 45, so the pond falls. As it falls the growth rises, and the fall stops near 724.</li>
+<li>(a) Year 1: the growth at 1000 is 0, so \(1000 - 150 = 850\). Year 2: the growth is \(850 \times 150 \div 2000 = 63.75 \approx 64\), giving \(850 + 64 - 150 = 764\). Year 3: the growth is \(764 \times 236 \div 2000 = 90.152 \approx 90\), giving \(764 + 90 - 150 = 704\). (b) Each year the pond changes by the growth minus 150. The growth is never more than 125, so that is a loss of at least 25 fish. Forty such years lose at least \(40 \times 25 = 1000\) fish, which is all of them. In fact the model pond is empty in year 21. (c) 125 fish a year. A catch can go on for ever only if the growth can keep up with it, and the growth is never more than 125. It is exactly 125 only when the pond holds 500 fish.</li>
+</ol>
+<p><b>Stretch.</b> At 450 fish the growth is \(450 \times 550 \div 2000 = 123.75\), which rounds to 124, one less than the catch. So the pond slips to 449, then 448. Each fish lost makes the growth a little smaller, so the falls slowly get bigger. In the model the pond is empty about 40 years later. The early falls are so small that nobody might notice until it is too late. At a catch of 125 the steady size and the tipping point are the same number, 500, so there is no room for bad luck. The second pond drops to 674 fish, where the growth is \(674 \times 326 \div 2000 = 109.862\), more than the catch of 100. It climbs back towards 724. Its tipping point is far below, near 276, so it could lose over 400 fish and still recover. The smaller catch gives up 25 fish a year and buys a wide safety margin. Real ponds have good and bad years all the time.</p>
+</section>
+
+<div class="sheet-nav"><a href="c13-double-pendulum.html">← Previous</a><a href="c15-haar-wavelets.html">Next: Squash eight numbers into a few →</a></div>
+</main>
+
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

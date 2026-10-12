@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Where the power series come from · Infinity Club</title>
+<title>Where the power series come from · Math Detours</title>
 <meta name="description" content="Taylor series derived by matching derivatives at zero. The series for e^x, sin x and cos x, the error of a Taylor polynomial, and Euler's formula with the series now earned.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
@@ -11,7 +11,7 @@
 </head>
 <body>
 <nav class="top">
-  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
   <a href="../index.html">Grade 12</a>
   <a href="../index.html#sheets">Sheets</a>
   <a href="../../demos/index.html">Demos</a>
@@ -23,7 +23,7 @@
 
 <main class="paper">
 <header class="sheet-head">
-  <div class="kicker">Infinity Club · Grade 12 · Sharpen · 12</div>
+  <div class="kicker">Math Detours · Grade 12 · Sharpen · 12</div>
   <h1>Where the power series come from</h1>
   <p class="teaser">Match derivatives at zero, one at a time. eˣ = 1 + x + x²/2 + …, sin x = x − x³/6 + …, and why your calculator can compute them.</p>
   <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
@@ -36,7 +36,7 @@
 <p class="callout">\(a_n = \dfrac{f^{(n)}(0)}{n!}\), with \(f^{(n)}\) the \(n\)th derivative: the <b>Taylor series</b> of \(f\) at 0.</p>
 <p>For \(e^x\) every derivative is \(e^x\), so every \(f^{(n)}(0) = 1\). For \(\sin x\) the derivatives cycle \(\sin, \cos, -\sin, -\cos\), giving \(0, 1, 0, -1, \ldots\) at 0; for \(\cos x\), \(1, 0, -1, 0, \ldots\):</p>
 <p>\[e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots, \qquad \sin x = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \cdots, \qquad \cos x = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \cdots\]</p>
-<figure><svg viewBox="0 0 320 170" width="320" height="170" role="img" aria-label="The graph of sin x from minus pi to pi with its Taylor polynomials of degree 1, 3 and 5. The degree-1 line y = x hugs the curve only near the origin; degree 3 follows it to about plus or minus 2; degree 5 is close across the whole range shown." font-family="Nunito, sans-serif" font-size="12">
+<figure><svg viewBox="0 0 320 170" width="320" height="170" role="img" aria-label="The graph of sin x from minus pi to pi with its Taylor polynomials of degree 1, 3 and 5. The degree-1 line y = x hugs the curve only near the origin; degree 3 follows it to about plus or minus 1.5; degree 5 stays close to about plus or minus 2.5 and drifts away near the ends." font-family="Nunito, sans-serif" font-size="12">
 <line x1="12" y1="85" x2="308" y2="85" stroke="#999" stroke-width="1"/><line x1="160" y1="160" x2="160" y2="10" stroke="#999" stroke-width="1"/>
 <line x1="289.2" y1="81" x2="289.2" y2="89" stroke="#999"/><line x1="30.8" y1="81" x2="30.8" y2="89" stroke="#999"/>
 <line x1="156" y1="52.4" x2="164" y2="52.4" stroke="#999"/><line x1="156" y1="117.6" x2="164" y2="117.6" stroke="#999"/>
@@ -58,7 +58,7 @@
 <p>Degree 5:</p>
 <p>\[0.5 - \frac{0.125}{6} + \frac{0.03125}{120} = 0.5 - 0.0208333 + 0.0002604 = 0.4794271.\]</p>
 <p>A calculator gives \(\sin 0.5 = 0.4794255\). The error, \(1.5\times10^{-6}\), is almost exactly the first term left out, \(0.5^7/7! \approx 1.55\times10^{-6}\). That is typical of a series whose terms alternate in sign and shrink: the first omitted term is a good estimate of the error, and the next term would give seven correct decimals.</p>
-<p class="small">Slide the degree up and down, and watch what goes wrong for \(\ln(1 + x)\) beyond \(x = 1\): <a href="../../demos/taylor.html">infinityclub.net/demos/taylor.html</a>.</p>
+<p class="small">Slide the degree up and down, and watch what goes wrong for \(\ln(1 + x)\) beyond \(x = 1\): <a href="../../demos/taylor.html">mathdetours.com/demos/taylor.html</a>.</p>
 </section>
 
 <section class="exercises">
@@ -91,7 +91,7 @@
 <div class="sheet-nav"><a href="a11-exponential-decay.html">← Previous</a><a href="a13-lines-planes.html">Next: Lines and planes in space →</a></div>
 </main>
 
-<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
 <script defer src="../../assets/site.js"></script>

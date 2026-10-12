@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Einstein in your phone · Math Detours</title>
+<meta name="description" content="GPS satellite clocks run fast by about 38 millionths of a second a day, because of relativity. Turn that timing error into a distance error, work out the speed effect yourself, and see why the clocks are set slow before launch.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
+  <a href="../index.html">Grade 9</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Math Detours · Grade 9 · Connections · 10</div>
+  <h1>Einstein in your phone</h1>
+  <p class="teaser">Clocks on GPS satellites run fast by about 38 millionths of a second a day. Ignore that, and after one day the distances your phone measures would be wrong by more than 11 km.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Your phone finds where it is by timing radio signals from GPS satellites about 20,200 km up. The signals travel at the speed of light, about 300,000 km/s, so <b>distance = speed of light × travel time</b>. A tiny error in time becomes a large error in distance.</p>
+<p>Einstein's relativity says that clocks do not all tick at the same rate. Two things change a satellite clock, compared with one on the ground. We measure them in microseconds (µs, millionths of a second) per day.</p>
+<ul>
+<li><b>Speed.</b> A moving clock ticks slow. The satellites move at about 3.87 km/s and lose about 7.2 µs a day.</li>
+<li><b>Gravity.</b> A clock in weaker gravity ticks fast. High above the Earth, the satellite clocks gain about 45.7 µs a day.</li>
+</ul>
+<p class="callout">Net effect: \(45.7 - 7.2 = 38.5\) µs a day, <b>fast</b>.</p>
+<p>GPS only works because engineers allow for this, so every position your phone finds is a small test of relativity.</p>
+<p class="small">The figures are rounded, and are for the GPS orbit. Other orbits give other numbers.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: from microseconds to kilometres</h2>
+<p>Suppose nobody corrected the satellite clocks. How big an error in distance would build up in one day?</p>
+<p>After one day the satellite clock is ahead by 38.5 µs, which is \(38.5 \times 10^{-6}\) s. Your phone turns time into distance by multiplying by the speed of light, \(3 \times 10^{8}\) m/s.</p>
+\[38.5 \times 10^{-6}\ \text{s} \times 3 \times 10^{8}\ \text{m/s} = 38.5 \times 300\ \text{m} = 11\,550\ \text{m}.\]
+<p>So after one day the measured distance to each satellite would be wrong by about 11.5 km, and the error would keep growing by the same amount every day.</p>
+<p>A handy rule falls out of the same sum: <b>1 µs of time is worth 300 m of distance</b>.</p>
+<p class="small">This is the error in the distances that would build up if nobody corrected it. A real receiver combines several satellites to find its position, so its position error is not simply this number.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>The uncorrected clock gains 38.5 µs in a day, at a steady rate. (a) How many microseconds does it gain in one hour? (b) What error in distance is that? (c) What is the error in distance after only one minute?<div class="space short"></div></li>
+<li>A nanosecond (ns) is a billionth of a second, \(10^{-9}\) s. (a) How far does light travel in 1 ns? (b) To measure a distance to within 3 m, how precise must the timing be? (c) How many seconds does the uncorrected clock take to gain that much time? (One day is 86,400 s.)<div class="space short"></div></li>
+<li>For speeds far below the speed of light, a clock moving at speed \(v\) loses about the fraction \(\dfrac{v^2}{2c^2}\) of the time that passes, where \(c\) is the speed of light. Use \(v = 3.87\) km/s and \(c = 300\,000\) km/s. (a) Find the fraction. (b) Multiply by the 86,400 seconds in a day. Does your answer match the speed effect in tonight's idea?<div class="space"></div></li>
+<li>The International Space Station is only about 400 km up and moves at about 7.66 km/s. Its weaker gravity makes a clock on board gain about 3.6 µs a day. (a) Use the formula from exercise 3 to find how much the clock loses each day because of its speed. (b) Does a clock on the station run fast or slow overall, and by how much a day? (c) A satellite higher than GPS moves more slowly and feels even weaker gravity. Does its clock gain more or less than 38.5 µs a day? Explain.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: slow on purpose</h2>
+<p>Engineers build each satellite clock to tick slightly slow on the ground, so that in orbit it keeps time with clocks on Earth. (a) By how many microseconds a day must it tick slow on the ground? (b) What fraction of a day is that? Write it in the form \(a \times 10^{-10}\). (c) The clock is built around a signal that is meant to tick 10,230,000 times a second. By how many ticks a second must it be lowered? (d) About how many years would an uncorrected clock take to gain one whole second?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(38.5 \div 24 \approx 1.6\) µs. (b) Each microsecond is worth 300 m, so \(1.6 \times 300 \approx 480\) m. (c) Divide by 60: about 8 m.</li>
+<li>(a) \(10^{-9}\ \text{s} \times 3 \times 10^{8}\ \text{m/s} = 0.3\) m, which is 30 cm. (b) \(3 \div 0.3 = 10\), so the timing must be good to about 10 ns. (c) The clock gains 38.5 µs, which is 38,500 ns, in 86,400 s. So 10 ns takes \(86\,400 \times 10 \div 38\,500 \approx 22\) s. Less than half a minute.</li>
+<li>(a) \(v \div c = 3.87 \div 300\,000 = 1.29 \times 10^{-5}\). Squaring gives about \(1.66 \times 10^{-10}\), and halving gives about \(8.3 \times 10^{-11}\). (b) \(8.3 \times 10^{-11} \times 86\,400 \approx 7.2 \times 10^{-6}\) s, which is 7.2 µs. It matches.</li>
+<li>(a) \(v \div c = 7.66 \div 300\,000 \approx 2.55 \times 10^{-5}\). Squaring and halving gives about \(3.26 \times 10^{-10}\). Times 86,400 is about \(28.2 \times 10^{-6}\) s, so the clock loses about 28.2 µs a day. (b) \(3.6 - 28.2 = -24.6\). The clock runs <b>slow</b> by about 24.6 µs a day. Low down, speed wins. (c) More. Less speed means less time lost, and weaker gravity means more time gained, so both changes push the same way. For example, a geostationary satellite, about 35,800 km up, moves at about 3.07 km/s. It gains about 51.1 µs and loses about 4.5 µs, a net gain of about 46.6 µs a day. Between the space station and GPS there is a height where the two effects cancel. For circular orbits it is about 3,200 km up.</li>
+</ol>
+<p><b>Stretch.</b> (a) 38.5 µs a day, the same amount it would otherwise gain in orbit. (b) \(38.5 \times 10^{-6} \div 86\,400 \approx 4.46 \times 10^{-10}\). That is less than one part in two billion. (c) \(10\,230\,000 \times 4.46 \times 10^{-10} \approx 0.0046\) ticks a second. The real GPS setting is 10,229,999.99543 ticks a second, which is 0.00457 lower, so your answer agrees with the real design. (d) One second is 1,000,000 µs, and \(1\,000\,000 \div 38.5 \approx 26\,000\) days, about 71 years. The clock error is small. The speed of light is what makes it matter.</p>
+</section>
+
+<div class="sheet-nav"><a href="c9-births-remember.html">← Previous</a><a href="c11-robot-arm-torus.html">Next: A robot arm lives on a doughnut →</a></div>
+</main>
+
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

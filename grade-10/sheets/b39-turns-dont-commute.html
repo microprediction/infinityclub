@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Do turns commute? · Math Detours</title>
+<meta name="description" content="Turns of a plane about one centre can be done in either order. Turns of a book in space cannot: follow three arrows through two quarter turns in both orders, then shrink the turns and measure how the mismatch falls like the square of the angle.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
+  <a href="../index.html">Grade 10</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Math Detours · Grade 10 · Around the corner · 39</div>
+  <h1>Do turns commute?</h1>
+  <p class="teaser">Spin a book a quarter turn on the table, then tip it up to face you. Now do those two turns in the other order. The book ends up somewhere else. But tiny turns almost commute.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Turn a wheel by 30°, then by 50°. It has turned 80°. Do the 50° first and you still get 80°. Turns of a flat plane about one fixed centre combine by adding angles, so they <b>commute</b>: the order does not matter.</p>
+<p>Turns also have a sense of nearness. A turn by 30.1° is close to a turn by 30°, and you can slide smoothly from one to the other. Close turns combine to give close results. Roughly speaking, a family of moves that you can both combine and slide smoothly between is called a <b>Lie group</b> (say "Lee").</p>
+<p>In space there is more room. You can turn about any axis through a point, and now the order can matter.</p>
+<p class="callout">Turns in space about two different axes usually do not commute. But the smaller the turns, the more nearly they do.</p>
+<p>Mathematicians study a Lie group through its tiny turns and the exact way they just fail to commute.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: two quarter turns of a book</h2>
+<p>Lay a book on a table ready to read: front cover up, spine on your left. Fix three axes <b>in the room</b>. They never move, even when the book does: \(x\) points to your right, \(y\) points away from you, \(z\) points up. Give the book three arrows of length 1: the <b>right</b> arrow towards its opening edge, the <b>top</b> arrow towards the top of the cover, and the <b>cover</b> arrow straight out of the front cover.</p>
+<p><b>Turn Z</b> is a quarter turn about the \(z\) axis, anticlockwise seen from above: \((x, y, z) \to (-y, x, z)\). <b>Turn X</b> is a quarter turn about the \(x\) axis that lifts the far edge: \((x, y, z) \to (x, -z, y)\). Follow each arrow through both turns.</p>
+<table>
+<tr><th>Arrow</th><th>Start</th><th>Z, then X</th><th>X, then Z</th></tr>
+<tr><th>right</th><td>\((1, 0, 0)\)</td><td>\((0, 1, 0) \to (0, 0, 1)\), up</td><td>\((1, 0, 0) \to (0, 1, 0)\), away</td></tr>
+<tr><th>top</th><td>\((0, 1, 0)\)</td><td>\((-1, 0, 0) \to (-1, 0, 0)\), left</td><td>\((0, 0, 1) \to (0, 0, 1)\), up</td></tr>
+<tr><th>cover</th><td>\((0, 0, 1)\)</td><td>\((0, 0, 1) \to (0, -1, 0)\), towards you</td><td>\((0, -1, 0) \to (1, 0, 0)\), right</td></tr>
+</table>
+<p>After Z then X the book stands on its spine with the cover facing you. After X then Z it stands upright, as on a shelf, with the cover facing right. Not one of the three arrows agrees. Try it with a real book. (If the axes were glued to the book and moved with it, the two results would swap.)</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>A turn of the plane by \(\theta\) about the origin has matrix \(R_\theta = \begin{pmatrix} \cos\theta &amp; -\sin\theta \\ \sin\theta &amp; \cos\theta \end{pmatrix}\). (a) Write \(R_{30°}\) and \(R_{60°}\) exactly. (b) Multiply them in both orders. (c) Which single turn is each product? Why must any two turns about the same centre commute?<div class="space short"></div></li>
+<li>In space, with the same fixed axes, a half turn about the \(x\) axis is \(H_x\): \((x, y, z) \to (x, -y, -z)\). A half turn about the \(z\) axis is \(H_z\): \((x, y, z) \to (-x, -y, z)\). (a) Follow the three book arrows through \(H_x\) then \(H_z\), and through \(H_z\) then \(H_x\). Do these two turns commute? (b) Now use \(H_x\) and the quarter turn Z from the worked example, in both orders. Do they commute?<div class="space short"></div></li>
+<li>Now turn by a small angle \(\theta\) about each axis. With \(c = \cos\theta\) and \(s = \sin\theta\), \(Z_\theta\): \((x, y, z) \to (cx - sy,\ sx + cy,\ z)\) and \(X_\theta\): \((x, y, z) \to (x,\ cy - sz,\ sy + cz)\). (a) Check that \(\theta = 90°\) gives the worked example's rules. (b) For \(\theta = 10°\), follow the cover arrow \((0, 0, 1)\) through \(Z_\theta\) then \(X_\theta\), and through \(X_\theta\) then \(Z_\theta\), to four decimal places (round only at the end). (c) How far apart are the two answers in each coordinate?<div class="space"></div></li>
+<li>The \(x\) gap in exercise 3 is exactly \(s^2\). (a) Work out \(s^2\) for \(\theta = 10°\), \(5°\) and \(2.5°\). What does halving the angle do to the mismatch? (b) Check \(\theta = 90°\) against the cover arrow in the worked example. (c) For two turns of 1°, the mismatch is roughly 1 part in how many?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: why the square?</h2>
+<p>(a) Compare \(\sin 10°\), \(\sin 5°\) and \(\sin 2.5°\). What does halving a small angle do to its sine, and so to \(s^2\)? (b) The \(y\) gap in exercise 3 is \(s(1 - c)\). Show that \((1 - c)(1 + c) = s^2\). For small angles \(c\) is close to 1, so \(1 - c\) is close to \(\frac{1}{2}s^2\). What does halving the angle do to \(s(1 - c)\)? (c) So for tiny turns the mismatch pushes the cover arrow almost exactly along \(x\). A small turn about which axis does that to an arrow pointing up?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(R_{30°} = \begin{pmatrix} \frac{\sqrt3}{2} &amp; -\frac12 \\ \frac12 &amp; \frac{\sqrt3}{2} \end{pmatrix}\) and \(R_{60°} = \begin{pmatrix} \frac12 &amp; -\frac{\sqrt3}{2} \\ \frac{\sqrt3}{2} &amp; \frac12 \end{pmatrix}\). (b) Both orders give \(\begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix}\). For example the top right entry is \(-\frac34 - \frac14 = -1\) one way and \(-\frac14 - \frac34 = -1\) the other. (c) Each is \(R_{90°}\), a quarter turn. Turns about one centre add their angles, and \(a + b = b + a\). This needs the same centre: turns of the plane about two different centres usually do not commute.</li>
+<li>(a) Both orders send \((x, y, z)\) to \((-x, y, -z)\). The right arrow ends at \((-1, 0, 0)\), the top arrow stays at \((0, 1, 0)\) and the cover arrow ends at \((0, 0, -1)\). These two half turns commute, and together they make a half turn about the \(y\) axis. So "usually" in the callout is needed. (b) Z then \(H_x\): right \((0, -1, 0)\), top \((-1, 0, 0)\), cover \((0, 0, -1)\). \(H_x\) then Z: right \((0, 1, 0)\), top \((1, 0, 0)\), cover \((0, 0, -1)\). The cover arrow agrees but the other two point opposite ways, so these turns do not commute.</li>
+<li>(a) At 90°, \(c = 0\) and \(s = 1\), so \(Z_\theta\) gives \((-y, x, z)\) and \(X_\theta\) gives \((x, -z, y)\). (b) \(s = 0.17365\), \(c = 0.98481\). Z then X: \((0, 0, 1) \to (0, 0, 1) \to (0, -s, c) = (0, -0.1736, 0.9848)\). X then Z: \((0, 0, 1) \to (0, -s, c) \to (s^2, -sc, c) = (0.0302, -0.1710, 0.9848)\). (c) They differ by \(s^2 = 0.0302\) in \(x\), by \(s - sc = 0.0026\) in \(y\), and not at all in \(z\). (Rounding \(s\) first gives 0.0301.) Turn X moved the arrow tip about 0.17, but the two orders disagree by only about 0.03.</li>
+<li>(a) \(0.03015\), \(0.00760\) and \(0.00190\). Each halving divides the mismatch by very nearly 4 (the ratios are 3.97 and 3.99). (b) \(s^2 = 1\). In the worked example the cover arrow has \(x\) coordinate 0 after Z then X and 1 after X then Z, a difference of 1. (c) \(\sin^2 1° = 0.000305\), roughly 1 part in 3300 of the arrow's length. These tiny turns very nearly commute, but not exactly.</li>
+</ol>
+<p><b>Stretch.</b> (a) \(0.17365\), \(0.08716\), \(0.04362\). Halving a small angle very nearly halves its sine (ratios 1.992 and 1.998), so \(s^2\) is very nearly quartered. The mismatch behaves like the angle squared. (b) \((1 - c)(1 + c) = 1 - c^2 = s^2\), because \(c^2 + s^2 = 1\). With \(1 + c\) close to 2, \(s(1 - c)\) is close to \(\frac12 s^3\), so halving the angle divides it by about 8 (from 0.00264 at 10° to 0.00033 at 5°). It dies away faster than \(s^2\). (c) A turn about the \(y\) axis, the one axis you did not use. Here is the reason for the square. Each small turn moves a point by an amount of about \(s\). Those first effects simply add, and adding commutes. Order shows up only where the two small amounts multiply, giving \(s \times s\). The turn that carries one final position of the book to the other is nearly a turn about \(y\): for 10° turns it is a turn of 1.74° about an axis 7° away from the \(y\) axis, and for 1° turns it is 0.017° about an axis 0.7° away.</p>
+</section>
+
+<div class="sheet-nav"><a href="b38-time-and-space-averages.html">← Previous</a><a href="c1-harmonics.html">Next: Why a violin doesn't sound like a flute →</a></div>
+</main>
+
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

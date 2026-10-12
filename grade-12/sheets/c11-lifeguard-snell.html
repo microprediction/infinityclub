@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Where should the lifeguard enter the water? · Math Detours</title>
+<meta name="description" content="A lifeguard runs at 5 m/s and swims at 1 m/s. Minimise the travel time with calculus, find the best entry point, and see that the condition is Snell's law for light. A curved mirror shows why Fermat's principle says stationary, not least.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Math Detours · Grade 12 · Connections · 11</div>
+  <h1>Where should the lifeguard enter the water?</h1>
+  <p class="teaser">A lifeguard runs fast on sand and swims slowly. The quickest route bends where sand meets water, by exactly the rule light follows when it enters water.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A lifeguard runs fast and swims slowly. The straight line to a swimmer in trouble is the shortest route, but it spends a long time in slow water. Running further along the sand first is longer and quicker.</p>
+<p>The quickest route bends at the water's edge. Light does the same: it is slower in water than in air, and a ray bends at the surface. <b>Fermat's principle</b> says why: light takes a route whose travel time is <b>stationary</b>, meaning its derivative is zero as you slide the route a little. Usually that is the quickest.</p>
+<p class="callout">Measure both angles from the perpendicular to the boundary. With speeds \(v_1\) and \(v_2\) on the two sides, the time is stationary when \(\dfrac{\sin a}{v_1} = \dfrac{\sin b}{v_2}\). This is Snell's law.</p>
+<p>Much of physics can be written this way. In mechanics, a thrown ball follows the path that makes a quantity called the <b>action</b> stationary. Laws like these are called variational principles.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: two routes, timed</h2>
+<p>A model: a straight shoreline, a steady 5 m/s on sand and 1 m/s in water, and straight legs. The lifeguard starts 20 m back from the water. The swimmer is 10 m out and 30 m along the beach. She enters the water \(x\) metres along. Time is distance over speed, and each distance is a hypotenuse:</p>
+<p>\[T(x) = \frac{\sqrt{400 + x^2}}{5} + \frac{\sqrt{100 + (30 - x)^2}}{1}.\]</p>
+<figure><svg viewBox="0 0 320 164" width="320" height="164" role="img" aria-label="Sand below a straight shoreline and water above. The lifeguard is 20 m below the shore at the left, the swimmer 10 m above it and 30 m to the right. A dashed straight line joins them, crossing the shore 20 m along. A solid bent route crosses the shore about 28.3 m along, with angle a on the sand side and a much smaller angle b on the water side, both measured from the dashed perpendicular to the shore." font-family="Nunito, sans-serif" font-size="12">
+<rect x="0" y="0" width="320" height="54" fill="#dcdcf5"/><rect x="0" y="54" width="320" height="110" fill="#fde8c4"/>
+<line x1="0" y1="54" x2="320" y2="54" stroke="#1d1f3a" stroke-width="1.5"/>
+<line x1="80" y1="134" x2="200" y2="14" stroke="#555" stroke-width="1.5" stroke-dasharray="5 4"/>
+<g stroke="#999" stroke-width="1" stroke-dasharray="3 3"><line x1="80" y1="134" x2="80" y2="54"/><line x1="193.4" y1="20" x2="193.4" y2="98"/><line x1="206" y1="14" x2="262" y2="14"/></g>
+<line x1="262" y1="14" x2="262" y2="54" stroke="#555" stroke-width="1"/>
+<line x1="80" y1="146" x2="200" y2="146" stroke="#555" stroke-width="1"/><line x1="80" y1="142" x2="80" y2="150" stroke="#555" stroke-width="1"/><line x1="200" y1="142" x2="200" y2="150" stroke="#555" stroke-width="1"/>
+<path d="M80,134 L193.4,54 L200,14" fill="none" stroke="#3f44c9" stroke-width="2.5"/>
+<path d="M193.4,76 A22,22 0 0 1 175.4,66.7" fill="none" stroke="#1d1f3a" stroke-width="1"/>
+<path d="M193.4,28 A26,26 0 0 1 197.6,28.3" fill="none" stroke="#1d1f3a" stroke-width="1"/>
+<circle cx="80" cy="134" r="4" fill="#1d1f3a"/><circle cx="200" cy="14" r="4" fill="#1d1f3a"/><circle cx="193.4" cy="54" r="4" fill="#f5a524"/>
+<text x="72" y="138" text-anchor="end">lifeguard</text><text x="208" y="10">swimmer</text>
+<text x="74" y="100" text-anchor="end" fill="#555">20 m</text><text x="268" y="38" fill="#555">10 m</text><text x="140" y="160" text-anchor="middle" fill="#555">30 m</text>
+<text x="8" y="22" fill="#555">water, 1 m/s</text><text x="8" y="72" fill="#555">sand, 5 m/s</text>
+<text x="132" y="74" text-anchor="end" fill="#555">straight</text><text x="150" y="110" fill="#3f44c9">quickest</text>
+<text x="175" y="90" font-size="14" font-style="italic">a</text><text x="202" y="38" font-size="14" font-style="italic">b</text>
+</svg><figcaption>To scale. Dashed: the straight line. Solid: the quickest route. Angles \(a\) and \(b\) are measured from the perpendicular.</figcaption></figure>
+<p><b>Straight line</b>, crossing at \(x = 20\): \(T(20) = \sqrt{800}/5 + \sqrt{200} = 5.66 + 14.14 = 19.80\) s, over 42.43 m. <b>Run until level with the swimmer</b>, \(x = 30\): \(T(30) = \sqrt{1300}/5 + 10 = 17.21\) s, over 46.06 m. That is 3.6 m longer and about 2.6 s quicker. Can she do better still?</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Compute \(T(x)\) to two decimal places for \(x = 10\), 25, 28 and 29. Together with \(T(20)\) and \(T(30)\) above, which of the six entry points is quickest?<div class="space short"></div></li>
+<li>Differentiate \(T\). Show that \(T'(28) \lt 0\) and \(T'(29) \gt 0\), and say what that tells you. Then check that \(x = 28.34\) makes \(T'\) very nearly zero, and find the time for that route. How much quicker is it than the straight line?<div class="space short"></div></li>
+<li>In the figure, \(a\) and \(b\) are the angles the sand leg and the water leg make with the perpendicular to the shore. Write \(\sin a\) and \(\sin b\) in terms of \(x\), and show that \(T'(x) = 0\) says \(\sin a / 5 = \sin b / 1\). Find \(a\) and \(b\) at \(x = 28.34\). What would the rule look like with angles measured from the shoreline?<div class="space short"></div></li>
+<li>The speed of light in water is its speed in air divided by about 1.33. A ray in air meets a flat pond at \(45^\circ\) to the perpendicular. Find its angle to the perpendicular in the water. Does it bend towards the perpendicular or away, and by how many degrees? What about a ray arriving along the perpendicular?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: stationary is not always least</h2>
+<p>A circular mirror has radius 1 m and centre \(O\). Points \(A\) and \(B\) lie on a diameter, each 0.75 m from \(O\) on opposite sides. Light goes from \(A\) to a point \(P\) on the mirror and then to \(B\), where \(OP\) makes angle \(t\) with \(OB\). The cosine rule gives the route length</p>
+<p>\[L(t) = \sqrt{1.5625 + 1.5\cos t} + \sqrt{1.5625 - 1.5\cos t}.\]</p>
+<p>By symmetry, a ray really does reflect from \(A\) to \(B\) at \(t = 90^\circ\). Compute \(L\) at \(90^\circ\), \(80^\circ\) and \(60^\circ\), and find \(L'(90^\circ)\). Is the real ray the shortest of these routes? What does "stationary" mean here?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(T(10) = 4.47 + 22.36 = 26.83\) s. \(T(25) = 6.40 + 11.18 = 17.58\) s. \(T(28) = 6.88 + 10.20 = 17.08\) s. \(T(29) = 7.05 + 10.05 = 17.10\) s. With \(T(20) = 19.80\) and \(T(30) = 17.21\), the quickest of the six is \(x = 28\). She should run most of the way along before entering.</li>
+<li>\(T'(x) = \dfrac{x}{5\sqrt{400 + x^2}} - \dfrac{30 - x}{\sqrt{100 + (30 - x)^2}}\). Then \(T'(28) = 0.1627 - 0.1961 = -0.033\) and \(T'(29) = 0.1646 - 0.0995 = +0.065\). \(T\) is still falling at 28 and is rising at 29, so the minimum is between them. At \(x = 28.34\), \(T' = 0.16341 - 0.16376 \approx -0.0004\), and \(T = 6.94 + 10.14 = 17.07\) s, which is 2.72 s quicker than the straight line. (A computer gives \(x = 28.3436\). Each square root term curves upward, so \(T'\) increases all the way along and this is the only stationary point: the minimum.)</li>
+<li>Each leg is the hypotenuse of a right triangle whose side along the shore is opposite the angle: \(\sin a = \dfrac{x}{\sqrt{400 + x^2}}\) and \(\sin b = \dfrac{30 - x}{\sqrt{100 + (30 - x)^2}}\). So \(T'(x) = \dfrac{\sin a}{5} - \dfrac{\sin b}{1}\), and \(T' = 0\) is exactly \(\dfrac{\sin a}{5} = \dfrac{\sin b}{1}\). At \(x = 28.34\): \(\sin a = 0.817\), \(a = 54.8^\circ\), and \(\sin b = 0.164\), \(b = 9.4^\circ\); indeed \(0.817/5 = 0.163\). Angles from the shoreline are \(90^\circ - a\) and \(90^\circ - b\), so the same rule would use cosines. Snell's law with sines needs angles from the perpendicular.</li>
+<li>Air is the fast side: \(\dfrac{\sin 45^\circ}{1.33} = \dfrac{\sin b}{1}\), so \(\sin b = 0.7071/1.33 = 0.5317\) and \(b = 32.1^\circ\). The ray bends by \(45 - 32.1 = 12.9^\circ\), towards the perpendicular, just as the lifeguard's water leg is closer to the perpendicular than her sand leg. Along the perpendicular, \(\sin a = 0\) forces \(\sin b = 0\): the ray goes straight on, slower but not bent.</li>
+</ol>
+<p><b>Stretch.</b> \(L(90^\circ) = 1.25 + 1.25 = 2.5\) m, \(L(80^\circ) = 2.491\) m, \(L(60^\circ) = 1.521 + 0.901 = 2.422\) m. Differentiating, \(L'(t) = \dfrac{-0.75\sin t}{\sqrt{1.5625 + 1.5\cos t}} + \dfrac{0.75\sin t}{\sqrt{1.5625 - 1.5\cos t}}\), and at \(90^\circ\) both square roots are 1.25, so \(L'(90^\circ) = 0\). The real ray is the <i>longest</i> of the routes off the mirror, not the shortest: \(\cos^2 t\) is smallest at \(90^\circ\), and \(L^2 = 3.125 + 2\sqrt{1.5625^2 - 2.25\cos^2 t}\). Stationary means the graph of \(L\) is flat there, so nearby routes differ in length only by a tiny second-order amount. A flat point can be a minimum, a maximum or neither. Fermat's principle asks only for flat. (The shortest route, 2 m at \(t = 0\), is also a real ray: straight along the diameter and back.)</p>
+</section>
+
+<div class="sheet-nav"><a href="c10-energy-balance.html">← Previous</a><a href="c12-noisy-readings.html">Next: Guessing a number from noisy readings →</a></div>
+</main>
+
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

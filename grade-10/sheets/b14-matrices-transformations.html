@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Matrices that move the plane · Infinity Club</title>
+<title>Matrices that move the plane · Math Detours</title>
 <meta name="description" content="A 2 by 2 matrix is a machine that moves every point of the plane. Rotations, shears, the determinant as area, inverses, and solving a system in one line.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
@@ -11,7 +11,7 @@
 </head>
 <body>
 <nav class="top">
-  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
   <a href="../index.html">Grade 10</a>
   <a href="../index.html#sheets">Sheets</a>
   <a href="../../demos/index.html">Demos</a>
@@ -23,7 +23,7 @@
 
 <main class="paper">
 <header class="sheet-head">
-  <div class="kicker">Infinity Club · Grade 10 · Around the corner · 14</div>
+  <div class="kicker">Math Detours · Grade 10 · Around the corner · 14</div>
   <h1>Matrices that move the plane</h1>
   <p class="teaser">Rotations, shears, determinants as area, inverses, and solving two equations with one matrix.</p>
   <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
@@ -36,9 +36,9 @@
 <p>Read a matrix by its columns. Feed in \((1, 0)\) and out comes \((a, c)\), the first column; feed in \((0, 1)\) and out comes \((b, d)\). Every point is \(x\) lots of \((1, 0)\) plus \(y\) lots of \((0, 1)\), so the whole plane follows: the unit square becomes the parallelogram spanned by the columns, grid lines stay straight and parallel, and the origin never moves.</p>
 <figure><svg viewBox="0 0 230 112" width="230" height="112" role="img" aria-label="The unit square and its image under a matrix: the parallelogram spanned by the two columns (a, c) and (b, d), whose area is a d minus b c"><line x1="10" y1="96" x2="150" y2="96" stroke="#999" stroke-width="1"/><line x1="30" y1="104" x2="30" y2="6" stroke="#999" stroke-width="1"/><polygon points="30,96 66,78 84,24 48,42" fill="#f5a524" fill-opacity="0.18" stroke="#f5a524" stroke-width="2"/><polygon points="30,96 48,96 48,78 30,78" fill="#3f44c9" fill-opacity="0.25" stroke="#3f44c9" stroke-width="1.5"/><line x1="30" y1="96" x2="66" y2="78" stroke="#000" stroke-width="2"/><polygon points="66,78 57,77 61,85" fill="#000"/><line x1="30" y1="96" x2="48" y2="42" stroke="#000" stroke-width="2"/><polygon points="48,42 40,45 49,51" fill="#000"/><g font-family="Nunito, sans-serif" font-size="12" fill="#1d1f3a"><text x="71" y="82">(a, c)</text><text x="4" y="38">(b, d)</text><text x="58" y="109">unit square (blue)</text><text x="57" y="62" fill="#b5700e">area ad − bc</text></g></svg><figcaption>The unit square goes to the parallelogram spanned by the columns \((a, c)\) and \((b, d)\).</figcaption></figure>
 <p><b>Rotation</b> by \(\theta\) sends \((1, 0)\) to \((\cos\theta, \sin\theta)\) and \((0, 1)\) to \((-\sin\theta, \cos\theta)\), so \(R_\theta = \begin{pmatrix} \cos\theta &amp; -\sin\theta \\ \sin\theta &amp; \cos\theta \end{pmatrix}\). A <b>shear</b> \(\begin{pmatrix} 1 &amp; k \\ 0 &amp; 1 \end{pmatrix}\) tips \((0, 1)\) over to \((k, 1)\).</p>
-<p><b>The determinant</b> \(ad - bc\) is the signed area (negative if the square has been flipped over) of the image of the unit square. Zero means the square has been squashed flat onto a line and <em>no inverse exists</em>. Otherwise:</p>
+<p><b>The determinant</b> \(ad - bc\) is the signed area (negative if the square has been flipped over) of the image of the unit square. Zero means the square has been squashed flat onto a line (or a single point) and <em>no inverse exists</em>. Otherwise:</p>
 <p class="callout">\(\begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix}^{-1} = \dfrac{1}{ad - bc}\begin{pmatrix} d &amp; -b \\ -c &amp; a \end{pmatrix}\)</p>
-<p>Two equations are one matrix equation: \(2x + y = 7,\ x + 3y = 11\) is \(A\binom{x}{y} = \binom{7}{11}\) with \(A = \begin{pmatrix} 2 &amp; 1 \\ 1 &amp; 3 \end{pmatrix}\), so \(\binom{x}{y} = A^{-1}\binom{7}{11}\). Doing one matrix after another is the product, and \(MN\) means "do \(N\), then \(M\)". Order matters. Demo: <a href="../../demos/matrix.html">infinityclub.net/demos/matrix.html</a>.</p>
+<p>Two equations are one matrix equation: \(2x + y = 7,\ x + 3y = 11\) is \(A\binom{x}{y} = \binom{7}{11}\) with \(A = \begin{pmatrix} 2 &amp; 1 \\ 1 &amp; 3 \end{pmatrix}\), so \(\binom{x}{y} = A^{-1}\binom{7}{11}\). Doing one matrix after another is the product, and \(MN\) means "do \(N\), then \(M\)". Order matters. Demo: <a href="../../demos/matrix.html">mathdetours.com/demos/matrix.html</a>.</p>
 </section>
 
 <section class="example">
@@ -76,7 +76,7 @@
 <div class="sheet-nav"><a href="b13-cantor.html">← Previous</a><a href="b15-vectors-dot.html">Next: Vectors and the dot product →</a></div>
 </main>
 
-<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
 <script defer src="../../assets/site.js"></script>

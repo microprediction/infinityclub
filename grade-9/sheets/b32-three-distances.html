@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Three ways to measure distance · Math Detours</title>
+<meta name="description" content="Compare taxi distance, ordinary straight-line distance and king's-move distance on a grid. Meet the three rules every distance must obey, see the three shapes of a 'circle', and find a measure that breaks the triangle rule.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
+  <a href="../index.html">Grade 9</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Math Detours · Grade 9 · Around the corner · 32</div>
+  <h1>Three ways to measure distance</h1>
+  <p class="teaser">Draw every point at distance 1 from the origin. With ordinary distance you get a circle. With taxi distance you get a diamond, and with king's-move distance a square.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<figure style="float:right;width:190px;max-width:45%;margin:0 0 .3em 1em"><svg viewBox="0 0 200 200" width="190" height="190" role="img" aria-label="Three nested shapes centred on the origin, each showing the points at distance 1 from it. Innermost is a blue diamond with corners at (1,0), (0,1), (-1,0) and (0,-1). Around it is the ordinary circle of radius 1. Outermost is a dashed orange square with corners at (1,1), (-1,1), (-1,-1) and (1,-1). All three pass through the four points where the axes are marked 1 and -1." font-family="Nunito, sans-serif" font-size="12">
+<line x1="8" y1="100" x2="192" y2="100" stroke="#999" stroke-width="1"/><line x1="100" y1="8" x2="100" y2="192" stroke="#999" stroke-width="1"/>
+<rect x="30" y="30" width="140" height="140" fill="none" stroke="#f5a524" stroke-width="2" stroke-dasharray="6 3"/>
+<circle cx="100" cy="100" r="70" fill="none" stroke="#1d1f3a" stroke-width="1.6"/>
+<polygon points="170,100 100,30 30,100 100,170" fill="#dcdcf5" fill-opacity="0.6" stroke="#3f44c9" stroke-width="2"/>
+<g fill="#1d1f3a"><circle cx="170" cy="100" r="2.6"/><circle cx="100" cy="30" r="2.6"/><circle cx="30" cy="100" r="2.6"/><circle cx="100" cy="170" r="2.6"/><circle cx="100" cy="100" r="2.2"/></g>
+<g fill="#555"><text x="175" y="115">1</text><text x="106" y="24">1</text><text x="11" y="115">−1</text><text x="106" y="185">−1</text></g>
+</svg><figcaption>Distance 1 from the origin: taxi (diamond), ordinary (circle), king's move (dashed square).</figcaption></figure>
+<p>How far is it from \(P\) to \(Q\)? Let \(a\) be the horizontal gap and \(b\) the vertical gap, both with the sign dropped. Here are three answers.</p>
+<p><b>Taxi:</b> \(a + b\), driving along the grid. <b>Ordinary:</b> \(\sqrt{a^2 + b^2}\), the straight line. <b>King's move:</b> the bigger of \(a\) and \(b\). On an empty chessboard that is how many moves a king needs, because one king move can change both coordinates by 1.</p>
+<p>They disagree about shape. The figure shows every point at distance 1 from the origin, three ways. Rules like these, which measure the size of a gap, are called <b>norms</b>, and each shape is that norm's unit circle.</p>
+<p>Which is the real distance? All of them. A rule \(d\) counts as a distance (a <b>metric</b>) if it passes three tests, and all three of these do.</p>
+<p class="callout" style="clear:both">(1) \(d(P, Q)\) is never negative, and is 0 exactly when \(P = Q\). (2) \(d(P, Q) = d(Q, P)\). (3) The triangle rule: \(d(P, R) \le d(P, Q) + d(Q, R)\). A detour is never shorter.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: from \((0, 0)\) to \((3, 4)\)</h2>
+<p>The gaps are \(a = 3\) and \(b = 4\).</p>
+<p><b>Taxi:</b> \(3 + 4 = 7\). <b>Ordinary:</b> \(\sqrt{3^2 + 4^2} = \sqrt{25} = 5\). <b>King's move:</b> the bigger of 3 and 4, which is 4. A king can do it in 4 moves: three diagonal steps to \((3, 3)\), then one step up. It cannot do it in fewer, because each move raises \(y\) by at most 1.</p>
+<p>One trip, three answers, in the order \(4 \lt 5 \lt 7\).</p>
+<p><b>Test the triangle rule.</b> Take a detour through \(Q = (3, 0)\). The first leg has gaps 3 and 0, so its length is 3 in all three distances. The second leg has gaps 0 and 4, so its length is 4 in all three. The detour is \(3 + 4 = 7\) every time. Compare with the direct trip: \(7 \le 7\) for the taxi, \(5 \le 7\) for the ordinary distance, \(4 \le 7\) for the king. The rule holds each time. For the taxi the detour costs nothing extra, even though \(Q\) is not on the straight line.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Find the taxi, ordinary and king's-move distances (a) from \((0, 0)\) to \((5, 12)\), (b) from \((1, 2)\) to \((7, -6)\), (c) from \((-3, 5)\) to \((4, 5)\). Each time, write the three in order of size. What do you notice?<div class="space short"></div></li>
+<li>(a) For each of the three distances, list every whole-number point at distance exactly 2 from the origin. How many are there each time? (b) Which points are on all three lists? (c) Sketch the three "circles" of radius 2 on one grid.<div class="space tall"></div></li>
+<li>Let \(A = (0, 0)\), \(B = (2, 1)\) and \(C = (5, 5)\). (a) Find the lengths \(AB\), \(BC\) and \(AC\) in each of the three distances. (b) Check the triangle rule \(AC \le AB + BC\) in each. (c) In one of them the detour through \(B\) is exactly as short as the direct trip. Which one? Is \(B\) on the straight line from \(A\) to \(C\)?<div class="space"></div></li>
+<li>Try a new rule: \(s(P, Q) = a^2 + b^2\), the ordinary distance squared, with no square root. (a) Explain why \(s\) passes tests (1) and (2). (b) Find \(s\) from \((0, 0)\) to \((2, 0)\). Now go through \((1, 0)\) and add the two legs. Which test fails? (c) Split the same trip into 4 equal steps and add up \(s\) for the steps. What happens with 100 equal steps?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: never far apart</h2>
+<p>Take any point \((x, y)\), not only a whole-number one. Let \(a\) and \(b\) be \(x\) and \(y\) with the signs dropped, and name them so that \(a \ge b\). (a) Show that the three distances from the origin always satisfy</p>
+\[\text{king's move} \;\le\; \text{ordinary} \;\le\; \text{taxi} \;\le\; 2 \times \text{king's move}.\]
+<p>Hint: compare \(a^2\), \(a^2 + b^2\) and \((a + b)^2\). (b) For which points is each \(\le\) an equality? (c) What does the chain say about how the diamond, circle and square in the figure fit inside one another?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) Gaps 5 and 12: taxi 17, ordinary \(\sqrt{25 + 144} = 13\), king's move 12. (b) Gaps \(|1 - 7| = 6\) and \(|2 - (-6)| = 8\): taxi 14, ordinary \(\sqrt{36 + 64} = 10\), king's move 8. (c) Gaps 7 and 0: taxi 7, ordinary 7, king's move 7. The order is always king's move, then ordinary, then taxi, and when one gap is 0 all three agree. The stretch shows this is no accident.</li>
+<li>(a) Taxi, \(a + b = 2\): \((\pm 2, 0)\), \((0, \pm 2)\), \((\pm 1, \pm 1)\), which is 8 points. Ordinary, \(x^2 + y^2 = 4\): only \((\pm 2, 0)\) and \((0, \pm 2)\), 4 points, because \(4 = 4 + 0\) is the only way to write 4 as a sum of two squares. King's move, the bigger gap is 2: the 16 points on the edge of the square from \(-2\) to 2, namely \((\pm 2, y)\) for \(y = -2, \dots, 2\) (10 points) and \((x, \pm 2)\) for \(x = -1, 0, 1\) (6 more). (b) The four points on the axes: \((2, 0)\), \((0, 2)\), \((-2, 0)\), \((0, -2)\). (c) A diamond with corners at those four points, the ordinary circle through them, and a square with corners \((\pm 2, \pm 2)\) whose sides touch the circle at them. It is the figure at twice the size.</li>
+<li>(a) \(AB\) has gaps 2 and 1: taxi 3, ordinary \(\sqrt5 \approx 2.24\), king's move 2. \(BC\) has gaps 3 and 4: taxi 7, ordinary 5, king's move 4. \(AC\) has gaps 5 and 5: taxi 10, ordinary \(\sqrt{50} \approx 7.07\), king's move 5. (b) Taxi: \(10 \le 3 + 7 = 10\). Ordinary: \(7.07 \le 2.24 + 5 = 7.24\). King's move: \(5 \le 2 + 4 = 6\). All true. (c) The taxi distance, where \(10 = 10\). \(B\) is not on the line \(AC\), which is \(y = x\). A taxi going east and north loses nothing by passing through \(B\). One triangle is a check, not a proof, but the rule does hold for every triangle in all three distances.</li>
+<li>(a) Squares are never negative, and \(a^2 + b^2 = 0\) only when both gaps are 0, which means \(P = Q\). Swapping \(P\) and \(Q\) does not change the gaps. (b) Direct: \(2^2 + 0^2 = 4\). Through \((1, 0)\): \(1 + 1 = 2\). The detour is shorter, since \(4 \gt 2\), so test (3), the triangle rule, fails. (c) Four steps of length \(\tfrac12\) cost \(4 \times \tfrac14 = 1\). A hundred steps of length \(\tfrac{2}{100}\) cost \(100 \times \tfrac{4}{10000} = \tfrac{1}{25}\). With \(n\) steps the total is \(\tfrac4n\), as close to 0 as you like. So \(s\) is not a distance, although it comes from one.</li>
+</ol>
+<p><b>Stretch.</b> The three distances are \(a\), \(\sqrt{a^2 + b^2}\) and \(a + b\). (a) First, \(a^2 \le a^2 + b^2\), so \(a \le \sqrt{a^2 + b^2}\). Next, \((a + b)^2 = a^2 + 2ab + b^2 \ge a^2 + b^2\) because \(2ab \ge 0\), so \(\sqrt{a^2 + b^2} \le a + b\). Last, \(b \le a\) gives \(a + b \le 2a\). (Taking square roots is safe because nothing here is negative.) (b) The first is an equality exactly when \(b = 0\), and so is the second, since \(2ab = 0\) with \(a \ge b \ge 0\) forces \(b = 0\). So king's move, ordinary and taxi agree exactly for points on an axis. The last is an equality exactly when \(a = b\), on the two diagonals. (c) A point within taxi distance 1 is within ordinary distance 1, so the diamond sits inside the circle. In the same way the circle sits inside the square. And the square sits inside the taxi diamond of radius 2. The bigger the distance, the smaller its circle. The three touch only on the axes.</p>
+</section>
+
+<div class="sheet-nav"><a href="b31-ten-adic-numbers.html">← Previous</a><a href="b33-tropical-arithmetic.html">Next: Tropical arithmetic →</a></div>
+</main>
+
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

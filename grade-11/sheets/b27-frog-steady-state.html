@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Where does the frog end up? · Math Detours</title>
+<meta name="description" content="A frog hops between two lily pads with fixed chances. Treat one hop as a linear operator on the list of chances, find the list it leaves alone and the list it shrinks, and read off why the chances settle and how fast. Then try a three-pad pond.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
+  <a href="../index.html">Grade 11</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Math Detours · Grade 11 · Around the corner · 27</div>
+  <h1>Where does the frog end up?</h1>
+  <p class="teaser">A frog hops between two lily pads with fixed chances. Wherever it starts, its chances settle to the same two numbers. One list explains why, and one number says how fast.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<figure style="float:right;width:250px;margin:0 0 .4em 1em"><svg viewBox="0 0 340 112" width="250" height="82" role="img" aria-label="Two lily pads, A on the left and B on the right. An arrow from A to B is labelled 1/2 and an arrow from B to A is labelled 1/4. A loop from A back to A is labelled 1/2 and a loop from B back to B is labelled 3/4." font-family="Nunito, sans-serif" font-size="14">
+<defs><marker id="fr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#3f44c9"/></marker></defs>
+<path d="M112,44 Q170,18 228,44" fill="none" stroke="#3f44c9" stroke-width="1.6" marker-end="url(#fr)"/>
+<path d="M228,72 Q170,98 112,72" fill="none" stroke="#3f44c9" stroke-width="1.6" marker-end="url(#fr)"/>
+<path d="M70,44 C28,26 28,90 70,72" fill="none" stroke="#3f44c9" stroke-width="1.6" marker-end="url(#fr)"/>
+<path d="M270,44 C312,26 312,90 270,72" fill="none" stroke="#3f44c9" stroke-width="1.6" marker-end="url(#fr)"/>
+<circle cx="90" cy="58" r="24" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="1.5"/>
+<text x="90" y="63" text-anchor="middle" font-weight="700" fill="#1d1f3a">A</text>
+<circle cx="250" cy="58" r="24" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="1.5"/>
+<text x="250" y="63" text-anchor="middle" font-weight="700" fill="#1d1f3a">B</text>
+<text x="170" y="23" text-anchor="middle" fill="#1d1f3a">1/2</text>
+<text x="170" y="106" text-anchor="middle" fill="#1d1f3a">1/4</text>
+<text x="19" y="63" text-anchor="middle" fill="#1d1f3a">1/2</text>
+<text x="321" y="63" text-anchor="middle" fill="#1d1f3a">3/4</text>
+</svg><figcaption>The chances for one minute.</figcaption></figure>
+<p>A frog lives on two lily pads, A and B. Each minute it hops or stays, with fixed chances. On A it stays with chance \(\tfrac12\) and hops with chance \(\tfrac12\). On B it hops with chance \(\tfrac14\) and stays with chance \(\tfrac34\). This is a model: real frogs are less tidy.</p>
+<p>Write its chances of being on A and on B as a list \((a, b)\). A minute later the list is</p>
+<p>\[H(a, b) = \left(\tfrac12 a + \tfrac14 b,\ \tfrac12 a + \tfrac34 b\right).\]</p>
+<p>\(H\) is a <b>linear operator</b>: \(H(\mathbf u + \mathbf v) = H(\mathbf u) + H(\mathbf v)\) and \(H(c\,\mathbf u) = c\,H(\mathbf u)\). So you may split a list into parts, hop each part, and add. A nonzero list that \(H\) only multiplies by a number is an <b>eigenvector</b>. The number is its <b>eigenvalue</b>.</p>
+<p class="callout">\(H\left(\tfrac13, \tfrac23\right) = \left(\tfrac13, \tfrac23\right)\): eigenvalue 1. &nbsp; \(H(1, -1) = \left(\tfrac14, -\tfrac14\right)\): eigenvalue \(\tfrac14\).</p>
+<p>Every list is a mix of these two. That is why the chances settle, and how fast.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: the frog starts on A</h2>
+<p>The start is \((1, 0)\): certainly on A. Split it into the two eigenvectors. Each hop keeps the first part and multiplies the second by \(\tfrac14\), so you can write down the list after \(n\) hops:</p>
+<p>\[(1, 0) = \left(\tfrac13, \tfrac23\right) + \tfrac23\,(1, -1) \qquad\longrightarrow\qquad \left(\tfrac13, \tfrac23\right) + \tfrac23\left(\tfrac14\right)^{n}(1, -1).\]</p>
+<table>
+<thead><tr><th>hops \(n\)</th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th></tr></thead>
+<tbody>
+<tr><td>chance on A</td><td>1</td><td>0.5</td><td>0.375</td><td>0.34375</td><td>0.3359375</td></tr>
+<tr><td>gap from \(\tfrac13\)</td><td>\(\tfrac23\)</td><td>\(\tfrac16\)</td><td>\(\tfrac1{24}\)</td><td>\(\tfrac1{96}\)</td><td>\(\tfrac1{384}\)</td></tr>
+</tbody>
+</table>
+<p>Hopping a minute at a time with \(H\) gives the same numbers. The gap is quartered each minute: after 10 hops it is under a millionth. The frog never settles, but its list of chances does, at the steady state of <a href="../../grade-10/sheets/b22-markov-pagerank.html">Markov chains and PageRank</a>.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>(a) Apply \(H\) to \(\left(\tfrac13, \tfrac23\right)\) and to \((1, -1)\) to check the two facts in the box. (b) Now the frog starts on B, so the list is \((0, 1)\). Find the list after 1, 2 and 3 hops. Each time, work out the chance on A minus \(\tfrac13\). What multiplies this gap at each hop?<div class="space short"></div></li>
+<li>Here is a linear operator that is not a table of chances: \(S(x, y) = (2x + y,\ x + 2y)\). (a) Apply \(S\) to \((1, 1)\) and to \((1, -1)\). What are the eigenvalues? (b) Write \((1, 0)\) as a mix of \((1, 1)\) and \((1, -1)\). (c) Predict the list you get by applying \(S\) to \((1, 0)\) \(n\) times, and check \(n = 3\) by applying \(S\) three times. Does the first entry's share of the total settle?<div class="space short"></div></li>
+<li>A different frog hops from A with chance \(p\) and from B with chance \(q\) (each from 0 to 1, not both 0), so \(H(a, b) = \big((1 - p)a + qb,\ pa + (1 - q)b\big)\). (a) Show that \((q, p)\) is left alone and that \((1, -1)\) has eigenvalue \(1 - p - q\). (b) Scale \((q, p)\) to total 1, and check against tonight's frog. (c) What happens when \(p + q = 1\)? When \(p = q = 1\)?<div class="space short"></div></li>
+<li>Three pads in a row, A, B, C. From A or C the frog stays or hops to B, with chance \(\tfrac12\) each. From B it stays with chance \(\tfrac12\) and hops to A or to C with chance \(\tfrac14\) each. So \(H(a, b, c) = \left(\tfrac12 a + \tfrac14 b,\ \tfrac12 a + \tfrac12 b + \tfrac12 c,\ \tfrac14 b + \tfrac12 c\right)\). (a) Find the list with total 1 that \(H\) leaves alone. (b) Apply \(H\) to \((1, 0, -1)\) and to \((1, -2, 1)\). (c) The frog starts on A. Split \((1, 0, 0)\) into your three lists and find the chances after \(n\) hops, \(n \ge 1\). How many hops until every chance is within 0.001 of settled?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: why is the eigenvalue 1 always there?</h2>
+<p>Use question 3's frog, allowing \(p = q = 0\) too. (a) Show that \(H\) keeps the total of any list, even one with negative entries. Why is this so for any number of pads? (b) If \(H(\mathbf v) = \lambda\mathbf v\) with \(\lambda \ne 1\), show that \(\mathbf v\) has total 0. Check the frog eigenvectors on this sheet. (c) By (a), \(H(\mathbf v) - \mathbf v\) has total 0, so it is a multiple of \((1, -1)\). Say \(H(1, 0) - (1, 0) = s\,(1, -1)\) and \(H(0, 1) - (0, 1) = t\,(1, -1)\). Without finding \(s\) and \(t\), build a nonzero list that \(H\) leaves alone.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(H\left(\tfrac13, \tfrac23\right) = \left(\tfrac16 + \tfrac16,\ \tfrac16 + \tfrac12\right) = \left(\tfrac13, \tfrac23\right)\) and \(H(1, -1) = \left(\tfrac12 - \tfrac14,\ \tfrac12 - \tfrac34\right) = \left(\tfrac14, -\tfrac14\right)\). (b) \(\left(\tfrac14, \tfrac34\right)\), \(\left(\tfrac5{16}, \tfrac{11}{16}\right)\), \(\left(\tfrac{21}{64}, \tfrac{43}{64}\right)\), which are \((0.25, 0.75)\), \((0.3125, 0.6875)\), \((0.328125, 0.671875)\). The gaps, starting from the start, are \(-\tfrac13\), \(-\tfrac1{12}\), \(-\tfrac1{48}\), \(-\tfrac1{192}\). Each is \(\tfrac14\) of the one before, because \((0, 1) = \left(\tfrac13, \tfrac23\right) - \tfrac13(1, -1)\).</li>
+<li>(a) \(S(1, 1) = (3, 3)\) and \(S(1, -1) = (1, -1)\), so the eigenvalues are 3 and 1. (b) \((1, 0) = \tfrac12(1, 1) + \tfrac12(1, -1)\). (c) After \(n\) steps, \(\tfrac12 \cdot 3^n(1, 1) + \tfrac12(1, -1) = \left(\tfrac{3^n + 1}{2}, \tfrac{3^n - 1}{2}\right)\). For \(n = 3\) this is \((14, 13)\), and directly \((1, 0) \to (2, 1) \to (5, 4) \to (14, 13)\). The entries grow without limit. The total is \(3^n\), so the first entry's share is \(\tfrac12 + \tfrac1{2 \cdot 3^n}\), which settles at \(\tfrac12\). Here the largest eigenvalue sets the growth and its eigenvector sets the shares.</li>
+<li>(a) \(H(q, p) = \big((1 - p)q + qp,\ pq + (1 - q)p\big) = (q, p)\). \(H(1, -1) = (1 - p - q,\ p - 1 + q) = (1 - p - q)(1, -1)\). (b) \(\left(\tfrac{q}{p + q}, \tfrac{p}{p + q}\right)\), which needs \(p + q \ne 0\). With \(p = \tfrac12\), \(q = \tfrac14\): \(\left(\tfrac13, \tfrac23\right)\) and \(1 - \tfrac12 - \tfrac14 = \tfrac14\). (c) If \(p + q = 1\) the second eigenvalue is 0, so the gap is wiped out in one hop: from either pad the chance of being on A next is \(q\), so one hop forgets the start. If \(p = q = 1\) the eigenvalue is \(-1\). The frog always hops, \(H(a, b) = (b, a)\), and the chances swap for ever. They do not settle unless the start is \(\left(\tfrac12, \tfrac12\right)\). In every other case here \(1 - p - q\) is bigger than \(-1\) and smaller than 1, and the chances settle.</li>
+<li>(a) \(a = \tfrac12 a + \tfrac14 b\) gives \(b = 2a\), and \(c = \tfrac14 b + \tfrac12 c\) gives \(b = 2c\). With total 1: \(\left(\tfrac14, \tfrac12, \tfrac14\right)\). (The middle equation then holds too.) (b) \(H(1, 0, -1) = \left(\tfrac12, 0, -\tfrac12\right)\), eigenvalue \(\tfrac12\). \(H(1, -2, 1) = (0, 0, 0)\), eigenvalue 0. (c) \((1, 0, 0) = \left(\tfrac14, \tfrac12, \tfrac14\right) + \tfrac12(1, 0, -1) + \tfrac14(1, -2, 1)\). The last part vanishes at the first hop, so for \(n \ge 1\) the list is \(\left(\tfrac14 + \left(\tfrac12\right)^{n+1},\ \tfrac12,\ \tfrac14 - \left(\tfrac12\right)^{n+1}\right)\). The gap is \(\tfrac1{512} \approx 0.00195\) after 8 hops and \(\tfrac1{1024} \approx 0.00098\) after 9, so 9 hops. Of the other eigenvalues, the one of largest size, here \(\tfrac12\), sets the speed.</li>
+</ol>
+<p><b>Stretch.</b> (a) The new total is \((1 - p)a + qb + pa + (1 - q)b = a + b\). In general, a pad holding an amount \(a\) sends it out in shares that add to 1, so it passes on exactly \(a\), and the total is kept. (b) The total of \(H(\mathbf v)\) equals the total of \(\mathbf v\), and it is also \(\lambda\) times that total. So \((1 - \lambda) \times \text{total} = 0\), and since \(\lambda \ne 1\) the total is 0. Check: \((1, -1)\), \((1, 0, -1)\) and \((1, -2, 1)\) all have total 0, and the frog eigenvectors with a nonzero total all had eigenvalue 1. (c) Take \(\mathbf v = (t, -s)\), which is \(t\,(1, 0) - s\,(0, 1)\). By linearity its change is \(t\,s\,(1, -1) - s\,t\,(1, -1) = (0, 0)\), so \(H\) leaves it alone. It is nonzero unless \(s = t = 0\), and then \(H\) leaves \((1, 0)\) alone. Here \(s = -p\) and \(t = q\), so \(\mathbf v = (q, p)\) again. A similar squeeze works for any number of pads, using more linear algebra. It takes further work to show that the list left alone can be chosen with no negative entries, so that it scales to a true list of chances. Question 3(c) shows that even this does not make the chances settle.</p>
+</section>
+
+<div class="sheet-nav"><a href="b26-cosine-fixed-point.html">← Previous</a><a href="b28-jumps-or-smooth.html">Next: One jump or smooth growth? →</a></div>
+</main>
+
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

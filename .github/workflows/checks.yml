@@ -23,6 +23,8 @@ jobs:
         run: python3 tools/relink.py --check
       - name: Map data covers every sheet and demo
         run: python3 tools/map/build_map.py --check
+      - name: Sitemap lists every page
+        run: python3 tools/build_sitemap.py --check
       - name: Printed page count of changed sheets (3 expected, 4 allowed)
         if: github.event_name == 'pull_request'
         run: |

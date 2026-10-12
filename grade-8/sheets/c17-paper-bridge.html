@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Make paper hold 100 coins · Math Detours</title>
+<meta name="description" content="Why shape makes things stiff: the width times thickness cubed rule for a bending strip, loose sheets against glued sheets, folded paper bridges, I-beams and hollow tubes, with stiffness kept apart from strength.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Math Detours · Grade 8 · Connections · 17</div>
+  <h1>Make paper hold 100 coins</h1>
+  <p class="teaser">A flat sheet of paper across two books sags under one coin. Fold the same sheet into a zigzag and it can hold dozens. The paper has not changed. Only its shape has.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Bend a thick paperback. At the open edge the pages slide past each other. Now imagine the pages glued into one solid block. It would be far harder to bend. When a strip bends, its top is squashed and its bottom is stretched. The middle layer is neither. Material far from the middle does most of the work.</p>
+<p><b>Stiffness</b> is how hard a strip is to bend: the push needed for each millimetre of sag. For a solid rectangular strip, the standard model for small bends says that, for one material and one gap,</p>
+<p class="callout">\[\text{stiffness is proportional to } \text{width} \times \text{thickness}^3.\]</p>
+<p>Thickness is measured along the push. Engineers hunt for the shape that gives the most stiffness for the least material. Folding paper into a zigzag moves it away from the middle, as if it were far thicker. Stiff is not the same as strong: how much a bridge holds before it collapses follows different rules.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: one strip, two loose, two glued</h2>
+<p>A strip of card lies across a gap between two books. One coin in the middle makes it sag 8 mm. (All tonight's measurements are made up.) Call its stiffness 1 unit.</p>
+<p><b>Two loose strips.</b> Each bends about its own middle layer and they slide where they touch. Each carries half the coin, so the pair is \(1 + 1 = 2\) times as stiff. In the model, sag is push divided by stiffness, so the sag is \(8 \div 2 = 4\) mm.</p>
+<p><b>Two glued strips.</b> Now they cannot slide. They act as one strip of twice the thickness, so the stiffness is \(2^3 = 8\) units and the sag is \(8 \div 8 = 1\) mm, a quarter of the loose pair's. (These are idealisations: real loose strips rub a little, and real glue has some thickness.)</p>
+<p><b>Folding.</b> In a matching thin-sheet model, a zigzag 10 mm tall, folded from 0.1 mm paper, is about \((10 \div 0.1)^2 = 10\,000\) times as stiff as the flat sheet. Real paper gets nowhere near: folds spread and thin walls crumple first.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>(a) A strip is made 3 times as thick, in one solid piece. How many times as stiff is it? (b) How many times as stiff as one strip is a stack of 3 loose strips? (c) How many loose strips match the strip in (a)?<div class="space short"></div></li>
+<li>(a) A strip is made twice as wide. How many times as stiff is it? (b) With twice as much card you could double the width or glue on a second layer. Which is stiffer, and by what factor? (c) A wooden ruler is 30 mm wide and 3 mm thick. Work out width \(\times\) thickness\(^3\) lying flat, then standing on edge (the push now runs along the 30 mm side). How many times as stiff is it on edge?<div class="space short"></div></li>
+<li>Five paper bridges cross the same gap. Coins are piled on each until it collapses (made-up data).
+<table class="tt">
+<tr><th>Bridge</th><td>flat</td><td>channel (sides folded up)</td><td>tube</td><td>zigzag</td><td>zigzag, two sheets glued</td></tr>
+<tr><th>Paper (grams)</th><td>5</td><td>5</td><td>5</td><td>5</td><td>10</td></tr>
+<tr><th>Coins held</th><td>1</td><td>12</td><td>30</td><td>55</td><td>100</td></tr>
+</table>
+(a) Rank the four one-sheet bridges from weakest to strongest. (b) Work out coins held per gram of paper for all five. Which bridge holds the most? Which makes the best use of its paper? (c) The zigzag held 55 times as many coins as the flat sheet. Is it 55 times as stiff? Explain.<div class="space short"></div></li>
+<li>For a solid rectangle, call width \(\times\) depth\(^3\) its <b>stiffness number</b> (depth is measured along the push). A steel I-beam's cross-section is a rectangle 6 cm wide and 10 cm deep with a piece 2.5 cm wide and 8 cm deep cut from the middle of each side. These share the beam's middle line, so their stiffness numbers subtract. (a) Find the area of steel and the stiffness number. (b) A solid bar 4 cm wide and 5 cm deep has the same area. How many times as stiff is the I-beam? (c) Why does the I shape win?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: why are bones and bamboo hollow?</h2>
+<p>For round rods, the model gives a stiffness number of radius\(^4\). A tube is a rod with a thinner rod missing from its centre, so subtract. (a) A solid rod has radius 3 mm. A tube has outer radius 5 mm and inner radius 4 mm. Show that they use the same amount of material. (b) How many times as stiff is the tube? (c) Why not make the wall thinner for ever?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(3^3 = 27\) times as stiff. (b) 3 times: loose strips each bend on their own and simply share the push. This assumes they slide freely. (c) 27 strips, since each loose strip adds 1 unit. Gluing three strips does the work of twenty-seven loose ones.</li>
+<li>(a) Twice as stiff: width is not cubed. (b) Twice the width gives 2 units. Twice the thickness gives \(2^3 = 8\) units. Gluing is stiffer, by a factor of \(8 \div 2 = 4\). (c) Flat: \(30 \times 3^3 = 30 \times 27 = 810\). On edge the width is 3 and the thickness is 30: \(3 \times 30^3 = 3 \times 27\,000 = 81\,000\). That is \(81\,000 \div 810 = 100\) times as stiff, with the same wood. (A ruler on edge may twist and flop sideways, which the rule does not cover.)</li>
+<li>(a) Flat (1), channel (12), tube (30), zigzag (55). (b) Flat \(1 \div 5 = 0.2\), channel \(12 \div 5 = 2.4\), tube \(30 \div 5 = 6\), zigzag \(55 \div 5 = 11\), two-sheet zigzag \(100 \div 10 = 10\). The two-sheet zigzag holds the most coins, 100. The one-sheet zigzag makes the best use of its paper, 11 coins per gram. Which is "best" depends on what you are trying to save. (c) No. The count tells you when the bridge collapsed, which is about strength. Stiffness is about how far it sags under a small push. A stiffer shape usually holds more, but the two numbers follow different rules. A paper bridge often gives way when a fold flattens or a wall crumples.</li>
+<li>(a) Area: \(6 \times 10 - 2 \times (2.5 \times 8) = 60 - 40 = 20\) cm². The two missing pieces together are 5 cm wide, so the stiffness number is \(6 \times 10^3 - 5 \times 8^3 = 6000 - 2560 = 3440\). (b) Its area is \(4 \times 5 = 20\) cm², the same, so it uses the same steel. Its stiffness number is \(4 \times 5^3 = 500\). The I-beam is \(3440 \div 500 = 6.88\) times as stiff, nearly 7 times. (c) Most of its steel sits in the top and bottom bars, far from the middle layer, where squashing and stretching are greatest. The thin upright only has to hold the two bars apart.</li>
+</ol>
+<p><b>Stretch.</b> (a) The rod's cross-section has area \(\pi \times 3^2 = 9\pi\) mm². The tube's is \(\pi \times 5^2 - \pi \times 4^2 = 25\pi - 16\pi = 9\pi\) mm². Equal areas mean equal material for each centimetre of length. (b) Rod: \(3^4 = 81\). Tube: \(5^4 - 4^4 = 625 - 256 = 369\). The tube is \(369 \div 81 \approx 4.6\) times as stiff. (c) A very thin wall dents and kinks, the way a drinking straw folds suddenly when you bend it too far. The model only describes smooth, small bends, so it does not see that failure. The best tube balances stiffness against kinking. Being stiff for little weight is one reason, among others, that many bones and bamboo stems are hollow.</p>
+</section>
+
+<div class="sheet-nav"><a href="c16-hidden-shape-scattering.html">← Previous</a><a href="c18-parallel-parking.html">Next: How can a car move sideways? →</a></div>
+</main>
+
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

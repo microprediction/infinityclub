@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mild preferences, strong patterns · Math Detours</title>
+<meta name="description" content="Schelling's model with counters on a street and on a 6 by 6 grid: each counter only wants a third of its neighbours to be like it, unhappy counters move by an exact rule, and you measure how divided the town becomes. A model, not a proof about real cities.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Math Detours · Grade 8 · Connections · 19</div>
+  <h1>Mild preferences, strong patterns</h1>
+  <p class="teaser">Suppose everyone is happy as long as at least a third of their neighbours are like them. Let the unhappy ones move. In this simple model the town can still end up split into blocks.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Put blue and orange counters on a grid, leaving a few squares empty. A counter's <b>neighbours</b> are the counters on the squares touching its own, corners included: at most eight.</p>
+<p>Every counter has one mild wish: at least a third of its neighbours should share its colour. If fewer do, it is <b>unhappy</b>. A counter with no neighbours is happy. With 8 neighbours, 3 alike is enough.</p>
+<p>Unhappy counters move. Read the grid like a page, top row first. The first unhappy counter moves to the first empty square, in reading order, where it would be happy. If there is none it stays and the next unhappy counter tries. After each move, read again from the top. Stop when nobody moves.</p>
+<p class="callout">Nobody here asks to live apart. Social science uses math(s) like this to see how individual choices add up to group patterns. The economist Thomas Schelling published models like this in 1971. It is a toy model, not a real town.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: a street of 12 squares</h2>
+<p>On a street, a counter's neighbours are the counters within two squares on either side: at most four. Same wish, same rule, reading left to right. B is a blue counter, O an orange one.</p>
+<figure><svg viewBox="0 0 470 58" width="470" height="58" role="img" aria-label="A street of 12 squares numbered 1 to 12. In order the squares hold orange, blue, orange, orange, empty, blue, orange, orange, blue, blue, empty, blue." font-family="Nunito, sans-serif" font-size="12">
+<text x="81" y="16" text-anchor="middle" fill="#555">1</text>
+<text x="109" y="16" text-anchor="middle" fill="#555">2</text>
+<text x="137" y="16" text-anchor="middle" fill="#555">3</text>
+<text x="165" y="16" text-anchor="middle" fill="#555">4</text>
+<text x="193" y="16" text-anchor="middle" fill="#555">5</text>
+<text x="221" y="16" text-anchor="middle" fill="#555">6</text>
+<text x="249" y="16" text-anchor="middle" fill="#555">7</text>
+<text x="277" y="16" text-anchor="middle" fill="#555">8</text>
+<text x="305" y="16" text-anchor="middle" fill="#555">9</text>
+<text x="333" y="16" text-anchor="middle" fill="#555">10</text>
+<text x="361" y="16" text-anchor="middle" fill="#555">11</text>
+<text x="389" y="16" text-anchor="middle" fill="#555">12</text>
+<text x="57" y="42" text-anchor="end" font-weight="700" fill="#1d1f3a"></text>
+<rect x="67" y="24" width="28" height="28" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="81" cy="38" r="9.5" fill="#f5a524"/><text x="81" y="42" text-anchor="middle" font-size="11" font-weight="700" fill="#1d1f3a">O</text>
+<rect x="95" y="24" width="28" height="28" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="109" cy="38" r="9.5" fill="#3f44c9"/><text x="109" y="42" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">B</text>
+<rect x="123" y="24" width="28" height="28" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="137" cy="38" r="9.5" fill="#f5a524"/><text x="137" y="42" text-anchor="middle" font-size="11" font-weight="700" fill="#1d1f3a">O</text>
+<rect x="151" y="24" width="28" height="28" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="165" cy="38" r="9.5" fill="#f5a524"/><text x="165" y="42" text-anchor="middle" font-size="11" font-weight="700" fill="#1d1f3a">O</text>
+<rect x="179" y="24" width="28" height="28" fill="none" stroke="#999" stroke-width="1"/>
+<rect x="207" y="24" width="28" height="28" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="221" cy="38" r="9.5" fill="#3f44c9"/><text x="221" y="42" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">B</text>
+<rect x="235" y="24" width="28" height="28" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="249" cy="38" r="9.5" fill="#f5a524"/><text x="249" y="42" text-anchor="middle" font-size="11" font-weight="700" fill="#1d1f3a">O</text>
+<rect x="263" y="24" width="28" height="28" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="277" cy="38" r="9.5" fill="#f5a524"/><text x="277" y="42" text-anchor="middle" font-size="11" font-weight="700" fill="#1d1f3a">O</text>
+<rect x="291" y="24" width="28" height="28" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="305" cy="38" r="9.5" fill="#3f44c9"/><text x="305" y="42" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">B</text>
+<rect x="319" y="24" width="28" height="28" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="333" cy="38" r="9.5" fill="#3f44c9"/><text x="333" y="42" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">B</text>
+<rect x="347" y="24" width="28" height="28" fill="none" stroke="#999" stroke-width="1"/>
+<rect x="375" y="24" width="28" height="28" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="389" cy="38" r="9.5" fill="#3f44c9"/><text x="389" y="42" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">B</text>
+</svg></figure>
+<p><b>Who is unhappy at the start?</b> Square 2 (blue) has neighbours on 1, 3 and 4, all orange: 0 alike of 3. Square 6 (blue) has neighbours on 4, 7 and 8, all orange: 0 of 3. Square 8 (orange) has neighbours on 6, 7, 9 and 10, only one of them orange: 1 of 4, and \(\tfrac14 \lt \tfrac13\). Everyone else is happy. Square 7 (orange) just makes it with 1 of 3, exactly a third.</p>
+<p><b>The first move.</b> Square 2 goes first. The empty squares are 5 and 11. On 5 its neighbours would be 3, 4, 6, 7: 1 blue of 4, still unhappy. On 11 they would be 9, 10, 12: 3 blue of 3. So 2 moves to 11.</p>
+<p><b>Carrying on.</b> Square 6 is next, but neither empty square (2 or 5) would make it happy, so it stays. Square 8 moves to 2, then 6 to 8, then 7 to 5. After these 4 moves nobody is unhappy: orange on 1 to 5, blue on 8 to 12.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<figure><svg viewBox="0 0 470 170" width="470" height="170" role="img" aria-label="Two 6 by 6 grids with columns A to F and rows 1 to 6. Before: row 1 is empty, blue, empty, blue, orange, orange; row 2 is orange, blue, blue, blue, blue, orange; row 3 is blue, orange, blue, empty, blue, blue; row 4 is blue, empty, blue, orange, orange, orange; row 5 is blue, orange, empty, orange, blue, orange; row 6 is orange, orange, empty, blue, orange, orange. After 6 moves the blue counters fill the top of the grid and the orange counters the bottom and the top right corner." font-family="Nunito, sans-serif" font-size="12">
+<text x="140" y="15" text-anchor="middle" font-weight="700" fill="#1d1f3a">Before</text>
+<text x="90" y="37" text-anchor="middle" fill="#555">A</text>
+<text x="71" y="58" text-anchor="middle" fill="#555">1</text>
+<text x="110" y="37" text-anchor="middle" fill="#555">B</text>
+<text x="71" y="78" text-anchor="middle" fill="#555">2</text>
+<text x="130" y="37" text-anchor="middle" fill="#555">C</text>
+<text x="71" y="98" text-anchor="middle" fill="#555">3</text>
+<text x="150" y="37" text-anchor="middle" fill="#555">D</text>
+<text x="71" y="118" text-anchor="middle" fill="#555">4</text>
+<text x="170" y="37" text-anchor="middle" fill="#555">E</text>
+<text x="71" y="138" text-anchor="middle" fill="#555">5</text>
+<text x="190" y="37" text-anchor="middle" fill="#555">F</text>
+<text x="71" y="158" text-anchor="middle" fill="#555">6</text>
+<rect x="80" y="44" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<rect x="100" y="44" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="110" cy="54" r="8" fill="#3f44c9"/><text x="110" y="58" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">B</text>
+<rect x="120" y="44" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<rect x="140" y="44" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="150" cy="54" r="8" fill="#3f44c9"/><text x="150" y="58" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">B</text>
+<rect x="160" y="44" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="170" cy="54" r="8" fill="#f5a524"/><text x="170" y="58" text-anchor="middle" font-size="11" font-weight="700" fill="#1d1f3a">O</text>
+<rect x="180" y="44" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="190" cy="54" r="8" fill="#f5a524"/><text x="190" y="58" text-anchor="middle" font-size="11" font-weight="700" fill="#1d1f3a">O</text>
+<rect x="80" y="64" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="90" cy="74" r="8" fill="#f5a524"/><text x="90" y="78" text-anchor="middle" font-size="11" font-weight="700" fill="#1d1f3a">O</text>
+<rect x="100" y="64" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="110" cy="74" r="8" fill="#3f44c9"/><text x="110" y="78" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">B</text>
+<rect x="120" y="64" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="130" cy="74" r="8" fill="#3f44c9"/><text x="130" y="78" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">B</text>
+<rect x="140" y="64" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="150" cy="74" r="8" fill="#3f44c9"/><text x="150" y="78" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">B</text>
+<rect x="160" y="64" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="170" cy="74" r="8" fill="#3f44c9"/><text x="170" y="78" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">B</text>
+<rect x="180" y="64" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="190" cy="74" r="8" fill="#f5a524"/><text x="190" y="78" text-anchor="middle" font-size="11" font-weight="700" fill="#1d1f3a">O</text>
+<rect x="80" y="84" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="90" cy="94" r="8" fill="#3f44c9"/><text x="90" y="98" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">B</text>
+<rect x="100" y="84" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="110" cy="94" r="8" fill="#f5a524"/><text x="110" y="98" text-anchor="middle" font-size="11" font-weight="700" fill="#1d1f3a">O</text>
+<rect x="120" y="84" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="130" cy="94" r="8" fill="#3f44c9"/><text x="130" y="98" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">B</text>
+<rect x="140" y="84" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<rect x="160" y="84" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="170" cy="94" r="8" fill="#3f44c9"/><text x="170" y="98" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">B</text>
+<rect x="180" y="84" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="190" cy="94" r="8" fill="#3f44c9"/><text x="190" y="98" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">B</text>
+<rect x="80" y="104" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="90" cy="114" r="8" fill="#3f44c9"/><text x="90" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">B</text>
+<rect x="100" y="104" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<rect x="120" y="104" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="130" cy="114" r="8" fill="#3f44c9"/><text x="130" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">B</text>
+<rect x="140" y="104" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="150" cy="114" r="8" fill="#f5a524"/><text x="150" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#1d1f3a">O</text>
+<rect x="160" y="104" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="170" cy="114" r="8" fill="#f5a524"/><text x="170" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#1d1f3a">O</text>
+<rect x="180" y="104" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="190" cy="114" r="8" fill="#f5a524"/><text x="190" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#1d1f3a">O</text>
+<rect x="80" y="124" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="90" cy="134" r="8" fill="#3f44c9"/><text x="90" y="138" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">B</text>
+<rect x="100" y="124" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="110" cy="134" r="8" fill="#f5a524"/><text x="110" y="138" text-anchor="middle" font-size="11" font-weight="700" fill="#1d1f3a">O</text>
+<rect x="120" y="124" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<rect x="140" y="124" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="150" cy="134" r="8" fill="#f5a524"/><text x="150" y="138" text-anchor="middle" font-size="11" font-weight="700" fill="#1d1f3a">O</text>
+<rect x="160" y="124" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="170" cy="134" r="8" fill="#3f44c9"/><text x="170" y="138" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">B</text>
+<rect x="180" y="124" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="190" cy="134" r="8" fill="#f5a524"/><text x="190" y="138" text-anchor="middle" font-size="11" font-weight="700" fill="#1d1f3a">O</text>
+<rect x="80" y="144" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="90" cy="154" r="8" fill="#f5a524"/><text x="90" y="158" text-anchor="middle" font-size="11" font-weight="700" fill="#1d1f3a">O</text>
+<rect x="100" y="144" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="110" cy="154" r="8" fill="#f5a524"/><text x="110" y="158" text-anchor="middle" font-size="11" font-weight="700" fill="#1d1f3a">O</text>
+<rect x="120" y="144" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<rect x="140" y="144" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="150" cy="154" r="8" fill="#3f44c9"/><text x="150" y="158" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">B</text>
+<rect x="160" y="144" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="170" cy="154" r="8" fill="#f5a524"/><text x="170" y="158" text-anchor="middle" font-size="11" font-weight="700" fill="#1d1f3a">O</text>
+<rect x="180" y="144" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="190" cy="154" r="8" fill="#f5a524"/><text x="190" y="158" text-anchor="middle" font-size="11" font-weight="700" fill="#1d1f3a">O</text>
+<text x="350" y="15" text-anchor="middle" font-weight="700" fill="#1d1f3a">After 6 moves</text>
+<text x="300" y="37" text-anchor="middle" fill="#555">A</text>
+<text x="281" y="58" text-anchor="middle" fill="#555">1</text>
+<text x="320" y="37" text-anchor="middle" fill="#555">B</text>
+<text x="281" y="78" text-anchor="middle" fill="#555">2</text>
+<text x="340" y="37" text-anchor="middle" fill="#555">C</text>
+<text x="281" y="98" text-anchor="middle" fill="#555">3</text>
+<text x="360" y="37" text-anchor="middle" fill="#555">D</text>
+<text x="281" y="118" text-anchor="middle" fill="#555">4</text>
+<text x="380" y="37" text-anchor="middle" fill="#555">E</text>
+<text x="281" y="138" text-anchor="middle" fill="#555">5</text>
+<text x="400" y="37" text-anchor="middle" fill="#555">F</text>
+<text x="281" y="158" text-anchor="middle" fill="#555">6</text>
+<rect x="290" y="44" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="300" cy="54" r="8" fill="#3f44c9"/><text x="300" y="58" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">B</text>
+<rect x="310" y="44" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="320" cy="54" r="8" fill="#3f44c9"/><text x="320" y="58" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">B</text>
+<rect x="330" y="44" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="340" cy="54" r="8" fill="#3f44c9"/><text x="340" y="58" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">B</text>
+<rect x="350" y="44" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="360" cy="54" r="8" fill="#3f44c9"/><text x="360" y="58" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">B</text>
+<rect x="370" y="44" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="380" cy="54" r="8" fill="#f5a524"/><text x="380" y="58" text-anchor="middle" font-size="11" font-weight="700" fill="#1d1f3a">O</text>
+<rect x="390" y="44" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="400" cy="54" r="8" fill="#f5a524"/><text x="400" y="58" text-anchor="middle" font-size="11" font-weight="700" fill="#1d1f3a">O</text>
+<rect x="290" y="64" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="300" cy="74" r="8" fill="#3f44c9"/><text x="300" y="78" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">B</text>
+<rect x="310" y="64" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="320" cy="74" r="8" fill="#3f44c9"/><text x="320" y="78" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">B</text>
+<rect x="330" y="64" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="340" cy="74" r="8" fill="#3f44c9"/><text x="340" y="78" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">B</text>
+<rect x="350" y="64" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="360" cy="74" r="8" fill="#3f44c9"/><text x="360" y="78" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">B</text>
+<rect x="370" y="64" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="380" cy="74" r="8" fill="#3f44c9"/><text x="380" y="78" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">B</text>
+<rect x="390" y="64" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="400" cy="74" r="8" fill="#f5a524"/><text x="400" y="78" text-anchor="middle" font-size="11" font-weight="700" fill="#1d1f3a">O</text>
+<rect x="290" y="84" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="300" cy="94" r="8" fill="#3f44c9"/><text x="300" y="98" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">B</text>
+<rect x="310" y="84" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="320" cy="94" r="8" fill="#3f44c9"/><text x="320" y="98" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">B</text>
+<rect x="330" y="84" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="340" cy="94" r="8" fill="#3f44c9"/><text x="340" y="98" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">B</text>
+<rect x="350" y="84" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<rect x="370" y="84" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="380" cy="94" r="8" fill="#3f44c9"/><text x="380" y="98" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">B</text>
+<rect x="390" y="84" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="400" cy="94" r="8" fill="#3f44c9"/><text x="400" y="98" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">B</text>
+<rect x="290" y="104" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="300" cy="114" r="8" fill="#3f44c9"/><text x="300" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">B</text>
+<rect x="310" y="104" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<rect x="330" y="104" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<rect x="350" y="104" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="360" cy="114" r="8" fill="#f5a524"/><text x="360" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#1d1f3a">O</text>
+<rect x="370" y="104" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="380" cy="114" r="8" fill="#f5a524"/><text x="380" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#1d1f3a">O</text>
+<rect x="390" y="104" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="400" cy="114" r="8" fill="#f5a524"/><text x="400" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#1d1f3a">O</text>
+<rect x="290" y="124" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<rect x="310" y="124" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="320" cy="134" r="8" fill="#f5a524"/><text x="320" y="138" text-anchor="middle" font-size="11" font-weight="700" fill="#1d1f3a">O</text>
+<rect x="330" y="124" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="340" cy="134" r="8" fill="#f5a524"/><text x="340" y="138" text-anchor="middle" font-size="11" font-weight="700" fill="#1d1f3a">O</text>
+<rect x="350" y="124" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="360" cy="134" r="8" fill="#f5a524"/><text x="360" y="138" text-anchor="middle" font-size="11" font-weight="700" fill="#1d1f3a">O</text>
+<rect x="370" y="124" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<rect x="390" y="124" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="400" cy="134" r="8" fill="#f5a524"/><text x="400" y="138" text-anchor="middle" font-size="11" font-weight="700" fill="#1d1f3a">O</text>
+<rect x="290" y="144" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="300" cy="154" r="8" fill="#f5a524"/><text x="300" y="158" text-anchor="middle" font-size="11" font-weight="700" fill="#1d1f3a">O</text>
+<rect x="310" y="144" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="320" cy="154" r="8" fill="#f5a524"/><text x="320" y="158" text-anchor="middle" font-size="11" font-weight="700" fill="#1d1f3a">O</text>
+<rect x="330" y="144" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="340" cy="154" r="8" fill="#f5a524"/><text x="340" y="158" text-anchor="middle" font-size="11" font-weight="700" fill="#1d1f3a">O</text>
+<rect x="350" y="144" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<rect x="370" y="144" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="380" cy="154" r="8" fill="#f5a524"/><text x="380" y="158" text-anchor="middle" font-size="11" font-weight="700" fill="#1d1f3a">O</text>
+<rect x="390" y="144" width="20" height="20" fill="none" stroke="#999" stroke-width="1"/>
+<circle cx="400" cy="154" r="8" fill="#f5a524"/><text x="400" y="158" text-anchor="middle" font-size="11" font-weight="700" fill="#1d1f3a">O</text>
+</svg><figcaption>A made-up town, before and after running the rule. C4 is column C, row 4. Neighbours touch at a side or corner.</figcaption></figure>
+<ol>
+<li>Five counters in the Before grid are unhappy. Write each one's square and count, such as "1 alike of 4".<div class="space short"></div></li>
+<li>From the Before grid, make the first two moves of the rule. Which counter moves where? How many counters are unhappy afterwards? Was one of them happy at the start?<div class="space short"></div></li>
+<li>Two neighbouring counters make a <b>pair</b>, alike if their colours match. (a) On the street, count the pairs and the alike pairs at the start, then after the 4 moves. (b) A computer counted the grids: 37 alike pairs of 75 before, 58 of 72 after. Turn both into percentages.<div class="space short"></div></li>
+<li>(a) Change the wish to "at least 0 of my neighbours are like me". What happens? (b) How many of 8 neighbours must be alike when the wish is one third? One half? And of 5 neighbours? (c) With the one-third wish a counter is content when outnumbered 5 to 3. So why does the grid end so divided?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: does the order matter, and what does it prove?</h2>
+<p>(a) Run the street again from the start with one change: each unhappy counter moves to the <i>last</i> empty square where it would be happy, not the first. Do you get the same ending? (b) Real towns are often divided by group. What does this model tell you about them, and what does it not tell you?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>A2 (orange): 1 alike of 4. B3 (orange): 1 of 7. C4 (blue): 1 of 5. A5 (blue): 1 of 4. E5 (blue): 1 of 8. Each fraction is below \(\tfrac13\). Close calls that stay happy: D6 (blue) has 1 of 3 and D4 (orange) has 2 of 6, each exactly a third.</li>
+<li>Move 1: A2 is the first unhappy counter. The empty squares in reading order are A1, C1, D3, B4, C5, C6. An orange counter would have 0 alike of 2 on A1, 0 of 5 on C1, 2 of 8 on D3 and 2 of 7 on B4, all below a third. On C5 it has 4 of 6, so A2 moves to C5. Move 2: B3 (orange) is now first, with 0 alike of 6. It fails on A1 (0 of 2), C1 (0 of 5), A2 (0 of 3), D3 (2 of 8) and B4 (2 of 7), and moves to C6 (4 of 5). Now four counters are unhappy: C4, A5, E5 and D6. D6 was happy at the start with 1 alike of 3. The two orange arrivals next to it changed that to 1 of 5. One counter's move can make another unhappy.</li>
+<li>(a) Start: 14 pairs (7 one square apart, 7 two squares apart) and 5 are alike, about 36%. After 4 moves: 14 pairs, all 14 alike, 100%. (b) \(37 \div 75 \approx 49\%\) before and \(58 \div 72 \approx 81\%\) after. After those 6 moves nobody on the grid is unhappy. The number of pairs changes because counters end up touching different numbers of others.</li>
+<li>(a) No fraction is below 0, so nobody is ever unhappy and nobody moves. The town stays exactly as mixed as it started. (b) With 8 neighbours: 3 for one third (2 of 8 is only a quarter) and 4 for one half. With 5 neighbours: 2 for one third, since \(\tfrac15 \lt \tfrac13 \lt \tfrac25\), and 3 for one half. (c) The wish only ever pushes one way. A counter in a small minority leaves and settles where at least a third of its neighbours match it. That can leave the place it left, or the place it joins, more one-sided, which can tip others, like D6. A counter whose neighbours are mostly its own colour has no reason to move, so one-colour blocks tend to stay and grow.</li>
+</ol>
+<p><b>Stretch.</b> (a) No. Square 2 still moves to 11. Square 6 again has nowhere to go. Square 8 now moves to 5, not 2, and then 6 moves to 8. It stops after 3 moves with orange on 1, 3, 4, 5, 7 and blue on 8 to 12. Nobody is unhappy, and 12 of 14 pairs are alike, not 14. The order changes the details. On the grid we tried four orders (first or last unhappy counter, first or last good square). The alike pairs ended at 63%, 68%, 72% and 81%, all up from 49%. (b) It shows that mild wishes are <i>enough</i>, in a model, to produce a strongly divided pattern. So a divided town does not prove its people want division. It does not show that this is what happened in any real town. Real people cannot move freely, and prices, incomes, laws, unfair treatment and history all matter. The model leaves all of those out.</p>
+</section>
+
+<div class="sheet-nav"><a href="c18-parallel-parking.html">← Previous</a><a href="c20-weather-runs.html">Next: Will tomorrow be like today? →</a></div>
+</main>
+
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

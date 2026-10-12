@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Gradient descent · Infinity Club</title>
+<title>Gradient descent · Math Detours</title>
 <meta name="description" content="Follow the slope downhill in small steps. How a machine finds the bottom of a bowl it cannot see, why the step size matters, and the exact threshold where it overshoots and diverges.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
@@ -11,7 +11,7 @@
 </head>
 <body>
 <nav class="top">
-  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
   <a href="../index.html">Grade 12</a>
   <a href="../index.html#sheets">Sheets</a>
   <a href="../../demos/index.html">Demos</a>
@@ -23,7 +23,7 @@
 
 <main class="paper">
 <header class="sheet-head">
-  <div class="kicker">Infinity Club · Grade 12 · Around the corner · 9</div>
+  <div class="kicker">Math Detours · Grade 12 · Around the corner · 9</div>
   <h1>Gradient descent</h1>
   <p class="teaser">Follow the slope downhill in small steps. How a machine finds the bottom of a bowl it cannot see, and when it overshoots.</p>
   <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
@@ -60,7 +60,7 @@
 <p>The factors are \(1 - 0.6 = 0.4\) for \(x\) and \(1 - 1.8 = -0.8\) for \(y\). So</p>
 <p>\[(4, 1) \to (1.6, -0.8) \to (0.64, 0.64) \to (0.256, -0.512) \to (0.1024, 0.4096).\]</p>
 <p>The \(x\)-coordinate drops fast; the \(y\)-coordinate flips sign every step and loses only 20%. That is the zig-zag in the figure. Now nudge \(\eta\) to \(0.34\): the \(y\)-factor becomes \(-1.04\) and the \(y\) values run \(1, -1.04, 1.08, -1.12, \dots\), growing without end while \(x\) still converges. The method has diverged, and the only cure is a smaller step.</p>
-<p class="small">Click a start point and drag the step size: <a href="../../demos/gradient.html">infinityclub.net/demos/gradient.html</a>.</p>
+<p class="small">Click a start point and drag the step size: <a href="../../demos/gradient.html">mathdetours.com/demos/gradient.html</a>.</p>
 </section>
 
 <section class="exercises">
@@ -93,7 +93,7 @@
 <div class="sheet-nav"><a href="b8-least-squares.html">← Previous</a><a href="b10-neuron.html">Next: A neuron is a dot product and a threshold →</a></div>
 </main>
 
-<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
 <script defer src="../../assets/site.js"></script>

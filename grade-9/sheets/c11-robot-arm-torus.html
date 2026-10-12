@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A robot arm lives on a doughnut · Math Detours</title>
+<meta name="description" content="A flat robot arm with two fully spinning joints is described by two angles. Plot the angles in a square, glue the opposite edges, and every arm position becomes a point on a doughnut. Then find where the hand can reach, and which spots it can reach in only one way.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
+  <a href="../index.html">Grade 9</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Math Detours · Grade 9 · Connections · 11</div>
+  <h1>A robot arm lives on a doughnut</h1>
+  <p class="teaser">A robot arm with two spinning joints is described by two angles. Plot them in a square, glue the opposite edges, and every position of the arm becomes a point on a doughnut.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A robot arm lies flat on a table. Its upper arm is 3 long and its forearm is 2 long. The <b>shoulder angle</b> \(A\) is measured anticlockwise from east. The <b>elbow angle</b> \(B\) is how far the forearm turns anticlockwise from the line of the upper arm, so \(B = 0^\circ\) is a straight arm.</p>
+<figure><svg viewBox="0 32 450 164" width="450" height="164" role="img" aria-label="Left: a robot arm. From the shoulder a dashed line points east. The upper arm, 3 long, rises at angle A from that line to the elbow. A dashed line continues the upper arm past the elbow, and the forearm, 2 long, turns by angle B from it up to the hand. Right: a square with shoulder angle A from 0 to 360 degrees across and elbow angle B from 0 to 360 degrees up. The left and right edges are blue, the top and bottom edges are orange. Four points are marked: P at 30, 60; Q at 90, 90; R at 270, 350 near the top edge; and R dash at 270, 10 near the bottom edge" font-family="Nunito, sans-serif" font-size="12">
+<line x1="50" y1="165" x2="150" y2="165" stroke="#999" stroke-width="1.5" stroke-dasharray="4 3"/>
+<line x1="117.5" y1="126" x2="156.5" y2="103.5" stroke="#999" stroke-width="1.5" stroke-dasharray="4 3"/>
+<path d="M80,165 A30,30 0 0 0 76,150" fill="none" stroke="#3f44c9" stroke-width="1.5"/>
+<path d="M134.8,116 A20,20 0 0 0 117.5,106" fill="none" stroke="#f5a524" stroke-width="1.5"/>
+<line x1="50" y1="165" x2="117.5" y2="126" stroke="#1d1f3a" stroke-width="4" stroke-linecap="round"/>
+<line x1="117.5" y1="126" x2="117.5" y2="74" stroke="#1d1f3a" stroke-width="4" stroke-linecap="round"/>
+<circle cx="50" cy="165" r="5" fill="#1d1f3a"/>
+<circle cx="117.5" cy="126" r="4" fill="#fff" stroke="#1d1f3a" stroke-width="2"/>
+<circle cx="117.5" cy="74" r="4" fill="#f5a524" stroke="#1d1f3a" stroke-width="1.5"/>
+<text x="87" y="160" fill="#3f44c9" font-weight="700" font-style="italic">A</text>
+<text x="128" y="103" fill="#f5a524" font-weight="700" font-style="italic">B</text>
+<text x="50" y="184" text-anchor="middle" fill="#1d1f3a">shoulder</text>
+<text x="124" y="143" fill="#1d1f3a">elbow</text>
+<text x="117.5" y="64" text-anchor="middle" fill="#1d1f3a">hand</text>
+<text x="74" y="138" text-anchor="middle" fill="#555">3</text>
+<text x="108" y="100" text-anchor="end" fill="#555">2</text>
+<text x="154" y="169" fill="#999">east</text>
+<line x1="330.0" y1="40.0" x2="330.0" y2="160.0" stroke="#dcdcf5" stroke-width="1"/><line x1="360.0" y1="40.0" x2="360.0" y2="160.0" stroke="#dcdcf5" stroke-width="1"/><line x1="390.0" y1="40.0" x2="390.0" y2="160.0" stroke="#dcdcf5" stroke-width="1"/>
+<line x1="300.0" y1="130.0" x2="420.0" y2="130.0" stroke="#dcdcf5" stroke-width="1"/><line x1="300.0" y1="100.0" x2="420.0" y2="100.0" stroke="#dcdcf5" stroke-width="1"/><line x1="300.0" y1="70.0" x2="420.0" y2="70.0" stroke="#dcdcf5" stroke-width="1"/>
+<line x1="300.0" y1="40.0" x2="420.0" y2="40.0" stroke="#f5a524" stroke-width="2.5"/><line x1="300.0" y1="160.0" x2="420.0" y2="160.0" stroke="#f5a524" stroke-width="2.5"/>
+<line x1="300.0" y1="40.0" x2="300.0" y2="160.0" stroke="#3f44c9" stroke-width="2.5"/><line x1="420.0" y1="40.0" x2="420.0" y2="160.0" stroke="#3f44c9" stroke-width="2.5"/>
+<g fill="#555" font-size="11" text-anchor="middle"><text x="300.0" y="174">0°</text><text x="330.0" y="174">90°</text><text x="360.0" y="174">180°</text><text x="390.0" y="174">270°</text><text x="420.0" y="174">360°</text></g>
+<g fill="#555" font-size="11" text-anchor="end"><text x="294" y="134.0">90°</text><text x="294" y="104.0">180°</text><text x="294" y="74.0">270°</text><text x="294" y="44.0">360°</text></g>
+<text x="360" y="191" text-anchor="middle" fill="#1d1f3a">shoulder angle <tspan font-style="italic">A</tspan></text>
+<text x="258" y="100" text-anchor="middle" fill="#1d1f3a" transform="rotate(-90 258 100)">elbow angle <tspan font-style="italic">B</tspan></text>
+<circle cx="310.0" cy="140.0" r="3.5" fill="#1d1f3a"/><text x="317.0" y="144.0" fill="#1d1f3a" font-weight="700">P</text>
+<circle cx="330.0" cy="130.0" r="3.5" fill="#1d1f3a"/><text x="336.0" y="126.0" fill="#1d1f3a" font-weight="700">Q</text>
+<circle cx="390.0" cy="43.3" r="3.5" fill="#1d1f3a"/><text x="397.0" y="55.3" fill="#1d1f3a" font-weight="700">R</text>
+<circle cx="390.0" cy="156.7" r="3.5" fill="#fff" stroke="#1d1f3a" stroke-width="1.5"/><text x="397.0" y="153.7" fill="#1d1f3a" font-weight="700">R′</text>
+</svg><figcaption>Left: the arm at \(A = 30^\circ\), \(B = 60^\circ\). Right: the angle square. Edges of the same colour are the same arm positions.</figcaption></figure>
+<p>Suppose both joints can spin all the way round, so \(360^\circ\) is the same as \(0^\circ\). Plot \((A, B)\) in a square: every arm position is one point. But the left edge matches the right edge, and the bottom matches the top.</p>
+<p class="callout">Glue top to bottom and the square becomes a tube. Glue the tube's two ends and you get a doughnut. Each point on its surface is one position of the arm.</p>
+<p>This surface is a <b>torus</b>. Studying shapes by how they join up is <b>topology</b>. Engineers use it to plan robot moves, and biologists use it to study knotted DNA.</p>
+<p class="small">This is a model. Many real joints cannot turn all the way round, and here the forearm may pass over the upper arm.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: arm positions as points</h2>
+<p><b>P.</b> The arm in the picture is the point \((30^\circ, 60^\circ)\). Its forearm points along \(A + B = 90^\circ\), north.</p>
+<p><b>Q.</b> The upper arm points north and the forearm points west. North is \(A = 90^\circ\). From north, the forearm has turned \(90^\circ\) anticlockwise to reach west, so \(B = 90^\circ\). The point is \((90^\circ, 90^\circ)\). Put the shoulder at \((0, 0)\), with east along the \(x\)-axis and north along the \(y\)-axis. Then the elbow is at \((0, 3)\) and the hand is 2 to the west of it, at \((-2, 3)\).</p>
+<p><b>R.</b> The upper arm points south, \(A = 270^\circ\), and \(B = 350^\circ\), almost straight. Turn the elbow \(20^\circ\) more: \(350 + 20 = 370\), the same angle as \(10^\circ\). The point hops from R, near the top, to R′, near the bottom, but the arm only moved a little. On the doughnut, R and R′ are close together.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Use the same arm, with the shoulder at \((0, 0)\). Give the point \((A, B)\) and the place of the hand when: (a) the whole arm points east; (b) the upper arm points north and the forearm is folded back along it; (c) the upper arm points west and the forearm points south.<div class="space short"></div></li>
+<li>The arm starts at \((300^\circ, 90^\circ)\). The shoulder turns anticlockwise through \(120^\circ\) while the elbow stays locked. (a) Where does the arm finish? (b) Sketch the path in an angle square. It comes in two pieces. Why did the arm not jump? (c) Now the shoulder stays at \(90^\circ\) and the elbow turns once all the way round. What is this path in the square, and what does the hand draw on the table?<div class="space short"></div></li>
+<li>(a) How far is the hand from the shoulder when \(B = 0^\circ\), when \(B = 180^\circ\), and when \(B = 90^\circ\) (a right angle at the elbow)? (b) Explain why the hand can reach every point whose distance from the shoulder is from 1 to 5, and no other point. (c) Those points make a flat ring on the table. Is the ring the same thing as the doughnut?<div class="space short"></div></li>
+<li>At \((0^\circ, 90^\circ)\) the elbow is at \((3, 0)\) and the hand is at \((3, 2)\). The shoulder, elbow and hand make a triangle. (a) Flip that triangle over the line from the shoulder to the hand. The hand stays put and you get a second arm position. What is its elbow angle \(B\)? (b) Which points on the table can the hand reach with only one arm position? (c) Where are those arm positions in the angle square?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: other arms, other shapes</h2>
+<p>(a) A cheaper arm has a free shoulder, but its elbow only takes angles from \(0^\circ\) to \(150^\circ\). Which part of the square is left, which edges are still glued, and what shape results? (b) Give the first arm a freely spinning wrist, with angle \(C\). What replaces the square, and what is glued to what?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \((0^\circ, 0^\circ)\). The arm is straight, so the hand is at \((5, 0)\). (b) \((90^\circ, 180^\circ)\). The elbow is at \((0, 3)\) and the forearm comes 2 back towards the shoulder, so the hand is at \((0, 1)\). (c) West is \(A = 180^\circ\). Turning anticlockwise from west you reach south after \(90^\circ\), so the point is \((180^\circ, 90^\circ)\). The elbow is at \((-3, 0)\) and the hand is 2 south of it, at \((-3, -2)\).</li>
+<li>(a) \(300 + 120 = 420\), which is the same angle as \(60^\circ\). The arm finishes at \((60^\circ, 90^\circ)\). (b) A level line from \((300^\circ, 90^\circ)\) to the right edge, then a level line from the left edge at the same height to \((60^\circ, 90^\circ)\). The right edge is \(A = 360^\circ\) and the left edge is \(A = 0^\circ\), which are the same arm positions. On the doughnut the two pieces join into one unbroken path. (c) A vertical line at \(A = 90^\circ\) from the bottom edge to the top edge. Top and bottom are the same position, so on the doughnut it is a closed loop. The elbow stays at \((0, 3)\), so the hand draws a circle of radius 2 around \((0, 3)\).</li>
+<li>(a) Straight arm: \(3 + 2 = 5\). Folded arm: \(3 - 2 = 1\). Right angle: by Pythagoras, \(\sqrt{3^2 + 2^2} = \sqrt{13} \approx 3.61\). (b) The straight line from shoulder to hand is never longer than the route through the elbow, so the distance is at most 5. The upper arm, 3 long, is itself a straight line from shoulder to elbow, so it is never longer than the route through the hand: \(3 \le \text{distance} + 2\), and the distance is at least 1. As the elbow opens from \(180^\circ\) to \(0^\circ\) the distance grows steadily from 1 to 5, so it takes every value in between. Then turn the shoulder to aim that distance in any direction. (c) No. The ring shows where the hand can be. It is flat and has two edges, the circles of radius 1 and 5. The doughnut records whole arm positions and has no edge. Exercise 4 shows that most points of the ring come from two points of the doughnut.</li>
+<li>(a) The flip turns a \(90^\circ\) bend to the left into a \(90^\circ\) bend to the right, which is \(B = 360^\circ - 90^\circ = 270^\circ\). (The new shoulder angle is about \(67^\circ\), and the new elbow is at \(\left(\tfrac{15}{13}, \tfrac{36}{13}\right)\).) (b) The flip gives a new position unless the triangle is flat, which means the arm is straight or folded. So the points reached in only one way are those on the outer circle, 5 from the shoulder, and on the inner circle, 1 from the shoulder. Every point between the circles is reached in exactly two ways, elbow to one side or the other. (c) Straight is \(B = 0^\circ\), the bottom edge (which is also the top edge). Folded is \(B = 180^\circ\), the level line across the middle. On the doughnut each of these is a circle.</li>
+</ol>
+<p><b>Stretch.</b> (a) The strip of the square from \(B = 0^\circ\) up to \(B = 150^\circ\). Its left and right ends are still glued, because the shoulder still spins freely. Its bottom and top are different arm positions, so they are not glued. The shape is a tube (a cylinder) with two open rims. If the shoulder were limited as well, nothing would be glued and the shape would be a plain rectangle. (b) Three angles \((A, B, C)\) make a point in a cube. Each face of the cube is glued to the opposite face, because \(360^\circ\) is the same as \(0^\circ\) for each angle. The result is called a three-dimensional torus. Unlike the doughnut, it cannot be built in ordinary space, but you can still work with it: it is just three angles, each wrapping round.</p>
+</section>
+
+<div class="sheet-nav"><a href="c10-gps-relativity.html">← Previous</a><a href="c12-spinning-skater.html">Next: Why the skater spins faster →</a></div>
+</main>
+
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

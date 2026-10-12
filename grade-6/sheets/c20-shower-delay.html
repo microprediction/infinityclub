@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why is the shower too hot, then too cold? · Math Detours</title>
+<meta name="description" content="A step-by-step model of a shower knob where you feel the water a few seconds late. Fill in the tables and see how a delay plus a strong reaction makes the temperature swing.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
+  <a href="../index.html">Grade 6</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Math Detours · Grade 6 · Connections · 20</div>
+  <h1>Why is the shower too hot, then too cold?</h1>
+  <p class="teaser">You turn the shower hotter, but the water takes a few seconds to reach you. So you turn it more, and then it is far too hot. A delay plus a strong reaction makes things swing.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>When you turn the shower knob, nothing changes at first: the new water is still in the pipe. You are in a <b>feedback loop</b>. You feel the water, compare it with what you want, and act. That changes what you feel later.</p>
+<figure>
+<svg viewBox="0 0 520 86" width="520" height="86" role="img" aria-label="A loop of three boxes. The first box says You: compare with 40. An arrow labelled turn goes to a box labelled Knob. An arrow labelled water goes to a box labelled Pipe (delay). A line returns from the pipe box back to the first box, labelled what you feel, a few steps late." font-family="Nunito, sans-serif">
+<rect x="20" y="10" width="150" height="32" rx="6" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="2"/>
+<rect x="220" y="10" width="100" height="32" rx="6" fill="#fde8c4" stroke="#1d1f3a" stroke-width="2"/>
+<rect x="370" y="10" width="130" height="32" rx="6" fill="#fde8c4" stroke="#1d1f3a" stroke-width="2"/>
+<text x="95" y="31" font-size="13" text-anchor="middle" fill="#1d1f3a">You: compare with 40</text>
+<text x="270" y="31" font-size="13" text-anchor="middle" fill="#1d1f3a">Knob</text>
+<text x="435" y="31" font-size="13" text-anchor="middle" fill="#1d1f3a">Pipe (delay)</text>
+<line x1="170" y1="26" x2="212" y2="26" stroke="#3f44c9" stroke-width="2"/><polygon points="220,26 211,21 211,31" fill="#3f44c9"/>
+<line x1="320" y1="26" x2="362" y2="26" stroke="#3f44c9" stroke-width="2"/><polygon points="370,26 361,21 361,31" fill="#3f44c9"/>
+<text x="194" y="18" font-size="11" text-anchor="middle" fill="#555">turn</text>
+<text x="344" y="18" font-size="11" text-anchor="middle" fill="#555">water</text>
+<polyline points="435,42 435,62 95,62 95,50" fill="none" stroke="#3f44c9" stroke-width="2"/><polygon points="95,42 90,51 100,51" fill="#3f44c9"/>
+<text x="265" y="79" font-size="13" text-anchor="middle" fill="#3f44c9">what you feel, a few steps late</text>
+</svg>
+</figure>
+<p class="callout">With a <b>delay</b> in the loop, you react to old news. React strongly to old news and you <b>overshoot</b>: past the target, then back past it the other way.</p>
+<p>Tonight's simplified model: time moves in steps. The knob number is the temperature, in degrees Celsius, of the water entering the pipe (real knobs are not marked like that). You want 40. At each step you turn the knob by a fixed fraction of (40 minus what you feel).</p>
+</section>
+
+<section class="example">
+<h2>Watch one: no delay, then a delay of one step</h2>
+<p>The knob has been at 24 for a while. You react by <b>one half</b> of the difference. <b>With no delay</b> you feel 24, the difference is \(40 - 24 = 16\), and you turn up by 8, to 32. Next you turn up by 4. The knob goes 24, 32, 36, 38, 39, 39.5. The gap halves at every step and you never go past 40.</p>
+<p><b>With a delay of one step</b> you feel what the knob was one step ago. At step 0 that is still 24.</p>
+<table>
+<tr><th>Step</th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td></tr>
+<tr><th>Knob</th><td>24</td><td>32</td><td>40</td><td>44</td><td>44</td><td>42</td><td>40</td><td>39</td><td>39</td></tr>
+<tr><th>You feel</th><td>24</td><td>24</td><td>32</td><td>40</td><td>44</td><td>44</td><td>42</td><td>40</td><td>39</td></tr>
+<tr><th>Turn by</th><td>\(+8\)</td><td>\(+8\)</td><td>\(+4\)</td><td>\(0\)</td><td>\(-2\)</td><td>\(-2\)</td><td>\(-1\)</td><td>\(0\)</td><td>\(+0.5\)</td></tr>
+</table>
+<p>Each "You feel" is the knob one column to the left. Each new knob is the old knob plus "Turn by". At step 2 the knob is exactly right, but you still feel 32, so you turn up 4 more. The knob reaches 44, an <b>overshoot</b> of 4 degrees, then dips to 39. Later swings get smaller and the knob settles at 40.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<p>Every time, the knob starts at 24 and you want 40. Make a table like the one above for steps 0 to 8.</p>
+<ol>
+<li><b>Delay of two steps</b>, react by one half. Now you feel the knob from two steps ago, so at steps 0 and 1 you feel 24. What is the highest knob setting, and how big is the overshoot?<div class="space"></div></li>
+<li>Keep the delay of two steps, but react more gently: turn by <b>one quarter</b> of the difference. How big is the overshoot now?<div class="space"></div></li>
+<li>Go back to a <b>delay of one step</b>, but react by the <b>whole</b> difference. Describe what the knob does. Will it ever settle at 40?<div class="space short"></div></li>
+<li><b>Delay of two steps</b>, react by the whole difference. What are the highest and lowest knob settings up to step 8? What does that tell you about the model?<div class="space"></div></li>
+<li>In your own words: why does a delay together with a strong reaction make the temperature swing? Give two different ways to calm the swings.<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the patient showerer</h2>
+<p>Delay of two steps, react by one half. This time you only turn the knob at steps 0, 3, 6 and 9, and keep your hand off it in between. (a) Find the knob for steps 0 to 10. Any overshoot? (b) Compare with the no-delay numbers in the worked example. What does patience cost? (c) Name another feedback loop with a delay. What is measured, what is the action, where is the delay?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Knob: 24, 32, 40, 48, 52, 52, 48, 42, 36. You feel: 24, 24, 24, 32, 40, 48, 52, 52, 48. For three steps you feel 24 and turn up by 8 each time, so you sail past 40 before any news arrives. The highest setting is <b>52</b>, an overshoot of <b>12 degrees</b>. With a delay of one step it was only 4. Then the knob swings back below 40: it is 36 at step 8 and falls to 31 at step 10. The swings do shrink, slowly.</li>
+<li>Knob: 24, 28, 32, 36, 39, 41, 42, 42.25, 42. You feel: 24, 24, 24, 28, 32, 36, 39, 41, 42. The highest setting is <b>42.25</b>, an overshoot of only <b>2.25 degrees</b>. Same delay, gentler reaction, much smaller swing. The price is speed: you are still at 36 at step 3.</li>
+<li>Knob: 24, 40, 56, 56, 40, 24, 24, 40, 56. You feel: 24, 24, 40, 56, 56, 40, 24, 24, 40. At steps 5 and 6 the knob is 24 and you feel 24, exactly as at the start, so everything repeats. The knob goes round 24, 40, 56, 56, 40, 24 <b>for ever</b> and never settles. The swings neither shrink nor grow.</li>
+<li>Knob: 24, 40, 56, 72, 72, 56, 24, \(-8\), \(-24\). You feel: 24, 24, 24, 40, 56, 72, 72, 56, 24. Highest <b>72</b>, lowest <b>\(-24\)</b>. The first swing went 32 above 40 and the next goes 64 below, so the swings are <b>growing</b>. A shower cannot be colder than the cold tap or hotter than the hot tank, so the model has stopped describing a real shower. It still tells you something true: this way of reacting never settles at 40.</li>
+<li>Because of the delay, what you feel is old news. While you wait, a strong reaction keeps adding big turns, and all of them arrive later, after the knob is already right. So you go past the target, and then you do the same in the other direction. To calm it, <b>react less</b> (exercise 2) or <b>wait</b> for the news to arrive before turning again (the stretch). Whether the swings shrink, repeat or grow depends on both the delay and the strength of the reaction.</li>
+</ol>
+<p><b>Stretch.</b> (a) Knob: 24, 32, 32, 32, 36, 36, 36, 38, 38, 38, 39. At step 3 you feel the knob from step 1, which already includes your last turn, so you are never fooled. <b>No overshoot.</b> (b) The knob takes the same values as with no delay, 32, 36, 38, 39, but each one takes three steps where it used to take one. Patience costs time. (c) Many answers. A room heater with a thermostat: the thermostat measures the air, the action is heater on or off, and the delay is that the heater stays hot for a while after it is switched off, so the room can overshoot. A shop ordering stock: it counts the shelf, orders more, and the delivery comes days later, so it can end up with far too much. Rules like tonight's, where the next change depends on the past and not only on now, are called delay equations.</p>
+</section>
+
+<div class="sheet-nav"><a href="c19-sandpile-angle.html">← Previous</a><a href="c21-spoon-and-wing.html">Next: Why does a spoon get pulled into a tap stream? →</a></div>
+</main>
+
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>
