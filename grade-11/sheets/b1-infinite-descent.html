@@ -46,20 +46,19 @@
 <p>Now \(a^2 + b^2\) is a multiple of 3. The two remainders are each 0 or 1, and \(0 + 1\) and \(1 + 1\) are not multiples of 3. So both are 0: \(a = 3A\) and \(b = 3B\). Substitute:</p>
 <p>\[9A^2 + 9B^2 = 3c^2 \quad\Longrightarrow\quad c^2 = 3(A^2 + B^2).\]</p>
 <p>So \(c^2\) is a multiple of 3, hence \(c = 3C\). Divide by 9: \(A^2 + B^2 = 3C^2\). A new solution, with \(C = c/3\) a whole number and \(1 \le C \lt c\). Repeat, and \(c\) falls for ever.</p>
-<figure><svg viewBox="0 0 380 128" width="380" height="128" role="img" aria-label="Four bars of heights c, c over 3, c over 9 and c over 27. The last bar falls below a dashed line marking 1, the smallest positive whole number." font-family="Nunito, sans-serif" font-size="13">
+<figure><svg viewBox="0 0 380 128" width="380" height="128" role="img" aria-label="Bars of heights c, c over 3 and c over 9, then a gap for more rounds, then a bar of height c over 3 to the power m, where 3 to the power m is more than c. That last bar falls below a dashed line marking 1, the smallest positive whole number." font-family="Nunito, sans-serif" font-size="13">
 <line x1="20" y1="106" x2="370" y2="106" stroke="#000" stroke-width="1.2"/>
 <rect x="40" y="16" width="34" height="90" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><text x="57" y="122" text-anchor="middle">c</text>
 <text x="88" y="65" text-anchor="middle" fill="#3f44c9" font-size="12">÷3</text>
 <rect x="102" y="76" width="34" height="30" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><text x="119" y="122" text-anchor="middle">c/3</text>
 <text x="150" y="92" text-anchor="middle" fill="#3f44c9" font-size="12">÷3</text>
 <rect x="164" y="96" width="34" height="10" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/><text x="181" y="122" text-anchor="middle">c/9</text>
-<text x="212" y="92" text-anchor="middle" fill="#3f44c9" font-size="12">÷3</text>
-<rect x="226" y="102.7" width="34" height="3.3" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/><text x="243" y="122" text-anchor="middle" fill="#b87400">c/27</text>
+<text x="212" y="92" text-anchor="middle">…</text>
+<rect x="226" y="102.7" width="34" height="3.3" fill="#fde8c4" stroke="#f5a524" stroke-width="1.5"/><text x="243" y="122" text-anchor="middle" fill="#b87400">c/3<tspan dy="-5" font-size="10">m</tspan></text>
 <line x1="20" y1="98" x2="370" y2="98" stroke="#999" stroke-width="1" stroke-dasharray="4 3"/>
 <text x="368" y="56" text-anchor="end" font-size="12" fill="#555">dashed line: height 1</text>
 <text x="368" y="71" text-anchor="end" font-size="12" fill="#555">no positive whole number is below it</text>
-<text x="300" y="122" text-anchor="middle">…</text>
-</svg><figcaption>Each round divides \(c\) by 3, yet every round must give a positive whole number.</figcaption></figure>
+</svg><figcaption>Each round divides \(c\) by 3, so after enough rounds (\(m\) of them, with \(3^m \gt c\)) the result is below 1. Yet every round must give a positive whole number.</figcaption></figure>
 </section>
 
 <section class="exercises">
