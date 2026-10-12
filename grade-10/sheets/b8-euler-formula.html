@@ -58,7 +58,7 @@
 <li>Write each as \(a + bi\): \(e^{i\pi/2}\), \(e^{i\pi}\), \(e^{2\pi i}\), \(e^{i\pi/4}\), \(e^{-i\pi/2}\).<div class="space short"></div></li>
 <li>Multiply \(e^{i\theta}\) by \(e^{-i\theta}\) in two ways: as exponentials, and as \((\cos\theta + i\sin\theta)(\cos\theta - i\sin\theta)\). What identity drops out, and why does it say \(e^{i\theta}\) always lies on the unit circle?<div class="space short"></div></li>
 <li>Square Euler's formula: \((e^{i\theta})^2 = e^{2i\theta}\). Expand the left side and compare parts to get formulas for \(\cos2\theta\) and \(\sin2\theta\). Then show \(\cos2\theta = 2\cos^2\theta - 1\).<div class="space"></div></li>
-<li>What is \(i^i\)? Write \(i = e^{i\pi/2}\) and use \((e^a)^b = e^{ab}\). Is the answer real, imaginary or complex? Evaluate it to 4 decimal places.<div class="space short"></div></li>
+<li>What is \(i^i\)? A complex power is defined by \(z^w = e^{w \log z}\), and since \(i = e^{i\pi/2}\) the usual choice is \(\log i = i\pi/2\). Is the answer real, imaginary or complex? Evaluate it to 4 decimal places.<div class="space short"></div></li>
 </ol>
 <p class="small">Drag \(z = e^{i\theta}\) round the unit circle at <a href="../../demos/complex.html">mathdetours.com/demos/complex.html</a>.</p>
 </section>
@@ -75,7 +75,7 @@
 <li>\(e^{i\pi/2} = i\). \(e^{i\pi} = -1\). \(e^{2\pi i} = 1\). \(e^{i\pi/4} = \tfrac{\sqrt2}{2} + \tfrac{\sqrt2}{2}i \approx 0.7071 + 0.7071i\). \(e^{-i\pi/2} = -i\).</li>
 <li>As exponentials: \(e^0 = 1\). As brackets: \(\cos^2\theta - i^2\sin^2\theta = \cos^2\theta + \sin^2\theta\). So \(\cos^2\theta + \sin^2\theta = 1\): the modulus of \(e^{i\theta}\) is 1, so the point is always at distance 1 from the origin.</li>
 <li>\((\cos\theta + i\sin\theta)^2 = \cos^2\theta - \sin^2\theta + 2i\sin\theta\cos\theta\). So \(\cos2\theta = \cos^2\theta - \sin^2\theta\) and \(\sin2\theta = 2\sin\theta\cos\theta\). With \(\sin^2\theta = 1 - \cos^2\theta\): \(\cos2\theta = 2\cos^2\theta - 1\).</li>
-<li>\(i^i = (e^{i\pi/2})^i = e^{-\pi/2} \approx 0.2079\). A real number. (Strictly \(i = e^{i(\pi/2 + 2\pi k)}\) too, giving other real values; \(0.2079\) is the principal one.)</li>
+<li>\(i^i = e^{i \cdot i\pi/2} = e^{-\pi/2} \approx 0.2079\). A real number. (The angles \(\pi/2 + 2\pi k\) also give \(i\), and they give other real values; \(0.2079\) is the principal one. The rule \((e^a)^b = e^{ab}\) is only safe when \(b\) is a whole number.)</li>
 </ol>
 <p><b>Stretch.</b> The real part of \((c + is)^3\) is \(c^3 - 3cs^2\), so \(\cos3\theta = \cos^3\theta - 3\cos\theta(1 - \cos^2\theta) = 4\cos^3\theta - 3\cos\theta\). With \(x = \cos20°\) and \(\cos60° = \tfrac12\): \(\tfrac12 = 4x^3 - 3x\), so \(8x^3 - 6x - 1 = 0\). At \(x = 0.9397\): \(8(0.8298) - 5.638 - 1 \approx 0.000\). The only rational candidates are \(\pm1, \pm\tfrac12, \pm\tfrac14, \pm\tfrac18\), and none works. Every ruler-and-compass length comes from square roots, and such a number is never a root of a rational cubic with no rational root. So \(\cos20°\) is not constructible, and 60° cannot be trisected. (That last step is a theorem from a later course.)</p>
 </section>
