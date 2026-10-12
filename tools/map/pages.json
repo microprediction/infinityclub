@@ -332,6 +332,7 @@
   "grade-10/sheets/b33-cantor-set.html": [{"code": "54F", "level": "core"}],
   "grade-10/sheets/b34-hyperbola-family.html": [{"code": "14D", "level": "core"}, {"code": "14B", "level": "touch"}],
   "grade-10/sheets/b35-rows-or-columns.html": [{"code": "40B", "level": "core"}],
+  "grade-10/sheets/b36-shift-machine.html": [{"code": "47B", "level": "core"}, {"code": "20M", "level": "touch"}],
   "grade-10/sheets/c1-harmonics.html": [{"code": "42A", "level": "core"}, {"code": "00A", "level": "touch"}],
   "grade-10/sheets/c2-kepler.html": [{"code": "85A", "level": "core"}, {"code": "70F", "level": "touch"}],
   "grade-10/sheets/c3-projectiles.html": [{"code": "70B", "level": "core"}, {"code": "26A", "level": "touch"}, {"code": "85A", "level": "touch"}],
