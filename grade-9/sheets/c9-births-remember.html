@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Births that remember · Infinity Club</title>
+<meta name="description" content="A model population where this year's births depend on the births of the last three years. Build the table year by year, watch the growth ratio settle near 1.23, and find the cubic it solves.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 9</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 9 · Connections · 9</div>
+  <h1>Births that remember</h1>
+  <p class="teaser">If animals have babies at ages 1, 2 and 3, this year's births depend on everyone born in the last three years. The present remembers the past, and you can build the future one year at a time.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Here is a model of an animal population. Babies arrive once a year, in spring. An animal has babies in the springs when it is aged 1, 2 and 3, on average half a baby each time (picture half the animals being female, with one baby each).</p>
+<p>Write \(B(t)\) for the number born in year \(t\). The parents in year \(t\) are the animals born 1, 2 and 3 years earlier.</p>
+<p class="callout">\(B(t) = 0.5 \times \big(B(t-1) + B(t-2) + B(t-3)\big)\)</p>
+<p>The rule looks only backwards. Nothing in it needs the future, so from the start you can work out every later year in turn. The population has a <b>memory</b> three years long.</p>
+<p>When time runs smoothly instead of in yearly steps, the sum becomes an integral over the past. Such equations are named after the mathematician Vito Volterra, and they are solved the same way: forward, one small step at a time.</p>
+<p class="small">This is an idealisation. It works with averages, so half animals can appear, and real births vary.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: 1024 founders</h2>
+<p>In year 0, 1024 newborn animals are released on an empty island. So \(B(0) = 1024\), and \(B\) is 0 for every year before that.</p>
+<p>Year 1: only the founders are old enough. \(B(1) = 0.5 \times (1024 + 0 + 0) = 512\).</p>
+<p>Year 2: \(B(2) = 0.5 \times (512 + 1024 + 0) = 768\).</p>
+<p>Year 3: \(B(3) = 0.5 \times (768 + 512 + 1024) = 1152\).</p>
+<p>Year 4: the founders are now 4 and drop out of the sum. \(B(4) = 0.5 \times (1152 + 768 + 512) = 1216\).</p>
+<table class="tt">
+<tr><th>Year \(t\)</th><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+<tr><th>Births \(B(t)\)</th><td>1024</td><td>512</td><td>768</td><td>1152</td><td>1216</td></tr>
+</table>
+<p>The start is bumpy: down, up, up, then hardly any change. The exercises show what happens next.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Continue the table to year 10. Every answer is a whole number.<div class="space"></div></li>
+<li>(a) For each year from 5 to 10, divide the births by the births the year before, to 2 decimal places. What number do the ratios settle near? (b) Suppose every animal dies after its third spring of babies. Then the animals alive just after the births of year \(t\) number \(A(t) = B(t) + B(t-1) + B(t-2) + B(t-3)\). Find \(A(9)\) and \(A(10)\), and check that the change \(A(10) - A(9)\) equals \(B(10) - B(6)\). Why should it?<div class="space"></div></li>
+<li>Change 0.5 to \(\tfrac13\) and start with 729 founders, so \(B(t) = \tfrac13\big(B(t-1) + B(t-2) + B(t-3)\big)\) and \(B(0) = 729\). (a) Find the births in years 1 to 6. (b) Is this population growing? (c) How many babies does one animal have in its whole life, on average, under this rule? Under the first rule?<div class="space"></div></li>
+<li>Go back to 0.5 and 1024 founders, but now animals have babies only at ages 1 and 2: \(B(t) = 0.5 \times \big(B(t-1) + B(t-2)\big)\). (a) Find the births in years 1 to 10. (b) Write down the change from each year to the next. What is the pattern? (c) What do the births seem to settle towards?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: where 1.23 comes from</h2>
+<p>(a) Suppose that, after many years, the births in the first model are multiplied by the same number \(r\) every year. Use the rule to show that \(r^3 = 0.5\,(r^2 + r + 1)\). Test \(r = 1.23\) and \(r = 1.24\) to show that \(r\) lies between them. (b) Do the same for the rule in exercise 4. Solve the equation you get. What do its two solutions tell you?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(B(5) = 0.5 \times (1216 + 1152 + 768) = 1568\). Then 1968, 2376, 2956, 3650 and \(B(10) = 0.5 \times (3650 + 2956 + 2376) = 4491\). Year 11 would be 5548.5: the model deals in averages.</li>
+<li>(a) 1.29, 1.26, 1.21, 1.24, 1.23, 1.23. The ratios swing above and below and settle near 1.23, so in the long run births grow by about 23% a year. (b) \(A(9) = 3650 + 2956 + 2376 + 1968 = 10\,950\) and \(A(10) = 4491 + 3650 + 2956 + 2376 = 13\,473\). The change is 2523, and \(B(10) - B(6) = 4491 - 1968 = 2523\). From one year to the next the population gains the newborns, \(B(10)\), and loses the animals that turned 4, who were born in year 6. The rate of change of \(A\) needs the births of four years ago: a rate with a memory. (With smooth time, equations that mix a rate of change with an integral over the past are called integro-differential.)</li>
+<li>(a) 243, 324, 432, 333, 363, 376. (b) No. After the bumpy start the births hover around 365, about half the founders, and if you carry on they stay there: 357.3, 365.4, 366.3, ... (c) \(3 \times \tfrac13 = 1\) baby, so each animal exactly replaces itself and the population levels off. Under the first rule it is \(3 \times 0.5 = 1.5\) babies, more than a replacement, so the population grows.</li>
+<li>(a) 512, 768, 640, 704, 672, 688, 680, 684, 682, 683. (b) \(-512, +256, -128, +64, -32, +16, -8, +4, -2, +1\). Each change is half the size of the one before, with the opposite sign. (c) The swings shrink towards 0 and the births settle at \(682\tfrac23\), which is two thirds of 1024. Each animal now has \(2 \times 0.5 = 1\) baby in its life, so again the population only replaces itself.</li>
+</ol>
+<p><b>Stretch.</b> (a) If three years ago there were \(b\) births, then the years since had \(br\), \(br^2\) and now \(br^3\). The rule says \(br^3 = 0.5\,(br^2 + br + b)\). Divide by \(b\). At \(r = 1.23\): \(r^3 \approx 1.861\) and \(0.5\,(r^2 + r + 1) \approx 1.871\), so the left side is too small. At \(r = 1.24\): \(1.907\) against \(1.889\), too big. So the two sides are equal somewhere in between, at \(r \approx 1.234\). (b) \(r^2 = 0.5\,(r + 1)\), so \(2r^2 - r - 1 = 0\), which factors as \((2r + 1)(r - 1) = 0\). The solutions are \(r = 1\) and \(r = -\tfrac12\). The first says the births can stay level. The second is the pattern in the changes: multiplied by \(-\tfrac12\) each year, they halve and flip sign.</p>
+</section>
+
+<div class="sheet-nav"><a href="c8-f-stops.html">← Previous</a><a href="../index.html#sheets">← All sheets</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>
