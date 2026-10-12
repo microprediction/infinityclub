@@ -264,6 +264,7 @@
   "grade-9/sheets/b25-calculator-errors.html": [{"code": "65P", "level": "core"}, {"code": "65Q", "level": "core"}, {"code": "68V", "level": "touch"}],
   "grade-9/sheets/b26-computing-e.html": [{"code": "33F", "level": "core"}],
   "grade-9/sheets/b27-grid-or-tree.html": [{"code": "20F", "level": "core"}, {"code": "16Z", "level": "core"}],
+  "grade-9/sheets/b28-maximum-on-edge.html": [{"code": "35A", "level": "core"}, {"code": "35B", "level": "core"}],
   "grade-9/sheets/c1-rule-of-72.html": [{"code": "91G", "level": "core"}, {"code": "26A", "level": "touch"}],
   "grade-9/sheets/c2-half-life.html": [{"code": "92C", "level": "core"}, {"code": "39A", "level": "touch"}],
   "grade-9/sheets/c3-arches-and-cables.html": [{"code": "51N", "level": "core"}, {"code": "70C", "level": "touch"}, {"code": "74K", "level": "touch"}],
