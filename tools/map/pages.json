@@ -242,6 +242,7 @@
   "grade-8/sheets/b36-stop-at-ten.html": [{"code": "49M", "level": "core"}],
   "grade-8/sheets/b37-two-clocks.html": [{"code": "20K", "level": "core"}, {"code": "16U", "level": "core"}],
   "grade-8/sheets/b38-undoable-functions.html": [{"code": "18B", "level": "core"}, {"code": "20M", "level": "core"}],
+  "grade-8/sheets/b39-walker-chances.html": [{"code": "31C", "level": "core"}],
   "grade-8/sheets/b40-jam.html": [{"code": "91A", "level": "core"}, {"code": "05B", "level": "touch"}],
   "grade-8/sheets/c1-check-digits.html": [{"code": "94B", "level": "core"}, {"code": "11A", "level": "touch"}],
   "grade-8/sheets/c2-simpson.html": [{"code": "62P", "level": "core"}, {"code": "62A", "level": "touch"}, {"code": "11A", "level": "touch"}],
