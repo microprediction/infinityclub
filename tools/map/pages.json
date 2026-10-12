@@ -343,6 +343,7 @@
   "grade-10/sheets/b36-shift-machine.html": [{"code": "47B", "level": "core"}, {"code": "20M", "level": "touch"}],
   "grade-10/sheets/b37-shuffles-mix.html": [{"code": "60B", "level": "core"}, {"code": "20P", "level": "touch"}],
   "grade-10/sheets/b38-time-and-space-averages.html": [{"code": "37A", "level": "core"}, {"code": "28D", "level": "core"}],
+  "grade-10/sheets/b39-turns-dont-commute.html": [{"code": "22A", "level": "core"}, {"code": "22E", "level": "core"}],
   "grade-10/sheets/c1-harmonics.html": [{"code": "42A", "level": "core"}, {"code": "00A", "level": "touch"}],
   "grade-10/sheets/c2-kepler.html": [{"code": "85A", "level": "core"}, {"code": "70F", "level": "touch"}],
   "grade-10/sheets/c3-projectiles.html": [{"code": "70B", "level": "core"}, {"code": "26A", "level": "touch"}, {"code": "85A", "level": "touch"}],
