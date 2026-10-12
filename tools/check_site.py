@@ -12,6 +12,8 @@ ids = {f: set(re.findall(r'id="([^"]+)"', open(f, encoding='utf-8').read())) for
 nlinks = 0
 for f in html:
     s = open(f, encoding='utf-8').read()
+    if re.search(r'infinity ?club', s, re.I):  # the site's former name
+        problems.append('OLD NAME %s still says Infinity Club or infinityclub' % f)
     for href in re.findall(r'href="([^"]+)"', s):
         if href.startswith(('http', 'mailto')):
             continue
