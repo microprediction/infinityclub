@@ -444,6 +444,7 @@
   "grade-12/sheets/b30-cancel-the-error.html": [{"code": "45L", "level": "core"}, {"code": "65B", "level": "core"}],
   "grade-12/sheets/b31-distance-between-functions.html": [{"code": "46E", "level": "core"}, {"code": "46C", "level": "touch"}],
   "grade-12/sheets/b32-grandi-series.html": [{"code": "40C", "level": "core"}, {"code": "40G", "level": "core"}, {"code": "40D", "level": "touch"}],
+  "grade-12/sheets/b33-simulation-drift.html": [{"code": "37M", "level": "core"}, {"code": "37J", "level": "touch"}, {"code": "65L", "level": "touch"}],
   "grade-12/sheets/c1-escape-velocity.html": [{"code": "70F", "level": "core"}, {"code": "85A", "level": "touch"}, {"code": "26A", "level": "touch"}],
   "grade-12/sheets/c2-rocket.html": [{"code": "70P", "level": "core"}, {"code": "34A", "level": "touch"}],
   "grade-12/sheets/c3-options.html": [{"code": "91G", "level": "core"}],
