@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The logistic map and chaos · Infinity Club</title>
+<title>The logistic map and chaos · Math Detours</title>
 <meta name="description" content="Iterate x to r x (1 minus x) by hand: a steady population, then a two-cycle, then a four-cycle, then chaos, and the Feigenbaum constant that shows up everywhere.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
@@ -16,7 +16,7 @@ table.iter td.blank { min-width: 4.5em; }
 </head>
 <body>
 <nav class="top">
-  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
   <a href="../index.html">Grade 10</a>
   <a href="../index.html#sheets">Sheets</a>
   <a href="../../demos/index.html">Demos</a>
@@ -28,7 +28,7 @@ table.iter td.blank { min-width: 4.5em; }
 
 <main class="paper">
 <header class="sheet-head">
-  <div class="kicker">Infinity Club · Grade 10 · Around the corner · 24</div>
+  <div class="kicker">Math Detours · Grade 10 · Around the corner · 24</div>
   <h1>The logistic map and chaos</h1>
   <p class="teaser">x → r x (1 − x). Steady, then periodic, then chaos, and a constant that shows up everywhere.</p>
   <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
@@ -42,7 +42,7 @@ table.iter td.blank { min-width: 4.5em; }
 <p><b>Attract or repel?</b> Fixed points are where the parabola \(f(x) = rx(1-x)\) crosses the line \(y = x\). Near \(x^*\) it is nearly straight, with slope \(m = f'(x^*)\). Start a small distance \(\varepsilon\) from \(x^*\) and one step later you are about \(m\varepsilon\) away. So \(x^*\) attracts when \(|m| \lt 1\) and repels when \(|m| \gt 1\); at \(|m| = 1\) the test says nothing. Here \(f'(x) = r(1 - 2x)\), so \(m = 2 - r\): the fixed point attracts for \(1 \lt r \lt 3\) and repels past 3. Negative \(m\) means overshooting: the sequence alternates sides of \(x^*\).</p>
 <figure><svg viewBox="0 0 230 132" width="230" height="132" role="img" aria-label="Cobweb plot for r equals 2.5: the parabola y equals 2.5 x (1 minus x), the diagonal y equals x, and a staircase from x0 equals 0.2 climbing to the crossing at 0.6"><line x1="30" y1="110" x2="190" y2="110" stroke="#999"/><line x1="30" y1="110" x2="30" y2="12" stroke="#999"/><line x1="30" y1="110" x2="180" y2="18" stroke="#999" stroke-width="1.2"/><polyline points="30.0 110.0 33.8 104.4 37.5 99.1 41.2 94.0 45.0 89.3 48.8 84.8 52.5 80.7 56.2 76.8 60.0 73.2 63.8 69.9 67.5 66.9 71.2 64.1 75.0 61.7 78.8 59.5 82.5 57.7 86.2 56.1 90.0 54.8 93.8 53.8 97.5 53.1 101.2 52.6 105.0 52.5 108.8 52.6 112.5 53.1 116.2 53.8 120.0 54.8 123.8 56.1 127.5 57.7 131.2 59.5 135.0 61.7 138.8 64.1 142.5 66.9 146.2 69.9 150.0 73.2 153.8 76.8 157.5 80.7 161.2 84.8 165.0 89.3 168.8 94.0 172.5 99.1 176.2 104.4 180.0 110.0" fill="none" stroke="#3f44c9" stroke-width="2"/><polyline points="60.0 110 60.0 73.19999999999999 90.0 73.19999999999999 90.0 54.800000000000004 120.0 54.800000000000004" fill="none" stroke="#f5a524" stroke-width="2"/><circle cx="120.0" cy="54.800000000000004" r="3.5" fill="#f5a524"/><g font-family="Nunito, sans-serif" font-size="12" fill="#1d1f3a"><text x="44" y="125">x₀ = 0.2</text><text x="176" y="125">1</text><text x="126" y="49">x* = 0.6</text><text x="142" y="87" fill="#3f44c9">y = 2.5x(1 − x)</text><text x="184" y="22" fill="#555">y = x</text></g></svg><figcaption>Cobweb for \(r = 2.5\): from \(x_0\) go up to the curve, across to the line, repeat. The staircase climbs to the crossing \(x^*\).</figcaption></figure>
 <p><b>Past 3: period doubling.</b> At \(r = 3.2\) the population approaches a <b>2-cycle</b>, \(0.513\) and \(0.799\). At \(r = 3.5\) a <b>4-cycle</b> takes over; then 8, 16, 32, piling up at \(r_\infty \approx 3.5699\). Beyond that, <b>chaos</b>: at \(r = 3.9\) a typical start never settles and nearby starts drift apart. Prediction: bigger \(r\) means more chaotic? Exercise 2 tests it.</p>
-<p><b>The universal constant.</b> Successive gaps between doublings shrink by a factor tending to Feigenbaum's \(\delta = 4.6692\ldots\), the same for dripping taps and lasers. Demo: <a href="../../demos/logistic.html">infinityclub.net/demos/logistic.html</a>.</p>
+<p><b>The universal constant.</b> Successive gaps between doublings shrink by a factor tending to Feigenbaum's \(\delta = 4.6692\ldots\), the same for dripping taps and lasers. Demo: <a href="../../demos/logistic.html">mathdetours.com/demos/logistic.html</a>.</p>
 </section>
 
 <section class="example">
@@ -85,7 +85,7 @@ table.iter td.blank { min-width: 4.5em; }
 <div class="sheet-nav"><a href="b23-random-walks.html">← Previous</a><a href="b25-entropy.html">Next: Information and entropy →</a></div>
 </main>
 
-<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
 <script defer src="../../assets/site.js"></script>

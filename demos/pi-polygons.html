@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Trapping π · Infinity Club</title>
+<title>Trapping π · Math Detours</title>
 <meta name="description" content="Squeeze a circle between a polygon inside and a polygon outside. Double the sides from 6 to 96 and watch the two perimeters close in on π, the way Archimedes did it.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
 <link rel="stylesheet" href="../assets/site.css">
@@ -26,7 +26,7 @@ table.bounds td.out { color: #c47a00; }
 </head>
 <body>
 <nav class="top">
-  <a class="brand" href="../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a class="brand" href="../index.html"><span class="inf">∞</span> Math Detours</a>
   <a href="index.html">Demos</a>
   <a href="../index.html#grades">Grades</a>
   <a href="../parents.html">Parents</a>
@@ -50,11 +50,11 @@ table.bounds td.out { color: #c47a00; }
 <h2>What's going on</h2>
 <p>A regular hexagon drawn inside a circle of diameter 1 is six equilateral triangles with sides ½, so its perimeter is exactly 3. The hexagon drawn outside has perimeter 2√3 ≈ 3.4641. The circle's circumference, which is π by definition, is longer than the inside path and shorter than the outside one. So 3 &lt; π &lt; 3.4641, and no measuring was needed.</p>
 <p>Archimedes then <b>doubled the number of sides</b> four times, to 12, 24, 48 and 96, using only Pythagoras and square roots. If the inside polygon with n sides has side s (on a circle of diameter 2), the one with 2n sides has side √(2 − √(4 − s²)). No trigonometry, no decimals: he carried the square roots as fractions and rounded them carefully in the safe direction, so his bounds stayed true. From the 96-gons he announced 3 10/71 &lt; π &lt; 3 1/7, that is 3.1408 &lt; π &lt; 3.1429.</p>
-<p>The gap between the two bounds is about π³/(2n²) for large n, which is why each doubling divides it by about 4. To gain one more decimal digit you need roughly √10 ≈ 3.2 times as many sides. Ludolph van Ceulen pushed this exact method to 2⁶² sides around 1600 and got 35 digits, a life's work. Today we have formulas that converge far faster, but every one of them starts from the same idea: squeeze the unknown between two things you can compute.</p>
+<p>The gap between the two bounds is about π³/(2n²) for large n, which is why each doubling divides it by about 4. To gain one more decimal digit you need roughly √10 ≈ 3.2 times as many sides. Ludolph van Ceulen pushed this exact method to 2⁶² sides around 1600 and got 35 digits, a life's work. Today we have formulas that converge far faster, but the idea of squeezing an unknown between two things you can compute is still used all over mathematics.</p>
 <p>Sheet: <a href="../grade-8/sheets/b19-trapping-pi.html">Trapping π between polygons</a>. Related demo: <a href="pi-darts.html">π by throwing darts</a>, a much slower way to find it.</p>
 </div>
 </main>
-<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
 <script>
 (function () {
   /*PURE*/

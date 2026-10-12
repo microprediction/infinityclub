@@ -12,6 +12,8 @@ ids = {f: set(re.findall(r'id="([^"]+)"', open(f, encoding='utf-8').read())) for
 nlinks = 0
 for f in html:
     s = open(f, encoding='utf-8').read()
+    if re.search(r'infinity ?club', s, re.I):  # the site's former name
+        problems.append('OLD NAME %s still says Infinity Club or infinityclub' % f)
     for href in re.findall(r'href="([^"]+)"', s):
         if href.startswith(('http', 'mailto')):
             continue
@@ -35,16 +37,17 @@ for f in sorted(glob.glob('grade-*/sheets/*.html')):
         problems.append('STRUCTURE %s missing %s' % (f, miss))
     m = re.match(r'grade-(\d+)/sheets/([abc])(\d+)-', f)
     k = re.search(r'<div class="kicker">(.*?)</div>', s)
-    want = 'Infinity Club · Grade %s · %s · %s' % (m.group(1), TRACK[m.group(2)], m.group(3))
+    want = 'Math Detours · Grade %s · %s · %s' % (m.group(1), TRACK[m.group(2)], m.group(3))
     if k and k.group(1).strip() != want:
         problems.append('KICKER %s says "%s", expected "%s"' % (f, k.group(1).strip(), want))
     hub = open('grade-%s/index.html' % m.group(1), encoding='utf-8').read()
     if 'href="sheets/%s"' % os.path.basename(f) not in hub:
         problems.append('NO HUB CARD for %s in grade-%s/index.html' % (f, m.group(1)))
+tmpdir = tempfile.mkdtemp()  # private, so parallel runs cannot overwrite each other's files
 for f in html:
     s = open(f, encoding='utf-8').read()
     for i, js in enumerate(re.findall(r'<script>(.*?)</script>', s, re.S)):
-        p = os.path.join(tempfile.gettempdir(), '_ic_chk_%d.js' % i)
+        p = os.path.join(tmpdir, '_ic_chk_%d.js' % i)
         open(p, 'w').write(js)
         r = subprocess.run(['node', '--check', p], capture_output=True, text=True)
         if r.returncode:

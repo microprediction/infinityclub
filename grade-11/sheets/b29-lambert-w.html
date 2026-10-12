@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Solving x times 2 to the x equals 10 · Math Detours</title>
+<meta name="description" content="Logs alone cannot isolate x in x times 2 to the x equals 10. Trap the answer by bisection, then meet the Lambert W function, the named answer to y times e to the y equals z, and see where it has one value and where it has two.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
+  <a href="../index.html">Grade 11</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Math Detours · Grade 11 · Around the corner · 29</div>
+  <h1>Solving x times 2 to the x equals 10</h1>
+  <p class="teaser">x times 2 to the power x equals 8 when x is 2. Change the 8 to 10 and logs alone will not isolate x. So mathematicians gave the answer a name.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>You can spot the answer to \(x \cdot 2^x = 8\): it is \(x = 2\). Now change 8 to 10. Taking logs gives \(\log_2 x + x = \log_2 10\), and \(x\) is still in two places, once inside a log and once outside. Logs alone cannot isolate \(x\).</p>
+<p>Yet there is an answer. For \(x \gt 0\) the quantity \(x \cdot 2^x\) climbs steadily from near 0, with no jumps and no ceiling, so it passes 10 exactly once.</p>
+<p>When an answer exists but the usual tools will not isolate it, mathematicians name it. You know one case: \(\sqrt2\) names the positive number whose square is 2.</p>
+<p class="callout"><b>Lambert W.</b> For \(z \ge 0\), \(W(z)\) is the one number \(y \ge 0\) with \(y e^y = z\). So \(W\) undoes \(y e^y\), as \(\ln\) undoes \(e^y\).</p>
+<p>\(W\) is one of many <b>special functions</b>: functions that earned a name because problems kept needing them. It is named after Johann Lambert, who worked in the 1700s. Few calculators have a \(W\) key, but many computer math(s) systems do.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: trap the answer by halving</h2>
+<p>Solve \(x \cdot 2^x = 10\). At \(x = 2\) the left side is 8, too small. At \(x = 3\) it is 24, too big. Try the midpoint, see which half holds the answer, and repeat. This is <b>bisection</b>.</p>
+<table>
+<thead><tr><th>step</th><th>try \(x\)</th><th>\(x \cdot 2^x\)</th><th>verdict</th><th>so the answer is between</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>2.5</td><td>14.14</td><td>too big</td><td>2 and 2.5</td></tr>
+<tr><td>2</td><td>2.25</td><td>10.70</td><td>too big</td><td>2 and 2.25</td></tr>
+<tr><td>3</td><td>2.125</td><td>9.27</td><td>too small</td><td>2.125 and 2.25</td></tr>
+<tr><td>4</td><td>2.1875</td><td>9.96</td><td>too small</td><td>2.1875 and 2.25</td></tr>
+<tr><td>5</td><td>2.21875</td><td>10.33</td><td>too big</td><td>2.1875 and 2.21875</td></tr>
+</tbody>
+</table>
+<p>Every number between 2.1875 and 2.21875 rounds to 2.2, so \(x = 2.2\) to one decimal place. Each step halves the trap: it started 1 wide, so after 5 steps it is \(1/32\) wide. Bisection is slow, but it cannot fail here: the left side has no jumps, so it cannot get from below 10 to above 10 without passing 10.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Carry on the worked example. (a) Do steps 6, 7 and 8. (b) What is \(x\) to two decimal places, and how do you know? (c) The trap starts 1 wide and halves at every step. How many steps, counted from the start, make it narrower than 0.001?<div class="space short"></div></li>
+<li>Now name the answer. (a) Explain why \(2^x = e^{x \ln 2}\). (b) Put \(y = x \ln 2\) and show that \(x \cdot 2^x = 10\) turns into \(y e^y = 10 \ln 2\). (c) So \(x = W(10 \ln 2) / \ln 2\). A computer gives \(W(6.9315) = 1.5184\) to four places. Find \(x\) and compare it with exercise 1.<div class="space short"></div></li>
+<li><figure style="float:right;width:250px;margin:0 0 .4em 1em"><svg viewBox="0 0 290 160" width="250" height="138" role="img" aria-label="A graph with y along the horizontal axis and z up the vertical axis, showing the curve z = y times e to the y. Coming from the left the curve runs just below the y axis, dips to a lowest point at y = -1 where z = -1/e, rises through the origin and then climbs steeply. A dashed horizontal line at z = -0.2 crosses the curve at two dots, one to the left of the lowest point and one to the right." font-family="Nunito, sans-serif" font-size="12">
+<line x1="21.4" y1="72.0" x2="276.6" y2="72.0" stroke="#999" stroke-width="1"/>
+<line x1="215.0" y1="4.0" x2="215.0" y2="152.0" stroke="#999" stroke-width="1"/>
+<line x1="39.0" y1="68.0" x2="39.0" y2="72.0" stroke="#999"/>
+<text x="39.0" y="64.0" text-anchor="middle" fill="#555">−4</text>
+<line x1="83.0" y1="68.0" x2="83.0" y2="72.0" stroke="#999"/>
+<text x="83.0" y="64.0" text-anchor="middle" fill="#555">−3</text>
+<line x1="127.0" y1="68.0" x2="127.0" y2="72.0" stroke="#999"/>
+<text x="127.0" y="64.0" text-anchor="middle" fill="#555">−2</text>
+<line x1="171.0" y1="68.0" x2="171.0" y2="72.0" stroke="#999"/>
+<text x="171.0" y="64.0" text-anchor="middle" fill="#555">−1</text>
+<line x1="259.0" y1="68.0" x2="259.0" y2="72.0" stroke="#999"/>
+<text x="259.0" y="64.0" text-anchor="middle" fill="#555">1</text>
+<line x1="21.4" y1="106.0" x2="276.6" y2="106.0" stroke="#f5a524" stroke-width="1.4" stroke-dasharray="5 3"/>
+<polyline points="21.4,81.2 23.6,81.5 25.8,81.9 28.0,82.3 30.2,82.7 32.4,83.1 34.6,83.6 36.8,84.0 39.0,84.5 41.2,84.9 43.4,85.4 45.6,85.9 47.8,86.5 50.0,87.0 52.2,87.6 54.4,88.1 56.6,88.7 58.8,89.3 61.0,90.0 63.2,90.6 65.4,91.3 67.6,92.0 69.8,92.7 72.0,93.4 74.2,94.2 76.4,94.9 78.6,95.7 80.8,96.6 83.0,97.4 85.2,98.2 87.4,99.1 89.6,100.0 91.8,100.9 94.0,101.9 96.2,102.8 98.4,103.8 100.6,104.8 102.8,105.8 105.0,106.9 107.2,107.9 109.4,109.0 111.6,110.1 113.8,111.2 116.0,112.3 118.2,113.4 120.4,114.6 122.6,115.7 124.8,116.9 127.0,118.0 129.2,119.2 131.4,120.3 133.6,121.5 135.8,122.6 138.0,123.7 140.2,124.8 142.4,125.9 144.6,126.9 146.8,127.9 149.0,128.9 151.2,129.8 153.4,130.7 155.6,131.5 157.8,132.2 160.0,132.9 162.2,133.4 164.4,133.9 166.6,134.2 168.8,134.5 171.0,134.5 173.2,134.5 175.4,134.2 177.6,133.8 179.8,133.1 182.0,132.2 184.2,131.1 186.4,129.7 188.6,128.0 190.8,125.9 193.0,123.6 195.2,120.8 197.4,117.6 199.6,113.9 201.8,109.8 204.0,105.1 206.2,99.8 208.4,93.9 210.6,87.4 212.8,80.1 215.0,72.0 217.2,63.1 219.4,53.2 221.6,42.4 223.8,30.5 226.0,17.4 228.1,4.0" fill="none" stroke="#3f44c9" stroke-width="2"/>
+<circle cx="103.1" cy="106.0" r="3.2" fill="#f5a524" stroke="#1d1f3a" stroke-width="1"/>
+<circle cx="203.6" cy="106.0" r="3.2" fill="#f5a524" stroke="#1d1f3a" stroke-width="1"/>
+<circle cx="171.0" cy="134.5" r="3" fill="#1d1f3a"/>
+<text x="171.0" y="151.5" text-anchor="middle" fill="#1d1f3a">(−1, −1/e)</text>
+<text x="23.4" y="120.0" fill="#1d1f3a">z = −0.2</text>
+<text x="208.0" y="14.0" text-anchor="end" fill="#1d1f3a" font-style="italic">z</text>
+<text x="279.6" y="76.0" fill="#1d1f3a" font-style="italic">y</text>
+</svg><figcaption>The curve \(z = y e^y\). Its lowest point is at \(y = -1\).</figcaption></figure>The figure shows \(z = y e^y\). Calculus shows that its lowest point is at \(y = -1\), where \(z = -1/e \approx -0.368\), and that the curve falls all the way to that point and rises ever after. (a) Explain, without the figure, why \(y e^y = z\) has exactly one solution when \(z \gt 0\). Treat \(y \le 0\) and \(y \gt 0\) separately. (b) Check that \(y = -\ln 2\) and \(y = -2 \ln 2\) both give \(y e^y = -\tfrac12 \ln 2\). (c) Use the figure to say how many solutions \(y e^y = z\) has when \(z = -0.2\), when \(z = -1/e\) and when \(z = -1\).<div class="space short"></div></li>
+<li>Solve \(x^x = 100\) for \(x \gt 1\). (a) Show that \(x\) is between 3 and 4. (b) Find \(x\) to one decimal place by trial. (c) Take \(\ln\) of both sides, put \(u = \ln x\), and show that \(u e^u = \ln 100\), so that \(x = e^{W(\ln 100)}\). A computer gives \(W(4.6052) = 1.2802\). Find \(x\) to two decimal places.<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: a tower of powers</h2>
+<p>Start with \(a_1 = \sqrt2\) and make each new term by \(a_{n+1} = (\sqrt2)^{a_n}\). Each term puts one more \(\sqrt2\) under the tower \(\sqrt2^{\sqrt2^{\sqrt2}}\) and so on. (a) Compute the first five terms. (b) Show that every term is bigger than the one before, and that every term is below 2. A sequence that keeps rising but stays below 2 must settle on a limit \(T \le 2\) (a fact you may use), and then \((\sqrt2)^T = T\). (c) Check that \(T = 2\) and \(T = 4\) both satisfy \((\sqrt2)^T = T\). Put \(y = -\tfrac12 T \ln 2\) and use exercise 3 to show there are no other solutions. Which one is the tower?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) Step 6: \(x = 2.203125\) gives 10.14, too big. Step 7: \(x = 2.1953125\) gives 10.05, too big. Step 8: \(x = 2.19140625\) gives 10.01, too big. The answer is between 2.1875 and 2.19140625. (b) Every number in that trap rounds to 2.19, so \(x = 2.19\) to two decimal places. After step 7 the trap still reached 2.1953, which rounds to 2.20, so step 8 was needed. (c) After \(n\) steps the width is \(1/2^n\). Since \(2^9 = 512\) and \(2^{10} = 1024\), it takes 10 steps.</li>
+<li>(a) \(2 = e^{\ln 2}\), so \(2^x = (e^{\ln 2})^x = e^{x \ln 2}\). (b) The equation is \(x e^{x \ln 2} = 10\). Multiply both sides by \(\ln 2\): \((x \ln 2) e^{x \ln 2} = 10 \ln 2\), which is \(y e^y = 10 \ln 2\). (c) \(10 \ln 2 = 6.9315\) is positive, so \(y = W(6.9315) = 1.5184\) is the only solution, and \(x = 1.5184 / \ln 2 = 2.1906\) to four places. That sits inside the trap from exercise 1 and rounds to 2.19.</li>
+<li>(a) If \(y \le 0\) then \(y e^y \le 0\), because \(e^y\) is always positive. So no such \(y\) works. For \(y \gt 0\), both \(y\) and \(e^y\) are positive and increasing, so the product \(y e^y\) is increasing: it cannot take the same value twice. It starts at 0 when \(y = 0\), has no jumps and grows past every number, so it takes the value \(z\) exactly once. (b) \(e^{-\ln 2} = \tfrac12\), so the first gives \(-\tfrac12 \ln 2\). \(e^{-2 \ln 2} = \tfrac14\), so the second gives \(-2 \ln 2 \times \tfrac14 = -\tfrac12 \ln 2\), about \(-0.347\). (c) Two for \(z = -0.2\) (near \(y = -2.54\) and \(y = -0.26\)), one for \(z = -1/e\) (only \(y = -1\)), none for \(z = -1\), which is below the lowest point. In general there are two solutions when \(-1/e \lt z \lt 0\), so there \(W\) has two branches and you must say which one you mean.</li>
+<li>(a) \(3^3 = 27\) is too small and \(4^4 = 256\) is too big. For \(x \gt 1\), \(x^x\) is increasing and has no jumps, so there is exactly one solution and it is between 3 and 4. (b) \(3.5^{3.5} = 80.2\), \(3.6^{3.6} = 100.6\) and \(3.55^{3.55} = 89.8\). So \(x\) is between 3.55 and 3.6, and \(x = 3.6\) to one decimal place. (c) \(\ln(x^x) = x \ln x\), so \(x \ln x = \ln 100\). With \(u = \ln x\) you have \(x = e^u\), so \(u e^u = \ln 100\). Since \(\ln 100 = 4.6052\) is positive, \(u = W(\ln 100) = 1.2802\) and \(x = e^{1.2802} = 3.60\) to two places (more exactly 3.597).</li>
+</ol>
+<p><b>Stretch.</b> (a) 1.4142, 1.6325, 1.7608, 1.8409, 1.8927. (b) Because \(\sqrt2 \gt 1\), a bigger exponent gives a bigger power. First, \(a_2 = \sqrt2^{\sqrt2} \gt \sqrt2^{1} = a_1\). Then if \(a_n \gt a_{n-1}\), raising \(\sqrt2\) to each side gives \(a_{n+1} \gt a_n\), so the rise carries on for ever. In the same way \(a_1 \lt 2\), and if \(a_n \lt 2\) then \(a_{n+1}\) is below \(\sqrt2^{2} = 2\) as well. (c) \(\sqrt2^{2} = 2\) and \(\sqrt2^{4} = 4\). Write \(\sqrt2^{T} = e^{\frac12 T \ln 2} = e^{-y}\). Then \(e^{-y} = T\) gives \(T e^{y} = 1\), and multiplying by \(-\tfrac12 \ln 2\) gives \(y e^y = -\tfrac12 \ln 2\). That value is between \(-1/e\) and 0, so by exercise 3 there are exactly two solutions, \(y = -\ln 2\) and \(y = -2\ln 2\), which are \(T = 2\) and \(T = 4\). The limit is at most 2, so the tower is 2. The two branches of \(W\) are the two candidates, and only one of them is the tower.</p>
+</section>
+
+<div class="sheet-nav"><a href="b28-jumps-or-smooth.html">← Previous</a><a href="b30-pizza-curvature.html">Next: Why a folded pizza slice stays stiff →</a></div>
+</main>
+
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

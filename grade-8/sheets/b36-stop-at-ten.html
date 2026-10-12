@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stop exactly at 10 · Math Detours</title>
+<meta name="description" content="A cart is pushed forwards, backwards or not at all, once a second. Find the fastest plan that parks it exactly at 10, prove that nothing faster exists, and meet optimal control.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Math Detours · Grade 8 · Around the corner · 36</div>
+  <h1>Stop exactly at 10</h1>
+  <p class="teaser">Each second you may push a cart forwards, backwards, or not at all. What is the fastest way to move it from 0 to 10 and have it stop exactly there?</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A cart sits at rest at 0 on a track. Once a second you choose a push: forwards (\(+1\)), none (\(0\)) or backwards (\(-1\)). The push changes the speed, then the cart rolls by its new speed.</p>
+<p class="callout">New speed = old speed + push. &nbsp; New position = old position + new speed.</p>
+<p>You want the cart <b>parked</b> at 10 (position 10, speed 0) in as few seconds as you can. Choosing actions over time to reach a goal at the least cost is called <b>optimal control</b>. Here the cost is time.</p>
+<p>Tonight's trick: write the list of speeds, one per second. A list is allowed when it starts with \(1\), \(0\) or \(-1\) and ends with 0, and each speed differs from the one before by at most 1. The cart ends at the sum of the list.</p>
+<p>A computer can simply try every plan: 7 seconds allow \(3^7 = 2187\) plans, and exactly 3 park the cart at 10. Cutting time into steps and searching is a standard computer method for control problems. The cart is a model: real pushes and real time are not whole numbers.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: push forwards all the way</h2>
+<p>The greedy plan is to push forwards every second. After 4 seconds the cart is at 10, but it is moving at speed 4. Brake as hard as the rules allow and it still rolls on:</p>
+<div style="display:flex;gap:1.6em;justify-content:center;align-items:center;flex-wrap:wrap">
+<table class="tt">
+<tr><th>second</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th></tr>
+<tr><th>push</th><td>\(+1\)</td><td>\(+1\)</td><td>\(+1\)</td><td>\(+1\)</td><td>\(-1\)</td><td>\(-1\)</td><td>\(-1\)</td><td>\(-1\)</td></tr>
+<tr><th>speed</th><td>\(1\)</td><td>\(2\)</td><td>\(3\)</td><td>\(4\)</td><td>\(3\)</td><td>\(2\)</td><td>\(1\)</td><td>\(0\)</td></tr>
+<tr><th>position</th><td>\(1\)</td><td>\(3\)</td><td>\(6\)</td><td>\(10\)</td><td>\(13\)</td><td>\(15\)</td><td>\(16\)</td><td>\(16\)</td></tr>
+</table>
+<figure style="max-width:226px"><svg viewBox="0 0 226 122" width="226" height="122" role="img" aria-label="Eight columns of unit squares, one column for each second, with heights 1, 2, 3, 4, 3, 2, 1 and 0, the speed in that second. The first four columns hold 10 squares and are shaded blue. The next three hold 6 squares and are shaded orange. The eighth column is empty." font-family="Nunito, sans-serif" font-size="12">
+<rect x="56" y="80" width="20" height="20" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="1"/>
+<text x="66" y="75" text-anchor="middle" fill="#1d1f3a" font-weight="700">1</text>
+<text x="66" y="115" text-anchor="middle" fill="#555">1</text>
+<rect x="76" y="80" width="20" height="20" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="1"/>
+<rect x="76" y="60" width="20" height="20" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="1"/>
+<text x="86" y="55" text-anchor="middle" fill="#1d1f3a" font-weight="700">2</text>
+<text x="86" y="115" text-anchor="middle" fill="#555">2</text>
+<rect x="96" y="80" width="20" height="20" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="1"/>
+<rect x="96" y="60" width="20" height="20" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="1"/>
+<rect x="96" y="40" width="20" height="20" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="1"/>
+<text x="106" y="35" text-anchor="middle" fill="#1d1f3a" font-weight="700">3</text>
+<text x="106" y="115" text-anchor="middle" fill="#555">3</text>
+<rect x="116" y="80" width="20" height="20" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="1"/>
+<rect x="116" y="60" width="20" height="20" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="1"/>
+<rect x="116" y="40" width="20" height="20" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="1"/>
+<rect x="116" y="20" width="20" height="20" fill="#dcdcf5" stroke="#1d1f3a" stroke-width="1"/>
+<text x="126" y="15" text-anchor="middle" fill="#1d1f3a" font-weight="700">4</text>
+<text x="126" y="115" text-anchor="middle" fill="#555">4</text>
+<rect x="136" y="80" width="20" height="20" fill="#fde8c4" stroke="#1d1f3a" stroke-width="1"/>
+<rect x="136" y="60" width="20" height="20" fill="#fde8c4" stroke="#1d1f3a" stroke-width="1"/>
+<rect x="136" y="40" width="20" height="20" fill="#fde8c4" stroke="#1d1f3a" stroke-width="1"/>
+<text x="146" y="35" text-anchor="middle" fill="#1d1f3a" font-weight="700">3</text>
+<text x="146" y="115" text-anchor="middle" fill="#555">5</text>
+<rect x="156" y="80" width="20" height="20" fill="#fde8c4" stroke="#1d1f3a" stroke-width="1"/>
+<rect x="156" y="60" width="20" height="20" fill="#fde8c4" stroke="#1d1f3a" stroke-width="1"/>
+<text x="166" y="55" text-anchor="middle" fill="#1d1f3a" font-weight="700">2</text>
+<text x="166" y="115" text-anchor="middle" fill="#555">6</text>
+<rect x="176" y="80" width="20" height="20" fill="#fde8c4" stroke="#1d1f3a" stroke-width="1"/>
+<text x="186" y="75" text-anchor="middle" fill="#1d1f3a" font-weight="700">1</text>
+<text x="186" y="115" text-anchor="middle" fill="#555">7</text>
+<text x="206" y="95" text-anchor="middle" fill="#1d1f3a" font-weight="700">0</text>
+<text x="206" y="115" text-anchor="middle" fill="#555">8</text>
+<line x1="50" y1="100" x2="222" y2="100" stroke="#1d1f3a" stroke-width="1.5"/>
+<text x="44" y="115" text-anchor="end" fill="#555">second</text>
+<text x="44" y="66" text-anchor="end" fill="#555">speed</text>
+</svg><figcaption>One column per second, as tall as the speed.</figcaption></figure>
+</div>
+<p>The cart parks at 16, not 10. Losing speed 4 takes 4 seconds, and in those seconds it rolls \(3 + 2 + 1 + 0 = 6\) further. To park at 10 you must start braking before you get there. In the picture each square is one step along the track: 10 blue squares while speeding up, 6 orange while braking.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Find an allowed list of 7 speeds that adds up to 10. Write the push for each second, and check the cart's position second by second.<div class="space short"></div></li>
+<li>Now show that 6 seconds are not enough. (a) Explain why the speed in second \(k\) is at most \(k\). (b) In a 6-second plan the last speed is 0. Explain why the speed in second \(k\) is also at most \(6 - k\). (c) Write the largest speed each second can have, and add them up. (d) Why can no plan of 5 seconds or fewer work either?<div class="space"></div></li>
+<li>Find the fastest plan that parks the cart at 9, and the fastest that parks it at 16. For each, explain why one second fewer is impossible.<div class="space"></div></li>
+<li>(a) Find the fastest plan that parks the cart at 12, and say why nothing is faster. (b) How many seconds does 13 need? Give a speed list. (c) Fill in the farthest place the cart can be parked in 2, 3, 4, 5, 6, 7 and 8 seconds. What do you notice about the answers for 2, 4, 6 and 8 seconds?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: square targets</h2>
+<p>Let \(n\) be a whole number, 1 or more. Show that parking the cart at \(n^2\) takes exactly \(2n\) seconds. You need two things: a list of \(2n\) speeds that adds up to \(n^2\), and a reason why \(2n - 1\) seconds can never be enough. Check your argument on \(n = 1\).</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>One answer: speeds \(1, 2, 2, 2, 2, 1, 0\), from pushes \(+1, +1, 0, 0, 0, -1, -1\). Positions: \(1, 3, 5, 7, 9, 10, 10\). There are exactly two other answers, \(1, 2, 3, 2, 1, 1, 0\) and \(1, 1, 2, 3, 2, 1, 0\). These are the 3 plans the computer found.</li>
+<li>(a) The cart starts at rest and each push adds at most 1, so after \(k\) pushes the speed is at most \(k\). (b) Each push takes away at most 1. After second \(k\) there are \(6 - k\) pushes left, and they must bring the speed down to 0, so it cannot be more than \(6 - k\). (c) The limits are \(1, 2, 3, 2, 1, 0\) (the smaller of \(k\) and \(6 - k\)), which add up to 9. So a 6-second plan parks the cart at 9 or less, never at 10. (d) A shorter plan could be stretched to 6 seconds by waiting at 0 first (pushes of 0 at the start change nothing). So if 5 seconds or fewer worked, 6 would work too.</li>
+<li>For 9: the list \(1, 2, 3, 2, 1, 0\), which takes 6 seconds. In 5 seconds the limits are \(1, 2, 2, 1, 0\), which add up to only 6. For 16: the list \(1, 2, 3, 4, 3, 2, 1, 0\) from the worked example, 8 seconds. In 7 seconds the limits are \(1, 2, 3, 3, 2, 1, 0\), which add up to only 12. So the greedy plan was not the fastest way to 10, but it is the fastest way to 16.</li>
+<li>(a) The list \(1, 2, 3, 3, 2, 1, 0\) adds up to 12 and takes 7 seconds. Six seconds reach at most 9. (b) 13 needs 8 seconds, because 7 seconds reach at most 12. One list is \(1, 2, 3, 3, 2, 1, 1, 0\). (c) Adding the limits gives 1, 2, 4, 6, 9, 12, 16 for 2 to 8 seconds, and the list of limits is itself an allowed list, so the cart really gets that far. The even times, 2, 4, 6 and 8 seconds, give 1, 4, 9, 16: the square numbers.</li>
+</ol>
+<p><b>Stretch.</b> The list \(1, 2, \ldots, n-1, n, n-1, \ldots, 2, 1, 0\) has \(2n\) entries and is allowed. Its sum is \((1 + 2 + \cdots + n) + (1 + 2 + \cdots + (n-1)) = \tfrac{n(n+1)}{2} + \tfrac{n(n-1)}{2} = n^2\). With \(2n - 1\) seconds, the speed in second \(k\) is at most \(k\) and at most \(2n - 1 - k\), so the limits are \(1, 2, \ldots, n-1, n-1, \ldots, 2, 1, 0\). They add up to \(n(n-1) = n^2 - n\), which is less than \(n^2\). Fewer seconds are no better, since a shorter plan can wait at 0 first. For \(n = 1\): the list \(1, 0\) parks at 1 in 2 seconds, and a 1-second plan must have speed 0, so it goes nowhere. The winning plan is to push as hard as you can for the first half and brake as hard as you can for the second. Engineers call a plan like that bang-bang control.</p>
+</section>
+
+<div class="sheet-nav"><a href="b35-seventeen-wallpapers.html">← Previous</a><a href="b37-two-clocks.html">Next: Why mod 10 is two clocks at once →</a></div>
+</main>
+
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Distinct parts and odd parts · Math Detours</title>
+<meta name="description" content="Split small numbers into sums, then count the splits with all parts different and the splits with all parts odd. The two counts agree, and a product of brackets in a letter q does the counting.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Math Detours · Grade 8 · Around the corner · 31</div>
+  <h1>Distinct parts and odd parts</h1>
+  <p class="teaser">There are as many ways to split a number into different parts as into odd parts. Euler proved it works for every number, using a product of brackets.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A <b>partition</b> of a number writes it as a sum of positive whole numbers. Order is ignored, so \(4 + 1\) and \(1 + 4\) are the same partition.</p>
+<p>Pick out two kinds. In a partition into <b>distinct parts</b>, no part is used twice. In a partition into <b>odd parts</b>, every part is odd, and repeats are allowed.</p>
+<p class="callout">For every positive whole number \(n\), the number of partitions of \(n\) into distinct parts equals the number of partitions of \(n\) into odd parts.</p>
+<p>Euler proved this with a product of brackets: \((1 + q)(1 + q^2)(1 + q^3)\cdots\). Multiply out. Each term comes from picking the power of \(q\) in some brackets and the 1 in the rest. The picked powers are all different, and their exponents add. So the number in front of \(q^n\) counts the partitions of \(n\) into distinct parts. Euler wrote a second product that counts odd parts, and showed the two products are equal. Sums and products in a letter \(q\) like these are called <b>\(q\)-series</b>.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: the number 5</h2>
+<p><b>All of them.</b> List the partitions of 5 with the biggest part first, so none is missed. The number on its own counts too: \(5\),\(4+1\), \(3+2\), \(3+1+1\), \(2+2+1\), \(2+1+1+1\), \(1+1+1+1+1\). That is 7.</p>
+<p><b>Distinct parts.</b> \(5\), \(4+1\), \(3+2\). That is 3. <b>Odd parts.</b> \(5\), \(3+1+1\), \(1+1+1+1+1\). That is 3 as well. Only \(5\) is on both lists, so the two lists are different but equally long.</p>
+<p><b>The brackets.</b> To reach \(q^5\) you need the brackets up to \((1 + q^5)\). There are three ways to make \(q^5\): pick \(q^5\) alone, or \(q^4\) and \(q\), or \(q^3\) and \(q^2\). They match \(5\), \(4+1\) and \(3+2\). The full product begins</p>
+\[(1+q)(1+q^2)(1+q^3)(1+q^4)(1+q^5) = 1 + q + q^2 + 2q^3 + 2q^4 + 3q^5 + 3q^6 + \cdots\]
+<p><b>The trap.</b> The numbers are right only as far as \(q^5\). The product says 3 for \(q^6\), but 6 has 4 partitions into distinct parts. The missing one is \(6\) itself, which needs the bracket \((1 + q^6)\).</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>List all the partitions of 6, biggest part first. There are 11.<div class="space"></div></li>
+<li>From your list for 6, (a) pick out the partitions into distinct parts, (b) pick out the partitions into odd parts, and (c) say which partitions are on both lists. Do the two counts agree?<div class="space short"></div></li>
+<li>(a) Multiply out \((1 + q)(1 + q^2)(1 + q^3)\). (b) The number in front of \(q^3\) should be 2. Which two partitions of 3 does it count? (c) The number in front of \(q^4\) is 1, but 4 has two partitions into distinct parts. Which one did the product find, which one is missing, and which bracket would supply it?<div class="space"></div></li>
+<li>(a) Check the callout for \(n = 7\): list the partitions of 7 into distinct parts, then the partitions of 7 into odd parts. (b) Check it for \(n = 1\), 2, 3 and 4 as well.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: merge the twins</h2>
+<p>Take a partition into odd parts. Whenever two parts are equal, merge them into one part twice as big. Keep going until no two parts are equal. For example \(1+1+1+1+1\) becomes \(2+2+1\) and then \(4+1\). (a) Do this to each of the four partitions of 6 into odd parts. What do you notice about the four results? (b) Go backwards: split every even part into two halves until all the parts are odd. Start from \(4+2+1\) and from \(6+1\). (c) Why must the merging stop? Why can two different starting partitions never merge to the same result?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(6\), \(5+1\), \(4+2\), \(4+1+1\), \(3+3\), \(3+2+1\), \(3+1+1+1\), \(2+2+2\), \(2+2+1+1\), \(2+1+1+1+1\), \(1+1+1+1+1+1\). That is 11.</li>
+<li>(a) Distinct parts: \(6\), \(5+1\), \(4+2\), \(3+2+1\). (b) Odd parts: \(5+1\), \(3+3\), \(3+1+1+1\), \(1+1+1+1+1+1\). (c) Only \(5+1\) is on both lists. The counts agree, 4 and 4, even though the lists are mostly different.</li>
+<li>(a) \((1+q)(1+q^2) = 1 + q + q^2 + q^3\). Multiplying by \((1 + q^3)\) gives \(1 + q + q^2 + 2q^3 + q^4 + q^5 + q^6\). (b) One \(q^3\) comes from the third bracket alone, which is the partition \(3\). The other comes from \(q^2 \times q\), which is \(2+1\). (c) The product found \(q^3 \times q\), which is \(3+1\). The partition \(4\) is missing, and the bracket \((1 + q^4)\) would supply it. Three brackets give correct counts only up to \(q^3\).</li>
+<li>(a) Distinct parts: \(7\), \(6+1\), \(5+2\), \(4+3\), \(4+2+1\). Odd parts: \(7\), \(5+1+1\), \(3+3+1\), \(3+1+1+1+1\), \(1+1+1+1+1+1+1\). That is 5 each. (b) For 1: \(1\) and \(1\), one each. For 2: \(2\) is distinct and \(1+1\) is odd, one each. For 3: \(3\) and \(2+1\) are distinct, \(3\) and \(1+1+1\) are odd, two each. For 4: \(4\) and \(3+1\) are distinct, \(3+1\) and \(1+1+1+1\) are odd, two each.</li>
+</ol>
+<p><b>Stretch.</b> (a) \(5+1\) stays \(5+1\). \(3+3\) becomes \(6\). \(3+1+1+1\) becomes \(3+2+1\). \(1+1+1+1+1+1\) becomes \(2+2+2\), then \(4+2\). The results are the four partitions of 6 into distinct parts, each exactly once. (b) \(4+2+1\) becomes \(2+2+2+1\), then \(1+1+1+1+1+1+1\). And \(6+1\) becomes \(3+3+1\). (c) Each merge leaves one part fewer, so the merging cannot go on for ever, and when it stops no two parts are equal. Halving undoes merging: a part made by merges is some odd part doubled a number of times, and halving it all the way gives those equal odd parts back. So the result tells you the start, and two different starts cannot share a result. To finish Euler's theorem you also need every partition into distinct parts to turn up. That uses one more fact: every whole number is a sum of different powers of 2 in exactly one way.</p>
+</section>
+
+<div class="sheet-nav"><a href="b30-counting-holes.html">← Previous</a><a href="b32-do-moves-commute.html">Next: What is the chance two moves commute? →</a></div>
+</main>
+
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

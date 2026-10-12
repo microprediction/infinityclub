@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Digits that double · Math Detours</title>
+<meta name="description" content="Find a square root by guessing, dividing and averaging, again and again. Work out the square roots of 10, 2 and 20 this way, count how fast the correct digits pile up, see why the guesses never drop below the root after the first step, and try a matching recipe for cube roots.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
+  <a href="../index.html">Grade 7</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Math Detours · Grade 7 · Around the corner · 29</div>
+  <h1>Digits that double</h1>
+  <p class="teaser">Guess the square root of 10 as 3. Average 3 with 10 divided by 3. Do it again. In two steps you have 3.1623, and the number of correct digits roughly doubles each time.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>You want the positive number \(x\) with \(x \times x = 10\). That is \(\sqrt{10}\). Guess 3. Since \(3 \times 3 = 9\), your guess is too small. Now work out \(10 \div 3 = 3.33\ldots\) Multiply the two and you get exactly 10, so if 3 is too small, \(10 \div 3\) must be too big. The root is trapped between them.</p>
+<p>So take their average as your new guess. Then do the same thing to the new guess, and again. A recipe that feeds each answer back in is called an <b>iteration</b>. You will want a calculator tonight.</p>
+<p class="callout">To find \(\sqrt{N}\) for a positive number \(N\): start with any positive guess \(g\). The new guess is \(\dfrac{g + N \div g}{2}\). Repeat.</p>
+<p>The surprise is the speed. Once a guess is close, the number of correct digits roughly doubles at every step. It is not exact doubling, only a rule of thumb, but it means four or five steps give more digits than most calculators can show.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: the square root of 10, starting from 3</h2>
+<table style="margin:.4em auto; font-size:.92em">
+<tr><th>Step</th><th>Guess \(g\)</th><th>\(10 \div g\)</th><th>Average: the new guess</th><th>Correct digits</th></tr>
+<tr><td>1</td><td>3</td><td>3.3333333</td><td>3.1666667</td><td>3</td></tr>
+<tr><td>2</td><td>3.1666667</td><td>3.1578947</td><td>3.1622807</td><td>5</td></tr>
+<tr><td>3</td><td>3.1622807</td><td>3.1622746</td><td>3.1622777</td><td>12</td></tr>
+</table>
+<p>In each row the root lies between the guess and \(10 \div g\). Row 3 already pins it between 3.1622746 and 3.1622807.</p>
+<p>The last column compares the new guess with the true value, \(\sqrt{10} = 3.1622776601683\ldots\), counting the digits that agree, reading from the left. So 3.1666667 starts 3.16 and then goes wrong: 3 correct digits. Next, 3.1622807 starts 3.1622: 5 correct digits. The new guess in row 3, kept as an exact fraction, is \(3.1622776601698\ldots\) It agrees as far as 3.16227766016: 12 correct digits.</p>
+<p>The starting guess 3 had 1 correct digit, so the count goes 1, 3, 5, 12. That is roughly doubling, not exactly. One more step gives 25.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Find \(\sqrt{2}\): start from the guess 1 and do three steps. Keep all your calculator's digits.
+<table style="margin:.4em 0; font-size:.92em">
+<tr><th>Step</th><th>Guess \(g\)</th><th>\(2 \div g\)</th><th>Average: the new guess</th></tr>
+<tr><td>1</td><td>1</td><td>&nbsp;</td><td style="min-width:9em">&nbsp;</td></tr>
+<tr><td>2</td><td style="min-width:6em">&nbsp;</td><td style="min-width:6em">&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>3</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</table>
+<div class="space short"></div></li>
+<li>The true value is \(\sqrt{2} = 1.4142135623730\ldots\) (a) Count the correct digits, reading from the left, in the starting guess 1 and in each of your three new guesses. (b) Carried on exactly, the fourth new guess is \(1.4142135623746\ldots\) How many correct digits does it have? (c) Does the count double exactly at every step?<div class="space short"></div></li>
+<li>Find \(\sqrt{20}\). Start from 4 and do two steps. (a) What is your guess after two steps? (b) Square it. How close to 20 do you get? (c) Work out 20 divided by that guess. The root lies between this number and your guess. Without looking up \(\sqrt{20}\), which digits of it can you now be sure of?<div class="space short"></div></li>
+<li>(a) For \(\sqrt{10}\), do one step starting from 2, and one step starting from 5. What do you notice, and why does it happen? (b) Call the new guess \(m\). It is the average of \(g\) and \(10 \div g\), so those two numbers sit the same distance \(d\) either side of it: they are \(m - d\) and \(m + d\), and their product is 10. Use the fact \((m - d) \times (m + d) = m \times m - d \times d\) to explain why \(m \times m\) is never less than 10. (c) When is \(m \times m\) exactly 10?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: cube roots</h2>
+<p>The cube root of 10 is the number \(x\) with \(x \times x \times x = 10\). Try this recipe: the new guess is \(\dfrac{2x + 10 \div x^2}{3}\). (a) Start from \(x = 2\) and do two steps. (b) Cube your answer to check it. (c) The square root recipe averages two numbers whose product is \(N\). Which three numbers does this recipe average, and what is their product?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Step 1: \(2 \div 1 = 2\), and the average of 1 and 2 is 1.5. Step 2: \(2 \div 1.5 = 1.3333333\), and the average is 1.4166667. Step 3: \(2 \div 1.4166667 = 1.4117647\), and the average is 1.4142157. As fractions the guesses are \(\frac{3}{2}\), \(\frac{17}{12}\) and \(\frac{577}{408}\). Your last digit may differ by one, depending on how your calculator rounds.</li>
+<li>(a) The guess 1 has 1 correct digit. Then 1.5 has 1 (only the 1 before the point), 1.4166667 has 3 (it starts 1.41) and 1.4142157 has 6 (it starts 1.41421). (b) It agrees as far as 1.41421356237, which is 12 correct digits. (c) No. The count goes 1, 1, 3, 6, 12. The first step does not double it at all, and the next one triples it. After that, with the guess close, it doubles: 3, 6, 12. For \(\sqrt{10}\) the count went 1, 3, 5, 12. "Roughly doubles, once you are close" is the honest rule.</li>
+<li>(a) Step 1: \(20 \div 4 = 5\), and the average of 4 and 5 is 4.5. Step 2: \(20 \div 4.5 = 4.4444444\), and the average is 4.4722222 (exactly \(\frac{161}{36}\)). (b) \(4.4722222 \times 4.4722222\) is about 20.00077, too big by less than 0.001. (c) \(20 \div 4.4722222 = 4.4720497\). The root lies between 4.4720497 and 4.4722222, so it certainly starts 4.472. You know that from the trap alone. In fact \(\sqrt{20} = 4.4721359\ldots\), and one more step gives 4.4721360.</li>
+<li>(a) From 2: \(10 \div 2 = 5\), and the average of 2 and 5 is 3.5. From 5: \(10 \div 5 = 2\), and the average of 5 and 2 is 3.5 again. The step averages the pair \(g\) and \(10 \div g\), and starting from either number of the pair gives the same pair. (b) The product is 10, so \(m \times m - d \times d = 10\), which says \(m \times m = 10 + d \times d\). A square such as \(d \times d\) is never negative, so \(m \times m\) is at least 10. Since \(m\) is positive, \(m\) is at least \(\sqrt{10}\). Check with \(g = 3\): \(m = \frac{19}{6}\), \(d = \frac{1}{6}\), and \(m \times m = \frac{361}{36} = 10 + \frac{1}{36}\). (c) Only when \(d = 0\). Then \(g\) and \(10 \div g\) are equal, so \(g \times g = 10\): the guess was already the exact root. So after the first step, every guess is at or above the root, whatever positive guess you started from. Nothing here is special to 10. On a calculator, rounding can blur the very last digit.</li>
+</ol>
+<p><b>Stretch.</b> (a) Step 1: \(10 \div 2^2 = 2.5\), so the new guess is \((4 + 2.5) \div 3 = 2.1666667\). Step 2: \(10 \div 2.1666667^2 = 2.1301775\), so the new guess is \((4.3333333 + 2.1301775) \div 3 = 2.1545036\). (b) \(2.1545036^3\) is about 10.00096. The true cube root is \(2.15443469\ldots\), so you have 4 correct digits, and a third step gives 2.1544347. (c) It averages \(x\), \(x\) and \(10 \div x^2\). Their product is \(x \times x \times 10 \div x^2 = 10\). If all three were equal, each would be the cube root of 10. When \(x\) is too small, \(10 \div x^2\) is too big, and the average pulls the guess towards the root, just as before.</p>
+</section>
+
+<div class="sheet-nav"><a href="b28-monk-on-mountain.html">← Previous</a><a href="b30-swallowing-multiples.html">Next: Multiples that swallow everything →</a></div>
+</main>
+
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

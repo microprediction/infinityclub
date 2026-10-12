@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Two springs in a row · Math Detours</title>
+<meta name="description" content="Use Hooke's law for a spring, find the one effective spring that replaces two springs in a row or side by side, and see why a simple model of a layered material is stiffer along its layers than across them.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
+  <a href="../index.html">Grade 7</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Math Detours · Grade 7 · Connections · 15</div>
+  <h1>Two springs in a row</h1>
+  <p class="teaser">One spring stretches 2 cm for each 100 g. Two such springs hanging in a row stretch twice as much. Side by side, half as much. A simple model of a layered material averages in these same two ways.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Hang a weight on a metal spring and it stretches. Double the weight and it stretches twice as far. Take the weight off and it springs back. This is Hooke's law: stretch is proportional to load. It is a model. It fits metal springs well for small stretches, and fails if you pull too hard. (Rubber bands follow it poorly.)</p>
+<p>A spring's <b>stiffness</b> is load divided by stretch. A 100 g weight pulls down with about 1 newton (N), so we measure stiffness in newtons per cm.</p>
+<p class="callout">Springs in a row each carry the whole load, so their stretches add. Springs side by side, held to the same stretch, share the load, so their forces add.</p>
+<p>Either way, the pair acts like one spring with its own <b>effective</b> stiffness. We treat springs as too light for their own weight to count. A material made of stiff and soft layers can be modelled the same way. Replacing a fine mixture by one uniform material that behaves the same is a whole branch of math(s).</p>
+</section>
+
+<section class="example">
+<h2>Watch one: one spring, then two</h2>
+<p>A light spring stretches 2 cm for each 100 g. Hang 300 g on it, which pulls with about 3 N.</p>
+<figure><svg viewBox="0 0 520 160" width="520" height="160" role="img" aria-label="Three ways to hang a 300 gram weight. On one spring, the spring stretches 6 centimetres. On two springs joined in a row, one below the other, they stretch 12 centimetres in all. On two springs side by side, joined by a level bar with the weight hung from its middle, each spring stretches 3 centimetres." font-family="Nunito, sans-serif" font-size="12">
+<line x1="45" y1="12" x2="135" y2="12" stroke="#1d1f3a" stroke-width="3"/>
+<polyline points="90,12 90,16 97,19.3 83,26 97,32.7 83,39.3 97,46 83,52.7 90,56 90,60" fill="none" stroke="#3f44c9" stroke-width="2" stroke-linejoin="round"/>
+<rect x="68" y="60" width="44" height="20" rx="3" fill="#fde8c4" stroke="#1d1f3a" stroke-width="1.5"/><text x="90" y="74" text-anchor="middle" fill="#1d1f3a" font-size="11">300 g</text>
+<text x="90" y="143" text-anchor="middle" fill="#555">One spring</text><text x="90" y="157" text-anchor="middle" fill="#1d1f3a" font-weight="700">stretches 6 cm</text>
+<line x1="215" y1="12" x2="305" y2="12" stroke="#1d1f3a" stroke-width="3"/>
+<polyline points="260,12 260,16 267,19.3 253,26 267,32.7 253,39.3 267,46 253,52.7 260,56 260,60" fill="none" stroke="#3f44c9" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="260,60 260,64 267,67.3 253,74 267,80.7 253,87.3 267,94 253,100.7 260,104 260,108" fill="none" stroke="#3f44c9" stroke-width="2" stroke-linejoin="round"/>
+<circle cx="260" cy="60" r="2.5" fill="#1d1f3a"/>
+<rect x="238" y="108" width="44" height="20" rx="3" fill="#fde8c4" stroke="#1d1f3a" stroke-width="1.5"/><text x="260" y="122" text-anchor="middle" fill="#1d1f3a" font-size="11">300 g</text>
+<text x="260" y="143" text-anchor="middle" fill="#555">Two in a row</text><text x="260" y="157" text-anchor="middle" fill="#1d1f3a" font-weight="700">stretch 12 cm in all</text>
+<line x1="385" y1="12" x2="475" y2="12" stroke="#1d1f3a" stroke-width="3"/>
+<polyline points="412,12 412,16 419,18.6 405,23.8 419,28.9 405,34.1 419,39.2 405,44.4 412,47 412,51" fill="none" stroke="#3f44c9" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="448,12 448,16 455,18.6 441,23.8 455,28.9 441,34.1 455,39.2 441,44.4 448,47 448,51" fill="none" stroke="#3f44c9" stroke-width="2" stroke-linejoin="round"/>
+<line x1="404" y1="51" x2="456" y2="51" stroke="#1d1f3a" stroke-width="3"/>
+<line x1="430" y1="51" x2="430" y2="59" stroke="#1d1f3a" stroke-width="1.5"/>
+<rect x="408" y="59" width="44" height="20" rx="3" fill="#fde8c4" stroke="#1d1f3a" stroke-width="1.5"/><text x="430" y="73" text-anchor="middle" fill="#1d1f3a" font-size="11">300 g</text>
+<text x="430" y="143" text-anchor="middle" fill="#555">Two side by side</text><text x="430" y="157" text-anchor="middle" fill="#1d1f3a" font-weight="700">each stretches 3 cm</text>
+</svg></figure>
+<p><b>One spring.</b> The stretch is \(3 \times 2 = 6\) cm. Its stiffness is \(3 \div 6 = 0.5\) N per cm.</p>
+<p><b>Two in a row.</b> The upper spring holds the lower one, which holds the weight. So each carries all 300 g and stretches 6 cm. The weight drops \(6 + 6 = 12\) cm. Effective stiffness: \(3 \div 12 = 0.25\) N per cm, half as stiff as one spring.</p>
+<p><b>Two side by side.</b> The weight hangs from the middle of a light bar, so the matching springs share it: 150 g each. Each stretches \(1.5 \times 2 = 3\) cm. Effective stiffness: \(3 \div 3 = 1\) N per cm, twice as stiff.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Here are made-up measurements for a different spring.
+<table class="tt">
+<tr><th>Load (g)</th><td>0</td><td>100</td><td>200</td><td>300</td><td>400</td><td>500</td><td>600</td><td>700</td><td>800</td></tr>
+<tr><th>Stretch (cm)</th><td>0</td><td>1.5</td><td>3.0</td><td>4.5</td><td>6.0</td><td>7.5</td><td>9.4</td><td>12.1</td><td>16.0</td></tr>
+</table>
+(a) Find the extra stretch for each extra 100 g. (b) Plotted on a graph, the first points lie on a straight line through zero. Up to what load? (c) Use Hooke's law to predict the stretch for 250 g. (d) What does it predict for 800 g? How far off is that?<div class="space short"></div></li>
+<li>Two light springs hang in a row: stiffness 2 N per cm on top, 3 N per cm below. A load of 6 N hangs from the bottom. (a) How far does each stretch? (b) Find the total stretch and the effective stiffness. (c) Repeat with 12 N. Does that stiffness change? (d) Is the pair stiffer or less stiff than the weaker spring?<div class="space short"></div></li>
+<li>The same two springs now hang side by side, joined by a light bar that is kept level, so both stretch equally. (a) The bar is pulled down 1 cm. What force does each spring pull back with? What is the effective stiffness? (b) A load of 10 N hangs from the bar. How far does it drop, and how much of the load does each spring carry? (c) What fraction of any load does the stiffer spring carry?<div class="space short"></div></li>
+<li>Model a stiff strip as a spring A of stiffness 20 N per cm, and a soft strip as a spring B of stiffness 5 N per cm. (a) Find the effective stiffness of each pair side by side, held to the same stretch: A with A, B with B, A with B. (b) Do the same for each pair in a row. (c) In one arrangement the mixed pair is exactly halfway between the other two. Which? Where does it sit in the other? (d) A material has flat layers, stiff then soft. Which arrangement models pulling along the layers, and which across?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: very stiff with very soft</h2>
+<p>As in exercise 4, take a stiff strip of 100 N per cm and a soft strip of 1 N per cm. (a) Find the effective stiffness of the mixed pair side by side, and in a row. For the row, try a load of 1 N. (b) About how many times stiffer is the side by side pair? (c) Make the stiff strip stiffer and stiffer. Can the row ever reach 1 N per cm? Why can a layered material be so much stiffer along its layers than across?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) 1.5 cm for each of the first five steps, then 1.9, 2.7 and 3.9 cm. (b) Up to 500 g. The line bends upward somewhere between 500 g and 600 g, and the table cannot say exactly where. (c) Each 100 g gives 1.5 cm, so 250 g gives \(2.5 \times 1.5 = 3.75\) cm. (d) \(8 \times 1.5 = 12\) cm, but the table shows 16.0 cm. Hooke's law is 4 cm too small there. It only works on the straight part.</li>
+<li>(a) Each spring carries the full 6 N. The top one stretches \(6 \div 2 = 3\) cm and the bottom one \(6 \div 3 = 2\) cm. (b) \(3 + 2 = 5\) cm, so the effective stiffness is \(6 \div 5 = 1.2\) N per cm. (c) Now the stretches are 6 cm and 4 cm, 10 cm in all, and \(12 \div 10 = 1.2\) N per cm again. Doubling the load doubles every stretch, so the stiffness does not change. (d) Less stiff: \(1.2\) is less than 2. This always happens in a row, because the pair stretches further than either spring would alone. (Swapping top and bottom changes nothing for light springs.)</li>
+<li>(a) 2 N and 3 N, so 5 N in all for 1 cm. The effective stiffness is \(2 + 3 = 5\) N per cm. (b) \(10 \div 5 = 2\) cm. The springs carry \(2 \times 2 = 4\) N and \(3 \times 2 = 6\) N, and \(4 + 6 = 10\). (c) \(\tfrac35\) of it. For any stretch the forces are in the ratio 2 to 3. Side by side, the stiffer spring does more of the work. (To keep the bar level without help, the load must hang nearer the stiffer spring.)</li>
+<li>(a) Forces add: \(20 + 20 = 40\), \(5 + 5 = 10\) and \(20 + 5 = 25\) N per cm. (b) Use a load of 20 N. A with A stretches \(1 + 1 = 2\) cm: \(20 \div 2 = 10\) N per cm. B with B stretches \(4 + 4 = 8\) cm: \(20 \div 8 = 2.5\) N per cm. A with B stretches \(1 + 4 = 5\) cm: \(20 \div 5 = 4\) N per cm. (c) Side by side: 25 is halfway between 10 and 40. In a row, halfway between 2.5 and 10 would be 6.25, but the mixed pair has only 4. It sits nearer the soft end. (d) Pulled along the layers, every layer must stretch by the same amount, and their forces add: side by side. Pulled across the layers, every layer feels the same pull, and their stretches add: in a row. This is a simple model. Real layers also squeeze sideways when pulled, which shifts the numbers a little.</li>
+</ol>
+<p><b>Stretch.</b> (a) Side by side: \(100 + 1 = 101\) N per cm. In a row, 1 N stretches the stiff strip \(0.01\) cm and the soft strip 1 cm, \(1.01\) cm in all, so the stiffness is \(1 \div 1.01\), about \(0.99\) N per cm. (b) \(101 \div 0.99\) is about 102 times. (c) No. The soft strip alone stretches 1 cm for each newton, and the stiff strip always adds a little more. So the total is more than 1 cm per newton, and the stiffness stays below 1 N per cm however stiff the other strip is. Across the layers, the soft layers do nearly all the stretching, so the material is about as weak as its soft part. Along the layers, the stiff layers carry nearly all the load, so the material is about as stiff as its stiff part. One material, two very different stiffnesses.</p>
+</section>
+
+<div class="sheet-nav"><a href="c14-soap-shortest-road.html">← Previous</a><a href="c16-squeeze-the-air.html">Next: Squeeze the air →</a></div>
+</main>
+
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Dividing in clock arithmetic · Infinity Club</title>
+<title>Dividing in clock arithmetic · Math Detours</title>
 <meta name="description" content="You can divide by 3 on a 7-hour clock but not by 2 on a 6-hour one. When an inverse exists, how to find it with Euclid's algorithm, and why primes make everything work.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
@@ -11,7 +11,7 @@
 </head>
 <body>
 <nav class="top">
-  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
   <a href="../index.html">Grade 11</a>
   <a href="../index.html#sheets">Sheets</a>
   <a href="../../demos/index.html">Demos</a>
@@ -23,7 +23,7 @@
 
 <main class="paper">
 <header class="sheet-head">
-  <div class="kicker">Infinity Club · Grade 11 · Around the corner · 3</div>
+  <div class="kicker">Math Detours · Grade 11 · Around the corner · 3</div>
   <h1>Dividing in clock arithmetic</h1>
   <p class="teaser">You can divide by 3 on a 7-hour clock but not by 2 on a 6-hour one. When an inverse exists, how to find it, and why primes make everything work.</p>
   <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
@@ -79,7 +79,7 @@
 <p>It ends at 1, so an inverse exists. Now climb back up, replacing each remainder by the line that made it:</p>
 <p>\[1 = 5 - 2 \times 2 = 5 - 2(7 - 5) = 3 \times 5 - 2 \times 7 = 3(40 - 5 \times 7) - 2 \times 7 = 3 \times 40 - 17 \times 7.\]</p>
 <p>So \(7 \times (-17) \equiv 1 \pmod{40}\), and \(-17 \equiv 23\). Check: \(7 \times 23 = 161 = 4 \times 40 + 1\). To solve \(7x \equiv 3\), multiply both sides by 23: \(x \equiv 69 \equiv 29\).</p>
-<p class="small">An RSA private key is found exactly this way: \(d\) is the inverse of \(e\). Pick two primes and watch Euclid find it at <a href="../../demos/rsa.html">infinityclub.net/demos/rsa.html</a>.</p>
+<p class="small">An RSA private key is found exactly this way: \(d\) is the inverse of \(e\). Pick two primes and watch Euclid find it at <a href="../../demos/rsa.html">mathdetours.com/demos/rsa.html</a>.</p>
 </section>
 
 <section class="exercises">
@@ -112,7 +112,7 @@
 <div class="sheet-nav"><a href="b2-rearrangement.html">← Previous</a><a href="b4-decimal-periods.html">Next: Why 1/7 repeats after six digits and 1/13 after six too →</a></div>
 </main>
 
-<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
 <script defer src="../../assets/site.js"></script>

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A derivative for whole numbers · Math Detours</title>
+<meta name="description" content="Define D(p) = 1 for primes and D(ab) = a D(b) + b D(a), the product rule, and you get a derivative for whole numbers. Compute it, prove a power rule, find the numbers that equal their own derivative, and see why D(n)/n behaves like the derivative of a logarithm.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
+  <a href="../index.html">Grade 12</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Math Detours · Grade 12 · Around the corner · 29</div>
+  <h1>A derivative for whole numbers</h1>
+  <p class="teaser">Make up a rule: D(prime) = 1 and D(ab) = a D(b) + b D(a), the product rule. It works on whole numbers, it has a power rule, and a few numbers turn out to be their own derivative.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>In calculus the product rule says \((fg)' = f'g + fg'\). <b>Differential algebra</b> turns this around. It forgets limits and slopes and calls an operation a derivative if it obeys the right algebraic rules: the sum rule and, above all, the product rule. Tonight, keep only the product rule and try it on whole numbers. Primes are the atoms of multiplication, so let each prime play the part of \(x\), with derivative \(1\).</p>
+<p class="callout">The <b>arithmetic derivative</b>: \(D(p) = 1\) for every prime \(p\), and \(D(ab) = a\,D(b) + b\,D(a)\) for all positive whole numbers \(a\) and \(b\).</p>
+<p>Every whole number above \(1\) is a prime or a product of two smaller whole numbers, so these two lines reach every positive whole number. One worry: \(12 = 2 \times 6 = 3 \times 4\). Do both splittings give the same \(D(12)\)? They do, for every number, and the stretch shows why.</p>
+<p>A warning: \(D\) does not obey the sum rule (exercise 1), so it is a made-up cousin of the derivative, not the real thing.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: \(D(6)\) and \(D(12)\)</h2>
+<p>Start with products of two primes. \(D(4) = D(2 \times 2) = 2 \times 1 + 2 \times 1 = 4\) and \(D(6) = D(2 \times 3) = 2 \times 1 + 3 \times 1 = 5\). Now build on those:</p>
+<p>\[D(12) = D(2 \times 6) = 2\,D(6) + 6\,D(2) = 2 \times 5 + 6 \times 1 = 16.\]</p>
+<p>Split \(12\) the other way and the same number comes out:</p>
+<p>\[D(12) = D(3 \times 4) = 3\,D(4) + 4\,D(3) = 3 \times 4 + 4 \times 1 = 16.\]</p>
+<p>Notice \(D(4) = 4\): the number \(4\) is its own derivative, as \(e^x\) is in calculus. Notice also that \(D(12) = 16\) is bigger than \(12\), while \(D(6) = 5\) is smaller than \(6\).</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>(a) Put \(a = b = 1\) in the product rule. What must \(D(1)\) be? (b) Compare \(D(2 + 3)\) with \(D(2) + D(3)\). Does \(D\) obey the sum rule?<div class="space short"></div></li>
+<li>Find \(D(8)\), \(D(9)\) and \(D(30)\). Work out \(D(30)\) twice, from \(5 \times 6\) and from \(2 \times 15\), and check that the two agree.<div class="space"></div></li>
+<li>Let \(p\) be a prime. Find \(D(p^2)\) and \(D(p^3)\), guess a formula for \(D(p^k)\) with \(k \ge 1\), and prove it by going from \(p^k\) to \(p^{k+1} = p \times p^k\). Which rule from calculus does it copy?<div class="space"></div></li>
+<li>Use exercise 3 to find every prime power \(p^k\) (with \(k \ge 1\)) that is its own derivative, \(D(p^k) = p^k\). Write out the three smallest.<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: a logarithm in disguise</h2>
+<p>In calculus \(f'/f\) is the derivative of \(\ln f\), and it turns products into sums. Let \(L(n) = \dfrac{D(n)}{n}\). (a) Divide the product rule by \(ab\) to show \(L(ab) = L(a) + L(b)\). (b) Deduce that if \(n = p_1^{k_1} p_2^{k_2} \cdots p_r^{k_r}\) with distinct primes \(p_i\), then \(L(n) = \dfrac{k_1}{p_1} + \dfrac{k_2}{p_2} + \cdots + \dfrac{k_r}{p_r}\). (c) Show that the numbers you found in exercise 4 are the <em>only</em> positive whole numbers with \(D(n) = n\).</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(D(1) = D(1 \times 1) = 1 \times D(1) + 1 \times D(1) = 2\,D(1)\), so \(D(1) = 0\). The rule forces it, just as a constant has derivative zero. (b) \(D(2 + 3) = D(5) = 1\) because \(5\) is prime, but \(D(2) + D(3) = 1 + 1 = 2\). So \(D\) does not obey the sum rule.</li>
+<li>\(D(8) = D(2 \times 4) = 2\,D(4) + 4\,D(2) = 2 \times 4 + 4 \times 1 = 12\). \(D(9) = D(3 \times 3) = 3 \times 1 + 3 \times 1 = 6\). From \(5 \times 6\): \(D(30) = 5\,D(6) + 6\,D(5) = 5 \times 5 + 6 \times 1 = 31\). From \(2 \times 15\): first \(D(15) = 3 \times 1 + 5 \times 1 = 8\), then \(D(30) = 2 \times 8 + 15 \times 1 = 31\). They agree, and \(31\) is prime, so differentiating once more gives \(1\).</li>
+<li>\(D(p^2) = p \times 1 + p \times 1 = 2p\) and \(D(p^3) = p\,D(p^2) + p^2 D(p) = 2p^2 + p^2 = 3p^2\). Guess: \(D(p^k) = k\,p^{k-1}\), true for \(k = 1\) since \(D(p) = 1\). If it holds for \(k\), then \(D(p^{k+1}) = p\,D(p^k) + p^k D(p) = k\,p^k + p^k = (k + 1)\,p^k\), so it holds for \(k + 1\), and so for every \(k \ge 1\). It copies the power rule \((x^k)' = k\,x^{k-1}\). Check: \(D(8) = 3 \times 2^2 = 12\) and \(D(9) = 2 \times 3 = 6\).</li>
+<li>\(D(p^k) = p^k\) means \(k\,p^{k-1} = p^k\). Divide by \(p^{k-1}\): \(k = p\). So the answers are exactly the numbers \(p^p\) with \(p\) prime: \(2^2 = 4\), \(3^3 = 27\), \(5^5 = 3125\), then \(7^7 = 823\,543\), and so on. Check: \(D(27) = 3 \times 3^2 = 27\).</li>
+</ol>
+<p><b>Stretch.</b> (a) \(\dfrac{D(ab)}{ab} = \dfrac{a\,D(b)}{ab} + \dfrac{b\,D(a)}{ab} = \dfrac{D(b)}{b} + \dfrac{D(a)}{a}\). (b) By exercise 3, \(L(p^k) = \dfrac{k\,p^{k-1}}{p^k} = \dfrac{k}{p}\). Use (a) to add up the prime powers in \(n\). This formula never mentions a splitting, and \(D(n) = n\,L(n)\) obeys both lines of the definition, which is why every splitting gives the same answer. (c) \(D(n) = n\) means \(L(n) = 1\), which rules out \(n = 1\), where \(L = 0\). For one prime, \(k/p = 1\) gives \(n = p^p\). Suppose there were two or more primes, and multiply \(\frac{k_1}{p_1} + \cdots + \frac{k_r}{p_r} = 1\) by \(P = p_1 p_2 \cdots p_r\). Then \(P\) and every term except the first, \(k_1 P / p_1\), are multiples of \(p_1\), so \(p_1\) divides \(k_1 P / p_1\). But \(P / p_1\) is a product of other primes, so \(p_1\) divides \(k_1\), and \(k_1 \ge p_1\). Then \(k_1 / p_1 \ge 1\) already, and the other terms push the sum above \(1\). So only \(p^p\) works.</p>
+<p>One more link: for primes \(p\) and \(q\), \(D(pq) = p + q\). Goldbach's conjecture, still unproven, says every even number from \(4\) up is a sum of two primes. If that is true, every even number from \(4\) up is the derivative of something.</p>
+</section>
+
+<div class="sheet-nav"><a href="b28-lagrange.html">← Previous</a><a href="b30-cancel-the-error.html">Next: Spot the error, then cancel it →</a></div>
+</main>
+
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

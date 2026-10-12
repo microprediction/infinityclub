@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stirred or still? · Math Detours</title>
+<meta name="description" content="Two ways a drop of dye spreads through water: diffusion, where the time needed grows like the distance squared, and convection, where the flow carries it. Rough numbers show why stirring wins, and a coin-flip walk shows where the square comes from.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Math Detours · Grade 8 · Connections · 12</div>
+  <h1>Stirred or still?</h1>
+  <p class="teaser">A drop of dye in still water spreads painfully slowly. Stir once and it is everywhere. Two simple rules, one with a square in it, explain the difference.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Put a drop of dye into perfectly still water. Water molecules knock each dye molecule about in tiny random steps. This is <b>diffusion</b>. Random steps mostly cancel, so the cloud grows slowly. Spreading 2 times as far takes 4 times as long. Spreading 4 times as far takes 16 times as long.</p>
+<p>Now stir. Moving water carries the dye along. This is <b>convection</b> (also called advection), and it works like a car trip: distance is speed times time.</p>
+<p class="callout"><b>Diffusion:</b> the time needed grows like the distance <i>squared</i>. <b>Convection:</b> the time needed grows like the distance.</p>
+<p>A diffusing cloud has no sharp edge. "Distance" here means the typical distance of a dye molecule from where the drop began. Some are nearer, a few much further.</p>
+<p>Physicists pack both rules into one equation for how the amount of dye at each point changes over time. Equations like this are called <b>partial differential equations</b>. Heat, sound and flowing water each have a famous one. The diffusion rule is the <b>heat equation</b>, because heat spreads through a solid in the same way.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: one millimetre, then one centimetre</h2>
+<p>Suppose dye in still water spreads about 1 mm in 8 minutes. That is a rough, order-of-magnitude figure. The real one depends on the dye and the temperature. How long to spread 1 cm?</p>
+<p>One centimetre is 10 times as far as 1 mm. For diffusion, 10 times the distance takes \(10^2 = 100\) times as long:</p>
+\[100 \times 8 \text{ min} = 800 \text{ min} = 13 \text{ hours } 20 \text{ minutes}.\]
+<p>Compare convection. If a gentle stir moves the water at 1 cm per second, the dye is carried 1 cm in 1 second.</p>
+<p>In a real glass you will see dye spread faster than our 13 hours. The water is never perfectly still: the falling drop and small temperature differences set up slow currents. That is convection sneaking in. Our square rule is a model of diffusion alone.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Use the rough figure from the example: 1 mm in 8 minutes, by diffusion alone. (a) How far does the dye spread in 72 minutes? (b) How long does it take to spread 10 cm, the width of a mug? Give your answer in minutes, then in days.<div class="space short"></div></li>
+<li>Now stir, so the water moves at 1 cm per second. (a) How long does the flow take to carry dye 10 cm? About how many times faster is that than your answer to 1(b)? (b) Stirring also stretches the dye into thin streaks, with clear water only about 0.1 mm away. How long does diffusion take to cross 0.1 mm?<div class="space short"></div></li>
+<li>Smells diffuse faster in air than dye does in water. As a rough figure, say a smell spreads about 1 cm in 5 seconds in perfectly still air. (a) By diffusion alone, how long would the smell of cooking take to cross a room 4 m wide? Give your answer in seconds, then in days. (b) Room air is never still. Say it drifts at about 20 cm per second. How long does the drift take to carry the smell 4 m? (c) Which process brings you the smell?<div class="space short"></div></li>
+<li>Where does the square come from? Model a dye molecule as a walker on a number line, starting at 0. Flip a fair coin: heads, one step right; tails, one step left. (a) List the four equally likely walks of 2 flips and where each ends. Square each finishing position and average the four squares. (b) Do the same for the 16 walks of 4 flips. You do not need to list them: 1 ends at \(4\), 4 end at \(2\), 6 end at \(0\), 4 end at \(-2\) and 1 ends at \(-4\). (c) Guess the average square after 100 flips. What is the typical distance from 0 then? How many flips make the typical distance 4 times as big?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: which equation?</h2>
+<p>Three famous partial differential equations, in words. The <b>heat equation</b> says how something spreads out and evens out. The <b>wave equation</b> says how a disturbance travels and swings back and forth. The <b>Navier–Stokes equations</b> say how a fluid flows. Match each to one of these: the inside of a pie cooling on a bench, a plucked guitar string, tea being stirred. Then: following sugar as it dissolves in stirred tea takes two equations at once. Which two, and what does each do?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) 72 minutes is 9 times 8 minutes. Nine times the time gives \(\sqrt{9} = 3\) times the distance: about 3 mm. (b) 10 cm is 100 mm, so the time is \(100^2 = 10{,}000\) times as long: \(10{,}000 \times 8 = 80{,}000\) minutes. That is about 1,333 hours, or about 56 days: roughly eight weeks to cross a mug.</li>
+<li>(a) \(10 \div 1 = 10\) seconds. The diffusion answer was \(80{,}000 \times 60 = 4{,}800{,}000\) seconds, so the flow is about 480,000 times faster. (b) 0.1 mm is one tenth of 1 mm, so it takes \(\tfrac{1}{100}\) of 8 minutes: \(480 \div 100 = 4.8\) seconds. This is how stirring really mixes. The flow does the long-distance work and folds the dye into thin streaks. Then diffusion finishes the job, because over tiny distances it is quick.</li>
+<li>(a) 4 m is 400 cm, so the time is \(400^2 = 160{,}000\) times 5 seconds: 800,000 seconds. That is about 222 hours, a little over 9 days. (b) \(400 \div 20 = 20\) seconds. (c) Convection. Moving air carries the smell across the room in seconds. Diffusion alone would take more than a week in this model.</li>
+<li>(a) HH ends at \(2\), HT at \(0\), TH at \(0\), TT at \(-2\). The squares are 4, 0, 0, 4 and their average is \(8 \div 4 = 2\). (b) The squares add to \(1 \times 16 + 4 \times 4 + 6 \times 0 + 4 \times 4 + 1 \times 16 = 64\), and \(64 \div 16 = 4\). (c) The average square equals the number of flips, so after 100 flips it is 100 (this is true for every number of flips, though two cases do not prove it). The typical distance is about \(\sqrt{100} = 10\) steps. For a typical distance of 40 you need about \(40^2 = 1600\) flips: 16 times as many flips for 4 times the distance. That is the diffusion rule.</li>
+</ol>
+<p><b>Stretch.</b> Pie: the heat equation. Heat spreads from the hot middle towards the cooler crust. String: the wave equation. Stirred tea: Navier–Stokes. For the sugar you need Navier–Stokes to say how the tea moves, and a heat-type equation with one extra term for "carried along by the flow" to say where the sugar goes. That second one is called the convection–diffusion equation. A surprise: nobody has yet proved that the Navier–Stokes equations in three dimensions always have smooth solutions. It is a famous open problem with a million-dollar prize.</p>
+</section>
+
+<div class="sheet-nav"><a href="c11-age-of-universe.html">← Previous</a><a href="c13-double-pendulum.html">Next: Two rulers and a pin →</a></div>
+</main>
+
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>
