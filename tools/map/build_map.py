@@ -150,7 +150,7 @@ details.more > summary {{ cursor:pointer; font-size:.85rem; font-weight:700; col
 <li><b>Way in</b> is a suggested elementary entry point, with the lowest grade we think it works for. <span class="fit">Natural fit</span> means a normal sheet could do it. <span class="fit stretch">Stretch</span> means a glimpse, or real care. <span class="fit hard">Hard</span> means an honest elementary taste is difficult.</li>
 <li>Shaded links are sheets where the section is the main idea; outlined links only touch it. G8 means grade 8.</li>
 <li>Plain school arithmetic has no section of its own, so sheets on fractions, percentages and estimation mostly sit under 00A or 11A.</li>
-<li>The sorting was done with AI help and checked by eye, so some calls are judgement. Corrections are welcome as <a href="https://github.com/microprediction/infinityclub/issues">GitHub issues</a>.</li>
+<li>The sorting was done with AI help and checked by eye, so some calls are judgement. Corrections are welcome as <a href="https://github.com/microprediction/mathdetours/issues">GitHub issues</a>.</li>
 </ul>
 </details>
 <div class="filters" role="group" aria-label="Filter sections">
