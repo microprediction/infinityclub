@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zoom out on a random picture · Infinity Club</title>
+<meta name="description" content="Colour a grid black and white at random, then replace each 3 by 3 block with its majority colour. Work out the chance a block turns black, apply it twice, and find the tipping point at one half. A toy model of renormalisation.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 11</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 11 · Around the corner · 25</div>
+  <h1>Zoom out on a random picture</h1>
+  <p class="teaser">Colour a 9 by 9 grid at random. Replace each 3 by 3 block with its majority colour, then do it again. Zooming out turns a slight lean towards black into a strong one.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A magnet holds far more atoms than anyone could list. Physicists cope by zooming out: swap each small block for a single cell and see what survives. That is the heart of <b>renormalisation</b>.</p>
+<p>Try a toy version. Colour each cell of a grid black with chance \(p\) and white otherwise, every cell independently. Cut the grid into 3 by 3 blocks and replace each block by its majority colour. A block has 9 cells, so there are no ties: black wins with 5 or more.</p>
+<p>The chance of exactly \(k\) black cells in a block is \(\binom{9}{k} p^k (1-p)^{9-k}\): <a href="../../grade-10/sheets/b4-counting.html">choose</a> which \(k\) cells are black, then multiply the chances. Add up the winning cases:</p>
+<p class="callout">\(q(p) = \displaystyle\sum_{k=5}^{9} \binom{9}{k} p^k (1-p)^{9-k}\) is the chance that a block turns black.</p>
+<p>Blocks do not overlap, so the new cells are independent again, each black with chance \(q(p)\). Zooming out replaces \(p\) by \(q(p)\), and you can repeat it.</p>
+<p>This is only a toy model. In a real magnet neighbouring atoms influence each other, and the real method must track that.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: zoom out twice</h2>
+<p>Grid A below is a made-up picture. It has 81 cells and 48 of them are black.</p>
+<figure><svg viewBox="0 0 520 180" width="520" height="180" role="img" aria-label="Grid A, a 9 by 9 grid of black and white cells cut into nine 3 by 3 blocks. An arrow leads to a 3 by 3 grid with 7 black cells and 2 white, and a second arrow to a single black cell. On the right is Grid B, another 9 by 9 grid cut into blocks, for question 1" font-family="Nunito, sans-serif" font-size="13">
+<rect x="8" y="8" width="144" height="144" fill="#fff"/>
+<path d="M8,8h16v16h-16zM72,8h16v16h-16zM104,8h16v16h-16zM24,24h16v16h-16zM40,24h16v16h-16zM72,24h16v16h-16zM104,24h16v16h-16zM136,24h16v16h-16zM24,40h16v16h-16zM40,40h16v16h-16zM72,40h16v16h-16zM88,40h16v16h-16zM104,40h16v16h-16zM120,40h16v16h-16zM136,40h16v16h-16zM8,56h16v16h-16zM40,56h16v16h-16zM56,56h16v16h-16zM72,56h16v16h-16zM104,56h16v16h-16zM8,72h16v16h-16zM24,72h16v16h-16zM40,72h16v16h-16zM56,72h16v16h-16zM72,72h16v16h-16zM104,72h16v16h-16zM40,88h16v16h-16zM56,88h16v16h-16zM72,88h16v16h-16zM104,88h16v16h-16zM136,88h16v16h-16zM8,104h16v16h-16zM24,104h16v16h-16zM72,104h16v16h-16zM104,104h16v16h-16zM136,104h16v16h-16zM8,120h16v16h-16zM56,120h16v16h-16zM72,120h16v16h-16zM104,120h16v16h-16zM136,120h16v16h-16zM8,136h16v16h-16zM24,136h16v16h-16zM40,136h16v16h-16zM56,136h16v16h-16zM72,136h16v16h-16zM104,136h16v16h-16zM120,136h16v16h-16z" fill="#1d1f3a"/>
+<path d="M24,8v144M8,24h144M40,8v144M8,40h144M56,8v144M8,56h144M72,8v144M8,72h144M88,8v144M8,88h144M104,8v144M8,104h144M120,8v144M8,120h144M136,8v144M8,136h144" stroke="#999" stroke-width="0.6" fill="none"/>
+<path d="M8,8v144M8,8h144M56,8v144M8,56h144M104,8v144M8,104h144M152,8v144M8,152h144" stroke="#3f44c9" stroke-width="2" fill="none"/>
+<text x="80" y="172" text-anchor="middle" fill="#1d1f3a">Grid A</text>
+<path d="M160,80H182M176,75L182,80L176,85" stroke="#f5a524" stroke-width="2" fill="none"/>
+<rect x="190" y="38" width="84" height="84" fill="#fff"/>
+<path d="M190,38h28v28h-28zM246,38h28v28h-28zM190,66h28v28h-28zM218,66h28v28h-28zM190,94h28v28h-28zM218,94h28v28h-28zM246,94h28v28h-28z" fill="#1d1f3a"/>
+<path d="M218,38v84M190,66h84M246,38v84M190,94h84" stroke="#999" stroke-width="0.6" fill="none"/>
+<path d="M190,38h84v84h-84z" stroke="#3f44c9" stroke-width="2" fill="none"/>
+<text x="232" y="172" text-anchor="middle" fill="#1d1f3a">zoomed once</text>
+<path d="M282,80H304M298,75L304,80L298,85" stroke="#f5a524" stroke-width="2" fill="none"/>
+<rect x="312" y="66" width="28" height="28" fill="#fff"/>
+<path d="M312,66h28v28h-28z" fill="#1d1f3a"/>
+<path d="M312,66h28v28h-28z" stroke="#3f44c9" stroke-width="2" fill="none"/>
+<text x="326" y="172" text-anchor="middle" fill="#1d1f3a">twice</text>
+<rect x="366" y="8" width="144" height="144" fill="#fff"/>
+<path d="M382,8h16v16h-16zM430,8h16v16h-16zM446,8h16v16h-16zM462,8h16v16h-16zM478,8h16v16h-16zM382,24h16v16h-16zM414,24h16v16h-16zM462,24h16v16h-16zM478,24h16v16h-16zM494,24h16v16h-16zM382,40h16v16h-16zM414,40h16v16h-16zM462,40h16v16h-16zM478,40h16v16h-16zM494,40h16v16h-16zM366,56h16v16h-16zM382,56h16v16h-16zM430,56h16v16h-16zM462,56h16v16h-16zM414,72h16v16h-16zM446,72h16v16h-16zM462,72h16v16h-16zM478,72h16v16h-16zM494,72h16v16h-16zM366,88h16v16h-16zM382,88h16v16h-16zM430,88h16v16h-16zM462,88h16v16h-16zM494,88h16v16h-16zM414,104h16v16h-16zM430,104h16v16h-16zM462,104h16v16h-16zM478,104h16v16h-16zM382,120h16v16h-16zM398,120h16v16h-16zM462,120h16v16h-16zM478,120h16v16h-16zM494,120h16v16h-16zM366,136h16v16h-16zM382,136h16v16h-16zM398,136h16v16h-16zM414,136h16v16h-16zM446,136h16v16h-16zM462,136h16v16h-16zM478,136h16v16h-16zM494,136h16v16h-16z" fill="#1d1f3a"/>
+<path d="M382,8v144M366,24h144M398,8v144M366,40h144M414,8v144M366,56h144M430,8v144M366,72h144M446,8v144M366,88h144M462,8v144M366,104h144M478,8v144M366,120h144M494,8v144M366,136h144" stroke="#999" stroke-width="0.6" fill="none"/>
+<path d="M366,8v144M366,8h144M414,8v144M366,56h144M462,8v144M366,104h144M510,8v144M366,152h144" stroke="#3f44c9" stroke-width="2" fill="none"/>
+<text x="438" y="172" text-anchor="middle" fill="#1d1f3a">Grid B (question 1)</text>
+</svg><figcaption>Grid A zoomed out twice. Each 3 by 3 block becomes one cell of its majority colour.</figcaption></figure>
+<p><b>First zoom.</b> Count the black cells in each 3 by 3 block. Top row of blocks: 5, 4, 6. Middle row: 6, 6, 4. Bottom row: 6, 5, 6. A block with 5 or more turns black, so seven blocks turn black and the two blocks with 4 turn white.</p>
+<p><b>Second zoom.</b> The new 3 by 3 picture is one block. It has 7 black cells, and \(7 \ge 5\), so it becomes a single black cell.</p>
+<p>Zooming out is not the same as counting all 81 cells. It asks who wins most blocks, not who has most cells. Question 1 shows that the two can disagree.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Grid B in the figure is also made up. Count the black cells in each of its nine blocks and zoom out twice. Then count the black cells in the whole grid. What do you notice?<div class="space short"></div></li>
+<li>Each cell is black with chance \(p = 0.6\). For \(k = 5, 6, 7, 8, 9\) the values of \(\binom{9}{k}\) are 126, 84, 36, 9, 1. Work out the five terms of \(q(0.6)\) and add them. Give \(q(0.6)\) to 3 decimal places.<div class="space"></div></li>
+<li>A 9 by 9 grid is coloured with \(p = 0.6\) and zoomed out twice. Explain why the chance that the last cell is black is \(q(q(0.6))\). Find it to 2 decimal places, using your 3-decimal answer to question 2.<div class="space"></div></li>
+<li>Show that \(q\left(\tfrac12\right) = \tfrac12\) exactly. Then explain, without any calculation, why it had to be.<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: the tipping point</h2>
+<p>A value of \(p\) is a <b>fixed point</b> if \(q(p) = p\): zooming out does not change it. Check that 0 and 1 are fixed points. Together with \(\tfrac12\) they are the only ones from 0 to 1. Now find \(q(0.51)\) to 3 decimal places, and use the symmetry from question 4 to get \(q(0.49)\). Which fixed points do nearby values move towards, and which do they move away from?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Black cells per block, top row: 3, 4, 8. Middle row: 4, 4, 6. Bottom row: 5, 4, 8. Only four blocks reach 5 (the ones with 8, 6, 5 and 8), so the 3 by 3 picture has 4 black cells and 5 white, and it zooms out to a single white cell. Yet the whole grid has \(3+4+8+4+4+6+5+4+8 = 46\) black cells out of 81, a majority. Black piled up in a few blocks and lost five others, four of them by a single cell. Grid A, with 48 black cells, went black, and Grid B, with 46, went white.</li>
+<li>\(126 \times 0.6^5 \times 0.4^4 \approx 0.2508\), \(84 \times 0.6^6 \times 0.4^3 \approx 0.2508\), \(36 \times 0.6^7 \times 0.4^2 \approx 0.1612\), \(9 \times 0.6^8 \times 0.4 \approx 0.0605\), \(0.6^9 \approx 0.0101\). The sum is \(q(0.6) \approx 0.733\). A 60 percent lean in the cells becomes a 73 percent lean in the blocks.</li>
+<li>After one zoom there are nine cells, independent because the blocks do not overlap, each black with chance \(q(0.6) \approx 0.733\). The second zoom is the same rule applied to those nine cells, so the chance is \(q(0.733)\). The five terms are about 0.1355, 0.2480, 0.2918, 0.2003 and 0.0611, which add to about 0.937, so 0.94 to 2 decimal places. Black is now very likely to win. One more zoom, on a 27 by 27 grid, would give about 0.9999.</li>
+<li>With \(p = \tfrac12\) every term has \(p^k (1-p)^{9-k} = \tfrac{1}{512}\), so \(q\left(\tfrac12\right) = \tfrac{126 + 84 + 36 + 9 + 1}{512} = \tfrac{256}{512} = \tfrac12\). Why: at \(p = \tfrac12\) black and white are treated exactly alike, so they have the same chance of winning a block. There are no ties, so the two chances add to 1, and each is \(\tfrac12\). The same swap of colours shows \(q(1-p) = 1 - q(p)\) for every \(p\).</li>
+</ol>
+<p><b>Stretch.</b> Every term of \(q\) contains a factor \(p\), so \(q(0) = 0\). At \(p = 1\) every term with \(k \lt 9\) contains a factor \(1 - p = 0\), leaving \(q(1) = 1^9 = 1\). The terms of \(q(0.51)\) are about 0.2506, 0.1739, 0.0776, 0.0202 and 0.0023, so \(q(0.51) \approx 0.525\) and \(q(0.49) = 1 - q(0.51) \approx 0.475\). A gap of 0.01 from \(\tfrac12\) has grown to about 0.025, on either side. So values near \(\tfrac12\) move away from it: it is an unstable fixed point, a tipping point. Anything above \(\tfrac12\) climbs towards 1 and anything below sinks towards 0, so 0 and 1 are stable. In real renormalisation an unstable fixed point like this plays the part of a phase transition, such as the temperature at which a magnet loses its magnetism.</p>
+</section>
+
+<div class="sheet-nav"><a href="b24-fractal-dimension.html">← Previous</a><a href="c1-tides.html">Next: Predicting the tide →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

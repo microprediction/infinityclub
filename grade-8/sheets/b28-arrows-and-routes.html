@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Roads, routes and stay-put arrows · Infinity Club</title>
+<meta name="description" content="Towns and one-way roads introduce categories: arrows that join end to start, an order of joining that does not matter, and a stay-put arrow at every object. Test divisibility and 'is taller than' against the rules.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 8 · Around the corner · 28</div>
+  <h1>Roads, routes and stay-put arrows</h1>
+  <p class="teaser">Towns are dots and one-way roads are arrows. Join routes end to start and you have found the basic rules of category theory.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Draw towns as dots and one-way roads as arrows. A <b>route</b> is a list of roads, each starting where the one before ended. If one route ends where another starts, you can <b>join</b> them: drive the first, then the second. Staying where you are counts as a route too, with no roads in it. Call it the <b>stay-put arrow</b> of that town.</p>
+<p>Join three routes and you get the same list of roads whichever join you do first. Join a stay-put arrow onto a route and nothing changes.</p>
+<p class="callout">A <b>category</b> has objects and arrows between them. Arrows that meet end to start can be joined, \((f \text{ then } g) \text{ then } h = f \text{ then } (g \text{ then } h)\), and every object has its own stay-put arrow, which changes nothing when joined on.</p>
+<p>Towns and routes form a category. Category theory, begun by Samuel Eilenberg and Saunders Mac Lane in the 1940s, studies math(s) through how things connect, not what they are made of. It calls a stay-put arrow an <b>identity</b>.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: four towns</h2>
+<figure><svg viewBox="0 0 360 170" width="240" height="113" role="img" aria-label="Four towns A, B, C, D joined by five one-way roads: p from A to B, q from B to C, r from C to D, s from A to C and t from B to D" font-family="Nunito, sans-serif" font-size="14">
+<line x1="54.8" y1="79.0" x2="155.0" y2="38.2" stroke="#3f44c9" stroke-width="1.8"/>
+<polygon points="164.3,34.4 156.7,42.3 153.3,34.0" fill="#3f44c9"/>
+<text x="105.5" y="49.4" text-anchor="middle" fill="#3f44c9" font-style="italic" font-weight="700">p</text>
+<line x1="180.0" y1="44.0" x2="180.0" y2="115.0" stroke="#3f44c9" stroke-width="1.8"/>
+<polygon points="180.0,125.0 175.5,115.0 184.5,115.0" fill="#3f44c9"/>
+<text x="192.0" y="89.0" text-anchor="middle" fill="#3f44c9" font-style="italic" font-weight="700">q</text>
+<line x1="194.8" y1="136.0" x2="295.0" y2="95.2" stroke="#3f44c9" stroke-width="1.8"/>
+<polygon points="304.3,91.4 296.7,99.3 293.3,91.0" fill="#3f44c9"/>
+<text x="254.5" y="128.6" text-anchor="middle" fill="#3f44c9" font-style="italic" font-weight="700">r</text>
+<line x1="54.8" y1="91.0" x2="155.0" y2="131.8" stroke="#3f44c9" stroke-width="1.8"/>
+<polygon points="164.3,135.6 153.3,136.0 156.7,127.7" fill="#3f44c9"/>
+<text x="105.5" y="128.6" text-anchor="middle" fill="#3f44c9" font-style="italic" font-weight="700">s</text>
+<line x1="194.8" y1="34.0" x2="295.0" y2="74.8" stroke="#3f44c9" stroke-width="1.8"/>
+<polygon points="304.3,78.6 293.3,79.0 296.7,70.7" fill="#3f44c9"/>
+<text x="254.5" y="49.4" text-anchor="middle" fill="#3f44c9" font-style="italic" font-weight="700">t</text>
+<circle cx="40" cy="85" r="14" fill="#fde8c4" stroke="#1d1f3a" stroke-width="1.5"/>
+<text x="40" y="90" text-anchor="middle" fill="#1d1f3a" font-weight="700">A</text>
+<circle cx="180" cy="28" r="14" fill="#fde8c4" stroke="#1d1f3a" stroke-width="1.5"/>
+<text x="180" y="33" text-anchor="middle" fill="#1d1f3a" font-weight="700">B</text>
+<circle cx="180" cy="142" r="14" fill="#fde8c4" stroke="#1d1f3a" stroke-width="1.5"/>
+<text x="180" y="147" text-anchor="middle" fill="#1d1f3a" font-weight="700">C</text>
+<circle cx="320" cy="85" r="14" fill="#fde8c4" stroke="#1d1f3a" stroke-width="1.5"/>
+<text x="320" y="90" text-anchor="middle" fill="#1d1f3a" font-weight="700">D</text>
+</svg><figcaption>Five one-way roads. The four stay-put arrows are not drawn.</figcaption></figure>
+<p>The objects are the towns. The arrows are the routes, not just the roads. Write a route as its list of roads in driving order.</p>
+<p><b>Routes from A to D.</b> From A you leave by \(p\) or \(s\). After \(p\) you are at B, and can finish with \(t\), or with \(q\) and then \(r\). After \(s\) you are at C and must take \(r\). So there are exactly three: \(pt\), \(pqr\) and \(sr\).</p>
+<p><b>Order of joining.</b> Join \(p\), \(q\), \(r\) in two ways. First \(p\) then \(q\) is the route \(pq\), and \(pq\) then \(r\) is \(pqr\). Or first \(q\) then \(r\) is \(qr\), and \(p\) then \(qr\) is \(pqr\). The same list of roads both times.</p>
+<p><b>When joining fails.</b> "\(s\) then \(t\)" means nothing: \(s\) ends at C, but \(t\) starts at B.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Use the map above. (a) How many routes have 0 roads? 1 road? 2 roads? 3 roads? How many arrows does this category have in all? (b) A new road \(u\) is built from D to A. Explain why there are now infinitely many routes from A to A.<div class="space"></div></li>
+<li>Still on the map, without \(u\). Write \(1_B\) for the stay-put arrow of B. (a) What is \(p\) then \(1_B\)? What is \(1_A\) then \(p\)? Explain using lists of roads. (b) Which of these joins make sense: \(p\) then \(t\); \(t\) then \(p\); \(q\) then \(q\); \(1_C\) then \(r\); \(p\) then \(1_A\)?<div class="space short"></div></li>
+<li>A category with no roads. The objects are the numbers 1 to 12. There is one arrow from \(a\) to \(b\) exactly when \(a\) divides \(b\) (so \(3 \to 12\), but no arrow \(12 \to 3\)). (a) Which number's stay-put arrow comes from "5 divides 5"? Why does every number have one? (b) If there are arrows \(a \to b\) and \(b \to c\), why is there an arrow \(a \to c\) to be their join? (c) How many arrows arrive at 12? How many arrows are there in all?<div class="space"></div></li>
+<li>Some people stand in a room. Draw an arrow from \(x\) to \(y\) when \(x\) is taller than \(y\). (a) Arrows \(x \to y\) and \(y \to z\) can be joined. Why? (b) This is still not a category. Which rule fails? (c) Change the rule to "\(x\) is at least as tall as \(y\)". Is it a category now?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: roads back</h2>
+<p>An arrow \(f\) from X to Y can be <b>undone</b> if some arrow \(g\) from Y to X makes \(f\) then \(g\) the stay-put arrow of X, and \(g\) then \(f\) the stay-put arrow of Y. A category in which every arrow can be undone is called a <b>groupoid</b>. (a) Give every road on the map a return road, so \(p\) gets \(p'\) from B to A. In the category of routes, is \(p\) then \(p'\) the stay-put arrow of A? Which routes can be undone? (b) Now keep a shorter record: a trip is only (start, end), and (X, Y) then (Y, Z) is (X, Z). With return roads you can get from any town to any town. How many trips are there, and why is this a groupoid?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) 0 roads: 4, the stay-put arrows. 1 road: 5. 2 roads: 4, namely \(pq\), \(pt\), \(qr\), \(sr\). 3 roads: 1, namely \(pqr\). Every road leads to a town later in the alphabet, so no route visits a town twice and none has 4 roads. In all \(4 + 5 + 4 + 1 = 14\) arrows. (b) Now \(ptu\) is a route from A back to A. Drive it once, twice, three times and so on: each is a different list of roads, so the routes never run out.</li>
+<li>(a) Both are \(p\). The stay-put arrow has no roads, so joining it to either end of the list "\(p\)" adds nothing. (b) \(p\) then \(t\): yes, the route \(pt\) from A to D. \(t\) then \(p\): no, \(t\) ends at D and \(p\) starts at A. \(q\) then \(q\): no, \(q\) ends at C but starts at B. \(1_C\) then \(r\): yes, it is \(r\). \(p\) then \(1_A\): no, \(p\) ends at B and \(1_A\) starts at A (you would need \(1_B\)).</li>
+<li>(a) The stay-put arrow of 5. Every number divides itself, since \(a = a \times 1\). (b) If \(b = a \times k\) and \(c = b \times m\) for whole numbers \(k, m\), then \(c = a \times (k \times m)\), so \(a\) divides \(c\). The order of joining cannot matter here, because there is never more than one arrow from one number to another. So this is a category. (c) Six arrive at 12, from 1, 2, 3, 4, 6 and 12 itself. Counting arrivals at each of 1 to 12 gives \(1 + 2 + 2 + 3 + 2 + 4 + 2 + 4 + 3 + 4 + 2 + 6 = 35\) arrows, of which 12 are stay-put arrows.</li>
+<li>(a) If \(x\) is taller than \(y\) and \(y\) is taller than \(z\), then \(x\) is taller than \(z\), so the arrow \(x \to z\) is there to be the join. (b) Nobody is taller than themselves, so no one has a stay-put arrow. A category needs one at every object. (c) Yes. Everyone is at least as tall as themselves, joins work as in (a), and there is at most one arrow from one person to another, so the order of joining cannot matter. Two people of equal height get an arrow each way, which is allowed.</li>
+</ol>
+<p><b>Stretch.</b> (a) No. \(p\) then \(p'\) is the route \(pp'\) with two roads, and the stay-put arrow has none. Joining adds the numbers of roads, so a join has no roads only when both parts have none. Only the stay-put arrows can be undone, so routes do not form a groupoid, even with return roads. An extra rule is needed: out and back counts as staying put. (b) \(4 \times 4 = 16\) trips. The stay-put arrow of X is (X, X), and joins depend only on the first start and the last end, so the order of joining does not matter. Each trip (X, Y) is undone by (Y, X): one way round gives (X, X), the other (Y, Y).</p>
+</section>
+
+<div class="sheet-nav"><a href="b27-half-planes.html">← Previous</a><a href="c1-check-digits.html">Next: Why a typo in your card number gets caught →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>
