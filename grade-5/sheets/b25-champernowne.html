@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your birthday is hiding in this number · Math Detours</title>
+<meta name="description" content="Write the counting numbers in a row. Find hidden digit strings, prove your birthday must appear, and locate the thousandth digit without writing them all.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Math Detours</a>
+  <a href="../index.html">Grade 5</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Math Detours · Grade 5 · Around the corner · 25</div>
+  <h1>Your birthday is hiding in this number</h1>
+  <p class="teaser">Write 1, 2, 3 and all the counting numbers in a row after a decimal point. Your birthday must be hiding somewhere. Can you prove it without searching?</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Write the counting numbers in order, with no spaces, after a decimal point:</p>
+\[0.123456789101112131415\ldots\]
+<p>This is <b>Champernowne's number</b>. It never stops. Every digit has a place: the 1 is first, the 2 is second, and the 9 is ninth. Do not count the zero before the decimal point.</p>
+<p>Choose a string of digits, such as 2020. Why must it appear? Sooner or later, the counting numbers reach 2020. Its four digits are written together.</p>
+<p>What about 0042? Put a 1 in front. When you write 10042, you write 0042 inside it. The extra 1 keeps those starting zeros.</p>
+<p class="callout">Every finite string of digits appears. Put a 1 in front to make a counting number that contains it.</p>
+<p>That is a proof, without a search. It gives a place to find your string, but that might not be the first place.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: find the first 11</h2>
+<p>The numbers 1 to 9 use nine digits. The number 10 uses positions 10 and 11. The number 11 uses positions 12 and 13.</p>
+<figure>
+<svg viewBox="0 0 360 106" width="360" height="106" role="img" aria-label="The first fifteen digits, numbered from one. Positions twelve and thirteen are highlighted: they form eleven. Brackets group the two digits of ten, eleven and twelve." font-family="Nunito, sans-serif" font-size="12" fill="#1d1f3a">
+<text x="5" y="25" font-size="11">position</text>
+<text x="5" y="60">digit</text>
+<text x="5" y="97">number</text>
+<text x="72" y="25" text-anchor="middle" font-size="11">1</text>
+<rect x="64" y="38" width="16" height="32" rx="3" fill="#dcdcf5" stroke="#999"/>
+<text x="72" y="60" text-anchor="middle" font-size="15" font-weight="700">1</text>
+<text x="91" y="25" text-anchor="middle" font-size="11">2</text>
+<rect x="83" y="38" width="16" height="32" rx="3" fill="#dcdcf5" stroke="#999"/>
+<text x="91" y="60" text-anchor="middle" font-size="15" font-weight="700">2</text>
+<text x="110" y="25" text-anchor="middle" font-size="11">3</text>
+<rect x="102" y="38" width="16" height="32" rx="3" fill="#dcdcf5" stroke="#999"/>
+<text x="110" y="60" text-anchor="middle" font-size="15" font-weight="700">3</text>
+<text x="129" y="25" text-anchor="middle" font-size="11">4</text>
+<rect x="121" y="38" width="16" height="32" rx="3" fill="#dcdcf5" stroke="#999"/>
+<text x="129" y="60" text-anchor="middle" font-size="15" font-weight="700">4</text>
+<text x="148" y="25" text-anchor="middle" font-size="11">5</text>
+<rect x="140" y="38" width="16" height="32" rx="3" fill="#dcdcf5" stroke="#999"/>
+<text x="148" y="60" text-anchor="middle" font-size="15" font-weight="700">5</text>
+<text x="167" y="25" text-anchor="middle" font-size="11">6</text>
+<rect x="159" y="38" width="16" height="32" rx="3" fill="#dcdcf5" stroke="#999"/>
+<text x="167" y="60" text-anchor="middle" font-size="15" font-weight="700">6</text>
+<text x="186" y="25" text-anchor="middle" font-size="11">7</text>
+<rect x="178" y="38" width="16" height="32" rx="3" fill="#dcdcf5" stroke="#999"/>
+<text x="186" y="60" text-anchor="middle" font-size="15" font-weight="700">7</text>
+<text x="205" y="25" text-anchor="middle" font-size="11">8</text>
+<rect x="197" y="38" width="16" height="32" rx="3" fill="#dcdcf5" stroke="#999"/>
+<text x="205" y="60" text-anchor="middle" font-size="15" font-weight="700">8</text>
+<text x="224" y="25" text-anchor="middle" font-size="11">9</text>
+<rect x="216" y="38" width="16" height="32" rx="3" fill="#dcdcf5" stroke="#999"/>
+<text x="224" y="60" text-anchor="middle" font-size="15" font-weight="700">9</text>
+<text x="243" y="25" text-anchor="middle" font-size="11">10</text>
+<rect x="235" y="38" width="16" height="32" rx="3" fill="#dcdcf5" stroke="#999"/>
+<text x="243" y="60" text-anchor="middle" font-size="15" font-weight="700">1</text>
+<text x="262" y="25" text-anchor="middle" font-size="11">11</text>
+<rect x="254" y="38" width="16" height="32" rx="3" fill="#dcdcf5" stroke="#999"/>
+<text x="262" y="60" text-anchor="middle" font-size="15" font-weight="700">0</text>
+<text x="281" y="25" text-anchor="middle" font-size="11">12</text>
+<rect x="273" y="38" width="16" height="32" rx="3" fill="#fde8c4" stroke="#f5a524"/>
+<text x="281" y="60" text-anchor="middle" font-size="15" font-weight="700">1</text>
+<text x="300" y="25" text-anchor="middle" font-size="11">13</text>
+<rect x="292" y="38" width="16" height="32" rx="3" fill="#fde8c4" stroke="#f5a524"/>
+<text x="300" y="60" text-anchor="middle" font-size="15" font-weight="700">1</text>
+<text x="319" y="25" text-anchor="middle" font-size="11">14</text>
+<rect x="311" y="38" width="16" height="32" rx="3" fill="#dcdcf5" stroke="#999"/>
+<text x="319" y="60" text-anchor="middle" font-size="15" font-weight="700">1</text>
+<text x="338" y="25" text-anchor="middle" font-size="11">15</text>
+<rect x="330" y="38" width="16" height="32" rx="3" fill="#dcdcf5" stroke="#999"/>
+<text x="338" y="60" text-anchor="middle" font-size="15" font-weight="700">2</text>
+<path d="M235,77v5h35v-5" fill="none" stroke="#3f44c9"/>
+<text x="252.5" y="97" text-anchor="middle" fill="#3f44c9">10</text>
+<path d="M273,77v5h35v-5" fill="none" stroke="#3f44c9"/>
+<text x="290.5" y="97" text-anchor="middle" fill="#3f44c9">11</text>
+<path d="M311,77v5h35v-5" fill="none" stroke="#3f44c9"/>
+<text x="328.5" y="97" text-anchor="middle" fill="#3f44c9">12</text>
+</svg>
+<figcaption>Count positions after the decimal point. The highlighted digits make 11.</figcaption>
+</figure>
+<p>The first 11 starts at position <b>12</b>. Check the earlier neighbours: 12, 23, 34, 45, 56, 67, 78, 89, 91, 10 and 01. None is 11.</p>
+<p>A string can cross a join between counting numbers, too. The first two digits already make 12, long before you write the counting number 12.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>What is the 15th digit after the decimal point? Which counting number does it belong to?<div class="space short"></div></li>
+<li>(a) How many digits do the numbers 1 to 9 use? (b) How many do 10 to 99 use? (c) At what position does the counting number 100 begin? <b>Hint:</b> there are 90 two-digit numbers.<div class="space"></div></li>
+<li>Sam says: "2020 must appear, because eventually we write the counting number 2020." Does that prove it appears? Does it prove that this is the first place it appears? Explain both answers.<div class="space short"></div></li>
+<li>Write a birthday as four digits: two for the month, then two for the day. For example, March 4 is 0304. (a) Name a counting number containing 0304. (b) Name one containing your birthday. (c) Explain why the same trick works for <b>any</b> finite digit string, even 0000.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: jump to digit 1,000</h2>
+<p>What is the 1,000th digit after the decimal point? Do not write a thousand digits. Use your answer to exercise 2, then count three-digit numbers in blocks.</p>
+<p><b>Hint:</b> after the first 189 digits, another 810 digits make 270 complete three-digit numbers. Which number comes next?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li><b>2</b>. The counting number 12 uses positions 14 and 15. Its second digit is 2.</li>
+<li>(a) <b>9</b> digits. (b) Each of the 90 numbers uses two digits: \(90\times2=180\). (c) Together they use \(9+180=189\) digits, so 100 begins at position <b>190</b>.</li>
+<li>Yes: when 2020 is written, all four digits appear together. No: that only gives a guaranteed occurrence. The string might appear earlier, including across a join. For example, 12 appears at positions 1 and 2 before the counting number 12 is written.</li>
+<li>(a) <b>10304</b> contains 0304. (b) Put a 1 in front of your four digits. (c) A 1 followed by any finite digit string is a positive whole number, with no starting zero. It is eventually written in the list, including every digit of your string. For 0000, use <b>10000</b>. The trick guarantees an occurrence; it does not promise the earliest one.</li>
+</ol>
+<p><b>Stretch.</b> <b>3</b>, the first digit of <b>370</b>. The numbers 1 to 99 use 189 digits. The next 270 numbers are 100 to 369, using \(270\times3=810\) digits. That reaches position \(189+810=999\). The next number is 370, so its first digit, 3, is at position 1,000.</p>
+<p>All these strings come from one exact rule. Finding every string does not mean the digits were chosen at random.</p>
+</section>
+
+<div class="sheet-nav"><a href="b24-area-by-squares.html">← Previous</a><a href="c1-time-zones.html">Next: What time is it in Tokyo? →</a></div>
+</main>
+
+<footer>Math Detours · mathdetours.com · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>

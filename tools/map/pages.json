@@ -39,6 +39,7 @@
   "grade-5/sheets/b22-paper-folding.html": [{"code": "00A", "level": "core"}, {"code": "26A", "level": "touch"}],
   "grade-5/sheets/b23-mazes.html": [{"code": "05C", "level": "core"}, {"code": "00A", "level": "touch"}],
   "grade-5/sheets/b24-area-by-squares.html": [{"code": "28A", "level": "core"}, {"code": "51M", "level": "touch"}],
+  "grade-5/sheets/b25-champernowne.html": [{"code": "11K", "level": "core"}],
   "grade-5/sheets/c1-time-zones.html": [{"code": "11A", "level": "core"}],
   "grade-5/sheets/c2-map-scale.html": [{"code": "00A", "level": "core"}, {"code": "86A", "level": "touch"}],
   "grade-5/sheets/c3-best-buy.html": [{"code": "00A", "level": "core"}, {"code": "91B", "level": "touch"}],
