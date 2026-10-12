@@ -20,7 +20,7 @@ def moved(f):
     return bool(re.search(r'<title>\s*Moved', open(f, encoding='utf-8').read(2000)))
 
 
-top = ['index.html'] + sorted(f for f in glob.glob('*.html') if f != 'index.html')
+top = ['index.html'] + sorted(f for f in glob.glob('*.html') if f not in ('index.html', '404.html'))
 rest = sorted(glob.glob('demos/*.html') + glob.glob('grade-*/*.html') + glob.glob('grade-*/sheets/*.html'), key=natural)
 pages = [f for f in top + rest if not moved(f)]
 xml = ('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
