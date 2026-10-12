@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Roll a die, draw a triangle · Infinity Club</title>
+<meta name="description" content="Choose a corner with a die and move halfway towards it. Random choices leave a predictable triangle of holes.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 5</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 5 · Around the corner · 26</div>
+  <h1>Roll a die, draw a triangle</h1>
+  <p class="teaser">Each move is random. After hundreds of moves, the same triangle full of triangular holes keeps appearing. Where do the holes come from?</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Draw a triangle with corners A, B and C. Start with any dot inside it.</p>
+<ol>
+<li>Roll a die: 1 or 2 chooses A, 3 or 4 chooses B, and 5 or 6 chooses C.</li>
+<li>Put the next dot halfway from your current dot to the chosen corner.</li>
+<li>Repeat, always moving from the newest dot.</li>
+</ol>
+<p>This is a <b>random dynamical system</b>: the rule is fixed, but the die chooses which version of the rule comes next.</p>
+<p>Ignore the starting dot. After one move, your dot is in one of the three half-size corner triangles. The open upside-down triangle in the middle is missed. After two moves, the first smaller middle gaps are ruled out. After three moves, the next size is ruled out, and so on. Early dots can sit in finer gaps, so a long run approaches the pattern rather than making it perfect.</p>
+<p class="callout">The rolls choose the route. The halfway rule chooses the holes.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: three exact moves</h2>
+<p>Use A \((0,0)\), B \((128,0)\), C \((0,128)\), and start at \(P_0=(32,32)\). A midpoint is found by averaging the two \(x\)-coordinates and the two \(y\)-coordinates.</p>
+<p>Roll <b>1</b>, so choose A: \(P_1=(16,16)\). Roll <b>3</b>, so choose B: \(P_2=(72,8)\). Roll <b>5</b>, so choose C: \(P_3=(36,68)\).</p>
+<figure>
+<svg viewBox="0 0 520 190" width="520" height="190" role="img" aria-label="At left, 550 dots made by random halfway moves form a Sierpinski triangle with repeating triangular holes. At right, a coordinate triangle shows a path from P zero to P one, P two and P three." font-family="Nunito, sans-serif" font-size="13" fill="#1d1f3a">
+<text x="130" y="15" text-anchor="middle" font-weight="700">550 later dots</text>
+<polygon points="18,167 242,167 130,25" fill="none" stroke="#1d1f3a" stroke-width="1.5"/>
+<path d="M106.1,76.0h1v1h-1zM62.1,121.5h1v1h-1zM152.0,144.3h1v1h-1zM197.0,155.6h1v1h-1zM163.5,90.3h1v1h-1zM202.8,128.7h1v1h-1zM110.4,147.8h1v1h-1zM176.2,157.4h1v1h-1zM153.1,91.2h1v1h-1zM85.5,129.1h1v1h-1zM163.8,148.1h1v1h-1zM146.9,86.5h1v1h-1zM138.4,55.8h1v1h-1zM190.2,111.4h1v1h-1zM104.1,139.2h1v1h-1zM61.1,153.1h1v1h-1zM151.5,160.0h1v1h-1zM84.8,163.5h1v1h-1zM163.4,165.3h1v1h-1zM90.7,166.1h1v1h-1zM166.3,166.6h1v1h-1zM204.2,166.8h1v1h-1zM223.1,166.9h1v1h-1zM176.5,95.9h1v1h-1zM97.3,131.5h1v1h-1zM113.6,78.2h1v1h-1zM121.8,51.6h1v1h-1zM69.9,109.3h1v1h-1zM44.0,138.2h1v1h-1zM87.0,81.6h1v1h-1zM108.5,53.3h1v1h-1zM175.2,110.1h1v1h-1zM208.6,138.6h1v1h-1zM113.3,152.8h1v1h-1zM121.7,88.9h1v1h-1zM181.8,127.9h1v1h-1zM155.9,76.5h1v1h-1zM143.0,50.7h1v1h-1zM136.5,37.9h1v1h-1zM77.2,102.4h1v1h-1zM159.6,134.7h1v1h-1zM88.8,150.9h1v1h-1zM53.4,158.9h1v1h-1zM147.7,163.0h1v1h-1zM82.9,165.0h1v1h-1zM162.4,166.0h1v1h-1zM146.2,95.5h1v1h-1zM194.1,131.2h1v1h-1zM218.1,149.1h1v1h-1zM174.0,87.1h1v1h-1zM96.0,127.0h1v1h-1zM169.0,147.0h1v1h-1zM205.5,157.0h1v1h-1zM111.8,162.0h1v1h-1zM64.9,164.5h1v1h-1zM97.4,94.8h1v1h-1zM57.7,130.9h1v1h-1zM149.9,148.9h1v1h-1zM139.9,87.0h1v1h-1zM191.0,127.0h1v1h-1zM216.5,147.0h1v1h-1zM229.2,157.0h1v1h-1zM179.6,91.0h1v1h-1zM210.8,129.0h1v1h-1zM170.4,77.0h1v1h-1zM206.2,122.0h1v1h-1zM168.1,73.5h1v1h-1zM149.1,49.2h1v1h-1zM195.5,108.1h1v1h-1zM106.8,137.6h1v1h-1zM62.4,152.3h1v1h-1zM96.2,88.6h1v1h-1zM169.1,127.8h1v1h-1zM149.5,76.4h1v1h-1zM139.8,50.7h1v1h-1zM134.9,37.9h1v1h-1zM188.4,102.4h1v1h-1zM215.2,134.7h1v1h-1zM172.6,79.9h1v1h-1zM207.3,123.4h1v1h-1zM168.7,74.2h1v1h-1zM149.3,49.6h1v1h-1zM139.7,37.3h1v1h-1zM134.8,31.2h1v1h-1zM132.4,28.1h1v1h-1zM75.2,97.5h1v1h-1zM102.6,61.3h1v1h-1zM116.3,43.1h1v1h-1zM179.2,105.1h1v1h-1zM98.6,136.0h1v1h-1zM170.3,151.5h1v1h-1zM94.1,159.3h1v1h-1zM112.1,92.1h1v1h-1zM65.0,129.6h1v1h-1zM41.5,148.3h1v1h-1zM141.8,157.6h1v1h-1zM79.9,162.3h1v1h-1zM48.9,164.7h1v1h-1zM33.5,165.8h1v1h-1zM137.7,166.4h1v1h-1zM133.9,95.7h1v1h-1zM131.9,60.4h1v1h-1zM131.0,42.7h1v1h-1zM186.5,104.8h1v1h-1zM102.2,135.9h1v1h-1zM60.1,151.5h1v1h-1zM95.1,88.2h1v1h-1zM56.5,127.6h1v1h-1zM37.3,147.3h1v1h-1zM27.6,157.2h1v1h-1zM78.8,91.1h1v1h-1zM104.4,58.0h1v1h-1zM117.2,41.5h1v1h-1zM179.6,104.3h1v1h-1zM154.8,64.6h1v1h-1zM198.4,115.8h1v1h-1zM220.2,141.4h1v1h-1zM231.1,154.2h1v1h-1zM236.6,160.6h1v1h-1zM127.3,163.8h1v1h-1zM184.6,165.4h1v1h-1zM101.3,166.2h1v1h-1zM59.7,166.6h1v1h-1zM94.8,95.8h1v1h-1zM56.4,131.4h1v1h-1zM93.2,78.2h1v1h-1zM111.6,51.6h1v1h-1zM120.8,38.3h1v1h-1zM69.4,102.7h1v1h-1zM99.7,63.8h1v1h-1zM114.9,44.4h1v1h-1zM66.4,105.7h1v1h-1zM98.2,65.4h1v1h-1zM114.1,45.2h1v1h-1zM122.1,35.1h1v1h-1zM126.0,30.0h1v1h-1zM184.0,98.5h1v1h-1zM213.0,132.8h1v1h-1zM227.5,149.9h1v1h-1zM178.8,87.4h1v1h-1zM210.4,127.2h1v1h-1zM226.2,147.1h1v1h-1zM178.1,86.1h1v1h-1zM154.0,55.5h1v1h-1zM142.0,40.3h1v1h-1zM80.0,103.6h1v1h-1zM49.0,135.3h1v1h-1zM33.5,151.2h1v1h-1zM25.8,159.1h1v1h-1zM77.9,92.0h1v1h-1zM47.9,129.5h1v1h-1zM145.0,148.3h1v1h-1zM193.5,157.6h1v1h-1zM161.7,91.3h1v1h-1zM89.9,129.2h1v1h-1zM109.9,77.1h1v1h-1zM176.0,122.0h1v1h-1zM209.0,144.5h1v1h-1zM113.5,155.8h1v1h-1zM121.7,90.4h1v1h-1zM125.9,57.7h1v1h-1zM183.9,112.3h1v1h-1zM213.0,139.7h1v1h-1zM171.5,82.3h1v1h-1zM206.7,124.7h1v1h-1zM168.4,74.8h1v1h-1zM93.2,120.9h1v1h-1zM111.6,73.0h1v1h-1zM120.8,49.0h1v1h-1zM69.4,108.0h1v1h-1zM155.7,137.5h1v1h-1zM198.8,152.2h1v1h-1zM108.4,159.6h1v1h-1zM63.2,163.3h1v1h-1zM96.6,94.2h1v1h-1zM57.3,130.6h1v1h-1zM93.7,77.8h1v1h-1zM111.8,51.4h1v1h-1zM176.9,109.2h1v1h-1zM209.5,138.1h1v1h-1zM225.7,152.5h1v1h-1zM121.9,159.8h1v1h-1zM181.9,163.4h1v1h-1zM156.0,94.2h1v1h-1zM199.0,130.6h1v1h-1zM108.5,148.8h1v1h-1zM175.2,157.9h1v1h-1zM96.6,162.4h1v1h-1zM169.3,164.7h1v1h-1zM149.7,94.9h1v1h-1zM139.8,59.9h1v1h-1zM134.9,42.5h1v1h-1zM76.5,104.7h1v1h-1zM47.2,135.9h1v1h-1zM32.6,151.4h1v1h-1zM81.3,88.2h1v1h-1zM161.7,127.6h1v1h-1zM89.8,147.3h1v1h-1zM165.9,157.2h1v1h-1zM204.0,162.1h1v1h-1zM223.0,164.5h1v1h-1zM232.5,165.8h1v1h-1zM181.2,95.4h1v1h-1zM155.6,60.2h1v1h-1zM142.8,42.6h1v1h-1zM80.4,104.8h1v1h-1zM105.2,64.9h1v1h-1zM117.6,44.9h1v1h-1zM179.8,106.0h1v1h-1zM210.9,136.5h1v1h-1zM170.5,80.7h1v1h-1zM206.2,123.9h1v1h-1zM168.1,74.4h1v1h-1zM149.1,49.7h1v1h-1zM195.5,108.4h1v1h-1zM218.8,137.7h1v1h-1zM174.4,81.3h1v1h-1zM152.2,53.2h1v1h-1zM85.1,110.1h1v1h-1zM107.5,67.5h1v1h-1zM118.8,46.3h1v1h-1zM180.4,106.6h1v1h-1zM155.2,65.8h1v1h-1zM142.6,45.4h1v1h-1zM136.3,35.2h1v1h-1zM189.1,101.1h1v1h-1zM159.6,63.1h1v1h-1zM200.8,115.0h1v1h-1zM165.4,70.0h1v1h-1zM147.7,47.5h1v1h-1zM138.8,36.3h1v1h-1zM78.4,101.6h1v1h-1zM104.2,63.3h1v1h-1zM117.1,44.2h1v1h-1zM123.6,34.6h1v1h-1zM126.8,29.8h1v1h-1zM72.4,98.4h1v1h-1zM157.2,132.7h1v1h-1zM87.6,149.8h1v1h-1zM108.8,87.4h1v1h-1zM119.4,56.2h1v1h-1zM124.7,40.6h1v1h-1zM183.3,103.8h1v1h-1zM212.7,135.4h1v1h-1zM171.3,80.2h1v1h-1zM94.7,123.6h1v1h-1zM168.3,145.3h1v1h-1zM93.2,156.2h1v1h-1zM55.6,161.6h1v1h-1zM148.8,164.3h1v1h-1zM83.4,165.6h1v1h-1zM50.7,166.3h1v1h-1zM34.3,166.7h1v1h-1zM138.2,166.8h1v1h-1zM190.1,166.9h1v1h-1zM216.0,167.0h1v1h-1zM173.0,96.0h1v1h-1zM151.5,60.5h1v1h-1zM196.8,113.7h1v1h-1zM219.4,140.4h1v1h-1zM230.7,153.7h1v1h-1zM236.3,160.3h1v1h-1zM239.2,163.7h1v1h-1zM240.6,165.3h1v1h-1zM129.3,166.2h1v1h-1zM185.6,166.6h1v1h-1zM213.8,166.8h1v1h-1zM115.9,166.9h1v1h-1zM123.0,95.9h1v1h-1zM126.5,60.5h1v1h-1zM184.2,113.7h1v1h-1zM157.1,69.4h1v1h-1zM143.6,47.2h1v1h-1zM136.8,36.1h1v1h-1zM133.4,30.5h1v1h-1zM131.7,27.8h1v1h-1zM74.8,97.4h1v1h-1zM102.4,61.2h1v1h-1zM60.2,114.1h1v1h-1zM151.1,140.5h1v1h-1zM140.6,82.8h1v1h-1zM135.3,53.9h1v1h-1zM132.6,39.4h1v1h-1zM187.3,103.2h1v1h-1zM158.7,64.1h1v1h-1zM88.3,115.6h1v1h-1zM165.2,141.3h1v1h-1zM147.6,83.1h1v1h-1zM138.8,54.1h1v1h-1zM134.4,39.5h1v1h-1zM188.2,103.3h1v1h-1zM103.1,135.1h1v1h-1zM172.5,151.1h1v1h-1zM207.3,159.0h1v1h-1zM168.6,92.0h1v1h-1zM149.3,58.5h1v1h-1zM83.7,112.8h1v1h-1zM106.8,68.9h1v1h-1zM174.4,117.9h1v1h-1zM208.2,142.5h1v1h-1zM113.1,154.7h1v1h-1zM65.6,160.9h1v1h-1zM153.8,163.9h1v1h-1zM85.9,165.5h1v1h-1zM107.9,95.2h1v1h-1zM63.0,131.1h1v1h-1zM96.5,78.1h1v1h-1zM57.2,122.5h1v1h-1zM37.6,144.8h1v1h-1zM139.8,155.9h1v1h-1zM134.9,90.4h1v1h-1zM188.5,128.7h1v1h-1zM159.2,76.9h1v1h-1zM88.6,121.9h1v1h-1zM165.3,144.5h1v1h-1zM203.7,155.7h1v1h-1zM166.8,90.4h1v1h-1zM204.4,128.7h1v1h-1zM167.2,76.8h1v1h-1zM92.6,121.9h1v1h-1zM111.3,73.5h1v1h-1zM120.7,49.2h1v1h-1zM181.3,108.1h1v1h-1zM155.7,66.6h1v1h-1zM86.8,116.8h1v1h-1zM108.4,70.9h1v1h-1zM119.2,47.9h1v1h-1zM180.6,107.5h1v1h-1zM155.3,66.2h1v1h-1zM142.7,45.6h1v1h-1zM192.3,106.3h1v1h-1zM217.2,136.7h1v1h-1zM173.6,80.8h1v1h-1zM151.8,52.9h1v1h-1zM196.9,110.0h1v1h-1zM163.4,67.5h1v1h-1zM90.7,117.2h1v1h-1zM166.4,142.1h1v1h-1zM92.2,154.6h1v1h-1zM111.1,89.8h1v1h-1zM120.5,57.4h1v1h-1zM181.3,112.2h1v1h-1zM99.6,139.6h1v1h-1zM58.8,153.3h1v1h-1zM38.4,160.1h1v1h-1zM84.2,92.6h1v1h-1zM163.1,129.8h1v1h-1zM90.6,148.4h1v1h-1zM110.3,86.7h1v1h-1zM176.1,126.8h1v1h-1zM97.1,146.9h1v1h-1zM169.5,157.0h1v1h-1zM93.8,162.0h1v1h-1zM55.9,164.5h1v1h-1zM92.9,94.7h1v1h-1zM111.5,59.9h1v1h-1zM120.7,42.4h1v1h-1zM125.4,33.7h1v1h-1zM71.7,100.4h1v1h-1zM156.8,133.7h1v1h-1zM199.4,150.3h1v1h-1zM220.7,158.7h1v1h-1zM231.4,162.8h1v1h-1zM180.7,93.9h1v1h-1zM211.3,130.5h1v1h-1zM170.7,77.7h1v1h-1zM94.3,122.4h1v1h-1zM112.2,73.7h1v1h-1zM65.1,120.3h1v1h-1zM41.5,143.7h1v1h-1zM29.8,155.3h1v1h-1zM23.9,161.2h1v1h-1zM76.9,93.1h1v1h-1zM47.5,130.0h1v1h-1zM144.7,148.5h1v1h-1zM193.4,157.8h1v1h-1zM161.7,91.4h1v1h-1zM145.8,58.2h1v1h-1zM81.9,112.6h1v1h-1zM162.0,139.8h1v1h-1zM146.0,82.4h1v1h-1zM194.0,124.7h1v1h-1zM106.0,145.8h1v1h-1zM118.0,85.4h1v1h-1zM124.0,55.2h1v1h-1zM127.0,40.1h1v1h-1zM72.5,103.6h1v1h-1zM101.2,64.3h1v1h-1zM115.6,44.6h1v1h-1zM66.8,105.8h1v1h-1zM98.4,65.4h1v1h-1zM170.2,116.2h1v1h-1zM206.1,141.6h1v1h-1zM168.1,83.3h1v1h-1zM149.0,54.2h1v1h-1zM83.5,110.6h1v1h-1zM106.8,67.8h1v1h-1zM174.4,117.4h1v1h-1zM152.2,71.2h1v1h-1zM141.1,48.1h1v1h-1zM191.5,107.5h1v1h-1zM104.8,137.3h1v1h-1zM61.4,152.1h1v1h-1zM39.7,159.6h1v1h-1zM84.8,92.3h1v1h-1zM163.4,129.6h1v1h-1zM202.7,148.3h1v1h-1zM222.4,157.7h1v1h-1zM120.2,162.3h1v1h-1zM125.1,93.7h1v1h-1zM71.5,130.3h1v1h-1zM44.8,148.7h1v1h-1zM31.4,157.8h1v1h-1zM136.7,162.4h1v1h-1zM77.3,164.7h1v1h-1zM159.7,165.9h1v1h-1zM88.8,166.4h1v1h-1zM165.4,166.7h1v1h-1zM147.7,95.9h1v1h-1zM138.9,60.4h1v1h-1zM190.4,113.7h1v1h-1zM104.2,140.4h1v1h-1zM117.1,82.7h1v1h-1zM179.6,124.8h1v1h-1zM154.8,74.9h1v1h-1zM198.4,121.0h1v1h-1zM164.2,73.0h1v1h-1zM91.1,120.0h1v1h-1zM166.5,143.5h1v1h-1zM92.3,155.2h1v1h-1zM55.1,161.1h1v1h-1zM148.6,164.1h1v1h-1zM83.3,165.5h1v1h-1zM106.6,95.3h1v1h-1zM118.3,60.1h1v1h-1zM68.2,113.6h1v1h-1zM155.1,140.3h1v1h-1zM86.5,153.6h1v1h-1zM164.3,160.3h1v1h-1zM147.1,92.7h1v1h-1zM138.6,58.8h1v1h-1zM134.3,41.9h1v1h-1zM132.1,33.5h1v1h-1zM131.1,29.2h1v1h-1zM130.5,27.1h1v1h-1zM130.3,26.1h1v1h-1zM186.1,96.5h1v1h-1zM102.1,131.8h1v1h-1zM116.0,78.4h1v1h-1zM67.0,122.7h1v1h-1zM42.5,144.8h1v1h-1zM30.3,155.9h1v1h-1zM136.1,161.5h1v1h-1zM77.1,164.2h1v1h-1zM103.5,94.6h1v1h-1zM172.8,130.8h1v1h-1zM151.4,77.9h1v1h-1zM196.7,122.5h1v1h-1zM219.3,144.7h1v1h-1zM118.7,155.9h1v1h-1zM180.3,161.4h1v1h-1zM99.2,164.2h1v1h-1zM114.6,94.6h1v1h-1zM122.3,59.8h1v1h-1zM70.1,113.4h1v1h-1zM156.1,140.2h1v1h-1zM87.0,153.6h1v1h-1zM52.5,160.3h1v1h-1zM147.3,163.7h1v1h-1zM82.6,165.3h1v1h-1zM162.3,166.2h1v1h-1zM90.2,166.6h1v1h-1zM110.1,95.8h1v1h-1zM176.0,131.4h1v1h-1zM153.0,78.2h1v1h-1zM141.5,51.6h1v1h-1zM79.8,109.3h1v1h-1zM104.9,67.1h1v1h-1zM61.4,117.1h1v1h-1zM39.7,142.0h1v1h-1zM28.9,154.5h1v1h-1zM23.4,160.8h1v1h-1zM132.7,163.9h1v1h-1zM131.4,94.4h1v1h-1zM74.7,130.7h1v1h-1zM158.3,148.9h1v1h-1zM88.2,157.9h1v1h-1zM165.1,162.5h1v1h-1zM203.5,164.7h1v1h-1zM222.8,165.9h1v1h-1zM232.4,166.4h1v1h-1zM237.2,166.7h1v1h-1zM239.6,166.9h1v1h-1zM184.8,95.9h1v1h-1zM101.4,131.5h1v1h-1zM115.7,78.2h1v1h-1zM178.8,122.6h1v1h-1zM98.4,144.8h1v1h-1zM58.2,155.9h1v1h-1zM38.1,161.5h1v1h-1zM28.1,164.2h1v1h-1zM23.0,165.6h1v1h-1zM20.5,166.3h1v1h-1zM75.3,95.7h1v1h-1zM158.6,131.3h1v1h-1zM88.3,149.2h1v1h-1zM165.2,158.1h1v1h-1zM91.6,162.5h1v1h-1zM54.8,164.8h1v1h-1zM148.4,165.9h1v1h-1zM139.2,95.4h1v1h-1zM190.6,131.2h1v1h-1zM104.3,149.1h1v1h-1zM173.1,158.1h1v1h-1zM151.6,91.5h1v1h-1zM140.8,58.3h1v1h-1zM191.4,112.6h1v1h-1zM160.7,68.8h1v1h-1zM201.3,117.9h1v1h-1zM165.7,71.5h1v1h-1zM147.8,48.2h1v1h-1zM138.9,36.6h1v1h-1zM190.5,101.8h1v1h-1zM104.2,134.4h1v1h-1zM173.1,150.7h1v1h-1zM95.6,158.9h1v1h-1zM168.8,162.9h1v1h-1zM93.4,165.0h1v1h-1zM111.7,95.0h1v1h-1zM120.8,60.0h1v1h-1zM125.4,42.5h1v1h-1zM183.7,104.7h1v1h-1zM156.9,64.9h1v1h-1zM143.4,44.9h1v1h-1zM192.7,106.0h1v1h-1zM217.4,136.5h1v1h-1zM117.7,151.7h1v1h-1zM123.8,88.4h1v1h-1zM70.9,127.7h1v1h-1zM156.5,147.3h1v1h-1zM143.2,86.2h1v1h-1zM136.6,55.6h1v1h-1zM189.3,111.3h1v1h-1zM103.7,139.1h1v1h-1zM172.8,153.1h1v1h-1zM151.4,89.0h1v1h-1zM196.7,128.0h1v1h-1zM219.4,147.5h1v1h-1zM230.7,157.3h1v1h-1zM180.3,91.1h1v1h-1z" fill="#3f44c9" opacity="0.84"/>
+<text x="18" y="183">A</text><text x="242" y="183" text-anchor="end">B</text><text x="130" y="22" text-anchor="middle">C</text>
+<text x="390" y="15" text-anchor="middle" font-weight="700">the first three moves</text>
+<polygon points="286,165 494,165 286,35" fill="none" stroke="#1d1f3a" stroke-width="1.5"/>
+<path d="M338,132.5 L312,148.75 L403,156.875 L344.5,95.94" fill="none" stroke="#f5a524" stroke-width="2.2" stroke-linejoin="round"/>
+<circle cx="338" cy="132.5" r="4" fill="#1d1f3a"/><text x="345" y="128">P₀</text>
+<circle cx="312" cy="148.75" r="4" fill="#3f44c9"/><text x="298" y="145">P₁</text>
+<circle cx="403" cy="156.875" r="4" fill="#3f44c9"/><text x="408" y="151">P₂</text>
+<circle cx="344.5" cy="95.94" r="4" fill="#3f44c9"/><text x="351" y="93">P₃</text>
+<text x="286" y="181">A</text><text x="494" y="181" text-anchor="end">B</text><text x="286" y="31" text-anchor="middle">C</text>
+</svg>
+<figcaption>Different rolls change the route, but long runs reveal the same forbidden holes.</figcaption>
+</figure>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Continue the worked example. A roll of 2 chooses A, then a roll of 4 chooses B. Find \(P_4\) and \(P_5\). <b>Hint:</b> average the coordinates each time.<div class="space short"></div></li>
+<li>Join the midpoints of the three sides of a triangle. This makes three half-size corner triangles and an upside-down middle triangle. Explain why one halfway move must land in a corner triangle. Why can no later dot land <b>inside</b> the middle triangle?<div class="space"></div></li>
+<li>Try six die rolls on your own triangle, marking each halfway dot. Compare with someone else's route, or try six fresh rolls yourself. Must the routes match? Name one large region that both routes must avoid after the first move.<div class="space short"></div></li>
+<li>Replace the triangle by a square. A four-sided spinner chooses a corner, then you move halfway there. The four half-size corner squares exactly cover the large square. Predict the long-run picture: is there a permanent middle hole? Explain.<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: change the fraction</h2>
+<p>Return to the triangle, but move <b>two thirds</b> of the way towards the chosen corner each time. Each corner copy now has one third of the original side length. Will the pattern be fuller or thinner than the halfway pattern? What happens to the gaps?</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Roll 2 chooses A, so \(P_4=((36+0)\div2,(68+0)\div2)=(18,34)\). Roll 4 chooses B, so \(P_5=((18+128)\div2,(34+0)\div2)=(73,17)\).</li>
+<li>Choosing a corner puts the new dot halfway along a line to that corner. All such halfway points lie in that corner's half-size triangle, including its edges. The three corner triangles do not include the inside of the upside-down middle triangle. After every move the dot is in a corner triangle, so the open middle stays empty. A dot can lie on its boundary.</li>
+<li>Drawings vary. No, the routes need not match: different rolls usually give different routes. Both routes avoid the inside of the large upside-down middle triangle after the first move.</li>
+<li>There is no permanent middle hole. The four corner half-squares cover the whole square and meet along their edges, so the first-step argument leaves no forbidden region. With many fair spins, dots spread throughout the square.</li>
+</ol>
+<p><b>Stretch.</b> Thinner. Moving two thirds towards a corner leaves the final one third of the line, so each corner copy has side length one third. The three copies are smaller and farther apart than the half-size copies, leaving larger gaps.</p>
+<p>Random choices do not guarantee a neat picture after a small number of rolls. The pattern becomes clearer as more dots are added.</p>
+</section>
+
+<div class="sheet-nav"><a href="b25-champernowne.html">← Previous</a><a href="c1-time-zones.html">Next: What time is it in Tokyo? →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>
+
