@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How far does a bouncing ball travel? · Infinity Club</title>
+<meta name="description" content="A model ball keeps 60 percent of its height at every bounce. Add up infinitely many bounces and find that the total distance is exactly 4 m.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 6</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 6 · Connections · 12</div>
+  <h1>How far does a bouncing ball travel?</h1>
+  <p class="teaser">Drop a ball from 1 m. In tonight's model each bounce reaches 60 percent of the height before, so the ball bounces for ever. Yet the total distance it travels is exactly 4 m.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Drop a ball and it does not come back up to your hand. Each time it hits the floor, the ball and the floor squash a little, and some of the ball's energy turns into heat and sound.</p>
+<p><b>Tonight's model.</b> Every bounce reaches the same fraction of the height before. For our ball the fraction is 0.6, which is 60 percent. Dropped from 100 cm, it rises to 60 cm, then 36 cm, then 21.6 cm, and so on.</p>
+<figure>
+<svg viewBox="0 0 520 145" width="520" height="145" role="img" aria-label="Graph of the model ball's height against time. It falls from 100 cm to the floor, then makes bounces with peaks labelled 60, 36, 21.6 and 12.96 cm, followed by smaller and smaller unlabelled bounces that crowd closer together." font-family="Nunito, sans-serif">
+<line x1="20" y1="125" x2="500" y2="125" stroke="#1d1f3a" stroke-width="2"/>
+<path d="M 40.0 25.0 Q 67.5 25.0 95.0 125.0 Q 137.6 5.0 180.2 125.0 Q 213.2 53.0 246.2 125.0 Q 271.8 81.8 297.3 125.0 Q 317.1 99.1 336.9 125.0 Q 352.3 109.4 367.6 125.0 Q 379.5 115.7 391.4 125.0 Q 400.6 119.4 409.8 125.0 Q 416.9 121.6 424.0 125.0 Q 429.5 123.0 435.1 125.0 Q 439.3 123.8 443.6 125.0 Q 446.9 124.3 450.2 125.0 Q 452.8 124.6 455.4 125.0 Q 457.4 124.7 459.4 125.0" fill="none" stroke="#3f44c9" stroke-width="2.5"/>
+<circle cx="40" cy="25" r="6" fill="#f5a524"/>
+<text x="52" y="22" font-size="13" fill="#1d1f3a">100 cm</text>
+<text x="137.6" y="59.0" font-size="13" text-anchor="middle" fill="#1d1f3a">60</text>
+<text x="213.2" y="83.0" font-size="13" text-anchor="middle" fill="#1d1f3a">36</text>
+<text x="271.8" y="97.4" font-size="13" text-anchor="middle" fill="#1d1f3a">21.6</text>
+<text x="317.1" y="106.0" font-size="12" text-anchor="middle" fill="#1d1f3a">12.96</text>
+<text x="20" y="140" font-size="12" fill="#555">floor</text>
+<text x="500" y="140" font-size="12" text-anchor="end" fill="#555">time →</text>
+</svg>
+<figcaption>The model ball's height as time passes. Peak heights are in centimetres.</figcaption>
+</figure>
+<p class="callout">In the model, each bounce height is the one before <b>times 0.6</b>. The heights shrink for ever but never reach zero.</p>
+<p>A real ball only follows this rule roughly, and it soon comes to rest. The model ball bounces for ever. So here is the puzzle: does a ball that bounces for ever travel for ever far?</p>
+</section>
+
+<section class="example">
+<h2>Watch one: adding up for ever</h2>
+<p>The ball falls 100 cm. After that, every bounce is travelled twice, once up and once down. The first drop is travelled only once. So</p>
+\[ \text{distance} = 100 + 2 \times (60 + 36 + 21.6 + 12.96 + \dots) \]
+<p>Call the sum in the brackets \(S\). Now the trick. Cover up the 60. What is left, \(36 + 21.6 + 12.96 + \dots\), is every term of \(S\) times 0.6, so it is \(0.6 \times S\). That means \(S = 60 + 0.6 \times S\).</p>
+<p>Take \(0.6 \times S\) from both sides: \(0.4 \times S = 60\), so \(S = 60 \div 0.4 = 150\). The total distance is \(100 + 2 \times 150 = 400\) cm, exactly 4 m.</p>
+<p>A fair worry: the trick assumes the sum settles on a number at all. Here it does: the running totals \(60,\ 96,\ 117.6,\ 130.56,\ 138.336,\ \dots\) never pass 150 and get as close to it as you like. Try the trick on \(1 + 2 + 4 + 8 + \dots\) and you get \(S = 1 + 2 \times S\), so \(S = -1\), which is nonsense for a sum that grows without end.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>A ball is dropped from 100 cm and keeps 60 percent of its height at each bounce. Write the heights of its first six bounces. (A calculator is fine.) Which bounce is the first to stay below 5 cm?<div class="space short"></div></li>
+<li>How far has the same ball travelled at the moment it hits the floor for the 5th time? How far short of 400 cm is that?<div class="space short"></div></li>
+<li>A bouncier ball keeps 80 percent of its height at each bounce. It is dropped from 100 cm. Write its first three bounce heights. Then use the trick to find the sum \(S\) of all its bounce heights, and the total distance it travels.<div class="space short"></div></li>
+<li>A third ball is dropped from 100 cm and travels 300 cm in total. What is the sum \(S\) of its bounce heights? What fraction of its height does it keep at each bounce? (Call the fraction \(f\). The first bounce is \(100 \times f\), and the trick says \(S = 100 \times f + f \times S\).)<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: does it bounce for ever in time too?</h2>
+<p>The 60 percent ball makes infinitely many bounces. Does that take for ever? Use these rounded facts about the model, ignoring air and the instant spent touching the floor. The first drop takes about 0.45 seconds. Every trip up takes 0.775 times as long as the trip down just before it, and every trip down after the first takes as long as the trip up just before it. Let \(W\) be the time of all the trips up added together. Explain why \(W = 0.775 \times (0.45 + W)\), find \(W\), and find the total time.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>\(60,\ 36,\ 21.6,\ 12.96,\ 7.776,\ 4.6656\) cm. Each is the one before times 0.6. The <b>6th</b> bounce is the first below 5 cm (the 5th is 7.776 cm), and every later bounce is smaller still.</li>
+<li>Before the 5th hit the ball has made the first drop and four full bounces: \(100 + 2 \times (60 + 36 + 21.6 + 12.96) = 100 + 2 \times 130.56 = 361.12\) cm. That is \(400 - 361.12 = 38.88\) cm short. The ball never quite gets to 400 cm after any number of bounces, but it gets as close as you like.</li>
+<li>\(80,\ 64,\ 51.2\) cm. Cover the 80 and what is left is \(0.8 \times S\), so \(S = 80 + 0.8 \times S\). Then \(0.2 \times S = 80\) and \(S = 400\) cm. Total distance: \(100 + 2 \times 400 = 900\) cm, which is 9 m. The bouncier ball goes more than twice as far.</li>
+<li>\(300 = 100 + 2 \times S\), so \(S = 100\) cm. Put that into the trick: \(100 = 100 \times f + f \times 100 = 200 \times f\), so \(f = 0.5\). The ball keeps <b>half</b> its height. Check: \(50 + 25 + 12.5 + \dots\) has running totals \(50,\ 75,\ 87.5,\ 93.75,\ \dots\) closing in on 100.</li>
+</ol>
+<p><b>Stretch.</b> Every trip up is 0.775 times the trip down before it. The trips down are the first drop, 0.45 seconds, and then copies of all the trips up, which add to \(W\). So the trips up add to 0.775 times \(0.45 + W\). That gives \(W = 0.34875 + 0.775 \times W\), so \(0.225 \times W = 0.34875\) and \(W = 1.55\) seconds. The trips down after the first also add to 1.55 seconds. Total: \(0.45 + 1.55 + 1.55 = 3.55\) seconds, so about three and a half seconds. In the model the ball fits infinitely many bounces into a finite time, then lies still. You can hear something like this when a table-tennis ball rattles to a stop: the taps come faster and faster. For a real ball the model stops being accurate once the bounces are tiny, and the ball simply comes to rest. (Why 0.775? Falling time goes with the square root of the height, and \(0.775 \times 0.775\) is very nearly 0.6.)</p>
+</section>
+
+<div class="sheet-nav"><a href="c11-balancing-act.html">← Previous</a><a href="../index.html#sheets">← All sheets</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>
