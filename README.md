@@ -30,7 +30,7 @@ Plain static HTML, no build step. `.nojekyll` disables Jekyll on GitHub Pages. S
 
 ## Adding a sheet
 
-See [CONTRIBUTING.md](CONTRIBUTING.md): the full sheet spec, the accuracy checklist, and how to claim a `new-sheet` issue. In short: copy a sheet from the same grade and track, keep the section structure (`idea`, `example`, `exercises`, `stretch`, `answers`), add a card to that grade's `index.html`, add the sheet to `tools/map/pages.json`, then run `python3 tools/relink.py` and `python3 tools/map/build_map.py`.
+See [CONTRIBUTING.md](CONTRIBUTING.md) (and [AGENTS.md](AGENTS.md) for AI agents): the full sheet spec, the accuracy checklist, and how to claim a `new-sheet` issue. In short: copy a sheet from the same grade and track, keep the section structure (`idea`, `example`, `exercises`, `stretch`, `answers`), add a card to that grade's `index.html`, add the sheet to `tools/map/pages.json`, then run `python3 tools/relink.py` and `python3 tools/map/build_map.py`.
 
 ## Tools and checks
 
