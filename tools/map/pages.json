@@ -150,6 +150,7 @@
   "grade-7/sheets/b23-sierpinski.html": [{"code": "28A", "level": "core"}, {"code": "11B", "level": "touch"}],
   "grade-7/sheets/b24-clock-hands.html": [{"code": "00A", "level": "core"}, {"code": "70B", "level": "touch"}],
   "grade-7/sheets/b25-clock-inverses.html": [{"code": "13M", "level": "core"}, {"code": "16B", "level": "core"}],
+  "grade-7/sheets/b26-divisor-diagrams.html": [{"code": "06B", "level": "core"}, {"code": "06A", "level": "touch"}, {"code": "06D", "level": "touch"}],
   "grade-7/sheets/c1-bike-gears.html": [{"code": "00A", "level": "core"}, {"code": "70B", "level": "touch"}],
   "grade-7/sheets/c2-journey-graphs.html": [{"code": "26A", "level": "core"}, {"code": "70B", "level": "touch"}],
   "grade-7/sheets/c3-exchange-rates.html": [{"code": "91B", "level": "core"}, {"code": "91G", "level": "touch"}],
