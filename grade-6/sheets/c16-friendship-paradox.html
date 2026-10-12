@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your friends have more friends than you · Infinity Club</title>
+<meta name="description" content="Draw friendships as a network, count everyone's friends, and compare two averages. In small made-up networks you see why, on average, people's friends have more friends than they do, and why that is not true of every person.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 6</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 6 · Connections · 16</div>
+  <h1>Your friends have more friends than you</h1>
+  <p class="teaser">Count friends across a whole network and a strange thing shows up: on average, people's friends have more friends than they do. It is not bad luck. It is arithmetic.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Draw a dot for each person and a line for each friendship. The picture is a <b>network</b>. Math(s) models of society use networks to study friendships, families and how news spreads. In tonight's model, friendship goes both ways, and everyone has at least one friend.</p>
+<p>Give each person two numbers. Their <b>friend count</b> is how many friends they have. Their <b>friends' average</b> is the average of their friends' friend counts.</p>
+<p class="callout">Average everyone's friend count. Then average everyone's friends' average. The second number is <b>never smaller</b>. It is bigger unless every friendship joins two people with equal friend counts.</p>
+<p>Why? A person with many friends is on many friends lists, so their big number is counted many times. A person with one friend is counted once. The sociologist Scott Feld pointed this out in 1991, and it is called the <b>friendship paradox</b>. It is a fact about averages, not about each person: some people do have more friends than their friends.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: Ada and her four friends</h2>
+<p>Here is a small made-up network. Ada has four friends. Each of them has only one friend, Ada.</p>
+<figure style="float:right;width:250px;max-width:48%;margin:0 0 .3em 1em">
+<svg viewBox="0 0 250 110" width="250" height="110" role="img" aria-label="A network of five people. Ada is in the middle, joined by a line to each of Ben, Cal, Dee and Eli at the four corners. No other lines." font-family="Nunito, sans-serif">
+<line x1="125" y1="55" x2="60" y2="18" stroke="#1d1f3a" stroke-width="2"/>
+<line x1="125" y1="55" x2="190" y2="18" stroke="#1d1f3a" stroke-width="2"/>
+<line x1="125" y1="55" x2="60" y2="92" stroke="#1d1f3a" stroke-width="2"/>
+<line x1="125" y1="55" x2="190" y2="92" stroke="#1d1f3a" stroke-width="2"/>
+<circle cx="125" cy="55" r="8" fill="#f5a524" stroke="#1d1f3a" stroke-width="1.5"/>
+<circle cx="60" cy="18" r="8" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<circle cx="190" cy="18" r="8" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<circle cx="60" cy="92" r="8" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<circle cx="190" cy="92" r="8" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="125" y="37" font-size="14" text-anchor="middle" fill="#1d1f3a">Ada</text>
+<text x="46" y="23" font-size="14" text-anchor="end" fill="#1d1f3a">Ben</text>
+<text x="204" y="23" font-size="14" text-anchor="start" fill="#1d1f3a">Cal</text>
+<text x="46" y="97" font-size="14" text-anchor="end" fill="#1d1f3a">Dee</text>
+<text x="204" y="97" font-size="14" text-anchor="start" fill="#1d1f3a">Eli</text>
+</svg>
+</figure>
+<table>
+<tr><th>Person</th><th>Ada</th><th>Ben</th><th>Cal</th><th>Dee</th><th>Eli</th></tr>
+<tr><td>Friend count</td><td>4</td><td>1</td><td>1</td><td>1</td><td>1</td></tr>
+<tr><td>Friends' counts</td><td>1, 1, 1, 1</td><td>4</td><td>4</td><td>4</td><td>4</td></tr>
+<tr><td>Friends' average</td><td>1</td><td>4</td><td>4</td><td>4</td><td>4</td></tr>
+</table>
+<p>Average friend count: \((4 + 1 + 1 + 1 + 1) \div 5 = 8 \div 5 = 1.6\). Average of the friends' averages: \((1 + 4 + 4 + 4 + 4) \div 5 = 17 \div 5 = 3.4\).</p>
+<p>Ada's 4 is on four friends lists. Each 1 is on only one list, Ada's. And Ada herself is not behind: she has 4 friends and her friends average 1.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<figure>
+<svg viewBox="0 0 520 96" width="520" height="96" role="img" aria-label="A network of six people. Top row, left to right: Kit, Fay, Gus, Jo. Below Fay is Ivo and below Gus is Hana. Lines join Kit to Fay, Fay to Gus, Gus to Jo, Fay to Ivo, Gus to Hana, and Ivo to Hana." font-family="Nunito, sans-serif">
+<line x1="90" y1="28" x2="200" y2="28" stroke="#1d1f3a" stroke-width="2"/>
+<line x1="200" y1="28" x2="320" y2="28" stroke="#1d1f3a" stroke-width="2"/>
+<line x1="320" y1="28" x2="430" y2="28" stroke="#1d1f3a" stroke-width="2"/>
+<line x1="200" y1="28" x2="200" y2="72" stroke="#1d1f3a" stroke-width="2"/>
+<line x1="320" y1="28" x2="320" y2="72" stroke="#1d1f3a" stroke-width="2"/>
+<line x1="200" y1="72" x2="320" y2="72" stroke="#1d1f3a" stroke-width="2"/>
+<circle cx="90" cy="28" r="8" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<circle cx="200" cy="28" r="8" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<circle cx="320" cy="28" r="8" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<circle cx="430" cy="28" r="8" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<circle cx="200" cy="72" r="8" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<circle cx="320" cy="72" r="8" fill="#dcdcf5" stroke="#3f44c9" stroke-width="1.5"/>
+<text x="90" y="14" font-size="14" text-anchor="middle" fill="#1d1f3a">Kit</text>
+<text x="200" y="14" font-size="14" text-anchor="middle" fill="#1d1f3a">Fay</text>
+<text x="320" y="14" font-size="14" text-anchor="middle" fill="#1d1f3a">Gus</text>
+<text x="430" y="14" font-size="14" text-anchor="middle" fill="#1d1f3a">Jo</text>
+<text x="200" y="92" font-size="14" text-anchor="middle" fill="#1d1f3a">Ivo</text>
+<text x="320" y="92" font-size="14" text-anchor="middle" fill="#1d1f3a">Hana</text>
+</svg>
+</figure>
+<ol>
+<li>This network of six people is made up. Write down each friend count. What is their average?<div class="space short"></div></li>
+<li>Work out the friends' average for each of the six. Then average those six numbers. Is it bigger than your answer to question 1? Who has more friends than their friends' average?<div class="space"></div></li>
+<li>Draw a network of 4 people in which nobody is below their friends' average. (Everyone needs at least one friend.) What do you notice about the friend counts?<div class="space"></div></li>
+<li>Five people are all friends with each other, except that Max and Nell have never met. How many of the five have more friends than their friends' average? Work out both averages from the callout.<div class="space short"></div></li>
+<li>In question 1's network, how many friends lists is Fay's friend count on? How many is Kit's on? Write a rule for any person, and say why it pushes friends' averages up.<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: a second way to average</h2>
+<p>Every friendship has two ends, with a person at each end. Ada's network has 4 friendships, so 8 ends. Write the friend count of the person at each end and average the 8 numbers. Compare with 1.6 and 3.4. Then do the same for the six-person network.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Kit 1, Fay 3, Gus 3, Jo 1, Ivo 2, Hana 2. The average is \((1 + 3 + 3 + 1 + 2 + 2) \div 6 = 12 \div 6 =\) <b>2</b>.</li>
+<li>Kit's only friend is Fay, so Kit's friends' average is 3. Jo's only friend is Gus: 3. Fay's friends are Kit, Gus and Ivo: \((1 + 3 + 2) \div 3 = 2\). Gus's friends are Fay, Jo and Hana: \((3 + 1 + 2) \div 3 = 2\). Ivo's friends are Fay and Hana: \((3 + 2) \div 2 = 2.5\). Hana's friends are Gus and Ivo: 2.5. The average is \((3 + 2 + 2 + 3 + 2.5 + 2.5) \div 6 = 15 \div 6 =\) <b>2.5</b>. Yes, it is bigger than 2. <b>Fay and Gus</b> have more friends than their friends' average: 3 against 2. The other four have fewer: 1 against 3 for Kit and Jo, 2 against 2.5 for Ivo and Hana. So the paradox does not say that everyone is behind.</li>
+<li>There are three shapes that work. A square, where everyone has 2 friends. All four friends with each other, where everyone has 3. Two separate pairs, where everyone has 1. In each one, every person's friend count equals their friends' average, so the two averages from the callout are equal. That is forced. Think of someone with the fewest friends. None of their friends has fewer, so if they are not below their friends' average, every one of their friends must have exactly that same count. The same reasoning then applies to those friends, and so on along the lines.</li>
+<li>Max and Nell have 3 friends each. The other three have 4 each. Each of those three has friends with counts 4, 4, 3 and 3, which average 3.5, so <b>three of the five</b> have more friends than their friends' average. Max's friends have counts 4, 4 and 4, average 4, and so do Nell's. The average friend count is \((4 + 4 + 4 + 3 + 3) \div 5 = 18 \div 5 = 3.6\). The average of the friends' averages is \((3.5 + 3.5 + 3.5 + 4 + 4) \div 5 = 18.5 \div 5 = 3.7\). The second is still bigger, even though most people here are ahead of their friends.</li>
+<li>Fay's count is on <b>3</b> lists: Kit's, Gus's and Ivo's. Kit's count is on <b>1</b> list, Fay's. The rule: a person's friend count is on exactly as many friends lists as their friend count, one list for each friend. So big counts are written down many times and small counts only a few times, which pulls friends' averages up.</li>
+</ol>
+<p><b>Stretch.</b> Ada is at 4 ends and each of her friends is at 1 end, so the numbers are 4, 4, 4, 4, 1, 1, 1, 1. They add to 20, and \(20 \div 8 = 2.5\). That is bigger than 1.6 but not the same as 3.4. The six-person network has 6 friendships, so 12 ends: six 3s, four 2s and two 1s. They add to \(18 + 8 + 2 = 28\), and \(28 \div 12 = 2\tfrac{1}{3}\), bigger than 2 but not the same as 2.5. So there are two ways to average "friends of friends", and they give different answers. Always say which one you mean. The callout uses the first: one friends' average for each person. The second way, by ends, is also never smaller than the average friend count, and it is equal only when everyone has the same friend count.</p>
+</section>
+
+<div class="sheet-nav"><a href="c15-ct-scan-puzzle.html">← Previous</a><a href="../index.html#sheets">← All sheets</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>
