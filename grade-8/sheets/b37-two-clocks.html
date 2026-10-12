@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why mod 10 is two clocks at once · Infinity Club</title>
+<meta name="description" content="Label each number from 0 to 9 with its remainders mod 2 and mod 5, and a 10-hour clock turns into a 2-hour clock and a 5-hour clock running side by side. Numbers that square to themselves show the split, and show why mod 4 does not split.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 8</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 8 · Around the corner · 37</div>
+  <h1>Why mod 10 is two clocks at once</h1>
+  <p class="teaser">5 × 5 ends in 5 and 76 × 76 = 5776 ends in 76. Numbers that square to themselves reveal that a 10-hour clock is secretly a 2-hour clock and a 5-hour clock running together.</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Working <b>mod 10</b> is arithmetic on a 10-hour clock: add or multiply as usual, then keep only the last digit, the remainder after dividing by 10. So \(7 + 8 = 5\) and \(7 \times 8 = 6\) mod 10.</p>
+<p>Give each number from 0 to 9 a pair: its remainders mod 2 and mod 5. So 7 gets \((1, 2)\). There are \(2 \times 5 = 10\) possible pairs, and each is used exactly once.</p>
+<p class="callout">Mod 10, a number is fixed by its pair (mod 2, mod 5). To add or multiply two numbers, work part by part: first parts mod 2, second parts mod 5.</p>
+<p>So a 10-clock is a 2-clock and a 5-clock side by side. This works because 2 and 5 share no factor bigger than 1. It fails for \(4 = 2 \times 2\) (exercise 3).</p>
+<p>Clock addition makes an <b>abelian group</b>: things you can combine in any order, with a do-nothing (0) and an undo for each. A theorem says every finite abelian group behaves exactly like some list of clocks.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: numbers that square to themselves</h2>
+<table class="tt">
+<tr><th>number</th><td>\(0\)</td><td>\(1\)</td><td>\(2\)</td><td>\(3\)</td><td>\(4\)</td><td>\(5\)</td><td>\(6\)</td><td>\(7\)</td><td>\(8\)</td><td>\(9\)</td></tr>
+<tr><th>pair</th><td>\((0, 0)\)</td><td>\((1, 1)\)</td><td>\((0, 2)\)</td><td>\((1, 3)\)</td><td>\((0, 4)\)</td><td>\((1, 0)\)</td><td>\((0, 1)\)</td><td>\((1, 2)\)</td><td>\((0, 3)\)</td><td>\((1, 4)\)</td></tr>
+</table>
+<p>The table gives each number's pair (mod 2, mod 5). Try the callout on \(7 \times 8\), which is \((1, 2)\) times \((0, 3)\). First parts: \(1 \times 0 = 0\). Second parts: \(2 \times 3 = 6\), which is 1 mod 5. The pair \((0, 1)\) belongs to 6, and 56 does end in 6. It works because 10 is a multiple of 2 and of 5, so throwing away tens never changes a remainder mod 2 or mod 5.</p>
+<p>A number that squares to itself is called an <b>idempotent</b>. Which \(x\) from 0 to 9 have \(x \times x = x\) mod 10? That happens exactly when each part of the pair squares to itself. On the 2-clock both 0 and 1 do. On the 5-clock the squares of \(0, 1, 2, 3, 4\) are \(0, 1, 4, 4, 1\), so only 0 and 1 do. That leaves four pairs: \((0, 0) = 0\), \((1, 1) = 1\), \((1, 0) = 5\) and \((0, 1) = 6\). Check: 25 ends in 5 and 36 ends in 6.</p>
+<p>The idempotents 5 and 6 work like <b>switches</b>. Multiplying by \(5 = (1, 0)\) keeps the 2-clock part and sets the 5-clock part to 0. Multiplying by \(6 = (0, 1)\) does the opposite. Try both on \(7 = (1, 2)\): \(5 \times 7 = 35\), which is \(5 = (1, 0)\), and \(6 \times 7 = 42\), which is \(2 = (0, 2)\). The pieces add back to \(5 + 2 = 7\). The switches add to 1 and multiply to 0 mod 10: \(5 + 6 = 11\) and \(5 \times 6 = 30\). Neither is 0, yet their product is 0 mod 10. Ordinary whole numbers never do that.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Use the table of pairs. (a) Work out \(3 + 9\) and \(3 \times 9\) mod 10 using pairs, then check with the last digits of 12 and 27. (b) Use pairs to find every \(x\) from 0 to 9 with \(x \times x = 1\) mod 10, then check by squaring. (c) Find \(y\) with \(3 \times y = 1\) mod 10. Six of the ten numbers have no such partner. Which six, and what do their pairs share?<div class="space short"></div></li>
+<li>Now a 6-clock, with \(6 = 2 \times 3\). (a) Give each number from 0 to 5 its pair (mod 2, mod 3). Are the six pairs all different? (b) Use the pairs to find every \(x\) from 0 to 5 with \(x \times x = x\) mod 6, and check by squaring. (c) Which two are the switches? Check that they add to 1 and multiply to 0 mod 6.<div class="space short"></div></li>
+<li>A 4-clock is not two 2-clocks. (a) Give 0, 1, 2, 3 the pairs (mod 2, mod 2). What goes wrong? (b) Find every \(x\) from 0 to 3 with \(x \times x = x\) mod 4. Two 2-clocks side by side have four pairs \((a, b)\). How many square to themselves? (c) On two 2-clocks, add any pair to itself. What do you always get? Find a number on the 4-clock that does not behave like that.<div class="space short"></div></li>
+<li>Two-digit endings. (a) Check that \(76 \times 76 = 5776\). (b) \(x \times x = x\) mod 100 means that 100 divides \(x \times x - x\), which is \(x(x - 1)\). The neighbours \(x - 1\) and \(x\) share no factor bigger than 1. Explain why 25 must divide one of them, and 4 must divide one of them. (c) Find every \(x\) from 0 to 99 with \(x \times x = x\) mod 100. (d) Two of your answers are switches. Write their pairs (mod 4, mod 25), and check their sum and product mod 100.<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: three-digit endings</h2>
+<p>\(1000 = 8 \times 125\), and 8 and 125 share no factor bigger than 1, so a 1000-clock is an 8-clock and a 125-clock side by side. Find every \(x\) from 0 to 999 with \(x \times x = x\) mod 1000. Then explain, without adding them up, why the two switches must add to exactly 1001.</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(3 = (1, 3)\) and \(9 = (1, 4)\). Adding: \(1 + 1 = 2\), which is 0 mod 2, and \(3 + 4 = 7\), which is 2 mod 5. The pair \((0, 2)\) is 2, and 12 ends in 2. Multiplying: \(1 \times 1 = 1\), and \(3 \times 4 = 12\), which is 2 mod 5. The pair \((1, 2)\) is 7, and 27 ends in 7. (b) Each part must square to 1. On the 2-clock only 1 does. On the 5-clock the squares are \(0, 1, 4, 4, 1\), so 1 and 4 do. The pairs \((1, 1)\) and \((1, 4)\) are 1 and 9, and \(9 \times 9 = 81\) ends in 1. (c) \(y = 7\), since \(3 \times 7 = 21\). The numbers with no partner are 0, 2, 4, 5, 6, 8. Each has a 0 somewhere in its pair. A 0 part stays 0 whatever you multiply by, but 1 is \((1, 1)\).</li>
+<li>(a) \(0 = (0, 0)\), \(1 = (1, 1)\), \(2 = (0, 2)\), \(3 = (1, 0)\), \(4 = (0, 1)\), \(5 = (1, 2)\). All six are different, and \(2 \times 3 = 6\) pairs is all there are. (b) On the 3-clock the squares of \(0, 1, 2\) are \(0, 1, 1\), so only 0 and 1 square to themselves. The four pairs made of 0s and 1s are \((0, 0) = 0\), \((1, 1) = 1\), \((1, 0) = 3\) and \((0, 1) = 4\). Check: \(3 \times 3 = 9\), which is 3 mod 6, and \(4 \times 4 = 16\), which is 4 mod 6. (c) The switches are 3 and 4. \(3 + 4 = 7\), which is 1 mod 6, and \(3 \times 4 = 12\), which is 0 mod 6.</li>
+<li>(a) The pairs are \((0, 0)\), \((1, 1)\), \((0, 0)\), \((1, 1)\). 0 and 2 get the same pair, and so do 1 and 3, so the pair does not fix the number. The two parts share the factor 2. (b) The squares of \(0, 1, 2, 3\) are \(0, 1, 4, 9\), which are \(0, 1, 0, 1\) mod 4. Only 0 and 1 square to themselves, so there are no switches. On two 2-clocks all four pairs square to themselves, because 0 and 1 both do. (c) You always get \((0, 0)\), because \(a + a\) is 0 or 2, and both are 0 mod 2. On the 4-clock \(1 + 1 = 2\), not 0. So no renaming turns one into the other. They are two different abelian groups with four members, and there are no others.</li>
+<li>(a) \(76 \times 70 + 76 \times 6 = 5320 + 456 = 5776\). (b) \(100 = 4 \times 25 = 2 \times 2 \times 5 \times 5\). The neighbours cannot both be multiples of 5, so both 5s must come from the same one, and 25 divides it. Only one of two neighbours is even, so both 2s come from that one, and 4 divides it. (c) 25 divides \(x\) or \(x - 1\), so \(x\) is one of 0, 25, 50, 75 or 1, 26, 51, 76. Now test for 4. It divides 0, so 0 and 1 pass. It divides \(25 - 1 = 24\), and it divides 76. For 26, 50, 51 and 75, neither the number nor the one before it is a multiple of 4. The answers are 0, 1, 25 and 76, and \(25 \times 25 = 625\) ends in 25. (d) \(25 = (1, 0)\) and \(76 = (0, 1)\). \(25 + 76 = 101\), which is 1 mod 100, and \(25 \times 76 = 1900\), which is 0 mod 100.</li>
+</ol>
+<p><b>Stretch.</b> The answers are 0, 1, 376 and 625. \(1000 = 2 \times 2 \times 2 \times 5 \times 5 \times 5\) must divide \(x(x - 1)\), so 125 divides one neighbour and 8 divides one neighbour. If both divide the same one, 1000 divides it, which gives \(x = 0\) or \(x = 1\). If 125 divides \(x\) and 8 divides \(x - 1\), then \(x\) is odd, so it is 125, 375, 625 or 875, and only \(625 - 1 = 624 = 8 \times 78\) works. If 125 divides \(x - 1\) and 8 divides \(x\), then \(x\) is one of the even numbers 126, 376, 626, 876, and only \(376 = 8 \times 47\) works. Check: \(376 \times 376 = 141376\) and \(625 \times 625 = 390625\). For the sum, use pairs (mod 8, mod 125): \(625 = (1, 0)\) and \(376 = (0, 1)\), so their sum has the pair \((1, 1)\), which is the pair of 1. The sum is therefore 1 mod 1000. It is bigger than 1 and less than 2000, so it is 1001.</p>
+</section>
+
+<div class="sheet-nav"><a href="b36-stop-at-ten.html">← Previous</a><a href="b40-jam.html">Next: Two games that are secretly one →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>
