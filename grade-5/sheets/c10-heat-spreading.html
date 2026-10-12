@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Where does the heat go? · Infinity Club</title>
+<meta name="description" content="A 100-point hot spot spreads and flattens without losing any heat. Step through a five-cell model and discover why the total stays fixed.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 5</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 5 · Connections · 10</div>
+  <h1>Where does the heat go?</h1>
+  <p class="teaser">A 100-point hot spot spreads and flattens, yet not one heat point vanishes. Can you predict the next row and explain the trick?</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>Imagine five equal pieces of a metal bar. Give each piece a number of <b>heat points</b>. The points are a simple model of how much thermal energy each piece holds.</p>
+<p>At each step, every inside cell keeps half its points and sends one-quarter to each neighbour. An end cell has only one neighbour, so it keeps three-quarters and sends one-quarter inward. Work out every new value from the old row, then change them all together.</p>
+<p>Hot spikes shrink while nearby cold pieces warm. This spreading and smoothing is called <b>diffusion</b>. Computers model heat in the same way, with far more, much smaller cells.</p>
+<p class="callout">Insulated ends let nothing escape. Every heat point is kept or passed inside the bar, so the total cannot change.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: flatten a spike</h2>
+<p>Start with all 100 points in the middle. Cover the bottom row and predict it before reading on.</p>
+<figure><svg viewBox="0 0 520 194" width="520" height="194" role="img" aria-label="Five-cell insulated bar over three steps. Step 0 has values 0, 0, 100, 0, 0. Step 1 has 0, 25, 50, 25, 0. Step 2 has 6.25, 25, 37.5, 25, 6.25. Every row totals 100." font-family="Nunito, sans-serif" font-size="13">
+<text x="8" y="39" fill="#555">step 0</text><text x="8" y="99" fill="#555">step 1</text><text x="8" y="159" fill="#555">step 2</text>
+<g stroke="#1d1f3a" stroke-width="1.5">
+  <rect x="70" y="15" width="62" height="38" fill="#dcdcf5" fill-opacity="0.15"/><rect x="135" y="15" width="62" height="38" fill="#dcdcf5" fill-opacity="0.15"/><rect x="200" y="15" width="62" height="38" fill="#3f44c9" fill-opacity="0.78"/><rect x="265" y="15" width="62" height="38" fill="#dcdcf5" fill-opacity="0.15"/><rect x="330" y="15" width="62" height="38" fill="#dcdcf5" fill-opacity="0.15"/>
+  <rect x="70" y="75" width="62" height="38" fill="#dcdcf5" fill-opacity="0.15"/><rect x="135" y="75" width="62" height="38" fill="#3f44c9" fill-opacity="0.28"/><rect x="200" y="75" width="62" height="38" fill="#3f44c9" fill-opacity="0.50"/><rect x="265" y="75" width="62" height="38" fill="#3f44c9" fill-opacity="0.28"/><rect x="330" y="75" width="62" height="38" fill="#dcdcf5" fill-opacity="0.15"/>
+  <rect x="70" y="135" width="62" height="38" fill="#3f44c9" fill-opacity="0.18"/><rect x="135" y="135" width="62" height="38" fill="#3f44c9" fill-opacity="0.28"/><rect x="200" y="135" width="62" height="38" fill="#3f44c9" fill-opacity="0.40"/><rect x="265" y="135" width="62" height="38" fill="#3f44c9" fill-opacity="0.28"/><rect x="330" y="135" width="62" height="38" fill="#3f44c9" fill-opacity="0.18"/>
+</g>
+<g text-anchor="middle">
+  <text x="101" y="40">0</text><text x="166" y="40">0</text><text x="231" y="40" fill="#fff" font-weight="700">100</text><text x="296" y="40">0</text><text x="361" y="40">0</text>
+  <text x="101" y="100">0</text><text x="166" y="100">25</text><text x="231" y="100">50</text><text x="296" y="100">25</text><text x="361" y="100">0</text>
+  <text x="101" y="160">6.25</text><text x="166" y="160">25</text><text x="231" y="160">37.5</text><text x="296" y="160">25</text><text x="361" y="160">6.25</text>
+</g>
+<g fill="#555"><text x="420" y="39">total 100</text><text x="420" y="99">total 100</text><text x="420" y="159">total 100</text></g>
+<path d="M231 57v10m-4-4 4 4 4-4M231 117v10m-4-4 4 4 4-4" fill="none" stroke="#f5a524" stroke-width="2"/>
+</svg><figcaption>Darker cells hold more heat points. The ends are insulated.</figcaption></figure>
+<p>For step 1, the middle keeps 50 and gives 25 each way. For step 2, the left end receives 25 ÷ 4 = 6.25. The next cell keeps 12.5 and receives 12.5 from the middle, making 25. The middle keeps 25 and receives 6.25 from each side, making 37.5. The other side mirrors it.</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>Find step 3 after 6.25, 25, 37.5, 25, 6.25. Remember that an end keeps three-quarters, and use only the old row until all five new values are ready.<div class="space"></div></li>
+<li>Add the five values in every row, including your step 3. Why must the total stay 100 without needing to add it each time?<div class="space short"></div></li>
+<li>Start a new insulated bar at 100, 0, 0, 0, 100. Find the next two rows. When does the middle cell first warm up?<div class="space"></div></li>
+<li>Now cold surroundings hold both end cells at 0. Start from 0, 25, 50, 25, 0. The usual next row would put 6.25 at each end, but those points escape instead. Write the new row and its total. How much heat left the bar?<div class="space"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: where does it settle?</h2>
+<p>Continue the original insulated bar for a long time. The cells get closer and closer to one shared value. What must that value be? Explain why a settled row cannot have neighbouring cells with different values.</p>
+<div class="space short"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>Step 3 is 10.9375, 23.4375, 31.25, 23.4375, 10.9375. For example, the left end is ¾ × 6.25 + ¼ × 25 = 10.9375. The next cell is ¼ × 6.25 + ½ × 25 + ¼ × 37.5 = 23.4375.</li>
+<li>Every row totals 100. Each cell divides all its old points into kept points and passed points. With insulated ends, every passed point enters another cell in the bar. Nothing is created, counted twice or lost.</li>
+<li>The rows are 75, 25, 0, 25, 75, then 62.5, 31.25, 12.5, 31.25, 62.5. The middle first warms at the second step, receiving 6.25 from each neighbouring cell.</li>
+<li>The new row is 0, 25, 37.5, 25, 0, with total 87.5. The missing 100 − 87.5 = 12.5 points are the 6.25 lost at each end.</li>
+</ol>
+<p><b>Stretch.</b> The shared value must be 100 ÷ 5 = 20. If neighbours differed, the hotter one would still pass more heat toward the colder one than it received back, so the row would still be changing. Equal neighbours cause no net change. The values approach 20, 20, 20, 20, 20; the model need not land there after any particular finite step.</p>
+</section>
+
+<div class="sheet-nav"><a href="c9-bottle-music.html">← Previous</a><a href="../index.html#sheets">← All sheets</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>
