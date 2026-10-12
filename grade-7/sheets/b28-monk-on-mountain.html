@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The monk on the mountain · Infinity Club</title>
+<meta name="description" content="A monk walks up a mountain one day and down the next. Because walking has no jumps, there is a spot he passes at the same time on both days. Use the same no-jumps argument on a table of distances, on temperatures round the equator and on a 10 km run, and see where it fails.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.css">
+<link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body>
+<nav class="top">
+  <a class="brand" href="../../index.html"><span class="inf">∞</span> Infinity Club</a>
+  <a href="../index.html">Grade 7</a>
+  <a href="../index.html#sheets">Sheets</a>
+  <a href="../../demos/index.html">Demos</a>
+  <a href="../plan.html">Start here</a>
+  <a href="../../parents.html">Parents</a>
+  <span class="spacer"></span>
+  <button data-print>Print this sheet</button>
+</nav>
+
+<main class="paper">
+<header class="sheet-head">
+  <div class="kicker">Infinity Club · Grade 7 · Around the corner · 28</div>
+  <h1>The monk on the mountain</h1>
+  <p class="teaser">A monk walks up a mountain one day and down the next, on the same path. Is there a spot he passes at exactly the same time of day on both days?</p>
+  <div class="namebar"><span>Name ____________________</span><span>Date ____________</span></div>
+</header>
+
+<section class="idea">
+<h2>Tonight's idea</h2>
+<p>A monk leaves the foot of a mountain at 6 am and reaches the top at 6 pm. Next day he leaves the top at 6 am and is back at the foot at 6 pm, on the same path. His speed can change as much as he likes.</p>
+<p>Is there a spot he passes at the same time on both days? Here is the trick. Play both days at once: two monks on one day, one going up, one coming down. They share one path, so they must meet.</p>
+<p>Why must they meet? Take the up-monk's distance from the foot, minus the down-monk's. At 6 am it is negative. At 6 pm it is positive. Walking is <b>continuous</b>: your position changes with no jumps. So the difference has no jumps either, and cannot go from negative to positive without passing through zero.</p>
+<p class="callout">A quantity that changes with no jumps, and goes from below zero to above zero, is exactly zero at some moment in between.</p>
+</section>
+
+<section class="example">
+<h2>Watch one: notes every two hours</h2>
+<p>The path is 12 km long. Made-up notes of his distance from the foot, in km, and a graph of them:</p>
+<div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:.2em 1em">
+<table style="margin:.4em 0; font-size:.88em">
+<tr><th>Time</th><th>6 am</th><th>8</th><th>10</th><th>noon</th><th>2</th><th>4</th><th>6 pm</th></tr>
+<tr><td>Day 1, up</td><td>0</td><td>3</td><td>5</td><td>6</td><td>8</td><td>11</td><td>12</td></tr>
+<tr><td>Day 2, down</td><td>12</td><td>10</td><td>9</td><td>5</td><td>3</td><td>1</td><td>0</td></tr>
+<tr><td>Up minus down</td><td>\(-12\)</td><td>\(-7\)</td><td>\(-4\)</td><td>1</td><td>5</td><td>10</td><td>12</td></tr>
+</table>
+<figure style="margin:0"><svg viewBox="0 0 250 128" width="250" height="128" role="img" aria-label="A graph of distance from the foot of the mountain, 0 to 12 km, against time of day, 6 am to 6 pm. The day 1 line rises from 0 to 12 km. The day 2 line falls from 12 km to 0. They cross once, at 11:36, a little under 6 km from the foot." font-family="Nunito, sans-serif" font-size="12">
+<g stroke="#999" stroke-width="1"><line x1="42.0" y1="102" x2="42.0" y2="106"/><line x1="75.0" y1="102" x2="75.0" y2="106"/><line x1="108.0" y1="102" x2="108.0" y2="106"/><line x1="141.0" y1="102" x2="141.0" y2="106"/><line x1="174.0" y1="102" x2="174.0" y2="106"/><line x1="207.0" y1="102" x2="207.0" y2="106"/><line x1="240.0" y1="102" x2="240.0" y2="106"/><line x1="38" y1="102.0" x2="42" y2="102.0"/><line x1="38" y1="71.3" x2="42" y2="71.3"/><line x1="38" y1="40.7" x2="42" y2="40.7"/><line x1="38" y1="10.0" x2="42" y2="10.0"/></g>
+<path d="M 42 10 V 102 H 240" fill="none" stroke="#1d1f3a" stroke-width="1.5"/>
+<g fill="#555" text-anchor="middle"><text x="42.0" y="119">6 am</text><text x="108.0" y="119">10</text><text x="174.0" y="119">2</text><text x="236.0" y="119">6 pm</text></g>
+<g fill="#555" text-anchor="end"><text x="35" y="106.0">0</text><text x="35" y="75.3">4</text><text x="35" y="44.7">8</text><text x="35" y="14.0">12</text></g>
+<text x="11" y="56.0" fill="#555" text-anchor="middle" transform="rotate(-90 11 56.0)">km from foot</text>
+<polyline points="42.0,102.0 75.0,79.0 108.0,63.7 141.0,56.0 174.0,40.7 207.0,17.7 240.0,10.0" fill="none" stroke="#3f44c9" stroke-width="2.5"/>
+<polyline points="42.0,10.0 75.0,25.3 108.0,33.0 141.0,63.7 174.0,79.0 207.0,94.3 240.0,102.0" fill="none" stroke="#f5a524" stroke-width="2.5"/>
+<g fill="#3f44c9"><circle cx="42.0" cy="102.0" r="2.5"/><circle cx="75.0" cy="79.0" r="2.5"/><circle cx="108.0" cy="63.7" r="2.5"/><circle cx="141.0" cy="56.0" r="2.5"/><circle cx="174.0" cy="40.7" r="2.5"/><circle cx="207.0" cy="17.7" r="2.5"/><circle cx="240.0" cy="10.0" r="2.5"/></g>
+<g fill="#f5a524"><circle cx="42.0" cy="10.0" r="2.5"/><circle cx="75.0" cy="25.3" r="2.5"/><circle cx="108.0" cy="33.0" r="2.5"/><circle cx="141.0" cy="63.7" r="2.5"/><circle cx="174.0" cy="79.0" r="2.5"/><circle cx="207.0" cy="94.3" r="2.5"/><circle cx="240.0" cy="102.0" r="2.5"/></g>
+<line x1="134.4" y1="57.5" x2="134.4" y2="102" stroke="#555" stroke-width="1" stroke-dasharray="3 3"/>
+<circle cx="134.4" cy="57.5" r="5" fill="none" stroke="#1d1f3a" stroke-width="2"/>
+<text x="134.4" y="119" fill="#1d1f3a" font-weight="700" text-anchor="middle">11:36</text>
+<text x="183.9" y="52" fill="#3f44c9" font-weight="700">day 1</text>
+<text x="183.9" y="70" fill="#f5a524" font-weight="700">day 2</text>
+</svg></figure>
+</div>
+<p>The bottom row is negative at 10 and positive at noon, so it is zero at some moment in between. That is certain, whatever he did in those two hours, as long as he never jumped.</p>
+<p>For the exact moment we need a model: suppose he walked steadily from 10 to noon on both days, up from 5 to 6 km and down from 9 to 5 km. The gap of 4 km closes at \(0.5 + 2 = 2.5\) km an hour, taking \(4 \div 2.5 = 1.6\) hours, which is 1 hour 36 minutes. The spot is \(5 + 0.5 \times 1.6 = 5.8\) km from the foot, passed at 11:36 on both days. Check from the top: \(9 - 2 \times 1.6 = 5.8\).</p>
+</section>
+
+<section class="exercises">
+<h2>Your turn</h2>
+<ol>
+<li>A hiker goes up a 10 km path and down it next day, 8 am to 4 pm both days. Made-up notes, in km:
+<div style="display:flex; flex-wrap:wrap; align-items:center; gap:.2em 1em">
+<table style="margin:.4em 0; font-size:.88em">
+<tr><th>Time</th><th>8 am</th><th>10</th><th>noon</th><th>2</th><th>4 pm</th></tr>
+<tr><td>Day 1, up</td><td>0</td><td>2</td><td>5</td><td>6</td><td>10</td></tr>
+<tr><td>Day 2, down</td><td>10</td><td>9</td><td>7</td><td>3</td><td>0</td></tr>
+<tr><td>Up minus down</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</table>
+<div style="flex:1 1 15em">(a) Fill in the bottom row. (b) Between which two times in the table is there a spot she passes at the same time on both days? (c) Suppose she walked steadily between those two times on both days. Find the time and the spot.</div>
+</div><div class="space short"></div></li>
+<li>Freeze one moment. Suppose temperature changes with no jumps as you go round the equator. At a point A it is 30°C. At B, exactly opposite A on the equator, it is 24°C (made-up numbers). For any point, let \(D\) be the temperature there minus the temperature at the opposite point. (a) What is \(D\) at A? At B? (b) Go round the equator from A to B. Why must you pass a point exactly as warm as its opposite?<div class="space short"></div></li>
+<li>On day 1 a monk walks up the 12 km path at a steady 1 km an hour, 6 am to 6 pm. On day 2 he walks steadily down from the top, reaching the 9 km mark at noon. At that instant he teleports to the 4 km mark, then walks steadily down to the foot by 6 pm. (a) Where is he at noon on day 1? (b) Does he pass any spot at the same time on both days? (c) Which step of tonight's argument breaks?<div class="space short"></div></li>
+<li>A runner covers 10 km in exactly 50 minutes, changing speed as she likes. She covers 6 km in the first 25 minutes. (a) How far does she go in the last 25? (b) Slide a 25-minute window along the run, from minutes 0 to 25 through every start time up to 25 to 50. Why must some window contain exactly 5 km of running? (c) Is there always such a window, whatever she covers in the first 25 minutes?<div class="space short"></div></li>
+</ol>
+</section>
+
+<section class="stretch">
+<h2>Stretch: a 15-minute window</h2>
+<p>A steady runner doing 10 km in 50 minutes covers 3 km in every 15 minutes. Must every 10 km, 50-minute run have a 15-minute window containing exactly 3 km? Test this runner: 5 fast minutes covering 1.75 km, then 10 easy minutes covering 1 km, repeated, ending with a fourth fast 5, at a steady speed inside each part. (a) Check that this is 10 km in 50 minutes. (b) How far does she go in any 15-minute window? (c) Why does exercise 4's argument work for 25 minutes but not 15?</p>
+<div class="space"></div>
+</section>
+
+<section class="answers">
+<h2>Answers</h2>
+<ol>
+<li>(a) \(-10\), \(-7\), \(-2\), 3, 10. (b) Between noon and 2, where the row goes from negative to positive. (c) From noon to 2 she goes up from 5 to 6 km, half a km an hour, and down from 7 to 3 km, 2 km an hour. The gap of 2 km closes at 2.5 km an hour: \(2 \div 2.5 = 0.8\) hours, which is 48 minutes. The time is 12:48 and the spot is \(5 + 0.5 \times 0.8 = 5.4\) km from the foot. Check: \(7 - 2 \times 0.8 = 5.4\). Part (b) is certain. Part (c) is only as good as the steady-walking model.</li>
+<li>(a) At A, \(D = 30 - 24 = 6\). At B, \(D = 24 - 30 = -6\). Opposite points always have opposite values of \(D\). (b) As you travel, the temperature where you are has no jumps, and neither does the temperature at the opposite point, so \(D\) has no jumps. It goes from 6 to \(-6\), so somewhere it is exactly 0. There, the point and its opposite are equally warm. The same argument works for any starting numbers: if \(D\) is not already 0 at A, it has opposite signs at A and B. It all rests on the no-jumps assumption, which is a model of real weather.</li>
+<li>(a) At the 6 km mark. (b) No. Before noon the day 1 monk is below 6 km and the day 2 monk is above 9 km. From noon on, the day 1 monk is at 6 km or higher and the day 2 monk is at 4 km or lower. They are never level. (c) The "no jumps" step. Day 1 minus day 2 is close to \(6 - 9 = -3\) just before noon and is \(6 - 4 = 2\) at noon. It leaps from negative to positive without ever being zero. On day 2 he never sets foot between the 4 km and 9 km marks at all.</li>
+<li>(a) \(10 - 6 = 4\) km. (b) The window from 0 to 25 holds 6 km, more than 5. The window from 25 to 50 holds 4 km, less than 5. As the window slides, the distance inside it changes with no jumps, because her position at each end of the window has no jumps. Take the distance inside minus 5: it goes from \(+1\) to \(-1\), so it is zero for some window. That window holds exactly 5 km. (c) Yes. The first and last windows together hold all 10 km. If the first holds exactly 5, you are done. If not, one holds more than 5 and the other less, and the sliding argument works again. Her speed can vary freely, and she can even stop for a rest.</li>
+</ol>
+<p><b>Stretch.</b> No, there need not be one. (a) Four fast parts and three easy parts: \(4 \times 1.75 + 3 \times 1 = 10\) km, in \(4 \times 5 + 3 \times 10 = 50\) minutes. (b) Her pattern repeats every 15 minutes. Slide a 15-minute window forward, and whatever kind of minute leaves at the back, the same kind enters at the front. So every window holds 5 fast minutes and 10 easy minutes: \(1.75 + 1 = 2.75\) km, never 3. (c) Two 25-minute windows fill the 50 minutes exactly, so their distances add up to 10 km and cannot both be above 5 or both below. Three 15-minute windows leave 5 minutes over, and she hides an extra fast burst there. The same argument does work for 10-minute windows and 2 km, because five of them fill the run: they cannot all hold more than 2 km, or all less.</p>
+</section>
+
+<div class="sheet-nav"><a href="b27-five-bracketings.html">← Previous</a><a href="c1-bike-gears.html">Next: Why a bike has gears →</a></div>
+</main>
+
+<footer>Infinity Club · infinityclub.net · Print one sheet a night.</footer>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.11/contrib/auto-render.min.js"></script>
+<script defer src="../../assets/site.js"></script>
+</body>
+</html>
