@@ -120,6 +120,7 @@
   "grade-6/sheets/c17-isbn-check.html": [{"code": "11Z", "level": "core"}],
   "grade-6/sheets/c18-random-walker-distance.html": [{"code": "70L", "level": "core"}, {"code": "82D", "level": "core"}],
   "grade-6/sheets/c19-sandpile-angle.html": [{"code": "74L", "level": "core"}],
+  "grade-6/sheets/c20-shower-delay.html": [{"code": "34K", "level": "core"}, {"code": "93A", "level": "core"}],
   "grade-7/sheets/a1-minus-times-minus.html": [{"code": "00A", "level": "core"}, {"code": "13A", "level": "touch"}],
   "grade-7/sheets/a2-proportional.html": [{"code": "00A", "level": "core"}, {"code": "26A", "level": "touch"}],
   "grade-7/sheets/a3-rates-with-fractions.html": [{"code": "00A", "level": "core"}],
